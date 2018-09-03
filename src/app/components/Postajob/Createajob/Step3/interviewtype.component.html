@@ -1,0 +1,11 @@
+
+<div class="form-group position-group">
+  <label for="" class="question">Interview Type</label>
+  <p class="description">Share details so we can find you the most eligible candadtes.</p>
+
+  <div class="options">
+    <div class="checkbox" *ngFor="let type of interviewtypelist">
+      <label><input type="radio" name="emp-type" value=""><span class="box">{{type.InterviewType}}</span> </label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+
+<h4 mat-dialog-title class="modal-title">
+  Reject Candidate
+</h4>
+<mat-dialog-content class="mat-typography">
+  <div class="modal-content">
+    <div class="modal-body">
+      <form action="">
+        <div class="form-group">
+          <label for="">Select Reason</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="">Type Reason</label>
+          <textarea type="text" class="form-control" placeholder="Type here"></textarea>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="modal-footer">
+  <div class="modal-footer">
+    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled">Reject</button>
+  </div>
+</mat-dialog-actions>
+
+
+
+
+

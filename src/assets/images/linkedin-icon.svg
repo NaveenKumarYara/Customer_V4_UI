@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.403px" height="12.403px" viewBox="-1660 -3073 12.403 12.403">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6a7e9c;
+      }
+    </style>
+  </defs>
+  <g id="linkedin-icon" transform="translate(-2150 -3501)">
+    <rect id="rect3163_1_" class="cls-1" width="2.779" height="8.472" transform="translate(490 431.931)"/>
+    <path id="path3165_1_" class="cls-1" d="M332.556,292.511a1.356,1.356,0,1,0-1.356-1.356A1.318,1.318,0,0,0,332.556,292.511Z" transform="translate(158.8 138.2)"/>
+    <path id="path3167_1_" class="cls-1" d="M345.372,299.328a4.571,4.571,0,0,0-.949-2.914,2.475,2.475,0,0,0-2.237-.813,3.752,3.752,0,0,0-2.508,1.288V295.6H336.9v8.269h2.779v-4.677a1.329,1.329,0,0,1,1.356-1.423,1.622,1.622,0,0,1,1.627,1.694v4.406h2.779l-.068-4.541Z" transform="translate(156.963 136.331)"/>
+  </g>
+</svg>

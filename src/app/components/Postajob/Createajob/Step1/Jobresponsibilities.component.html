@@ -1,0 +1,55 @@
+<div class="form-group responsibility-group">
+  <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
+  <p class="description">Share details so we can find you the most eligible candadtes.</p>
+
+  <ul class="responsibility-list">
+    <li>
+      <label for="q1" class="radio">
+        <div>
+          <input type="checkbox" id="q1" name="q1" class="radio-input" />
+          <span class="radio-btn"></span>
+        </div>
+        <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</span>
+      </label>
+    </li>
+    <li>
+      <label for="q2" class="radio">
+        <div>
+          <input type="checkbox" id="q2" name="q2" class="radio-input" />
+          <span class="radio-btn"></span>
+        </div>
+        <span>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,</span>
+      </label>
+    </li>
+    <li>
+      <label for="q3" class="radio">
+        <div>
+          <input type="checkbox" id="q3" name="q3" class="radio-input" />
+          <span class="radio-btn"></span>
+        </div>
+        <span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</span>
+      </label>
+    </li>
+  </ul>
+  <div class="input-group">
+    <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
+           [(ngModel)]="responsibilities">
+    <span class="input-group-btn">
+      <button class="btn" (click)="addResponsibilities()">+</button>
+    </span>
+  </div>
+  <div class="lists row">
+    <div class="col-md-6">
+      <h4 for="" class="light">Responsibilities</h4>
+      <ul class="data-list">
+        <li *ngFor="let responsibility of responsibilitieslist; let i = index">
+          <span class="name">{{responsibility}}</span>
+          <span class="close" (click)="deleteResponsibility(i)">&times;</span>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
+                    

@@ -1,0 +1,26 @@
+
+<div class="col-md-12" *ngIf="!loaddata">
+  There is some issue with server please wait
+ </div>
+
+<div id="grid-view" class="tab-pane fade in active" *ngIf="id==1">
+  <div class="col-md-12" *ngIf="loaddata">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist.Jobs; let i=index">
+        <app-manage-joblist-gridlayout [job]="job"
+                                       [joblist]="joblist"
+                                       [index]="i"></app-manage-joblist-gridlayout>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+      Load More
+    </div>
+  </div>
+</div>
+  <div class="row" *ngIf="id==2">
+    <app-manage-joblist-tablelayout>
+    </app-manage-joblist-tablelayout>
+  </div>
+

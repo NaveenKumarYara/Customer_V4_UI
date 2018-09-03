@@ -1,0 +1,68 @@
+import { Injectable } from '@angular/core';
+import { Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+import { retry } from 'rxjs/operator/retry';
+import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { JobDetails } from '../managejobs/models/jobdetails';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/toPromise';
+import { Jobs } from '../managejobs/models/jobs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import './models/jobdetailsbasicinfo';
+import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
+import { Jobstatistics } from './models/jobstatistics';
+import { JobdetailsProfile } from './models/jobdetailsprofile';
+
+@Injectable()
+export class JobdetailsService {
+
+  constructor(private http: HttpClient) {
+  }
+
+  private detailsAdvanceSearch = new BehaviorSubject(false);
+  ShowDetailsadvanceSearch = this.detailsAdvanceSearch.asObservable();
+
+  updateDetailsAdvanceSearch(showdetailadvancesearch: boolean) {
+    this.detailsAdvanceSearch.next(showdetailadvancesearch);
+  }
+
+  private handleError(error: any) {
+    const errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.log(errMsg); // log to console instead
+    return Observable.throw(errMsg);
+  }
+
+  getJobDetailsBasicInfo(): Observable<JobdetailsBasicInfo> {
+    const url = environment.JobdetailsBasicInfoEndpoint;
+    return this.http.get<JobdetailsBasicInfo>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getJobDetailsStatisticsInfo(): Observable<Jobstatistics> {
+    const url = environment.JobdetailsStatisticsEndpoint;
+    return this.http.get<Jobstatistics>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+
+  getJobDetailsProfileInfo(jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsProfileEndpoint +
+      "&jobId=" + jobid + "&statusId=" + statusid + "&sortBy=0&pageNumber=1&noOfRows=6";
+    return this.http.get<JobdetailsProfile[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15.9px" height="19.147px" viewBox="-987.6 -2239 15.9 19.147">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #93a2bb;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="location-icon" transform="translate(-986.6 -2238)">
+    <path id="XMLID_42_" class="cls-1" d="M46.9,625.978c0,5.383-6.9,10.067-6.9,10.067s-7-4.585-7-9.968a6.95,6.95,0,0,1,13.9-.1Z" transform="translate(-33 -619.1)"/>
+    <ellipse id="XMLID_41_" class="cls-1" cx="2.3" cy="2.293" rx="2.3" ry="2.293" transform="translate(4.694 4.596) rotate(-0.189)"/>
+  </g>
+</svg>

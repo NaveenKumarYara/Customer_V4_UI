@@ -1,0 +1,30 @@
+<div class="form-group tech-team-group">
+  <label for="" class="question">Technical Team for Screening</label>
+  <p class="description">Share details so we can find you the most eligible candadtes.</p>
+
+  <div class="input-group">
+    <input id="team-members" type="text"
+           class="form-control ui-autocomplete-input"
+           name="benefits" placeholder="Add Team Members"
+           [(ngModel)]="teammembers">
+    <span class="input-group-btn">
+      <button class="btn" (click)="addTeammembers()">+</button>
+    </span>
+  </div>
+  <div class="lists row">
+    <div class="col-md-6">
+      <h4 for="" class="light">Teammembers</h4>
+      <ul class="data-list">
+        <li *ngFor="let teammember of teammemberslist; let i = index">
+          <span class="name">{{teammember}}</span>
+          <span class="close" (click)="deleteTeammember(i)">&times;</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+

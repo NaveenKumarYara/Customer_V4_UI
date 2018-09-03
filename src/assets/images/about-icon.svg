@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1259 -2607 26 20.113">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #448afa;
+        stroke-linecap: round;
+        stroke-width: 2px;
+      }
+
+      .cls-1 {
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="about-icon" transform="translate(-2150 -3481)">
+    <rect id="Rectangle_141" data-name="Rectangle 141" class="cls-1" width="9.962" height="18.113" transform="translate(903.774 875)"/>
+    <path id="Path_706" data-name="Path 706" class="cls-2" d="M0,0H8.6V13.585H0Z" transform="translate(895.17 879.528)"/>
+    <line id="Line_431" data-name="Line 431" class="cls-1" x2="24" transform="translate(892 893.113)"/>
+    <line id="Line_432" data-name="Line 432" class="cls-1" x2="3.623" transform="translate(897.887 884.057)"/>
+    <line id="Line_433" data-name="Line 433" class="cls-1" x2="3.623" transform="translate(897.887 887.679)"/>
+    <line id="Line_434" data-name="Line 434" class="cls-1" x2="3.623" transform="translate(906.943 879.076)"/>
+    <line id="Line_435" data-name="Line 435" class="cls-1" x2="3.623" transform="translate(906.943 883.151)"/>
+    <line id="Line_436" data-name="Line 436" class="cls-1" x2="3.623" transform="translate(906.943 887.226)"/>
+  </g>
+</svg>

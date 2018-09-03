@@ -1,0 +1,28 @@
+
+<div class="form-group domain-exp-group">
+  <label for="" class="question">Which domain/(s) is the project into?</label>
+  <p class="description">Share details so we can find you the most eligible candadtes.</p>
+  <div class="input-group">
+    <input id="domain" type="text" class="form-control ui-autocomplete-input" name="domain" placeholder="e.g. Marketing"
+           [(ngModel)]="domain">
+    <span class="input-group-btn">
+      <button class="btn" (click)="addDomain()">+</button>
+    </span>
+  </div>
+  <div class="lists row">
+    <div class="col-md-6">
+      <h4 for="" class="light">Domain</h4>
+      <ul class="data-list">
+        <li *ngFor="let domain of domainlist; let i = index">
+          <span class="name">{{domain}}</span>
+          <span class="close" (click)="deleteDomain(i)">&times;</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+
+
+
+

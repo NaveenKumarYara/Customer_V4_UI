@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-703.6 -2939.8 28.5 26.32">
+  <defs>
+    <style>
+  
+
+      .cls-3, .cls-4 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke: #929498;
+        stroke-width: 1.832px;
+      }
+
+      .cls-4 {
+        stroke: #9eabc0;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Path_15" data-name="Path 15" d="M1551.9,56.8a3.031,3.031,0,0,1-3.1,3h-9.1a1.421,1.421,0,0,0-.6.2l-4.7,3.5a1.074,1.074,0,0,1-1.7-.8V60.9a1,1,0,0,0-1-1h-3.2a3.1,3.1,0,0,1-3.1-3V42.4a3.031,3.031,0,0,1,3.1-3h20.3a3.1,3.1,0,0,1,3.1,3V56.8Z"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_13" data-name="Rectangle 13" width="1815.1" height="2363.5" transform="translate(-1519.8 -33.6)"/>
+    </clipPath>
+  </defs>
+  <g id="msg-icon" transform="translate(-2228 -2978.2)">
+    <g id="Group_56" data-name="Group 56" class="cls-1">
+      <g id="Group_55" data-name="Group 55" class="cls-2" transform="translate(1520.7 34.5)">
+        <rect id="Rectangle_12" data-name="Rectangle 12" class="cls-3" width="36.2" height="34.1"/>
+      </g>
+      <rect id="Rectangle_14" data-name="Rectangle 14" class="cls-3" width="1815.1" height="2363.5" transform="translate(0.9 0.9)"/>
+    </g>
+    <path id="Path_16" data-name="Path 16" class="cls-4" d="M1551.9,56.8a3.031,3.031,0,0,1-3.1,3h-9.1a1.421,1.421,0,0,0-.6.2l-4.7,3.5a1.074,1.074,0,0,1-1.7-.8V60.9a1,1,0,0,0-1-1h-3.2a3.1,3.1,0,0,1-3.1-3V42.4a3.031,3.031,0,0,1,3.1-3h20.3a3.1,3.1,0,0,1,3.1,3V56.8Z"/>
+  </g>
+</svg>

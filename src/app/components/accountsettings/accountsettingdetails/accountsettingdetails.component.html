@@ -1,0 +1,376 @@
+<div class="col-lg-9">
+  <div class="right">
+    <div class="tab-content">
+      <div id="account-settings" class="tab-pane fade active in">
+        <h1>Account Settings</h1>
+        <div class="edit-group email-group">
+          <form action="" class="edit-form form-inline">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="editable-input">
+                <input type="email" class="form-control">
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-filled">Save</button>
+              <button class="btn btn-border">Cancel</button>
+            </div>
+          </form>
+          <div class="form-inline data">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="editable-input">
+                <input type="email" value="Terry Martin" class="form-control">
+                <a href="#" class="edit-btn">Edit email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="edit-group">
+          <div class="edit-group password-group">
+            <form action="" class="edit-form form-inline">
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="editable-input">
+                  <input type="password" id="password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="newPassword"></label>
+                <div class="editable-input">
+                  <input type="password" id="newPassword" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword"></label>
+                <div class="editable-input">
+                  <input type="password" id="confirmPassword" class="form-control">
+                </div>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-filled">Save</button>
+                <button class="btn btn-border">Cancel</button>
+              </div>
+            </form>
+            <div class="form-inline data">
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="editable-input">
+                  <input type="password" value="1234567" class="form-control">
+                  <a href="#" class="edit-btn">Edit password</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="users" class="tab-pane fade">
+        <header>
+          <h1>Users</h1>
+          <a href="" class=" add-btn" data-toggle="modal" data-target="#addUser"><span class="add">+</span>Add Users</a>
+
+        </header>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>
+                  <img src="images/ui-face-1.png" alt="">
+                  <h3 class="name">John Smith</h3>
+                </td>
+                <td><h3 class="email">john.smith@gmail.com</h3></td>
+                <td><h3 class="role">Hiring Lead</h3></td>
+                <td><span class="close">×</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="images/ui-face-1.png" alt="">
+                  <h3 class="name">John Smith</h3>
+                </td>
+                <td><h3 class="email">john.smith@gmail.com</h3></td>
+                <td><h3 class="role">Hiring Lead</h3></td>
+                <td><span class="close">×</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="images/ui-face-1.png" alt="">
+                  <h3 class="name">John Smith</h3>
+                </td>
+                <td><h3 class="email">john.smith@gmail.com</h3></td>
+                <td><h3 class="role">Hiring Lead</h3></td>
+                <td><span class="close">×</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="billing" class="tab-pane fade">
+        <h1>Billing and Payments</h1>
+        <ul class="nav nav-tabs ">
+          <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Estimates</a></li>
+          <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
+          <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
+          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="estimates" class="tab-pane fade">
+            <div class="table-layout">
+              <div class="table-row">
+                <h4>Bill Estimate</h4>
+                <div><div class="currency">124.53 <small>(Inclusive of tax)</small></div></div>
+              </div>
+              <div class="table-row">
+                <h4>Next Charge</h4>
+                <div><div class="date">8th March, 2018</div></div>
+              </div>
+              <div class="table-row">
+                <h4>Estimate Detail</h4>
+                <div>
+                  <div class="details-row">
+                    <div class="desc">Feature 1</div>
+                    <div class="amount">54.53</div>
+                  </div>
+                  <div class="details-row">
+                    <div class="desc">Feature 1</div>
+                    <div class="amount">54.53</div>
+                  </div>
+                  <div class="details-row">
+                    <div class="desc">Feature 1</div>
+                    <div class="amount">54.53</div>
+                  </div>
+                  <div class="details-row total">
+                    <div class="desc">Total</div>
+                    <div class="amount">163.59</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="billing-details" class="tab-pane fade">
+            <div class="table-row">
+              <div class="edit-group address-group">
+                <form action="" class="edit-form form-inline">
+                  <div class="form-group">
+                    <label for="address">Mailing Address</label>
+                    <div class="editable-input">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn-row">
+                    <button class="btn btn-filled">Save</button>
+                    <button class="btn btn-border">Cancel</button>
+                  </div>
+                </form>
+                <div class="form-inline data">
+                  <div class="form-group">
+                    <label for="email">Mailing Address</label>
+                    <div class="editable-input">
+                      <p>
+                        8787 Spicewood Springs Rd, Apt 786, Austin, TX 78765434, United States
+                      </p>
+                      <a href="#" class="edit-btn">Edit address</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="edit-group email-group">
+                <form action="" class="edit-form form-inline">
+                  <div class="form-group">
+                    <label for="address">Send copies of Invoice to</label>
+                    <div class="editable-input">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn-row">
+                    <button class="btn btn-filled">Save</button>
+                    <button class="btn btn-border">Cancel</button>
+                  </div>
+                </form>
+                <div class="form-inline data">
+                  <div class="form-group">
+                    <label for="email">Send copies of Invoice to</label>
+                    <div class="editable-input">
+                      <input type="text" class="form-control" value="terrymartin@gmail.com">
+                      <a href="#" class="edit-btn">Edit address</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="payment-group">
+                <div class="form-group ">
+                  <label for="address">Payment Methods</label>
+                  <div class="edit-group">
+                    <div><img src="images/paypal-logo.png" alt="Paypal"></div>
+                    <div>
+                      <h4>Paypal</h4>
+                      <p>XXXX XXXX XXXX 3456</p>
+                    </div>
+                    <div>
+                      <h5>Expiry</h5>
+                      <p>3 / 23 / 2019</p>
+                    </div>
+                    <div class="actions">
+                      <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="21.3">
+                          <path d="M16.1 21.3H3c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1s1 .4 1 1v11.3h11.1V8c0-.6.4-1 1-1s1 .4 1 1v12.3c0 .6-.4 1-1 1zm3-17.2c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1s.4 1 1 1h17.1c.6 0 1-.4 1-1zm-5-3.1c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h7.1c.6 0 1-.4 1-1zM8.6 16.4V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1zm4 0V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1z" fill="#93a2bb"></path>
+                        </svg>
+                      </a>
+                      <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
+                          <g transform="translate(-1427.7 -604.8)" fill="#93a2bb">
+                            <path d="M1430.5 624.8a2.8 2.8 0 0 1-2.8-2.8v-12.3c0-1.5 1.2-2.8 2.8-2.8h5.5c.6 0 1 .4 1 1s-.4 1-1 1h-5.5c-.4 0-.8.4-.8.8V622c0 .4.4.8.8.8h12.3c.4 0 .8-.4.8-.8v-5.5c0-.6.4-1 1-1s1 .4 1 1v5.5c0 1.5-1.2 2.8-2.8 2.8h-12.3z"></path>
+                            <path d="M1434.4 619a.9.9 0 0 1-.7-.3c-.3-.3-.4-.6-.3-1l.7-2.6c0-.2.1-.3.3-.5l9.7-9.6c.4-.4 1-.4 1.4 0l1.8 1.8c.4.4.4 1 0 1.4l-9.6 9.7c-.1.1-.3.2-.5.3l-2.6.7c0 .1-.1.1-.2.1zm1.6-3.1l-.2.7.7-.2 8.7-8.8-.4-.4-8.8 8.7z"></path>
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="btn-row">
+                    <a href="" class="add-btn"><span class="add">+</span>Add payment method</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="billing-history" class="tab-pane fade">
+            <div id="billing-history-calendar" class="fc fc-unthemed fc-ltr">
+              <div class="fc-toolbar fc-header-toolbar"><div class="fc-left"><div class="fc-button-group"><button type="button" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Week</button><button type="button" class="fc-listMonth-button fc-button fc-state-default fc-corner-right">Month</button></div></div><div class="fc-right"><div><button type="button" class="fc-prev-button fc-button fc-state-default"><span class="fc-icon fc-icon-left-single-arrow"></span></button><h2>Aug 12 – 18, 2018</h2><button type="button" class="fc-next-button fc-button fc-state-default"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div></div><div class="fc-center"></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-billingWeek-view"><div class="fc-emptyState"><p>Sorry no transactions to show</p></div></div></div>
+
+            </div>
+          </div>
+          <div id="subscription" class="tab-pane fade bs-responsive-tabs active in">
+            <div class="selected-tab"><a data-toggle="tab" href="#50plusjobs" aria-expanded="false">50+ jobs</a></div>
+            <ul class="nav nav-pills nav-justified responsive">
+              <li class=""><a data-toggle="tab" href="#1job" aria-expanded="false">1 job</a></li>
+              <li class=""><a data-toggle="tab" href="#3jobs" aria-expanded="false">3 jobs</a></li>
+              <li class=""><a data-toggle="tab" href="#6jobs" aria-expanded="false">6 jobs</a></li>
+              <li class=""><a data-toggle="tab" href="#10jobs" aria-expanded="false">10 jobs</a></li>
+              <li class=""><a data-toggle="tab" href="#15jobs" aria-expanded="false">15 jobs</a></li>
+              <li class=""><a data-toggle="tab" href="#25jobs" aria-expanded="false">25 jobs</a></li>
+              <li class=""><a data-toggle="tab" href="#50jobs" aria-expanded="false">50 jobs</a></li>
+              <li class="active"><a data-toggle="tab" href="#50plusjobs" aria-expanded="false">50+ jobs</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div id="1job" class="tab-pane fade">
+                <div class="row pricing-row">
+                  <div class="col-md-6">
+                    <div class="pricing-card">
+                      <span class="type">Basic</span>
+                      <h4 class="price">$ 99</h4>
+                      <p>For small teams wanting to try out Slack for an unlimited period of time.</p>
+                      <hr>
+                      <ul class="features">
+                        <li>Searchable messages</li>
+                        <li>Apps/services</li>
+                        <li>External access</li>
+                        <li>Shared Channels (beta)</li>
+                        <li>Single-channel guests</li>
+                        <li>Multi-channel guests</li>
+                      </ul>
+                      <button class="btn btn-border block">Current Plan</button>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="pricing-card">
+                      <span class="type">Premium</span>
+                      <h4 class="price">$ 199</h4>
+                      <p>For small teams wanting to try out Slack for an unlimited period of time.</p>
+                      <hr>
+                      <ul class="features">
+                        <li>Searchable messages</li>
+                        <li>Apps/services</li>
+                        <li>External access</li>
+                        <li>Shared Channels (beta)</li>
+                        <li>Single-channel guests</li>
+                        <li>Multi-channel guests</li>
+                      </ul>
+                      <button class="btn btn-filled block">Current Plan</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-plan">
+                  <h5>Are you looking for A Custom Plan?</h5>
+                  <div class="banner">
+                    <h2>Custom Plan</h2>
+                    <p>For enterprise companies and large publishers who want powerful tools and a direct account manager while integrating and scaling Disqus.</p>
+                    <button class="btn btn-border">
+                      Contact us
+                    </button>
+                  </div>
+                </div>
+                <div class="why">
+                  <h3>Why Should we upgrade?</h3>
+                  <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                  </p>
+                </div>
+              </div>
+              <div id="3jobs" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
+              </div>
+              <div id="6jobs" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+              <div id="10jobs" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+              <div id="15jobs" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+              <div id="25jobs" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+              <div id="50jobs" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+              <div id="50plusjobs" class="tab-pane fade active in">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

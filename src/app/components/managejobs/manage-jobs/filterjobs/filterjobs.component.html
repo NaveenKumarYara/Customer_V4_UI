@@ -1,0 +1,42 @@
+<div class="adv-filters-btn btn" (click)="updateAdvanceSearch()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="19.3" height="21.1">
+    <path d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z" />
+  </svg>
+</div>
+<ul class="nav btn-group">
+  <li [ngClass]="{ 'active btn':gridlayoutClicked, ' btn':!gridlayoutClicked }"
+      (click)="toggleGridLayout()">
+    <a data-toggle="tab" href="#grid-view">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
+        <path d="M7 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h4V2H2v4zM18.9 8h-6c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zm-5-2h4V2h-4v4zM7 20H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4H2v4zM18.9 20h-6c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4h-4v4z" />
+      </svg>
+    </a>
+  </li>
+  <li [ngClass]="{ 'active btn':tablelayoutClicked, ' btn':!tablelayoutClicked }"
+      (click)="toggleTableLayout()">
+    <a data-toggle="tab"  href="#list-view">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="19.9">
+        <path class="st0" d="M18.9 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h15.9V2H2v4zM18.9 19.9H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 17.9h15.9v-4H2v4z" />
+      </svg>
+    </a>
+  </li>
+</ul>
+
+<!--<ul class="nav btn-group">
+  <li [ngClass]="{ 'active btn':gridlayoutClicked, ' btn':!gridlayoutClicked }"
+      (click)="toggleGridLayout()">
+    <a data-toggle="tab" routerLink="app-manage-joblist-gridlayout" href="#grid-view">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
+        <path d="M7 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h4V2H2v4zM18.9 8h-6c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zm-5-2h4V2h-4v4zM7 20H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4H2v4zM18.9 20h-6c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4h-4v4z" />
+      </svg>
+    </a>
+  </li>
+  <li [ngClass]="{ 'active btn':tablelayoutClicked, ' btn':!tablelayoutClicked }"
+      (click)="toggleTableLayout()">
+    <a data-toggle="tab" routerLink="app-manage-joblist-tablelayout" href="#list-view">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="19.9">
+        <path class="st0" d="M18.9 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h15.9V2H2v4zM18.9 19.9H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 17.9h15.9v-4H2v4z" />
+      </svg>
+    </a>
+  </li>
+</ul>-->

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="963.9 -2956.3 18.3 16.9">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #93a2bb;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="upload-icon" transform="translate(-408 -3487)">
+    <path id="XMLID_3_" class="cls-1" d="M1220.3,595.9l-5-4.3-5.5,4.4" transform="translate(166 -59.9)"/>
+    <path id="XMLID_2_" class="cls-1" d="M1223.2,602.3v2.5a1.752,1.752,0,0,1-1.7,1.7h-12.9a1.685,1.685,0,0,1-1.7-1.7v-2.5" transform="translate(166 -59.9)"/>
+    <line id="XMLID_1_" class="cls-1" y2="8.9" transform="translate(1381.2 532.8)"/>
+  </g>
+</svg>
