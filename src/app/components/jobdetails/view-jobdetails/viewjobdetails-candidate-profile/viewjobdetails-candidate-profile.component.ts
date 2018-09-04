@@ -71,7 +71,14 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.jobdetailsprofiles = res;
     });
   }
+
+  CheckDisplay(val)
   
+  {
+    if(val===null ){
+      return 'none';
+    }
+  }
 
   ngOnInit() {
     this.PopulateJobdetailProfiles();
