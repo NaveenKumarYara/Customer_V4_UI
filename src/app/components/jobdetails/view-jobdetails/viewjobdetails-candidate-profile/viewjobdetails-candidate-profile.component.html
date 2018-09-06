@@ -4,8 +4,11 @@
           <div class="candidate card">
             <header>
               <div class="candidate-badges">
-                <div class="ui-badge ui-badge--domain">{{profile.ProfileTitle}}</div>
-                <div class="ui-badge ui-badge--industry">{{profile.DomainName}}</div>
+                <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
+                <div *ngIf="profile?.DomainName?.split(',')[0]">
+                <div class="ui-badge ui-badge--industry" data-toggle="tooltip" title={{profile?.DomainName}}>
+                  {{profile?.DomainName?.split(',')[0]}} 
+                </div></div>
               </div>
               <div class="candidate-info">
                 <img src={{profile.ProfilePic}} alt="" width="66" height="66">
