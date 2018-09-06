@@ -42,7 +42,7 @@ export class LoadJoblistComponent implements OnInit {
   }
 
   updateJobListCount() {
-    this.joblistcount += 5;
+    this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
   }
   

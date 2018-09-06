@@ -37,7 +37,7 @@ export class ManageJobService {
     this.advanceSearch.next(showadvancesearch);
   }
 
-  private joblistcount = new BehaviorSubject(5);
+  private joblistcount = new BehaviorSubject(6);
   currentjoblistcount = this.joblistcount.asObservable();
 
   getJobDetails(count: number): Observable<JobDetails[]> {

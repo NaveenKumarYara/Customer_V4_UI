@@ -22,7 +22,7 @@
   <div class="row" *ngIf="id==2">
       <div class="tab-content">
           <div id="list-view">
-        <ul class="job-list">
+        <ul class="job-list"  *ngIf="loaddata">
       <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
           <app-manage-joblist-tablelayout [job]="job"
           [joblist]="joblist"
@@ -33,9 +33,9 @@
 
         </ul>
       </div>
-      <div class="load-more btn btn-border btn-block">
-        Load More
-      </div>
+      <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+          Load More
+        </div>
   
   
     </div>
