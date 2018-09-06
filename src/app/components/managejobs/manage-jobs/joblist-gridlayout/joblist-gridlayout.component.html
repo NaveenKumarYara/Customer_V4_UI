@@ -26,7 +26,7 @@
     {{ job.JobLocations[0].StateCode}}
 
   </h5>
-  <h5>{{job.PostedDate}}</h5>
+  <h5>{{job.PostedOn}}</h5>
 </div>
 <div class="status pending">{{job.JobStatus}}</div>
 </header>
@@ -34,13 +34,13 @@
 <div class="row">
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="stats">
-      <h1>243</h1>
+      <h1>{{job.TotalApplicants}}</h1>
       <h5>Applied</h5> 
     </div>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="stats">
-      <h1>{{joblist.Datewisecount}}</h1>
+      <h1>{{job.SkilledApplicants}}</h1>
       <h5>Suggested</h5>
     </div>
   </div>
@@ -49,13 +49,13 @@
 <div class="row">
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="stats">
-      <h1>{{joblist.ShortListedCount}}</h1>
+      <h1>{{job.ShortListedCount}}</h1>
       <h5>Shortlisted</h5>
     </div>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="stats">
-      <h1>{{joblist.InterviewedCount}}</h1>
+      <h1>{{job.InterviewedCount}}</h1>
       <h5>Interviews</h5>
     </div>
   </div>
@@ -67,19 +67,19 @@
       <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="stats">
-            <h1>{{joblist.TotalViewCount}}</h1>
+            <h1>{{job.TotalViewCount}}</h1>
             <h5>No. of views</h5>
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="stats">
-            <h1>{{joblist.NumberOfDislikes}}</h1>
+            <h1>{{job.DislikesCount}}</h1>
             <h5>Dislikes</h5>
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="stats">
-            <h1>{{joblist.NumberOfLikes}}  </h1>
+            <h1>{{job.LikesCount}}</h1>
             <h5>Likes</h5>
           </div>
         </div>
@@ -91,9 +91,9 @@
 </div>
                
 <div class="card-footer">
-<img src={{joblist.ProfilePic}} alt="">
-<h3>{{joblist.FirstName}} {{joblist.LastName}}</h3>
-<h5 class="meta">{{job.JobRole}}</h5>
+ <img src={{job.ProfilePic}} alt="Avatar" class="ui-pic" width="50" height="50"> 
+<h3>{{job.HiringLeaderName}} </h3>
+<h5 class="meta">Hiring Manager</h5>
 </div>
 </a>
 </div>

@@ -20,7 +20,24 @@
   </div>
 </div>
   <div class="row" *ngIf="id==2">
-    <app-manage-joblist-tablelayout>
-    </app-manage-joblist-tablelayout>
+      <div class="tab-content">
+          <div id="list-view">
+        <ul class="job-list">
+      <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
+          <app-manage-joblist-tablelayout [job]="job"
+          [joblist]="joblist"
+           [index]="i">
+            </app-manage-joblist-tablelayout>
+          </li>
+
+
+        </ul>
+      </div>
+      <div class="load-more btn btn-border btn-block">
+        Load More
+      </div>
+  
+  
+    </div>
   </div>
 

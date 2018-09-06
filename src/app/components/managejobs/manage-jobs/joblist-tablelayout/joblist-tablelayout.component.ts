@@ -1,8 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,  Input} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ManageJobService } from '../../managejobs.service';
 import { Subject, Observable } from 'rxjs';
 import { JobDetails } from '../../models/jobdetails';
+import { Jobs } from '../../models/jobs';
+import { ManageJobService } from '../../managejobs.service';
 
 @Component({
   selector: 'app-manage-joblist-tablelayout',
@@ -11,6 +12,10 @@ import { JobDetails } from '../../models/jobdetails';
 })
 export class JoblistTablelayoutComponent implements OnInit {
 
+  @Input() job: Jobs;
+  @Input() index: number;
+  @Input() joblist: JobDetails;
+ 
   constructor(private route: ActivatedRoute,
     private router: Router, private managejobservice: ManageJobService) { }
 
