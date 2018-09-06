@@ -1,0 +1,183 @@
+ #selectedJobDetails .modal-content {
+    border-radius: 0;
+  }
+
+  
+  #selectedJobDetails .close {
+    font-weight: 300;
+    font-size: 2rem;
+    line-height: 0.6;
+    padding-right: 5%;
+  }
+
+ #selectedJobDetails .modal-header {
+    padding: 1.75rem 3.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  #selectedJobDetails .modal-header > div {
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
+  
+   #selectedJobDetails .modal-actions {
+    text-align: right;
+  }
+  
+  #selectedJobDetails .modal-actions .btn-border, .page--job-details #selectedJobDetails .modal-actions .page--account-settings .fc-button-group button, .page--account-settings .fc-button-group .page--job-details #selectedJobDetails .modal-actions button {
+      margin-right: 15px;
+    }
+  
+ #selectedJobDetails .modal-title {
+    margin-bottom: 10px;
+  }
+
+  #selectedJobDetails .meta {
+    color: #93A2BB;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+  
+  #selectedJobDetails .meta h5, .page--job-details #selectedJobDetails .meta svg {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+  }
+  
+ #selectedJobDetails .meta > div:not(:last-of-type) {
+    border-right: 1px solid #E0E3EF;
+  }
+  
+  #selectedJobDetails .meta > div {
+    padding: 0 8px;
+  }
+  
+ #selectedJobDetails .modal-body {
+    padding: 0;
+  }
+  
+ #selectedJobDetails .modal-body .nav-tabs {
+      border: 0;
+    }
+  
+    #selectedJobDetails .modal-body .nav-tabs li {
+        border: 0;
+        margin-bottom: 0 !important;
+      }
+  
+      #selectedJobDetails .modal-body .nav-tabs li a {
+          border: 0 !important;
+        }
+  
+ #selectedJobDetails .modal-body .nav-tabs {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      border-top: 1px solid #E0E3EF;
+      border-bottom: 1px solid #E0E3EF;
+      position: relative;
+    }
+  
+  #selectedJobDetails .modal-body .nav-tabs > li {
+        text-align: center;
+        -ms-flex-preferred-size: 33.33%;
+        flex-basis: 33.33%;
+      }
+  
+   #selectedJobDetails .modal-body .nav-tabs > li a {
+          padding: 20px 0;
+          font-size: 1.25rem;
+          color: #93A2BB;
+        }
+  
+  #selectedJobDetails .modal-body .nav-tabs > li.active a {
+          color: #41536E;
+        }
+  
+   #selectedJobDetails .modal-body .nav-tabs .active-line {
+        background-color: #448AFA;
+      }
+  
+ #selectedJobDetails .modal-body .tab-content {
+      padding: 1.75rem 3.25rem;
+    }
+  
+ #selectedJobDetails .group {
+    margin-bottom: 2.25rem;
+  }
+  
+ #selectedJobDetails .group h4 {
+      font-size: 1.125rem;
+      color: #41536E;
+      margin-bottom: 15px;
+    }
+  
+ #selectedJobDetails .group li, .page--job-details #selectedJobDetails .group p {
+      font-size: 1rem;
+    }
+  
+ #selectedJobDetails .group li {
+      color: #93A2BB;
+    }
+  
+  #selectedJobDetails .group p {
+      color: #6A7E9C;
+      line-height: 1.75rem;
+    }
+  
+ #selectedJobDetails .group ul {
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+  
+ #selectedJobDetails .group .list {
+      -webkit-column-count: 3;
+      column-count: 3;
+    }
+ #selectedJobDetails .group h5 {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #41536E;
+      margin-bottom: 8px;
+    }
+  
+ #selectedJobDetails .group h6, .page--job-details #selectedJobDetails .group .time {
+      margin-top: 0;
+      font-weight: 400;
+      color: #9EABC0;
+      font-size: 0.875rem;
+    }
+    #selectedJobDetails .status.shortlisted {
+        background-color: #ACB0F3;
+    }
+    #selectedJobDetails .status {
+        border-radius: 3px;
+        display: inline-block;
+        padding: 3px 6px;
+        line-height: 1;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+    }
+
+    #selectedJobDetails .btn-border{
+        font-size: 0.875rem;
+    letter-spacing: 0.03em;
+    padding: 11px 28px;
+    }

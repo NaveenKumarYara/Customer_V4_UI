@@ -13489,6 +13489,7 @@ a.ui-button:active,
 
       .page--manage-jobs .card h3.medium {
         font-weight: 500;
+        text-transform: capitalize;
       }
 
     .page--manage-jobs .card .meta {
@@ -20019,7 +20020,7 @@ a.ui-button:active,
   margin-bottom: 40px;
 }
 
-  .page--create-a-job .form-steps > header h1 {
+  .page--create-a-job .form-steps header h1 {
     font-weight: 400;
     font-size: 2rem;
   }
