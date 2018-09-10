@@ -20372,8 +20372,8 @@ a.ui-button:active,
   .page--create-a-job .form-steps .responsibility-list li {
     position: relative;
     color: #6A7E9C;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
     .page--create-a-job .form-steps .responsibility-list li:not(:first-of-type) {
@@ -20877,3 +20877,26 @@ a.ui-button:active,
   .orca-simulator-header h1 {
     margin-bottom: 0;
   }
+
+
+  .ng-select.custom-style > .ng-select-container {            
+    border: 1px solid #E0E3EF;
+    color: #9EABC0;
+    height: 55px!important;
+    margin-top: 15px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    display: flex;
+    padding: 6px 12px;
+    line-height: 1.42857;
+    background-color: #fff;
+    background-image: none;
+    width:100%;
+}
+
+.ng-select.custom-style > .ng-input{
+    top: 12px;
+}

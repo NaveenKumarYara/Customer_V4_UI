@@ -4,7 +4,7 @@
         <p class="description">Share details so we can find you the most eligible candadtes.</p>
        
             <label for="">Skill Name</label>
-            <ng-select [items]="skilllist | async" placeholder="e.g. Adobe Photoshop" bindLabel="SkillName" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" [virtualScroll]="true">
+            <ng-select class="custom-style" [items]="skilllist | async" placeholder="e.g. Adobe Photoshop" bindLabel="SkillName" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" [virtualScroll]="true">
             </ng-select>        
       
   
@@ -33,25 +33,28 @@
       </label>
     </div>
    
-</div>
-<div class="lists row">
-  <div class="col-md-6" >
-    <h4 for="" class="light">Primary Skills</h4>
-    <ul class="data-list">
-      <li *ngFor="let primaryjobskill of primaryjobskills; let i = index" >
-        <span class="name">{{primaryjobskill.skillname}}</span>
-          <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
-      </li>
-    </ul>
-  </div>
-
-    <div class="col-md-6" >
-        <h4 for="" class="light">Secondary Skills</h4>
+    <div class="lists row">
+      <div class="col-md-6" >
+        <h4 for="" class="light">Primary Skills</h4>
         <ul class="data-list">
-          <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-            <span class="name">{{secondaryjobskill.skillname}}</span>
-            <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
+          <li *ngFor="let primaryjobskill of primaryjobskills; let i = index" >
+            <span class="name">{{primaryjobskill.skillname}}</span>
+              <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
           </li>
         </ul>
+      </div>
+    
+        <div class="col-md-6" >
+            <h4 for="" class="light">Secondary Skills</h4>
+            <ul class="data-list">
+              <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
+                <span class="name">{{secondaryjobskill.skillname}}</span>
+                <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
+              </li>
+            </ul>
+        </div>
     </div>
+    
+
+
 </div>
