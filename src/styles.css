@@ -20207,6 +20207,7 @@ a.ui-button:active,
 }
 
   .page--create-a-job .form-steps .time-picker:before {
+    display: block;
     content: "";
     position: absolute;
     top: -8px;
@@ -20336,12 +20337,12 @@ a.ui-button:active,
   }
 
   .page--create-a-job .form-steps .candidate-group .form-row .form-group.primary {
-    margin-top: 25px;
+    margin-top: 45px;
     margin-right: 20px;
   }
 
 .page--create-a-job .form-steps .candidate-group .form-row .add-btn {
-  margin-top: 25px;
+  margin-top: 45px;
 }
 
 .page--create-a-job .form-steps .candidate-group .form-row .styled-select-box {

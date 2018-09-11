@@ -2,15 +2,10 @@
   <div class="col-md-6">
     <div class="form-group job-title-group">
       <label for="" class="question">What is the Job Title?</label>
-   
-
       <ng-select class="custom-style" [items]="jobtitlelist | async" placeholder="e.g. Senior Java Developer"
         [typeahead]="jobtitleinput" [hideSelected]="true" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
         [virtualScroll]="true" (change)="updateJobTitle()">
-
       </ng-select>
-
-
       <ul class="data-list">
         <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li>
       </ul>
