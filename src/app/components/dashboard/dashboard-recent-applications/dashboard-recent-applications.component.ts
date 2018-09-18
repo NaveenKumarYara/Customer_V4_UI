@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+//import { RecentApplicants } from '../models/recentapplicants';
 
 @Component({
   selector: 'app-dashboard-recent-applications',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-recent-applications.component.css']
 })
 export class DashboardRecentApplicationsComponent implements OnInit {
+   // @Input() recentapplicantlist: RecentApplicants;
 
   constructor() { }
 

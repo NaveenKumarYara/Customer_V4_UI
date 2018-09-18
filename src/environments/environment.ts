@@ -23,5 +23,9 @@ export const environment = {
     "http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?jobId=1000003",
 
   JobdetailsProfileEndpoint:
-  "http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?customerId=1&userId=5"
+        "http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?customerId=1&userId=5",
+
+  RecentJobs:"http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?customerId=1&userId=5&sortBy=0&status=0&pageNumber=1&numberOfRows=5",
+
+    RecentApplicants: "http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?customerId=1&userId=5&page=1&noOfRows=2",    DashboardStatistics: "http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?customerId=1&userId=5&filter=0"
 };

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DashboardStatistics } from '../../../../models/dashboardstatistics';
 
 @Component({
   selector: 'app-dashboard-scheduled-interview',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-scheduled-interview.component.css']
 })
 export class DashboardScheduledInterviewComponent implements OnInit {
+    @Input() dashboardstatistics: DashboardStatistics;
 
   constructor() { }
 

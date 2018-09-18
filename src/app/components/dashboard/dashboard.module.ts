@@ -7,11 +7,14 @@ import { DashboardScheduledInterviewComponent } from './dashboard-scheduled-inte
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
+import { DashboardService } from './dashboard.service';
+
 
 @NgModule({
   imports: [
     CommonModule
-  ],
+    ],
+    providers: [DashboardService],
   declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent, DashboardRecentjobsComponent, DashboardRecentApplicationsComponent]
 })
 export class DashboardModule { }

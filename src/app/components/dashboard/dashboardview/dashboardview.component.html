@@ -1,13 +1,17 @@
   <main class="page page--dashboard">
     <div class="container">
       <div class="row">
-        <app-dashboard-jobsview></app-dashboard-jobsview>
-        <app-dashboard-activejobs></app-dashboard-activejobs>
-        <app-dashboard-scheduled-interview></app-dashboard-scheduled-interview>
+        <app-dashboard-jobsview
+                                [dashboardstatistics]="dashboardstatistics"></app-dashboard-jobsview>
+        <app-dashboard-activejobs
+                                [dashboardstatistics]="dashboardstatistics"></app-dashboard-activejobs>
+        <app-dashboard-scheduled-interview
+                                [dashboardstatistics]="dashboardstatistics"></app-dashboard-scheduled-interview>
         <app-dashboard-content></app-dashboard-content>
       </div>
       <div class="row">
-        <app-dashboard-recentjobs></app-dashboard-recentjobs>
+        <app-dashboard-recentjobs
+                                  [recentjoblist]="recentjoblist"></app-dashboard-recentjobs>
         <app-dashboard-recent-applications></app-dashboard-recent-applications>
       </div>
       </div>
