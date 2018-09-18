@@ -11,8 +11,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { RecentJobs } from '../../../models/recentjobs';
-//import { RecentApplicants } from './models/recentapplicants';
+import { RecentApplicants } from '../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../models/dashboardstatistics';
+import { ApplicantStatistics } from '../../../models/applicantstatistics';
 
 @Injectable()
 export class DashboardService {
@@ -39,18 +40,27 @@ export class DashboardService {
             );
     }
 
-    //getRecentApplicants(count: number): Observable<RecentApplicants[]> {
-    //    const url = environment.RecentApplicants;
-    //    return this.http.get<RecentApplicants[]>(url)
-    //        .debounceTime(1000)
-    //        .catch(
-    //            this.handleError
-    //        );
-    //}
+    getRecentApplicants(count: number): Observable<RecentApplicants[]> {
+       const url = environment.RecentApplicants;
+       return this.http.get<RecentApplicants[]>(url)
+           .debounceTime(1000)
+           .catch(
+               this.handleError
+           );
+    }
 
     getDashboardStatistics(): Observable<DashboardStatistics>{
         const url = environment.DashboardStatistics;
         return this.http.get<DashboardStatistics>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        //return this.dashboardstatistics;
+    }
+    getApplicantsStatistics(): Observable<ApplicantStatistics>{
+        const url = environment.ApplicantStatistics;
+        return this.http.get<ApplicantStatistics>(url)
             .debounceTime(500)
             .catch(
                 this.handleError

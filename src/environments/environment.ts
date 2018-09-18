@@ -27,5 +27,10 @@ export const environment = {
 
   RecentJobs:"http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?customerId=1&userId=5&sortBy=0&status=0&pageNumber=1&numberOfRows=5",
 
-    RecentApplicants: "http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?customerId=1&userId=5&page=1&noOfRows=2",    DashboardStatistics: "http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?customerId=1&userId=5&filter=0"
+    RecentApplicants: "http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?customerId=1&userId=5&page=1&noOfRows=5",
+
+    DashboardStatistics: "http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?customerId=1&userId=5&filter=0",
+
+    ApplicantStatistics:"http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?customerId=1&userId=5&filter=0"
+
 };
