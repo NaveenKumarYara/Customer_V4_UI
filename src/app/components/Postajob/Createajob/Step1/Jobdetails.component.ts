@@ -11,7 +11,8 @@ import { of } from 'rxjs/observable/of';
 @Component({
   selector: 'app-steps-step1-jobdetails',
   templateUrl: './jobdetails.component.html',
-  styleUrls: ['./jobdetails.component.css']
+  //template: '<div class="ng-select-container form-control"></div>',
+  styleUrls: ['./jobdetails.component.css'],
 })
 
 export class JobdetailsComponent implements OnInit {

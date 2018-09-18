@@ -2,9 +2,9 @@
   <label for="" class="question">Preferred Education criteria?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <div class="form-row row">
-    <div class="col-md-6 col-sm-6">
+    <div class="col-md-5 col-sm-5">
       <div class="form-group job-title-group">
-        <ng-select [items]="qualifications | async"
+        <ng-select class="custom-style" [items]="qualifications | async"
                    placeholder="e.g. Bachelor of Computer Arts"
                    bindLabel="QualificationName"
                    bindValue="QualificationName"
@@ -16,13 +16,15 @@
         </ng-select>
       </div>
     </div>
-  </div>
-  <div class="form-row row">
-    <div class="col-md-6 col-sm-6">
+    <div class="col-md-5 col-sm-5">
       <input type="text" class="form-control" placeholder="Other">
     </div>
-    <button class="btn add-btn" (click)="addQualification()">+</button>
+    <div class="col-md-2 col-sm-2">
+      <button class="btn add-btn form-control" (click)="addQualification()">+</button>
+    </div>
+
   </div>
+ 
   </div>
   <div class="lists row">
     <div class="col-md-6">

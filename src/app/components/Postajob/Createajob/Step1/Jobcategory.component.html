@@ -2,7 +2,7 @@
 <div class="form-group job-title-group">
   <label for="" class="question">Which Category this job belongs to?</label>
   <p class="description">Share details so we can find you the most eligible candidates.</p>
-  <ng-select [items]="jobcategorylist | async"
+  <ng-select class="custom-style" [items]="jobcategorylist | async"
              placeholder="e.g. Senior Java Developer"
              [typeahead]="jobcategoryinput"
              [hideSelected]="true"

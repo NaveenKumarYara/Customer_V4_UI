@@ -2,15 +2,19 @@
   <label for="" class="question">Technical Team for Screening</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
 
-  <div class="input-group">
-    <input id="team-members" type="text"
+  <div class="form-row row">
+    <div class="col-md-10">
+      <input id="team-members" type="text"
            class="form-control ui-autocomplete-input"
            name="benefits" placeholder="Add Team Members"
            [(ngModel)]="teammembers">
-    <span class="input-group-btn">
-      <button class="btn" (click)="addTeammembers()">+</button>
-    </span>
+    </div>
+    <div class="col-md-2">
+      <button class="btn add-btn form-control" (click)="addTeammembers()">+</button>
+    </div>
   </div>
+
+
   <div class="lists row">
     <div class="col-md-6">
       <h4 for="" class="light">Teammembers</h4>
