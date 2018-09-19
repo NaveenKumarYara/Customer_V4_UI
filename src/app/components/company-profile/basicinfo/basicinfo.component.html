@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="company-info">
-          <h1>Ueno Studio</h1>
+          <h1>{{companybasicinfo?.CompanyName}}</h1>
           <h3>Design and Animations</h3>
           <div class="social-media">
             <a href="#">
@@ -44,11 +44,11 @@
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
-            <a href="https://www.ueno.co" target="_blank">www.ueno.co</a>
+            <a href="https://www.ueno.co" target="_blank">{{companybasicinfo?.WebSite}}</a>
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/email-icon.svg" alt="Email">
-            <a href="mailto:info@ueno.co">info@ueno.co</a>
+            <a href="mailto:info@ueno.co">{{companybasicinfo?.ContactEmail}}</a>
           </div>
           <div class="v-divider"></div>
         </div>
@@ -57,7 +57,7 @@
             <tbody>
               <tr>
                 <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-                <td>+23-111-2223</td>
+                <td>+{{companybasicinfo?.MobileCountryCode}}-{{companybasicinfo?.MobilePhone}}</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax"></td>
@@ -65,7 +65,7 @@
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>
-                <td>8787 Spicewood Springs Rd, Austin TX 78765434, United States, United States.</td>
+                <td>{{companybasicinfo?.Address1}} {{companybasicinfo?.Address2}} ,{{companybasicinfo?.CityName}} {{companybasicinfo?.StateName}}{{companybasicinfo?.Zipcode}},{{companybasicinfo?.CountryName}}.</td>
               </tr>
             </tbody>
           </table>

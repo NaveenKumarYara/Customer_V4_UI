@@ -8,7 +8,7 @@ import {  ApplicantStatistics } from '../../../../models/applicantstatistics';
   styleUrls: ['./dashboard-jobsview.component.css']
 })
 export class DashboardJobsviewComponent implements OnInit {
-    @Input() dashboardstatistics: DashboardStatistics;applicantstatistics: ApplicantStatistics;
+    @Input() dashboardstatistics: DashboardStatistics;
   constructor() { }
 
   ngOnInit() {
