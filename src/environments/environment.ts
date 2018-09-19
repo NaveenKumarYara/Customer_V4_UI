@@ -32,6 +32,6 @@ export const environment = {
 
     DashboardStatistics: "http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?customerId=1&userId=5&filter=0",
 
-    ApplicantStatistics:"http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?customerId=1&userId=5&filter=0"
-
+    ApplicantStatistics:"http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?customerId=1&userId=5&filter=0",
+    CompanyLocations: "http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?customerId=1"
 };

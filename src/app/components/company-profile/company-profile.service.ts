@@ -12,6 +12,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { CompanyBasicInfo } from '../../../models/CompanyBasicInfo';
 import { OtherInfo } from '../../../models/OtherInfo';
+import { CompanyLocations} from '../../../models/CompanyLocations';
+
 
 @Injectable()
 export class CompanyProfileService {
@@ -20,7 +22,8 @@ export class CompanyProfileService {
     }
 
 
-
+    private companylocations: CompanyLocations[] = [];
+    companylocationsChanged = new Subject<CompanyLocations[]>();
     
     private handleError(error: any) {
         const errMsg = (error.message) ? error.message :
@@ -47,7 +50,26 @@ export class CompanyProfileService {
             );
     }
 
+    private listcount = new BehaviorSubject(6);
+    currentlistcount = this.listcount.asObservable();
+
+    getCompanyLocations(count: number): Observable<CompanyLocations[]> {
+        const url = environment.CompanyLocations;
+        return this.http.get<CompanyLocations[]>(url)
+            .debounceTime(1000)
+            .catch(
+                this.handleError
+            );
+    }
+
   
+ 
+  
+    
+    updateJobListCount(updatedtotal: number) {
+      this.listcount.next(updatedtotal);
+    }
+    
 
    
  

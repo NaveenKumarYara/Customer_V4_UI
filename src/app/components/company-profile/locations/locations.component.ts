@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
+import { CompanyLocations} from '../../../../models/CompanyLocations';
 
 @Component({
   selector: 'app-locations',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent implements OnInit {
-
+  @Input() companylocations: CompanyLocations[];
   constructor() { }
 
   ngOnInit() {

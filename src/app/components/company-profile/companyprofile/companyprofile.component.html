@@ -13,7 +13,10 @@
         <app-otherinfo [otherinfo]=" otherinfo"></app-otherinfo>
       </div>
       <div class="row">
-         <app-locations></app-locations>
+         
+         <app-locations [companylocations]="companylocations">
+        </app-locations>
+
          <app-aboutcompany></app-aboutcompany>
        </div>
        <div class="row">
