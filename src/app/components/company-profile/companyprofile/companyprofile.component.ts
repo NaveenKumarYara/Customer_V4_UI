@@ -1,65 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import {  Observable, Subject } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 import { CompanyProfileService } from '../company-profile.service';
-import { CompanyBasicInfo } from '../../../../models/CompanyBasicInfo';
-import { OtherInfo } from '../../../../models/OtherInfo';
-import { CompanyLocations} from '../../../../models/CompanyLocations';
+import { CompanyProfile } from '../../../../models/companyprofile';
+import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';
+import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
+
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
   styleUrls: ['./companyprofile.component.css']
 })
 export class CompanyprofileComponent implements OnInit {
-  companybasicinfo : CompanyBasicInfo ;
-  otherinfo:OtherInfo;
-  id: any;
-  sub: any;
-  companylocations: CompanyLocations[] = [];
-  listcount: number;
-  loaddata: boolean = false;
+    companyprofile: CompanyProfile;
+    companyprofileotherinfo: CompanyProfileOtherIno;
+    companyprofilelocationinfo: CustomerLocationInfo[]=[];
 
-  constructor(private route: ActivatedRoute, private companyprofileservice : CompanyProfileService ) { }
-  private data: Observable<any>;
-private fruits: Array<CompanyLocations> = [];
-private anyErrors: boolean;
-private finished: boolean;
+  constructor(private route: ActivatedRoute,
+      private router: Router, private companyprofileservice: CompanyProfileService) { }
 
-  populateCompanyBasicInfo() {
-    return this.companyprofileservice.getCompanyBasicInfo().subscribe(res => {
-        this.companybasicinfo = res;
-    });   
-}
-populateOtherInfo() {
-  return this.companyprofileservice.getCompanyOtherInfo().subscribe(res => {
-      this.otherinfo = res;
-  });   
-}
+    populateCompanyProfile() {
+        return this.companyprofileservice.getCompanyProfile().subscribe(res => {
+            this.companyprofile = res;
+        });
+    }
+
+    populateCompanyProfileOtherInfo() {
+        return this.companyprofileservice.getCompanyProfileOtherInfo().subscribe(res => {
+            this.companyprofileotherinfo = res;
+        });
+    }
 
 
+    populateCompanyProfileLocationInfo() {
+        return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
+            this.companyprofilelocationinfo = res;
+        });
+    }
 
-
-
-populateLocationlist() {
-  return this.companyprofileservice.getCompanyLocations(this.listcount).subscribe(res => {
-    this.companylocations = res;
-    this.loaddata = true;
-  });
-}
-
-updateListCount() {
-  this.listcount += 6;
-  this.companyprofileservice.updateJobListCount(this.listcount);
-}
-  ngOnInit() {
-    this.sub =
-    this.route.params.subscribe(params => {
-    this.id = params['id'];     
-    })
-    this.companyprofileservice.currentlistcount.subscribe(x => this.listcount = x);
-    this.populateLocationlist();
-    this.populateCompanyBasicInfo();
-    this.populateOtherInfo();
+    ngOnInit() {
+        this.populateCompanyProfile();
+        this.populateCompanyProfileOtherInfo();
+        this.populateCompanyProfileLocationInfo();
   }
 
 }

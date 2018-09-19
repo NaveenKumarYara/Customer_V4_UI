@@ -29,26 +29,26 @@
           </div>
         </div>
         <div class="company-info">
-          <h1>{{companybasicinfo?.CompanyName}}</h1>
+            <h1>{{companyprofile.CompanyName}}</h1>
           <h3>Design and Animations</h3>
           <div class="social-media">
-            <a href="#">
+            <a href={{companyprofile.TwitterURL}}>
               <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
             </a>
-            <a href="#">
+            <a href={{companyprofile.LinkedInURL}}>
               <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
             </a>
-            <a href="#">
+            <a href={{companyprofile.ContactEmail}}>
               <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
             </a>
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
-            <a href="https://www.ueno.co" target="_blank">{{companybasicinfo?.WebSite}}</a>
+            <a href={{companyprofile.WebSite}} target="_blank">{{companyprofile.WebSite}}</a>
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/email-icon.svg" alt="Email">
-            <a href="mailto:info@ueno.co">{{companybasicinfo?.ContactEmail}}</a>
+            <a href={{companyprofile.ContactEmail}}>{{companyprofile.ContactEmail}}</a>
           </div>
           <div class="v-divider"></div>
         </div>
@@ -57,7 +57,7 @@
             <tbody>
               <tr>
                 <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-                <td>+{{companybasicinfo?.MobileCountryCode}}-{{companybasicinfo?.MobilePhone}}</td>
+                <td>+23-111-2223</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax"></td>
@@ -65,7 +65,7 @@
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>
-                <td>{{companybasicinfo?.Address1}} {{companybasicinfo?.Address2}} ,{{companybasicinfo?.CityName}} {{companybasicinfo?.StateName}}{{companybasicinfo?.Zipcode}},{{companybasicinfo?.CountryName}}.</td>
+                <td>{{companyprofile.Address1}} {{companyprofile.Address2}}, {{companyprofile.CityName}} {{companyprofile.StateName}} {{companyprofile.Zipcode}}, {{companyprofile.CountryName}}.</td>
               </tr>
             </tbody>
           </table>

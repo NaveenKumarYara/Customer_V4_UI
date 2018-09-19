@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
@@ -10,9 +10,9 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { CompanyBasicInfo } from '../../../models/CompanyBasicInfo';
-import { OtherInfo } from '../../../models/OtherInfo';
-import { CompanyLocations} from '../../../models/CompanyLocations';
+import { CompanyProfile } from '../../../models/companyprofile';
+import { CompanyProfileOtherIno } from '../../../models/companyprofile-otherinfo';
+import { CustomerLocationInfo } from '../../../models/customerlocationinfo';
 
 
 @Injectable()
@@ -20,11 +20,6 @@ export class CompanyProfileService {
 
     constructor(private http: HttpClient) {
     }
-
-
-    private companylocations: CompanyLocations[] = [];
-    companylocationsChanged = new Subject<CompanyLocations[]>();
-    
     private handleError(error: any) {
         const errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -32,45 +27,29 @@ export class CompanyProfileService {
         return Observable.throw(errMsg);
     }
 
-    getCompanyBasicInfo(): Observable<CompanyBasicInfo> {
-        const url = environment.CompanyBasicInfo;
-        return this.http.get<CompanyBasicInfo>(url)
-            .debounceTime(1000)
+    getCompanyProfile(): Observable<CompanyProfile> {
+        const url = environment.CompanyProfileBasicInfo;
+        return this.http.get<CompanyProfile>(url)            
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyOtherInfo(): Observable<OtherInfo> {
-        const url = environment.GetOtherInfo;
-        return this.http.get<OtherInfo>(url)
-            .debounceTime(1000)
+    getCompanyProfileOtherInfo(): Observable<CompanyProfileOtherIno> {
+        const url = environment.CompanyProfileOtherInfo;
+        return this.http.get<CompanyProfileOtherIno>(url)
             .catch(
                 this.handleError
             );
     }
 
-    private listcount = new BehaviorSubject(6);
-    currentlistcount = this.listcount.asObservable();
 
-    getCompanyLocations(count: number): Observable<CompanyLocations[]> {
-        const url = environment.CompanyLocations;
-        return this.http.get<CompanyLocations[]>(url)
-            .debounceTime(1000)
+    getCompanyCustomerLocationInfo(): Observable<CustomerLocationInfo[]> {
+        const url = environment.CompanyProfileLocationInfo;
+        return this.http.get<CustomerLocationInfo[]>(url)
             .catch(
                 this.handleError
             );
     }
-
-  
- 
-  
-    
-    updateJobListCount(updatedtotal: number) {
-      this.listcount.next(updatedtotal);
-    }
-    
-
-   
  
 }

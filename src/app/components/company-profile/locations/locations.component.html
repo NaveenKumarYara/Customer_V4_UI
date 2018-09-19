@@ -24,12 +24,12 @@
     <div class="card-inner">
       <div class="scroll-wrapper card-content scrollbar-inner" style="position: relative;">
         <div class="card-content scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 479px;">
-          <ul class="list--empty">
-            <li class="item" *ngFor="let locations of companylocations; let i=index" >
-              <div class="address">
-                <h3>{{locations.CityName}}  {{locations.StateName}}</h3>
-                <p>{{locations.CountryName}},{{locations.ZipCode}}</p>
-              </div>
+          <ul class="list--empty" *ngFor="let locationinfo of companyprofilelocationinfo; let i=index">
+            <li class="item">
+                <div class="address">
+                    <h3>{{locationinfo.CityName}} {{locationinfo.StateName}}</h3>  <!--address not available in api call-->
+                    <p>{{locationinfo.CountryName}}, {{locationinfo.ZipCode}}</p>
+                </div>
               <div class="actions">
                 <button class="btn btn-transparent no-padding">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="19.1">
@@ -49,7 +49,7 @@
                 </button>
               </div>
             </li>
-       
+            
           </ul>
         </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 409px; top: 0px;"></div></div></div>
       </div>

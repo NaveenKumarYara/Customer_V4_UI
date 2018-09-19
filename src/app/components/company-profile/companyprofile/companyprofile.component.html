@@ -7,16 +7,15 @@
         </div>
       </div>
       <div class="row">
-        <app-basicinfo [companybasicinfo]="companybasicinfo"></app-basicinfo>
+        <app-basicinfo [companyprofile]="companyprofile"></app-basicinfo>
       </div>
       <div class="row">
-        <app-otherinfo [otherinfo]=" otherinfo"></app-otherinfo>
+        <app-otherinfo
+                       [companyprofileotherinfo]="companyprofileotherinfo"></app-otherinfo>
       </div>
       <div class="row">
-         
-         <app-locations [companylocations]="companylocations">
-        </app-locations>
-
+         <app-locations
+                        [companyprofilelocationinfo]="companyprofilelocationinfo"></app-locations>
          <app-aboutcompany></app-aboutcompany>
        </div>
        <div class="row">

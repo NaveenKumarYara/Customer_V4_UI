@@ -1,5 +1,5 @@
-import { Component, Input,OnInit } from '@angular/core';
-import { CompanyBasicInfo } from '../../../../models/CompanyBasicInfo';
+import { Component, OnInit, Input } from '@angular/core';
+import { CompanyProfile } from '../../../../models/companyprofile';
 
 @Component({
   selector: 'app-basicinfo',
@@ -7,7 +7,8 @@ import { CompanyBasicInfo } from '../../../../models/CompanyBasicInfo';
   styleUrls: ['./basicinfo.component.css']
 })
 export class BasicinfoComponent implements OnInit {
-  @Input() companybasicinfo : CompanyBasicInfo;
+    @Input() companyprofile: CompanyProfile;
+
   constructor() { }
 
   ngOnInit() {

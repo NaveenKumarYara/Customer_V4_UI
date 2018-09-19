@@ -29,8 +29,8 @@ import { CompanyProfileService } from './company-profile.service';
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule
-  ],
-  providers: [CompanyProfileService],
+    ],
+    providers: [CompanyProfileService],
   declarations: [CompanyprofileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
 })
 export class CompanyProfileModule { }
