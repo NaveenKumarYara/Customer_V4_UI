@@ -9,6 +9,7 @@ import { Jobskills } from '../models/jobskills.model';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs';
 import { Qualifications } from '../models/qualifications.model';
+import { Notification } from '../models/notifications';
 import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
@@ -34,6 +35,8 @@ export class AppService {
   qualificationsChanged = new Subject<Qualifications[]>();
 
   private interviewtype: InterviewType[] = [];  
+
+  private notifications: Notification[] = []; 
 
   private contractduration: string[] = [
     "3 months", "6 months", "1 year", "more than 1 year"
@@ -175,6 +178,14 @@ export class AppService {
 
   getQualificationDetails(): Observable<Qualifications[]> {
     const url = environment.educationcriteriaendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getNotifications(): Observable<Notification[]> {
+    const url = environment.NotificationEndPoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

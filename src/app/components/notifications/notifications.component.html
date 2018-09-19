@@ -8,88 +8,16 @@
         </div>
       </div>
       <ul class="date-collection">
-        <li class="date-group">
-          <div class="date">Apr 18, 2018</div>
+        <li class="date-group" *ngFor="let listview of notificationList; let i=index">
+          <div class="date">{{listview.CreatedOn|date}}</div>
           <div class="milestone"><span></span></div>
           <div class="all-notifications">
             <ul class="notification-list">
               <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <!-- .date-group -->
-        <li class="date-group">
-          <div class="date">Apr 18, 2018</div>
-          <div class="milestone"><span></span></div>
-          <div class="all-notifications">
-            <ul class="notification-list">
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <!-- .date-group -->
-        <li class="date-group">
-          <div class="date">Apr 18, 2018</div>
-          <div class="milestone"><span></span></div>
-          <div class="all-notifications">
-            <ul class="notification-list">
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <!-- .date-group -->
-        <li class="date-group">
-          <div class="date">Apr 18, 2018</div>
-          <div class="milestone"><span></span></div>
-          <div class="all-notifications">
-            <ul class="notification-list">
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="images/ui-face-2.png" alt="">
-                <p><b>Jonathan Troat</b> and 3 others applied to the job <a href="#">Senior UX Designer</a></p>
-                <div class="time">2:30pm</div>
-              </li>
+                <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
+                <p><b>{{listview.Message| slice:0:10}} </b>{{listview.Message| slice:10:100}} </p>
+                <div class="time">{{listview.CreatedOn|date:'h:mm a'}}</div>
+              </li>            
             </ul>
           </div>
         </li>
