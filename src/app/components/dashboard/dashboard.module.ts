@@ -9,11 +9,11 @@ import { DashboardContentComponent } from './dashboard-content/dashboard-content
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardService } from './dashboard.service';
-<<<<<<< HEAD
 
-=======
 import { ChartsModule } from 'ng2-charts/ng2-charts';
->>>>>>> d93a5438f1f3293894f23a90b13659b6e45c11ea
+
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 @NgModule({
   imports: [
