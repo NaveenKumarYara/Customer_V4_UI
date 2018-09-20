@@ -13,14 +13,8 @@ export class DashboardJobsviewComponent implements OnInit {
     @Input() dashboardstatistics: DashboardStatistics;
 
 
-    applicantStatistics: ApplicantStatistics;
-    constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { }
-  populateApplicantsStatistics() {
-    return this.dashboardservice.getApplicantsStatistics().subscribe(res => {
-        this.applicantStatistics = res;
-    }); 
-}
-
+    @Input() applicantStatistics: ApplicantStatistics;
+    constructor(private route: ActivatedRoute) { }
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
@@ -61,7 +55,6 @@ export class DashboardJobsviewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.populateApplicantsStatistics();
   }
   public randomize():void {
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);

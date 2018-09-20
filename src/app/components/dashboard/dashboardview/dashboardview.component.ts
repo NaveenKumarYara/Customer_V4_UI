@@ -5,6 +5,7 @@ import { DashboardService } from '../dashboard.service';
 import { RecentJobs } from '../../../../models/recentjobs';
 import { RecentApplicants } from '../../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
+import {  ApplicantStatistics } from '../../../../models/applicantstatistics';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
@@ -19,6 +20,7 @@ export class DashboardviewComponent implements OnInit {
     recentjoblist: RecentJobs[] = [];
     recentapplicantlist: RecentApplicants[] = [];
     dashboardstatistics: DashboardStatistics;
+    applicantStatistics: ApplicantStatistics;
     constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { }
 
     populateRecentJoblist(count: number) {
@@ -43,12 +45,17 @@ export class DashboardviewComponent implements OnInit {
         //    this.dashboardstatistics = res;
         //});   
     }
-
+    populateApplicantsStatistics() {
+        return this.dashboardservice.getApplicantsStatistics().subscribe(res => {
+            this.applicantStatistics = res;
+        }); 
+    }
 
     ngOnInit() {
         this.populateRecentJoblist(5); 
         this.populateRecentApplicants(5); 
         this.populateDashboardStatistics();
+        this.populateApplicantsStatistics();
         
   }
 
