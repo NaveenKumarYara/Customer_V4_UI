@@ -9,10 +9,8 @@ import { DashboardContentComponent } from './dashboard-content/dashboard-content
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardService } from './dashboard.service';
-
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
-import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 @NgModule({
