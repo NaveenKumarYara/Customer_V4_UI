@@ -5,6 +5,7 @@ import { FilterViewJobsComponent } from './view-jobdetails/filter-view-jobs/filt
 import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-advance-search/jobdetails-advance-search.component';
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
+ import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
 import { MatDialogModule } from '@angular/material';
 //import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +20,7 @@ import { ViewjobdetailsCandidateProfileComponent } from './view-jobdetails/viewj
 import { ChatboxdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,12 +32,12 @@ import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidat
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgxSpinnerModule
     //,
     //ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent]
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent,UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent]
 })
 export class JobdetailsModule { }

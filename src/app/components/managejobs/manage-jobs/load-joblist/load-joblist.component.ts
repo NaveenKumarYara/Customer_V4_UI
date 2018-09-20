@@ -19,7 +19,7 @@ export class LoadJoblistComponent implements OnInit {
   joblist: JobDetails[] = [];
   joblistcount: number;
   jobs: any;
-  loaddata: boolean = false;
+  loaddata = false;
 
 
 

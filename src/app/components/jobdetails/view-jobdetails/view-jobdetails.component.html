@@ -53,7 +53,7 @@
               <button class="btn btn-border">Select Template</button>
             </div>
             <div>
-              <button class="btn btn-border">Conversations</button>
+              <button class="btn btn-border" mat-button (click)="openCandidateUploadDialog()">Conversations</button>
               <button class="btn btn-filled" data-toggle="modal" data-target="#selectedJobDetails">View Job Detail (Static HTML)</button>
               <button class="btn btn-filled" mat-button (click)="openDialog()">View Job Detail</button>
             </div>
@@ -123,11 +123,17 @@
                   </div>
                 </a>
               </li>
+              <!-- <li>
+                <a data-toggle="tab" href="#rejected" (click)="uploadprofiles()">
+                  <div>
+                    <h1>10</h1>
+                    <h4>Upload Profiles</h4>
+                  </div>
+                </a>
+              </li> -->
             </ul>
           </div>
-          <!-- .selected .job-card -->
-
-        
+          <!-- .selected .job-card -->  
         </div>
         <app-filter-view-jobs></app-filter-view-jobs>
         <div *ngIf="showDetailadvancesearch">
@@ -138,9 +144,15 @@
         <div class="row">
           <div class="tab-content">
             <div id="all-candidates" class="tab-pane fade in active">
+                <!-- <div *ngIf="uploadProfile===1">
+                    upload Profiles
+                    <input id="browse" type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
+                </div>
+                <div *ngIf="uploadProfile===0"> -->
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
               [statusid]="statusid"></app-viewjobdetails-candidate-profile>
+            <!-- </div> -->
             </div>
           </div>
         </div>

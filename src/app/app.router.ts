@@ -42,6 +42,8 @@ import { FilterViewJobsComponent } from './components/jobdetails/view-jobdetails
 
 import { JobdetailsAdvanceSearchComponent } from '../app/components/jobdetails/view-jobdetails/jobdetails-advance-search/jobdetails-advance-search.component';
 import { ViewjobdetailsmodelComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
+import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component'
+
 import { ViewjobdetailsScComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 
@@ -125,6 +127,7 @@ const appRoutes: Routes =
     { path: 'app-filter-view-jobs', component: FilterViewJobsComponent },
     { path: 'app-jobdetails-advance-search', component: JobdetailsAdvanceSearchComponent },
     { path: 'app-viewjobdetailsmodel', component: ViewjobdetailsmodelComponent },
+      { path: 'app-UploadProfiles', component: UploadProfilesComponent },
     { path: 'app-viewjobdetails-candidate-profile', component: ViewjobdetailsCandidateProfileComponent },
 
     { path: 'app-chatboxdialog', component: ChatboxdialogComponent },

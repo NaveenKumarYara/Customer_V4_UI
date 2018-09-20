@@ -45,7 +45,8 @@ import { JobdetailsModule } from './components/jobdetails/jobdetails.module';
 import { CompanyProfileModule } from './components/company-profile/company-profile.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { AccountsettingsModule } from './components/accountsettings/accountsettings.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,9 @@ import { AccountsettingsModule } from './components/accountsettings/accountsetti
     JobdetailsModule,
     CompanyProfileModule,
     DashboardModule,
-    AccountsettingsModule    
+    AccountsettingsModule,
+  NgxSpinnerModule,
+  ChartsModule     
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

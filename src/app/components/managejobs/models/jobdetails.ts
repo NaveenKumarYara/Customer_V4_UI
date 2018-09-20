@@ -1,4 +1,4 @@
-import { Jobs } from "./jobs";
+import { Jobs } from './jobs';
 
 export class JobDetails {
   public TotalCount: string; /*// no field for applied count*/
