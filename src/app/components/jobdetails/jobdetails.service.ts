@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Http, ResponseContentType, URLSearchParams, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
@@ -19,8 +19,9 @@ import { JobdetailsProfile } from './models/jobdetailsprofile';
 
 @Injectable()
 export class JobdetailsService {
-
-  constructor(private http: HttpClient) {
+  baseUrll = 'http://api.tenendus.com:1090/';
+  baseUrll1 = 'http://localhost:61297/';
+  constructor(private _http: Http, private http: HttpClient) {
   }
 
   private detailsAdvanceSearch = new BehaviorSubject(false);
@@ -58,11 +59,22 @@ export class JobdetailsService {
 
   getJobDetailsProfileInfo(jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
     const url = environment.JobdetailsProfileEndpoint +
-      "&jobId=" + jobid + "&statusId=" + statusid + "&sortBy=0&pageNumber=1&noOfRows=6";
+      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=0&pageNumber=1&noOfRows=6';
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
       );
+  }
+  byteStorage(body, url: string): Observable<HttpEvent<{}>> {
+    const headers = new Headers(); 
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('x-access-token', sessionStorage.getItem('token')); 
+    return this._http.post(this.baseUrll + url, body, { headers: headers })
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
   }
 }

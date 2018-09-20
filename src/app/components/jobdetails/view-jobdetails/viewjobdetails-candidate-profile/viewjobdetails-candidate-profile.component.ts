@@ -72,10 +72,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  CheckDisplay(val)
-  
-  {
-    if(val===null ){
+  CheckDisplay(val) {
+    if (val === null ) {
       return 'none';
     }
   }

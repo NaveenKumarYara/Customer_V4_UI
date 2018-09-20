@@ -8,11 +8,11 @@ import { DashboardContentComponent } from './dashboard-content/dashboard-content
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardService } from './dashboard.service';
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   imports: [
-    CommonModule
+    ChartsModule,CommonModule
     ],
     providers: [DashboardService],
   declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent, DashboardRecentjobsComponent, DashboardRecentApplicationsComponent]
