@@ -67,6 +67,13 @@
   var selectedJobDetailsTab = $("#selectedJobDetails .nav-tabs li");
   var selectedJobDetailsLine = $("#selectedJobDetails .nav-tabs .active-line");
   selectedJobDetailsTab.on("click", navLineClickHandler);
+
+
+  //Manage Profiles Dialog
+  var manageProfiles = $(".manage-uploads .nav-tabs li");
+  var manageProfilesLine = $(".manage-uploads .nav-tabs .active-line");
+  appliedTabBtn.on("click", navLineClickHandler);
+
 })($);
 "use strict";
 

@@ -3,4 +3,5 @@
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
+    text-transform: capitalize;
 }

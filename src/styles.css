@@ -14543,6 +14543,7 @@ a.ui-button:active,
     margin-top: 10px;
     margin-bottom: 8px;
     font-size: 0.875rem;
+    text-transform: capitalize;
   }
 
   .page--job-details .candidate.card .meta .location {
@@ -17846,7 +17847,12 @@ a.ui-button:active,
 
     .page--dashboard .statistics.card .stats > div:nth-of-type(3) {
       padding-top: 2rem;
+      padding-bottom: 2rem;
     }
+    .page--dashboard .statistics.card .stats > div:nth-of-type(4) {
+      padding-top: 2rem;
+    }
+
 
   .page--dashboard .statistics.card .stats-tabs {
     width: 390px;
