@@ -37,5 +37,7 @@ export const environment = {
 
     CompanyProfileOtherInfo: "http://api.tenendus.com:1090/ProfileAPI/api/GetOtherInfo?customerId=1",
 
+    GetCompanyLogo: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyLogo?customerId=1",
+
     CompanyProfileLocationInfo: "http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?customerId=1"
 }

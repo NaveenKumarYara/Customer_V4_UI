@@ -25,7 +25,7 @@
       <div class="card-inner">
         <div class="company-logo">
           <div class="img">
-            <img class="img-responsive" src="../../../../assets/images/ueno-logo.png" alt="Ueno">
+            <img class="img-responsive" title="{{getcompanylogo.CompanyName}}" src="{{getcompanylogo.CompanyLogo}}" alt="Ueno">
           </div>
         </div>
         <div class="company-info">
@@ -57,11 +57,11 @@
             <tbody>
               <tr>
                 <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-                <td>+23-111-2223</td>
+                <td>{{companyprofile.MobilePhone}}</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax"></td>
-                <td>+23-111-2223</td>
+                <td>{{companyprofile.HomePhone}}</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>

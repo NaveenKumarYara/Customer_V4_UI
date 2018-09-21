@@ -5,7 +5,7 @@ import { CompanyProfileService } from '../company-profile.service';
 import { CompanyProfile } from '../../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';
 import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
-
+import {GetCompanyLogo} from '../../../../models/GetCompanyLogo';
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -15,7 +15,7 @@ export class CompanyprofileComponent implements OnInit {
     companyprofile: CompanyProfile;
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
-
+    getcompanylogo:GetCompanyLogo;
   constructor(private route: ActivatedRoute,
       private router: Router, private companyprofileservice: CompanyProfileService) { }
 
@@ -31,6 +31,12 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
+    populateCompanyLogo() {
+        return this.companyprofileservice.getCompanyLogo().subscribe(res => {
+            this.getcompanylogo= res;
+        });
+    }
+
 
     populateCompanyProfileLocationInfo() {
         return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
@@ -42,6 +48,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyProfile();
         this.populateCompanyProfileOtherInfo();
         this.populateCompanyProfileLocationInfo();
+        this.populateCompanyLogo();
   }
 
 }

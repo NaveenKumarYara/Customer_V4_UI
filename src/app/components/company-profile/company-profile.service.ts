@@ -13,6 +13,7 @@ import 'rxjs/add/observable/throw';
 import { CompanyProfile } from '../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../models/companyprofile-otherinfo';
 import { CustomerLocationInfo } from '../../../models/customerlocationinfo';
+import {GetCompanyLogo} from '../../../models/GetCompanyLogo';
 
 
 @Injectable()
@@ -51,5 +52,12 @@ export class CompanyProfileService {
                 this.handleError
             );
     }
- 
+    
+    getCompanyLogo(): Observable<GetCompanyLogo> {
+        const url = environment.GetCompanyLogo;
+        return this.http.get<GetCompanyLogo>(url)
+            .catch(
+                this.handleError
+            );
+    }
 }
