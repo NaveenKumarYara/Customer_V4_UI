@@ -47,7 +47,7 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         width: '1000px',
         position: {right : '0px'},
-        height : '700px',
+        height : '750px',
         data: abc,
         // closeOnNavigation:false,
         // disableClose:true
