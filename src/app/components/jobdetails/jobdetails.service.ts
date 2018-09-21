@@ -66,6 +66,15 @@ export class JobdetailsService {
         this.handleError
       );
   }
+  getJobDetailsSuggestedProfileInfo(jobid: number): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsSuggestedProfileEndpoint +
+      '&jobId=' + jobid + '&sortBy=0&pageNumber=1&noOfRows=6';
+    return this.http.get<JobdetailsProfile[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
   byteStorage(body, url: string): Observable<HttpEvent<{}>> {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewContainerRef,ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild  } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
-import { Observable, Subject } from 'rxjs';
+// import { Observable, Subject } from 'rxjs';
 import { ViewjobdetailsmodelComponent } from './viewjobdetailsmodel/viewjobdetailsmodel.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { filter } from 'rxjs/operators';
@@ -11,7 +11,8 @@ import { Jobstatistics } from '../models/jobstatistics';
 import { UploadProfilesComponent } from './upload-profiles/upload-profiles.component';
 // import { UploadCandidatesComponent } from './upload-candidates/upload-candidates.component';
 import { JobdetailsProfile } from '../models/jobdetailsprofile';
-import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component'
+// tslint:disable-next-line:max-line-length
+import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 
 
 @Component({
@@ -20,7 +21,7 @@ import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjo
   styleUrls: ['./view-jobdetails.component.css']
 })
 export class ViewJobdetailsComponent implements OnInit {
-@ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent; 
+@ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
@@ -30,7 +31,7 @@ export class ViewJobdetailsComponent implements OnInit {
   uploadProfile = 0;
   fileUploadForm: FormGroup;
   jobdetailsprofiles: JobdetailsProfile[] = [];
-  showVar: boolean = true;
+  // showVar:  = true;
 
   constructor(private route: ActivatedRoute,
     private router: Router, private jobdetailsservice: JobdetailsService,
@@ -38,17 +39,17 @@ export class ViewJobdetailsComponent implements OnInit {
    ) { }
   showDetailadvancesearch = false;
   openDialog() {
-    let abc = {
+    const abc = {
       'animal': 'panda',
       'JobId' : this.jobid
-    }
-    const dialogRef = this.dialog.open(ViewjobdetailsmodelComponent, 
+    };
+    const dialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
       {
         width: '1000px',
-        position: {right:'0px'},
-        height :'700px',
+        position: {right : '0px'},
+        height : '700px',
         data: abc,
-        // closeOnNavigation:false, 
+        // closeOnNavigation:false,
         // disableClose:true
       }
     );
@@ -58,18 +59,17 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
   openCandidateUploadDialog() {
-    let abc =
-    {
+    const abc = {
       'animal': 'panda',
        'JobId' : this.jobid
     };
-    const dialogRef = this.dialog.open(UploadProfilesComponent, 
+    const dialogRef = this.dialog.open(UploadProfilesComponent,
       {
         width: '750px',
-        position: {right:'0px'},
-        height :'750px',
+        position: {right : '0px'},
+        height : '750px',
         data: abc,
-        // closeOnNavigation:false, 
+        // closeOnNavigation:false,
         // disableClose:true
       }
     );
@@ -78,10 +78,10 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('Dialog result: ${result}');
     });
   }
-  toggleChild(){
-    this.showVar = !this.showVar;
-     }
-     
+  // toggleChild() {
+  //   this.showVar = !this.showVar;
+  //    }
+
   updateallcandidatesstatus() {
     this.jobid = 1000100;
     this.statusid = 0;
@@ -89,12 +89,12 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   updatesuggestedstatus() {
     this.jobid = 1000003; // what is the status id for suggested why api looks differe from others
-    // this.statusid=
+    this.statusid=15;
     // this.PopulateJobdetailProfiles();
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
   updateappliedstatus() {
-    this.jobid = 1000080;
+    this.jobid = 1000100; // 1000080;
     this.statusid = 4;
     // console.log(this.statusid);
     // this.PopulateJobdetailProfiles();
@@ -102,29 +102,29 @@ export class ViewJobdetailsComponent implements OnInit {
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
   updateshortlistedstatus() {
-    this.jobid = 1000007;
+    this.jobid = 1000100; // 1000007;
     this.statusid = 5;
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
   updateinterviewedstatus() {
-    this.jobid = 1000007;
+    this.jobid = 1000100; // 1000007;
     this.statusid = 7;
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
   updatehiredstatus() {
-    this.jobid = 1000028;
+    this.jobid = 1000100; // 1000028;
     this.statusid = 11;
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
 
   updaterejectedstatus() {
-    this.jobid = 1000024;
+    this.jobid = 1000100; // 1000024;
     this.statusid = 9;
     this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
    }
 
     uploadprofiles() {
-       this.jobid = 1000024;
+       this.jobid = 1000100; // 1000024;
     }
     // getFileDetails(e) {
     //   let request = '';

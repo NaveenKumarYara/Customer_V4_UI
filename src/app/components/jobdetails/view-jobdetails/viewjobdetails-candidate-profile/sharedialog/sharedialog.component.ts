@@ -8,7 +8,7 @@ export interface DialogData {
   templateUrl: './sharedialog.component.html',
   styleUrls: ['./sharedialog.component.css']
 })
-export class SharedialogComponent{
+export class SharedialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 

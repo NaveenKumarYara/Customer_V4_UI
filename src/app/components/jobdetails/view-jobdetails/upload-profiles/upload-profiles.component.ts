@@ -15,11 +15,12 @@ export interface DialogData {
 export class UploadProfilesComponent implements OnInit {
   fileUploadForm: FormGroup;
   selectedFileNames: string[] = [];
-  loaddata=true ;
+  loaddata = true ;
+  // tslint:disable-next-line:max-line-length
   constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.selectedFileNames = [];
    }
-  
+
   ngOnInit() {
     this.fileUploadForm = this.fb.group({
       'userId': [5, Validators.required],
@@ -32,6 +33,7 @@ export class UploadProfilesComponent implements OnInit {
     });
   }
   getFileDetails(e) {
+    this.selectedFileNames=[];
     this.spinner.show();
     let request = '';
     const formData = new FormData();

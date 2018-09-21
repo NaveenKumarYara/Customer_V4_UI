@@ -66,11 +66,19 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  PopulateJobdetailProfiles (jobid,statusid,val?) {
-    if(jobid != null && statusid != null)
-    {
+  PopulateJobdetailProfiles (jobid, statusid) {
+    if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;
+    }
+    if(this.statusid ===15)
+    {
+      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.jobid).subscribe(res => {
+        this.jobdetailsprofiles = res;
+      });
+    }
+    else{
+
     }
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.jobid, this.statusid).subscribe(res => {
       this.jobdetailsprofiles = res;
@@ -84,10 +92,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.PopulateJobdetailProfiles(this.jobid,this.statusid);
+    this.PopulateJobdetailProfiles(this.jobid, this.statusid);
     console.log('abc');
   }
   ngOnChange() {
-    console.log('on change', this.jobid,this.statusid);
+    console.log('on change', this.jobid, this.statusid);
   }
 }
