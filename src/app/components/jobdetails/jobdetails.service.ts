@@ -67,7 +67,7 @@ export class JobdetailsService {
       );
   }
   byteStorage(body, url: string): Observable<HttpEvent<{}>> {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token')); 

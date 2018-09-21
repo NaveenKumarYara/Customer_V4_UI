@@ -1,6 +1,7 @@
 
-      
-        <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles.Profile; let i=index">
+      <!-- <div *ngIf=jobdetailsprofiles.Profile !== null> -->
+          
+        <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i=index">
           <div class="candidate card">
             <header>
               <div class="candidate-badges">
@@ -81,7 +82,7 @@
                 </div>
                 <div>
                   <a href="#" class="show-matching-details" data-toggle="matching-details">
-                    <h1>50% </h1>>
+                    <h1>50% </h1>
                     <h5>Matching</h5>
                   </a>
                 </div>
@@ -269,6 +270,12 @@
               </div>
             </div>
           </div>
-          <!-- .card -->
+       
         </div>
-   
+      <!-- </div> -->
+        <!-- <div *ngIf=jobdetailsprofiles === null>
+            <p>no records found</p>
+          </div> -->
+<!-- <p *ngIf="jobdetailsprofiles.Profile!=null">
+    jobdetailsprofiles.Profile[0].LastName
+</p> -->

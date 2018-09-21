@@ -14,11 +14,11 @@ import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
-  jobdetailsprofiles: JobdetailsProfile[] = [];
+   jobdetailsprofiles: JobdetailsProfile[] = [];
 
   @Input() jobid: number;
   @Input() statusid: number;
-
+ // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
   constructor(private router: Router, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog) { }
   OpenChatboxDialog() {
@@ -66,7 +66,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  PopulateJobdetailProfiles() {
+  PopulateJobdetailProfiles (jobid,statusid,val?) {
+    if(jobid != null && statusid != null)
+    {
+      this.jobid = jobid;
+      this.statusid = statusid;
+    }
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.jobid, this.statusid).subscribe(res => {
       this.jobdetailsprofiles = res;
     });
@@ -79,7 +84,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.PopulateJobdetailProfiles();
+    this.PopulateJobdetailProfiles(this.jobid,this.statusid);
+    console.log('abc');
   }
-
+  ngOnChange() {
+    console.log('on change', this.jobid,this.statusid);
+  }
 }

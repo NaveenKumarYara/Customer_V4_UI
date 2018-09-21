@@ -62,8 +62,7 @@
           <div class="card-footer">
             <ul class="nav nav-tabs">
               <li class="active">
-                <a data-toggle="tab" href="#all-candidates"
-                   (click)="updateallcandidatesstatus()">
+                <a data-toggle="tab" href="#all-candidates" (click)="updateallcandidatesstatus()">
                   <div>
                     <h1>{{jobstatistics.AllCandidates}}</h1>
                     <h4>All Candidates</h4>
@@ -71,8 +70,7 @@
                 </a>
               </li>
               <li>
-                <a data-toggle="tab" href="#suggested"
-                   (click)="updatesuggestedstatus()">
+                <a data-toggle="tab" href="#suggested" (click)="updatesuggestedstatus()">
                   <div>
                     <h1>{{jobstatistics.Suggested}}</h1>
                     <h4>Suggested</h4>
@@ -80,8 +78,7 @@
                 </a>
               </li>
               <li>
-                <a data-toggle="tab" href="#applied"
-                   (click)="updateappliedstatus()">
+                <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
                   <div>
                     <h1>{{jobstatistics.Applied}}</h1>
                     <h4>Applied</h4>
@@ -89,8 +86,7 @@
                 </a>
               </li>
               <li>
-                <a data-toggle="tab" href="#shortlisted"
-                   (click)="updateshortlistedstatus()">
+                <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
                   <div>
                     <h1>{{jobstatistics.ShortListed}}</h1>
                     <h4>Shortlisted</h4>
@@ -98,8 +94,7 @@
                 </a>
               </li>
               <li>
-                <a data-toggle="tab" href="#interview"
-                   (click)="updateinterviewedstatus()">
+                <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
                   <div>
                     <h1>{{jobstatistics.Interviewed}}</h1>
                     <h4>Interview</h4>
@@ -107,8 +102,7 @@
                 </a>
               </li>
               <li>
-                <a data-toggle="tab" href="#hired"
-                   (click)="updatehiredstatus()">
+                <a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
                   <div>
                     <h1>{{jobstatistics.Hired}}</h1>
                     <h4>Hired</h4>
@@ -143,17 +137,44 @@
       <div class="row">
         <div class="row">
           <div class="tab-content">
-            <div id="all-candidates" class="tab-pane fade in active">
-                <!-- <div *ngIf="uploadProfile===1">
-                    upload Profiles
-                    <input id="browse" type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
-                </div>
-                <div *ngIf="uploadProfile===0"> -->
+              <!-- <h1>Detail of the day</h1>
+              <button type="button" label="Click" (click)="toggleChild()"></button> -->
+            <div id="all-candidates" class="tab-pane fade in active"> 
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
-              [statusid]="statusid"></app-viewjobdetails-candidate-profile>
-            <!-- </div> -->
+              [statusid]="statusid"
+              ></app-viewjobdetails-candidate-profile> 
             </div>
+            <!-- <div id="suggested" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile
+              [jobid]="jobid"
+              [statusid]="statusid"
+               ></app-viewjobdetails-candidate-profile> 
+            </div>
+            <div id="applied" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile [jobid]="jobid"
+              [statusid]="statusid"></app-viewjobdetails-candidate-profile> 
+            </div>
+            <div id="shortlisted" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile 
+             [jobid]="jobid"
+              [statusid]="statusid"></app-viewjobdetails-candidate-profile> 
+            </div>
+             <div id="interview" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile 
+             [jobid]="jobid"
+              [statusid]="statusid"></app-viewjobdetails-candidate-profile> 
+            </div>
+            <div id="hired" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile 
+             [jobid]="jobid"
+              [statusid]="statusid"></app-viewjobdetails-candidate-profile> 
+            </div> 
+            <div id="rejected" class="tab-pane fade"> 
+              <app-viewjobdetails-candidate-profile  
+             [jobid]="jobid"
+              [statusid]="statusid"></app-viewjobdetails-candidate-profile> 
+            </div> -->
           </div>
         </div>
       </div>

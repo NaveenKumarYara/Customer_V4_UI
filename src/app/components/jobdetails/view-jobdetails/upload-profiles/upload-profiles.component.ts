@@ -47,6 +47,7 @@ export class UploadProfilesComponent implements OnInit {
     }
     if (e.target.files.length > 5) {
       alert('Please select max 5 files.');
+      this.spinner.hide();
       e.preventDefault();
     } else {
       for (let i = 0; i < e.target.files.length; i++) {
@@ -69,6 +70,7 @@ export class UploadProfilesComponent implements OnInit {
       }
     }, error => {
       alert('error in uploading profiles');
+      this.spinner.hide();
            console.log('download error:', JSON.stringify(error));
           });
   }
