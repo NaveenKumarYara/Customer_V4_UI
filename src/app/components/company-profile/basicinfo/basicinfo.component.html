@@ -25,30 +25,30 @@
       <div class="card-inner">
         <div class="company-logo">
           <div class="img">
-            <img class="img-responsive" title="{{getcompanylogo.CompanyName}}" src="{{getcompanylogo.CompanyLogo}}" alt="Ueno">
+            <img class="img-responsive" title="{{getcompanylogo?.CompanyName}}" src="{{getcompanylogo?.CompanyLogo}}" alt="Ueno">
           </div>
         </div>
         <div class="company-info">
-            <h1>{{companyprofile.CompanyName}}</h1>
+            <h1>{{companyprofile?.CompanyName}}</h1>
           <h3>Design and Animations</h3>
           <div class="social-media">
-            <a href={{companyprofile.TwitterURL}}>
+            <a href={{companyprofile?.TwitterURL}}>
               <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
             </a>
-            <a href={{companyprofile.LinkedInURL}}>
+            <a href={{companyprofile?.LinkedInURL}}>
               <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
             </a>
-            <a href={{companyprofile.ContactEmail}}>
+            <a href={{companyprofile?.ContactEmail}}>
               <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
             </a>
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
-            <a href={{companyprofile.WebSite}} target="_blank">{{companyprofile.WebSite}}</a>
+            <a href={{companyprofile?.WebSite}} target="_blank">{{companyprofile?.WebSite}}</a>
           </div>
           <div class="meta">
             <img class="icon" src="../../../../assets/images/email-icon.svg" alt="Email">
-            <a href={{companyprofile.ContactEmail}}>{{companyprofile.ContactEmail}}</a>
+            <a href={{companyprofile?.ContactEmail}}>{{companyprofile?.ContactEmail}}</a>
           </div>
           <div class="v-divider"></div>
         </div>
@@ -57,15 +57,15 @@
             <tbody>
               <tr>
                 <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-                <td>{{companyprofile.MobilePhone}}</td>
+                <td>{{companyprofile?.MobilePhone}}</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax"></td>
-                <td>{{companyprofile.HomePhone}}</td>
+                <td>{{companyprofile?.HomePhone}}</td>
               </tr>
               <tr>
                 <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>
-                <td>{{companyprofile.Address1}} {{companyprofile.Address2}}, {{companyprofile.CityName}} {{companyprofile.StateName}} {{companyprofile.Zipcode}}, {{companyprofile.CountryName}}.</td>
+                <td>{{companyprofile?.Address1}} {{companyprofile?.Address2}}, {{companyprofile?.CityName}} {{companyprofile?.StateName}} {{companyprofile?.Zipcode}}, {{companyprofile?.CountryName}}.</td>
               </tr>
             </tbody>
           </table>

@@ -27,8 +27,8 @@
           <ul class="list--empty" *ngFor="let locationinfo of companyprofilelocationinfo; let i=index">
             <li class="item">
                 <div class="address">
-                    <h3>{{locationinfo.CityName}} {{locationinfo.StateName}}</h3>  <!--address not available in api call-->
-                    <p>{{locationinfo.CountryName}}, {{locationinfo.ZipCode}}</p>
+                    <h3>{{locationinfo?.CityName}} {{locationinfo?.StateName}}</h3>  <!--address not available in api call-->
+                    <p>{{locationinfo?.CountryName}}, {{locationinfo?.ZipCode}}</p>
                 </div>
               <div class="actions">
                 <button class="btn btn-transparent no-padding">

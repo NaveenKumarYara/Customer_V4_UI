@@ -5,7 +5,8 @@ import { CompanyProfileService } from '../company-profile.service';
 import { CompanyProfile } from '../../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';
 import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
-import {GetCompanyLogo} from '../../../../models/GetCompanyLogo';
+import { GetCompanyLogo } from '../../../../models/GetCompanyLogo';
+import { GetAboutCompany } from '../../../../models/GetAboutCompany';
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -15,7 +16,9 @@ export class CompanyprofileComponent implements OnInit {
     companyprofile: CompanyProfile;
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
+    getaboutcompany: GetAboutCompany[];
     getcompanylogo:GetCompanyLogo;
+
   constructor(private route: ActivatedRoute,
       private router: Router, private companyprofileservice: CompanyProfileService) { }
 
@@ -37,6 +40,11 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
+    populateAboutCompanyInfo() {
+        return this.companyprofileservice.getCompanyAboutInfo().subscribe(res => {
+            this.getaboutcompany = res;
+        });
+    }
 
     populateCompanyProfileLocationInfo() {
         return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
@@ -49,6 +57,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyProfileOtherInfo();
         this.populateCompanyProfileLocationInfo();
         this.populateCompanyLogo();
+        this.populateAboutCompanyInfo();
   }
 
 }

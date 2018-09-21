@@ -36,6 +36,8 @@ export const environment = {
     CompanyProfileBasicInfo: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBasicInfo?customerId=1",
 
     CompanyProfileOtherInfo: "http://api.tenendus.com:1090/ProfileAPI/api/GetOtherInfo?customerId=1",
+     
+    GetAboutCompany:"http://api.tenendus.com:1090/ProfileAPI/api/GetAboutCompany?customerId=1",
 
     GetCompanyLogo: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyLogo?customerId=1",
 
