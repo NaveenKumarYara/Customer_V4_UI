@@ -17783,6 +17783,7 @@ a.ui-button:active,
 
     .page--dashboard .statistics.card > .nav-tabs > li:not(:last-child) {
       margin-right: 24px;
+      margin-bottom: 0px;
     }
 
     .page--dashboard .statistics.card > .nav-tabs > li > a {
@@ -18231,6 +18232,7 @@ a.ui-button:active,
 
     .page--dashboard .statistics.card > .nav-tabs > li:not(:last-child) {
       margin-right: 12px;
+      margin-bottom: 0px;
     }
 
   .page--dashboard .card.message {
