@@ -75,6 +75,8 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
+      this.populateJobsStaticInfo();
+      this.updateappliedstatus();
       console.log('Dialog result: ${result}');
     });
   }
