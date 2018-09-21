@@ -185,3 +185,119 @@
       transform: rotate(360deg);
     }
   }
+
+  /*Upload Dialog Tabs Styles*/
+  .page--account-settings #billing h1 {
+    margin-bottom: 2rem; }
+  
+  .page--account-settings #billing .nav-tabs {
+    position: relative;
+    border-bottom: 0;
+    margin-bottom: 3rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    /* Track */
+    /* Handle */
+    /* Handle on hover */ }
+    .manage-uploads .nav-tabs::-webkit-scrollbar {
+      height: 3px;
+      cursor: pointer; }
+    .manage-uploads .nav-tabs::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      opacity: 0.1; }
+    .manage-uploads .nav-tabs::-webkit-scrollbar-thumb {
+      background: #888;
+      opacity: 0.6; }
+    .manage-uploads .nav-tabs::-webkit-scrollbar-thumb:hover {
+      background: #555;
+      opacity: 0.8; }
+    .manage-uploads .nav-tabs li {
+      margin-right: 2rem; }
+    .manage-uploads .nav-tabs li a {
+      color: #6A7E9C;
+      border: 1px solid transparent;
+      padding-bottom: 1.33rem; 
+      margin-right: 0px;
+    }
+    .manage-uploads .nav-tabs li a:focus
+    {
+      border: 0;
+      outline: none;
+    }
+    .manage-uploads .nav-tabs .active {
+      margin-bottom: 0;
+      border-bottom: 2px solid #448AFA; }
+      .manage-uploads .nav-tabs .active a {
+        color: #41536E; }
+  
+  /*Search Profiles Styles*/
+.searchProfiles{
+  background-color: #ffffff;
+  border-color: #E0E3EF;
+  color: #6A7E9C;
+}
+.searchProfiles .card-inner{
+    padding-bottom: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+.searchProfiles .tab-content > .active {
+    display: block;
+    margin-top: 15px;
+}
+.searchProfiles .input-group{
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+.searchProfiles .input-group .form-control {
+  height: 50px;
+  border-color: #E0E3EF;
+  color: #9EABC0;
+}
+
+.searchProfiles .tab-inner {
+  height: 350px;
+  max-height: 350px;
+  
+}
+
+.searchProfiles .list--filled {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.searchProfiles .list--filled .item {
+  border: 1px solid #E0E3EF;
+  border-radius: 3px;
+  background-color: #F8F9FC;
+  color: #6A7E9C;
+  padding: 13px 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  list-style-type: none;
+}
+
+.searchProfiles .list--filled .item:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+.mat-dialog-content{
+  overflow:hidden;
+}
