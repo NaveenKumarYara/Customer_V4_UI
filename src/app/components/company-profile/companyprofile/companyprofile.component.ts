@@ -7,6 +7,7 @@ import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otheri
 import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
 import { GetCompanyLogo } from '../../../../models/GetCompanyLogo';
 import { GetAboutCompany } from '../../../../models/GetAboutCompany';
+import { GetCompanyBenefit } from '../../../../models/GetCompanyBenefit';
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -17,6 +18,7 @@ export class CompanyprofileComponent implements OnInit {
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
     getaboutcompany: GetAboutCompany[];
+    getcompanybenfit: GetCompanyBenefit[];
     getcompanylogo:GetCompanyLogo;
 
   constructor(private route: ActivatedRoute,
@@ -46,6 +48,12 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
+    populateAboutCompanyBenfits() {
+        return this.companyprofileservice.getCompanyBenfits().subscribe(res => {
+            this.getcompanybenfit = res;
+        });
+    }
+
     populateCompanyProfileLocationInfo() {
         return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
             this.companyprofilelocationinfo = res;
@@ -58,6 +66,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyProfileLocationInfo();
         this.populateCompanyLogo();
         this.populateAboutCompanyInfo();
+        this.populateAboutCompanyBenfits();
   }
 
 }

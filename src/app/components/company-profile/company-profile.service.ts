@@ -15,6 +15,7 @@ import { CompanyProfileOtherIno } from '../../../models/companyprofile-otherinfo
 import { CustomerLocationInfo } from '../../../models/customerlocationinfo';
 import { GetCompanyLogo } from '../../../models/GetCompanyLogo';
 import { GetAboutCompany } from '../../../models/GetAboutCompany';
+import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
 
 
 @Injectable()
@@ -49,6 +50,14 @@ export class CompanyProfileService {
     getCompanyCustomerLocationInfo(): Observable<CustomerLocationInfo[]> {
         const url = environment.CompanyProfileLocationInfo;
         return this.http.get<CustomerLocationInfo[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyBenfits(): Observable<GetCompanyBenefit[]> {
+        const url = environment.GetCompanyBenfits;
+        return this.http.get<GetCompanyBenefit[]>(url)
             .catch(
                 this.handleError
             );

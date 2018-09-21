@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input} from '@angular/core';
+import { GetCompanyBenefit } from '../../../../models/GetCompanyBenefit';
 
 @Component({
   selector: 'app-benefits',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./benefits.component.css']
 })
 export class BenefitsComponent implements OnInit {
-
+@Input() getcompanybenfit:GetCompanyBenefit;
   constructor() { }
 
   ngOnInit() {
