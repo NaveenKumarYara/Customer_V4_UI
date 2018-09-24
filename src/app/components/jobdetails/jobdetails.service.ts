@@ -16,6 +16,7 @@ import './models/jobdetailsbasicinfo';
 import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
 import { Jobstatistics } from './models/jobstatistics';
 import { JobdetailsProfile } from './models/jobdetailsprofile';
+import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 
 @Injectable()
 export class JobdetailsService {
@@ -41,6 +42,15 @@ export class JobdetailsService {
   getJobDetailsBasicInfo(): Observable<JobdetailsBasicInfo> {
     const url = environment.JobdetailsBasicInfoEndpoint;
     return this.http.get<JobdetailsBasicInfo>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getJobDetailCustomer(): Observable<GetJobDetailCustomer> {
+    const url = environment.JobDetailsofCustomer;
+    return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
