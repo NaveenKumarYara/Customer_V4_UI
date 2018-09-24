@@ -50,6 +50,14 @@ export const environment = {
 
     CompanyWhitePapers: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyWhitePaper?customerId=1",
 
+    ComapnyAchivements: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyAchievement?customerId=42&companyAchievementId=0",
+
+    CompanyPartnerships:"http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyPartner?customerId=1&companyPartnerId=0",
+
+    CompanyCertifications: "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCertification?customerId=1&companyCertificationId=0",
+
+    CompanyCultures : "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCulture?customerId=1&companyCultureId=0",
+
     CompanyNewsPapers : "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyNewsInfo?customerId=1&companyNewsInfoId=0",
 
     GetCompanyBenfits : "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?customerId=1&companyBenefitId=0",
