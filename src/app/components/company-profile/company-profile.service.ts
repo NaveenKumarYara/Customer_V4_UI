@@ -16,6 +16,10 @@ import { CustomerLocationInfo } from '../../../models/customerlocationinfo';
 import { GetCompanyLogo } from '../../../models/GetCompanyLogo';
 import { GetAboutCompany } from '../../../models/GetAboutCompany';
 import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
+import { CompanySpecialities } from '../../../models/CompanySpecialities';
+import { GetCompanyTechnology } from '../../../models/GetCompanyTechnology';
+import { GetCompanyWhitePaper } from '../../../models/GetCompanyWhitePaper';
+import { GetCompanyNewsInfo } from '../../../models/GetCompanyNewsInfo';
 
 
 @Injectable()
@@ -63,9 +67,41 @@ export class CompanyProfileService {
             );
     }
 
+    getCompanySpecialities(): Observable<CompanySpecialities[]> {
+        const url = environment.CompanySpecialities;
+        return this.http.get<CompanySpecialities[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    GetCompanyTechnologies(): Observable<GetCompanyTechnology[]> {
+        const url = environment.CompanyTechnologies;
+        return this.http.get<GetCompanyTechnology[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
     getCompanyAboutInfo(): Observable<GetAboutCompany[]> {
         const url = environment.GetAboutCompany;
         return this.http.get<GetAboutCompany[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyWhitePapers(): Observable<GetCompanyWhitePaper[]> {
+        const url = environment.CompanyWhitePapers;
+        return this.http.get<GetCompanyWhitePaper[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyNewsInfo(): Observable<GetCompanyNewsInfo[]> {
+        const url = environment.CompanyNewsPapers;
+        return this.http.get<GetCompanyNewsInfo[]>(url)
             .catch(
                 this.handleError
             );

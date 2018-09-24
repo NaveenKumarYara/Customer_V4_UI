@@ -20,10 +20,10 @@
        </div>
        <div class="row">
          <app-benefits  [getcompanybenfit]="getcompanybenfit"></app-benefits>
-         <app-specialities></app-specialities>
+         <app-specialities  [companyspecialities]="companyspecialities" [getcompanytechnology]="getcompanytechnology"></app-specialities>
        </div>
        <div class="row">
-         <app-whitepaper></app-whitepaper>
+         <app-whitepaper [getcompanywhitepaper]="getcompanywhitepaper" [getcompanynewsinfo]="getcompanynewsinfo"></app-whitepaper>
          <app-questions></app-questions>
        </div>
       <div class="row">

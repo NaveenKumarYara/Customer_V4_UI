@@ -8,6 +8,10 @@ import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
 import { GetCompanyLogo } from '../../../../models/GetCompanyLogo';
 import { GetAboutCompany } from '../../../../models/GetAboutCompany';
 import { GetCompanyBenefit } from '../../../../models/GetCompanyBenefit';
+import { CompanySpecialities } from '../../../../models/CompanySpecialities';
+import { GetCompanyTechnology } from '../../../../models/GetCompanyTechnology';
+import { GetCompanyWhitePaper } from '../../../../models/GetCompanyWhitePaper';
+import { GetCompanyNewsInfo } from '../../../../models/GetCompanyNewsInfo';
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -19,7 +23,11 @@ export class CompanyprofileComponent implements OnInit {
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
     getaboutcompany: GetAboutCompany[];
     getcompanybenfit: GetCompanyBenefit[];
+    companyspecialities : CompanySpecialities[];
+    getcompanytechnology : GetCompanyTechnology[];
     getcompanylogo:GetCompanyLogo;
+    getcompanywhitepaper: GetCompanyWhitePaper[];
+    getcompanynewsinfo: GetCompanyNewsInfo[];
 
   constructor(private route: ActivatedRoute,
       private router: Router, private companyprofileservice: CompanyProfileService) { }
@@ -54,6 +62,31 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
+    populateCompanyTechnologies() {
+        return this.companyprofileservice.GetCompanyTechnologies().subscribe(res => {
+            this.getcompanytechnology = res;
+        });
+    }
+
+    populateCompanyWhitePapers() {
+        return this.companyprofileservice.getCompanyWhitePapers().subscribe(res => {
+            this.getcompanywhitepaper = res;
+        });
+    }
+
+    populateCompanyNewsInfo() {
+        return this.companyprofileservice.getCompanyNewsInfo().subscribe(res => {
+            this.getcompanynewsinfo = res;
+        });
+    }
+
+    populateCompanySpecialities()
+    {
+        return this.companyprofileservice.getCompanySpecialities().subscribe(res => {
+            this.companyspecialities = res;
+        });
+    }
+
     populateCompanyProfileLocationInfo() {
         return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
             this.companyprofilelocationinfo = res;
@@ -67,6 +100,10 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyLogo();
         this.populateAboutCompanyInfo();
         this.populateAboutCompanyBenfits();
+        this.populateCompanySpecialities();
+        this.populateCompanyTechnologies();
+        this.populateCompanyWhitePapers();
+        this.populateCompanyNewsInfo();
   }
 
 }

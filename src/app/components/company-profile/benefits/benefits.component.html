@@ -27,6 +27,7 @@
               </h1>
             </a>
           </li>
+          
           <li>
             <a data-toggle="tab" href="#revenueInfo">
               <h1 class="title">
@@ -53,9 +54,10 @@
             </div>
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 350px;">
-                <ul class="list--filled" *ngFor="let companybenfit of getcompanybenfit">
-                  <li class="item">
-                   {{companybenfit?.CompanyBenefit}}
+                <ul class="list--filled" >
+         
+                  <li class="item" *ngFor="let companybenfit of getcompanybenfit">
+                    {{companybenfit?.CompanyBenefit}}
                     <div class="actions">
                       <button class="btn btn-transparent no-padding">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="19.1">
@@ -75,7 +77,6 @@
                       </button>
                     </div>
                   </li>
-           
      
                 </ul>
               </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 281px; top: 0px;"></div></div></div>
