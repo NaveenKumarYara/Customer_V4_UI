@@ -5,3 +5,13 @@
     cursor: pointer;
     text-transform: capitalize;
 }
+
+.meta small{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 75%;
+    margin-top: 3px;
+    margin-left: 3px;
+  }
