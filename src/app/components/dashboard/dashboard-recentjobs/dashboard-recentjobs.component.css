@@ -1,0 +1,76 @@
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+    
+/* This parent can be any width and height */
+#domainLoader {
+  text-align: center;
+    background:#ccc;
+    opacity: 0.85;
+    margin-bottom:10px;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position:absolute;
+    display:none;
+    z-index: 999999;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+#domainLoader:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+#domainLoader > div {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+
+.demo-progress-spinner {
+    width: 100%;
+  
+    .mat-progress-spinner,
+    .mat-spinner {
+      display: inline-block;
+    }
+  
+  }
+  
+  .demo-progress-spinner-controls {
+    margin: 10px 0;
+  }

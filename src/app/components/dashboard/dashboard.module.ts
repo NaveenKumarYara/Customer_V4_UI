@@ -9,12 +9,12 @@ import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-r
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardService } from './dashboard.service';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
-
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   imports: [
-    ChartsModule,CommonModule
+    ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, MatProgressSpinnerModule
     ],
     providers: [DashboardService],
   declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent]

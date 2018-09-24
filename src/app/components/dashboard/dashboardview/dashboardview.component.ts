@@ -17,17 +17,18 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./dashboardview.component.css']
 })
 export class DashboardviewComponent implements OnInit {
-    recentjoblist: RecentJobs[] = [];
+    // recentjoblist: RecentJobs[] = [];
     recentapplicantlist: RecentApplicants[] = [];
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
+    jobLoader : boolean;
     constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { }
 
-    populateRecentJoblist(count: number) {
-        return this.dashboardservice.getRecentJobs(count).subscribe(res => {
-            this.recentjoblist = res;
-        });
-    }
+    // populateRecentJoblist(count: number) {
+    //     return this.dashboardservice.getRecentJobs(count).subscribe(res => {
+    //         this.recentjoblist = res;
+    //     });
+    // }
 
     populateRecentApplicants(count: number) {
        return this.dashboardservice.getRecentApplicants(count).subscribe(res => {
@@ -52,7 +53,7 @@ export class DashboardviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.populateRecentJoblist(5); 
+        // this.populateRecentJoblist(5); 
         this.populateRecentApplicants(5); 
         this.populateDashboardStatistics();
         this.populateApplicantsStatistics();
