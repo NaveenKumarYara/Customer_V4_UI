@@ -14011,6 +14011,7 @@ a.ui-button:active,
   font-weight: 500;
   margin: 0;
   letter-spacing: 0.03em;
+  text-transform: capitalize;
 }
 
 .page--job-details .meta {
@@ -17955,6 +17956,7 @@ a.ui-button:active,
     .page--dashboard .jobs .card .header h2, .page--dashboard .applications .card .header h2 {
       display: inline-block;
       margin-right: 5px;
+      text-transform: capitalize;
     }
 
   .page--dashboard .jobs .card h2, .page--dashboard .applications .card h2 {
@@ -18043,6 +18045,8 @@ a.ui-button:active,
 
   .page--dashboard .applications .card .header .ui-pic {
     left: 30px;
+    border-radius: 50%;
+    border: 1px solid #ebebeb;
   }
 
 .page--dashboard .applications .status {
@@ -18205,6 +18209,8 @@ a.ui-button:active,
 
     .page--dashboard .applications .card .header .ui-pic {
       left: 20px;
+      border-radius: 50%;
+      border: 1px solid #ebebeb;
     }
 
     .page--dashboard .applications .card .meta {
@@ -18262,6 +18268,8 @@ a.ui-button:active,
     top: 15px;
     width: 30px;
     height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ebebeb;
   }
 
   .page--dashboard .applications .card .header > div {
