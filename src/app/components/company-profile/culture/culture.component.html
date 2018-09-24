@@ -15,9 +15,38 @@
     </div>
     <div class="card-inner">
       <div class="card-content">
-        <div id="cultural-carousel" class="owl-carousel owl-loaded owl-drag">
+          <div id="cultural-carousel">
+              <div class="row">
+               <div class="column"  *ngFor="let companycluture of getcompanycluture">
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;" >
+                      <div class="item">
+                        <div class="img-wrapper" >
+                          <button class="btn delete-btn">X</button>
+                        
+                          <img class="img-responsive" title="{{companycluture.EventName}}" src="{{companycluture.EventPhoto}}" alt="">
+                        </div> 
+              </div>
+              </div> 
+         <!--<div id="cultural-carousel" class="owl-carousel owl-loaded owl-drag">
           <div class="owl-stage-outer">
             <div class="owl-stage" style="transform: translate3d(-1290px, 0px, 0px); transition: all 0s ease 0s; width: 4085px;">
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;"  *ngFor="let companycluture of getcompanycluture">
+                      <div class="item">
+                        <div class="img-wrapper" >
+                          <button class="btn delete-btn">X</button>
+                        
+                          <img class="img-responsive" title="{{companycluture.EventName}}" src="{{companycluture.EventPhoto}}" alt="">
+                        </div> 
+              </div>
+              </div> -->
+              <!-- <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+                <div class="item">
+                  <div class="img-wrapper">
+                    <button class="btn delete-btn">X</button>
+                    <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
+                  </div>
+                </div>
+              </div>
               <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
@@ -25,126 +54,128 @@
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
-                <div class="item">
-                  <div class="img-wrapper">
-                    <button class="btn delete-btn">X</button>
-                    <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
-                  </div>
-                </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
-                <div class="item">
-                  <div class="img-wrapper">
-                    <button class="btn delete-btn">X</button>
-                    <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
-                  </div>
-                </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item active">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item active" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item active" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item active">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-2.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
                     <img class="img-responsive" src="../../../../assets/images/slider-img-1.png" alt="">
                   </div>
                 </div>
-              </div><div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              </div>
+              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item">
                   <div class="img-wrapper">
                     <button class="btn delete-btn">X</button>
@@ -153,7 +184,7 @@
                 </div>
               </div>
             </div>
-          </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span></button><button type="button" role="presentation" class="owl-next"><span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div>
+          </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span></button><button type="button" role="presentation" class="owl-next"><span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div> -->
         </div>
         <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">

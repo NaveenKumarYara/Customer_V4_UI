@@ -12,6 +12,10 @@ import { CompanySpecialities } from '../../../../models/CompanySpecialities';
 import { GetCompanyTechnology } from '../../../../models/GetCompanyTechnology';
 import { GetCompanyWhitePaper } from '../../../../models/GetCompanyWhitePaper';
 import { GetCompanyNewsInfo } from '../../../../models/GetCompanyNewsInfo';
+import {  GetCompanyPartner } from '../../../../models/GetCompanyPartner';
+import {  GetCompanyCulture } from '../../../../models/GetCompanyCulture';
+import { GetCompanyCertification } from '../../../../models/GetCompanyCertification';
+import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement';
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -28,6 +32,10 @@ export class CompanyprofileComponent implements OnInit {
     getcompanylogo:GetCompanyLogo;
     getcompanywhitepaper: GetCompanyWhitePaper[];
     getcompanynewsinfo: GetCompanyNewsInfo[];
+    getcompanypertner:GetCompanyPartner[];
+    getcompanycertification: GetCompanyCertification[];
+    getcompanycluture:GetCompanyCulture[];
+    getcompanyachivements: GetCompanyAchievement[];
 
   constructor(private route: ActivatedRoute,
       private router: Router, private companyprofileservice: CompanyProfileService) { }
@@ -56,11 +64,37 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
-    populateAboutCompanyBenfits() {
+    populateCompanyBenfits() {
         return this.companyprofileservice.getCompanyBenfits().subscribe(res => {
             this.getcompanybenfit = res;
         });
     }
+
+    populateCompanyAchivements() {
+        return this.companyprofileservice.getCompanyAchivements().subscribe(res => {
+            this.getcompanyachivements = res;
+        });
+    }
+
+    populateCompanyCultures() {
+        return this.companyprofileservice.getCompanyCultures().subscribe(res => {
+            this.getcompanycluture = res;
+        });
+    }
+
+    populateCompanyCertifications() {
+        return this.companyprofileservice.getCompanyCertifications().subscribe(res => {
+            this.getcompanycertification = res;
+        });
+    }
+
+    populateCompanyPartners() {
+        return this.companyprofileservice.getCompanyPartnerShips().subscribe(res => {
+            this.getcompanypertner = res;
+        });
+    }
+
+
 
     populateCompanyTechnologies() {
         return this.companyprofileservice.GetCompanyTechnologies().subscribe(res => {
@@ -99,11 +133,15 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyProfileLocationInfo();
         this.populateCompanyLogo();
         this.populateAboutCompanyInfo();
-        this.populateAboutCompanyBenfits();
+        this.populateCompanyBenfits();
         this.populateCompanySpecialities();
         this.populateCompanyTechnologies();
         this.populateCompanyWhitePapers();
         this.populateCompanyNewsInfo();
+        this.populateCompanyAchivements();
+        this.populateCompanyCertifications();
+        this.populateCompanyCultures();
+        this.populateCompanyPartners();
   }
 
 }

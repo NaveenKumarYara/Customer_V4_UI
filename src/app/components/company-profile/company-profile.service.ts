@@ -20,6 +20,10 @@ import { CompanySpecialities } from '../../../models/CompanySpecialities';
 import { GetCompanyTechnology } from '../../../models/GetCompanyTechnology';
 import { GetCompanyWhitePaper } from '../../../models/GetCompanyWhitePaper';
 import { GetCompanyNewsInfo } from '../../../models/GetCompanyNewsInfo';
+import {  GetCompanyPartner } from '../../../models/GetCompanyPartner';
+import {  GetCompanyCulture } from '../../../models/GetCompanyCulture';
+import { GetCompanyCertification } from '../../../models/GetCompanyCertification';
+import { GetCompanyAchievement } from '../../../models/GetCompanyAchievement';
 
 
 @Injectable()
@@ -102,6 +106,38 @@ export class CompanyProfileService {
     getCompanyNewsInfo(): Observable<GetCompanyNewsInfo[]> {
         const url = environment.CompanyNewsPapers;
         return this.http.get<GetCompanyNewsInfo[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyAchivements(): Observable<GetCompanyAchievement[]> {
+        const url = environment.ComapnyAchivements;
+        return this.http.get<GetCompanyAchievement[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyCultures(): Observable<GetCompanyCulture[]> {
+        const url = environment.CompanyCultures;
+        return this.http.get<GetCompanyCulture[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyCertifications(): Observable<GetCompanyCertification[]> {
+        const url = environment.CompanyCertifications;
+        return this.http.get<GetCompanyCertification[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
+    getCompanyPartnerShips(): Observable<GetCompanyPartner[]> {
+        const url = environment.CompanyPartnerships;
+        return this.http.get<GetCompanyPartner[]>(url)
             .catch(
                 this.handleError
             );

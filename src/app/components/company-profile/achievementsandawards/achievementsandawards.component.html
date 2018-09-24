@@ -76,38 +76,13 @@
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 380px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                 <ul class="achievements__list">
-                  <li class="item">
-                    <img src="../../../../assets/images/c_citizen_p.png" alt="">
+                  <li class="item" *ngFor="let companyachivements of getcompanyachivements">
+                  
+                    <img src="{{companyachivements?.AwardLogo}}" alt="">
                     <p>
-                      Achievements as a valuable,
-                      ethical, and transparent in-
-                      dustry leader.
+                      {{companyachivements?.AwardTitle}}
                     </p>
-                  </li>
-                  <li class="item">
-                    <img src="../../../../assets/images/c_citizen_y.png" alt="">
-                    <p>
-                      Achievements as a valuable,
-                      ethical, and transparent in-
-                      dustry leader.
-                    </p>
-                  </li>
-                  <li class="item">
-                    <img src="../../../../assets/images/c_citizen_b.png" alt="">
-                    <p>
-                      Achievements as a valuable,
-                      ethical, and transparent in-
-                      dustry leader.
-                    </p>
-                  </li>
-                  <li class="item">
-                    <img src="../../../../assets/images/c_citizen_g.png" alt="">
-                    <p>
-                      Achievements as a valuable,
-                      ethical, and transparent in-
-                      dustry leader.
-                    </p>
-                  </li>
+                  </li>                 
                 </ul>
               </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 0px;"></div></div></div>
             </div>
@@ -115,68 +90,20 @@
           <div id="partnerships" class="tab-pane fade">
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 380px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
+                <p *ngFor="let companypertner of getcompanypertner">
+                {{companypertner.Description}}
                 </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
+   
               </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
             </div>
           </div>
           <div id="certifications" class="tab-pane fade">
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 380px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
+                <p *ngFor="let companycertification of getcompanycertification">
+                {{companycertification.CertificationName}}
                 </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpatUt enim ad minim veniam, quis nostrud exercitation ullam-
-                  co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..
-                </p>
+
               </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
             </div>
           </div>
