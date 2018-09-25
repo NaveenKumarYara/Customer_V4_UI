@@ -17,6 +17,7 @@ import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
 import { Jobstatistics } from './models/jobstatistics';
 import { JobdetailsProfile } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
+import { JobComments } from './models/JobComments';
 
 @Injectable()
 export class JobdetailsService {
@@ -60,6 +61,15 @@ export class JobdetailsService {
   getJobDetailsStatisticsInfo(): Observable<Jobstatistics> {
     const url = environment.JobdetailsStatisticsEndpoint;
     return this.http.get<Jobstatistics>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getJobDetailsComments(): Observable<JobComments[]> {
+    const url = environment.GetJobDetialCustomerComments;
+    return this.http.get<JobComments[]>(url)
       .debounceTime(1000)
       .catch(
         this.handleError

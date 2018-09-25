@@ -14,7 +14,7 @@
 
               <div class="meta">
                 <div>
-                  <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="ABC">
+                  <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}"  alt="Avatar" class="ui-pic" width="50" height="50">
                   <h5>{{jobdetailscustomer?.JobInfo?.CompanyName}}</h5>
                   <!-- <h5>{{data.JobId}}</h5> -->
                   <!-- <h5>{{data.JobId}}</h5> -->
@@ -61,8 +61,8 @@
               <div id="description" class="tab-pane fade in active">
                 <div class="group">
                   <h4>Description</h4>
-                  <p>
-                      {{jobdetailscustomer?.JobInfo?.JobDescription}}
+                  <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                     
                   </p>
                 </div>
                 <div class="group">
@@ -82,7 +82,7 @@
                 <div class="group">
                   <h4>Domain</h4>
                   <ul class="list" *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
-                    <li>{{domain.DomainName}}</li>
+                    <li>{{domain?.DomainName}}</li>
                   </ul>
                 </div>
                 <div class="group">
@@ -97,39 +97,24 @@
                   </ul>
                 </div>
                 <div class="group review-group">
-                  <h4>Reviews (2)</h4>
+                  <ng-container *ngFor="let commentCount of jobComments?.JobComments">
+                  <h4>Reviews ({{commentCount?.CommentsCount}})</h4>
+                  </ng-container>
                   <ul class="reviews">
-                    <li>
+                    <li *ngFor="let comment of jobComments?.JobComments">
                       <div class="img-wrapper">
-                        <img src="../../../../../assets/images/ui-face-1.png" alt="">
+                          <img [src]="comment?.ProfilePic" alt="" >
                       </div>
                       <div class="review-content">
                         <div class="review-header">
                           <div>
-                            <h5>Scott Warner</h5>
-                            <h6>UI/UX Designer</h6>
+                            <h5>{{comment?.FirstName}} {{comment?.LastName}}</h5>
+                            <h6>{{comment?.ProfileTitle}}</h6>
                           </div>
-                          <div class="time">1:45 PM</div>
+                          <div class="time">{{comment?.CommentedDate | date:'shortTime'}}</div>
                         </div>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam non unibh euismod tincidunt ut
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="img-wrapper">
-                        <img src="../../../../../assets/images/ui-face-2.png" alt="">
-                      </div>
-                      <div class="review-content">
-                        <div class="review-header">
-                          <div>
-                            <h5>Scott Warner</h5>
-                            <h6>UI/UX Designer</h6>
-                          </div>
-                          <div class="time">1:45 PM</div>
-                        </div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam non unibh euismod tincidunt ut
+                            {{comment?.CommentText}}
                         </p>
                       </div>
                     </li>
