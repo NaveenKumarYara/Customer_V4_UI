@@ -6,6 +6,7 @@ import { SharedialogComponent } from './sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
+import {MatchingDetails} from '../../models/matchingDetails';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -17,6 +18,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
    jobdetailsprofiles: JobdetailsProfile[] = [];
+   matchingDetails : MatchingDetails;
 
   @Input() jobid: number;
   @Input() statusid: number;
@@ -27,6 +29,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
 
       {
+        width: '1000px',
+        position: {right : '0px'},
+        height : '750px',
         data: {
           animal: 'panda'
         }
@@ -42,6 +47,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
 
       {
+        width: '1000px',
+        position: {right : '0px'},
+        height : '750px',
         data: {
           animal: 'panda'
         }
@@ -57,6 +65,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
 
       {
+        width: '1000px',
+        position: {right : '0px'},
+        height : '750px',
         data: {
           animal: 'panda'
         }
@@ -92,32 +103,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       return 'none';
     }
   }
-  callSkills()
+  // getMatchingDetails(profileId)
+  // {
+  //   return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
+  //     this.matchingDetails = res;
+  //   });
+  // }
+  callSkills(profileId)
   {
-    var $card = $('.page--job-details .tab-content .card');
-      var $detailsBtn = $card.find('.show-matching-details');
-      $detailsBtn.on('click', function (e) {
-
-        e.preventDefault();
-        var $selectedCard = $(this).closest('.card');
-        var $detailsDiv = $selectedCard.find('.matching-details');
-        var $detailsCloseBtn = $selectedCard.find('.close');
-        $('.matching-details').toggleClass('open');
-
-        $detailsCloseBtn.on('click', function (e) {
-          e.preventDefault();
-          $detailsDiv.removeClass('open');
-        });
-      });
-  }
-  closeDetails()
-  {
-    $('.matching-details').removeClass('open');
-  }
-  ngOnInit() {
-    // (function ($) {
-    //   //TODO: test multiple cards -- open and close function
-    //   var $card = $('.page--job-details .tab-content .card');
+    // var $card = $('.page--job-details .tab-content .card');
     //   var $detailsBtn = $card.find('.show-matching-details');
     //   $detailsBtn.on('click', function (e) {
 
@@ -125,14 +119,41 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     //     var $selectedCard = $(this).closest('.card');
     //     var $detailsDiv = $selectedCard.find('.matching-details');
     //     var $detailsCloseBtn = $selectedCard.find('.close');
-    //     $detailsDiv.toggleClass('open');
+        return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
+          this.matchingDetails = res;
+          $('#matchingDetail-' + profileId).toggleClass('open');
+        });
+        
 
-    //     $detailsCloseBtn.on('click', function (e) {
-    //       e.preventDefault();
-    //       $detailsDiv.removeClass('open');
-    //     });
-    //   });
-    // })(jQuery);
+        // $detailsCloseBtn.on('click', function (e) {
+        //   e.preventDefault();
+        //   $detailsDiv.removeClass('open');
+        // });
+     // });
+  }
+  closeDetails(profileId)
+  {
+    $('#matchingDetail-' + profileId).removeClass('open');
+  }
+  ngOnInit() {
+    (function ($) {
+      //TODO: test multiple cards -- open and close function
+      var $card = $('.page--job-details .tab-content .card');
+      var $detailsBtn = $card.find('.show-matching-details');
+      $detailsBtn.on('click', function (e) {
+
+        e.preventDefault();
+        var $selectedCard = $(this).closest('.card');
+        var $detailsDiv = $selectedCard.find('.matching-details');
+        var $detailsCloseBtn = $selectedCard.find('.close');
+        $detailsDiv.toggleClass('open');
+
+        $detailsCloseBtn.on('click', function (e) {
+          e.preventDefault();
+          $detailsDiv.removeClass('open');
+        });
+      });
+    })(jQuery);
     (function ($) { 
       $('#cultural-carousel').owlCarousel({
         loop: true,

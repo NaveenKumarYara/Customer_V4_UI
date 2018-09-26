@@ -26,6 +26,9 @@ export const environment = {
 
     JobdetailsProfileEndpoint:
         "http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?customerId=1&userId=5",
+                
+    MatchingDetailEndPoint:
+        "http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage",
         
     JobdetailsSuggestedProfileEndpoint:
         "http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?customerId=1&userId=5",
