@@ -26,7 +26,7 @@
                 type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
               </div>
               <input type="hidden" id="jobId" [value]=data.JobId >
-            <div class="col-md-12 manage-profiles-card">
+            <div class="col-md-12 manage-profiles-card"  *ngIf="selectedFileNames.Count > 0">
             <ul class="list--empty">
                 <li class="item"  *ngFor="let fileName of selectedFileNames; let i = index"> 
                   <div class="file-type">

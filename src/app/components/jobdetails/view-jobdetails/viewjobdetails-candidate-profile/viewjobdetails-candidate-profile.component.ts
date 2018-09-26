@@ -6,6 +6,8 @@ import { SharedialogComponent } from './sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
+declare var $: any;
+declare var jQuery: any;
 @Component({
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
@@ -90,8 +92,79 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       return 'none';
     }
   }
+  callSkills()
+  {
+    var $card = $('.page--job-details .tab-content .card');
+      var $detailsBtn = $card.find('.show-matching-details');
+      $detailsBtn.on('click', function (e) {
 
+        e.preventDefault();
+        var $selectedCard = $(this).closest('.card');
+        var $detailsDiv = $selectedCard.find('.matching-details');
+        var $detailsCloseBtn = $selectedCard.find('.close');
+        $('.matching-details').toggleClass('open');
+
+        $detailsCloseBtn.on('click', function (e) {
+          e.preventDefault();
+          $detailsDiv.removeClass('open');
+        });
+      });
+  }
+  closeDetails()
+  {
+    $('.matching-details').removeClass('open');
+  }
   ngOnInit() {
+    // (function ($) {
+    //   //TODO: test multiple cards -- open and close function
+    //   var $card = $('.page--job-details .tab-content .card');
+    //   var $detailsBtn = $card.find('.show-matching-details');
+    //   $detailsBtn.on('click', function (e) {
+
+    //     e.preventDefault();
+    //     var $selectedCard = $(this).closest('.card');
+    //     var $detailsDiv = $selectedCard.find('.matching-details');
+    //     var $detailsCloseBtn = $selectedCard.find('.close');
+    //     $detailsDiv.toggleClass('open');
+
+    //     $detailsCloseBtn.on('click', function (e) {
+    //       e.preventDefault();
+    //       $detailsDiv.removeClass('open');
+    //     });
+    //   });
+    // })(jQuery);
+    (function ($) { 
+      $('#cultural-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: ['<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>', '<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>'],
+        responsive: {
+          0: {
+            items: 3
+          },
+          600: {
+            items: 3
+          },
+          1000: {
+            items: 6
+          }
+        }
+      });
+    
+      $('.skills-carousel').owlCarousel({
+        loop: true,
+        margin: 15,
+        nav: true,
+        navText: ['<img src="/images/left-chev.svg" alt="">', '<img src="/images/right-chev.svg" alt="">'],
+        0: {
+          items: 2
+        },
+        600: {
+          items: 3
+        }
+      });
+    });
     this.PopulateJobdetailProfiles(this.jobid, this.statusid);
     console.log('abc');
   }

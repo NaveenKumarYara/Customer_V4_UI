@@ -21,6 +21,7 @@ import { ChatboxdialogComponent } from './view-jobdetails/viewjobdetails-candida
 import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +39,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     //ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent,UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent]
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent,UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent]
 })
 export class JobdetailsModule { }

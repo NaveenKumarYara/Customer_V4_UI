@@ -13,6 +13,9 @@ import { UploadProfilesComponent } from './upload-profiles/upload-profiles.compo
 import { JobdetailsProfile } from '../models/jobdetailsprofile';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
+// import * as $ from 'jquery';
+// import 'owl.carousel';
+declare var $: any; 
 
 
 @Component({
@@ -176,6 +179,38 @@ export class ViewJobdetailsComponent implements OnInit {
   //   });
   // }
   ngOnInit() {
+    
+      // $('#cultural-carousel').owlCarousel({
+      //   loop: true,
+      //   margin: 10,
+      //   nav: true,
+      //   navText: ['<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>', '<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>'],
+      //   responsive: {
+      //     0: {
+      //       items: 3
+      //     },
+      //     600: {
+      //       items: 3
+      //     },
+      //     1000: {
+      //       items: 6
+      //     }
+      //   }
+      // });
+    
+      // $('.skills-carousel').owlCarousel({
+      //   loop: true,
+      //   margin: 15,
+      //   nav: true,
+      //   navText: ['<img src="/images/left-chev.svg" alt="">', '<img src="/images/right-chev.svg" alt="">'],
+      //   0: {
+      //     items: 2
+      //   },
+      //   600: {
+      //     items: 3
+      //   }
+      // });
+    
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
 
     this.populateJobsBasicInfo();

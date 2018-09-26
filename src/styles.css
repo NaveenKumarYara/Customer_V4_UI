@@ -13989,6 +13989,12 @@ a.ui-button:active,
     height: 50px;
   }
 
+  .page--job-details .filters .icon {
+    fill: #9eabc0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   .page--job-details .filters label {
     padding: 0 17px 0 0;
     font-size: 1rem;
