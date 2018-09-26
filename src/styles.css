@@ -18070,7 +18070,7 @@ a.ui-button:active,
     }
 
 .page--dashboard .applications .candidate-info {
-  padding: 0 30px;
+  padding: 0 29px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
