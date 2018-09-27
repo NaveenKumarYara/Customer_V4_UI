@@ -29,7 +29,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
 
       {
-        width: '1000px',
+        width: '750',
         position: {right : '0px'},
         height : '750px',
         data: {
@@ -47,9 +47,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
 
       {
-        width: '1000px',
-        position: {right : '0px'},
-        height : '750px',
+        // width: '1000px',
+        // position: {right : '0px'},
+        // height : '750px',
         data: {
           animal: 'panda'
         }
@@ -64,10 +64,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   OpenRejectDialog() {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
 
-      {
-        width: '1000px',
-        position: {right : '0px'},
-        height : '750px',
+      { 
+        
         data: {
           animal: 'panda'
         }

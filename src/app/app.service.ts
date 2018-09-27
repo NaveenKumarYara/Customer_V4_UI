@@ -27,26 +27,26 @@ export class AppService {
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
 
- 
+
   private domain: string[] = [];
  domainChanged = new Subject<string[]>();
 
   private qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
 
-  private interviewtype: InterviewType[] = [];  
+  private interviewtype: InterviewType[] = [];
 
-  private notifications: Notification[] = []; 
+  private notifications: Notification[] = [];
 
   private contractduration: string[] = [
-    "3 months", "6 months", "1 year", "more than 1 year"
+    '3 months', '6 months', '1 year', 'more than 1 year'
   ];
 
   private contractextension: string[] = [
-    "Corp-Corp",
-    "W2",
-    "Contract to Hire",
-    "1099"
+    'Corp-Corp',
+    'W2',
+    'Contract to Hire',
+    '1099'
   ];
 
 
@@ -63,7 +63,7 @@ export class AppService {
         this.handleError
       );
   }
-  
+
   private jobcategory = new BehaviorSubject('');
   currentcategorytitle = this.jobcategory.asObservable();
 
@@ -72,8 +72,8 @@ export class AppService {
   }
 
   searchJobCategory(categoryterm: string = null): Observable<string[]> {
-    const url = environment.jobTitleEndpoint + '?jobtitle=' + categoryterm;
-    return this.http.get<string[]>(url)
+    const url = environment.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
+   this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
@@ -101,7 +101,7 @@ export class AppService {
     return this.secondaryjobskills.slice();
   }
   addJobSkill(jobskills: Jobskills) {
-    if (jobskills.skilltype.toLowerCase() === "primary") {
+    if (jobskills.skilltype.toLowerCase() === 'primary') {
       this.primaryjobskills.push(jobskills);
       this.jobprimaryskillsChanged.next(this.primaryjobskills.slice());
     } else {
@@ -215,6 +215,13 @@ export class AppService {
       });
   }
 
+postjob(body) {
+  return this.http.post(environment.postjob, body)
+  .map((res: Response) => res.json())
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
 
   postOppurtunities(opportunity: Dashboard) {
     // this.opportunities.push(opportunity);
@@ -222,7 +229,7 @@ export class AppService {
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
- 
+
 
   getSkills(): Observable<string[]> {
     const url = environment.getskillsEndpoint;
@@ -273,4 +280,4 @@ export class AppService {
     console.log(errMsg); // log to console instead
     return Observable.throw(errMsg);
   }
-} 
+}
