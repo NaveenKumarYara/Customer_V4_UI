@@ -40,13 +40,14 @@ export class ManageJobService {
   private joblistcount = new BehaviorSubject(6);
   currentjoblistcount = this.joblistcount.asObservable();
 
-  getJobDetails(count: number): Observable<JobDetails[]> {
-    const url = environment.listofJobsEndpoint + count;
+  getJobDetails(count: number,sortBy : number): Observable<JobDetails[]> {
+    const url = environment.listofJobsEndpoint +
+    '&sortBy=' +sortBy + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails[]>(url)
       .debounceTime(1000)     
       .catch(
         this.handleError
-    );
+    );    
   }
 
   

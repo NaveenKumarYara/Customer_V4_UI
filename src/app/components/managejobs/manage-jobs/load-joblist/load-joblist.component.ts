@@ -20,6 +20,7 @@ export class LoadJoblistComponent implements OnInit {
   joblistcount: number;
   jobs: any;
   loaddata = false;
+  sortBy:any;
 
 
 
@@ -35,7 +36,8 @@ export class LoadJoblistComponent implements OnInit {
 
 
   populateJoblist() {
-    return this.managejobservice.getJobDetails(this.joblistcount).subscribe(res => {
+    this.sortBy=0;
+    return this.managejobservice.getJobDetails(this.joblistcount, this.sortBy).subscribe(res => {
       this.joblist = res;
       this.loaddata = true;
     });

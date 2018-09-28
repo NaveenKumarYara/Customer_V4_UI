@@ -10,11 +10,11 @@
           </svg>
           <span>View</span>
         </label>
-        <select name="view" id="view" class="styled-select-box">
-          <option value="">All Jobs</option>
-          <option value="">Pending</option>
-          <option value="">Rejected</option>
-          <option value="">Hired</option>
+        <select name="view" id="view" class="styled-select-box" (change)="filterManageJobs($event.target.value)">
+          <option value="0">All Jobs</option>
+          <option value="1">Pending</option>
+          <option value="2">Rejected</option>
+          <option value="3">Hired</option>
         </select>
       </div>
     </form>
