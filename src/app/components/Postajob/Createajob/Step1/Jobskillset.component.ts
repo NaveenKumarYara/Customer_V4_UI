@@ -12,30 +12,30 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-steps-step1-jobskillset',
-  templateUrl: './Jobskillset.component.html'  
+  templateUrl: './Jobskillset.component.html'
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
 
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience:string;
-  maxexperience : string;
-  expYears:any=[];
-  skillType:boolean;
+  minexperience: string;
+  maxexperience: string;
+  expYears: any = [];
+  skillType = false;
   private subscription: Subscription;
 
-  
+
 
   skilllist: Observable<string[]>;
-  selectedSkillName = ''; 
+  selectedSkillName = '';
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
 
 
-  private selectedLink: string = "Primary";
+  private selectedLink = 'Primary';
 
-  
-  setSkillType(){
+
+  setSkillType() {
     // if(!this.skillType)
     //   {
         this.selectedLink = this.skillType === true ? 'primary' : 'secondary';
@@ -49,11 +49,11 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   }
 
   isSelected(name: string): boolean {
-    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown
       return false;
-    } 
+    }
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false
-  }  
+  }
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -74,7 +74,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     return this.expYears;
 }
   private deletePrimarySkills(index: number) {
-    this.appService.deletePrimarySkills(index);    
+    this.appService.deletePrimarySkills(index);
   }
 
   private deleteSecondarySkills(index: number) {
@@ -100,7 +100,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   updateSkillType() {
     this.appService.updateSkillType(this.selectedLink);
   }
-  
+
   ngOnInit() {
     this.getSkills();
     this.getExpYears();

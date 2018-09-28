@@ -73,7 +73,7 @@ export class AppService {
 
   searchJobCategory(categoryterm: string = null): Observable<string[]> {
     const url = environment.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
-   this.http.get<string[]>(url)
+   return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
