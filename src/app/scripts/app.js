@@ -1100,25 +1100,25 @@ $.widget("ui.spinner", $.ui.spinner, {
 })(jQuery);
 
 //Matching Details inside card -- page--job-details
-(function ($) {
-  //TODO: test multiple cards -- open and close function
+// (function ($) {
+//   //TODO: test multiple cards -- open and close function
 
-  var $card = $('.page--job-details .tab-content .card');
-  var $detailsBtn = $card.find('.show-matching-details');
+//   var $card = $('.page--job-details .tab-content .card');
+//   var $detailsBtn = $card.find('.show-matching-details');
 
-  $detailsBtn.on('click', function (e) {
-    e.preventDefault();
-    var $selectedCard = $(this).closest('.card');
-    var $detailsDiv = $selectedCard.find('.matching-details');
-    var $detailsCloseBtn = $selectedCard.find('.close');
-    $detailsDiv.toggleClass('open');
+//   $detailsBtn.on('click', function (e) {
+//     e.preventDefault();
+//     var $selectedCard = $(this).closest('.card');
+//     var $detailsDiv = $selectedCard.find('.matching-details');
+//     var $detailsCloseBtn = $selectedCard.find('.close');
+//     $detailsDiv.toggleClass('open');
 
-    $detailsCloseBtn.on('click', function (e) {
-      e.preventDefault();
-      $detailsDiv.removeClass('open');
-    });
-  });
-})(jQuery);
+//     $detailsCloseBtn.on('click', function (e) {
+//       e.preventDefault();
+//       $detailsDiv.removeClass('open');
+//     });
+//   });
+// })(jQuery);
 
 (function ($) {
 

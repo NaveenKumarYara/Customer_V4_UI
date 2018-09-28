@@ -3,24 +3,24 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subject, Observable } from 'rxjs';
-import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators'
+import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 
 
 @Component({
   selector: 'app-steps-step1-jobcategory',
-  templateUrl: './jobcategory.component.html'  
+  templateUrl: './jobcategory.component.html'
 })
 
 export class JobcategoryComponent implements OnInit {
-  
+
   jobcategorylist: Observable<string[]>;
-  selectedCategory:string= '';
- 
+  selectedCategory: any;
+
   jobtitleloading = false;
   jobcategoryinput = new Subject<string>();
-  
+
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }

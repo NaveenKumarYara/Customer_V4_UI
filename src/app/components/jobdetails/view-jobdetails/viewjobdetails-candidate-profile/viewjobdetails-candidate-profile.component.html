@@ -78,8 +78,8 @@
           <img src="../../../../../assets/images/D-Disc.svg" alt="">
         </div>
         <div>
-          <a  href="javascript:void(0)" class="show-matching-details" (click)="callSkills()">
-           <h1>{{profile?.MatchingPercentage}}</h1>
+          <a  href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details" (click)="callSkills(profile.ProfileId)">
+           <h1>{{profile?.MatchingPercentage}}%</h1>
                     <h5>Matching</h5>
           </a>
         </div>
@@ -319,34 +319,34 @@
                 </li>
               </ul>
             </div>
-    <div class="matching-details">
-      <a href="javascript:void(0)" (click)="closeDetails()" class="close">&times;</a>
+    <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">
+      <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId)" class="close">&times;</a>
       <div class="header">
         <div class="match">
           <svg xmlns="http://www.w3.org/2000/svg" width="158.1" height="159.1">
             <path d="M79.03 159.06c-43.6 0-79-35.7-79-79.5s35.5-79.5 79-79.5 79 35.7 79 79.5-35.4 79.5-79 79.5zm0-149.1c-38.1 0-69 31.2-69 69.5s31 69.5 69 69.5 69-31.2 69-69.5-30.9-69.5-69-69.5z" fill="#d9e1ef"/>
             <path d="M79 159.1c-2.8 0-5-2.2-5-5s2.2-5 5-5c38.1 0 69-31.2 69-69.5s-31-69.5-69-69.5c-2.8 0-5-2.2-5-5s2.2-5 5-5c43.6 0 79 35.7 79 79.5.1 43.8-35.4 79.5-79 79.5z" fill="#787efe"/>
           </svg>
-          <h1>56%</h1>
+          <h1>{{matchingDetails?.MatchingPercentage}}%</h1>
         </div>
         <h2>Matching</h2>
       </div>
       <div class="details">
         <div class="details-row">
           <h4>Skills</h4>
-          <h5>65%</h5>
+          <h5>{{matchingDetails?.Skills}}%</h5>
         </div>
         <div class="details-row">
-          <h4>Location</h4>
-          <h5>50%</h5>
+          <h4>Experience</h4>
+          <h5>{{matchingDetails?.Experience}}%</h5>
         </div>
         <div class="details-row">
           <h4>Domain</h4>
-          <h5>70%</h5>
+          <h5>{{matchingDetails?.Domains}}%</h5>
         </div>
         <div class="details-row">
           <h4>Person Type</h4>
-          <h5>100%</h5>
+          <h5>{{matchingDetails?.Role}}%</h5>
         </div>
       </div>
     </div>

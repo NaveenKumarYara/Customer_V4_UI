@@ -731,6 +731,11 @@ hr.plainBorder {
 	width:100%;
 }
 
-.ng-select.custom-style > .ng-input{
-    top: 12px;
-}
+/* .ng-select.custom-style > .ng-input{
+    top: 12px !important;
+}	 */
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input{
+	top: 12px;
+	margin : 8px;
+  }

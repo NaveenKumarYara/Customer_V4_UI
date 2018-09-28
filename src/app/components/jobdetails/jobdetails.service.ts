@@ -18,6 +18,7 @@ import { Jobstatistics } from './models/jobstatistics';
 import { JobdetailsProfile } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
+import { MatchingDetails } from './models/matchingDetails';
 
 @Injectable()
 export class JobdetailsService {
@@ -75,7 +76,15 @@ export class JobdetailsService {
         this.handleError
       );
   }
-
+getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails> {
+    const url = environment.MatchingDetailEndPoint +
+     '?userId='+ profileId + '&jobId=' + jobId;
+    return this.http.get<MatchingDetails>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
 
   getJobDetailsProfileInfo(jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
     const url = environment.JobdetailsProfileEndpoint +

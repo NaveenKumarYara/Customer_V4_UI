@@ -12,22 +12,24 @@
     <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
     <div class="form-group exp col-md-2">
       <label for="">Min Experience</label>
-      <ng-select class="custom-style" [items]="people" placeholder="Ex: 1 yr 2 months" 
-      bindLabel="name"
-      [loading]="peopleLoading">
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()"  [hideSelected]="true" placeholder="1 yr 2 months" 
+      bindLabel="minExperience"
+      [loading]="peopleLoading"
+      [(ngModel)]="minexperience">
       </ng-select>
     </div>
     <div class="form-group exp col-md-2">
       <label for="">Max Experience</label>
-      <ng-select class="custom-style" [items]="people" placeholder="Ex: 1 yr 2 months" 
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()"  [hideSelected]="true" placeholder="1 yr 2 months" 
       bindLabel="name"
-      [loading]="peopleLoading">
+      [loading]="peopleLoading"
+      [(ngModel)]="maxexperience"> 
       </ng-select>
     </div>
     <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
     <div class="form-group primary col-md-2">
       <label for="r1primary" class="radio">
-        <input type="radio" id="r1primary" name="isPrimary" value="Primary" class="radio-input" (click)="setSkillType('Primary')"
+        <input type="checkbox" id="r1primary"  [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary" value="Primary" class="radio-input"
           [checked]='true' ngMode />
         <span class="radio-btn"></span>
         <span>Primary</span>
@@ -46,20 +48,22 @@
         <ul class="data-list">
           <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
             <span class="name">{{primaryjobskill.skillname}}</span>
+            <span class="experience"> {{primaryjobskill.minexperience}} - {{primaryjobskill.maxexperience}} Yrs</span>
             <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
           </li>
         </ul>
       </div>
   
-      <!-- <div class="col-md-6">
+      <div class="col-md-6">
         <h4 for="" class="light">Secondary Skills</h4>
         <ul class="data-list">
           <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
             <span class="name">{{secondaryjobskill.skillname}}</span>
+            <span class="experience"> {{secondaryjobskill.minexperience}} - {{secondaryjobskill.maxexperience}} Yrs</span>
             <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
           </li>
         </ul>
-      </div> -->
+      </div>
     </div>
   </div>
 

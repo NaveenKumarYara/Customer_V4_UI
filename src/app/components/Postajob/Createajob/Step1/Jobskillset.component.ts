@@ -12,37 +12,48 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-steps-step1-jobskillset',
-  templateUrl: './Jobskillset.component.html'  
+  templateUrl: './Jobskillset.component.html'
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
 
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-
+  minexperience: string;
+  maxexperience: string;
+  expYears: any = [];
+  skillType = false;
   private subscription: Subscription;
 
-  
+
 
   skilllist: Observable<string[]>;
-  selectedSkillName = ''; 
+  selectedSkillName = '';
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
 
 
-  private selectedLink: string = "Primary";
+  private selectedLink = 'Primary';
 
-  setSkillType(e: string): void {
+
+  setSkillType() {
+    // if(!this.skillType)
+    //   {
+        this.selectedLink = this.skillType === true ? 'primary' : 'secondary';
+      // }
+      // else
+
+}
+
+  setSkillType1(e: string): void {
     this.selectedLink = e;
   }
 
   isSelected(name: string): boolean {
-    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown
       return false;
     }
-   
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false
-   
-  }  
+  }
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -51,12 +62,19 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     const newskills = new Jobskills();
     newskills.skillname = this.selectedSkillName;
     newskills.skilltype = this.selectedLink;
-    this.appService.addJobSkill(newskills);   
-
+    newskills.maxexperience = this.maxexperience;
+    newskills.minexperience = this.minexperience;
+    this.appService.addJobSkill(newskills);
   }
-
+  public getExpYears() {
+    this.expYears = [];
+    for (let i = 0; i <= 50; i++) {
+        this.expYears.push(i);
+    }
+    return this.expYears;
+}
   private deletePrimarySkills(index: number) {
-    this.appService.deletePrimarySkills(index);    
+    this.appService.deletePrimarySkills(index);
   }
 
   private deleteSecondarySkills(index: number) {
@@ -82,10 +100,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   updateSkillType() {
     this.appService.updateSkillType(this.selectedLink);
   }
-  
+
   ngOnInit() {
     this.getSkills();
-
+    this.getExpYears();
     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
     this.subscription = this.appService.jobprimaryskillsChanged
       .subscribe(
