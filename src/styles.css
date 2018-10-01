@@ -18962,8 +18962,8 @@ a.ui-button:active,
 }
 
 .page--company-profile .card--about .card-content .tab-inner {
-  height: 439px;
-  max-height: 439px;
+  height: 381px;
+  max-height: 390px;
 }
 
 .page--company-profile .card--about .card-content .tab-content {
@@ -19161,7 +19161,7 @@ a.ui-button:active,
 }
 
 .page--company-profile .card--special #specialities .tab-inner {
-  height: 350px;
+  height: 346.5px;
   max-height: 350px;
 }
 
@@ -19182,7 +19182,7 @@ a.ui-button:active,
 }
 
 .page--company-profile .card--whitepapers #whitepapers .tab-inner {
-  height: 302px;
+  height: 297px;
   max-height: 302px;
 }
 
