@@ -12,6 +12,8 @@ export class DashboardRecentjobsComponent implements OnInit {
     //@Input() recentjoblist: RecentJobs;
     recentjoblist: RecentJobs[] = [];
    jobLoader =false;
+   customerId:any;
+   userId:any;
     color = 'primary';
     mode = 'indeterminate';
     value = 50;
@@ -29,7 +31,7 @@ export class DashboardRecentjobsComponent implements OnInit {
 
     ngOnInit() {
       this.jobLoader=true;
-      this.populateRecentJoblist(5);
+      this.populateRecentJoblist(5,this.customerId,this.userId);
      // this.spinner.show();
     //  let ldg = $('#domainLoader');
     //  ldg.find('> div > span').text('Please wait as jobs are loading')
@@ -39,8 +41,8 @@ export class DashboardRecentjobsComponent implements OnInit {
     //     ldg.hide();
     //   }, 4000);
   }
-  populateRecentJoblist(count: number) {
-    return this.dashboardservice.getRecentJobs(count).subscribe(res => {
+  populateRecentJoblist(count: number,customerId,userId) {
+    return this.dashboardservice.getRecentJobs(count,customerId,userId).subscribe(res => {
         this.recentjoblist = res;
         this.jobLoader=false;
     });

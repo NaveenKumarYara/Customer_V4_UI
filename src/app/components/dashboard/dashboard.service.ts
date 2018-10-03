@@ -31,8 +31,9 @@ export class DashboardService {
         return Observable.throw(errMsg);
     }
 
-    getRecentJobs(count: number): Observable<RecentJobs[]> {
-        const url = environment.RecentJobs;
+    getRecentJobs(customerId:number,userId:number,count: number): Observable<RecentJobs[]> {
+        const url = environment.RecentJobs +
+        '&customerId=' +customerId+ +'&userId='+userId+ '&sortBy=0&status=0&pageNumber=1&numberOfRows=5';
         return this.http.get<RecentJobs[]>(url)
             .debounceTime(1000)
             .catch(

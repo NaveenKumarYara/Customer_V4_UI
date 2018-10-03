@@ -1,35 +1,51 @@
-  <div class="container">
-    <nav class="site-nav">
-      <ul class="site-nav__list">
-        <li class="site-nav site-nav--item">
-          <a routerLink="/app-dashboardview" routerLinkActive="active">Dashboard</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a href="schedule-interview.html">Schedule Interview</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a routerLink="/app-companyprofile" routerLinkActive="active">Company Profile</a>
-        </li>     
-        <li class="site-nav site-nav--item">
-        <a routerLink="/app-postajob" routerLinkActive="active">Post a job</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a routerLink="/app-manage-jobs" routerLinkActive="active">Manage Jobs</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a routerLink="/app-view-jobdetails" routerLinkActive="active">Job Details</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a href="job-details-applied.html">Job Details - Applied Tab</a>
-        </li>
-        <li class="site-nav site-nav--item">
-          <a routerLink="/app-notifications" routerLinkActive="active">Notifications</a>
-        </li>
-        <li class="site-nav site-nav--item"  >
-          <a routerLink="/app-accountsettings" routerLinkActive="active">Account Settings</a>
-        </li>
-      </ul>
-    </nav>
+<div class="login_bg">
+	<div class="container align-middle">
+	  <div class="row">
+		<div class="span12">
+		  <form [formGroup]="loginform" (ngSubmit)="login()">
+			<header>Login </header>
+			<label>Username
+			  <span>*</span>:</label>
+			<div class="form-group form-control-login">
+			  <input type="text" placeholder="User name" name="User name" [formControl]="loginform.controls['UserName']">
+			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+			</div>
+			<label>Password
+			  <span>*</span>:</label>
+			<div class="form-group form-control-login">
+			  <input placeholder="Password" id="password" name="password" class="form-control input-field" type="password" [formControl]="loginform.controls['Password']">
+			  <span class="glyphicon glyphicon-eye-open"></span>
+			  <!-- <app-error-messages [control]="loginform.controls.Password"></app-error-messages> -->
+			</div>
+			<!-- <div class="form-control-login">
+			  <input type="checkbox" (click)="password()">Show My Password
+			</div> -->
+			<br>
+			<button type="submit" id="login-button" class="btn green-btn">Login</button>
+		  </form>
+		</div>
+	  </div>
+	</div>
+	<div id="loginInfo" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+	  <div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+  
+			<button type="button" class="close" data-dismiss="modal">
+			  <img src="assets/images/close-btn.png" alt="X">
+			</button>
+		  </div>
+  
+		  <div class="modal-body">
+			<div class="form-group">
+			  <p class=""> Please enter valid details</p>
+  
+			</div>
+  
+		  </div>
+  
+		</div>
+	  </div>
+	</div>
   </div>
-
-

@@ -47,6 +47,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { AccountsettingsModule } from './components/accountsettings/accountsettings.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import {ApiService} from './shared/services/api.service/api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +98,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   NgxSpinnerModule,
   ChartsModule     
   ],
-  providers: [AppService],
+  providers: [AppService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
