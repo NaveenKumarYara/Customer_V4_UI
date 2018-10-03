@@ -8,8 +8,8 @@ declare var  $: any ;
 })
 export class JobprofileComponent implements OnInit {
 declare;
-hasDescription = true;
-completeDescription: string;
+hasCompleteDescription = true;
+jobDescription: string;
 
   constructor(private route: ActivatedRoute,
     private router: Router) {
@@ -18,9 +18,9 @@ completeDescription: string;
 
   setValue(val) {
     if (!val) {
-      $('#completeDescription').attr('disable', true);
+      $('#completeDescription').prop('disabled', true);
     } else {
-      $('#completeDescription').attr('disable', false);
+      $('#completeDescription').prop('disable', false);
     }
   }
   ngOnInit() {

@@ -10,6 +10,6 @@ export class MyFilterPipe implements PipeTransform {
         if (!items || !filter) {
             return items;
     }
-    return items.filter(item => item.name.indexOf(filter.skilltype) !== -1);
+    return items.filter(item => item.name.indexOf(filter.SkillType) !== -1);
     }
 }

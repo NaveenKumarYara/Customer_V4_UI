@@ -16,6 +16,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class LoadJoblistComponent implements OnInit {
   id: any;
   sub: any;
+  customer:any;
+  customerId:any;
+  userId:any;
   joblist: JobDetails[] = [];
   joblistcount: number;
   jobs: any;
@@ -26,6 +29,9 @@ export class LoadJoblistComponent implements OnInit {
 
   processed = false;
   constructor(private route: ActivatedRoute, private managejobservice: ManageJobService) {
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId =this.customer.CustomerId;
+    this.userId=this.customer.UserId;
   }
 
   private data: Observable<any>;
@@ -35,9 +41,9 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist() {
+  populateJoblist(customerId,userId) {
     this.sortBy=0;
-    return this.managejobservice.getJobDetails(this.joblistcount, this.sortBy).subscribe(res => {
+    return this.managejobservice.getJobDetails(customerId,userId,this.sortBy,this.joblistcount).subscribe(res => {
       this.joblist = res;
       this.loaddata = true;
     });
@@ -55,7 +61,7 @@ export class LoadJoblistComponent implements OnInit {
       this.id = params['id'];     
       })
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
-    this.populateJoblist();    
+    this.populateJoblist(this.customerId,this.userId);    
    
   }
 }

@@ -1,34 +1,32 @@
 <div class="form-group education-group">
   <label for="" class="question">Preferred Education criteria?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
-  <div class="form-row row">
+  <div class="row">
     <div class="col-md-5 col-sm-5">
-      <div class="form-group job-title-group">
         <ng-select class="custom-style" [items]="qualifications | async"
                    placeholder="e.g. Bachelor of Computer Arts"
                    bindLabel="QualificationName"
-                   bindValue="QualificationName"
+                   bindValue="QualificationId"
+                   (ngModelChange)="getSelectedOptionText($event)"
                    [typeahead]="selectedqualificationinput"
                    [hideSelected]="true"
                    [loading]="qualificationtitleloading"
                    [(ngModel)]="selectedqualificationName"
                    [virtualScroll]="true">
         </ng-select>
-      </div>
     </div>
     <div class="col-md-5 col-sm-5">
       <input type="text" class="form-control" placeholder="Other">
     </div>
     <div class="col-md-2 col-sm-2">
       <button class="btn add-btn form-control" (click)="addQualification()">+</button>
-    </div>
-
+    </div> 
   </div>
  
   </div>
   <div class="lists row">
     <div class="col-md-6">
-      <h4 for="" class="light">Qualifications</h4>
+      <label for="" class="question light">Qualifications</label>
       <ul class="data-list">
         <li *ngFor="let qualifications of qualificationList; let i = index">
           <span class="name">{{qualifications.QualificationName}}</span>
@@ -37,7 +35,7 @@
       </ul>
     </div>
   </div>
-  <div class="form-group job-profile-group">
+  <div class="form-group domain-exp-group">
     <label for="" class="question">Are you seriously considering that the candidate have the required domain experience?</label>
     <p class="description">Share details so we can find you the most eligible candadtes.</p>
     <div class="clearfix">
@@ -53,3 +51,4 @@
       </label>
       </div>
     </div>
+    

@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PostajobComponent } from './components/Postajob/postajob.component';
 import { StepsComponent } from './components/Postajob/Createajob/steps.component';
 import { CreateajobComponent } from './components/Postajob/Createajob/createajob.component';
+import { NoofopeningsComponent } from './components/Postajob/Createajob/Step2/noofopenings.component';
 import { SearchresultsComponent } from './components/Postajob/Createajob/searchresults.component';
 import { Step1Component } from './components/Postajob/Createajob/Step1/step1.component';
 import { Step2Component } from './components/Postajob/Createajob//Step2/step2.component';
@@ -47,6 +48,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { AccountsettingsModule } from './components/accountsettings/accountsettings.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import {ApiService} from './shared/services/api.service/api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     Step2SummaryComponent,
     SearchresultsComponent,
     Step3SummaryComponent,
-    NotificationsComponent    
+    NotificationsComponent,
+    NoofopeningsComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   NgxSpinnerModule,
   ChartsModule     
   ],
-  providers: [AppService],
+  providers: [AppService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

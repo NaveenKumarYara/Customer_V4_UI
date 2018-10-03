@@ -17,7 +17,7 @@ import { ApplicantStatistics } from '../../../models/applicantstatistics';
 
 @Injectable()
 export class DashboardService {
-
+    baseUrll = 'http://api.tenendus.com:1090/';
     constructor(private http: HttpClient) {
     }
 
@@ -31,8 +31,9 @@ export class DashboardService {
         return Observable.throw(errMsg);
     }
 
-    getRecentJobs(count: number): Observable<RecentJobs[]> {
-        const url = environment.RecentJobs;
+    getRecentJobs(customerId:number,userId:number,count: number): Observable<RecentJobs[]> {
+        const url = environment.RecentJobs +
+        'customerId=' +customerId +'&userId='+userId+ '&sortBy=0&status=0&pageNumber=1&numberOfRows=5';
         return this.http.get<RecentJobs[]>(url)
             .debounceTime(1000)
             .catch(
@@ -40,8 +41,9 @@ export class DashboardService {
             );
     }
 
-    getRecentApplicants(count: number): Observable<RecentApplicants[]> {
-       const url = environment.RecentApplicants;
+    getRecentApplicants(customerId:number,userId:number,count: number): Observable<RecentApplicants[]> {
+       const url = environment.RecentApplicants +
+       'customerId=' +customerId+'&userId='+userId+ '&page=1&numberOfRows=5';
        return this.http.get<RecentApplicants[]>(url)
            .debounceTime(1000)
            .catch(
@@ -49,8 +51,10 @@ export class DashboardService {
            );
     }
 
-    getDashboardStatistics(): Observable<DashboardStatistics>{
-        const url = environment.DashboardStatistics;
+    getDashboardStatistics(customerId:number,userId:number): Observable<DashboardStatistics>{
+        const url = environment.DashboardStatistics+
+        'customerId=' +customerId +'&userId='+userId+'&filter=0';
+
         return this.http.get<DashboardStatistics>(url)
             .debounceTime(500)
             .catch(
@@ -58,8 +62,9 @@ export class DashboardService {
             );
         //return this.dashboardstatistics;
     }
-    getApplicantsStatistics(): Observable<ApplicantStatistics>{
-        const url = environment.ApplicantStatistics;
+    getApplicantsStatistics(customerId:number,userId:number): Observable<ApplicantStatistics>{
+        const url = environment.ApplicantStatistics+
+        'customerId=' +customerId +'&userId='+userId+'&filter=0';
         return this.http.get<ApplicantStatistics>(url)
             .debounceTime(500)
             .catch(

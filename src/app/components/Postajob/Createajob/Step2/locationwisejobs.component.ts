@@ -9,21 +9,24 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './locationwisejobs.component.html'
 })
 
-export class LocationwiseJobsComponent implements OnInit, OnDestroy {  
+export class LocationwiseJobsComponent implements OnInit, OnDestroy {
 
   locationwisejobs: string[];
-
+location: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
 
-
+selectLocation(loc) {
+  this.location = loc;
+console.log(loc);
+}
 
   populateLocationwiseJobs() {
     this.appService.getLocationwisejobs().subscribe(res => {
       this.locationwisejobs = res;
-    })
-  }  
+    });
+  }
 
   ngOnInit() {
     this.populateLocationwiseJobs();

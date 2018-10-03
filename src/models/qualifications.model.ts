@@ -1,4 +1,8 @@
 export class Qualifications {
-  QualificationId: string;
-  QualificationName: string;  
+  QualificationId: number;
+  QualificationName: string;
+}
+export class AddQualification {
+  QualificationId: number;
+  IsActive: boolean; 
 }

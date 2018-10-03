@@ -8,12 +8,13 @@ import { environment } from '../environments/environment';
 import { Jobskills } from '../models/jobskills.model';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs';
-import { Qualifications } from '../models/qualifications.model';
+import { Qualifications, AddQualification } from '../models/qualifications.model';
 import { Notification } from '../models/notifications';
 import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam } from './components/Postajob/models/jobPostInfo';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,11 +29,17 @@ export class AppService {
   private apiUrl = 'api/CustomerPortal';
 
 
-  private domain: string[] = [];
- domainChanged = new Subject<string[]>();
-
+  private domain: GetDomain[] = [];
+ domainChanged = new Subject<GetDomain[]>();
+ private adddomain: PjDomain[] = [];
+ adddomainChanged = new Subject<PjDomain[]>();
   private qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
+  private addqualifications: AddQualification[] = [];
+  addqualificationsChanged = new Subject<AddQualification[]>();
+
+  private customerUsers: PjTechnicalTeam[] = [];
+  customerUserChanged = new Subject<PjTechnicalTeam[]>();
 
   private interviewtype: InterviewType[] = [];
 
@@ -50,7 +57,7 @@ export class AppService {
   ];
 
 
-  private jobtitle = new BehaviorSubject('');
+  jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
   updateJobtitle(jobtitle: string) {
@@ -63,8 +70,14 @@ export class AppService {
         this.handleError
       );
   }
+  private reportingManager = new BehaviorSubject('');
+  currentManager = this.reportingManager.asObservable();
 
-  private jobcategory = new BehaviorSubject('');
+  updateManager(reportingManager: string) {
+    this.reportingManager.next(reportingManager);
+  }
+
+  jobcategory = new BehaviorSubject('');
   currentcategorytitle = this.jobcategory.asObservable();
 
   updateJobCategory(jobcategory: string) {
@@ -87,10 +100,10 @@ export class AppService {
     this.selectedskilltype.next(skilltype);
   }
 
-  private primaryjobskills: Jobskills[] = [];
+   primaryjobskills: Jobskills[] = [];
   jobprimaryskillsChanged = new Subject<Jobskills[]>();
 
-  private secondaryjobskills: Jobskills[] = [];
+   secondaryjobskills: Jobskills[] = [];
   jobsecondaryskillsChanged = new Subject<Jobskills[]>();
 
   getPrimaryAddedJobSkills() {
@@ -101,7 +114,7 @@ export class AppService {
     return this.secondaryjobskills.slice();
   }
   addJobSkill(jobskills: Jobskills) {
-    if (jobskills.skilltype.toLowerCase() === 'primary') {
+    if (jobskills.SkillType === true) {
       this.primaryjobskills.push(jobskills);
       this.jobprimaryskillsChanged.next(this.primaryjobskills.slice());
     } else {
@@ -139,20 +152,39 @@ export class AppService {
     this.responsibilitesChanged.next(this.responsibilities.slice());
   }
 
+  saveRoles(body) {
+    return this.http.post(environment.addRoles, body)
+    .map((res: Response) => res.json())
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
-
+  getRoles(body)  {
+  return this.http.post(environment.getRoles, body)
+  .map((res: Response) => res)
+  .catch(this.handleError);
+  }
 
   private teammembers: string[] = [];
   teammembersChanged = new Subject<string[]>();
 
+  private addedteammembers: PjTechnicalTeam[] = [];
+  addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
 
   getTeammembers() {
     return this.teammembers.slice();
   }
-
+  getaddedTeammembers() {
+    return this.addedteammembers.slice();
+  }
   addTeammember(teammember: string) {
     this.teammembers.push(teammember);
     this.teammembersChanged.next(this.teammembers.slice());
+    const team = new PjTechnicalTeam();
+    team.UserId = parseInt(teammember, 10);
+    this.addedteammembers.push(team);
+    this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
 
   deleteTeammember(index: number) {
@@ -161,21 +193,53 @@ export class AppService {
   }
 
 
+  // private reportingManager: string[] = [];
+  // reportingManagerChanged = new Subject<string[]>();
+
+
+  // getreportingManager() {
+  //   return this.reportingManager.slice();
+  // }
+
+  // addreportingManager(teammember: string) {
+  //   this.reportingManager.push(teammember);
+  //   this.reportingManagerChanged.next(this.reportingManager.slice());
+  // }
+
+  // deletereportingManager(index: number) {
+  //   this.reportingManager.splice(index, 1);
+  //   this.reportingManagerChanged.next(this.reportingManager.slice());
+  // }
+
+
   getDomainlist() {
     return this.domain.slice();
   }
-
-  addDomain(domain: string) {
+  getAddedDomainlist() {
+    return this.adddomain.slice();
+  }
+  addDomain(domain: GetDomain) {
     this.domain.push(domain);
     this.domainChanged.next(this.domain.slice());
+    const domainVal = new PjDomain;
+    domainVal.MinimumExperience = 1;
+    domainVal.MaximumExperience = 2;
+    domainVal.ExperienceRequired = true;
+    domainVal.Description = 'abcde';
+    domainVal.DomainId = parseInt(domain.DomainName, 10);
+    this.adddomain.push(domainVal);
+    this.adddomainChanged.next(this.adddomain.slice());
+    // const addQlfcn = new AddQualification();
+    // addQlfcn.QualificationId = qualification.QualificationId;
+    //   addQlfcn.IsActive = true;
+    // this.addqualifications.push(addQlfcn);
+    // this.addqualificationsChanged.next(this.addqualifications.slice());
   }
 
   deleteDomain(index: number) {
     this.domain.splice(index, 1);
     this.domainChanged.next(this.domain.slice());
   }
-
-
   getQualificationDetails(): Observable<Qualifications[]> {
     const url = environment.educationcriteriaendpoint;
     return this.http.get<string[]>(url)
@@ -183,7 +247,24 @@ export class AppService {
         this.handleError
       );
   }
-
+getCustomerUsers(): Observable<CustomerUsers[]> {
+  const url = environment.getCustomerUsersendpoint;
+  return this.http.get<string[]>(url)
+    .catch(
+      this.handleError
+    );
+}
+addCustomerUsers(technicalTeam: PjTechnicalTeam) {
+  this.customerUsers.push(technicalTeam);
+  this.customerUserChanged.next(this.customerUsers.slice());
+}
+  getDomainDetails(): Observable<GetDomain[]> {
+    const url = environment.domaincriteriaendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getNotifications(): Observable<Notification[]> {
     const url = environment.NotificationEndPoint;
     return this.http.get<string[]>(url)
@@ -194,9 +275,17 @@ export class AppService {
   getaddedQualifications() {
     return this.qualifications.slice();
   }
+  getaddaddedQualifications() {
+    return this.addqualifications.slice();
+  }
   addQualifications(qualification: Qualifications) {
     this.qualifications.push(qualification);
     this.qualificationsChanged.next(this.qualifications.slice());
+    const addQlfcn = new AddQualification();
+    addQlfcn.QualificationId = qualification.QualificationId;
+      addQlfcn.IsActive = true;
+    this.addqualifications.push(addQlfcn);
+    this.addqualificationsChanged.next(this.addqualifications.slice());
   }
 
   deleteQualifications(index: number) {
@@ -217,7 +306,7 @@ export class AppService {
 
 postjob(body) {
   return this.http.post(environment.postjob, body)
-  .map((res: Response) => res.json())
+  .map((res: Response) => res)
   .catch((error: any) => {
     return Observable.throw(error.json());
   });
@@ -241,7 +330,7 @@ postjob(body) {
 
 
   getLocationwisejobs() {
-    const url = environment.locationwisejobtitlesendpoint;
+    const url = environment.customerPreferredLocationendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

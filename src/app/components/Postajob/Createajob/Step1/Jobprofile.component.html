@@ -4,16 +4,16 @@
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <div class="clearfix" >
     <label for="r1yes" class="radio">
-      <input type="radio" id="r1yes" (click)="setValue(true)" name="mode"  [value]="true" [(ngModel)]="hasDescription" name="contactVia" class="radio-input" />
+      <input type="radio" id="r1yes" (click)="setValue(true)" name="mode"  [value]="true" [(ngModel)]="hascompleteDescription" name="contactVia" class="radio-input" />
       <span class="radio-btn"></span>
       <span>Yes</span>
     </label>
     <label for="r2no" class="radio">
-      <input type="radio" id="r2no"  (click)="setValue(false)" name="mode" [value]="false" [(ngModel)]="hasDescription" name="contactVia" class="radio-input" />
+      <input type="radio" id="r2no"  (click)="setValue(false)" name="mode" [value]="false" [(ngModel)]="hascompleteDescription" name="contactVia" class="radio-input" />
       <span class="radio-btn"></span>
       <span>No</span>
     </label>
   </div>
-  <textarea name="" disabled="{{hasDescription===false}}" id="completeDescription" [(ngModel)]="completeDescription"  class="form-control"></textarea>
+  <textarea name="" disabled="{{hascompleteDescription===false}}" id="completeDescription" [(ngModel)]="jobDescription"  class="form-control"></textarea>
 </div>
 

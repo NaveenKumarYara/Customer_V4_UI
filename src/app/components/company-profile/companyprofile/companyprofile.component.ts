@@ -22,6 +22,9 @@ import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement'
   styleUrls: ['./companyprofile.component.css']
 })
 export class CompanyprofileComponent implements OnInit {
+    customer:any;
+    customerId:any;
+    userId:any;
     companyprofile: CompanyProfile;
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
@@ -38,110 +41,114 @@ export class CompanyprofileComponent implements OnInit {
     getcompanyachivements: GetCompanyAchievement[];
 
   constructor(private route: ActivatedRoute,
-      private router: Router, private companyprofileservice: CompanyProfileService) { }
+      private router: Router, private companyprofileservice: CompanyProfileService) { 
+        this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        this.customerId =this.customer.CustomerId;
+        this.userId=this.customer.UserId;
+      }
 
-    populateCompanyProfile() {
-        return this.companyprofileservice.getCompanyProfile().subscribe(res => {
+    populateCompanyProfile(customerId) {
+        return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
             this.companyprofile = res;
         });
     }
 
-    populateCompanyProfileOtherInfo() {
-        return this.companyprofileservice.getCompanyProfileOtherInfo().subscribe(res => {
+    populateCompanyProfileOtherInfo(customerId) {
+        return this.companyprofileservice.getCompanyProfileOtherInfo(customerId).subscribe(res => {
             this.companyprofileotherinfo = res;
         });
     }
 
-    populateCompanyLogo() {
-        return this.companyprofileservice.getCompanyLogo().subscribe(res => {
+    populateCompanyLogo(customerId) {
+        return this.companyprofileservice.getCompanyLogo(customerId).subscribe(res => {
             this.getcompanylogo= res;
         });
     }
 
-    populateAboutCompanyInfo() {
-        return this.companyprofileservice.getCompanyAboutInfo().subscribe(res => {
+    populateAboutCompanyInfo(customerId) {
+        return this.companyprofileservice.getCompanyAboutInfo(customerId).subscribe(res => {
             this.getaboutcompany = res;
         });
     }
 
-    populateCompanyBenfits() {
-        return this.companyprofileservice.getCompanyBenfits().subscribe(res => {
+    populateCompanyBenfits(customerId) {
+        return this.companyprofileservice.getCompanyBenfits(customerId).subscribe(res => {
             this.getcompanybenfit = res;
         });
     }
 
-    populateCompanyAchivements() {
-        return this.companyprofileservice.getCompanyAchivements().subscribe(res => {
+    populateCompanyAchivements(customerId) {
+        return this.companyprofileservice.getCompanyAchivements(customerId).subscribe(res => {
             this.getcompanyachivements = res;
         });
     }
 
-    populateCompanyCultures() {
-        return this.companyprofileservice.getCompanyCultures().subscribe(res => {
+    populateCompanyCultures(customerId) {
+        return this.companyprofileservice.getCompanyCultures(customerId).subscribe(res => {
             this.getcompanycluture = res;
         });
     }
 
-    populateCompanyCertifications() {
-        return this.companyprofileservice.getCompanyCertifications().subscribe(res => {
+    populateCompanyCertifications(customerId) {
+        return this.companyprofileservice.getCompanyCertifications(customerId).subscribe(res => {
             this.getcompanycertification = res;
         });
     }
 
-    populateCompanyPartners() {
-        return this.companyprofileservice.getCompanyPartnerShips().subscribe(res => {
+    populateCompanyPartners(customerId) {
+        return this.companyprofileservice.getCompanyPartnerShips(customerId).subscribe(res => {
             this.getcompanypertner = res;
         });
     }
 
 
 
-    populateCompanyTechnologies() {
-        return this.companyprofileservice.GetCompanyTechnologies().subscribe(res => {
+    populateCompanyTechnologies(customerId) {
+        return this.companyprofileservice.GetCompanyTechnologies(customerId).subscribe(res => {
             this.getcompanytechnology = res;
         });
     }
 
-    populateCompanyWhitePapers() {
-        return this.companyprofileservice.getCompanyWhitePapers().subscribe(res => {
+    populateCompanyWhitePapers(customerId) {
+        return this.companyprofileservice.getCompanyWhitePapers(customerId).subscribe(res => {
             this.getcompanywhitepaper = res;
         });
     }
 
-    populateCompanyNewsInfo() {
-        return this.companyprofileservice.getCompanyNewsInfo().subscribe(res => {
+    populateCompanyNewsInfo(customerId) {
+        return this.companyprofileservice.getCompanyNewsInfo(customerId).subscribe(res => {
             this.getcompanynewsinfo = res;
         });
     }
 
-    populateCompanySpecialities()
+    populateCompanySpecialities(customerId)
     {
-        return this.companyprofileservice.getCompanySpecialities().subscribe(res => {
+        return this.companyprofileservice.getCompanySpecialities(customerId).subscribe(res => {
             this.companyspecialities = res;
         });
     }
 
-    populateCompanyProfileLocationInfo() {
-        return this.companyprofileservice.getCompanyCustomerLocationInfo().subscribe(res => {
+    populateCompanyProfileLocationInfo(customerId) {
+        return this.companyprofileservice.getCompanyCustomerLocationInfo(customerId).subscribe(res => {
             this.companyprofilelocationinfo = res;
         });
     }
 
     ngOnInit() {
-        this.populateCompanyProfile();
-        this.populateCompanyProfileOtherInfo();
-        this.populateCompanyProfileLocationInfo();
-        this.populateCompanyLogo();
-        this.populateAboutCompanyInfo();
-        this.populateCompanyBenfits();
-        this.populateCompanySpecialities();
-        this.populateCompanyTechnologies();
-        this.populateCompanyWhitePapers();
-        this.populateCompanyNewsInfo();
-        this.populateCompanyAchivements();
-        this.populateCompanyCertifications();
-        this.populateCompanyCultures();
-        this.populateCompanyPartners();
+        this.populateCompanyProfile(this.customerId);
+        this.populateCompanyProfileOtherInfo(this.customerId);
+        this.populateCompanyProfileLocationInfo(this.customerId);
+        this.populateCompanyLogo(this.customerId);
+        this.populateAboutCompanyInfo(this.customerId);
+        this.populateCompanyBenfits(this.customerId);
+        this.populateCompanySpecialities(this.customerId);
+        this.populateCompanyTechnologies(this.customerId);
+        this.populateCompanyWhitePapers(this.customerId);
+        this.populateCompanyNewsInfo(this.customerId);
+        this.populateCompanyAchivements(this.customerId);
+        this.populateCompanyCertifications(this.customerId);
+        this.populateCompanyCultures(this.customerId);
+        this.populateCompanyPartners(this.customerId);
   }
 
 }
