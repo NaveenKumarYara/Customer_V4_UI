@@ -10,6 +10,7 @@ import { DashboardService } from '../dashboard.service';
 })
 export class DashboardRecentjobsComponent implements OnInit {
     //@Input() recentjoblist: RecentJobs;
+    customer:any;
     recentjoblist: RecentJobs[] = [];
    jobLoader =false;
    customerId:any;
@@ -24,14 +25,18 @@ export class DashboardRecentjobsComponent implements OnInit {
     // step(val: number) {
     //   this.progressValue = Math.max(0, Math.min(100, val + this.progressValue));
     // }
-    constructor(private spinner: NgxSpinnerService, private dashboardservice: DashboardService) { }
+    constructor(private spinner: NgxSpinnerService, private dashboardservice: DashboardService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId =this.customer.CustomerId;
+      this.userId=this.customer.UserId;
+     }
 
 
     
 
     ngOnInit() {
       this.jobLoader=true;
-      this.populateRecentJoblist(5,this.customerId,this.userId);
+      this.populateRecentJoblist(this.customerId,this.userId,5);
      // this.spinner.show();
     //  let ldg = $('#domainLoader');
     //  ldg.find('> div > span').text('Please wait as jobs are loading')
@@ -41,8 +46,8 @@ export class DashboardRecentjobsComponent implements OnInit {
     //     ldg.hide();
     //   }, 4000);
   }
-  populateRecentJoblist(count: number,customerId,userId) {
-    return this.dashboardservice.getRecentJobs(count,customerId,userId).subscribe(res => {
+  populateRecentJoblist(customerId,userId,count: number) {
+    return this.dashboardservice.getRecentJobs(customerId,userId,count).subscribe(res => {
         this.recentjoblist = res;
         this.jobLoader=false;
     });
