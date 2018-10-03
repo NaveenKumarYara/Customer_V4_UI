@@ -28,7 +28,7 @@ import { GetCompanyAchievement } from '../../../models/GetCompanyAchievement';
 
 @Injectable()
 export class CompanyProfileService {
-
+    baseUrll = 'http://api.tenendus.com:1090/';
     constructor(private http: HttpClient) {
     }
     private handleError(error: any) {
