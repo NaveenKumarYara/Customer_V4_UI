@@ -18,11 +18,18 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DashboardviewComponent implements OnInit {
     // recentjoblist: RecentJobs[] = [];
+    customer:any;
+    customerId:any;
+    userId:any;
     recentapplicantlist: RecentApplicants[] = [];
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
     jobLoader : boolean;
-    constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { }
+    constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { 
+        this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        this.customerId =this.customer.CustomerId;
+        this.userId=this.customer.UserId;
+    }
 
     // populateRecentJoblist(count: number) {
     //     return this.dashboardservice.getRecentJobs(count).subscribe(res => {
@@ -30,14 +37,14 @@ export class DashboardviewComponent implements OnInit {
     //     });
     // }
 
-    populateRecentApplicants(count: number) {
-       return this.dashboardservice.getRecentApplicants(count).subscribe(res => {
+    populateRecentApplicants(customerId,userId,count: number,) {
+       return this.dashboardservice.getRecentApplicants(customerId,userId,count).subscribe(res => {
            this.recentapplicantlist = res;
        });
     }
 
-    populateDashboardStatistics() {
-        return this.dashboardservice.getDashboardStatistics().subscribe(res => {
+    populateDashboardStatistics(customerId,userId) {
+        return this.dashboardservice.getDashboardStatistics(customerId,userId).subscribe(res => {
             this.dashboardstatistics = res;
         });
 
@@ -46,17 +53,17 @@ export class DashboardviewComponent implements OnInit {
         //    this.dashboardstatistics = res;
         //});   
     }
-    populateApplicantsStatistics() {
-        return this.dashboardservice.getApplicantsStatistics().subscribe(res => {
+    populateApplicantsStatistics(customerId,userId) {
+        return this.dashboardservice.getApplicantsStatistics(customerId,userId).subscribe(res => {
             this.applicantStatistics = res;
         }); 
     }
 
     ngOnInit() {
         // this.populateRecentJoblist(5); 
-        this.populateRecentApplicants(5); 
-        this.populateDashboardStatistics();
-        this.populateApplicantsStatistics();
+        this.populateRecentApplicants(this.customerId,this.userId,5); 
+        this.populateDashboardStatistics(this.customerId,this.userId);
+        this.populateApplicantsStatistics(this.customerId,this.userId);
         
   }
 

@@ -71,7 +71,7 @@ import { DashboardJobsviewComponent } from './components/dashboard/dashboard-job
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 import { DashboardRecentApplicationsComponent } from './components/dashboard/dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardRecentjobsComponent } from './components/dashboard/dashboard-recentjobs/dashboard-recentjobs.component';
-
+import {AuthGuard} from './shared/guard/auth.guard';
 
 import { AccountsettingsComponent } from './components/accountsettings/accountsettings/accountsettings.component';
 import { AccountsettingdetailsComponent } from './components/accountsettings/accountsettingdetails/accountsettingdetails.component';
@@ -80,7 +80,7 @@ import { UsersComponent } from './components/accountsettings/users/users.compone
 
 const appRoutes: Routes =
 [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'app-postajob', component: PostajobComponent },
     { path: 'app-createajob', component: CreateajobComponent ,
       children: [
@@ -169,7 +169,7 @@ const appRoutes: Routes =
       ]
     },
 
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' , canActivate: [AuthGuard] },
     { path: '**', component: HomeComponent }
 ];
 

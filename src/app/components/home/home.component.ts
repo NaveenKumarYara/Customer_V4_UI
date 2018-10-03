@@ -24,10 +24,10 @@ export class HomeComponent {
     this._service.PostService(this.loginform.value, 'IdentityAPI/api/CustomerLogin')
       .subscribe(
       data => {
+        sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
+        sessionStorage.setItem('userData', JSON.stringify(data));
         this.customerId = data.customerId;
         this.userId =data.userId;
-        sessionStorage.setItem('customerId', JSON.stringify(this.customerId));
-        sessionStorage.setItem('userId', JSON.stringify(this.userId));
             this.router.navigateByUrl('app-dashboardview');
             $("#header").show();
       },
