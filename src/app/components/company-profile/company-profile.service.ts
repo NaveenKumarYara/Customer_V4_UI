@@ -38,16 +38,16 @@ export class CompanyProfileService {
         return Observable.throw(errMsg);
     }
 
-    getCompanyProfile(): Observable<CompanyProfile> {
-        const url = environment.CompanyProfileBasicInfo;
+    getCompanyProfile(customerId:number): Observable<CompanyProfile> {
+        const url = environment.CompanyProfileBasicInfo+ 'customerId='+customerId ;
         return this.http.get<CompanyProfile>(url)            
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyProfileOtherInfo(): Observable<CompanyProfileOtherIno> {
-        const url = environment.CompanyProfileOtherInfo;
+    getCompanyProfileOtherInfo(customerId:number): Observable<CompanyProfileOtherIno> {
+        const url = environment.CompanyProfileOtherInfo+ 'customerId='+customerId ;
         return this.http.get<CompanyProfileOtherIno>(url)
             .catch(
                 this.handleError
@@ -55,96 +55,96 @@ export class CompanyProfileService {
     }
 
 
-    getCompanyCustomerLocationInfo(): Observable<CustomerLocationInfo[]> {
-        const url = environment.CompanyProfileLocationInfo;
+    getCompanyCustomerLocationInfo(customerId:number): Observable<CustomerLocationInfo[]> {
+        const url = environment.CompanyProfileLocationInfo+ 'customerId='+customerId ;
         return this.http.get<CustomerLocationInfo[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyBenfits(): Observable<GetCompanyBenefit[]> {
-        const url = environment.GetCompanyBenfits;
+    getCompanyBenfits(customerId:number): Observable<GetCompanyBenefit[]> {
+        const url = environment.GetCompanyBenfits+ 'customerId='+customerId+'&companyBenefitId=0';
         return this.http.get<GetCompanyBenefit[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanySpecialities(): Observable<CompanySpecialities[]> {
-        const url = environment.CompanySpecialities;
+    getCompanySpecialities(customerId:number): Observable<CompanySpecialities[]> {
+        const url = environment.CompanySpecialities+ 'customerId='+customerId+'&companySpecialityId=0';
         return this.http.get<CompanySpecialities[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    GetCompanyTechnologies(): Observable<GetCompanyTechnology[]> {
-        const url = environment.CompanyTechnologies;
+    GetCompanyTechnologies(customerId:number): Observable<GetCompanyTechnology[]> {
+        const url = environment.CompanyTechnologies+ 'customerId='+customerId+'&companyTechnologyId=0';
         return this.http.get<GetCompanyTechnology[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyAboutInfo(): Observable<GetAboutCompany[]> {
-        const url = environment.GetAboutCompany;
+    getCompanyAboutInfo(customerId:number): Observable<GetAboutCompany[]> {
+        const url = environment.GetAboutCompany+ 'customerId='+customerId;
         return this.http.get<GetAboutCompany[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyWhitePapers(): Observable<GetCompanyWhitePaper[]> {
-        const url = environment.CompanyWhitePapers;
+    getCompanyWhitePapers(customerId:number): Observable<GetCompanyWhitePaper[]> {
+        const url = environment.CompanyWhitePapers+ 'customerId='+customerId;
         return this.http.get<GetCompanyWhitePaper[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyNewsInfo(): Observable<GetCompanyNewsInfo[]> {
-        const url = environment.CompanyNewsPapers;
+    getCompanyNewsInfo(customerId:number): Observable<GetCompanyNewsInfo[]> {
+        const url = environment.CompanyNewsPapers+ 'customerId='+customerId+'&companyNewsInfoId=0';
         return this.http.get<GetCompanyNewsInfo[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyAchivements(): Observable<GetCompanyAchievement[]> {
-        const url = environment.ComapnyAchivements;
+    getCompanyAchivements(customerId:number): Observable<GetCompanyAchievement[]> {
+        const url = environment.ComapnyAchivements + 'customerId='+customerId+'&companyAchievementId=0';
         return this.http.get<GetCompanyAchievement[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyCultures(): Observable<GetCompanyCulture[]> {
-        const url = environment.CompanyCultures;
+    getCompanyCultures(customerId:number): Observable<GetCompanyCulture[]> {
+        const url = environment.CompanyCultures+ 'customerId='+customerId+'&companyCultureId=0';
         return this.http.get<GetCompanyCulture[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyCertifications(): Observable<GetCompanyCertification[]> {
-        const url = environment.CompanyCertifications;
+    getCompanyCertifications(customerId:number): Observable<GetCompanyCertification[]> {
+        const url = environment.CompanyCertifications+ 'customerId='+customerId+'&companyCertificationId=0';
         return this.http.get<GetCompanyCertification[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyPartnerShips(): Observable<GetCompanyPartner[]> {
-        const url = environment.CompanyPartnerships;
+    getCompanyPartnerShips(customerId:number): Observable<GetCompanyPartner[]> {
+        const url = environment.CompanyPartnerships+ 'customerId='+customerId+'&companyPartnerId=0';
         return this.http.get<GetCompanyPartner[]>(url)
             .catch(
                 this.handleError
             );
     }
     
-    getCompanyLogo(): Observable<GetCompanyLogo> {
-        const url = environment.GetCompanyLogo;
+    getCompanyLogo(customerId:number): Observable<GetCompanyLogo> {
+        const url = environment.GetCompanyLogo+ 'customerId='+customerId;
         return this.http.get<GetCompanyLogo>(url)
             .catch(
                 this.handleError
