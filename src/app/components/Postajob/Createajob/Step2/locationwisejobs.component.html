@@ -3,10 +3,7 @@
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <div class="options">
     <div class="checkbox" *ngFor="let jobs of locationwisejobs; let i = index">
-      <label><input type="radio" name="emp-type" value=""><span class="box">{{jobs}}</span> </label>
-    </div>
-    <h4>OR</h4>
-    <input type="text" class="form-control" placeholder="Type">
+      <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label>
+    </div> 
   </div>
-</div>
-
+</div> 

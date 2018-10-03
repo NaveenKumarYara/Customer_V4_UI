@@ -1,10 +1,27 @@
 <div class="form-group reporting-manager-group">
   <label for="" class="question">Reporting Manger</label>
-  <p class="description">Share details so we can find you the most eligible candadtes.</p>
-  <select name="" id="" class="styled-select-box block">
-    <option value="">John Smith</option>
-    <option value="">Andy Bogard</option>
-    <option value="">Terry Martin</option>
-    <option value="">Gerald Brown</option>
-  </select>
+  <p class="description">Share details so we can find you the most eligible candadtes.</p>  
+  <!-- <ng-select class="custom-style" [items]="managersList | async"
+  placeholder="e.g. Bachelor of Computer Arts"
+  bindLabel="FirstName"
+  bindValue="UserId"
+  [typeahead]="selectedUserInput"
+  [hideSelected]="true"
+  [loading]="usersloading"
+  [virtualScroll]="true"
+  [(ngModel)]="selectedItem"
+  (change)="updateManager()"> -->
+  <ng-select class="custom-style" [items]="reportingmanagersList | async"
+  placeholder="e.g. Bachelor of Computer Arts"
+  bindLabel="FirstName"
+  bindValue="UserId"
+  [typeahead]="selectedInput"
+  [hideSelected]="true"
+  [loading]="usersload"
+  [(ngModel)]="selectedUser"
+  [virtualScroll]="true">
+</ng-select>
+<!-- <ul class="data-list">
+    <li *ngIf="selectedUser && selectedUser!=undefined &&  selectedUser.length > 0">{{selectedUser}}</li>
+  </ul> -->
 </div>

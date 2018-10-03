@@ -11,16 +11,16 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
   templateUrl: './contractextension.component.html'
 })
 
-export class ContractExtensionComponent implements OnInit, OnDestroy {  
+export class ContractExtensionComponent implements OnInit, OnDestroy {
   contractextensionlist: string[];
-
+ type: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
-
+ 
   populateContractExtension() {
     this.contractextensionlist = this.appService.getContractExtension();
-  }  
+  }
 
 
 

@@ -11,20 +11,22 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
   templateUrl: './employmenttype.component.html'
 })
 
-export class EmploymentTypeComponent implements OnInit, OnDestroy {  
+export class EmploymentTypeComponent implements OnInit, OnDestroy {
  employmenttypelist: any;
-
+  employmentTypeId: number;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
 
   populateEmploymentType() {
     this.appService.getEmploymentType().subscribe(res => {
-      this.employmenttypelist = res.filter(x => x.EmploymentType)
+      this.employmenttypelist = res.filter(x => x.EmploymentType);
     });
-   
-  }
 
+  }
+  selectEmpType(val) {
+    this.employmentTypeId = val;
+  }
 
   ngOnInit() {
     this.populateEmploymentType();

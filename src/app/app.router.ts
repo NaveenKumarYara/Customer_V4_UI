@@ -27,6 +27,7 @@ import { Step1SummaryComponent } from './components/Postajob/Createajob/Step4/st
 import { Step2SummaryComponent } from './components/Postajob/Createajob/Step4/step2summary.component';
 import { Step3SummaryComponent } from './components/Postajob/Createajob/Step4/step3summary.component';
 import { SearchresultsComponent } from './components/Postajob/Createajob/searchresults.component';
+import { NoofopeningsComponent } from './components/Postajob/Createajob/Step2/noofopenings.component';
 import { ManageJobsComponent } from './components/managejobs/manage-jobs/manage-jobs.component';
 import { ViewjobsComponent } from './components/managejobs/manage-jobs/viewjobs/viewjobs.component';
 import { SearchjobsComponent } from './components/managejobs/manage-jobs/searchjobs/searchjobs.component';
@@ -42,7 +43,7 @@ import { FilterViewJobsComponent } from './components/jobdetails/view-jobdetails
 
 import { JobdetailsAdvanceSearchComponent } from '../app/components/jobdetails/view-jobdetails/jobdetails-advance-search/jobdetails-advance-search.component';
 import { ViewjobdetailsmodelComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
-import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component'
+import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component';
 
 import { ViewjobdetailsScComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
@@ -100,6 +101,7 @@ const appRoutes: Routes =
     { path: 'app-steps-step2-locationwisejobs', component: LocationwiseJobsComponent },
     { path: 'app-steps-step2-qualifications', component: QualificationsComponent },
     { path: 'app-steps-step2-domainexpertise', component: DomainExpertiseComponent },
+    { path: 'app-steps-step2-noofopenings', component: NoofopeningsComponent },
     { path: 'app-steps-step2-personalityType', component: PersonalityTypeComponent },
     { path: 'app-steps-step3-employmenttype', component: EmploymentTypeComponent },
     { path: 'app-steps-step3-contractduration', component: ContractDurationComponent },
@@ -115,7 +117,7 @@ const appRoutes: Routes =
     { path: 'app-manage-filterjobs', component: FilterjobsComponent },
     { path: 'app-manage-advance-search', component: AdvanceSearchComponent },
     { path: 'app-manage-joblist-gridlayout', component: JoblistGridlayoutComponent },
-    { path: 'app-manage-joblist-tablelayout', component: JoblistTablelayoutComponent },   
+    { path: 'app-manage-joblist-tablelayout', component: JoblistTablelayoutComponent },
     {
       path: 'app-manage-jobs', component: ManageJobsComponent,
       children: [
@@ -155,10 +157,10 @@ const appRoutes: Routes =
     { path: 'app-dashboard-recent-applications', component: DashboardRecentApplicationsComponent },
     { path: 'app-dashboard-recentjobs', component: DashboardRecentjobsComponent },
 
-    //{ path: 'app-accountsettings', component: AccountsettingsComponent },
+    // { path: 'app-accountsettings', component: AccountsettingsComponent },
     { path: 'app-navigationcomponent', component: NavigationcomponentComponent },
-    //{ path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
-    //{ path: 'app-users', component: UsersComponent },
+    // { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
+    // { path: 'app-users', component: UsersComponent },
 
     {
       path: 'app-accountsettings', component: AccountsettingsComponent,

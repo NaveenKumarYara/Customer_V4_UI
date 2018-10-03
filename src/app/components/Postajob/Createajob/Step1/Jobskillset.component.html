@@ -47,8 +47,8 @@
         <h4 for="" class="light">Primary Skills</h4>
         <ul class="data-list">
           <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
-            <span class="name">{{primaryjobskill.skillname}}</span>
-            <span class="experience"> {{primaryjobskill.minexperience}} - {{primaryjobskill.maxexperience}} Yrs</span>
+            <span class="name">{{primaryjobskill.SkillName}}</span>
+            <span class="experience"> {{primaryjobskill.MinimumExp}} - {{primaryjobskill.MaximumExp}} Yrs</span>
             <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
           </li>
         </ul>
@@ -58,8 +58,8 @@
         <h4 for="" class="light">Secondary Skills</h4>
         <ul class="data-list">
           <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-            <span class="name">{{secondaryjobskill.skillname}}</span>
-            <span class="experience"> {{secondaryjobskill.minexperience}} - {{secondaryjobskill.maxexperience}} Yrs</span>
+            <span class="name">{{secondaryjobskill.SkillName}}</span>
+            <span class="experience"> {{secondaryjobskill.MinimumExp}} - {{secondaryjobskill.MaximumExp}} Yrs</span>
             <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
           </li>
         </ul>

@@ -1,6 +1,6 @@
 export class Jobskills {
-  skillname: string;
-  minexperience: string;
-  maxexperience: string;
-  skilltype: string;
+  public SkillName: string;
+  public SkillType: boolean;
+  public MinimumExp: number;
+  public MaximumExp: number;
 }

@@ -18,10 +18,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience: string;
-  maxexperience: string;
+  minexperience: number;
+  maxexperience: number;
   expYears: any = [];
-  skillType = false;
+  skillType  = false;
   private subscription: Subscription;
 
 
@@ -60,10 +60,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   }
   private addSkills() {
     const newskills = new Jobskills();
-    newskills.skillname = this.selectedSkillName;
-    newskills.skilltype = this.selectedLink;
-    newskills.maxexperience = this.maxexperience;
-    newskills.minexperience = this.minexperience;
+    newskills.SkillName = this.selectedSkillName;
+    newskills.SkillType = this.skillType;
+    newskills.MaximumExp = this.maxexperience;
+    newskills.MinimumExp = this.minexperience;
     this.appService.addJobSkill(newskills);
   }
   public getExpYears() {

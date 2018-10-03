@@ -23,7 +23,8 @@ export class JobdetailsComponent implements OnInit {
   expYears: any = [];
   jobtitleloading = false;
   jobtitleinput = new Subject<string>();
-
+  minExperience: number;
+  maxExperience: number;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }

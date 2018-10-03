@@ -7,7 +7,7 @@ export const environment = {
     production: false,
     jobTitleEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetJobTitles",
     getskillsEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetSkill",
-    locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
+    //locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
     educationcriteriaendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetQualification",
     employmentTypeendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType",
     interviewtypeendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetInterviewType",
@@ -17,9 +17,15 @@ export const environment = {
     deactivatejobEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/DeleteJob?jobId=1000108&customerId=1&isActive=false",
     JobDetailsofCustomer:"http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?customerId=1&jobId=1000100",
 
+    postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
+    addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
+    getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
+    domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
+    getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?customerId=1&userId=5',
+     customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?customerId=1&userId=5',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
 
-    postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
+   // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
 
     JobdetailsBasicInfoEndpoint:

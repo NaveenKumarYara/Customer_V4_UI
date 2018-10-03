@@ -5,7 +5,7 @@
 
   <div class="options">
     <div class="checkbox" *ngFor="let type of interviewtypelist">
-      <label><input type="radio" name="emp-type" value=""><span class="box">{{type.InterviewType}}</span> </label>
+      <label><input type="radio" (change)="setInterviewType(type.InterviewTypeId)" name="intwtype" value=""><span class="box">{{type.InterviewType}}</span> </label>
     </div>
   </div>
 </div>

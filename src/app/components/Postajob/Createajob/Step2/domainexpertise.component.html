@@ -3,9 +3,23 @@
   <label for="" class="question">Which domain/(s) is the project into?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <div class="form-row row">
-    <div class="col-md-10">
-        <input id="domain" type="text" class="form-control ui-autocomplete-input" name="domain" placeholder="e.g. Marketing"
-        [(ngModel)]="domain">
+    <div class="col-md-10"> 
+        <ng-select class="custom-style" [items]="domains | async"
+        placeholder="e.g. Bachelor of Computer Arts"
+        (ngModelChange)="changeValue($event)"
+        bindLabel="DomainName"
+        bindValue="DomainId"
+        [typeahead]="selecteddomaininput"
+        [hideSelected]="true"
+        [loading]="domaintitleloading"
+        [(ngModel)]="selecteddomainname"
+        
+        [virtualScroll]="true">
+</ng-select>
+<!-- (data)="refreshValue($event)"
+        (selected)="selected($event)"
+        (removed)="removed($event)"
+        (typed)="typed($event)" -->
     </div>
     <div class="col-md-2">
         <button class="btn add-btn form-control" (click)="addDomain()">+</button>
@@ -13,18 +27,14 @@
   </div>
   <div class="lists row">
     <div class="col-md-6">
-      <h4 for="" class="light">Domain</h4>
+      <label for="" class="question light">Domain</label>
       <ul class="data-list">
         <li *ngFor="let domain of domainlist; let i = index">
-          <span class="name">{{domain}}</span>
+          <span class="name">{{domain.DomainName}}</span>
           <span class="close" (click)="deleteDomain(i)">&times;</span>
         </li>
       </ul>
     </div>
   </div>
   </div>
-
-
-
-
-
+ 

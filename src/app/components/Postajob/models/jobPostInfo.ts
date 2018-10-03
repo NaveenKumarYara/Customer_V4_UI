@@ -42,11 +42,32 @@ export class InsertJob {
     public MinimumExp: number;
     public MaximumExp: number;
   }
+// roles
+  export class RoleJobTitle {
+    JobTitle: string;
+    Role: string;
+
+  }
+  export class RoleModel {
+
+    constructor(
+        public RoleId: number,
+        public RolesAndResponsibilities: string,
+        public JobTitle: string
+    ) { }
+  }
+  //
   export class PjRole {
     public RoleId: number;
   }
   export class PjDisc {
     public DiscTestId: number;
+  }
+
+  //
+  export class GetDomain {
+     public DomainId: number;
+     public DomainName: string;
   }
   export class PjDomain {
     public ExperienceRequired: boolean;
@@ -60,6 +81,20 @@ export class InsertJob {
     public IsActive: boolean;
 
   }
+
+  // related
+
+  export class CustomerUsers {
+      //public  JobAccessId: number;
+     // public JobId: number;
+      public  UserId: number;
+      public FirstName: string;
+     // public  MiddleName: string;
+      //public  LastName: string;
+      ///public  ProfilePic: string;
+      //public CustomerId: number;
+  }
+  //
   export class PjTechnicalTeam {
     public UserId: number;
   }

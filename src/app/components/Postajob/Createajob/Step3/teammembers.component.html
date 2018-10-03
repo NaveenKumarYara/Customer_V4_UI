@@ -3,11 +3,17 @@
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
 
   <div class="form-row row">
-    <div class="col-md-10">
-      <input id="team-members" type="text"
-           class="form-control ui-autocomplete-input"
-           name="benefits" placeholder="Add Team Members"
-           [(ngModel)]="teammembers">
+    <div class="col-md-10">  
+           <ng-select class="custom-style" [items]="managersList | async"
+           placeholder="e.g. Bachelor of Computer Arts"
+           (ngModelChange)="changeTeam($event)"
+           bindLabel="FirstName"
+           bindValue="UserId"
+           [typeahead]="selectedUserInput"
+           [hideSelected]="true"
+           [loading]="usersloading"
+           [(ngModel)]="selectedUserName"
+           [virtualScroll]="true"></ng-select>
     </div>
     <div class="col-md-2">
       <button class="btn add-btn form-control" (click)="addTeammembers()">+</button>
@@ -19,8 +25,8 @@
     <div class="col-md-6">
       <h4 for="" class="light">Teammembers</h4>
       <ul class="data-list">
-        <li *ngFor="let teammember of teammemberslist; let i = index">
-          <span class="name">{{teammember}}</span>
+        <li *ngFor="let teammember of addedteammemberslist; let i = index">
+          <span class="name">{{teammember.UserId}}</span>
           <span class="close" (click)="deleteTeammember(i)">&times;</span>
         </li>
       </ul>

@@ -11,20 +11,22 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
   templateUrl: './interviewtype.component.html'
 })
 
-export class InterviewTypeComponent implements OnInit, OnDestroy {  
- interviewtypelist: any;
-
+export class InterviewTypeComponent implements OnInit, OnDestroy {
+  interviewtypelist: any;
+  interviewType:number;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
 
   populateInterviewType() {
     this.appService.getInterviewType().subscribe(res => {
-      this.interviewtypelist = res
+      this.interviewtypelist = res;
     });
-   
-  }
 
+  }
+  setInterviewType(type) {
+    this.interviewType = type;
+  }
 
   ngOnInit() {
     this.populateInterviewType();

@@ -12,15 +12,18 @@ import { Subject, Observable } from 'rxjs';
 
 export class ContractDurationComponent implements OnInit, OnDestroy {
   contractdurationlist: string[];
-
+contractDuration: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
 
   populateContractduration() {
-    this.contractdurationlist=this.appService.getContractduration();
-  }  
+    this.contractdurationlist = this.appService.getContractduration();
+  }
 
+  setDuration(val) {
+    this.contractDuration = val;
+  }
 
   ngOnInit() {
   this.populateContractduration();
