@@ -29,7 +29,7 @@ export const environment = {
 
 
     JobdetailsBasicInfoEndpoint:
-        'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?customerId=1&jobId=1000100',
+        'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
         JobdetailsStatisticsEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?jobId=1000100',

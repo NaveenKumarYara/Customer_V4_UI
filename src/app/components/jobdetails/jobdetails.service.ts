@@ -41,8 +41,9 @@ export class JobdetailsService {
     return Observable.throw(errMsg);
   }
 
-  getJobDetailsBasicInfo(): Observable<JobdetailsBasicInfo> {
-    const url = environment.JobdetailsBasicInfoEndpoint;
+  getJobDetailsBasicInfo(customerId:number,jobId:number): Observable<JobdetailsBasicInfo> {
+    const url = environment.JobdetailsBasicInfoEndpoint + 
+    'customerId='+customerId+'&jobId='+jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
       .debounceTime(1000)
       .catch(

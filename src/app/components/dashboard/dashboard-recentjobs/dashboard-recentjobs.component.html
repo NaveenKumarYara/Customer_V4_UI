@@ -20,7 +20,7 @@
 </mat-progress-spinner>
       <div class="card" *ngFor="let recentjob of recentjoblist.Jobs; let i=index">
       <div class="header">
-          <h2>
+          <h2 (click)="ViewJobdetails(recentjoblist.CustomerId,recentjob.UserId,recentjob.JobId)">
               {{recentjob.JobTitle}}
           </h2>
           <span class="status status--purple">{{recentjob.JobStatus}}</span>

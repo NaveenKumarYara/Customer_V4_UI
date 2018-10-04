@@ -29,7 +29,9 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   jobstatistics: Jobstatistics;
-  jobid = 1000100;
+  customerId:any;
+  userId:any;
+  jobid :any;
   statusid = 0;
   uploadProfile = 0;
   fileUploadForm: FormGroup;
@@ -39,7 +41,11 @@ export class ViewJobdetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder
-   ) { }
+   ) { 
+    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+    this.userId = JSON.parse(sessionStorage.getItem('userId'));
+    this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+   }
   showDetailadvancesearch = false;
   openDialog() {
     const abc = {
@@ -161,8 +167,9 @@ export class ViewJobdetailsComponent implements OnInit {
     //   });
     // }
 
-  populateJobsBasicInfo() {
-    return this.jobdetailsservice.getJobDetailsBasicInfo().subscribe(res => {
+  populateJobsBasicInfo(customerId,jobid) {
+    debugger
+    return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId,this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
@@ -213,7 +220,7 @@ export class ViewJobdetailsComponent implements OnInit {
     
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
 
-    this.populateJobsBasicInfo();
+    this.populateJobsBasicInfo(this.customerId,this.jobid);
     this.populateJobsStaticInfo();
     this.fileUploadForm = this.fb.group({
       'userId': [5, Validators.required],

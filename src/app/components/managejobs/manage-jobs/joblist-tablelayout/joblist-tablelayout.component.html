@@ -3,7 +3,7 @@
 
           <header>
             <div class="job-details">
-              <h3 class="medium">{{job.JobTitle}}</h3>
+              <h3 class="medium" (click)="ViewJobdetails(joblist.CustomerId,job.UserId,job.JobId)">{{job.JobTitle}}</h3>
               <div class="status pending">{{job.JobStatus}}</div>
               <div class="meta">
                 <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
