@@ -32,6 +32,7 @@ export class ViewJobdetailsComponent implements OnInit {
   customerId:any;
   userId:any;
   jobid :any;
+  viewJobJobId:any;
   statusid = 0;
   uploadProfile = 0;
   fileUploadForm: FormGroup;
@@ -45,6 +46,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+  
    }
   showDetailadvancesearch = false;
   openDialog() {
@@ -84,7 +86,7 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      this.populateJobsStaticInfo();
+      this.populateJobsStaticInfo(this.jobid);
       this.updateappliedstatus();
       console.log('Dialog result: ${result}');
     });
@@ -92,50 +94,57 @@ export class ViewJobdetailsComponent implements OnInit {
   // toggleChild() {
   //   this.showVar = !this.showVar;
   //    }
+  ViewJobdetailsModel(customerId,viewJobJobId)
+  {
+    sessionStorage.setItem('customerId', JSON.stringify(customerId));
+    sessionStorage.setItem('viewJobJobId', JSON.stringify(viewJobJobId));
+    this.dialog.open(ViewjobdetailsmodelComponent,
+      {
+        width: '1000px',
+        position: {right : '0px'},
+        height : '750px',       
+        // closeOnNavigation:false,
+        // disableClose:true
+      }
+    );
 
-  updateallcandidatesstatus() {
-    this.jobid = 1000100;
-    this.statusid = 0;
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
   }
-  updatesuggestedstatus() {
-    this.jobid = 1000003; // what is the status id for suggested why api looks differe from others
+  updateallcandidatesstatus() {
+    this.statusid = 0;
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
+  }
+  updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others
     this.statusid=15;
     // this.PopulateJobdetailProfiles();
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
   }
-  updateappliedstatus() {
-    this.jobid = 1000100; // 1000080;
+  updateappliedstatus() {// 1000080;
     this.statusid = 4;
     // console.log(this.statusid);
     // this.PopulateJobdetailProfiles();
     // console.log(this.jobid);
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
   }
-  updateshortlistedstatus() {
-    this.jobid = 1000100; // 1000007;
+  updateshortlistedstatus() { // 1000007;
     this.statusid = 5;
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
   }
-  updateinterviewedstatus() {
-    this.jobid = 1000100; // 1000007;
+  updateinterviewedstatus() { // 1000007;
     this.statusid = 7;
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
   }
-  updatehiredstatus() {
-    this.jobid = 1000100; // 1000028;
+  updatehiredstatus() { // 1000028;
     this.statusid = 11;
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
   }
 
   updaterejectedstatus() {
-    this.jobid = 1000100; // 1000024;
     this.statusid = 9;
-    this.child.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.child.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
    }
 
     uploadprofiles() {
-       this.jobid = 1000100; // 1000024;
+       this.jobid;
     }
     // getFileDetails(e) {
     //   let request = '';
@@ -168,15 +177,14 @@ export class ViewJobdetailsComponent implements OnInit {
     // }
 
   populateJobsBasicInfo(customerId,jobid) {
-    debugger
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId,this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
 
-  populateJobsStaticInfo() {
-    return this.jobdetailsservice.getJobDetailsStatisticsInfo().subscribe(res => {
+  populateJobsStaticInfo(jobid) {
+    return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.jobid).subscribe(res => {
       this.jobstatistics = res;
     });
   }
@@ -221,7 +229,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
 
     this.populateJobsBasicInfo(this.customerId,this.jobid);
-    this.populateJobsStaticInfo();
+    this.populateJobsStaticInfo(this.jobid);
     this.fileUploadForm = this.fb.group({
       'userId': [5, Validators.required],
       'Url': ['', Validators.nullValidator],

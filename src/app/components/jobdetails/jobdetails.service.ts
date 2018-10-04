@@ -51,8 +51,8 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailCustomer(): Observable<GetJobDetailCustomer> {
-    const url = environment.JobDetailsofCustomer;
+  getJobDetailCustomer(customerId:number,jobId:number): Observable<GetJobDetailCustomer> {
+    const url = environment.JobDetailsofCustomer+'customerId='+customerId+'&jobId='+jobId;
     return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
@@ -60,8 +60,8 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailsStatisticsInfo(): Observable<Jobstatistics> {
-    const url = environment.JobdetailsStatisticsEndpoint;
+  getJobDetailsStatisticsInfo(jobId:number): Observable<Jobstatistics> {
+    const url = environment.JobdetailsStatisticsEndpoint+'jobId='+jobId;
     return this.http.get<Jobstatistics>(url)
       .debounceTime(1000)
       .catch(
@@ -69,8 +69,8 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailsComments(): Observable<JobComments[]> {
-    const url = environment.GetJobDetialCustomerComments;
+  getJobDetailsComments(jobId:number): Observable<JobComments[]> {
+    const url = environment.GetJobDetialCustomerComments +'jobId='+jobId;;
     return this.http.get<JobComments[]>(url)
       .debounceTime(1000)
       .catch(
@@ -87,8 +87,8 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
       );
   }
 
-  getJobDetailsProfileInfo(jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
-    const url = environment.JobdetailsProfileEndpoint +
+  getJobDetailsProfileInfo(customerId:number,userId:number,jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsProfileEndpoint + 'customerId='+customerId+'&userId=' +userId+
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=0&pageNumber=1&noOfRows=6';
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
@@ -96,8 +96,8 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
         this.handleError
       );
   }
-  getJobDetailsSuggestedProfileInfo(jobid: number): Observable<JobdetailsProfile[]> {
-    const url = environment.JobdetailsSuggestedProfileEndpoint +
+  getJobDetailsSuggestedProfileInfo(customerId:number,userId:number,jobid: number): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsSuggestedProfileEndpoint +'customerId='+customerId+'&userId=' +userId+
       '&jobId=' + jobid + '&sortBy=0&pageNumber=1&noOfRows=6';
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)

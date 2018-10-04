@@ -19,12 +19,17 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
    jobdetailsprofiles: JobdetailsProfile[] = [];
    matchingDetails : MatchingDetails;
-
+   customerId:any;
+   userId:any;
   @Input() jobid: number;
   @Input() statusid: number;
  // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
   constructor(private router: Router, private jobdetailsservice: JobdetailsService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+      this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+      this.userId = JSON.parse(sessionStorage.getItem('userId'));
+      this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+     }
   OpenChatboxDialog() {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
 
@@ -77,21 +82,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  PopulateJobdetailProfiles (jobid, statusid) {
+  PopulateJobdetailProfiles (customerId,userid,jobid, statusid) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;
     }
     if(this.statusid ===15)
     {
-      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.jobid).subscribe(res => {
+      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId,this.userId,this.jobid).subscribe(res => {
         this.jobdetailsprofiles = res;
       });
     }
     else{
 
     }
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.jobid, this.statusid).subscribe(res => {
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId,this.userId,this.jobid, this.statusid).subscribe(res => {
       this.jobdetailsprofiles = res;
     });
   }
@@ -184,7 +189,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         }
       });
     });
-    this.PopulateJobdetailProfiles(this.jobid, this.statusid);
+    this.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
     console.log('abc');
   }
   ngOnChange() {

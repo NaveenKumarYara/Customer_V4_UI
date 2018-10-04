@@ -11,7 +11,7 @@
                     <path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
                   </svg>
                 </a>
-                <h3 class="title">{{jobdetailsbasicinfo?.JobTitle}}</h3>
+                <h3 class="title" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">{{jobdetailsbasicinfo?.JobTitle}}</h3>
                 <div class="status shortlisted">
                   {{jobdetailsbasicinfo?.JobStatus}}
                 </div>
@@ -55,7 +55,7 @@
             <div>
               <button class="btn btn-border">Conversations</button>
               <!-- <button class="btn btn-filled" data-toggle="modal" data-target="#selectedJobDetails">View Job Detail (Static HTML)</button> -->
-              <button class="btn btn-filled" mat-button (click)="openDialog()">View Job Detail</button>
+              <button class="btn btn-filled" mat-button  (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">View Job Detail</button>
             </div>
 
           </div>

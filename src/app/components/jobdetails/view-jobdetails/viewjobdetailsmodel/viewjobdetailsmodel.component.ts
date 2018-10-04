@@ -14,24 +14,31 @@ export interface DialogData {
 })
 export class ViewjobdetailsmodelComponent  implements OnInit {
   // @Input() jobid: number;
+  customerId:any;
+  userId:any;
+ jobid: number;
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments : JobComments[];
-  constructor(private router: Router, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-  PopulateJobdetail () { 
-    return this.jobdetailsservice.getJobDetailCustomer().subscribe(res => {
+  constructor(private router: Router, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+    this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
+   }
+  PopulateJobdetail (customerId,jobid) { 
+    debugger
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId,this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
     });
     
 }
-PopulateJobComments () { 
-  return this.jobdetailsservice.getJobDetailsComments().subscribe(res => {
+PopulateJobComments (jobid) { 
+  return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
     this.jobComments = res;
   });
   
 }
 ngOnInit() {
-  this.PopulateJobdetail();
-  this.PopulateJobComments();
+  this.PopulateJobdetail(this.customerId,this.jobid);
+  this.PopulateJobComments(this.jobid);
   console.log('abc');
 }
 }

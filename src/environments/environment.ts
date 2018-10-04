@@ -15,7 +15,7 @@ export const environment = {
     listofJobsEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?",
     activatejobEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/ActivateJob?jobId=1000108",
     deactivatejobEndpoint: "http://api.tenendus.com:1090/JobsAPI/api/DeleteJob?jobId=1000108&customerId=1&isActive=false",
-    JobDetailsofCustomer:"http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?customerId=1&jobId=1000100",
+    JobDetailsofCustomer:"http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?",
 
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
@@ -32,16 +32,16 @@ export const environment = {
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
         JobdetailsStatisticsEndpoint:
-        'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?jobId=1000100',
+        'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?',
 
     JobdetailsProfileEndpoint:
-        'http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?customerId=1&userId=5',
+        'http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?',
 
     MatchingDetailEndPoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage',
 
     JobdetailsSuggestedProfileEndpoint:
-        'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?customerId=1&userId=5',
+        'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
 
     RecentJobs: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
 
@@ -77,7 +77,7 @@ export const environment = {
 
     GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
 
-    GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?jobId=1000100',
+    GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 
     CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?'
 };
