@@ -11,7 +11,7 @@ export class HeaderComponent {
   }
   Logout() {
     sessionStorage.clear();
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home' , { replaceUrl: true });
 }
 ngInit()
 {
