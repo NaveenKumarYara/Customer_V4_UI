@@ -42,7 +42,7 @@ export class ManageJobService {
 
   getJobDetails(customerId:number,userId:number,sortBy : number,count: number): Observable<JobDetails[]> {
     const url = environment.listofJobsEndpoint +
-    'customerId=' +customerId +'&userId='+userId+ '&sortBy='+sortBy+'&status=0&pageNumber=1&numberOfRows=5';
+    'customerId=' +customerId +'&userId='+userId+ '&sortBy='+sortBy+'&status=0&pageNumber=1'+'&numberOfRows='+count;
     return this.http.get<JobDetails[]>(url)
       .debounceTime(1000)     
       .catch(
