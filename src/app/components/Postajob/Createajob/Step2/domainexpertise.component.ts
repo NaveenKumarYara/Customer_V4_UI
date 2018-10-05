@@ -20,11 +20,11 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
   domain: '';
   domainlist: GetDomain[];
-  getDomainList: GetDomain[];
+  // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
   getDomain: GetDomain;
 
-  addDomainList: PjDomain[]; 
+  addDomainList: PjDomain[];
   domainId: number;
   domaintitleloading = false;
   selecteddomaininput = new Subject<string>();
@@ -44,8 +44,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 
   }
   changeValue(val) {
-    this.getDomain=  this.getDomainList.find(s => s.DomainId === val); 
-    this.domainId = val;
+    this.getDomain = val; // this.getDomainList.find(s => s.DomainId === val);
+   // this.domainId = val;
   }
   private deleteDomain(index: number) {
     this.appService.deleteDomain(index);
@@ -54,9 +54,9 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   ngOnInit() {
   this.getDomains();
     this.domainlist = this.appService.getDomainlist();
-    this.domains.subscribe(domainsList => {
-      this.getDomainList = domainsList as GetDomain[];
-    });
+    // this.domains.subscribe(domainsList => {
+    //   this.getDomainList = domainsList as GetDomain[];
+    // });
     this.subscription = this.appService.domainChanged
       .subscribe(
       (domain: GetDomain[]) => {

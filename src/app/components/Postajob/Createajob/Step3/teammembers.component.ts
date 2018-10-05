@@ -18,7 +18,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   teammembers: '';
-  teammemberslist: string[];
+  teammemberslist: CustomerUsers[];
 
   addedteammembers: '';
   addedteammemberslist: PjTechnicalTeam[];
@@ -27,18 +27,18 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   usersloading: boolean;
   selectedUserName = '';
   managersList: Observable<CustomerUsers[]>;
-  completeMembersList: CustomerUsers[];
+  // completeMembersList: CustomerUsers[];
   getTeammember: CustomerUsers;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
-  changeTeam(id: number) {
-    this.getTeammember = this.completeMembersList.find(s => s.UserId === id);
+  changeTeam(val) {
+    this.getTeammember = val;
   }
   private addTeammembers() {
-    const newDomain = new CustomerUsers();
-    newDomain.FirstName = this.selectedUserName;
-    this.appService.addTeammember(this.selectedUserName);
+    // const newDomain = new CustomerUsers();
+    // newDomain.FirstName = this.selectedUserName;
+    this.appService.addTeammember(this.getTeammember);
   }
 
   private deleteTeammember(index: number) {
@@ -60,13 +60,13 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.getcustomerusers();
-    this.managersList.subscribe(countries => {
-      this.completeMembersList = countries as CustomerUsers[];
-    });
+    // this.managersList.subscribe(countries => {
+    //   this.completeMembersList = countries as CustomerUsers[];
+    // });
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
-      (teammemberlist: string[]) => {
+      (teammemberlist: CustomerUsers[]) => {
         this.teammemberslist = teammemberlist;
         }
       );

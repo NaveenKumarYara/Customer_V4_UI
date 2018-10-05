@@ -23,10 +23,12 @@ contractDuration: string;
 
   setDuration(val) {
     this.contractDuration = val;
+    this.appService.updatecDuration(this.contractDuration);
   }
 
   ngOnInit() {
   this.populateContractduration();
+  this.appService.currentContractDuration.subscribe(x => this.contractDuration = x);
   }
 
   ngOnDestroy() {

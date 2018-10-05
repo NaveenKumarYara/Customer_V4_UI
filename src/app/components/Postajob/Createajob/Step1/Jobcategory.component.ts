@@ -6,7 +6,8 @@ import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
-
+import { CategoryList } from '../../models/jobPostInfo';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-steps-step1-jobcategory',
@@ -15,12 +16,16 @@ import { of } from 'rxjs/observable/of';
 
 export class JobcategoryComponent implements OnInit {
 
-  jobcategorylist: Observable<string[]>;
-  selectedCategory: any;
+  jobcategorylist: Observable<CategoryList[]>;
+  selectedCategory: CategoryList;
 
   jobtitleloading = false;
   jobcategoryinput = new Subject<string>();
 
+  // getJobCategories: CategoryList[];
+  // getJobCategory: CategoryList;
+
+  private subscription: Subscription;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -40,13 +45,23 @@ export class JobcategoryComponent implements OnInit {
     );
   }
 
-  updateJobCategory() {
-    this.appService.updateJobCategory(this.selectedCategory);
-  }
+  updateJobCategory(val) {
+   this.appService.updateJobCategory(val);
+  } // this.getJobCategory =  this.getJobCategories.find(s => s.Category === val);
+   // this.appService.updateJobCategory(this.getJobCategory);
 
   ngOnInit() {
-    this.searchJobCategory();
+    this.searchJobCategory(); 
     this.appService.currentcategorytitle.subscribe(x => this.selectedCategory = x);
   }
+  // this.jobcategorylist.subscribe(categoryLst => {
+    //   this.getJobCategories = categoryLst as CategoryList[];
+    // });
+    // this.subscription = this.appService.currentcategorytitle
+    //   .subscribe(
+    //   (domain: CategoryList) => {
+    //     this.domainlist = domain;
+    //     }
+    //   );
 
 }

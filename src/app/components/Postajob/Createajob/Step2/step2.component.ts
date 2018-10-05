@@ -8,6 +8,11 @@ import { NoofopeningsComponent } from './noofopenings.component';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { Step1Component } from '../Step1/step1.component';
+import { JobcategoryComponent } from '../Step1/Jobcategory.component';
+import { JobdetailsComponent } from '../Step1/Jobdetails.component';
+import { JobprofileComponent } from '../Step1/Jobprofile.component';
+import { JobResponsibilitiesComponent } from '../Step1/Jobresponsibilities.component';
+import { JobskillsetComponent } from '../Step1/Jobskillset.component';
 
 @Component({
   selector: 'app-steps-step2',
@@ -15,7 +20,13 @@ import { Step1Component } from '../Step1/step1.component';
   styleUrls: ['./step2.component.css']
 })
 export class Step2Component implements OnInit {
-  @ViewChild(Step1Component) step1: Step1Component;
+  // @ViewChild(Step1Component) step1: Step1Component;
+  @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
+  @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
+  @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
+  @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
+  @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -47,7 +58,7 @@ export class Step2Component implements OnInit {
   }
 
   postJob(step) {
-    this.insertJob.JobCategoryId = parseInt(this.appService.jobcategory.value, 10);
+    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';

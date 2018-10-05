@@ -9,6 +9,16 @@ import { InterviewTypeComponent } from './interviewtype.component';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { Step2Component } from '../Step2/step2.component';
+import { JobcategoryComponent } from '../Step1/Jobcategory.component';
+import { JobdetailsComponent } from '../Step1/Jobdetails.component';
+import { JobprofileComponent } from '../Step1/Jobprofile.component';
+import { JobResponsibilitiesComponent } from '../Step1/Jobresponsibilities.component';
+import { JobskillsetComponent } from '../Step1/Jobskillset.component';
+import { DomainExpertiseComponent } from '../Step2/domainexpertise.component';
+import { LocationwiseJobsComponent } from '../Step2/locationwisejobs.component';
+import { NoofopeningsComponent } from '../Step2/noofopenings.component';
+import { PersonalityTypeComponent } from '../Step2/PersonalityType.component';
+import { QualificationsComponent } from '../Step2/qualifications.component';
 
 @Component({
   selector: 'app-steps-step3',
@@ -17,9 +27,21 @@ import { Step2Component } from '../Step2/step2.component';
 })
 export class Step3Component implements OnInit {
 
-  @ViewChild(Step2Component) step2: Step2Component;
+  // @ViewChild(Step2Component) step2: Step2Component;
+  @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
+  @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
+  @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
+  @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
+  @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  
+  @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
+  @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
+  @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
+  @ViewChild(PersonalityTypeComponent) personalityType: PersonalityTypeComponent;
+  @ViewChild(QualificationsComponent) qualification: QualificationsComponent;
+  
   @ViewChild(ContractDurationComponent) contractDuration: ContractDurationComponent;
-  @ViewChild(ContractExtensionComponent) locations: ContractExtensionComponent;
+  @ViewChild(ContractExtensionComponent) contractExtension: ContractExtensionComponent;
   @ViewChild(EmploymentTypeComponent) empType: EmploymentTypeComponent;
   @ViewChild(InterviewTypeComponent) intwType: InterviewTypeComponent;
   @ViewChild(ReportingManagerComponent) reporting: ReportingManagerComponent;
@@ -53,7 +75,7 @@ export class Step3Component implements OnInit {
 
 
   postJob(step) {
-    this.insertJob.JobCategoryId = parseInt(this.appService.jobcategory.value, 10);
+    this.insertJob.JobCategoryId =1;//this.appService.jobcategory.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';

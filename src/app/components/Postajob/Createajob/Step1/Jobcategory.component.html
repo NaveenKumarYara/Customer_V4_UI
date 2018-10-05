@@ -6,12 +6,12 @@
   [items]="jobcategorylist | async" 
   placeholder="Ex: Adobe Photoshop" 
   bindLabel="Category"
-  bindValue="Category" [typeahead]="jobcategoryinput" 
+  bindValue="JobCategoryId" [typeahead]="jobcategoryinput" 
   [hideSelected]="true" [loading]="jobtitleloading"
-  [(ngModel)]="selectedCategory" [virtualScroll]="true" (change)="updateJobCategory()">
+  [(ngModel)]="selectedCategory" [virtualScroll]="true" (change)="updateJobCategory($event)">
 </ng-select>
   <ul class="data-list">
-    <li *ngIf="selectedCategory.length > 0">{{selectedCategory}}</li>
+    <li *ngIf="selectedCategory?.Category && selectedCategory!=undefined &&  selectedCategory?.Category.length > 0"> {{selectedCategory.Category}} </li>
   </ul>
 </div>
 

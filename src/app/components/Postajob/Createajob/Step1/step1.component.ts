@@ -45,7 +45,7 @@ export class Step1Component implements OnInit {
   ngOnInit() {
   }
   postJob(step) {
-    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory;
+    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';

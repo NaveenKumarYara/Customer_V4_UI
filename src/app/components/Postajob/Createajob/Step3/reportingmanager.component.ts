@@ -19,19 +19,22 @@ import { Observable } from 'rxjs/Observable';
 
 export class ReportingManagerComponent implements OnInit, OnDestroy {
 
+  selectedManager: CustomerUsers;
+  reportingmanagersList: Observable<CustomerUsers[]>;
+
   selectedInput = new Subject<string> ();
   usersload: boolean;
-  reportingmanagersList: Observable<CustomerUsers[]>;
-  managersAdd: PjTechnicalTeam[] = [];
-  selectedItem: any;
+  // managersAdd: PjTechnicalTeam[] = [];
+  // selectedItem: any;
   private subscription: Subscription;
 
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
-  updateManager() {
-    this.appService.updateManager(this.selectedItem.toString());
+  updateManager(val) {
+   // this.appService.updateManager(this.selectedItem.toString());
+    this.appService.updateManager(val);
   }
 
   // getjobaccessto1000042
@@ -52,7 +55,9 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
      this.getcustomerusers();
-    // this.appService.currentManager.subscribe(x => this.selectedInput = x);
+      this.appService.currentcustomerUsers.subscribe(x => this.selectedManager = x);
+    }
+     // this.appService.currentManager.subscribe(x => this.selectedInput = x);
     // this.getcustomerusers();
     // this.teammemberslist = this.appService.getTeammembers();
     // this.subscription = this.appService.teammembersChanged
@@ -62,7 +67,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     //     }
     //   );
 
-  }
+
 
   ngOnDestroy() {
   }
