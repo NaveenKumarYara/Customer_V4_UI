@@ -8,13 +8,13 @@ import { environment } from '../environments/environment';
 import { Jobskills } from '../models/jobskills.model';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs';
-import { Qualifications, AddQualification } from '../models/qualifications.model';
+import { Qualifications } from '../models/qualifications.model';
 import { Notification } from '../models/notifications';
 import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc } from './components/Postajob/models/jobPostInfo';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,12 +31,12 @@ export class AppService {
 
   private domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();
-  private adddomain: PjDomain[] = [];
+    adddomain: PjDomain[] = [];
   adddomainChanged = new Subject<PjDomain[]>();
   private qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
-  private addqualifications: AddQualification[] = [];
-  addqualificationsChanged = new Subject<AddQualification[]>();
+   addqualifications: PjEducationDetails[] = [];
+  addqualificationsChanged = new Subject<PjEducationDetails[]>();
 
   private customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
@@ -47,6 +47,14 @@ export class AppService {
 
   private contractduration: string[] = [
     '3 months', '6 months', '1 year', 'more than 1 year'
+  ];
+
+  private noOfOpeningsList: number[] = [
+    1, 2, 3
+  ];
+
+  private completeDescriptionList: boolean[] = [
+    true, false
   ];
 
   private contractextension: string[] = [
@@ -62,15 +70,38 @@ export class AppService {
   contractExtension = new BehaviorSubject('');
   currentContractExtension = this.contractExtension.asObservable();
 
-  interviewType = new BehaviorSubject('');
+  myInterviewType = new InterviewType();
+  interviewType = new BehaviorSubject(this.myInterviewType);
   currentInterviewType = this.interviewType.asObservable();
 
-  employmentType = new BehaviorSubject('');
+  myEmploymentType = new EmploymentType();
+  employmentType = new BehaviorSubject(this.employmentType);
   currentEmploymentType = this.employmentType.asObservable();
-
 
   jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
+
+  pMinexp: number;
+  minExperience = new BehaviorSubject(this.pMinexp);
+  currentminExp = this.minExperience.asObservable();
+
+  pMaxexp: number;
+  maxExperience = new BehaviorSubject(this.pMaxexp);
+  currentmaxExp = this.maxExperience.asObservable();
+
+  myDescription: boolean;
+  hasDescription = new BehaviorSubject(this.myDescription);
+  currentDescriptionChecked = this.hasDescription.asObservable();
+
+  description = new BehaviorSubject('');
+  currentDescription = this.description.asObservable();
+
+  myopenings: number;
+  noofOpenings = new BehaviorSubject(this.myopenings);
+  currentOpenings = this.noofOpenings.asObservable();
+
+  location = new BehaviorSubject('');
+  currentlocation = this.location.asObservable();
 
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
@@ -80,14 +111,31 @@ export class AppService {
     this.contractExtension.next(cExtension);
   }
 
-  updateInterviewType(iType: string) {
+  updateInterviewType(iType: InterviewType) {
     this.interviewType.next(iType);
   }
 
-  updateEmploymentType(eType: string) {
+  updateEmploymentType(eType: EmploymentType) {
     this.employmentType.next(eType);
   }
-
+  updateMinExp(minexp: number) {
+    this.minExperience.next(minexp);
+  }
+  updateMaxExp(maxexp: number) {
+    this.maxExperience.next(maxexp);
+  }
+  updateOpenings(openings: number) {
+    this.minExperience.next(openings);
+  }
+  updatehaddescription(isdescription: boolean) {
+    this.hasDescription.next(isdescription);
+  }
+  updatedescription(isdescription: string) {
+    this.description.next(isdescription);
+  }
+  updateLocation(loc: string) {
+    this.location.next(loc);
+  }
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
   }
@@ -147,6 +195,17 @@ export class AppService {
 
   updateSkillType(skilltype: string) {
     this.selectedskilltype.next(skilltype);
+  }
+
+  personTypes: PjDisc[] = [];
+  personTypeChanged = new Subject<PjDisc[]>();
+
+  addPersonType(personType: PjDisc) {
+      this.personTypes.push(personType);
+      this.personTypeChanged.next(this.personTypes.slice());
+  }
+  getPersonTypes() {
+    return this.personTypes.slice();
   }
 
    primaryjobskills: Jobskills[] = [];
@@ -218,7 +277,7 @@ export class AppService {
   private teammembers: CustomerUsers[] = [];
   teammembersChanged = new Subject<CustomerUsers[]>();
 
-  private addedteammembers: PjTechnicalTeam[] = [];
+    addedteammembers: PjTechnicalTeam[] = [];
   addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
 
   getTeammembers() {
@@ -314,8 +373,8 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
         this.handleError
       );
   }
-  getNotifications(userId:number): Observable<Notification[]> {
-    const url = environment.NotificationEndPoint+'userId='+userId;
+  getNotifications(userId: number): Observable<Notification[]> {
+    const url = environment.NotificationEndPoint + 'userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -330,7 +389,7 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
   addQualifications(qualification: Qualifications) {
     this.qualifications.push(qualification);
     this.qualificationsChanged.next(this.qualifications.slice());
-    const addQlfcn = new AddQualification();
+    const addQlfcn = new PjEducationDetails();
     addQlfcn.QualificationId = qualification.QualificationId;
       addQlfcn.IsActive = true;
     this.addqualifications.push(addQlfcn);
@@ -389,7 +448,12 @@ postjob(body) {
   getContractduration() {
     return this.contractduration;
   }
-
+  getHasDescription() {
+    return this.completeDescriptionList;
+  }
+  getnoofopenings() {
+    return this.noOfOpeningsList;
+  }
   getContractExtension() {
     return this.contractextension;
   }

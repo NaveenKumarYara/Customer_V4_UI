@@ -26,7 +26,7 @@ export class Step2Component implements OnInit {
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
-  
+
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -58,7 +58,7 @@ export class Step2Component implements OnInit {
   }
 
   postJob(step) {
-    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
+    this.insertJob.JobCategoryId =  this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';

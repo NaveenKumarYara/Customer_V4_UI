@@ -17,10 +17,11 @@ location: string;
     private router: Router, private appService: AppService) {
   }
 
-selectLocation(loc) {
+  selectLocation(loc) {
   this.location = loc;
-console.log(loc);
-}
+  this.appService.updateLocation(this.location);
+    console.log(loc);
+  }
 
   populateLocationwiseJobs() {
     this.appService.getLocationwisejobs().subscribe(res => {
@@ -30,6 +31,7 @@ console.log(loc);
 
   ngOnInit() {
     this.populateLocationwiseJobs();
+    this.appService.currentlocation.subscribe(x => this.location = x);
   }
 
   ngOnDestroy() {

@@ -14,6 +14,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 export class EmploymentTypeComponent implements OnInit, OnDestroy {
  employmenttypelist: any;
   employmentTypeId: number;
+  employmentType: EmploymentType;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -25,11 +26,13 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
   }
   selectEmpType(val) {
-    this.employmentTypeId = val;
+    // this.employmentTypeId = val.employmentTypeId;
+    this.appService.updateEmploymentType(val);
   }
 
   ngOnInit() {
     this.populateEmploymentType();
+    this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
   }
 
   ngOnDestroy() {

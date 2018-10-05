@@ -5,6 +5,7 @@ import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject, Observable } from 'rxjs';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
+import { InterviewType } from '../../../../../models/interviewtype.model';
 
 @Component({
   selector: 'app-steps-step3-interviewtype',
@@ -13,7 +14,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 
 export class InterviewTypeComponent implements OnInit, OnDestroy {
   interviewtypelist: any;
-  interviewType:number;
+  interviewType: InterviewType;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -25,11 +26,13 @@ export class InterviewTypeComponent implements OnInit, OnDestroy {
 
   }
   setInterviewType(type) {
-    this.interviewType = type;
+    // this.interviewType = type;
+    this.appService.updateInterviewType(type);
   }
 
   ngOnInit() {
     this.populateInterviewType();
+    this.appService.currentInterviewType.subscribe(x => this.interviewType = x);
   }
 
   ngOnDestroy() {

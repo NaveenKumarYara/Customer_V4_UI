@@ -8,7 +8,8 @@ import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
-import { Qualifications, AddQualification } from '../../../../../models/qualifications.model';
+import { Qualifications } from '../../../../../models/qualifications.model';
+import { PjEducationDetails } from '../../models/jobPostInfo';
 
 @Component({
   selector: 'app-steps-step2-qualifications',
@@ -24,7 +25,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
   qualificationtitleloading = false;
   selectedqualificationinput = new Subject<string>();
   qualificationList: Qualifications[];
-  addqualificationList: AddQualification[];
+  addqualificationList: PjEducationDetails[];
 convertObservable: Qualifications[];
 selectedQualification: Qualifications;
   constructor(private route: ActivatedRoute,
@@ -110,7 +111,7 @@ this.selectedQualification = this.convertObservable.find(s => s.QualificationId 
     this.addqualificationList = this.appService.getaddaddedQualifications();
     this.addedsubscription = this.appService.addqualificationsChanged
       .subscribe(
-      (qualifications: AddQualification[]) => {
+      (qualifications: PjEducationDetails[]) => {
         this.addqualificationList = qualifications;
         }
       );

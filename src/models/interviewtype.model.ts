@@ -1,4 +1,4 @@
 export class InterviewType {
-  InterviewTypeId: string;
-  InterviewType: string;  
+  InterviewTypeId: number;
+  InterviewType: string;
 }

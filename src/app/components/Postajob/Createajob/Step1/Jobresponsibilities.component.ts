@@ -97,6 +97,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       itemArr.push(item);
       this.roleId.RoleId = item.RoleId;
         this.roleIdList.push(this.roleId);
+        // this.appService.addResponsibilities(this.responsibilities);
     } else {
       const index = itemArr.indexOf(itemSearch[0]);
       itemArr[index].quantity = item.quantity;

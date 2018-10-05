@@ -44,6 +44,14 @@ export class JobdetailsComponent implements OnInit {
     );
   }
 
+  updateMinExp() {
+    this.appService.updateMinExp(this.minExperience);
+  }
+
+  updateMaxExp() {
+    this.appService.updateMaxExp(this.maxExperience);
+  }
+
   updateJobTitle() {
     this.appService.updateJobtitle(this.selectedTitle);
   }
@@ -94,6 +102,8 @@ export class JobdetailsComponent implements OnInit {
     this.getExpYears();
     this.searchJobTitle();
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
+    this.appService.currentminExp.subscribe(x => this.minExperience = x);
+    this.appService.currentmaxExp.subscribe(x => this.maxExperience = x);
   }
 
 }

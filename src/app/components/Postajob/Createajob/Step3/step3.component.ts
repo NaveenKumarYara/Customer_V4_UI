@@ -33,13 +33,13 @@ export class Step3Component implements OnInit {
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
-  
+
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
   @ViewChild(PersonalityTypeComponent) personalityType: PersonalityTypeComponent;
   @ViewChild(QualificationsComponent) qualification: QualificationsComponent;
-  
+
   @ViewChild(ContractDurationComponent) contractDuration: ContractDurationComponent;
   @ViewChild(ContractExtensionComponent) contractExtension: ContractExtensionComponent;
   @ViewChild(EmploymentTypeComponent) empType: EmploymentTypeComponent;
@@ -75,7 +75,7 @@ export class Step3Component implements OnInit {
 
 
   postJob(step) {
-    this.insertJob.JobCategoryId =1;//this.appService.jobcategory.JobCategoryId;
+    this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId; // this.appService.jobcategory.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';
@@ -85,9 +85,9 @@ export class Step3Component implements OnInit {
     // this.insertJob.MaxExperienceId = this.step1.jobDetail.maxExperience;
     // this.insertJob.CompleteDescription = this.step1.jobProfile.hasCompleteDescription;
     // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
-     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat(this.appService.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
-    this.insertJob.EmploymentTypeId = 1;
+
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
     this.insertJob.SalaryTypeId = 1;
@@ -105,7 +105,7 @@ export class Step3Component implements OnInit {
     this.insertJob.EmploymentTypeId = this.empType.employmentTypeId;
     this.insertJob.ContractExtended = true;
     this.insertJob.ContractDuration = this.contractDuration.contractDuration;
-    this.insertJob.HiringProcessId = this.intwType.interviewType;
+    this.insertJob.HiringProcessId = this.intwType.interviewType.InterviewTypeId;
     this.insertJob.HiringManagerId = parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
     this.appService.postjob(this.insertJob).subscribe(data => {

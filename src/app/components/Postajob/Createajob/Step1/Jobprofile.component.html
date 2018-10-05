@@ -2,18 +2,20 @@
 <div class="form-group job-profile-group">
   <label for="" class="question">Do you have a complete description of the Job profile?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
-  <div class="clearfix" >
-    <label for="r1yes" class="radio">
-      <input type="radio" id="r1yes" (click)="setValue(true)" name="mode"  [value]="true" [(ngModel)]="hascompleteDescription" name="contactVia" class="radio-input" />
-      <span class="radio-btn"></span>
-      <span>Yes</span>
-    </label>
-    <label for="r2no" class="radio">
-      <input type="radio" id="r2no"  (click)="setValue(false)" name="mode" [value]="false" [(ngModel)]="hascompleteDescription" name="contactVia" class="radio-input" />
+  <div class="clearfix">
+    <label class="radio"  *ngFor="let type of hasCompleteDescriptionList">
+      <!-- <input type="radio" id="r1yes" (change)="setValue(true)"   [(ngModel)]="hasCompleteDescription" checked="hasCompleteDescription" name="contactVia" class="radio-input" /> -->
+       <input type="radio" [(ngModel)]="hasCompleteDescription" (change)="setValue(type)" name="contactVia"  class="radio-input" [value]="type">
+        <span class="radio-btn"></span> 
+        <span>{{type}}</span>
+      </label>
+    
+    <!-- <label for="r2no" class="radio">
+      <input type="radio" id="r2no"  (change)="setValue(false)"  [(ngModel)]="hasCompleteDescription"  checked="hasCompleteDescription" name="contactVia" class="radio-input" />
       <span class="radio-btn"></span>
       <span>No</span>
-    </label>
+    </label> -->
   </div>
-  <textarea name="" disabled="{{hascompleteDescription===false}}" id="completeDescription" [(ngModel)]="jobDescription"  class="form-control"></textarea>
+  <textarea name="" [disabled]="hasCompleteDescription === false" id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
 </div>
 

@@ -13,19 +13,24 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 
 export class ContractExtensionComponent implements OnInit, OnDestroy {
   contractextensionlist: string[];
- type: string;
+ contractExtension: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
- 
+
   populateContractExtension() {
     this.contractextensionlist = this.appService.getContractExtension();
+  }
+  setExtension(val) {
+    this.contractExtension = val;
+    this.appService.updatecExtension(this.contractExtension);
   }
 
 
 
   ngOnInit() {
     this.populateContractExtension();
+    this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
   }
 
   ngOnDestroy() {

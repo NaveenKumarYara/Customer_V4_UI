@@ -3,13 +3,13 @@
     <p class="description">Share details so we can find you the most eligible candadtes.</p>
     <div class="options">
       <div class="checkbox">
-        <label><input type="radio" (change)="Opening(1)" value="1"><span class="box">1 </span> </label>
+        <label><input type="radio" name="openg" (click)="Opening(1)" value="1"><span class="box">1 </span> </label>
       </div>
       <div class="checkbox">
-        <label><input type="radio" (change)="Opening(2)" value="2"><span class="box">2</span></label>
+        <label><input type="radio" name="openg" (click)="Opening(2)" value="2"><span class="box">2</span></label>
       </div>
       <div class="checkbox">
-        <label><input type="radio" (change)="Opening(3)" value="3"><span class="box">3</span></label>
+        <label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
       </div>
       <h4>OR</h4>
       <input type="text" class="form-control" (change)="Opening($event)" placeholder="Type">

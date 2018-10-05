@@ -8,12 +8,14 @@ import { AppService } from '../../../../app.service';
 })
 export class NoofopeningsComponent implements OnInit {
   noOfOpenings: number;
-  constructor(service: AppService) { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
   }
   Opening(val) {
 // this.service.
 this.noOfOpenings = val;
+this.appService.updateOpenings(this.noOfOpenings);
   }
 }

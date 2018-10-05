@@ -51,7 +51,7 @@ export class JobcategoryComponent implements OnInit {
    // this.appService.updateJobCategory(this.getJobCategory);
 
   ngOnInit() {
-    this.searchJobCategory(); 
+    this.searchJobCategory();
     this.appService.currentcategorytitle.subscribe(x => this.selectedCategory = x);
   }
   // this.jobcategorylist.subscribe(categoryLst => {
