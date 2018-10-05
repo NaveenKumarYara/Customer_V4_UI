@@ -14,7 +14,7 @@ import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList } from './components/Postajob/models/jobPostInfo';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -56,6 +56,12 @@ export class AppService {
     '1099'
   ];
 
+  contractDuration = new BehaviorSubject('');
+  currentContractDuration = this.contractDuration.asObservable();
+
+  updatecDuration(cDuration: string) {
+    this.contractDuration.next(cDuration);
+  }
 
   jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
@@ -70,21 +76,42 @@ export class AppService {
         this.handleError
       );
   }
-  private reportingManager = new BehaviorSubject('');
-  currentManager = this.reportingManager.asObservable();
+  // private reportingManager = new BehaviorSubject('');
+  // currentManager = this.reportingManager.asObservable();
 
-  updateManager(reportingManager: string) {
-    this.reportingManager.next(reportingManager);
+  // updateManager(reportingManager: string) {
+  //   this.reportingManager.next(reportingManager);
+  // }
+
+  myreportingManager = new CustomerUsers();
+  reportingManager = new BehaviorSubject(this.myreportingManager);
+  currentcustomerUsers = this.reportingManager.asObservable();
+
+
+  updateManager(customerUser: CustomerUsers) {
+    // this.jobcategory.push(jobcategories);
+    this.reportingManager.next(customerUser);
   }
 
-  jobcategory = new BehaviorSubject('');
+  // jobcategory = new BehaviorSubject('');
+  // currentcategorytitle = this.jobcategory.asObservable();
+  // jobcategoriesList: CategoryList[] = [];
+  // jobcategory  = new BehaviorSubject<CategoryList[]>(undefined); // = new CategoryList();
+  // currentcategorytitle = this.jobcategory.asObservable(); // .distinctUntilChanged(); // new Subject<CategoryList>();
+
+  //  jobcategory: CategoryList[] = [];
+  // currentcategorytitle = new Subject<CategoryList[]>();
+  myjobcategory = new CategoryList();
+  jobcategory = new BehaviorSubject(this.myjobcategory);
   currentcategorytitle = this.jobcategory.asObservable();
 
-  updateJobCategory(jobcategory: string) {
-    this.jobcategory.next(jobcategory);
+
+  updateJobCategory(jobcategories: CategoryList) {
+    // this.jobcategory.push(jobcategories);
+    this.jobcategory.next(jobcategories);
   }
 
-  searchJobCategory(categoryterm: string = null): Observable<string[]> {
+  searchJobCategory(categoryterm: string = null): Observable<CategoryList[]> {
     const url = environment.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
    return this.http.get<string[]>(url)
       .catch(
@@ -166,8 +193,8 @@ export class AppService {
   .catch(this.handleError);
   }
 
-  private teammembers: string[] = [];
-  teammembersChanged = new Subject<string[]>();
+  private teammembers: CustomerUsers[] = [];
+  teammembersChanged = new Subject<CustomerUsers[]>();
 
   private addedteammembers: PjTechnicalTeam[] = [];
   addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
@@ -178,11 +205,11 @@ export class AppService {
   getaddedTeammembers() {
     return this.addedteammembers.slice();
   }
-  addTeammember(teammember: string) {
+  addTeammember(teammember: CustomerUsers) {
     this.teammembers.push(teammember);
     this.teammembersChanged.next(this.teammembers.slice());
     const team = new PjTechnicalTeam();
-    team.UserId = parseInt(teammember, 10);
+    team.UserId = teammember.UserId;
     this.addedteammembers.push(team);
     this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
