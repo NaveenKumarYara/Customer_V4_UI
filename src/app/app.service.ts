@@ -30,9 +30,9 @@ export class AppService {
 
 
   private domain: GetDomain[] = [];
- domainChanged = new Subject<GetDomain[]>();
- private adddomain: PjDomain[] = [];
- adddomainChanged = new Subject<PjDomain[]>();
+  domainChanged = new Subject<GetDomain[]>();
+  private adddomain: PjDomain[] = [];
+  adddomainChanged = new Subject<PjDomain[]>();
   private qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
   private addqualifications: AddQualification[] = [];
@@ -59,12 +59,34 @@ export class AppService {
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
+  contractExtension = new BehaviorSubject('');
+  currentContractExtension = this.contractExtension.asObservable();
+
+  interviewType = new BehaviorSubject('');
+  currentInterviewType = this.interviewType.asObservable();
+
+  employmentType = new BehaviorSubject('');
+  currentEmploymentType = this.employmentType.asObservable();
+
+
+  jobtitle = new BehaviorSubject('');
+  currentjobtitle = this.jobtitle.asObservable();
+
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
   }
 
-  jobtitle = new BehaviorSubject('');
-  currentjobtitle = this.jobtitle.asObservable();
+  updatecExtension(cExtension: string) {
+    this.contractExtension.next(cExtension);
+  }
+
+  updateInterviewType(iType: string) {
+    this.interviewType.next(iType);
+  }
+
+  updateEmploymentType(eType: string) {
+    this.employmentType.next(eType);
+  }
 
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
