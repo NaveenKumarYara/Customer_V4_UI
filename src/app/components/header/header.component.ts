@@ -10,7 +10,6 @@ export class HeaderComponent {
   profilePic:any;
   constructor( private router: Router) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    this.profilePic= this.customer.UserProfilePictureUrl;
   }
   Logout() {
     sessionStorage.clear();
@@ -18,6 +17,5 @@ export class HeaderComponent {
 }
 ngInit()
 {
-    this.profilePic;
 }
 }
