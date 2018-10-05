@@ -18,6 +18,8 @@ export class NotificationsComponent implements OnInit {
 
 
   private subscription: Subscription;
+  customer:any;
+  userId:any;
 
   notifications: Observable<Notification[]>;
   notificationList: Notification[];
@@ -25,14 +27,15 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.userId = this.customer.UserId
 
   }
 
 
- 
-  private getNotifications() {
-
-    return this.appService.getNotifications().subscribe(res => {
+  private getNotifications(userId) {
+  
+    return this.appService.getNotifications(this.userId).subscribe(res => {
       this.notificationList= res;
       //this.loaddata = true;
     });
@@ -41,7 +44,7 @@ export class NotificationsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getNotifications();
+    this.getNotifications(this.userId);
   }
 
  

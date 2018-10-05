@@ -314,8 +314,8 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
         this.handleError
       );
   }
-  getNotifications(): Observable<Notification[]> {
-    const url = environment.NotificationEndPoint;
+  getNotifications(userId:number): Observable<Notification[]> {
+    const url = environment.NotificationEndPoint+'userId='+userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
