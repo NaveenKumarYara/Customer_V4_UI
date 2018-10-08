@@ -1,4 +1,4 @@
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="!iseditOther">
     <div class="card card--other-info">
       <div class="card-header">
         <h1 class="title">
@@ -16,7 +16,7 @@
                   </svg>
           <span>Other Info</span>
         </h1>
-        <a href="#" class="edit-btn">
+        <a (click)="iseditOther=!iseditOther" class="edit-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="#93a2bb" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" viewBox="-750.5 -3250.6 19.9 20">
             <g id="edit-icon" transform="translate(-2150 -3481)">
               <path d="M1246.4,42.4v5.5a1.793,1.793,0,0,1-1.8,1.8h-12.3a1.793,1.793,0,0,1-1.8-1.8V35.7a1.793,1.793,0,0,1,1.8-1.8h5.5" transform="translate(170 199.7)"></path>
@@ -48,4 +48,51 @@
       </div>
     </div> <!-- .card--other-info -->
   </div> <!-- .col-md-12 -->
+
+  <div class="col-md-12 " *ngIf="iseditOther">
+    <div class="card card--other-info">
+      <div class="card-header">
+        <h1 class="title">
+          <svg
+            x="0px" y="0px" width="21.1px" height="21.1px" viewBox="0 0 21.1 21.1" style="enable-background:new 0 0 21.1 21.1;"
+            xml:space="preserve">
+          <g>
+            <path fill="#448AFA" d="M10.6,21.1C4.7,21.1,0,16.4,0,10.6C0,4.7,4.7,0,10.6,0s10.6,4.7,10.6,10.6C21.1,16.4,16.4,21.1,10.6,21.1z
+              M10.6,2C5.8,2,2,5.8,2,10.6c0,4.7,3.8,8.6,8.6,8.6s8.6-3.8,8.6-8.6C19.1,5.8,15.3,2,10.6,2z"/>
+            <circle fill-rule="evenodd" clip-rule="evenodd" fill="#448AFA" cx="10.6" cy="5.7" r="1.1"/>
+            <path fill="#448AFA" d="M10.6,16.3c-0.6,0-1-0.4-1-1V9.6c0-0.6,0.4-1,1-1s1,0.4,1,1v5.6C11.6,15.8,11.1,16.3,10.6,16.3z"/>
+          </g>
+          </svg>
+          <span>Other Info</span>
+        </h1>
+        <div class="layout layout--btn">
+          <button class="btn btn btn-border" (click)="iseditOther=!iseditOther">Cancel</button>
+          <button class="btn btn-filled">Save</button>
+        </div>
+      </div> <!-- .header -->
+      <form class="card-inner">
+        <div class="row text-center">
+          <div class="form-group col-md-3">
+            <label>No. of Employees</label>
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees||'NumberOfEmployees'}}">
+          </div>
+          <div class="form-group col-md-3">
+            <label>No of Offices</label>
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfOffices||'NumberOfOffices'}}">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Date of Establishment</label>
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn||'19-05-2015'}}">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Company type</label>
+            <select name="company-type" id="company-type" class="styled-select-box block">
+              <option value="">Partnership</option>
+              <option value="">Limited Liability</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div> <!-- .card--other-info -->
+  </div> 
 

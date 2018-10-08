@@ -91,7 +91,7 @@
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 380px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                 <p *ngFor="let companypertner of getcompanypertner">
-                {{companypertner.Description}}
+                {{companypertner?.Description}}
                 </p>
    
               </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
@@ -101,7 +101,7 @@
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 380px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                 <p *ngFor="let companycertification of getcompanycertification">
-                {{companycertification.CertificationName}}
+                {{companycertification?.CertificationName}}
                 </p>
 
               </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
