@@ -59,10 +59,9 @@ export class GooglelocationComponent implements OnInit, DoCheck {
 	populateCompanyProfile(customerId) {
         return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
 			this.companyprofile = res;
-			this.cityname = this.companyprofile.CityName + ',';
-			this.statename = this.companyprofile.StateName + ' ' + this.companyprofile.Zipcode + ',';
-			if (this.cityname != null && this.statename != null && this.companyprofile.CountryName != null) {
-				this.searchText = this.cityname + this.statename + this.companyprofile.CountryName;
+			this.statename = this.companyprofile.Address2;
+			if ( this.statename != null) {
+				this.searchText =  this.statename;
 			}
 			else {
 				this.searchText === '';
