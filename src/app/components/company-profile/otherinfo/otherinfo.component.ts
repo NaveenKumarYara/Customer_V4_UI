@@ -32,7 +32,6 @@ dateOfEstablishment:any;
   }
   saveOtherInfo()
   {
-    debugger
     this.dateOfEstablishment=$("#EstablishedIn").val();
     this.numberOfEmployees=$("#NumberOfEmployees").val();
     this.numberOfOffices=$("#NumberOfOffices").val();
