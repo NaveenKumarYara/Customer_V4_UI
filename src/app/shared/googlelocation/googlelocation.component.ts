@@ -3,7 +3,8 @@ import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
-
+import { CompanyProfile } from '../../../models/companyprofile';
+import { CompanyProfileService } from '../../components/company-profile/company-profile.service';
 
 
 @Component({
@@ -18,17 +19,24 @@ export class GooglelocationComponent implements OnInit, DoCheck {
 	profileDetails: any;
 	cityname: any;
 	statename: any;
+	customer:any;
+    customerId:any;
+    userId:any;
+    companyprofile: CompanyProfile;
 	@ViewChild('search') public searchElement: ElementRef;
 	@Output() childEvent = new EventEmitter<any>();
 	searchText: any = '';
-	constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private router: Router) { }
+	constructor(private mapsAPILoader: MapsAPILoader,  private companyprofileservice: CompanyProfileService,private ngZone: NgZone, private router: Router) { 
+		this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        this.customerId =this.customer.CustomerId;
+	}
 	ngDoCheck() {
 		if (this.searchText === '') {
 			this.childEvent.emit('');
 		}
 	}
 	ngOnInit() {
-		this.candidateDetails = JSON.parse(sessionStorage.getItem('userData'));
+		//this.candidateDetails = JSON.parse(sessionStorage.getItem('userData'));
 		this.mapsAPILoader.load().then(
 			() => {
 				const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['(regions)'] });
@@ -43,10 +51,23 @@ export class GooglelocationComponent implements OnInit, DoCheck {
 						}
 					});
 				});
+				this.populateCompanyProfile(this.customerId);
 			});
 	
 	}
 
-
+	populateCompanyProfile(customerId) {
+        return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
+			this.companyprofile = res;
+			this.cityname = this.companyprofile.CityName + ',';
+			this.statename = this.companyprofile.StateName + ' ' + this.companyprofile.Zipcode + ',';
+			if (this.cityname != null && this.statename != null && this.companyprofile.CountryName != null) {
+				this.searchText = this.cityname + this.statename + this.companyprofile.CountryName;
+			}
+			else {
+				this.searchText === '';
+			}
+        });
+    }
 
 }
