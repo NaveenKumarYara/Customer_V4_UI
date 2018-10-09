@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-scheduled-interview',
@@ -9,9 +10,15 @@ import { DashboardStatistics } from '../../../../models/dashboardstatistics';
 export class DashboardScheduledInterviewComponent implements OnInit {
     @Input() dashboardstatistics: DashboardStatistics;
 
-  constructor() { }
+  constructor( private router: Router) {
+
+   }
 
   ngOnInit() {
+  }
+
+  InterViewScheduledClick(){
+    this.router.navigateByUrl('app-manage-jobs');
   }
 
 }
