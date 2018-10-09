@@ -67,28 +67,28 @@
         </h1>
         <div class="layout layout--btn">
           <button class="btn btn btn-border" (click)="iseditOther=!iseditOther">Cancel</button>
-          <button class="btn btn-filled">Save</button>
+          <button class="btn btn-filled"(click)="saveOtherInfo()">Save</button>
         </div>
       </div> <!-- .header -->
       <form class="card-inner">
         <div class="row text-center">
           <div class="form-group col-md-3">
             <label>No. of Employees</label>
-            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees||'NumberOfEmployees'}}">
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees||'NumberOfEmployees'}}" id="NumberOfEmployees">
           </div>
           <div class="form-group col-md-3">
             <label>No of Offices</label>
-            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfOffices||'NumberOfOffices'}}">
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfOffices||'NumberOfOffices'}}" id="NumberOfOffices">
           </div>
           <div class="form-group col-md-3">
             <label>Date of Establishment</label>
-            <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn||'19-05-2015'}}">
+            <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn||'19-05-2015'}}" id="EstablishedIn">
           </div>
           <div class="form-group col-md-3">
             <label>Company type</label>
             <select name="company-type" id="company-type" class="styled-select-box block">
-              <option value="">Partnership</option>
-              <option value="">Limited Liability</option>
+              <option value="0">Partnership</option>
+              <option value="1">Limited Liability</option>
             </select>
           </div>
         </div>
