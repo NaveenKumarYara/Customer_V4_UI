@@ -4,42 +4,48 @@
     <h3 class="question">
       How many open positions do you currently have for this Job Title?
     </h3>
-      <h4 class="data">4</h4>
+      <h4 class="data">
+        {{noOfopenings}}
+      </h4>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       At which location the job is available?
     </h3>
-      <h4 class="data">Los Angeles</h4>
+      <h4 class="data">
+        {{location}}
+      </h4>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       Preferred Education criteria?
     </h3>
-      <h4 class="data">Bachelor of Computer Arts</h4>
+      <h4 class="data" *ngFor="let edu of education">{{edu.QualificationName}}</h4>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       Which domain/(s) is the project into?
     </h3>
-      <h4 class="data">Gamin and Animation</h4>
+      <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
   </div>
   <div class="form-data-group">
     <h3 class="question">Are you seriously considering that the candidate have the required domain experience?</h3>
-    <h4 class="data">Yes</h4>
+    <h4 class="data">No</h4>
   </div>
   <div class="form-data-group personality-group">
     <h3 class="question">Which type of person you are looking for?</h3>
-    <div class="type">
+    <div class="type" *ngFor="let person of personType">
+      <div *ngIf="person.checked"> 
       <div class="type-img">      
-        <img src="../../../../../assets/images/D-58x58.png" alt="D">
+        <img [src]="person.LogoURL" alt="D">
       </div>
       <div class="type-details">
-        <h5 class="data">Dominance</h5>
+        <h5 class="data">{{person.PersonType}}</h5>
         <p class="description">
-          Person places emphasis on accomplishing results, the bottom line, confidence
+          {{person.Description}}
         </p>
-      </div>
+      </div> 
+    </div>
     </div>
   </div>
 </section>

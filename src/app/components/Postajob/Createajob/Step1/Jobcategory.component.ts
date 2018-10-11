@@ -52,7 +52,9 @@ export class JobcategoryComponent implements OnInit {
 
   ngOnInit() {
     this.searchJobCategory();
+   // if (localStorage.getItem('jobId') != null) {
     this.appService.currentcategorytitle.subscribe(x => this.selectedCategory = x);
+   // }
   }
   // this.jobcategorylist.subscribe(categoryLst => {
     //   this.getJobCategories = categoryLst as CategoryList[];

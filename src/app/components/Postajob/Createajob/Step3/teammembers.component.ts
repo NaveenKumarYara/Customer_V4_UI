@@ -63,6 +63,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
     // this.managersList.subscribe(countries => {
     //   this.completeMembersList = countries as CustomerUsers[];
     // });
+  //  if (localStorage.getItem('jobId') != null) {
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
@@ -78,6 +79,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
           this.addedteammemberslist = teammemberlist;
           }
         );
+   //     }
   }
 
   ngOnDestroy() {

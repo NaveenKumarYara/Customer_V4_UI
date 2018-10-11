@@ -32,7 +32,9 @@ export class InterviewTypeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.populateInterviewType();
+  //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentInterviewType.subscribe(x => this.interviewType = x);
+  //  }
   }
 
   ngOnDestroy() {

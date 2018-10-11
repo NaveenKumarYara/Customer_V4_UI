@@ -20,10 +20,9 @@ export class Step1Component implements OnInit {
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
-  formData: any;
+  // formData: any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
-
   pjSkill: PjSkill;
   pjRole: PjRole;
   pjDisc: PjDisc;
@@ -41,21 +40,22 @@ export class Step1Component implements OnInit {
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+
   }
   ngOnInit() {
   }
   postJob(step) {
-    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';
     this.insertJob.JobId = 0;
+    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
     this.insertJob.MinExperienceId = this.jobDetail.minExperience;
     this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
-    this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat( this.jobSkills.secondaryjobskills);
     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
     this.insertJob.EmploymentTypeId = 1;
     this.insertJob.SalaryTypeId = 1;
@@ -63,7 +63,6 @@ export class Step1Component implements OnInit {
     this.insertJob.MaximumSalary = '200';
     this.insertJob.IsDrafted = true;
     this.insertJob.StepNumber = step;
-    // this.joblist.JobPositionId = '';
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

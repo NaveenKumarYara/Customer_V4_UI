@@ -11,7 +11,7 @@ export class JobprofileComponent implements OnInit {
 declare;
 hasCompleteDescription: boolean;
 jobDescription: string;
-hasCompleteDescriptionList:any;
+hasCompleteDescriptionList: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -28,16 +28,17 @@ hasCompleteDescriptionList:any;
   }
   ngOnInit() {
     this.populatedescriptioncheck();
+   // if (localStorage.getItem('jobId') != null) {
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
-  }
+  //}
+}
 populatedescriptioncheck() {
     this.hasCompleteDescriptionList  = this.appService.getHasDescription();
   }
 
-  changeDescription(val)
-  {
-    this.jobDescription=val;
+  changeDescription(val) {
+    this.jobDescription = val;
     this.appService.updatedescription(this.jobDescription);
   }
 

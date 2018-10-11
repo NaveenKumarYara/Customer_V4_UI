@@ -98,6 +98,7 @@ this.selectedQualification = this.convertObservable.find(s => s.QualificationId 
 
   ngOnInit() {
     this.getQualifications();
+   // if (localStorage.getItem('jobId') != null) {
     this.qualifications.subscribe(countries => {
       this.convertObservable = countries as Qualifications[];
     });
@@ -115,10 +116,11 @@ this.selectedQualification = this.convertObservable.find(s => s.QualificationId 
         this.addqualificationList = qualifications;
         }
       );
-
+    //  }
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.addedsubscription.unsubscribe();
   }
 }

@@ -30,7 +30,9 @@ export class ContractExtensionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.populateContractExtension();
+  //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
+ //   }
   }
 
   ngOnDestroy() {

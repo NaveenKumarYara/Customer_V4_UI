@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-createajob',
-  templateUrl: './createajob.component.html'  
+  templateUrl: './createajob.component.html'
 })
 export class CreateajobComponent implements OnInit {
 
@@ -12,6 +12,8 @@ export class CreateajobComponent implements OnInit {
   }
 
   ngOnInit() {
+    // localStorage.getItem('jobId');
+    localStorage.removeItem('jobId');
   }
 
 }

@@ -28,7 +28,9 @@ contractDuration: string;
 
   ngOnInit() {
   this.populateContractduration();
+ // if (localStorage.getItem('jobId') != null) {
   this.appService.currentContractDuration.subscribe(x => this.contractDuration = x);
+//  }
   }
 
   ngOnDestroy() {
