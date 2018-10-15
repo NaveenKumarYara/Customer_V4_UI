@@ -5,6 +5,7 @@ import { ApiService } from '../../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import {specialities} from './specialities';
+import {technologies} from './technologies';
 declare var $: any;
 
 @Component({
@@ -14,14 +15,18 @@ declare var $: any;
 })
 export class SpecialitiesComponent implements OnInit {
    @Input() companyspecialities : CompanySpecialities[];
-   @Input() getcompanytechnology : GetCompanyTechnology;
+   @Input() getcompanytechnology : GetCompanyTechnology[];
    customer : any;
    customerId:any;
    userId:any;
    companyspecialityId:any;
    specialityId:any;
    speciality:any;
+   companytechnologyId:any;
+   companytechnology:any;
+   technologyId:any;
    specialities = new specialities();
+   technologies = new technologies();
    constructor(private _service: ApiService, private route: Router, private companyprofileservice: CompanyProfileService) {
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.customerId =this.customer.CustomerId;
@@ -33,6 +38,35 @@ export class SpecialitiesComponent implements OnInit {
           this.companyspecialities = res;
       });
   }
+  populateCompanyTechnologies(customerId) {
+    return this.companyprofileservice.GetCompanyTechnologies(customerId).subscribe(res => {
+        this.getcompanytechnology = res;
+    });
+}
+savetechnologies()
+{
+  if(this.technologyId>0)
+  {
+   this.companytechnologyId=this.technologyId;
+  }
+  else
+  {
+    this.technologyId = 0;
+   this.companytechnologyId=this.technologyId;
+  }
+   this.companytechnology = $("#techVal").val();
+   this.technologies.companyTechnologyId=  this.companytechnologyId;
+   this.technologies.customerId = this.customerId;
+   this.technologies.technologyName = this.companytechnology;
+   this._service.PostService(this.technologies, 'ProfileAPI/api/InsertCompanyTechnology')
+   .subscribe(data => {
+     $("#techVal").val('');
+     this.technologyId=null;
+     this.populateCompanyTechnologies(this.customerId);
+   },
+     error => console.log(error));
+
+}
 saveSpecialities()
 {
  if(this.specialityId>0)
@@ -52,7 +86,7 @@ saveSpecialities()
   .subscribe(data => {
     $("#specialVal").val('');
     this.specialityId=null;
-    this.  populateCompanySpecialities(this.customerId);
+    this.populateCompanySpecialities(this.customerId);
   },
     error => console.log(error));
 }
@@ -65,6 +99,21 @@ EditSpecialities(special)
  
 }
 
+Edittechnology(technology)
+{
+  this.technologyId = technology.CompanyTechnologyId;
+  var contents = technology.TechnologyName;
+  this.companytechnology = $("#techVal").val(contents);
+ 
+}
+
+deletetechnology(technology)
+{
+  this._service.DeleteService('ProfileAPI/api/DeleteCompanyTechnology?companyTechnologyId=',technology)
+  .subscribe(data => {
+    this.populateCompanyTechnologies(this.customerId);
+  }, error => { this._service.DebugMode(error); });
+}
 
 
 deleteSpecialities(special)
