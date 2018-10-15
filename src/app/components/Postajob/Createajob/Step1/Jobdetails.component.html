@@ -13,21 +13,23 @@
   </div>
   <div class="col-md-6">
     <div class="form-group re-group">
-      <label for="" class="question">Required Experience</label>
+        <label for="" class="question">Required Experience</label>
+      <div class="row">
       <!-- <div class="styled-select-box block experience-output"></div> -->
-      <ng-select class="custom-style" [items]="expYears" (change)="updateMinExp()"  [hideSelected]="true" placeholder="1 yr" 
+      <ng-select class="col-md-6 custom-style" [items]="expYears" (change)="updateMinExp()"  [hideSelected]="true" placeholder="1 yr" 
       bindLabel="minExperience"
       bindValue="minExperience"
       [loading]="peopleLoading"
       [(ngModel)]="minExperience">
       </ng-select> 
 
-      <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()"  [hideSelected]="true" placeholder="1 yr" 
+      <ng-select class="col-md-6 custom-style" [items]="expYears" (change)="updateMaxExp()"  [hideSelected]="true" placeholder="1 yr" 
       bindLabel="maxExperience"
       bindValue="maxExperience"
       [loading]="peopleLoading"
       [(ngModel)]="maxExperience">
       </ng-select> 
+    </div>
     </div>
   </div>
 </div>
