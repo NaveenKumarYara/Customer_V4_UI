@@ -18,6 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './../../app.router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CompanyProfileService } from './company-profile.service';
+import { AgmCoreModule } from '@agm/core';
+import {GooglelocationComponent}from '../../shared/googlelocation/googlelocation.component';
+import {locationComponent} from '../../shared/locations/location.component';
 
 @NgModule({
   imports: [
@@ -28,9 +31,13 @@ import { CompanyProfileService } from './company-profile.service';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',
+      libraries: ['places']
+    }),
     ],
     providers: [CompanyProfileService],
-  declarations: [CompanyprofileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
+  declarations: [CompanyprofileComponent,locationComponent,GooglelocationComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
 })
 export class CompanyProfileModule { }

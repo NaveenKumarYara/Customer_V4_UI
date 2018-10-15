@@ -14,7 +14,7 @@ import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from './components/Postajob/models/jobPostInfo';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,12 +29,14 @@ export class AppService {
   private apiUrl = 'api/CustomerPortal';
 
 
-  private domain: GetDomain[] = [];
+     domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();
-    adddomain: PjDomain[] = [];
+     adddomain: PjDomain[] = [];
   adddomainChanged = new Subject<PjDomain[]>();
-  private qualifications: Qualifications[] = [];
+
+   qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
+
    addqualifications: PjEducationDetails[] = [];
   addqualificationsChanged = new Subject<PjEducationDetails[]>();
 
@@ -64,43 +66,47 @@ export class AppService {
     '1099'
   ];
 
-  contractDuration = new BehaviorSubject('');
+  private contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
-  contractExtension = new BehaviorSubject('');
+  private contractExtension = new BehaviorSubject('');
   currentContractExtension = this.contractExtension.asObservable();
 
   myInterviewType = new InterviewType();
-  interviewType = new BehaviorSubject(this.myInterviewType);
+ private interviewType = new BehaviorSubject(this.myInterviewType);
   currentInterviewType = this.interviewType.asObservable();
 
   myEmploymentType = new EmploymentType();
-  employmentType = new BehaviorSubject(this.employmentType);
+  private employmentType = new BehaviorSubject(this.myEmploymentType);
   currentEmploymentType = this.employmentType.asObservable();
 
-  jobtitle = new BehaviorSubject('');
+  private jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
   pMinexp: number;
-  minExperience = new BehaviorSubject(this.pMinexp);
+  private minExperience = new BehaviorSubject(this.pMinexp);
   currentminExp = this.minExperience.asObservable();
 
   pMaxexp: number;
-  maxExperience = new BehaviorSubject(this.pMaxexp);
+  private maxExperience = new BehaviorSubject(this.pMaxexp);
   currentmaxExp = this.maxExperience.asObservable();
 
   myDescription: boolean;
-  hasDescription = new BehaviorSubject(this.myDescription);
+  private hasDescription = new BehaviorSubject(this.myDescription);
   currentDescriptionChecked = this.hasDescription.asObservable();
 
-  description = new BehaviorSubject('');
+  private description = new BehaviorSubject('');
   currentDescription = this.description.asObservable();
 
+  // textOPening = new BehaviorSubject('');
+  // currenttextOPening = this.textOPening.asObservable();
+
   myopenings: number;
-  noofOpenings = new BehaviorSubject(this.myopenings);
+  private noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
-  location = new BehaviorSubject('');
+  myLocation = new PrefLocation();
+  private location = new BehaviorSubject(this.myLocation);
   currentlocation = this.location.asObservable();
 
   updatecDuration(cDuration: string) {
@@ -125,7 +131,7 @@ export class AppService {
     this.maxExperience.next(maxexp);
   }
   updateOpenings(openings: number) {
-    this.minExperience.next(openings);
+    this.noofOpenings.next(openings);
   }
   updatehaddescription(isdescription: boolean) {
     this.hasDescription.next(isdescription);
@@ -133,7 +139,7 @@ export class AppService {
   updatedescription(isdescription: string) {
     this.description.next(isdescription);
   }
-  updateLocation(loc: string) {
+  updateLocation(loc: PrefLocation) {
     this.location.next(loc);
   }
   updateJobtitle(jobtitle: string) {
@@ -154,7 +160,7 @@ export class AppService {
   // }
 
   myreportingManager = new CustomerUsers();
-  reportingManager = new BehaviorSubject(this.myreportingManager);
+   reportingManager = new BehaviorSubject(this.myreportingManager);
   currentcustomerUsers = this.reportingManager.asObservable();
 
 
@@ -172,7 +178,7 @@ export class AppService {
   //  jobcategory: CategoryList[] = [];
   // currentcategorytitle = new Subject<CategoryList[]>();
   myjobcategory = new CategoryList();
-  jobcategory = new BehaviorSubject(this.myjobcategory);
+  private jobcategory = new BehaviorSubject(this.myjobcategory);
   currentcategorytitle = this.jobcategory.asObservable();
 
 
@@ -197,17 +203,34 @@ export class AppService {
     this.selectedskilltype.next(skilltype);
   }
 
-  personTypes: PjDisc[] = [];
-  personTypeChanged = new Subject<PjDisc[]>();
+   personTypes: DiscResult[] = [];
+  personTypeChanged = new Subject<DiscResult[]>();
 
-  addPersonType(personType: PjDisc) {
-      this.personTypes.push(personType);
+   personTypeSingle: PjDisc[] = [];
+  personTypeSingleChanged = new Subject<PjDisc[]>();
+
+  addPersonType(personTypeList: DiscResult[], personType: PjDisc, val?) {
+      this.personTypes = personTypeList; // ush(personType);
       this.personTypeChanged.next(this.personTypes.slice());
+      // let pType = new PjDisc;
+      // pType.DiscTestId = personType.DISCTestId;
+      if (val === false) {
+        for (let i = 0 ; i < this.personTypeSingle.length; i++) {
+            if (this.personTypeSingle[i].DiscTestId === personType.DiscTestId) {
+              this.personTypeSingleChanged.next(this.personTypeSingle.splice(i, 1));
+            }
+          }
+      } else {
+      this.personTypeSingle.push(personType);
+      this.personTypeSingleChanged.next(this.personTypeSingle.slice());
+      }
   }
   getPersonTypes() {
     return this.personTypes.slice();
   }
-
+getaddedPersonTypes() {
+    return this.personTypeSingle.slice();
+  }
    primaryjobskills: Jobskills[] = [];
   jobprimaryskillsChanged = new Subject<Jobskills[]>();
 
@@ -243,16 +266,26 @@ export class AppService {
   }
 
 
-  private responsibilities: string[] = [];
-  responsibilitesChanged = new Subject<string[]>();
+   responsibilities: Roles[] = [];
+  responsibilitesChanged = new Subject<Roles[]>();
+
+
+   addedresponsibilities: PjRole[] = [];
+  addedresponsibilitiesChanged = new Subject<PjRole[]>();
 
   getResponsibilities() {
     return this.responsibilities.slice();
   }
-
-  addResponsibilities(responsibility: string) {
+  getAddedResponsibilities() {
+    return this.addedresponsibilities.slice();
+  }
+  addResponsibilities(responsibility: Roles) {
     this.responsibilities.push(responsibility);
     this.responsibilitesChanged.next(this.responsibilities.slice());
+    const role = new PjRole();
+    role.RoleId = responsibility.RoleId;
+    this.addedresponsibilities.push(role);
+    this.addedresponsibilitiesChanged.next(this.addedresponsibilities.slice());
   }
 
   deleteResponsibilities(index: number) {
@@ -274,7 +307,7 @@ export class AppService {
   .catch(this.handleError);
   }
 
-  private teammembers: CustomerUsers[] = [];
+   teammembers: CustomerUsers[] = [];
   teammembersChanged = new Subject<CustomerUsers[]>();
 
     addedteammembers: PjTechnicalTeam[] = [];
@@ -334,7 +367,7 @@ export class AppService {
     domainVal.MaximumExperience = 2;
     domainVal.ExperienceRequired = true;
     domainVal.Description = 'abcde';
-    domainVal.DomainId = parseInt(domain.DomainName, 10);
+    domainVal.DomainId = domain.DomainId;
     this.adddomain.push(domainVal);
     this.adddomainChanged.next(this.adddomain.slice());
     // const addQlfcn = new AddQualification();
@@ -428,14 +461,21 @@ postjob(body) {
   }
 
 
-  getSkills(): Observable<string[]> {
-    const url = environment.getskillsEndpoint;
+  getSkills(skill: string = null): Observable<string[]> {
+    const url = environment.getskillsEndpoint + '?skillName=' + skill;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
 
+  getDisc() {
+    const url = environment.discTestEndpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
 
   getLocationwisejobs() {
     const url = environment.customerPreferredLocationendpoint;

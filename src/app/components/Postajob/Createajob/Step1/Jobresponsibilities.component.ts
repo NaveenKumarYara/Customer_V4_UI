@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
-import { RoleModel } from '../../models/jobPostInfo';
+import { RoleModel, Roles } from '../../models/jobPostInfo';
 import { JobdetailsComponent } from './Jobdetails.component';
 // tslint:disable-next-line:no-unused-expression
 declare var $: any;
@@ -18,9 +18,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   responsibilities: '';
-  responsibilitieslist: string[];
+  responsibilitieslist: Roles[];
   roleModel: RoleModel;
-
+  roles: Roles;
   roleList: any = [];
   roleIdList: PjRole[] = [];
   roleId = new PjRole();
@@ -30,22 +30,32 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       this.roleModel = new RoleModel(0, null, null);
   }
 
-  private addResponsibilities() {
-    this.appService.addResponsibilities(this.responsibilities);
-  }
+  // private addResponsibilities() {
+  //   this.appService.addResponsibilities(this.responsibilities);
+  // }
 
   private deleteResponsibility(index: number) {
     this.appService.deleteResponsibilities(index);
   }
 
   ngOnInit() {
+    // if (localStorage.getItem('jobId') != null) {
     this.responsibilitieslist = this.appService.getResponsibilities();
     this.subscription = this.appService.responsibilitesChanged
       .subscribe(
-        (responselist: string[]) => {
+        (responselist: Roles[]) => {
           this.responsibilitieslist = responselist;
         }
       );
+
+      this.roleIdList = this.appService.getAddedResponsibilities();
+      this.subscription = this.appService.addedresponsibilitiesChanged
+        .subscribe(
+          (responselist: PjRole[]) => {
+            this.roleIdList = responselist;
+          }
+        );
+      //  }
   }
 
   ngOnDestroy() {
@@ -96,8 +106,11 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     if (itemSearch.length === 0) {
       itemArr.push(item);
       this.roleId.RoleId = item.RoleId;
-        this.roleIdList.push(this.roleId);
-        // this.appService.addResponsibilities(this.responsibilities);
+      this.roleIdList.push(this.roleId);
+      this.roles = new Roles();
+      this.roles.RoleId = item.RoleId;
+      this.roles.Role = item.RolesAndResponsibilities;
+      this.appService.addResponsibilities(this.roles);
     } else {
       const index = itemArr.indexOf(itemSearch[0]);
       itemArr[index].quantity = item.quantity;
@@ -127,7 +140,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     this.roleModel.RoleId = val.RoleId;
     this.roleJobTitleList = [];
   }
-
+  changeRoles12(val) {
+    alert(val);
+  }
 }
 export class RoleJobTitle {
   JobTitle: string;
@@ -137,3 +152,4 @@ export class RoleJobTitle {
 export class PjRole {
   public RoleId: number;
 }
+

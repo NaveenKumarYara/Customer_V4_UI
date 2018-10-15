@@ -32,7 +32,9 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.populateEmploymentType();
+  //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
+   // }
   }
 
   ngOnDestroy() {

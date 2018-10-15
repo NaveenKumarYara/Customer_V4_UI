@@ -88,7 +88,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.skilltitleloading = true),
-        switchMap(term => this.appService.getSkills().pipe(
+        switchMap(term => this.appService.getSkills(term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.skilltitleloading = false)
         ))
@@ -104,7 +104,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   ngOnInit() {
     this.getSkills();
     this.getExpYears();
+
     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
+    this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
+     // if (localStorage.getItem('jobId') != null) {
     this.subscription = this.appService.jobprimaryskillsChanged
       .subscribe(
       (jobskills: Jobskills[]) => {
@@ -112,13 +115,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       }
     );
 
-    this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
     this.subscription = this.appService.jobsecondaryskillsChanged
       .subscribe(
       (jobskills: Jobskills[]) => {
         this.secondaryjobskills = jobskills;
         }
       );
+      // }
   }
 
   ngOnDestroy() {

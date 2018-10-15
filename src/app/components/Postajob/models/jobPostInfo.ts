@@ -48,6 +48,10 @@ export class InsertJob {
     Role: string;
 
   }
+  export class Roles{
+    public RoleId :number;
+    public Role:string;
+    }
   export class RoleModel {
 
     constructor(
@@ -63,7 +67,13 @@ export class InsertJob {
   export class PjDisc {
     public DiscTestId: number;
   }
-
+export class DiscResult {
+  public DISCTestId: number;
+  public PersonType: string;
+  public SubType: string;
+  public Description: string;
+  public checked :boolean;
+}
   //
   export class GetDomain {
      public DomainId: number;
@@ -81,7 +91,10 @@ export class InsertJob {
     public IsActive: boolean;
 
   }
-
+  export class PrefLocation{
+    public locationId:number;
+    public location:string;
+    }
   // related
 
   export class CustomerUsers {

@@ -26,7 +26,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   usersload: boolean;
   // managersAdd: PjTechnicalTeam[] = [];
   // selectedItem: any;
-  private subscription: Subscription;
+ // private subscription: Subscription;
 
 
   constructor(private route: ActivatedRoute,
@@ -55,7 +55,9 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
      this.getcustomerusers();
+   //  if (localStorage.getItem('jobId') != null) {
       this.appService.currentcustomerUsers.subscribe(x => this.selectedManager = x);
+  //   }
     }
      // this.appService.currentManager.subscribe(x => this.selectedInput = x);
     // this.getcustomerusers();
@@ -70,5 +72,6 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+   // this.subscription.unsubscribe();
   }
 }

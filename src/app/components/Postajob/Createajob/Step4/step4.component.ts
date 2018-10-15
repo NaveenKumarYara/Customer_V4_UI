@@ -9,12 +9,95 @@ import { InsertJob } from '../../models/jobPostInfo';
   styleUrls: ['./step4.component.css']
 })
 export class Step4Component implements OnInit {
-
+// step1
   insertJob = new InsertJob();
-
+  jobCategory: number;
+  jobMinExp: number;
+  jobMaxExp: number;
+  jobTitle: string;
+  jobDescription: string;
+  jobHasDescription: boolean;
+  jobResponsibility: any;
+  jobSkillsPrimary: any;
+  jobSkillsSecondary: any;
+// step2
+  domain: any;
+  locations: any;
+  openings: any;
+  personalityType: any;
+  qualification: any;
+// step3
+  contractDuration: any;
+  contractExtension: any;
+  empType: any;
+  intwType: any;
+  reporting: any;
+  team: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.appService.currentcategorytitle.subscribe((data) => {
+        this.jobCategory = data.JobCategoryId; // And he have data here too!
+    });
+    this.appService.currentjobtitle.subscribe((data) => {
+      this.jobTitle = data; // And he have data here too!
+    });
+    this.appService.currentminExp.subscribe((data) => {
+      this.jobMinExp = data; // And he have data here too!
+    });
+    this.appService.currentmaxExp.subscribe((data) => {
+      this.jobMaxExp = data; // And he have data here too!
+    });
+    this.appService.addedresponsibilitiesChanged.subscribe((data) => {
+      this.jobResponsibility = data; // And he have data here too!
+    });
+    this.appService.currentDescriptionChecked.subscribe((data) => {
+      this.jobHasDescription = data; // And he have data here too!
+    });
+    this.appService.currentDescription.subscribe((data) => {
+      this.jobDescription = data; // And he have data here too!
+    });
+    this.appService.jobprimaryskillsChanged.subscribe((data) => {
+      this.jobSkillsPrimary = data; // And he have data here too!
+    });
+    this.appService.jobsecondaryskillsChanged.subscribe((data) => {
+      this.jobSkillsSecondary = data; // And he have data here too!
+    });
 
+    // step2:
+
+    this.appService.adddomainChanged.subscribe((data) => {
+      this.domain = data; // And he have data here too!
+    });
+    this.appService.currentlocation.subscribe((data) => {
+      this.locations = data.locationId; // And he have data here too!
+    });
+    this.appService.currentOpenings.subscribe((data) => {
+      this.openings = data; // And he have data here too!
+    });
+    this.appService.personTypeSingleChanged.subscribe((data) => {
+      this.personalityType = data; // And he have data here too!
+    });
+    this.appService.addqualificationsChanged.subscribe((data) => {
+      this.qualification = data; // And he have data here too!
+    });
+
+    // step3:
+
+    this.appService.currentEmploymentType.subscribe((data) => {
+      this.empType = data.EmploymentTypeId; // And he have data here too!
+    });
+    this.appService.currentContractDuration.subscribe((data) => {
+      this.contractDuration = data; // And he have data here too!
+    });
+    this.appService.currentInterviewType.subscribe((data) => {
+      this.intwType = data.InterviewTypeId; // And he have data here too!
+    });
+    this.appService.currentcustomerUsers.subscribe((data) => {
+      this.reporting = data.UserId; // And he have data here too!
+    });
+    this.appService.addedteammembersChanged.subscribe((data) => {
+      this.team = data; // And he have data here too!
+    });
   }
 
 
@@ -22,45 +105,69 @@ export class Step4Component implements OnInit {
   }
 
   postJob(step) {
-    this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId;
+    const res = localStorage.getItem('jobId');
+    this.insertJob.JobId = parseInt(res, 10);
     this.insertJob.CustomerId = 1;
     this.insertJob.UserId = 5;
     this.insertJob.JobPositionId = '';
-    this.insertJob.JobTitle = this.appService.jobtitle.value;
-    this.insertJob.XmlSkills = this.appService.primaryjobskills.concat(this.appService.secondaryjobskills);
-    const res = localStorage.getItem('jobId');
-    this.insertJob.JobId = parseInt(res, 10);
-    this.insertJob.MinExperienceId = this.appService.minExperience.value;
-    this.insertJob.MaxExperienceId = this.appService.maxExperience.value;
-   // this.insertJob.XmlRoleId = this.appService.responsibilities;
-    this.insertJob.CompleteDescription = this.appService.hasDescription.value;
-    this.insertJob.JobDescription = '';
+
+    this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
+    this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
+    this.insertJob.MinExperienceId = this.jobMinExp; // this.appService.minExperience.value;
+    this.insertJob.MaxExperienceId = this.jobMaxExp;  // this.appService.maxExperience.value;
+    this.insertJob.XmlRoleId =  this.appService.addedresponsibilities; // this.jobResponsibility ;
+    this.insertJob.CompleteDescription = this.jobHasDescription; // this.appService.hasDescription.value;
+    this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
+    this.insertJob.XmlSkills =  this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+    // this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
+
+    // step2
     this.insertJob.SalaryTypeId = 1;
     this.insertJob.MinimumSalary = '1';
     this.insertJob.MaximumSalary = '200';
+    this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;
+    this.insertJob.PreferredLocationId = this.locations ; // this.appService.location.value.locationId.toString();
+    this.insertJob.XmlQualifications = this.appService.addqualifications; //  this.qualification;
+    this.insertJob.XmlDomains = this.appService.adddomain; // this.domain;
+     this.insertJob.XmlPersonType = this.appService.personTypeSingle; //  this.personalityType;
 
-    this.insertJob.NumberOfVacancies = this.appService.noofOpenings.value;
-    this.insertJob.PreferredLocationId = this.appService.location.value;
-    this.insertJob.XmlQualifications = this.appService.addqualifications;
-    this.insertJob.XmlDomains = this.appService.adddomain;
-   // this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
+
+
+    // this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId;
+    // this.insertJob.JobTitle = this.appService.jobtitle.value;
+    // this.insertJob.XmlSkills = this.appService.primaryjobskills.concat(this.appService.secondaryjobskills);
+
+    // this.insertJob.MinExperienceId = this.appService.minExperience.value;
+    // this.insertJob.MaxExperienceId = this.appService.maxExperience.value;
+    // this.insertJob.XmlRoleId = this.appService.addedresponsibilities;
+    // this.insertJob.CompleteDescription = this.appService.hasDescription.value;
+    // this.insertJob.JobDescription = this.appService.description.value;
+    // this.insertJob.SalaryTypeId = 1;
+    // this.insertJob.MinimumSalary = '1';
+    // this.insertJob.MaximumSalary = '200';
+
+    // this.insertJob.NumberOfVacancies = this.appService.noofOpenings.value;
+    // this.insertJob.PreferredLocationId = this.appService.location.value.locationId.toString();
+    // this.insertJob.XmlQualifications = this.appService.addqualifications;
+    // this.insertJob.XmlDomains = this.appService.adddomain;
+    //  this.insertJob.XmlPersonType = this.appService.personTypeSingle;
 
 
     this.insertJob.IsDrafted = false;
     this.insertJob.StepNumber = 4;
 
-    this.insertJob.EmploymentTypeId = this.appService.employmentType.value.EmploymentTypeId;
+    this.insertJob.EmploymentTypeId = this.empType; // this.appService.employmentType.value.EmploymentTypeId;
     if (this.insertJob.EmploymentTypeId === 2) {
     this.insertJob.ContractExtended = true;
     }
-    this.insertJob.ContractDuration = this.appService.contractDuration.value;
-    this.insertJob.HiringProcessId = this.appService.interviewType.value.InterviewTypeId;
-    this.insertJob.HiringManagerId = this.appService.reportingManager.value.UserId;
-    this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers;
+    this.insertJob.ContractDuration = this.contractDuration; // this.appService.contractDuration.value;
+    this.insertJob.HiringProcessId = this.intwType; // this.appService.interviewType.value.InterviewTypeId;
+    this.insertJob.HiringManagerId = this.reporting; // this.appService.reportingManager.value.UserId;
+    this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers; // this.team;
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.router.navigate(['/app-createajob/app-steps-step4']);
+        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });
   }

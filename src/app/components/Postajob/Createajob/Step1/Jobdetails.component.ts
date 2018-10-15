@@ -101,9 +101,11 @@ export class JobdetailsComponent implements OnInit {
     // })(jQuery);
     this.getExpYears();
     this.searchJobTitle();
+   // if (localStorage.getItem('jobId') != null) {
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
     this.appService.currentminExp.subscribe(x => this.minExperience = x);
     this.appService.currentmaxExp.subscribe(x => this.maxExperience = x);
+   // }
   }
 
 }

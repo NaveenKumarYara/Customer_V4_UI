@@ -53,6 +53,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   this.getDomains();
+  // if (localStorage.getItem('jobId') != null) {
     this.domainlist = this.appService.getDomainlist();
     // this.domains.subscribe(domainsList => {
     //   this.getDomainList = domainsList as GetDomain[];
@@ -72,6 +73,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
         this.addDomainList = domain;
         }
       );
+     // }
   }
 
   private getDomains() {
@@ -91,5 +93,6 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+     this.subscriptions.unsubscribe();
   }
 }

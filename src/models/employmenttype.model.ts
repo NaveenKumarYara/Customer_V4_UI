@@ -1,5 +1,5 @@
 export class EmploymentType {
-  EmploymentTypeId: string;
+  EmploymentTypeId: number;
   EmploymentType: string;
   //  EmploymentDescription: string;
 }

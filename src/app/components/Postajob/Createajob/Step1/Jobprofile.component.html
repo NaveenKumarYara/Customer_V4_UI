@@ -7,9 +7,8 @@
       <!-- <input type="radio" id="r1yes" (change)="setValue(true)"   [(ngModel)]="hasCompleteDescription" checked="hasCompleteDescription" name="contactVia" class="radio-input" /> -->
        <input type="radio" [(ngModel)]="hasCompleteDescription" (change)="setValue(type)" name="contactVia"  class="radio-input" [value]="type">
         <span class="radio-btn"></span> 
-        <span>{{type}}</span>
+        <span>{{type ? "Yes" : "No"}}</span>
       </label>
-    
     <!-- <label for="r2no" class="radio">
       <input type="radio" id="r2no"  (change)="setValue(false)"  [(ngModel)]="hasCompleteDescription"  checked="hasCompleteDescription" name="contactVia" class="radio-input" />
       <span class="radio-btn"></span>
