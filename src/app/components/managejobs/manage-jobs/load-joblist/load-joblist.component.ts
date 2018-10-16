@@ -7,31 +7,38 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
-
+import {FilterjobsComponent} from '../filterjobs/filterjobs.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-manage-load-joblist',
   templateUrl: './load-joblist.component.html',
-  styleUrls: ['./load-joblist.component.css']
+  styleUrls: ['./load-joblist.component.css'],
+  providers: [NgxSpinnerService, FilterjobsComponent]
 })
 export class LoadJoblistComponent implements OnInit {
   id: any;
   sub: any;
-  customer:any;
-  customerId:any;
-  userId:any;
+  customer: any;
+  customerId: any;
+  userId: any;
   joblist: JobDetails[] = [];
   joblistcount: number;
   jobs: any;
-  loaddata = false;
-  sortBy:any;
-
+    loaddata = false;
+  sortBy: any;
+   jobLoader = false;
+   color = 'primary';
+   mode = 'indeterminate';
+   value = 50;
 
 
   processed = false;
-  constructor(private route: ActivatedRoute, private managejobservice: ManageJobService) {
+  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
+    private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    this.customerId =this.customer.CustomerId;
-    this.userId=this.customer.UserId;
+    this.customerId = this.customer.CustomerId;
+    this.userId = this.customer.UserId;
+    // this.spinner.show();
   }
 
   private data: Observable<any>;
@@ -41,27 +48,39 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist(customerId,userId) {
-    this.sortBy=0;
-    return this.managejobservice.getJobDetails(customerId,userId,this.sortBy,this.joblistcount).subscribe(res => {
+  populateJoblist(customerId, userId) {
+    // this.spinner.show();
+    this.sortBy = 0;
+    return this.managejobservice.getJobDetails(customerId, userId, this.sortBy, this.joblistcount).subscribe(res => {
+       this.loaddata = true;
       this.joblist = res;
-      this.loaddata = true;
+      this.jobLoader = false;
+      this.spinner.hide();
     });
   }
 
   updateJobListCount() {
     this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
+    this.jobLoader = true;
+    this.populateJoblist(this.customerId, this.userId);
+
   }
-  
+
 
   ngOnInit() {
+    // this.jobLoader = false;
+    // this.spinner.show();
     this.sub =
       this.route.params.subscribe(params => {
-      this.id = params['id'];     
-      })
+      this.id = params['id'];
+      });
+      if (this.id === 2) {
+        this.filter.toggleTableLayout();
+      }
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
-    this.populateJoblist(this.customerId,this.userId);    
-   
+    this.spinner.show();
+    this.populateJoblist(this.customerId, this.userId);
+   // this.spinner.hide();
   }
 }
