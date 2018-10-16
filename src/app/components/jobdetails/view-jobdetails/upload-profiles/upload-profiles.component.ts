@@ -47,8 +47,8 @@ export class UploadProfilesComponent implements OnInit {
     if (this.fileUploadForm.value !== '') {
       request = JSON.stringify(this.fileUploadForm.value);
     }
-    if (e.target.files.length > 5) {
-      alert('Please select max 5 files.');
+    if (e.target.files.length > 40) {
+      alert('Please select max 40 files.');
       this.spinner.hide();
       e.preventDefault();
     } else {

@@ -15,7 +15,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AdvanceSearchComponent } from './manage-jobs/advance-search/advance-search.component';
 import { ManageJobService } from './managejobs.service';
 import { LoadJoblistComponent } from './manage-jobs/load-joblist/load-joblist.component';
-
+import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+import {NgxSpinnerModule} from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +26,8 @@ import { LoadJoblistComponent } from './manage-jobs/load-joblist/load-joblist.co
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule, MatProgressSpinnerModule, NgxSpinnerModule
   ],
   providers: [ManageJobService],
   declarations: [ManageJobsComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent, AdvanceSearchComponent, LoadJoblistComponent],

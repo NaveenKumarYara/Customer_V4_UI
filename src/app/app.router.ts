@@ -40,7 +40,7 @@ import { AdvanceSearchComponent } from './components/managejobs/manage-jobs/adva
 import { ViewJobdetailsComponent } from './components/jobdetails/view-jobdetails/view-jobdetails.component';
 import { FilterViewJobsComponent } from './components/jobdetails/view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 
-
+import {CandidateProfileComponent} from './components/company-profile/candidateprofile/cprofile.component';
 import { JobdetailsAdvanceSearchComponent } from '../app/components/jobdetails/view-jobdetails/jobdetails-advance-search/jobdetails-advance-search.component';
 import { ViewjobdetailsmodelComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
 import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component';
@@ -139,6 +139,7 @@ const appRoutes: Routes =
     { path: 'app-companyprofile', component: CompanyprofileComponent },
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
     { path: 'app-achievementsandawards', component: AchievementsandawardsComponent },
+    {path:'app-cprofile',component:CandidateProfileComponent},
     { path: 'app-basicinfo', component: BasicinfoComponent },
     { path: 'app-benefits', component: BenefitsComponent },
     { path: 'app-culture', component: CultureComponent },
