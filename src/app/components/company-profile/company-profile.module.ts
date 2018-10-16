@@ -21,6 +21,7 @@ import { CompanyProfileService } from './company-profile.service';
 import { AgmCoreModule } from '@agm/core';
 import {GooglelocationComponent}from '../../shared/googlelocation/googlelocation.component';
 import {locationComponent} from '../../shared/locations/location.component';
+import {CandidateProfileComponent} from './candidateprofile/cprofile.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,6 @@ import {locationComponent} from '../../shared/locations/location.component';
     }),
     ],
     providers: [CompanyProfileService],
-  declarations: [CompanyprofileComponent,locationComponent,GooglelocationComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
+  declarations: [CompanyprofileComponent,locationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
 })
 export class CompanyProfileModule { }
