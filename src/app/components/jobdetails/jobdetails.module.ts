@@ -6,8 +6,8 @@ import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-a
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
  import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
-import { MatDialogModule } from '@angular/material';
-//import { MatDialogModule } from '@angular/material';
+import { MatDialogModule,MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+// import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewjobdetailsScComponent } from './view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +34,8 @@ import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-can
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatCardModule, MatProgressSpinnerModule,
     //,
     //ModalDialogModule.forRoot()
   ],

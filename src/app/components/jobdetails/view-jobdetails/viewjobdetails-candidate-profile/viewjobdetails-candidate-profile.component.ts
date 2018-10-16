@@ -18,9 +18,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
    jobdetailsprofiles: JobdetailsProfile[] = [];
-   matchingDetails : MatchingDetails;
-   customerId:any;
-   userId:any;
+   matchingDetails: MatchingDetails;
+   customerId: any;
+   userId: any;
   @Input() jobid: number;
   @Input() statusid: number;
  // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
@@ -69,8 +69,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   OpenRejectDialog() {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
 
-      { 
-        
+      {
+
         data: {
           animal: 'panda'
         }
@@ -82,23 +82,20 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  PopulateJobdetailProfiles (customerId,userid,jobid, statusid) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber=6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;
     }
-    if(this.statusid ===15)
-    {
-      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId,this.userId,this.jobid).subscribe(res => {
+    if (this.statusid === 15) {
+      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid).subscribe(res => {
         this.jobdetailsprofiles = res;
       });
-    }
-    else{
-
-    }
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId,this.userId,this.jobid, this.statusid).subscribe(res => {
+    } else {
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, pageNumber).subscribe(res => {
       this.jobdetailsprofiles = res;
     });
+  }
   }
 
   CheckDisplay(val) {
@@ -112,8 +109,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   //     this.matchingDetails = res;
   //   });
   // }
-  callSkills(profileId)
-  {
+  callSkills(profileId) {
     // var $card = $('.page--job-details .tab-content .card');
     //   var $detailsBtn = $card.find('.show-matching-details');
     //   $detailsBtn.on('click', function (e) {
@@ -126,7 +122,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           this.matchingDetails = res;
           $('#matchingDetail-' + profileId).toggleClass('open');
         });
-        
+
 
         // $detailsCloseBtn.on('click', function (e) {
         //   e.preventDefault();
@@ -134,21 +130,20 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         // });
      // });
   }
-  closeDetails(profileId)
-  {
+  closeDetails(profileId) {
     $('#matchingDetail-' + profileId).removeClass('open');
   }
   ngOnInit() {
     (function ($) {
-      //TODO: test multiple cards -- open and close function
-      var $card = $('.page--job-details .tab-content .card');
-      var $detailsBtn = $card.find('.show-matching-details');
+      // TODO: test multiple cards -- open and close function
+      const $card = $('.page--job-details .tab-content .card');
+      const $detailsBtn = $card.find('.show-matching-details');
       $detailsBtn.on('click', function (e) {
 
         e.preventDefault();
-        var $selectedCard = $(this).closest('.card');
-        var $detailsDiv = $selectedCard.find('.matching-details');
-        var $detailsCloseBtn = $selectedCard.find('.close');
+        const $selectedCard = $(this).closest('.card');
+        const $detailsDiv = $selectedCard.find('.matching-details');
+        const $detailsCloseBtn = $selectedCard.find('.close');
         $detailsDiv.toggleClass('open');
 
         $detailsCloseBtn.on('click', function (e) {
@@ -157,7 +152,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         });
       });
     })(jQuery);
-    (function ($) { 
+    (function ($) {
       $('#cultural-carousel').owlCarousel({
         loop: true,
         margin: 10,
@@ -175,7 +170,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           }
         }
       });
-    
+
       $('.skills-carousel').owlCarousel({
         loop: true,
         margin: 15,
@@ -189,7 +184,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         }
       });
     });
-    this.PopulateJobdetailProfiles(this.customerId,this.userId,this.jobid, this.statusid);
+    this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
     console.log('abc');
   }
   ngOnChange() {

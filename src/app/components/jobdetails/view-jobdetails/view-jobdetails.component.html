@@ -133,7 +133,18 @@
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
               [statusid]="statusid">
-            </app-viewjobdetails-candidate-profile> 
+              </app-viewjobdetails-candidate-profile> 
+              <mat-progress-spinner *ngIf="profileLoader===true"
+                style="margin:0 auto;" 
+                class=""
+                [color]="color"
+                [mode]="mode" strokeWidth="3" [diameter]="50" >
+             </mat-progress-spinner>
+              <div class="col-md-12">
+                <div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid)">
+                  Load More
+                </div>
+              </div>
             </div>
           </div>
         </div>

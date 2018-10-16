@@ -33,6 +33,12 @@ export class JobdetailsService {
   updateDetailsAdvanceSearch(showdetailadvancesearch: boolean) {
     this.detailsAdvanceSearch.next(showdetailadvancesearch);
   }
+  private profilecount = new BehaviorSubject(6);
+  currentProfilecount = this.profilecount.asObservable();
+
+  updateprofileCount(updatedtotal: number) {
+    this.profilecount.next(updatedtotal);
+  }
 
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
@@ -87,9 +93,9 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
       );
   }
 
-  getJobDetailsProfileInfo(customerId:number,userId:number,jobid: number, statusid: number): Observable<JobdetailsProfile[]> {
+  getJobDetailsProfileInfo(customerId:number,userId:number,jobid: number, statusid: number,noOfRows:number=6): Observable<JobdetailsProfile[]> {
     const url = environment.JobdetailsProfileEndpoint + 'customerId='+customerId+'&userId=' +userId+
-      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=0&pageNumber=1&noOfRows=6';
+      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=0&pageNumber=1&noOfRows=' + noOfRows;
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
       .catch(

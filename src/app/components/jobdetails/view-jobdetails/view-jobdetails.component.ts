@@ -34,9 +34,12 @@ export class ViewJobdetailsComponent implements OnInit {
   jobid :any;
   viewJobJobId:any;
   statusid = 0;
+  // loadMoreStat:number;
+  profileLoader:boolean=false;
   uploadProfile = 0;
   fileUploadForm: FormGroup;
   jobdetailsprofiles: JobdetailsProfile[] = [];
+  profilecount: number;
   // showVar:  = true;
 
   constructor(private route: ActivatedRoute,
@@ -110,15 +113,20 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   updateallcandidatesstatus() {
     this.statusid = 0;
+    this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId,this.userId, this.jobid, this.statusid);
   }
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others
     this.statusid = 15;
+    //this.loadMoreStat=this.statusid;
+    this.profilecount=0;
     // this.PopulateJobdetailProfiles();
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
   updateappliedstatus() {// 1000080;
     this.statusid = 4;
+   // this.loadMoreStat=this.statusid;
+   this.profilecount=0;
     // console.log(this.statusid);
     // this.PopulateJobdetailProfiles();
     // console.log(this.jobid);
@@ -126,25 +134,48 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   updateshortlistedstatus() { // 1000007;
     this.statusid = 5;
+   // this.loadMoreStat=this.statusid;
+   this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
   updateinterviewedstatus() { // 1000007;
     this.statusid = 7;
+  //  this.loadMoreStat=this.statusid;
+  this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
   updatehiredstatus() { // 1000028;
     this.statusid = 11;
+   // this.loadMoreStat=this.statusid;
+   this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
 
   updaterejectedstatus() {
     this.statusid = 9;
+    // this.loadMoreStat=this.statusid;
+    this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
    }
-
-    uploadprofiles() {
-       this.jobid;
-    }
+   updateProfileCount() {
+    // if (this.statusid === this.loadMoreStat) {
+    this.profilecount += 6;
+    // } else {
+    //  this.profilecount = 0;
+    //  this.profilecount += 6;
+    // }
+    this.profileLoader = true;
+    this.jobdetailsservice.updateprofileCount(this.profilecount);
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,this.profilecount);
+   this.loader();
+   }
+   loader()
+   {
+      this.profileLoader = false;
+   }
+    // uploadprofiles() {
+    //    this.jobid;
+    // }
     // getFileDetails(e) {
     //   let request = '';
     //   const formData = new FormData();
@@ -224,7 +255,8 @@ export class ViewJobdetailsComponent implements OnInit {
       //     items: 3
       //   }
       // });
-
+     // this.loadMoreStat=0;
+      this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
 
     this.populateJobsBasicInfo(this.customerId, this.jobid);
