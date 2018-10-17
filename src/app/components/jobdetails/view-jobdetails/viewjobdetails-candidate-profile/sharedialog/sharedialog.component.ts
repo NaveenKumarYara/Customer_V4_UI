@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../../../../app.service';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';  
+declare var $ : any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
