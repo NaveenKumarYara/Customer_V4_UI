@@ -1,36 +1,193 @@
-
 <h4 mat-dialog-title class="modal-title">
-  Share Candidate
+  Schedule Interview
 </h4>
 <mat-dialog-content class="mat-typography">
   <div class="modal-content">
     <div class="modal-body">
-      <form action="">
-        <div class="form-group">
-          <label for="">TECHNICAL TEAM FOR SCREENING</label>
-          <div class="input-group">
-            <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities" autocomplete="off">
-            <span class="input-group-btn">
-              <button class="btn">+</button>
-            </span>
+      <div class="row">
+        <form action="">
+          <div class="col-md-6">
+            <div class="form-row clearfix">
+              <div class="form-group interview-date-group">
+                <label for="">
+                  Date for Interview
+                </label>
+                <div class="input-group">
+                  <!-- <input type="text" class="form-control datepicker"> -->
+                  <input type="text" class="form-control jsDatePicker" autocomplete="off" (click)="changeDate(yearOfAchievement.value)" id="datePickerCert"
+                  name="YearOfAchievement" #YearOfAchievement="ngModel" required [(ngModel)]="schIntw.YearOfAchievement" placeholder="Year of Achievement"
+                  #yearOfAchievement>
+                  <span class="input-group-btn">
+                    <button class="btn">+</button>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group interview-time-group">
+                <label for="">Time of Interview</label>
+                <select class="styled-select-box block"  [(ngModel)]="schIntw.StartTime" name="" id="">
+                  <option value="">12:30</option>
+                  <option value="">01:00</option>
+                  <option value="">01:30</option>
+                  <option value="">02:00</option>
+                  <option value="">03:00</option>
+                  <option value="">04:00</option>
+                  <option value="">05:00</option>
+                  <option value="">06:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="team-members">ADD INTERNAL TEAM MEMBERS</label>
+                <div class="input-group">
+                  <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
+                  <ng-select class="custom-style" [items]="managersList | async"
+                  placeholder="e.g. Bachelor of Computer Arts"
+                  (change)="changeTeam($event)"
+                  bindLabel="FirstName"
+                  bindValue="UserId"
+                  [typeahead]="selectedUserInput"
+                  [hideSelected]="true"
+                  [loading]="usersloading"
+                  [(ngModel)]="selectedUserName"
+                  [virtualScroll]="true"></ng-select>
+                  <span class="input-group-btn">
+                    <button class="btn">+</button>
+                  </span>
+                </div>
+              </div>
+              <ul class="team-members-list">
+                <li *ngFor="let teammember of teammemberslist; let i = index">
+                  <div>
+                    <img src="images/ui-face-1.png" alt="">
+                    <h4>{{teammember.FirstName}}<span class="dept">HR Office</span></h4>
+                  </div> 
+                  <span class="close">&times;</span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="">Type Reason</label>
-          <textarea type="text" class="form-control" placeholder="Type here"></textarea>
-        </div>
-      </form>
+          <div class="col-md-6">
+            <div class="interview-type">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#inperson">In Person</a></li>
+                <li><a data-toggle="tab" href="#skype">Skype</a></li>
+                <li><a data-toggle="tab" href="#webex">Webex</a></li>
+              </ul>
+
+              <div class="tab-content">
+                <div id="inperson" class="tab-pane fade in active">
+                  <a href="#" class="tui-tooltip">
+                    See how much would it cost to you. <span>&#63;</span>
+                    <div class="tooltip-content">
+                      <span>54</span>
+                    </div>
+                  </a>
+                  <div class="form-group further-interview-group">
+                    <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                    <div class="clearfix">
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">Yes</span>
+                        </label>
+                      </div>
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">No</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group travel-expense-group">
+                    <label for="" class="question">DO YOU PROVIDE TRAVEL EXPENSES FOR INTERVIEW ?</label>
+                    <div class="clearfix">
+                      <label for="travelExpense-yes" class="radio">
+                        <input type="radio" id="travelExpense-yes" name="travelExpense" class="radio-input">
+                        <span class="radio-btn"></span>
+                        <span>Yes</span>
+                      </label>
+                      <label for="travelExpense-no" class="radio">
+                        <input type="radio" id="travelExpense-no" name="travelExpense" class="radio-input">
+                        <span class="radio-btn"></span>
+                        <span>No</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div id="skype" class="tab-pane fade">
+                  <div class="form-group skype-group">
+                    <label for="">Skype</label>
+                    <h2>N/A</h2>
+                    <label for="request-skype" class="radio">
+                      <input type="checkbox" id="request-skype" [(ngModel)]="schIntw.SkypeId" name="requestSkypeID" class="radio-input">
+                      <span class="radio-btn"></span>
+                      <span>Request for Skype ID</span>
+                    </label>
+                  </div>
+                  <div class="form-group further-interview-group">
+                    <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                    <div class="clearfix">
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">Yes</span>
+                        </label>
+                      </div>
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">No</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="webex" class="tab-pane fade">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="">Dial-in number</label>
+                      <input type="text" class="form-control" placeholder="e.g. 852477231">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="">Meeting ID / Conference Code</label>
+                      <input type="text" class="form-control" placeholder="e.g. HGKS2553GV">
+                    </div>
+                  </div>
+                  <div class="form-group">
+
+                  </div>
+                  <div class="form-group further-interview-group">
+                    <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                    <div class="clearfix">
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">Yes</span>
+                        </label>
+                      </div>
+                      <div class="radio-btn bordered">
+                        <label>
+                          <input type="radio" name="contract-duration" value="">
+                          <span class="box">No</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+
   </div>
 </mat-dialog-content>
 <mat-dialog-actions class="modal-footer">
   <div class="modal-footer">
-    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled">Share</button>
-  </div> 
+    <button mat-button mat-dialog-close class="btn btn-border">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="ScheduleInterview()" cdkFocusInitial class="btn btn-filled">Schedule Interview</button>
+  </div>
 </mat-dialog-actions>
-
-
-
-
-

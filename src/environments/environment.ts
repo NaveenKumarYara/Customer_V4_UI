@@ -25,7 +25,7 @@ export const environment = {
     getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?customerId=1&userId=5',
      customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?customerId=1&userId=5',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
-
+scheduleInterview :'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
 

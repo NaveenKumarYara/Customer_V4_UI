@@ -152,7 +152,7 @@ export class ViewJobdetailsComponent implements OnInit {
   }
 
   updaterejectedstatus() {
-    this.statusid = 9;
+    this.statusid = 6;
     // this.loadMoreStat=this.statusid;
     this.profilecount=0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);

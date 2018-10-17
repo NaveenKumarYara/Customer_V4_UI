@@ -7,6 +7,8 @@ import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import {MatchingDetails} from '../../models/matchingDetails';
+import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
+import { InterviewdialogComponent } from './interviewdialog/interviewdialog.component';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -17,6 +19,7 @@ declare var jQuery: any;
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
+  viewscheduleInterviewDialgoref : MatDialogRef<ScheduleInterviewComponent>;
    jobdetailsprofiles: JobdetailsProfile[] = [];
    matchingDetails: MatchingDetails;
    customerId: any;
@@ -82,6 +85,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+  OpenScheduleInterviewDialog() {
+    const scheduleIntwdialogRef = this.dialog.open(InterviewdialogComponent,
+
+      { 
+        width: '250px',
+        data: {
+          animal: 'panda'
+        }
+      }
+    );
+
+    scheduleIntwdialogRef.afterClosed().subscribe(result => {
+      console.log('Chatbox Dialog result: ${result}');
+    });
+  }
   PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber=6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
