@@ -10,7 +10,7 @@
               </div>
       <div class="candidate-info">
        <img src={{profile.ProfilePic}} alt="" width="66" height="66">
-        <h1 class="title">
+        <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">
           {{profile.FirstName}} {{profile.LastName}}
           <div class="dropdown ">
             <a href="#" class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="clearfix">
         <div class="pull-left">
-          <a href="profile-edit-name-and-location.html" class="green-btn">Edit Profile</a>
+          <a  class="green-btn">Edit Profile</a>
         </div>
         <ul class="nav nav-pills navbar-right">
           <li class="active"><a data-toggle="pill" href="#summaryView">Summary View</a></li>
@@ -16,47 +16,65 @@
             <div class="col-md-4 col-sm-12">
               <div class="left">
                 <div class="pic-lg">
-                  <img class="profile-pic-lg" src="/assets/images/profile.jpg" alt="">
-                  <h1>Marry James</h1>
-                  <h4 class="meta">Senior UX designer @ Upwork</h4>
+                  <img class="profile-pic-lg" src="{{profileview?.ProfileBasicInfo?.ProfilePicUrl}}" alt="">
+                  <h1>{{profileview?.ProfileBasicInfo?.FirstName}} {{profileview?.ProfileBasicInfo?.LastName}}</h1>
+                  <h4 class="meta">{{profileview?.ProfileBasicInfo?.ProfileTitle}} @
+                    {{profileview?.ProfileBasicInfo?.CompanyName}}
+                  </h4>
                 </div>
                 <hr class="divider">
                 <div class="contact">
                   <h2>Contact</h2>
                   <address>
-                    <p>marryjames@gmail.com</p>
-                    <p>+23-111-2223</p>
-                    <p>Austin, Texas. United States</p>
+                    <p>{{profileview?.ProfileBasicInfo?.Email}}</p>
+                    <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
+                    <p>{{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
+                      {{profileview?.ProfileBasicInfo?.CountryName}}
+                    </p>
                   </address>
                 </div>
                 <hr class="divider">
                 <div>
                   <h2>Summary</h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-                    suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                    <span [innerHTML] class="more">
+                      {{profileview?.ProfileBasicInfo?.AboutMe}}
+                    </span>
+                    <ng-container *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
+                      <p>No Summary Is Added</p>
+                    </ng-container>
                   </p>
                 </div>
                 <hr class="divider">
                 <div>
                   <h2>Roles &amp; Responsibilities</h2>
                   <ul>
-                    <li>ABC Award</li>
-                    <li>Hot Shot Employee of the month</li>
-                    <li>Best performance Award</li>
-                    <li>Hot Shot Employee of the month</li>
+                    <ng-container *ngFor="let roles of profileview?.ProfileExperience">
+                      <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
+                        <li *ngFor="let role of roles?.Roles">
+                          {{role}}
+                        </li>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                      No Roles Added
+                    </ng-container>
                   </ul>
                 </div>
                 <hr class="divider">
                 <div>
                   <h2>Achievements</h2>
                   <ul>
-                    <li>ABC Award</li>
-                    <li>Hot Shot Employee of the month</li>
-                    <li>Best performance Award</li>
-                    <li>Hot Shot Employee of the month</li>
+                    <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+                      <span *ngIf="achivements.Achievements!=null&&achivements.Achievements!=''">
+                        <li *ngFor="let achivement of achivements?.Achievements">
+                          {{achivement}}
+                        </li>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                      No Achievements Added
+                    </ng-container>
                   </ul>
                 </div>
               </div>
@@ -163,27 +181,13 @@
                     <div class="skills-section">
                       <h2 class="section-title">Other Skills</h2>
                       <ul class="skills clearfix">
-                        <li class="skill tag">
-                          UX Design
-                        </li>
-                        <li class="skill tag">
-                          Interaction
-                        </li>
-                        <li class="skill tag">
-                          Adobe CC
-                        </li>
-                        <li class="skill tag">
-                          User Interface
-                        </li>
-                        <li class="skill tag">
-                          UI Design
-                        </li>
-                        <li class="skill tag">
-                          HTML
-                        </li>
-                        <li class="skill tag">
-                          CSS
-                        </li>
+                        <ng-container *ngFor="let skills of otherSkills">
+                          <li>
+                            <span class="skill tag " *ngIf="skills.ExpInYears ===0 &&skills.SkillName!=''||skills.ExpInYears ==null&& skills.SkillName!='' ">
+                              {{skills.SkillName }}</span>
+                          </li>
+
+                        </ng-container>
                       </ul>
                     </div>
                   </div>
@@ -191,27 +195,12 @@
                     <div class="skills-section">
                       <h2 class="section-title">Domain Skills</h2>
                       <ul class="skills clearfix">
-                        <li class="skill tag">
-                          UX Design
-                        </li>
-                        <li class="skill tag">
-                          Interaction
-                        </li>
-                        <li class="skill tag">
-                          Adobe CC
-                        </li>
-                        <li class="skill tag">
-                          User Interface
-                        </li>
-                        <li class="skill tag">
-                          UI Design
-                        </li>
-                        <li class="skill tag">
-                          HTML
-                        </li>
-                        <li class="skill tag">
-                          CSS
-                        </li>
+                        <div>
+                          <li *ngFor=" let domain of profileview?.ProfileDomain ">
+                            <span class="skill tag " *ngIf="domain.DomainName!=null&&domain.DomainName!='' ">
+                              {{domain.DomainName}}</span>
+                          </li>
+                        </div>
                       </ul>
                     </div>
                   </div>
@@ -235,45 +224,18 @@
                   <h2 class="section-title">Professional Experience</h2>
                   <div class="timeline-wrap clearfix">
                     <ul class="timeline">
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
+                      <li class="clearfix " *ngFor="let exp of profileview?.ProfileExperience ">
+                        <div class="date ">
+                          {{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}
                         </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
-                        </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
-                        </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
+                        <div class="badge-circle "></div>
+                        <div class="details ">
+                          <h3 class="title ">{{exp.JobRole}}</h3>
+                          <div class="info ">
+                            <img src="assets/images/oxford.png" alt=" ">
+                            <h4 class="name ">{{exp.CompanyName}}</h4>
+                            <h5 class="meta meta-dark ">
+                              <span class="icon-location "></span> {{exp.JobLocation}}</h5>
                           </div>
                         </div>
                       </li>
@@ -284,85 +246,55 @@
                 <div class="certifications">
                   <h2 class="section-title">Certifications</h2>
                   <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                      <div class="cert-card">
-                        <div class="settings-dot">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                        </div>
-                        <div class="logo">
-                          <img src="/assets/images/microsoft-logo.png" alt="">
-                        </div>
-                        <div class="info">
-                          <h2 class="title">Javascript</h2>
-                          <h4 class="year">2013</h4>
+                    
+                   
+                    <div *ngIf="profileview?.Certifications?.length>0">
+                      <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngFor="let certificate of profileview?.Certifications ">
+                        <div class="cert-card ">
+                          <div class="settings-dot ">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <div class="logo ">
+                            <img [src]="certificate.ImageUrl" alt=" ">
+                          </div>
+                          <div class="info ">
+                            <h2 class="title " data-toggle="tooltip" title={{certificate.CertificationName}}>{{certificate.CertificationName}}</h2>
+                            <h4 class="year ">{{certificate.YearOfAchievement| date:'mediumDate'}}</h4>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6 col-sm-6">
-                      <div class="cert-card">
-                        <div class="settings-dot">
-                          <span></span><span></span><span></span>
-                        </div>
-                        <div class="logo">
-                          <img src="/assets/images/microsoft-logo.png" alt="">
-                        </div>
-                        <div class="info">
-                          <h2 class="title">Javascript</h2>
-                          <h4 class="year">2013</h4>
-                        </div>
-                      </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngIf="profileview?.Certifications?.length==0">
+                      <p>No Certifications added</p>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h2 class="section-title">Professional Skills</h2>
+                  <h2 class="section-title">Professional Education</h2>
                   <div class="timeline-wrap clearfix">
                     <ul class="timeline">
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
+                      <li class="clearfix " *ngFor="let education of profileview?.Education ">
+                        <div class="date ">
+                          {{education.FromYear}} - {{education.ToYear}}
                         </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
+                        <div class="badge-circle "></div>
+                        <div class="details ">
+                          <h3 class="title ">{{education.QualificationName}} in {{education.Specialization}}</h3>
+                          <div class="info ">
+                            <img src="assets/images/oxford.png " alt=" ">
+                            <h4 class="name ">{{education.InstituteORUniversity}}</h4>
+                            <h5 class="meta meta-dark ">
+                              <span class="icon-location "></span> {{education.Location}}</h5>
                           </div>
                         </div>
                       </li>
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
-                        </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
-                          </div>
-                        </div>
+                      <li class="clearfix " *ngIf="profileview?.Education.length==0">
+                        <p>No Professional Education added</p>
                       </li>
-                      <li class="clearfix">
-                        <div class="date">
-                          Jun-2013 - Present
-                        </div>
-                        <div class="badge-circle"></div>
-                        <div class="details">
-                          <h3 class="title">Lead user Experience Engineer</h3>
-                          <div class="info">
-                            <img src="/assets/images/oxford.png" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>
-                          </div>
-                        </div>
-                      </li>
+                     
                     </ul>
                   </div>
                 </div>
@@ -384,26 +316,27 @@
                         <div>
                           <img class="profile-pic" src="images/profile.jpg" alt="">
                         </div>
-                        <div>
+                        <!-- <div>
                           <a href="#" class="btn green-btn">Public Profile</a>                
-                        </div>
+                        </div> -->
                       </div>
                       <div class="info-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <h1 class="name">Marry James</h1>
+                        <h1 class="name">{{profileview?.ProfileBasicInfo?.FirstName}}
+                          {{profileview?.ProfileBasicInfo?.LastName}}</h1>
         
-                        <h4 class="meta">
-                          Current Role
-                        </h4>
+                          <h4 class="meta">
+                            {{profileview?.ProfileBasicInfo?.ProfileTitle}}
+                          </h4>
         
                         <div class="social-media">
                           <a href="#">
-                            <img src="images/linkedin-icon.png" alt="In">
+                            <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
                           </a>
                           <a href="#">
-                            <img src="images/fb-icon.png" alt="In">
+                            <img src="../../../../assets/images/fb-icon.svg" alt="Linkedin">
                           </a>
                           <a href="#">
-                            <img src="images/twitter-icon.png" alt="In">
+                            <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
                           </a>
                         </div>
                       </div>
@@ -433,7 +366,7 @@
                         </a>
                         <div>
                           <p>
-                            <svg version="1.1"
+                            <!-- <svg version="1.1"
                               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                               x="0px" y="0px" width="22.1px" height="17px" viewBox="0 0 22.1 17" style="enable-background:new 0 0 22.1 17;"
                               xml:space="preserve" class="icon">
@@ -449,11 +382,14 @@
                               <path class="st0" d="M3,1h16c1.1,0,2,0.9,2,2v11c0,1.1-0.9,2-2,2H3c-1.1,0-2-0.9-2-2V3C1,1.9,1.9,1,3,1z"/>
                               <polyline class="st0" points="21.1,3 11,10 1,3 	"/>
                             </g>
-                            </svg>
-                            marryjames@gmail.com
+                            </svg> -->
+                            <span>
+                              <img src="../../../../assets/images/email-icon.svg" alt="Email">
+                            </span>
+                            {{profileview?.ProfileBasicInfo?.Email}}
                           </p>
                           <p class="meta">
-                            <svg version="1.1"
+                            <!-- <svg version="1.1"
                               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                               x="0px" y="0px" width="17.5px" height="22.2px" viewBox="0 0 17.5 22.2" style="enable-background:new 0 0 17.5 22.2;"
                               xml:space="preserve" class="icon">
@@ -471,11 +407,16 @@
                                 C1.3,11.6,0.9,10,1,8.1C1.3,4.8,3.6,2,6.9,1.2c4.4-1.1,8.7,1.8,9.5,6.2C16.4,7.8,16.5,8.3,16.5,8.5z"/>
                               <circle class="st0" cx="8.7" cy="8.6" r="3.2"/>
                             </g>
-                            </svg>
-                            not added
+                            </svg> -->
+                            <label for="">
+                              <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
+                            
+                            </label>
+                            {{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
+                            {{profileview?.ProfileBasicInfo?.CountryName}}
                           </p>
                           <p class="meta">
-                            <svg version="1.1"
+                            <!-- <svg version="1.1"
                               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                               x="0px" y="0px" width="20.7px" height="20.7px" viewBox="0 0 20.7 20.7" style="enable-background:new 0 0 20.7 20.7;"
                               xml:space="preserve" class="icon">
@@ -491,8 +432,11 @@
                                 c0.1,0,0.1,0,0.2,0h2.7c0.9,0,1.7,0.7,1.8,1.5C7.4,4.3,7.6,5.1,7.9,6C8.1,6.6,8,7.3,7.5,7.8L6.4,9c1.3,2.2,3.1,4.1,5.4,5.4l1.1-1.1
                                 c0.5-0.5,1.2-0.6,1.9-0.4c0.8,0.3,1.7,0.5,2.5,0.6C18.2,13.6,18.8,14.4,18.8,15.3z"/>
                             </g>
-                            </svg>
-                            not added
+                            </svg> -->
+                            <span>
+                              <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
+                            </span>
+                            {{profileview?.ProfileBasicInfo?.MobilePhone}}
                           </p>
                         </div>
                         <div class="v-divider hidden-sm hidden-xs"></div>
@@ -528,7 +472,7 @@
               </div>
               <!-- row -->
               <div class="card row">
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <!-- <div class="upload-resume row">
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                       <h2 class="title">Upload Resume</h2>
@@ -557,16 +501,19 @@
                   
                       <div class="summary">
                         <div>
-                          <h2>Summary</h2>
-                          <p>Adding summary will help employers to know about your personality and background. </p>
+                          <span [innerHTML] class="moreDetails">
+                            {{profileview?.ProfileBasicInfo?.AboutMe}}
+                          </span>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
+                            <p>No Summary Is Added</p>
+                          </ng-container>
                         </div>
-                        <a href="#" class="add-btn" style="visibility:hidden"><span >+</span><p>Add Summary</p></a>
                       </div>
                     
                   </div>
                 </div>
                 <!-- col-lg-9 Ends -->
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                   <div class="profile-completeness row">
                     <h2>Profile Completeness</h2>
                     <div class="progress-wrap">
@@ -579,7 +526,7 @@
                       <h4>75%</h4> 
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- col-lg-3 -->
               </div>
               <!-- <div class="row">
@@ -662,159 +609,75 @@
                             <th>Skill level</th>
                             <th></th>
                           </tr>
-                          <tr>
-                            <td>ASP.net</td>
-                            <td>5 Years</td>
-                            <td>Dec 2017</td>
-                            <td>Expert</td>
-                            <td><div class="settings-dot"><span></span><span></span><span></span></div></td>
+                          <tr *ngFor="let skill of list">
+                            <ng-container>
+                              <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
+                              <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
+                              <td>{{skill.Lastused}}</td>
+                              <td>{{skill.SkillRating}}</td>
+                            </ng-container>
                           </tr>
-                          <tr>
-                            <td>Javascript</td>
-                            <td>5 Years</td>
-                            <td>Dec 2017</td>
-                            <td>Expert</td>
-                            <td><div class="settings-dot"><span></span><span></span><span></span></div></td>
-                          </tr>
-                          <tr>
-                            <td>C#</td>
-                            <td>5 Years</td>
-                            <td>Dec 2017</td>
-                            <td>Expert</td>
-                            <td><div class="settings-dot"><span></span><span></span><span></span></div></td>
-                          </tr>
-                          <tr>
-                            <td>Java</td>
-                            <td>5 Years</td>
-                            <td>Dec 2017</td>
-                            <td>Expert</td>
-                            <td><div class="settings-dot"><span></span><span></span><span></span></div></td>
-                          </tr>
+                         
                         </table>
                       </div>
                       <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
                         <h4 class="label-caps">Top Skills</h4>
                         <div class="row">
-                          <div class="col-md-6">
-                            <div class="skills card">
-                              <div class="settings-dot">
-                                <span></span><span></span><span></span>
-                              </div>
-                              <h3>5 Years</h3>
-                              <h2>Javascript</h2>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="skills card">
-                              <div class="settings-dot">
-                                <span></span><span></span><span></span>
-                              </div>
-                              <h3>5 Years</h3>
-                              <h2>Javascript</h2>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
+                          <ng-container *ngFor="let skill of list">
+                            <div class="col-md-6 tech_width">
+                              <div class="skills card">
+
+                                <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
+                                <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</h2>
+                                <div class="row">
+                                  <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h5 class="label-caps light">Rating</h5>
+                                    <p>{{skill.SkillRating}}</p>
+                                  </div>
+                                  <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h5 class="label-caps light">Last used</h5>
+                                    <p>{{skill.Lastused}}</p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="skills card">
-                              <div class="settings-dot">
-                                <span></span><span></span><span></span>
-                              </div>
-                              <h3>5 Years</h3>
-                              <h2>Javascript</h2>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="skills card">
-                              <div class="settings-dot">
-                                <span></span><span></span><span></span>
-                              </div>
-                              <h3>5 Years</h3>
-                              <h2>Javascript</h2>
-                              <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                  <h5 class="label-caps light">Last used</h5>
-                                  <p>Using</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          </ng-container>
                         </div>
                       </div>
                       </div>
                       <!-- Top Skills End -->
                       <div class="other-skills ">
                         <h4 class="label-caps">Other Skills</h4>
-                        <ul class="skills clearfix">
-                          <li class="skill tag">
-                            UX Design
-                          </li>
-                          <li class="skill tag">
-                            Interaction
-                          </li>
-                          <li class="skill tag">
-                            Adobe CC
-                          </li>
-                          <li class="skill tag">
-                            User Interface
-                          </li>
-                          <li class="skill tag">
-                            UI Design
-                          </li>
-                          <li class="skill tag">
-                            HTML
-                          </li>
-                          <li class="skill tag">
-                            CSS
-                          </li>
-                          <li class="skill tag">
-                            Typography
-                          </li>
-                        </ul>
+                        <div *ngIf="otherSkills!=null">
+                          <ul class="skills clearfix">
+                            <!-- <ng-container *ngFor="let skill of list"> -->
+                            <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
+                                  (click)="EditSkill(skill)">
+                                  {{skill.SkillName}}
+                                </li>
+
+                                <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
+                                    {{searchResult.name}}
+                                    <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
+                                  </li> -->
+
+                            <!-- <li *ngFor="let skill of otherSkills">
+                                <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
+                                  {{skill.SkillName}}</a>
+                                <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
+                              </li> -->
+
+                            <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">{{skill.SkillName}}</li>
+                            <!-- <li class="skill more">
+                              <a href="javascript:void(0)">+5 more</a>
+                            </li> -->
+                          </ul>
+                          </div>
                       </div>
                       
                       <!-- Other Skills End -->
                       <div class="alert job-alert">
-                        <button type="button" class="close" data-dismiss="alert"><img src="images/close-btn.png" alt="X"></button>
-                        <h5>Suggested Skills</h5>
-                        <ul class="skills clearfix">
-                          <li class="skill tag">Adobe CC</li>
-                          <li class="skill tag">Adobe XD</li>
-                          <li class="skill tag">Front End Development</li>
-                          <li class="skill more"><a href="#">+5 more</a></li>
-                        </ul>
+            
                       </div>
                     </div>
                   </div>
@@ -851,168 +714,44 @@
                       </div>        
                     </header>
                     <div class="card-content scrollbar-inner">
-                      <div class="education-row">
-                        <div class="institute">
-                          <img src="/assets/images/oxford.png" class="logo" alt="">
-                          <h4 class="name">Oxford University</h4>
-                          <h5 class="meta meta-dark"> <span class="icon-location"></span> Oxford, UK</h5>
+                      <div class="education-row " *ngFor="let educations of profileview?.Education">
+
+                        <div class="institute ">
+                          <img src="assets/images/oxford.png " class="logo" alt="logo">
+                          <h4 class="name ">{{educations.InstituteORUniversity}}</h4>
+                          <h5 class="meta meta-dark ">
+                            <span class="icon-location "></span> {{educations.Location}}</h5>
                         </div>
-                        <h2 class="title">Masters of Computer Arts</h2>
-                        <div class="duration">
-                          <span class="icon-calendar"></span>
-                          <span class="from">June 2013</span>
+                        <h2 class="title ">{{educations.QualificationName}}</h2>
+                        <div class="duration ">
+                          <span class="icon-calendar "></span>
+                          <span class="from ">{{educations.FromYear}}</span>
                           <span> - </span>
-                          <span class="to">July 2015</span>
+                          <span class="to ">{{educations.ToYear}}</span>
                         </div>
-                        <div class="study-fields">
-                          <h4 class="label-caps">Fields of Study</h4>
-                          <ul class="list clearfix">
-                            <li class="skill tag">Design</li>
-                            <li class="skill tag">Experience</li>
-                            <li class="skill tag">Art</li>
-                            <li class="skill tag">Digital Design</li>
+                        <div class="study-fields ">
+                          <h4 class="label-caps ">Fields of Study</h4>
+                          <ul class="list clearfix ">
+                            <li>
+                              <span class="skill tag " *ngIf="educations.Specialization!='' ;else falTemplate ">
+                                {{educations.Specialization}}
+                                <ng-template #falTemplate>
+  
+                                </ng-template>
+                              </span>
+  
+                            </li>
                           </ul>
                         </div>
                       </div>
-                      <div class="education-row">
-                        <div class="institute">
-                          <img src="/assets/images/oxford.png" class="logo" alt="">
-                          <h4 class="name">Oxford University</h4>
-                          <h5 class="meta meta-dark"> <span class="icon-location"></span> Oxford, UK</h5>
-                        </div>
-                        <h2 class="title">Masters of Computer Arts</h2>
-                        <div class="duration">
-                          <span class="icon-calendar"></span>
-                          <span class="from">June 2013</span>
-                          <span> - </span>
-                          <span class="to">July 2015</span>
-                        </div>
-                        <div class="study-fields">
-                          <h4 class="label-caps">Fields of Study</h4>
-                          <ul class="list clearfix">
-                            <li class="skill tag">Design</li>
-                            <li class="skill tag">Experience</li>
-                            <li class="skill tag">Art</li>
-                            <li class="skill tag">Digital Design</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="education-row">
-                        <div class="institute">
-                          <img src="/assets/images/oxford.png" class="logo" alt="">
-                          <h4 class="name">Oxford University</h4>
-                          <h5 class="meta meta-light"> <span class="icon-location"></span> Oxford, UK</h5>
-                        </div>
-                        <h2 class="title">Masters of Computer Arts</h2>
-                        <div class="duration">
-                          <span class="icon-calendar"></span>                  
-                          <span class="from">June 2013</span>
-                          <span> - </span>
-                          <span class="to">July 2015</span>
-                        </div>
-                        <div class="study-fields">
-                          <h4 class="label-caps">Fields of Study</h4>
-                          <ul class="list clearfix">
-                            <li class="skill tag">Design</li>
-                            <li class="skill tag">Experience</li>
-                            <li class="skill tag">Art</li>
-                            <li class="skill tag">Digital Design</li>
-                          </ul>
-                        </div>
-                      </div>  
-                      <div class="education-row">
-                        <div class="institute">
-                          <img src="/assets/images/oxford.png" class="logo" alt="">
-                          <h4 class="name">Oxford University</h4>
-                          <h5 class="meta meta-dark"> <span class="icon-location"></span> Oxford, UK</h5>
-                        </div>
-                        <h2 class="title">Masters of Computer Arts</h2>
-                        <div class="duration">
-                          <span class="icon-calendar"></span>                  
-                          <span class="from">June 2013</span>
-                          <span> - </span>
-                          <span class="to">July 2015</span>
-                        </div>
-                        <div class="study-fields">
-                          <h4 class="label-caps">Fields of Study</h4>
-                          <ul class="list clearfix">
-                            <li class="skill tag">Design</li>
-                            <li class="skill tag">Experience</li>
-                            <li class="skill tag">Art</li>
-                            <li class="skill tag">Digital Design</li>
-                          </ul>
-                        </div>
-                      </div> 
+               
                      
                     </div>
                   </div>
                   <div class="blackLayer modalClose"></div>
                 </div>
                 <div class="domain-skills card left hasModal ">
-                  <div id="domain-skills" class="modal fade" role="dialog">
-                    <div class="modal-dialog ">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          <form>
-                            <div class="row">
-                              <div class="col-lg-4 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                  <label for="domain-skills-name">Skills</label>
-                                  <div class="ui-widget">
-                                    <input class="form-control" id="domain-skills-name" placeholder="Skills Name">
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-4 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                  <h5 class="label">Experience</h5>
-                                  <div class="experience">
-                                    <select class="custom-select" name="" id="no_of_years">
-                                      <option value="1">1 Y</option>
-                                      <option value="2">2 Y</option>
-                                      <option value="3">3 Y</option>
-                                      <option value="4">4 Y</option>
-                                      <option value="5">5 Y</option>
-                                      <option value="6">6 Y</option>
-                                      <option value="7">7 Y</option>
-                                      <option value="8">8 Y</option>
-                                      <option value="9">9 Y</option>
-                                    </select>
-                                    <select class="custom-select" name="" id="no_of_months">
-                                      <option value="1">1 M</option>
-                                      <option value="2">2 M</option>
-                                      <option value="3">3 M</option>
-                                      <option value="4">4 M</option>
-                                      <option value="5">5 M</option>
-                                      <option value="6">6 M</option>
-                                      <option value="7">7 M</option>
-                                      <option value="8">8 M</option>
-                                      <option value="9">9 M</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-4 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                  <h5 class="label">Last Used</h5>
-                                  <select class="custom-select" name="" id="last_used">
-                                    <option value="using">Using</option>
-                                    <option value="1_year_ago">1 year ago</option>
-                                    <option value="2_year_ago">2 year ago</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn border-btn" data-dismiss="modal">Cancel</button>
-                          <button type="button" class="btn green-btn">Save</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+           
                   <div class="wrap">
                     <header class="card-header">
                       <h2 class="card-title">Domain Skills</h2>      
@@ -1022,53 +761,34 @@
                     </header>
                     <div class="card-content scrollbar-inner">
                       <div class="row">
-                        <div class="col-md-4">
-                          <div class="skills-box">
-                            <header>
-                              <h5 class="title">Medical</h5>
-                              <div class="settings-dot"><span></span><span></span><span></span></div>
-                            </header>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Experience</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>5 years</h5></div>
-                            </div>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Last used</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>Dec 2013</h5></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="skills-box">
-                            <header>
-                              <h5 class="title">Medical</h5>
-                              <div class="settings-dot"><span></span><span></span><span></span></div>
-                            </header>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Experience</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>5 years</h5></div>
-                            </div>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Last used</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>Dec 2013</h5></div>
+                        <div *ngIf="profileview?.ProfileDomain?.length>0">
+                          <div class="col-md-4 domainRecords" *ngFor="let domains of profileview?.ProfileDomain ">
+                            <div class="skills-box ">
+                              <header>
+                                <h5 class="title "> {{domains.DomainName}}</h5>
+  
+                              </header>
+                              <div class="skill-row row ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h6>Experience</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h5>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</h5>
+                                </div>
+                              </div>
+                              <div class="skill-row row ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h6>Last used</h6>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                  <h5>{{domains.LastUsed}}</h5>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-4">
-                          <div class="skills-box">
-                            <header>
-                              <h5 class="title">Medical</h5>
-                              <div class="settings-dot"><span></span><span></span><span></span></div>
-                            </header>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Experience</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>5 years</h5></div>
-                            </div>
-                            <div class="skill-row row">
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h6>Last used</h6></div>
-                              <div class="col-md-6 col-sm-6 col-xs-6"><h5>Dec 2013</h5></div>
-                            </div>
-                          </div>
+                        <div class="col-md-6 " *ngIf="profileview?.ProfileDomain?.length==0">
+                          <p>No domains added</p>
                         </div>
                         
                       </div>
@@ -1086,312 +806,105 @@
                       </div>
                     </header>
                     <div class="card-content scrollbar-inner">
-                      <div class="job-row row">
-                        <div class="col-md-4">
-                          <div class="institute">
-                            <img src="/assets/images/oxford.png"class="logo" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-light">Digital Design</h5>
-                          </div>
-                          <h2 class="title">Senior Java Developer</h2>
-                          <div class="duration">
-                            <span class="icon-calendar"></span>
-                            <span class="from">June 2013</span>
-                            <span> - </span>
-                            <span class="to">July 2015</span>
-                          </div>
-                          <h5 class="meta meta-light"><span class="icon-location"></span>California, USA</h5>
-                          <div class="radio-box inline">
-                            <h5 class="label-caps dark">References</h5>
-                            <label for="text" class="radio">
-                              <input type="checkbox" id="text" name="contactVia" class="radio-input">
-                              <span class="radio-btn"></span>
-                              <span>Request Reference</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="v-divider"></div>
-                        <div class="col-md-8 col-sm-12">
-                          <ul class="nav nav-tabs">
-                            <li class="active">
-                              <a data-toggle="tab" href="#description">
-                                Description
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#achievements">
-                                Achievements
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#responsibilities">
-                                Roles and Responsibilities
-                              </a> 
-                            </li>
-                            <span class="active-line"></span>
-                          </ul>
-                          <div class="tab-content">
-                            <div id="description" class="tab-pane fade in active">
-                              <div class="scrollbar-inner">
-                                <p class="text">
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam, 
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,ed ut 
-                                  perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam, d ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam, 
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,ed ut 
-                                  perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,
-                                </p>
-                              </div>
+                      <ng-container *ngFor="let exps of profileview?.ProfileExperience;let i=index ">
+                        <div class="job-row row ">
+                          <div class="col-md-4 ">
+                            <div class="institute ">
+                              <img src="assets/images/oxford.png " class="logo " alt="logo">
+                              <h4 class="name">{{exps.CompanyName}}</h4>
+                              <h5 class="meta meta-light ">Digital Design</h5>
                             </div>
-                            <div id="achievements" class="tab-pane fade">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
+                            <h2 class="title ">{{exps.JobRole}}</h2>
+                            <div class="duration ">
+                              <span class="icon-calendar "></span>
+                              <span class="from "> {{exps.StartDate | date:'mediumDate'}}</span>
+                              <span> - </span>
+                              <span class="to ">{{exps.EndDate | date:'mediumDate'}}</span>
+                            </div>
+                            <h5 class="meta meta-light ">
+                              <span class="icon-location "></span>{{exps.JobLocation}}</h5>
+                            <div class="radio-box inline ">
+                              
+                            </div>
+                          </div>
+                          <div class="v-divider "></div>
+                          <div class="col-md-8 col-sm-12 ">
+                            <ul class="nav nav-tabs ">
+                              <li class="active ">
+                                <a data-toggle="tab" href="#description{{i}} ">
+                                  Description
+                                </a>
+                              </li>
+                              <li>
+                                <a data-toggle="tab" href="#achievements{{i}} ">
+                                  Achievements
+                                </a>
+                              </li>
+                              <li>
+                                <a data-toggle="tab" href="#responsibilities{{i}} ">
+                                  Roles and Responsibilities
+                                </a>
+                              </li>
+  
+  
+                            </ul>
+                            <div class="tab-content">
+                              <div id="description{{i}}" class="tab-pane active">
+                                <div class="scrollbar-inner ">
+                                  <p class="text ">
+                                    {{exps.Description}}
+                                  </p>
+                                </div>
+                                <ng-container *ngIf="exps.Description==null||exps.Description==''">
+                                  <p>No Description Added </p>
+                                </ng-container>
+                              </div>
+                              <div id="achievements{{i}}" class="tab-pane">
+                                <div class="scrollbar-inner ">
+                                  <div class="list row ">
+                                    <div class=" ">
+                                      <ng-container *ngFor="let i of exps?.Achievements ">
+                                        <p>{{i}}</p>
+                                      </ng-container>
+                                      <ng-container *ngIf="exps?.Achievements==null||exps?.Achievements==''">
+                                        No Achievements Added
+                                      </ng-container>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="responsibilities{{i}}" class="tab-pane">
+                                <div class="scrollbar-inner ">
+                                  <div class="list row ">
+                                    <div class=" ">
+                                      <ng-container *ngFor="let r of exps?.Roles ">
+                                        <p>{{r}}</p>
+  
+                                      </ng-container>
+                                      <ng-container *ngIf="exps?.Roles==null|| exps?.Roles==''">
+                                        No Roles Added
+                                      </ng-container>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div id="responsibilities" class="tab-pane fade ">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                </div>   
-                              </div>                
-                            </div>
-        
-                          </div>  
-                        </div>
-                      </div>
-                      <!-- job row ends -->
-                      <div class="job-row row">
-                        <div class="col-md-4">
-                          <div class="institute">
-                            <img src="/assets/images/oxford.png"class="logo" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-light">Digital Design</h5>
-                          </div>
-                          <h2 class="title">Senior Java Developer</h2>
-                          <div class="duration">
-                            <span class="icon-calendar"></span>
-                            <span class="from">June 2013</span>
-                            <span> - </span>
-                            <span class="to">July 2015</span>
-                          </div>
-                          <h5 class="meta meta-light"><span class="icon-location"></span>California, USA</h5>
-                          <div class="radio-box inline">
-                            <h5 class="label-caps dark">References</h5>
-                            <label for="text" class="radio">
-                              <input type="checkbox" id="r1" name="contactVia" class="radio-input">
-                              <span class="radio-btn"></span>
-                              <span>Request Reference</span>
-                            </label>
                           </div>
                         </div>
-                        <div class="v-divider"></div>
-                        <div class="col-md-8 col-sm-12">
-                          <ul class="nav nav-tabs">
-                            <li class="active">
-                              <a data-toggle="tab" href="#description2">
-                                Description
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#achievements2">
-                                Achievements
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#responsibilities2">
-                                Roles and Responsibilities
-                              </a> 
-                            </li>
-                            <span class="active-line"></span>
-                          </ul>
-                          <div class="tab-content">
-                            <div id="description2" class="tab-pane fade in active">
-                              <div class="scrollbar-inner">
-                                <p class="text">
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam, 
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,ed ut 
-                                  perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,
-                                </p>
-                              </div>
-                            </div>
-                            <div id="achievements2" class="tab-pane fade">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                </div>   
-                              </div>         
-                            </div>
-                            <div id="responsibilities2" class="tab-pane fade">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                </div>   
-                              </div>                           
-                            </div>
-                          </div>  
+                      </ng-container>
+                      <ng-container *ngIf="profileview?.ProfileExperience.length==0">
+                        <div>
+                          <p>
+                            No Professional Experience added.
+                          </p>
                         </div>
-                      </div>
-                      <!-- job row 2 ends -->
-                      <div class="job-row row">
-                        <div class="col-md-4">
-                          <div class="institute">
-                            <img src="/assets/images/oxford.png" class="logo" alt="">
-                            <h4 class="name">Fantasy</h4>
-                            <h5 class="meta meta-light">Digital Design</h5>
-                          </div>
-                          <h2 class="title">Senior Java Developer</h2>
-                          <div class="duration">
-                            <span class="icon-calendar"></span>
-                            <span class="from">June 2013</span>
-                            <span> - </span>
-                            <span class="to">July 2015</span>
-                          </div>
-                          <h5 class="meta meta-light"><span class="icon-location"></span>California, USA</h5>
-                          <div class="radio-box inline">
-                            <h5 class="label-caps dark">References</h5>
-                            <label for="text" class="radio">
-                              <input type="checkbox" id="r2" name="contactVia" class="radio-input">
-                              <span class="radio-btn"></span>
-                              <span>Request Reference</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="v-divider"></div>
-                        <div class="col-md-8 col-sm-12">
-                          <ul class="nav nav-tabs">
-                            <li class="active">
-                              <a data-toggle="tab" href="#description3">
-                                Description
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#achievements3">
-                                Achievements
-                              </a> 
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#responsibilities3">
-                                Roles and Responsibilities
-                              </a> 
-                            </li>
-                            <span class="active-line"></span>
-                          </ul>
-                          <div class="tab-content">
-                            <div id="description3" class="tab-pane fade  in active">
-                              <div class="scrollbar-inner">
-                                <p class="text">
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam, 
-                                  ed ut perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,ed ut 
-                                  perspiciatis unde omnis iste natus error sit voluptatem accustium doloremque laudantium, totam rem aperiam,
-                                </p>
-                              </div>
-                            </div>
-                            <div id="achievements3" class="tab-pane fade">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                </div>   
-                              </div>         
-                            </div>
-                            <div id="responsibilities3" class="tab-pane fade">
-                              <div class="scrollbar-inner">
-                                <div class="list row">
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                  <div class="col-md-6">
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                    <p>Developed UI pages HTML, CSS, and jQuery.</p>
-                                  </div>  
-                                </div>   
-                              </div>                           
-                            </div>
-                          </div>  
-                        </div>
-                      </div>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="blackLayer modalClose"></div>
                 </div>
                 <div class="certifications card left hasModal">
-                  <div id="certifications" class="modal fade" role="dialog">
-                    <div class="modal-dialog ">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          <form>
-                            <div class="row">
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="certification-provider">Certification Provider</label>
-                                  <input type="text" id="certification-provider" class="form-control" />
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="certification-name">Certification Name</label>
-                                  <input type="text" id="certification-name" class="form-control" />
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="achievement-year">Year of Achievement</label>
-                                  <input type="text" id="achievement-year" class="form-control" />
-                                </div>                        
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn border-btn" data-dismiss="modal">Cancel</button>
-                          <button type="button" class="btn green-btn">Save</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        
                   <div class="wrap">
                     <header class="card-header">
                       <h2 class="card-title">Certifications</h2>
@@ -1400,76 +913,24 @@
                       </div>   
                     </header>
                     <div class="card-content scrollbar-inner">
-                      <div class="cert-row row">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                          <div class="cert-card">
-                            <div class="settings-dot">
-                              <span></span><span></span><span></span>
+                      <div class="cert-row row ">
+                        <div *ngIf="profileview?.Certifications?.length > 0">
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngFor="let certificates of profileview?.Certifications ">
+                            <div class="cert-card ">
+                              <div class="logo ">
+                                <img [src]="certificates.ImageUrl" class="logo " alt=" ">
+                              </div>
+                              <div class="info ">
+                                <h2 class="title ">{{certificates.CertificationName}}</h2>
+                                <h4 class="year ">{{certificates.YearOfAchievement| date:'mediumDate'}}</h4>
+                              </div>
                             </div>
-                            <div class="logo">
-                              <img src="/assets/images/microsoft-logo.png" alt="">  
-                            </div>  
-                            <div class="info">
-                              <h2 class="title">Javascript</h2>
-                              <h4 class="year">2013</h4>
-                            </div>
-                          </div>  
+                          </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                          <div class="cert-card">
-                            <div class="settings-dot">
-                              <span></span><span></span><span></span>
-                            </div>
-                            <div class="logo">
-                              <img src="/assets/images/microsoft-logo.png" alt="">  
-                            </div>  
-                            <div class="info">
-                              <h2 class="title">Javascript</h2>
-                              <h4 class="year">2013</h4>
-                            </div>
-                          </div>  
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                          <div class="cert-card">
-                            <div class="settings-dot">
-                              <span></span><span></span><span></span>
-                            </div>
-                            <div class="logo">
-                              <img src="/assets/images/microsoft-logo.png" alt="">  
-                            </div>  
-                            <div class="info">
-                              <h2 class="title">Javascript</h2>
-                              <h4 class="year">2013</h4>
-                            </div>
-                          </div>  
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                          <div class="cert-card">
-                            <div class="settings-dot">
-                              <span></span><span></span><span></span>
-                            </div>
-                            <div class="logo">
-                              <img src="/assets/images/microsoft-logo.png" alt="">  
-                            </div>  
-                            <div class="info">
-                              <h2 class="title">Javascript</h2>
-                              <h4 class="year">2013</h4>
-                            </div>
-                          </div>  
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                          <div class="cert-card">
-                            <div class="settings-dot">
-                              <span></span><span></span><span></span>
-                            </div>
-                            <div class="logo">
-                              <img src="/assets/images/microsoft-logo.png" alt="">  
-                            </div>  
-                            <div class="info">
-                              <h2 class="title">Javascript</h2>
-                              <h4 class="year">2013</h4>
-                            </div>
-                          </div>  
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngIf="profileview?.Certifications?.length==0">
+  
+                          <p>No Certifications added</p>
+  
                         </div>
                       </div>
                     </div>

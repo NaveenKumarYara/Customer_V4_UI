@@ -99,6 +99,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       console.log('Chatbox Dialog result: ${result}');
     });
   }
+  GetCandidateProfile(profileId)
+  {
+    sessionStorage.setItem('profileId', JSON.stringify(profileId));
+    this.router.navigateByUrl('app-cprofile');
+  }
   PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber=6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
