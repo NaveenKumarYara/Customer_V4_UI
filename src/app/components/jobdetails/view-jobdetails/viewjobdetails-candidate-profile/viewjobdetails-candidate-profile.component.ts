@@ -8,7 +8,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
-import { InterviewdialogComponent } from './interviewdialog/interviewdialog.component';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -86,7 +85,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenScheduleInterviewDialog() {
-    const scheduleIntwdialogRef = this.dialog.open(InterviewdialogComponent,
+    const scheduleIntwdialogRef = this.dialog.open(SharedialogComponent,
 
       { 
         width: '250px',
