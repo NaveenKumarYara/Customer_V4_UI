@@ -20506,9 +20506,9 @@ a.ui-button:active,
   margin-right: 30px;
 }
 
-.page--create-a-job .form-steps #step2 .domain-exp-group .form-control {
+/* .page--create-a-job .form-steps #step2 .domain-exp-group .form-control {
   margin-top: 0;
-}
+} */
 
 .page--create-a-job .form-steps #step2 .personality-group label {
   position: relative;
@@ -20615,10 +20615,10 @@ a.ui-button:active,
 .page--create-a-job .form-steps #step3 .reporting-manager-group .description {
   margin-bottom: 20px;
 }
-
+/* 
 .page--create-a-job .form-steps #step3 .tech-team-group .form-control {
   margin-top: 0;
-}
+} */
 
 .page--create-a-job .form-steps #step4 .question {
   color: #448AFA;
