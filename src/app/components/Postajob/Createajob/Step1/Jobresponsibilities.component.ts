@@ -9,7 +9,8 @@ import { JobdetailsComponent } from './Jobdetails.component';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobresponsibilities',
-  templateUrl: './jobresponsibilities.component.html'
+  templateUrl: './jobresponsibilities.component.html',
+  styleUrls: ['./jobresponsibilities.component.css']
 })
 
 export class JobResponsibilitiesComponent implements OnInit, OnDestroy {

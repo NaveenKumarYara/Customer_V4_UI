@@ -4,7 +4,7 @@
   <div class="form-row row">
     <div class="form-group skill-name col-md-6">
       <label for="">Skill Name</label>
-      <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Adobe Photoshop" bindLabel="SkillName"
+      <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="SkillName"
         bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
         [(ngModel)]="selectedSkillName" [virtualScroll]="true">
       </ng-select>

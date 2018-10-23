@@ -1,5 +1,5 @@
 <div class="form-group responsibility-group">
-  <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
+  <label for="" class="question">What are the Responsibilities that you are looking for in the candidate?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <ul class="responsibility-list">
       
@@ -20,12 +20,12 @@
        <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
         [(ngModel)]="responsibilities"> -->
 
-        <input class="form-control" class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" 
+        <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" 
         required [(ngModel)]="responsibilities" id="responsibilitiesName" (keyup)="GetTitleRoles($event)"
         placeholder="Type and Select">
-        <div class="searchList" *ngIf="roleJobTitleList!=null" style=" background:transparent; height: 200%; overflow: auto">
-            <ul>
-              <li *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
+        <div class="searchList" *ngIf="roleJobTitleList!=null" >
+            <ul class="searchList-dropdown">
+              <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
             </ul>
           </div>
       </div>
