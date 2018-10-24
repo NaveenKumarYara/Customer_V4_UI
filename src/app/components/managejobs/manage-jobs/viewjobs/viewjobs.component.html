@@ -12,9 +12,9 @@
         </label>
         <select name="view" id="view" class="styled-select-box" (change)="filterManageJobs(customerId,userId,$event.target.value)">
           <option default value="0">All Jobs</option>
-          <option value="1">Pending</option>
-          <option value="2">Rejected</option>
-          <option value="3">Hired</option>
+          <option value="1">Active Jobs</option>
+          <option value="2">InActive Jobs</option>
+          <option value="3">Closed Jobs</option>
         </select>
       </div>
     </form>
