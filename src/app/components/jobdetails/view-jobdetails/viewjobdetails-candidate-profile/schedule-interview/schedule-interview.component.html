@@ -13,15 +13,35 @@
                   Date for Interview
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control datepicker">
-                  <span class="input-group-btn">
-                    <button class="btn">+</button>
-                  </span>
+                  <!-- <input type="text" class="form-control datepicker"> -->
+                  <!-- <input type="text" class="form-control datepicker" autocomplete="off" (click)="changeDate(InterviewDate.value)" id="datePickerCert"
+                  name="InterviewDate" #InterviewDate="ngModel" required [(ngModel)]="schIntw.InterviewDate" placeholder="Year of Achievement"
+                  #InterviewDate>
+                  <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-top" style="display: block; top: 202px; left: 712.5px; z-index: 1010;">
+        
+                  </div> -->
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="InterviewDate" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-btn">
+        <button class="btn" (click)="d.toggle()" type="button">+</button>
+      </div>
+                  <!-- <dl-date-time-picker
+    startView="day"
+    maxView="year"
+    minView="minute"
+    minuteStep="5"
+    name="abc"
+    [(ngModel)]="selectedDate"
+>
+</dl-date-time-picker> -->
+                  <!-- <span class="input-group-btn">
+                    <button (click)="d.toggle()" class="btn">+</button>
+                  </span> -->
                 </div>
               </div>
               <div class="form-group interview-time-group">
                 <label for="">Time of Interview</label>
-                <select class="styled-select-box block" name="" id="">
+                <!-- <select class="styled-select-box block" [(ngModel)]="schIntw.StartTime" name="startTime" id="">
                   <option value="">12:30</option>
                   <option value="">01:00</option>
                   <option value="">01:30</option>
@@ -30,24 +50,54 @@
                   <option value="">04:00</option>
                   <option value="">05:00</option>
                   <option value="">06:00</option>
-                </select>
+                </select> -->
+                <!-- <ngb-timepicker [(ngModel)]="time" [seconds]="seconds"></ngb-timepicker>
+                <button class="btn btn-sm btn-outline-{{seconds ? 'success' : 'danger'}}" (click)="toggleSeconds()">
+                    Seconds - {{seconds ? "ON" : "OFF"}}
+                </button> -->
+                <ngb-timepicker [(ngModel)]="time" name="time" 
+    [hourStep]="hourStep" [minuteStep]="minuteStep" ></ngb-timepicker>
+    <!-- <div class="row">[seconds]="true"[secondStep]="secondStep"
+      <div class="col-sm-3">
+          <label for="changeHourStep">Hour Step</label>
+          <input id="changeHourStep" type="number" name="hour" class="form-control form-control-sm" [(ngModel)]="hourStep" />
+      </div>
+      <div class="col-sm-3">
+          <label for="changeMinuteStep">Minute Step</label>
+          <input id="changeMinuteStep" type="number" name="min" class="form-control form-control-sm" [(ngModel)]="minuteStep" />
+      </div>
+      <div class="col-sm-3">
+          <label for="changeSecondStep">Second Step</label>
+          <input id="changeSecondStep" type="number" name="sec" class="form-control form-control-sm" [(ngModel)]="secondStep" />
+      </div>
+  </div> -->
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="team-members">ADD INTERNAL TEAM MEMBERS</label>
                 <div class="input-group">
-                  <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select">
+                  <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
+                  <ng-select class="custom-style" [items]="managersList | async" name="team"
+                  placeholder="e.g. Bachelor of Computer Arts"
+                  (change)="changeTeam($event)"
+                  bindLabel="FirstName"
+                  bindValue="UserId"
+                  [typeahead]="selectedUserInput"
+                  [hideSelected]="true"
+                  [loading]="usersloading"
+                  [(ngModel)]="selectedUserName"
+                  [virtualScroll]="true"></ng-select>
                   <span class="input-group-btn">
-                    <button class="btn">+</button>
+                    <button (click)="addTeammembers()" class="btn">+</button>
                   </span>
                 </div>
               </div>
               <ul class="team-members-list">
-                <li>
+                <li *ngFor="let teammember of teammemberslist; let i = index">
                   <div>
                     <img src="images/ui-face-1.png" alt="">
-                    <h4>Terry Martin <span class="dept">HR Office</span></h4>
+                    <h4>{{teammember.FirstName}}<span class="dept">HR Office</span></h4>
                   </div> 
                   <span class="close">&times;</span>
                 </li>
@@ -73,15 +123,15 @@
                   <div class="form-group further-interview-group">
                     <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
                     <div class="clearfix">
-                      <div class="radio-btn bordered">
+                      <div class="radio-btn bordered" >
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" [(ngModel)]="schIntw.RequiredFurtherInterview" name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" [(ngModel)]="schIntw.RequiredFurtherInterview" name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -108,7 +158,7 @@
                     <label for="">Skype</label>
                     <h2>N/A</h2>
                     <label for="request-skype" class="radio">
-                      <input type="checkbox" id="request-skype" name="requestSkypeID" class="radio-input">
+                      <input type="checkbox" id="request-skype" [(ngModel)]="schIntw.SkypeId" name="requestSkypeID" class="radio-input">
                       <span class="radio-btn"></span>
                       <span>Request for Skype ID</span>
                     </label>
@@ -118,13 +168,13 @@
                     <div class="clearfix">
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -150,13 +200,13 @@
                     <div class="clearfix">
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="">
+                          <input type="radio" name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -175,6 +225,7 @@
 <mat-dialog-actions class="modal-footer">
   <div class="modal-footer">
     <button mat-button mat-dialog-close class="btn btn-border">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled">Schedule Interview</button>
+    <button mat-button (click)="ScheduleInterview()" cdkFocusInitial class="btn btn-filled">Schedule Interview</button>  
+    <!-- [mat-dialog-close]="true"  -->
   </div>
 </mat-dialog-actions>

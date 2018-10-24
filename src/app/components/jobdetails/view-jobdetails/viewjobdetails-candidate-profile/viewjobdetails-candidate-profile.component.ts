@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ChatboxdialogComponent } from './chatboxdialog/chatboxdialog.component';
@@ -7,27 +7,32 @@ import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import {MatchingDetails} from '../../models/matchingDetails';
-import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
+import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
+// import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
 @Component({
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
-  styleUrls: ['./viewjobdetails-candidate-profile.component.css']
+  styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
+ // providers: [ViewJobdetailsComponent]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
-  viewscheduleInterviewDialgoref : MatDialogRef<ScheduleInterviewComponent>;
+  viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
    jobdetailsprofiles: JobdetailsProfile[] = [];
    matchingDetails: MatchingDetails;
    customerId: any;
    userId: any;
+   schIntw = new ScheduleInterview();
   @Input() jobid: number;
   @Input() statusid: number;
+  @Output() myEvent = new EventEmitter();
+ // @Output() jobDetails: ViewJobdetailsComponent;
  // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
   constructor(private router: Router, private jobdetailsservice: JobdetailsService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog, ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
@@ -52,7 +57,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   OpenShareDialog() {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
-
       {
         // width: '1000px',
         // position: {right : '0px'},
@@ -80,31 +84,66 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     );
 
     rejectdialogRef.afterClosed().subscribe(result => {
+     // this.jobDetails.populateJobsStaticInfo(this.jobid);
+     this.myEvent.emit(null);
       console.log('reject Dialog result: ${result}');
     });
   }
 
-  OpenScheduleInterviewDialog() {
-    const scheduleIntwdialogRef = this.dialog.open(SharedialogComponent,
+  OpenScheduleInterviewDialog(jobResponseId) {
+    const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
 
-      { 
-        width: '250px',
+      {
+        width: '750',
+        position: {right : '0px'},
+        height : '750px',
         data: {
-          animal: 'panda'
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          status : this.statusid
         }
       }
     );
 
     scheduleIntwdialogRef.afterClosed().subscribe(result => {
+     // this.jobDetails.populateJobsStaticInfo(this.jobid);
+     this.myEvent.emit(null);
       console.log('Chatbox Dialog result: ${result}');
     });
   }
-  GetCandidateProfile(profileId)
-  {
+
+  shortlist(stat, jobResponseId) {
+    this.schIntw.UserId = null;
+    this.schIntw.JobId = this.jobid;
+    this.schIntw.JobInterviewId = 0;
+    this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
+    this.schIntw.InterviewDate = null;
+    this.schIntw.InterviewDate = null;
+    this.schIntw.StartTime = null;
+    this.schIntw.EndTime = null;
+    this.schIntw.InterviewTypeId = null; // skype or anytype
+    this.schIntw.PhoneNumber = null;
+    this.schIntw.BridgeUrl = null;
+    this.schIntw.AccessId = null;
+    this.schIntw.SkypeId = null;
+    this.schIntw.Comments = '';
+    this.schIntw.ResponseStatusId = stat; // what stage it is..hired...
+    this.schIntw.IsActive = null;
+    this.schIntw.Rating = null;
+    this.schIntw.RequiredFurtherInterview = null;
+    this.schIntw.StatusChangedByUserId = this.userId;
+    this.schIntw.InterviewingPerson = null;
+    this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+    // this.jobDetails.populateJobsStaticInfo(this.jobid);
+      this.myEvent.emit(null);
+      console.log(res);
+      }) ;
+    }
+  GetCandidateProfile(profileId) {
     sessionStorage.setItem('profileId', JSON.stringify(profileId));
     this.router.navigateByUrl('app-cprofile');
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber=6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber= 6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;

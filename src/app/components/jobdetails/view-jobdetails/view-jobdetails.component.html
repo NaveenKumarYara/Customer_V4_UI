@@ -132,7 +132,7 @@
             <div id="all-candidates" class="tab-pane fade in active"> 
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
-              [statusid]="statusid">
+              [statusid]="statusid" (myEvent)="updateStatistics()">
               </app-viewjobdetails-candidate-profile> 
               <mat-progress-spinner *ngIf="profileLoader===true"
                 style="margin:0 auto;" 

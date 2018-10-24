@@ -47,9 +47,9 @@ export class JobdetailsService {
     return Observable.throw(errMsg);
   }
 
-  getJobDetailsBasicInfo(customerId:number,jobId:number): Observable<JobdetailsBasicInfo> {
-    const url = environment.JobdetailsBasicInfoEndpoint + 
-    'customerId='+customerId+'&jobId='+jobId;
+  getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
+    const url = environment.JobdetailsBasicInfoEndpoint +
+    'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
       .debounceTime(1000)
       .catch(
@@ -57,8 +57,8 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailCustomer(customerId:number,jobId:number): Observable<GetJobDetailCustomer> {
-    const url = environment.JobDetailsofCustomer+'customerId='+customerId+'&jobId='+jobId;
+  getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
+    const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
@@ -66,8 +66,8 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailsStatisticsInfo(jobId:number): Observable<Jobstatistics> {
-    const url = environment.JobdetailsStatisticsEndpoint+'jobId='+jobId;
+  getJobDetailsStatisticsInfo(jobId: number): Observable<Jobstatistics> {
+    const url = environment.JobdetailsStatisticsEndpoint + 'jobId=' + jobId;
     return this.http.get<Jobstatistics>(url)
       .debounceTime(1000)
       .catch(
@@ -75,17 +75,17 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailsComments(jobId:number): Observable<JobComments[]> {
-    const url = environment.GetJobDetialCustomerComments +'jobId='+jobId;;
+  getJobDetailsComments(jobId: number): Observable<JobComments[]> {
+    const url = environment.GetJobDetialCustomerComments + 'jobId=' + jobId;
     return this.http.get<JobComments[]>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
       );
   }
-getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails> {
+getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
     const url = environment.MatchingDetailEndPoint +
-     '?userId='+ profileId + '&jobId=' + jobId;
+     '?userId=' + profileId + '&jobId=' + jobId;
     return this.http.get<MatchingDetails>(url)
       .debounceTime(1000)
       .catch(
@@ -93,8 +93,8 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
       );
   }
 
-  getJobDetailsProfileInfo(customerId:number,userId:number,jobid: number, statusid: number,noOfRows:number=6): Observable<JobdetailsProfile[]> {
-    const url = environment.JobdetailsProfileEndpoint + 'customerId='+customerId+'&userId=' +userId+
+  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, noOfRows: number= 6): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=0&pageNumber=1&noOfRows=' + noOfRows;
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
@@ -102,8 +102,8 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
         this.handleError
       );
   }
-  getJobDetailsSuggestedProfileInfo(customerId:number,userId:number,jobid: number): Observable<JobdetailsProfile[]> {
-    const url = environment.JobdetailsSuggestedProfileEndpoint +'customerId='+customerId+'&userId=' +userId+
+  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number): Observable<JobdetailsProfile[]> {
+    const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&sortBy=0&pageNumber=1&noOfRows=6';
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
@@ -115,11 +115,20 @@ getMatchingDetails(profileId: number, jobId:number): Observable<MatchingDetails>
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-    headers.append('x-access-token', sessionStorage.getItem('token')); 
+    headers.append('x-access-token', sessionStorage.getItem('token'));
     return this._http.post(this.baseUrll + url, body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
       });
   }
+
+  interviewProcess(body) {
+    return this.http.post(environment.scheduleInterview, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
 }

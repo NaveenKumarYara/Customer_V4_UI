@@ -6,7 +6,7 @@ import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-a
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
  import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
-import { MatDialogModule,MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 // import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewjobdetailsScComponent } from './view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
@@ -22,6 +22,8 @@ import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
+// import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,11 +37,13 @@ import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-can
     NgSelectModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MatCardModule, MatProgressSpinnerModule,
-    //,
-    //ModalDialogModule.forRoot()
+    MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot()
+    // ,
+    // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent,UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent]
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent],
+  entryComponents: [
+    ScheduleInterviewComponent]
 })
 export class JobdetailsModule { }

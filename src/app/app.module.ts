@@ -25,7 +25,7 @@ import { JobskillsetComponent } from './components/Postajob/Createajob/Step1/Job
 import { JobResponsibilitiesComponent } from './components/Postajob/Createajob/Step1/Jobresponsibilities.component';
 import { routing } from './app.router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { MyFilterPipe } from './filter/MyFilterPipe';  
+import { MyFilterPipe } from './filter/MyFilterPipe';
 
 import { LocationwiseJobsComponent } from './components/Postajob/Createajob/Step2/locationwisejobs.component';
 import { QualificationsComponent } from './components/Postajob/Createajob/Step2/qualifications.component';
@@ -49,12 +49,14 @@ import { AccountsettingsModule } from './components/accountsettings/accountsetti
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {ApiService} from './shared/services/api.service/api.service';
+// import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent,   
+    FooterComponent,
     PostajobComponent,
     StepsComponent,
     Step1Component,
@@ -82,12 +84,12 @@ import {ApiService} from './shared/services/api.service/api.service';
     SearchresultsComponent,
     Step3SummaryComponent,
     NotificationsComponent,
-    NoofopeningsComponent
+    NoofopeningsComponent,
   ],
   imports: [
     BrowserModule,
     routing,
-    HttpModule,   
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
@@ -98,9 +100,10 @@ import {ApiService} from './shared/services/api.service/api.service';
     DashboardModule,
     AccountsettingsModule,
   NgxSpinnerModule,
-  ChartsModule     
+  ChartsModule, // DlDateTimePickerDateModule,
+  NgbModule.forRoot()
   ],
-  providers: [AppService,ApiService],
+  providers: [AppService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
