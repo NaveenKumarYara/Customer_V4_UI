@@ -282,43 +282,70 @@
     <div class="footer">
       <ul class="actions">
        <li>
-                  <a href="#" data-toggle="modal" data-target="#inbox" (click)="OpenChatboxDialog()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21" >
-                      <path d="M1 17.9c-.1 0-.3 0-.4-.1-.4-.2-.6-.5-.6-.9V2.8C0 1.3 1.2 0 2.8 0h12.3c.7 0 1.4.3 2 .8.5.5.8 1.2.8 2v8.8c0 .2-.1.4-.1.5-.1.5-.4 1-.8 1.5-.5.5-1.2.8-2 .8H4.9l-3.2 3.2c-.2.2-.4.3-.7.3zM15.1 2H2.8c-.2 0-.4.1-.6.2-.1.2-.2.4-.2.6v11.7l1.8-1.8c.2-.2.4-.3.7-.3H15c.2 0 .4-.1.6-.2.1-.2.2-.3.2-.6 0-.2 0-.3.1-.4V2.8c0-.2-.1-.4-.2-.6s-.4-.2-.6-.2z" />
-                      <path d="M12.9 6h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1zM8.1 10H4.9c-.6 0-1-.4-1-1s.4-1 1-1h3.2c.6 0 1 .4 1 1s-.4 1-1 1z" />
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" data-toggle="modal" data-target="#rejectCandidate" (click)="OpenRejectDialog()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-                      <path d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" data-toggle="modal" data-target="#shareCandidate" (click)="OpenShareDialog()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-                      <path d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
-                    </svg>
-                  </a>
-                </li>
-                <li class="dropup">
-                  <a href="#" data-toggle="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
-                      <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
-                    </svg>
-                  </a>
-                  <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li role="presentation"><a role="menuitem" href="javascript:void(0)">Shortlist</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenScheduleInterviewDialog()">Schedule Interview</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li>
-                  </ul>
-                </li>
-              </ul>
+          <a href="#" data-toggle="modal" data-target="#inbox" (click)="OpenChatboxDialog()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21" >
+              <path d="M1 17.9c-.1 0-.3 0-.4-.1-.4-.2-.6-.5-.6-.9V2.8C0 1.3 1.2 0 2.8 0h12.3c.7 0 1.4.3 2 .8.5.5.8 1.2.8 2v8.8c0 .2-.1.4-.1.5-.1.5-.4 1-.8 1.5-.5.5-1.2.8-2 .8H4.9l-3.2 3.2c-.2.2-.4.3-.7.3zM15.1 2H2.8c-.2 0-.4.1-.6.2-.1.2-.2.4-.2.6v11.7l1.8-1.8c.2-.2.4-.3.7-.3H15c.2 0 .4-.1.6-.2.1-.2.2-.3.2-.6 0-.2 0-.3.1-.4V2.8c0-.2-.1-.4-.2-.6s-.4-.2-.6-.2z" />
+              <path d="M12.9 6h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1zM8.1 10H4.9c-.6 0-1-.4-1-1s.4-1 1-1h3.2c.6 0 1 .4 1 1s-.4 1-1 1z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-toggle="modal" data-target="#rejectCandidate" (click)="OpenRejectDialog()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+              <path d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-toggle="modal" data-target="#shareCandidate" (click)="OpenShareDialog()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
+              <path d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
+            </svg>
+          </a>
+        </li>
+        <li class="dropup">
+          <a href="#" data-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
+              <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
+            </svg>
+          </a>
+          <ul role="menu" class="dropdown-menu dropdown-menu-right">
+            <!-- applied -->
+            <div *ngIf="profile?.ResponseStatusId == 4">
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li>
             </div>
+            <!-- shortlisted -->
+            <div *ngIf="profile?.ResponseStatusId == 5">
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li> 
+            <li role="presentation" class="divider"></li>  
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+                   
+            </div>
+            <!-- interviewed -->
+            <div *ngIf="profile?.ResponseStatusId == 7">
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="hired()">Hired</a></li> 
+            </div>
+            <!-- hired -->
+            <div *ngIf="profile?.ResponseStatusId == 11">
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li> 
+          </div>
+        </ul>
+        </ul>
+    </div>
     <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">
       <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId)" class="close">&times;</a>
       <div class="header">

@@ -17,6 +17,7 @@ export const environment = {
     deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteJob?jobId=1000108&customerId=1&isActive=false',
     JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
     discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
+    // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
 
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
@@ -25,7 +26,7 @@ export const environment = {
     getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?customerId=1&userId=5',
      customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?customerId=1&userId=5',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
-scheduleInterview :'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
+scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
 
