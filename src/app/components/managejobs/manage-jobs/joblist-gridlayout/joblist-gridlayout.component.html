@@ -8,9 +8,10 @@
 </svg>
 </button>
 <ul class="dropdown-menu">
-<li><a href="#">Edit</a></li>
-<li><a href="#">Inactive</a></li>
-<li><a href="#">Share</a></li>
+<li><a>Edit</a></li>
+<li *ngIf="job.JobStatus=='Active'"><a (click)="changeJobStatus(job,1)" >Inactive</a></li>
+<li *ngIf="job.JobStatus=='InActive'"><a (click)="changeJobStatus(job,2)">Active</a></li>
+<li><a>Share</a></li>
 </ul>
 </div>
  <a> 
