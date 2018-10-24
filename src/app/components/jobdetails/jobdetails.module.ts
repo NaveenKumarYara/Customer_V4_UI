@@ -37,7 +37,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgSelectModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MatCardModule, MatProgressSpinnerModule, // DlDateTimePickerDateModule, NgbModule.forRoot()
+    MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot()
     // ,
     // ModalDialogModule.forRoot()
   ],
