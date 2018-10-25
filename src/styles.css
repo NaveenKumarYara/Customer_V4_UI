@@ -20173,6 +20173,9 @@ a.ui-button:active,
     color: #6A7E9C;
   }
 
+  .page--create-a-job .form-steps .data-list li:last-child {
+   margin-bottom: 35px;
+  }
     .page--create-a-job .form-steps .data-list li:not(:last-of-type) {
       margin-bottom: 15px;
     }

@@ -25,9 +25,10 @@
         <button class="btn add-btn form-control" (click)="addDomain()">+</button>
     </div>
   </div>
+  </div>
   <div class="lists row">
     <div class="col-md-6">
-      <label for="" class="question light">Domain</label>
+      <p class="description">Domain</p>
       <ul class="data-list">
         <li *ngFor="let domain of domainlist; let i = index">
           <span class="name">{{domain.DomainName}}</span>
@@ -35,6 +36,5 @@
         </li>
       </ul>
     </div>
-  </div>
   </div>
  

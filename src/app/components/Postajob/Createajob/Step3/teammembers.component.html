@@ -19,21 +19,18 @@
       <button class="btn add-btn form-control" (click)="addTeammembers()">+</button>
     </div>
   </div>
-
-
-  <div class="lists row">
-    <div class="col-md-6">
-      <h4 for="" class="question light">Teammembers</h4>
-      <ul class="data-list">
-        <li *ngFor="let teammember of teammemberslist; let i = index">
-          <span class="name">{{teammember.FirstName}}</span>
-          <span class="close" (click)="deleteTeammember(i)">&times;</span>
-        </li>
-      </ul>
-    </div>
+</div>
+<div class="lists row">
+  <div class="col-md-6">
+    <p class="description">Team Members</p>
+    <ul class="data-list">
+      <li *ngFor="let teammember of teammemberslist; let i = index">
+        <span class="name">{{teammember.FirstName}}</span>
+        <span class="close" (click)="deleteTeammember(i)">&times;</span>
+      </li>
+    </ul>
   </div>
 </div>
-
 
 
 

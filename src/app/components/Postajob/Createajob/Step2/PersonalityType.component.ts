@@ -7,7 +7,8 @@ import { PjDisc, DiscResult } from '../../models/jobPostInfo';
 
 @Component({
   selector: 'app-steps-step2-personalityType',
-  templateUrl: './personalityType.component.html'
+  templateUrl: './personalityType.component.html',
+  styleUrls: ['./personalityType.component.css']
 })
 
 export class PersonalityTypeComponent implements OnInit, OnDestroy {
