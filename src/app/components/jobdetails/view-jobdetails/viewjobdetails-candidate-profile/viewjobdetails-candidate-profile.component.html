@@ -312,36 +312,36 @@
           <ul role="menu" class="dropdown-menu dropdown-menu-right">
             <!-- applied -->
             <div *ngIf="profile?.ResponseStatusId == 4">
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)" >Shortlist</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>
             </div>
             <!-- shortlisted -->
             <div *ngIf="profile?.ResponseStatusId == 5">
-            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li> 
-            <li role="presentation" class="divider"></li>  
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> 
+            <!-- <li role="presentation" class="divider"></li>  
             <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
-                   
+                    -->
             </div>
             <!-- interviewed -->
             <div *ngIf="profile?.ResponseStatusId == 7">
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(11,profile?.JobResponseId)">Hired</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="hired()">Hired</a></li> 
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> 
+            <!-- <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="hired()">Hired</a></li>  -->
             </div>
             <!-- hired -->
             <div *ngIf="profile?.ResponseStatusId == 11">
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
-            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(9,profile?.JobResponseId)">WithDrawn</a></li>
+            <!-- <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li> 
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li>  -->
           </div>
         </ul>
         </ul>

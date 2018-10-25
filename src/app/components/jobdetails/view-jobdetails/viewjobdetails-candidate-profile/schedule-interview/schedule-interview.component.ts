@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { Subject } from 'rxjs/Subject';
@@ -11,6 +11,7 @@ import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { JobdetailsService } from '../../../jobdetails.service';
+import { EventEmitter } from 'events';
 declare var $: any;
 
 export interface DialogData {
@@ -23,6 +24,10 @@ export interface DialogData {
 })
 export class ScheduleInterviewComponent implements OnInit {
   schIntw = new ScheduleInterview();
+ @Output() eventStat = new EventEmitter();
+  webxRI: boolean;
+  skypeRI: boolean;
+  inPersonRI: boolean;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
   minuteStep = 1;
@@ -32,6 +37,7 @@ export class ScheduleInterviewComponent implements OnInit {
   @Input() jobResponseId: number;
   customerUser: number;
   customerId: number;
+  processSelection: number;
   @Input() jobid: number;
   managersList: Observable<CustomerUsers[]>;
   selectedUserInput = new Subject<string>();
@@ -49,7 +55,15 @@ export class ScheduleInterviewComponent implements OnInit {
     this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
    // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
    }
+   process(val) {
+// if (val === 1) {
+  this.processSelection = val;
+// } else if (val === 2) {
 
+// } else {
+
+// }
+   }
 
   changeDate(updateSeasonStartDate: any)  {
     if (updateSeasonStartDate) {
@@ -106,10 +120,19 @@ this.schIntw.InterviewTypeId = this.userId; // skype or anytype
    this.schIntw.ResponseStatusId = 7; // what stage it is..hired...
 // this.schIntw.IsActive=this.userId;
 // this.schIntw.Rating=this.userId;
-  this.schIntw.RequiredFurtherInterview = this.schIntw.RequiredFurtherInterview;
+if (this.processSelection === 1) {
+  this.schIntw.RequiredFurtherInterview = this.inPersonRI;
+} else if (this.processSelection === 2) {
+  this.schIntw.RequiredFurtherInterview = this.skypeRI;
+  // this.schIntw.SkypeId=this.userId;
+} else if (this.processSelection === 3) {
+  this.schIntw.RequiredFurtherInterview = this.webxRI;
+  // this.schIntw.PhoneNumber=this.userId;
+}
  this.schIntw.StatusChangedByUserId = this.customerUser;
   this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+      this.eventStat.emit(null);
      }) ;
 }
   getcustomerusers()  {

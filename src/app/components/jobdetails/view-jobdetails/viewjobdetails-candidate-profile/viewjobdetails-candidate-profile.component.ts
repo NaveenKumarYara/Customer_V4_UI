@@ -29,6 +29,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
+   // @Output() eventStat = new EventEmitter();
  // @Output() jobDetails: ViewJobdetailsComponent;
  // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
   constructor(private router: Router, private jobdetailsservice: JobdetailsService,
@@ -39,7 +40,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
      }
   OpenChatboxDialog() {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
-
       {
         width: '750',
         position: {right : '0px'},
@@ -49,7 +49,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         }
       }
     );
-
     chatboxdialogRef.afterClosed().subscribe(result => {
       console.log('Chatbox Dialog result: ${result}');
     });
@@ -72,27 +71,25 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenRejectDialog() {
+  OpenRejectDialog(jobResponseId) {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
-
       {
-
         data: {
-          animal: 'panda'
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          // status : this.statusid
         }
       }
     );
-
     rejectdialogRef.afterClosed().subscribe(result => {
      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-     this.myEvent.emit(null);
+      this.myEvent.emit(null);
       console.log('reject Dialog result: ${result}');
     });
   }
 
   OpenScheduleInterviewDialog(jobResponseId) {
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
-
       {
         width: '750',
         position: {right : '0px'},
@@ -100,19 +97,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
-          status : this.statusid
+         // status : this.statusid
         }
       }
     );
-
     scheduleIntwdialogRef.afterClosed().subscribe(result => {
      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-     this.myEvent.emit(null);
+      this.myEvent.emit(null);
       console.log('Chatbox Dialog result: ${result}');
     });
   }
-
-  shortlist(stat, jobResponseId) {
+// updateOnDialogClose() {
+//   this.eventStat.emit(null);
+//   this.myEvent.emit(null);
+// }
+shortlisthiredwithdrawn(stat, jobResponseId) {
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.jobid;
     this.schIntw.JobInterviewId = 0;

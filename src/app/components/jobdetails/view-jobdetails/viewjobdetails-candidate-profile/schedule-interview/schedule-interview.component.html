@@ -107,9 +107,9 @@
           <div class="col-md-6">
             <div class="interview-type">
               <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#inperson">In Person</a></li>
-                <li><a data-toggle="tab" href="#skype">Skype</a></li>
-                <li><a data-toggle="tab" href="#webex">Webex</a></li>
+                <li class="active"><a data-toggle="tab"  (click)="process(1)" href="#inperson">In Person</a></li>
+                <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
+                <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li>
               </ul>
 
               <div class="tab-content">
@@ -125,13 +125,13 @@
                     <div class="clearfix">
                       <div class="radio-btn bordered" >
                         <label>
-                          <input type="radio" [(ngModel)]="schIntw.RequiredFurtherInterview" name="contract-duration" value="true">
+                          <input type="radio" [(ngModel)]="inPersonRI" name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" [(ngModel)]="schIntw.RequiredFurtherInterview" name="contract-duration" value="false">
+                          <input type="radio" [(ngModel)]="inPersonRI" name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -156,9 +156,9 @@
                 <div id="skype" class="tab-pane fade">
                   <div class="form-group skype-group">
                     <label for="">Skype</label>
-                    <h2>N/A</h2>
+                    <h2><input class="form-control" type="text" [(ngModel)]="schIntw.SkypeId"></h2>
                     <label for="request-skype" class="radio">
-                      <input type="checkbox" id="request-skype" [(ngModel)]="schIntw.SkypeId" name="requestSkypeID" class="radio-input">
+                      <input type="checkbox" id="request-skype" name="requestSkypeID" class="radio-input">
                       <span class="radio-btn"></span>
                       <span>Request for Skype ID</span>
                     </label>
@@ -168,13 +168,13 @@
                     <div class="clearfix">
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="true">
+                          <input type="radio"  [(ngModel)]="skypeRI"  name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="false">
+                          <input type="radio"  [(ngModel)]="skypeRI"  name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -200,13 +200,13 @@
                     <div class="clearfix">
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="true">
+                          <input type="radio" [(ngModel)]="webxRI" name="contract-duration" value="true">
                           <span class="box">Yes</span>
                         </label>
                       </div>
                       <div class="radio-btn bordered">
                         <label>
-                          <input type="radio" name="contract-duration" value="false">
+                          <input type="radio" [(ngModel)]="webxRI" name="contract-duration" value="false">
                           <span class="box">No</span>
                         </label>
                       </div>
@@ -225,7 +225,7 @@
 <mat-dialog-actions class="modal-footer">
   <div class="modal-footer">
     <button mat-button mat-dialog-close class="btn btn-border">Cancel</button>
-    <button mat-button (click)="ScheduleInterview()" cdkFocusInitial class="btn btn-filled">Schedule Interview</button>  
-    <!-- [mat-dialog-close]="true"  -->
+    <button mat-button [mat-dialog-close]="true" (click)="ScheduleInterview()" cdkFocusInitial class="btn btn-filled">Schedule Interview</button>
+    <!-- [mat-dialog-close]="true" -->
   </div>
 </mat-dialog-actions>
