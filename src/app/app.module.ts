@@ -100,7 +100,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardModule,
     AccountsettingsModule,
   NgxSpinnerModule,
-  ChartsModule, // DlDateTimePickerDateModule,
+  ChartsModule,
   NgbModule.forRoot()
   ],
   providers: [AppService, ApiService],

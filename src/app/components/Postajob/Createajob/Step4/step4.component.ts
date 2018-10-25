@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { InsertJob } from '../../models/jobPostInfo';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-steps-step4',
   templateUrl: './step4.component.html',
@@ -34,7 +34,7 @@ export class Step4Component implements OnInit {
   reporting: any;
   team: any;
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService) {
+    private router: Router, private appService: AppService, private location: Location) {
       this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
@@ -167,7 +167,9 @@ export class Step4Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+         this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });
   }
