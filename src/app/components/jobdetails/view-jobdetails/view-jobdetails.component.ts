@@ -41,7 +41,7 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
   // showVar:  = true;
-readChild: any;
+// readChild: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder
@@ -151,7 +151,6 @@ readChild: any;
    this.profilecount = 0;
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
-
   updaterejectedstatus() {
     this.statusid = 6;
     // this.loadMoreStat=this.statusid;
@@ -194,6 +193,7 @@ readChild: any;
   // }
   updateStatistics() {
     this.populateJobsStaticInfo(this.jobid);
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
   ngOnInit() {
      // this.loadMoreStat=0;
