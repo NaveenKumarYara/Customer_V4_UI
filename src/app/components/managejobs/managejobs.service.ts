@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {JobCount} from './models/JobCount';
 import { JobDetails } from './models/jobdetails';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
@@ -44,6 +45,16 @@ export class ManageJobService {
     const url = environment.listofJobsEndpoint +
     'customerId=' +customerId +'&userId='+userId+ '&sortBy='+sortBy+'&status=0&pageNumber=1'+'&numberOfRows='+count;
     return this.http.get<JobDetails[]>(url)
+      .debounceTime(1000)     
+      .catch(
+        this.handleError
+    );    
+  }
+
+  getJobCount(jobId:number,customerId:number): Observable<JobCount> {
+    const url = environment.JobsProfileCount +
+    'jobId=' +jobId +'&customerId='+customerId;
+    return this.http.get<JobCount>(url)
       .debounceTime(1000)     
       .catch(
         this.handleError

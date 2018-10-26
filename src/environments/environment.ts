@@ -78,6 +78,8 @@ scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterv
 
     GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
 
+    JobsProfileCount:'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
+
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 
     CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?'

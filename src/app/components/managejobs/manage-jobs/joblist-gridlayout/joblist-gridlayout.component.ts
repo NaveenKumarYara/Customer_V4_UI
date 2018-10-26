@@ -24,6 +24,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   jobId:any;
   customer:any;
   userId:any;
+  jobData:any;
   customerId:any;
   isActive:any;
   deactivate = new deactivate();
@@ -36,6 +37,7 @@ export class JoblistGridlayoutComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.GetProfileCount();
   }
   ViewJobdetails(customerId,userId,jobId)
   {
@@ -43,6 +45,14 @@ export class JoblistGridlayoutComponent implements OnInit {
     sessionStorage.setItem('userId', JSON.stringify(userId));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
+  }
+
+  GetProfileCount()
+  {
+    this.jobId = this.job.JobId;
+    return this.managejobservice.getJobCount(this.jobId,this.customerId).subscribe(res => {
+     this.jobData = res;
+   });
   }
 
   changeJobStatus(job,val) {
@@ -56,6 +66,7 @@ export class JoblistGridlayoutComponent implements OnInit {
     },
       error => console.log(error));
 }
+
 }
 
 
