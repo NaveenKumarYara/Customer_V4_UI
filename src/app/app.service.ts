@@ -452,7 +452,13 @@ postjob(body) {
     return Observable.throw(error.json());
   });
 }
-
+deactivateJob(body) {
+  return this.http.post(environment.deactivatejobEndpoint, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
   postOppurtunities(opportunity: Dashboard) {
     // this.opportunities.push(opportunity);
     return this.http.post(this.apiUrl, opportunity)

@@ -3,9 +3,11 @@ import { JobDetails } from '../../models/jobdetails';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
 import { ManageJobService } from '../../managejobs.service';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+// import { ApiService } from '../../../../shared/services/api.service/api.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
+import { AppService } from '../../../../app.service';
+
 declare var $: any;
 
 
@@ -13,7 +15,7 @@ declare var $: any;
   selector: 'app-manage-joblist-gridlayout',
   templateUrl: './joblist-gridlayout.component.html',
   styleUrls: ['./joblist-gridlayout.component.css'],
-  providers: [ApiService]
+  providers: [AppService]
 })
 export class JoblistGridlayoutComponent implements OnInit {
   @Input() job: Jobs;
@@ -25,9 +27,9 @@ export class JoblistGridlayoutComponent implements OnInit {
   customerId:any;
   isActive:any;
   deactivate = new deactivate();
-
+  
   constructor(private route: ActivatedRoute,
-    private router: Router,private managejobservice: ManageJobService,private _service: ApiService) {
+    private router: Router,private managejobservice: ManageJobService,private appService: AppService, private loadJobs :LoadJoblistComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -43,22 +45,14 @@ export class JoblistGridlayoutComponent implements OnInit {
     this.router.navigateByUrl('app-view-jobdetails');
   }
 
-  changeJobStatus(job,val)
-  {
-    if(val == 1)
-    {
+  changeJobStatus(job,val) {
     this.deactivate.jobId = job.JobId;
-    this.deactivate.customerId= this.customerId;
-    this.deactivate.isActive = false;   
-    }
-    else if(val == 2)
-    {
-      this.deactivate.jobId = job.JobId;
-      this.deactivate.customerId= this.customerId;
-      this.deactivate.isActive = true;
-    }
-    this._service.PostService(this.deactivate,'JobsAPI/api/DeactivateJob')
-    .subscribe(data => {
+    this.deactivate.customerId = this.customerId;
+    this.deactivate.isActive = val;  
+      this.appService.deactivateJob(this.deactivate)
+      .subscribe(
+      data => {
+      this.loadJobs.populateJoblist(this.customerId, this.userId);
     },
       error => console.log(error));
 }
