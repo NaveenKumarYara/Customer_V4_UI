@@ -79,7 +79,6 @@ export class Step1Component implements OnInit {
   }
 
   postJob1(step) {
-    debugger;
     this.pjSkill = new PjSkill();
     this.pjSkill.MaximumExp = 10;
     this.pjSkill.MinimumExp = 3;

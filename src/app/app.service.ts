@@ -40,7 +40,7 @@ export class AppService {
    addqualifications: PjEducationDetails[] = [];
   addqualificationsChanged = new Subject<PjEducationDetails[]>();
 
-  private customerUsers: PjTechnicalTeam[] = [];
+   customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
 
   private interviewtype: InterviewType[] = [];
@@ -66,47 +66,47 @@ export class AppService {
     '1099'
   ];
 
-  private contractDuration = new BehaviorSubject('');
+  contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
-  private contractExtension = new BehaviorSubject('');
+  contractExtension = new BehaviorSubject('');
   currentContractExtension = this.contractExtension.asObservable();
 
   myInterviewType = new InterviewType();
- private interviewType = new BehaviorSubject(this.myInterviewType);
+   interviewType = new BehaviorSubject(this.myInterviewType);
   currentInterviewType = this.interviewType.asObservable();
 
   myEmploymentType = new EmploymentType();
-  private employmentType = new BehaviorSubject(this.myEmploymentType);
+   employmentType = new BehaviorSubject(this.myEmploymentType);
   currentEmploymentType = this.employmentType.asObservable();
 
-  private jobtitle = new BehaviorSubject('');
+ jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
   pMinexp: number;
-  private minExperience = new BehaviorSubject(this.pMinexp);
+   minExperience = new BehaviorSubject(this.pMinexp);
   currentminExp = this.minExperience.asObservable();
 
   pMaxexp: number;
-  private maxExperience = new BehaviorSubject(this.pMaxexp);
+   maxExperience = new BehaviorSubject(this.pMaxexp);
   currentmaxExp = this.maxExperience.asObservable();
 
   myDescription: boolean;
-  private hasDescription = new BehaviorSubject(this.myDescription);
+  hasDescription = new BehaviorSubject(this.myDescription);
   currentDescriptionChecked = this.hasDescription.asObservable();
 
-  private description = new BehaviorSubject('');
+  description = new BehaviorSubject('');
   currentDescription = this.description.asObservable();
 
   // textOPening = new BehaviorSubject('');
   // currenttextOPening = this.textOPening.asObservable();
 
   myopenings: number;
-  private noofOpenings = new BehaviorSubject(this.myopenings);
+ noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
   myLocation = new PrefLocation();
-  private location = new BehaviorSubject(this.myLocation);
+  location = new BehaviorSubject(this.myLocation);
   currentlocation = this.location.asObservable();
 
   updatecDuration(cDuration: string) {
@@ -178,7 +178,7 @@ export class AppService {
   //  jobcategory: CategoryList[] = [];
   // currentcategorytitle = new Subject<CategoryList[]>();
   myjobcategory = new CategoryList();
-  private jobcategory = new BehaviorSubject(this.myjobcategory);
+   jobcategory = new BehaviorSubject(this.myjobcategory);
   currentcategorytitle = this.jobcategory.asObservable();
 
 
@@ -196,7 +196,7 @@ export class AppService {
   }
 
 
-  private selectedskilltype = new BehaviorSubject('Primary');
+  selectedskilltype = new BehaviorSubject('Primary');
   selectedskilltypechanges = this.selectedskilltype.asObservable();
 
   updateSkillType(skilltype: string) {
