@@ -28,7 +28,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
-      this.userId = this.customer.UserId
+      this.userId = this.customer.UserId;
 
   }
 

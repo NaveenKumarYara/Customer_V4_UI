@@ -36,7 +36,9 @@ export class Step2Component implements OnInit {
   jobResponsibility: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
-
+  customer:any;
+  userId:any;
+  customerId:any;
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -61,6 +63,9 @@ export class Step2Component implements OnInit {
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
@@ -104,8 +109,8 @@ export class Step2Component implements OnInit {
     // // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
     //  this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
-    this.insertJob.CustomerId = 1;
-    this.insertJob.UserId = 5;
+    this.insertJob.CustomerId = this.customerId;
+    this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);

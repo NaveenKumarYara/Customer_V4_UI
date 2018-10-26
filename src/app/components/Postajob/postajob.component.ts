@@ -4,6 +4,8 @@ import { AppService } from '../../app.service';
 import {Location } from '@angular/common';
 import { Subject } from 'rxjs';
 import { Jobskills } from '../../../models/jobskills.model';
+import { Qualifications } from '../../../models/qualifications.model';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from '../../components/Postajob/models/jobPostInfo';
 @Component({
   selector: 'app-postajob',
   templateUrl: './postajob.component.html',
@@ -22,6 +24,15 @@ export class PostajobComponent implements OnInit {
   ngOnInit() {
    // this.appService.;
   // this.reload();
+  this.appService.domain =[];
+  this.appService.domainChanged = new Subject<GetDomain[]>();
+  this.appService.adddomain = [];
+  this.appService.adddomainChanged = new Subject<PjDomain[]>();
+
+  this.appService.responsibilities =[];
+  this.appService.responsibilitesChanged = new Subject<Roles[]>();
+  this.appService.qualifications=[];
+  this.appService.qualificationsChanged= new Subject<Qualifications[]>();
   this.appService.primaryjobskills = [];
   this.appService.secondaryjobskills = [];
   this.appService.jobsecondaryskillsChanged = new Subject<Jobskills[]>(); // .closed();

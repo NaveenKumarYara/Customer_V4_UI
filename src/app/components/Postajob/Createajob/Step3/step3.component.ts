@@ -59,6 +59,9 @@ export class Step3Component implements OnInit {
   @ViewChild(ReportingManagerComponent) reporting: ReportingManagerComponent;
   @ViewChild(TeammembersComponent) team: TeammembersComponent;
   formData: any;
+  customer:any;
+  userId:any;
+  customerId:any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
 
@@ -79,6 +82,9 @@ export class Step3Component implements OnInit {
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
@@ -169,8 +175,8 @@ export class Step3Component implements OnInit {
 //     // this.insertJob.XmlPersonType = this.step2.personalityType.checkpersonType;
 
     // step1
-    this.insertJob.CustomerId = 1;
-    this.insertJob.UserId = 5;
+    this.insertJob.CustomerId = this.customerId;
+    this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);

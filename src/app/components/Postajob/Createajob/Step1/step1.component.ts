@@ -22,6 +22,9 @@ export class Step1Component implements OnInit {
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
   // formData: any;
   // joblist = new InsertJob();
+  customer:any;
+  userId:any;
+  customerId:any;
   insertJob = new InsertJob();
   pjSkill: PjSkill;
   pjRole: PjRole;
@@ -40,13 +43,15 @@ export class Step1Component implements OnInit {
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
-
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
   }
   ngOnInit() {
   }
   postJob(step) {
-    this.insertJob.CustomerId = 1;
-    this.insertJob.UserId = 5;
+    this.insertJob.CustomerId = this.customerId;
+    this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
     this.insertJob.JobId = 0;
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;

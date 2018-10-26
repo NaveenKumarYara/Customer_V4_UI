@@ -32,9 +32,15 @@ export class Step4Component implements OnInit {
   empType: any;
   intwType: any;
   reporting: any;
+  customer:any;
+  userId:any;
+  customerId:any;
   team: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private location: Location) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
       this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
@@ -107,8 +113,8 @@ export class Step4Component implements OnInit {
   postJob(step) {
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
-    this.insertJob.CustomerId = 1;
-    this.insertJob.UserId = 5;
+    this.insertJob.CustomerId = this.customerId;
+    this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
 
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
