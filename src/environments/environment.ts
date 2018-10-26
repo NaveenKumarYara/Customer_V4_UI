@@ -14,11 +14,10 @@ export const environment = {
     NotificationEndPoint: 'http://api.tenendus.com:1090/IdentityAPI/api/GetNotification?',
     listofJobsEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
     activatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/ActivateJob?jobId=1000108',
-    deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteJob?jobId=1000108&customerId=1&isActive=false',
+    deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false',
     JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
     discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
     // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
-
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
