@@ -24,7 +24,7 @@ export class LoadJoblistComponent implements OnInit {
   joblist: JobDetails[] = [];
   joblistcount: number;
   jobs: any;
-    loaddata = false;
+  loaddata = false;
   sortBy: any;
    jobLoader = false;
    color = 'primary';
@@ -48,15 +48,17 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist(customerId, userId) {
-    // this.spinner.show();
-    this.sortBy = 0;
-    return this.managejobservice.getJobDetails(customerId, userId, this.sortBy, this.joblistcount).subscribe(res => {
-       this.loaddata = true;
+  populateJoblist(customerId, userId) { 
+    if(this.sortBy==undefined)
+    {
+      this.sortBy=0;
+    }
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy, this.joblistcount).subscribe(res => {
+      this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
-    });
+    });  
   }
 
   updateJobListCount() {
@@ -68,6 +70,12 @@ export class LoadJoblistComponent implements OnInit {
   }
 
 
+  PopulateSort(sort)
+  {
+    this.sortBy = sort;
+    this.spinner.show();
+    this.populateJoblist(this.customerId,this.userId);
+  }
   ngOnInit() {
     // this.jobLoader = false;
     // this.spinner.show();
