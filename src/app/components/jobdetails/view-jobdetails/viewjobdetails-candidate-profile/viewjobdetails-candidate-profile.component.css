@@ -29,3 +29,56 @@
     overflow:hidden !important;
     text-overflow: ellipsis;
 } */
+
+/* .page--job-details .ui-badge {
+    padding: 4px 13px;
+    max-width: 140px;
+}
+.ui-badge--domain {
+    border-color: #AC9AF9;
+    color: #AC9AF9;
+}
+.ui-badge {
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 10px 28px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+}
+.ui-badge--industry {
+    border-color: #75A6F5;
+    color: #75A6F5;
+} */
+
+.ui-badge {
+    padding: 4px 13px;
+    max-width: 140px;
+}
+.ui-badge--domain {
+    border-color: #AC9AF9;
+    color: #AC9AF9;
+}
+.ui-badge {
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 10px 28px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+}
+ 
+.ui-badge--industry {
+    border-color: #75A6F5;
+    color: #75A6F5;
+} 
+
+.candidate-badges {
+    display: -webkit-box;
+    display: flex !important;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+
+}

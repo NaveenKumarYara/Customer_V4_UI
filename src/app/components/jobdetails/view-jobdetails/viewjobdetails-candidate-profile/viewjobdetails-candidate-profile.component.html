@@ -1,13 +1,22 @@
 <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i=index">
   <div class="card candidate">
     <header>
-       <div class="candidate-badges">
-                <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
-                <div *ngIf="profile?.DomainName?.split(',')[0]">
+       <div class="candidate-badges"> 
+                <!-- <div *ngIf="profile?.DomainName?.split(',')[0]">
                 <div class="ui-badge ui-badge--industry" data-toggle="tooltip" title={{profile?.DomainName}}>
                   {{profile?.DomainName?.split(',')[0]}} 
-                </div></div>
+                </div>
               </div>
+              <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
+              </div> -->
+              <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification">{{profile.CertificationName}}</div>
+                    <ng-template #nocertification>
+                    <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
+                    </ng-template>
+                    <div class="ui-badge ui-badge--industry"*ngIf="profile.DomainName!=null;else nodomain">{{profile.DomainName}}</div>
+                    <ng-template #nodomain>
+                        <div class="ui-badge ui-badge--industry">Explore Profile For Domain!</div>
+                        </ng-template></div>
       <div class="candidate-info">
        <img src={{profile.ProfilePic}} alt="" width="66" height="66">
         <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">
