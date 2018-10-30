@@ -84,201 +84,275 @@
           </a>
         </div>
       </div>
-      <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">
-        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2072px, 0px, 0px); transition: all 0.25s ease 0s; width: 2926px;"><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+      <!-- <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
+          <div class="item" *ngFor="let image of mySlideImages;let i = index">
+           <div>
+             <img src={{image}}/>
+           </div>
+          </div>
+         </owl-carousel> -->
+         <!-- <owl-carousel
+     [options]="{items: 3, dots: false, navigation: false}"
+     [items]="images"
+     [carouselClasses]="['owl-theme', 'row', 'sliding']">
+     <div class="item active">
+        <div class="skill">
+            <h4>{{profile?.PrimarySkills.split('|')[0]}}</h4>
+            <div>
+              <h5>5 Yrs</h5>
+              <h5>4/5</h5>
             </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+          </div> 
+     </div>
+     <div class="item">
+        <div class="skill">
+            <h4>Experience Design</h4>
+            <div>
+              <h5>5 Yrs</h5>
+              <h5>4/5</h5>
             </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+          </div> 
+     </div>
+     <div class="item">
+        <div class="skill">
+            <h4>Experience Design</h4>
+            <div>
+              <h5>5 Yrs</h5>
+              <h5>4/5</h5>
             </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+          </div> 
+     </div>
+     <div class="item">
+        <div class="skill">
+            <h4>Experience Design</h4>
+            <div>
+              <h5>5 Yrs</h5>
+              <h5>4/5</h5>
             </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+          </div> 
+     </div>
+     <div class="item">
+        <div class="skill">
+            <h4>Experience Design</h4>
+            <div>
+              <h5>5 Yrs</h5>
+              <h5>4/5</h5>
             </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
+          </div> 
+     </div>
+ </owl-carousel> -->
+      <!-- <ngb-carousel>
+          <ng-template ngbSlide>
+              <div class="item active"> 
+                  <div class="skill">
+                    <h4>Experience Design</h4>
+                    <div>
+                      <h5>5 Yrs</h5>
+                      <h5>4/5</h5>
+                    </div>
+                  </div> 
               </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
+             
+          </ng-template>
+          <ng-template ngbSlide> 
+              <div class="item"> 
+                  <div class="skill">
+                    <h4>Experience Design</h4>
+                    <div>
+                      <h5>5 Yrs</h5>
+                      <h5>4/5</h5>
+                    </div>
+                  </div> 
               </div>
+             
+          </ng-template>
+        </ngb-carousel> -->
+        <!-- <ngb-carousel>
+            <ng-template ngbSlide>
+                <h4>Experience1232131 Design</h4>
+                <div>
+                  <h5>5 Yrs</h5>
+                  <h5>4/5</h5>
+                </div>
+                
+            </ng-template>
+            <ng-template ngbSlide>
+                <h4>Experience1232131 Design</h4>
+                <div>
+                  <h5>5 Yrs</h5>
+                  <h5>4/5</h5>
+                </div>
+                
+            </ng-template>
+            <ng-template ngbSlide>
+                <h4>Experience1232131 Design</h4>
+                <div>
+                  <h5>5 Yrs</h5>
+                  <h5>4/5</h5>
+                </div>
+                 
+            </ng-template>
+        </ngb-carousel> -->
+        <!-- <div class="owl-carousel owl-theme owl-loaded">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    <div class="owl-item"><h4>Experience1232131 Design</h4>
+                      <div>
+                        <h5>5 Yrs</h5>
+                        <h5>4/5</h5>
+                      </div>
+                       </div>
+                    <div class="owl-item"><h4>Experienc1 Design</h4>
+                      <div>
+                        <h5>5 Yrs</h5>
+                        <h5>4/5</h5>
+                      </div>
+                       </div>
+                    <div class="owl-item"><h4>Experi Design</h4>
+                      <div>
+                        <h5>5 Yrs</h5>
+                        <h5>4/5</h5>
+                      </div>
+                       </div>
+                </div>
             </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+            <div class="owl-nav">
+                <div class="owl-prev">prev</div>
+                <div class="owl-next">next</div>
             </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+            <div class="owl-dots">
+                <div class="owl-dot active"><span></span></div>
+                <div class="owl-dot"><span></span></div>
+                <div class="owl-dot"><span></span></div>
             </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
+        </div> -->
+        <!-- <div id="Carousel" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="Carousel" data-slide-to="0" class="active"></li>
+                
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active"> 
+                    <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[0].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
+                      </div>
+                    </div> 
+                
+ 
+                    <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[1].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+                      </div>
+                    </div> 
+               
+                    <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[2].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+                      </div>
+                    </div> 
+                  </div>
             </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item active" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned active" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned active" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div><div class="owl-item cloned" style="width: 106.885px; margin-right: 15px;"><div class="item">
-            <div class="skill">
-              <h4>Experience Design</h4>
-              <div>
-                <h5>5 Yrs</h5>
-                <h5>4/5</h5>
-              </div>
-            </div>
-          </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><img src="/images/left-chev.svg" alt=""></button><button type="button" role="presentation" class="owl-next"><img src="/images/right-chev.svg" alt=""></button></div><div class="owl-dots"><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot active"><span></span></button></div></div>
-    </div>
+            <span class="left carousel-control" data-target="#Carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </span>
+            <span class="right carousel-control" data-target="#Carousel" data-slide="next">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+            </span>
+          </div> 
+             -->
+             <!-- <div id="skills-carousel"class="owl-carousel skills-carousel">
+                <div class="item">
+                  <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[0].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
+                      </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[1].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+                      </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="skill">
+                      <h4>{{ profile?.PrimarySkills.split(',')[2].split('|')[0] }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+                      </div>
+                  </div>
+                </div>
+            </div> -->
+
+
+            <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">                        
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;">
+                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                            <div class="item">
+                                <div class="skill">
+                                    <h4 title="{{profile?.PrimarySkills.split(',')[0].split('|')[0]}}">{{ add3Dots(profile?.PrimarySkills.split(',')[0].split('|')[0],18) }}</h4>
+                                        <!-- {{ profile?.PrimarySkills.split(',')[0].split('|')[0] }} -->
+                                    <div>
+                                      <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
+                                      <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                    <div class="item">
+                    <div class="skill">
+                        <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
+                        <div>
+                          <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+                          <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+                        </div>
+                    </div>
+                  </div></div>
+                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
+                    <div class="skill">
+                        <h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
+                      <div>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+                        <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+                      </div>
+                    </div>
+                  </div></div>
+                  </div>    </div>   </div>  
+             <!-- <owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
+                <div *ngFor="let prf of profile?.PrimarySkills.split(',')">
+                  <p> {{ prf.split('|')[0] }}</p>
+                </div>
+             </owl-carousel> -->
+             <!-- <h2>Sample 2</h2>
+             <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+                <div>
+                  <p>{{ profile?.PrimarySkills.split('|')[0] }} </p>
+                </div>
+             </owl-carousel>
+             <h2>Sample 3</h2>
+             <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+                <div>
+                  <img src="http://lorempixel.com/400/200/{{img}}"/> 
+                  {{profile?.PrimarySkills.split('|')[0]}}
+                </div>
+             </owl-carousel> -->
+     
+     </div>
     <div class="footer">
       <ul class="actions">
        <li>
