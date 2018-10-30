@@ -388,8 +388,8 @@ getaddedPersonTypes() {
         this.handleError
       );
   }
-getCustomerUsers(): Observable<CustomerUsers[]> {
-  const url = environment.getCustomerUsersendpoint;
+getCustomerUsers(customerId:number,userId:number): Observable<CustomerUsers[]> {
+  const url = environment.getCustomerUsersendpoint+'customerId='+customerId+'&userId='+userId;;
   return this.http.get<string[]>(url)
     .catch(
       this.handleError
@@ -483,8 +483,8 @@ deactivateJob(body) {
       );
   }
 
-  getLocationwisejobs() {
-    const url = environment.customerPreferredLocationendpoint;
+  getLocationwisejobs(customerId:number,userId:number) {
+    const url = environment.customerPreferredLocationendpoint+'customerId='+customerId+'&userId='+userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

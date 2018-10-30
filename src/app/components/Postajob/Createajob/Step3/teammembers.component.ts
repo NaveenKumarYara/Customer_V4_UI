@@ -19,7 +19,9 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   teammembers: '';
   teammemberslist: CustomerUsers[];
-
+  customer:any;
+  customerId:any;
+  userId:any;
   addedteammembers: '';
   addedteammemberslist: PjTechnicalTeam[];
 
@@ -31,6 +33,9 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   getTeammember: CustomerUsers;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
   }
   changeTeam(val) {
     this.getTeammember = val;
@@ -51,7 +56,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers().pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))

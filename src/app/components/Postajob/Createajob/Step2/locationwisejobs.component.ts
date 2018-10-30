@@ -14,9 +14,15 @@ export class LocationwiseJobsComponent implements OnInit, OnDestroy {
 
   locationwisejobs: string[];
 location: string;
+customer:any;
+customerId:any;
+userId:any;
 prfLoc = new PrefLocation();
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
   }
 
   selectLocation(loc) {
@@ -28,7 +34,7 @@ prfLoc = new PrefLocation();
   }
 
   populateLocationwiseJobs() {
-    this.appService.getLocationwisejobs().subscribe(res => {
+    this.appService.getLocationwisejobs(this.customerId,this.userId).subscribe(res => {
       this.locationwisejobs = res;
     });
   }

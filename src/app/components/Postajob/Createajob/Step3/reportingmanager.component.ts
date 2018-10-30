@@ -21,7 +21,9 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   selectedManager: CustomerUsers;
   reportingmanagersList: Observable<CustomerUsers[]>;
-
+  customer:any;
+  customerId:any;
+  userId:any;
   selectedInput = new Subject<string> ();
   usersload: boolean;
   // managersAdd: PjTechnicalTeam[] = [];
@@ -31,6 +33,9 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
   }
   updateManager(val) {
    // this.appService.updateManager(this.selectedItem.toString());
@@ -45,7 +50,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersload = true),
-        switchMap(term => this.appService.getCustomerUsers().pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersload = false)
         ))
