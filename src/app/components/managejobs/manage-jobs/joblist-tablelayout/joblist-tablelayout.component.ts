@@ -7,6 +7,7 @@ import { ManageJobService } from '../../managejobs.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
+declare var $: any;
 
 @Component({
   selector: 'app-manage-joblist-tablelayout',
@@ -44,6 +45,15 @@ export class JoblistTablelayoutComponent implements OnInit {
     this.router.navigateByUrl('app-view-jobdetails');
   }
   changeJobStatus(job,val) {
+    if(val== true)
+    {
+     $("#Inactive").replaceWith("#Active");
+   
+    }
+    else if (val == false) 
+    {
+      $("#Active").replaceWith("#Inactive");
+    }
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = this.customerId;
     this.deactivate.isActive = val;  
