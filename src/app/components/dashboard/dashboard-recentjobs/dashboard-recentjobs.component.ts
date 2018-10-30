@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class DashboardRecentjobsComponent implements OnInit {
     //@Input() recentjoblist: RecentJobs;
     customer:any;
-    recentjoblist: RecentJobs[] = [];
+    joblist: RecentJobs[] = [];
    jobLoader =false;
    jobId:any;
    customerId:any;
@@ -58,7 +58,7 @@ export class DashboardRecentjobsComponent implements OnInit {
   }
   populateRecentJoblist(customerId,userId,count: number) {
     return this.dashboardservice.getRecentJobs(customerId,userId,count).subscribe(res => {
-        this.recentjoblist = res;
+        this.joblist = res;
         this.jobLoader=false;
     });
 }

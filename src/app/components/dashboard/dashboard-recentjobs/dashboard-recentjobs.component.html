@@ -18,12 +18,12 @@
     [color]="color"
     [mode]="mode" strokeWidth="3" [diameter]="50" >
 </mat-progress-spinner>
-      <div class="card" *ngFor="let recentjob of recentjoblist.Jobs; let i=index">
+      <div class="card" *ngFor="let job of  joblist?.Jobs; let i=index">
       <div class="header">
-          <h2 (click)="ViewJobdetails(recentjoblist.CustomerId,recentjob.UserId,recentjob.JobId)">
-              {{recentjob.JobTitle}}
+          <h2 (click)="ViewJobdetails(joblist.CustomerId,joblist.UserId,joblist.JobId)">
+              {{job?.JobTitle}}
           </h2>
-          <span class="status status--purple">{{recentjob.JobStatus}}</span>
+          <span class="status status--purple">{{job?.JobStatus}}</span>
         <div class="meta">
             <span>
                 <svg x="0px" y="0px" width="16px" height="19.1px" viewBox="0 0 16 19.1" xml:space="preserve" style="fill:#9EABC0;">
@@ -32,33 +32,16 @@
                 <path d="M8,11.3c-1.8,0-3.3-1.5-3.3-3.3S6.2,4.7,8,4.7s3.3,1.5,3.3,3.3S9.8,11.3,8,11.3z M8,6.7C7.3,6.7,6.7,7.3,6.7,8
                           S7.3,9.3,8,9.3c0.7,0,1.3-0.6,1.3-1.3S8.7,6.7,8,6.7z"></path>
                       </svg>
-                {{ recentjob.JobLocations[0].CityName}}, {{ recentjob.JobLocations[0].StateCode}}
+                {{job?.JobLocations[0].CityName}}, {{job?.JobLocations[0].StateCode}}
             </span>
           <span class="v-divider"></span>
-          <span>{{recentjob.PostedOn}}</span>
+          <span>{{job?.PostedOn}}</span>
         </div>
       </div>
-      <div class="stats stats--row">
-        <div>
-            <h1>{{recentjob.TotalApplicants}}</h1>
-          <span>Applied</span>
-        </div>
-        <div class="v-divider"></div>
-        <div>
-            <h1>{{recentjob.SkilledApplicants}}</h1>
-          <span>Suggested</span>
-        </div>
-        <div class="v-divider"></div>
-        <div>
-            <h1>{{recentjob.ShortListedCount}}</h1>
-          <span>Shortlisted</span>
-        </div>
-        <div class="v-divider"></div>
-        <div>
-            <h1>{{recentjob.InterviewedCount}}</h1>
-          <span>Interviews</span>
-        </div>
-      </div>
+
+  <app-recentjobscount
+  [job]="job"
+  [joblist]="joblist"></app-recentjobscount>
     </div> 
     </div> 
   </section>
