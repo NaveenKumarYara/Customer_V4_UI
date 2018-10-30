@@ -7,6 +7,7 @@ import { DashboardScheduledInterviewComponent } from './dashboard-scheduled-inte
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
+import {RecentjobsCountComponent} from './dashboard-recentjobs/recentjobscount/recentjobscount.component';
 import { DashboardService } from './dashboard.service';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {NgxSpinnerModule} from 'ngx-spinner';
@@ -17,6 +18,6 @@ import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
     ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, MatProgressSpinnerModule
     ],
     providers: [DashboardService],
-  declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent]
+  declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent]
 })
 export class DashboardModule { }

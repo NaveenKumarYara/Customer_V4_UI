@@ -14,6 +14,7 @@ import { RecentJobs } from '../../../models/recentjobs';
 import { RecentApplicants } from '../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../models/dashboardstatistics';
 import { ApplicantStatistics } from '../../../models/applicantstatistics';
+import {JobCount} from '../../components/managejobs/models/JobCount';
 
 @Injectable()
 export class DashboardService {
@@ -50,6 +51,15 @@ export class DashboardService {
                this.handleError
            );
     }
+    getJobCount(jobId:number,customerId:number): Observable<JobCount> {
+        const url = environment.JobsProfileCount +
+        'jobId=' +jobId +'&customerId='+customerId;
+        return this.http.get<JobCount>(url)
+          .debounceTime(1000)     
+          .catch(
+            this.handleError
+        );    
+      }
 
     getDashboardStatistics(customerId:number,userId:number): Observable<DashboardStatistics>{
         const url = environment.DashboardStatistics+
