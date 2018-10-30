@@ -1,7 +1,185 @@
 /* .mat-dialog-content {
     overflow-y: hidden !important;
 } */
-
-img {
-    border-radius: 50%;
+.mat-dialog-content{
+    max-height: 87vh;
 }
+.mat-typography{
+    font-family: "Poppins", sans-serif;
+}
+.mat-typography .modal-header{
+    /* padding: 1.75rem 3.25rem; */
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+.mat-typography.modal-header > div {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.mat-typography .modal-title{
+    margin-bottom: 10px;
+    font-size: 1.375rem;
+    color: #41536E;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin: 0;
+    line-height: 1.42857;
+}
+
+.mat-typography  .meta {
+    color: #93A2BB;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.mat-typography .modal-header-inner .meta > div:not(:last-of-type) {
+    border-right: 1px solid #E0E3EF;
+}
+.mat-typography .modal-header .meta > div {
+    padding: 0 8px;
+}
+.mat-typography .modal-header .modal-actions {
+    text-align: right;
+    float:right;
+    margin-left:auto;
+}
+.mat-typography .modal-actions .btn-border{
+    margin-right: 15px;
+    font-size: 0.875rem;
+    letter-spacing: 0.03em;
+    padding: 11px 28px;
+    color: #6A7E9C;
+    background-color: #ffffff;
+    border-color: #E0E3EF;
+}
+.mat-typography .modal-actions .btn-filled{
+    font-size: 0.875rem;
+    letter-spacing: 0.03em;
+    padding: 11px 28px;
+    color: #ffffff;
+    background-color: #448AFA;
+    min-width: 120px;
+}
+.mat-typography .meta h5{
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.mat-typography .meta svg {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    fill: #93A2BB;
+}
+.mat-typography .modal-body{
+    padding: 0px;
+}
+
+.mat-typography .modal-body .nav-tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-top: 1px solid #E0E3EF;
+    border-bottom: 1px solid #E0E3EF;
+    position: relative;
+    border: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.mat-typography .modal-body .nav-tabs > li {
+    text-align: center;
+    -ms-flex-preferred-size: 33.33%;
+    flex-basis: 33.33%;
+    border: 0;
+    margin-bottom: 0 !important;
+}
+
+.mat-typography .modal-body .nav-tabs > li a {
+    padding: 20px 0;
+    font-size: 1.25rem;
+    color: #93A2BB;
+    border: 0 !important;
+    cursor: pointer;
+}
+.mat-typography .modal-body .nav-tabs > li.active{
+    margin-bottom: 0;
+    border-bottom: 2px solid #448AFA;
+} 
+.mat-typography .modal-body .nav-tabs > li.active a {
+    color: #41536E;
+} 
+
+.mat-typography .modal-body .tab-content {
+    padding: 1.75rem 3.25rem;
+}
+
+
+.mat-typography  .group {
+    margin-bottom: 2.25rem; }
+    .mat-typography  .group h4 {
+      font-size: 1.125rem;
+      color: #41536E;
+      margin-bottom: 15px; }
+    .mat-typography  .group li, .mat-typography  .group p {
+      font-size: 1rem; }
+    .mat-typography  .group li {
+      color: #93A2BB; }
+    .mat-typography  .group p {
+      color: #6A7E9C;
+      line-height: 1.75rem; }
+    .mat-typography  .group ul {
+      padding: 0;
+      list-style: none;
+      margin: 0; }
+    .mat-typography  .group .list {
+      -webkit-column-count: 3;
+              column-count: 3; }
+    .mat-typography  .group h5 {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #41536E;
+      margin-bottom: 8px; }
+    .mat-typography  .group h6, .mat-typography  .group .time {
+      margin-top: 0;
+      font-weight: 400;
+      color: #9EABC0;
+      font-size: 0.875rem; }
+      .mat-dialog-actions{
+        display: inherit;
+        margin-left:auto;
+        float: right;
+        width: 100%;
+      }
+      .mat-dialog-actions .btn{
+      padding: 11px 28px;
+      }
+      .mat-dialog-actions .modal-footer {
+        padding: 15px;
+        text-align: right;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .mat-typography .modal-header{
+        justify-content: end;
+    }

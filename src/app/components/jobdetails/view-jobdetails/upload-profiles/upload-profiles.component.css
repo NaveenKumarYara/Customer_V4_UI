@@ -313,3 +313,6 @@
   font-family: inherit;
 }
 
+.mat-typography h3{
+  margin: 20% 25% 0%;
+}
