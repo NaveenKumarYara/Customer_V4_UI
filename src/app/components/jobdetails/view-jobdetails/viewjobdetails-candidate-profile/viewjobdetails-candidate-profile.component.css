@@ -21,3 +21,11 @@
     margin: 30px auto;
     padding : 0 !important;
 }
+
+/* h4,h5{
+    display:inline-block;
+    width:280px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+} */

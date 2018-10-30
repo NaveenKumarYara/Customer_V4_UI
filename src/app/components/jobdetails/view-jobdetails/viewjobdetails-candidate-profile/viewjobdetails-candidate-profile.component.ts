@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ChatboxdialogComponent } from './chatboxdialog/chatboxdialog.component';
@@ -11,6 +11,9 @@ import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interv
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
+
+// import $ from 'jquery';
+// import 'owl-carousel';
 @Component({
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
@@ -29,15 +32,47 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
-   // @Output() eventStat = new EventEmitter();
- // @Output() jobDetails: ViewJobdetailsComponent;
- // @Input() jobdetailsprofiles: JobdetailsProfile[] = [];
-  constructor(private router: Router, private jobdetailsservice: JobdetailsService,
+
+
+  @Input() options: object;
+  $owlElement: any;
+  defaultOptions: object = {};
+  images = [1, 2, 3].map(() => 'https://picsum.photos/900/500?random&t=${Math.random()}');
+ mySlideImages = [1, 2, 3].map((i) => 'https://picsum.photos/640/480?image=${i}');
+ myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
+ mySlideOptions = {items: 1, dots: true, nav: false};
+ myCarouselOptions = {items: 3, dots: true, nav: true};
+  customOptions: any = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  };
+  constructor(private el: ElementRef, private router: Router, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
+
   OpenChatboxDialog() {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
@@ -65,7 +100,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         }
       }
     );
-
     shareddialogRef.afterClosed().subscribe(result => {
       console.log('share Dialog result: ${result}');
     });
@@ -157,6 +191,14 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     });
   }
   }
+  add3Dots(string, limit) {
+    const dots = '...';
+    if (string.length > limit) {
+      string = string.substring(0, limit) + dots;
+    }
+
+      return string;
+  }
 
   CheckDisplay(val) {
     if (val === null ) {
@@ -212,40 +254,66 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         });
       });
     })(jQuery);
-    (function ($) {
-      $('#cultural-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        navText: ['<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>', '<span class="icon-down-arrow"><img src="/images/slider-nav-right.png" alt=""></span>'],
-        responsive: {
-          0: {
-            items: 3
-          },
-          600: {
-            items: 3
-          },
-          1000: {
-            items: 6
-          }
-        }
-      });
+    // (function ($) {
+    //   $('#cultural-carousel').owlCarousel({
+    //     loop: true,
+    //     margin: 10,
+    //     nav: true,
+    //     navText: ['<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>', '<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>'],
+    //     responsive: {
+    //       0: {
+    //         items: 3
+    //       },
+    //       600: {
+    //         items: 3
+    //       },
+    //       1000: {
+    //         items: 6
+    //       }
+    //     }
+    //   });
 
-      $('.skills-carousel').owlCarousel({
-        loop: true,
-        margin: 15,
-        nav: true,
-        navText: ['<img src="/images/left-chev.svg" alt="">', '<img src="/images/right-chev.svg" alt="">'],
-        0: {
-          items: 2
-        },
-        600: {
-          items: 3
-        }
-      });
-    });
+    //   $('.skills-carousel').owlCarousel({
+    //     loop: true,
+    //     margin: 15,
+    //     nav: true,
+    //     navText: ['<img src="/images/left-chev.svg" alt="">', '<img src="/images/right-chev.svg" alt="">'],
+    //     0: {
+    //       items: 2
+    //     },
+    //     600: {
+    //       items: 3
+    //     }
+    //   });
+    // });
+  //  $(document).ready(function() {
+      // var owl = $('.owl-carousel');
+      // owl.owlCarousel({
+      //   margin: 10,
+      //   nav: true,
+      //   loop: true,
+      //   responsive: {
+      //     0: {
+      //       items: 1
+      //     },
+      //     600: {
+      //       items: 3
+      //     },
+      //     1000: {
+      //       items: 5
+      //     }
+      //   }
+      // });
+   // })
     this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
     console.log('abc');
+  }
+
+  ngAfterViewInit() {
+    for (const key in this.options) {
+      this.defaultOptions[key] = this.options[key];
+    }
+    this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
   }
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
