@@ -64,7 +64,7 @@ import { QuestionsComponent } from '../app/components/company-profile/questions/
 import { SpecialitiesComponent } from '../app/components/company-profile/specialities/specialities.component';
 import { WhitepaperComponent } from '../app/components/company-profile/whitepaper/whitepaper.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-
+import {EditCandidateProfileComponent} from '../app/components/company-profile/editcandidateprofile/editcandidateprofile.component';
 import { DashboardviewComponent } from './components/dashboard/dashboardview/dashboardview.component';
 import { DashboardActivejobsComponent } from './components/dashboard/dashboard-activejobs/dashboard-activejobs.component';
 import { DashboardScheduledInterviewComponent } from './components/dashboard/dashboard-scheduled-interview/dashboard-scheduled-interview.component';
@@ -141,6 +141,7 @@ const appRoutes: Routes =
     { path: 'app-achievementsandawards', component: AchievementsandawardsComponent },
     {path:'app-cprofile',component:CandidateProfileComponent},
     { path: 'app-basicinfo', component: BasicinfoComponent },
+    { path: 'app-editcprofile', component: EditCandidateProfileComponent },
     { path: 'app-benefits', component: BenefitsComponent },
     { path: 'app-culture', component: CultureComponent },
     { path: 'app-locations', component: LocationsComponent },

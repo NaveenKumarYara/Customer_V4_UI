@@ -10,7 +10,7 @@
 <ul class="dropdown-menu">
 <li><a routerLink="/app-postajob" routerLinkActive="active">Edit</a></li>
 <li *ngIf="job.JobStatus!='InActive'" id="Inactive"><a (click)="changeJobStatus(job,false)" >Inactive</a></li>
-<li *ngIf="job.JobStatus=='InActive'" id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
+<li *ngIf="job.JobStatus=='InActive'&&job.JobStatus!='Active'" id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
 <li><a>Share</a></li>
 </ul>
 </div>
