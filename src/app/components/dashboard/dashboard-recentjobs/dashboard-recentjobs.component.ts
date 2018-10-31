@@ -51,9 +51,11 @@ export class DashboardRecentjobsComponent implements OnInit {
   }
   ViewJobdetails(customerId,userId,jobId)
   {
+    let statusId=0;
     sessionStorage.setItem('customerId', JSON.stringify(customerId));
     sessionStorage.setItem('userId', JSON.stringify(userId));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    sessionStorage.setItem('statusid', JSON.stringify(statusId));
     this.router.navigateByUrl('app-view-jobdetails');
   }
   populateRecentJoblist(customerId,userId,count: number) {

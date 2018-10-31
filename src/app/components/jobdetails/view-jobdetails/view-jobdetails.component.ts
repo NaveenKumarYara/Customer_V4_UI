@@ -49,6 +49,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    this.statusid =JSON.parse(sessionStorage.getItem('statusid'));
 
    }
   showDetailadvancesearch = false;

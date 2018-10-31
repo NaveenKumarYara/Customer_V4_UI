@@ -46,6 +46,13 @@ export class RecentjobsCountComponent implements OnInit {
     this.jobS = res;
    });
   }
+
+  GetJobsRedirect(statusId)
+  {
+   sessionStorage.setItem('jobId', JSON.stringify(this.jobId));
+   sessionStorage.setItem('statusid', JSON.stringify(statusId));
+   this.router.navigateByUrl('app-view-jobdetails');
+  }
  
  
 
