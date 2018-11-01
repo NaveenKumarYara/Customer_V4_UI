@@ -25,6 +25,16 @@ export class JobdetailsComponent implements OnInit {
   jobtitleinput = new Subject<string>();
   minExperience: number;
   maxExperience: number;
+
+
+  //
+
+  
+  // companies: any[] = [];
+  // loading = false;
+  // companiesNames = ['Miškas', 'Žalias', 'Flexigen'];
+
+
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -63,42 +73,6 @@ export class JobdetailsComponent implements OnInit {
     return this.expYears;
 }
   ngOnInit() {
-    // (function ($) {
-    //   var minYear = 0,
-    //       maxYear = 0;
-    //   var $maxYearSpinner = $('.re-group #re_year');
-    //   var $minYearSpinner = $('.re-group #re_month');
-    //   var $parentDiv = $maxYearSpinner.closest('.form-group');
-    //   var $outputDiv = $parentDiv.find('.experience-output');
-    //   var $timePicker = $parentDiv.find('.time-picker');
-
-    //   var options = {
-    //     min: 1,
-    //     max: 12,
-    //     step: 1
-    //   };
-
-    //   $maxYearSpinner.spinner(options);
-    //   $minYearSpinner.spinner(options);
-
-    //   function changeHandlerMinYear(e, ui) {
-    //     minYear = ui.value;
-    //     $outputDiv.text(minYear + " - " + maxYear + "Years");
-    //   }
-
-    //   function changeHandlerMaxYear(e, ui) {
-    //     maxYear = ui.value;
-    //     $outputDiv.text(minYear + " - " + maxYear + "Years");
-    //   }
-
-    //   $maxYearSpinner.on('spin', changeHandlerMaxYear);
-    //   $minYearSpinner.on('spin', changeHandlerMinYear);
-
-    //   //slide toggle time picker
-    //   $outputDiv.on('click', function () {
-    //     $timePicker.slideToggle('fast');
-    //   });
-    // })(jQuery);
     this.getExpYears();
     this.searchJobTitle();
    // if (localStorage.getItem('jobId') != null) {
@@ -106,6 +80,23 @@ export class JobdetailsComponent implements OnInit {
     this.appService.currentminExp.subscribe(x => this.minExperience = x);
     this.appService.currentmaxExp.subscribe(x => this.maxExperience = x);
    // }
-  }
+//    this.companiesNames.forEach((c, i) => {
+//     this.companies.push({ id: i, name: c });
+// });
+  // }
+
+    // addTag(name) {
+    //     return { name: name, tag: true };
+    // }
+
+    // addTagPromise(name) {
+    //     return new Promise((resolve) => {
+    //         this.loading = true;
+    //         setTimeout(() => {
+    //             resolve({ id: 5, name: name, valid: true });
+    //             this.loading = false;
+    //         }, 1000);
+    //     });
+    }
 
 }
