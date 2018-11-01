@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RoleModel, Roles } from '../../models/jobPostInfo';
-import { JobdetailsComponent } from './Jobdetails.component';
+// import { JobdetailsComponent } from './Jobdetails.component';
 // tslint:disable-next-line:no-unused-expression
 declare var $: any;
 @Component({
@@ -15,7 +15,7 @@ declare var $: any;
 
 export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
-  @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
+ // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
 
   private subscription: Subscription;
   responsibilities: '';
@@ -29,6 +29,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.roleModel = new RoleModel(0, null, null);
+      this.appService.currentjobtitle.subscribe((data) => {
+        this.roleModel.JobTitle = data; // And he have data here too!
+      });
   }
 
   // private addResponsibilities() {
@@ -77,9 +80,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     } else if ($('#responsibilitiesName').val() && this.roleModel.RoleId <= 0) {
       // this.roleModel.RoleId = 0;
       this.roleModel.RolesAndResponsibilities = $('#responsibilitiesName').val();
-      if ( this.jobDetail.selectedTitle != null) {
-        this.roleModel.JobTitle = this.jobDetail.selectedTitle;
-      }
+      // if ( this.appService.jobtitle != null) {
+      //   this.roleModel.JobTitle = this.appService.jobtitle.tostring();
+      // }
       this.appService.saveRoles(this.roleModel)
         .subscribe(
           data => {
