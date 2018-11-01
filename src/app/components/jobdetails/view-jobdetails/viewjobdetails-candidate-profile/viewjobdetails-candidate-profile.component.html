@@ -61,9 +61,9 @@
             </ul>
           </div>
         </h1>
-        <div class="meta">
+        <div class="meta"> 
           <div>
-            <h4>{{profile.ProfileTitle}}</h4>
+            <h4>{{profile.ProfileTitle ? profile.ProfileTitle : 'N/A'}}</h4>
           </div>
           <div>
             <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
@@ -72,7 +72,7 @@
             </svg>
             <h5 class="location">{{profile.CurrentLocation}}</h5>
       <div class="status shortlisted">{{profile.JobStatus}}</div>
-      <small *ngIf="profile.UserId === 0" title="ESolvIT">By <span>ESolvIT</span></small>
+      <small *ngIf="profile.UserId === 0" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
           </div>
         </div>
         <div class="candidate-status">
@@ -307,24 +307,25 @@
             </div> -->
 
 
-            <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">                        
+            <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">
                 <div class="owl-stage-outer">
-                    <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;">
-                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                    {{splitSkills(profile?.PrimarySkills)}}
+                    <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;" *ngIf="skills">
+                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;" *ngFor="let sk of skills" >
                             <div class="item">
                                 <div class="skill">
-                                    <h4 title="{{profile?.PrimarySkills.split(',')[0].split('|')[0]}}">{{ add3Dots(profile?.PrimarySkills.split(',')[0].split('|')[0],18) }}</h4>
+                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],18) }}</h4>
                                         <!-- {{ profile?.PrimarySkills.split(',')[0].split('|')[0] }} -->
                                     <div>
-                                      <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
-                                      <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
+                                      <h5>{{ sk.split('|')[1] }} Yrs</h5>
+                                      <h5>{{ sk.split('|')[2] }}</h5>
                                     </div>
                                 </div>
                             </div>
                          </div>
-                    <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                    <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
                     <div class="item">
-                    <div class="skill">
+                    <div class="skill" *ngIf="">
                         <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
                         <div>
                           <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
@@ -333,14 +334,14 @@
                     </div>
                   </div></div>
                         <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
-                    <div class="skill">
+                    <div class="skill" *ngIf="">
                         <h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
                       <div>
                         <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
                         <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
                       </div>
                     </div>
-                  </div></div>
+                  </div></div> -->
                   </div>    </div>   </div>  
              <!-- <owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
                 <div *ngFor="let prf of profile?.PrimarySkills.split(',')">
