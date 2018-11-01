@@ -10,6 +10,19 @@ export class HeaderComponent {
   profilePic:any;
   constructor( private router: Router) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    if (this.customer == null) {
+        this.Logout();
+    }
+    // sessionStorage.setItem('ProfileThumbnail', this.candidateDetails.UserProfilePictureUrl);
+    else {
+        let pic = sessionStorage.getItem('ProfileThumbnail');
+        if (pic) {
+            if (pic.length > 55) {
+                this.customer.UserProfilePictureUrl = pic;
+            }
+        }
+    }
+    
   }
   Logout() {
     sessionStorage.clear();
@@ -17,5 +30,6 @@ export class HeaderComponent {
 }
 ngInit()
 {
+ 
 }
 }

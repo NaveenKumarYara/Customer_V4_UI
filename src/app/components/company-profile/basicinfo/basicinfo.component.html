@@ -25,7 +25,7 @@
       <div class="card-inner">
         <div class="company-logo">
           <div class="img">
-            <img class="img-responsive" title="{{getcompanylogo?.CompanyName}}" src="{{getcompanylogo?.CompanyLogo}}" alt="Ueno">
+            <img class="img-responsive" title="{{getcompanylogo?.CompanyName}}" src="{{companyLogo?.CompanyLogo}}" alt="Ueno">
           </div>
         </div>
         <div class="company-info">
@@ -107,7 +107,7 @@
       <form class="card-inner">
           <div class="company-logo">
             <div class="img">
-              <img class="img-responsive"  src="{{getcompanylogo?.CompanyLogo}}" alt="Ueno">
+              <img class="img-responsive"  src="{{companyLogo?.CompanyLogo}}" alt="Ueno">
             </div>
             <div class="actions">
               <div class="item">
@@ -122,15 +122,18 @@
                 </a>
               </div>
               <div class="item">
-                <a href="#">
+                <a>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18.3" height="16.8">
                     <g>
                       <path class="st0" d="M3.8 6.4c-.3 0-.6-.1-.8-.4-.3-.4-.2-1 .2-1.4L8.7.2c.4-.3.9-.3 1.3 0l5 4.3c.4.4.5 1 .1 1.4-.4.4-1 .5-1.4.1L9.3 2.3 4.4 6.2c-.1.1-.4.2-.6.2z"></path>
                       <path class="st0" d="M2.7 16.8c-1.5 0-2.7-1.2-2.7-2.7v-2.5c0-.6.4-1 1-1s1 .4 1 1v2.5c0 .4.3.7.7.7h12.9c.4 0 .7-.3.7-.7v-2.5c0-.6.4-1 1-1s1 .4 1 1v2.5c0 1.5-1.2 2.7-2.7 2.7H2.7z"></path>
                       <path class="st0" d="M9.3 11.4c-.6 0-1-.4-1-1V1.5c0-.6.4-1 1-1s1 .4 1 1v8.9c0 .6-.4 1-1 1z"></path>
                     </g>
-                  </svg>
-                  <h4>Upload</h4>
+                  </svg>              
+                    <a (click)="photo.click()">
+                      <input class="hidden" type="file" #photo (click)="photo.value = null" value="" (change)="onFileChange($event)">                
+                      <p>Upload</p>
+                    </a>
                 </a>
               </div>
             </div>
