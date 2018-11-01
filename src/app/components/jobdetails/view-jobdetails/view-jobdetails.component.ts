@@ -44,16 +44,16 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
   // showVar:  = true;
-// readChild: any;
+  // readChild: any;
   deactivate = new deactivate();
   constructor(private route: ActivatedRoute,
-    private router: Router,private appService: AppService, private jobdetailsservice: JobdetailsService,
+    private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder
    ) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
-    this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 0 : JSON.parse(sessionStorage.getItem('statusid'));
+    this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
 
    }
   showDetailadvancesearch = false;
@@ -200,26 +200,23 @@ export class ViewJobdetailsComponent implements OnInit {
     this.populateJobsStaticInfo(this.jobid);
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
-  changeJobStatus(job,val) {
-    debugger
-    if(val== true)
-    {
-     $("#Inactive").replaceWith("#Active");
-   
-    }
-    else if (val == false) 
-    {
-      $("#Active").replaceWith("#Inactive");
+  changeJobStatus(job, val) {
+    // debugger
+    if (val === true) {
+     $('#Inactive').replaceWith('#Active');
+
+    } else if (val === false) {
+      $('#Active').replaceWith('#Inactive');
     }
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = job.CustomerId;
-    this.deactivate.isActive = val;  
+    this.deactivate.isActive = val;
       this.appService.deactivateJob(this.deactivate)
       .subscribe(
       data => {
-        alert("success")
+       // alert("success")
         this.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
-   
+
     },
       error => console.log(error));
 }

@@ -62,15 +62,15 @@
           </div>
           <div class="card-footer">
             <ul class="nav nav-tabs">
-              <li class="active">
-                <a data-toggle="tab" href="#all-candidates" (click)="updateallcandidatesstatus()">
+              <li class="disabled">
+                <a data-toggle="tab" href="#all-candidates"><!-- (click)="updateallcandidatesstatus()" -->
                   <div>
                     <h1>{{jobstatistics?.AllCandidates}}</h1>
                     <h4>All Candidates</h4>
                   </div>
                 </a>
               </li>
-              <li>
+              <li class="active">
                 <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
                   <div>
                     <h1>{{jobstatistics?.Applied}}</h1>
@@ -131,7 +131,7 @@
       <div class="row">
         <div class="row">
           <div class="tab-content">
-            <div id="all-candidates" class="tab-pane fade in active"> 
+            <div id="applied" class="tab-pane fade in active"> 
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
               [statusid]="statusid" (myEvent)="updateStatistics()">
