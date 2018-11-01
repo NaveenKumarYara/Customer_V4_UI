@@ -24,7 +24,6 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
   PopulateJobdetail (customerId,jobid) { 
-    debugger
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId,this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
     });

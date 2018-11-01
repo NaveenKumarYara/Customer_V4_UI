@@ -21,6 +21,12 @@ export class BasicinfoComponent implements OnInit {
     userId:any;
     basicinfo =new basicinfo();
     profileId:any;
+    saveImage: FormGroup;
+    public file_srcs: string[] = [];
+    public debug_size_before: string[] = [];
+    public debug_size_after: string[] = [];
+    currentImageUpload: File;
+    companyLogo:any;
     locations: any;
     companyName:any; 
     website:any; 
@@ -36,18 +42,78 @@ export class BasicinfoComponent implements OnInit {
     fullname: any;
   firstname: any;
   lastname: any;
-  constructor(private _service: ApiService, private route: Router, private companyprofileservice: CompanyProfileService) {
+  constructor(private _service: ApiService, private route: Router, private fb: FormBuilder,private companyprofileservice: CompanyProfileService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
     this.userId = this.customer.UserId;
+    this.saveImage = this.fb.group({
+      'customerId': [this.customerId, Validators.required],
+      'UserName': [this.customer.FirstName, Validators.nullValidator],
+      'companyLogo': [null, Validators.nullValidator],
+    });
    }
 
   ngOnInit() {
+    this.GetCompanyLogo();
   }
+  GetCompanyLogo()
+  {
+    return this.companyprofileservice.getCompanyLogo(this.customerId).subscribe(res => {
+      this.companyLogo = res;
+  });
+  }
+
   populateCompanyProfile(customerId) {
     return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
         this.companyprofile = res;
     });
+}
+uploadPhoto() {
+  let request = '';
+  let _formData: FormData = new FormData();
+  if (this.saveImage.value !== '') {
+    request = JSON.stringify(this.saveImage.value);
+  }
+  _formData.append('companyLogo', this.currentImageUpload);
+  _formData.append('Model', request);
+  this._service.byteStorage(_formData, 'IdentityAPI/api/UpdateCompanyLogo').subscribe(data => {
+    sessionStorage.setItem('ProfileThumbnail', data[0].toString());
+    sessionStorage.setItem('companyLogo', data[1].toString());
+    $('#headerProfilePic').attr('src', data[0]);
+    this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
+    this.iseditProfile = false;
+    alert('Photo upload successful');
+    this.populateCompanyProfile(this.customerId);
+    this.GetCompanyLogo();
+
+  });
+}
+onFileChange(event) {
+  let reader = new FileReader();
+  if (event.target.files && event.target.files.length > 0) {
+    let file = event.target.files[0];
+    let stringToSplit = file.name;
+    let x = stringToSplit.split(".");
+    var ext = x[1];
+    if ((ext == 'png' || ext == 'jpg' || ext == 'jpeg') || (ext == 'PNG' || ext == 'JPG' || ext == 'JPEG')) {
+      if (file.size > 2048576) {
+        alert("Too Big Size.. File Not Allowed");
+      }
+      else {
+        this.currentImageUpload = file;
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.customer.UserProfilePictureUrl = 'data:image/png;base64,' + reader.result.split(',')[1];
+          this.uploadPhoto();
+        };
+      }
+    }
+    else {
+      alert("Please upload the files with extension jpg, png or jpeg");
+    }
+
+  }
+
 }
 
   saveProfile() {

@@ -53,6 +53,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 0 : JSON.parse(sessionStorage.getItem('statusid'));
 
    }
   showDetailadvancesearch = false;
@@ -244,6 +245,16 @@ export class ViewJobdetailsComponent implements OnInit {
   //     this.populateJobsStaticInfo(this.jobid);
   //    }
   // }
+  getParentApi(): ParentComponentApi {
+    return {
+      callParentMethod: (sortBy) => {
+       // this.parentMethod(name);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, sortBy);
+      }
+    };
+  }
 
-
+}
+export interface ParentComponentApi {
+  callParentMethod: (number) => void;
 }
