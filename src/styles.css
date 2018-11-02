@@ -20936,3 +20936,11 @@ a.ui-button:active,
 nav.navbar{
   border:none;
 }
+
+/*Custom Datepicker for schedule interview*/
+.page--job-details .modal-body .input-group button.ngb-dp-arrow-btn{
+  padding: 0rem 0.25rem !important;
+}
+.ng-select.interview-schedule-popup > .ng-select-container{
+  margin-top: 0px!important;
+}

@@ -7,10 +7,12 @@ import { ViewjobdetailsmodelComponent } from './viewjobdetailsmodel/viewjobdetai
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { JobdetailsBasicInfo } from '../models/jobdetailsbasicinfo';
+import {deactivate} from '../../managejobs/models/deactivate';
 import { Jobstatistics } from '../models/jobstatistics';
 import { UploadProfilesComponent } from './upload-profiles/upload-profiles.component';
 // import { UploadCandidatesComponent } from './upload-candidates/upload-candidates.component';
 import { JobdetailsProfile } from '../models/jobdetailsprofile';
+import { AppService } from '../../../app.service';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
@@ -21,7 +23,8 @@ declare var $: any;
 @Component({
   selector: 'app-view-jobdetails',
   templateUrl: './view-jobdetails.component.html',
-  styleUrls: ['./view-jobdetails.component.css']
+  styleUrls: ['./view-jobdetails.component.css'],
+  providers: [AppService]
 })
 export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
@@ -41,15 +44,16 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
   // showVar:  = true;
-// readChild: any;
+  // readChild: any;
+  deactivate = new deactivate();
   constructor(private route: ActivatedRoute,
-    private router: Router, private jobdetailsservice: JobdetailsService,
+    private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder
    ) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
-    this.statusid =JSON.parse(sessionStorage.getItem('statusid'));
+    this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
 
    }
   showDetailadvancesearch = false;
@@ -196,6 +200,26 @@ export class ViewJobdetailsComponent implements OnInit {
     this.populateJobsStaticInfo(this.jobid);
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
   }
+  changeJobStatus(job, val) {
+    // debugger
+    if (val === true) {
+     $('#Inactive').replaceWith('#Active');
+
+    } else if (val === false) {
+      $('#Active').replaceWith('#Inactive');
+    }
+    this.deactivate.jobId = job.JobId;
+    this.deactivate.customerId = job.CustomerId;
+    this.deactivate.isActive = val;
+      this.appService.deactivateJob(this.deactivate)
+      .subscribe(
+      data => {
+       // alert("success")
+        this.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
+
+    },
+      error => console.log(error));
+}
   ngOnInit() {
      // this.loadMoreStat=0;
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
@@ -218,6 +242,16 @@ export class ViewJobdetailsComponent implements OnInit {
   //     this.populateJobsStaticInfo(this.jobid);
   //    }
   // }
+  getParentApi(): ParentComponentApi {
+    return {
+      callParentMethod: (sortBy) => {
+       // this.parentMethod(name);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, sortBy);
+      }
+    };
+  }
 
-
+}
+export interface ParentComponentApi {
+  callParentMethod: (number) => void;
 }

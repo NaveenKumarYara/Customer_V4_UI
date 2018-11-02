@@ -28,6 +28,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    matchingDetails: MatchingDetails;
    customerId: any;
    userId: any;
+   skills: any = null;
    schIntw = new ScheduleInterview();
   @Input() jobid: number;
   @Input() statusid: number;
@@ -176,7 +177,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     sessionStorage.setItem('profileId', JSON.stringify(profileId));
     this.router.navigateByUrl('app-cprofile');
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, pageNumber= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, sortBy= 0, pageNumber= 6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;
@@ -186,7 +187,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         this.jobdetailsprofiles = res;
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, pageNumber).subscribe(res => {
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, pageNumber)
+    .subscribe(res => {
       this.jobdetailsprofiles = res;
     });
   }
@@ -259,7 +261,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     //     loop: true,
     //     margin: 10,
     //     nav: true,
-    //     navText: ['<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>', '<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>'],
+    //     navText: ['<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>',
+    //     '<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>'],
     //     responsive: {
     //       0: {
     //         items: 3
@@ -309,13 +312,30 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     console.log('abc');
   }
 
-  ngAfterViewInit() {
-    for (const key in this.options) {
-      this.defaultOptions[key] = this.options[key];
-    }
-    this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
-  }
+  // ngAfterViewInit() {
+  //   for (const key in this.options) {
+  //     this.defaultOptions[key] = this.options[key];
+  //   }
+  //   this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
+  // }
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
+  splitSkills(skills) {
+// foreach(skills.)
+// for (let count = -1, index = -2; index !== -1; count++, index = Skills.indexOf(',', index + 1) ) {
+// this.skills.push();
+//  }
+   // let a1 = new Array();
+    if (skills != null) {
+    this.skills = skills.split(',', 3);
+
+    /// display elements  ///
+    // let i = 0;
+    // for (i = 0; i < a1.length; i++) {
+    // // document.write(a1[i] + '<br >');
+    // this.skills=
+    // }
+  }
+}
 }

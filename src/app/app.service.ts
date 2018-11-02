@@ -296,7 +296,7 @@ getaddedPersonTypes() {
 
   saveRoles(body) {
     return this.http.post(environment.addRoles, body)
-    .map((res: Response) => res.json())
+    .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });

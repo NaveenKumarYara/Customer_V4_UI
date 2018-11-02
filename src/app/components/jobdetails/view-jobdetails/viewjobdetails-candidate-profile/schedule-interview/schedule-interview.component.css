@@ -1,0 +1,7 @@
+.ng-select.interview-schedule-popup > .ng-select-container{
+    margin-top: 0px!important;
+}
+.mat-dialog-actions{
+    display: inline-grid;
+    width: 100%;
+}
