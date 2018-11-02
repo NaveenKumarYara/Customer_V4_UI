@@ -1,36 +1,32 @@
-
-<h4 mat-dialog-title class="modal-title">
-  Reject Candidate
-</h4>
-<mat-dialog-content class="mat-typography">
-  <div class="modal-content">
-    <div class="modal-body">
-      <form action="">
-        <div class="form-group">
-          <label for="">Select Reason</label>
-          <select name="Reject_Reason" id="reason" class="styled-select-box block">
-            <option value="0">Handling salary issues ineptly.</option>
-            <option value="1">Lack of career direction.</option>
-            <option value="2">Lack of research</option>
-          </select>
-          <!--<input type="text" class="form-control">-->
-        </div>
-        <div class="form-group">
-          <label for="">Type Reason</label>
-          <textarea type="text" class="form-control" [(ngModel)]="Comment" name="comment" placeholder="Type here"></textarea>
-        </div>
-      </form>
-    </div>
+<div class="page page--job-details">
+  <div id="rejectCandidate" >
+    <h4 mat-dialog-title class="modal-title">
+      Reject Candidate
+    </h4>
+    <mat-dialog-content class="mat-typography">
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="">Select Reason</label>
+            <select name="Reject_Reason" id="reason" class="styled-select-box block">
+              <option value="0">Handling salary issues ineptly.</option>
+              <option value="1">Lack of career direction.</option>
+              <option value="2">Lack of research</option>
+            </select>
+            <!--<input type="text" class="form-control">-->
+          </div>
+          <div class="form-group">
+            <label for="">Type Reason</label>
+            <textarea type="text" class="form-control" [(ngModel)]="Comment" name="comment" placeholder="Type here"></textarea>
+          </div>
+        </form>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="modal-footer">
+      <div class="modal-footer pull-right">
+        <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="Reject()" class="btn btn-filled">Reject</button>
+      </div>
+    </mat-dialog-actions>
   </div>
-</mat-dialog-content>
-<mat-dialog-actions class="modal-footer">
-  <div class="modal-footer">
-    <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="Reject()" class="btn btn-filled">Reject</button>
-  </div>
-</mat-dialog-actions>
-
-
-
-
-
+</div>
