@@ -1,27 +1,29 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService} from '../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { AppService } from '../../app.service';
 declare var $: any; 
 @Component({
   
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  providers:[AppService]
 })
 export class HomeComponent {
   
   loginform: any;
   customerId:any;
+  companyLogo:any;
   userId:any;
-  constructor( private fb: FormBuilder, private _service: ApiService, private router: Router) {
+  constructor( private fb: FormBuilder, private router: Router,private appService: AppService) {
 
   }
  
 
   login() {
-    this._service.PostService(this.loginform.value, 'IdentityAPI/api/CustomerLogin')
+    this.appService.Login(this.loginform.value)
       .subscribe(
       data => {
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -33,15 +35,10 @@ export class HomeComponent {
       },
 
       error => {
-       // $('#loginInfo').modal('show');
         this.loginform.reset();
       },
       () => console.log('Call Sucessfull')
       );
-    // if (this.loginform.value.UserName === 'admin' && this.loginform.value.Password === '121212') {
-    //   sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
-    //   this.router.navigateByUrl('dashboard');
-    // }
   }
 
   ngOnInit() {

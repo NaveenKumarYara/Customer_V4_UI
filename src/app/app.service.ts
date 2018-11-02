@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { GetCompanyLogo } from '../models/GetCompanyLogo';
 import { Observable  } from 'rxjs/Rx';
 import { Dashboard } from '../models/dashboard.model';
 import { Offer } from '../models/offer.model';
@@ -447,6 +448,20 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
 
 postjob(body) {
   return this.http.post(environment.postjob, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
+getCompanyLogo(customerId:number): Observable<GetCompanyLogo> {
+  const url = environment.GetCompanyLogo+ 'customerId='+customerId;
+  return this.http.get<GetCompanyLogo>(url)
+      .catch(
+          this.handleError
+      );
+}
+Login(body) {
+  return this.http.post(environment.Login, body)
   .map((res: Response) => res)
   .catch((error: any) => {
     return Observable.throw(error.json());
