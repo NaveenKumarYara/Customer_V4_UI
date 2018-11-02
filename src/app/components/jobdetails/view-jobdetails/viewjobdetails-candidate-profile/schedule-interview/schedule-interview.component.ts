@@ -142,7 +142,7 @@ if (this.processSelection === 1) {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))

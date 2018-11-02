@@ -308,10 +308,9 @@
 
 
             <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">
-                <div class="owl-stage-outer">
-                    {{splitSkills(profile?.PrimarySkills)}}
-                    <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;" *ngIf="skills">
-                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;" *ngFor="let sk of skills" >
+                <div class="owl-stage-outer"> 
+                    <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;" *ngIf="profile?.PrimarySkills != null">
+                        <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;" *ngFor="let sk of profile?.PrimarySkills.split(',', 3)" >
                             <div class="item">
                                 <div class="skill">
                                     <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],18) }}</h4>
