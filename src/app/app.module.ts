@@ -49,6 +49,7 @@ import { AccountsettingsModule } from './components/accountsettings/accountsetti
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {ApiService} from './shared/services/api.service/api.service';
+import { AuthService } from './shared/guard/auth.service';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
@@ -103,7 +104,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ChartsModule,
   NgbModule.forRoot()
   ],
-  providers: [AppService, ApiService],
+  providers: [AppService, ApiService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
