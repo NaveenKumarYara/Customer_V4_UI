@@ -12,10 +12,11 @@ import { DashboardService } from './dashboard.service';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
-    ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, MatProgressSpinnerModule
+    ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule
     ],
     providers: [DashboardService],
   declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent]

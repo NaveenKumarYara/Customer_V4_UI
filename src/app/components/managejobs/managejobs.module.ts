@@ -17,6 +17,7 @@ import { ManageJobService } from './managejobs.service';
 import { LoadJoblistComponent } from './manage-jobs/load-joblist/load-joblist.component';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {SharedModule} from '../../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    SharedModule,
     HttpClientModule,
     MatCardModule, MatProgressSpinnerModule, NgxSpinnerModule
   ],

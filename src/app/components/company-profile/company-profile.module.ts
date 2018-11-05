@@ -23,7 +23,7 @@ import {GooglelocationComponent}from '../../shared/googlelocation/googlelocation
 import {locationComponent} from '../../shared/locations/location.component';
 import {EditCandidateProfileComponent} from './editcandidateprofile/editcandidateprofile.component';
 import {CandidateProfileComponent} from './candidateprofile/cprofile.component';
-
+import {SharedModule} from '../../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +34,7 @@ import {CandidateProfileComponent} from './candidateprofile/cprofile.component';
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
+    SharedModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',
       libraries: ['places']

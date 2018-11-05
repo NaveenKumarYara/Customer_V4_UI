@@ -52,6 +52,8 @@ import {ApiService} from './shared/services/api.service/api.service';
 import { AuthService } from './shared/guard/auth.service';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {SharedModule} from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +99,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     ManagejobsModule,
     JobdetailsModule,
+    SharedModule,
     CompanyProfileModule,
     DashboardModule,
     AccountsettingsModule,

@@ -9,7 +9,7 @@ import { BillingHistoryComponent } from './billing-and-payments/billing-history/
 import { ManageSubscriptionsComponent } from './billing-and-payments/manage-subscriptions/manage-subscriptions.component';
 import { NavigationcomponentComponent } from './navigationcomponent/navigationcomponent.component';
 import { AccountsettingdetailsComponent } from './accountsettingdetails/accountsettingdetails.component';
-
+import {SharedModule} from '../../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   declarations: [AccountsettingsComponent, UsersComponent, BillingAndPaymentsComponent, EstimatesComponent, BillingDetailsComponent, BillingHistoryComponent, ManageSubscriptionsComponent, NavigationcomponentComponent, AccountsettingdetailsComponent]
 })

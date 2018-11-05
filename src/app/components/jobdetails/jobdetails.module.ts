@@ -21,6 +21,7 @@ import { ChatboxdialogComponent } from './view-jobdetails/viewjobdetails-candida
 import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {SharedModule} from '../../shared/shared.module';
 import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -35,6 +36,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    SharedModule,
     HttpClientModule,
     NgxSpinnerModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot()
