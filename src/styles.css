@@ -13490,6 +13490,7 @@ a.ui-button:active,
       .page--manage-jobs .card h3.medium {
         font-weight: 500;
         text-transform: capitalize;
+        cursor: pointer;
       }
 
     .page--manage-jobs .card .meta {
@@ -17805,8 +17806,8 @@ a.ui-button:active,
     }
 
   .page--dashboard .statistics.card .tab-content .nav-tabs {
-    margin-top: 1.75rem;
-    margin-bottom: 2.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
   }
 
     .page--dashboard .statistics.card .tab-content .nav-tabs > .active-line {
