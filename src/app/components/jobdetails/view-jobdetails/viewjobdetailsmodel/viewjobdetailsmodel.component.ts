@@ -25,7 +25,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  getcompanybenfit: GetCompanyBenefit[];;
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments : JobComments[];
-  constructor(private router: Router,, private appService: AppService, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
