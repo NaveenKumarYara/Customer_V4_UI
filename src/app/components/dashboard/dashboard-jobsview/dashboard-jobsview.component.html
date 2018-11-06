@@ -9,21 +9,21 @@
       <div id="jobsDetail" class="tab-pane fade in active">
         <div class="stats">
           <div title="78">
-              <h1>{{dashboardstatistics?.JobsPosted}}</h1>
+              <h1 (click)="Jobs(0)">{{dashboardstatistics?.JobsPosted}}</h1>
             <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
               <circle fill="#ac9af9" cx="5.7" cy="5.7" r="5.7"></circle>
             </svg>
             <span>Jobs Posted</span>
           </div>
           <div title="23">
-              <h1>{{dashboardstatistics?.JobsFilled}}</h1>
+              <h1 (click)="Jobs(3)">{{dashboardstatistics?.JobsFilled}}</h1>
             <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
               <circle fill="#84DECB" cx="5.7" cy="5.7" r="5.7"></circle>
             </svg>
             <span>Jobs Filled</span>
           </div>
           <div title="50">
-              <h1>{{dashboardstatistics?.JobsCancelled}}</h1>
+              <h1 (click)="Jobs(2)">{{dashboardstatistics?.JobsCancelled}}</h1>
             <svg width="11.3px" height="11.3px" viewBox="0 0 11.3 11.3">
               <circle fill="#A7D975" cx="5.7" cy="5.7" r="5.7"></circle>
             </svg>

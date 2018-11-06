@@ -11,10 +11,12 @@ import { DashboardService } from '../dashboard.service';
 })
 export class DashboardJobsviewComponent implements OnInit {
     @Input() dashboardstatistics: DashboardStatistics;
-
-
     @Input() applicantStatistics: ApplicantStatistics;
-    constructor(private route: ActivatedRoute) { }
+
+
+    constructor(private route: ActivatedRoute,private dashboardservice: DashboardService, private router: Router) {
+
+    }
   public lineChartData:Array<any> = [
     {data: [10, 20, 30, 40, 45, 50, 55], label: 'Series A'},
     {data: [0, 0, 0, 2, 0, 0, 0], label: 'Series B'},
@@ -66,12 +68,28 @@ export class DashboardJobsviewComponent implements OnInit {
     }
     this.lineChartData = _lineChartData;
   }
-
+  
+  Jobs(sort)
+  {
+    let sortBy;
+    if(sort > 0)
+    {
+      sortBy = sort;   
+    }  
+    else 
+    {
+      sortBy = 0;
+    }
+    localStorage.setItem('sortBy', JSON.stringify(sortBy));
+    this.router.navigateByUrl('app-manage-jobs');
+  }
+  
+  
   // events
   public chartClicked(e:any):void {
     console.log(e);
   }
- 
+
 
   // events
   

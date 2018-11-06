@@ -36,6 +36,7 @@ export class LoadJoblistComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     // this.spinner.show();
@@ -49,6 +50,7 @@ export class LoadJoblistComponent implements OnInit {
 
 
   populateJoblist(customerId, userId) { 
+    debugger
     if(this.sortBy==undefined)
     {
       this.sortBy=0;
