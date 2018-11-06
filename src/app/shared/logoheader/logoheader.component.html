@@ -12,13 +12,25 @@
               <div class="navbar-brand">
                 <a routerLink="/app-dashboardview" routerLinkActive="active">
                   <!-- <img src="/assets/images/logo.png" alt="Tenendus" title="Tenendus"> -->
-                  <img src="/assets/images/Tenendus-Logo-1.png" alt="Tenendus" title="Tenendus">
+                  <!-- <img src="/assets/images/Tenendus-Logo-1.png" alt="Tenendus" title="Tenendus"> -->
+                  <img src="/assets/images/arytic-logo.png" alt="Arytic" title="Arytic">
                 </a>
               </div>
             </div>
             <div class="navbar-collapse navbar-left page-nav collapse" id="navbar2">
               <ul class="nav navbar-nav">
-                <li class="active">
+                  <li class="active">
+                      <a routerLink="/app-dashboardview" routerLinkActive="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
+                          <g id="nav-icon">
+                            <circle cx="9.5" cy="9.5" r="9.5" transform="translate(1 1)" />
+                            <path d="M14.2 6.9l-2 5.3-5.3 2 2-5.3z" />
+                          </g>
+                        </svg>
+                        <span>Dashboard</span>
+                      </a>
+                    </li>
+                <li >
                   <a routerLink="/app-postajob" routerLinkActive="active">
                     <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                       <g id="post-icon">
@@ -32,17 +44,7 @@
                     <span>Post a job</span>
                   </a>
                 </li>
-                <li>
-                  <a routerLink="/app-dashboardview" routerLinkActive="active">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
-                      <g id="nav-icon">
-                        <circle cx="9.5" cy="9.5" r="9.5" transform="translate(1 1)" />
-                        <path d="M14.2 6.9l-2 5.3-5.3 2 2-5.3z" />
-                      </g>
-                    </svg>
-                    <span>Dashboard</span>
-                  </a>
-                </li>
+             
                 <li>
                   <a routerLink="/app-companyprofile" routerLinkActive="active">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
@@ -72,7 +74,7 @@
             <!--/.nav-collapse -->
             <ul class="nav navbar-nav pull-right navbar-right user-options">
       
-              <li class="user-option hidden-xs hidden-sm">
+              <li class="user-option hidden-xs hidden-sm hidden-md ">
                 <a href="Javascript:void(0)" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="-767.4 -2940.5 27.314 27.414">
                     <g id="search-lg-icon" transform="translate(-2103 -2975)">
@@ -82,7 +84,7 @@
                   </svg>
                 </a>
               </li>
-              <li class="user-option hidden-xs hidden-sm">
+              <li class="user-option hidden-xs hidden-sm hidden-md ">
                 <a href="Javascript:void(0)"  >
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                     x="0px" y="0px" width="23.2px" height="24px" viewBox="0 0 23.2 24" style="enable-background:new 0 0 23.2 24;"
@@ -98,7 +100,7 @@
                   </svg>
                 </a>
               </li>
-              <li class="user-option hidden-xs hidden-sm">
+              <li class="user-option hidden-xs hidden-sm hidden-md ">
                 <a href="Javascript:void(0)"  routerLink="/app-notifications" routerLinkActive="active">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                     x="0px" y="0px" width="21.1px" height="24px" viewBox="0 0 21.1 24" style="enable-background:new 0 0 21.1 24;"
