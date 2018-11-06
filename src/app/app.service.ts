@@ -338,6 +338,8 @@ getaddedPersonTypes() {
   deleteTeammember(index: number) {
     this.teammembers.splice(index, 1);
     this.teammembersChanged.next(this.teammembers.slice());
+    this.addedteammembers.splice(index, 1);
+    this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
 
 
@@ -395,8 +397,8 @@ getaddedPersonTypes() {
         this.handleError
       );
   }
-getCustomerUsers(customerId:number,userId:number): Observable<CustomerUsers[]> {
-  const url = environment.getCustomerUsersendpoint+'customerId='+customerId+'&userId='+userId;;
+getCustomerUsers(customerId: number, userId: number): Observable<CustomerUsers[]> {
+  const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId;
   return this.http.get<string[]>(url)
     .catch(
       this.handleError
@@ -439,6 +441,8 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
   deleteQualifications(index: number) {
     this.qualifications.splice(index, 1);
     this.qualificationsChanged.next(this.qualifications.slice());
+    this.addqualifications.splice(index, 1);
+    this.addqualificationsChanged.next(this.addqualifications.slice());
   }
 
 
@@ -459,7 +463,7 @@ postjob(body) {
     return Observable.throw(error.json());
   });
 }
-getCompanyLogo(customerId:number): Observable<GetCompanyLogo> {
+getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
   const url = environment.GetCompanyLogo + 'customerId=' + customerId;
   return this.http.get<GetCompanyLogo>(url)
       .catch(
@@ -504,7 +508,7 @@ deactivateJob(body) {
       );
   }
 
-  getLocationwisejobs(customerId:number,userId:number) {
+  getLocationwisejobs(customerId: number, userId: number) {
     const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
