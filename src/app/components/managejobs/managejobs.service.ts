@@ -13,7 +13,7 @@ import { Jobs } from './models/jobs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
+import { DiscResult } from '../Postajob/models/jobPostInfo';
 @Injectable()
 export class ManageJobService {
 
@@ -43,27 +43,34 @@ export class ManageJobService {
 
   getJobDetails(customerId:number,userId:number,sortBy : number,count: number): Observable<JobDetails[]> {
     const url = environment.listofJobsEndpoint +
-    'customerId=' +customerId +'&userId='+userId+ '&sortBy='+sortBy+'&status=0&pageNumber=1'+'&numberOfRows='+count;
+    'customerId=' + customerId + '&userId='+ userId + '&sortBy='+sortBy+'&status=0&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails[]>(url)
-      .debounceTime(1000)     
+      .debounceTime(1000)
       .catch(
         this.handleError
-    );    
+    );
   }
 
   getJobCount(jobId:number,customerId:number): Observable<JobCount> {
     const url = environment.JobsProfileCount +
-    'jobId=' +jobId +'&customerId='+customerId;
+    'jobId=' + jobId + '&customerId=' + customerId;
     return this.http.get<JobCount>(url)
-      .debounceTime(1000)     
+      .debounceTime(1000)
       .catch(
         this.handleError
-    );    
+    );
+  }
+  getPersonType(jobId: number): Observable<DiscResult[]> {
+    const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
+    return this.http.get<DiscResult[]>(url)
+    .debounceTime(1000)
+    .catch(
+      this.handleError
+    );
   }
 
-  
   updateJobListCount(updatedtotal: number) {
     this.joblistcount.next(updatedtotal);
   }
-  
+
 }

@@ -9,6 +9,7 @@ import { JobskillsetComponent } from './Jobskillset.component';
 declare var $: any;
 declare var jQuery: any;
 import {InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo} from '../../models/jobPostInfo';
+import { CreateajobComponent } from '../createajob.component';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -22,9 +23,10 @@ export class Step1Component implements OnInit {
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
   // formData: any;
   // joblist = new InsertJob();
-  customer:any;
-  userId:any;
-  customerId:any;
+
+  customer: any;
+  userId: any;
+  customerId: any;
   insertJob = new InsertJob();
   pjSkill: PjSkill;
   pjRole: PjRole;
@@ -42,10 +44,18 @@ export class Step1Component implements OnInit {
   pjTechnicalTeamList: any = [];
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService) {
+    private router: Router, private appService: AppService, private creteComponent: CreateajobComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.route.params.subscribe(params => {
+        console.log(params);
+        if (params['jobId'] > 0) {
+          // this.populatePersonType(params['jobId']);
+          // this.PopulateJobdetail(params['jobId']);
+          this.creteComponent.PopulateJobdetail(params['jobId']);
+        }
+      });
   }
   ngOnInit() {
   }
@@ -53,7 +63,11 @@ export class Step1Component implements OnInit {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
-    this.insertJob.JobId = 0;
+   // this.insertJob.JobId = 0;
+    const res = localStorage.getItem('jobId');
+    if (res != null) {
+    this.insertJob.JobId = parseInt(res, 10);
+    }
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
     this.insertJob.MinExperienceId = this.jobDetail.minExperience;

@@ -254,7 +254,13 @@ getaddedPersonTypes() {
       this.jobsecondaryskillsChanged.next(this.secondaryjobskills.slice());
     }
   }
-
+  addSkills(body) {
+    return this.http.post(environment.addSkillsEndpoint, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
   deletePrimarySkills(index: number) {
     this.primaryjobskills.splice(index, 1);
@@ -454,7 +460,7 @@ postjob(body) {
   });
 }
 getCompanyLogo(customerId:number): Observable<GetCompanyLogo> {
-  const url = environment.GetCompanyLogo+ 'customerId='+customerId;
+  const url = environment.GetCompanyLogo + 'customerId=' + customerId;
   return this.http.get<GetCompanyLogo>(url)
       .catch(
           this.handleError
@@ -499,7 +505,7 @@ deactivateJob(body) {
   }
 
   getLocationwisejobs(customerId:number,userId:number) {
-    const url = environment.customerPreferredLocationendpoint+'customerId='+customerId+'&userId='+userId;
+    const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

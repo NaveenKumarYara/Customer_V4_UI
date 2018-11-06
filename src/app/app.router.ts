@@ -83,10 +83,32 @@ const appRoutes: Routes =
 [
     { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'app-postajob', component: PostajobComponent },
+    // { path: 'app-createajob', component: CreateajobComponent ,
+    //   children: [
+    //     { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
+    //    // need to enable this or add jobid to create job { path: '', redirectTo: 'app-steps-step1/:jobId', pathMatch: 'full' },
+    //     //  {path: 'app-steps-step1/:jobId', component: Step1Component},
+    //       {path: 'app-steps-step1', component: Step1Component},
+    //       {path: 'app-steps-step2', component: Step2Component},
+    //       {path: 'app-steps-step3', component: Step3Component},
+    //       {path: 'app-steps-step4', component: Step4Component},
+    //     ]
+    // },
     { path: 'app-createajob', component: CreateajobComponent ,
+    children: [
+      { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
+       // {path: 'app-steps-step1/', component: Step1Component},
+       {path: 'app-steps-step1', component: Step1Component},
+        {path: 'app-steps-step2', component: Step2Component},
+        {path: 'app-steps-step3', component: Step3Component},
+        {path: 'app-steps-step4', component: Step4Component},
+      ]
+  },
+    { path: 'app-createajob/:jobId', component: CreateajobComponent ,
       children: [
         { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
-          {path: 'app-steps-step1', component: Step1Component},
+         // {path: 'app-steps-step1/', component: Step1Component},
+         {path: 'app-steps-step1', component: Step1Component},
           {path: 'app-steps-step2', component: Step2Component},
           {path: 'app-steps-step3', component: Step3Component},
           {path: 'app-steps-step4', component: Step4Component},
@@ -139,7 +161,7 @@ const appRoutes: Routes =
     { path: 'app-companyprofile', component: CompanyprofileComponent },
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
     { path: 'app-achievementsandawards', component: AchievementsandawardsComponent },
-    {path:'app-cprofile',component:CandidateProfileComponent},
+    {path: 'app-cprofile', component: CandidateProfileComponent},
     { path: 'app-basicinfo', component: BasicinfoComponent },
     { path: 'app-editcprofile', component: EditCandidateProfileComponent },
     { path: 'app-benefits', component: BenefitsComponent },

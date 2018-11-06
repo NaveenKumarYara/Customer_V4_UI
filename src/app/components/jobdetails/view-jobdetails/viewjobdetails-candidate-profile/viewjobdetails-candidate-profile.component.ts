@@ -321,6 +321,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
+
+  // this function is not required as of now as there is split in UI
   splitSkills(skills) {
 // foreach(skills.)
 // for (let count = -1, index = -2; index !== -1; count++, index = Skills.indexOf(',', index + 1) ) {

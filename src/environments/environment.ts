@@ -7,6 +7,8 @@ export const environment = {
     production: false,
     jobTitleEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobTitles',
     getskillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetSkills',
+    addSkillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/AddSkill',
+    GetPersonTypeEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetPersonType?',
     // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
     educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',
     employmentTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType',
@@ -18,7 +20,7 @@ export const environment = {
     JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
     discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
     // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
-    Login:'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
+    Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
@@ -79,7 +81,7 @@ scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterv
 
     GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
 
-    JobsProfileCount:'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
+    JobsProfileCount: 'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
 
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 

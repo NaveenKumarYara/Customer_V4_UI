@@ -4,3 +4,6 @@ export class Jobskills {
   public MinimumExp: number;
   public MaximumExp: number;
 }
+export class AddSkill {
+  public SkillName: string;
+}

@@ -1,19 +1,355 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { JobdetailsService } from '../../jobdetails/jobdetails.service';
+import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
+import { AppService } from '../../../app.service';
+import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc } from '../models/jobPostInfo';
+import { EmploymentType } from '../../../../models/employmenttype.model';
+import { InterviewType } from '../../../../models/interviewtype.model';
+import { PjRole } from './Step1/Jobresponsibilities.component';
+import { Jobskills } from '../../../../models/jobskills.model';
+import { Qualifications } from '../../../../models/qualifications.model';
 
 @Component({
   selector: 'app-createajob',
   templateUrl: './createajob.component.html'
 })
 export class CreateajobComponent implements OnInit {
-
+@Input() jobId: number;
+customerId: number;
+customer: any;
+personType: DiscResult[] = [];
+jobdetailscustomer: GetJobDetailCustomer;
+eJcategory = new CategoryList();
+ejEmploymentType = new EmploymentType();
+ejInterviewType = new InterviewType();
+ejHiringManager = new CustomerUsers();
+ejLocations = new PrefLocation();
+ejTechnicalTeamList: CustomerUsers[] = [];
+// ejTechnicalTeam = new CustomerUsers();
+ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
+// ejTechnicalTeamId = new PjTechnicalTeam();
+ejRoleList: Roles[] = [];
+// ejRole = new Roles();
+// ejRoleId = new  PjRole();
+ejRoleIdList: PjRole[] = [];
+ejDomainList: GetDomain[] = [];
+ejDomainIdList: PjDomain[] = [];
+// ejDomainId = new PjDomain();
+// ejDomain = new GetDomain();
+ejPrimarySkills: PjSkill[] = [];
+ejSecondarySkills: PjSkill[] = [];
+// ejSkills = new PjSkill();
+ejQualificationList: Qualifications[] = [];
+// ejQualification = new Qualifications();
+// ejPersonType = new DiscResult();
+ejPersonTypeList: DiscResult[] = [];
+// ejPersonSingle = new PjDisc();
+ejPersonSingleList: PjDisc[] = [];
   constructor(private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private jobdetailsservice: JobdetailsService, private appService: AppService) {
+     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+     this.customerId = this.customer.CustomerId;
+    //  this.route.params.subscribe(params => {
+    //   console.log(params);
+    //   if (params['jobId'] > 0) {
+    //     this.populatePersonType(params['jobId']);
+    //     this.PopulateJobdetail(params['jobId']);
+    //   }
+    // });
+
+    // OR
+
+    // this.jobId = localStorage.getItem('jobId') != null ? parseInt(localStorage.getItem('jobId'), 10) : 0;
+    // if (this.jobId > 0) {
+    //   this.populatePersonType(this.jobId);
+    //    this.PopulateJobdetail(this.jobId);
+    // }
   }
 
   ngOnInit() {
     // localStorage.getItem('jobId');
-    localStorage.removeItem('jobId');
+    // this.jobId=1000163;
+  //  if (this.jobId != null) {
+  //     this.PopulateJobdetail(this.jobId);
+  //  }
+
+  }
+  // populatePersonType(jobid) {
+
+
+  // }
+  PopulateJobdetail (jobId) {
+    localStorage.setItem('jobId', jobId);
+    this.jobdetailsservice.getPersonType(jobId).subscribe(res => {
+      this.personType = res;
+    });
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
+      this.jobdetailscustomer = res;
+      this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
+      this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
+      this.appService.jobcategory.next(this.eJcategory);
+      this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
+      this.appService.minExperience.next(this.jobdetailscustomer.JobInfo.MinExperience);
+      this.appService.maxExperience.next(this.jobdetailscustomer.JobInfo.MaxExperience);
+      this.appService.hasDescription.next(this.jobdetailscustomer.JobInfo.CompleteDescription);
+      this.appService.description.next(this.jobdetailscustomer.JobInfo.JobDescription);
+      this.appService.noofOpenings.next(this.jobdetailscustomer.JobInfo.NumberOfVacancies);
+      this.ejEmploymentType.EmploymentType = this.jobdetailscustomer.JobInfo.EmploymentType;
+      this.ejEmploymentType.EmploymentTypeId = this.jobdetailscustomer.JobInfo.EmploymentTypeId;
+      this.appService.employmentType.next(this.ejEmploymentType);
+      this.appService.contractDuration.next(this.jobdetailscustomer.JobInfo.ContractDuration);
+      // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
+      // this.appService.contractExtension.next(this.jobdetailscustomer.ContractExtended);
+      this.ejInterviewType.InterviewType = this.jobdetailscustomer.JobInfo.InterviewType;
+      this.ejInterviewType.InterviewTypeId = this.jobdetailscustomer.JobInfo.HiringProcessId;
+      this.appService.interviewType.next(this.ejInterviewType);
+      this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager;
+      this.ejHiringManager.UserId = this.jobdetailscustomer.JobInfo.HiringManagerId;
+      this.appService.reportingManager.next(this.ejHiringManager);
+      if (this.jobdetailscustomer.JobLocation.length > 0) {
+        // this.jobdetailscustomer.JobLocation.forEach(element => {
+        //   this.ejLocations.PreferredLocationId = element.PreferredLocationId;
+        //   this.ejLocations.location = element.CityName;
+        //   });
+        for (const loc of this.jobdetailscustomer.JobLocation) {
+          this.ejLocations.PreferredLocationId = loc.PreferredLocationId;
+          this.ejLocations.location = loc.CityName;
+        }
+      }
+      this.appService.location.next(this.ejLocations);
+      if (this.jobdetailscustomer.TechnicalTeam.length > 0) {
+        // this.jobdetailscustomer.TechnicalTeam.forEach(element => {
+        //     this.ejTechnicalTeam.UserId = element.UserId;
+        //     this.ejTechnicalTeam.FirstName = element.FirstName;
+        //     this.ejTechnicalTeamId.UserId = element.UserId;
+        //     this.ejTechnicalTeamList.push(this.ejTechnicalTeam);
+        //     this.ejTechnicalTeamIdList.push(this.ejTechnicalTeamId);
+        //   });
+        for (const team of this.jobdetailscustomer.TechnicalTeam) {
+          const ejTechnicalTeam = new CustomerUsers();
+          const ejTechnicalTeamId = new PjTechnicalTeam();
+          ejTechnicalTeam.UserId = team.UserId;
+            ejTechnicalTeam.FirstName = team.FirstName;
+            ejTechnicalTeamId.UserId = team.UserId;
+            this.ejTechnicalTeamList.push(ejTechnicalTeam);
+            this.ejTechnicalTeamIdList.push(ejTechnicalTeamId);
+
+        }
+      }
+      this.appService.teammembers = this.jobdetailscustomer.TechnicalTeam;
+      this.appService.teammembersChanged.next(this.appService.teammembers);
+      this.appService.addedteammembers = this.ejTechnicalTeamIdList;
+      this.appService.addedteammembersChanged.next(this.appService.addedteammembers); //  =new Subject<PjTechnicalTeam[]>();
+      if (this.jobdetailscustomer.JobResponsibility.length > 0) {
+        // this.jobdetailscustomer.JobResponsibility.forEach(element => {
+        //     this.ejRole.RoleId = element.RoleId;
+        //     this.ejRole.Role = element.RolesAndResponsibilities;
+        //     this.ejRoleId.RoleId = element.RoleId;
+        //     this.ejRoleList.push(this.ejRole);
+        //     this.ejRoleIdList.push(this.ejRoleId);
+        //   });
+        for (const resp of this.jobdetailscustomer.JobResponsibility) {
+          const ejRole = new Roles();
+          const ejRoleId = new PjRole();
+          ejRole.RoleId = resp.RoleId;
+            ejRole.Role = resp.RolesAndResponsibilities;
+            ejRoleId.RoleId = resp.RoleId;
+            this.ejRoleList.push(ejRole);
+            this.ejRoleIdList.push(ejRoleId);
+        }
+      }
+      this.appService.responsibilities = this.ejRoleList;
+      this.appService.responsibilitesChanged.next(this.appService.responsibilities); // = new Subject<Roles[]>();
+      this.appService.addedresponsibilities = this.ejRoleIdList;
+      this.appService.addedresponsibilitiesChanged.next(this.ejRoleIdList); // = new Subject<PjRole[]>();
+      if (this.jobdetailscustomer.JobRequiredDomain.length > 0) {
+        //  this.jobdetailscustomer.JobRequiredDomain.forEach(element => {
+        //      this.ejDomain.DomainId = element.DomainId;
+        //      this.ejDomain.DomainName = element.DomainName;
+        //      this.ejDomainId.DomainId = element.DomainId;
+        //      this.ejDomainList.push(this.ejDomain);
+        //      this.ejDomainIdList.push(this.ejDomainId);
+        //    });
+           for (const dom of this.jobdetailscustomer.JobRequiredDomain) {
+            const ejDomainId = new PjDomain();
+            const ejDomain = new GetDomain();
+            ejDomain.DomainId = dom.DomainId;
+            ejDomain.DomainName = dom.DomainName;
+            ejDomainId.DomainId = dom.DomainId;
+            this.ejDomainList.push(ejDomain);
+            this.ejDomainIdList.push(ejDomainId);
+          }
+       }
+      this.appService.domain = this.ejDomainList;
+      this.appService.domainChanged.next(this.appService.domain); // = new Subject<GetDomain[]>();
+      this.appService.adddomain = this.ejDomainIdList;
+      this.appService.adddomainChanged.next(this.appService.adddomain); // = new Subject<PjDomain[]>();
+      if (this.jobdetailscustomer.JobRequiredSkills.length > 0) {
+        // this.jobdetailscustomer.JobRequiredSkills.forEach(element => {
+        //   this.ejSkills.SkillName = element.SkillName;
+        //   this.ejSkills.SkillType = element.SkillType;
+        //   this.ejSkills.MinimumExp = element.MinimumExp;
+        //   this.ejSkills.MaximumExp = element.MaximumExp;
+        //   if (element.SkillType === true) {
+        //   this.ejPrimarySkills.push(this.ejSkills);
+        //   } else {
+        //     this.ejSecondarySkills.push(this.ejSkills);
+        //   }
+        // });
+        for (const skill of this.jobdetailscustomer.JobRequiredSkills) {
+         const ejSkills = new PjSkill();
+          ejSkills.SkillName = skill.SkillName;
+          ejSkills.SkillType = skill.SkillType;
+          ejSkills.MinimumExp = skill.MinimumExp;
+          ejSkills.MaximumExp = skill.MaximumExp;
+          if (skill.SkillType === true) {
+          this.ejPrimarySkills.push(ejSkills);
+          } else {
+            this.ejSecondarySkills.push(ejSkills);
+          }
+        }
+        }
+        this.appService.primaryjobskills = this.ejPrimarySkills;
+        this.appService.secondaryjobskills = this.ejSecondarySkills;
+        this.appService.jobsecondaryskillsChanged.next(this.appService.secondaryjobskills); // = new Subject<Jobskills[]>(); // .closed();
+        this.appService.jobprimaryskillsChanged.next(this.appService.primaryjobskills ); // = new Subject<Jobskills[]>();
+        this.appService.selectedskilltype.next('');
+        // Education Detail
+        if (this.jobdetailscustomer.EducationDetails.length > 0) {
+            // this.jobdetailscustomer.EducationDetails.forEach(element => {
+            //     this.ejQualification.QualificationId = element.QualificationId;
+            //     this.ejQualification.QualificationName = element.QualificationName;
+            //     this.ejQualificationList.push(this.ejQualification);
+            //   });
+              for (const edu of this.jobdetailscustomer.EducationDetails) {
+                const ejQualification = new Qualifications();
+                ejQualification.QualificationId = edu.QualificationId;
+                ejQualification.QualificationName = edu.QualificationName;
+                this.ejQualificationList.push(ejQualification);
+              }
+        }
+        this.appService.qualifications = this.ejQualificationList;
+        this.appService.qualificationsChanged.next(this.appService.qualifications);
+        if ( this.personType.length > 0) {
+          // this.personType.forEach(element => {
+          //     this.ejPersonType.DISCTestId = element.DISCTestId;
+          //     this.ejPersonSingle.DiscTestId = element.DISCTestId;
+          //     this.ejPersonType.Description = element.Description;
+          //     this.ejPersonType.PersonType = element.PersonType;
+          //     this.ejPersonType.SubType = element.SubType;
+          //     this.ejPersonType.checked = element.checked;
+          //     this.ejPersonTypeList.push(this.ejPersonType);
+          //     this.ejPersonSingleList.push(this.ejPersonSingle);
+          //   });
+            for (const pType of this.personType) {
+              const ejPersonType = new DiscResult();
+              const ejPersonSingle = new PjDisc();
+              ejPersonType.DISCTestId = pType.DISCTestId;
+              ejPersonSingle.DiscTestId = pType.DISCTestId;
+              ejPersonType.Description = pType.Description;
+              ejPersonType.PersonType = pType.PersonType;
+              ejPersonType.SubType = pType.SubType;
+              ejPersonType.checked = pType.checked;
+              this.ejPersonTypeList.push(ejPersonType);
+              this.ejPersonSingleList.push(ejPersonSingle);
+            }
+        }
+        this.appService.personTypes = this.personType;
+        this.appService.personTypeChanged.next();
+        this.appService.personTypeSingle = this.ejPersonSingleList;
+        this.appService.personTypeChanged.next();
+      });
+    }
   }
 
-}
+  // add from db end
+  // this.appService.personTypes =[];
+  // this.appService.personTypeChanged = new Subject<DiscResult[]>();
+  // this.appService.personTypeSingle= [];
+  // this.appService.personTypeSingleChanged = new Subject<PjDisc[]>();
+
+
+
+
+
+
+
+
+
+
+
+  //  });
+// }
+// }
+
+// JobRequiredDomain: JobRequiredDomain;
+// JobRequiredSkills:JobRequiredSkills;
+// JobResponsibility:JobResponsibility;
+// EducationDetails: Qualifications;
+
+
+// JobInfoId: number;
+// JobId: number;
+// JobPositionId: number;
+// UserId:number;
+// CustomerId: number;
+// JobCategoryId: number;
+// JobCategory: string;
+// JobTitle: string;
+// MinExperienceId: number;
+// MaxExperienceId: number;
+// MinExperience: number;
+// MaxExperience: number;
+// CompleteDescription:string;
+// JobDescription: string;
+// NumberOfVacancies: number;
+// EmploymentTypeId: number;
+// EmploymentType: string;
+// SalaryTypeId: number;
+// SalaryType: string;
+// MinimumSalary: string;
+// MaximumSalary: string;
+// BonusOffered: string;
+
+// ContractDuration: string;
+// ContractExtended: string;
+// PossibilityOfFullTime: string;
+// AfterWhatDuration: string;
+// InterviewType:string;
+// HiringProcessId: number;
+// HiringManagerId: number;
+// ReportingManager: string;
+// IsActive: boolean;
+// StatusId: number;
+// FirstName: string;
+// LastName: string;
+// EmailId: string;
+// PhoneNumber: string;
+// CompanyName: string;
+// CompanyDescription:string;
+// CompanyLogo: string;
+// WebSite: string;
+// FromTime: string;
+// ToTime: string;
+// TimeZoneId: string;
+// TimeZone: string;
+// PostedOn: string;
+// ModifiedDate: string;
+// PostedBy: string;
+// ExpiryDate: string;
+// SaveAsTemplate: string;
+// RemoteWorkId: number;
+// RemoteWorkType: string;
+// Travel: string;
+// TravelPercentage: string;
+// IsPrivate: boolean;
+// JobAccessTo: string;
+// JobStatus: string;
+// JobLocation: JobLocations;
+// JobRequiredDomain: JobRequiredDomain;
+// JobRequiredSkills:JobRequiredSkills;
+// JobResponsibility:JobResponsibility;
+// EducationDetails: Qualifications;
+// //TechnicalTeam: CustomerUsers;

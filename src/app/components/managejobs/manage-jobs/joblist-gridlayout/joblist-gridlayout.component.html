@@ -8,8 +8,8 @@
 </svg>
 </button>
 <ul class="dropdown-menu">
-<li><a routerLink="/app-postajob" routerLinkActive="active">Edit</a></li>
-<li *ngIf="job.IsActive==true;else isactive" id="Inactive"><a (click)="changeJobStatus(job,false)" >Inactive</a></li>
+  <li><a (click)="editJob(job.JobId)">Edit</a></li>
+  <li *ngIf="job.IsActive==true;else isactive" id="Inactive"><a (click)="changeJobStatus(job.JobId,false)" >Inactive</a></li>
 <ng-template #isactive>
 <li  id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
 </ng-template>

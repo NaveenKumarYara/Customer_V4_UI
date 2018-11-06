@@ -48,10 +48,16 @@ export class InsertJob {
     Role: string;
 
   }
+  //For GetRoles 
   export class Roles{
     public RoleId :number;
     public Role:string;
     }
+    //For edit Roles 
+    export class EditRoles{
+      public RoleId :number;
+      public RolesAndResponsibilities:string;
+      }
   export class RoleModel {
 
     constructor(
@@ -92,7 +98,7 @@ export class DiscResult {
 
   }
   export class PrefLocation{
-    public locationId:number;
+    public PreferredLocationId:number;
     public location:string;
     }
   // related

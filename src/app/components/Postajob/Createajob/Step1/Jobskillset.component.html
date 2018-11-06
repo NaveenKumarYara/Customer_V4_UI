@@ -4,9 +4,9 @@
   <div class="form-row row">
     <div class="form-group skill-name col-md-6">
       <label for="">Skill Name</label>
-      <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="SkillName"
+      <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
         bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
-        [(ngModel)]="selectedSkillName" [virtualScroll]="true">
+        [(ngModel)]="selectedSkillName"  [addTag]="addSkill" [virtualScroll]="true">
       </ng-select>
     </div>
     <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->

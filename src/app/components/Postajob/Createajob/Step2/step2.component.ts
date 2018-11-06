@@ -131,7 +131,7 @@ export class Step2Component implements OnInit {
     this.insertJob.MaximumSalary = '200';
 
     this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
-    this.insertJob.PreferredLocationId = this.locations.prfLoc.locationId.toString();
+    this.insertJob.PreferredLocationId = this.locations.prfLoc.PreferredLocationId.toString();
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;

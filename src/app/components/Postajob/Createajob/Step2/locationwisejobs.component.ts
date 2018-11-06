@@ -13,7 +13,7 @@ import { PrefLocation } from '../../models/jobPostInfo';
 export class LocationwiseJobsComponent implements OnInit, OnDestroy {
 
   locationwisejobs: string[];
-location: string;
+// location: string;
 customer:any;
 customerId:any;
 userId:any;
@@ -26,11 +26,11 @@ prfLoc = new PrefLocation();
   }
 
   selectLocation(loc) {
-  this.location = loc;
-  this.prfLoc.locationId = loc.PreferredLocationId;
+  // this.location = loc;
+  this.prfLoc.PreferredLocationId = loc.PreferredLocationId;
   this.prfLoc.location = loc.CityName;
   this.appService.updateLocation(this.prfLoc);
-    console.log(loc);
+    // console.log(loc);
   }
 
   populateLocationwiseJobs() {
@@ -41,7 +41,7 @@ prfLoc = new PrefLocation();
 
   ngOnInit() {
     this.populateLocationwiseJobs();
-    //if (localStorage.getItem('jobId') != null) {
+    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentlocation.subscribe(x => this.prfLoc = x);
    // }
   }

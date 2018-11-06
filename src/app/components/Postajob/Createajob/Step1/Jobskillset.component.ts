@@ -6,7 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
-import { Jobskills } from '../../../../../models/jobskills.model';
+import { Jobskills, AddSkill } from '../../../../../models/jobskills.model';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
 
@@ -22,9 +22,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   maxexperience: number;
   expYears: any = [];
   skillType  = false;
+
   private subscription: Subscription;
-
-
 
   skilllist: Observable<string[]>;
   selectedSkillName = '';
@@ -58,13 +57,22 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     private router: Router, private appService: AppService) {
 
   }
+
+  addSkill(val) {
+  const  SkillName = new AddSkill();
+   SkillName.SkillName = val;
+   localStorage.setItem('skill', val);
+    return { name: SkillName.SkillName, tag: true };
+}
   private addSkills() {
+    this.appService.addSkills(localStorage.getItem('skill'));
     const newskills = new Jobskills();
-    newskills.SkillName = this.selectedSkillName;
+    newskills.SkillName = localStorage.getItem('skill');
     newskills.SkillType = this.skillType;
     newskills.MaximumExp = this.maxexperience;
     newskills.MinimumExp = this.minexperience;
     this.appService.addJobSkill(newskills);
+    localStorage.removeItem('skill');
   }
   public getExpYears() {
     this.expYears = [];

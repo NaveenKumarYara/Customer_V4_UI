@@ -26,6 +26,7 @@ export class PostajobComponent implements OnInit {
   ngOnInit() {
    // this.appService.;
   // this.reload();
+  localStorage.removeItem('jobId');
   this.appService.personTypes =[];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
   this.appService.customerUsers=[];

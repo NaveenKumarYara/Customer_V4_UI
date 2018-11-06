@@ -29,7 +29,7 @@ export class JobdetailsComponent implements OnInit {
 
   //
 
-  
+
   // companies: any[] = [];
   // loading = false;
   // companiesNames = ['Miškas', 'Žalias', 'Flexigen'];
@@ -83,11 +83,12 @@ export class JobdetailsComponent implements OnInit {
 //    this.companiesNames.forEach((c, i) => {
 //     this.companies.push({ id: i, name: c });
 // });
-  // }
+   }
 
-    // addTag(name) {
-    //     return { name: name, tag: true };
-    // }
+    addTitle(name) {
+      this.selectedTitle = name;
+        return { name: this.selectedTitle , tag: true };
+    }
 
     // addTagPromise(name) {
     //     return new Promise((resolve) => {
@@ -99,4 +100,4 @@ export class JobdetailsComponent implements OnInit {
     //     });
     }
 
-}
+

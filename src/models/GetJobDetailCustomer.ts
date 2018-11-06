@@ -1,10 +1,30 @@
-import { JobLocations } from "./joblocations";
-import {JobRequiredDomain} from "./JobRequiredDomain";
+import { JobLocations } from './joblocations';
+import {JobRequiredDomain} from './JobRequiredDomain';
 import {JobRequiredSkills} from './JobRequiredSkills';
 import {JobResponsibility} from './JobResponsibility';
+import { Qualifications } from './qualifications.model';
+import { CustomerUsers, Roles, GetDomain, EditRoles } from '../app/components/Postajob/models/jobPostInfo';
+import { Jobskills } from './jobskills.model';
 
-export class GetJobDetailCustomer
-{
+export class GetJobDetailCustomer {
+    JobInfo:JobInfo;
+    JobLocation: JobLocations[];
+    JobRequiredDomain: GetDomain[];
+    JobRequiredSkills: Jobskills [];
+    JobResponsibility: EditRoles [];
+    EducationDetails: Qualifications [];
+    TechnicalTeam: any ;
+}
+// export class GetJobDetailsCustomer {
+//     JobInfo:JobInfo;
+//     JobLocation: JobLocations[];
+//     JobRequiredDomain: GetDomain[];
+//     JobRequiredSkills: Jobskills [];
+//     JobResponsibility: EditRoles [];
+//     EducationDetails: Qualifications [];
+//     TechnicalTeam: any ;
+// }
+export class JobInfo {
     JobInfoId: number;
     JobId: number;
     JobPositionId: number;
@@ -17,7 +37,7 @@ export class GetJobDetailCustomer
     MaxExperienceId: number;
     MinExperience: number;
     MaxExperience: number;
-    CompleteDescription:string;
+    CompleteDescription: boolean;
     JobDescription: string;
     NumberOfVacancies: number;
     EmploymentTypeId: number;
@@ -28,10 +48,10 @@ export class GetJobDetailCustomer
     MaximumSalary: string;
     BonusOffered: string;
     ContractDuration: string;
-    ContractExtended: string;
+    ContractExtended: boolean;
     PossibilityOfFullTime: string;
     AfterWhatDuration: string;
-    InterviewType:string;
+    InterviewType: string;
     HiringProcessId: number;
     HiringManagerId: number;
     ReportingManager: string;
@@ -42,7 +62,7 @@ export class GetJobDetailCustomer
     EmailId: string;
     PhoneNumber: string;
     CompanyName: string;
-    CompanyDescription:string;
+    CompanyDescription: string;
     CompanyLogo: string;
     WebSite: string;
     FromTime: string;
@@ -61,8 +81,4 @@ export class GetJobDetailCustomer
     IsPrivate: boolean;
     JobAccessTo: string;
     JobStatus: string;
-    JobLocation: JobLocations;
-    JobRequiredDomain: JobRequiredDomain;
-    JobRequiredSkills:JobRequiredSkills;
-    JobResponsibility:JobResponsibility;
 }
