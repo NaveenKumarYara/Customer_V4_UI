@@ -31,7 +31,6 @@ export class HomeComponent {
         this.customerId = data.customerId;
         this.userId =data.userId;
             this.router.navigateByUrl('app-dashboardview');
-            $("#header").show();
       },
 
       error => {
@@ -42,8 +41,6 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    $("#header").hide();
-    $("#footer").hide();
     this.loginform = this.fb.group({
       'UserName': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],
