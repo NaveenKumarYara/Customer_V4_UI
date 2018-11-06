@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step1/Jobresponsibilities.component';
@@ -41,6 +41,7 @@ ejPrimarySkills: PjSkill[] = [];
 ejSecondarySkills: PjSkill[] = [];
 // ejSkills = new PjSkill();
 ejQualificationList: Qualifications[] = [];
+ejQualificationIdList: PjEducationDetails[] = [];
 // ejQualification = new Qualifications();
 // ejPersonType = new DiscResult();
 ejPersonTypeList: DiscResult[] = [];
@@ -163,7 +164,7 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.responsibilities = this.ejRoleList;
       this.appService.responsibilitesChanged.next(this.appService.responsibilities); // = new Subject<Roles[]>();
       this.appService.addedresponsibilities = this.ejRoleIdList;
-      this.appService.addedresponsibilitiesChanged.next(this.ejRoleIdList); // = new Subject<PjRole[]>();
+      this.appService.addedresponsibilitiesChanged.next(this.appService.addedresponsibilities ); // = new Subject<PjRole[]>();
       if (this.jobdetailscustomer.JobRequiredDomain.length > 0) {
         //  this.jobdetailscustomer.JobRequiredDomain.forEach(element => {
         //      this.ejDomain.DomainId = element.DomainId;
@@ -225,13 +226,19 @@ ejPersonSingleList: PjDisc[] = [];
             //   });
               for (const edu of this.jobdetailscustomer.EducationDetails) {
                 const ejQualification = new Qualifications();
+                const ejQualificationSingle = new PjEducationDetails();
                 ejQualification.QualificationId = edu.QualificationId;
                 ejQualification.QualificationName = edu.QualificationName;
+                ejQualificationSingle.QualificationId = edu.QualificationId;
+                ejQualificationSingle.IsActive = true;
                 this.ejQualificationList.push(ejQualification);
+                this.ejQualificationIdList.push(ejQualificationSingle);
               }
         }
         this.appService.qualifications = this.ejQualificationList;
         this.appService.qualificationsChanged.next(this.appService.qualifications);
+        this.appService.addqualifications = this.ejQualificationIdList;
+        this.appService.addqualificationsChanged.next(this.appService.addqualifications);
         if ( this.personType.length > 0) {
           // this.personType.forEach(element => {
           //     this.ejPersonType.DISCTestId = element.DISCTestId;
