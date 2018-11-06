@@ -50,7 +50,6 @@ export class LoadJoblistComponent implements OnInit {
 
 
   populateJoblist(customerId, userId) { 
-    debugger
     if(this.sortBy==undefined)
     {
       this.sortBy=0;
