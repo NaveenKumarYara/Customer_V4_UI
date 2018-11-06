@@ -26,6 +26,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   roleIdList: PjRole[] = [];
   roleId = new PjRole();
   roleJobTitleList: any;
+  // jobTitle: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.roleModel = new RoleModel(0, null, null);
@@ -59,6 +60,10 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
             this.roleIdList = responselist;
           }
         );
+
+        // this.appService.currentjobtitle.subscribe((data) => {
+        //   this.jobTitle = data; // And he have data here too!
+        // });
       //  }
   }
 
@@ -128,7 +133,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     // }
    // if (jobtitle && val) {
       const roleObj = new RoleJobTitle();
-      roleObj.JobTitle = '.net developer'; // this.appService.jobtitle.value;
+      roleObj.JobTitle =  this.roleModel.JobTitle;
       roleObj.Role = val.key;
       this.appService.getRoles(roleObj)
         .subscribe(

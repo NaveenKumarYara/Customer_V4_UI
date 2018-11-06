@@ -65,9 +65,9 @@ export class Step1Component implements OnInit {
     this.insertJob.JobPositionId = '';
    // this.insertJob.JobId = 0;
     const res = localStorage.getItem('jobId');
-    if (res != null) {
-    this.insertJob.JobId = parseInt(res, 10);
-    }
+    // if (res != null) {
+    this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+   // }
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
     this.insertJob.MinExperienceId = this.jobDetail.minExperience;
