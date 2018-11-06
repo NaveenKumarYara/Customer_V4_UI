@@ -34,9 +34,9 @@
   </div>
   <div class="form-data-group personality-group">
     <h3 class="question">Which type of person you are looking for?</h3>
-    <div class="type" *ngFor="let person of personType">
-      <div *ngIf="person.checked"> 
-      <div class="type-img">      
+    <div *ngFor="let person of personType">
+      <div  class="type"  *ngIf="person.checked">
+      <div class="type-img">
         <img [src]="person.LogoURL" alt="D">
       </div>
       <div class="type-details">
@@ -44,7 +44,7 @@
         <p class="description">
           {{person.Description}}
         </p>
-      </div> 
+      </div>
     </div>
     </div>
   </div>
