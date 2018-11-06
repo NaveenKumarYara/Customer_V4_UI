@@ -30,10 +30,6 @@ export class LogoHeaderComponent implements OnInit {
     this.router.navigateByUrl('/home' , { replaceUrl: true });
 }
 
-GetDashboard()
-{
-    this.router.navigateByUrl('app-dashboardview');
-}
 ngOnInit()
 {
 }
