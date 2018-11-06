@@ -19,6 +19,7 @@ import { JobdetailsProfile } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
+import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
 
 @Injectable()
 export class JobdetailsService {
@@ -40,6 +41,13 @@ export class JobdetailsService {
     this.profilecount.next(updatedtotal);
   }
 
+  getCompanyBenfits(customerId:number): Observable<GetCompanyBenefit[]> {
+    const url = environment.GetCompanyBenfits+ 'customerId='+customerId+'&companyBenefitId=0';
+    return this.http.get<GetCompanyBenefit[]>(url)
+        .catch(
+            this.handleError
+        );
+}
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

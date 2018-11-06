@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { JobComments } from '../../models/JobComments';
+import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -17,6 +18,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   customerId:any;
   userId:any;
  jobid: number;
+ getcompanybenfit: GetCompanyBenefit[];;
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments : JobComments[];
   constructor(private router: Router, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -35,9 +37,16 @@ PopulateJobComments (jobid) {
   });
   
 }
+
+populateCompanyBenfits(customerId) {
+  return this.jobdetailsservice.getCompanyBenfits(this.customerId).subscribe(res => {
+      this.getcompanybenfit = res;
+  });
+}
 ngOnInit() {
   this.PopulateJobdetail(this.customerId,this.jobid);
   this.PopulateJobComments(this.jobid);
+  this.populateCompanyBenfits(this.customerId);
   console.log('abc');
 }
 }

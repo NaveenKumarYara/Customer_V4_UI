@@ -55,8 +55,8 @@
         </div>
         <div class="group">
           <h4>Job Roles and Responsbilities</h4>
-          <p>
-            As per the posting, should be effective with Roles and Responsbilities assigned.
+          <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
+           {{response?.RolesAndResponsibilities}}
           </p>
         </div>
         <div class="group">
@@ -74,12 +74,8 @@
         <div class="group">
           <h4>Benefits</h4>
           <ul class="list">
-            <li>Bi Annual bonus</li>
-            <li>Bi Annual Increment</li>
-            <li>Gratuity</li>
-            <li>Provident fund</li>
-            <li>Medial Insurance</li>
-            <li>Paid Holidays</li>
+            <li class="item" *ngFor="let companybenfit of getcompanybenfit">
+              {{companybenfit?.CompanyBenefit}}</li>
           </ul>
         </div>
         <div class="group review-group">
@@ -108,12 +104,14 @@
         </div>
       </div>
       <div id="roles" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Some content in menu 2.</p>
+        <h3>Job Roles and Responsbilities</h3>
+        <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
+          {{response?.RolesAndResponsibilities}}
+         </p>
       </div>
       <div id="skills" class="tab-pane fade">
-        <h3>Menu 3</h3>
-        <p>Some content in menu 2.</p>
+        <h3>Skills</h3>
+          <p *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">{{skill?.SkillName}}</p>
       </div>
     </div>
   </div>
