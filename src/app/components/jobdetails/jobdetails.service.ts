@@ -20,6 +20,7 @@ import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
 import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
+import { DiscResult } from '../Postajob/models/jobPostInfo';
 
 @Injectable()
 export class JobdetailsService {
@@ -42,7 +43,7 @@ export class JobdetailsService {
   }
 
   getCompanyBenfits(customerId:number): Observable<GetCompanyBenefit[]> {
-    const url = environment.GetCompanyBenfits+ 'customerId='+customerId+'&companyBenefitId=0';
+    const url = environment.GetCompanyBenfits+ 'customerId=' + customerId + '&companyBenefitId=0';
     return this.http.get<GetCompanyBenefit[]>(url)
         .catch(
             this.handleError
@@ -64,7 +65,14 @@ export class JobdetailsService {
         this.handleError
       );
   }
-
+  getPersonType(jobId: number): Observable<DiscResult[]> {
+    const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
+    return this.http.get<DiscResult[]>(url)
+    .debounceTime(1000)
+    .catch(
+      this.handleError
+    );
+  }
   getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
     const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<GetJobDetailCustomer>(url)
