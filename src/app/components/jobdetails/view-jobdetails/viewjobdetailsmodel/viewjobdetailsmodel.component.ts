@@ -7,6 +7,7 @@ import { JobComments } from '../../models/JobComments';
 import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
+declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
