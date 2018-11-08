@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { PjDisc, DiscResult } from '../../models/jobPostInfo';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-steps-step2-personalityType',
@@ -13,8 +14,9 @@ import { PjDisc, DiscResult } from '../../models/jobPostInfo';
 
 export class PersonalityTypeComponent implements OnInit, OnDestroy {
   selectedPersonType: number;
+ // discResult:  DiscResult[];
   checkpersonType: PjDisc[] = [];
-  discResult: DiscResult[] = [];
+  discTestResult: DiscResult[] = [];
   private subscription = new Subscription();
   private subscriptions = new Subscription();
   constructor(private route: ActivatedRoute,
@@ -23,7 +25,7 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
 
   populateDiscValues() {
     this.appService.getDisc().subscribe(res => {
-      this.discResult = res;
+      this.discTestResult = res;
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
@@ -45,8 +47,8 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
       // let discTest= new PjDisc;
       // discTest.DiscTestId=option.DISCTestId;
       // option.checked = event.target.checked;
-       this.discResult.find(iitem => iitem.DISCTestId === option.DISCTestId).checked = option.checked;
-      this.appService.addPersonType(this.discResult, discTest);
+       this.discTestResult.find(iitem => iitem.DISCTestId === option.DISCTestId).checked = option.checked;
+      this.appService.addPersonType(this.discTestResult, discTest);
      // this.checkpersonType.push(person);
     } else {
       // for(var i=0 ; i < this.discResult.length; i++) {
@@ -54,7 +56,7 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
       //     this.checkpersonType.splice(i,1);
       //   }
       // }
-      this.appService.addPersonType(this.discResult, discTest, false);
+      this.appService.addPersonType(this.discTestResult, discTest, false);
     }
     console.log(this.checkpersonType);
     }
@@ -86,19 +88,29 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
   // }
 
   ngOnInit() {
+   // this.populateDiscValues();
    // if (localStorage.getItem('jobId') != null) {
-    this.discResult = this.appService.getPersonTypes();
-
+    this.discTestResult = this.appService.getPersonTypes();
+    if (this.discTestResult.length === 0) {
+      this.populateDiscValues();
+    }
    // this.discResult = this.appService.getPersonTypes();
 
     this.subscription = this.appService.personTypeChanged
     .subscribe(
     (disc: DiscResult[]) => {
       // this.discResult.where() = disc;
-      this.discResult = disc;
+      this.discTestResult = disc;
   // this.discResult[0].checked=true;
-      }
-    );
+  // this.discTestResult.forEach(element => {
+  //   this.ejQualification.QualificationId = element.DISCTestId;
+  //   this.ejQualification.QualificationName = element.QualificationName;
+  //   this.ejQualificationList.push(this.ejQualification);
+  // });
+  // this.discResult
+  //     }
+ // const result = this.discResult.map(o1 => this.discTestResult.some(o2 => o1.checked === o2.checked));
+     } );
 
 
   this.checkpersonType = this.appService.getaddedPersonTypes();
@@ -109,9 +121,9 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
       }
     );
   //  }
-    if (this.discResult.length === 0) {
-    this.populateDiscValues();
-    }
+    // if (this.discResult.length === 0) {
+    // this.populateDiscValues();
+    // }
   }
 
   ngOnDestroy() {

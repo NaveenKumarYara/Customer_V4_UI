@@ -19,6 +19,7 @@ export class CreateajobComponent implements OnInit {
 customerId: number;
 customer: any;
 personType: DiscResult[] = [];
+personTypes: DiscResult[] = [];
 jobdetailscustomer: GetJobDetailCustomer;
 eJcategory = new CategoryList();
 ejEmploymentType = new EmploymentType();
@@ -33,18 +34,18 @@ ejRoleList: Roles[] = [];
 // ejRole = new Roles();
 // ejRoleId = new  PjRole();
 ejRoleIdList: PjRole[] = [];
-ejDomainList: GetDomain[] = [];
+// ejDomainList: GetDomain[] = [];
 ejDomainIdList: PjDomain[] = [];
 // ejDomainId = new PjDomain();
 // ejDomain = new GetDomain();
 ejPrimarySkills: PjSkill[] = [];
 ejSecondarySkills: PjSkill[] = [];
 // ejSkills = new PjSkill();
-ejQualificationList: Qualifications[] = [];
+// ejQualificationList: Qualifications[] = [];
 ejQualificationIdList: PjEducationDetails[] = [];
 // ejQualification = new Qualifications();
 // ejPersonType = new DiscResult();
-ejPersonTypeList: DiscResult[] = [];
+// ejPersonTypeList: DiscResult[] = [];
 // ejPersonSingle = new PjDisc();
 ejPersonSingleList: PjDisc[] = [];
   constructor(private route: ActivatedRoute,
@@ -83,9 +84,6 @@ ejPersonSingleList: PjDisc[] = [];
   // }
   PopulateJobdetail (jobId) {
     localStorage.setItem('jobId', jobId);
-    this.jobdetailsservice.getPersonType(jobId).subscribe(res => {
-      this.personType = res;
-    });
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
@@ -143,6 +141,8 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.teammembersChanged.next(this.appService.teammembers);
       this.appService.addedteammembers = this.ejTechnicalTeamIdList;
       this.appService.addedteammembersChanged.next(this.appService.addedteammembers); //  =new Subject<PjTechnicalTeam[]>();
+
+
       if (this.jobdetailscustomer.JobResponsibility.length > 0) {
         // this.jobdetailscustomer.JobResponsibility.forEach(element => {
         //     this.ejRole.RoleId = element.RoleId;
@@ -175,15 +175,15 @@ ejPersonSingleList: PjDisc[] = [];
         //    });
            for (const dom of this.jobdetailscustomer.JobRequiredDomain) {
             const ejDomainId = new PjDomain();
-            const ejDomain = new GetDomain();
-            ejDomain.DomainId = dom.DomainId;
-            ejDomain.DomainName = dom.DomainName;
+          //  const ejDomain = new GetDomain();
+          //  ejDomain.DomainId = dom.DomainId;
+          //  ejDomain.DomainName = dom.DomainName;
             ejDomainId.DomainId = dom.DomainId;
-            this.ejDomainList.push(ejDomain);
+          //  this.ejDomainList.push(ejDomain);
             this.ejDomainIdList.push(ejDomainId);
           }
        }
-      this.appService.domain = this.ejDomainList;
+      this.appService.domain = this.jobdetailscustomer.JobRequiredDomain; // this.ejDomainList;
       this.appService.domainChanged.next(this.appService.domain); // = new Subject<GetDomain[]>();
       this.appService.adddomain = this.ejDomainIdList;
       this.appService.adddomainChanged.next(this.appService.adddomain); // = new Subject<PjDomain[]>();
@@ -225,48 +225,63 @@ ejPersonSingleList: PjDisc[] = [];
             //     this.ejQualificationList.push(this.ejQualification);
             //   });
               for (const edu of this.jobdetailscustomer.EducationDetails) {
-                const ejQualification = new Qualifications();
+              //  const ejQualification = new Qualifications();
                 const ejQualificationSingle = new PjEducationDetails();
-                ejQualification.QualificationId = edu.QualificationId;
-                ejQualification.QualificationName = edu.QualificationName;
+              //  ejQualification.QualificationId = edu.QualificationId;
+              //  ejQualification.QualificationName = edu.QualificationName;
                 ejQualificationSingle.QualificationId = edu.QualificationId;
                 ejQualificationSingle.IsActive = true;
-                this.ejQualificationList.push(ejQualification);
+               // this.ejQualificationList.push(ejQualification);
                 this.ejQualificationIdList.push(ejQualificationSingle);
               }
         }
-        this.appService.qualifications = this.ejQualificationList;
+        this.appService.qualifications = this.jobdetailscustomer.EducationDetails; // this.ejQualificationList;
         this.appService.qualificationsChanged.next(this.appService.qualifications);
         this.appService.addqualifications = this.ejQualificationIdList;
         this.appService.addqualificationsChanged.next(this.appService.addqualifications);
-        if ( this.personType.length > 0) {
-          // this.personType.forEach(element => {
-          //     this.ejPersonType.DISCTestId = element.DISCTestId;
-          //     this.ejPersonSingle.DiscTestId = element.DISCTestId;
-          //     this.ejPersonType.Description = element.Description;
-          //     this.ejPersonType.PersonType = element.PersonType;
-          //     this.ejPersonType.SubType = element.SubType;
-          //     this.ejPersonType.checked = element.checked;
-          //     this.ejPersonTypeList.push(this.ejPersonType);
-          //     this.ejPersonSingleList.push(this.ejPersonSingle);
-          //   });
-            for (const pType of this.personType) {
-              const ejPersonType = new DiscResult();
-              const ejPersonSingle = new PjDisc();
-              ejPersonType.DISCTestId = pType.DISCTestId;
-              ejPersonSingle.DiscTestId = pType.DISCTestId;
-              ejPersonType.Description = pType.Description;
-              ejPersonType.PersonType = pType.PersonType;
-              ejPersonType.SubType = pType.SubType;
-              ejPersonType.checked = pType.checked;
-              this.ejPersonTypeList.push(ejPersonType);
-              this.ejPersonSingleList.push(ejPersonSingle);
+
+        this.jobdetailsservice.getPersonType(jobId).subscribe(pType => {
+          this.personType = pType;
+          this.appService.getDisc().subscribe(pTypes => {
+            this.personTypes = pTypes;
+              this.personTypes.forEach(x => {
+              x.checked = this.personType.some(y => y.DISCTestId === x.DISCTestId);
+           });
+        //   this.personTypes.map(employee => {
+        //     return employee.checked = this.personType.some(cobay => cobay.DISCTestId === employee.DISCTestId);
+        //  });
+            if ( this.personType.length > 0) {
+              // this.personType.forEach(element => {
+              //     this.ejPersonType.DISCTestId = element.DISCTestId;
+              //     this.ejPersonSingle.DiscTestId = element.DISCTestId;
+              //     this.ejPersonType.Description = element.Description;
+              //     this.ejPersonType.PersonType = element.PersonType;
+              //     this.ejPersonType.SubType = element.SubType;
+              //     this.ejPersonType.checked = element.checked;
+              //     this.ejPersonTypeList.push(this.ejPersonType);
+              //     this.ejPersonSingleList.push(this.ejPersonSingle);
+              //   });
+                for (const prType of this.personType) {
+                 // const ejPersonType = new DiscResult();
+                  const ejPersonSingle = new PjDisc();
+                 // ejPersonType.DISCTestId = pType.DISCTestId;
+                  ejPersonSingle.DiscTestId = prType.DISCTestId;
+                 // ejPersonType.Description = pType.Description;
+                 // ejPersonType.PersonType = pType.PersonType;
+                 // ejPersonType.SubType = pType.SubType;
+                 // ejPersonType.checked = pType.checked;
+                 // this.ejPersonTypeList.push(ejPersonType);
+                  this.ejPersonSingleList.push(ejPersonSingle);
+                }
             }
-        }
-        this.appService.personTypes = this.personType;
-        this.appService.personTypeChanged.next();
-        this.appService.personTypeSingle = this.ejPersonSingleList;
-        this.appService.personTypeChanged.next();
+            this.appService.personTypes = this.personTypes;
+            this.appService.personTypeChanged.next(this.appService.personTypes);
+            this.appService.personTypeSingle = this.ejPersonSingleList;
+            this.appService.personTypeSingleChanged.next(this.appService.personTypeSingle);
+          });
+
+        });
+
       });
     }
   }
