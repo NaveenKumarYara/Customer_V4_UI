@@ -4,62 +4,110 @@
       <div id="account-settings" class="tab-pane fade active in">
         <h1>Account Settings</h1>
         <div class="edit-group email-group">
-          <form action="" class="edit-form form-inline">
+          <ng-container *ngIf="iseditEmail">
+          <form [formGroup]="emailForm"  action="" (ngSubmit)="updateEmail()" class="form-inline">            
             <div class="form-group">
               <label for="email">Email</label>
               <div class="editable-input">
-                <input type="email" class="form-control">
-              </div>
+                <input  [pattern]="emailPattern" formControlName="Email" value="{{customer?.Email}}" type="email" class="form-control"/>
+                <div *ngIf="emailForm.controls['Email'].invalid && (emailForm.controls['Email'].dirty || emailForm.controls['Email'].touched)"
+                 class="alert alert-danger">
+                 <div *ngIf="emailForm.controls['Email'].errors.required">
+                   Email is required.
+                </div>
+                <div *ngIf="emailForm.controls['Email'].errors.pattern">
+                    Email is not valid.
+                 </div>
+                </div>
+              </div>           
             </div>
             <div class="btn-row">
-              <button class="btn btn-filled">Save</button>
-              <button class="btn btn-border">Cancel</button>
-            </div>
+              <button  class="btn btn-filled" [disabled]="emailForm.invalid">Save</button>
+              <button (click)="iseditEmail=!iseditEmail" class="btn btn-border">Cancel</button>
+            </div>         
           </form>
+          </ng-container>
           <div class="form-inline data">
             <div class="form-group">
+              <ng-container  *ngIf="!iseditEmail">
               <label for="email">Email</label>
               <div class="editable-input">
-                <input type="email" value="Terry Martin" class="form-control">
-                <a href="#" class="edit-btn">Edit email</a>
+                <input type="email" value="{{customer?.Email}}" class="form-control" id="updateemail" readonly />
+                <a (click)="iseditEmail=!iseditEmail" class="edit-btn">Edit email</a>
               </div>
+            </ng-container>
             </div>
           </div>
         </div>
         <div class="edit-group">
           <div class="edit-group password-group">
-            <form action="" class="edit-form form-inline">
+            <ng-container *ngIf="iseditPwd">
+            <form [formGroup]="passForm"  action="" (ngSubmit)="UpdatePass()"  class="form-inline">
               <div class="form-group">
                 <label for="password">Password</label>
                 <div class="editable-input">
-                  <input type="password" id="password" class="form-control">
+                    <input type="password" id="oldPassword" formControlName="OldPassword" placeholder="Old Password" class="form-control" (keypress)="MissClear()"
+                    (keyup)="MissClear()">
+                  <span class="glyphicon" [ngClass]="oldstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="oldPassword()"></span>
                 </div>
+                <div *ngIf="passForm.controls['OldPassword'].invalid && (passForm.controls['OldPassword'].dirty || passForm.controls['OldPassword'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="passForm.controls['OldPassword'].errors.required">
+                  Old Password is required.
+                </div>
+              </div>
               </div>
               <div class="form-group">
                 <label for="newPassword"></label>
                 <div class="editable-input">
-                  <input type="password" id="newPassword" class="form-control">
+                    <input type="password" id="password" formControlName="NewPassword" placeholder="New Password" class="form-control">
+                    <span class="glyphicon" [ngClass]="newstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="newPassword()"></span>
                 </div>
+                <div *ngIf="passForm.controls['NewPassword'].invalid && (passForm.controls['NewPassword'].dirty || passForm.controls['NewPassword'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="passForm.controls['NewPassword'].errors.required">
+                  New Password is required.
+                </div>
+                <small *ngIf="passForm.controls['NewPassword'].errors.password>0">
+                    New Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
+                  </small>
+              </div>
               </div>
               <div class="form-group">
                 <label for="confirmPassword"></label>
                 <div class="editable-input">
-                  <input type="password" id="confirmPassword" class="form-control">
+                    <input type="password" id="confirmPassword" formControlName="ConfirmPassword" placeholder="Confirm Password" class="form-control">
+                    <span class="glyphicon" [ngClass]="confirmstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="confirmPassword()"></span>
                 </div>
+                <div *ngIf="passForm.controls['ConfirmPassword'].invalid && (passForm.controls['ConfirmPassword'].dirty || passForm.controls['ConfirmPassword'].touched)"
+                class="alert alert-danger"> Passwords must match
+                <small *ngIf="passForm.controls['ConfirmPassword'].errors.required">
+                  Confirm Password is required.
+                </small>
+                <!-- <div *ngIf="passForm.controls['ConfirmPassword'].errors.minlength">
+                  Please enter 6 characters
+                </div> -->
+                <small *ngIf="passForm.controls['ConfirmPassword'].errors.password>0">
+                  Confirm Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
+                </small>
+              </div>
               </div>
               <div class="btn-row">
-                <button class="btn btn-filled">Save</button>
-                <button class="btn btn-border">Cancel</button>
+                <button class="btn btn-filled" [disabled]="passForm.invalid">Save</button>
+                <button class="btn btn-border" (click)="iseditPwd=!iseditPwd; clear();">Cancel</button>
               </div>
             </form>
+         </ng-container>
             <div class="form-inline data">
+              <ng-container *ngIf="!iseditPwd">
               <div class="form-group">
                 <label for="password">Password</label>
                 <div class="editable-input">
                   <input type="password" value="1234567" class="form-control">
-                  <a href="#" class="edit-btn">Edit password</a>
+                  <a  (click)="iseditPwd=!iseditPwd" class="edit-btn">Edit password</a>
                 </div>
               </div>
+            </ng-container>
             </div>
           </div>
         </div>
