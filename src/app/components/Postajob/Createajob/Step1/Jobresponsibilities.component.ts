@@ -41,6 +41,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
   private deleteResponsibility(index: number) {
     this.appService.deleteResponsibilities(index);
+    this.roleList.splice(index, 1);
   }
 
   ngOnInit() {

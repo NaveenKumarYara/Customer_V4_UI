@@ -41,6 +41,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     // const newDomain = new GetDomain();
     // newDomain.DomainName = this.selecteddomainname;
     this.appService.addDomain(this.getDomain);
+    // this.getDomain = new GetDomain();
+    this.selecteddomainname = '';
 
   }
   changeValue(val) {
