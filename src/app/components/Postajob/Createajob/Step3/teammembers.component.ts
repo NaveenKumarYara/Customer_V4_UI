@@ -19,9 +19,9 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   teammembers: '';
   teammemberslist: CustomerUsers[];
-  customer:any;
-  customerId:any;
-  userId:any;
+  customer: any;
+  customerId: any;
+  userId: any;
   addedteammembers: '';
   addedteammemberslist: PjTechnicalTeam[];
 
@@ -44,6 +44,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
     this.appService.addTeammember(this.getTeammember);
+    this.selectedUserName = '';
   }
 
   private deleteTeammember(index: number) {
@@ -56,7 +57,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))

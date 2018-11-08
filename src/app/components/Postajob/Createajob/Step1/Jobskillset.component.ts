@@ -72,6 +72,9 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     newskills.MaximumExp = this.maxexperience;
     newskills.MinimumExp = this.minexperience;
     this.appService.addJobSkill(newskills);
+    this.selectedSkillName = '';
+    this.minexperience = 0;
+    this.maxexperience = 0;
     localStorage.removeItem('skill');
   }
   public getExpYears() {

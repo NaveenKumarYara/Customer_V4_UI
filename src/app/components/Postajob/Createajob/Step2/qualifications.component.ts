@@ -37,6 +37,7 @@ selectedQualification: Qualifications;
     // newqualification.QualificationId = this.selectedQualification.QualificationId;
     // newqualification.QualificationName = this.selectedQualification.QualificationName;
     this.appService.addQualifications(this.selectedQualification);
+    this.selectedqualificationName = 0;
   }
 
   private deleteQualifications(index: number) {
