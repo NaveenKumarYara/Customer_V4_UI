@@ -8,7 +8,7 @@
 </svg>
 </button>
 <ul class="dropdown-menu">
-  <li><a (click)="editJob(job.JobId)">Edit</a></li>
+  <li><a (click)="editJob(job.JobId,job.IsActive)">Edit</a></li>
   <li *ngIf="job.IsActive==true;else isactive" id="Inactive"><a (click)="changeJobStatus(job.JobId,false)" >Inactive</a></li>
 <ng-template #isactive>
 <li  id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>

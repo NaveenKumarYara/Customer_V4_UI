@@ -7,6 +7,7 @@ import { ManageJobService } from '../../managejobs.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
+import swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -40,13 +41,19 @@ export class JoblistGridlayoutComponent implements OnInit {
     this.GetProfileCount();
   }
 
-  editJob(jobId) {
-    this.router.navigate(['/app-createajob/', {jobId} ]);
+  editJob(jobId,active) {
+    if(active == false )
+    {
+     swal('Inactive Job Please Activate to Edit')
+    }
+    else
+    {
+      this.router.navigate(['/app-createajob/', {jobId} ]);
 
-    this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
+      this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
+    }
 
-
-    // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
+      // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
    // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
   }
 

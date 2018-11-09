@@ -26,7 +26,7 @@
                 <button id="Active" class="btn btn-border" (click)="changeJobStatus(job,true)">active</button>
                 </ng-template>
              
-              <button class="btn btn-filled" routerLink="/app-postajob" routerLinkActive="active" >Edit</button>
+              <button class="btn btn-filled" (click)="editJob(job.JobId,job.IsActive)" >Edit</button>
             </div>
           </header>
           <div class="card-footer">
