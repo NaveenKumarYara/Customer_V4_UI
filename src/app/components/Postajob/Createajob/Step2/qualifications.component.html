@@ -25,10 +25,10 @@
  
   </div>
   <div class="lists row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <p class="description">Qualifications</p>
       <ul class="data-list">
-        <li *ngFor="let qualifications of qualificationList; let i = index">
+        <li class="col-md-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
           <span class="name">{{qualifications.QualificationName}}</span>
           <span class="close" (click)="deleteQualifications(i)">&times;</span>
         </li>

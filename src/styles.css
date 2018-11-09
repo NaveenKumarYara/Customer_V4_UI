@@ -20178,7 +20178,8 @@ a.ui-button:active,
    margin-bottom: 35px;
   }
     .page--create-a-job .form-steps .data-list li:not(:last-of-type) {
-      margin-bottom: 15px;
+      margin-bottom: 5px;
+      margin-right: 5px;
     }
 
     .page--create-a-job .form-steps .data-list li > span {
@@ -20186,11 +20187,10 @@ a.ui-button:active,
     }
 
     .page--create-a-job .form-steps .data-list li .name {
-      padding: 10px 0;
-      padding-left: 18px;
+      padding: 10px 0 0 10px;
       font-size: 13px;
       font-weight: 500;
-      width: 65%;
+      width:65%;
       display: block;
     }
 
@@ -20212,6 +20212,8 @@ a.ui-button:active,
       text-align: center;
       background-color: #FFFFFF;
       opacity: 1;
+      float:right;
+      border-left: 1px solid #ebebeb;
     }
 
 .page--create-a-job .form-steps .experience-output {
@@ -20944,4 +20946,12 @@ nav.navbar{
 }
 .ng-select.interview-schedule-popup > .ng-select-container{
   margin-top: 0px!important;
+}
+
+/*No Experience in PostAJob*/
+.page--create-a-job .form-steps .data-list li.no-exp {
+  padding-right: 0px;
+}
+.page--create-a-job .form-steps .data-list li.no-exp {
+  padding-right: 0px;
 }

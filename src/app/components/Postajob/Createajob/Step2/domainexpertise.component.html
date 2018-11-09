@@ -27,10 +27,10 @@
   </div>
   </div>
   <div class="lists row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <p class="description">Domain</p>
       <ul class="data-list">
-        <li *ngFor="let domain of domainlist; let i = index">
+        <li class="col-md-5 no-exp" *ngFor="let domain of domainlist; let i = index">
           <span class="name">{{domain.DomainName}}</span>
           <span class="close" (click)="deleteDomain(i)">&times;</span>
         </li>

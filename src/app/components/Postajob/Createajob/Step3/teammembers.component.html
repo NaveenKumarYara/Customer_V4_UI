@@ -21,10 +21,10 @@
   </div>
 </div>
 <div class="lists row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <p class="description">Team Members</p>
     <ul class="data-list">
-      <li *ngFor="let teammember of teammemberslist; let i = index">
+      <li class="col-md-5 no-exp" *ngFor="let teammember of teammemberslist; let i = index">
         <span class="name">{{teammember.FirstName}}</span>
         <span class="close" (click)="deleteTeammember(i)">&times;</span>
       </li>
