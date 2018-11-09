@@ -6,6 +6,8 @@ import { ApiService } from '../../../shared/services/api.service/api.service';
 import { basicinfo } from './basicinfo';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
+
+import swal from 'sweetalert2';
 declare var $: any;
 @Component({
   selector: 'app-basicinfo',
@@ -42,6 +44,7 @@ export class BasicinfoComponent implements OnInit {
     fullname: any;
   firstname: any;
   lastname: any;
+  
   constructor(private _service: ApiService, private route: Router, private fb: FormBuilder,private companyprofileservice: CompanyProfileService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
@@ -82,7 +85,7 @@ uploadPhoto() {
     $('#headerProfilePic').attr('src', data[0]);
     this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
     this.iseditProfile = false;
-    alert('Photo upload successful');
+    swal('Photo upload successful');
     this.populateCompanyProfile(this.customerId);
     this.GetCompanyLogo();
 
@@ -97,7 +100,7 @@ onFileChange(event) {
     var ext = x[1];
     if ((ext == 'png' || ext == 'jpg' || ext == 'jpeg') || (ext == 'PNG' || ext == 'JPG' || ext == 'JPEG')) {
       if (file.size > 2048576) {
-        alert("Too Big Size.. File Not Allowed");
+        swal("Too Big Size.. File Not Allowed");
       }
       else {
         this.currentImageUpload = file;
@@ -109,7 +112,7 @@ onFileChange(event) {
       }
     }
     else {
-      alert("Please upload the files with extension jpg, png or jpeg");
+      swal("Please upload the files with extension jpg, png or jpeg");
     }
 
   }

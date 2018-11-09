@@ -36,7 +36,8 @@ export class ViewJobdetailsComponent implements OnInit {
   userId: any;
   jobid: any;
   viewJobJobId: any;
-  statusid = 0;
+  statusid = 4;
+  sortBy=0;
   // loadMoreStat:number;
   profileLoader = false;
   uploadProfile = 0;
@@ -171,7 +172,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // }
     this.profileLoader = true;
     this.jobdetailsservice.updateprofileCount(this.profilecount);
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.profilecount);
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,this.sortBy, this.profilecount);
    this.loader();
    }
    loader() {
