@@ -14600,6 +14600,11 @@ a.ui-button:active,
   position: absolute;
   left: 0;
 }
+.page--job-details .reviews .img-wrapper img {
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+}
 
 .page--job-details .reviews .review-content {
   padding-left: 3.25rem;
@@ -15339,6 +15344,7 @@ a.ui-button:active,
     font-size: 1.125rem;
     color: #41536E;
     margin-bottom: 15px;
+    font-weight: 500;
   }
 
   .page--job-details #selectedJobDetails .group li, .page--job-details #selectedJobDetails .group p {
@@ -20954,4 +20960,16 @@ nav.navbar{
 }
 .page--create-a-job .form-steps .data-list li.no-exp {
   padding-right: 0px;
+}
+
+/*Mat Custom Styles*/
+.mat-dialog-container{
+  padding: 1.75rem 3.25rem;
+}
+.mat-body, .mat-body-1, .mat-typography, .mat-h4, .mat-subheading-1, .mat-typography h4, .mat-h3, .mat-subheading-2, .mat-typography h3{
+  font-family: "Poppins", sans-serif;
+  font-weight: inherit;
+}
+.mat-dialog-content{
+  padding:0px !important;
 }

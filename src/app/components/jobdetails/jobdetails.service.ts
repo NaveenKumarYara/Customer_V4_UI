@@ -42,8 +42,8 @@ export class JobdetailsService {
     this.profilecount.next(updatedtotal);
   }
 
-  getCompanyBenfits(customerId:number): Observable<GetCompanyBenefit[]> {
-    const url = environment.GetCompanyBenfits+ 'customerId=' + customerId + '&companyBenefitId=0';
+  getCompanyBenfits(customerId: number): Observable<GetCompanyBenefit[]> {
+    const url = environment.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
     return this.http.get<GetCompanyBenefit[]>(url)
         .catch(
             this.handleError
@@ -119,9 +119,10 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
        this.handleError
      );
  }
-  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number): Observable<JobdetailsProfile[]> {
+  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 0,
+    noOfRows: number= 6): Observable<JobdetailsProfile[]> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-      '&jobId=' + jobid + '&sortBy=0&pageNumber=1&noOfRows=6';
+      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&pageNumber=1&noOfRows=' + noOfRows;
     return this.http.get<JobdetailsProfile[]>(url)
       .debounceTime(1000)
       .catch(

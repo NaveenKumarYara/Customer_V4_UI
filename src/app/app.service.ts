@@ -298,6 +298,8 @@ getaddedPersonTypes() {
   deleteResponsibilities(index: number) {
     this.responsibilities.splice(index, 1);
     this.responsibilitesChanged.next(this.responsibilities.slice());
+    this.addedresponsibilities.splice(index, 1);
+    this.addedresponsibilitiesChanged.next(this.addedresponsibilities.slice());
   }
 
   saveRoles(body) {
