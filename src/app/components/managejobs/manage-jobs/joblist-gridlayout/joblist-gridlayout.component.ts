@@ -7,7 +7,7 @@ import { ManageJobService } from '../../managejobs.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
-import swal from 'sweetalert2';
+import { AlertService } from '../../../../shared/alerts/alerts.service';
 
 declare var $: any;
 
@@ -16,7 +16,7 @@ declare var $: any;
   selector: 'app-manage-joblist-gridlayout',
   templateUrl: './joblist-gridlayout.component.html',
   styleUrls: ['./joblist-gridlayout.component.css'],
-  providers: [AppService]
+  providers: [AppService,AlertService]
 })
 export class JoblistGridlayoutComponent implements OnInit {
   @Input() job: Jobs;
@@ -31,7 +31,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   deactivate = new deactivate();
 
   constructor(private route: ActivatedRoute,
-    private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent) {
+    private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent,private alertService : AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -44,7 +44,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   editJob(jobId,active) {
     if(active == false )
     {
-     swal('Inactive Job Please Activate to Edit')
+    this.alertService.error('Inactive Job Please Activate to Edit');
     }
     else
     {
@@ -72,13 +72,14 @@ export class JoblistGridlayoutComponent implements OnInit {
   }
 
   changeJobStatus(job, val) {
+    this.alertService.clear();
     if (val === true) {
      $('#Inactive').replaceWith('#Active');
 
     } else if (val === false) {
       $('#Active').replaceWith('#Inactive');
     }
-    this.deactivate.jobId = job;
+    this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = this.customerId;
     this.deactivate.isActive = val;
       this.appService.deactivateJob(this.deactivate)

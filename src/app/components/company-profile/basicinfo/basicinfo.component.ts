@@ -6,14 +6,13 @@ import { ApiService } from '../../../shared/services/api.service/api.service';
 import { basicinfo } from './basicinfo';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
-
-import swal from 'sweetalert2';
+import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
 @Component({
   selector: 'app-basicinfo',
   templateUrl: './basicinfo.component.html',
   styleUrls: ['./basicinfo.component.css'],
-  providers: [ApiService]
+  providers: [ApiService,AlertService]
 })
 export class BasicinfoComponent implements OnInit {
     @Input() companyprofile: CompanyProfile;
@@ -45,7 +44,7 @@ export class BasicinfoComponent implements OnInit {
   firstname: any;
   lastname: any;
   
-  constructor(private _service: ApiService, private route: Router, private fb: FormBuilder,private companyprofileservice: CompanyProfileService) {
+  constructor(private _service: ApiService, private route: Router, private fb: FormBuilder,private companyprofileservice: CompanyProfileService,private alertService : AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -85,13 +84,14 @@ uploadPhoto() {
     $('#headerProfilePic').attr('src', data[0]);
     this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
     this.iseditProfile = false;
-    swal('Photo upload successful');
+    this.alertService.success('Photo upload successful');
     this.populateCompanyProfile(this.customerId);
     this.GetCompanyLogo();
 
   });
 }
 onFileChange(event) {
+  this.alertService.clear();
   let reader = new FileReader();
   if (event.target.files && event.target.files.length > 0) {
     let file = event.target.files[0];
@@ -100,7 +100,7 @@ onFileChange(event) {
     var ext = x[1];
     if ((ext == 'png' || ext == 'jpg' || ext == 'jpeg') || (ext == 'PNG' || ext == 'JPG' || ext == 'JPEG')) {
       if (file.size > 2048576) {
-        swal("Too Big Size.. File Not Allowed");
+        this.alertService.error("Too Big Size.. File Not Allowed");
       }
       else {
         this.currentImageUpload = file;
@@ -112,7 +112,7 @@ onFileChange(event) {
       }
     }
     else {
-      swal("Please upload the files with extension jpg, png or jpeg");
+      this.alertService.error("Please upload the files with extension jpg, png or jpeg");
     }
 
   }

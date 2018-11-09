@@ -7,14 +7,14 @@ import { ManageJobService } from '../../managejobs.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
-import swal from 'sweetalert2';
+import { AlertService } from '../../../../shared/alerts/alerts.service';
 declare var $: any;
 
 @Component({
   selector: 'app-manage-joblist-tablelayout',
   templateUrl: './joblist-tablelayout.component.html',
   styleUrls: ['./joblist-tablelayout.component.css'],
-  providers: [AppService]
+  providers: [AppService,AlertService]
 })
 export class JoblistTablelayoutComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class JoblistTablelayoutComponent implements OnInit {
   isActive:any;
   deactivate = new deactivate();
   constructor(private route: ActivatedRoute,
-    private router: Router, private managejobservice: ManageJobService,private appService: AppService, private loadJobs :LoadJoblistComponent) { 
+    private router: Router, private managejobservice: ManageJobService,private appService: AppService, private loadJobs :LoadJoblistComponent,private alertService : AlertService) { 
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -46,6 +46,7 @@ export class JoblistTablelayoutComponent implements OnInit {
     this.router.navigateByUrl('app-view-jobdetails');
   }
   changeJobStatus(job,val) {
+    this.alertService.clear();
     if(val== true)
     {
      $("#Inactive").replaceWith("#Active");
@@ -68,7 +69,7 @@ export class JoblistTablelayoutComponent implements OnInit {
 editJob(jobId,active) {
   if(active == false )
   {
-   swal('Inactive Job Please Activate to Edit')
+    this.alertService.error('Inactive Job Please Activate to Edit');
   }
   else
   {
