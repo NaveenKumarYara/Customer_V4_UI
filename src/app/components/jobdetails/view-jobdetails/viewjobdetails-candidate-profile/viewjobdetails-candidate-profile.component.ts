@@ -183,7 +183,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       this.statusid = statusid;
     }
     if (this.statusid === 15) {
-      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid).subscribe(res => {
+      return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
+        sortBy, pageNumber).subscribe(res => {
         this.jobdetailsprofiles = res;
       });
     } else {
