@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ManageJobService } from '../managejobs.service';
 @Component({
   selector: 'app-manage-jobs',
   templateUrl: './manage-jobs.component.html',
@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageJobsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private managejobservice: ManageJobService) { }
 
   ngOnInit() {
+    this.managejobservice.updateJobListCount(6);
   }
 
 }
