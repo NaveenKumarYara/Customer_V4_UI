@@ -177,7 +177,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     sessionStorage.setItem('profileId', JSON.stringify(profileId));
     this.router.navigateByUrl('app-cprofile');
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, sortBy= 0, pageNumber= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, sortBy= 1, pageNumber= 6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid;

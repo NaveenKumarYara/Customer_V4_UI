@@ -109,7 +109,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       );
   }
 
-  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 0, noOfRows: number= 6):
+  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, noOfRows: number= 6):
   Observable<JobdetailsProfile[]> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&pageNumber=1&noOfRows=' + noOfRows;
@@ -119,7 +119,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
        this.handleError
      );
  }
-  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 0,
+  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1,
     noOfRows: number= 6): Observable<JobdetailsProfile[]> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&pageNumber=1&noOfRows=' + noOfRows;
