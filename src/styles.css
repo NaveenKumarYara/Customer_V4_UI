@@ -14763,6 +14763,7 @@ a.ui-button:active,
 
 .page--job-details #applied .candidate-status {
   display: inline-block;
+  text-align: center;
 }
 
   .page--job-details #applied .candidate-status img {
@@ -20186,7 +20187,6 @@ a.ui-button:active,
   }
     .page--create-a-job .form-steps .data-list li:not(:last-of-type) {
       margin-bottom: 5px;
-      margin-right: 5px;
     }
 
     .page--create-a-job .form-steps .data-list li > span {

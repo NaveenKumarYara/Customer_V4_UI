@@ -1,8 +1,9 @@
-<div class="form-controlin">
-        <input class="form-control " type="text" placeholder="ZipCode" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"
-            #search [(ngModel)]="searchText" maxlength="7 " onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="ZipCode">
-        <div *ngIf="searchText.length>5&&searchText.length<=7" class="alert alert-danger" id="notValid">
-            Please provide valid input.
-        </div>
-        <input hidden="hidden" id="completezip" #search [(ngModel)]="searchtext">
+<div class="zipcode-input">
+    <input class="form-control" type="text" placeholder="ZipCode" autocorrect="off" autocapitalize="off" spellcheck="off"
+        #search [(ngModel)]="searchText" maxlength="7 " onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+        id="ZipCode">
+    <div *ngIf="searchText.length>5&&searchText.length<=7" class="alert alert-danger" id="notValid">
+        Please provide valid input.
     </div>
+    <input hidden="hidden" id="completezip" #search [(ngModel)]="searchtext">
+</div>
