@@ -4,12 +4,13 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
 import {FormsValidationService} from '../../../shared/validation/validation.service';
+import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
 @Component({
   selector: 'app-accountsettingdetails',
   templateUrl: './accountsettingdetails.component.html',
   styleUrls: ['./accountsettingdetails.component.css'],
-  providers: [AppService]
+  providers: [AppService,AlertService]
 })
 export class AccountsettingdetailsComponent implements OnInit {
   @ViewChild(NgForm) myForm: NgForm;
@@ -17,13 +18,14 @@ export class AccountsettingdetailsComponent implements OnInit {
   iseditPwd: any = false;
   emailForm: FormGroup;
   passForm: FormGroup;
+  password:any;
   oldstatus: boolean = false;
   newstatus: boolean = false;
   confirmstatus: boolean = false;
   missMatchPwd: any = 0;
   iseditEmail: any = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
-  constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
+  constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private alertService : AlertService) { 
     this.FillData(); 
     this.createPasswordform();  
   }
@@ -37,7 +39,7 @@ export class AccountsettingdetailsComponent implements OnInit {
   createPasswordform() {
     this.passForm = this.fb.group({
       'UserId': [this.customer.UserId, Validators.compose([Validators.required])],
-      'OldPassword': ['', Validators.required],
+      'OldPassword': [this.password,Validators.compose([Validators.required])],
       'NewPassword': ['', [Validators.required, FormsValidationService.password]],
       'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('NewPassword')]]
     },
@@ -91,24 +93,23 @@ export class AccountsettingdetailsComponent implements OnInit {
     }
   }
   UpdatePass() {
-    debugger
     $('#oldPassword').css('border-color', '');
-    console.log(this.passForm.value);
+    if(this.passForm.value.OldPassword!= this.password)
+    {
+      this.alertService.error("Password given Doesn't match with Old Password");
+    }
+    else{
     this.appService.updatepassword(this.passForm.value)
       .subscribe(data => {
-        if (data == 1) {
-          this.missMatchPwd = 1;     
-        }
-        else {
           $('#showPassword').removeClass('editmode');
-          this.missMatchPwd = 0;
           this.iseditPwd= false;
-          this.createPasswordform();
-        }
+          this.createPasswordform();       
       },
         error => console.log(error));
+    }
   }
   MissClear() {
+    this.alertService.clear();
     $('#missmatchOld').hide();
   }
   clear() {
@@ -118,6 +119,7 @@ export class AccountsettingdetailsComponent implements OnInit {
   }
   ngOnInit() {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.password = JSON.parse(sessionStorage.getItem('oldPassword'));
   }
 
 }

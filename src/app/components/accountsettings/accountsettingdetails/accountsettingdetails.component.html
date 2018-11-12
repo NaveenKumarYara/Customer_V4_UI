@@ -49,48 +49,46 @@
                     <input type="password" id="oldPassword" formControlName="OldPassword" placeholder="Old Password" class="form-control" (keypress)="MissClear()"
                     (keyup)="MissClear()">
                   <span class="glyphicon" [ngClass]="oldstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="oldPassword()"></span>
+                  <alert></alert>
+                  <div *ngIf="passForm.controls['OldPassword'].invalid && (passForm.controls['OldPassword'].dirty || passForm.controls['OldPassword'].touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="passForm.controls['OldPassword'].errors.required">
+                    Old Password is required.
+                  </div>    
                 </div>
-                <div *ngIf="passForm.controls['OldPassword'].invalid && (passForm.controls['OldPassword'].dirty || passForm.controls['OldPassword'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="passForm.controls['OldPassword'].errors.required">
-                  Old Password is required.
-                </div>
-              </div>
-              </div>
+                </div>              
+              </div>                       
               <div class="form-group">
                 <label for="newPassword"></label>
                 <div class="editable-input">
                     <input type="password" id="password" formControlName="NewPassword" placeholder="New Password" class="form-control">
                     <span class="glyphicon" [ngClass]="newstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="newPassword()"></span>
-                </div>
-                <div *ngIf="passForm.controls['NewPassword'].invalid && (passForm.controls['NewPassword'].dirty || passForm.controls['NewPassword'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="passForm.controls['NewPassword'].errors.required">
-                  New Password is required.
-                </div>
-                <small *ngIf="passForm.controls['NewPassword'].errors.password>0">
-                    New Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
-                  </small>
-              </div>
+                    <div *ngIf="passForm.controls['NewPassword'].invalid && (passForm.controls['NewPassword'].dirty || passForm.controls['NewPassword'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="passForm.controls['NewPassword'].errors.required">
+                      New Password is required.
+                    </div>
+                    <small *ngIf="passForm.controls['NewPassword'].errors.password>0">
+                        New Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
+                      </small>
+                  </div>
+                  </div>              
               </div>
               <div class="form-group">
                 <label for="confirmPassword"></label>
                 <div class="editable-input">
                     <input type="password" id="confirmPassword" formControlName="ConfirmPassword" placeholder="Confirm Password" class="form-control">
                     <span class="glyphicon" [ngClass]="confirmstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="confirmPassword()"></span>
-                </div>
-                <div *ngIf="passForm.controls['ConfirmPassword'].invalid && (passForm.controls['ConfirmPassword'].dirty || passForm.controls['ConfirmPassword'].touched)"
-                class="alert alert-danger"> Passwords must match
-                <small *ngIf="passForm.controls['ConfirmPassword'].errors.required">
-                  Confirm Password is required.
-                </small>
-                <!-- <div *ngIf="passForm.controls['ConfirmPassword'].errors.minlength">
-                  Please enter 6 characters
-                </div> -->
-                <small *ngIf="passForm.controls['ConfirmPassword'].errors.password>0">
-                  Confirm Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
-                </small>
-              </div>
+                    <div *ngIf="passForm.controls['ConfirmPassword'].invalid && (passForm.controls['ConfirmPassword'].dirty || passForm.controls['ConfirmPassword'].touched)"
+                    class="alert alert-danger"> Passwords must match
+                    <small *ngIf="passForm.controls['ConfirmPassword'].errors.required">
+                      Confirm Password is required.
+                    </small>
+                    <small *ngIf="passForm.controls['ConfirmPassword'].errors.password>0">
+                      Confirm Password should contain at least 6 from the following one digit, one lower case, one upper case, one special character
+                    </small>
+                  </div>
+                  </div>               
               </div>
               <div class="btn-row">
                 <button class="btn btn-filled" [disabled]="passForm.invalid">Save</button>
@@ -103,7 +101,7 @@
               <div class="form-group">
                 <label for="password">Password</label>
                 <div class="editable-input">
-                  <input type="password" value="1234567" class="form-control">
+                  <input type="password" value="{{password}}" class="form-control" readonly>
                   <a  (click)="iseditPwd=!iseditPwd" class="edit-btn">Edit password</a>
                 </div>
               </div>

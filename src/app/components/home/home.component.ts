@@ -16,6 +16,7 @@ export class HomeComponent {
   loginform: any;
   customerId:any;
   companyLogo:any;
+  password:any;
   userId:any;
   constructor( private fb: FormBuilder, private router: Router,private appService: AppService) {
 
@@ -26,6 +27,8 @@ export class HomeComponent {
     this.appService.Login(this.loginform.value)
       .subscribe(
       data => {
+        this.password = $("#password").val();
+        sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
         sessionStorage.setItem('userData', JSON.stringify(data));
         this.customerId = data.customerId;
