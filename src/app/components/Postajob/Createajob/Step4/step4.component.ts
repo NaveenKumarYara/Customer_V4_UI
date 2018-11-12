@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { InsertJob } from '../../models/jobPostInfo';
 import { Location } from '@angular/common';
+import { StepsComponent } from '../steps.component';
 @Component({
   selector: 'app-steps-step4',
   templateUrl: './step4.component.html',
@@ -32,12 +33,12 @@ export class Step4Component implements OnInit {
   empType: any;
   intwType: any;
   reporting: any;
-  customer:any;
-  userId:any;
-  customerId:any;
+  customer: any;
+  userId: any;
+  customerId: any;
   team: any;
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService, private location: Location) {
+    private router: Router, private appService: AppService, private location: Location, private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -180,8 +181,9 @@ export class Step4Component implements OnInit {
     });
   }
 
-
-
+  backtoStep3() {
+    this.steps.step3toggleClass();
+  }
 
 
 }

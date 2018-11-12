@@ -21,7 +21,9 @@
     margin: 30px auto;
     padding : 0 !important;
 }
-
+.disabled{
+    pointer-events: none;
+   }
 /* h4,h5{
     display:inline-block;
     width:280px;

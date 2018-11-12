@@ -13,6 +13,7 @@ import { JobdetailsComponent } from '../Step1/Jobdetails.component';
 import { JobprofileComponent } from '../Step1/Jobprofile.component';
 import { JobResponsibilitiesComponent } from '../Step1/Jobresponsibilities.component';
 import { JobskillsetComponent } from '../Step1/Jobskillset.component';
+import { StepsComponent } from '../steps.component';
 
 @Component({
   selector: 'app-steps-step2',
@@ -36,9 +37,9 @@ export class Step2Component implements OnInit {
   jobResponsibility: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
-  customer:any;
-  userId:any;
-  customerId:any;
+  customer: any;
+  userId: any;
+  customerId: any;
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -62,7 +63,7 @@ export class Step2Component implements OnInit {
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService) {
+    private router: Router, private appService: AppService, private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -142,10 +143,15 @@ export class Step2Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
+        this.steps.step3toggleClass();
         this.router.navigate(['/app-createajob/app-steps-step3']);
       }
     });
 
+  }
+
+  backtoStep1() {
+    this.steps.step1toggleClass();
   }
 
 
