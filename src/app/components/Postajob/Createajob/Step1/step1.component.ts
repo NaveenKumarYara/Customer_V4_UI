@@ -10,6 +10,7 @@ declare var $: any;
 declare var jQuery: any;
 import {InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo} from '../../models/jobPostInfo';
 import { CreateajobComponent } from '../createajob.component';
+import { StepsComponent } from '../steps.component';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -44,7 +45,8 @@ export class Step1Component implements OnInit {
   pjTechnicalTeamList: any = [];
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService, private creteComponent: CreateajobComponent) {
+    private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
+    , private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -86,6 +88,8 @@ export class Step1Component implements OnInit {
       if (data) {
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
+       // this.steps.step2isClicked = true;
+        this.steps.step2toggleClass();
         this.router.navigate(['/app-createajob/app-steps-step2']);
       }
     });
