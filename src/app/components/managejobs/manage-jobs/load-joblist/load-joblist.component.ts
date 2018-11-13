@@ -90,6 +90,7 @@ export class LoadJoblistComponent implements OnInit {
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
     this.populateJoblist(this.customerId, this.userId);
+    localStorage.removeItem('sortBy');
    // this.spinner.hide();
   }
 }
