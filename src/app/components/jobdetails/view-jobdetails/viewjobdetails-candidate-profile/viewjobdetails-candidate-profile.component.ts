@@ -225,6 +225,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     //     var $detailsCloseBtn = $selectedCard.find('.close');
         return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
           this.matchingDetails = res;
+          $('.matching-details').removeClass('open');
           $('#matchingDetail-' + profileId).toggleClass('open');
         });
 
