@@ -1,6 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { LayoutComponent} from './components/layout/layout.component';
 import { PostajobComponent } from './components/Postajob/postajob.component';
 import { StepsComponent } from './components/Postajob/Createajob/steps.component';
 import { CreateajobComponent } from './components/Postajob/Createajob/createajob.component';
@@ -81,7 +82,8 @@ import { UsersComponent } from './components/accountsettings/users/users.compone
 
 const appRoutes: Routes =
 [
-    { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
+  { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
+    { path: 'home', component:HomeComponent },
     { path: 'app-postajob', component: PostajobComponent },
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [
@@ -195,8 +197,8 @@ const appRoutes: Routes =
       ]
     },
 
-    { path: '', redirectTo: '/home', pathMatch: 'full' , canActivate: [AuthGuard] },
-    { path: '**', component: HomeComponent }
+    { path: '', redirectTo: '/layout', pathMatch: 'full' , canActivate: [AuthGuard] },
+    { path: '**', component: LayoutComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: false});
