@@ -3,13 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
+import { AlertService } from '../../shared/alerts/alerts.service';
 declare var $: any; 
 @Component({
   
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers:[AppService]
+  providers:[AppService,AlertService]
 })
 export class HomeComponent {
   
@@ -18,7 +19,7 @@ export class HomeComponent {
   companyLogo:any;
   password:any;
   userId:any;
-  constructor( private fb: FormBuilder, private router: Router,private appService: AppService) {
+  constructor( private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
 
   }
  
@@ -37,10 +38,14 @@ export class HomeComponent {
       },
 
       error => {
+        this.alertService.error('Please provide the valid details');
         this.loginform.reset();
       },
       () => console.log('Call Sucessfull')
       );
+  }
+  MissClear() {
+    this.alertService.clear();
   }
 
   ngOnInit() {

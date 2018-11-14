@@ -15,10 +15,12 @@
 		<div class="span12">
 		  <form [formGroup]="loginform" (ngSubmit)="login()">
 			<header>Login </header>
+			<alert></alert>
 			<label>Username
 			  <span>*</span>:</label>
 			<div class="form-group form-control-login">
-			  <input type="text" placeholder="User name" name="User name" [formControl]="loginform.controls['UserName']">
+			  <input type="text" placeholder="User name" name="User name" [formControl]="loginform.controls['UserName']" (keypress)="MissClear()"
+				(keyup)="MissClear()">
 			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
 			</div>
 			<label>Password
@@ -33,9 +35,9 @@
 			</div> -->
 			<br>
 			<button type="submit" id="login-button" class="btn green-btn pull-right">Login</button>
-		  </form>
+			</form>
 		</div>
-	  </div>
-	</div>
+		</div>
 
+	</div>
   </div>
