@@ -110,20 +110,20 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
   }
 
   getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, noOfRows: number= 6):
-  Observable<JobdetailsProfile[]> {
+  Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&pageNumber=1&noOfRows=' + noOfRows;
-   return this.http.get<JobdetailsProfile[]>(url)
+   return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
      .catch(
        this.handleError
      );
  }
   getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1,
-    noOfRows: number= 6): Observable<JobdetailsProfile[]> {
+    noOfRows: number= 6): Observable<JobdetailsProfile> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&pageNumber=1&noOfRows=' + noOfRows;
-    return this.http.get<JobdetailsProfile[]>(url)
+    return this.http.get<JobdetailsProfile>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
