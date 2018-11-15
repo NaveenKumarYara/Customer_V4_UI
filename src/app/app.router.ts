@@ -1,6 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { FeaturesComponent } from './components/features/features.component';
 import { LayoutComponent} from './components/layout/layout.component';
 import { PostajobComponent } from './components/Postajob/postajob.component';
 import { StepsComponent } from './components/Postajob/Createajob/steps.component';
@@ -79,11 +81,14 @@ import { AccountsettingsComponent } from './components/accountsettings/accountse
 import { AccountsettingdetailsComponent } from './components/accountsettings/accountsettingdetails/accountsettingdetails.component';
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
 import { UsersComponent } from './components/accountsettings/users/users.component';
+import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
 
 const appRoutes: Routes =
 [
   { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component:HomeComponent },
+    { path: 'about', component:AboutComponent},
+    { path: 'features', component:FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [

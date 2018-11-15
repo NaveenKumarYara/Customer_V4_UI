@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { FeaturesComponent } from './components/features/features.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -59,6 +61,8 @@ import {SharedModule} from './shared/shared.module';
   declarations: [
     AppComponent,
     LayoutComponent,
+    AboutComponent,
+    FeaturesComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
