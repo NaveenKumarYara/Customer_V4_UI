@@ -24,16 +24,17 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
-   jobdetailsprofiles: JobdetailsProfile[] = [];
+   jobdetailsprofiles = new JobdetailsProfile() ;
    matchingDetails: MatchingDetails;
    customerId: any;
    userId: any;
    skills: any = null;
+   loading: boolean;
    schIntw = new ScheduleInterview();
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
-
+  @Output() loadMoreEvent = new EventEmitter();
 
   @Input() options: object;
   $owlElement: any;
@@ -177,20 +178,31 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     sessionStorage.setItem('profileId', JSON.stringify(profileId));
     this.router.navigateByUrl('app-cprofile');
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, sortBy= 1, pageNumber= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, noofRows= 6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
-      this.statusid = statusid;
+      this.statusid = statusid === 0 ? 4 : statusid;
     }
-    if (this.statusid === 15) {
+    if (statistics === 0 && statusid >= 4 ) {
+    this.jobdetailsprofiles = new JobdetailsProfile();
+    } else if (this.statusid === 15) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
-        sortBy, pageNumber).subscribe(res => {
+        sortBy, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
+        // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, pageNumber)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
+      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {
+        this.myEvent.emit('max'); // load more hide when max count is reached
+       } else if ((noofRows === 6 ) && (res.Profile.length < noofRows)) {
+        this.myEvent.emit('min'); // load more when profiles count is min and low
+       }
+      //  else {
+      //   this.myEvent.emit(true);
+      //  }
     });
   }
   }
@@ -258,59 +270,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         });
       });
     })(jQuery);
-    // (function ($) {
-    //   $('#cultural-carousel').owlCarousel({
-    //     loop: true,
-    //     margin: 10,
-    //     nav: true,
-    //     navText: ['<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>',
-    //     '<span class="icon-down-arrow"><img src="~/images/slider-nav-right.png" alt=""></span>'],
-    //     responsive: {
-    //       0: {
-    //         items: 3
-    //       },
-    //       600: {
-    //         items: 3
-    //       },
-    //       1000: {
-    //         items: 6
-    //       }
-    //     }
-    //   });
-
-    //   $('.skills-carousel').owlCarousel({
-    //     loop: true,
-    //     margin: 15,
-    //     nav: true,
-    //     navText: ['<img src="/images/left-chev.svg" alt="">', '<img src="/images/right-chev.svg" alt="">'],
-    //     0: {
-    //       items: 2
-    //     },
-    //     600: {
-    //       items: 3
-    //     }
-    //   });
-    // });
-  //  $(document).ready(function() {
-      // var owl = $('.owl-carousel');
-      // owl.owlCarousel({
-      //   margin: 10,
-      //   nav: true,
-      //   loop: true,
-      //   responsive: {
-      //     0: {
-      //       items: 1
-      //     },
-      //     600: {
-      //       items: 3
-      //     },
-      //     1000: {
-      //       items: 5
-      //     }
-      //   }
-      // });
-   // })
-    this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid);
+    // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
     console.log('abc');
   }
 
