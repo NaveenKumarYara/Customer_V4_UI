@@ -3,7 +3,8 @@
   <label for="" class="question">Which domain/(s) is the project into?</label>
   <p class="description">Share details so we can find you the most eligible candadtes.</p>
   <div class="form-row row">
-    <div class="col-md-10"> 
+    <div class="col-md-5 form-group skill-name" > 
+        <label for="">DomainName</label>
         <ng-select class="custom-style" [items]="domains | async"
         placeholder="e.g. Bachelor of Computer Arts"
         (change)="changeValue($event)"
@@ -21,7 +22,19 @@
         (removed)="removed($event)"
         (typed)="typed($event)" -->
     </div>
-    <div class="col-md-2">
+    <div class="form-group  col-md-2">
+        <label for="">Min</label>
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+          bindLabel="minExperience" [loading]="peopleLoading" [(ngModel)]="minexp">
+        </ng-select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">Max</label>
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+          bindLabel="name" [loading]="peopleLoading" [(ngModel)]="maxexp">
+        </ng-select>
+      </div>
+    <div class="form-group col-md-2">
         <button class="btn add-btn form-control" (click)="addDomain()">+</button>
     </div>
   </div>
