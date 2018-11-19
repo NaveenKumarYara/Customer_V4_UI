@@ -17911,7 +17911,7 @@ a.ui-button:active,
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 289px;
+  height: 373px;
 }
 
   .page--dashboard .card.message h1 {
@@ -18121,7 +18121,7 @@ a.ui-button:active,
   }
 
   .page--dashboard .card.message {
-    height: 259px;
+    height:345px;
   }
 
     .page--dashboard .card.message p {
