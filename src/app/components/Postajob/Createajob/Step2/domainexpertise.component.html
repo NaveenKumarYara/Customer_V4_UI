@@ -22,18 +22,18 @@
         (removed)="removed($event)"
         (typed)="typed($event)" -->
     </div>
-    <div class="form-group  col-md-2">
-        <label for="">Min</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
-          bindLabel="minExperience" [loading]="peopleLoading" [(ngModel)]="minexp">
-        </ng-select>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="">Max</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
-          bindLabel="name" [loading]="peopleLoading" [(ngModel)]="maxexp">
-        </ng-select>
-      </div>
+    <div class="form-group exp col-md-2">
+      <label for="">Min Experience</label>
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+        bindLabel="minExperience" [loading]="peopleLoading" [(ngModel)]="MinimumExperience">
+      </ng-select>
+    </div>
+    <div class="form-group exp col-md-2">
+      <label for="">Max Experience</label>
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+        bindLabel="name" [loading]="peopleLoading" [(ngModel)]="MaximumExperience">
+      </ng-select>
+    </div>
     <div class="form-group col-md-2">
         <button class="btn add-btn form-control" (click)="addDomain()">+</button>
     </div>
@@ -45,6 +45,7 @@
       <ul class="data-list">
         <li class="col-md-5 no-exp" *ngFor="let domain of domainlist; let i = index">
           <span class="name">{{domain.DomainName}}</span>
+          <span class="experience"> {{domain.MinimumExperience}} - {{domain.MaximumExperience}} Yrs</span>
           <span class="close" (click)="deleteDomain(i)">&times;</span>
         </li>
       </ul>

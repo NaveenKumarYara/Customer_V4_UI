@@ -374,8 +374,8 @@ getaddedPersonTypes() {
     this.domain.push(domain);
     this.domainChanged.next(this.domain.slice());
     const domainVal = new PjDomain;
-    domainVal.MinimumExperience = 1;
-    domainVal.MaximumExperience = 2;
+    domainVal.MinimumExperience =  domain.MinimumExperience;
+    domainVal.MaximumExperience = domain.MaximumExperience;
     domainVal.ExperienceRequired = true;
     domainVal.Description = 'abcde';
     domainVal.DomainId = domain.DomainId;

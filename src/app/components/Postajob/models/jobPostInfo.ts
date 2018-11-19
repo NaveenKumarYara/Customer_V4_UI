@@ -48,15 +48,15 @@ export class InsertJob {
     Role: string;
 
   }
-  //For GetRoles 
-  export class Roles{
-    public RoleId :number;
-    public Role:string;
+  // For GetRoles
+  export class Roles {
+    public RoleId: number;
+    public Role: string;
     }
-    //For edit Roles 
-    export class EditRoles{
-      public RoleId :number;
-      public RolesAndResponsibilities:string;
+    // For edit Roles
+    export class EditRoles {
+      public RoleId: number;
+      public RolesAndResponsibilities: string;
       }
   export class RoleModel {
 
@@ -78,12 +78,14 @@ export class DiscResult {
   public PersonType: string;
   public SubType: string;
   public Description: string;
-  public checked :boolean;
+  public checked: boolean;
 }
   //
   export class GetDomain {
      public DomainId: number;
      public DomainName: string;
+     public MinimumExperience: number;
+     public MaximumExperience: number;
   }
   export class PjDomain {
     public ExperienceRequired: boolean;
@@ -97,21 +99,21 @@ export class DiscResult {
     public IsActive: boolean;
 
   }
-  export class PrefLocation{
-    public PreferredLocationId:number;
-    public location:string;
+  export class PrefLocation {
+    public PreferredLocationId: number;
+    public location: string;
     }
   // related
 
   export class CustomerUsers {
-      //public  JobAccessId: number;
+      // public  JobAccessId: number;
      // public JobId: number;
       public  UserId: number;
       public FirstName: string;
      // public  MiddleName: string;
-      //public  LastName: string;
-      ///public  ProfilePic: string;
-      //public CustomerId: number;
+      // public  LastName: string;
+      /// public  ProfilePic: string;
+      // public CustomerId: number;
   }
   //
   export class PjTechnicalTeam {

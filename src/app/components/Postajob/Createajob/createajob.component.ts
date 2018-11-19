@@ -178,6 +178,8 @@ ejPersonSingleList: PjDisc[] = [];
           //  const ejDomain = new GetDomain();
           //  ejDomain.DomainId = dom.DomainId;
           //  ejDomain.DomainName = dom.DomainName;
+          ejDomainId.MinimumExperience = dom.MinimumExperience;
+          ejDomainId.MaximumExperience = dom.MaximumExperience;
             ejDomainId.DomainId = dom.DomainId;
           //  this.ejDomainList.push(ejDomain);
             this.ejDomainIdList.push(ejDomainId);
