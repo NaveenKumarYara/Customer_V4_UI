@@ -17863,11 +17863,11 @@ a.ui-button:active,
     }
 
     .page--dashboard .statistics.card .stats > div:nth-of-type(3) {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
     .page--dashboard .statistics.card .stats > div:nth-of-type(4) {
-      padding-top: 2rem;
+      padding-top: 1rem;
     }
 
 
@@ -18003,7 +18003,7 @@ a.ui-button:active,
     }
 
   .page--dashboard .jobs .card .v-divider, .page--dashboard .applications .card .v-divider {
-    border-right: 1px solid #E0E3EF;
+    border-right: 1.5px solid #E0E3EF;
   }
 
 .page--dashboard .jobs .stats h1, .page--dashboard .applications .stats h1 {
@@ -20080,7 +20080,7 @@ a.ui-button:active,
   .page--create-a-job .form-steps .nav-tabs li.line {
     -ms-flex-preferred-size: 21%;
     flex-basis: 21%;
-    height: 1px;
+    height: 2px;
     background: #E0E3EC;
     -ms-flex-item-align: start;
     align-self: flex-start;
@@ -20108,7 +20108,7 @@ a.ui-button:active,
         border-radius: 50%;
         height: 28.6px;
         width: 28.6px;
-        border: 1px solid #E0E3EC;
+        border: 2px solid #E0E3EC;
       }
 
     .page--create-a-job .form-steps .nav-tabs li.active > a {
