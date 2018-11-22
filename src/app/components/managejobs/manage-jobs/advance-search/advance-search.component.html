@@ -1,4 +1,4 @@
-<div class="adv-filters row" style="display: block;">
+<div class="adv-filters row" *ngIf="!advancesearch" style="display: block;">
   <div class="col-md-12">
     <div class="input-row row">
       <form action="">
@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="pull-right">
-          <button class="btn btn-border">Cancel</button>
+          <button class="btn btn-border" (click)="advancesearch=!advancesearch" >Cancel</button>
           <button class="btn btn-filled">Apply</button>
         </div>
       </div>
