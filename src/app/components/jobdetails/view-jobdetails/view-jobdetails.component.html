@@ -50,8 +50,10 @@
           </header>
           <div class="card-body">
             <div>
-              <button *ngIf="jobdetailsbasicinfo?.JobStatus!='InActive'" id="Inactive" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Inactive</button>
-              <button *ngIf="jobdetailsbasicinfo?.JobStatus=='InActive'" id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">active</button>
+              <button *ngIf="jobdetailsbasicinfo?.IsActive==true;else isactive"  class="btn btn-border"  id="Inactive"  (click)="changeJobStatus(jobdetailsbasicinfo,false)">Inactive</button>
+              <ng-template #isactive>
+                <button id="Active"  class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Active</button>
+              </ng-template>
               <button class="btn btn-border" mat-button (click)="openCandidateUploadDialog()">Manage Profiles</button>
             </div>
             <div>
