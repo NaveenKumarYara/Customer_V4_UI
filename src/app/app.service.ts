@@ -103,12 +103,28 @@ export class AppService {
   // currenttextOPening = this.textOPening.asObservable();
 
   myopenings: number;
- noofOpenings = new BehaviorSubject(this.myopenings);
+  noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
   myLocation = new PrefLocation();
   location = new BehaviorSubject(this.myLocation);
   currentlocation = this.location.asObservable();
+
+ myMinAnnualRate = 1000;
+ myMaxAnnualRate = 10000;
+ minAnnualRate = new BehaviorSubject(this.myMinAnnualRate);
+ currentMinRate =  this.minAnnualRate.asObservable();
+
+ maxAnnualRate = new BehaviorSubject(this.myMaxAnnualRate);
+ currentMaxRate =  this.maxAnnualRate.asObservable();
+
+ myMinHourlyRate = 20;
+ myMaxHourlyRate = 100;
+ minHourlyRate = new BehaviorSubject(this.myMinHourlyRate);
+ currentMinHourlyRate =  this.minHourlyRate.asObservable();
+
+ maxHourlyRate = new BehaviorSubject(this.myMaxHourlyRate);
+ currentMaxHourlyRate =  this.maxHourlyRate.asObservable();
 
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
@@ -145,6 +161,15 @@ export class AppService {
   }
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
+  }
+  updateSalaryRange(min: number, max: number, salaryType) {
+    if (salaryType === 1) {
+    this.minAnnualRate.next(min);
+    this.maxAnnualRate.next(max);
+    } else {
+      this.minHourlyRate.next(min);
+      this.maxHourlyRate.next(max);
+    }
   }
   searchJobTitle(term: string = null): Observable<string[]> {
     const url = environment.jobTitleEndpoint + '?jobtitle=' + term;

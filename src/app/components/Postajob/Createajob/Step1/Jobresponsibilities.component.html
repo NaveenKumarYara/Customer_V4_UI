@@ -21,7 +21,7 @@
         [(ngModel)]="responsibilities"> -->
 
         <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" 
-        required [(ngModel)]="responsibilities" id="responsibilitiesName" (keyup)="GetTitleRoles($event)"
+        required [(ngModel)]="responsibilities" id="responsibilitiesName" (keyup)="GetTitleRoles()"
         placeholder="Type and Select">
         <div class="searchList" *ngIf="roleJobTitleList!=null" >
             <ul class="searchList-dropdown">

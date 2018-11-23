@@ -9,15 +9,18 @@ import { AppService } from '../../../../app.service';
 export class Step3SummaryComponent implements OnInit {
 employmentType: any;
 employmentTypeId: any;
-  contractDuration: string;
+contractDuration: string;
 contactExtension: string;
 interviewTypeId: number;
 interviewType: string;
 reportinManagerId: number;
 reportinManager: string;
 teamMembers: any;
+empType: number;
 contractExtension: boolean;
-
+salaryType: number;
+minRate: number;
+maxRate: number;
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService ) {
@@ -35,6 +38,9 @@ contractExtension: boolean;
       this.appService.currentcustomerUsers.subscribe((data) => {
         this.reportinManagerId = data.UserId; // And he have data here too!
         this.reportinManager = data.FirstName;
+      });
+      this.appService.currentEmploymentType.subscribe((data) => {
+        this.empType = data.EmploymentTypeId; // And he have data here too!
       });
       // this.appService.addedteammembersChanged.subscribe((data) => {
       //   this.teamMembers = data; // And he have data here too!
@@ -54,6 +60,14 @@ contractExtension: boolean;
     // this.employmentType = this.appService.employmentType.value.EmploymentType;
     if (this.employmentTypeId === 2) {
     this.contractExtension = true;
+    }
+    this.salaryType = this.empType;
+    if (this.empType === 1) {
+      this.appService.currentMinRate.subscribe(x => this.minRate = x);
+      this.appService.currentMaxRate.subscribe(x => this.maxRate = x);
+    } else if (this.empType === 2) {
+      this.appService.currentMinHourlyRate.subscribe(x => this.minRate = x);
+      this.appService.currentMaxHourlyRate.subscribe(x => this.maxRate = x);
     }
     // this.contractDuration = this.appService.contractDuration.value;
     // this.interviewTypeId = this.appService.interviewType.value.InterviewTypeId;

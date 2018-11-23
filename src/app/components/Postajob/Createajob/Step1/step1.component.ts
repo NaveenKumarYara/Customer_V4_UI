@@ -76,14 +76,35 @@ export class Step1Component implements OnInit {
     this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
-    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat( this.jobSkills.secondaryjobskills);
+    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+    if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+      this.appService.currentEmploymentType.subscribe((data) => {
+        this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
+      });
+    // this.insertJob.EmploymentTypeId = 1;
+    this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+    if (this.insertJob.SalaryTypeId === 1) {
+      this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+      this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+    } else if (this.insertJob.SalaryTypeId === 2) {
+      this.insertJob.ContractExtended = true;
+      this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+      this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+    }
+    // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
+    // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+    this.insertJob.IsDrafted = false;
+    this.insertJob.StepNumber = 4;
+    } else {
     this.insertJob.EmploymentTypeId = 1;
     this.insertJob.SalaryTypeId = 1;
     this.insertJob.MinimumSalary = '1';
     this.insertJob.MaximumSalary = '200';
     this.insertJob.IsDrafted = true;
     this.insertJob.StepNumber = step;
+  }
+
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

@@ -26,12 +26,13 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   roleIdList: PjRole[] = [];
   roleId = new PjRole();
   roleJobTitleList: any;
+  jobTitle: string;
   // jobTitle: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.roleModel = new RoleModel(0, null, null);
       this.appService.currentjobtitle.subscribe((data) => {
-        this.roleModel.JobTitle = data; // And he have data here too!
+        this.jobTitle = data; // And he have data here too!
       });
   }
 
@@ -128,15 +129,15 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     }
     console.log(itemArr);
   }
-  GetTitleRoles(val) {
+  GetTitleRoles() {
     // let jobtitle = this.jobDetail.selectedTitle;
     // if (jobtitle === undefined) {
     //   jobtitle = '';
     // }
    // if (jobtitle && val) {
       const roleObj = new RoleJobTitle();
-      roleObj.JobTitle =  this.roleModel.JobTitle;
-      roleObj.Role = val.key;
+      roleObj.JobTitle =  this.jobTitle;
+      roleObj.Role = $('#responsibilitiesName').val();
       this.appService.getRoles(roleObj)
         .subscribe(
           data => {

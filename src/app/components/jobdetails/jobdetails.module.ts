@@ -25,6 +25,7 @@ import {SharedModule} from '../../shared/shared.module';
 import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlickityModule } from 'ngx-flickity';
 @NgModule({
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot()
+    MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
+    FlickityModule
     // ,
     // ModalDialogModule.forRoot()
   ],
