@@ -84,6 +84,7 @@ ejPersonSingleList: PjDisc[] = [];
   // }
   PopulateJobdetail (jobId) {
     localStorage.setItem('jobId', jobId);
+    localStorage.setItem('EditMode', 'Yes');
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
@@ -95,6 +96,13 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.hasDescription.next(this.jobdetailscustomer.JobInfo.CompleteDescription);
       this.appService.description.next(this.jobdetailscustomer.JobInfo.JobDescription);
       this.appService.noofOpenings.next(this.jobdetailscustomer.JobInfo.NumberOfVacancies);
+      if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 1) {
+      this.appService.minAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
+      this.appService.maxAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
+      } else if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 2) {
+      this.appService.minHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
+      this.appService.maxHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
+      }
       this.ejEmploymentType.EmploymentType = this.jobdetailscustomer.JobInfo.EmploymentType;
       this.ejEmploymentType.EmploymentTypeId = this.jobdetailscustomer.JobInfo.EmploymentTypeId;
       this.appService.employmentType.next(this.ejEmploymentType);

@@ -195,9 +195,9 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
-      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {
+      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {  // need to change the res.totalprofile count
         this.myEvent.emit('max'); // load more hide when max count is reached
-       } else if ((noofRows === 6 ) && (res.Profile.length < noofRows)) {
+       } else if ((noofRows === 6 ) && (res.Profile.length < noofRows)) {// need to change the res.totalprofile count
         this.myEvent.emit('min'); // load more when profiles count is min and low
        }
       //  else {

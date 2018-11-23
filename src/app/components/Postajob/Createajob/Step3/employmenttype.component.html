@@ -9,5 +9,26 @@
       <label><input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId" (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span class="box">{{type.EmploymentType}}</span> </label>
 
     </div>  
-  </div>
- </div>
+  </div> 
+</div>
+<div class="form-group position-group">
+<label for="" class="question">What is the Salary Range?</label>
+  <p class="description">differentiation is based on employment type selection hourly or annual.</p>
+<div *ngIf="salaryType === 1">
+ <ng5-slider [(value)]="minAnnualRate"
+            [(highValue)]="maxAnnualRate"
+            [options]="annual"
+            (userChangeStart)="minAnnualChangeStart($event)"
+            (userChange)="onAnnualChange($event)"
+            (userChangeEnd)="maxAnnualChangeEnd($event)">
+</ng5-slider>
+</div>
+<div *ngIf="salaryType === 2">
+  <ng5-slider [(value)]="minHourRate"
+             [(highValue)]="maxHourRate"
+             [options]="hourly"
+             (userChangeStart)="minHourlyChangeStart($event)"
+             (userChange)="onHourlyChange($event)"
+             (userChangeEnd)="maxHourlyChangeEnd($event)">
+ </ng5-slider>
+ </div></div>

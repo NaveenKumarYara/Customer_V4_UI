@@ -56,7 +56,9 @@ import { AuthService } from './shared/guard/auth.service';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from './shared/shared.module';
-
+import { FlickityModule } from 'ngx-flickity';
+import { Ng5SliderModule } from 'ng5-slider';
+// import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +96,7 @@ import {SharedModule} from './shared/shared.module';
     Step3SummaryComponent,
     NotificationsComponent,
     NoofopeningsComponent,
+    // SalarysliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,9 +114,11 @@ import {SharedModule} from './shared/shared.module';
     AccountsettingsModule,
   NgxSpinnerModule,
   ChartsModule,
-  NgbModule.forRoot()
+  NgbModule.forRoot(),
+  FlickityModule,
+  Ng5SliderModule
   ],
-  providers: [AppService, ApiService,AuthService],
+  providers: [AppService, ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
