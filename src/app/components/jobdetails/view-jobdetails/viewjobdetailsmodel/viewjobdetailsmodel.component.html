@@ -36,9 +36,9 @@
 
     <div class="modal-actions">
       <button mat-button mat-dialog-close class="btn btn-border">Cancel</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial *ngIf="jobdetailscustomer?.JobInfo?.IsActive==true;else isactive" id="Inactive"class="btn btn-filled" (click)="changeJobStatus(jobdetailscustomer,false)">Inactive</button>
-      <ng-template #isactive>
-      <button id="Active" mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled" (click)="changeJobStatus(jobdetailscustomer,true)">active</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial *ngIf="jobdetailscustomer?.JobInfo?.IsActive==true;else isactives" id="InactiveJob"class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,false)">Inactive</button>
+      <ng-template #isactives>
+      <button id="ActiveJob" mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,true)">active</button>
       </ng-template>
     </div>
 

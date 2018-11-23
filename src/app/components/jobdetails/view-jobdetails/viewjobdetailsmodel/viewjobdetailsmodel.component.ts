@@ -1,4 +1,4 @@
-import { Component, Inject,OnInit,Input} from '@angular/core';
+import { Component, Inject,OnInit,Input,ViewChild} from '@angular/core';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
@@ -7,6 +7,7 @@ import { JobComments } from '../../models/JobComments';
 import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
+import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -26,7 +27,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  getcompanybenfit: GetCompanyBenefit[];;
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments : JobComments[];
-  constructor(private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(private router: Router, private appService: AppService,private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
@@ -42,12 +43,12 @@ PopulateJobComments (jobid) {
   });
   
 }
-changeJobStatus(job, val) {
+changeJobStat(job, val) {
   if (val === true) {
-   $('#Inactive').replaceWith('#Active');
+   $('#InactiveJob').replaceWith('#ActiveJob');
 
   } else if (val === false) {
-    $('#Active').replaceWith('#Inactive');
+    $('#ActiveJob').replaceWith('#InactiveJob');
   }
   this.deactivate.jobId = job.JobInfo.JobId;
   this.deactivate.customerId = job.JobInfo.CustomerId;
@@ -56,6 +57,7 @@ changeJobStatus(job, val) {
     .subscribe(
     data => {
       this.PopulateJobdetail(this.deactivate.customerId, this.deactivate.jobId);
+      //this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
   },
     error => console.log(error));
 }
@@ -68,6 +70,6 @@ ngOnInit() {
   this.PopulateJobdetail(this.customerId,this.jobid);
   this.PopulateJobComments(this.jobid);
   this.populateCompanyBenfits(this.customerId);
-  console.log('abc');
+  //console.log('abc');
 }
 }
