@@ -8752,13 +8752,13 @@ video {
 }
 
 /* Place this after bootstrap.scss */
-@media (min-width: 1366px) {
+@media (min-width: 1365px) {
   .container {
-    width: 1370px;
+    width: 1340px;
   }
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1365px) {
   .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
     float: left;
   }
@@ -8985,7 +8985,7 @@ video {
   display: none !important;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1365px) {
   .visible-lg {
     display: none !important;
   }
@@ -9008,13 +9008,13 @@ video {
   }
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1365px) {
   .visible-xl-block {
     display: block !important;
   }
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1365px) {
   .visible-xl-inline {
     display: inline !important;
   }
@@ -9264,7 +9264,7 @@ video {
   }
 }
 
-@media all and (max-width: 1366px) {
+@media all and (max-width: 1365px) {
   .main-nav .navbar-toggle {
     display: block;
   }
@@ -18106,7 +18106,7 @@ a.ui-button:active,
     font-size: 11px;
   }
 
-@media all and (max-width: 1366px) {
+@media all and (max-width: 1365px) {
   .page--dashboard .statistics.card .stats-tabs {
     width: 340px;
   }
@@ -20165,8 +20165,11 @@ a.ui-button:active,
   margin-bottom: 35px;
 }
 
-  .page--create-a-job .form-steps .form-group .form-group .form-control {
+  .page--create-a-job .form-steps .form-group .form-control {
     margin-top: 0;
+  }
+  .page--create-a-job .form-steps .domain-exp-group .form-control {
+    margin-top: 44px;
   }
 
 .page--create-a-job .form-steps .data-list {
@@ -20973,4 +20976,14 @@ nav.navbar{
 }
 .mat-dialog-content{
   padding:0px !important;
+}
+
+
+/*Min-Max Salary Slider Custom Styles*/
+.custom-slider .ng5-slider .ng5-slider-pointer{
+  background-color: #448AFA;
+}
+
+.custom-slider .ng5-slider .ng5-slider-selection{
+background: #448AFA;
 }

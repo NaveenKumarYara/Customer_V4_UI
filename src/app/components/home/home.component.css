@@ -109,7 +109,7 @@ html, body {
   .logo-caption-section h3{
       font-weight: normal;
   }
-  @media (min-width: 1366px){
+  @media (min-width: 1365px){
     .hidden-lg{
         display: none!important;
     }
