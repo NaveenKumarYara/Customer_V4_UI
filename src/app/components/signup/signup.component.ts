@@ -32,7 +32,10 @@ export class SignUpComponent {
       });
   }
  
- 
+  Login()
+  {
+    this.router.navigateByUrl('home'); 
+  }
 
   SignUp() {
     this.signUpform.value.UserName = this.signUpform.value.Email;
