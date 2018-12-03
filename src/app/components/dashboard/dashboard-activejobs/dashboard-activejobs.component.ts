@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,14 @@ export class DashboardActivejobsComponent implements OnInit {
   ngOnInit() {
   }
 
-  ActiveJobsClick(){
+  ActiveJobsClick(sort) {
+    let sortBy;
+    if (sort > 0) {
+      sortBy = sort;
+    } else {
+      sortBy = 0;
+    }
+    localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }
 }
