@@ -17,6 +17,7 @@ import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from './components/Postajob/models/jobPostInfo';
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -83,6 +84,15 @@ export class AppService {
 
  jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
+
+  stepNumber = new BehaviorSubject('');
+  currentStepNumber = this.stepNumber.asObservable();
+
+   myDraft: boolean;
+  isDrafted = new BehaviorSubject(this.myDraft);
+  currentDraft = this.isDrafted.asObservable();
+
+
 
   pMinexp: number;
    minExperience = new BehaviorSubject(this.pMinexp);
@@ -162,6 +172,10 @@ export class AppService {
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
   }
+  updateStepNumber(step: string) {
+    this.stepNumber.next(step);
+  }
+
   updateSalaryRange(min: number, max: number, salaryType) {
     if (salaryType === 1) {
     this.minAnnualRate.next(min);
@@ -506,7 +520,6 @@ Login(body) {
 }
 
 signUp(body) {
-  debugger
   return this.http.post(environment.signUp, body)
   .map((res: Response) => res)
   .catch((error: any) => {
