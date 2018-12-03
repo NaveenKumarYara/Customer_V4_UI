@@ -23,6 +23,7 @@ export class LoadJoblistComponent implements OnInit {
   userId: any;
   joblist: JobDetails[] = [];
   joblistcount: number;
+  defaultValue:any;
   jobs: any;
   loaddata = false;
   sortBy: any;
@@ -39,7 +40,14 @@ export class LoadJoblistComponent implements OnInit {
     this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
-    // this.spinner.show();
+    if(this.sortBy == null || this.sortBy == undefined)
+    {
+      this.defaultValue ='0';
+    }
+    else
+    {
+    this.defaultValue = this.sortBy;
+    }
   }
 
   private data: Observable<any>;

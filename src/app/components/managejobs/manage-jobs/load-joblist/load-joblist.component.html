@@ -17,7 +17,7 @@
             </svg>
             <span>View</span>
           </label>
-          <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
+          <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue" (change)="PopulateSort($event.target.value)">
             <option default value="0">All Jobs</option>
             <option value="1">Active Jobs</option>
             <option value="2">InActive Jobs</option>
