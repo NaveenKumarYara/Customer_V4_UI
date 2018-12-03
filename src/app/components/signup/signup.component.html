@@ -1,0 +1,61 @@
+<div class="login_bg overlay">
+	<div class="container align-middle">
+	  <div class="row">
+			<div class="col-md-6 logo-caption-section">
+				<div class="clearfix">&nbsp;</div>
+				<div class="clearfix">&nbsp;</div>
+				<div class="clearfix hidden-xs">&nbsp;</div>
+				<div class="clearfix hidden-xs">&nbsp;</div>
+				<div class="clearfix hidden-xs">&nbsp;</div>
+				<!-- <img alt="Tenendus" src="/assets/images/Tenendus-Logo-1.png" title="Tenendus"> -->
+				<img alt="Tenendus" src="/assets/images/arytic-logo.png" title="Arytic">
+				<h3>End your explore for the perfect employee through us.</h3>
+			</div>
+		
+		<div class="span12">
+		  <form [formGroup]="loginform" (ngSubmit)="login()">
+			<header>Sign Up </header>
+			<label>Username
+			  <span>*</span>:</label>
+			<div class="form-group form-control-login">
+			  <input type="text" placeholder="User name" name="User name" [formControl]="loginform.controls['UserName']">
+			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+            </div>
+            <label>Email
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="Email" name="User name" [formControl]="loginform.controls['UserName']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
+			<label>Password
+			  <span>*</span>:</label>
+			<div class="form-group form-control-login">
+			  <input placeholder="Password" id="password" name="password" class="form-control input-field" type="password" [formControl]="loginform.controls['Password']">
+			  <span class="glyphicon glyphicon-eye-open"></span>
+			  <!-- <app-error-messages [control]="loginform.controls.Password"></app-error-messages> -->
+            </div>
+            <label>Mobile
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="Mobile" name="User name" [formControl]="loginform.controls['UserName']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
+            <label>ZipCode
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="ZipCode" name="User name" [formControl]="loginform.controls['UserName']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
+			<!-- <div class="form-control-login">
+			  <input type="checkbox" (click)="password()">Show My Password
+			</div> -->
+            <button  id="login-button" class="btn green-btn pull-right">Register</button>
+          
+            </form>
+            
+        </div>
+      
+		</div>
+
+	</div>
+  </div>

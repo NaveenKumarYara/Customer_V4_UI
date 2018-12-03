@@ -1,6 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { SignUpComponent} from './components/signup/signup.component';
 import { AboutComponent } from './components/about/about.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { LayoutComponent} from './components/layout/layout.component';
@@ -87,6 +88,7 @@ const appRoutes: Routes =
 [
   { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component:HomeComponent },
+    { path: 'signup', component:SignUpComponent },
     { path: 'about', component:AboutComponent},
     { path: 'features', component:FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },

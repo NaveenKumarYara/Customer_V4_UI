@@ -23,7 +23,10 @@ export class HomeComponent {
 
   }
  
-
+  SignUp()
+  {
+    this.router.navigateByUrl('signup'); 
+  }
   login() {
     this.appService.Login(this.loginform.value)
       .subscribe(

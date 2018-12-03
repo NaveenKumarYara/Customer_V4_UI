@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes } from '@angular/router';
+import { SignUpComponent} from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { FeaturesComponent } from './components/features/features.component';
@@ -64,6 +65,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     AppComponent,
     LayoutComponent,
     AboutComponent,
+    SignUpComponent,
     FeaturesComponent,
     HomeComponent,
     HeaderComponent,
