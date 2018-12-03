@@ -17,7 +17,14 @@ export class DashboardScheduledInterviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  InterViewScheduledClick(){
+  InterViewScheduledClick(sort) {
+    let sortBy;
+    if (sort > 0) {
+      sortBy = sort;
+    } else {
+      sortBy = 0;
+    }
+    localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }
 
