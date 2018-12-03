@@ -13,43 +13,49 @@
 			</div>
 		
 		<div class="span12">
-		  <form [formGroup]="loginform" (ngSubmit)="login()">
+		  <form [formGroup]="signUpform" (ngSubmit)="SignUp()">
 			<header>Sign Up </header>
-			<label>Username
+			<label>First Name
 			  <span>*</span>:</label>
 			<div class="form-group form-control-login">
-			  <input type="text" placeholder="User name" name="User name" [formControl]="loginform.controls['UserName']">
+			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['FirstName']">
 			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
             </div>
+            <label>Last Name
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['LastName']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
             <label>Email
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Email" name="User name" [formControl]="loginform.controls['UserName']">
+                <input type="text" placeholder="Email" name="Email" [formControl]="signUpform.controls['Email']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
 			<label>Password
 			  <span>*</span>:</label>
 			<div class="form-group form-control-login">
-			  <input placeholder="Password" id="password" name="password" class="form-control input-field" type="password" [formControl]="loginform.controls['Password']">
+			  <input placeholder="Password" id="password" name="password" class="form-control input-field" type="password" [formControl]="signUpform.controls['Password']">
 			  <span class="glyphicon glyphicon-eye-open"></span>
 			  <!-- <app-error-messages [control]="loginform.controls.Password"></app-error-messages> -->
             </div>
             <label>Mobile
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Mobile" name="User name" [formControl]="loginform.controls['UserName']">
+                <input type="text" placeholder="Mobile" name="User name" [formControl]="signUpform.controls['MobilePhone']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
-            <label>ZipCode
+            <label>Home Phone
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="ZipCode" name="User name" [formControl]="loginform.controls['UserName']">
+                <input type="text" placeholder="Home Phone" name="Home Phone" [formControl]="signUpform.controls['HomePhone']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
 			<!-- <div class="form-control-login">
 			  <input type="checkbox" (click)="password()">Show My Password
 			</div> -->
-            <button  id="login-button" class="btn green-btn pull-right">Register</button>
+            <button type="submit" id="login-button" class="btn green-btn pull-right">Register</button>
           
             </form>
             

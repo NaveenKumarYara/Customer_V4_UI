@@ -23,6 +23,7 @@ export const environment = {
     updatepassword:'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
     // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
     Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
+    signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/Register',
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',

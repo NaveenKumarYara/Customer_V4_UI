@@ -504,6 +504,15 @@ Login(body) {
     return Observable.throw(error.json());
   });
 }
+
+signUp(body) {
+  debugger
+  return this.http.post(environment.signUp, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
 deactivateJob(body) {
   return this.http.post(environment.deactivatejobEndpoint, body)
   .map((res: Response) => res)
