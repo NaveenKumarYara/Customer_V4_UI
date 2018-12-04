@@ -18,19 +18,32 @@
 			<label>First Name
 			  <span>*</span>:</label>
 			<div class="form-group form-control-login">
-			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['FirstName']">
+			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['ContactFirstName']">
 			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
             </div>
             <label>Last Name
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['LastName']">
+                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['ContactLastName']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
+              <label>Company Name
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="CompanyName" name="CompanyName" [formControl]="signUpform.controls['CompanyName']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
+              <label>WebSite
+                <span>*</span>:</label>
+              <div class="form-group form-control-login">
+                <input type="text" placeholder="WebSite" name="WebSite" [formControl]="signUpform.controls['WebSite']">
+                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+              </div>
+
             <label>Email
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Email" name="Email" [formControl]="signUpform.controls['Email']">
+                <input type="text" placeholder="Email" name="Email" [formControl]="signUpform.controls['ContactEmail']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
 			<label>Password
@@ -40,23 +53,18 @@
 			  <span class="glyphicon glyphicon-eye-open"></span>
 			  <!-- <app-error-messages [control]="loginform.controls.Password"></app-error-messages> -->
             </div>
-            <label>Mobile
+            <label>Contact Number
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Mobile" name="User name" [formControl]="signUpform.controls['MobilePhone']">
+                <input type="text" placeholder="Contact Number" name="Contact Number" [formControl]="signUpform.controls['ContactNumber']">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
-            <label>Home Phone
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="Home Phone" name="Home Phone" [formControl]="signUpform.controls['HomePhone']">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-              </div>
+
 			<!-- <div class="form-control-login">
 			  <input type="checkbox" (click)="password()">Show My Password
 			</div> -->
             <button type="submit" id="login-button" class="btn green-btn pull-right">SignUp</button>
-            <button  id="login-button" class="btn green-btn pull-left"  (click)="Login()">Login</button>
+            <button  class="btn green-btn pull-left"  (click)="Login()">Login</button>
             </form>
             
         </div>

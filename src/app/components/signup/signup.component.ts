@@ -38,7 +38,6 @@ export class SignUpComponent {
   }
 
   SignUp() {
-    this.signUpform.value.UserName = this.signUpform.value.Email;
     this.appService.signUp(this.signUpform.value)
     .subscribe(
     data => {
@@ -58,40 +57,43 @@ export class SignUpComponent {
 
   ngOnInit() {
     this.signUpform = this.fb.group({
-        'UserId'  : [0, Validators.compose([Validators.required])],
-        'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-        'FirstName': ['', Validators.compose([Validators.required])],
-        'MiddleName': ['', Validators.compose([Validators.nullValidator])],
-        'LastName': ['', Validators.compose([Validators.required])],
-        'UserName': ['', Validators.compose([Validators.nullValidator])],
-        'Email'   : ['', Validators.compose([Validators.required, Validators.email])],
-        'DateofBirth': ['', Validators.compose([Validators.nullValidator])],
-        'AlternateEmailId'   : ['abc@esolvit.com', Validators.compose([Validators.nullValidator, Validators.email])],
-        'HomeAreaCode': ['', Validators.compose([Validators.nullValidator])],
-        'HomeCountryCodeId'  : [1, Validators.compose([Validators.required])],
-        'HomePhone': ['', Validators.compose([Validators.required])],
-        'MobileCountryCodeId'  : [1, Validators.compose([Validators.required])],
-        'MobilePhone': ['', Validators.compose([Validators.required])],             
-        'Password': ['', Validators.compose([Validators.required])],
-        'IsFaceBookUser':[true, Validators.compose([Validators.nullValidator])],
-        'IsLinkedInUser': [true, Validators.compose([Validators.nullValidator])],
-        'IsGooglePlusUser':[true, Validators.compose([Validators.nullValidator])],
-        'UserRoleId':[5, Validators.compose([Validators.required])],
-       'CustomerId': [null, Validators.compose([Validators.nullValidator])],
-        'IsActive': [true, Validators.compose([Validators.nullValidator])],
-        'UserProfilePictureUrl':['', Validators.compose([Validators.nullValidator])],
-        'ProfilePic':['', Validators.compose([Validators.nullValidator])],
-        'IpAddress':['', Validators.compose([Validators.nullValidator])],
-       'Address1': ['austin', Validators.compose([Validators.required])],
-       'Address2': ['', Validators.compose([Validators.nullValidator])],
-      'StateId':  [1, Validators.compose([Validators.required])],
-      'CityId':  [1, Validators.compose([Validators.required])],
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': [0, Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.required])],
+      'CompanyName': ['', Validators.compose([Validators.required])],
+      'CompanySizeId'  : [1, Validators.compose([Validators.required])],
+      'CompanyLogo':['', Validators.compose([Validators.nullValidator])],
+      'ContactFirstName': ['', Validators.compose([Validators.required])],
+      'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
+      'ContactLastName': ['', Validators.compose([Validators.required])],
+      'ContactNumber': ['', Validators.compose([Validators.required])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
+      'Password': ['', Validators.compose([Validators.required])],
+      'Address1': ['austin', Validators.compose([Validators.required])],
+      'Address2': ['', Validators.compose([Validators.nullValidator])],
       'ZipCode': ['56898', Validators.compose([Validators.required])],
-      'CityName': ['austin', Validators.compose([Validators.required])],
-      'StateCode': ['tx', Validators.compose([Validators.nullValidator])],
-      'StateName': ['tx', Validators.compose([Validators.nullValidator])],
-       'CountryName': ['USA', Validators.compose([Validators.required])],
-      });
+      'CountryName': ['USA', Validators.compose([Validators.required])],
+      'StateName': ['texas', Validators.compose([Validators.required])],
+      'CityName': ['austin', Validators.compose([Validators.required])],        
+      'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
+      'FromTime':['', Validators.compose([Validators.nullValidator])],
+      'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
+      'WebSite':['', Validators.compose([Validators.required])],        
+      'Description': ['', Validators.compose([Validators.nullValidator])],
+      'TimeZoneId'  : [1, Validators.compose([Validators.required])],
+      'UserRoleId':[4, Validators.compose([Validators.required])],   
+      'ObjCompany': ['', Validators.compose([Validators.nullValidator])],
+      'ObjTimeZone':  ['', Validators.compose([Validators.nullValidator])]
+    //   'ObjCompany': {
+    //     'CompanySizeId'  : [1, Validators.compose([Validators.required])],
+    //     'CompanySize': ['', Validators.compose([Validators.nullValidator])]
+    //   },
+     
+    //  'ObjTimeZone': {
+    //   'TimeZoneId'  : [1, Validators.compose([Validators.required])],
+    //   'TimeZone': ['', Validators.compose([Validators.nullValidator])]
+    //   },   
+    });
     $(".glyphicon-eye-open").on("click", function () {
       $(this).toggleClass("glyphicon-eye-close");
       var type = $("#password").attr("type");

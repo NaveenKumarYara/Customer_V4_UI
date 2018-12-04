@@ -506,7 +506,6 @@ Login(body) {
 }
 
 signUp(body) {
-  debugger
   return this.http.post(environment.signUp, body)
   .map((res: Response) => res)
   .catch((error: any) => {
