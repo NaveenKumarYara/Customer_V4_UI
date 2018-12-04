@@ -1,7 +1,7 @@
 .span12 {
-    margin: 10% auto;
-    width: 365px;
-    padding: 5px;
+    margin: 0% ;
+    width: 364px;
+    padding: 4px;
     background: #dedfe3;
     border-radius: 4px;
     float: right;
@@ -13,11 +13,11 @@ header {
     padding: 10px 0;
 }
 .span12 input{
-    padding: 5px 15px;
+    padding: 4px 12px;
     border: 1px solid #ccc;
     background: #fff;
     border-radius: 4px;
-    margin: 10px 0;
+    margin: 8px 0;
     width: 100%
 }
 .span12 .green-btn {
