@@ -156,6 +156,10 @@ if (this.processSelection === 1) {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
     this.appService.addTeammember(this.getTeammember);
+    this.selectedUserName = '';
+  }
+  private deleteTeammember(index: number) {
+    this.appService.deleteTeammember(index);
   }
   // ngOnDestroy() {
   //   this.subscription.unsubscribe();

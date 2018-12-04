@@ -152,6 +152,7 @@ export class Step3Component implements OnInit {
 
 
   postJob(step) {
+    // this.appService.updateStepNumber(step);
 //     this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId; // this.appService.jobcategory.JobCategoryId;
 //     this.insertJob.CustomerId = 1;
 //     this.insertJob.UserId = 5;
@@ -246,12 +247,12 @@ export class Step3Component implements OnInit {
     // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
     // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
-    this.insertJob.IsDrafted = false;
-    this.insertJob.StepNumber = 4;
+      this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+   // this.insertJob.StepNumber = 4;
     } else {
         this.insertJob.IsDrafted = true;
-    this.insertJob.StepNumber = step;
     }
+    this.insertJob.StepNumber = step;
    // }
   //    else {
   //   this.insertJob.EmploymentTypeId = 1;

@@ -7,7 +7,7 @@ import { CustomerUsers, Roles, GetDomain, EditRoles } from '../app/components/Po
 import { Jobskills } from './jobskills.model';
 
 export class GetJobDetailCustomer {
-    JobInfo:JobInfo;
+    JobInfo: JobInfo;
     JobLocation: JobLocations[];
     JobRequiredDomain: GetDomain[];
     JobRequiredSkills: Jobskills [];
@@ -28,7 +28,7 @@ export class JobInfo {
     JobInfoId: number;
     JobId: number;
     JobPositionId: number;
-    UserId:number;
+    UserId: number;
     CustomerId: number;
     JobCategoryId: number;
     JobCategory: string;
@@ -81,4 +81,6 @@ export class JobInfo {
     IsPrivate: boolean;
     JobAccessTo: string;
     JobStatus: string;
+    StepNumber: string;
+    IsDrafted: boolean;
 }
