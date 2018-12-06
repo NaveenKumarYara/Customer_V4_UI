@@ -422,38 +422,40 @@
             </svg>
           </a>
           <ul role="menu" class="dropdown-menu dropdown-menu-right">
-            <!-- applied -->
+            <!-- applied --> 
             <div *ngIf="profile?.ResponseStatusId == 4">
+                <div *ngIf="profile?.IsConfirmed === true">
             <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)" >Shortlist</a></li>
-            <li role="presentation" class="divider"></li>
+            </div> <div *ngIf="profile?.IsConfirmed === false">
+                <li role="presentation" disabled><p role="menuitem" href="javascript:void(0)"> Shortlist</p></li>
+            </div>
+            <!-- <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
             </div>
             <!-- shortlisted -->
             <div *ngIf="profile?.ResponseStatusId == 5">
+                <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)" >Screening</a></li>
+            <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
+            </div>
+             <!-- screening -->
+            <div *ngIf="profile?.ResponseStatusId == 8">
             <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> 
-            <!-- <li role="presentation" class="divider"></li>  
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlist(5,profile?.JobResponseId)" >Shortlist</a></li>
-                    -->
             </div>
             <!-- interviewed -->
             <div *ngIf="profile?.ResponseStatusId == 7">
             <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(11,profile?.JobResponseId)">Hired</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> 
-            <!-- <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="hired()">Hired</a></li>  -->
             </div>
             <!-- hired -->
             <div *ngIf="profile?.ResponseStatusId == 11">
             <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(9,profile?.JobResponseId)">WithDrawn</a></li>
-            <!-- <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"  (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog()">Reject</a></li>  -->
           </div>
         </ul>
         </ul>

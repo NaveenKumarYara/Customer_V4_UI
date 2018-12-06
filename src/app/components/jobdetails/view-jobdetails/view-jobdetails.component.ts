@@ -129,6 +129,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false;
   } else {
    this.loadMore = false;
+   this.child.NoRecords();
   }
   }
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others
@@ -141,9 +142,10 @@ export class ViewJobdetailsComponent implements OnInit {
       this.sortBy, 6);
     this.loadMore = this.jobstatistics.Suggested > 6 ? true : false;
   } else {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
-      this.sortBy, 6);
+    // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
+    //   this.sortBy, 6);
    this.loadMore = false;
+   this.child.NoRecords();
   }
   }
   updateappliedstatus() {// 1000080;
@@ -159,6 +161,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
    } else {
     this.loadMore = false;
+    this.child.NoRecords();
    }
   }
   updateshortlistedstatus() { // 1000007;
@@ -172,7 +175,21 @@ export class ViewJobdetailsComponent implements OnInit {
 
    } else {
     this.loadMore = false;
+    this.child.NoRecords();
    }
+  }
+  updatescreeningstatus() { // 1000007;
+    this.statusid = 8;
+  //  this.loadMoreStat=this.statusid;
+  this.profilecount = 6;
+  if (this.jobstatistics.Screening > 0) {
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Screening,
+      this.sortBy, 6);
+    this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
+  } else {
+   this.loadMore = false;
+   this.child.NoRecords();
+  }
   }
   updateinterviewedstatus() { // 1000007;
     this.statusid = 7;
@@ -185,6 +202,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
   } else {
    this.loadMore = false;
+   this.child.NoRecords();
   }
   }
   updatehiredstatus() { // 1000028;
@@ -197,6 +215,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.loadMore =  this.jobstatistics.Hired > 6 ? true : false;
   } else {
    this.loadMore = false;
+   this.child.NoRecords();
   }
   }
   updaterejectedstatus() {
@@ -209,6 +228,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.loadMore =  this.jobstatistics.RejectedORWithdrawn > 6 ? true : false;
   } else {
    this.loadMore = false;
+   this.child.NoRecords();
   }
    }
    updateProfileCount() {
