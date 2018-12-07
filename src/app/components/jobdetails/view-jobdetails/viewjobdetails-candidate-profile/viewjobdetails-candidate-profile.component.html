@@ -72,7 +72,7 @@
             </svg>
             <h5 class="location">{{profile.CurrentLocation}}</h5>
       <div class="status shortlisted">{{profile.JobStatus}}</div>
-      <small *ngIf="profile.UserId === 0" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
+      <small *ngIf="profile.CompanyName != null" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
           </div>
         </div>
         <div class="candidate-status">
