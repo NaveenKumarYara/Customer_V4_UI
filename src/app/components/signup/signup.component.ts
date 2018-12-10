@@ -41,10 +41,12 @@ export class SignUpComponent {
     this.appService.signUp(this.signUpform.value)
     .subscribe(
     data => {
+      this.alertService.success('Successfully Registered');
           this.router.navigateByUrl('home');
     },
 
     error => {
+      this.alertService.error('Please provide the valid details');
       this.signUpform.reset();
     },
     () => console.log('Call Sucessfull')

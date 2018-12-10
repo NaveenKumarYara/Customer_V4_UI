@@ -13,11 +13,11 @@ header {
     padding: 10px 0;
 }
 .span12 input{
-    padding: 4px 12px;
+    padding: 4px 10px;
     border: 1px solid #ccc;
     background: #fff;
     border-radius: 4px;
-    margin: 8px 0;
+    margin: 6px 0;
     width: 100%
 }
 .span12 .green-btn {
@@ -48,7 +48,7 @@ header {
     user-select: none;
 }
 .span12 label {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0px;
     padding: 0px;
     font-weight: normal;
@@ -62,11 +62,11 @@ header {
 }
 
 .span12 input[type=checkbox]{
-    padding: 10px 15px;
+    padding: 10px 14px;
     border: 1px solid #ccc;
     background: #fff;
     border-radius: 4px;
-    margin: 10px 0;
+    margin: 9px 0;
     width: 5%;
 }
 

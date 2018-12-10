@@ -14,17 +14,20 @@
 		
 		<div class="span12">
 		  <form [formGroup]="signUpform" (ngSubmit)="SignUp()">
-			<header>Sign Up </header>
+      <header>Sign Up </header>
+      <alert></alert>
 			<label>First Name
 			  <span>*</span>:</label>
 			<div class="form-group form-control-login">
-			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['ContactFirstName']">
+			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['ContactFirstName']" (keypress)="MissClear()"
+				(keyup)="MissClear()">
 			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
             </div>
             <label>Last Name
                 <span>*</span>:</label>
               <div class="form-group form-control-login">
-                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['ContactLastName']">
+                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['ContactLastName']" (keypress)="MissClear()"
+                (keyup)="MissClear()">
                 <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
               </div>
               <label>Company Name
