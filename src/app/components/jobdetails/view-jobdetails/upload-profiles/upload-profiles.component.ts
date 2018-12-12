@@ -16,9 +16,11 @@ export class UploadProfilesComponent implements OnInit {
   fileUploadForm: FormGroup;
   selectedFileNames: string[] = [];
   loaddata = true ;
+  customerName = null;
   // tslint:disable-next-line:max-line-length
   constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.selectedFileNames = [];
+    this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
    }
 
   ngOnInit() {
@@ -29,11 +31,12 @@ export class UploadProfilesComponent implements OnInit {
       'UserName': ['', Validators.nullValidator],
       'ResumeFile': ['', Validators.compose([Validators.required])],
       'FileExtension': ['', Validators.nullValidator],
-      'JobId': [ null, Validators.nullValidator]
+      'JobId': [ null, Validators.nullValidator],
+      'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator]
     });
   }
   getFileDetails(e) {
-    this.selectedFileNames=[];
+    this.selectedFileNames = [];
     this.spinner.show();
     let request = '';
     const formData = new FormData();
