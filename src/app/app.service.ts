@@ -15,6 +15,7 @@ import { InterviewType } from '../models/interviewtype.model';
 import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
+import {CustomerContacts} from '../models/customercontacts';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from './components/Postajob/models/jobPostInfo';
 
 
@@ -48,6 +49,8 @@ export class AppService {
   private interviewtype: InterviewType[] = [];
 
   private notifications: Notification[] = [];
+   
+  private customercontacts : CustomerContacts[]= [];
 
   private contractduration: string[] = [
     '3 months', '6 months', '1 year', 'more than 1 year'
@@ -458,6 +461,14 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
   }
   getNotifications(userId: number): Observable<Notification[]> {
     const url = environment.NotificationEndPoint + 'userId=' + userId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+  getCustomerContacts(customerId:number,userId: number): Observable<CustomerContacts[]> {
+    debugger
+    const url = environment.GetCustomerContacts + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

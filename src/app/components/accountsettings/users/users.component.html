@@ -1,69 +1,7 @@
 <div class="col-lg-9">
   <div class="right">
     <div class="tab-content">
-      <div id="account-settings" class="tab-pane fade">
-        <h1>Account Settings</h1>
-        <div class="edit-group email-group">
-          <form action="" class="edit-form form-inline">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <div class="editable-input">
-                <input type="email" class="form-control">
-              </div>
-            </div>
-            <div class="btn-row">
-              <button class="btn btn-filled">Save</button>
-              <button class="btn btn-border">Cancel</button>
-            </div>
-          </form>
-          <div class="form-inline data">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <div class="editable-input">
-                <input type="email" value="Terry Martin" class="form-control">
-                <a href="#" class="edit-btn">Edit email</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="edit-group">
-          <div class="edit-group password-group">
-            <form action="" class="edit-form form-inline">
-              <div class="form-group">
-                <label for="password">Password</label>
-                <div class="editable-input">
-                  <input type="password" id="password" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="newPassword"></label>
-                <div class="editable-input">
-                  <input type="password" id="newPassword" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="confirmPassword"></label>
-                <div class="editable-input">
-                  <input type="password" id="confirmPassword" class="form-control">
-                </div>
-              </div>
-              <div class="btn-row">
-                <button class="btn btn-filled">Save</button>
-                <button class="btn btn-border">Cancel</button>
-              </div>
-            </form>
-            <div class="form-inline data">
-              <div class="form-group">
-                <label for="password">Password</label>
-                <div class="editable-input">
-                  <input type="password" value="1234567" class="form-control">
-                  <a href="#" class="edit-btn">Edit password</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div id="users" class="tab-pane fade active in">
         <header>
           <h1>Users</h1>
@@ -79,33 +17,15 @@
                 <th>Role</th>
                 <th></th>
               </tr>
-              <tr>
+              <tr  *ngFor="let contact of customercontacts">
                 <td>
-                  <img src="../../../../assets/images/ui-face-1.png" alt="">
-                  <h3 class="name">John Smith</h3>
+                  <img src="../../../../assets/images/professional.png" alt="" width="50" height="50">
+                  <h3 class="name">{{contact?.FirstName}}</h3>
                 </td>
                 <td><h3 class="email">john.smith@gmail.com</h3></td>
                 <td><h3 class="role">Hiring Lead</h3></td>
                 <td><span class="close">×</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="../../../../assets/images/ui-face-1.png" alt="">
-                  <h3 class="name">John Smith</h3>
-                </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
-                <td><h3 class="role">Hiring Lead</h3></td>
-                <td><span class="close">×</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="../../../../assets/images/ui-face-1.png" alt="">
-                  <h3 class="name">John Smith</h3>
-                </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
-                <td><h3 class="role">Hiring Lead</h3></td>
-                <td><span class="close">×</span></td>
-              </tr>
+              </tr>          
             </tbody>
           </table>
         </div>
