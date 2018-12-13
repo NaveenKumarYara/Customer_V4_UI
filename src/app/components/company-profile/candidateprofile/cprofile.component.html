@@ -440,7 +440,7 @@
                             {{profileview?.ProfileBasicInfo?.MobilePhone}}
                           </p>
                         </div>
-                        <div class="v-divider hidden-sm hidden-xs"></div>
+                        <!-- <div class="v-divider hidden-sm hidden-xs"></div> -->
                         <div class="divider"></div>
                         
                       </div>
@@ -599,88 +599,93 @@
                         </div>
                       </div>               
                     </header>
-                    <div class="card-content scrollbar-inner">
-                      <div class="tab-content">
-                      <div id="topSkillsListView" class="top-skills tab-pane fade hidden-xs">
-                        <table>
-                          <tr>
-                            <th>Skills Name</th>
-                            <th>Experience</th>
-                            <th>Last Used</th>
-                            <th>Skill level</th>
-                            <th></th>
-                          </tr>
-                          <tr *ngFor="let skill of list">
-                            <ng-container>
-                              <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
-                              <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
-                              <td>{{skill.Lastused}}</td>
-                              <td>{{skill.SkillRating}}</td>
-                            </ng-container>
-                          </tr>
-                         
-                        </table>
-                      </div>
-                      <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
-                        <h4 class="label-caps">Top Skills</h4>
-                        <div class="row">
-                          <ng-container *ngFor="let skill of list">
-                            <div class="col-md-6 tech_width">
-                              <div class="skills card">
-
-                                <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
-                                <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</h2>
-                                <div class="row">
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Rating</h5>
-                                    <p>{{skill.SkillRating}}</p>
-                                  </div>
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Last used</h5>
-                                    <p>{{skill.Lastused}}</p>
+                    <div class="scroll-wrapper card-content scrollbar-inner " style="position: relative;">
+                      <div class="card-content scrollbar-inner scroll-content scroll-scrollx_visible scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 729px;">
+                        <div class="tab-content">
+                        <div id="topSkillsListView" class="top-skills tab-pane fade hidden-xs">
+                          <table>
+                            <tr>
+                              <th>Skills Name</th>
+                              <th>Experience</th>
+                              <th>Last Used</th>
+                              <th>Skill level</th>
+                              <th></th>
+                            </tr>
+                            <tr *ngFor="let skill of list">
+                              <ng-container>
+                                <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
+                                <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
+                                <td>{{skill.Lastused}}</td>
+                                <td>{{skill.SkillRating}}</td>
+                              </ng-container>
+                            </tr>
+                           
+                          </table>
+                        </div>
+                        <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
+                          <h4 class="label-caps">Top Skills</h4>
+                          <div class="row">
+                            <ng-container *ngFor="let skill of list">
+                              <div class="col-md-6 tech_width">
+                                <div class="skills card">
+  
+                                  <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
+                                  <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</h2>
+                                  <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                      <h5 class="label-caps light">Rating</h5>
+                                      <p>{{skill.SkillRating}}</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                      <h5 class="label-caps light">Last used</h5>
+                                      <p>{{skill.Lastused}}</p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                        </div>
+                        <!-- Top Skills End -->
+                        <div class="other-skills ">
+                          <h4 class="label-caps">Other Skills</h4>
+                          <div *ngIf="otherSkills!=null">
+                            <ul class="skills clearfix">
+                              <!-- <ng-container *ngFor="let skill of list"> -->
+                              <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
+                                    (click)="EditSkill(skill)">
+                                    {{skill.SkillName}}
+                                  </li>
+  
+                                  <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
+                                      {{searchResult.name}}
+                                      <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
+                                    </li> -->
+  
+                              <!-- <li *ngFor="let skill of otherSkills">
+                                  <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
+                                    {{skill.SkillName}}</a>
+                                  <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
+                                </li> -->
+  
+                              <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">{{skill.SkillName}}</li>
+                              <!-- <li class="skill more">
+                                <a href="javascript:void(0)">+5 more</a>
+                              </li> -->
+                            </ul>
                             </div>
-                          </ng-container>
+                        </div>
+                        
+                        <!-- Other Skills End -->
+                        <div class="alert job-alert">
+              
                         </div>
                       </div>
-                      </div>
-                      <!-- Top Skills End -->
-                      <div class="other-skills ">
-                        <h4 class="label-caps">Other Skills</h4>
-                        <div *ngIf="otherSkills!=null">
-                          <ul class="skills clearfix">
-                            <!-- <ng-container *ngFor="let skill of list"> -->
-                            <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
-                                  (click)="EditSkill(skill)">
-                                  {{skill.SkillName}}
-                                </li>
-
-                                <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
-                                    {{searchResult.name}}
-                                    <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
-                                  </li> -->
-
-                            <!-- <li *ngFor="let skill of otherSkills">
-                                <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
-                                  {{skill.SkillName}}</a>
-                                <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
-                              </li> -->
-
-                            <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">{{skill.SkillName}}</li>
-                            <!-- <li class="skill more">
-                              <a href="javascript:void(0)">+5 more</a>
-                            </li> -->
-                          </ul>
-                          </div>
-                      </div>
-                      
-                      <!-- Other Skills End -->
-                      <div class="alert job-alert">
-            
-                      </div>
+                      <div class="scroll-element scroll-x scroll-scrollx_visible scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 85px; left: 0px;"></div></div></div>
+                      <div class="scroll-element scroll-y scroll-scrollx_visible scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 621px; top: 0px;"></div></div></div>
                     </div>
+                    
                   </div>
                   <div class="blackLayer modalClose"></div>
                 </div>
@@ -855,14 +860,15 @@
                                   <p class="text ">
                                     {{exps.Description}}
                                   </p>
+                                  <ng-container *ngIf="exps.Description==null||exps.Description==''">
+                                    <p>No Description Added </p>
+                                  </ng-container>
                                 </div>
-                                <ng-container *ngIf="exps.Description==null||exps.Description==''">
-                                  <p>No Description Added </p>
-                                </ng-container>
+                          
                               </div>
                               <div id="achievements{{i}}" class="tab-pane">
                                 <div class="scrollbar-inner ">
-                                  <div class="list row ">
+                                  <div class="list">
                                     <div class=" ">
                                       <ng-container *ngFor="let i of exps?.Achievements ">
                                         <p>{{i}}</p>
@@ -876,16 +882,13 @@
                               </div>
                               <div id="responsibilities{{i}}" class="tab-pane">
                                 <div class="scrollbar-inner ">
-                                  <div class="list row ">
-                                    <div class=" ">
+                                  <div class="list">
                                       <ng-container *ngFor="let r of exps?.Roles ">
                                         <p>{{r}}</p>
-  
                                       </ng-container>
                                       <ng-container *ngIf="exps?.Roles==null|| exps?.Roles==''">
                                         No Roles Added
                                       </ng-container>
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -918,11 +921,11 @@
                         <div *ngIf="profileview?.Certifications?.length > 0">
                           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngFor="let certificates of profileview?.Certifications ">
                             <div class="cert-card ">
-                              <div class="logo ">
-                                <img [src]="certificates.ImageUrl" class="logo " alt=" ">
+                              <div class="logo">
+                                <img width="160" [src]="certificates.ImageUrl"  alt="certification">
                               </div>
                               <div class="info ">
-                                <h2 class="title ">{{certificates.CertificationName}}</h2>
+                                <h2 class="title" title="{{certificates.CertificationName}}">{{certificates.CertificationName}}</h2>
                                 <h4 class="year ">{{certificates.YearOfAchievement| date:'mediumDate'}}</h4>
                               </div>
                             </div>
