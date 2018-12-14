@@ -104,9 +104,9 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
   ScheduleInterview() {
-this.schIntw.UserId = null;
+this.schIntw.UserId =this.data.userId;
 this.schIntw.JobId = this.data.jobId;
-this.schIntw.JobInterviewId = this.userId;
+this.schIntw.JobInterviewId = this.data.userId;
 this.schIntw.JobResponseId = this.data.jobResponseId; // gemerated when sortlisted or applied
 this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
   this.schIntw.StartTime = this.time.hour + ':' + this.time.minute;
@@ -130,8 +130,8 @@ if (this.processSelection === 1) {
   // this.schIntw.PhoneNumber=this.userId;
 }
  this.schIntw.StatusChangedByUserId = this.customerUser;
-  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
-    this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+ this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
+  this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
      }) ;
 }

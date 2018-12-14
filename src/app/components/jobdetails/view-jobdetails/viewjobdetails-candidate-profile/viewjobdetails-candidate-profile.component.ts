@@ -125,6 +125,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenScheduleInterviewDialog(jobResponseId) {
+    var candidateUserId = $("#candidateUserId").val();
+    var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
       {
         width: '750',
@@ -133,6 +135,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
+          userId:candidateId
          // status : this.statusid
         }
       }
