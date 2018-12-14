@@ -381,6 +381,19 @@
     flex: none;
     padding-left: 20px;
 }
+.cert-card .title {
+    font-size: 22px;
+    color: #6a7e9c;
+    margin-top: 0;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 63%;
+}
+.cert-card .year {
+    font-size: 20px;
+    color: #9eabc0;
+}
 .settings-dot span:not(:last-of-type) {
     margin-right: 4px;
 }
@@ -1086,6 +1099,10 @@ font-size: 12px;
     padding-bottom: 30px;
     line-height: 1;
     color: #9eabc0;
+    border: 1px solid transparent;
+}
+.profile-pg .professional-experience .nav-tabs > li > a:hover, .profile-pg .professional-experience .nav-tabs > li > a:focus{
+    background-color: transparent;
 }
 
 .profile-pg .professional-experience .nav-tabs > li {
@@ -1093,7 +1110,7 @@ font-size: 12px;
 }
 
 .profile-pg .professional-experience .nav-tabs > li.active {
-    border-bottom: 0;
+    /* border-bottom: 0; */
     margin-bottom: 0;
 }
 
@@ -1103,7 +1120,6 @@ font-size: 12px;
 
 .profile-pg .professional-experience .nav-tabs {
     border-bottom: 1px solid #e0e3ec;
-    margin-bottom: 30px;
     position: relative;
 }
 
@@ -1270,7 +1286,7 @@ font-size: 12px;
 
 .profile-pg .card .card-header {
     border-bottom: 1px solid #e0e3ec;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 
 .profile-pg .card .card-title {
@@ -2167,4 +2183,114 @@ font-size: 12px;
 }
 .nav-tabs > li.active {
     border-bottom: 3px solid #66dab5;
+}
+
+.education-row .institute .name, .job-row .institute .name {
+    display: inline-block;
+    margin: 0;
+    border-right: 1px solid #e0e3ec;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.education-row .meta, .job-row .meta {
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 16px ;
+    font-style: normal;
+    font-weight: 400;
+}
+.education-row .title, .job-row .title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.icon-calendar:before {
+    content: "\e94e";
+}
+
+.education-row .duration, .job-row .duration {
+    font-size: 16px;
+    color: #9eabc0;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.profile-pg .v-divider {
+    height: 100%;
+    border-right: 1px solid #e0e3ec;
+    position: absolute;
+    display: inline-block;
+}
+.education-row:not(:last-of-type), .job-row:not(:last-of-type) {
+    border-bottom: 1px solid #e0e3ec;
+}
+.education-row, .job-row {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.profile-pg .pic {
+    text-align: center;
+    padding: 20px 0px 0px 15px;
+}
+.personal-skills .skills .text .title, .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .personal-skills .skills label .title {
+    font-size: 18px;
+}
+.label-caps, .profile-pg .technical-skills .top-skills table th {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.education-row .study-fields .list .tag.skill, .job-row .study-fields .list .tag.skill, .profile-pg .technical-skills .other-skills .skills .tag.skill, .summary-view .skills-section .skills .tag.skill, .my-jobs .skills .tag.skill, .applied-jobs .skills .tag.skill, .job-timeline .skills .tag.skill, .search-results-pg .results .result-card .tags .tag.skill {
+    border: 1px solid #dae0ee;
+    border-radius: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    background-color: #f8f9fd;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
+}
+.education-row .study-fields .list, .job-row .study-fields .list, .profile-pg .technical-skills .other-skills .skills, .summary-view .skills-section .skills, .my-jobs .skills, .applied-jobs .skills, .job-timeline .skills, .search-results-pg .results .result-card .tags {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.education-row .study-fields .list .tag, .job-row .study-fields .list .tag, .profile-pg .technical-skills .other-skills .skills .tag, .summary-view .skills-section .skills .tag, .my-jobs .skills .tag, .applied-jobs .skills .tag, .job-timeline .skills .tag, .search-results-pg .results .result-card .tags .tag {
+    letter-spacing: 0.025em;
+    padding: 10px 15px;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+.education-row .study-fields .list .tag:not(:last-of-type), .job-row .study-fields .list .tag:not(:last-of-type), .profile-pg .technical-skills .other-skills .skills .tag:not(:last-of-type), .summary-view .skills-section .skills .tag:not(:last-of-type), .my-jobs .skills .tag:not(:last-of-type), .applied-jobs .skills .tag:not(:last-of-type), .job-timeline .skills .tag:not(:last-of-type), .search-results-pg .results .result-card .tags .tag:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+.skills-box {
+    padding: 0px;
+    color: #6a7e9c;
+    padding-bottom: 20px;
+}
+.skills-box header {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e3ec;
+}
+.skills-box .skill-row {
+    padding-top: 13px;
+}
+.skills-box .skill-row h6 {
+    font-size: 12px;
+    color: #9eabc0;
+}
+.skills-box .skill-row h5 {
+    font-size: 16px;
+    text-align: right;
+}
+.profile-pg .domain-skills .card-content > .row > [cfv]:not(:last-of-type) {
+    border-right: 1px solid #e0e3ec;
 }
