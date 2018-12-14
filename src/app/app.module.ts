@@ -30,7 +30,7 @@ import { JobResponsibilitiesComponent } from './components/Postajob/Createajob/S
 import { routing } from './app.router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyFilterPipe } from './filter/MyFilterPipe';
-
+import {DashboardComponent} from './components/dashboard/dashboard.component'
 import { LocationwiseJobsComponent } from './components/Postajob/Createajob/Step2/locationwisejobs.component';
 import { QualificationsComponent } from './components/Postajob/Createajob/Step2/qualifications.component';
 import { DomainExpertiseComponent } from './components/Postajob/Createajob/Step2/domainexpertise.component';
@@ -63,6 +63,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 @NgModule({
   declarations: [
     AppComponent,
+    MyFilterPipe,
     LayoutComponent,
     AboutComponent,
     SignUpComponent,
@@ -76,6 +77,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     Step2Component,
     Step3Component,
     Step4Component,
+    DashboardComponent,
     JobdetailsComponent,
     JobcategoryComponent,
     JobprofileComponent,
