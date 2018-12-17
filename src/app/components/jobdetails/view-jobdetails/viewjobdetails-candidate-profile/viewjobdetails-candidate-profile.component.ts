@@ -124,9 +124,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenScheduleInterviewDialog(jobResponseId) {
-    var candidateUserId = $("#candidateUserId").val();
-    var candidateId = +candidateUserId;
+  OpenScheduleInterviewDialog(jobResponseId,userId) {
+    // var candidateUserId = $("#candidateUserId").val();
+    // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
       {
         width: '750',
@@ -135,7 +135,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
-          userId:candidateId
+          userId: userId
          // status : this.statusid
         }
       }

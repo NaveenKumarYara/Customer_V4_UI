@@ -20,8 +20,9 @@
       <div class="candidate-info">
        <img src={{profile.ProfilePic}} alt="" width="66" height="66">
         <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">
-          {{profile.FirstName}} {{profile.LastName}}
-          <input class="hidden" id="candidateUserId" value={{profile.UserId}}>
+          <!-- {{profile.FirstName}} {{profile.LastName}} -->
+          {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0) : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}} 
+          <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
           <div class="dropdown ">
             <a href="#" class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
             </a>
@@ -424,8 +425,8 @@
           </a>
           <ul role="menu" class="dropdown-menu dropdown-menu-right">
             <!-- applied --> 
-            <div *ngIf="profile?.ResponseStatusId == 4">
-                <div *ngIf="profile?.IsConfirmed === true">
+            <div *ngIf="profile?.ResponseStatusId == 4"> 
+                    <div *ngIf="profile?.IsConfirmed != false">
             <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)" >Shortlist</a></li>
             </div> <div *ngIf="profile?.IsConfirmed === false">
                 <li role="presentation" disabled><p role="menuitem" href="javascript:void(0)"> Shortlist</p></li>
@@ -444,7 +445,7 @@
             </div>
              <!-- screening -->
             <div *ngIf="profile?.ResponseStatusId == 8">
-            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+            <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)">Schedule Interview</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> 
             </div>
