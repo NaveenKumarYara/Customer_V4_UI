@@ -12,6 +12,8 @@ import { Jobstatistics } from '../models/jobstatistics';
 import { UploadProfilesComponent } from './upload-profiles/upload-profiles.component';
 // import { UploadCandidatesComponent } from './upload-candidates/upload-candidates.component';
 import { JobdetailsProfile } from '../models/jobdetailsprofile';
+import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
+import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
@@ -29,6 +31,7 @@ declare var $: any;
 export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
+  viewshareddialogueref: MatDialogRef<ConversationComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   jobstatistics: Jobstatistics;
@@ -78,6 +81,21 @@ export class ViewJobdetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ${result}');
+    });
+  }
+  OpenDialog() {
+    const dialogRef = this.dialog.open(ConversationComponent,
+      {
+        // width: '1000px',
+        // position: {right : '0px'},
+        // height : '750px',
+        data: {
+          animal: 'panda'
+        }
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
     });
   }
   openCandidateUploadDialog() {

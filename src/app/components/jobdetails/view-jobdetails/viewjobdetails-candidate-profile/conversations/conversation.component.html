@@ -1,0 +1,32 @@
+<div class="page page--job-details">
+        <div>
+          <h4 mat-dialog-title class="modal-title text-center">
+            Invitation
+          </h4>
+          <mat-dialog-content class="mat-typography modal-dialog">
+            <div>
+              <div class="modal-body">
+                <form action="">
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <div>
+                      <input id="Email" type="text" class="form-control" name="benefits"
+                        placeholder="Email" autocomplete="off">
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="">Comments</label>
+                    <textarea type="text" class="form-control" rows="3" placeholder="Please add your comments"></textarea>
+                  </div> -->
+                </form>
+              </div>
+            </div>
+          </mat-dialog-content>
+          <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+            
+              <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+              <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled">Invite</button>
+           
+          </mat-dialog-actions>
+        </div>
+      </div>
