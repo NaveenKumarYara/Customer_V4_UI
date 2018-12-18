@@ -55,7 +55,7 @@ import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobde
 import { ChatboxdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
-
+import {ConversationComponent} from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/conversations/conversation.component';
 import { CompanyprofileComponent } from '../app/components/company-profile/companyprofile/companyprofile.component';
 import { AboutcompanyComponent } from '../app/components/company-profile/aboutcompany/aboutcompany.component';
 import { AchievementsandawardsComponent } from '../app/components/company-profile/achievementsandawards/achievementsandawards.component';
@@ -165,6 +165,7 @@ const appRoutes: Routes =
 
     { path: 'app-chatboxdialog', component: ChatboxdialogComponent },
     { path: 'app-sharedialog', component: SharedialogComponent },
+    { path: 'app-conversation', component: ConversationComponent },
     { path: 'app-rejectdialog', component: RejectdialogComponent },
 
     { path: 'app-companyprofile', component: CompanyprofileComponent },
