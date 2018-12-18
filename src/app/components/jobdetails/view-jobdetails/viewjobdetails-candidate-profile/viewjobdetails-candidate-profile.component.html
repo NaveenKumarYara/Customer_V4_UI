@@ -21,8 +21,20 @@
        <img src={{profile.ProfilePic}} alt="" width="66" height="66">
         <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">
           <!-- {{profile.FirstName}} {{profile.LastName}} -->
-          {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0) : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}} 
+          <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
           <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
+
+          <div *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else firstelseBlock"> 
+          {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
+          <ng-template #firstelseBlock> 
+              {{profile.FirstName}} {{profile.LastName}}
+          </ng-template>
+          <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else lastelseBlock"> 
+          {{profile.LastName.charAt(0)}} <img src="../../../../../assets/images/c_name_hide.png"></div>
+          <ng-template #lastelseBlock>
+              {{profile.LastName}}
+          </ng-template> -->
+
           <div class="dropdown ">
             <a href="#" class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
             </a>
