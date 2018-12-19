@@ -11,7 +11,7 @@
               </div> -->
               <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification">{{profile.CertificationName}}</div>
                     <ng-template #nocertification>
-                    <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
+                    <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> Yet to Gain!</div>
                     </ng-template>
                     <div class="ui-badge ui-badge--industry"*ngIf="profile.DomainName!=null;else nodomain">{{profile.DomainName}}</div>
                     <ng-template #nodomain>
@@ -24,7 +24,7 @@
           <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
           <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
 
-          <div *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else firstelseBlock"> 
+          <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else firstelseBlock"> 
           {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
           <ng-template #firstelseBlock> 
               {{profile.FirstName}} {{profile.LastName}}

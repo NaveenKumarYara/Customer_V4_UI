@@ -1197,7 +1197,11 @@ font-size: 12px;
 }
 
 .profile-pg .professional-experience .job-row .tab-content p {
-    line-height: 1.8125em;
+    line-height: 1.6125em;
+    /* height: calc(100% - 80px); */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .profile-pg .professional-experience .job-row .v-divider {
@@ -1306,7 +1310,7 @@ font-size: 12px;
 
 .profile-pg .card .card-content p {
     color: #6a7e9c;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .profile-pg .card .card-content .placeholder img {
