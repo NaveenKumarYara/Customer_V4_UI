@@ -118,8 +118,8 @@ SaveInvite(email)
    this.inviteinfo.statusId = 0;
    this.inviteinfo.ToEmailId = email;
    this.inviteinfo.ApplicationName = 'Arytic';
-   this.inviteinfo.CandFullName ='user';
-   this.inviteinfo.CustFullName = 'customer';
+   this.inviteinfo.CandFullName =email;
+   this.inviteinfo.CustFullName = 'Arytic';
    this.inviteinfo.ClientLogo = '';
    this.inviteinfo.AppLink ='http://demo.tenendus.com:1070/login'; 
    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
