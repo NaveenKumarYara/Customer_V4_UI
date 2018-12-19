@@ -10,13 +10,16 @@
     <div class="card manage-uploads clearfix">
       <ul class="nav nav-tabs">
         <li role="presentation" class="active">
-          <a data-toggle="tab" href="#uploadProfiles" aria-expanded="false">Upload Profiles</a>
+          <a data-toggle="tab" href="#uploadProfiles" aria-expanded="false" (click)="Clear()">Upload Profiles</a>
         </li>
         <li role="presentation" class="">
-          <a data-toggle="tab" href="#searchProfiles" aria-expanded="true">Search Profiles</a>
+          <a data-toggle="tab" href="#searchProfiles" aria-expanded="true" (click)="Clear()">Search Profiles</a>
         </li>
+        <li role="presentation" class="">
+            <a data-toggle="tab" href="#InviteProfiles" aria-expanded="true" (click)="Clear()">Invite Profile</a>
+          </li>
         <span class="active-line"></span>
-      </ul>
+      </ul>   
       <div class="tab-content">
         <div id="uploadProfiles" class="tab-pane fade active in">
           <div class="clearfix">&nbsp;</div>
@@ -53,6 +56,7 @@
           <!-- <div class="jumbotron">
             <p class="lead text-center">Uploaded Profiles will be shown here!</p>
           </div> -->
+          <alert></alert>
           <h3>Uploaded Profiles will be shown here!</h3>
           <!--End of Empty View-->
 
@@ -245,9 +249,81 @@
 
           <!--End-->
         </div>
+        <div id="InviteProfiles" class="tab-pane fade searchProfiles card">
+            <!--Search Candidates-->
+            <div class="card-inner">
+              <div class="card-content">
+                <div class="tab-content">
+                  <div id="specialities" class="tab-pane fade active in">
+                    <div >
+                      <div class="tab-inner">
+                          <form action="">
+                              <div class="input-group">
+                                <div>
+                                  <input id="Email" type="text" class="form-control" name="benefits"
+                                    placeholder="Email" (keypress)="Clear()" (keyup)="Clear()">
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn" (click)="CheckEmail()">+</button>
+                                  </span>
+                              </div>
+
+                              <!-- <div class="form-group">
+                                <label for="">Comments</label>
+                                <textarea type="text" class="form-control" rows="3" placeholder="Please add your comments"></textarea>
+                              </div> -->
+                            </form>
+                            <alert></alert>
+                      </div>
+                      <div class="scroll-element scroll-x scroll-scrolly_visible">
+                        <div class="scroll-element_outer">
+                          <div class="scroll-element_size"></div>
+                          <div class="scroll-element_track"></div>
+                          <div class="scroll-bar" style="width: 0px;"></div>
+                        </div>
+                      </div>
+                      <div class="scroll-element scroll-y scroll-scrolly_visible">
+                        <div class="scroll-element_outer">
+                          <div class="scroll-element_size"></div>
+                          <div class="scroll-element_track"></div>
+                          <div class="scroll-bar" style="height: 281px; top: 0px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="companyTech" class="tab-pane fade">
+                    <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
+                      <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+                        <h3>Menu 1</h3>
+                        <p>Some content in menu 1.</p>
+                      </div>
+                      <div class="scroll-element scroll-x">
+                        <div class="scroll-element_outer">
+                          <div class="scroll-element_size"></div>
+                          <div class="scroll-element_track"></div>
+                          <div class="scroll-bar" style="width: 0px;"></div>
+                        </div>
+                      </div>
+                      <div class="scroll-element scroll-y">
+                        <div class="scroll-element_outer">
+                          <div class="scroll-element_size"></div>
+                          <div class="scroll-element_track"></div>
+                          <div class="scroll-bar" style="height: 0px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!--End-->
+          </div>
+     
       </div>
       <!-- .tab-content -->
     </div>
+   
     <!-- .card.statistics -->
   </div>
   <!--Tab View End-->

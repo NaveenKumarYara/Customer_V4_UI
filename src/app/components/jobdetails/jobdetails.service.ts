@@ -73,6 +73,15 @@ export class JobdetailsService {
       this.handleError
     );
   }
+  getUserId(email:string,customerId:number): Observable<DiscResult[]> {
+    const url = environment.GetUserId + 'email=' + email+ '&customerId=' + customerId ;
+    return this.http.get<GetJobDetailCustomer>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+
+  }
   getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
     const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<GetJobDetailCustomer>(url)
@@ -143,6 +152,14 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
 
   interviewProcess(body) {
     return this.http.post(environment.scheduleInterview, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  InviteContact(body) {
+    return this.http.post(environment.InviteContact, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
