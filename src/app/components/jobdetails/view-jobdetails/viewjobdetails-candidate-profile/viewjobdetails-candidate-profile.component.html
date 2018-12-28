@@ -24,7 +24,7 @@
           <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
           <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
 
-          <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else firstelseBlock"> 
+          <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock"> 
           {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
           <ng-template #firstelseBlock> 
               {{profile.FirstName}} {{profile.LastName}}
