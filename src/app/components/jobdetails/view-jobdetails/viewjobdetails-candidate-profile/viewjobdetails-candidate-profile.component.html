@@ -92,8 +92,13 @@
         <div class="candidate-status">
             <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="">
             <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="">
-            <img  *ngIf="profile?.IsConfirmed == true " src="../../../../../assets/images/hand-shake.svg" width="50px" height="50px" alt="">
-        </div>
+          <ng-container *ngIf="profile?.IsConfirmed ==true;else isLogo">
+            <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
+          </ng-container>
+            <ng-template #isLogo>
+              <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px" alt="">
+              </ng-template>
+          </div>
       </div>
     </header>
     <div class="card-body">
