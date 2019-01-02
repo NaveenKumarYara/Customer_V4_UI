@@ -20142,7 +20142,7 @@ a.ui-button:active,
 }
 
 .page--create-a-job .form-steps label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #6A7E9C;
   margin-bottom: 10px;
@@ -20167,7 +20167,7 @@ a.ui-button:active,
 }
 
   .page--create-a-job .form-steps .form-group .form-control {
-    margin-top: 0;
+    margin-top: 15px;
   }
   .page--create-a-job .form-steps .domain-exp-group .form-control {
     margin-top: 44px;
@@ -20395,7 +20395,7 @@ a.ui-button:active,
   color: #9EABC0;
   margin-bottom: 15px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .page--create-a-job .form-steps .responsibility-group .input-group .form-control {

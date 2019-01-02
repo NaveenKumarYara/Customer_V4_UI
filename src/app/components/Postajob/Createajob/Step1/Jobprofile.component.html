@@ -1,7 +1,7 @@
 
 <div class="form-group job-profile-group">
   <label for="" class="question">Do you have a complete description of the Job profile?</label>
-  <p class="description">Share details so we can find you the most eligible candadtes.</p>
+  <p class="description">Share details so we can find you the most eligible candidates.</p>
   <div class="clearfix">
     <label class="radio"  *ngFor="let type of hasCompleteDescriptionList">
       <!-- <input type="radio" id="r1yes" (change)="setValue(true)"   [(ngModel)]="hasCompleteDescription" checked="hasCompleteDescription" name="contactVia" class="radio-input" /> -->
@@ -9,12 +9,15 @@
         <span class="radio-btn"></span> 
         <span>{{type ? "Yes" : "No"}}</span>
       </label>
+   
     <!-- <label for="r2no" class="radio">
       <input type="radio" id="r2no"  (change)="setValue(false)"  [(ngModel)]="hasCompleteDescription"  checked="hasCompleteDescription" name="contactVia" class="radio-input" />
       <span class="radio-btn"></span>
       <span>No</span>
     </label> -->
   </div>
+  <div class="clearfix">&nbsp;</div>
   <textarea name="" [disabled]="hasCompleteDescription === false" id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
+  
 </div>
 
