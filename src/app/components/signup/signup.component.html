@@ -1,78 +1,93 @@
-<div class="login_bg overlay">
-	<div class="container align-middle">
-	  <div class="row">
-			<div class="col-md-6 logo-caption-section">
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix hidden-xs">&nbsp;</div>
-				<div class="clearfix hidden-xs">&nbsp;</div>
-				<div class="clearfix hidden-xs">&nbsp;</div>
-				<!-- <img alt="Tenendus" src="/assets/images/Tenendus-Logo-1.png" title="Tenendus"> -->
-				<img alt="Tenendus" src="/assets/images/arytic-logo.png" title="Arytic">
-				<h3>End your explore for the perfect employee through us.</h3>
-			</div>
-		
-		<div class="span12">
-		  <form [formGroup]="signUpform" (ngSubmit)="SignUp()">
-      <header>Sign Up </header>
-      <alert></alert>
-			<label>First Name
-			  <span>*</span>:</label>
-			<div class="form-group form-control-login">
-			  <input type="text" placeholder="First Name" name="First Name" [formControl]="signUpform.controls['ContactFirstName']" (keypress)="MissClear()"
-				(keyup)="MissClear()">
-			  <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-            </div>
-            <label>Last Name
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="Last Name" name="Last Name" [formControl]="signUpform.controls['ContactLastName']" (keypress)="MissClear()"
-                (keyup)="MissClear()">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-              </div>
-              <label>Company Name
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="CompanyName" name="CompanyName" [formControl]="signUpform.controls['CompanyName']">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-              </div>
-              <label>WebSite
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="WebSite" name="WebSite" [formControl]="signUpform.controls['WebSite']">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-              </div>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Arytic</title>
 
-            <label>Email
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="Email" name="Email" [formControl]="signUpform.controls['ContactEmail']">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
+      <!-- YOUR CUSTOM CSS -->
+   </head>
+   <body class="signpage">
+      <div class="container-fluid full-height">
+          <div class="row row-height">
+              <div class="col-lg-6 content-left">
+                  <div class="content-left-wrapper">
+    <div class="jobs_hide">
+      <h2>I'm here for Hiring</h2>
+      <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
+   </div>
+                  </div>
               </div>
-			<label>Password
-			  <span>*</span>:</label>
-			<div class="form-group form-control-login">
-			  <input placeholder="Password" id="password" name="password" class="form-control input-field" type="password" [formControl]="signUpform.controls['Password']">
-			  <span class="glyphicon glyphicon-eye-open"></span>
-			  <!-- <app-error-messages [control]="loginform.controls.Password"></app-error-messages> -->
-            </div>
-            <label>Contact Number
-                <span>*</span>:</label>
-              <div class="form-group form-control-login">
-                <input type="text" placeholder="Contact Number" name="Contact Number" [formControl]="signUpform.controls['ContactNumber']">
-                <!-- <app-error-messages [control]="loginform.controls.UserName"></app-error-messages> -->
-              </div>
+              <div class="col-lg-6 content-right recrit_div"  id="start">
+                  <div id="wizard_container">
+                     <div id="top-wizard">
+                        <div id="progressbar"></div>
+                     </div>
+                     <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
+                     <!-- /top-wizard -->
+                     <form id="wrapped" [formGroup]="signUpform" (ngSubmit)="SignUp()">
+                        <!-- Leave for security protection, read docs for details -->
+                        <div id="hiring_sign">
+                           <div class="logo1">
+                              <a ><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                           </div>
+                      
+                           <div class="step">
+                              <h2 class="main_question">
+                                 Welcome here! Let me help you
+                                 signing up.
+                              </h2>
+                              <alert></alert>
+                              <div class="form-group  spt-2">
+                                  <input type="text" class="form-control"[formControl]="signUpform.controls['ContactFirstName']" placeholder="FirstName" (keypress)="MissClear()"
+                                  (keyup)="MissClear()">
+                               </div>
+                               <div class="form-group">
+                                  <input type="text" class="form-control" [formControl]="signUpform.controls['ContactLastName']" (keypress)="MissClear()" placeholder="LastName"
+                                  (keyup)="MissClear()">
+                               </div>
+                              <div class="form-group">
+                                  <input type="text" class="form-control" [formControl]="signUpform.controls['CompanyName']" placeholder="CompanyName">
+                               </div>
+                              <div class="form-group">
+                                 <input type="email" class="form-control" placeholder="Enter your Contact Email." [formControl]="signUpform.controls['ContactEmail']">
+                              </div>
+                              <div class="form-group">
+                                 <input type="text" class="form-control" [formControl]="signUpform.controls['ContactNumber']" placeholder="Enter your Contact Number.">
+                              </div>
+                              <div class="form-group">
+                                 <input class="form-control" type="password" id="password" name="password1" placeholder="Password"  [formControl]="signUpform.controls['Password']">
+                                 <span class="glyphicon glyphicon-eye-open"></span>
+                                </div>
+                              <div class="form-group terms">
+                                 <label class="container_check">Please accept our <a href="#" data-toggle="modal" data-target="#terms-txt">Terms and conditions</a>
+                                 <input type="checkbox" name="terms" value="Yes" class="required">
+                                 <span class="checkmark"></span>
+                                 </label>
+                              </div>
+                              <h6>Already have an account? <a  href="javascript:void(0)" (click)="Login()">Login here</a></h6>
+                              <div class="spt-2 d-flex justify-content-between">
+                               
+                                 <span>I don't think of <a  href="javascript:void(0)" (click)="Layout()" id="recrit_close">signing up.</a></span> <button type="submit"  class="btn2"> Signup </button>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- login -->
+                  
+                        <!-- login -->
+                        <!-- hiring id _forgot -->
+                
+                        <!-- hiring id _forgot -->
+                        <!-- /middle-wizard -->
+                        <!-- /bottom-wizard -->
+                     </form>
+                  </div>
+                  <!-- /Wizard container -->
+               </div>
+              
+          </div>
+      </div>
 
-			<!-- <div class="form-control-login">
-			  <input type="checkbox" (click)="password()">Show My Password
-			</div> -->
-            <button type="submit" id="login-button" class="btn green-btn pull-right">SignUp</button>
-            <button  class="btn green-btn pull-left"  (click)="Login()">Login</button>
-            </form>
-            
-        </div>
-      
-		</div>
-
-	</div>
-  </div>
+   </body>
+</html>

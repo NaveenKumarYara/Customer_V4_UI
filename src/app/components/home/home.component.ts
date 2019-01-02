@@ -22,7 +22,8 @@ export class HomeComponent {
   constructor( private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
 
   }
- 
+
+
   SignUp()
   {
     this.router.navigateByUrl('signup'); 
