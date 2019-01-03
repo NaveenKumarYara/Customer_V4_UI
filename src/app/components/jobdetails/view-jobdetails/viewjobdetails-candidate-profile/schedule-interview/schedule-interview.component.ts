@@ -111,7 +111,7 @@ this.schIntw.JobResponseId = this.data.jobResponseId; // gemerated when sortlist
 this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
   this.schIntw.StartTime = this.time.hour + ':' + this.time.minute;
 // this.schIntw.EndTime=this.userId;
-this.schIntw.InterviewTypeId = this.userId; // skype or anytype
+// skype or anytype
 // this.schIntw.PhoneNumber=this.userId;
   // this.schIntw.BridgeUrl=this.userId;
 // this.schIntw.AccessId=this.userId;
@@ -129,6 +129,7 @@ if (this.processSelection === 1) {
   this.schIntw.RequiredFurtherInterview = this.webxRI;
   // this.schIntw.PhoneNumber=this.userId;
 }
+this.schIntw.InterviewTypeId = this.processSelection; 
  this.schIntw.StatusChangedByUserId = this.customerUser;
  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
