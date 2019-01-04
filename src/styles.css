@@ -20184,6 +20184,7 @@ a.ui-button:active,
     border-radius: 3px;
     background-color: #FBFCFF;
     color: #6A7E9C;
+    margin-right: 10px;
   }
 
   .page--create-a-job .form-steps .data-list li:last-child {
@@ -20206,9 +20207,8 @@ a.ui-button:active,
     }
 
     .page--create-a-job .form-steps .data-list li .experience {
-      padding: 10px 0;
-      padding-left: 13px;
-      font-size: 15px;
+      padding: 10px 7px;
+      font-size: 13px;
       font-weight: 500;
       width: 24.35%;
       border-left: 1px solid #E0E3EF;
