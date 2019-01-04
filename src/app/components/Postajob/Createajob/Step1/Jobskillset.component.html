@@ -12,13 +12,13 @@
     <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
     <div class="form-group exp col-md-2">
       <label for="">Min Experience</label>
-      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 Year"
         bindLabel="minExperience" [loading]="peopleLoading" [(ngModel)]="minexperience">
       </ng-select>
     </div>
     <div class="form-group exp col-md-2">
       <label for="">Max Experience</label>
-      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 yr 2 months"
+      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="4 Years"
         bindLabel="name" [loading]="peopleLoading" [(ngModel)]="maxexperience">
       </ng-select>
     </div>
