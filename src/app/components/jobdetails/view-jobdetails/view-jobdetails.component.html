@@ -47,14 +47,19 @@
               </div>
             </div>
 
-          </header>
-          <div class="card-body">
-            <div>
+          </header>         
+          <div class="card-body">           
+            <div>              
               <button *ngIf="jobdetailsbasicinfo?.IsActive==true;else isactive"  class="btn btn-border"  id="Inactive"  (click)="changeJobStatus(jobdetailsbasicinfo,false)">Inactive</button>
               <ng-template #isactive>
                 <button id="Active"  class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Active</button>
               </ng-template>
-              <button class="btn btn-border" mat-button (click)="openCandidateUploadDialog()">Manage Profiles</button>
+              <ng-container *ngIf="jobdetailsbasicinfo?.IsActive==true; else isnotActive">
+              <button class="btn btn-bordermat-button" (click)="openCandidateUploadDialog()">Manage Profiles</button>
+            </ng-container>
+            <ng-template #isnotActive>
+                <button class="btn btn-bordermat-button" (click)="openCandidate()">Manage Profiles</button>             
+            </ng-template>
             </div>
             <div>
               <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button>
@@ -165,4 +170,5 @@
         </div>
       </div>
     </div>
+    <alert></alert>
 </main>

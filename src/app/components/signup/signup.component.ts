@@ -52,6 +52,9 @@ export class SignUpComponent {
 
     error => {
       this.alertService.error('Please provide the valid details');
+      setTimeout(() => {
+        this.alertService.clear();
+      }, 2000);
       this.signUpform.reset();
     },
     () => console.log('Call Sucessfull')

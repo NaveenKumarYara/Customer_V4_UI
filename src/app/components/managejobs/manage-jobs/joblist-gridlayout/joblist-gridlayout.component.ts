@@ -45,6 +45,9 @@ export class JoblistGridlayoutComponent implements OnInit {
     if(active == false )
     {
     this.alertService.error('Inactive Job Please Activate to Edit');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
     }
     else
     {

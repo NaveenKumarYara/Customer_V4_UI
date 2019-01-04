@@ -15,6 +15,7 @@ import { JobdetailsProfile } from '../models/jobdetailsprofile';
 import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
+import { AlertService } from '../../../shared/alerts/alerts.service';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
@@ -26,7 +27,7 @@ declare var $: any;
   selector: 'app-view-jobdetails',
   templateUrl: './view-jobdetails.component.html',
   styleUrls: ['./view-jobdetails.component.css'],
-  providers: [AppService]
+  providers: [AppService,AlertService]
 })
 export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
@@ -54,7 +55,7 @@ export class ViewJobdetailsComponent implements OnInit {
   deactivate = new deactivate();
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
-    private dialog: MatDialog, private fb: FormBuilder
+    private dialog: MatDialog, private fb: FormBuilder,private alertService : AlertService
    ) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
@@ -98,7 +99,14 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('share Dialog result: ${result}');
     });
   }
-  openCandidateUploadDialog() {
+  openCandidate()
+  {
+    this.alertService.error('Job is Inactive Please activate to Upload the Profiles');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
+  }
+  openCandidateUploadDialog() {  
     const abc = {
       'animal': 'panda',
        'JobId' : this.jobid
@@ -283,9 +291,11 @@ export class ViewJobdetailsComponent implements OnInit {
      this.loadMore = false;
    }
   populateJobsBasicInfo(customerId, jobid) {
+    debugger
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
+        debugger
     });
   }
 

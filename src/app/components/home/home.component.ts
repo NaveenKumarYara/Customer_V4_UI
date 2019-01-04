@@ -43,6 +43,9 @@ export class HomeComponent {
 
       error => {
         this.alertService.error('Please provide the valid details');
+        setTimeout(() => {
+          this.alertService.clear();
+        }, 2000);
         this.loginform.reset();
       },
       () => console.log('Call Sucessfull')
