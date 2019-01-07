@@ -20223,7 +20223,7 @@ a.ui-button:active,
     }
 
     .page--create-a-job .form-steps .data-list li .name {
-      padding: 10px 0 0 10px;
+      padding: 10px 0 0 3px;
       font-size: 13px;
       font-weight: 500;
       width:65%;
@@ -21011,4 +21011,13 @@ nav.navbar{
 
 .custom-slider .ng5-slider .ng5-slider-selection{
 background: #448AFA;
+}
+
+/*Validations styles*/
+.job-title-group .question small, .job-profile-group small, 
+.domain-exp-group .question small, .personality-group small, 
+.position-group small, .tech-team-group .question small, 
+.contract-details-group small, .position-group small, .reporting-manager-group small{ 
+  font-size:70%;
+  font-style: italic;
 }

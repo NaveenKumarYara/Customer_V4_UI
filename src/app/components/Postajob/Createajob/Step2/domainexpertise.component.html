@@ -1,63 +1,54 @@
-
 <div class="form-group domain-exp-group">
-    <label for="" class="question">Which domain/(s) is the project into?</label>
-    <p class="description">Share details so we can find you the most eligible candidates.</p>
-    <form #domainForm="ngForm" (ngSubmit)="addDomain()">
+  <label for="domainquestion" class="question">Which domain/(s) is the project into?</label>
+  <p class="description">Share details so we can find you the most eligible candidates.</p>
+  <form #domainForm="ngForm" (ngSubmit)="addDomain()">
     <div class="form-row row">
-      <div class="col-md-5 form-group skill-name" > 
-          <label for="">Domain Name</label>
-          <ng-select class="custom-style" [items]="domains | async"
-          placeholder="e.g. Bachelor of Computer Arts"
-          (change)="changeValue($event)"
-          bindLabel="DomainName"
-          bindValue="DomainId"
-          [typeahead]="selecteddomaininput"
-          [hideSelected]="true"
-          [loading]="domaintitleloading"
-          [(ngModel)]="selecteddomainname"
-          #DomainName="ngModel" name="Domain" required
-          [virtualScroll]="true">
-  </ng-select>
-  <span class="help-block" *ngIf="DomainName.invalid && DomainName.touched ">Domain Name is required.</span>
-  <!-- (data)="refreshValue($event)"
+      <div class="col-md-5 form-group skill-name">
+        <label for="">Domain Name</label>
+        <ng-select class="custom-style" id="domainquestion" [items]="domains | async" placeholder="e.g. Bachelor of Computer Arts"
+          (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" [typeahead]="selecteddomaininput"
+          [hideSelected]="true" [loading]="domaintitleloading" [(ngModel)]="selecteddomainname" #DomainName="ngModel"
+          name="Domain" required [virtualScroll]="true">
+        </ng-select>
+        <small class="text-danger" *ngIf="DomainName.invalid && DomainName.touched ">Domain Name is required.</small>
+        <!-- (data)="refreshValue($event)"
           (selected)="selected($event)"
           (removed)="removed($event)"
           (typed)="typed($event)" -->
       </div>
       <div class="form-group exp col-md-3">
         <label for="">Min Experience</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 Year"
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min"
           bindLabel="minExperience" [loading]="peopleLoading" #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
         </ng-select>
-        <div *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
-            cannot be greater than max experience
-          </div> 
+        <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
+          It can't be greater than Max Experience!
+        </small>
       </div>
       <div class="form-group exp col-md-3">
         <label for="">Max Experience</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="4 Years"
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max"
           bindLabel="name" [loading]="peopleLoading" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience">
         </ng-select>
-        <div *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
-            cannot be less than min experience
-          </div> 
+        <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
+          It can't be less than Min Experience!
+        </small>
       </div>
       <div class="form-group col-md-1">
-          <button class="btn add-btn form-control" type="submit">+</button>
-      </div>
-    
-    </div></form>
-    </div>
-    <div class="lists row">
-      <div class="col-md-12">
-        <p class="description">Domain</p>
-        <ul class="data-list">
-          <li class="col-md-5 no-exp" *ngFor="let domain of domainlist; let i = index">
-            <span class="name">{{domain.DomainName}}</span>
-            <span class="experience"> {{domain.MinimumExperience}} - {{domain.MaximumExperience}} Yrs</span>
-            <span class="close" (click)="deleteDomain(i)">&times;</span>
-          </li>
-        </ul>
+        <button class="btn add-btn form-control" type="submit">+</button>
       </div>
     </div>
-   
+  </form>
+</div>
+<div class="lists row">
+  <div class="col-md-12">
+    <p class="description">Domain</p>
+    <ul class="data-list">
+      <li class="col-md-5 no-exp" *ngFor="let domain of domainlist; let i = index">
+        <span class="name">{{domain.DomainName}}</span>
+        <span class="experience"> {{domain.MinimumExperience}} - {{domain.MaximumExperience}} Yrs</span>
+        <span class="close" (click)="deleteDomain(i)">&times;</span>
+      </li>
+    </ul>
+  </div>
+</div>

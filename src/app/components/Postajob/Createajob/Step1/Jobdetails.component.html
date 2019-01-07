@@ -1,52 +1,42 @@
 <div class="form-row row">
-    <div class="col-md-6">
-      <div class="form-group job-title-group">
-        <label for="" class="question"> * What is the Job Title?</label>
-        <ng-select class="custom-style" [items]="jobtitlelist | async" placeholder="e.g. Senior Java Developer"
-          [typeahead]="jobtitleinput" [hideSelected]="true" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
-          [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel" name="Title" (change)="updateJobTitle()">
-        </ng-select>
-        <ul class="data-list">
-          <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li>
-        </ul>
-        <span class="help-block" *ngIf="JobTitle.invalid && JobTitle.touched">JobTitle is required.</span>
-      </div>
+  <div class="col-md-6">
+    <div class="form-group job-title-group">
+      <label for="" class="question"> What is the Job Title?</label>
+      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Ex: Senior Java Developer" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
+        [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel" name="Title" (change)="updateJobTitle()">
+      </ng-select>
+      <ul class="data-list">
+        <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li>
+      </ul>
+      <small class="text-danger" *ngIf="JobTitle.invalid && JobTitle.touched">Job Title is required.</small>
     </div>
-    <div class="col-md-6">
-      <div class="form-group re-group">
-          <label for="" class="question"> * Required Experience</label>
-        <div class="row">
+  </div>
+  <div class="col-md-6">
+    <div class="form-group re-group">
+      <label for="requiredExperience" class="question">Required Experience</label>
+      <div class="row">
         <!-- <div class="styled-select-box block experience-output"></div> -->
         <div class="col-md-6">
-        <ng-select class="custom-style" [items]="expYears" (change)="updateMinExp()"  [hideSelected]="true" placeholder="1 yr" 
-        bindLabel="minExperience"
-        bindValue="minExperience"
-        [loading]="peopleLoading"
-        [(ngModel)]="minExperience"
-        #totMinExp="ngModel"
-        name="miniExperience"
-        required>
-        </ng-select> 
-        <span class="help-block" *ngIf="totMinExp.invalid && totMinExp.touched">Experience is required.</span>
-        <div *ngIf="totMinExp.value > totMaxExp.value">
-          cannot be greater than maximum experience
+          <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true"
+            placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [loading]="peopleLoading" [(ngModel)]="minExperience"
+            #totMinExp="ngModel" name="miniExperience" required>
+          </ng-select>
+          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Experience is required.</small>
+          <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
+            It can't be greater than maximum experience!
+          </small>
         </div>
-    </div>
-    <div class="col-md-6">
-        <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()"  [hideSelected]="true" placeholder="1 yr" 
-        bindLabel="maxExperience"
-        bindValue="maxExperience"
-        [loading]="peopleLoading"
-        [(ngModel)]="maxExperience"
-        #totMaxExp="ngModel"
-        name="maxiEperience" required>
-        </ng-select> 
-      </div>
-        <span class="help-block" *ngIf="totMaxExp.invalid && totMaxExp.touched">Experience is required.</span>
-        <div *ngIf="totMinExp.value > totMaxExp.value">
-          cannot be less than minimum experience
+        <div class="col-md-6">
+          <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true"
+            placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [loading]="peopleLoading" [(ngModel)]="maxExperience"
+            #totMaxExp="ngModel" name="maxiEperience" required>
+          </ng-select>
+          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Experience is required.</small>
+          <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
+            It can't be less than minimum experience!
+          </small>
         </div>
-      </div>
       </div>
     </div>
   </div>
+</div>

@@ -1,28 +1,20 @@
 <div class="form-group tech-team-group">
   <label for="" class="question">Technical Team for Screening</label>
   <p class="description">Share details so we can find you the most eligible candidates.</p>
-<form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
-  <div class="form-row row">
-    <div class="col-md-10">  
-           <ng-select class="custom-style" [items]="managersList | async"
-           placeholder="e.g. Bachelor of Computer Arts"
-           (change)="changeTeam($event)"
-           bindLabel="FirstName"
-           bindValue="UserId"
-           [typeahead]="selectedUserInput"
-           [hideSelected]="true"
-           [loading]="usersloading"
-           [(ngModel)]="selectedUserName"
-           [virtualScroll]="true" 
-           required #TeamMember="ngModel" name="teamMember"></ng-select>
-           <span class="help-block" *ngIf="TeamMember.invalid && TeamMember.touched">TeamMembers are required.</span>
-    </div>
-    <div class="col-md-2">
-      <button class="btn add-btn form-control" type="submit">+</button>
-    </div>
+  <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
+    <div class="form-row row">
+      <div class="col-md-10">
+        <ng-select class="custom-style" [items]="managersList | async" placeholder="Select Technical Team" (change)="changeTeam($event)"
+          bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
+          [(ngModel)]="selectedUserName" [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
+        <small class="text-danger" *ngIf="TeamMember.invalid && TeamMember.touched">Team Members are required.</small>
+      </div>
+      <div class="col-md-2">
+        <button class="btn add-btn form-control" type="submit">+</button>
+      </div>
     </div>
   </form>
-  </div> 
+</div>
 <div class="lists row">
   <div class="col-md-12">
     <p class="description">Team Members</p>
@@ -34,7 +26,3 @@
     </ul>
   </div>
 </div>
-
-
-
-

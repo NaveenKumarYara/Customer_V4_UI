@@ -2,7 +2,6 @@
   <label for="" class="question">What are the Responsibilities that you are looking for in the candidate?</label>
   <p class="description">Share details so we can find you the most eligible candidates.</p>
   <ul class="responsibility-list">
-      
     <li *ngFor="let responsibility of responsibilitieslist; let i = index">
       <label for="{{responsibility.RoleId}}" class="radio">
         <div>
@@ -13,7 +12,6 @@
         <span class="close" (click)="deleteResponsibility(i)">&times;</span>
       </label>
     </li>
- 
   </ul>
    <div class="form-row row">
      <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
@@ -32,7 +30,7 @@
               <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
             </ul>
           </div>
-          <span class="help-block" *ngIf="responsibility.invalid && responsibility.touched">Roles and Responsibilities are required.</span>
+          <small class="text-danger" *ngIf="responsibility.invalid && responsibility.touched">Roles and Responsibilities are required.</small>
           <!-- <div *ngIf="responsibility.touched">
               <div *ngIf="responsibility.errors && (responsibility.dirty)" class="alert alert-danger">
                 <div [hidden]="!responsibility.errors.required">
