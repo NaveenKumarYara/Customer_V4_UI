@@ -9,7 +9,7 @@
 </button>
 <ul class="dropdown-menu">
   <li><a (click)="editJob(job.JobId,job.IsActive)">Edit</a></li>
-  <li *ngIf="job.IsActive==true;else isactive" id="Inactive"><a (click)="changeJobStatus(job,false)" >Inactive</a></li>
+  <li *ngIf="job.IsActive;else isactive" id="Inactive"><a (click)="changeJobStatus(job,false)" >Inactive</a></li>
 <ng-template #isactive>
 <li  id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
 </ng-template>
@@ -25,13 +25,13 @@
     <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
   </svg>
   <h5 class="location">
-    {{ job?.JobLocations[0].CityName}},
-    {{ job?.JobLocations[0].StateCode}}
+    {{job?.JobLocations[0].CityName}},
+    {{job?.JobLocations[0].StateCode}}
 
   </h5>
   <h5>{{job?.PostedOn}}</h5>
 </div>
-<div class="status pending">{{job?.JobStatus}}</div>
+<div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
 </header>
 <div class="card-body">
 <div class="row">
