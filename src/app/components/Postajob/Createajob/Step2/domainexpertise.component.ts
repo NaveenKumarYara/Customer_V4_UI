@@ -54,14 +54,22 @@ if (this.domainForm.valid) {
     //   newDomain.DomainName = this.getDomain.DomainName;
     this.getDomain.MaximumExperience = this.MaximumExperience;
     this.getDomain.MinimumExperience = this.MinimumExperience;
-    this.appService.addDomain(this.getDomain);
+    const check = this.domainExists(this.getDomain, this.domainlist);
+      if (check === false) {
+        this.appService.addDomain(this.getDomain);
+      }
     // this.getDomain = new GetDomain();
     this.selecteddomainname = '';
-    this.MaximumExperience = 0;
-      this.MinimumExperience = 0;
+    this.MaximumExperience = 1;
+      this.MinimumExperience = 1;
     this.getDomain = new GetDomain();
 }
   }
+  domainExists(domain, list) {​
+    return list.some(function(elem) {
+         return elem.DomainName === domain.DomainName;
+    });
+ }
   changeValue(val) {
   this.getDomain.DomainId = val.DomainId;
     this.getDomain.DomainName = val.DomainName;

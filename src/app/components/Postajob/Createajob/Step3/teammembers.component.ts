@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class TeammembersComponent implements OnInit, OnDestroy {
-
+@ViewChild('teamForm') teamForm: any;
   private subscription: Subscription;
   teammembers: '';
   teammemberslist: CustomerUsers[];
@@ -43,10 +43,20 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   private addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
-    this.appService.addTeammember(this.getTeammember);
-    this.selectedUserName = '';
-  }
+if (this.teamForm.valid) {
+    const check = this.teamExists(this.getTeammember, this.teammemberslist);
+      if (check === false) {
+        this.appService.addTeammember(this.getTeammember);
+      }
 
+    this.selectedUserName = '';
+    }
+  }
+  teamExists(team, list) {​
+    return list.some(function(elem) {
+         return elem.UserId === team.UserId;
+    });
+ }
   private deleteTeammember(index: number) {
     this.appService.deleteTeammember(index);
   }

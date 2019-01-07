@@ -37,11 +37,18 @@ selectedQualification: Qualifications;
     // const newqualification = new Qualifications();
     // newqualification.QualificationId = this.selectedQualification.QualificationId;
     // newqualification.QualificationName = this.selectedQualification.QualificationName;
-    this.appService.addQualifications(this.selectedQualification);
+    const check = this.educationExists(this.selectedQualification, this.qualificationList);
+    if (check === false) {
+      this.appService.addQualifications(this.selectedQualification);
+    }
     this.selectedqualificationName = 0;
   }
 }
-
+educationExists(education, list) {​
+  return list.some(function(elem) {
+       return elem.QualificationId === education.QualificationId;
+  });
+}
   private deleteQualifications(index: number) {
     this.appService.deleteQualifications(index);
   }

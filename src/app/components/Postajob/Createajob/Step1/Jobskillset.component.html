@@ -9,6 +9,7 @@
           bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
           [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel" [addTag]="addSkill" [virtualScroll]="true" required>
         </ng-select>
+        <input type hidden id="skills">
         <span class="help-block" *ngIf="skill.invalid && skill.touched ">Skill Name is required.</span>
         <!-- <div *ngIf="skill.touched">
           <div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
@@ -40,7 +41,7 @@
         </div> -->
         <span class="help-block" *ngIf="minExp.invalid && minExp.touched "> Experience is required.</span>
         <div *ngIf="minExp.value > maxExp.value">
-          cannot be greater than max expereicne
+          cannot be greater than maximum experience
         </div> 
       </div>
       <div class="form-group exp col-md-2">
@@ -60,7 +61,7 @@
         </div> -->
         <span class="help-block" *ngIf="maxExp.invalid && maxExp.touched ">Experience is required.</span>
         <div *ngIf="minExp.value > maxExp.value">
-          cannot be less than min expereicne
+          cannot be less than minimum experience
         </div>
       </div>
       <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, ViewChild  } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild, ElementRef  } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 // tslint:disable-next-line:import-blacklist
@@ -9,13 +9,14 @@ import { of } from 'rxjs/observable/of';
 import { Jobskills, AddSkill } from '../../../../../models/jobskills.model';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
-
+declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobskillset',
   templateUrl: './Jobskillset.component.html'
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('f') form: any;
+  @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
   minexperience: number;
@@ -32,7 +33,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
 
   private selectedLink = 'Primary';
-
+  // public addSkill: (name) => void;
 
   setSkillType() {
     // if(!this.skillType)
@@ -55,17 +56,42 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   }
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
-
+      // this.addSkill = this.addTagNow.bind(this);
+  }
+  addTagNow(val) {
+    this.selectedSkillName = val;
   }
 
   addSkill(val) {
   const  SkillName = new AddSkill();
    SkillName.SkillName = val;
-   this.selectedSkillName = val;
+   // this.selectedSkillName = val;
+   // this.selectedSkillName = this.skill.nativeElement.value;
+   $('#skills').val('1');
      localStorage.setItem('skill', val);
-    return { name: SkillName.SkillName, tag: true };
+    return { name: SkillName.SkillName , tag: true };
 }
   private addSkills() {
+    if ($('#skills').val() === '1') {
+      if (this.maxexperience < this.minexperience) {
+        return false;
+      }
+      this.appService.addSkills(localStorage.getItem('skill'));
+      const newskills = new Jobskills();
+      newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
+      newskills.SkillType = this.skillType;
+      newskills.MaximumExp = this.maxexperience;
+      newskills.MinimumExp = this.minexperience;
+      const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
+      if (check === false) {
+          this.appService.addJobSkill(newskills);
+      }
+      this.selectedSkillName = '';
+      this.minexperience = 0;
+      this.maxexperience = 0;
+      localStorage.removeItem('skill');
+     this.form.reset();
+    }
     if (this.form.valid) {
       if (this.maxexperience < this.minexperience) {
         return false;
@@ -76,7 +102,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       newskills.SkillType = this.skillType;
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
-      this.appService.addJobSkill(newskills);
+      const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
+      if (check === false) {
+          this.appService.addJobSkill(newskills);
+      }
       this.selectedSkillName = '';
       this.minexperience = 0;
       this.maxexperience = 0;
@@ -86,6 +115,11 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
 }
   }
+  skillExists(skill, list) {​
+    return list.some(function(elem) {
+         return elem.SkillName === skill.SkillName;
+    });
+ }
   public getExpYears() {
     this.expYears = [];
     for (let i = 1; i <= 50; i++) {

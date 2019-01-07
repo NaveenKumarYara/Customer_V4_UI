@@ -49,8 +49,8 @@ export class AppService {
   private interviewtype: InterviewType[] = [];
 
   private notifications: Notification[] = [];
-   
-  private customercontacts : CustomerContacts[]= [];
+
+  private customercontacts: CustomerContacts[] = [];
 
   private contractduration: string[] = [
     '3 months', '6 months', '1 year', 'more than 1 year'
@@ -433,6 +433,8 @@ getaddedPersonTypes() {
   deleteDomain(index: number) {
     this.domain.splice(index, 1);
     this.domainChanged.next(this.domain.slice());
+    this.adddomain.splice(index, 1);
+    this.adddomainChanged.next(this.adddomain.slice());
   }
   getQualificationDetails(): Observable<Qualifications[]> {
     const url = environment.educationcriteriaendpoint;
@@ -466,8 +468,8 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
         this.handleError
       );
   }
-  getCustomerContacts(customerId:number,userId: number): Observable<CustomerContacts[]> {
-    debugger
+  getCustomerContacts(customerId: number, userId: number): Observable<CustomerContacts[]> {
+
     const url = environment.GetCustomerContacts + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(

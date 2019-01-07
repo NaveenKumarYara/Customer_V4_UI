@@ -15,7 +15,7 @@
           [hideSelected]="true"
           [loading]="domaintitleloading"
           [(ngModel)]="selecteddomainname"
-          required #DomainName="ngModel" name="Domain"
+          #DomainName="ngModel" name="Domain" required
           [virtualScroll]="true">
   </ng-select>
   <span class="help-block" *ngIf="DomainName.invalid && DomainName.touched ">Domain Name is required.</span>
@@ -30,7 +30,7 @@
           bindLabel="minExperience" [loading]="peopleLoading" #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
         </ng-select>
         <div *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
-            cannot be greater than max expereicne
+            cannot be greater than max experience
           </div> 
       </div>
       <div class="form-group exp col-md-3">
@@ -39,7 +39,7 @@
           bindLabel="name" [loading]="peopleLoading" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience">
         </ng-select>
         <div *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
-            cannot be greater than max expereicne
+            cannot be less than min experience
           </div> 
       </div>
       <div class="form-group col-md-1">
