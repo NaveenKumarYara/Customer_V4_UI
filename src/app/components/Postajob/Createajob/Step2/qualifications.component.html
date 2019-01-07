@@ -1,7 +1,8 @@
 <div class="form-group education-group">
   <label for="" class="question">Preferred Education criteria?</label>
   <p class="description">Share details so we can find you the most eligible candidates.</p>
-  <div class="row">
+  <div class="row"> 
+     <form #eduForm="ngForm" (ngSubmit)="addQualification()">
     <div class="col-md-5 col-sm-5">
         <ng-select class="custom-style" [items]="qualifications | async"
                    placeholder="e.g. Bachelor of Computer Arts"
@@ -12,18 +13,21 @@
                    [hideSelected]="true"
                    [loading]="qualificationtitleloading"
                    [(ngModel)]="selectedqualificationName"
-                   [virtualScroll]="true">
+                   [virtualScroll]="true"
+                   required #Education="ngModel" name="Qualification">
         </ng-select>
+        <span class="help-block" *ngIf="Education.invalid && Education.touched">Qualification is required.</span>
     </div>
-    <div class="col-md-5 col-sm-5">
+    <!-- <div class="col-md-5 col-sm-5">
       <input type="text" class="form-control" placeholder="Other">
-    </div>
+    </div> -->
     <div class="col-md-2 col-sm-2">
-      <button class="btn add-btn form-control" (click)="addQualification()">+</button>
+      <button class="btn add-btn form-control" type="submit">+</button>
     </div> 
+  </form>
+    </div>
   </div>
  
-  </div>
   <div class="lists row">
     <div class="col-md-12">
       <p class="description">Qualifications</p>

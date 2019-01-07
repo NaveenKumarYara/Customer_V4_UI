@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class JobcategoryComponent implements OnInit {
-
+  @ViewChild('categoryForm') categoryForm: any;
   jobcategorylist: Observable<CategoryList[]>;
   selectedCategory: CategoryList;
 

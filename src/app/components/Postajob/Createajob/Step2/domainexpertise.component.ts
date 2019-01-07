@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -15,7 +15,7 @@ import { of } from 'rxjs/observable/of';
 })
 
 export class DomainExpertiseComponent implements OnInit, OnDestroy {
-
+@ViewChild('domainForm') domainForm: any;
   private subscription: Subscription;
   private subscriptions: Subscription;
   domain: '';
@@ -42,6 +42,10 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   // }
 
   private addDomain() {
+if (this.domainForm.valid) {
+  if (this.MaximumExperience < this.MinimumExperience) {
+    return false;
+  }
     // const newDomain = new GetDomain();
     // // newDomain.DomainName = this.selecteddomainname;
     //   newDomain.MaximumExperience = this.maxExperience;
@@ -56,7 +60,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     this.MaximumExperience = 0;
       this.MinimumExperience = 0;
     this.getDomain = new GetDomain();
-
+}
   }
   changeValue(val) {
   this.getDomain.DomainId = val.DomainId;
@@ -71,7 +75,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   }
   public getExpYears() {
     this.expYears = [];
-    for (let i = 0; i <= 50; i++) {
+    for (let i = 1; i <= 50; i++) {
         this.expYears.push(i);
     }
     return this.expYears;

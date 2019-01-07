@@ -1,10 +1,10 @@
 <div class="form-group position-group">
-    <label for="" class="question">How many open positions do you currently have for this Job Title?</label>
+    <label for="" class="question"> * How many open positions do you currently have for this Job Title?</label>
     <p class="description">Share details so we can find you the most eligible candidates.</p>
     <div class="options">
       <div class="checkbox" *ngFor="let type of openingsList">
         <label >
-          <input type="radio" [(ngModel)]="noOfOpenings" name="openg" (change)="Opening(type)" [value]="type"><span class="box">{{type}}</span> </label>
+          <input type="radio" [(ngModel)]="noOfOpenings"  #openings="ngModel" required name="openg" (change)="Opening(type)" [value]="type"><span class="box">{{type}}</span> </label>
       </div>
       <!-- <div class="checkbox">
         <label><input type="radio" name="openg" (click)="Opening(2)" value="2"><span class="box">2</span></label>
@@ -13,6 +13,7 @@
         <label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
       </div> -->
       <h4>OR</h4>
-      <input type="text" class="form-control"  [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Type">
+      <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Type">
     </div>
+    <span class="help-block" *ngIf="openings.invalid && openings.touched">No of Positions is required.</span>
   </div>

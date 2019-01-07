@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy  } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild  } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 // tslint:disable-next-line:import-blacklist
@@ -15,7 +15,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './Jobskillset.component.html'
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
-
+  @ViewChild('f') form: any;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
   minexperience: number;
@@ -61,25 +61,34 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   addSkill(val) {
   const  SkillName = new AddSkill();
    SkillName.SkillName = val;
-   localStorage.setItem('skill', val);
+   this.selectedSkillName = val;
+     localStorage.setItem('skill', val);
     return { name: SkillName.SkillName, tag: true };
 }
   private addSkills() {
-    this.appService.addSkills(localStorage.getItem('skill'));
-    const newskills = new Jobskills();
-    newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
-    newskills.SkillType = this.skillType;
-    newskills.MaximumExp = this.maxexperience;
-    newskills.MinimumExp = this.minexperience;
-    this.appService.addJobSkill(newskills);
-    this.selectedSkillName = '';
-    this.minexperience = 0;
-    this.maxexperience = 0;
-    localStorage.removeItem('skill');
+    if (this.form.valid) {
+      if (this.maxexperience < this.minexperience) {
+        return false;
+      }
+      this.appService.addSkills(localStorage.getItem('skill'));
+      const newskills = new Jobskills();
+      newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
+      newskills.SkillType = this.skillType;
+      newskills.MaximumExp = this.maxexperience;
+      newskills.MinimumExp = this.minexperience;
+      this.appService.addJobSkill(newskills);
+      this.selectedSkillName = '';
+      this.minexperience = 0;
+      this.maxexperience = 0;
+      localStorage.removeItem('skill');
+     this.form.reset();
+    } else {
+
+}
   }
   public getExpYears() {
     this.expYears = [];
-    for (let i = 0; i <= 50; i++) {
+    for (let i = 1; i <= 50; i++) {
         this.expYears.push(i);
     }
     return this.expYears;
@@ -139,3 +148,4 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.subscription.unsubscribe();
   }
 }
+

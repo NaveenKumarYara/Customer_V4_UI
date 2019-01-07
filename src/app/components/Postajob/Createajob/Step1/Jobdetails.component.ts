@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -17,7 +17,7 @@ declare var jQuery: any;
 })
 
 export class JobdetailsComponent implements OnInit {
-
+  @ViewChild('detailForm') detailForm: any;
   jobtitlelist: Observable<string[]>;
   selectedTitle = '';
   expYears: any = [];
@@ -67,7 +67,7 @@ export class JobdetailsComponent implements OnInit {
   }
   public getExpYears() {
     this.expYears = [];
-    for (let i = 0; i <= 50; i++) {
+    for (let i = 1; i <= 50; i++) {
         this.expYears.push(i);
     }
     return this.expYears;

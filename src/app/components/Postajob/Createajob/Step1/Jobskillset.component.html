@@ -1,65 +1,108 @@
 <div class="form-group candidate-group">
-  <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
-  <p class="description">Share details so we can find you the most eligible candidates.</p>
-  <div class="form-row row">
-    <div class="form-group skill-name col-md-6">
-      <label for="">Skill Name</label>
-      <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
-        bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
-        [(ngModel)]="selectedSkillName"  [addTag]="addSkill" [virtualScroll]="true">
-      </ng-select>
+    <label for="" class="question"> * What is the skill set that you are looking for in the candidate?</label>
+    <p class="description">Share details so we can find you the most eligible candidates.</p>
+    <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
+    <div class="form-row row">
+      <div class="form-group skill-name col-md-6" [class.has.error]="skill.invalid && skill.touched" >
+        <label for="">Skill Name</label>
+        <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
+          bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
+          [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel" [addTag]="addSkill" [virtualScroll]="true" required>
+        </ng-select>
+        <span class="help-block" *ngIf="skill.invalid && skill.touched ">Skill Name is required.</span>
+        <!-- <div *ngIf="skill.touched">
+          <div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
+            <div [hidden]="!skill.errors.required">
+              Skill Name is required.
+            </div>
+            <div *ngIf="skill.errors.minlength">
+              Please select provider from list or add new
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
+      <div class="form-group exp col-md-2">
+        <label for="">Min Experience</label>
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 Year"
+          bindLabel="minExperience" name="minExperience" #minExp="ngModel"  min="1" [loading]="peopleLoading" [(ngModel)]="minexperience" required>
+        </ng-select>
+        <!-- {{minExp.value}} -->
+        <!-- <div *ngIf="minExp.touched">
+          <div *ngIf="minExp.errors && (minExp.dirty)" class="alert alert-danger"> 
+            <div [hidden]="!minExp.errors.required"> 
+             expereince required.
+            </div> 
+            <div *ngIf="minExp.errors.minlength">
+              Please select min experience
+            </div>
+          </div>
+        </div> -->
+        <span class="help-block" *ngIf="minExp.invalid && minExp.touched "> Experience is required.</span>
+        <div *ngIf="minExp.value > maxExp.value">
+          cannot be greater than max expereicne
+        </div> 
+      </div>
+      <div class="form-group exp col-md-2">
+        <label for="">Max Experience</label>
+        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="4 Years"
+          bindLabel="name" [loading]="peopleLoading" #maxExp="ngModel"  min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
+        </ng-select>
+        <!-- <div *ngIf="maxExp.touched">
+          <div *ngIf="maxExp.errors && (maxExp.dirty)" class="alert alert-danger"> 
+            <div [hidden]="!maxExp.errors.required"> 
+              max experience is required.
+            </div>
+            <div *ngIf="maxExp.errors.min">
+              Please select max experience
+            </div>
+          </div>
+        </div> -->
+        <span class="help-block" *ngIf="maxExp.invalid && maxExp.touched ">Experience is required.</span>
+        <div *ngIf="minExp.value > maxExp.value">
+          cannot be less than min expereicne
+        </div>
+      </div>
+      <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
+      <div class="form-group primary col-md-2">
+        <label for="r1primary" class="radio">
+          <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary" value="Primary"
+            class="radio-input" [checked]='true' ngMode />
+          <span class="radio-btn"></span>
+          <span>Primary</span>
+           
+        </label>
+        <!-- <label for="r2secondary" class="radio">
+          <input type="radio" id="r2secondary" name="isPrimary" value="Secondary" class="radio-input" (click)="setSkillType('Secondary')"
+            ngModel />
+          <span class="radio-btn"></span>
+          <span>Secondary</span>
+        </label> -->
+      </div>
+      <button class="btn add-btn" type="submit">+</button>   <!-- (click)="addSkills()" -->
     </div>
-    <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-    <div class="form-group exp col-md-2">
-      <label for="">Min Experience</label>
-      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="1 Year"
-        bindLabel="minExperience" [loading]="peopleLoading" [(ngModel)]="minexperience">
-      </ng-select>
+    </form>
+    <div class="lists row">
+      <div class="col-md-6">
+        <h4 for="" class="light">Primary Skills</h4>
+        <ul class="data-list">
+          <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
+            <span class="name">{{primaryjobskill.SkillName}}</span>
+            <span class="experience"> {{primaryjobskill.MinimumExp}} - {{primaryjobskill.MaximumExp}} Yrs</span>
+            <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="col-md-6">
+        <h4 for="" class="light">Secondary Skills</h4>
+        <ul class="data-list">
+          <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
+            <span class="name">{{secondaryjobskill.SkillName}}</span>
+            <span class="experience"> {{secondaryjobskill.MinimumExp}} - {{secondaryjobskill.MaximumExp}} Yrs</span>
+            <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="form-group exp col-md-2">
-      <label for="">Max Experience</label>
-      <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="4 Years"
-        bindLabel="name" [loading]="peopleLoading" [(ngModel)]="maxexperience">
-      </ng-select>
-    </div>
-    <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-    <div class="form-group primary col-md-2">
-      <label for="r1primary" class="radio">
-        <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary" value="Primary"
-          class="radio-input" [checked]='true' ngMode />
-        <span class="radio-btn"></span>
-        <span>Primary</span>
-      </label>
-      <!-- <label for="r2secondary" class="radio">
-        <input type="radio" id="r2secondary" name="isPrimary" value="Secondary" class="radio-input" (click)="setSkillType('Secondary')"
-          ngModel />
-        <span class="radio-btn"></span>
-        <span>Secondary</span>
-      </label> -->
-    </div>
-    <button class="btn add-btn" (click)="addSkills()">+</button>
   </div>
-  <div class="lists row">
-    <div class="col-md-6">
-      <h4 for="" class="light">Primary Skills</h4>
-      <ul class="data-list">
-        <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
-          <span class="name">{{primaryjobskill.SkillName}}</span>
-          <span class="experience"> {{primaryjobskill.MinimumExp}} - {{primaryjobskill.MaximumExp}} Yrs</span>
-          <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-md-6">
-      <h4 for="" class="light">Secondary Skills</h4>
-      <ul class="data-list">
-        <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-          <span class="name">{{secondaryjobskill.SkillName}}</span>
-          <span class="experience"> {{secondaryjobskill.MinimumExp}} - {{secondaryjobskill.MaximumExp}} Yrs</span>
-          <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>

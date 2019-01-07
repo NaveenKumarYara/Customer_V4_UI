@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 declare var  $: any ;
@@ -8,6 +8,7 @@ declare var  $: any ;
   styleUrls: ['./jobprofile.component.css']
 })
 export class JobprofileComponent implements OnInit {
+  @ViewChild('profileForm') profileForm: any;
 declare;
 hasCompleteDescription: boolean;
 jobDescription: string;
@@ -31,7 +32,7 @@ hasCompleteDescriptionList: any;
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
-  //}
+  // }
 }
 populatedescriptioncheck() {
     this.hasCompleteDescriptionList  = this.appService.getHasDescription();

@@ -16,22 +16,38 @@
  
   </ul>
    <div class="form-row row">
+     <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
     <div class="col-md-10">
        <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
         [(ngModel)]="responsibilities"> -->
 
         <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" 
-        required [(ngModel)]="responsibilities" id="responsibilitiesName" (keyup)="GetTitleRoles()"
-        placeholder="Type and Select">
-        <div class="searchList" *ngIf="roleJobTitleList!=null" >
+        required [(ngModel)]="responsibilities" name="resposibilities" #responsibility="ngModel" minlength="1" id="responsibilitiesName" (keyup)="GetTitleRoles()"
+        placeholder="Type and Select" required>
+        <!-- {{responsibility.value.length}}  
+           {{responsibilities.length}}
+           {{responsibility.value}} -->
+        <div class="searchList" *ngIf="roleJobTitleList!=null && responsibility.value.length > 0" >
             <ul class="searchList-dropdown">
               <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
             </ul>
           </div>
+          <span class="help-block" *ngIf="responsibility.invalid && responsibility.touched">Roles and Responsibilities are required.</span>
+          <!-- <div *ngIf="responsibility.touched">
+              <div *ngIf="responsibility.errors && (responsibility.dirty)" class="alert alert-danger">
+                <div [hidden]="!responsibility.errors.required">
+                 expereince required.
+                </div>
+                <div *ngIf="responsibility.errors.minlength">
+                  Please select min experience
+                </div>
+              </div>
+            </div> -->
       </div>
     <div class="col-md-2">
-        <button class="btn add-btn form-control" (click)="AddRoles()">+</button>
+        <button class="btn add-btn form-control" type="submit">+</button>
     </div>
+  </form>
   </div>
 
   <!-- <div class="lists row">

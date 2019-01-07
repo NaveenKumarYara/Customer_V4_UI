@@ -8,11 +8,12 @@
   bindLabel="Category"
   bindValue="JobCategoryId" [typeahead]="jobcategoryinput" 
   [hideSelected]="true" [loading]="jobtitleloading"
-  [(ngModel)]="selectedCategory" [virtualScroll]="true" (change)="updateJobCategory($event)">
+  [(ngModel)]="selectedCategory" [virtualScroll]="true" required #Jobcategory="ngModel" name="Category" (change)="updateJobCategory($event)">
 </ng-select>
   <ul class="data-list">
     <li *ngIf="selectedCategory?.Category && selectedCategory!=undefined &&  selectedCategory?.Category.length > 0"> {{selectedCategory.Category}} </li>
   </ul>
+  <span class="help-block" *ngIf="Jobcategory.invalid && Jobcategory.touched">*Jobcategory is required.</span>
 </div>
 
     

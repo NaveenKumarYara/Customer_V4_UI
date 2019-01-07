@@ -71,7 +71,11 @@ export class Step1Component implements OnInit {
     const res = localStorage.getItem('jobId');
     // if (res != null) {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
-   // }
+   // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
+   if ((this.jobDetail.selectedTitle !== '' || this.jobDetail.selectedTitle !== null) &&
+    this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
+    this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0 ) {
+    //  && this.jobResponsibility.roleIdList.length > 0
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
     this.insertJob.MinExperienceId = this.jobDetail.minExperience;
@@ -116,7 +120,7 @@ this.insertJob.StepNumber = step;
         this.router.navigate(['/app-createajob/app-steps-step2']);
       }
     });
-
+  } else { return false; }
   }
 
   postJob1(step) {

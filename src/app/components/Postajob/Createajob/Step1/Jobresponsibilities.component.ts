@@ -16,7 +16,7 @@ declare var $: any;
 export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
  // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
-
+ @ViewChild('rolesForm') rolesForm: any;
   private subscription: Subscription;
   responsibilities: '';
   responsibilitieslist: Roles[];
@@ -41,9 +41,13 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   // }
 
   private deleteResponsibility(index: number) {
+    if ($('#responsibilitiesName').val() === '') {
+      this.responsibilities = '';
+    }
     this.appService.deleteResponsibilities(index);
     this.roleList.splice(index, 1);
      this.roleIdList.splice(index, 1);
+
   }
 
   ngOnInit() {
@@ -77,6 +81,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   // adding roles and saving them
 
   AddRoles() {
+if (this.rolesForm.valid) {
     if ($('#responsibilitiesName').val() && this.roleModel.RoleId > 0) {
       // if (this.roleModel.RoleId > 0) {
       // this.roleList.push(this.roleModel);
@@ -103,6 +108,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
           });
       $('#responsibilitiesName').val('');
     } else {
+      return false;
+    }
+  } else {
       return false;
     }
     $('#responsibilitiesName').val();
@@ -147,6 +155,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   }
 
   SetRoleValue(val) {
+    this.responsibilities = val.RolesAndResponsibilities;
     $('#responsibilitiesName').val(val.RolesAndResponsibilities);
     this.roleModel.RolesAndResponsibilities = val.RolesAndResponsibilities;
     this.roleModel.RoleId = val.RoleId;

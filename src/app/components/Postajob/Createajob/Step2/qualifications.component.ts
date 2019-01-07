@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy  } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild  } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 // tslint:disable-next-line:import-blacklist
@@ -16,7 +16,7 @@ import { PjEducationDetails } from '../../models/jobPostInfo';
   templateUrl: './qualifications.component.html'
 })
 export class QualificationsComponent implements OnInit, OnDestroy  {
-
+@ViewChild('eduForm') eduForm: any;
   private addedsubscription: Subscription;
   private subscription: Subscription;
   qualificationId: number;
@@ -33,12 +33,14 @@ selectedQualification: Qualifications;
 
   }
   private addQualification() {
+    if (this.eduForm.valid) {
     // const newqualification = new Qualifications();
     // newqualification.QualificationId = this.selectedQualification.QualificationId;
     // newqualification.QualificationName = this.selectedQualification.QualificationName;
     this.appService.addQualifications(this.selectedQualification);
     this.selectedqualificationName = 0;
   }
+}
 
   private deleteQualifications(index: number) {
     this.appService.deleteQualifications(index);

@@ -119,12 +119,12 @@ export class Step2Component implements OnInit {
     // // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
     //  this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
+    if (this.openings.noOfOpenings > 0 && this.locations.prfLoc.PreferredLocationId.toString() != null ) {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
-
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
     this.insertJob.MinExperienceId = this.jobMinExp; // this.appService.minExperience.value;
@@ -148,8 +148,6 @@ export class Step2Component implements OnInit {
     //  this.insertJob.SalaryTypeId = 1;
     // this.insertJob.MinimumSalary = this.salaryMinRate.toString();
     // this.insertJob.MaximumSalary = this.salaryMaxRate.toString();
-
-
 
     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
       this.appService.currentEmploymentType.subscribe((data) => {
@@ -175,9 +173,8 @@ export class Step2Component implements OnInit {
     this.insertJob.MinimumSalary = '1';
     this.insertJob.MaximumSalary = '200';
     this.insertJob.IsDrafted = true;
-
   }
-this.insertJob.StepNumber = step;
+    this.insertJob.StepNumber = step;
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
@@ -185,7 +182,9 @@ this.insertJob.StepNumber = step;
         this.router.navigate(['/app-createajob/app-steps-step3']);
       }
     });
-
+  } else {
+    return false;
+  }
   }
 
   backtoStep1() {
