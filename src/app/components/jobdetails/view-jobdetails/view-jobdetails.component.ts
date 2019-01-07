@@ -27,7 +27,7 @@ declare var $: any;
   selector: 'app-view-jobdetails',
   templateUrl: './view-jobdetails.component.html',
   styleUrls: ['./view-jobdetails.component.css'],
-  providers: [AppService,AlertService]
+  providers: [AppService, AlertService]
 })
 export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
@@ -55,7 +55,7 @@ export class ViewJobdetailsComponent implements OnInit {
   deactivate = new deactivate();
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
-    private dialog: MatDialog, private fb: FormBuilder,private alertService : AlertService
+    private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
    ) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.userId = JSON.parse(sessionStorage.getItem('userId'));
@@ -99,14 +99,13 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('share Dialog result: ${result}');
     });
   }
-  openCandidate()
-  {
+  openCandidate() {
     this.alertService.error('Job is Inactive Please activate to Upload the Profiles');
     setTimeout(() => {
       this.alertService.clear();
     }, 2000);
   }
-  openCandidateUploadDialog() {  
+  openCandidateUploadDialog() {
     const abc = {
       'animal': 'panda',
        'JobId' : this.jobid
@@ -123,8 +122,8 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      this.populateJobsStaticInfo(this.jobid);
-      this.updateappliedstatus();
+      this.populateJobsStaticInfo(this.jobid, 1);
+      // this.updateappliedstatus();
       console.log('Dialog result: ${result}');
     });
   }
@@ -291,11 +290,9 @@ export class ViewJobdetailsComponent implements OnInit {
      this.loadMore = false;
    }
   populateJobsBasicInfo(customerId, jobid) {
-    debugger
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
-        debugger
     });
   }
 
@@ -337,7 +334,7 @@ export class ViewJobdetailsComponent implements OnInit {
       data => {
        // alert("success")
         this.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
-
+        this.populateJobsStaticInfo(this.deactivate.jobId, 1);
     },
       error => console.log(error));
 }
