@@ -5,3 +5,6 @@
     display: inline-grid;
     width: 100%;
 }
+.bg-primary {
+    color: black!important;
+}
