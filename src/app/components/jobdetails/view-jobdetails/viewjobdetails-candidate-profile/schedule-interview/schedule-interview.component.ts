@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { Subject } from 'rxjs/Subject';
@@ -23,6 +23,7 @@ export interface DialogData {
   styleUrls: ['./schedule-interview.component.css']
 })
 export class ScheduleInterviewComponent implements OnInit {
+  @ViewChild('schedule') schedule: any;
   schIntw = new ScheduleInterview();
  @Output() eventStat = new EventEmitter();
   webxRI: boolean;
@@ -82,6 +83,11 @@ export class ScheduleInterviewComponent implements OnInit {
     // }).on('changeDate', function () {
     //   $(this).datepicker('hide');
     // });
+    if (this.processSelection == null || this.processSelection === undefined) {
+  this.schIntw.InterviewTypeId = 1;
+} else {
+  this.schIntw.InterviewTypeId = this.processSelection;
+}
     this.getcustomerusers();
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
@@ -104,7 +110,8 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
   ScheduleInterview() {
-this.schIntw.UserId =this.data.userId;
+if (this.schedule.valid) {
+this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
 this.schIntw.JobInterviewId = this.data.userId;
 this.schIntw.JobResponseId = this.data.jobResponseId; // gemerated when sortlisted or applied
@@ -129,6 +136,7 @@ if (this.processSelection === 1) {
   this.schIntw.RequiredFurtherInterview = this.webxRI;
   // this.schIntw.PhoneNumber=this.userId;
 }
+
 if(this.processSelection == null || this.processSelection == undefined)
 {
   this.processSelection === 1
@@ -139,6 +147,7 @@ if(this.processSelection == null || this.processSelection == undefined)
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
      }) ;
+    }
 }
   getcustomerusers()  {
     this.managersList = concat(
@@ -160,9 +169,20 @@ if(this.processSelection == null || this.processSelection == undefined)
   private addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
+    if (this.getTeammember !== undefined) {
+    const check = this.teamExists(this.getTeammember, this.teammemberslist);
+    if (check === false) {
     this.appService.addTeammember(this.getTeammember);
-    this.selectedUserName = '';
+    }
+     // this.selectedUserName = '';
+     $('#teamMbr').val('');
   }
+  }
+  teamExists(team, list) {​
+    return list.some(function(elem) {
+         return elem.UserId === team.UserId;
+    });
+ }
   private deleteTeammember(index: number) {
     this.appService.deleteTeammember(index);
   }
