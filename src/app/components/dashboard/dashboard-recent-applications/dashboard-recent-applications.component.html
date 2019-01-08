@@ -7,7 +7,7 @@
                 <div class="header">
                     <img src="{{recentapplicants.ProfilePic}}" class="ui-pic" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
                     <div>
-                        <h2>{{recentapplicants.FirstName}}    {{recentapplicants.LastName}}</h2>
+                        <h2>{{recentapplicants.FirstName | slice:0:12}}    {{recentapplicants.LastName | slice:0:12}}</h2>
                         <div class="status">
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checked" alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="Verified" alt="Verified">

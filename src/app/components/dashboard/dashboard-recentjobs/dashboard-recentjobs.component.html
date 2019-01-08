@@ -21,7 +21,7 @@
       <div class="card" *ngFor="let job of  joblist?.Jobs; let i=index">
       <div class="header">
           <h2 (click)="ViewJobdetails(joblist.CustomerId,job.UserId,job.JobId)">
-              {{job?.JobTitle}}
+              {{job?.JobTitle | slice:0:25}}
           </h2>
           <span class="status status--purple">{{job?.JobStatus}}</span>
         <div class="meta">

@@ -55,10 +55,10 @@
                 <button id="Active"  class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Active</button>
               </ng-template>
               <ng-container *ngIf="jobdetailsbasicinfo?.IsActive==true; else isnotActive">
-              <button class="btn btn-bordermat-button" (click)="openCandidateUploadDialog()">Manage Profiles</button>
+              <button class="btn btn-border" (click)="openCandidateUploadDialog()">Manage Profiles</button>
             </ng-container>
             <ng-template #isnotActive>
-                <button class="btn btn-bordermat-button" (click)="openCandidate()">Manage Profiles</button>             
+                <button class="btn btn-border" (click)="openCandidate()">Manage Profiles</button>             
             </ng-template>
             </div>
             <div>

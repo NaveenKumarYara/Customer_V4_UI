@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
+import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { JobResponsibilitiesComponent } from './Jobresponsibilities.component';
 import { JobcategoryComponent } from './Jobcategory.component';
 import { JobdetailsComponent } from './Jobdetails.component';
@@ -46,7 +47,7 @@ export class Step1Component implements OnInit {
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
-    , private steps: StepsComponent) {
+    , private steps: StepsComponent,private alertService : AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -60,6 +61,7 @@ export class Step1Component implements OnInit {
       });
   }
   ngOnInit() {
+    this.alertService.clear();
   }
 
   postJob(step) {
@@ -72,9 +74,13 @@ export class Step1Component implements OnInit {
     // if (res != null) {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
-   if ((this.jobDetail.selectedTitle !== '' || this.jobDetail.selectedTitle !== null) &&
-    this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
-    this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0 ) {
+   if ((this.jobDetail.selectedTitle !== '' || null) &&
+   this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
+   this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0 ) {
+   //  && this.jobResponsibility.roleIdList.length > 0
+   if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
+   return false;
+   }
     //  && this.jobResponsibility.roleIdList.length > 0
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
@@ -120,7 +126,14 @@ this.insertJob.StepNumber = step;
         this.router.navigate(['/app-createajob/app-steps-step2']);
       }
     });
-  } else { return false; }
+  } 
+  else {    
+    this.alertService.error('please enter mandatory fields');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
+    return false;   
+   }
   }
 
   postJob1(step) {

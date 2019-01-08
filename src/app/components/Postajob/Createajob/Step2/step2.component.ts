@@ -4,6 +4,7 @@ import { DomainExpertiseComponent } from './domainexpertise.component';
 import { LocationwiseJobsComponent } from './locationwisejobs.component';
 import { PersonalityTypeComponent } from './PersonalityType.component';
 import { QualificationsComponent } from './qualifications.component';
+import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { NoofopeningsComponent } from './noofopenings.component';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
@@ -65,7 +66,7 @@ export class Step2Component implements OnInit {
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService, private steps: StepsComponent) {
+    private router: Router, private appService: AppService, private steps: StepsComponent,private alertService : AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -104,6 +105,7 @@ export class Step2Component implements OnInit {
     });
   }
   ngOnInit() {
+    this.alertService.clear();
   }
 
   postJob(step) {
@@ -183,6 +185,10 @@ export class Step2Component implements OnInit {
       }
     });
   } else {
+    this.alertService.error('please enter mandatory fields');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
     return false;
   }
   }
