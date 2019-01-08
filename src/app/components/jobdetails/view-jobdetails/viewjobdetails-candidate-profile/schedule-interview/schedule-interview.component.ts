@@ -129,7 +129,11 @@ if (this.processSelection === 1) {
   this.schIntw.RequiredFurtherInterview = this.webxRI;
   // this.schIntw.PhoneNumber=this.userId;
 }
-this.schIntw.InterviewTypeId = this.processSelection; 
+if(this.processSelection == null || this.processSelection == undefined)
+{
+  this.processSelection === 1
+}
+ this.schIntw.InterviewTypeId = this.processSelection; 
  this.schIntw.StatusChangedByUserId = this.customerUser;
  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
