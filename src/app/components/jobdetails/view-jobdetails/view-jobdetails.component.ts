@@ -37,6 +37,7 @@ export class ViewJobdetailsComponent implements OnInit {
   joblocation: any;
   jobstatistics: Jobstatistics;
   statistics: number;
+  closedjob:any;
   customerId: any;
   userId: any;
   jobid: any;
@@ -106,6 +107,14 @@ export class ViewJobdetailsComponent implements OnInit {
     }, 2000);
   }
   openCandidateUploadDialog() {
+    if(this.closedjob === 2)
+    {
+    this.alertService.error('Job is Closed');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
+  }
+  else{
     const abc = {
       'animal': 'panda',
        'JobId' : this.jobid
@@ -126,6 +135,7 @@ export class ViewJobdetailsComponent implements OnInit {
       // this.updateappliedstatus();
       console.log('Dialog result: ${result}');
     });
+  }
   }
 
   // toggleChild() {
@@ -292,6 +302,7 @@ export class ViewJobdetailsComponent implements OnInit {
   populateJobsBasicInfo(customerId, jobid) {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
+      this.closedjob=this.jobdetailsbasicinfo.IsOpen;
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }

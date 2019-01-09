@@ -26,4 +26,5 @@ export class Profile
   public BackGroundCheck: string;
   public CreatedOn: string;
   public DomainName: string;
+  public MobilePhone : string;
 }

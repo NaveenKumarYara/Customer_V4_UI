@@ -11,5 +11,6 @@ export class JobdetailsBasicInfo {
   public TotalViewCount: string;
   public DislikesCount: string;
   public LikesCount: string;
+  public IsOpen: number;
   public JobLocations: JobLocations;
 }

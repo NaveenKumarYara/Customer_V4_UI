@@ -6,6 +6,7 @@ import { SharedialogComponent } from './sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
+import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
@@ -18,7 +19,7 @@ declare var jQuery: any;
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
   styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
- // providers: [ViewJobdetailsComponent]
+  providers: [AlertService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
@@ -68,8 +69,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     },
     nav: true
   };
-  constructor(private el: ElementRef, private router: Router, private jobdetailsservice: JobdetailsService,
-    private dialog: MatDialog, ) {
+  constructor(private el: ElementRef, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+    ,private dialog: MatDialog ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
