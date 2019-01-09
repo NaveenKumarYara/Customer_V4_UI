@@ -1,4 +1,4 @@
-<div class="page page--job-details ">
+<div class="page page--job-details pt-4r">
   <div id="scheduleInterview"> 
      <form action="" #schedule="ngForm" (ngSubmit)="ScheduleInterview()"> 
     <h4 mat-dialog-title class="modal-title">
@@ -10,7 +10,7 @@
         
             <div class="col-md-6">
               <div class="form-row clearfix">
-                <div class="form-group interview-date-group">
+                <div class="form-group interview-date-group col-sm-12">
                   <label for="">
                     Date for Interview
                   </label>
@@ -27,7 +27,7 @@
                     <div class="input-group-btn">
                       <button class="btn" (click)="d.toggle()" type="button">+</button>
                     </div>
-                    <span  *ngIf="dataPicker.invalid && dataPicker.touched">Date is required.</span>
+                    
                     <!-- <dl-date-time-picker
     startView="day"
     maxView="year"
@@ -41,8 +41,11 @@
                     <button (click)="d.toggle()" class="btn">+</button>
                   </span> -->
                   </div>
+                  
+                  <span  *ngIf="dataPicker.invalid && dataPicker.touched" class="text-danger">Date is required.</span>
+                    
                 </div>
-                <div class="form-group interview-time-group">
+                <div class="form-group interview-time-group col-sm-12">
                   <label for="">Time of Interview</label>
                   <!-- <select class="styled-select-box block" [(ngModel)]="schIntw.StartTime" name="startTime" id="">
                   <option value="">12:30</option>
@@ -85,11 +88,12 @@
                       (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput"
                       [hideSelected]="true" [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" [virtualScroll]="true" required #TMember="ngModel">
                     </ng-select>
-                      <span class="help-block" *ngIf="TMember.invalid && TMember.touched">TeamMembers are required.</span>
+                      
                     <span class="input-group-btn">
                       <button (click)="addTeammembers()" class="btn">+</button>
                     </span>
                   </div>
+                  <span class="text-danger" *ngIf="TMember.invalid && TMember.touched">TeamMembers are required.</span>
                 </div>
                 <ul class="team-members-list">
                   <li *ngFor="let teammember of teammemberslist; let i = index">
@@ -220,9 +224,9 @@
     <mat-dialog-actions>
       <div class="modal-footer pull-right">
         <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-        <button mat-button type="submit" cdkFocusInitial class="btn btn-filled">Schedule
+        <button mat-button type="submit"     [mat-dialog-close]="true" c000dkFocusInitial class="btn btn-filled">Schedule
           Interview</button>
-        <!-- [mat-dialog-close]="true" -->
+    
       </div>
     </mat-dialog-actions>
     </form>
