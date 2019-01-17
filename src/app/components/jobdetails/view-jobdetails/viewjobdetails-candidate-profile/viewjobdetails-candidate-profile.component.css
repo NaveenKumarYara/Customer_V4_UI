@@ -885,20 +885,20 @@ height: 16px;
     background-color:#fff;
     box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
-.dropdown-menu.dropdown-menu-right li > div {
+.dropdown-menu.dropdown-menu-right1 li > div {
     padding: 8px 4px 4px;
 }
-.dropdown-menu.dropdown-menu-right li > div a:not(:last-of-type) {
+.dropdown-menu.dropdown-menu-right1 li > div a:not(:last-of-type) {
     border-right: 1px solid #E0E3EC;
 }
 
-.dropdown-menu.dropdown-menu-right li > div a {
+.dropdown-menu.dropdown-menu-right1 li > div a {
     display: inline-block; 
     height: 21px;
     padding: 0 23px;
     color: #6A7E9C;
 }
-.dropdown-menu.dropdown-menu-right li{
+.dropdown-menu.dropdown-menu-right1 li{
     
     padding: 6px 0px;
     

@@ -47,15 +47,6 @@ export class JoblistTablelayoutComponent implements OnInit {
   }
   changeJobStatus(job,val) {
     this.alertService.clear();
-    if(val== true)
-    {
-     $("#Inactive").replaceWith("#Active");
-   
-    }
-    else if (val == false) 
-    {
-      $("#Active").replaceWith("#Inactive");
-    }
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = this.customerId;
     this.deactivate.isActive = val;  

@@ -7,13 +7,18 @@
                 <div class="header">
                     <img src="{{recentapplicants.ProfilePic}}" class="ui-pic" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
                     <div>
-                        <h2>{{recentapplicants.FirstName | slice:0:12}}    {{recentapplicants.LastName | slice:0:12}}</h2>
+                        <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseBlock"> 
+                            {{recentapplicants?.FirstName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png"> </h2>
+                    
+                          <ng-template #firstelseBlock> 
+                            <h2>{{recentapplicants?.FirstName | slice:0:12}}    {{recentapplicants?.LastName | slice:0:12}}</h2>
+                          </ng-template>
                         <div class="status">
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checked" alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="Verified" alt="Verified">
                         </div> <!-- .status -->
                         <div class="meta">
-                            <span class="job-title">{{recentapplicants.JobTitle}}</span>
+                            <span class="job-title" title="{{recentapplicants?.JobTitle}}">{{recentapplicants?.JobTitle | slice:0:20}}</span>
                             <span class="v-divider"></span>
                             <span>
                                 <svg x="0px" y="0px" width="16px" height="19.1px" viewBox="0 0 16 19.1" xml:space="preserve" style="fill:#9EABC0;">
@@ -22,7 +27,7 @@
                                 <path d="M8,11.3c-1.8,0-3.3-1.5-3.3-3.3S6.2,4.7,8,4.7s3.3,1.5,3.3,3.3S9.8,11.3,8,11.3z M8,6.7C7.3,6.7,6.7,7.3,6.7,8
                               S7.3,9.3,8,9.3c0.7,0,1.3-0.6,1.3-1.3S8.7,6.7,8,6.7z"></path>
                           </svg>
-                          {{recentapplicants.JobLocations}}
+                          {{recentapplicants?.JobLocations}}
                             </span>
                         </div> <!-- .meta -->
                     </div>
