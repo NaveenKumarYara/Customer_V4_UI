@@ -18,7 +18,12 @@
                         <div class="ui-badge ui-badge--industry">Explore Profile For Domain!</div>
                         </ng-template></div>
       <div class="candidate-info">
-       <img src={{profile.ProfilePic}} alt="" width="66" height="66">
+        <ng-container  *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else Block">
+            <img *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null;" src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}"  width="66" height="66">
+      </ng-container>
+      <ng-template #Block> 
+          <img src={{profile.ProfilePic}} alt="" width="66" height="66">       
+      </ng-template> 
        <ng-container  *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstBlock">
           <h1 class="title">
           
