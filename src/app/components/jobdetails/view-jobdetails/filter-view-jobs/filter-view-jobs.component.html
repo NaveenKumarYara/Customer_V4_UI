@@ -11,9 +11,8 @@
             </svg>
             <span>View</span>
           </label>
-          <select name="" ([ngModel])="ViewBy" (change)="changeViewby($event)" id="" class="styled-select-box">
-            <!-- <option value="0">Select</option> -->
-            <option value="1">Highest Matching</option>
+          <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy" (change)="changeViewby($event.target.value)">
+            <option default value="1">Highest Matching</option>
             <option value="2">Least Matching</option>
             <option value="3">Highest Experience</option>
             <option value="4">Uploaded By Customer</option>

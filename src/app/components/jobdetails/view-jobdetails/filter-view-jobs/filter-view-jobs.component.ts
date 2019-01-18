@@ -22,6 +22,7 @@ export class FilterViewJobsComponent implements OnInit {
    ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
+      this.ViewBy = 1;
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
 
@@ -34,7 +35,7 @@ export class FilterViewJobsComponent implements OnInit {
   }
   changeViewby(sortBy) {
     // this.viewdetailscand.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, sortBy.target.value);
-    this.parentApi.callParentMethod(sortBy.target.value);
+    this.parentApi.callParentMethod(sortBy);
   }
   ngOnInit() {
   }

@@ -16,6 +16,7 @@ import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedi
 import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
+import {FilterViewJobsComponent} from '../view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
@@ -31,6 +32,7 @@ declare var $: any;
 })
 export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
+@ViewChild(FilterViewJobsComponent) base: FilterViewJobsComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
@@ -156,6 +158,8 @@ export class ViewJobdetailsComponent implements OnInit {
 
   }
   updateallcandidatesstatus() {
+    this.base.ViewBy = 1;
+    this.sortBy =1;
     this.statusid = 0;
     this.profilecount = 6;
     if (this.jobstatistics.AllCandidates > 0) {
@@ -168,6 +172,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others
+    this.base.ViewBy = 1; 
+    this.sortBy =1;
     this.statusid = 15;
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
@@ -184,6 +190,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updateappliedstatus() {// 1000080;
+    this.base.ViewBy = 1;
+    this.sortBy =1;
     this.statusid = 4;
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
@@ -200,6 +208,8 @@ export class ViewJobdetailsComponent implements OnInit {
    }
   }
   updateshortlistedstatus() { // 1000007;
+    this.sortBy =1;
+    this.base.ViewBy = 1; 
     this.statusid = 5;
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
@@ -214,6 +224,8 @@ export class ViewJobdetailsComponent implements OnInit {
    }
   }
   updatescreeningstatus() { // 1000007;
+    this.base.ViewBy = 1;
+    this.sortBy =1; 
     this.statusid = 8;
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
@@ -227,6 +239,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updateinterviewedstatus() { // 1000007;
+    this.base.ViewBy = 1;
+    this.sortBy =1; 
     this.statusid = 7;
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
@@ -241,6 +255,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updatehiredstatus() { // 1000028;
+    this.base.ViewBy = 1;
+    this.sortBy =1;
     this.statusid = 11;
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
@@ -254,6 +270,8 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updaterejectedstatus() {
+    this.base.ViewBy = 1;
+    this.sortBy =1;
     this.statusid = 6;
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
