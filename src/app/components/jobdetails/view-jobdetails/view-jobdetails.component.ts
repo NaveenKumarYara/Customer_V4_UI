@@ -41,6 +41,7 @@ export class ViewJobdetailsComponent implements OnInit {
   statistics: number;
   closedjob:any;
   customerId: any;
+  searchString:any;
   userId: any;
   jobid: any;
   viewJobJobId: any;
@@ -390,6 +391,7 @@ export class ViewJobdetailsComponent implements OnInit {
   //     this.populateJobsStaticInfo(this.jobid);
   //    }
   // }
+ 
   getParentApi(): ParentComponentApi {
     return {
       callParentMethod: (sortBy) => {
@@ -409,7 +411,25 @@ export class ViewJobdetailsComponent implements OnInit {
           this.statistics = this.jobstatistics.Suggested; }
           this.loadMore = this.statistics > 6 ? true : false;
        // this.parentMethod(name);
-        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, 6);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString, 6);
+      },
+      callSearchMethod : (searchString)=>{      
+       if (this.statusid === 4) {
+        // this.statistics=this.jobstatistics.Applied;
+        this.statistics = this.jobstatistics.Applied;
+       }   else if (this.statusid === 5) {
+        this.statistics = this.jobstatistics.ShortListed;
+       } else if (this.statusid === 7) {
+        this.statistics = this.jobstatistics.Interviewed;
+       } else if (this.statusid === 11) {
+        this.statistics = this.jobstatistics.Hired;
+       } else if (this.statusid === 6) {
+        this.statistics = this.jobstatistics.RejectedORWithdrawn;
+      } else if (this.statusid === 15) {
+        this.statistics = this.jobstatistics.Suggested; }
+        this.loadMore = this.statistics > 6 ? true : false;
+     // this.parentMethod(name);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,searchString, 6);
       }
     };
   }
@@ -417,4 +437,5 @@ export class ViewJobdetailsComponent implements OnInit {
 }
 export interface ParentComponentApi {
   callParentMethod: (number) => void;
+  callSearchMethod : (string) => void; 
 }

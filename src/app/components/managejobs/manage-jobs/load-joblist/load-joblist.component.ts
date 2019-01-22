@@ -21,6 +21,7 @@ export class LoadJoblistComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
+  searchString:any
   joblist: JobDetails[] = [];
   joblistcount: number;
   defaultValue:any;
@@ -62,7 +63,11 @@ export class LoadJoblistComponent implements OnInit {
     {
       this.sortBy=0;
     }
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy, this.joblistcount).subscribe(res => {
+    if(this.searchString==undefined)
+    {
+      this.searchString = '';
+    }
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;

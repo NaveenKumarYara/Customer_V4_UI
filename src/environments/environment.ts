@@ -37,7 +37,7 @@ export const environment = {
     scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
-
+   SearchProfile:'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
     JobdetailsBasicInfoEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
