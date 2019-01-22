@@ -307,7 +307,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.statistics = this.jobstatistics.Suggested; }
     this.profileLoader = true;
     this.jobdetailsservice.updateprofileCount(this.profilecount);
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.searchString,
        this.sortBy, this.profilecount);
     this.loader();
    }
@@ -345,7 +345,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.loadMore = false;
     }  else { // if (value === true) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,
-      this.jobstatistics.Applied, 1,  this.profilecount);
+      this.jobstatistics.Applied, 1,this.searchString,this.profilecount);
    }
   }
   changeJobStatus(job, val) {
