@@ -76,6 +76,7 @@ export class JoblistGridlayoutComponent implements OnInit {
 
   changeJobStatus(job, val) {
     this.alertService.clear();
+    var search = '';
     if (val === true) {
      $('#Inactive').replaceWith('#Active');
 
@@ -88,7 +89,7 @@ export class JoblistGridlayoutComponent implements OnInit {
       this.appService.deactivateJob(this.deactivate)
       .subscribe(
       data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId);
+      this.loadJobs.populateJoblist(this.customerId, this.userId,search);
     },
       error => console.log(error));
 }

@@ -1,11 +1,13 @@
 <div class="search-toggle">
-  <div class="search-input-group">
-    <input type="text" id="search" placeholder="Search ...">
+  <div>
+    <div  id="demo-2">
+      <form #form="ngForm" (ngSubmit)="search()">
+            <input type="search" [(ngModel)]="searchString" name="searchString" placeholder="Search" required>                               
+            <button  type="submit" class="btn green-btn" [disabled]="form.invalid" >
+             Go!
+            </button>
+          </form>
+          </div> 
   </div>
-  <a>
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="19.1" height="19.1">
-      <path class="st0" d="M7.9 15.8C3.6 15.8 0 12.3 0 7.9 0 3.6 3.5 0 7.9 0c4.3 0 7.9 3.5 7.9 7.9 0 4.3-3.6 7.9-7.9 7.9zm0-14c-3.3 0-6.1 2.7-6.1 6.1 0 3.3 2.7 6.1 6.1 6.1 3.3 0 6.1-2.7 6.1-6.1-.1-3.4-2.8-6.1-6.1-6.1z" />
-      <path class="st0" d="M18.2 19.1c-.2 0-.5-.1-.6-.3l-5.3-5.3c-.4-.4-.4-.9 0-1.3s.9-.4 1.3 0l5.3 5.3c.4.4.4.9 0 1.3-.2.2-.5.3-.7.3z" />
-    </svg>
-  </a>
+
 </div>

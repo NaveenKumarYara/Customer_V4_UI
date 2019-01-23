@@ -47,13 +47,14 @@ export class JoblistTablelayoutComponent implements OnInit {
   }
   changeJobStatus(job,val) {
     this.alertService.clear();
+    var search = '';
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = this.customerId;
     this.deactivate.isActive = val;  
       this.appService.deactivateJob(this.deactivate)
       .subscribe(
       data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId);
+      this.loadJobs.populateJoblist(this.customerId, this.userId,search);
     },
       error => console.log(error));
 }
