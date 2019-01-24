@@ -60,6 +60,14 @@ export class ManageJobService {
         this.handleError
     );
   }
+
+  GetAutoSearch(term: string = null): Observable<string[]> {
+    const url = environment.GetAutoSearch + '?searchText=' + term;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)

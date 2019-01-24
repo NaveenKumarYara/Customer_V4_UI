@@ -3,6 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
 import { AppService } from '../../../../app.service';
 import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
+import { IfObservable } from 'rxjs/observable/IfObservable';
+declare var $: any;
 @Component({
   selector: 'app-manage-searchjobs',
   templateUrl: './searchjobs.component.html',
@@ -12,7 +14,10 @@ import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
 export class SearchjobsComponent implements OnInit {
   customer: any;
   userId: any;
+  splitVal: any = [];
+  SearchList: any = [];
   customerId: any;
+  searchval:any;
   searchString:any;
   @Input() parentApi: ParentComponentApi;
   constructor(private route: ActivatedRoute,
@@ -21,11 +26,34 @@ export class SearchjobsComponent implements OnInit {
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
    }
-   search()
+   search(val)
    {
+     this.searchString = val;
      this.parentApi.callSearchMethod(this.searchString);
    }
 
+   GetSearchText(val) {
+    return this.managejobservice.GetAutoSearch(val)
+    .subscribe(data => {
+          if (data.length > 0) {  
+            this.SearchList =data;
+          }
+          else {
+            this.SearchList = [];
+          }
+        
+          }, 
+     
+        error => { 
+         });
+  
+  }
+
+  SetSearch(val)
+  {
+    this.SearchList = [];
+    this.search(val);
+  }
   ngOnInit() {
   }
 

@@ -1,13 +1,11 @@
-<div class="search-toggle">
-  <div>
-    <div  id="demo-2">
-      <form #form="ngForm" (ngSubmit)="search()">
-            <input type="search" [(ngModel)]="searchString" name="searchString" placeholder="Search" required>                               
-            <button  type="submit" class="btn green-btn" [disabled]="form.invalid" >
-             Go!
-            </button>
+   <div class="search-toggle">
+      <form #form="ngForm"  (ngSubmit)="search()">
+            <input  autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetSearchText(searchText.value)">      
+              <div class="searchList" *ngIf="SearchList.length>0">
+                <ul class="searchList-dropdown">
+                  <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+                </ul>
+              </div>                              
           </form>
-          </div> 
-  </div>
-
 </div>
+

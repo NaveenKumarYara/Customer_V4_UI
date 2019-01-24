@@ -50,6 +50,8 @@ export const environment = {
     MatchingDetailEndPoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage',
 
+        GetAutoSearch:'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
+
     JobdetailsSuggestedProfileEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
 
