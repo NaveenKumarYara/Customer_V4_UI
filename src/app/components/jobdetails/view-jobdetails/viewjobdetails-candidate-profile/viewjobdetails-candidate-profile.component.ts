@@ -30,6 +30,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    customerId: any;
    userId: any;
    searchString:any;
+   domainName:any;
+   experience:any;
+   location:any;
    skills: any = null;
    loading: boolean;
    schIntw = new ScheduleInterview();
@@ -186,7 +189,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString, noofRows= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString='',experience=0,location='',domainName='', noofRows= 6) {
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid === 0 ? 4 : statusid;
@@ -195,12 +198,12 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     this.jobdetailsprofiles = new JobdetailsProfile();
     } else if (this.statusid === 15) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
-        sortBy,searchString, noofRows).subscribe(res => {
+        sortBy,searchString,experience,location,domainName, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString, noofRows)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString,experience,location,domainName, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
       if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {  // need to change the res.totalprofile count

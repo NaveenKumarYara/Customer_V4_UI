@@ -52,6 +52,7 @@ export const environment = {
 
         GetAutoSearch:'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
 
+        GetCitySearch:'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
     JobdetailsSuggestedProfileEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
 

@@ -73,6 +73,14 @@ export class JobdetailsService {
       this.handleError
     );
   }
+
+  GetSearch(city: string = null): Observable<string[]> {
+    const url = environment.GetCitySearch + '?cityName=' + city;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getUserId(email:string,customerId:number): Observable<DiscResult[]> {
     const url = environment.GetUserId + 'email=' + email+ '&customerId=' + customerId ;
     return this.http.get<GetJobDetailCustomer>(url)
@@ -118,21 +126,23 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       );
   }
 
-  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number,sortBy: number= 1, searchString: string, noOfRows: number= 6):
+  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number,sortBy: number= 1, searchString: string, experience: number,location: string,domainName: string,noOfRows: number= 6):
   Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+ '&pageNumber=1&noOfRows=' + noOfRows;
-   return this.http.get<JobdetailsProfile>(url)
+     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+'&pageNumber=1&noOfRows=' + noOfRows;
+   debugger
+     return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
      .catch(
        this.handleError
      );
  }
-  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string,
+  getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number,location: string,domainName: string,
     noOfRows: number= 6): Observable<JobdetailsProfile> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+ '&pageNumber=1&noOfRows=' + noOfRows;
-    return this.http.get<JobdetailsProfile>(url)
+      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+ '&pageNumber=1&noOfRows=' + noOfRows;
+    debugger
+      return this.http.get<JobdetailsProfile>(url)
       .debounceTime(1000)
       .catch(
         this.handleError

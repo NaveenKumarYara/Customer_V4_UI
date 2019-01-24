@@ -142,7 +142,7 @@
         <app-filter-view-jobs [jobid]="jobid"
               [statusid]="statusid"  [parentApi]="getParentApi()"></app-filter-view-jobs>
         <div *ngIf="showDetailadvancesearch">
-          <app-jobdetails-advance-search></app-jobdetails-advance-search>
+          <app-jobdetails-advance-search  [parentApi]="getParentApi()"></app-jobdetails-advance-search>
         </div>
       </div>
       <div class="row">
