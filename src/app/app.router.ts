@@ -26,6 +26,7 @@ import { ContractDurationComponent } from './components/Postajob/Createajob/Step
 import { ContractExtensionComponent } from './components/Postajob/Createajob/Step3/contractextension.component';
 import { InterviewTypeComponent } from './components/Postajob/Createajob/Step3/interviewtype.component';
 import { ReportingManagerComponent } from './components/Postajob/Createajob/Step3/reportingmanager.component';
+import { UploadvideoprofileComponent} from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
 import { TeammembersComponent } from './components/Postajob/Createajob/Step3/teammembers.component';
 import { Step1SummaryComponent } from './components/Postajob/Createajob/Step4/step1summary.component';
 import { Step2SummaryComponent } from './components/Postajob/Createajob/Step4/step2summary.component';
@@ -87,10 +88,10 @@ import { aboutcompany } from './components/company-profile/aboutcompany/aboutcom
 const appRoutes: Routes =
 [
   { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
-    { path: 'home', component:HomeComponent },
-    { path: 'signup', component:SignUpComponent },
-    { path: 'about', component:AboutComponent},
-    { path: 'features', component:FeaturesComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'signup', component: SignUpComponent },
+    { path: 'about', component: AboutComponent},
+    { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [
@@ -140,6 +141,7 @@ const appRoutes: Routes =
     { path: 'app-steps-step3-interviewtype', component: InterviewTypeComponent },
     { path: 'app-steps-step3-reportingmanager', component: ReportingManagerComponent },
     { path: 'app-steps-step3-teammembers', component: TeammembersComponent },
+    { path: 'app-steps-step3-uploadvideoprofile', component: UploadvideoprofileComponent },
     { path: 'app-steps-step4-step1summary', component: Step1SummaryComponent },
     { path: 'app-steps-step4-step2summary', component: Step2SummaryComponent },
     { path: 'app-steps-step4-step3summary', component: Step3SummaryComponent },

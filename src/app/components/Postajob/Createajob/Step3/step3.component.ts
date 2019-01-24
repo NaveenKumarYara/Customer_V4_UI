@@ -20,6 +20,8 @@ import { NoofopeningsComponent } from '../Step2/noofopenings.component';
 import { PersonalityTypeComponent } from '../Step2/PersonalityType.component';
 import { QualificationsComponent } from '../Step2/qualifications.component';
 import { StepsComponent } from '../steps.component';
+import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
+import { MatDialog } from '@angular/material';
 // import { SalarysliderComponent } from './salaryslider.component';
 
 @Component({
@@ -84,7 +86,7 @@ export class Step3Component implements OnInit {
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService, private steps: StepsComponent) {
+    private router: Router, private appService: AppService, private steps: StepsComponent, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -146,7 +148,28 @@ export class Step3Component implements OnInit {
     // });
   }
 
-
+  OpenScheduleInterviewDialog() {
+    // var candidateUserId = $("#candidateUserId").val();
+    // var candidateId = +candidateUserId;
+    const scheduleIntwdialogRef = this.dialog.open(UploadvideoprofileComponent,
+      {
+        width: '750',
+        position: {right : '0px'},
+        height : '750px',
+        data: {
+          // jobResponseId: jobResponseId,
+          jobId:  parseInt(localStorage.getItem('jobId'), 10),
+         // userId: userId
+         // status : this.statusid
+        }
+      }
+    );
+    scheduleIntwdialogRef.afterClosed().subscribe(result => {
+     // this.jobDetails.populateJobsStaticInfo(this.jobid);
+      // this.myEvent.emit(null);
+      console.log('Chatbox Dialog result: ${result}');
+    });
+  }
   ngOnInit() {
   }
 

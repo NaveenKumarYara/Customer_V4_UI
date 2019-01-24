@@ -34,6 +34,7 @@
     "ng5-slider": "^1.1.6",
     "ngx-flickity": "0.0.9",
     "ngx-spinner": "^1.2.0",
+    "recordrtc": "^5.5.3",
     "rxjs": "^5.5.6",
     "sweetalert2": "^7.29.0",
     "zone.js": "^0.8.19"
@@ -46,7 +47,7 @@
     "@types/googlemaps": "^3.30.13",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~6.0.60",
+    "@types/node": "^6.14.2",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",

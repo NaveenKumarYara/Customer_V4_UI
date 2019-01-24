@@ -30,7 +30,7 @@ import { JobResponsibilitiesComponent } from './components/Postajob/Createajob/S
 import { routing } from './app.router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyFilterPipe } from './filter/MyFilterPipe';
-import {DashboardComponent} from './components/dashboard/dashboard.component'
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import { LocationwiseJobsComponent } from './components/Postajob/Createajob/Step2/locationwisejobs.component';
 import { QualificationsComponent } from './components/Postajob/Createajob/Step2/qualifications.component';
 import { DomainExpertiseComponent } from './components/Postajob/Createajob/Step2/domainexpertise.component';
@@ -59,6 +59,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from './shared/shared.module';
 import { FlickityModule } from 'ngx-flickity';
 import { Ng5SliderModule } from 'ng5-slider';
+import { UploadvideoprofileComponent } from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     Step3SummaryComponent,
     NotificationsComponent,
     NoofopeningsComponent,
+    UploadvideoprofileComponent,
     // SalarysliderComponent,
   ],
   imports: [
