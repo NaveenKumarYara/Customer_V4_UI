@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
@@ -19,11 +19,23 @@ export class HomeComponent {
   companyLogo:any;
   password:any;
   userId:any;
-  constructor( private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
+  constructor( private route: ActivatedRoute,
+      private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
 
   }
 
+//   login1(username: string, password: string) {
+//     return this.http.post<any>('/api/authenticate', { username: username, password: password })
+//         .map(user => {
+//             // login successful if there's a jwt token in the response
+//             if (user && user.token) {
+//                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+//                 localStorage.setItem('currentUser', JSON.stringify(user));
+//             }
 
+//             return user;
+//         });
+// }
   SignUp()
   {
     this.router.navigateByUrl('signup'); 
@@ -63,11 +75,10 @@ export class HomeComponent {
     $(".glyphicon-eye-open").on("click", function () {
       $(this).toggleClass("glyphicon-eye-close");
       var type = $("#password").attr("type");
-      if (type == "text") {
-        $("#password").prop('type', 'password');
-      }
-      else {
-        $("#password").prop('type', 'text');
+      if (type === 'text') {
+        $('#password').prop('type', 'password');
+      } else {
+        $('#password').prop('type', 'text');
       }
     });
 

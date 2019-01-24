@@ -1,0 +1,29 @@
+
+          <div class="video-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div>
+              <div class="video">
+                <div> 
+                  <video #video class="video"></video>
+                </div>
+              </div>
+              <div class="wrap-icon">
+                <div>
+                  <img id="btn-start-recording" (click)="startRecording()" src="assets/images/record-icon.png" alt="">
+                  <p id="record_p">Record</p>
+                  <img src="assets/images/upload-icon.png" id="btn-stop-recording" hidden (click)="stopRecording()"
+                    alt="">
+                  <p id="upload_p" hidden>Stop & Upload</p>
+                </div>
+                <div>
+                    <a (click)="videoval.click()">
+                        <input type="file" #videovals (click)="videovals.value = null" value="" (change)="onVideoFileChange($event)">
+                        <img src="assets/images/upload-icon.png" alt="">
+                        <p>Upload</p>
+                      </a>
+                  
+                </div>
+                 
+
+              </div>
+            </div>
+          </div>
