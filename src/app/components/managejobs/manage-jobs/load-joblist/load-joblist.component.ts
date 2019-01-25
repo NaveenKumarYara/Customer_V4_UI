@@ -59,20 +59,12 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist(customerId, userId,searchString) { 
+  populateJoblist(customerId, userId,searchString='') { 
     if(this.sortBy==undefined)
     {
       this.sortBy=0;
     }
-    if(this.searchString==undefined)
-    {
-      this.searchString = '';
-    }
-    else
-    {
-      this.searchString = searchString;
-    }
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
@@ -98,7 +90,7 @@ export class LoadJoblistComponent implements OnInit {
   } 
   getParentApi(): ParentComponentApi {
     return {   
-      callSearchMethod : (searchString)=>{      
+      callSearchMethod : (searchString)=>{   
      // this.parentMethod(name);
       this.populateJoblist(this.customerId, this.userId,searchString);
       }

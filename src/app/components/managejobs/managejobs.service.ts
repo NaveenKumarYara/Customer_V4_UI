@@ -61,8 +61,8 @@ export class ManageJobService {
     );
   }
 
-  GetAutoSearch(term: string = null): Observable<string[]> {
-    const url = environment.GetAutoSearch + '?searchText=' + term;
+  GetAutoSearch(term: string = null,customerId:number): Observable<string[]> {
+    const url = environment.GetAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

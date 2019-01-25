@@ -28,12 +28,14 @@ export class SearchjobsComponent implements OnInit {
    }
    search(val)
    {
-     this.searchString = val;
-     this.parentApi.callSearchMethod(this.searchString);
+    this.searchString = val;
+    this.parentApi.callSearchMethod(this.searchString); 
+    this.SearchList = [];
+    this.GetSearchText(null);    
    }
 
-   GetSearchText(val) {
-    return this.managejobservice.GetAutoSearch(val)
+   GetSearchText(value) {
+    return this.managejobservice.GetAutoSearch(value,this.customerId)
     .subscribe(data => {
           if (data.length > 0) {  
             this.SearchList =data;
@@ -45,8 +47,16 @@ export class SearchjobsComponent implements OnInit {
           }, 
      
         error => { 
+          this.SearchList = [];
          });
   
+  }
+
+  SearchEnter(searchval)
+  {
+    this.SearchList = [];
+    this.GetSearchText(null);    
+    this.search(searchval);
   }
 
   SetSearch(val)
