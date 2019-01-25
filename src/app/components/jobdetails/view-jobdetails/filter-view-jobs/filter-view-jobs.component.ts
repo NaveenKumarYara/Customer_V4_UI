@@ -13,7 +13,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class FilterViewJobsComponent implements OnInit {
   ViewBy: number ;
-  searchstring :any;
+  searchString :any;
+  SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
   @Input() statusid: number;
@@ -36,11 +37,45 @@ export class FilterViewJobsComponent implements OnInit {
     this.showdetailssearch = !this.showdetailssearch;
     this.jobdetailsservice.updateDetailsAdvanceSearch(this.showdetailssearch);
   }
-  search()
+
+  search(val)
   {
-   this.parentApi.callSearchMethod(this.searchstring);
+   this.searchString = val;
+   this.parentApi.callSearchMethod(this.searchString);
+   this.SearchList = [];
+   this.GetSearchText(null);    
   }
 
+  GetSearchText(value) {
+   return this.jobdetailsservice.GetAutoSearch(value)
+   .subscribe(data => {
+         if (data.length > 0) {  
+           this.SearchList =data;
+         }
+         else {
+           this.SearchList = [];
+         }
+       
+         }, 
+    
+       error => { 
+         this.SearchList = [];
+        });
+ 
+ }
+
+ SearchEnter(searchval)
+ {
+   this.SearchList = [];
+   this.GetSearchText(null);    
+   this.search(searchval);
+ }
+
+ SetSearch(val)
+ {
+   this.SearchList = [];
+   this.search(val);
+ }
   changeViewby(sortBy) {
     // this.viewdetailscand.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, sortBy.target.value);
     this.parentApi.callParentMethod(sortBy);

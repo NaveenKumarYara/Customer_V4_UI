@@ -126,6 +126,14 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       );
   }
 
+  GetAutoSearch(term: string = null): Observable<string[]> {
+    const url = environment.GetProfileAutoSearch+ '?searchText=' + term;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number,sortBy: number= 1, searchString: string, experience: number,location: string,domainName: string,noOfRows: number= 6):
   Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
