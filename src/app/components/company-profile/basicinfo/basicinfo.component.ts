@@ -275,7 +275,7 @@ onFileChange(event) {
         }, audio: true
       };
       navigator.mediaDevices
-        .getUserMedia(null)
+        .getUserMedia(mediaConstraints)
         .then(this.successCallback.bind(this), this.errorCallback.bind(this));
 
 
