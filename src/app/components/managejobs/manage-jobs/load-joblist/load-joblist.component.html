@@ -56,6 +56,11 @@
     </mat-progress-spinner>
   </div>
   <div class="col-md-12" *ngIf="loaddata">
+      <ng-container *ngIf="joblist.Jobs==null">
+          <div>
+            <h4>No Jobs!</h4>
+          </div>
+        </ng-container>
     <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
     <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
       Load More
@@ -83,6 +88,11 @@
             [mode]="mode" strokeWidth="3" [diameter]="50" >
           </mat-progress-spinner>
       </div>
+      <ng-container *ngIf="joblist.Jobs==null">
+          <div>
+            <h4>No Jobs!</h4>
+          </div>
+        </ng-container>
       <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
       <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
           Load More
