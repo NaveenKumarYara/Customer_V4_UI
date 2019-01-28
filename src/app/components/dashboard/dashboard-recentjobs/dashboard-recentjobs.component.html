@@ -23,7 +23,7 @@
           <h2 (click)="ViewJobdetails(joblist.CustomerId,job.UserId,job.JobId)">
               {{job?.JobTitle | slice:0:25}}
           </h2>
-          <span class="status status--purple">{{job?.JobStatus}}</span>
+          <span class="status {{job?.JobStatus}}">{{job?.JobStatus}}</span>
         <div class="meta">
             <span>
                 <svg x="0px" y="0px" width="16px" height="19.1px" viewBox="0 0 16 19.1" xml:space="preserve" style="fill:#9EABC0;">

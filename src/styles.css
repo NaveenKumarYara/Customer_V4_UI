@@ -18048,10 +18048,41 @@ a.ui-button:active,
   font-weight: 500;
   padding: 4.5px 6.5px;
 }
+.page--dashboard .jobs .status.pending {
+    background-color: #FBD57C;
+  }
+  .page--dashboard .jobs .status.InActive {
+    background-color: #FBD57C;
+  }
+  .page--dashboard .jobs .status.hired {
+    background-color: #ACB0F3;
+  }
+  .page--dashboard .jobs .status.ShortListing {
+    background-color: #ACB0F3;
+  }
 
-.page--dashboard .jobs .status--purple {
-  background-color: #6E65E9;
-}
+  .page--dashboard .jobs .status.rejected {
+    background-color: #FFBCBC;
+  }
+
+  .page--dashboard .jobs .status.applied {
+    background-color: #5CD1DE;
+  }
+
+  .page--dashboard .jobs .status.Interviewing{
+    background-color: #6B9BE8;
+  }
+  .page--dashboard .jobs .status.Closed {
+    background-color: #cc3b3b;
+  }
+  
+  .page--dashboard .jobs .status.Active {
+    background-color: #A4D975;
+  }
+
+  .page--dashboard .jobs .status.withdrawn {
+    background-color: #AEB1D9;
+  }
 
 .page--dashboard .jobs .stats {
   padding: 0 30px;
