@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import {FilterjobsComponent} from '../filterjobs/filterjobs.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+declare var $: any;
 
 @Component({
   selector: 'app-manage-load-joblist',
@@ -23,6 +24,10 @@ export class LoadJoblistComponent implements OnInit {
   customerId: any;
   userId: any;
   searchString:any
+  employmentTypeId:any;
+  showadvancesearch = false;
+  experience:any;
+  cityId:any;
   joblist: JobDetails[] = [];
   joblistcount: number;
   defaultValue:any;
@@ -64,12 +69,26 @@ export class LoadJoblistComponent implements OnInit {
     {
       this.sortBy=0;
     }
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,searchString,this.joblistcount).subscribe(res => {
+    this.searchString= searchString;
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
-      this.searchString= ''; 
+    }); 
+  }
+
+  populateJoblistByFilter(customerId, userId,employmentTypeId=0,experience=0,cityId=0,viewBy=0) { 
+    $('#searchStr').val('');
+    this.employmentTypeId = employmentTypeId;
+    this.sortBy = viewBy;
+    this.experience = experience;
+    this.cityId = cityId;
+    return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy,this.joblistcount).subscribe(res => {
+      this.loaddata = true;
+      this.joblist = res;
+      this.jobLoader = false;
+      this.spinner.hide();
     }); 
   }
 
@@ -77,8 +96,15 @@ export class LoadJoblistComponent implements OnInit {
     this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
     this.jobLoader = true;
-    this.populateJoblist(this.customerId, this.userId,this.searchString);
-
+     if(this.employmentTypeId>0 || this.experience>0 || this.sortBy >0 || this.cityId>0)
+    {
+      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
+    }
+    else
+    {
+      this.populateJoblist(this.customerId, this.userId,this.searchString);
+    }
+   
   }
 
 
@@ -86,16 +112,33 @@ export class LoadJoblistComponent implements OnInit {
   {
     this.sortBy = sort;
     this.spinner.show();
-    this.populateJoblist(this.customerId,this.userId,this.searchString);
+    if(this.employmentTypeId>0 || this.experience>0 ||  this.cityId>0)
+    {
+      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
+    }
+    else
+    {
+      this.populateJoblist(this.customerId,this.userId,this.searchString);
+    }
+
   } 
   getParentApi(): ParentComponentApi {
     return {   
-      callSearchMethod : (searchString)=>{   
-     // this.parentMethod(name);
-      this.populateJoblist(this.customerId, this.userId,searchString);
-      }
-    };
+      callSearchMethod : (searchString)=>{ 
+       // this.parentMethod(name);
+      this.searchString = searchString; 
+      this.populateJoblist(this.customerId, this.userId,this.searchString);
+      },
+      callFilterMethod : (employmentTypeId,experience,cityId)=>{ 
+        if(employmentTypeId > 0 || experience > 0 || cityId > 0) 
+        {
+          this.searchString = ''; 
+        }
+         this.populateJoblistByFilter(this.customerId, this.userId,employmentTypeId,experience,cityId,this.sortBy);
+    }
+  };
   }
+  
   ngOnInit() {
     // this.jobLoader = false;
     // this.spinner.show();
@@ -109,6 +152,8 @@ export class LoadJoblistComponent implements OnInit {
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
     this.populateJoblist(this.customerId, this.userId,this.searchString);
+    this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
+    this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     localStorage.removeItem('sortBy');
    // this.spinner.hide();
   }
@@ -116,4 +161,5 @@ export class LoadJoblistComponent implements OnInit {
 
 export interface ParentComponentApi {
   callSearchMethod : (string) => void; 
+  callFilterMethod : (employmentTypeId,experience,cityId) => void;
 }

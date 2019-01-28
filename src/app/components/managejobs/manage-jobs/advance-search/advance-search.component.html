@@ -5,32 +5,31 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="job-type">Job Type</label>
-            <select name="" id="" class="styled-select-box block">
-              <option value="" disabled="" selected="">Select Job Type</option>
-              <option value="">Part Time</option>
-              <option value="">Full Time</option>
-            </select>
+            <select name="view" id="view" (change)="changeJobType($event.target.value)" class="styled-select-box block">
+              <option default value="" disabled="disabled">SELECT</option>
+              <option *ngFor="let emp of employmentList" [value]="emp.EmploymentTypeId">{{emp.EmploymentType}}</option>
+          </select>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="job-type">Experience</label>
-            <select name="" id="" class="styled-select-box block">
-              <option value="" disabled="" selected="">Select Experience</option>
-              <option value="">2 Years</option>
-              <option value="">3 Years</option>
-              <option value="">4 Years</option>
-            </select>
+            <select name="view" id="view" (change)="changeExperience($event.target.value)" class="styled-select-box block">
+              <option *ngFor="let exp of expYears" [value]="exp">{{exp}}</option>
+          </select>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="job-type">Career Level</label>
-            <select name="" id="" class="styled-select-box block">
-              <option value="" disabled="" selected="">Select Career Level</option>
-              <option value="">Part Time</option>
-              <option value="">Full Time</option>
-            </select>
+            <label for="job-type">Location</label>
+            <form #form="ngForm">
+              <input  autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetCity(searchText.value)">      
+                <div class="searchList" *ngIf="SearchList.length>0">
+                  <ul class="searchList-dropdown">
+                    <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.CityId,slist.CityName.split(',')[0])">{{slist.CityName.split(',')[0]}}</li>
+                  </ul>
+                </div>                                   
+            </form>
           </div>
         </div>
       </form>
@@ -38,8 +37,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="pull-right">
-          <button class="btn btn-border" (click)="advancesearch=!advancesearch" >Cancel</button>
-          <button class="btn btn-filled">Apply</button>
+          <button class="btn btn-border" (click)="advancesearch=!advancesearch"  (click)="all()">Cancel</button>
+          <button class="btn btn-filled"  (click)="apply()" (click)="advancesearch=!advancesearch">Apply</button>
         </div>
       </div>
     </div>

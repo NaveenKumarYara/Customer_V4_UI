@@ -26,7 +26,6 @@ export class ViewjobsComponent implements OnInit {
       this.userId=this.customer.UserId;
      }      
   ngOnInit() {
-    this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
    }
    
