@@ -96,7 +96,7 @@ export class LoadJoblistComponent implements OnInit {
     this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
     this.jobLoader = true;
-     if(this.employmentTypeId>0 || this.experience>0 || this.sortBy >0 || this.cityId>0)
+     if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0)
     {
       this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     }
@@ -138,7 +138,7 @@ export class LoadJoblistComponent implements OnInit {
     }
   };
   }
-  
+
   ngOnInit() {
     // this.jobLoader = false;
     // this.spinner.show();
