@@ -151,7 +151,7 @@
             <div id="applied" class="tab-pane fade in active"> 
               <app-viewjobdetails-candidate-profile
               [jobid]="jobid"
-              [statusid]="statusid" (myEvent)="updateStatistics($event)">
+              [statusid]="statusid" [jobStatus]="jobStatus" (myEvent)="updateStatistics($event)">
               </app-viewjobdetails-candidate-profile> 
               <mat-progress-spinner *ngIf="profileLoader===true"
                 style="margin:0 auto;" 

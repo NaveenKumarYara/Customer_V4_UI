@@ -47,6 +47,7 @@ export class ViewJobdetailsComponent implements OnInit {
   searchString:any;
   userId: any;
   jobid: any;
+  jobStatus:any;
   viewJobJobId: any;
   statusid = 4;
   sortBy = 1;
@@ -325,6 +326,7 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
       this.closedjob=this.jobdetailsbasicinfo.IsOpen;
+      this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }

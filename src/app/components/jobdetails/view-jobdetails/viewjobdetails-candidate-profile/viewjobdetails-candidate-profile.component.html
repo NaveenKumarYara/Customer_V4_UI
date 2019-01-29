@@ -91,7 +91,7 @@
             </h1>
        </ng-container>
        <ng-template #firstBlock>
-        <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">
+        <h1 class="title"  (click)="GetCandidateProfile(profile.ProfileId)">         
           
           <!-- {{profile.FirstName}} {{profile.LastName}} -->
           <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
@@ -523,7 +523,7 @@
               <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
             </svg>
           </a>
-          <ul role="menu" class="dropdown-menu dropdown-menu-right">
+          <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='InActive'">
             <!-- applied --> 
             <div *ngIf="profile?.ResponseStatusId == 4"> 
                     <div *ngIf="profile?.IsConfirmed != false">

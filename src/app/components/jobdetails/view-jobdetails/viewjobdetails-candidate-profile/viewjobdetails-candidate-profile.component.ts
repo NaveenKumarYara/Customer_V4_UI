@@ -40,7 +40,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
   @Output() loadMoreEvent = new EventEmitter();
-
+  @Input() jobStatus : string;
   @Input() options: object;
   $owlElement: any;
   defaultOptions: object = {};
@@ -183,8 +183,11 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       }) ;
     }
   GetCandidateProfile(profileId) {
-    sessionStorage.setItem('profileId', JSON.stringify(profileId));
-    this.router.navigateByUrl('app-cprofile');
+    if(this.jobStatus!='InActive')
+    {
+      sessionStorage.setItem('profileId', JSON.stringify(profileId));
+      this.router.navigateByUrl('app-cprofile');
+    }  
   }
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();

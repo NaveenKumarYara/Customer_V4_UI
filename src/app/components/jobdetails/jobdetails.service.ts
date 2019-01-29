@@ -138,7 +138,6 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
   Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+'&pageNumber=1&noOfRows=' + noOfRows;
-   debugger
      return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
      .catch(
@@ -149,7 +148,6 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
     noOfRows: number= 6): Observable<JobdetailsProfile> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+ '&pageNumber=1&noOfRows=' + noOfRows;
-    debugger
       return this.http.get<JobdetailsProfile>(url)
       .debounceTime(1000)
       .catch(
