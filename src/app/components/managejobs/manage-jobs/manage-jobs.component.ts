@@ -8,9 +8,10 @@ import { ManageJobService } from '../managejobs.service';
 export class ManageJobsComponent implements OnInit {
 
   constructor(private managejobservice: ManageJobService) { }
-
+  showsearch: boolean = false;
   ngOnInit() {
     this.managejobservice.updateJobListCount(6);
+    this.managejobservice.updateAdvanceSearch(this.showsearch);
   }
 
 }
