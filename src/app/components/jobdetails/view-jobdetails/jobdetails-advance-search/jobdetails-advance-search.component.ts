@@ -80,6 +80,7 @@ export class JobdetailsAdvanceSearchComponent implements OnInit {
     }
     
   updateDetailAdvanceSearch() {
+    this.parentApi.callfilterMethod(0,'',0);
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
   }
 

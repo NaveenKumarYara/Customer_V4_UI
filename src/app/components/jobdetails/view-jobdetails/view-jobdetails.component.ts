@@ -374,6 +374,7 @@ export class ViewJobdetailsComponent implements OnInit {
       error => console.log(error));
 }
   ngOnInit() {
+    this.jobdetailsservice.updateDetailsAdvanceSearch(false);
      // this.loadMoreStat=0;
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
@@ -416,9 +417,11 @@ export class ViewJobdetailsComponent implements OnInit {
           this.statistics = this.jobstatistics.Suggested; }
           this.loadMore = this.statistics > 6 ? true : false;
        // this.parentMethod(name);
-        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString,this.exp,this.location,this.domain,6);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString,this.exp,this.location,this.domain,this.profilecount);
       },
       callfilterMethod : (exp,location,domain)=>{  if (this.statusid === 4) {
+        this.sortBy=1;
+        this.searchString = '';
         // this.statistics=this.jobstatistics.Applied;
         this.statistics = this.jobstatistics.Applied;
        }   else if (this.statusid === 5) {
@@ -433,9 +436,12 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString,exp,location,domain, 6);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString,exp,location,domain,this.profilecount);
      },
-      callSearchMethod : (searchString)=>{      
+      callSearchMethod : (searchString)=>{  
+        this.exp=0;
+        this.domain=0;
+        this.location='';
        if (this.statusid === 4) {
         // this.statistics=this.jobstatistics.Applied;
         this.statistics = this.jobstatistics.Applied;
@@ -451,7 +457,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,searchString,this.exp,this.location,this.domain, 6);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,searchString,this.exp,this.location,this.domain, this.profilecount);
       }
     };    
   }

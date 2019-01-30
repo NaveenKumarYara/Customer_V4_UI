@@ -29,6 +29,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    matchingDetails: MatchingDetails;
    customerId: any;
    userId: any;
+   profiles:any;
    searchString:any;
    domainName:any;
    experience:any;
@@ -81,6 +82,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
      }
 
   OpenChatboxDialog() {
+    if(this.jobStatus!='InActive')
+    {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
         width: '750',
@@ -95,8 +98,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       console.log('Chatbox Dialog result: ${result}');
     });
   }
+  }
 
   OpenShareDialog() {
+    if(this.jobStatus!='InActive')
+    {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
         // width: '1000px',
@@ -111,22 +117,26 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       console.log('share Dialog result: ${result}');
     });
   }
+  }
 
   OpenRejectDialog(jobResponseId) {
-    const rejectdialogRef = this.dialog.open(RejectdialogComponent,
-      {
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          // status : this.statusid
+    if(this.jobStatus!='InActive')
+    {
+      const rejectdialogRef = this.dialog.open(RejectdialogComponent,
+        {
+          data: {
+            jobResponseId: jobResponseId,
+            jobId: this.jobid,
+            // status : this.statusid
+          }
         }
-      }
-    );
-    rejectdialogRef.afterClosed().subscribe(result => {
-     // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      this.myEvent.emit(null);
-      console.log('reject Dialog result: ${result}');
-    });
+      );
+      rejectdialogRef.afterClosed().subscribe(result => {
+       // this.jobDetails.populateJobsStaticInfo(this.jobid);
+        this.myEvent.emit(null);
+        console.log('reject Dialog result: ${result}');
+      });
+    }
   }
 
   OpenScheduleInterviewDialog(jobResponseId,userId) {
@@ -193,6 +203,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
   PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString='',experience=0,location='',domainName='', noofRows= 6) {
+    this.alertService.clear();
+    $('#searchStr').val('');
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid === 0 ? 4 : statusid;
@@ -209,7 +221,14 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString,experience,location,domainName, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
-      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {  // need to change the res.totalprofile count
+      this.profiles = res;
+      if(this.profiles == 'No records found')
+      {
+        this.myEvent.emit('min');
+        this.alertService.warn('No Profiles Matched!!');
+      }
+      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {  
+      // need to change the res.totalprofile count
         this.myEvent.emit('max'); // load more hide when max count is reached
        } else if ((noofRows === 6 ) && (res.Profile.length < noofRows)) {// need to change the res.totalprofile count
         this.myEvent.emit('min'); // load more when profiles count is min and low
@@ -266,6 +285,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     $('#matchingDetail-' + profileId).removeClass('open');
   }
   ngOnInit() {
+    this.alertService.clear();
     (function ($) {
       // TODO: test multiple cards -- open and close function
       const $card = $('.page--job-details .tab-content .card');

@@ -69,17 +69,8 @@ export class DashboardJobsviewComponent implements OnInit {
     this.lineChartData = _lineChartData;
   }
   
-  Jobs(sort)
+  Jobs(sortBy)
   {
-    let sortBy;
-    if(sort > 0)
-    {
-      sortBy = sort;   
-    }  
-    else 
-    {
-      sortBy = 0;
-    }
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }

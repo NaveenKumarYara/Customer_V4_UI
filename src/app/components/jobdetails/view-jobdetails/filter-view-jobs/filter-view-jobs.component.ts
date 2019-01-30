@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;
 // import { ViewjobdetailsCandidateProfileComponent } from '../viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 
 @Component({
@@ -34,6 +35,7 @@ export class FilterViewJobsComponent implements OnInit {
   showdetailssearch = false;
 
   updateDetailAdvanceSearch() {
+    $('#searchStr').val('');
     this.showdetailssearch = !this.showdetailssearch;
     this.jobdetailsservice.updateDetailsAdvanceSearch(this.showdetailssearch);
   }
