@@ -16,7 +16,7 @@
 </ng-select> -->
 
 <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
-                   placeholder="e.g. Bachelor of Computer Arts"
+                   placeholder="Select Other Cities"
                    bindLabel="CityName"
                    bindValue="CityId"
                    (ngModelChange)="getSelectedOptionText($event)"
