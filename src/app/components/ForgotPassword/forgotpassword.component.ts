@@ -51,7 +51,6 @@ Login()
       .subscribe(
       data => {
             this.alertService.success('Please check your email to reset the password');
-             sessionStorage.setItem('Pid', JSON.stringify(data));
             this.Forgotform.reset();
             setTimeout(() => {
                 this.alertService.clear();

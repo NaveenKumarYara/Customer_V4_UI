@@ -24,8 +24,12 @@ export class ResetComponent {
   Id:any;
   constructor( private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
-       this.pid =  sessionStorage.getItem('Pid');
-       this.Id = this.pid.slice(1, -1);
+        this.route.params.subscribe(params => {
+            console.log(params);
+            if (params['pid'] !==null) {
+              sessionStorage.setItem('Pid', params['pid']);
+            }
+          });
   }
 
 //   login1(username: string, password: string) {
@@ -53,6 +57,7 @@ Login()
             this.Resetform.reset();
             setTimeout(() => {
                 this.alertService.clear();
+
                 this.Login();    
               }, 3000);
            }     
@@ -61,9 +66,9 @@ Login()
 
 
   ngOnInit() {
-
+    this.pid =  sessionStorage.getItem('Pid');
     this.Resetform = this.fb.group({
-      'Email': [this.Id, Validators.compose([Validators.nullValidator])],
+      'Email': [this.pid, Validators.compose([Validators.nullValidator])],
       'Password': ['', [Validators.required, FormsValidationService.password]],
       'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('NewPassword')]]
     },
