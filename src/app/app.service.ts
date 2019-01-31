@@ -16,7 +16,7 @@ import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities } from './components/Postajob/models/jobPostInfo';
 
 
 const httpOptions = {
@@ -608,7 +608,13 @@ updatepassword(body) {
         this.handleError
       );
   }
-
+  getCities(cityName: string): Observable<Cities[]> {
+    const url = environment.getCitiesendpoint + 'cityName=' + cityName;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getContractduration() {
     return this.contractduration;
   }

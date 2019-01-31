@@ -8,6 +8,27 @@
       <label><input type="radio" [ngModel]="prfLoc && prfLoc?.PreferredLocationId"  (change)="selectLocation(jobs)" name="location" [value]="jobs.PreferredLocationId"><span class="box">{{jobs.CityName}}</span> </label>
     </div> 
   </div>
+  <!-- <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here"> -->
+<!--   
+  <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
+  bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
+  [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
+</ng-select> -->
+
+<ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
+                   placeholder="e.g. Bachelor of Computer Arts"
+                   bindLabel="CityName"
+                   bindValue="CityId"
+                   (ngModelChange)="getSelectedOptionText($event)"
+                   [typeahead]="selectedCityInput"
+                   [hideSelected]="true"
+                   [loading]="cityloading"
+                   [(ngModel)]="selectedCityName"
+                   [virtualScroll]="true"
+                   required
+                   #city="ngModel"
+                   name="cities">
+        </ng-select>
   <!-- <span class="help-block" *ngIf="location.invalid && location.touched">Location is required.</span> -->
 </form>
 </div> 

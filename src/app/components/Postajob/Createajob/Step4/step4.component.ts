@@ -76,7 +76,7 @@ export class Step4Component implements OnInit {
       this.domain = data; // And he have data here too!
     });
     this.appService.currentlocation.subscribe((data) => {
-      this.locations = data.PreferredLocationId; // And he have data here too!
+      this.locations = data.CityId; // And he have data here too!
     });
     this.appService.currentOpenings.subscribe((data) => {
       this.openings = data; // And he have data here too!

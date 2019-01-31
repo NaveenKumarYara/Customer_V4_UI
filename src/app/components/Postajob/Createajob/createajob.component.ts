@@ -123,7 +123,7 @@ ejPersonSingleList: PjDisc[] = [];
         //   this.ejLocations.location = element.CityName;
         //   });
         for (const loc of this.jobdetailscustomer.JobLocation) {
-          this.ejLocations.PreferredLocationId = loc.PreferredLocationId;
+          this.ejLocations.CityId = loc.CityId;
           this.ejLocations.location = loc.CityName;
         }
       }

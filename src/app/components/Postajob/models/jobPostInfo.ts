@@ -100,9 +100,14 @@ export class DiscResult {
 
   }
   export class PrefLocation {
-    public PreferredLocationId: number;
+    // public PreferredLocationId: number;
+    public CityId: number;
     public location: string;
     }
+    export class Cities {
+      public CityId: number;
+      public CityName: string;
+      }
   // related
 
   export class CustomerUsers {

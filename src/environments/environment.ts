@@ -21,27 +21,27 @@ export const environment = {
     JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
     GetUserId: 'http://api.tenendus.com:1090/ProfileAPI/api/GetUserId?',
     discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
-    updateemail:'http://api.tenendus.com:1090/IdentityAPI/api/UpdateEmail',
-    updatepassword:'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
+    updateemail: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdateEmail',
+    updatepassword: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
     // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
     Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
-    ForgotPassword:'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
-    ResetPassword:'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
-    InviteContact:'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
+    ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
+    ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
+    InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
     signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
     domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
     getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
-     customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+    customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+    getCitiesendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities?',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
     scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
-   SearchProfile:'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
-    JobdetailsBasicInfoEndpoint:
-        'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
+    SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
+    JobdetailsBasicInfoEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
         JobdetailsStatisticsEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?',
@@ -52,14 +52,14 @@ export const environment = {
     MatchingDetailEndPoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage',
 
-    GetAutoSearch:'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
+    GetAutoSearch: 'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
 
-    GetJobsFilterBy:'http://api.tenendus.com:1090/JobsAPI/api/SearchJobFilter?',
+    GetJobsFilterBy: 'http://api.tenendus.com:1090/JobsAPI/api/SearchJobFilter?',
 
-    GetProfileAutoSearch:'http://api.tenendus.com:1090/ProfileAPI/api/ProfileAutoSearch',
+    GetProfileAutoSearch: 'http://api.tenendus.com:1090/ProfileAPI/api/ProfileAutoSearch',
 
-    GetCitySearch:'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
-    
+    GetCitySearch: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
+
     JobdetailsSuggestedProfileEndpoint:
         'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
 
