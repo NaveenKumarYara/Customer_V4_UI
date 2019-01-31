@@ -17,6 +17,7 @@ export class SignUpComponent {
   signUpform: any;
   customerId:any;
   companyLogo:any;
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
   userId:any;
   constructor( private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
@@ -47,15 +48,19 @@ export class SignUpComponent {
     .subscribe(
     data => {
       this.alertService.success('Successfully Registered');
-          this.router.navigateByUrl('home');
+      this.signUpform.reset();
+      setTimeout(() => {
+        this.alertService.clear();
+        this.router.navigateByUrl('home');   
+      }, 2000);
     },
 
     error => {
       this.alertService.error('Please provide the valid details');
+      this.signUpform.reset();
       setTimeout(() => {
         this.alertService.clear();
       }, 2000);
-      this.signUpform.reset();
     },
     () => console.log('Call Sucessfull')
     );

@@ -55,9 +55,9 @@ Login()
       data => {
             this.alertService.success('Password changed successfully');
             this.Resetform.reset();
+            sessionStorage.removeItem('Pid');
             setTimeout(() => {
                 this.alertService.clear();
-
                 this.Login();    
               }, 3000);
            }     
