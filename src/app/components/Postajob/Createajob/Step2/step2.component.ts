@@ -66,7 +66,7 @@ export class Step2Component implements OnInit {
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService, private steps: StepsComponent,private alertService : AlertService) {
+    private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -121,7 +121,7 @@ export class Step2Component implements OnInit {
     // // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
     //  this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
-    if (this.openings.noOfOpenings > 0 && this.locations.prfLoc.PreferredLocationId.toString() != null ) {
+    if (this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId.toString() != null ) {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
@@ -139,7 +139,7 @@ export class Step2Component implements OnInit {
 
     // step2
     this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
-    this.insertJob.PreferredLocationId = this.locations.prfLoc.PreferredLocationId.toString();
+    this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
