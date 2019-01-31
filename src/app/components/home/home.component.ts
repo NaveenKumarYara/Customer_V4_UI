@@ -40,6 +40,10 @@ export class HomeComponent {
   {
     this.router.navigateByUrl('signup'); 
   }
+  forgot()
+  {
+    this.router.navigateByUrl('ForgotPassword'); 
+  }
   login() {
     this.appService.Login(this.loginform.value)
       .subscribe(

@@ -12,6 +12,8 @@ import { AboutComponent } from './components/about/about.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ForgotComponent } from './components/ForgotPassword/forgotpassword.component';
+import { ResetComponent } from './components/ResetPassword/resetpassword.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostajobComponent } from './components/Postajob/postajob.component';
 import { StepsComponent } from './components/Postajob/Createajob/steps.component';
@@ -78,6 +80,8 @@ import { UploadvideoprofileComponent } from './components/Postajob/Createajob/St
     Step2Component,
     Step3Component,
     Step4Component,
+    ForgotComponent,
+    ResetComponent,
     DashboardComponent,
     JobdetailsComponent,
     JobcategoryComponent,

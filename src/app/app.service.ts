@@ -532,6 +532,22 @@ Login(body) {
   });
 }
 
+ForgotPassword(body) {
+  return this.http.post(environment.ForgotPassword, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
+
+ResetPassword(body) {
+  return this.http.post(environment.ResetPassword, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
+
 signUp(body) {
   return this.http.post(environment.signUp, body)
   .map((res: Response) => res)

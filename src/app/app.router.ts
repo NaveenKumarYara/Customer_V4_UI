@@ -62,6 +62,7 @@ import { AboutcompanyComponent } from '../app/components/company-profile/aboutco
 import { AchievementsandawardsComponent } from '../app/components/company-profile/achievementsandawards/achievementsandawards.component';
 import { BasicinfoComponent } from '../app/components/company-profile/basicinfo/basicinfo.component';
 import { BenefitsComponent } from '../app/components/company-profile/benefits/benefits.component';
+import { ResetComponent } from './components/ResetPassword/resetpassword.component';
 import { CultureComponent } from '../app/components/company-profile/culture/culture.component';
 import { LocationsComponent } from '../app/components/company-profile/locations/locations.component';
 import { OtherinfoComponent } from '../app/components/company-profile/otherinfo/otherinfo.component';
@@ -78,7 +79,7 @@ import { DashboardContentComponent } from './components/dashboard/dashboard-cont
 import { DashboardRecentApplicationsComponent } from './components/dashboard/dashboard-recent-applications/dashboard-recent-applications.component';
 import { DashboardRecentjobsComponent } from './components/dashboard/dashboard-recentjobs/dashboard-recentjobs.component';
 import {AuthGuard} from './shared/guard/auth.guard';
-
+import { ForgotComponent } from './components/ForgotPassword/forgotpassword.component';
 import { AccountsettingsComponent } from './components/accountsettings/accountsettings/accountsettings.component';
 import { AccountsettingdetailsComponent } from './components/accountsettings/accountsettingdetails/accountsettingdetails.component';
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
@@ -90,6 +91,8 @@ const appRoutes: Routes =
   { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
+    { path: 'ForgotPassword', component: ForgotComponent },
+    { path: 'ResetPassword', component: ResetComponent },
     { path: 'about', component: AboutComponent},
     { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
