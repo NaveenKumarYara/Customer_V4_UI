@@ -17,6 +17,7 @@ export class HomeComponent {
   loginform: any;
   customerId:any;
   companyLogo:any;
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
   userId:any;
   constructor( private route: ActivatedRoute,
