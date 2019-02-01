@@ -93,7 +93,7 @@ export class SignUpComponent {
       'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
       'FromTime':['', Validators.compose([Validators.nullValidator])],
       'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
-      'WebSite':['user@company.com', Validators.compose([Validators.nullValidator])],        
+      'WebSite':['www.company.com', Validators.compose([Validators.nullValidator])],        
       'Description': ['', Validators.compose([Validators.nullValidator])],
       'TimeZoneId'  : [1, Validators.compose([Validators.required])],
       'UserRoleId':[4, Validators.compose([Validators.required])],   

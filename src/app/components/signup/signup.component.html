@@ -34,40 +34,43 @@
                               <alert></alert>
                               <div class="form-group  spt-2">
                                   <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="FirstName" minlength=3 (keypress)="MissClear()"
-                                  (keyup)="MissClear()" required>
+                                  (keyup)="MissClear()"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)" required>
                                   <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
                                   class="alert alert-danger">
                                   <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
-                                       ContactFirstName is required.
+                                       FirstName is required.
                                   </div>
                                   <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
-                                       ContactFirstName must be Minimum 3 character.
+                                       FirstName must be Minimum 3 character.
                                   </div>
                                   </div>
                                </div>
                                <div class="form-group">
                                   <input type="text" class="form-control" formControlName="ContactLastName" minlength=3 (keypress)="MissClear()" placeholder="LastName"
-                                  (keyup)="MissClear()" required>
+                                  (keyup)="MissClear()"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)" required>
                                   <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
                                   class="alert alert-danger">
                                   <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
-                                       ContactLastName is required.
+                                       LastName is required.
                                   </div>
                                   <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
-                                       ContactLastName must be Minimum 3 character.
+                                       LastName must be Minimum 3 character.
                                   </div>
                                   </div>
                                </div>
                               <div class="form-group">
-                                  <input type="text" class="form-control" formControlName="CompanyName" placeholder="CompanyName" minlength=3 required>
+                                  <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$" placeholder="CompanyName" minlength=3 required>
                                   <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
                                   class="alert alert-danger">
                                   <div *ngIf="signUpform.controls['CompanyName'].errors.required">
-                                       CompanyName is required.
+                                       Company is required.
                                   </div>
                                   <div *ngIf="signUpform.controls['CompanyName'].errors.minlength">
-                                       ContactNumber must be Minimum 3 character.
+                                    Company must be Minimum 3 character.
                                  </div>
+                                 <div *ngIf="signUpform.controls['CompanyName'].errors.pattern">
+                                    Company must be valid.
+                              </div>
                                   </div>
                                  </div>
                               <div class="form-group">
@@ -83,14 +86,14 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                 <input type="text" class="form-control" formControlName="ContactNumber" placeholder="Enter your Contact Number." minlength=10 required> 
+                                 <input type="text" class="form-control" formControlName="ContactNumber" placeholder="Enter your Contact Number." minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57" required> 
                                  <div *ngIf="signUpform.controls['ContactNumber'].invalid && (signUpform.controls['ContactNumber'].dirty || signUpform.controls['ContactNumber'].touched)"
                                  class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['ContactNumber'].errors.required">
-                                       ContactNumber is required.
+                                     Number is required.
                                  </div>
                                  <div *ngIf="signUpform.controls['ContactNumber'].errors.minlength">
-                                       ContactNumber must be Minimum 10 character.
+                                     Number must be Minimum 10 character.
                                  </div>
                                  </div>
                               </div>
@@ -102,21 +105,21 @@
                                  <div *ngIf="signUpform.controls['Password'].errors.required">
                                   Password is required.
                                  </div>
-                                 <small *ngIf="signUpform.controls['Password'].errors.minlength">
+                                 <div *ngIf="signUpform.controls['Password'].errors.minlength">
                                     Password must be Minimum 6 character.
-                                   </small>
+                                   </div>
                                </div>
                                 </div>
                               <div class="form-group terms">
                                  <label class="container_check">Please accept our <a  href="javascript:void(0)" data-toggle="modal" data-target="#terms-txt">Terms and conditions</a>
-                                 <input type="checkbox" name="terms" value="Yes" class="required">
+                                 <input type="checkbox" name="terms" value="Yes" class="required" required>
                                  <span class="checkmark"></span>
                                  </label>
                               </div>
                               <h6>Already have an account? <a  href="javascript:void(0)" (click)="Login()">Login here</a></h6>
                               <div class="spt-2 d-flex justify-content-between">
                                
-                                 <span>I don't think of <a  href="javascript:void(0)" (click)="Layout()" id="recrit_close">signing up.</a></span> <button type="submit"  class="btn2"> Signup </button>
+                                 <span>I don't think of <a  href="javascript:void(0)" (click)="Layout()" id="recrit_close">signing up.</a></span> <button type="submit"  class="btn2" [disabled]="!signUpform.valid"> Signup </button>
                               </div>
                            </div>
                         </div>
