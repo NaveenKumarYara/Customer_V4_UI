@@ -13,7 +13,7 @@ declare var $: any;
   providers:[AppService,AlertService]
 })
 export class HomeComponent {
-  
+         
   loginform: any;
   customerId:any;
   companyLogo:any;
