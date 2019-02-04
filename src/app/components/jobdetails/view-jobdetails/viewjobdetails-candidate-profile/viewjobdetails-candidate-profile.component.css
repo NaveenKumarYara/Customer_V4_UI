@@ -1,12 +1,12 @@
 .ui-badge {
-     text-overflow: ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
     text-transform: capitalize;
 }
 
-.meta small{
+.meta small {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -14,16 +14,19 @@
     font-size: 75%;
     margin-top: 3px;
     margin-left: 3px;
-  }
+}
 
-  .mat-dialog-container {
+.mat-dialog-container {
     width: 600px;
     margin: 30px auto;
-    padding : 0 !important;
+    padding: 0 !important;
 }
-.disabled{
+
+.disabled {
     pointer-events: none;
-   }
+}
+
+
 /* h4,h5{
     display:inline-block;
     width:280px;
@@ -31,6 +34,7 @@
     overflow:hidden !important;
     text-overflow: ellipsis;
 } */
+
 
 /* .page--job-details .ui-badge {
     padding: 4px 13px;
@@ -58,10 +62,12 @@
     padding: 4px 13px;
     max-width: 140px;
 }
+
 .ui-badge--domain {
     border-color: #AC9AF9;
     color: #AC9AF9;
 }
+
 .ui-badge {
     display: inline-block;
     border: 1px solid;
@@ -71,23 +77,22 @@
     font-size: 11px;
     font-weight: 500;
 }
- 
+
 .ui-badge--industry {
     border-color: #75A6F5;
     color: #75A6F5;
-} 
+}
 
 .candidate-badges {
     display: -webkit-box;
     display: flex !important;
     -webkit-box-pack: justify;
     justify-content: space-between;
-
 }
 
-.upgrade-pitch{  
+.upgrade-pitch {
     color: transparent;
-    text-shadow: 0 0 15px rgba(0,0,0,.8);
+    text-shadow: 0 0 15px rgba(0, 0, 0, .8);
     user-select: none;
 }
 
@@ -95,55 +100,60 @@
     color: #000!important;
     text-shadow: none!important;
 }
+
 .ln::first-letter {
     color: #000!important;
     text-shadow: none!important;
 }
 
+
 /*Naveen*/
+
 .public-profile {
     padding-bottom: 50px;
 }
 
-.public-profile .pull-left > .green-btn {
+.public-profile .pull-left>.green-btn {
     padding: 16px 30px;
     display: inline-block;
 }
 
-.public-profile .nav-pills > li a {
+.public-profile .nav-pills>li a {
     border: 1px solid #e0e3ec;
     padding: 15px 15px;
     color: #6a7e9c;
 }
 
-.public-profile .nav-pills > li:first-of-type > a {
+.public-profile .nav-pills>li:first-of-type>a {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.public-profile .nav-pills > li:last-of-type > a {
+.public-profile .nav-pills>li:last-of-type>a {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.public-profile .nav-pills > li.active > a {
+.public-profile .nav-pills>li.active>a {
     background-color: #66dab5;
     color: #ffffff;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav-pills > li.active > a:hover, .public-profile .nav-pills > li.active > a:focus {
+.public-profile .nav-pills>li.active>a:hover,
+.public-profile .nav-pills>li.active>a:focus {
     background-color: #3dd0a1;
     color: #ffffff;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav > li > a:hover, .public-profile .nav > li > a:focus {
+.public-profile .nav>li>a:hover,
+.public-profile .nav>li>a:focus {
     background-color: #f8f9fd;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav-pills > li + li {
+.public-profile .nav-pills>li+li {
     margin-left: -1px;
 }
 
@@ -155,7 +165,6 @@
     .nav-pills {
         display: block;
     }
-
     .pull-left {
         float: none !important;
         margin-bottom: 20px;
@@ -179,7 +188,7 @@
 
 .summary-view .profile-pic-lg {
     width: 250px;
-    height:250px;
+    height: 250px;
     max-width: 100%;
     border: 2px solid #e0e3ec;
     border-radius: 100%;
@@ -196,7 +205,7 @@
     border-bottom: 1px solid #e0e3ec;
 }
 
-.summary-view .contact > h2 {
+.summary-view .contact>h2 {
     margin-top: 10px !important;
 }
 
@@ -219,7 +228,7 @@
     font-weight: 400;
 }
 
-.summary-view .top-tech-skills .skill > div {
+.summary-view .top-tech-skills .skill>div {
     position: relative;
 }
 
@@ -268,7 +277,7 @@
     position: relative;
 }
 
-.summary-view .timeline > li {
+.summary-view .timeline>li {
     position: relative;
     padding-top: 12px;
 }
@@ -317,7 +326,8 @@
     margin-bottom: 10px;
 }
 
-.summary-view .timeline .info .name, .summary-view .timeline .info .meta {
+.summary-view .timeline .info .name,
+.summary-view .timeline .info .meta {
     display: inline-block;
     padding-left: 7px;
 }
@@ -369,41 +379,49 @@
     padding: 18px 0;
     line-height: 21px;
 }
+
 ul.skills {
     list-style: none;
     /* width: 53%; */
     display: inline-block;
     padding: 0px;
 }
+
 .cert-card .title {
     font-size: 22px;
     color: #6a7e9c;
     margin-top: 0;
 }
+
 .cert-card .year {
     font-size: 20px;
     color: #9eabc0;
 }
+
 .cert-card .info {
     flex: none;
     padding-left: 20px;
-    width:100%
+    width: 100%
 }
+
 .cert-card .logo {
     flex: 0.67;
     padding: 20px 10px;
     border: 1px solid #e0e3ec;
     border-radius: 4px;
 }
+
 .cert-card .settings-dot {
     position: absolute;
     top: 10px;
     right: 20px;
 }
+
 .settings-dot {
     display: inline-block;
     cursor: pointer;
 }
+
 .cert-card {
     position: relative;
     border: 1px solid #e0e3ec;
@@ -413,13 +431,17 @@ ul.skills {
     align-items: center;
     margin-bottom: 20px;
 }
-.personal-skills .skills .text, .personal-skills .skills .search-results-pg .results label, .search-results-pg .results .personal-skills .skills label {
+
+.personal-skills .skills .text,
+.personal-skills .skills .search-results-pg .results label,
+.search-results-pg .results .personal-skills .skills label {
     display: inline-block;
     vertical-align: middle;
     width: calc(100% - 100px);
     padding-left: 20px;
 }
-.summary-view .skills-section .skills .tag.skill{
+
+.summary-view .skills-section .skills .tag.skill {
     border: 1px solid #dae0ee;
     border-radius: 3px;
     line-height: 1;
@@ -429,15 +451,16 @@ ul.skills {
     text-align: center;
     font-size: 12px;
     display: inline-block;
-   
-    
 }
-.summary-view .skills-section .skills .tag:not(:last-of-type){
+
+.summary-view .skills-section .skills .tag:not(:last-of-type) {
     margin-right: 10px;
 }
-.summary-view .skills-section .skills .tag{
+
+.summary-view .skills-section .skills .tag {
     margin-bottom: 10px;
 }
+
 .summary-view .left ul li:last-of-type {
     padding-bottom: 0;
 }
@@ -465,12 +488,16 @@ ul.skills {
     padding-top: 0;
 }
 
-.summary-view .personal-skills .skills .text .title, .summary-view .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .summary-view .personal-skills .skills label .title {
+.summary-view .personal-skills .skills .text .title,
+.summary-view .personal-skills .skills .search-results-pg .results label .title,
+.search-results-pg .results .summary-view .personal-skills .skills label .title {
     font-size: 20px;
     font-weight: 500;
 }
 
-.summary-view .personal-skills .skills .text p, .summary-view .personal-skills .skills .search-results-pg .results label p, .search-results-pg .results .summary-view .personal-skills .skills label p {
+.summary-view .personal-skills .skills .text p,
+.summary-view .personal-skills .skills .search-results-pg .results label p,
+.search-results-pg .results .summary-view .personal-skills .skills label p {
     font-size: 16px;
     color: #6a7e9c !important;
 }
@@ -489,50 +516,39 @@ ul.skills {
     .summary-view .left {
         padding: 30px 40px 80px 30px;
     }
-
     .summary-view .left h2 {
         font-size: 22px;
     }
-
     .summary-view .left p {
         font-size: 14px;
     }
-
     .summary-view .left ul {
         line-height: 1.4em;
     }
-
     .summary-view .top-tech-skills {
         margin-bottom: 20px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: block;
     }
-
     .summary-view .top-tech-skills .flex-row .skill {
         margin-right: 20px;
         margin-bottom: 20px;
     }
-
     .summary-view .timeline:before {
         left: 180px;
     }
-
     .summary-view .timeline .badge-circle {
         left: 181px;
     }
-
     .summary-view .timeline .date {
         width: 180px;
         padding-right: 20px;
     }
-
     .summary-view .pic-lg .meta {
         font-size: 16px;
         line-height: 1.5em;
     }
-
     .summary-view .pic-lg h1 {
         font-size: 26px;
     }
@@ -543,7 +559,6 @@ ul.skills {
         padding-left: 0;
         padding-top: 30px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: flex;
     }
@@ -553,7 +568,6 @@ ul.skills {
     .summary-view .right {
         padding-top: 30px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: block;
     }
@@ -563,99 +577,83 @@ ul.skills {
     .summary-view .section-title {
         font-size: 20px;
     }
-
     .summary-view .left {
         padding: 20px 30px 60px 20px;
     }
-
     .summary-view .left ul li {
         padding: 12px 0;
         font-size: 14px;
     }
-
     .summary-view .left h2 {
         margin-bottom: 20px;
         font-size: 18px;
     }
-
     .summary-view .left .divider {
         margin-top: 25px;
         margin-bottom: 25px;
     }
-
     .summary-view .left address p {
         margin-bottom: 15px;
         font-size: 14px;
     }
-
     .summary-view .professional-experience {
         margin-bottom: 30px;
     }
-
     .summary-view .top-tech-skills {
         margin-bottom: 0;
     }
-
     .summary-view .top-tech-skills .section-title {
         margin-bottom: 30px;
     }
-
     .summary-view .profile-pic-lg {
         width: 182px;
     }
-
     .summary-view .section-title {
         margin-bottom: 18px;
     }
-
-    .summary-view .personal-skills .skills .text p, .summary-view .personal-skills .skills .search-results-pg .results label p, .search-results-pg .results .summary-view .personal-skills .skills label p {
+    .summary-view .personal-skills .skills .text p,
+    .summary-view .personal-skills .skills .search-results-pg .results label p,
+    .search-results-pg .results .summary-view .personal-skills .skills label p {
         font-size: 16px;
     }
-
-    .summary-view .personal-skills .skills .text .title, .summary-view .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .summary-view .personal-skills .skills label .title {
+    .summary-view .personal-skills .skills .text .title,
+    .summary-view .personal-skills .skills .search-results-pg .results label .title,
+    .search-results-pg .results .summary-view .personal-skills .skills label .title {
         font-size: 18px;
         margin-top: 10px;
         margin-bottom: 20px;
     }
-
     .summary-view .timeline:before {
         display: none;
     }
-
     .summary-view .timeline .details {
         padding-left: 0;
     }
-
     .summary-view .timeline .date {
         width: 100%;
         margin-bottom: 10px;
         font-size: 16px;
     }
-
     .summary-view .timeline .badge-circle {
         display: none;
     }
-
     .summary-view .timeline .info .name {
         border-right: 0;
     }
-
     .summary-view .timeline .info .meta {
         display: block;
     }
-
-    .summary-view .timeline > li {
+    .summary-view .timeline>li {
         border-bottom: 1px solid #e0e3ec;
     }
-
-    .summary-view .timeline > li:first-of-type {
+    .summary-view .timeline>li:first-of-type {
         padding-top: 0;
     }
-
     .summary-view .timeline .details .title {
         font-size: 18px;
     }
 }
+
 .personal-skills .skills .letter {
     display: inline-block;
     vertical-align: middle;
@@ -669,7 +667,10 @@ ul.skills {
     color: #ffffff;
     background-color: #ffb503;
 }
+
+
 /*detail view*/
+
 .skills.card {
     color: #6a7e9c;
     background-color: #f8f9fd;
@@ -677,24 +678,28 @@ ul.skills {
     border: 1px solid #e0e3ec;
     border-radius: 4px;
 }
+
 h2.sum_tech_num {
     font-size: 24px !important;
     color: #6a7e9c;
     font-weight: normal !important;
     margin: 0px !important;
 }
+
 p.sum_tech_infom {
     font-size: 17px !important;
     font-style: normal !important;
     padding: 0px;
     margin: 0px;
 }
+
 .skills.card h3 {
     font-size: 16px;
     color: #9eabc0;
     font-weight: 400;
     margin-top: 0;
 }
+
 .skills.card h2 {
     margin-top: 0;
     font-size: 20px;
@@ -702,14 +707,21 @@ p.sum_tech_infom {
     margin-bottom: 20px;
     font-weight: 500;
 }
-.profile-pg .technical-skills .top-skills .skills.card .label-caps, .profile-pg .technical-skills .top-skills .skills.card table th, .profile-pg .technical-skills .top-skills table .skills.card th {
+
+.profile-pg .technical-skills .top-skills .skills.card .label-caps,
+.profile-pg .technical-skills .top-skills .skills.card table th,
+.profile-pg .technical-skills .top-skills table .skills.card th {
     font-weight: 400;
     font-size: 12px;
 }
-.label-caps.light, .profile-pg .technical-skills .top-skills table th.light {
+
+.label-caps.light,
+.profile-pg .technical-skills .top-skills table th.light {
     color: #9eabc0;
 }
-.label-caps, .profile-pg .technical-skills .top-skills table th {
+
+.label-caps,
+.profile-pg .technical-skills .top-skills table th {
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 500;
@@ -717,38 +729,51 @@ p.sum_tech_infom {
     margin: 0;
     margin-bottom: 10px;
 }
-.education-row:not(:last-of-type), .job-row:not(:last-of-type) {
+
+.education-row:not(:last-of-type),
+.job-row:not(:last-of-type) {
     border-bottom: 1px solid #e0e3ec;
 }
-.education-row, .job-row {
+
+.education-row,
+.job-row {
     padding-top: 30px;
     padding-bottom: 20px;
 }
-.education-row .title, .job-row .title {
+
+.education-row .title,
+.job-row .title {
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 10px;
     margin-top: 10px;
 }
-.education-row .duration, .job-row .duration {
+
+.education-row .duration,
+.job-row .duration {
     font-size: 16px;
     color: #9eabc0;
     margin-bottom: 20px;
     display: inline-block;
 }
-.education-row .duration .icon-calendar, .job-row .duration .icon-calendar {
+
+.education-row .duration .icon-calendar,
+.job-row .duration .icon-calendar {
     font-size: 1.2em;
     vertical-align: text-top;
     margin-right: 5px;
 }
+
 .pull-left.sum_tech_img {
     /* width: 55px; */
     /* height: 100px; */
     margin: 10px 0px 0 -15px;
 }
+
 .border-right {
     border-right: 1px solid #e0e3ec;
 }
+
 .profile-pg .summary {
     display: flex;
     align-items: center;
@@ -758,7 +783,9 @@ p.sum_tech_infom {
     padding: 30px;
     margin-bottom: 30px;
 }
-.label-caps, .profile-pg .technical-skills .top-skills table th {
+
+.label-caps,
+.profile-pg .technical-skills .top-skills table th {
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 500;
@@ -766,12 +793,28 @@ p.sum_tech_infom {
     margin: 0;
     margin-bottom: 10px;
 }
-.education-row .study-fields .list, .job-row .study-fields .list, .profile-pg .technical-skills .other-skills .skills, .summary-view .skills-section .skills, .my-jobs .skills, .applied-jobs .skills, .job-timeline .skills, .search-results-pg .results .result-card .tags {
+
+.education-row .study-fields .list,
+.job-row .study-fields .list,
+.profile-pg .technical-skills .other-skills .skills,
+.summary-view .skills-section .skills,
+.my-jobs .skills,
+.applied-jobs .skills,
+.job-timeline .skills,
+.search-results-pg .results .result-card .tags {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-.education-row .study-fields .list .tag.skill, .job-row .study-fields .list .tag.skill, .profile-pg .technical-skills .other-skills .skills .tag.skill, .summary-view .skills-section .skills .tag.skill, .my-jobs .skills .tag.skill, .applied-jobs .skills .tag.skill, .job-timeline .skills .tag.skill, .search-results-pg .results .result-card .tags .tag.skill {
+
+.education-row .study-fields .list .tag.skill,
+.job-row .study-fields .list .tag.skill,
+.profile-pg .technical-skills .other-skills .skills .tag.skill,
+.summary-view .skills-section .skills .tag.skill,
+.my-jobs .skills .tag.skill,
+.applied-jobs .skills .tag.skill,
+.job-timeline .skills .tag.skill,
+.search-results-pg .results .result-card .tags .tag.skill {
     border: 1px solid #dae0ee;
     border-radius: 3px;
     line-height: 1;
@@ -781,16 +824,33 @@ p.sum_tech_infom {
     text-align: center;
     font-size: 12px;
 }
-.education-row .study-fields .list .tag:not(:last-of-type), .job-row .study-fields .list .tag:not(:last-of-type), .profile-pg .technical-skills .other-skills .skills .tag:not(:last-of-type), .summary-view .skills-section .skills .tag:not(:last-of-type), .my-jobs .skills .tag:not(:last-of-type), .applied-jobs .skills .tag:not(:last-of-type), .job-timeline .skills .tag:not(:last-of-type), .search-results-pg .results .result-card .tags .tag:not(:last-of-type) {
+
+.education-row .study-fields .list .tag:not(:last-of-type),
+.job-row .study-fields .list .tag:not(:last-of-type),
+.profile-pg .technical-skills .other-skills .skills .tag:not(:last-of-type),
+.summary-view .skills-section .skills .tag:not(:last-of-type),
+.my-jobs .skills .tag:not(:last-of-type),
+.applied-jobs .skills .tag:not(:last-of-type),
+.job-timeline .skills .tag:not(:last-of-type),
+.search-results-pg .results .result-card .tags .tag:not(:last-of-type) {
     margin-right: 10px;
 }
-.education-row .study-fields .list .tag, .job-row .study-fields .list .tag, .profile-pg .technical-skills .other-skills .skills .tag, .summary-view .skills-section .skills .tag, .my-jobs .skills .tag, .applied-jobs .skills .tag, .job-timeline .skills .tag, .search-results-pg .results .result-card .tags .tag {
+
+.education-row .study-fields .list .tag,
+.job-row .study-fields .list .tag,
+.profile-pg .technical-skills .other-skills .skills .tag,
+.summary-view .skills-section .skills .tag,
+.my-jobs .skills .tag,
+.applied-jobs .skills .tag,
+.job-timeline .skills .tag,
+.search-results-pg .results .result-card .tags .tag {
     letter-spacing: 0.025em;
     padding: 10px 15px;
     display: block;
     float: left;
     margin-bottom: 10px;
 }
+
 .cert-card {
     position: relative;
     border: 1px solid #e0e3ec;
@@ -800,46 +860,54 @@ p.sum_tech_infom {
     align-items: center;
     margin-bottom: 20px;
 }
+
 .cert-card .info {
     flex: none;
     padding-left: 20px;
 }
+
 .cert-card .year {
     font-size: 20px;
     color: #9eabc0;
 }
+
 .profile-pg .certifications .card-content {
     height: calc(350px - 117px);
     max-height: calc(350px - 117px);
 }
+
 .cert-card .logo {
     flex: 0.67;
     padding: 20px 10px;
     border: 1px solid #e0e3ec;
     border-radius: 4px;
 }
+
 .cert-card .logo img {
-width: 80px;
+    width: 80px;
 }
 
-h1.title .upgrade-pitch-text{
+h1.title .upgrade-pitch-text {
     display: inline-block;
 }
-h1.title img{
-height: 16px;
+
+h1.title img {
+    height: 16px;
 }
-.hide_img{
+
+.hide_img {
     height: 16px;
 }
 
 .tooltip1 {
-    display:inline-block;
-    position:relative;
-   
-    text-align:left;
+    display: inline-block;
+    position: relative;
+    text-align: left;
 }
 
-.tooltip1 h3 {margin:12px 0;}
+.tooltip1 h3 {
+    margin: 12px 0;
+}
 
 .tooltip1 .bottom1 {
     min-width: 200px;
@@ -847,7 +915,6 @@ height: 16px;
     top: 26px;
     left: -72%;
     transform: translate(-50%, 0);
-  
     color: #666666;
     background-color: #fff;
     font-weight: normal;
@@ -861,45 +928,95 @@ height: 16px;
 }
 
 .tooltip1:hover .bottom1 {
-    display:block;
+    display: block;
 }
 
-
 .tooltip1 .bottom1 i {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    margin-left:-12px;
-    width:24px;
-    height:12px;
-    overflow:hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -12px;
+    width: 24px;
+    height: 12px;
+    overflow: hidden;
 }
 
 .tooltip1 .bottom1 i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:50%;
-    transform:translate(-50%,50%) rotate(45deg);
-    background-color:#fff;
-    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
+    background-color: #fff;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
-.dropdown-menu.dropdown-menu-right1 li > div {
+
+.dropdown-menu.dropdown-menu-right1 li>div {
     padding: 8px 4px 4px;
 }
-.dropdown-menu.dropdown-menu-right1 li > div a:not(:last-of-type) {
+
+.dropdown-menu.dropdown-menu-right1 li>div a:not(:last-of-type) {
     border-right: 1px solid #E0E3EC;
 }
 
-.dropdown-menu.dropdown-menu-right1 li > div a {
-    display: inline-block; 
+.dropdown-menu.dropdown-menu-right1 li>div a {
+    display: inline-block;
     height: 21px;
     padding: 0 23px;
     color: #6A7E9C;
 }
-.dropdown-menu.dropdown-menu-right1 li{
-    
+
+.dropdown-menu.dropdown-menu-right1 li {
     padding: 6px 0px;
-    
+}
+
+
+/* video css */
+
+.card-rel {
+    position: relative;
+}
+
+.matching-details12 {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    background-color: #F1F2F9;
+    padding: 27px;
+    text-align: center;
+    -webkit-transition: ease 0.3s all;
+    transition: ease 0.3s all;
+}
+
+.matching-details12.open {
+    -webkit-transition: ease 0.3s all;
+    transition: ease 0.3s all;
+    left: 0;
+}
+
+.icon-rel {
+    position: relative;
+}
+
+.icon-play {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 38px;
+    left: 48px;
+}
+
+.play-img {
+    width: 32px;
+}
+
+.p-2em {
+    padding: 2em;
+}
+
+.w-100 {
+    width: 100%;
 }
