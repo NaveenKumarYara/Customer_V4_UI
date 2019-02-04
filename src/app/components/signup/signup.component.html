@@ -39,10 +39,10 @@
                                  <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
                                     class="alert alert-danger">
                                     <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
-                                      Required Field.
+                                      Required.
                                     </div>
                                     <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
-                                       Min. 3 Characters allowed.
+                                       Minimum 3 Characters allowed.
                                     </div>
                                  </div>
                               </div>
@@ -53,10 +53,10 @@
                                  <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
                                     class="alert alert-danger">
                                     <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
-                                       Last Name is required.
+                                       Required.
                                     </div>
                                     <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
-                                       Last Name must be a Minimum of 3 characters.
+                                       Minimum 3 Characters allowed.
                                     </div>
                                  </div>
                               </div>
@@ -68,10 +68,10 @@
                               <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
                                  class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['CompanyName'].errors.required">
-                                   Required Field.
+                                   Required.
                                  </div>
                                  <div *ngIf="signUpform.controls['CompanyName'].errors.minlength">
-                                    Company Name must be a Minimum of 3 characters.
+                                    Minimum 3 Characters allowed.
                                  </div>
                                  <div *ngIf="signUpform.controls['CompanyName'].errors.pattern">
                                     Company Name must be valid.
@@ -84,7 +84,7 @@
                               <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
                                  class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['ContactEmail'].errors.required">
-                                  Required Field.
+                                  Required.
                                  </div>
                                  <div *ngIf="signUpform.controls['ContactEmail'].errors.pattern">
                                     Email is not valid.
@@ -101,7 +101,7 @@
                                    Required.
                                  </div>
                                  <div *ngIf="signUpform.controls['ContactNumber'].errors.minlength">
-                                    Contact Number must be of Minimum 10.
+                                 Minimum 10 numbers allowed.
                                  </div>
                               </div>
                            </div>
@@ -112,10 +112,10 @@
                               <div *ngIf="signUpform.controls['Password'].invalid && (signUpform.controls['Password'].dirty || signUpform.controls['Password'].touched)"
                                  class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['Password'].errors.required">
-                                    Password is required.
+                                  Required.
                                  </div>
                                  <div *ngIf="signUpform.controls['Password'].errors.minlength">
-                                    Password must be Minimum 6 character.
+                                    Password Length should be above 6 characters.
                                  </div>
                               </div>
                            </div>

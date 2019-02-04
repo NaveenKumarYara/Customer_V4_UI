@@ -6411,3 +6411,10 @@ a.btn2:hover, .btn2:hover {
 .step .padding-left{
   padding-left:5px;
 }
+.alert-danger{
+  font-size:10px;
+  background-color: transparent!important;
+  border-color: transparent!important;
+  padding: 0px!important;
+  margin-bottom:0!important;
+}
