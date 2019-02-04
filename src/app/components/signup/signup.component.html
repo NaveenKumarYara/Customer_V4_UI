@@ -86,7 +86,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                 <input type="text" class="form-control" formControlName="ContactNumber" placeholder="Enter your Contact Number." minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57" required> 
+                                 <input type="text"  prefix="+1"  class="form-control" formControlName="ContactNumber" mask="(000) 000-0000" placeholder="Enter your Contact Number." minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57" required> 
                                  <div *ngIf="signUpform.controls['ContactNumber'].invalid && (signUpform.controls['ContactNumber'].dirty || signUpform.controls['ContactNumber'].touched)"
                                  class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['ContactNumber'].errors.required">
