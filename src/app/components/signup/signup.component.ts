@@ -43,6 +43,15 @@ export class SignUpComponent {
     this.router.navigateByUrl('layout'); 
   }
 
+  SignUpNo()
+  {
+    this.alertService.error('Please provide the valid details');
+    this.signUpform.reset();
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
+  }
+
   SignUp() {
     this.appService.signUp(this.signUpform.value)
     .subscribe(

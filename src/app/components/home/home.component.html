@@ -46,7 +46,12 @@
                               <h6><span><a href="javascript:void(0)" (click)="SignUp()">I don't have an account?</a></span></h6>
                            </div>
                            <div class="spt-2">
-                              <button type="submit" class="btn2" [disabled]="!loginform.valid">Login</button>
+                              <ng-container *ngIf="!loginform.valid;else enablebtn">
+                                    <button type="button" class="btn2 pull-right" (click)="LoginNo()">Login </button>                                   
+                              </ng-container>
+                              <ng-template #enablebtn>
+                                    <button type="submit" class="btn2 pull-right">Login </button>
+                              </ng-template>
                            </div>
                         </div>
                      </form>

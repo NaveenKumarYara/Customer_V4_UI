@@ -38,6 +38,7 @@ export const environment = {
     getCitiesendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities?',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
     scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
+    EmailVaild:'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
     SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',

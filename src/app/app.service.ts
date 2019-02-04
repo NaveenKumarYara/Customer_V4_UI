@@ -562,7 +562,13 @@ deactivateJob(body) {
     return Observable.throw(error.json());
   });
 }
-
+validateemail(body) {
+  return this.http.post(environment.EmailVaild, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error.json());
+  });
+}
 updateemail(body) {
   return this.http.post(environment.updateemail, body)
   .map((res: Response) => res)

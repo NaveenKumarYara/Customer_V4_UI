@@ -45,6 +45,16 @@ export class HomeComponent {
   {
     this.router.navigateByUrl('ForgotPassword'); 
   }
+
+  LoginNo()
+  {
+    this.alertService.error('Please provide the valid details');
+    setTimeout(() => {
+      this.alertService.clear();
+    }, 2000);
+    this.loginform.reset();
+  }
+
   login() {
     this.appService.Login(this.loginform.value)
       .subscribe(
