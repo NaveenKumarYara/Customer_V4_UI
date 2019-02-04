@@ -6404,3 +6404,10 @@ a.btn2:hover, .btn2:hover {
     transition: none !important;
   }
 }
+/*Sign-up First name and Last name in a row*/
+.step .padding-right{
+  padding-right:5px;
+}
+.step .padding-left{
+  padding-left:5px;
+}

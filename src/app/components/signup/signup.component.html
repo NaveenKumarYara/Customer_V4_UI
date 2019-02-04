@@ -31,37 +31,40 @@
                            Welcome !!! Let's Sign Up!
                         </h2>
                         <alert></alert>
-                        <div class="form-group  spt-2">
-                           <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="First Name"
-                              minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                              required>
-                           <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
-                              class="alert alert-danger">
-                              <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
-                                Required Field.
+                        <div class="row">
+                           <div class="form-group col-md-6 spt-2 padding-right">
+                              <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="First Name *"
+                                 minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                 required>
+                              <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
+                                 class="alert alert-danger">
+                                 <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
+                                   Required Field.
+                                 </div>
+                                 <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
+                                    Min. 3 Characters allowed.
+                                 </div>
                               </div>
-                              <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
-                                 First Name must be a Minimum of 3 characters.
+                           </div>
+                           <div class="form-group col-md-6 spt-2 padding-left">
+                              <input type="text" class="form-control" formControlName="ContactLastName" minlength=3
+                                 (keypress)="MissClear()" placeholder="Last Name *" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                 required>
+                              <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
+                                 class="alert alert-danger">
+                                 <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
+                                    Last Name is required.
+                                 </div>
+                                 <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
+                                    Last Name must be a Minimum of 3 characters.
+                                 </div>
                               </div>
                            </div>
                         </div>
-                        <div class="form-group">
-                           <input type="text" class="form-control" formControlName="ContactLastName" minlength=3
-                              (keypress)="MissClear()" placeholder="Last Name" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                              required>
-                           <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
-                              class="alert alert-danger">
-                              <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
-                                 Last Name is required.
-                              </div>
-                              <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
-                                 Last Name must be a Minimum of 3 characters.
-                              </div>
-                           </div>
-                        </div>
+                     
                         <div class="form-group">
                            <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
-                              placeholder="Company Name" minlength=3 required>
+                              placeholder="Company Name *" minlength=3 required>
                            <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
                               class="alert alert-danger">
                               <div *ngIf="signUpform.controls['CompanyName'].errors.required">
@@ -76,7 +79,7 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email"
+                           <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *"
                               formControlName="ContactEmail" required>
                            <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
                               class="alert alert-danger">
@@ -89,7 +92,7 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <input type="text" class="form-control" formControlName="ContactNumber" placeholder="Contact Number"
+                           <input type="text" class="form-control" formControlName="ContactNumber" placeholder="Phone Number *"
                               minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                               required>
                            <div *ngIf="signUpform.controls['ContactNumber'].invalid && (signUpform.controls['ContactNumber'].dirty || signUpform.controls['ContactNumber'].touched)"
@@ -103,7 +106,7 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <input class="form-control" type="password" id="password" name="Password" placeholder="Password"
+                           <input class="form-control" type="password" id="password" name="Password" placeholder="Password *"
                               minlength=6 formControlName="Password">
                            <span class="glyphicon glyphicon-eye-open"></span>
                            <div *ngIf="signUpform.controls['Password'].invalid && (signUpform.controls['Password'].dirty || signUpform.controls['Password'].touched)"
@@ -116,15 +119,15 @@
                               </div>
                            </div>
                         </div>
-                        <div class="form-group terms">
+                        <!-- <div class="form-group terms">
                            <label class="container_check">Please accept our <a href="javascript:void(0)" data-toggle="modal"
                                  data-target="#terms-txt">Terms and conditions</a>
                               <input type="checkbox" name="terms" value="Yes" class="required" required>
                               <span class="checkmark"></span>
                            </label>
-                        </div>
+                        </div> -->
                         <div class="spt-2 d-flex justify-content-between">
-                           <span>Already have an account? <a href="javascript:void(0)" (click)="Login()" >Login here.</a></span> 
+                           <small>Already have an account? <a href="javascript:void(0)" (click)="Login()" >Login here.</a></small> 
                            <button type="submit" class="btn2 pull-right" [disabled]="!signUpform.valid">
                               Sign Up </button>
                         </div>
