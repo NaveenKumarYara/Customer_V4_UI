@@ -1546,6 +1546,10 @@ a.btn_1.rounded,
 	align-items: center
 }
 
+.content-right h2{
+  color:#465964;
+}
+
 @media (max-width: 991px) {
 	.content-right {
 		height: auto;
@@ -3151,7 +3155,7 @@ input[type=file].valid::-webkit-file-upload-button:focus {
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0));
 }
 .signpage .content-left-wrapper h2{
-	color:#252424;
+	color:#465964;
 }.signpage .content-right .content-left-wrapper h2{
 	color:#fff;
 }
