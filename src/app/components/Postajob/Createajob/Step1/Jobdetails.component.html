@@ -29,7 +29,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Experience is required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
-            Can't be > maximum
+            Can't be > Max Exp!
           </small>
         </div>
         <div class="col-md-6">
@@ -39,7 +39,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Experience is required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
-             Can't be < minimum experience!
+             Can't be < Min Exp!
           </small>
         </div>
       </div>
