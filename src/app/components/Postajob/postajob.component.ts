@@ -44,7 +44,7 @@ export class PostajobComponent implements OnInit {
   this.appService.jobcategory.next(new CategoryList());
   this.appService.minExperience.next(0);
   this.appService.maxExperience.next(0);
-  this.appService.hasDescription.next(true);
+  this.appService.hasDescription.next(false);
   this.appService.description.next('');
   this.appService.noofOpenings.next(0);
   this.appService.minAnnualRate.next(1000);
