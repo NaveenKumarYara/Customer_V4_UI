@@ -1,18 +1,7 @@
 <div class="form-group responsibility-group">
   <label for="" class="question">What are the Responsibilities that you are looking for in the candidate?</label>
-  <p class="description">Share details so we can find you the most eligible candidates.</p>
-  <ul class="responsibility-list">
-    <li *ngFor="let responsibility of responsibilitieslist; let i = index">
-      <label for="{{responsibility.RoleId}}" class="radio">
-        <div>
-          <input type="checkbox" (change)="changeRoles($event)" [ngModel]="responsibility.RoleId" class="radio-input" />
-          <span class="radio-btn"></span>
-        </div>
-        <span>{{responsibility.Role}}</span>
-        <span class="close" (click)="deleteResponsibility(i)">&times;</span>
-      </label>
-    </li>
-  </ul>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  
    <div class="form-row row">
      <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
     <div class="col-md-10">
@@ -47,7 +36,18 @@
     </div>
   </form>
   </div>
-
+  <ul class="responsibility-list">
+    <li *ngFor="let responsibility of responsibilitieslist; let i = index">
+      <label for="{{responsibility.RoleId}}" class="radio">
+        <div>
+          <input type="checkbox" (change)="changeRoles($event)" [ngModel]="responsibility.RoleId" class="radio-input" />
+          <span class="radio-btn"></span>
+        </div>
+        <span>{{responsibility.Role}}</span>
+        <span class="close" (click)="deleteResponsibility(i)">&times;</span>
+      </label>
+    </li>
+  </ul>
   <!-- <div class="lists row">
     <div class="col-md-6">
       <h4 for="" class="light">Responsibilities</h4>

@@ -19,11 +19,17 @@ export class UploadvideoprofileComponent implements OnInit {
     customerId: any;
     userId: any;
     saveImage: FormGroup;
+    videoSizzles: any;
   @ViewChild('video') video;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private fb: FormBuilder) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
+    this.createVideoForm();
+this.GetVideoSizzle();
+  }
+
+  createVideoForm() {
     this.saveImage = this.fb.group({
       'customerId': [this.customerId, Validators.required],
       'UserName': [this.customer.FirstName, Validators.nullValidator],
@@ -42,12 +48,18 @@ export class UploadvideoprofileComponent implements OnInit {
       'JobId': [this.data.jobId, Validators.nullValidator],
       'VideoType': [3, Validators.nullValidator]
     });
-
   }
-
+  GetVideoSizzle() {
+    this._service.GetService('ProfileAPI/api/GetVideoSizzles?customerId=' + this.customerId + '&userId=', 0)
+      .subscribe(
+        data => {
+          this.videoSizzles = data;
+        }, error => { this._service.DebugMode(error); });
+  }
   ngOnInit() {
   }
   onVideoFileChange(event) {
+    this.createVideoForm();
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -82,5 +94,15 @@ export class UploadvideoprofileComponent implements OnInit {
       $('#btn-upload-videofile').prop('disabled', false);
       alert('video upload successful');
     });
+  }
+  InsertSizzle(sizzleId, jobId) {
+    this.createVideoForm();
+    this.saveVideo.value.VideoProfileId = sizzleId;
+    this.saveVideo.value.JobId = jobId;
+    this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
+      .subscribe(data => {
+        // alert(data);
+        // this.saveVideo.reset();
+      });
   }
 }

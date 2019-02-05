@@ -31,6 +31,9 @@ hasCompleteDescriptionList: any;
     this.populatedescriptioncheck();
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
+    // if (this.hasCompleteDescription === undefined) {
+    //   this.hasCompleteDescription = false;
+    // }
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
   // }
 }

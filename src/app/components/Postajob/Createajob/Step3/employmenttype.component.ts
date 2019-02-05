@@ -24,6 +24,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
   maxHourRate = 100;
   annual: Options = {
     floor: 0,
+    step: 500,
     ceil: 100500,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -38,6 +39,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
   };
   hourly: Options = {
     floor: 0,
+    step: 10,
     ceil: 200,
     translate: (value: number, label: LabelType): string => {
       switch (label) {

@@ -42,7 +42,7 @@
                                       Required.
                                     </div>
                                     <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
-                                       Min. 3 Characters allowed.
+                                       Minimum 3 Characters allowed.
                                     </div>
                                  </div>
                               </div>
@@ -84,7 +84,7 @@
                               <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
                               class="element" >
                                  <div *ngIf="signUpform.controls['ContactEmail'].errors.required">
-                                  Required Field.
+                                  Required.
                                  </div>
                                  <div *ngIf="signUpform.controls['ContactEmail'].errors.pattern">
                                     Incorrect Email!.
@@ -96,7 +96,7 @@
                            </div>
                            <div class="form-group">
                               <input type="text" class="form-control" formControlName="ContactNumber"   prefix="+1" mask="(000) 000-0000" placeholder="Phone Number *"
-                                 minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                 minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57">                
                            </div>
                            <div class="form-group">
                               <input class="form-control" type="password" id="password" name="Password" placeholder="Password *"
@@ -110,7 +110,6 @@
                                  <div *ngIf="signUpform.controls['Password'].errors.minlength">
                                     Min. 6 Characters allowed.
                                  </div>
-                              </div>
                            </div>
                            <!-- <div class="form-group terms">
                               <label class="container_check">Please accept our <a href="javascript:void(0)" data-toggle="modal"

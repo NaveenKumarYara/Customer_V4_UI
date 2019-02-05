@@ -1,13 +1,23 @@
 <div class="form-group candidate-group">
     <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
-    <p class="description">Share details so we can find you the most eligible candidates.</p>
+    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
     <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
     <div class="form-row row">
       <div class="form-group skill-name col-md-6" [class.has.error]="skill.invalid && skill.touched" >
         <label for="">Skill Name</label>
-        <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
-          bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
-          [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel" [addTag]="addSkill" [virtualScroll]="true" required>
+        <ng-select  class="custom-style" [items]="skilllist | async"
+                    placeholder="Ex: Application Development"
+                    bindLabel="name"
+                    bindValue="SkillName"
+                    [typeahead]="selectedskillinput"
+                    [hideSelected]="true"
+                    [loading]="skilltitleloading"
+                    [(ngModel)]="selectedSkillName"
+                    minlength="1"
+                    name="selectedSkillName"
+                    #skill="ngModel"
+                    [addTag]="addSkill"
+                    [virtualScroll]="true" required>
         </ng-select>
         <input type hidden id="skills">
         <small class="text-danger" *ngIf="skill.invalid && skill.touched ">Skill Name is required.</small>
