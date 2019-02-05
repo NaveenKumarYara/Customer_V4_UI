@@ -2,12 +2,18 @@
   <div class="col-md-6">
     <div class="form-group job-title-group">
       <label for="" class="question"> What is the Job Title?</label>
-      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Ex: Senior Java Developer" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
+      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Senior Java Developer" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
         [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel" name="Title" (change)="updateJobTitle()">
       </ng-select>
-      <ul class="data-list">
-        <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li>
-      </ul>
+       <!-- <ul class="data-list">
+       <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
+        <!-- {{suggestedTitle.JobTitle}} 
+        <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
+      </ul>-->
+      <div class="checkbox" *ngFor="let  title of suggestedTitle; let i = index">
+        <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+        <label><input type="radio" [ngModel]="selectedTitle"  (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
+      </div> 
       <small class="text-danger" *ngIf="JobTitle.invalid && JobTitle.touched">Job Title is required.</small>
     </div>
   </div>
@@ -23,7 +29,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Experience is required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
-            It can't be greater than maximum experience!
+            Can't be > maximum
           </small>
         </div>
         <div class="col-md-6">
@@ -33,7 +39,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Experience is required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
-            It can't be less than minimum experience!
+             Can't be < minimum experience!
           </small>
         </div>
       </div>
