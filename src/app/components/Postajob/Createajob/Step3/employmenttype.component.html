@@ -22,6 +22,20 @@
 <div class="form-group position-group custom-slider">
 <label for="" class="question">What is the Salary Range? <small>(Optional)</small></label>
   <p class="description">Differentiation is based on employment type selection hourly or annual.</p>
+  <div class="options">
+    <div class="checkbox">
+      <label>
+        <input type="radio" name="emp-type" value="">
+        <span class="box">Hourly</span>
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="radio" name="emp-type" value="">
+        <span class="box">Annually</span>
+      </label>
+    </div>
+  </div>
 <div *ngIf="salaryType === 1">
  <ng5-slider [(value)]="minAnnualRate"
             [(highValue)]="maxAnnualRate"
