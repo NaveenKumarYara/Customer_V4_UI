@@ -25,8 +25,8 @@ export class JobdetailsComponent implements OnInit {
   jobtitleinput = new Subject<string>();
   minExperience: number;
   maxExperience: number;
-
-
+suggestedTitle: string[];
+customerId: any;
   //
 
 
@@ -37,6 +37,8 @@ export class JobdetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
+     // this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
   }
 
   private searchJobTitle() {
@@ -62,7 +64,10 @@ export class JobdetailsComponent implements OnInit {
     this.appService.updateMaxExp(this.maxExperience);
   }
 
-  updateJobTitle() {
+  updateJobTitle(val?: any) {
+    if (val != null) {
+    this.selectedTitle = val.JobTitle;
+  }
     this.appService.updateJobtitle(this.selectedTitle);
   }
   public getExpYears() {
@@ -72,9 +77,17 @@ export class JobdetailsComponent implements OnInit {
     }
     return this.expYears;
 }
+
+suggestedJobTitle() {
+  this.appService.suggestJobTitle(this.customerId).subscribe(res => {
+    this.suggestedTitle = res;
+    // this.discResult.forEach(cc => cc.checked = false);
+  });
+}
   ngOnInit() {
     this.getExpYears();
     this.searchJobTitle();
+    this.suggestedJobTitle();
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
     this.appService.currentminExp.subscribe(x => this.minExperience = x);
