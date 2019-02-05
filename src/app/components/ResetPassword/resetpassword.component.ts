@@ -49,15 +49,17 @@ Login()
   this.router.navigateByUrl('home'); 
 }  
   
-ResetNo()
-{
-  this.alertService.error('Please provide the valid details');
-  setTimeout(() => {
-    this.alertService.clear();
-    this.Login();    
-  }, 3000);
-}
   Send() {
+    if(!this.Resetform.valid)
+    {
+      this.alertService.error('Please provide the valid details');
+      setTimeout(() => {
+        this.alertService.clear();
+        this.Login();    
+      }, 3000);
+    }
+    else
+    {
     this.appService.ResetPassword(this.Resetform.value)
       .subscribe(
       data => {
@@ -70,6 +72,7 @@ ResetNo()
               }, 3000);
            }     
       );
+          }
   }
 
 

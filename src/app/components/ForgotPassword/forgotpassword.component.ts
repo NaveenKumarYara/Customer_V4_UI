@@ -18,6 +18,8 @@ export class ForgotComponent {
   customerId:any;
   companyLogo:any;
   password:any;
+  email:any;
+  result :any;
   userId:any;
   constructor( private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
@@ -45,15 +47,35 @@ Login()
     this.router.navigateByUrl('signup'); 
   }
   
-  
+  GetEmailValidate()
+  {
+    this.appService.validateemail(this.Forgotform.value.EmailId)
+    .subscribe(
+    data => {
+      this.result = data;
+      debugger
+      if(this.result.UserId>0&&this.result.CustomerId>0)
+      {
+        this.Send();
+      }
+      else
+      {
+        this.alertService.error('email not registered');
+        setTimeout(() => {
+          this.alertService.clear();  
+          this.Forgotform.reset();       
+        }, 2000);    
+      }
+    })
+  }
   Send() {
     this.appService.ForgotPassword(this.Forgotform.value)
       .subscribe(
       data => {
             this.alertService.success('Please check your email to reset the password');
-            this.Forgotform.reset();
             setTimeout(() => {
                 this.alertService.clear();
+                this.Forgotform.reset();
                 this.Login();    
               }, 3000);
              

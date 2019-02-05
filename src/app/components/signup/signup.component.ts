@@ -17,7 +17,10 @@ export class SignUpComponent {
   signUpform: any;
   customerId:any;
   companyLogo:any;
-  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
+  email:any;
+  show : any = false;
+  result :any;
+  emailPattern = ".+@.+\\.[a-z]+"; 
   password:any;
   userId:any;
   constructor( private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
@@ -43,16 +46,32 @@ export class SignUpComponent {
     this.router.navigateByUrl('layout'); 
   }
 
-  SignUpNo()
+  GetEmailValidate()
   {
-    this.alertService.error('Please provide the valid details');
-    this.signUpform.reset();
-    setTimeout(() => {
-      this.alertService.clear();
-    }, 2000);
+    this.show = false;
+    // this.email =$("#semail").val();
+    this.appService.validateemail(this.signUpform.value.ContactEmail)
+    .subscribe(
+    data => {
+      this.result = data;
+      if(this.result.UserId>0&&this.result.CustomerId>0)
+      {  
+        this.show = true;    
+      }
+    })
   }
 
   SignUp() {
+    this.show = false;
+    if(!this.signUpform.valid)
+    {
+      this.alertService.error('Please provide the valid details');
+      setTimeout(() => {
+        this.alertService.clear();
+      }, 2000);
+    }
+    else
+    {
     this.appService.signUp(this.signUpform.value)
     .subscribe(
     data => {
@@ -72,14 +91,15 @@ export class SignUpComponent {
       }, 2000);
     },
     () => console.log('Call Sucessfull')
-    );
-   
+    );       
+  }
   }
   MissClear() {
     this.alertService.clear();
   }
 
   ngOnInit() {
+    this.show = false;
     this.signUpform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': [0, Validators.compose([Validators.nullValidator])],
@@ -90,7 +110,7 @@ export class SignUpComponent {
       'ContactFirstName': ['', Validators.compose([Validators.required])],
       'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
       'ContactLastName': ['', Validators.compose([Validators.required])],
-      'ContactNumber': ['', Validators.compose([Validators.required])],   
+      'ContactNumber': ['',  Validators.compose([Validators.nullValidator])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
       'Password': ['', Validators.compose([Validators.required])],
       'Address1': ['austin', Validators.compose([Validators.required])],
@@ -102,7 +122,7 @@ export class SignUpComponent {
       'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
       'FromTime':['', Validators.compose([Validators.nullValidator])],
       'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
-      'WebSite':['www.company.com', Validators.compose([Validators.nullValidator])],        
+      'WebSite':['', Validators.compose([Validators.nullValidator])],        
       'Description': ['', Validators.compose([Validators.nullValidator])],
       'TimeZoneId'  : [1, Validators.compose([Validators.required])],
       'UserRoleId':[4, Validators.compose([Validators.required])],   

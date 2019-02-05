@@ -16,6 +16,7 @@ import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
+import {GetEmailValidate} from '../models/GetEmailValidate';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities } from './components/Postajob/models/jobPostInfo';
 
 
@@ -562,12 +563,15 @@ deactivateJob(body) {
     return Observable.throw(error.json());
   });
 }
-validateemail(body) {
-  return this.http.post(environment.EmailVaild, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
+
+validateemail(email:string): Observable<GetEmailValidate> {
+  const url = environment.EmailVaild + 'email=' + email;
+  debugger
+  return this.http.get<GetEmailValidate>(url)
+    .debounceTime(1000)
+    .catch(
+      this.handleError
+    );
 }
 updateemail(body) {
   return this.http.post(environment.updateemail, body)

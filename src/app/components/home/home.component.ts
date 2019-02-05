@@ -46,16 +46,17 @@ export class HomeComponent {
     this.router.navigateByUrl('ForgotPassword'); 
   }
 
-  LoginNo()
-  {
-    this.alertService.error('Please provide the valid details');
-    setTimeout(() => {
-      this.alertService.clear();
-    }, 2000);
-    this.loginform.reset();
-  }
-
   login() {
+    if(!this.loginform.valid)
+    {
+      this.alertService.error('Please provide the valid details');
+      setTimeout(() => {
+        this.alertService.clear();
+      }, 2000);
+      this.loginform.reset();
+    }
+    else
+    {
     this.appService.Login(this.loginform.value)
       .subscribe(
       data => {
@@ -76,7 +77,8 @@ export class HomeComponent {
         this.loginform.reset();
       },
       () => console.log('Call Sucessfull')
-      );
+      );          
+    }
   }
   MissClear() {
     this.alertService.clear();
