@@ -6411,8 +6411,20 @@ a.btn2:hover, .btn2:hover {
 .step .padding-left{
   padding-left:5px;
 }
-.element {
-  animation: pulse 5s infinite;
+.alert-danger{
+   font-size:10px;
+  background-color: transparent!important;
+  border-color: transparent!important;
+ padding: 0px!important;
+  margin-bottom:0!important;
+   } 
+   
+   .element{
+   font-size:10px;
+   background-color: transparent!important;
+  border-color: transparent!important;
+  padding: 0px!important;
+  margin-bottom:0!important;
 }
 
 @keyframes pulse {

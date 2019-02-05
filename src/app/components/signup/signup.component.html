@@ -37,7 +37,7 @@
                                     minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
                                     required>
                                  <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
-                                 class="element" >
+                                 class="alert alert-danger" >
                                     <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
                                       Required.
                                     </div>
@@ -51,7 +51,7 @@
                                     (keypress)="MissClear()" placeholder="Last Name *" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
                                     required>
                                  <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
-                                 class="element">
+                                 class="alert alert-danger">
                                     <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
                                        Required.
                                     </div>
@@ -66,7 +66,7 @@
                               <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
                                  placeholder="Company Name *" minlength=3 required>
                               <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
-                              class="element">
+                              class="alert alert-danger">
                                  <div *ngIf="signUpform.controls['CompanyName'].errors.required">
                                    Required.
                                  </div>
@@ -82,7 +82,7 @@
                               <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" 
                               autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
                               <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
-                              class="element" >
+                              class="alert alert-danger" >
                                  <div *ngIf="signUpform.controls['ContactEmail'].errors.required">
                                   Required.
                                  </div>
@@ -90,20 +90,23 @@
                                     Incorrect Email!.
                                  </div>                   
                               </div>
-                               <div *ngIf="show" class="element">
+                               <div *ngIf="show" class="alert alert-danger">
                                  Email already registered.
                                </div>
                            </div>
                            <div class="form-group">
                               <input type="text" class="form-control" formControlName="ContactNumber"   prefix="+1" mask="(000) 000-0000" placeholder="Phone Number *"
-                                 minlength=10 maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57">                
+                                  maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
+                                  <div *ngIf="signUpform.controls['ContactNumber'].errors?.minlength" class="alert alert-danger">
+                                   Invalid Mobile number.
+                               </div>             
                            </div>
                            <div class="form-group">
                               <input class="form-control" type="password" id="password" name="Password" placeholder="Password *"
                             autocomplete="new-password" minlength=6  formControlName="Password">
                               <span class="glyphicon glyphicon-eye-open"></span>
                               <div *ngIf="signUpform.controls['Password'].invalid && (signUpform.controls['Password'].dirty || signUpform.controls['Password'].touched)"
-                              class="element" >
+                              class="alert alert-danger" >
                                  <div *ngIf="signUpform.controls['Password'].errors.required">
                                     Required.
                                  </div>

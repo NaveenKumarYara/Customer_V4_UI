@@ -49,7 +49,6 @@ export class SignUpComponent {
   GetEmailValidate()
   {
     this.show = false;
-    // this.email =$("#semail").val();
     this.appService.validateemail(this.signUpform.value.ContactEmail)
     .subscribe(
     data => {
@@ -110,7 +109,7 @@ export class SignUpComponent {
       'ContactFirstName': ['', Validators.compose([Validators.required])],
       'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
       'ContactLastName': ['', Validators.compose([Validators.required])],
-      'ContactNumber': ['',  Validators.compose([Validators.nullValidator])],   
+      'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
       'Password': ['', Validators.compose([Validators.required])],
       'Address1': ['austin', Validators.compose([Validators.required])],

@@ -55,7 +55,6 @@ Login()
       this.alertService.error('Please provide the valid details');
       setTimeout(() => {
         this.alertService.clear();
-        this.Login();    
       }, 3000);
     }
     else
