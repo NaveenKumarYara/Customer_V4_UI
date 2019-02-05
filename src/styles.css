@@ -21098,3 +21098,16 @@ background: #448AFA;
  .video-col > div {
   padding: 56px 0;
 }
+
+/*Job Title Suggestions*/
+.job-title-suggestions{
+  margin-bottom: 10px;
+}
+.job-title-suggestions .checkbox{
+	display: inline-block;
+  }
+  .job-title-suggestions .checkbox .box{
+	padding: 10px 10px!important;
+	height: 35px !important;
+	font-size: 0.8rem !important;
+  }
