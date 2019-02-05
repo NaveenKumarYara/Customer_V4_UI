@@ -27,3 +27,17 @@
               </div>
             </div>
           </div>
+          <div class=" video-sizzle">
+              <h4>Choose your video from recent uploads</h4>
+              <div class="row video-scrollbar">
+                <div class="col-xs-6 col-md-3 col-lg-3 " *ngFor="let videoSzl of videoSizzles">
+                  <video controls>
+                    <source [src]="videoSzl.VideoURL" type="video/mp4">
+                  </video>
+                  <input id="video-select" type="radio" name="video-select" [value]="videoSzl.VideoSizzleId" />
+                  <a (click)="InsertSizzle(videoSzl.VideoSizzleId,JobIds.value)">
+                    <img src="assets/images/upload-icon.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>

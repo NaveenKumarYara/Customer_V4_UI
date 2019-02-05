@@ -101,8 +101,10 @@ export class DiscResult {
   }
   export class PrefLocation {
     // public PreferredLocationId: number;
-    public CityId: number;
-    public location: string;
+    constructor(
+    public CityId: number= 0,
+    public location: string= null
+    ) {}
     }
     export class Cities {
       public CityId: number;

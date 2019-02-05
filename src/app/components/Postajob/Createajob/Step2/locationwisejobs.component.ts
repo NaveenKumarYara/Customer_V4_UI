@@ -46,7 +46,7 @@ selectedCityName: Cities;
     this.appService.getLocationwisejobs(this.customerId, this.userId).subscribe(res => {
       this.locationwisejobs = res;
       const check = this.locationExists(this.prfLoc, this.locationwisejobs);
-    if (!check) {
+    if (!check && this.prfLoc.CityId > 0 ) {
       this.selectedCityName = new Cities();
       this.selectedCityName.CityId = this.prfLoc.CityId;
       this.selectedCityName.CityName = this.prfLoc.location;
