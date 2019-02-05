@@ -644,6 +644,30 @@ updatepassword(body) {
 
 
 
+  addNewQualification(body)  {
+    return this.http.post(environment.addneweducationEndpoint, body)
+    .map((res: Response) => res)
+    .catch(this.handleError);
+  }
+
+
+
+
+ suggestJobTitle(customerId: number) {
+    const url = environment.SuggestJobTitleEndPoint + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+  suggestJobCategory(customerId: number) {
+    const url = environment.SuggestJobCategoryEndPoint + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getEmploymentType(): Observable<EmploymentType[]> {
     const url = environment.employmentTypeendpoint;
     return this.http.get<string[]>(url)
