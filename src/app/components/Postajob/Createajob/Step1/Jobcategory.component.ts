@@ -8,6 +8,7 @@ import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { CategoryList } from '../../models/jobPostInfo';
 import { Subscription } from 'rxjs/Subscription';
+// import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-steps-step1-jobcategory',
@@ -16,19 +17,24 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class JobcategoryComponent implements OnInit {
   @ViewChild('categoryForm') categoryForm: any;
+ // @ViewChild(NgSelectComponent)
   jobcategorylist: Observable<CategoryList[]>;
   selectedCategory: CategoryList;
-
+  selectCategory: string;
+  // ngSelect: NgSelectComponent;
   jobtitleloading = false;
   jobcategoryinput = new Subject<string>();
-
+  suggestedCategory: string[];
+  customerId: any;
   // getJobCategories: CategoryList[];
   // getJobCategory: CategoryList;
 
   private subscription: Subscription;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
-  }
+      this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
+      // this.selectCategory = this.selectedCategory.Category;
+    }
 
   private searchJobCategory() {
     this.jobcategorylist = concat(
@@ -44,16 +50,31 @@ export class JobcategoryComponent implements OnInit {
       )
     );
   }
-
+  suggestedJobCategory() {
+    this.appService.suggestJobCategory(this.customerId).subscribe(res => {
+      this.suggestedCategory = res;
+      // this.discResult.forEach(cc => cc.checked = false);
+    });
+  }
   updateJobCategory(val) {
-   this.appService.updateJobCategory(val);
+   // this.selectedCategory.Category = val.JobCategory !== undefined ? val.JobCategory : val.Category;
+   // if (this.selectedCategory.JobCategoryId === undefined) {
+    this.selectCategory = val.Category;
+   this.selectedCategory  = val; // .JobCategoryId;
+   // this.jobcategorylist = val;
+  //  const item = this.ngSelect.itemsList.findByLabel(val.Category);
+  //  this.ngSelect.select(item);
+   // }
+   this.appService.updateJobCategory(this.selectedCategory);
   } // this.getJobCategory =  this.getJobCategories.find(s => s.Category === val);
    // this.appService.updateJobCategory(this.getJobCategory);
 
   ngOnInit() {
     this.searchJobCategory();
+    this.suggestedJobCategory();
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentcategorytitle.subscribe(x => this.selectedCategory = x);
+    this.selectCategory = this.selectedCategory.Category;
    // }
   }
   // this.jobcategorylist.subscribe(categoryLst => {
