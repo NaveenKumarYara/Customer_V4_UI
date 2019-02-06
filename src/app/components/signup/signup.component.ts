@@ -21,6 +21,7 @@ export class SignUpComponent {
   show : any = false;
   result :any;
   emailPattern = ".+@.+\\.[a-z]+"; 
+  info =new Register();
   password:any;
   userId:any;
   constructor( private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
@@ -71,27 +72,50 @@ export class SignUpComponent {
     }
     else
     {
-    this.appService.signUp(this.signUpform.value)
-    .subscribe(
-    data => {
-      this.alertService.success('Successfully Registered');
-      this.signUpform.reset();
-      setTimeout(() => {
-        this.alertService.clear();
-        this.router.navigateByUrl('home');   
-      }, 2000);
-    },
 
-    error => {
-      this.alertService.error('Please provide the valid details');
-      this.signUpform.reset();
-      setTimeout(() => {
-        this.alertService.clear();
-      }, 2000);
-    },
-    () => console.log('Call Sucessfull')
-    );       
+        this.appService.signUp(this.signUpform.value)
+        .subscribe(
+        data => {
+          
+        if(data>0)
+        {
+          this.Email(data);
+        }
+        
+        },
+    
+        error => {
+          this.alertService.error('Please provide the valid details');
+          this.signUpform.reset();
+          setTimeout(() => {
+            this.alertService.clear();
+          }, 2000);
+        },
+        () => console.log('Call Sucessfull')
+        ); 
+
+      
   }
+  }
+
+  Email(userId)
+  {
+    this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
+    this.info.ToEmailId = this.signUpform.value.ContactEmail;
+    this.info.ApplicationName = 'Arytic';
+    this.info.AppLink ='http://demo.tenendus.com:1060/home;Uid='+userId; 
+    this.info.ClientLogo = '';
+    this.appService.SignUpEmail(this.info).subscribe(data => {
+      if (data==0) {
+        this.alertService.success('Please check your Mail to Activate');
+        this.signUpform.reset();
+        setTimeout(() => {
+          this.alertService.clear();
+          this.router.navigateByUrl('home');   
+        }, 2000);
+      }
+
+      });
   }
   MissClear() {
     this.alertService.clear();
@@ -151,3 +175,13 @@ export class SignUpComponent {
   }
 }
 
+
+export class Register
+{
+
+   FullName: string;
+   ToEmailId: string;
+   ApplicationName: string;
+   AppLink: string;
+   ClientLogo: string;
+   }

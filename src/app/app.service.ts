@@ -671,6 +671,14 @@ updatepassword(body) {
       );
   }
 
+  SignUpEmail(body) {
+    return this.http.post(environment.EmailInvite, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   getEmploymentType(): Observable<EmploymentType[]> {
     const url = environment.employmentTypeendpoint;
     return this.http.get<string[]>(url)
