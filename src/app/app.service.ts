@@ -566,7 +566,6 @@ deactivateJob(body) {
 
 validateemail(email:string): Observable<GetEmailValidate> {
   const url = environment.EmailVaild + 'email=' + email;
-  debugger
   return this.http.get<GetEmailValidate>(url)
     .debounceTime(1000)
     .catch(
