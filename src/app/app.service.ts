@@ -71,7 +71,10 @@ export class AppService {
     'Contract to Hire',
     '1099'
   ];
-
+  private salaryType: string[] = [
+    'Hourly', 'Annual'
+  ]; 
+ 
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
@@ -179,9 +182,11 @@ export class AppService {
   updateStepNumber(step: string) {
     this.stepNumber.next(step);
   }
-
+  getSalaryType() {
+    return this.salaryType;
+  }
   updateSalaryRange(min: number, max: number, salaryType) {
-    if (salaryType === 1) {
+    if (salaryType === 2) {
     this.minAnnualRate.next(min);
     this.maxAnnualRate.next(max);
     } else {

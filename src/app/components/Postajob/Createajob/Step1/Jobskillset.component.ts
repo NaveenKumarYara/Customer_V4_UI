@@ -149,7 +149,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       )
     );
   }
-
+  add3Dots(string, limit) {
+    const dots = '...';
+    if (string.length > limit) {
+      string = string.substring(0, limit) + dots;
+    }
+      return string;
+  }
 
   updateSkillType() {
     this.appService.updateSkillType(this.selectedLink);

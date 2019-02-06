@@ -8,13 +8,13 @@
           <div class="checkbox" *ngFor="let type of employmenttypelist">
             <!-- <label><input type="radio" (change)="selectEmpType(type.EmploymentTypeId)" name="emptype" value=""><span class="box">{{type.EmploymentType}}</span> </label> -->
             <label><input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId" (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span class="box">{{type.EmploymentType}}</span> </label>
-          </div>  
-        </div> 
+          </div>
+        </div>
     </div>
     <div class="col-md-6">
         <label for="" class="question">Video Sizzle <small>(Optional)</small></label>
         <p class="description">Make a lively interaction via Your Job Requirement Intro Video with Candidates.</p>
-        <button class="btn btn-small">Record & Upload</button>
+        <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
     </div>
   </div>
 
@@ -23,20 +23,23 @@
 <label for="" class="question">What is the Salary Range? <small>(Optional)</small></label>
   <p class="description">Differentiation is based on employment type selection hourly or annual.</p>
   <div class="options">
-    <div class="checkbox">
+    <!-- <div class="checkbox">
       <label>
-        <input type="radio" name="emp-type" value="">
+        <input type="radio" name="emp-type" (change)="selectSalaryType(type)" [(ngModel)]="salaryType" value="1">
         <span class="box">Hourly</span>
       </label>
+    </div> -->
+    <div class="checkbox" *ngFor="let sal of salaryTypelist">
+      <label><input type="radio" [(ngModel)]="salaryTypeSelected" (change)="selectSalaryType(sal)" name="sal" [value]="sal"><span class="box">{{sal}}</span> </label>
     </div>
-    <div class="checkbox">
+    <!-- <div class="checkbox">
       <label>
-        <input type="radio" name="emp-type" value="">
+        <input type="radio" name="emp-type" (change)="selectSalaryType(type)" [(ngModel)]="salaryType" value="2">
         <span class="box">Annually</span>
       </label>
-    </div>
+    </div> -->
   </div>
-<div *ngIf="salaryType === 1">
+<div *ngIf="salaryType === 2">
  <ng5-slider [(value)]="minAnnualRate"
             [(highValue)]="maxAnnualRate"
             [options]="annual"
@@ -45,7 +48,7 @@
             (userChangeEnd)="maxAnnualChangeEnd($event)">
 </ng5-slider>
 </div>
-<div *ngIf="salaryType === 2">
+<div *ngIf="salaryType === 1">
   <ng5-slider [(value)]="minHourRate"
              [(highValue)]="maxHourRate"
              [options]="hourly"

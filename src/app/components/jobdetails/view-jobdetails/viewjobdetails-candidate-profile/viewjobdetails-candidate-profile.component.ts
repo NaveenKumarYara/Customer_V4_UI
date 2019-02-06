@@ -32,7 +32,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    profiles:any;
    searchString:any;
    domainName:any;
-   experience:any;
+   experience: any;
    location:any;
    skills: any = null;
    loading: boolean;
@@ -75,15 +75,14 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     nav: true
   };
   constructor(private el: ElementRef, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
-    ,private dialog: MatDialog ) {
+    , private dialog: MatDialog ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
 
   OpenChatboxDialog() {
-    if(this.jobStatus!='InActive')
-    {
+    if(this.jobStatus!='InActive') {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
         width: '750',
@@ -120,8 +119,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenRejectDialog(jobResponseId) {
-    if(this.jobStatus!='InActive')
-    {
+    if(this.jobStatus!='InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
           data: {
@@ -193,11 +191,10 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       }) ;
     }
   GetCandidateProfile(profileId) {
-    if(this.jobStatus!='InActive')
-    {
+    if(this.jobStatus!='InActive') {
       sessionStorage.setItem('profileId', JSON.stringify(profileId));
       this.router.navigateByUrl('app-cprofile');
-    }  
+    }
   }
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
@@ -222,12 +219,11 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     .subscribe(res => {
       this.jobdetailsprofiles = res;
       this.profiles = res;
-      if(this.profiles == 'No records found')
-      {
+      if(this.profiles === 'No records found') {
         this.myEvent.emit('min');
         this.alertService.warn('No Profiles Matched!!');
       }
-      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {  
+      if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {
       // need to change the res.totalprofile count
         this.myEvent.emit('max'); // load more hide when max count is reached
        } else if ((noofRows === 6 ) && (res.Profile.length < noofRows)) {// need to change the res.totalprofile count
@@ -244,7 +240,6 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     if (string.length > limit) {
       string = string.substring(0, limit) + dots;
     }
-
       return string;
   }
 

@@ -7,7 +7,8 @@ import { Subject, Observable } from 'rxjs';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 // import { SalarysliderComponent } from './salaryslider.component';
 import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
-
+import { MatDialog } from '@angular/material';
+import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 @Component({
   selector: 'app-steps-step3-employmenttype',
   templateUrl: './employmenttype.component.html'
@@ -17,11 +18,13 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
  employmenttypelist: any;
   employmentTypeId: number;
   employmentType: EmploymentType;
+  salaryTypelist: string[];
   salaryType = 1;
   minAnnualRate = 1000;
   maxAnnualRate = 10000;
   minHourRate = 20;
   maxHourRate = 100;
+  salaryTypeSelected: any;
   annual: Options = {
     floor: 0,
     step: 500,
@@ -29,9 +32,9 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '<b>Min price:</b> $' + value;
+          return '<b>Min pay:</b> $' + value;
         case LabelType.High:
-          return '<b>Max price:</b> $' + value;
+          return '<b>Max pay:</b> $' + value;
         default:
           return '$' + value;
       }
@@ -44,16 +47,16 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '<b>Min price:</b> $' + value;
+          return '<b>Min pay:</b> $' + value;
         case LabelType.High:
-          return '<b>Max price:</b> $' + value;
+          return '<b>Max pay:</b> $' + value;
         default:
           return '$' + value;
       }
     }
   };
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService) {// , private salaryRate: SalarysliderComponent
+    private router: Router, private appService: AppService, private dialog: MatDialog) {// , private salaryRate: SalarysliderComponent
       this.employmentType = new EmploymentType();
   }
 
@@ -62,14 +65,44 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
       this.employmenttypelist = res.filter(x => x.EmploymentType);
     });
   }
+  selectSalaryType(val) {
+    // this.employmentTypeId = val.employmentTypeId;
+   // this.appService.updateEmploymentType(val);
+      this.salaryType = val === 'Annual' ? 2 : 1;
+  }
   selectEmpType(val) {
     // this.employmentTypeId = val.employmentTypeId;
     this.appService.updateEmploymentType(val);
-      this.salaryType = val.EmploymentTypeId;
+      // this.salaryType = val.EmploymentTypeId;
   }
-
+  OpenScheduleInterviewDialog() {
+    // var candidateUserId = $("#candidateUserId").val();
+    // var candidateId = +candidateUserId;
+    const scheduleIntwdialogRef = this.dialog.open(UploadvideoprofileComponent,
+      {
+        width: '750',
+        position: {right : '0px'},
+        height : '750px',
+        data: {
+          // jobResponseId: jobResponseId,
+          jobId:  parseInt(localStorage.getItem('jobId'), 10),
+         // userId: userId
+         // status : this.statusid
+        }
+      }
+    );
+    scheduleIntwdialogRef.afterClosed().subscribe(result => {
+     // this.jobDetails.populateJobsStaticInfo(this.jobid);
+      // this.myEvent.emit(null);
+      console.log('Chatbox Dialog result: ${result}');
+    });
+  }
+  populateSalaryTypes() {
+    this.salaryTypelist = this.appService.getSalaryType();
+  }
   ngOnInit() {
     this.populateEmploymentType();
+    this.populateSalaryTypes();
   //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
