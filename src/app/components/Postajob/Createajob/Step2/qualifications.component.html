@@ -37,7 +37,7 @@
       <p class="description">Qualifications</p>
       <ul class="data-list">
         <li class="col-md-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
-          <span class="name">{{qualifications.QualificationName}}</span>
+          <span title="{{qualifications.QualificationName}}" class="name">{{ add3Dots(qualifications.QualificationName,25) }}</span>
           <span class="close" (click)="deleteQualifications(i)">&times;</span>
         </li>
       </ul>

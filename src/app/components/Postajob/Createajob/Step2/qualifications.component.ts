@@ -64,7 +64,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
       if (check === false) {
       this.appService.addQualifications(this.selectedQualification);
     }
-    this.selectedqualificationName = 0;
+    this.selectedqualificationName = 0; // new Qualifications();
   });
   } else if (this.selectedqualificationName != null || this.selectedqualificationName !== '' || this.selectedqualificationName !== undefined) {
     // const addedu = new AddEducation();
@@ -80,10 +80,18 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
     if (check === false) {
     this.appService.addQualifications(this.selectedQualification);
   }
-  this.selectedqualificationName = 0;
+   this.selectedqualificationName = 0;
+ // this.selectedqualificationName = new Qualifications();
 }
   }
   return false;
+}
+add3Dots(string, limit) {
+  const dots = '...';
+  if (string.length > limit) {
+    string = string.substring(0, limit) + dots;
+  }
+    return string;
 }
 educationExists(education, list) {​
   return list.some(function(elem) {
