@@ -47,6 +47,7 @@
 <div class="form-row job-title-suggestions">
   <div class="checkbox" *ngFor="let  title of suggestedTitle; let i = index">
     <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-    <label><input type="radio" [ngModel]="selectedTitle"  (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
+    <label><input type="radio"   (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
+    <!-- [ngModel]="selectedTitle"  commented because it is not selected in category-->
   </div> 
 </div>
