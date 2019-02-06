@@ -17,12 +17,22 @@ export class HomeComponent {
   loginform: any;
   customerId:any;
   companyLogo:any;
+  show : any = false;
+  result :any;
+  Uid:any;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
   userId:any;
   constructor( private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
-
+        this.route.params.subscribe(params => {
+          console.log(params);
+          if (params['id'] > 0) {
+            sessionStorage.setItem('Uid', params['id']);
+          } 
+        })
+        this.ActivatetheUser();
+      
   }
 
 //   login1(username: string, password: string) {
@@ -46,7 +56,30 @@ export class HomeComponent {
     this.router.navigateByUrl('ForgotPassword'); 
   }
 
+  GetEmailValidate()
+  {
+    this.appService.validateemail(this.loginform.value.UserName)
+    .subscribe(
+    data => {
+      
+      this.result = data;
+      if(this.result.UserId>0&&this.result.CustomerId>0)
+      {  
+        this.login();    
+      }
+      else
+      {   
+        this.show= true;   
+       setTimeout(() => {
+        this.show= false;
+        this.loginform.reset();
+      }, 3000);
+      }
+    })
+  }
+
   login() {
+    this.show= false;
     if(!this.loginform.valid)
     {
       this.alertService.error('Please provide the valid details');
@@ -60,6 +93,14 @@ export class HomeComponent {
     this.appService.Login(this.loginform.value)
       .subscribe(
       data => {
+        if (data.IsActive == false) {
+          this.alertService.error('Please activate the link to login');
+          setTimeout(() => {
+            this.alertService.clear();
+          }, 2000);
+          this.loginform.reset();
+        } 
+        else {
         this.password = $("#password").val();
         sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -67,7 +108,8 @@ export class HomeComponent {
         this.customerId = data.customerId;
         this.userId =data.userId;
             this.router.navigateByUrl('app-dashboardview');
-      },
+        }
+          },
 
       error => {
         this.alertService.error('Please provide the valid details');
@@ -81,10 +123,21 @@ export class HomeComponent {
     }
   }
   MissClear() {
+    this.show= false;
     this.alertService.clear();
   }
 
+  ActivatetheUser()
+  {
+    this.Uid =  sessionStorage.getItem('Uid');
+    this.appService.ActivateUser(this.Uid).subscribe(
+      data => {
+          sessionStorage.removeItem('Uid');
+      })
+  }
+
   ngOnInit() {
+    this.show= false;
     this.loginform = this.fb.group({
       'UserName': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],

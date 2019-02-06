@@ -617,6 +617,15 @@ updatepassword(body) {
         this.handleError
       );
   }
+
+  ActivateUser(userId: number) {
+    const url = environment.ActivateUser+  'userId=' + userId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = environment.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)

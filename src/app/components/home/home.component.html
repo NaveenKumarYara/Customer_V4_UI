@@ -30,11 +30,15 @@
                         Welcome!!! Login here.
                      </h2>
                      <alert></alert>
-                     <form [formGroup]="loginform" (ngSubmit)="login()">
+                     <div *ngIf="show" class="alert alert-danger">
+                        Email not registered.
+                      </div>
+                     <form [formGroup]="loginform" (ngSubmit)="GetEmailValidate()">
                         <div class="form-group spt-2">
                            <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
-                              [formControl]="loginform.controls['UserName']" (keypress)="MissClear()" (keyup)="MissClear()">
-                        </div>
+                              [formControl]="loginform.controls['UserName']"  (keypress)="MissClear()" (keyup)="MissClear()">
+                           
+                           </div>
                         <div class="form-group">
                            <input class="form-control" id="password" type="password" name="password1" placeholder="Password"
                               [formControl]="loginform.controls['Password']">

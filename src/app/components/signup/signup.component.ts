@@ -78,7 +78,7 @@ export class SignUpComponent {
         data => {
           
         if(data>0)
-        {
+        {   
           this.Email(data);
         }
         
