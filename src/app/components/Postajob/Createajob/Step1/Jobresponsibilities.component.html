@@ -19,7 +19,7 @@
               <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
             </ul>
           </div>
-          <small class="text-danger" *ngIf="responsibility.invalid && responsibility.touched">Roles and Responsibilities are required.</small>
+          <small class="text-danger" *ngIf="responsibility.invalid && responsibility.touched">Required.</small>
           <!-- <div *ngIf="responsibility.touched">
               <div *ngIf="responsibility.errors && (responsibility.dirty)" class="alert alert-danger">
                 <div [hidden]="!responsibility.errors.required">

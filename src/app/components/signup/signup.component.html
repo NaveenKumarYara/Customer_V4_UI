@@ -1,152 +1,156 @@
 <head>
-      <title>Arytic</title>
-      <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/images/favicon-32x32.png">
-      <link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
-   </head>
-   
-   <body class="signpage">
-      <div class="container-fluid full-height">
-         <div class="row row-height">
-            <div class="col-lg-6 content-left">
-               <div class="content-left-wrapper">
-                  <div class="jobs_hide">
-                     <h2>I'm here for Hiring</h2>
-                     <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
-                  </div>
+   <title>Arytic</title>
+   <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/images/favicon-32x32.png">
+   <link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
+</head>
+
+<body class="signpage">
+   <div class="container-fluid full-height">
+      <div class="row row-height">
+         <div class="col-lg-6 content-left">
+            <div class="content-left-wrapper">
+               <div class="jobs_hide">
+                  <h2>I'm here for Hiring</h2>
+                  <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
                </div>
             </div>
-            <div class="col-lg-6 content-right recrit_div animated slideInRight" id="start">
-               <div id="wizard_container">
-                  <div id="top-wizard">
-                     <div id="progressbar"></div>
-                  </div>
-                  <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
-                  <!-- /top-wizard -->
-                  <form id="wrapped" [formGroup]="signUpform" (ngSubmit)="SignUp()">
-                     <!-- Leave for security protection, read docs for details -->
-                     <div id="hiring_sign">
-                        <div class="logo">
-                           <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo"> </div>
-                        <div class="step">
-                           <h2 class="main_question">
-                              Welcome !!! Let's Sign Up!
-                           </h2>
-                           <alert></alert>
-                           <div class="row">
-                              <div class="form-group col-md-6 spt-2 padding-right">
-                                 <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="First Name *"
-                                    minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                                    required>
-                                 <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
-                                 class="alert alert-danger" >
-                                    <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
-                                      Required.
-                                    </div>
-                                    <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
-                                       Minimum 3 Characters allowed.
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="form-group col-md-6 spt-2 padding-left">
-                                 <input type="text" class="form-control" formControlName="ContactLastName" minlength=3
-                                    (keypress)="MissClear()" placeholder="Last Name *" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                                    required>
-                                 <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
+         </div>
+         <div class="col-lg-6 content-right recrit_div " id="start">
+            <div id="wizard_container">
+               <div id="top-wizard">
+                  <div id="progressbar"></div>
+               </div>
+               <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
+               <!-- /top-wizard -->
+               <form id="wrapped" [formGroup]="signUpform" (ngSubmit)="SignUp()">
+                  <!-- Leave for security protection, read docs for details -->
+                  <div id="hiring_sign">
+                     <div class="logo">
+                        <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo"> </div>
+                     <div class="step animated slideInRight">
+                        <h2 class="main_question">
+                           Welcome !!! Let's Sign Up!
+                        </h2>
+                        <alert></alert>
+                        <div class="row">
+                           <div class="form-group col-md-6 spt-2 padding-right">
+                              <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="First Name *"
+                                 minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                 required>
+                              <div *ngIf="signUpform.controls['ContactFirstName'].invalid && (signUpform.controls['ContactFirstName'].dirty || signUpform.controls['ContactFirstName'].touched)"
                                  class="alert alert-danger">
-                                    <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
-                                       Required.
-                                    </div>
-                                    <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
-                                       Min. 3 Characters allowed.
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        
-                           <div class="form-group">
-                              <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
-                                 placeholder="Company Name *" minlength=3 required>
-                              <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
-                              class="alert alert-danger">
-                                 <div *ngIf="signUpform.controls['CompanyName'].errors.required">
-                                   Required.
-                                 </div>
-                                 <div *ngIf="signUpform.controls['CompanyName'].errors.minlength">
-                                    Min. 3 Characters allowed.
-                                 </div>
-                                 <div *ngIf="signUpform.controls['CompanyName'].errors.pattern">
-                                    Invalid Company!.
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" 
-                              autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
-                              <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
-                              class="alert alert-danger" >
-                                 <div *ngIf="signUpform.controls['ContactEmail'].errors.required">
-                                  Required.
-                                 </div>
-                                 <div *ngIf="signUpform.controls['ContactEmail'].errors.pattern">
-                                    Incorrect Email!.
-                                 </div>                   
-                              </div>
-                               <div *ngIf="show" class="alert alert-danger">
-                                 Email already registered.
-                               </div>
-                           </div>
-                           <div class="form-group">
-                              <input type="text" class="form-control" formControlName="ContactNumber"   prefix="+1" mask="(000) 000-0000" placeholder="Phone Number *"
-                                  maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
-                                  <div *ngIf="signUpform.controls['ContactNumber'].errors?.minlength" class="alert alert-danger">
-                                   Invalid Mobile number.
-                               </div>             
-                           </div>
-                           <div class="form-group">
-                              <input class="form-control" type="password" id="password" name="Password" placeholder="Password *"
-                            autocomplete="new-password" minlength=6  formControlName="Password">
-                              <span class="glyphicon glyphicon-eye-open"></span>
-                              <div *ngIf="signUpform.controls['Password'].invalid && (signUpform.controls['Password'].dirty || signUpform.controls['Password'].touched)"
-                              class="alert alert-danger" >
-                                 <div *ngIf="signUpform.controls['Password'].errors.required">
+                                 <div *ngIf="signUpform.controls['ContactFirstName'].errors.required">
                                     Required.
                                  </div>
-                                 <div *ngIf="signUpform.controls['Password'].errors.minlength">
-                                    Min. 6 Characters allowed.
+                                 <div *ngIf="signUpform.controls['ContactFirstName'].errors.minlength">
+                                    Minimum 3 Characters allowed.
                                  </div>
-                                 </div>
+                              </div>
                            </div>
-                           <!-- <div class="form-group terms">
+                           <div class="form-group col-md-6 spt-2 padding-left">
+                              <input type="text" class="form-control" formControlName="ContactLastName" minlength=3
+                                 (keypress)="MissClear()" placeholder="Last Name *" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                 required>
+                              <div *ngIf="signUpform.controls['ContactLastName'].invalid && (signUpform.controls['ContactLastName'].dirty || signUpform.controls['ContactLastName'].touched)"
+                                 class="alert alert-danger">
+                                 <div *ngIf="signUpform.controls['ContactLastName'].errors.required">
+                                    Required.
+                                 </div>
+                                 <div *ngIf="signUpform.controls['ContactLastName'].errors.minlength">
+                                    Minimum 3 Characters allowed.
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
+                              placeholder="Company Name *" minlength=3 required>
+                           <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
+                              class="alert alert-danger">
+                              <div *ngIf="signUpform.controls['CompanyName'].errors.required">
+                                 Required.
+                              </div>
+                              <div *ngIf="signUpform.controls['CompanyName'].errors.minlength">
+                                 Minimum 3 Characters allowed.
+                              </div>
+                              <div *ngIf="signUpform.controls['CompanyName'].errors.pattern">
+                                 Invalid Company!.
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *"
+                              autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
+                              id="semail">
+                           <div *ngIf="signUpform.controls['ContactEmail'].invalid && (signUpform.controls['ContactEmail'].dirty || signUpform.controls['ContactEmail'].touched)"
+                              class="alert alert-danger">
+                              <div *ngIf="signUpform.controls['ContactEmail'].errors.required">
+                                 Required.
+                              </div>
+                              <div *ngIf="signUpform.controls['ContactEmail'].errors.pattern">
+                                 Incorrect Email!.
+                              </div>
+                           </div>
+                           <div *ngIf="show" class="alert alert-danger">
+                              Email already registered.
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <input type="tel" class="form-control" formControlName="ContactNumber" prefix="+1" mask="(000) 000-0000"
+                              placeholder="Phone Number *" maxlength=20 onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                           <div *ngIf="signUpform.controls['ContactNumber'].errors?.minlength" class="alert alert-danger">
+                              Invalid Phone number.
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <input class="form-control" type="password" id="password" name="Password" placeholder="Password *"
+                              autocomplete="new-password" minlength=6 formControlName="Password">
+                           <span class="glyphicon glyphicon-eye-open"></span>
+                           <div *ngIf="signUpform.controls['Password'].invalid && (signUpform.controls['Password'].dirty || signUpform.controls['Password'].touched)"
+                              class="alert alert-danger">
+                              <div *ngIf="signUpform.controls['Password'].errors.required">
+                                 Required.
+                              </div>
+                              <div *ngIf="signUpform.controls['Password'].errors.minlength">
+                                 Minimum 6 Characters allowed.
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="form-group terms">
                               <label class="container_check">Please accept our <a href="javascript:void(0)" data-toggle="modal"
                                     data-target="#terms-txt">Terms and conditions</a>
                                  <input type="checkbox" name="terms" value="Yes" class="required" required>
                                  <span class="checkmark"></span>
                               </label>
                            </div> -->
-                           <div class="spt-2 d-flex justify-content-between">
-                              <small>Already have an account? <a href="javascript:void(0)" (click)="Login()" >Login here.</a></small> 
-                                    <button type="submit" class="btn2 pull-right">Sign Up </button>
-                           </div>
-                         
-                           <div class="spt-2 d-flex justify-content-between">
-                              <small>I'm looking for <a href="javascript:void(0)" (click)="Layout()" id="recrit_close">Job Search.</a></small> 
-                           </div>
+
+                        <div>
+                           <button type="submit" class="btn2 pull-right sign-up-btn">Sign Up </button>
                         </div>
+                        <div>
+                           <small>Already have an account? <a href="javascript:void(0)" (click)="Login()">Login here.</a></small>
+                        </div>
+                        <small>I'm looking for <a href="javascript:void(0)" (click)="Layout()" id="recrit_close">Job
+                              Search.</a></small>
+
+
                      </div>
-                     <!-- login -->
-   
-                     <!-- login -->
-                     <!-- hiring id _forgot -->
-   
-                     <!-- hiring id _forgot -->
-                     <!-- /middle-wizard -->
-                     <!-- /bottom-wizard -->
-                  </form>
-               </div>
-               <!-- /Wizard container -->
+                  </div>
+                  <!-- login -->
+
+                  <!-- login -->
+                  <!-- hiring id _forgot -->
+
+                  <!-- hiring id _forgot -->
+                  <!-- /middle-wizard -->
+                  <!-- /bottom-wizard -->
+               </form>
             </div>
-   
+            <!-- /Wizard container -->
          </div>
+
       </div>
-   
-   </body>
+   </div>
+
+</body>

@@ -9,7 +9,7 @@
                     name="selectedSkillName" #skill="ngModel" [addTag]="addSkill" [virtualScroll]="true" required>
                 </ng-select>
                 <input type hidden id="skills">
-                <small class="text-danger" *ngIf="skill.invalid && skill.touched ">Skill Name is required.</small>
+                <small class="text-danger" *ngIf="skill.invalid && skill.touched ">Required.</small>
                 <!-- <div *ngIf="skill.touched">
           <div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
             <div [hidden]="!skill.errors.required">
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div> -->
-                <small class="text-danger" *ngIf="minExp.invalid && minExp.touched "> Experience is required.</small>
+                <small class="text-danger" *ngIf="minExp.invalid && minExp.touched "> Required.</small>
                 <small class="text-danger" *ngIf="minExp.value > maxExp.value">
           It can't be greater than Maxi Experience!
         </small>
@@ -56,7 +56,7 @@
             </div>
           </div>
         </div> -->
-                <small class="text-danger" *ngIf="maxExp.invalid && maxExp.touched ">Experience is required.</small>
+                <small class="text-danger" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
                 <small class="text-danger" *ngIf="minExp.value > maxExp.value">
           It can't be less than Min Experience!
         </small>

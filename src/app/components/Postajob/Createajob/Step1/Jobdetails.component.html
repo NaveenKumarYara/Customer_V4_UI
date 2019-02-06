@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="form-group job-title-group">
       <label for="" class="question"> What is the Job Title?</label>
-      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Senior Java Developer" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
+      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Type and Select" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
         [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel" name="Title" (change)="updateJobTitle()">
       </ng-select>
        <!-- <ul class="data-list">
@@ -11,7 +11,7 @@
         <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
       </ul>-->
   
-      <small class="text-danger" *ngIf="JobTitle.invalid && JobTitle.touched">Job Title is required.</small>
+      <small class="text-danger" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small>
     </div>
   </div>
   <div class="col-md-6">
@@ -24,7 +24,7 @@
             placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [loading]="peopleLoading" [(ngModel)]="minExperience"
             #totMinExp="ngModel" name="miniExperience" required>
           </ng-select>
-          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Experience is required.</small>
+          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
             Can't be > Max Exp!
           </small>
@@ -34,7 +34,7 @@
             placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [loading]="peopleLoading" [(ngModel)]="maxExperience"
             #totMaxExp="ngModel" name="maxiEperience" required>
           </ng-select>
-          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Experience is required.</small>
+          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Required.</small>
           <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
              Can't be < Min Exp!
           </small>

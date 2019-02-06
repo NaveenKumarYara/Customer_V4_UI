@@ -5,7 +5,7 @@
      <form #eduForm="ngForm" (ngSubmit)="addQualification()">
     <div class="col-md-5 col-sm-5">
         <ng-select class="custom-style" id="PreferredEducation" [items]="qualifications | async"
-                   placeholder="e.g. Bachelor of Computer Arts"
+                   placeholder="Type and Select"
                    bindLabel="QualificationName"
                    bindValue="QualificationId"
                    (ngModelChange)="getSelectedOptionText($event)"
@@ -17,11 +17,11 @@
                    #Education="ngModel"
                    name="selectedqualificationName">
         </ng-select>
-        <small class="text-danger" *ngIf="other.value === null && Education.touched">Qualification is required.</small>
+        <small class="text-danger" *ngIf="other.value === null && Education.touched">Required.</small>
     </div>
     <div class="col-md-5 col-sm-5">
       <input type="text" class="form-control" #other="ngModel" name="education" [(ngModel)]="newQualification" (ngModelChange)="updateQualification($event)" placeholder="Other">
-      <small class="text-danger" *ngIf="Education.value === null && other.invalid && other.touched">Qualification is required.</small>
+      <small class="text-danger" *ngIf="Education.value === null && other.invalid && other.touched">Required.</small>
       <!-- <small class="text-danger" *ngIf="Education.invalid && Education.touched">Qualification is required.</small> -->
 
     </div>
