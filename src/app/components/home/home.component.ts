@@ -27,11 +27,11 @@ export class HomeComponent {
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
           console.log(params);
-          if (params['id'] > 0) {
-            sessionStorage.setItem('Uid', params['id']);
-          } 
-        })
-        this.ActivatetheUser();
+          if (params['Uid'] !==null) {
+            sessionStorage.setItem('Uid', params['Uid']);
+          }
+        });
+      
       
   }
 
@@ -58,6 +58,7 @@ export class HomeComponent {
 
   GetEmailValidate()
   {
+    this.ActivatetheUser();
     this.appService.validateemail(this.loginform.value.UserName)
     .subscribe(
     data => {
