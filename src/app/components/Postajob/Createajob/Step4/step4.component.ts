@@ -206,7 +206,7 @@ export class Step4Component implements OnInit {
   }
 
   backtoStep3() {
-    this.steps.step3toggleClass();
+    this.steps.step3toggleClass(2);
   }
 
 

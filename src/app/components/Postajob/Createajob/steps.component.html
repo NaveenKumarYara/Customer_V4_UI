@@ -1,13 +1,36 @@
 
 <ul id="steps-tab" class="nav nav-tabs">
   <li [ngClass]="{ 'tab-list':!step1isClicked, 'tab-list active':step1isClicked }"
-      (click)="step1toggleClass()"><a data-toggle="tab" title="Step 1" routerLink="app-steps-step1" routerLinkActive="active"><span class="step-check"></span>Step 1</a></li>
+      (click)="step1toggleClass()">
+      <ng-container *ngIf="complete >= 0;else nocomplete">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Step 1" routerLink="app-steps-step1" routerLinkActive="active">
+        <span class="step-check"></span>Step 1</a>
+        </ng-container>
+        <ng-template #nocomplete>
+            <a data-toggle="tab"   title="Step 1" routerLink="app-steps-step1" routerLinkActive="active">
+                <span class="step-check"></span>Step 1</a>
+          </ng-template>
+      </li>
   <li class="line"></li>
   <li [ngClass]="{ 'tab-list':!step2isClicked, 'tab-list active':step2isClicked }"
-      (click)="step2toggleClass()"><a data-toggle="tab" title="Step 2" routerLink="app-steps-step2"  ><span class="step-check"></span>Step 2</a></li>
+      (click)="step2toggleClass()">
+      <ng-container *ngIf="complete >1;else nocompl">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Step 2" routerLink="app-steps-step2"><span class="step-check"></span>Step 2</a>
+      </ng-container>
+      <ng-template #nocompl>
+          <a data-toggle="tab" title="Step 2" routerLink="app-steps-step2"><span class="step-check"></span>Step 2</a>
+      </ng-template>
+    </li>
   <li class="line"></li>
   <li [ngClass]="{ 'tab-list':!step3isClicked, 'tab-list active':step3isClicked }"
-      (click)="step3toggleClass()"><a data-toggle="tab" title="Step 3" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a></li>
+      (click)="step3toggleClass()">
+      <ng-container *ngIf="complete >2;else nocom">
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Step 3" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a>
+      </ng-container>
+      <ng-template #nocom>
+          <a data-toggle="tab" title="Step 3" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a>
+      </ng-template>
+    </li>
   <li class="line"></li>
   <li [ngClass]="{ 'tab-list':!step4isClicked, 'tab-list active':step4isClicked }"
       (click)="step4toggleClass()">

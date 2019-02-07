@@ -180,7 +180,7 @@ export class Step2Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.steps.step3toggleClass();
+        this.steps.step3toggleClass(2);
         this.router.navigate(['/app-createajob/app-steps-step3']);
       }
     });
@@ -194,7 +194,7 @@ export class Step2Component implements OnInit {
   }
 
   backtoStep1() {
-    this.steps.step1toggleClass();
+    this.steps.step1toggleClass(0);
   }
 
 
