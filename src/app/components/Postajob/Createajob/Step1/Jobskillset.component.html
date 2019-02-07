@@ -80,9 +80,9 @@
             <!-- (click)="addSkills()" -->
         </div>
     </form>
-    <div class="lists row">
-        <div class="col-md-6">
-            <h4 for="" class="light">Primary Skills</h4>
+ <div class="lists row">
+        <div class="col-md-6" *ngIf="primaryjobskills && primaryjobskills.length > 0"> 
+            <h4 for=""   class="light">Primary Skills</h4>
             <ul class="data-list">
                 <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
                     <span title="{{primaryjobskill.SkillName}}" class="name">{{ add3Dots(primaryjobskill.SkillName,25) }}</span>
@@ -92,11 +92,11 @@
             </ul>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="secondaryjobskills && secondaryjobskills.length > 0">
             <h4 for="" class="light">Secondary Skills</h4>
             <ul class="data-list">
                 <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-                    <span class="name">{{secondaryjobskill.SkillName}}</span>
+                    <!-- <span class="name">{{secondaryjobskill.SkillName}}</span> -->
                     <span title="{{secondaryjobskill.SkillName}}"  class="name">{{ add3Dots(secondaryjobskill.SkillName,25) }}</span>
                     <span class="experience"> {{secondaryjobskill.MinimumExp}} - {{secondaryjobskill.MaximumExp}} Yrs</span>
                     <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
