@@ -21146,7 +21146,7 @@ a.ui-button:active,
     margin: 0;
     position: relative;
     cursor: pointer;
-    margin-right: 15px;
+    margin-right: 13px;
 }
 
 .page--create-a-job .form-steps .checkbox label {
@@ -21749,7 +21749,7 @@ nav.navbar {
 }
 
 .job-title-suggestions .checkbox .box {
-    padding: 10px 10px!important;
+    padding: 8px 10px!important;
     height: 35px !important;
     font-size: 0.8rem !important;
 }
