@@ -7,7 +7,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-
+  complete:any;
   step1isClicked = true;
   step2isClicked = false;
   step3isClicked = false;
@@ -17,7 +17,8 @@ export class StepsComponent implements OnInit {
 
   }
 
-  step1toggleClass() {
+  step1toggleClass(complete) {
+    this.complete = complete;
     this.step1isClicked = !this.step1isClicked;
     this.step2isClicked = false;
     this.step3isClicked = false;
@@ -25,21 +26,25 @@ export class StepsComponent implements OnInit {
     
   }
 
-  step2toggleClass() {
+  step2toggleClass(complete) {
+    debugger
+    this.complete = complete;
     this.step2isClicked = !this.step2isClicked;
     this.step1isClicked = false;
     this.step3isClicked = false;
     this.step4isClicked = false;
   }
 
-  step3toggleClass() {
+  step3toggleClass(complete) {
+    this.complete = complete;
     this.step3isClicked = !this.step3isClicked;
     this.step1isClicked = false;
     this.step2isClicked = false;
     this.step4isClicked = false;
   }
 
-  step4toggleClass() {
+  step4toggleClass(complete) {
+    this.complete = complete;
     this.step4isClicked = !this.step4isClicked;
     this.step1isClicked = false;
     this.step2isClicked = false;

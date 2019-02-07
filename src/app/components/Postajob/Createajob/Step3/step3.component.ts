@@ -298,7 +298,7 @@ export class Step3Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.steps.step4toggleClass();
+        this.steps.step4toggleClass(3);
         this.router.navigate(['/app-createajob/app-steps-step4']);
       }
     });
@@ -307,7 +307,7 @@ export class Step3Component implements OnInit {
 
 
   backtoStep2() {
-    this.steps.step2toggleClass();
+    this.steps.step2toggleClass(1);
   }
 
 }

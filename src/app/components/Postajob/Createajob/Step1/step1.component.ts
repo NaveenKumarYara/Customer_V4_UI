@@ -122,7 +122,7 @@ this.insertJob.StepNumber = step;
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
        // this.steps.step2isClicked = true;
-        this.steps.step2toggleClass();
+        this.steps.step2toggleClass(1);
         this.router.navigate(['/app-createajob/app-steps-step2']);
       }
     });
