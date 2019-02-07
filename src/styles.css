@@ -19499,7 +19499,7 @@ a.ui-button:active,
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    height: 456px;
+    height: 291px;
 }
 
 .page--company-profile .card--basic-info .card-inner .company-logo {
@@ -19624,8 +19624,8 @@ a.ui-button:active,
 }
 
 .page--company-profile .card--location .card-content {
-    height: 479px;
-    max-height: 479px;
+    height: 408px;
+    max-height: 408px;
 }
 
 .page--company-profile .card--about .card-inner {
@@ -20088,6 +20088,7 @@ a.ui-button:active,
 
 .page--company-profile .card-header>a {
     display: block;
+    cursor: pointer;
 }
 
 .page--company-profile .card-inner .actions svg {
@@ -20271,7 +20272,7 @@ a.ui-button:active,
 }
 
 .page--company-profile.edit-mode .card--basic-info .card-inner {
-    height: 654px;
+    height: inherit;
 }
 
 .page--company-profile.edit-mode .card--basic-info .company-address {
@@ -20406,6 +20407,7 @@ a.ui-button:active,
     height: 385px;
     background-color: #ffffff;
     border: 1px solid #E0E3EF;
+    cursor: pointer;
 }
 
 .page--post-a-job a.card img {

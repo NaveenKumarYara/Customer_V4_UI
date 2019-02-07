@@ -72,6 +72,7 @@
         </div>
         <div id="company-video" class="video video-profile">
           <div class="video-ui">
+              <h3 class="text-center">Video Profile</h3>
             <a href="#" data-toggle="modal" data-target="#videoModal">
               <!-- <img class="video__poster img-responsive" src="../../../../assets/images/video-poster.png" alt="">
               <div class="video__overlay"></div>
@@ -79,7 +80,7 @@
                 <img src="images/play.svg" alt="►">
                 <div>Video Profile</div>
               </div> -->
-              <video controls class="video-align" [src]="videoUrl" type="video/mp4" #videoPlayer></video>
+              <video width="300" controls class="video-align" [src]="videoUrl" type="video/mp4" #videoPlayer></video>
             </a>
           </div>
         </div>
@@ -102,7 +103,7 @@
         </h1>
         <div class="layout layout--btn">
           <button class="btn btn btn-border" (click)="iseditProfile=!iseditProfile;">Cancel</button>
-          <button class="btn-md btn-filled"(click)="saveProfile()">Save</button>
+          <button class="btn btn-filled"(click)="saveProfile()">Save</button>
         </div>
       </div>
       <form class="card-inner">
