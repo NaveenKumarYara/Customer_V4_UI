@@ -16,7 +16,7 @@
   </form>
 </div>
 <div class="lists row">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="teammemberslist.length>0">
     <p class="description">Team Members</p>
     <ul class="data-list">
       <li class="col-md-5 no-exp" *ngFor="let teammember of teammemberslist; let i = index">

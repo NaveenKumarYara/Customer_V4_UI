@@ -33,7 +33,7 @@
   </div>
 
   <div class="lists row">
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="qualificationList.length>0">
       <p class="description">Qualifications</p>
       <ul class="data-list">
         <li class="col-md-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
@@ -43,9 +43,9 @@
       </ul>
     </div>
   </div>
-  <div class="form-group domain-exp-group">
-    <label for="" class="question">Are you seriously considering that the candidate have the required domain experience? <small>(Optional)</small></label>
-    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  <!--<div class="form-group domain-exp-group">
+   <label for="" class="question">Are you seriously considering that the candidate have the required domain experience? <small>(Optional)</small></label>
+    <p class="description">Share details so we can find you the most eligible candidates.</p> 
     <div class="clearfix">
       <label for="yes" class="radio">
         <input type="radio" id="yes" name="domain-exp" class="radio-input" />
@@ -58,4 +58,4 @@
         <span>No</span>
       </label>
       </div>
-    </div>
+    </div>-->
