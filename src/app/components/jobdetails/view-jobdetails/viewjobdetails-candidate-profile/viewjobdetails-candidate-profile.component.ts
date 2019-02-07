@@ -9,6 +9,7 @@ import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
+import { VideoSizzle,GetVideoProfile } from '../../models/VideoProfile';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -27,6 +28,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
    jobdetailsprofiles = new JobdetailsProfile() ;
    matchingDetails: MatchingDetails;
+   // profileVideo= new  VideoProfile();
+   profileFlipVideo= new GetVideoProfile();
    customerId: any;
    userId: any;
    profiles:any;
@@ -265,8 +268,11 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     //     var $detailsCloseBtn = $selectedCard.find('.close');
         return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
           this.matchingDetails = res;
-          $('.matching-details').removeClass('open');
-          $('#matchingDetail-' + profileId).toggleClass('open');
+         $('.matching-details').removeClass('open');
+         $('#matchingDetail-' + profileId).toggleClass('open');
+
+          // $('.matching-details1').removeClass('open');
+          // $('#matchingDetails-' + profileId).toggleClass('open');
         });
 
 
@@ -276,8 +282,13 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         // });
      // });
   }
-  closeDetails(profileId) {
+  closeDetails(profileId,type) {
+    if(type==1){
     $('#matchingDetail-' + profileId).removeClass('open');
+  }
+  else{
+    $('#matchingDetails-' + profileId).removeClass('open');
+  }
   }
   ngOnInit() {
     this.alertService.clear();
@@ -298,6 +309,20 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
           $detailsDiv.removeClass('open');
         });
       });
+      // const $detailBtn = $card.find('.show-matching-details');
+      // $detailBtn.on('click', function (e) {
+
+      //   e.preventDefault();
+      //   const $selectedCard = $(this).closest('.card');
+      //   const $detailsDiv = $selectedCard.find('.matching-details');
+      //   const $detailsCloseBtn = $selectedCard.find('.close');
+      //   $detailsDiv.toggleClass('open');
+
+      //   $detailsCloseBtn.on('click', function (e) {
+      //     e.preventDefault();
+      //     $detailsDiv.removeClass('open');
+      //   });
+      // });
     })(jQuery);
     // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
     console.log('abc');
@@ -312,7 +337,35 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
+  displayVideo(profileId, videoSizzle,videoProfile )
+  {
+    // (function ($) {
+    // // TODO: test multiple cards -- open and close function
+    // const $card = $('.page--job-details .tab-content .card');
+    //  const $detailBtn = $card.find('.show-matching-details');
+    //   $detailBtn.on('click', function (e) {
 
+    //     e.preventDefault();
+    //     const $selectedCard = $(this).closest('.card');
+    //     const $detailsDiv = $selectedCard.find('.matching-details');
+    //     const $detailsCloseBtn = $selectedCard.find('.close');
+    //     $detailsDiv.toggleClass('open');
+
+    //     $detailsCloseBtn.on('click', function (e) {
+    //       e.preventDefault();
+    //       $detailsDiv.removeClass('open');
+    //     });
+    //   });
+    // })(jQuery);
+    // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
+    //   this.profileVideo = res[0]; });
+    //profile.VideoSizzle,profile.VideoProfile
+    this.profileFlipVideo.VideoProfile=videoProfile;
+    this.profileFlipVideo.VideoSizzle=videoSizzle;
+    $('.matching-details').removeClass('open');
+    $('#matchingDetails-' + profileId).toggleClass('open');
+
+  }
   // this function is not required as of now as there is split in UI
   splitSkills(skills) {
 // foreach(skills.)

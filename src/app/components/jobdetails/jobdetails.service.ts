@@ -125,7 +125,15 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
         this.handleError
       );
   }
-
+  getVideoProfile(customerId: number, profileId: number) {
+    const url = environment.VideoProfileEndPoint +
+     '?customerId=' + customerId + '&userId=' +  profileId;
+    return this.http.get<string>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
   GetAutoSearch(term: string = null): Observable<string[]> {
     const url = environment.GetProfileAutoSearch+ '?searchText=' + term;
     return this.http.get<string[]>(url)

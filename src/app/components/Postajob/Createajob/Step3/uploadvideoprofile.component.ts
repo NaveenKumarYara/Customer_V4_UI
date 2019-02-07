@@ -98,7 +98,7 @@ this.GetVideoSizzle();
   InsertSizzle(sizzleId, jobId) {
     this.createVideoForm();
     this.saveVideo.value.VideoProfileId = sizzleId;
-    this.saveVideo.value.JobId = jobId;
+    //this.saveVideo.value.JobId = ;
     this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
       .subscribe(data => {
         // alert(data);

@@ -191,7 +191,9 @@
                     </div>
                 </div>
                 <div class="candidate-status">
-                    <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+                        <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile)">
+                                <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+                            </a>
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="" style="margin-right: 15px;">
                     <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="">
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
@@ -588,35 +590,36 @@
                         </ul>
                 </ul>
             </div>
-            <div class="matching-details12">
-                <a href="#" class="close">×</a>
-                <h4>Candidate Video Profile</h4>
+          <div class="matching-details" id="matchingDetails-{{profile.ProfileId}}">
+                <a  href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>
+                <h4>Video Profiles</h4>
 
                 <div class="details">
+                    <!-- <div *ngIf="" -->
                     <div class="row video-scroll">
                         <div class="col-md-6">
-                            <h6>.Net Video Profile</h6>
-                            <video controls="">
-<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-</video>
+                            <h6>Video Profile</h6>
+                            <!-- <video controls="">
+<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
+</video>-->
+<video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
                         </div>
                         <div class="col-md-6">
-                            <h6>.Net TL Profile</h6>
-                            <video controls="">
+                            <h6>Video Sizzle</h6>
+                            <!-- <video controls="">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-</video>
+</video> -->
+<video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
                         </div>
 
-                    </div>
-
-
+                    </div> 
                 </div>
             </div>
 
         </div>
-
+  
         <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">
-            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId)" class="close">&times;</a>
+            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header">
                 <div class="match">
                     <svg xmlns="http://www.w3.org/2000/svg" width="158.1" height="159.1">
