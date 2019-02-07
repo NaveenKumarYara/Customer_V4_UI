@@ -65,14 +65,14 @@
 
                         <div class="form-group">
                            <input type="text" class="form-control" formControlName="CompanyName" pattern="^\S.*$"
-                              placeholder="Company Name *" minlength=3 required>
+                              placeholder="Company Name *" minlength=1 required>
                            <div *ngIf="signUpform.controls['CompanyName'].invalid && (signUpform.controls['CompanyName'].dirty || signUpform.controls['CompanyName'].touched)"
                               class="alert alert-danger">
                               <div *ngIf="signUpform.controls['CompanyName'].errors.required">
                                  Required.
                               </div>
                               <div *ngIf="signUpform.controls['CompanyName'].errors.minlength">
-                                 Minimum 3 Characters allowed.
+                                 Minimum 1 Characters allowed.
                               </div>
                               <div *ngIf="signUpform.controls['CompanyName'].errors.pattern">
                                  Invalid Company!.
