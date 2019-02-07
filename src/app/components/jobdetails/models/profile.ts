@@ -1,5 +1,4 @@
-export class Profile
-{
+export class Profile {
   public UserId: string;
   public MatchingPercentage: string;
   public ProfilePic: string;
@@ -26,5 +25,11 @@ export class Profile
   public BackGroundCheck: string;
   public CreatedOn: string;
   public DomainName: string;
-  public MobilePhone : string;
+  public MobilePhone: string;
+  public  QualificationName: string;
+  public Specialization: string;
+  public InstituteORUniversity: string;
+  public Location: string;
+  public FromYear: number;
+  public ToYear: number;
 }

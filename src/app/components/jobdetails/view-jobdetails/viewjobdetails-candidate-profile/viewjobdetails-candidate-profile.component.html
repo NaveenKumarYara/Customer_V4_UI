@@ -95,13 +95,13 @@
                                 <div class="bottom1">
                                     <ul class="dropdown-menu dropdown-menu-right" style="height: 143px;">
                                         <li>
-                                            <a href="{{profile.Email}}">
-                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
+                                            <a href="{{profile.QualificationName}}">
+                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.QualificationName}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="tel:+231112223">
-                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
+                                            <a href="{{profile.Specialization}}">
+                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Specialization}}
                                             </a>
                                         </li>
 
@@ -138,7 +138,7 @@
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                   </a>
                                 <div class="bottom1">
-                                    <ul class="custom_dropdown-menu" style="display: block;">
+                                    <ul class="dropdown-menu dropdown-menu-right1" style="display: block;">
                                         <li>
                                             <a href="{{profile.Email}}">
                                                 <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
@@ -181,25 +181,25 @@
                                     <img src="../../../../../assets/images/graduation.svg" style="width: 25px;height: 25px;" />
                                 </a>
                                 <div class="bottom1">
-                                    <ul class="custom_dropdown-menu" style="display: block;">
+                                    <ul class="dropdown-menu dropdown-menu-right" style="height: 143px;">
                                         <li>
-                                            <a href="{{profile.Email}}">
-                                                <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
-
-                                                <div class="media">
-                                                    <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
-                                                    <div class="media-body">
-                                                        <h5 class="mt-0">Masters</h5>
-                                                        Computer Science
-                                                    </div>
-                                                </div>
+                                            <a href="{{profile.QualificationName}}">
+                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.QualificationName}}
                                             </a>
                                         </li>
-
+                                        <li>
+                                            <a href="{{profile.Specialization}}">
+                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Specialization}}
+                                            </a>
+                                        </li>
 
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+
+
+                        </div>
 
                     </h1>
                 </ng-template>
@@ -219,9 +219,9 @@
                     </div>
                 </div>
                 <div class="candidate-status">
-                    <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile)">
-                        <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
-                    </a>
+                        <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile)">
+                                <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+                            </a>
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="" style="margin-right: 15px;">
                     <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="">
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
@@ -231,7 +231,7 @@
                         <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px" alt="">
                     </ng-container>
                 </div>
-                </div>
+            </div>
         </header>
         <div class="card-rel">
             <div class="card-body">
@@ -618,8 +618,8 @@
                         </ul>
                 </ul>
             </div>
-            <div class="matching-details" id="matchingDetails-{{profile.ProfileId}}">
-                <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>
+          <div class="matching-details" id="matchingDetails-{{profile.ProfileId}}">
+                <a  href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>
                 <h4>Video Profiles</h4>
 
                 <div class="details">
@@ -630,22 +630,22 @@
                             <!-- <video controls="">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
 </video>-->
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
+<video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
                         </div>
                         <div class="col-md-6">
                             <h6>Video Sizzle</h6>
                             <!-- <video controls="">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
 </video> -->
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+<video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
                         </div>
 
-                    </div>
+                    </div> 
                 </div>
             </div>
 
         </div>
-
+  
         <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header">
@@ -677,7 +677,7 @@
                 </div>
             </div>
         </div>
-        </div>
-        <!-- .card.candidate -->
     </div>
-    <alert></alert>
+    <!-- .card.candidate -->
+</div>
+<alert></alert>
