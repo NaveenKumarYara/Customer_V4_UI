@@ -20303,7 +20303,7 @@ a.ui-button:active,
 }
 
 .page--company-profile.edit-mode .card--basic-info .video-profile {
-    padding: 35px 30px;
+  margin-top:3%;
 }
 
 .page--company-profile.edit-mode .card--basic-info .actions {
