@@ -10,7 +10,7 @@
               <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
               </div> -->
                 <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> {{profile.CertificationName}}</div>
-                
+
                 <ng-template #nocertification>
                     <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> Yet to Gain!</div>
                 </ng-template>
@@ -51,15 +51,15 @@
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                       </a>
                                 <div class="bottom1">
-                                    <ul class="dropdown-menu dropdown-menu-right" style="height: 143px;">
+                                    <ul class="custom_dropdown-menu" style="height: 143px;">
                                         <li>
                                             <!--<a href="{{profile.Email}}">-->
-                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
+                                            <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
                                             <!--</a>-->
                                         </li>
                                         <li>
                                             <!--<a href="tel:+231112223">-->
-                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
+                                            <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
                                             <!--</a>-->
                                         </li>
                                         <li>
@@ -102,10 +102,10 @@
                                                 <div class="media">
                                                     <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
                                                     <div class="media-body">
-                                                      <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
-                                                        <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
-                                                        {{add3Dots(profile?.Specialization.split('|')[0],20)}}
-                                                     </ng-container>
+                                                        <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
+                                                            <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
+                                                            {{add3Dots(profile?.Specialization.split('|')[0],20)}}
+                                                        </ng-container>
                                                     </div>
                                                 </div>
                                             </a>
@@ -142,12 +142,12 @@
 
                         <div class="dropdown ">
 
-                       
+
                             <div class="tooltip1">
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                   </a>
                                 <div class="bottom1">
-                                    <ul class="dropdown-menu dropdown-menu-right1" style="display: block;">
+                                    <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
                                             <a href="{{profile.Email}}">
                                                 <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
@@ -201,9 +201,9 @@
                                                     <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
                                                     <div class="media-body">
                                                         <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
-                                                        <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
-                                                        {{add3Dots(profile?.Specialization.split('|')[0],20)}}
-                                                    </ng-container>
+                                                            <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
+                                                            {{add3Dots(profile?.Specialization.split('|')[0],20)}}
+                                                        </ng-container>
                                                     </div>
                                                 </div>
                                             </a>
@@ -223,11 +223,11 @@
                     </h1>
                 </ng-template>
 
-                <div class="meta">
-                    <div>
-                        <h4>{{profile.ProfileTitle ? profile.ProfileTitle : 'N/A'}}</h4>
+                <div class="meta a">
+                    <div class="d-block">
+                        <h4 class="text-center">{{profile.ProfileTitle ? profile.ProfileTitle : 'N/A'}}</h4>
                     </div>
-                    <div>
+                    <div class="d-block text-center">
                         <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
               <path class="st0" d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z"/>
               <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z"/>
@@ -637,27 +637,26 @@
                         </ul>
                 </ul>
             </div>
-            <div class="matching-details12" id="matchingDetails-{{profile.ProfileId}}">
+            <div class="matching-details h-a" id="matchingDetails-{{profile.ProfileId}}">
                 <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>
-                <h4>Video Profiles</h4>
+
 
                 <div class="details">
                     <!-- <div *ngIf="" -->
-                    <div class="row video-scroll">
-                        <div class="col-md-6">
-                            <h6>Video Profile</h6>
+                    <div class="video-scroll">
+                        <div class="w-75 m-auto d-block cls-rel">
+                            <h6 class="video-tittle">Sizzle Video</h6>
                             <!-- <video controls="">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
 </video>-->
                             <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
+                            <div class="status shortlisted pull-right"><a class="show-matching-details" data-toggle="matching-details" href="javascript:void(0)">candidate Profile</a></div>
                         </div>
+                        <!--                         
                         <div class="col-md-6">
                             <h6>Video Sizzle</h6>
-                            <!-- <video controls="">
-<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-</video> -->
                             <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
