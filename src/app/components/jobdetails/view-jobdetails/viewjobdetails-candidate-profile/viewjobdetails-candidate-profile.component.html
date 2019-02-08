@@ -52,14 +52,14 @@
                                 <div class="bottom1">
                                     <ul class="dropdown-menu dropdown-menu-right" style="height: 143px;">
                                         <li>
-                                            <a href="{{profile.Email}}">
+                                            <!--<a href="{{profile.Email}}">-->
                                                 <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
-                                            </a>
+                                            <!--</a>-->
                                         </li>
                                         <li>
-                                            <a href="tel:+231112223">
+                                            <!--<a href="tel:+231112223">-->
                                                 <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
-                                            </a>
+                                            <!--</a>-->
                                         </li>
                                         <li>
                                             <div>
@@ -85,7 +85,7 @@
                             </div>
 
                         </div>
-                        <div class="dropdown ">
+                        <!-- <div class="dropdown ">
 
 
                             <div class="tooltip1">
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
 
                     </h1>
                 </ng-container>
@@ -191,8 +191,8 @@
                                                 <div class="media">
                                                     <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
                                                     <div class="media-body">
-                                                        <h5 class="mt-0">Masters</h5>
-                                                        Computer Science
+                                                        <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
+                                                        {{add3Dots(profile.Specialization.split('|')[0],20)}}
                                                     </div>
                                                 </div>
                                             </a>
