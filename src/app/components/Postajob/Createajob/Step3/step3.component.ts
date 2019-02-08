@@ -22,6 +22,7 @@ import { QualificationsComponent } from '../Step2/qualifications.component';
 import { StepsComponent } from '../steps.component';
 import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 import { MatDialog } from '@angular/material';
+import { EmploymentType } from '../../../../../models/employmenttype.model';
 // import { SalarysliderComponent } from './salaryslider.component';
 
 @Component({
@@ -67,10 +68,12 @@ export class Step3Component implements OnInit {
   customer: any;
   userId: any;
   customerId: any;
-  complete:any;
+  complete: any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
 
+  employmentType: EmploymentType;
+  show = false;
   // pjSkill: PjSkill;
   // pjRole: PjRole;
   // pjDisc: PjDisc;
@@ -89,7 +92,7 @@ export class Step3Component implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private steps: StepsComponent, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
-      this.complete=JSON.parse(localStorage.getItem('completed'));
+      this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
     this.appService.currentcategorytitle.subscribe((data) => {
@@ -175,6 +178,14 @@ export class Step3Component implements OnInit {
   ngOnInit() {
   }
 
+  changeEmploymentType() {
+    this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
+    if (this.employmentType.EmploymentTypeId === 2) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
+  }
 
   postJob(step) {
     // this.appService.updateStepNumber(step);
@@ -240,7 +251,7 @@ export class Step3Component implements OnInit {
 
     // step3
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
-    this.insertJob.SalaryTypeId = this.empType.salaryTypeSelected.SalaryTypeId; 
+    this.insertJob.SalaryTypeId = this.empType.salaryTypeSelected.SalaryTypeId;
     // this.insertJob.MinimumSalary = this.salary.minAnnualRate.toString();
     // this.insertJob.MaximumSalary = this.salary.minAnnualRate.toString();
 
@@ -300,15 +311,12 @@ export class Step3Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        if(this.complete >0)
-        {
+        if (this.complete > 0) {
           this.steps.step4toggleClass(this.complete);
-        }
-        else
-        {
+        } else {
           this.steps.step4toggleClass(3);
         }
-        
+
         this.router.navigate(['/app-createajob/app-steps-step4']);
       }
     });
@@ -317,12 +325,9 @@ export class Step3Component implements OnInit {
 
 
   backtoStep2() {
-    if(this.complete >0)
-    {
+    if (this.complete > 0) {
       this.steps.step2toggleClass(this.complete);
-    }
-    else
-    {
+    } else {
     this.steps.step2toggleClass(1);
     }
   }
