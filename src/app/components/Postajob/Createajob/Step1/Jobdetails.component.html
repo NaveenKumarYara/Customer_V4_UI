@@ -26,7 +26,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched && totMinExp.dirty">Required.</small>
           <!-- {{minExperience}} {{ maxExperience}} -->
-           <small class="text-danger" *ngIf="valdiateExperience(minExperience,maxExperience)">
+          <small class="text-danger" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
               Can't be > Max Exp!
           </small>
           <!-- <small class="text-danger" *ngIf="maxExperience < minExperience">
@@ -40,7 +40,7 @@
           </ng-select>
           <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched && totMaxExp.dirty">Required.</small>
           <!-- <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">  -->
-            <small class="text-danger" *ngIf="valdiateExperience(minExperience,maxExperience) "> 
+              <small class="text-danger" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
              Can't be < Min Exp!
           </small>
         </div>
