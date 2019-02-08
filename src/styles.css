@@ -8834,7 +8834,7 @@ button.close {
 }
 
 .radio input:checked+.radio-btn {
-    background-image: url("assets/images/check.png");
+    background-image: url("assets/images/check-mark.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -20303,7 +20303,7 @@ a.ui-button:active,
 }
 
 .page--company-profile.edit-mode .card--basic-info .video-profile {
-  margin-top:3%;
+    margin-top: 3%;
 }
 
 .page--company-profile.edit-mode .card--basic-info .actions {
@@ -21802,9 +21802,13 @@ input[type="text"].form-control {
 .ng-select.custom-style>.ng-select-container {
     color: #101010;
 }
+
+
 /* .ng-select .ng-has-value .ng-placeholder {
     display: block;
 } */
+
+
 /* .ng-select .ng-has-value .ng-placeholder {
     display: none;
 } */

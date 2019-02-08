@@ -3,14 +3,16 @@
         <form action="" class="form-inline">
             <div class="pull-left">
                 <div class="form-group">
+                    <!--
                     <label for="view">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="21.7" height="14.4">
               <path d="M11.4 14.4C5 14.4 2.1 10.1 2 9.9c-.3-.3-.2-.9.2-1.1.4-.3.9-.2 1.1.2.1.1 2.6 3.7 8 3.7 4.7 0 7.7-4.4 8.5-5.7-.6-1.2-3.1-5.3-9-5.3-6.8 0-9.3 5.8-9.3 5.9-.1.4-.5.6-1 .4s-.6-.7-.5-1.1C.1 6.9 2.9 0 10.9 0s10.7 6.6 10.7 6.7c.1.2.1.5 0 .7-.2.3-3.8 7-10.2 7z" />
               <path d="M10.9 10.9a3.8 3.8 0 1 1 0-7.6 3.8 3.8 0 0 1 0 7.6zm0-5.9c-1.2 0-2.1.9-2.1 2.1 0 1.2.9 2.1 2.1 2.1S13 8.3 13 7.1C13 5.9 12 5 10.9 5z" />
               <title>View</title>
             </svg>
-            <!-- <span>View</span> -->
+            
           </label>
+          -->
                     <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy" (change)="changeViewby($event.target.value)">
             <option default value="1">Highest Matching</option>
             <option value="2">Least Matching</option>
@@ -21,7 +23,7 @@
                 </div>
             </div>
             <div class="pull-right">
-                <div class="search-toggle">
+                <div class="search-toggle cls-rel">
                     <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
                         <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">
                         <div class="searchList" *ngIf="SearchList.length>0">
@@ -32,6 +34,8 @@
                         <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
                     </form>
                 </div>
+                <!--search-->
+                <!--
                 <div class="search_area">
                     <input type="checkbox" id="toggle-1" style="display:none">
                     <input list="search_items" class="search_f" type="text" placeholder="search">
@@ -46,6 +50,8 @@
                   <img class="search-icon" src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTkuMSIgaGVpZ2h0PSIxOS4xIiBmaWxsPSIjOWVhYmMwIj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNy45IDE1LjhDMy42IDE1LjggMCAxMi4zIDAgNy45IDAgMy42IDMuNSAwIDcuOSAwYzQuMyAwIDcuOSAzLjUgNy45IDcuOSAwIDQuMy0zLjYgNy45LTcuOSA3Ljl6bTAtMTRjLTMuMyAwLTYuMSAyLjctNi4xIDYuMSAwIDMuMyAyLjcgNi4xIDYuMSA2LjEgMy4zIDAgNi4xLTIuNyA2LjEtNi4xLS4xLTMuNC0yLjgtNi4xLTYuMS02LjF6Ij48L3BhdGg+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE4LjIgMTkuMWMtLjIgMC0uNS0uMS0uNi0uM2wtNS4zLTUuM2MtLjQtLjQtLjQtLjkgMC0xLjNzLjktLjQgMS4zIDBsNS4zIDUuM2MuNC40LjQuOSAwIDEuMy0uMi4yLS41LjMtLjcuM3oiPjwvcGF0aD4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3N2Zz4=">
                   </label>
                 </div>
+                -->
+                <!--#search-->
 
 
                 <div class="adv-filters-btn btn ml-2" (click)="updateDetailAdvanceSearch()">

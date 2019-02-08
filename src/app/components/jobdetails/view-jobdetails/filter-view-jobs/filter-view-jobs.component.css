@@ -174,3 +174,25 @@ input::-webkit-input-placeholder {
 .search_area .search_area img {
     margin: auto;
 }
+
+.search-toggle form>input[type=text]#searchStr {
+    background: #ffffff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 0px 10px 0px 32px;
+    border-radius: 0em;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    position: relative;
+    left: auto;
+    margin-right: 1rem;
+}
+
+.cls-rel {
+    position: relative;
+}
+
+.searchList {
+    position: absolute;
+    z-index: 999;
+    height: 50vh;
+}

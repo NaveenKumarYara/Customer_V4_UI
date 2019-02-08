@@ -985,7 +985,8 @@ h1.title img {
     left: -100%;
     width: 100%;
     background-color: #F1F2F9;
-    padding: 27px;
+    /* padding: 27px; */
+    padding: 38px 47px 13px 47px;
     text-align: center;
     -webkit-transition: ease 0.3s all;
     transition: ease 0.3s all;
@@ -1113,10 +1114,45 @@ h1.title img {
     height: auto;
 }
 
-..tooltip1 {
+.tooltip1 {
     padding-bottom: 10px;
 }
 
 .tooltip1:hover .custom_dropdown-menu {
     display: block;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.w-75 {
+    width: 75% !important;
+}
+
+.m-auto {
+    margin: auto!important;
+}
+
+.cls-rel {
+    position: relative;
+}
+
+.video-tittle {
+    position: absolute;
+    top: -30px;
+    left: 0;
+}
+
+.matching-details.open.h-a {
+    height: auto;
+    padding: 38px 47px 13px 47px !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.text-center {
+    text-align: center;
 }
