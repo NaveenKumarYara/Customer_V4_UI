@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step1/Jobresponsibilities.component';
@@ -23,6 +23,7 @@ personTypes: DiscResult[] = [];
 jobdetailscustomer: GetJobDetailCustomer;
 eJcategory = new CategoryList();
 ejEmploymentType = new EmploymentType();
+ejSalaryType = new Salary(1, 'Hourly');
 ejInterviewType = new InterviewType();
 ejHiringManager = new CustomerUsers();
 ejLocations = new PrefLocation();
@@ -105,9 +106,15 @@ ejPersonSingleList: PjDisc[] = [];
       }
       this.appService.stepNumber.next(this.jobdetailscustomer.JobInfo.StepNumber);
       this.appService.isDrafted.next(this.jobdetailscustomer.JobInfo.IsDrafted);
+
       this.ejEmploymentType.EmploymentType = this.jobdetailscustomer.JobInfo.EmploymentType;
       this.ejEmploymentType.EmploymentTypeId = this.jobdetailscustomer.JobInfo.EmploymentTypeId;
       this.appService.employmentType.next(this.ejEmploymentType);
+
+      this.ejSalaryType.SalaryType = this.jobdetailscustomer.JobInfo.SalaryType;
+      this.ejSalaryType.SalaryTypeId = this.jobdetailscustomer.JobInfo.SalaryTypeId;
+      this.appService.salaryType.next(this.ejSalaryType);
+
       this.appService.contractDuration.next(this.jobdetailscustomer.JobInfo.ContractDuration);
       // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
       // this.appService.contractExtension.next(this.jobdetailscustomer.ContractExtended);

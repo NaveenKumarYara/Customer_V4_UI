@@ -77,7 +77,14 @@ customerId: any;
     }
     return this.expYears;
 }
-
+valdiateExperience(min, max): boolean {
+const maximum = parseInt(max, 10);
+const minium = parseInt(min, 10);
+if (maximum < minium) {
+  return true;
+}
+return false;
+}
 suggestedJobTitle() {
   this.appService.suggestJobTitle(this.customerId).subscribe(res => {
     this.suggestedTitle = res;

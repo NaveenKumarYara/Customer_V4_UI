@@ -9,6 +9,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 import { MatDialog } from '@angular/material';
 import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
+import { Salary } from '../../models/jobPostInfo';
 @Component({
   selector: 'app-steps-step3-employmenttype',
   templateUrl: './employmenttype.component.html'
@@ -18,13 +19,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
  employmenttypelist: any;
   employmentTypeId: number;
   employmentType: EmploymentType;
-  salaryTypelist: string[];
-  salaryType = 1;
+  salaryTypelist: any;
+  // salaryType = 1;
+  salaryTypeSelected: Salary;
   minAnnualRate = 1000;
   maxAnnualRate = 10000;
   minHourRate = 20;
   maxHourRate = 100;
-  salaryTypeSelected: any;
+  // salaryTypeSelected: any;
   annual: Options = {
     floor: 0,
     step: 500,
@@ -68,7 +70,9 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
   selectSalaryType(val) {
     // this.employmentTypeId = val.employmentTypeId;
    // this.appService.updateEmploymentType(val);
-      this.salaryType = val === 'Annual' ? 2 : 1;
+     // this.salaryType = val === 'Annual' ? 2 : 1;
+     this.salaryTypeSelected = val;
+     this.appService.updatetSalaryType(this.salaryTypeSelected);
   }
   selectEmpType(val) {
     // this.employmentTypeId = val.employmentTypeId;
@@ -98,15 +102,19 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     });
   }
   populateSalaryTypes() {
-    this.salaryTypelist = this.appService.getSalaryType();
+    this.appService.getSalaryType().subscribe(res => {
+      this.salaryTypelist = res.filter(x => x.SalaryType);
+    });
+    // this.salaryTypelist = this.appService.getSalaryType();
   }
   ngOnInit() {
     this.populateEmploymentType();
     this.populateSalaryTypes();
   //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
-    this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
-    this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);
+  //  this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
+  this.appService.currentSalaryTYpe.subscribe(x => this.salaryTypeSelected = x);
+  this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);
     this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x);
     this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
     this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
@@ -114,7 +122,9 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
   }
   minAnnualChangeStart(changeContext: ChangeContext): void {
     // this.logText += `minAnnualChangeStart(${this.getChangeContextString(changeContext)})\n`;
-     this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate, this.salaryType );
+    this.minHourRate = this.minAnnualRate / 2000;
+     this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate,  this.salaryTypeSelected.SalaryTypeId  );
+
  }
 
  onAnnualChange(changeContext: ChangeContext): void {
@@ -123,12 +133,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
  maxAnnualChangeEnd(changeContext: ChangeContext): void {
   // this.logText += `maxAnnualChangeEnd(${this.getChangeContextString(changeContext)})\n`;
- this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate, this.salaryType );
+  this.maxHourRate = this.maxAnnualRate / 2000;
+ this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate , this.salaryTypeSelected.SalaryTypeId  );
  }
 
  minHourlyChangeStart(changeContext: ChangeContext): void {
   // this.logText += `minAnnualChangeStart(${this.getChangeContextString(changeContext)})\n`;
-   this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate, this.salaryType );
+  this.minAnnualRate = this.minHourRate * 2000;
+   this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate, this.salaryTypeSelected.SalaryTypeId  );
 }
 
 onHourlyChange(changeContext: ChangeContext): void {
@@ -137,7 +149,8 @@ onHourlyChange(changeContext: ChangeContext): void {
 
 maxHourlyChangeEnd(changeContext: ChangeContext): void {
 // this.logText += `maxAnnualChangeEnd(${this.getChangeContextString(changeContext)})\n`;
-this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate, this.salaryType );
+this.maxAnnualRate = this.maxHourRate * 2000;
+this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate , this.salaryTypeSelected.SalaryTypeId  );
 }
 
 //  getChangeContextString(changeContext: ChangeContext): string {
