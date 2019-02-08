@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -10,12 +10,15 @@ import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 import { MatDialog } from '@angular/material';
 import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 import { Salary } from '../../models/jobPostInfo';
+// import { EventEmitter } from 'events';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-steps-step3-employmenttype',
   templateUrl: './employmenttype.component.html'
 })
 
 export class EmploymentTypeComponent implements OnInit, OnDestroy {
+  @Output() myEmploymentType = new EventEmitter();
  employmenttypelist: any;
   employmentTypeId: number;
   employmentType: EmploymentType;
@@ -76,7 +79,12 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
   }
   selectEmpType(val) {
     // this.employmentTypeId = val.employmentTypeId;
+
     this.appService.updateEmploymentType(val);
+   // if (val.EmploymentTypeId === 2) {
+    this.myEmploymentType.emit(null);
+    // }
+    // else
       // this.salaryType = val.EmploymentTypeId;
   }
   OpenScheduleInterviewDialog() {

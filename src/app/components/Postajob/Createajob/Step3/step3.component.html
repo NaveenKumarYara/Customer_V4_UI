@@ -1,15 +1,15 @@
 <div id="step3" class="tab-pane">
   <div class="tab-inner">
-    <app-steps-step3-employmenttype>
-    </app-steps-step3-employmenttype>
+    <app-steps-step3-employmenttype (myEmploymentType)="changeEmploymentType()"> </app-steps-step3-employmenttype>
    
-    <div class="form-group contract-details-group">
+    <div class="form-group contract-details-group" *ngIf="show">
+        
         <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
       <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
       <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
       <app-steps-step3-contractduration></app-steps-step3-contractduration>
       <app-steps-step3-contractextension></app-steps-step3-contractextension>
-    </div>
+    </div> 
     <app-steps-step3-interviewtype></app-steps-step3-interviewtype>
     <app-steps-step3-reportingmanager></app-steps-step3-reportingmanager>
     <app-steps-step3-teammembers></app-steps-step3-teammembers>
