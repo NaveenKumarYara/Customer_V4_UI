@@ -101,8 +101,10 @@
                                                 <div class="media">
                                                     <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
                                                     <div class="media-body">
+                                                      <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
                                                         <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
-                                                        {{add3Dots(profile.Specialization.split('|')[0],20)}}
+                                                        {{add3Dots(profile?.Specialization.split('|')[0],20)}}
+                                                     </ng-container>
                                                     </div>
                                                 </div>
                                             </a>
@@ -139,7 +141,7 @@
 
                         <div class="dropdown ">
 
-
+                       
                             <div class="tooltip1">
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                   </a>
@@ -197,8 +199,10 @@
                                                 <div class="media">
                                                     <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
                                                     <div class="media-body">
+                                                        <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
                                                         <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
-                                                        {{add3Dots(profile.Specialization.split('|')[0],20)}}
+                                                        {{add3Dots(profile?.Specialization.split('|')[0],20)}}
+                                                    </ng-container>
                                                     </div>
                                                 </div>
                                             </a>
