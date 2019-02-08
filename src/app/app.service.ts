@@ -455,8 +455,8 @@ getaddedPersonTypes() {
         this.handleError
       );
   }
-getCustomerUsers(customerId: number, userId: number): Observable<CustomerUsers[]> {
-  const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId;
+getCustomerUsers(customerId: number, userId: number,IsSuggest:number,SearchString:string): Observable<CustomerUsers[]> {
+  const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId+'&IsSuggest='+IsSuggest+'&SearchString='+SearchString;
   return this.http.get<string[]>(url)
     .catch(
       this.handleError

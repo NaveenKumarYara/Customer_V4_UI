@@ -46,7 +46,7 @@ export class ScheduleInterviewComponent implements OnInit {
   selectedUserName = '';
   teammembers: '';
   teammemberslist: CustomerUsers[];
-
+  SearchString:any;
   addedteammembers: '';
   addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
@@ -156,7 +156,7 @@ if(this.processSelection == null || this.processSelection == undefined)
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser,0,this.SearchString).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))

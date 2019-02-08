@@ -24,6 +24,8 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   customer:any;
   customerId:any;
   userId:any;
+  isSuggsted:any;
+  SearchString:any;
   selectedInput = new Subject<string> ();
   usersload: boolean;
   // managersAdd: PjTechnicalTeam[] = [];
@@ -50,7 +52,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersload = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId,0,this.SearchString).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersload = false)
         ))
