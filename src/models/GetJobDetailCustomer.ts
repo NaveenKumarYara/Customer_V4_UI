@@ -35,8 +35,8 @@ export class JobInfo {
     JobTitle: string;
     MinExperienceId: number;
     MaxExperienceId: number;
-    MinExperience: number;
-    MaxExperience: number;
+    MinExperience: string;
+    MaxExperience: string;
     CompleteDescription: boolean;
     JobDescription: string;
     NumberOfVacancies: number;
