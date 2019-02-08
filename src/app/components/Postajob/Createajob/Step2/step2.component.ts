@@ -41,6 +41,7 @@ export class Step2Component implements OnInit {
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
   customer: any;
+  complete:any;
   userId: any;
   customerId: any;
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
@@ -68,6 +69,7 @@ export class Step2Component implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.complete=JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
     this.appService.currentcategorytitle.subscribe((data) => {
@@ -155,8 +157,11 @@ export class Step2Component implements OnInit {
       this.appService.currentEmploymentType.subscribe((data) => {
         this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
       });
+      this.appService.currentSalaryTYpe.subscribe((data) => {
+        this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
+      });
     // this.insertJob.EmploymentTypeId = 1;
-    this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+    //this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
     if (this.insertJob.SalaryTypeId === 1) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
@@ -180,7 +185,15 @@ export class Step2Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.steps.step3toggleClass(2);
+      
+        if(this.complete >0)
+        {
+          this.steps.step3toggleClass(this.complete);
+        }
+        else
+        {
+          this.steps.step3toggleClass(2);
+        }
         this.router.navigate(['/app-createajob/app-steps-step3']);
       }
     });
@@ -194,7 +207,14 @@ export class Step2Component implements OnInit {
   }
 
   backtoStep1() {
+    if(this.complete >0)
+    {
+      this.steps.step1toggleClass(this.complete);
+    }
+    else
+    {
     this.steps.step1toggleClass(0);
+    }
   }
 
 

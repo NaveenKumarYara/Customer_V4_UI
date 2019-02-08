@@ -16,6 +16,7 @@ import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
+import{draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary } from './components/Postajob/models/jobPostInfo';
 
@@ -520,6 +521,16 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
         return res.json();
       });
   }
+
+GetEditDrafts(customerId:number,userId:number)
+{
+    const url = environment.EditDraft+ 'customerId='+customerId+ '&userId=' + userId;
+    return this.http.get<draftDetails[]>(url)
+        .catch(
+            this.handleError
+        );
+
+}
 
 postjob(body) {
   return this.http.post(environment.postjob, body)

@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 declare var $: any; 
 @Component({
   
-  selector: 'editdraft',
-  templateUrl: './draft.component.html',
-  styleUrls: ['./draft.component.css'],
+  selector: 'app-editdraft',
+  templateUrl: './draft.component.html'
 })
 export class EditDraftComponent {
 

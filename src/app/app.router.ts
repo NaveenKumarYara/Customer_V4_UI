@@ -97,7 +97,8 @@ const appRoutes: Routes =
     { path: 'about', component: AboutComponent},
     { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
-    {path: 'editdraft' ,component:EditDraftComponent },
+    {path: 'app-editdraft' ,component:EditDraftComponent },
+  
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [
     //     { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
@@ -110,7 +111,6 @@ const appRoutes: Routes =
     //     ]
     // },
     { path: 'app-createajob', component: CreateajobComponent ,
-
     children: [
       { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
        // {path: 'app-steps-step1/', component: Step1Component},
@@ -118,7 +118,7 @@ const appRoutes: Routes =
         {path: 'app-steps-step2', component: Step2Component},
         {path: 'app-steps-step3', component: Step3Component},
         {path: 'app-steps-step4', component: Step4Component},
-      
+    
       ]
   },
     { path: 'app-createajob/:jobId', component: CreateajobComponent ,
@@ -128,7 +128,7 @@ const appRoutes: Routes =
          {path: 'app-steps-step1', component: Step1Component},
           {path: 'app-steps-step2', component: Step2Component},
           {path: 'app-steps-step3', component: Step3Component},
-          {path: 'app-steps-step4', component: Step4Component}
+          {path: 'app-steps-step4', component: Step4Component},       
         ]
     },
     { path: 'app-searchresults', component: SearchresultsComponent },

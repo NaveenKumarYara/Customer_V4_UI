@@ -111,5 +111,7 @@ export const environment = {
 
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 
-    CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?'
+    CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+
+    EditDraft:'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?'
 };

@@ -34,9 +34,16 @@
   <li class="line"></li>
   <li [ngClass]="{ 'tab-list':!step4isClicked, 'tab-list active':step4isClicked }"
       (click)="step4toggleClass()">
-    <a data-toggle="tab" title="Step 4" routerLink="app-steps-step4">
-      <span class="step-check"></span>Step 4
-    </a>
+      <ng-container *ngIf="complete >3;else nocomp">
+        <a data-toggle="tab"  [ngClass]="{'completed':true}"  title="Step 4" routerLink="app-steps-step4">
+          <span class="step-check"></span>Step 4
+        </a>
+      </ng-container>
+      <ng-template #nocomp>
+        <a data-toggle="tab"title="Step 4" routerLink="app-steps-step4">
+          <span class="step-check"></span>Step 4
+        </a>
+      </ng-template>   
   </li>
 </ul>
 <header>
