@@ -85,7 +85,7 @@
                             </div>
 
                         </div>
-                        <!-- <div class="dropdown ">
+                        <div class="dropdown ">
 
 
                             <div class="tooltip1">
@@ -93,23 +93,29 @@
                                     <img src="../../../../../assets/images/graduation.svg" style="width: 25px;height: 25px;" />
                                 </a>
                                 <div class="bottom1">
-                                    <ul class="dropdown-menu dropdown-menu-right" style="height: 143px;">
+                                    <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
-                                            <a href="{{profile.QualificationName}}">
-                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.QualificationName}}
+                                            <a href="{{profile.Email}}">
+                                                <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
+
+                                                <div class="media">
+                                                    <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
+                                                    <div class="media-body">
+                                                        <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
+                                                        {{add3Dots(profile.Specialization.split('|')[0],20)}}
+                                                    </div>
+                                                </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="{{profile.Specialization}}">
-                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Specialization}}
-                                            </a>
-                                        </li>
+
 
                                     </ul>
                                 </div>
                             </div>
+                        </div>
 
-                        </div> -->
+
+
 
                     </h1>
                 </ng-container>
