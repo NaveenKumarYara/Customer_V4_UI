@@ -24,6 +24,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   @Input() joblist: JobDetails[];
   jobId: any;
   customer: any;
+  complete:any;
   userId: any;
   jobData: any;
   customerId: any;
@@ -51,8 +52,9 @@ export class JoblistGridlayoutComponent implements OnInit {
     }
     else
     {
+      this.complete = 4;
       this.router.navigate(['/app-createajob/', {jobId} ]);
-
+      localStorage.setItem('completed', JSON.stringify(this.complete));
       this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
     }
 

@@ -67,6 +67,7 @@ export class Step3Component implements OnInit {
   customer: any;
   userId: any;
   customerId: any;
+  complete:any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
 
@@ -88,6 +89,7 @@ export class Step3Component implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private steps: StepsComponent, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.complete=JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
     this.appService.currentcategorytitle.subscribe((data) => {
@@ -238,7 +240,7 @@ export class Step3Component implements OnInit {
 
     // step3
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
-    this.insertJob.SalaryTypeId = this.empType.employmentType.EmploymentTypeId;
+    this.insertJob.SalaryTypeId = this.empType.salaryTypeSelected.SalaryTypeId; 
     // this.insertJob.MinimumSalary = this.salary.minAnnualRate.toString();
     // this.insertJob.MaximumSalary = this.salary.minAnnualRate.toString();
 
@@ -298,7 +300,15 @@ export class Step3Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        this.steps.step4toggleClass(3);
+        if(this.complete >0)
+        {
+          this.steps.step4toggleClass(this.complete);
+        }
+        else
+        {
+          this.steps.step4toggleClass(3);
+        }
+        
         this.router.navigate(['/app-createajob/app-steps-step4']);
       }
     });
@@ -307,7 +317,14 @@ export class Step3Component implements OnInit {
 
 
   backtoStep2() {
+    if(this.complete >0)
+    {
+      this.steps.step2toggleClass(this.complete);
+    }
+    else
+    {
     this.steps.step2toggleClass(1);
+    }
   }
 
 }

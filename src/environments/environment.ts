@@ -15,6 +15,7 @@ export const environment = {
     educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',
     addneweducationEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveQualification',
     employmentTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType',
+    salaryTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetSalaryType',
     interviewtypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewType',
     NotificationEndPoint: 'http://api.tenendus.com:1090/IdentityAPI/api/GetNotification?',
     GetCustomerContacts: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
@@ -41,10 +42,10 @@ export const environment = {
     getCitiesendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities?',
     jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
     scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
-    EmailVaild:'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
-    EmailInvite:'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
-    ActivateUser:'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',
-    ValidateUser:'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
+    EmailVaild: 'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
+    EmailInvite: 'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
+    ActivateUser: 'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',
+    ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
     SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
@@ -110,5 +111,7 @@ export const environment = {
 
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 
-    CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?'
+    CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+
+    EditDraft:'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?'
 };

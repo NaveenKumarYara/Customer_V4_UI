@@ -24,18 +24,23 @@
             placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [loading]="peopleLoading" [(ngModel)]="minExperience"
             #totMinExp="ngModel" name="miniExperience" required>
           </ng-select>
-          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched">Required.</small>
-          <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
-            Can't be > Max Exp!
+          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched && totMinExp.dirty">Required.</small>
+          <!-- {{minExperience}} {{ maxExperience}} -->
+           <small class="text-danger" *ngIf="valdiateExperience(minExperience,maxExperience)">
+              Can't be > Max Exp!
           </small>
+          <!-- <small class="text-danger" *ngIf="maxExperience < minExperience">
+            Can't be > Max Exp!
+          </small> -->
         </div>
         <div class="col-md-6">
           <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true"
             placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [loading]="peopleLoading" [(ngModel)]="maxExperience"
             #totMaxExp="ngModel" name="maxiEperience" required>
           </ng-select>
-          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched">Required.</small>
-          <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">
+          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched && totMaxExp.dirty">Required.</small>
+          <!-- <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">  -->
+            <small class="text-danger" *ngIf="valdiateExperience(minExperience,maxExperience) "> 
              Can't be < Min Exp!
           </small>
         </div>

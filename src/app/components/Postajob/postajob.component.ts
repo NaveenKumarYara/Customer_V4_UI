@@ -26,8 +26,9 @@ export class PostajobComponent implements OnInit {
   ngOnInit() {
    // this.appService.;
   // this.reload();
+  localStorage.removeItem('completed');
   localStorage.removeItem('jobId');
-    localStorage.removeItem('EditMode');
+  localStorage.removeItem('EditMode');
   this.appService.personTypes = [];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
   this.appService.customerUsers = [];
@@ -94,6 +95,10 @@ createJob() {
   this.router.navigateByUrl('/app-createajob');
   // this.location.go('/app-createajob');
   // this.reload();
+}
+editDraft()
+{
+  this.router.navigateByUrl('/app-editdraft');
 }
 public reload(): any {
   return this.zone.runOutsideAngular(() => {

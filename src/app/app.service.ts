@@ -16,8 +16,9 @@ import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
+import{draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary } from './components/Postajob/models/jobPostInfo';
 
 
 const httpOptions = {
@@ -71,10 +72,10 @@ export class AppService {
     'Contract to Hire',
     '1099'
   ];
-  private salaryType: string[] = [
-    'Hourly', 'Annual'
-  ]; 
- 
+  // private salaryType: string[] = [
+  //   'Hourly', 'Annual'
+  // ];
+
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
@@ -99,7 +100,9 @@ export class AppService {
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
 
-
+  salType = new Salary(1, 'Hourly');
+  salaryType = new BehaviorSubject(this.salType);
+  currentSalaryTYpe = this.salaryType.asObservable();
 
   pMinexp: number;
    minExperience = new BehaviorSubject(this.pMinexp);
@@ -182,7 +185,10 @@ export class AppService {
   updateStepNumber(step: string) {
     this.stepNumber.next(step);
   }
-  getSalaryType() {
+  // getSalaryType() {
+  //   return this.salaryType;
+  // }
+  updatetSalaryType(type) {
     return this.salaryType;
   }
   updateSalaryRange(min: number, max: number, salaryType) {
@@ -516,6 +522,16 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
       });
   }
 
+GetEditDrafts(customerId:number,userId:number)
+{
+    const url = environment.EditDraft+ 'customerId='+customerId+ '&userId=' + userId;
+    return this.http.get<draftDetails[]>(url)
+        .catch(
+            this.handleError
+        );
+
+}
+
 postjob(body) {
   return this.http.post(environment.postjob, body)
   .map((res: Response) => res)
@@ -569,7 +585,7 @@ deactivateJob(body) {
   });
 }
 
-validateemail(email:string): Observable<GetEmailValidate> {
+validateemail(email: string): Observable<GetEmailValidate> {
   const url = environment.EmailVaild + 'email=' + email;
   return this.http.get<GetEmailValidate>(url)
     .debounceTime(1000)
@@ -624,7 +640,7 @@ updatepassword(body) {
   }
 
   ActivateUser(userId: number) {
-    const url = environment.ActivateUser+  'userId=' + userId;
+    const url = environment.ActivateUser +  'userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -700,7 +716,13 @@ updatepassword(body) {
         this.handleError
       );
   }
-
+  getSalaryType(): Observable<Salary[]> {
+    const url = environment.salaryTypeendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

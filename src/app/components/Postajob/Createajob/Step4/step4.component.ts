@@ -31,6 +31,8 @@ export class Step4Component implements OnInit {
   contractDuration: any;
   contractExtension: any;
   empType: any;
+  complete:any;
+  salaryType: any;
   intwType: any;
   reporting: any;
   customer: any;
@@ -41,6 +43,7 @@ export class Step4Component implements OnInit {
     private router: Router, private appService: AppService, private location: Location, private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
+      this.complete=JSON.parse(localStorage.getItem('completed'));
       this.userId = this.customer.UserId;
       this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
@@ -92,6 +95,9 @@ export class Step4Component implements OnInit {
 
     this.appService.currentEmploymentType.subscribe((data) => {
       this.empType = data.EmploymentTypeId; // And he have data here too!
+    });
+    this.appService.currentSalaryTYpe.subscribe((data) => {
+      this.salaryType = data.SalaryTypeId; // And he have data here too!
     });
     this.appService.currentContractDuration.subscribe((data) => {
       this.contractDuration = data; // And he have data here too!
@@ -165,7 +171,7 @@ export class Step4Component implements OnInit {
       //   this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
       // });
     // this.insertJob.EmploymentTypeId = 1;
-    this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+    this.insertJob.SalaryTypeId = this.salaryType;
     if (this.insertJob.EmploymentTypeId === 1) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
@@ -206,7 +212,14 @@ export class Step4Component implements OnInit {
   }
 
   backtoStep3() {
-    this.steps.step3toggleClass(2);
+    if(this.complete >0)
+    {
+      this.steps.step3toggleClass(this.complete);
+    }
+    else
+    {
+      this.steps.step3toggleClass(2);
+    }
   }
 
 

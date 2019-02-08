@@ -81,6 +81,11 @@ export class DiscResult {
   public checked: boolean;
 }
   //
+  export class Salary {
+    constructor(
+    public SalaryTypeId: number,
+    public SalaryType: string) {}
+    }
   export class GetDomain {
      public DomainId: number;
      public DomainName: string;

@@ -14,6 +14,7 @@ export class StepsComponent implements OnInit {
   step4isClicked = false;
   constructor(private route: ActivatedRoute,
     private router: Router) {
+      this.complete=JSON.parse(localStorage.getItem('completed'));
 
   }
 
