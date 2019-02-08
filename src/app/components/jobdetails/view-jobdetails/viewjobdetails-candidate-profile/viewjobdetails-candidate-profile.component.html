@@ -9,7 +9,8 @@
               </div>
               <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
               </div> -->
-                <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification">{{profile.CertificationName}}</div>
+                <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> {{profile.CertificationName}}</div>
+                
                 <ng-template #nocertification>
                     <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> Yet to Gain!</div>
                 </ng-template>
