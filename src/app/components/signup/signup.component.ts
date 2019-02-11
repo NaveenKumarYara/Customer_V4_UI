@@ -20,7 +20,7 @@ export class SignUpComponent {
   email:any;
   show : any = false;
   result :any;
-  emailPattern = ".+@.+\\.[a-z]+"; 
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   info =new Register();
   password:any;
   userId:any;

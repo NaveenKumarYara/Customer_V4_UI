@@ -42,10 +42,10 @@ export class EditDraftComponent {
   getData(){
     if(this.draft.length <= this.drafts.length){  
       let len = this.draft.length;
-      for(let i=len;i<= len+10;i++)
+      for(let i=len;i<= len+6;i++)
       {
         this.draft.push(this.drafts[i]);
-        if(i%10==0) break;
+        if(i%6==0) break;
       }
       this.spinner.hide();
     }
