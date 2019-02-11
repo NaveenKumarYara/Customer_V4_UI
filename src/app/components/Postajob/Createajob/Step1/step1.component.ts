@@ -37,7 +37,7 @@ export class Step1Component implements OnInit {
   pjEducationDetails: PjEducationDetails;
   pjTechnicalTeam: PjTechnicalTeam;
   pjJobAccessTo: PjJobAccessTo;
-  complete:any;
+  complete: any;
   pjSkillList: any = [];
   pjRoleList: any = [];
   pjDiscList: any = [];
@@ -47,10 +47,10 @@ export class Step1Component implements OnInit {
   pjJobAccessToList: any = [];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
-    , private steps: StepsComponent,private alertService : AlertService) {
+    , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
-      this.complete=JSON.parse(localStorage.getItem('completed'));
+      this.complete = JSON.parse(localStorage.getItem('completed'));
       this.userId = this.customer.UserId;
       this.route.params.subscribe(params => {
         console.log(params);
@@ -82,6 +82,9 @@ export class Step1Component implements OnInit {
    if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
    return false;
    }
+   if (this.jobProfile.hasCompleteDescription === true && this.jobProfile.jobDescription === '') {
+     return false;
+   }
     //  && this.jobResponsibility.roleIdList.length > 0
     this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
@@ -100,7 +103,7 @@ export class Step1Component implements OnInit {
         this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
       });
     // this.insertJob.EmploymentTypeId = 1;
-    //this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+    // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
     if (this.insertJob.SalaryTypeId === 1) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
@@ -127,24 +130,20 @@ this.insertJob.StepNumber = step;
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
        // this.steps.step2isClicked = true;
-        if(this.complete >0)
-        {
+        if (this.complete > 0) {
           this.steps.step2toggleClass(this.complete);
-        }
-        else
-        {
+        } else {
           this.steps.step2toggleClass(1);
         }
         this.router.navigate(['/app-createajob/app-steps-step2']);
       }
     });
-  } 
-  else {    
+  } else {
     this.alertService.error('please enter mandatory fields');
     setTimeout(() => {
       this.alertService.clear();
     }, 2000);
-    return false;   
+    return false;
    }
   }
 
