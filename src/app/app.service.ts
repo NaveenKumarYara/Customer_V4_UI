@@ -33,19 +33,21 @@ export class AppService {
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
 
+  constructor(private http: HttpClient) {
+  }
 
-     domain: GetDomain[] = [];
+  domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();
-     adddomain: PjDomain[] = [];
+  adddomain: PjDomain[] = [];
   adddomainChanged = new Subject<PjDomain[]>();
 
-   qualifications: Qualifications[] = [];
+  qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
 
-   addqualifications: PjEducationDetails[] = [];
+  addqualifications: PjEducationDetails[] = [];
   addqualificationsChanged = new Subject<PjEducationDetails[]>();
 
-   customerUsers: PjTechnicalTeam[] = [];
+  customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
 
   private interviewtype: InterviewType[] = [];
@@ -83,20 +85,20 @@ export class AppService {
   currentContractExtension = this.contractExtension.asObservable();
 
   myInterviewType = new InterviewType();
-   interviewType = new BehaviorSubject(this.myInterviewType);
+  interviewType = new BehaviorSubject(this.myInterviewType);
   currentInterviewType = this.interviewType.asObservable();
 
   myEmploymentType = new EmploymentType();
-   employmentType = new BehaviorSubject(this.myEmploymentType);
+  employmentType = new BehaviorSubject(this.myEmploymentType);
   currentEmploymentType = this.employmentType.asObservable();
 
- jobtitle = new BehaviorSubject('');
+  jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
   stepNumber = new BehaviorSubject('');
   currentStepNumber = this.stepNumber.asObservable();
 
-   myDraft: boolean;
+  myDraft: boolean;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
 
@@ -105,11 +107,11 @@ export class AppService {
   currentSalaryTYpe = this.salaryType.asObservable();
 
   pMinexp: number;
-   minExperience = new BehaviorSubject(this.pMinexp);
+  minExperience = new BehaviorSubject(this.pMinexp);
   currentminExp = this.minExperience.asObservable();
 
   pMaxexp: number;
-   maxExperience = new BehaviorSubject(this.pMaxexp);
+  maxExperience = new BehaviorSubject(this.pMaxexp);
   currentmaxExp = this.maxExperience.asObservable();
 
   myDescription: boolean;
@@ -130,21 +132,58 @@ export class AppService {
   location = new BehaviorSubject(this.myLocation);
   currentlocation = this.location.asObservable();
 
- myMinAnnualRate = 1000;
- myMaxAnnualRate = 10000;
- minAnnualRate = new BehaviorSubject(this.myMinAnnualRate);
- currentMinRate =  this.minAnnualRate.asObservable();
+  myMinAnnualRate = 1000;
+  myMaxAnnualRate = 10000;
+  minAnnualRate = new BehaviorSubject(this.myMinAnnualRate);
+  currentMinRate =  this.minAnnualRate.asObservable();
 
- maxAnnualRate = new BehaviorSubject(this.myMaxAnnualRate);
- currentMaxRate =  this.maxAnnualRate.asObservable();
+  maxAnnualRate = new BehaviorSubject(this.myMaxAnnualRate);
+  currentMaxRate =  this.maxAnnualRate.asObservable();
 
- myMinHourlyRate = 20;
- myMaxHourlyRate = 100;
- minHourlyRate = new BehaviorSubject(this.myMinHourlyRate);
- currentMinHourlyRate =  this.minHourlyRate.asObservable();
+  myMinHourlyRate = 20;
+  myMaxHourlyRate = 100;
+  minHourlyRate = new BehaviorSubject(this.myMinHourlyRate);
+  currentMinHourlyRate =  this.minHourlyRate.asObservable();
 
- maxHourlyRate = new BehaviorSubject(this.myMaxHourlyRate);
- currentMaxHourlyRate =  this.maxHourlyRate.asObservable();
+  maxHourlyRate = new BehaviorSubject(this.myMaxHourlyRate);
+  currentMaxHourlyRate =  this.maxHourlyRate.asObservable();
+
+  myreportingManager = new CustomerUsers();
+  reportingManager = new BehaviorSubject(this.myreportingManager);
+  currentcustomerUsers = this.reportingManager.asObservable();
+
+  myjobcategory = new CategoryList();
+  jobcategory = new BehaviorSubject(this.myjobcategory);
+  currentcategorytitle = this.jobcategory.asObservable();
+
+
+ selectedskilltype = new BehaviorSubject('Primary');
+ selectedskilltypechanges = this.selectedskilltype.asObservable();
+
+  personTypes: DiscResult[] = [];
+  personTypeChanged = new Subject<DiscResult[]>();
+
+  personTypeSingle: PjDisc[] = [];
+  personTypeSingleChanged = new Subject<PjDisc[]>();
+
+  primaryjobskills: Jobskills[] = [];
+  jobprimaryskillsChanged = new Subject<Jobskills[]>();
+
+  secondaryjobskills: Jobskills[] = [];
+  jobsecondaryskillsChanged = new Subject<Jobskills[]>();
+
+  responsibilities: Roles[] = [];
+  responsibilitesChanged = new Subject<Roles[]>();
+
+
+  addedresponsibilities: PjRole[] = [];
+  addedresponsibilitiesChanged = new Subject<PjRole[]>();
+
+  teammembers: CustomerUsers[] = [];
+  teammembersChanged = new Subject<CustomerUsers[]>();
+
+  addedteammembers: PjTechnicalTeam[] = [];
+  addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
 
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
@@ -214,9 +253,6 @@ export class AppService {
   //   this.reportingManager.next(reportingManager);
   // }
 
-  myreportingManager = new CustomerUsers();
-   reportingManager = new BehaviorSubject(this.myreportingManager);
-  currentcustomerUsers = this.reportingManager.asObservable();
 
 
   updateManager(customerUser: CustomerUsers) {
@@ -232,10 +268,6 @@ export class AppService {
 
   //  jobcategory: CategoryList[] = [];
   // currentcategorytitle = new Subject<CategoryList[]>();
-  myjobcategory = new CategoryList();
-   jobcategory = new BehaviorSubject(this.myjobcategory);
-  currentcategorytitle = this.jobcategory.asObservable();
-
 
   updateJobCategory(jobcategories: CategoryList) {
     // this.jobcategory.push(jobcategories);
@@ -250,19 +282,9 @@ export class AppService {
       );
   }
 
-
-  selectedskilltype = new BehaviorSubject('Primary');
-  selectedskilltypechanges = this.selectedskilltype.asObservable();
-
   updateSkillType(skilltype: string) {
     this.selectedskilltype.next(skilltype);
   }
-
-   personTypes: DiscResult[] = [];
-  personTypeChanged = new Subject<DiscResult[]>();
-
-   personTypeSingle: PjDisc[] = [];
-  personTypeSingleChanged = new Subject<PjDisc[]>();
 
   addPersonType(personTypeList: DiscResult[], personType: PjDisc, val?) {
       this.personTypes = personTypeList; // ush(personType);
@@ -283,14 +305,9 @@ export class AppService {
   getPersonTypes() {
     return this.personTypes.slice();
   }
-getaddedPersonTypes() {
+  getaddedPersonTypes() {
     return this.personTypeSingle.slice();
   }
-   primaryjobskills: Jobskills[] = [];
-  jobprimaryskillsChanged = new Subject<Jobskills[]>();
-
-   secondaryjobskills: Jobskills[] = [];
-  jobsecondaryskillsChanged = new Subject<Jobskills[]>();
 
   getPrimaryAddedJobSkills() {
     return this.primaryjobskills.slice();
@@ -327,13 +344,6 @@ getaddedPersonTypes() {
   }
 
 
-   responsibilities: Roles[] = [];
-  responsibilitesChanged = new Subject<Roles[]>();
-
-
-   addedresponsibilities: PjRole[] = [];
-  addedresponsibilitiesChanged = new Subject<PjRole[]>();
-
   getResponsibilities() {
     return this.responsibilities.slice();
   }
@@ -369,12 +379,6 @@ getaddedPersonTypes() {
   .map((res: Response) => res)
   .catch(this.handleError);
   }
-
-   teammembers: CustomerUsers[] = [];
-  teammembersChanged = new Subject<CustomerUsers[]>();
-
-    addedteammembers: PjTechnicalTeam[] = [];
-  addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
 
   getTeammembers() {
     return this.teammembers.slice();
@@ -455,17 +459,19 @@ getaddedPersonTypes() {
         this.handleError
       );
   }
-getCustomerUsers(customerId: number, userId: number,IsSuggest:number,SearchString:string): Observable<CustomerUsers[]> {
-  const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId+'&IsSuggest='+IsSuggest+'&SearchString='+SearchString;
-  return this.http.get<string[]>(url)
-    .catch(
-      this.handleError
-    );
-}
-addCustomerUsers(technicalTeam: PjTechnicalTeam) {
-  this.customerUsers.push(technicalTeam);
-  this.customerUserChanged.next(this.customerUsers.slice());
-}
+  getCustomerUsers(customerId: number, userId: number, isSuggest: boolean, SearchString: string): Observable<CustomerUsers[]> {
+    const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId + '&IsSuggest=' + isSuggest + '&SearchString=' + SearchString;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  addCustomerUsers(technicalTeam: PjTechnicalTeam) {
+    this.customerUsers.push(technicalTeam);
+    this.customerUserChanged.next(this.customerUsers.slice());
+  }
+
   getDomainDetails(): Observable<GetDomain[]> {
     const url = environment.domaincriteriaendpoint;
     return this.http.get<string[]>(url)
@@ -511,10 +517,6 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
     this.addqualificationsChanged.next(this.addqualifications.slice());
   }
 
-
-
-  constructor(private http: HttpClient) {
-  }
   getDashboarddata() {
     return this.http.get(this.apiUrl)
       .map((res: Response) => {
@@ -522,91 +524,89 @@ addCustomerUsers(technicalTeam: PjTechnicalTeam) {
       });
   }
 
-GetEditDrafts(customerId:number,userId:number)
-{
-    const url = environment.EditDraft+ 'customerId='+customerId+ '&userId=' + userId;
+  GetEditDrafts(customerId: number, userId: number) {
+    const url = environment.EditDraft + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<draftDetails[]>(url)
         .catch(
             this.handleError
         );
+  }
 
-}
-
-postjob(body) {
-  return this.http.post(environment.postjob, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
-getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
+  postjob(body) {
+    return this.http.post(environment.postjob, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+      });
+  }
+  getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
   const url = environment.GetCompanyLogo + 'customerId=' + customerId;
   return this.http.get<GetCompanyLogo>(url)
       .catch(
           this.handleError
       );
-}
-Login(body) {
-  return this.http.post(environment.Login, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
+  }
+  Login(body) {
+    return this.http.post(environment.Login, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
-ForgotPassword(body) {
-  return this.http.post(environment.ForgotPassword, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
+  ForgotPassword(body) {
+    return this.http.post(environment.ForgotPassword, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
-ResetPassword(body) {
-  return this.http.post(environment.ResetPassword, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
+  ResetPassword(body) {
+    return this.http.post(environment.ResetPassword, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
-signUp(body) {
-  return this.http.post(environment.signUp, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
-deactivateJob(body) {
-  return this.http.post(environment.deactivatejobEndpoint, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
+  signUp(body) {
+    return this.http.post(environment.signUp, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+  deactivateJob(body) {
+    return this.http.post(environment.deactivatejobEndpoint, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
-validateemail(email: string): Observable<GetEmailValidate> {
-  const url = environment.EmailVaild + 'email=' + email;
-  return this.http.get<GetEmailValidate>(url)
+  validateemail(email: string): Observable<GetEmailValidate> {
+    const url = environment.EmailVaild + 'email=' + email;
+    return this.http.get<GetEmailValidate>(url)
     .debounceTime(1000)
     .catch(
       this.handleError
     );
-}
-updateemail(body) {
-  return this.http.post(environment.updateemail, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
-updatepassword(body) {
-  return this.http.put(environment.updatepassword, body)
-  .map((res: Response) => res)
-  .catch((error: any) => {
-    return Observable.throw(error.json());
-  });
-}
+  }
+  updateemail(body) {
+    return this.http.post(environment.updateemail, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+  updatepassword(body) {
+    return this.http.put(environment.updatepassword, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
   postOppurtunities(opportunity: Dashboard) {
     // this.opportunities.push(opportunity);
     return this.http.post(this.apiUrl, opportunity)
@@ -666,7 +666,6 @@ updatepassword(body) {
   getContractExtension() {
     return this.contractextension;
   }
-
   getInterviewType(): Observable<InterviewType[]> {
     const url = environment.interviewtypeendpoint;
     return this.http.get<string[]>(url)
@@ -674,19 +673,13 @@ updatepassword(body) {
         this.handleError
       );
   }
-
-
-
   addNewQualification(body)  {
     return this.http.post(environment.addneweducationEndpoint, body)
     .map((res: Response) => res)
     .catch(this.handleError);
-  }
+    }
 
-
-
-
- suggestJobTitle(customerId: number) {
+    suggestJobTitle(customerId: number) {
     const url = environment.SuggestJobTitleEndPoint + 'customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(

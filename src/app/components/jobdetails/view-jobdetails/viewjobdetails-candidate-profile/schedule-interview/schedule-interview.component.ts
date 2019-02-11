@@ -46,7 +46,6 @@ export class ScheduleInterviewComponent implements OnInit {
   selectedUserName = '';
   teammembers: '';
   teammemberslist: CustomerUsers[];
-  SearchString:any;
   addedteammembers: '';
   addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
@@ -137,11 +136,10 @@ if (this.processSelection === 1) {
   // this.schIntw.PhoneNumber=this.userId;
 }
 
-if(this.processSelection == null || this.processSelection == undefined)
-{
-  this.processSelection === 1
+if (this.processSelection == null || this.processSelection === undefined) {
+  this.processSelection === 1;
 }
- this.schIntw.InterviewTypeId = this.processSelection; 
+ this.schIntw.InterviewTypeId = this.processSelection;
  this.schIntw.StatusChangedByUserId = this.customerUser;
  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
@@ -156,7 +154,7 @@ if(this.processSelection == null || this.processSelection == undefined)
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser,0,this.SearchString).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser, false, '').pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))
