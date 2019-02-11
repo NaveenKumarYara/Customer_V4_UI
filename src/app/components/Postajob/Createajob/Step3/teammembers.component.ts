@@ -21,7 +21,6 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   teammemberslist: CustomerUsers[];
   customer: any;
   customerId: any;
-  SearchString:any;
   userId: any;
   addedteammembers: '';
   addedteammemberslist: PjTechnicalTeam[];
@@ -68,7 +67,7 @@ if (this.teamForm.valid) {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId,0,this.SearchString).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId, false, term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersloading = false)
         ))

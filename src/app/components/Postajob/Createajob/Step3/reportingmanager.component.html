@@ -11,7 +11,7 @@
   [virtualScroll]="true"
   [(ngModel)]="selectedItem"
   (change)="updateManager()"> -->
-  <ng-select class="custom-style" [items]="reportingmanagersList | async"
+  <!-- <ng-select class="custom-style" [items]="reportingmanagersList | async"
   placeholder="Select Reporting Manager"
   bindLabel="FirstName"
   bindValue="UserId"  
@@ -21,8 +21,30 @@
   [loading]="usersload"
   [(ngModel)]="selectedManager"
   [virtualScroll]="true">
+</ng-select> -->
+<ng-select class="custom-style" 
+[items]="reportingmanagersList | async" 
+placeholder="Type and Select" 
+bindLabel="FirstName"
+bindValue="FirstName"
+(change)="updateManager($event)" [typeahead]="selectedInput" 
+[hideSelected]="true" [loading]="usersload"
+[(ngModel)]="selectManager" [virtualScroll]="true"  #reportingMngr="ngModel" name="reportingMgr">
+<ng-template ng-label-tmp let-item="reportingmanagersList">  
+       <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
+       {{selectManager}}
+       <!-- {{selectedCategory.JobCategoryId}} -->
+       <!-- {{selectedCategory.Category}} -->
+  <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
+</ng-template>
 </ng-select>
-<ul class="data-list">
+<!-- <ul class="data-list">
     <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
-  </ul>
+  </ul> -->
 </div>
+<div class="job-title-suggestions">
+    <div class="checkbox" *ngFor="let  managers of suggestedManagers; let i = index">
+      <label><input type="radio" [(ngModel)]="selectedManager"  (change)="updateManager(managers)" name="mangr" [value]="managers"><span class="box">{{managers.FirstName}}</span> </label>
+    </div>     
+    
+  </div>

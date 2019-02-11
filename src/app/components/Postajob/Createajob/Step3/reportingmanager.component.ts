@@ -20,14 +20,16 @@ import { Observable } from 'rxjs/Observable';
 export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   selectedManager: CustomerUsers;
+  selectManager: string;
   reportingmanagersList: Observable<CustomerUsers[]>;
-  customer:any;
-  customerId:any;
-  userId:any;
-  isSuggsted:any;
-  SearchString:any;
+  customer: any;
+  customerId: any;
+  userId: any;
+  isSuggsted: any;
   selectedInput = new Subject<string> ();
   usersload: boolean;
+  suggestedManagers: CustomerUsers[] = [];
+
   // managersAdd: PjTechnicalTeam[] = [];
   // selectedItem: any;
  // private subscription: Subscription;
@@ -41,7 +43,10 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   }
   updateManager(val) {
    // this.appService.updateManager(this.selectedItem.toString());
-    this.appService.updateManager(val);
+     this.selectManager = val.FirstName;
+     this.selectedManager.FirstName  = val.FirstName;
+   this.selectedManager.UserId  = val.UserId;
+    this.appService.updateManager(this.selectedManager);
   }
 
   // getjobaccessto1000042
@@ -52,7 +57,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.usersload = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId,this.userId,0,this.SearchString).pipe(
+        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId, false, term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.usersload = false)
         ))
@@ -60,10 +65,19 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     );
   }
 
+  suggestedManager() {
+    this.appService.getCustomerUsers(this.customerId, this.userId, true, '').subscribe(res => {
+      this.suggestedManagers = res;
+      // this.discResult.forEach(cc => cc.checked = false);
+    });
+  }
   ngOnInit() {
+    this.suggestedManager();
+
      this.getcustomerusers();
    //  if (localStorage.getItem('jobId') != null) {
       this.appService.currentcustomerUsers.subscribe(x => this.selectedManager = x);
+      this.selectManager = this.selectedManager.FirstName;
   //   }
     }
      // this.appService.currentManager.subscribe(x => this.selectedInput = x);
