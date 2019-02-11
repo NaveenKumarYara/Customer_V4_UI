@@ -83,6 +83,11 @@ ejPersonSingleList: PjDisc[] = [];
 
 
   // }
+  back()
+  {
+    this.router.navigateByUrl('/app-postajob');
+  }
+  
   PopulateJobdetail (jobId) {
     localStorage.setItem('jobId', jobId);
     localStorage.setItem('EditMode', 'Yes');

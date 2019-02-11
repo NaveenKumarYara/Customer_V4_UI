@@ -22,8 +22,8 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="job-type">Location</label>
-            <form #form="ngForm">
-              <input  autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetCity(searchText.value)">      
+            <form #form="ngForm"  class="cls-rel">
+              <input class="form-control" autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetCity(searchText.value)">      
                 <div class="searchList" *ngIf="SearchList.length>0">
                   <ul class="searchList-dropdown">
                     <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.CityId,slist.CityName.split(',')[0])">{{slist.CityName.split(',')[0]}}</li>

@@ -647,6 +647,15 @@ updatepassword(body) {
       );
   }
 
+  Deletedraft(jobId:number)
+  {
+    const url = environment.Deletedraft +  'jobId=' + jobId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = environment.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)

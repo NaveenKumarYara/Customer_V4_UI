@@ -1,79 +1,84 @@
-
 a {
 	color: #69C;
 	text-decoration: none;
 }
+
 a:hover {
 	color: #F60;
 }
+
 h1 {
 	font: 1.7em;
 	line-height: 110%;
 	color: #000;
 }
+
 p {
 	margin: 0 0 20px;
 }
 
-
 input {
 	outline: none;
 }
+
 input[type=text] {
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
 	font-family: inherit;
 	font-size: 100%;
 }
+
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
-	display: none; 
+	display: none;
 }
 
-.ml-2{
-    margin-left:1rem; 
+.ml-2 {
+	margin-left: 1rem;
 }
+
 input[type=text] {
 	background: #f7f2f2 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
 	border: solid 1px #ccc;
 	padding: 0px 10px 0px 32px;
-	
 	-webkit-border-radius: 10em;
 	-moz-border-radius: 10em;
 	border-radius: 10em;
-	
 	-webkit-transition: all .5s;
 	-moz-transition: all .5s;
-    transition: all .5s;
-    position: relative;
-    left: auto;
+	transition: all .5s;
+	position: relative;
+	left: -12px;
 }
+
 input[type=search]:focus {
 	width: 130px;
 	background-color: #fff;
 	border-color: #66CC75;
-	
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+	-moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+	box-shadow: 0 0 5px rgba(109, 207, 246, .5);
 }
-
 
 input:-moz-placeholder {
 	color: #999;
 }
+
 input::-webkit-input-placeholder {
 	color: #999;
 }
+
 #demo-2 input[type=search] {
 	width: 15px;
 	padding-left: 10px;
 	color: transparent;
 	cursor: pointer;
 }
+
 #demo-2 input[type=search]:hover {
 	background-color: #fff;
 }
+
 #demo-2 input[type=search]:focus {
 	width: 130px;
 	padding-left: 32px;
@@ -81,34 +86,113 @@ input::-webkit-input-placeholder {
 	background-color: #fff;
 	cursor: auto;
 }
+
 #demo-2 input:-moz-placeholder {
 	color: transparent;
 }
+
 #demo-2 input::-webkit-input-placeholder {
 	color: transparent;
 }
+
+
 /*Styles 23-10-2018*/
-.searchList{
-    overflow: auto;
- }
-  .searchList ul.searchList-dropdown{
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    list-style: none;
-    padding: 0px;
-    overflow: hidden;
-    overflow-y: auto;
-    position: relative;
-    display: block;
-    margin-top:-2px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  .searchList li.searchList-options{
-    cursor: pointer;
-    padding: 10px 10px;
-  }
-  .searchList li.searchList-options:hover, .searchList li.searchList-options::selection{
-    background-color: #ebf5ff;
-  }
-  
+
+.searchList {
+	overflow: auto;
+}
+
+.searchList ul.searchList-dropdown {
+	background-color: #fff;
+	border: 1px solid #ebebeb;
+	list-style: none;
+	padding: 0px;
+	overflow: hidden;
+	overflow-y: auto;
+	position: relative;
+	display: block;
+	margin-top: -2px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.searchList li.searchList-options {
+	cursor: pointer;
+	padding: 10px 10px;
+}
+
+.searchList li.searchList-options:hover,
+.searchList li.searchList-options::selection {
+	background-color: #ebf5ff;
+}
+
+
+/* search animation */
+
+.search_area {
+	/* float: right; */
+	display: inline;
+}
+
+.toggle-pointer {
+	cursor: pointer;
+	padding: 0px !important;
+}
+
+.search_area .search_f {
+	border: 0px;
+	position: relative;
+	top: -4px;
+	left: 0;
+	width: 0px;
+	outline: none;
+	border-radius: 0em !important;
+	background: transparent;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+
+.search_area input[type=checkbox]:checked~.search_f {
+	width: 200px;
+	border-bottom: 1px solid #6a7e9c;
+	right: 100%;
+	top: -4px;
+	height: 50px;
+}
+
+.search_area input[type=text] {
+	border-radius: 0em !important;
+}
+
+.search_area .search-icon {
+	background-color: #ffffff;
+	padding: 14px 15px;
+	border: 1px solid #E5E6EB;
+}
+
+.search_area .search_area img {
+	margin: auto;
+}
+
+.search-toggle form>input[type=text]#searchStr {
+	background: #ffffff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 0px 10px 0px 32px;
+	border-radius: 0em;
+	-webkit-transition: all .5s;
+	transition: all .5s;
+	position: relative;
+	left: -12px;
+	margin-right: 1rem;
+}
+
+.cls-rel {
+	position: relative;
+}
+
+.searchList {
+	position: absolute;
+	z-index: 999;
+	height: 50vh;
+}

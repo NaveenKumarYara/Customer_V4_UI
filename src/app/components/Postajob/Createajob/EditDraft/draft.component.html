@@ -4,15 +4,17 @@
 <body class="page page--manage-jobs">
     <main>
       <div class="container">
-         
+        <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+            <p style="font-size: 20px; color: white">Loading...</p>
+          </ngx-spinner>
           <div class="filters row">
 
                         <div class="col-md-12">
                             <a class="btn btn-border btn-lg" (click)='back()'>Back</a>
                         </div>
-
-<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of drafts">
-    <div class="card">
+<ng-container *ngIf="drafts!=null;else Nodrafts">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of draft">
+    <div class="card" *ngIf="job!=null">
         <div class="dropdown card-dropdown">
             <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
@@ -25,7 +27,7 @@
                     <a (click)="editJob(job.JobId)">Edit</a>
                 </li>
                 <li>
-                    <a>Delete</a>
+                    <a (click)=" DeleteDraft(job.JobId)">Delete</a>
                 </li>
             </ul>
         </div>
@@ -49,8 +51,17 @@
         </a>
     </div>
 </div>
-
-
+<ng-container *ngIf='draft?.length>5'>
+<button *ngIf="isFullDisplayed == false" class="load-more btn btn-border btn-block" (click)="getData()">
+    Load More
+  </button>
+</ng-container>
+</ng-container>
+<ng-template #Nodrafts>
+    <div style="text-align: center;">
+        <h4>No Drafts!</h4>
+      </div>
+</ng-template>
 </div>
 </div>
 </main>

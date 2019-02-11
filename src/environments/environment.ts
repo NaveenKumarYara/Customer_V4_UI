@@ -45,6 +45,7 @@ export const environment = {
     EmailVaild: 'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
     EmailInvite: 'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
     ActivateUser: 'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',
+    Deletedraft:'http://api.tenendus.com:1090/JobsAPI/api/DeleteDraftedJob?',
     ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
 
