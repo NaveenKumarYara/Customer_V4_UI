@@ -19,6 +19,7 @@ import {CustomerContacts} from '../models/customercontacts';
 import{draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary } from './components/Postajob/models/jobPostInfo';
+import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 
 
 const httpOptions = {
@@ -56,10 +57,15 @@ export class AppService {
 
   private customercontacts: CustomerContacts[] = [];
 
-  private contractduration: string[] = [
-    '3 months', '6 months', '1 year', 'more than 1 year'
-  ];
-
+  private contractduration: CDuration[] = [];
+  //   '3 months', '6 months', '1 year', 'more than 1 year'
+  // ];
+  private contractextension: WorkAuthorization[] = [];
+  //   'Corp-Corp',
+  //   'W2',
+  //   'Contract to Hire',
+  //   '1099'
+  // ];
   private noOfOpeningsList: number[] = [
     1, 2, 3
   ];
@@ -68,12 +74,7 @@ export class AppService {
     true, false
   ];
 
-  private contractextension: string[] = [
-    'Corp-Corp',
-    'W2',
-    'Contract to Hire',
-    '1099'
-  ];
+
   // private salaryType: string[] = [
   //   'Hourly', 'Annual'
   // ];
@@ -81,7 +82,8 @@ export class AppService {
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
-  contractExtension = new BehaviorSubject('');
+  workAuthorization: WorkAuthorization;
+  contractExtension = new BehaviorSubject(this.workAuthorization);
   currentContractExtension = this.contractExtension.asObservable();
 
   myInterviewType = new InterviewType();
@@ -189,7 +191,7 @@ export class AppService {
     this.contractDuration.next(cDuration);
   }
 
-  updatecExtension(cExtension: string) {
+  updatecExtension(cExtension: WorkAuthorization) {
     this.contractExtension.next(cExtension);
   }
 
@@ -647,8 +649,7 @@ export class AppService {
       );
   }
 
-  Deletedraft(jobId:number)
-  {
+  Deletedraft(jobId: number) {
     const url = environment.Deletedraft +  'jobId=' + jobId;
     return this.http.delete<string[]>(url)
       .catch(
@@ -663,8 +664,13 @@ export class AppService {
         this.handleError
       );
   }
-  getContractduration() {
-    return this.contractduration;
+  getContractduration(): Observable<CDuration[]> {
+    const url = environment.contractDurationendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+    // return this.contractduration;
   }
   getHasDescription() {
     return this.completeDescriptionList;
@@ -672,8 +678,13 @@ export class AppService {
   getnoofopenings() {
     return this.noOfOpeningsList;
   }
-  getContractExtension() {
-    return this.contractextension;
+  getContractExtension(): Observable<WorkAuthorization[]> {
+    const url = environment.workAuthorizationendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+    // return this.contractextension;
   }
   getInterviewType(): Observable<InterviewType[]> {
     const url = environment.interviewtypeendpoint;

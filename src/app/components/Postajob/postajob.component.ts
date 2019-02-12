@@ -8,6 +8,7 @@ import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from '../../components/Postajob/models/jobPostInfo';
+import { WorkAuthorization } from '../../../models/workAuthorization';
 @Component({
   selector: 'app-postajob',
   templateUrl: './postajob.component.html',
@@ -58,7 +59,7 @@ export class PostajobComponent implements OnInit {
   this.appService.employmentType.next(new EmploymentType());
   this.appService.interviewType.next(new InterviewType());
   this.appService.contractDuration.next('');
-  this.appService.contractExtension.next('');
+  this.appService.contractExtension.next(new WorkAuthorization());
   this.appService.addedteammembers = [];
   this.appService.addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
   this.appService.teammembers = [];
@@ -96,8 +97,7 @@ createJob() {
   // this.location.go('/app-createajob');
   // this.reload();
 }
-editDraft()
-{
+editDraft() {
   this.router.navigateByUrl('/app-editdraft');
 }
 public reload(): any {

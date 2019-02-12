@@ -31,7 +31,7 @@ export class Step4Component implements OnInit {
   contractDuration: any;
   contractExtension: any;
   empType: any;
-  complete:any;
+  complete: any;
   salaryType: any;
   intwType: any;
   reporting: any;
@@ -43,7 +43,7 @@ export class Step4Component implements OnInit {
     private router: Router, private appService: AppService, private location: Location, private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
-      this.complete=JSON.parse(localStorage.getItem('completed'));
+      this.complete = JSON.parse(localStorage.getItem('completed'));
       this.userId = this.customer.UserId;
       this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
@@ -170,16 +170,23 @@ export class Step4Component implements OnInit {
       // this.appService.currentEmploymentType.subscribe((data) => {
       //   this.insertJob.EmploymentTypeId = data.EmploymentTypeId; // And he have data here too!
       // });
-    // this.insertJob.EmploymentTypeId = 1;
+    if (this.insertJob.EmploymentTypeId === 2) {
+      this.appService.currentContractExtension.subscribe((data) => {
+        this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
+      });
+      this.appService.currentContractDuration.subscribe((data) => {
+        this.insertJob.ContractDuration = data; // And he have data here too!
+      });
+    }
     this.insertJob.SalaryTypeId = this.salaryType;
-    if (this.insertJob.EmploymentTypeId === 1) {
+    if (this.insertJob.EmploymentTypeId === 2) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    } else if (this.insertJob.EmploymentTypeId === 2) {
+    } else if (this.insertJob.EmploymentTypeId === 1) {
       this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-      this.insertJob.ContractExtended = true;
-      this.insertJob.ContractDuration = this.contractDuration;
+      // this.insertJob.ContractExtended = true;
+      // this.insertJob.ContractDuration = this.contractDuration;
      }
     // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
     // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
@@ -212,12 +219,9 @@ export class Step4Component implements OnInit {
   }
 
   backtoStep3() {
-    if(this.complete >0)
-    {
+    if (this.complete > 0) {
       this.steps.step3toggleClass(this.complete);
-    }
-    else
-    {
+    } else {
       this.steps.step3toggleClass(2);
     }
   }

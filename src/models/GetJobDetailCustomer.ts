@@ -48,8 +48,10 @@ export class JobInfo {
     MaximumSalary: string;
     BonusOffered: string;
     ContractDuration: string;
-    ContractExtended: boolean;
-    PossibilityOfFullTime: string;
+    // ContractExtended: boolean;
+    WorkAuthorizationId: number;
+    WorkAuthorizationType: string;
+   // PossibilityOfFullTime: string; renamed to WorkAuthorizationType
     AfterWhatDuration: string;
     InterviewType: string;
     HiringProcessId: number;

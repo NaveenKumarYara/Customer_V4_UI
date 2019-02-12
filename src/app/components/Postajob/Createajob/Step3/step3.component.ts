@@ -23,6 +23,7 @@ import { StepsComponent } from '../steps.component';
 import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 import { MatDialog } from '@angular/material';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
+import { SalarysliderComponent } from './salaryslider.component';
 // import { SalarysliderComponent } from './salaryslider.component';
 
 @Component({
@@ -63,6 +64,7 @@ export class Step3Component implements OnInit {
   @ViewChild(InterviewTypeComponent) intwType: InterviewTypeComponent;
   @ViewChild(ReportingManagerComponent) reporting: ReportingManagerComponent;
   @ViewChild(TeammembersComponent) team: TeammembersComponent;
+  @ViewChild(SalarysliderComponent) salSlider: SalarysliderComponent;
   // @ViewChild(SalarysliderComponent) salary: SalarysliderComponent;
   formData: any;
   customer: any;
@@ -176,6 +178,8 @@ export class Step3Component implements OnInit {
     });
   }
   ngOnInit() {
+    // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
+    this.changeEmploymentType();
   }
 
   changeEmploymentType() {
@@ -251,7 +255,12 @@ export class Step3Component implements OnInit {
 
     // step3
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
-    this.insertJob.SalaryTypeId = this.empType.salaryTypeSelected.SalaryTypeId;
+    this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
+    if (this.insertJob.EmploymentTypeId === 2) {
+      this.insertJob.ContractExtended = true;
+      this.insertJob.ContractDuration = this.contractDuration.contractDuration;
+      this.insertJob.WorkAuthorizationId = this.contractExtension.contractExtension.WorkAuthorizationId;
+    }
     // this.insertJob.MinimumSalary = this.salary.minAnnualRate.toString();
     // this.insertJob.MaximumSalary = this.salary.minAnnualRate.toString();
 
@@ -271,14 +280,12 @@ export class Step3Component implements OnInit {
       // });
     // this.insertJob.EmploymentTypeId = 1;
    // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
-    if (this.insertJob.SalaryTypeId === 1) {
+    if (this.insertJob.SalaryTypeId === 2) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    } else if (this.insertJob.SalaryTypeId === 2) {
+    } else if (this.insertJob.SalaryTypeId === 1) {
       this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-      this.insertJob.ContractExtended = true;
-      this.insertJob.ContractDuration = this.contractDuration.contractDuration;
   }
     // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
     // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);

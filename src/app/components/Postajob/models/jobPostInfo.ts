@@ -19,8 +19,10 @@ export class InsertJob {
     public EmploymentTypeId: number;
     public ContractDuration: string;
     public ContractExtended: boolean;
-    public PossibilityOfFullTime: boolean;
-    public AfterWhatDuration: string;
+    public WorkAuthorizationId: number;
+    public WorkAuthorizationType: string;
+   // public PossibilityOfFullTime: boolean;
+     public AfterWhatDuration: string;
     public SalaryTypeId: number;
     public MinimumSalary: string;
     public MaximumSalary: string;

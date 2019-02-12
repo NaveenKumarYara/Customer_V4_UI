@@ -9,6 +9,7 @@ import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step1/Jobresponsibilities.component';
 import { Jobskills } from '../../../../models/jobskills.model';
 import { Qualifications } from '../../../../models/qualifications.model';
+import { WorkAuthorization } from '../../../../models/workAuthorization';
 
 @Component({
   selector: 'app-createajob',
@@ -83,14 +84,14 @@ ejPersonSingleList: PjDisc[] = [];
 
 
   // }
-  back()
-  {
+  back() {
     this.router.navigateByUrl('/app-postajob');
   }
-  
+
   PopulateJobdetail (jobId) {
     localStorage.setItem('jobId', jobId);
     localStorage.setItem('EditMode', 'Yes');
+    const workAuthorization = new WorkAuthorization();
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
@@ -102,10 +103,10 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.hasDescription.next(this.jobdetailscustomer.JobInfo.CompleteDescription);
       this.appService.description.next(this.jobdetailscustomer.JobInfo.JobDescription);
       this.appService.noofOpenings.next(this.jobdetailscustomer.JobInfo.NumberOfVacancies);
-      if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 1) {
+      if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 2) {
       this.appService.minAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
       this.appService.maxAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
-      } else if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 2) {
+      } else if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 1) {
       this.appService.minHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
       this.appService.maxHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
       }
@@ -122,7 +123,9 @@ ejPersonSingleList: PjDisc[] = [];
 
       this.appService.contractDuration.next(this.jobdetailscustomer.JobInfo.ContractDuration);
       // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
-      // this.appService.contractExtension.next(this.jobdetailscustomer.ContractExtended);
+      workAuthorization.WorkAuthorizationId = this.jobdetailscustomer.JobInfo.WorkAuthorizationId;
+      workAuthorization.WorkAuthorizationType = this.jobdetailscustomer.JobInfo.WorkAuthorizationType;
+      this.appService.contractExtension.next(workAuthorization);
       this.ejInterviewType.InterviewType = this.jobdetailscustomer.JobInfo.InterviewType;
       this.ejInterviewType.InterviewTypeId = this.jobdetailscustomer.JobInfo.HiringProcessId;
       this.appService.interviewType.next(this.ejInterviewType);
