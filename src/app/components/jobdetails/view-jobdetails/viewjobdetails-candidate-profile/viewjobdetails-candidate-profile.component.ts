@@ -33,11 +33,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    profileFlipVideo= new GetVideoProfile();
    customerId: any;
    userId: any;
-   profiles:any;
+   profiles: any;
    searchString:any;
-   domainName:any;
+   domainName: any;
    experience: any;
-   location:any;
+   location: any;
    skills: any = null;
    loading: boolean;
    schIntw = new ScheduleInterview();
@@ -86,7 +86,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
      }
 
   OpenChatboxDialog() {
-    if(this.jobStatus!='InActive') {
+    if (this.jobStatus!='InActive') {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
         width: '750',
@@ -104,8 +104,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenShareDialog() {
-    if(this.jobStatus!='InActive')
-    {
+    if (this.jobStatus!='InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
         // width: '1000px',
@@ -123,7 +122,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenRejectDialog(jobResponseId) {
-    if(this.jobStatus!='InActive') {
+    if (this.jobStatus!='InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
           data: {
@@ -141,7 +140,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  OpenScheduleInterviewDialog(jobResponseId,userId) {
+  OpenScheduleInterviewDialog(jobResponseId, userId) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
@@ -195,7 +194,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       }) ;
     }
   GetCandidateProfile(profileId) {
-    if(this.jobStatus!='InActive') {
+    if (this.jobStatus!=='InActive') {
       sessionStorage.setItem('profileId', JSON.stringify(profileId));
       this.router.navigateByUrl('app-cprofile');
     }
@@ -203,7 +202,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString='',experience=0,location='',domainName='', noofRows= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString='', experience= 0, location= '', domainName= '', noofRows= 6) {
     this.alertService.clear();
     $('#searchStr').val('');
     this.spinner.show();
@@ -215,16 +214,17 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     this.jobdetailsprofiles = new JobdetailsProfile();
     } else if (this.statusid === 15) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
-        sortBy,searchString,experience,location,domainName, noofRows).subscribe(res => {
+        sortBy, searchString, experience, location, domainName, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
         this.spinner.hide();
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString,experience,location,domainName, noofRows)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;    
       this.profiles = res;
+
       this.spinner.hide();
        if(this.profiles === 'No records found') {
          this.myEvent.emit('min');
@@ -287,12 +287,12 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         // });
      // });
   }
-  closeDetails(profileId,type) {
-    if(type==1){
+  closeDetails(profileId, type) {
+    if (type === 1) {
     $('#matchingDetail-' + profileId).removeClass('open');
-  }
-  else{
-    $('#matchingDetails-' + profileId).removeClass('open');
+  } else {
+    $('#sizzleVideo-' + profileId).removeClass('open');
+    $('#profileVideo-' + profileId).removeClass('open');
   }
   }
   ngOnInit() {
@@ -342,8 +342,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
-  displayVideo(profileId, videoSizzle,videoProfile )
-  {
+  displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle ) {
     // (function ($) {
     // // TODO: test multiple cards -- open and close function
     // const $card = $('.page--job-details .tab-content .card');
@@ -364,11 +363,18 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     // })(jQuery);
     // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
     //   this.profileVideo = res[0]; });
-    //profile.VideoSizzle,profile.VideoProfile
-    this.profileFlipVideo.VideoProfile=videoProfile;
-    this.profileFlipVideo.VideoSizzle=videoSizzle;
+    // profile.VideoSizzle,profile.VideoProfile
+    this.profileFlipVideo.VideoProfile = videoProfile;
+    this.profileFlipVideo.VideoSizzle = videoSizzle;
+    // $('.matching-details').removeClass('open');
+    // $('#matchingDetails-' + profileId).toggleClass('open');
+if (profileOrSizzle === true) {
     $('.matching-details').removeClass('open');
-    $('#matchingDetails-' + profileId).toggleClass('open');
+    $('#sizzleVideo-' + profileId).toggleClass('open');
+} else {
+    $('.matching-details').removeClass('open');
+    $('#profileVideo-' + profileId).toggleClass('open');
+}
 
   }
   // this function is not required as of now as there is split in UI
