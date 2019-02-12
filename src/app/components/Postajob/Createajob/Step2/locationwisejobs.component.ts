@@ -27,11 +27,13 @@ cityloading = false;
 prfLoc = new PrefLocation();
 convertObservable: Cities[];
 selectedCityName: Cities;
+disableLoc = false;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.disableLoc = localStorage.getItem('EditMode') != null ? true : false;
   }
 
   selectLocation(loc) {
@@ -76,11 +78,16 @@ selectedCityName: Cities;
   }
   getSelectedOptionText(id: number) {
     this.selectedCityName = this.convertObservable.find(s => s.CityId === id);
+    if (this.locationwisejobs.length > 0) {
     const check = this.locationExists(this.selectedCityName, this.locationwisejobs);
     if (!check) {
       this.locationwisejobs.push(this.selectedCityName);
     }
-    this.selectLocation(this.selectedCityName);
+  } else {
+
+    this.locationwisejobs.push(this.selectedCityName);
+  }
+  this.selectLocation(this.selectedCityName);
    }
 
    locationExists(loc, list) {​
