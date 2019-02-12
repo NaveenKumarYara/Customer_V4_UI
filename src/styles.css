@@ -21812,3 +21812,8 @@ input[type="text"].form-control {
 /* .ng-select .ng-has-value .ng-placeholder {
     display: none;
 } */
+
+.pointernone {
+    opacity: 0.4;
+    pointer-events: none;
+}
