@@ -102,13 +102,20 @@ export class Step1Component implements OnInit {
       this.appService.currentSalaryTYpe.subscribe((data) => {
         this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
       });
-    // this.insertJob.EmploymentTypeId = 1;
+      if (this.insertJob.EmploymentTypeId === 2) {
+        this.appService.currentContractExtension.subscribe((data) => {
+          this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
+        });
+        this.appService.currentContractDuration.subscribe((data) => {
+          this.insertJob.ContractDuration = data; // And he have data here too!
+        });
+      }
     // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
-    if (this.insertJob.SalaryTypeId === 1) {
+    if (this.insertJob.SalaryTypeId === 2) {
       this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    } else if (this.insertJob.SalaryTypeId === 2) {
-      this.insertJob.ContractExtended = true;
+    } else if (this.insertJob.SalaryTypeId === 1) {
+      // this.insertJob.ContractExtended = true;
       this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
       this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
     }
@@ -203,7 +210,8 @@ this.insertJob.StepNumber = step;
     this.insertJob.EmploymentTypeId = 1;
     this.insertJob.ContractDuration = null;
     this.insertJob.ContractExtended = true;
-    this.insertJob.PossibilityOfFullTime = true;
+    this.insertJob.WorkAuthorizationId = 1;
+    // this.insertJob.PossibilityOfFullTime = true;
     this.insertJob.AfterWhatDuration = '2 Months';
     this.insertJob.SalaryTypeId = 1;
     this.insertJob.MinimumSalary = '300';

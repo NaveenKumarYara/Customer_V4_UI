@@ -64,6 +64,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import {NgxMaskModule} from 'ngx-mask';
 import {EditDraftComponent} from './components/Postajob/Createajob/EditDraft/draft.component';
 import { UploadvideoprofileComponent } from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
+import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { UploadvideoprofileComponent } from './components/Postajob/Createajob/St
     NotificationsComponent,
     NoofopeningsComponent,
     UploadvideoprofileComponent,
+    SalarysliderComponent,
     // SalarysliderComponent,
   ],
   imports: [

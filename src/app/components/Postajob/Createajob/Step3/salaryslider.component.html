@@ -1,0 +1,41 @@
+<div class="form-group position-group custom-slider">
+    <label for="" class="question">What is the Salary Range? <small>(Optional)</small></label>
+      <p class="description">Differentiation is based on employment type selection hourly or annual.</p>
+      <div class="options">
+        <!-- <div class="checkbox">
+          <label>
+            <input type="radio" name="emp-type" (change)="selectSalaryType(type)" [(ngModel)]="salaryType" value="1">
+            <span class="box">Hourly</span>
+          </label>
+        </div> -->
+        <div class="checkbox" *ngFor="let sal of salaryTypelist">
+          <!-- <label><input type="radio" [(ngModel)]="salaryTypeSelected" (change)="selectSalaryType(sal)" name="sal" [value]="sal"><span class="box">{{sal}}</span> </label> -->
+          <label><input type="radio" [ngModel]="salaryTypeSelected && salaryTypeSelected?.SalaryTypeId" (change)="selectSalaryType(sal)" name="sal" [value]="sal.SalaryTypeId"><span class="box">{{sal.SalaryType}}</span> </label>
+        </div>
+        <!-- <div class="checkbox">
+          <label>
+            <input type="radio" name="emp-type" (change)="selectSalaryType(type)" [(ngModel)]="salaryType" value="2">
+            <span class="box">Annually</span>
+          </label>
+        </div> -->
+      </div>
+    <div *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
+     <ng5-slider [(value)]="minAnnualRate"
+                [(highValue)]="maxAnnualRate"
+                [options]="annual"
+                (userChangeStart)="minAnnualChangeStart($event)"
+                (userChange)="onAnnualChange($event)"
+                (userChangeEnd)="maxAnnualChangeEnd($event)"
+                name="annual">
+    </ng5-slider>
+    </div>
+    <div *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
+      <ng5-slider [(value)]="minHourRate"
+                 [(highValue)]="maxHourRate"
+                 [options]="hourly"
+                 (userChangeStart)="minHourlyChangeStart($event)"
+                 (userChange)="onHourlyChange($event)"
+                 (userChangeEnd)="maxHourlyChangeEnd($event)"
+                 name="hourly">
+     </ng5-slider>
+     </div></div>

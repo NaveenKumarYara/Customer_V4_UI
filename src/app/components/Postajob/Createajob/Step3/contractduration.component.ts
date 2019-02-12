@@ -11,18 +11,22 @@ import { Subject, Observable } from 'rxjs';
 })
 
 export class ContractDurationComponent implements OnInit, OnDestroy {
-  contractdurationlist: string[];
+  contractdurationlist: any; // string[];
 contractDuration: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
 
+  // populateContractduration() {
+  //   this.contractdurationlist = this.appService.getContractduration();
+  // }
   populateContractduration() {
-    this.contractdurationlist = this.appService.getContractduration();
+    this.appService.getContractduration().subscribe(res => {
+      this.contractdurationlist = res.filter(x => x.ContractDuration);
+    });
   }
-
   setDuration(val) {
-    this.contractDuration = val;
+    this.contractDuration = val.ContractDuration;
     this.appService.updatecDuration(this.contractDuration);
   }
 
