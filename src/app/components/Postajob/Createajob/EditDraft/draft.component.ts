@@ -9,6 +9,7 @@ declare var $: any;
   
   selector: 'app-editdraft',
   templateUrl: './draft.component.html',
+  styleUrls: ['./draft.component.css'],
   providers: [AppService,NgxSpinnerService]
 })
 export class EditDraftComponent {
