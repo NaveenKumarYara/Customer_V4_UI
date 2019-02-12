@@ -27,7 +27,7 @@
 }
 
 .adv-filters .form-group .form-control {
-    height: 55px;
+    height: 50px !important;
     border: 1px solid #E0E3EF;
 }
 

@@ -1156,3 +1156,15 @@ h1.title img {
 .text-center {
     text-align: center;
 }
+
+.h-19 {
+    height: 19.3px;
+}
+
+.h-19 .loc:nth-child(n+3) {
+    padding: 0 7px;
+}
+
+.location {
+    margin-right: 0px;
+}

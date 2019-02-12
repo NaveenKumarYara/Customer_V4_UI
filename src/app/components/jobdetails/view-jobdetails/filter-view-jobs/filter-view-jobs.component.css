@@ -185,6 +185,7 @@ input::-webkit-input-placeholder {
     position: relative;
     left: auto;
     margin-right: 1rem;
+    border-radius: 3px;
 }
 
 .cls-rel {
