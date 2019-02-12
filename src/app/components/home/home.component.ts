@@ -26,9 +26,8 @@ export class HomeComponent {
   constructor( private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
-          console.log(params);
           if (params['Uid'] !==null) {
-            sessionStorage.setItem('Uid', params['Uid']);
+            this.ActivatetheUser(params['Uid']);
           }
         });
       
@@ -58,7 +57,7 @@ export class HomeComponent {
 
   GetEmailValidate()
   {
-    this.ActivatetheUser();
+
     this.appService.validateemail(this.loginform.value.UserName)
     .subscribe(
     data => {
@@ -128,12 +127,14 @@ export class HomeComponent {
     this.alertService.clear();
   }
 
-  ActivatetheUser()
+  ActivatetheUser(Uid)
   {
-    this.Uid =  sessionStorage.getItem('Uid');
-    this.appService.ActivateUser(this.Uid).subscribe(
+    this.appService.ActivateUser(Uid).subscribe(
       data => {
-          sessionStorage.removeItem('Uid');
+      this.alertService.success('Customer is activated. Please login to continue');
+      setTimeout(() => {
+        this.alertService.clear();
+      }, 3000);
       })
   }
 
