@@ -49,7 +49,7 @@
         </mat-progress-spinner>
     </div>
     <div class="col-md-12" *ngIf="loaddata">
-        <ng-container *ngIf="joblist.Jobs==null">
+        <ng-container *ngIf="joblist.Jobs==null || joblist.TotalCount == null">
             <div>
                 <h4>No Jobs!</h4>
             </div>
@@ -75,7 +75,7 @@
             <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
             </mat-progress-spinner>
         </div>
-        <ng-container *ngIf="joblist.Jobs==null">
+        <ng-container *ngIf="joblist.Jobs==null|| joblist.TotalCount == null">
             <div>
                 <h4>No Jobs!</h4>
             </div>
