@@ -53,7 +53,6 @@ Login()
     .subscribe(
     data => {
       this.result = data;
-      debugger
       if(this.result.UserId>0&&this.result.CustomerId>0)
       {
         this.Send();
