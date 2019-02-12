@@ -40,16 +40,15 @@ export class EditDraftComponent {
   }
 
   getData(){
-    if(this.draft.length <= this.drafts.length){  
+    if(this.draft.length < this.drafts.length){  
       let len = this.draft.length;
-      for(let i=len;i<= len+6;i++)
+      for(let i=len;i<=len+5;i++)
       {
         this.draft.push(this.drafts[i]);
-        if(i%6==0) break;
       }
       this.spinner.hide();
     }
-    else {
+    else{
       this.isFullDisplayed = true;
   }
   
