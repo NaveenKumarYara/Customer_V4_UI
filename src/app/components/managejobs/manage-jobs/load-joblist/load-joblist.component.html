@@ -1,103 +1,89 @@
-
 <!-- <div class="col-md-12" *ngIf="!loaddata">
     <div class="loading">Loading&#8230;</div>
  </div> -->
- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
-  </ngx-spinner>
-  <div class="filters row">
+</ngx-spinner>
+<div class="filters row">
     <div class="pull-left">
-      <form class="form-inline" action="">
-        <div class="form-group view-group">
-          <label for="view">
+        <form class="form-inline" action="">
+            <div class="form-group view-group">
+                <!-- <label for="view">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="21.7" height="14.4">
               <path d="M11.4 14.4C5 14.4 2.1 10.1 2 9.9c-.3-.3-.2-.9.2-1.1.4-.3.9-.2 1.1.2.1.1 2.6 3.7 8 3.7 4.7 0 7.7-4.4 8.5-5.7-.6-1.2-3.1-5.3-9-5.3-6.8 0-9.3 5.8-9.3 5.9-.1.4-.5.6-1 .4s-.6-.7-.5-1.1C.1 6.9 2.9 0 10.9 0s10.7 6.6 10.7 6.7c.1.2.1.5 0 .7-.2.3-3.8 7-10.2 7z" />
               <path d="M10.9 10.9a3.8 3.8 0 1 1 0-7.6 3.8 3.8 0 0 1 0 7.6zm0-5.9c-1.2 0-2.1.9-2.1 2.1 0 1.2.9 2.1 2.1 2.1S13 8.3 13 7.1C13 5.9 12 5 10.9 5z" />
               <title>View</title>
             </svg>
-            <!-- <span>View</span> -->
-          </label>
-          <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue" (change)="PopulateSort($event.target.value)">
+            
+          </label> -->
+                <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue" (change)="PopulateSort($event.target.value)">
             <option default value="0">All Jobs</option>
             <option value="1">Active Jobs</option>
             <option value="2">InActive Jobs</option>
             <option value="3">Closed Jobs</option>
           </select>
-        </div>
-      </form>
+            </div>
+        </form>
     </div>
     <div style="display: flex; justify-content: flex-end">
-    <app-manage-searchjobs  [parentApi]="getParentApi()"></app-manage-searchjobs> 
+        <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
     </div>
-  </div>
+</div>
 
-  <div *ngIf="showadvancesearch">
-      <app-manage-advance-search [parentApi]="getParentApi()"></app-manage-advance-search>
-    </div>
-  
+<div *ngIf="showadvancesearch">
+    <app-manage-advance-search [parentApi]="getParentApi()"></app-manage-advance-search>
+</div>
+
 
 
 <div id="grid-view" class="grid tab-pane fade in active" *ngIf="id==1">
-   
-  <div class="col-md-12" >
-    <div class="row"> 
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist.Jobs; let i=index">
-        <app-manage-joblist-gridlayout [job]="job"
-                                       [joblist]="joblist"
-                                       [index]="i"></app-manage-joblist-gridlayout> 
-      </div>
-     
-    </div>
-     <mat-progress-spinner  *ngIf="jobLoader===true"
-     style="margin:0 auto;" 
-      class=""
-      [color]="color"
-      [mode]="mode" strokeWidth="3" [diameter]="50" >
-    </mat-progress-spinner>
-  </div>
-  <div class="col-md-12" *ngIf="loaddata">
-      <ng-container *ngIf="joblist.Jobs==null">
-          <div>
-            <h4>No Jobs!</h4>
-          </div>
-        </ng-container>
-    <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
-    <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
-      Load More
-    </div>
-  </ng-container>
-  </div>
-</div>
-  <div class="row" *ngIf="id==2">
-      <div class="tab-content"> 
-          <div id="list-view">
-        <ul class="job-list">
-      <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
-          <app-manage-joblist-tablelayout 
-          [job]="job"
-          [joblist]="joblist"
-           [index]="i">
-            </app-manage-joblist-tablelayout>
-          </li>
 
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist.Jobs; let i=index">
+                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i"></app-manage-joblist-gridlayout>
+            </div>
 
-        </ul>
-        <mat-progress-spinner *ngIf="jobLoader===true"
-            class=""
-            [color]="color"
-            [mode]="mode" strokeWidth="3" [diameter]="50" >
-          </mat-progress-spinner>
-      </div>
-      <ng-container *ngIf="joblist.Jobs==null">
-          <div>
-            <h4>No Jobs!</h4>
-          </div>
-        </ng-container>
-      <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
-      <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
-          Load More
         </div>
-      </ng-container>
+        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+        </mat-progress-spinner>
     </div>
-  </div>
+    <div class="col-md-12" *ngIf="loaddata">
+        <ng-container *ngIf="joblist.Jobs==null">
+            <div>
+                <h4>No Jobs!</h4>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
+            <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+                Load More
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div class="row" *ngIf="id==2">
+    <div class="tab-content">
+        <div id="list-view">
+            <ul class="job-list">
+                <li class="card" *ngFor="let job of joblist.Jobs; let i=index">
+                    <app-manage-joblist-tablelayout [job]="job" [joblist]="joblist" [index]="i">
+                    </app-manage-joblist-tablelayout>
+                </li>
 
+
+            </ul>
+            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+            </mat-progress-spinner>
+        </div>
+        <ng-container *ngIf="joblist.Jobs==null">
+            <div>
+                <h4>No Jobs!</h4>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
+            <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+                Load More
+            </div>
+        </ng-container>
+    </div>
+</div>
