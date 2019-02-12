@@ -50,17 +50,17 @@
                             <div class="tooltip1">
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                       </a>
-                                <div class="bottom1">
+                                <!-- <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="height: 143px;">
                                         <li>
-                                            <!--<a href="{{profile.Email}}">-->
+                                            <a href="{{profile.Email}}">
                                             <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
-                                            <!--</a>-->
+                                            </a>
                                         </li>
                                         <li>
-                                            <!--<a href="tel:+231112223">-->
+                                            <a href="tel:+231112223">
                                             <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
-                                            <!--</a>-->
+                                            </a>
                                         </li>
                                         <li>
                                             <div>
@@ -82,7 +82,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -96,7 +96,7 @@
                                 <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
-                                            <a href="{{profile.Email}}">
+                                            <a href="javascript:void(0)">
                                                 <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
 
                                                 <div class="media">
@@ -123,7 +123,7 @@
                     </h1>
                 </ng-container>
                 <ng-template #firstBlock>
-                    <h1 class="title" (click)="GetCandidateProfile(profile.ProfileId)">
+                    <h1 class="title" >
 
                         <!-- {{profile.FirstName}} {{profile.LastName}} -->
                         <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
@@ -132,7 +132,9 @@
                         <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
+                                <a href="javascript:void(0)" (click)="GetCandidateProfile(profile.ProfileId)">
                             {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
+                        </a>
                         </ng-template>
                         <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false; else lastelseBlock"> 
           {{profile.LastName.charAt(0)}} <img src="../../../../../assets/images/c_name_hide.png"></div>
@@ -194,7 +196,7 @@
                                 <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
-                                            <a href="{{profile.Email}}">
+                                            <a href="javascript:void(0)">
                                                 <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
 
                                                 <div class="media">
@@ -228,10 +230,12 @@
                         <h4 class="text-center">{{profile.ProfileTitle ? profile.ProfileTitle : 'N/A'}}</h4>
                     </div>
                     <div class="d-block text-center">
+                        <ng-container *ngIf="profile?.CurrentLocation!=null;else false">
                         <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
               <path class="st0" d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z"/>
               <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z"/>
             </svg>
+                </ng-container>
                         <h5 class="location">{{profile.CurrentLocation}}</h5>
                         <div class="status shortlisted">{{profile.JobStatus}}</div>
                         <small *ngIf="profile.CompanyName != null" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
@@ -561,7 +565,7 @@
             <div class="footer">
                 <ul class="actions">
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#inbox" (click)="OpenChatboxDialog()">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#inbox" (click)="OpenChatboxDialog()">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                   <path d="M1 17.9c-.1 0-.3 0-.4-.1-.4-.2-.6-.5-.6-.9V2.8C0 1.3 1.2 0 2.8 0h12.3c.7 0 1.4.3 2 .8.5.5.8 1.2.8 2v8.8c0 .2-.1.4-.1.5-.1.5-.4 1-.8 1.5-.5.5-1.2.8-2 .8H4.9l-3.2 3.2c-.2.2-.4.3-.7.3zM15.1 2H2.8c-.2 0-.4.1-.6.2-.1.2-.2.4-.2.6v11.7l1.8-1.8c.2-.2.4-.3.7-.3H15c.2 0 .4-.1.6-.2.1-.2.2-.3.2-.6 0-.2 0-.3.1-.4V2.8c0-.2-.1-.4-.2-.6s-.4-.2-.6-.2z" />
                   <path d="M12.9 6h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1zM8.1 10H4.9c-.6 0-1-.4-1-1s.4-1 1-1h3.2c.6 0 1 .4 1 1s-.4 1-1 1z" />
@@ -583,14 +587,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#shareCandidate" (click)="OpenShareDialog()">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate" (click)="OpenShareDialog()">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                   <path d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
                 </svg>
                         </a>
                     </li>
                     <li class="dropup">
-                        <a href="#" data-toggle="dropdown">
+                        <a href="javascript:void(0)" data-toggle="dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
                   <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
                 </svg>
@@ -620,7 +624,7 @@
                             </div>
                             <!-- screening -->
                             <div *ngIf="profile?.ResponseStatusId == 8">
-                                <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)">Schedule Interview</a></li>
+                                <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)">Schedule Interview</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>
                             </div>
