@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {MatchingDetails} from '../../models/matchingDetails';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
 import { VideoSizzle,GetVideoProfile } from '../../models/VideoProfile';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
@@ -20,7 +21,7 @@ declare var jQuery: any;
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
   styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
-  providers: [AlertService]
+  providers: [NgxSpinnerService,AlertService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
@@ -77,7 +78,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     },
     nav: true
   };
-  constructor(private el: ElementRef, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+  constructor(private el: ElementRef, private spinner: NgxSpinnerService,private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
@@ -205,6 +206,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString='',experience=0,location='',domainName='', noofRows= 6) {
     this.alertService.clear();
     $('#searchStr').val('');
+    this.spinner.show();
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid === 0 ? 4 : statusid;
@@ -215,16 +217,18 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
         sortBy,searchString,experience,location,domainName, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
+        this.spinner.hide();
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString,experience,location,domainName, noofRows)
     .subscribe(res => {
-      this.jobdetailsprofiles = res;
+      this.jobdetailsprofiles = res;    
       this.profiles = res;
-      if(this.profiles === 'No records found') {
-        this.myEvent.emit('min');
-        this.alertService.warn('No Profiles Matched!!');
+      this.spinner.hide();
+       if(this.profiles === 'No records found') {
+         this.myEvent.emit('min');
+      // this.alertService.warn('No Profiles Matched!!');
       }
       if (((noofRows > 6 ) && res.TotalProfileCount < noofRows)) {
       // need to change the res.totalprofile count
@@ -235,7 +239,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       //  else {
       //   this.myEvent.emit(true);
       //  }
-    });
+    
+    });    
   }
   }
   add3Dots(string, limit) {
