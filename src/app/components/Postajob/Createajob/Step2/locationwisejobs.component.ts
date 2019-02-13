@@ -28,12 +28,14 @@ prfLoc = new PrefLocation();
 convertObservable: Cities[];
 selectedCityName: Cities;
 disableLoc = false;
+isDrafted: boolean;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
-      this.disableLoc = localStorage.getItem('EditMode') != null ? true : false;
+      this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+      this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
   }
 
   selectLocation(loc) {
