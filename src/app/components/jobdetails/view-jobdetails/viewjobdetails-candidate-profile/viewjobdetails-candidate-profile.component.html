@@ -9,14 +9,14 @@
               </div>
               <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
               </div> -->
-                <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> {{profile.CertificationName}}</div>
+                <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"><a href="javascript:void(0)" title="{{profile.CertificationName}}"> {{profile.CertificationName}}</a></div>
 
                 <ng-template #nocertification>
-                    <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> Yet to Gain!</div>
+                    <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> <a href="javascript:void(0)" title="Yet to Gain!">Yet to Gain!</a></div>
                 </ng-template>
-                <div class="ui-badge ui-badge--industry" *ngIf="profile.DomainName!=null;else nodomain">{{profile.DomainName}}</div>
+                <div class="ui-badge ui-badge--industry" *ngIf="profile.DomainName!=null;else nodomain"><a href="javascript:void(0)" title="{{profile.DomainName}}">{{profile.DomainName}}</a></div>
                 <ng-template #nodomain>
-                    <div class="ui-badge ui-badge--industry">Explore Profile For Domain!</div>
+                    <div class="ui-badge ui-badge--industry"><a href="javascript:void(0)" title="Explore Profile For Domain!">Explore Profile For Domain!</a></div>
                 </ng-template>
             </div>
             <div class="candidate-info">
