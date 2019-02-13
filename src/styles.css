@@ -14667,9 +14667,11 @@ a.ui-button:active,
     font-weight: 500;
     letter-spacing: 0.03em;
 }
+
 .page--job-details .status.Candidate.Withdrawn {
     background-color: #f79734;
 }
+
 .page--job-details .status.InActive {
     background-color: #FBD57C;
 }
@@ -14701,6 +14703,7 @@ a.ui-button:active,
 .page--job-details .status.Closed {
     background-color: #cc3b3b;
 }
+
 .page--job-details .status.Active {
     background-color: #A4D975;
 }
@@ -21825,4 +21828,8 @@ input[type="text"].form-control {
 .pointernone {
     opacity: 0.6;
     pointer-events: none;
+}
+
+.ngb-dp-month .bg-primary {
+    background-color: #337ab7 !important;
 }

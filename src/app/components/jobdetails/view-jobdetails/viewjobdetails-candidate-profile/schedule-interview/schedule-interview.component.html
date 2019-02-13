@@ -4,7 +4,7 @@
             <h4 mat-dialog-title class="modal-title">
                 Schedule Interview
             </h4>
-            <mat-dialog-content class="mat-typography">
+            <mat-dialog-content class="mat-typography" style="/*overflow: hidden;*/">
                 <div class="modal-body">
                     <div class="row">
 
@@ -14,7 +14,7 @@
                                     <label for="">
                     Date for Interview
                   </label>
-                                    <div class="input-group">
+                                    <div class="input-group cal-icon mt-2_7">
                                         <!-- <input type="text" class="form-control datepicker"> -->
                                         <!-- <input type="text" class="form-control datepicker" autocomplete="off" (click)="changeDate(InterviewDate.value)" id="datePickerCert"
                   name="InterviewDate" #InterviewDate="ngModel" required [(ngModel)]="schIntw.InterviewDate" placeholder="Year of Achievement"
@@ -24,7 +24,9 @@
                   </div> -->
                                         <input class="form-control custom-ngbDatepicker" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" ngbDatepicker #d="ngbDatepicker">
                                         <div class="input-group-btn">
-                                            <button class="btn" (click)="d.toggle()" type="button">+</button>
+                                            <button class="btn" (click)="d.toggle()" type="button">
+                                                <img src="../../../../../../assets/images/calender.svg" width="22" />
+                                            </button>
                                         </div>
 
                                         <!-- <dl-date-time-picker
@@ -80,7 +82,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="team-members">ADD INTERNAL TEAM MEMBERS</label>
+                                    <label for="team-members">Add Internal Team Members</label>
                                     <div class="input-group">
                                         <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
                                         <ng-select class="custom-style interview-schedule-popup" [items]="managersList | async" name="team" placeholder="Type and Search" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
@@ -123,7 +125,7 @@
 
 
                                         <div class="form-group travel-expense-group">
-                                            <label for="" class="question">DO YOU PROVIDE TRAVEL EXPENSES FOR INTERVIEW ?</label>
+                                            <label for="" class="question">Do You Provide Travel Expenses for Interview ?</label>
                                             <div class="clearfix">
                                                 <label for="travelExpense-yes" class="radio">
                           <input type="radio" id="travelExpense-yes" name="travelExpense" class="radio-input">
@@ -204,7 +206,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group further-interview-group">
-                                    <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                                    <label for="">Does It Require Further Interview?</label>
                                     <div class="clearfix">
                                         <div class="radio-btn bordered">
                                             <label>
