@@ -222,7 +222,7 @@
             </svg>
                         </ng-container>
                         <h5 class="location mr-0 pl-0 pr-0">{{profile.CurrentLocation}}</h5>
-                        <div class="status shortlisted">{{profile.JobStatus}}</div>
+                        <div class="status {{profile.JobStatus}}">{{profile.JobStatus}}</div>
                         <small *ngIf="profile.CompanyName != null" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
                     </div>
                 </div>

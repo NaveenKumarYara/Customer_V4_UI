@@ -13,7 +13,7 @@
                   </svg>
                 </a>
                 <h3 class="title" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">{{jobdetailsbasicinfo?.JobTitle}}</h3>
-                <div class="status shortlisted">
+                <div class="status {{jobdetailsbasicinfo?.JobStatus}}">
                   {{jobdetailsbasicinfo?.JobStatus}}
                 </div>
               </div>

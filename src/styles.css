@@ -14667,33 +14667,42 @@ a.ui-button:active,
     font-weight: 500;
     letter-spacing: 0.03em;
 }
-
-.page--job-details .status.pending {
+.page--job-details .status.Candidate.Withdrawn {
+    background-color: #f79734;
+}
+.page--job-details .status.InActive {
     background-color: #FBD57C;
 }
 
-.page--job-details .status.shortlisted {
+.page--job-details .status.hired {
     background-color: #ACB0F3;
+}
+
+.page--job-details .status.shortlisted {
+    background-color: rgb(231, 172, 243);
 }
 
 .page--job-details .status.rejected {
     background-color: #FFBCBC;
 }
 
-.page--job-details .status.applied {
+.page--job-details .status.Applied {
     background-color: #5CD1DE;
 }
 
-.page--job-details .status.interview-scheduled {
+.page--job-details .status. {
+    background-color: #5CD1DE;
+}
+
+.page--job-details .status.Interviewing {
     background-color: #6B9BE8;
 }
 
-.page--job-details .status.hired {
-    background-color: #A4D975;
+.page--job-details .status.Closed {
+    background-color: #cc3b3b;
 }
-
-.page--job-details .status.withdrawn {
-    background-color: #AEB1D9;
+.page--job-details .status.Active {
+    background-color: #A4D975;
 }
 
 .page--job-details .ui-badge {
