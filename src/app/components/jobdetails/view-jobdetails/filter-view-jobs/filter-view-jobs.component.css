@@ -197,3 +197,12 @@ input::-webkit-input-placeholder {
     z-index: 999;
     height: 50vh;
 }
+
+.prl-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
