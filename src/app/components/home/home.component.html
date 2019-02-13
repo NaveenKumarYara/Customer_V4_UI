@@ -28,12 +28,11 @@
                   <div class="step animated slideInRight" style="text-align:left">
                      <h2 class="main_question">
                         Welcome!!! Login here.
-                     </h2>
-                     <alert></alert>
+                     </h2>                   
                      <div *ngIf="show" class="alert alert-danger">
                         Email not registered.
                       </div>
-                     <form [formGroup]="loginform" (ngSubmit)="GetEmailValidate()">
+                     <form [formGroup]="loginform" (ngSubmit)="login()">
                         <div class="form-group spt-2">
                            <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
                               [formControl]="loginform.controls['UserName']"  (keypress)="MissClear()" (keyup)="MissClear()">
