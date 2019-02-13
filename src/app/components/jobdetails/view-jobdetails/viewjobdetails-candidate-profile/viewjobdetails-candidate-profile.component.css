@@ -1184,3 +1184,10 @@ meta.a .h-19 .location {
 .pr-0 {
     padding-right: 0px !important;
 }
+
+.email-overflow {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -151,13 +151,14 @@
                                 <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
-                                            <a href="{{profile.Email}}">
-                                                <img src="../../../../../assets/images/email-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.Email}}
+
+                                            <a class="email-overflow" href="{{profile.Email}}" title="{{profile.Email}}">
+                                                <img src="../../../../../assets/images/email-icon.svg" alt="email" title="{{profile.Email}}"> {{profile.Email}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="tel:+231112223">
-                                                <img src="../../../../../assets/images/phn-icon.svg" alt=""> &nbsp;&nbsp;&nbsp; {{profile.mobile}}
+                                            <a href="tel:+231112223" title="{{profile.mobile}}">
+                                                <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number" title="{{profile.mobile}}"> &nbsp;&nbsp;&nbsp; {{profile.mobile}}
                                             </a>
                                         </li>
                                         <li>
