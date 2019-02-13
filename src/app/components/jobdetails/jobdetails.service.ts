@@ -20,6 +20,7 @@ import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
 import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
+import {ProfileLinks} from './models/ProfileLinks';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 
 @Injectable()
@@ -56,6 +57,15 @@ export class JobdetailsService {
     return Observable.throw(errMsg);
   }
 
+
+  getProfileLinks(userId: number) {
+    const url = environment.profileLink + 'userId=' + userId;
+    return this.http.get<ProfileLinks[]>(url)
+        .catch(
+            this.handleError
+        );
+  }
+
   getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
     const url = environment.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;
@@ -81,8 +91,8 @@ export class JobdetailsService {
         this.handleError
       );
   }
-  getUserId(email:string,customerId:number): Observable<DiscResult[]> {
-    const url = environment.GetUserId + 'email=' + email+ '&customerId=' + customerId ;
+  getUserId(email: string, customerId: number): Observable<DiscResult[]> {
+    const url = environment.GetUserId + 'email=' + email + '&customerId=' + customerId ;
     return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
@@ -145,7 +155,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
   getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number,sortBy: number= 1, searchString: string, experience: number,location: string,domainName: string,noOfRows: number= 6):
   Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+'&pageNumber=1&noOfRows=' + noOfRows;
+     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString+ '&experience='+experience+'&location='+location+'&domainName=' + domainName + '&pageNumber=1&noOfRows=' + noOfRows;
      return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
      .catch(
@@ -155,7 +165,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
   getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number,location: string,domainName: string,
     noOfRows: number= 6): Observable<JobdetailsProfile> {
     const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience='+experience+'&location='+location+'&domainName='+domainName+ '&pageNumber=1&noOfRows=' + noOfRows;
+      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' +searchString+'&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&pageNumber=1&noOfRows=' + noOfRows;
       return this.http.get<JobdetailsProfile>(url)
       .debounceTime(1000)
       .catch(

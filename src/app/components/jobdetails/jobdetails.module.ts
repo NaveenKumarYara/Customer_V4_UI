@@ -15,6 +15,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './../../app.router';
+import {ProfileLinkComponent} from '../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/profilelinks/profilelinks.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ViewjobdetailsCandidateProfileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 import { ChatboxdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
@@ -47,7 +48,7 @@ import { FlickityModule } from 'ngx-flickity';
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent,ConversationComponent],
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ProfileLinkComponent,ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent,ConversationComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })
