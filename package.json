@@ -31,6 +31,7 @@
     "jquery": "^3.3.1",
     "ng-select": "^1.0.0-rc.5",
     "ng2-charts": "^1.6.0",
+    "ng2-toastr": "^4.1.2",
     "ng5-slider": "^1.1.6",
     "ngx-flickity": "0.0.9",
     "ngx-mask": "^7.3.5",

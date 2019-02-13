@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component , ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 declare var $: any; 
 import { Router, ActivatedRoute } from '@angular/router';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   
   selector: 'signup',
@@ -24,7 +25,7 @@ export class SignUpComponent {
   info =new Register();
   password:any;
   userId:any;
-  constructor( private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
+  constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
     this.route.params.subscribe(params => {
         console.log(params);
         if (params['id'] > 0) {
@@ -35,6 +36,7 @@ export class SignUpComponent {
           sessionStorage.setItem('Id', params['id']);
         }
       });
+      this.toastr.setRootViewContainerRef(_vcr);
   }
  
   Login()
@@ -65,10 +67,10 @@ export class SignUpComponent {
     this.show = false;
     if(!this.signUpform.valid)
     {
-      this.alertService.error('Please provide the valid details');
-      setTimeout(() => {
-        this.alertService.clear();
-      }, 2000);
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
     }
     else
     {
@@ -85,11 +87,11 @@ export class SignUpComponent {
         },
     
         error => {
-          this.alertService.error('Please provide the valid details');
+          this.toastr.error('Please provide the valid details!', 'Oops!');
           this.signUpform.reset();
           setTimeout(() => {
-            this.alertService.clear();
-          }, 2000);
+            this.toastr.dismissToast;
+        }, 3000);
         },
         () => console.log('Call Sucessfull')
         ); 
@@ -107,18 +109,18 @@ export class SignUpComponent {
     this.info.ClientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {
-        this.alertService.success('Please check your Mail to Activate');
+        this.toastr.success('Please check your Mail to Activate','Success');
         this.signUpform.reset();
         setTimeout(() => {
-          this.alertService.clear();
+          this.toastr.dismissToast;
           this.router.navigateByUrl('home');   
-        }, 2000);
+        }, 3000);
       }
 
       });
   }
   MissClear() {
-    this.alertService.clear();
+    this.toastr.dismissToast;
   }
 
   ngOnInit() {

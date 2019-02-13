@@ -62,6 +62,8 @@ import {SharedModule} from './shared/shared.module';
 import { FlickityModule } from 'ngx-flickity';
 import { Ng5SliderModule } from 'ng5-slider';
 import {NgxMaskModule} from 'ngx-mask';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {EditDraftComponent} from './components/Postajob/Createajob/EditDraft/draft.component';
 import { UploadvideoprofileComponent } from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
 import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
@@ -126,6 +128,7 @@ import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/sa
     SharedModule,
     CompanyProfileModule,
     DashboardModule,
+    ToastModule.forRoot(), BrowserAnimationsModule,
     AccountsettingsModule,
   NgxSpinnerModule,
   ChartsModule,
