@@ -164,7 +164,7 @@ if (this.processSelection == null || this.processSelection === undefined) {
   changeTeam(val) {
     this.getTeammember = val;
   }
-  private addTeammembers() {
+  public addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
     if (this.getTeammember !== undefined) {

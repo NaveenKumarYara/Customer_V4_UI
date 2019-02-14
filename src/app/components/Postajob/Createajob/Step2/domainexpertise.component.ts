@@ -41,7 +41,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   //   // this.appService.addDomain(this.domain);
   // }
 
-  private addDomain() {
+  public addDomain() {
 if (this.domainForm.valid) {
   if (this.MaximumExperience < this.MinimumExperience) {
     return false;

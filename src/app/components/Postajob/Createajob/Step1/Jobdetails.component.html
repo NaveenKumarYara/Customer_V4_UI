@@ -21,7 +21,7 @@
         <!-- <div class="styled-select-box block experience-output"></div> -->
         <div class="col-md-6">
           <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true"
-            placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [loading]="peopleLoading" [(ngModel)]="minExperience"
+            placeholder="Min" bindLabel="minExperience" bindValue="minExperience"   [(ngModel)]="minExperience"
             #totMinExp="ngModel" name="miniExperience" required>
           </ng-select>
           <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched && totMinExp.dirty">Required.</small>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-6">
           <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true"
-            placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [loading]="peopleLoading" [(ngModel)]="maxExperience"
+            placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience"  [(ngModel)]="maxExperience"
             #totMaxExp="ngModel" name="maxiEperience" required>
           </ng-select>
           <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched && totMaxExp.dirty">Required.</small>

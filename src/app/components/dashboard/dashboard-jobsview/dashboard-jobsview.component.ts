@@ -14,19 +14,19 @@ export class DashboardJobsviewComponent implements OnInit {
     @Input() applicantStatistics: ApplicantStatistics;
 
 
-    constructor(private route: ActivatedRoute,private dashboardservice: DashboardService, private router: Router) {
+    constructor(private route: ActivatedRoute, private dashboardservice: DashboardService, private router: Router) {
 
     }
-  public lineChartData:Array<any> = [
+  public lineChartData: Array<any> = [
     {data: [10, 20, 30, 40, 45, 50, 55], label: 'Series A'},
     {data: [0, 0, 0, 2, 0, 0, 0], label: 'Series B'},
     {data: [0, 0, 0, 1, 0, 0, 0], label: 'Series C'}
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
+  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartOptions: any = {
     responsive: true
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { //  job posted
       backgroundColor: 'rgba(172,154,249,0.2)',
       borderColor: 'rgba(172,154,249,1)',
@@ -52,14 +52,14 @@ export class DashboardJobsviewComponent implements OnInit {
       pointHoverBorderColor: 'rgba(167,217,217,0.8)'
     }
   ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  public lineChartLegend = true;
+  public lineChartType = 'line';
 
 
   ngOnInit() {
   }
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
+  public randomize(): void {
+    const _lineChartData: Array<any> = new Array(this.lineChartData.length);
     for (let i = 0; i < this.lineChartData.length; i++) {
       _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
       for (let j = 0; j < this.lineChartData[i].data.length; j++) {
@@ -68,20 +68,23 @@ export class DashboardJobsviewComponent implements OnInit {
     }
     this.lineChartData = _lineChartData;
   }
-  
-  Jobs(sortBy)
-  {
+
+  Jobs(sortBy) {
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }
-  
-  
+
+
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
 
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
   // events
-  
+
 }

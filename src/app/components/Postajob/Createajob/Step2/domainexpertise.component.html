@@ -19,7 +19,7 @@
       <div class="form-group exp col-md-3">
         <label for="">Min Experience</label>
         <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min"
-          bindLabel="minExperience" [loading]="peopleLoading" #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
+          bindLabel="minExperience"  #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
         </ng-select>
         <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be greater than Max Experience!
@@ -28,7 +28,7 @@
       <div class="form-group exp col-md-3">
         <label for="">Max Experience</label>
         <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max"
-          bindLabel="name" [loading]="peopleLoading" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience">
+          bindLabel="name" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience">
         </ng-select>
         <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be less than Min Experience!

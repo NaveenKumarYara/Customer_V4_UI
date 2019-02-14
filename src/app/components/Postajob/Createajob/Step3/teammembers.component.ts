@@ -40,7 +40,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   changeTeam(val) {
     this.getTeammember = val;
   }
-  private addTeammembers() {
+  public addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
 if (this.teamForm.valid) {

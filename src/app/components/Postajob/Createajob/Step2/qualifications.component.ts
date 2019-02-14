@@ -42,7 +42,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
   //     return { name: eduName.QualificationId , tag: true };
   // }
 
-  private addQualification() {
+  public addQualification() {
     // this.selectedqualificationName = 1;
     if (this.eduForm.valid) {
     // const newqualification = new Qualifications();

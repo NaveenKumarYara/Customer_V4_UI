@@ -71,7 +71,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
      localStorage.setItem('skill', val);
     return { name: SkillName.SkillName , tag: true };
 }
-  private addSkills() {
+  public addSkills() {
     if ($('#skills').val() === '1') {
       if (this.maxexperience < this.minexperience) {
         return false;

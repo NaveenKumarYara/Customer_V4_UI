@@ -79,6 +79,80 @@ this.GetVideoSizzle();
 
     }
   }
+  // startRecording() {
+  //   const mediaConstraints = {
+  //     video: {
+  //       mandatory: {
+  //         minWidth: 1280,
+  //         minHeight: 720
+  //       }
+  //     }, audio: true
+  //   };
+  //   navigator.mediaDevices
+  //     .getUserMedia(mediaConstraints)
+  //     .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+  //  }
+   stopRecording() {
+    const recordRTC = this.recordRTC;
+    recordRTC.stopRecording(this.processVideo.bind(this));
+    $('#btn-stop-recording').hide();
+    $('#record_p').show();
+    $('#upload_p').hide();
+    $('#btn-start-recording').show();
+    const stream = this.stream;
+    stream.getAudioTracks().forEach(track => track.stop());
+    stream.getVideoTracks().forEach(track => track.stop());
+  }
+  processVideo(audioVideoWebMURL) {
+    const video: HTMLVideoElement = this.video.nativeElement;
+    const recordRTC = this.recordRTC;
+    video.src = audioVideoWebMURL;
+    this.toggleControls();
+    const recordedBlob = recordRTC.getBlob();
+    // recordRTC.getDataURL(function (dataURL) { });
+
+    // this.currentVideoUpload = new File([recordedBlob], 'filename.mp4', {
+    //   type: 'video/mp4'
+    // });
+    // // var reader = new FileReader();
+    // // reader.readAsDataURL(recordedBlob);
+    // // let base64data = reader.result;
+    // // console.log(base64data);
+    // // localStorage.setItem('file', base64data)
+    // // this.callstop();
+    // // this.currentVideoUpload = this.dataURLtoFile(file, 'filename.webm');
+    // // console.log(file);
+
+    // let request = '';
+    // let _formData: FormData = new FormData();
+    // if (this.saveImage.value !== '') {
+    //   request = JSON.stringify(this.saveVideo.value);
+    // }
+    // _formData.append('VideoFile', this.currentVideoUpload);
+    // _formData.append('Model', request);
+    // this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
+    //   $('#btn-upload-videofile').prop('disabled', false);
+    //   Swal('video upload successful');
+    // });
+    this.uploadVideo(recordedBlob);
+    video.play();
+  }
+  // uploadVideo(blob) {
+  //   this.currentVideoUpload = new File([blob], 'filename.mp4', {
+  //     type: 'video/mp4'
+  //   });
+  //   let request = '';
+  //   const _formData: FormData = new FormData();
+  //   if (this.saveImage.value !== '') {
+  //     request = JSON.stringify(this.saveVideo.value);
+  //   }
+  //   _formData.append('VideoFile', this.currentVideoUpload);
+  //   _formData.append('Model', request);
+  //   this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
+  //     $('#btn-upload-videofile').prop('disabled', false);
+  //     alert('video upload successful');
+  //   });
+  // }
   uploadVideo(blob) {
     this.currentVideoUpload = new File([blob], 'filename.mp4', {
       type: 'video/mp4'
@@ -98,11 +172,66 @@ this.GetVideoSizzle();
   InsertSizzle(sizzleId, jobId) {
     this.createVideoForm();
     this.saveVideo.value.VideoProfileId = sizzleId;
-    //this.saveVideo.value.JobId = ;
+    // this.saveVideo.value.JobId = ;
     this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
       .subscribe(data => {
         // alert(data);
         // this.saveVideo.reset();
       });
   }
+  toggleControls() {
+    const video: HTMLVideoElement = this.video.nativeElement;
+    video.muted = !video.muted;
+    video.controls = !video.controls;
+    video.autoplay = !video.autoplay;
+  }
+
+  successCallback(stream: MediaStream) {
+    const twoMinutes = 1 * 1000 * 60;
+    const options = {
+      mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+      audioBitsPerSecond: 128000,
+      videoBitsPerSecond: 128000,
+      bitsPerSecond: 928000 // 8000000000  if this line is provided, skip above two
+    };
+    this.stream = stream;
+    this.recordRTC = RecordRTC(stream, options);
+    this.recordRTC.startRecording();
+    const video: HTMLVideoElement = this.video.nativeElement;
+    video.play();
+
+    // var recordingDuration = 500;
+    // this.recordRTC.setRecordingDuration(recordingDuration).onRecordingStopped(this.stopRecordingCallback);
+    // this.recordRTC.startRecording();
+    // release camera on stopRecording
+    // this.recordRTC.camera = camera;
+
+    // $('#btn-stop-recording').prop('disabled', false);
+    // $('#btn-pause-recording').prop('disabled', false);
+
+    video.src = URL.createObjectURL(stream);
+    this.toggleControls();
+    // this.recordRTC.setRecordingDuration(twoMinutes, function () {
+    //   video.src = this.toURL();
+    //   var blob = this.getBlob();
+    //   video.src = this.toURL();
+    //   var file = new File([blob], 'filename.webm', {
+    //     type: 'video/webm'
+    //   });
+    //   // var base64Image = new Buffer(blob, 'binary').toString('base64');
+    //   // localStorage.setItem('file', base64Image);
+    //   var reader = new FileReader();
+    //   reader.readAsDataURL(blob);
+    //   // reader.onloadend = function () {
+    //   let base64data = reader.result;
+    //   console.log(base64data);
+    //   localStorage.setItem('file', base64data)
+    //   video.src = this.toURL();
+    // });
+  }
+
+  errorCallback() {
+    // handle error here
+  }
+
 }
