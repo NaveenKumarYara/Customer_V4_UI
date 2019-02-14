@@ -75,6 +75,10 @@ export class JobcategoryComponent implements OnInit {
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentcategorytitle.subscribe(x => this.selectedCategory = x);
     this.selectCategory = this.selectedCategory.Category;
+    if (this.selectCategory === undefined && localStorage.getItem('jobId') != null) {
+      this.appService.getDraftCategory(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
+        x => this.selectCategory = x.Category);
+    }
    // }
   }
   // this.jobcategorylist.subscribe(categoryLst => {

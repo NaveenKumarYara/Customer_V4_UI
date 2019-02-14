@@ -248,6 +248,13 @@ export class AppService {
         this.handleError
       );
   }
+  getDraftCategory(jobId: number): Observable<CategoryList> {
+    const url = environment.draftCategory + '?jobId=' + jobId;
+    return this.http.get<string>(url)
+      .catch(
+        this.handleError
+      );
+  }
   // private reportingManager = new BehaviorSubject('');
   // currentManager = this.reportingManager.asObservable();
 

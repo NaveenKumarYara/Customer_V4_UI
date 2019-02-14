@@ -1251,7 +1251,7 @@ span.error:after {
 	width: 25px;
 	height: 25px;
 	margin-right: 0;
-	background: url(../img/stars.svg) 0 -27px
+	background: url(../../../assets/images/stars.svg) 0 -27px
 }
 
 .review_message {
@@ -1565,7 +1565,7 @@ input[type=file]::-webkit-file-upload-button, input[type=file].invalid::-webkit-
 	-ms-border-radius: 3px;
 	border-radius: 3px;
 	padding: 8px 10px 8px 38px;
-	background: #434bdf url(../img/upload_icon.svg) 8px center no-repeat;
+	/* background: #434bdf url(../../../assets/images/upload_icon.svg) 8px center no-repeat; */
 	outline: none
 }
 

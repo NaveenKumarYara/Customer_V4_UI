@@ -12,6 +12,7 @@ export const environment = {
     // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
     SuggestJobTitleEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
     SuggestJobCategoryEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobCategory?',
+    draftCategory: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftCategory',
     educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',
     addneweducationEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveQualification',
     employmentTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType',
