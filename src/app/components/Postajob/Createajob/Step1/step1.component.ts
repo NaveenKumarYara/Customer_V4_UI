@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild , ViewContainerRef} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { JobResponsibilitiesComponent } from './Jobresponsibilities.component';
 import { JobcategoryComponent } from './Jobcategory.component';
 import { JobdetailsComponent } from './Jobdetails.component';
@@ -45,7 +46,7 @@ export class Step1Component implements OnInit {
   pjEducationDetailsList: any = [];
   pjTechnicalTeamList: any = [];
   pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
     , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -60,6 +61,7 @@ export class Step1Component implements OnInit {
           this.creteComponent.PopulateJobdetail(params['jobId']);
         }
       });
+      this.toastr.setRootViewContainerRef(_vcr);
   }
   ngOnInit() {
     this.alertService.clear();
@@ -146,10 +148,10 @@ this.insertJob.StepNumber = step;
       }
     });
   } else {
-    this.alertService.error('please enter mandatory fields');
-    setTimeout(() => {
-      this.alertService.clear();
-    }, 2000);
+    this.toastr.error('Please enter mandatory fields!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
     return false;
    }
   }

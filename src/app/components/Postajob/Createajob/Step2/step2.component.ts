@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DomainExpertiseComponent } from './domainexpertise.component';
 import { LocationwiseJobsComponent } from './locationwisejobs.component';
@@ -6,6 +6,7 @@ import { PersonalityTypeComponent } from './PersonalityType.component';
 import { QualificationsComponent } from './qualifications.component';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { NoofopeningsComponent } from './noofopenings.component';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { Step1Component } from '../Step1/step1.component';
@@ -66,12 +67,13 @@ export class Step2Component implements OnInit {
   // pjEducationDetailsList: any = [];
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
@@ -203,10 +205,10 @@ export class Step2Component implements OnInit {
       }
     });
   } else {
-    this.alertService.error('please enter mandatory fields');
+    this.toastr.error('Please enter mandatory fields!', 'Oops!');
     setTimeout(() => {
-      this.alertService.clear();
-    }, 2000);
+        this.toastr.dismissToast;
+    }, 3000);
     return false;
   }
   }
