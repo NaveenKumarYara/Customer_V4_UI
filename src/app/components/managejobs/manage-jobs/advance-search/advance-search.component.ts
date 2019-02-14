@@ -17,6 +17,7 @@ export class AdvanceSearchComponent implements OnInit {
   userId: any;
   location:any;
   exp:any;
+  advancesearch:any;
   showadvancesearch = false;
   empolymentId:any;
   searchString:any;

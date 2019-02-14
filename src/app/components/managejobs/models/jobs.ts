@@ -38,6 +38,14 @@ export class Jobs {
   public ExpiryDate: string;
   public MatchPercent: string;
   public Keywords: string;
+  public ProfilePic:string;
+  public ShortListedCount: string;
+  public TotalViewCount:string;
+  public HiringLeaderName:string;
+  public UserRole:string;
+  public InterviewedCount:string;
+  public DislikesCount:string;
+  public LikesCount:string;
   public TotalApplicants: string;
   public SkilledApplicants: string;
   public IsActive: false;

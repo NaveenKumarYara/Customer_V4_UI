@@ -44,6 +44,7 @@ export class ViewJobdetailsComponent implements OnInit {
   location:any;
   domain:any;
   customerId: any;
+  customer:any;
   searchString:any;
   userId: any;
   jobid: any;
@@ -65,8 +66,9 @@ export class ViewJobdetailsComponent implements OnInit {
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
    ) {
-    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    this.userId = JSON.parse(sessionStorage.getItem('userId'));
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId = this.customer.CustomerId;
+    this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
 

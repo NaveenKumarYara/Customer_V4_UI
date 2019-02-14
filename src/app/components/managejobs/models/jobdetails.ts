@@ -4,6 +4,9 @@ export class JobDetails {
   public TotalCount: string; /*// no field for applied count*/
   public TotalPages: string;
   public Jobs: Jobs[];
+  public CustomerId:string;
+  public UserId:string;
+  public JobId:string;
   public EmployementDetail: string;
   public SaveAsTemplate: string;
   public ReferralCount: string;

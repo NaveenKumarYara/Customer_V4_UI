@@ -62,9 +62,7 @@ export class JoblistGridlayoutComponent implements OnInit {
    // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
   }
 
-  ViewJobdetails(customerId, userId, jobId) {
-    sessionStorage.setItem('customerId', JSON.stringify(customerId));
-    sessionStorage.setItem('userId', JSON.stringify(userId));
+  ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
   }

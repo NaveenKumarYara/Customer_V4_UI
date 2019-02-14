@@ -7,6 +7,7 @@ export class JobdetailsBasicInfo {
   public JobTitle: string;
   public JobStatus: string;
   public PostedOn: string;
+  public IsActive: boolean;
   public NumberOfVacancies: string;
   public TotalViewCount: string;
   public DislikesCount: string;

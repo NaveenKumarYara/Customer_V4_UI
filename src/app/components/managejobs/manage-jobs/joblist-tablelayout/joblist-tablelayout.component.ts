@@ -39,10 +39,8 @@ export class JoblistTablelayoutComponent implements OnInit {
   ngOnInit() {
     this.GetProfileCount();
   }
-  ViewJobdetails(customerId,userId,jobId)
+  ViewJobdetails(jobId)
   {
-    sessionStorage.setItem('customerId', JSON.stringify(customerId));
-    sessionStorage.setItem('userId', JSON.stringify(userId));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
   }
