@@ -152,14 +152,16 @@
                                     <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
 
-                                            <a class="email-overflow" href="{{profile.Email}}" title="{{profile.Email}}">
+                                            <a class="email-overflow" href="javascript:void(0)" title="{{profile.Email}}">
                                                 <img src="../../../../../assets/images/email-icon.svg" alt="email" title="{{profile.Email}}"> {{profile.Email}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="tel:+231112223" title="{{profile.mobile}}">
-                                                <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number" title="{{profile.mobile}}"> &nbsp;&nbsp;&nbsp; {{profile.mobile}}
+                                            <ng-container *ngIf="profile?.MobilePhone!=null; else false">
+                                            <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
+                                                <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number" title="{{profile.MobilePhone}}"> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
                                             </a>
+                                        </ng-container>
                                         </li>
                                         <li>
                                             <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
