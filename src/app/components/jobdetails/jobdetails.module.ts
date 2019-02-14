@@ -23,6 +23,7 @@ import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
 import { ConversationComponent}  from './view-jobdetails/viewjobdetails-candidate-profile/conversations/conversation.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import {SharedModule} from '../../shared/shared.module';
 import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
@@ -33,6 +34,7 @@ import { FlickityModule } from 'ngx-flickity';
     CommonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    ToastModule.forRoot(),
     BrowserModule,
     routing,
     HttpModule,

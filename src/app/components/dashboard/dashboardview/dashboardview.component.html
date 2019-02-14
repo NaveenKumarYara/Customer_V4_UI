@@ -16,7 +16,7 @@
         <app-dashboard-recent-applications
                                 [recentapplicantlist]="recentapplicantlist">                       
                               </app-dashboard-recent-applications>
-                              <ng-container *ngIf="recentapplicantlist?.length<=0">                                                               
+                              <ng-container *ngIf="recentapplicantlist?.length==0">                                                               
                                       <div>
                                           <h5>No Applicants!</h5>
                                       </div>

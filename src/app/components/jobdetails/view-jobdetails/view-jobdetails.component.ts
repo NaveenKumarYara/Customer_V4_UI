@@ -16,6 +16,7 @@ import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedi
 import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {FilterViewJobsComponent} from '../view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
@@ -62,7 +63,7 @@ export class ViewJobdetailsComponent implements OnInit {
   // showVar:  = true;
   // readChild: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
    ) {
@@ -71,7 +72,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
-
+    this.toastr.setRootViewContainerRef(_vcr);
    }
   showDetailadvancesearch = false;
   openDialog() {
@@ -110,17 +111,17 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
   openCandidate() {
-    this.alertService.error('Job is Inactive Please activate to Upload the Profiles');
+    this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
     setTimeout(() => {
-      this.alertService.clear();
-    }, 2000);
+        this.toastr.dismissToast;
+    }, 3000);
   }
   openCandidateUploadDialog() {
     if(this.closedjob === 2)
     {
-    this.alertService.error('Job is Closed');
+      this.toastr.error('Job is Closed');
     setTimeout(() => {
-      this.alertService.clear();
+      this.toastr.dismissToast;
     }, 2000);
   }
   else{

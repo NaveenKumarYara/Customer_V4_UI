@@ -2,6 +2,6 @@
 import { Jobs } from './jobs';
 
 export class RecentJobs {
-    public Jobs: Jobs[] = [];
+    public Jobs: Jobs[];
     public JobLocations: JobLocations;
 }

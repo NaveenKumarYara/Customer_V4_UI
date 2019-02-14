@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class DashboardRecentjobsComponent implements OnInit {
     // @Input() recentjoblist: RecentJobs;
     customer: any;
-    joblist = new RecentJobs() ;
+    joblist = new RecentJobs();
    jobLoader = false;
    jobId: any;
    customerId: any;
