@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'tenendus';
-  src: url("assets/fonts/tenendus-icon/tenendus.eot");
-  src: url("assets/fonts/tenendus-icon/tenendus.eot") format("embedded-opentype"), url("assets/fonts/tenendus-icon/tenendus.ttf") format("truetype"), url("assets/fonts/tenendus-icon/tenendus.woff") format("woff"), url("assets/fonts/tenendus-icon/tenendus.svg") format("svg");
+  src: url("../../../../assets/fonts/tenendus-icon/tenendus.eot");
+  src: url("../../../../assets/fonts/tenendus-icon/tenendus.eot") format("embedded-opentype"), url("../../../../assets/fonts/tenendus-icon/tenendus.ttf") format("truetype"), url("../../../../assets/fonts/tenendus-icon/tenendus.woff") format("woff"), url("../../../../assets/fonts/tenendus-icon/tenendus.svg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -863,7 +863,7 @@ font-size: 12px;
 }
 
 .profile-pg .technical-skills .rating {
-    background-image: url("/assets/images/sep.png");
+    background-image: url("../../../../assets/images/S.png");
     background-repeat: no-repeat;
     background-position: center 44%;
     background-size: 72%;

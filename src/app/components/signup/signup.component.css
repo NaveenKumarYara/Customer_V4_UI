@@ -103,7 +103,7 @@ html, body {
   top: 0;
   z-index: 10;
   background-blend-mode: luminosity;
-  background-image: url("assets/images/login-bg.png");
+  background-image: url("../../../assets/images/login-bg.png");
   background-repeat: no-repeat;
   background-color: #F5F6FA;
   background-size: 460px;
