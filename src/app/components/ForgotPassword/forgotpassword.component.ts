@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component , ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any; 
 @Component({
   
@@ -21,9 +22,9 @@ export class ForgotComponent {
   email:any;
   result :any;
   userId:any;
-  constructor( private route: ActivatedRoute,
+  constructor( private route: ActivatedRoute, private toastr:ToastsManager,private _vcr: ViewContainerRef,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
-
+        this.toastr.setRootViewContainerRef(_vcr);
   }
 
 //   login1(username: string, password: string) {
@@ -47,40 +48,52 @@ Login()
     this.router.navigateByUrl('signup'); 
   }
   
-  GetEmailValidate()
-  {
-    this.appService.validateemail(this.Forgotform.value.EmailId)
-    .subscribe(
-    data => {
-      this.result = data;
-      if(this.result.UserId>0&&this.result.CustomerId>0)
-      {
-        this.Send();
-      }
-      else
-      {
-        this.alertService.error('email not registered');
-        setTimeout(() => {
-          this.alertService.clear();  
-          this.Forgotform.reset();       
-        }, 2000);    
-      }
-    })
-  }
+
   Send() {
-    this.appService.ForgotPassword(this.Forgotform.value)
+    if(!this.Forgotform.valid)
+    {
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+    }
+    else
+    {
+      this.appService.validateemail(this.Forgotform.value.EmailId)
       .subscribe(
       data => {
-            this.alertService.success('Please check your email to reset the password');
+        this.result = data;
+        if(this.result.UserId>0&&this.result.CustomerId>0)
+        {
+          this.appService.ForgotPassword(this.Forgotform.value)
+          .subscribe(
+          data => {
+             this.toastr.success('Please check your email to reset the password');
+                setTimeout(() => {
+                    this.alertService.clear();
+                    this.toastr.dismissToast;
+                    this.Login();    
+                  }, 3000);
+                 
+               } 
+              
+          );
+        }
+        else
+        {
+   
+            this.toastr.error('Email Not Registered!', 'Oops!');
             setTimeout(() => {
-                this.alertService.clear();
+                this.toastr.dismissToast;
                 this.Forgotform.reset();
-                this.Login();    
-              }, 3000);
-             
-           } 
-          
-      );
+            }, 3000);
+          }
+              
+
+        })
+    }
+
+
   }
 
 
