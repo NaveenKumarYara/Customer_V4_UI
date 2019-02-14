@@ -9013,7 +9013,7 @@ button.close {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -14687,6 +14687,7 @@ a.ui-button:active,
 .page--job-details .status.Applied {
     background-color: #5CD1DE;
 }
+
 .page--job-details .status.Screening {
     background-color: rgb(59, 124, 161);
 }
@@ -21835,4 +21836,12 @@ input[type="text"].form-control {
 
 .ngb-dp-month .bg-primary {
     background-color: #337ab7 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.h-19 {
+    height: 19.3px;
 }

@@ -1,14 +1,12 @@
-.candidate-info .ui-badge.no-certification{
+.candidate-info .ui-badge.no-certification {
     padding: 3px 5px!important;
 }
-.candidate-info .no-domain{
+
+.candidate-info .no-domain {
     text-align: left;
-    padding:8px 5px;
+    padding: 8px 5px;
 }
 
-
-
-
-
-
-
+header h2 img {
+    max-height: 17px;
+}

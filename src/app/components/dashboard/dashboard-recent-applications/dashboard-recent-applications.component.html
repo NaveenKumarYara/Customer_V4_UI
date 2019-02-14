@@ -1,23 +1,24 @@
 <div class="col-md-6">
     <section class="applications">
-        <h1>Recent Applications</h1>
+        <h1>Recent Applications1</h1>
         <div class="card" *ngFor="let recentapplicants of recentapplicantlist; let i=index">
 
             <div class="left">
                 <div class="header">
                     <img *ngIf="recentapplicants?.IsConfirmed != null" src="{{recentapplicants.ProfilePic}}" class="ui-pic" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
-                    <img  class="ui-pic" *ngIf="recentapplicants?.IsConfirmed == null" src="https://ui-avatars.com/api/?name={{recentapplicants.FirstName}}+{{recentapplicants.LastName}}" alt="User Pic"  width="50" height="50">
-                    <div>                          
-                        <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseBlock"> 
+                    <img class="ui-pic" *ngIf="recentapplicants?.IsConfirmed == null" src="https://ui-avatars.com/api/?name={{recentapplicants.FirstName}}+{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
+                    <div>
+                        <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseBlock">
                             {{recentapplicants?.FirstName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png"> </h2>
-                    
-                          <ng-template #firstelseBlock> 
-                            <h2>{{recentapplicants?.FirstName | slice:0:12}}    {{recentapplicants?.LastName | slice:0:12}}</h2>
-                          </ng-template>
+
+                        <ng-template #firstelseBlock>
+                            <h2>{{recentapplicants?.FirstName | slice:0:12}} {{recentapplicants?.LastName | slice:0:12}}</h2>
+                        </ng-template>
                         <div class="status">
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checked" alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="Verified" alt="Verified">
-                        </div> <!-- .status -->
+                        </div>
+                        <!-- .status -->
                         <div class="meta">
                             <span class="job-title" title="{{recentapplicants?.JobTitle}}">{{recentapplicants?.JobTitle | slice:0:20}}</span>
                             <span class="v-divider"></span>
@@ -30,18 +31,20 @@
                           </svg>
                           {{recentapplicants?.JobLocations}}
                             </span>
-                        </div> <!-- .meta -->
+                        </div>
+                        <!-- .meta -->
                     </div>
-                </div> <!-- .header -->
+                </div>
+                <!-- .header -->
                 <div class="candidate-info">
                     <div class="ui-badge ui-badge--domain" *ngIf="recentapplicants.CertificationName!=null;else nocertification">{{recentapplicants.CertificationName}}</div>
                     <ng-template #nocertification>
-                    <div class="ui-badge ui-badge--domain no-certification"><img src="../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
+                        <div class="ui-badge ui-badge--domain no-certification"><img src="../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
                     </ng-template>
-                    <div class="ui-badge ui-badge--industry"*ngIf="recentapplicants.DomainName!=null;else nodomain">{{recentapplicants.DomainName}}</div>
+                    <div class="ui-badge ui-badge--industry" *ngIf="recentapplicants.DomainName!=null;else nodomain">{{recentapplicants.DomainName}}</div>
                     <ng-template #nodomain>
                         <div class="ui-badge ui-badge--industry no-domain">Explore Profile For Domain!</div>
-                        </ng-template>
+                    </ng-template>
                     <div class="stats">
                         <div>
                             <h1>{{recentapplicants.MatchingPercentage}}</h1>
@@ -49,15 +52,20 @@
                             <!-- <br>
                           <span *ngIf="recentapplicants.MatchingPercentage==0">Oops!!Expolre Profile</span> -->
                         </div>
-                    </div> <!-- .stats -->
-                </div> <!-- .candidate-info -->                           
+                    </div>
+                    <!-- .stats -->
+                </div>
+                <!-- .candidate-info -->
                 <img src="../../../../assets/images/I-Disc.svg" class="visible-md visible-sm visible-xs" alt="Principle Type I" title="Principle Type I">
-            </div> <!-- .left -->
+            </div>
+            <!-- .left -->
             <div class="v-divider"></div>
             <div class="right">
                 <img src="../../../../assets/images/I-Disc.svg" alt="Principle Type I" title="Principle Type I">
-            </div> <!-- .right -->
-        </div> <!-- .card -->
-    
+            </div>
+            <!-- .right -->
+        </div>
+        <!-- .card -->
+
     </section>
 </div>
