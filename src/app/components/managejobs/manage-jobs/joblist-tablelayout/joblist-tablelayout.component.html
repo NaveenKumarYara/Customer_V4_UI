@@ -1,78 +1,69 @@
-
-
-
-          <header>
-            <div class="job-details">
-              <h3 class="medium" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}</h3>
-              <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
-              <div class="meta">
-                <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
+<header>
+    <div class="job-details">
+        <h3 class="medium" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}</h3>
+        <div class="status {{job?.JobStatus}}">{{job?.JobStatus}}</div>
+        <div class="meta h-19">
+            <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
                   <path class="st0" d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
                   <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
                 </svg>
-                <h5 class="location" *ngIf="job?.JobLocations!=null">  {{ job?.JobLocations[0].CityName}},
-                  {{ job?.JobLocations[0].StateCode}}</h5>
-                <h5>{{job?.PostedOn}}</h5>
-              </div>
-            </div>
-            <div class="options-group">
-              <button class="btn btn-border btn-share">
+            <h5 class="location" *ngIf="job?.JobLocations!=null"> {{ job?.JobLocations[0].CityName}}, {{ job?.JobLocations[0].StateCode}}</h5>
+            <h5>{{job?.PostedOn}}</h5>
+        </div>
+    </div>
+    <div class="options-group">
+        <button class="btn btn-border btn-share">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24.6" height="19.2">
                   <path d="M1.3 19.2c-.3 0-.6-.1-.8-.3-.4-.3-.7-.9-.3-1.9 0 0 3.2-11.2 13.7-12.8V1.7v-.2c0-.2.2-1 1-1.4.5-.1 1.1-.2 2 .3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4L17 17.6l-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.3.3-.7.4-1 .4zm12.1-7.3c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1-6.6-6.7v2.8c0 .5-.4.9-.9 1-7.2.6-10.7 6.3-12.1 9.5 3-2.4 6.7-3.8 10.6-3.8zm9.2-2.7zm-7.7-4.1z" />
                 </svg>
               </button>
-              <button *ngIf="job?.IsActive==true;else isactive" id="Inactive" class="btn btn-border" (click)="changeJobStatus(job,false)">Inactive</button>
-              <ng-template #isactive>
-                <button id="Active" class="btn btn-border" (click)="changeJobStatus(job,true)">active</button>
-                </ng-template>
-             
-              <button class="btn btn-filled" (click)="editJob(job.JobId,job.IsActive)" >Edit</button>
-            </div>
-          </header>
-          <alert></alert>
-          <div class="card-footer">
-            <div class="h-manager">
-             <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic" width="50" height="50"> 
-              <div>
-                <h3>{{job?.HiringLeaderName}}</h3>
-                <h5 class="meta">{{job?.UserRole}}</h5>
-                
-              </div>
-            </div>
-            <div class="stats-group">
-              <div class="stats">
-                <h1>{{job?.TotalViewCount}}</h1>
-                <h5>No. of Views</h5>
-              </div>
-              <div class="stats">
-                <h1>{{job?.DislikesCount}}</h1>
-                <h5>Dislikes</h5>
-              </div>
-              <div class="stats">
-                <h1>{{job?.LikesCount}}</h1>
-                <h5>Likes</h5>
-              </div>
-              <div class="stats">
-                <h1>{{job?.TotalApplicants}}</h1>
-                <h5>Applied</h5>
-              </div>
-              <div class="stats">
-                <h1>{{jobData}}</h1>
-                <h5>Suggested</h5>
-              </div>
-              <div class="stats">
-                <h1>{{job?.ShortListedCount}}</h1>
-                <h5>Shortlisted</h5>
-              </div>
-              <div class="stats">
-                <h1>{{job?.InterviewedCount}}</h1>
-                <h5>Interviews</h5>
-              </div>
-            </div>
-           
-          </div>
+        <button *ngIf="job?.IsActive==true;else isactive" id="Inactive" class="btn btn-border" (click)="changeJobStatus(job,false)">Inactive</button>
+        <ng-template #isactive>
+            <button id="Active" class="btn btn-border" (click)="changeJobStatus(job,true)">active</button>
+        </ng-template>
 
+        <button class="btn btn-filled" (click)="editJob(job.JobId,job.IsActive)">Edit</button>
+    </div>
+</header>
+<alert></alert>
+<div class="card-footer">
+    <div class="h-manager">
+        <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic" width="50" height="50">
+        <div>
+            <h3>{{job?.HiringLeaderName}}</h3>
+            <h5 class="meta">{{job?.UserRole}}</h5>
 
+        </div>
+    </div>
+    <div class="stats-group">
+        <div class="stats">
+            <h1>{{job?.TotalViewCount}}</h1>
+            <h5>No. of Views</h5>
+        </div>
+        <div class="stats">
+            <h1>{{job?.DislikesCount}}</h1>
+            <h5>Dislikes</h5>
+        </div>
+        <div class="stats">
+            <h1>{{job?.LikesCount}}</h1>
+            <h5>Likes</h5>
+        </div>
+        <div class="stats">
+            <h1>{{job?.TotalApplicants}}</h1>
+            <h5>Applied</h5>
+        </div>
+        <div class="stats">
+            <h1>{{jobData}}</h1>
+            <h5>Suggested</h5>
+        </div>
+        <div class="stats">
+            <h1>{{job?.ShortListedCount}}</h1>
+            <h5>Shortlisted</h5>
+        </div>
+        <div class="stats">
+            <h1>{{job?.InterviewedCount}}</h1>
+            <h5>Interviews</h5>
+        </div>
+    </div>
 
-
-  
+</div>

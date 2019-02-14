@@ -20,6 +20,7 @@ hasCompleteDescriptionList: any;
 
   setValue(val) {
     this.hasCompleteDescription = val;
+    this.jobDescription = val ? this.jobDescription : '';
     this.appService.updatehaddescription(this.hasCompleteDescription);
     // if (!this.hasCompleteDescription) {
     //   $('#completeDescription').prop('disabled', true);
