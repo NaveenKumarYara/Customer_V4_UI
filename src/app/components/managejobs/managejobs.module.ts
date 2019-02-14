@@ -17,6 +17,8 @@ import { ManageJobService } from './managejobs.service';
 import { LoadJoblistComponent } from './manage-jobs/load-joblist/load-joblist.component';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from '../../shared/shared.module';
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import {SharedModule} from '../../shared/shared.module';
     NgSelectModule,
     SharedModule,
     HttpClientModule,
+    ToastModule.forRoot(), BrowserAnimationsModule,
     MatCardModule, MatProgressSpinnerModule, NgxSpinnerModule
   ],
   providers: [ManageJobService],

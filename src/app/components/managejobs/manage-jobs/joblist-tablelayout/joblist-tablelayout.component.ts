@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input, ViewChild  } from '@angular/core';
+import { Component, OnInit,  Input, ViewChild  ,ViewContainerRef } from '@angular/core';
 import { JobDetails } from '../../models/jobdetails';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
@@ -8,6 +8,7 @@ import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any;
 
 @Component({
@@ -29,11 +30,12 @@ export class JoblistTablelayoutComponent implements OnInit {
   customerId:any;
   isActive:any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private managejobservice: ManageJobService,private appService: AppService, private loadJobs :LoadJoblistComponent,private alertService : AlertService) { 
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
+    this.toastr.setRootViewContainerRef(_vcr);
     }
 
   ngOnInit() {
@@ -60,7 +62,10 @@ export class JoblistTablelayoutComponent implements OnInit {
 editJob(jobId,active) {
   if(active == false )
   {
-    this.alertService.error('Inactive Job Please Activate to Edit');
+    this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
   }
   else
   {
