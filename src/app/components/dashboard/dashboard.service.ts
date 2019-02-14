@@ -32,10 +32,10 @@ export class DashboardService {
         return Observable.throw(errMsg);
     }
 
-    getRecentJobs(customerId:number,userId:number,count: number): Observable<RecentJobs[]> {
+    getRecentJobs(customerId: number, userId:number,count: number): Observable<RecentJobs> {
         const url = environment.RecentJobs +
-        'customerId=' +customerId +'&userId='+userId+ '&sortBy=0&&searchString=&status=0&pageNumber=1&numberOfRows=5';
-        return this.http.get<RecentJobs[]>(url)
+        'customerId=' +customerId +'&userId='+ userId + '&sortBy=0&&searchString=&status=0&pageNumber=1&numberOfRows=5';
+        return this.http.get<RecentJobs>(url)
             .debounceTime(1000)
             .catch(
                 this.handleError
@@ -44,42 +44,42 @@ export class DashboardService {
 
     getRecentApplicants(customerId:number,userId:number,count: number): Observable<RecentApplicants[]> {
        const url = environment.RecentApplicants +
-       'customerId=' +customerId+'&userId='+userId+ '&page=1&numberOfRows=5';
+       'customerId=' + customerId + '&userId=' + userId + '&page=1&numberOfRows=5';
        return this.http.get<RecentApplicants[]>(url)
            .debounceTime(1000)
            .catch(
                this.handleError
            );
     }
-    getJobCount(jobId:number,customerId:number): Observable<JobCount> {
+    getJobCount(jobId: number, customerId: number): Observable<JobCount> {
         const url = environment.JobsProfileCount +
-        'jobId=' +jobId +'&customerId='+customerId;
+        'jobId=' + jobId + '&customerId=' + customerId;
         return this.http.get<JobCount>(url)
-          .debounceTime(1000)     
+          .debounceTime(1000)
           .catch(
             this.handleError
-        );    
+        );
       }
 
-    getDashboardStatistics(customerId:number,userId:number): Observable<DashboardStatistics>{
-        const url = environment.DashboardStatistics+
-        'customerId=' +customerId +'&userId='+userId+'&filter=0';
+    getDashboardStatistics(customerId: number, userId: number): Observable<DashboardStatistics> {
+        const url = environment.DashboardStatistics +
+        'customerId=' + customerId + '&userId=' + userId + '&filter=0';
 
         return this.http.get<DashboardStatistics>(url)
             .debounceTime(500)
             .catch(
                 this.handleError
             );
-        //return this.dashboardstatistics;
+        // return this.dashboardstatistics;
     }
-    getApplicantsStatistics(customerId:number,userId:number): Observable<ApplicantStatistics>{
-        const url = environment.ApplicantStatistics+
-        'customerId=' +customerId +'&userId='+userId+'&filter=0';
+    getApplicantsStatistics(customerId: number, userId: number): Observable<ApplicantStatistics> {
+        const url = environment.ApplicantStatistics +
+        'customerId=' + customerId + '&userId=' + userId + '&filter=0';
         return this.http.get<ApplicantStatistics>(url)
             .debounceTime(500)
             .catch(
                 this.handleError
             );
-        //return this.dashboardstatistics;
+        // return this.dashboardstatistics;
     }
 }

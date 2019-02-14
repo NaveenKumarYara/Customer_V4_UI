@@ -23,7 +23,8 @@
                   <p id="upload_p" hidden>Stop & Upload</p>
                 </div>
                 <div>
-                    <a (click)="videoval.click()">
+                    <!-- <a (click)="videoval.click()"> -->
+                    <a>
                         <input type="file" #videovals (click)="videovals.value = null" value="" (change)="onVideoFileChange($event)">
                         <img src="assets/images/upload-icon.png" alt="">
                         <p>Upload</p>
