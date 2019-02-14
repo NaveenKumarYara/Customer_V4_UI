@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ContractDurationComponent } from './contractduration.component';
 import { ContractExtensionComponent } from './contractextension.component';
@@ -6,6 +6,7 @@ import { EmploymentTypeComponent } from './employmenttype.component';
 import { TeammembersComponent } from './teammembers.component';
 import { ReportingManagerComponent } from './reportingmanager.component';
 import { InterviewTypeComponent } from './interviewtype.component';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { Step2Component } from '../Step2/step2.component';
@@ -91,12 +92,13 @@ export class Step3Component implements OnInit {
   // pjEducationDetailsList: any = [];
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private steps: StepsComponent, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
