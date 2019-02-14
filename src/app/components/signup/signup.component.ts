@@ -138,7 +138,7 @@ export class SignUpComponent {
       'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
       'Password': ['', Validators.compose([Validators.required])],
-      'Address1': ['austin', Validators.compose([Validators.required])],
+      'Address1': ['', Validators.compose([Validators.required])],
       'Address2': ['', Validators.compose([Validators.nullValidator])],
       'ZipCode': ['56898', Validators.compose([Validators.required])],
       'CountryName': ['USA', Validators.compose([Validators.required])],
