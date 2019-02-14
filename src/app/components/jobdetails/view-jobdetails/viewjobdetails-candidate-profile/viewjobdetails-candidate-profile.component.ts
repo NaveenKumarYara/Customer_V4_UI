@@ -34,6 +34,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    customerId: any;
    userId: any;
    profiles: any;
+   customer:any;
    searchString:any;
    domainName: any;
    experience: any;
@@ -80,8 +81,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   };
   constructor(private el: ElementRef, private spinner: NgxSpinnerService,private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
-      this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-      this.userId = JSON.parse(sessionStorage.getItem('userId'));
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
 
