@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {FormsValidationService} from '../../shared/validation/validation.service';
 declare var $: any; 
 @Component({
@@ -22,7 +23,7 @@ export class ResetComponent {
   userId:any;
   pid:any;
   Id:any;
-  constructor( private route: ActivatedRoute,
+  constructor( private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
             console.log(params);
@@ -30,6 +31,7 @@ export class ResetComponent {
               sessionStorage.setItem('Pid', params['pid']);
             }
           });
+          this.toastr.setRootViewContainerRef(_vcr);
   }
 
 //   login1(username: string, password: string) {
@@ -52,9 +54,9 @@ Login()
   Send() {
     if(!this.Resetform.valid)
     {
-      this.alertService.error('Please provide the valid details');
+      this.toastr.error('Password MissMaTched!', 'Oops!');
       setTimeout(() => {
-        this.alertService.clear();
+          this.toastr.dismissToast;
       }, 3000);
     }
     else
@@ -62,11 +64,11 @@ Login()
     this.appService.ResetPassword(this.Resetform.value)
       .subscribe(
       data => {
-            this.alertService.success('Password changed successfully');
+        this.toastr.success('Password changed successfully','Success');
             this.Resetform.reset();
             sessionStorage.removeItem('Pid');
             setTimeout(() => {
-                this.alertService.clear();
+              this.toastr.dismissToast;
                 this.Login();    
               }, 3000);
            }     
@@ -80,7 +82,7 @@ Login()
     this.Resetform = this.fb.group({
       'Email': [this.pid, Validators.compose([Validators.nullValidator])],
       'Password': ['', [Validators.required, FormsValidationService.password]],
-      'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('NewPassword')]]
+      'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('Password')]]
     },
       { validator: matchingPasswords('Password', 'ConfirmPassword') });
    

@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewContainerRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 declare var $: any;
@@ -25,10 +26,11 @@ export class UploadProfilesComponent implements OnInit {
   userId: number;
   customerName = null;
   // tslint:disable-next-line:max-line-length
-  constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData,private alertService : AlertService) {
+  constructor(private spinner: NgxSpinnerService,private toastr:ToastsManager,private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData,private alertService : AlertService) {
     this.selectedFileNames = [];
     this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
     this.userId = this.customerName.UserId;
+    this.toastr.setRootViewContainerRef(_vcr);
    }
 
   ngOnInit() {
@@ -80,10 +82,16 @@ export class UploadProfilesComponent implements OnInit {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
        // }, 60000);
-        this.alertService.success('Uploaded successfully');
+        this.toastr.success('Uploaded successfully','Success');
+        setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
       }
     }, error => {
-     this.alertService.error('error in uploading profiles');
+     this.toastr.error('error in uploading profiles!', 'Oops!');
+     setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
       this.spinner.hide();
            console.log('download error:', JSON.stringify(error));
           });
@@ -91,7 +99,7 @@ export class UploadProfilesComponent implements OnInit {
 
  Clear()
  {
-   this.alertService.clear();
+  this.toastr.dismissToast;
  }
   CheckEmail()
   {
@@ -104,7 +112,10 @@ export class UploadProfilesComponent implements OnInit {
       } 
       else if (data == this.email)   
       {
-        this.alertService.error('Email already exits');
+        this.toastr.error('Email already exits!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
       } 
       });
   }
@@ -125,7 +136,10 @@ SaveInvite(email)
    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data==0) {
        $("#Email").val('');
-       this.alertService.success('Mail sent successfully');
+       this.toastr.success('Mail sent successfully','Success');
+       setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
       }
     }, error => {
       alert('error ');
