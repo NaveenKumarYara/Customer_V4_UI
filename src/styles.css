@@ -21845,3 +21845,60 @@ a:hover {
 .h-19 {
     height: 19.3px;
 }
+
+.form-group,
+.p-rel {
+    position: relative;
+}
+
+.error1,
+.radio-error1,
+.p-rel .error1 {
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    font-size: 12px;
+    position: absolute;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    z-index: 2;
+    height: 25px;
+    line-height: 1;
+    background-color: #e34f4f;
+    color: #fff;
+    font-weight: normal;
+    display: inline-block;
+    padding: 6px 8px;
+}
+
+.error1 {
+    top: 30px;
+    right: -15px;
+}
+
+.radio-error1 {
+    top: 30px;
+    left: -15px;
+}
+
+.p-rel .error1 {
+    top: -20px;
+    right: -15px;
+}
+
+.error1:after,
+.radio-error1::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 6px 6px 0;
+    border-color: transparent #e34f4f;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -6px;
+    left: 20%;
+}

@@ -1,34 +1,25 @@
 <div class="form-group position-group">
-<form [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label for="" class="question">At which location the job is available?</label>
-  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-  <div class="options">
-    <div class="checkbox" *ngFor="let jobs of locationwisejobs">
-      <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-      <label><input type="radio" [ngModel]="prfLoc && prfLoc?.CityId" (change)="selectLocation(jobs)" name="location" [value]="jobs.CityId"><span class="box">{{jobs.CityName}}</span> </label>
-    </div> 
-  </div>
-  <!-- <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here"> -->
-<!--   
+    <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
+        <label for="" class="question">At which location the job is available?</label>
+        <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+        <!-- <div class="p-rel"> -->
+        <div class="options">
+            <div class="checkbox" *ngFor="let jobs of locationwisejobs">
+                <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+                <label><input type="radio" [ngModel]="prfLoc && prfLoc?.CityId" (change)="selectLocation(jobs)" name="location" [value]="jobs.CityId"><span class="box">{{jobs.CityName}}</span> </label>
+            </div>
+        </div>
+        <!-- <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here"> -->
+        <!--   
   <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
   bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
   [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
 </ng-select> -->
 
-<ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
-                   placeholder="Select Other Cities"
-                   bindLabel="CityName"
-                   bindValue="CityId"
-                   (ngModelChange)="getSelectedOptionText($event)"
-                   [typeahead]="selectedCityInput"
-                   [hideSelected]="true"
-                   [loading]="cityloading"
-                   [(ngModel)]="selectedCityName"
-                   [virtualScroll]="true"
-                   required
-                   #city="ngModel"
-                   name="cities">
+        <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
+            [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel" name="cities">
         </ng-select>
-  <!-- <span class="help-block" *ngIf="location.invalid && location.touched">Location is required.</span> -->
-</form>
-</div> 
+        <!-- <span class="help-block radio-error1">Location is required.</span> -->
+        <!-- </div> -->
+    </form>
+</div>

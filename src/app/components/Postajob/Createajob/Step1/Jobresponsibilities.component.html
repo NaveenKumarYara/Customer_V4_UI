@@ -1,26 +1,26 @@
 <div class="form-group responsibility-group">
-  <label for="" class="question">What are the Responsibilities that you are looking for in the candidate?</label>
-  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-  
-   <div class="form-row row">
-     <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
-    <div class="col-md-10">
-       <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
+    <label for="" class="question">What are the Responsibilities that you are looking for in the candidate?</label>
+    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+
+    <div class="form-row row">
+        <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
+            <div class="col-md-10">
+                <div class="p-rel">
+                    <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
         [(ngModel)]="responsibilities"> -->
 
-        <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" 
-        required [(ngModel)]="responsibilities" name="resposibilities" #responsibility="ngModel" minlength="1" id="responsibilitiesName" (keyup)="GetTitleRoles()"
-        placeholder="Type and Select" required>
-        <!-- {{responsibility.value.length}}  
+                    <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" required [(ngModel)]="responsibilities" name="resposibilities" #responsibility="ngModel" minlength="1" id="responsibilitiesName" (keyup)="GetTitleRoles()" placeholder="Type and Select"
+                        required>
+                    <!-- {{responsibility.value.length}}  
            {{responsibilities.length}}
            {{responsibility.value}} -->
-        <div class="searchList" *ngIf="roleJobTitleList!=null && responsibility.value.length > 0" >
-            <ul class="searchList-dropdown">
-              <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
-            </ul>
-          </div>
-          <small class="text-danger" *ngIf="responsibility.invalid && responsibility.touched">Required.</small>
-          <!-- <div *ngIf="responsibility.touched">
+                    <div class="searchList" *ngIf="roleJobTitleList!=null && responsibility.value.length > 0">
+                        <ul class="searchList-dropdown">
+                            <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
+                        </ul>
+                    </div>
+                    <small class="text-danger error1" *ngIf="responsibility.invalid && responsibility.touched">Required.</small>
+                    <!-- <div *ngIf="responsibility.touched">
               <div *ngIf="responsibility.errors && (responsibility.dirty)" class="alert alert-danger">
                 <div [hidden]="!responsibility.errors.required">
                  expereince required.
@@ -30,15 +30,16 @@
                 </div>
               </div>
             </div> -->
-      </div>
-    <div class="col-md-2">
-        <button class="btn add-btn form-control" type="submit">+</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn add-btn form-control" type="submit">+</button>
+            </div>
+        </form>
     </div>
-  </form>
-  </div>
-  <ul class="responsibility-list">
-    <li *ngFor="let responsibility of responsibilitieslist; let i = index">
-      <label for="{{responsibility.RoleId}}" class="radio">
+    <ul class="responsibility-list">
+        <li *ngFor="let responsibility of responsibilitieslist; let i = index">
+            <label for="{{responsibility.RoleId}}" class="radio">
         <div>
           <input type="checkbox" (change)="changeRoles($event)" [ngModel]="responsibility.RoleId" class="radio-input" />
           <span class="radio-btn"></span>
@@ -46,9 +47,9 @@
         <span>{{responsibility.Role}}</span>
         <span class="close" (click)="deleteResponsibility(i)">&times;</span>
       </label>
-    </li>
-  </ul>
-  <!-- <div class="lists row">
+        </li>
+    </ul>
+    <!-- <div class="lists row">
     <div class="col-md-6">
       <h4 for="" class="light">Responsibilities</h4>
       <ul class="data-list">
@@ -60,4 +61,3 @@
     </div>
   </div> -->
 </div>
-                    
