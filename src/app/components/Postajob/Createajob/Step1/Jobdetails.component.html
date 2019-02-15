@@ -1,58 +1,61 @@
 <div class="form-row row">
-  <div class="col-md-6">
-    <div class="form-group job-title-group">
-      <label for="" class="question"> What is the Job Title?</label>
-      <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Type and Select" [loading]="jobtitleloading" [(ngModel)]="selectedTitle"
-        [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel" name="Title" (change)="updateJobTitle()">
-      </ng-select>
-       <!-- <ul class="data-list">
+    <div class="col-md-6">
+        <div class="form-group job-title-group">
+            <label for="" class="question"> What is the Job Title?</label>
+            <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Type and Select" [loading]="jobtitleloading" [(ngModel)]="selectedTitle" [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel"
+                name="Title" (change)="updateJobTitle()">
+            </ng-select>
+            <!-- <ul class="data-list">
        <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
-        <!-- {{suggestedTitle.JobTitle}} 
+            <!-- {{suggestedTitle.JobTitle}} 
         <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
       </ul>-->
-  
-      <small class="text-danger" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small>
+
+            <small class="text-danger error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small>
+        </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group re-group">
-      <label for="requiredExperience" class="question">Required Experience</label>
-      <div class="row">
-        <!-- <div class="styled-select-box block experience-output"></div> -->
-        <div class="col-md-6">
-          <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true"
-            placeholder="Min" bindLabel="minExperience" bindValue="minExperience"   [(ngModel)]="minExperience"
-            #totMinExp="ngModel" name="miniExperience" required>
-          </ng-select>
-          <small class="text-danger" *ngIf="totMinExp.invalid && totMinExp.touched && totMinExp.dirty">Required.</small>
-          <!-- {{minExperience}} {{ maxExperience}} -->
-          <small class="text-danger" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
+    <div class="col-md-6">
+        <div class="form-group re-group">
+            <label for="requiredExperience" class="question">Required Experience</label>
+            <div class="row">
+                <!-- <div class="styled-select-box block experience-output"></div> -->
+                <div class="col-md-6">
+                    <div class="p-rel">
+
+
+                        <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
+                            required>
+                        </ng-select>
+                        <small class="text-danger error1" *ngIf="totMinExp.invalid && totMinExp.touched && totMinExp.dirty">Required.</small>
+                        <!-- {{minExperience}} {{ maxExperience}} -->
+                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
               Can't be > Max Exp!
           </small>
-          <!-- <small class="text-danger" *ngIf="maxExperience < minExperience">
+                    </div>
+                    <!-- <small class="text-danger" *ngIf="maxExperience < minExperience">
             Can't be > Max Exp!
           </small> -->
-        </div>
-        <div class="col-md-6">
-          <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true"
-            placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience"  [(ngModel)]="maxExperience"
-            #totMaxExp="ngModel" name="maxiEperience" required>
-          </ng-select>
-          <small class="text-danger" *ngIf="totMaxExp.invalid && totMaxExp.touched && totMaxExp.dirty">Required.</small>
-          <!-- <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">  -->
-              <small class="text-danger" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
+                </div>
+                <div class="col-md-6">
+                    <div class="p-rel">
+                        <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true" placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [(ngModel)]="maxExperience" #totMaxExp="ngModel" name="maxiEperience" required>
+                        </ng-select>
+                        <small class="text-danger error1" *ngIf="totMaxExp.invalid && totMaxExp.touched && totMaxExp.dirty">Required.</small>
+                        <!-- <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">  -->
+                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
              Can't be < Min Exp!
           </small>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <div class="form-row job-title-suggestions">
-  <div class="checkbox" *ngFor="let  title of suggestedTitle; let i = index">
-    <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-    <label><input type="radio"   (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
-    <!-- [ngModel]="selectedTitle"  commented because it is not selected in category-->
-  </div> 
+    <div class="checkbox" *ngFor="let  title of suggestedTitle; let i = index">
+        <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+        <label><input type="radio"   (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
+        <!-- [ngModel]="selectedTitle"  commented because it is not selected in category-->
+    </div>
 </div>
