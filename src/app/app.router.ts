@@ -52,7 +52,7 @@ import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobde
 
 import { ViewjobdetailsScComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
-
+import { GuestComponent} from './components/GuestSignUp/guest.component';
 import { ChatboxdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
@@ -92,6 +92,7 @@ const appRoutes: Routes =
   { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
+    {path:'guest',component:GuestComponent},
     { path: 'ForgotPassword', component: ForgotComponent },
     { path: 'ResetPassword', component: ResetComponent },
     { path: 'about', component: AboutComponent},

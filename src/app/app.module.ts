@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes } from '@angular/router';
 import { SignUpComponent} from './components/signup/signup.component';
+import { GuestComponent} from './components/GuestSignUp/guest.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { FeaturesComponent } from './components/features/features.component';
@@ -75,6 +76,7 @@ import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/sa
     LayoutComponent,
     AboutComponent,
     SignUpComponent,
+    GuestComponent,
     FeaturesComponent,
     HomeComponent,
     HeaderComponent,
