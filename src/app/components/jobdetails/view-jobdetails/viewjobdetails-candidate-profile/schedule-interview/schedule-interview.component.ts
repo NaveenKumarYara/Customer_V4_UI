@@ -49,10 +49,14 @@ export class ScheduleInterviewComponent implements OnInit {
   addedteammembers: '';
   addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
+  customer: any;
   private subscription: Subscription;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private jobdetailsservice: JobdetailsService) {
-    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
+    // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+    // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId = this.customer.CustomerId;
+    this.userId = this.customer.UserId;
    // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
    }
    process(val) {
