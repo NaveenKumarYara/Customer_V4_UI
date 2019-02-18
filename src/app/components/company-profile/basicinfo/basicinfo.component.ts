@@ -237,7 +237,7 @@ onFileChange(event) {
         const x = stringToSplit.split('.');
         const ext = x[1].toLowerCase();
         if (ext === 'mp4' || ext === 'webm' || ext === 'flv') {
-          if (file.size > 2048576) {
+          if (file.size > 5048576) {
             alert('Too Big Size.. File Not Allowed');
           } else {
             this.currentVideoUpload = file;

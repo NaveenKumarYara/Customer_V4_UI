@@ -1,5 +1,5 @@
-import { Component , ViewContainerRef} from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component ,  OnInit,ViewContainerRef} from '@angular/core';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
@@ -13,9 +13,9 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
   styleUrls: ['./signup.component.css'],
   providers:[AppService,AlertService]
 })
-export class SignUpComponent {
+export class SignUpComponent  implements OnInit{
   
-  signUpform: any;
+  signUpform: FormGroup;
   customerId:any;
   companyLogo:any;
   email:any;
@@ -37,6 +37,40 @@ export class SignUpComponent {
         }
       });
       this.toastr.setRootViewContainerRef(_vcr);
+      this.form();
+  }
+
+  form()
+  {
+    this.signUpform = this.fb.group({
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': [0, Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.required])],
+      'CompanyName': ['', Validators.compose([Validators.required])],
+      'CompanySizeId'  : [1, Validators.compose([Validators.required])],
+      'CompanyLogo':['', Validators.compose([Validators.nullValidator])],
+      'ContactFirstName': ['', Validators.compose([Validators.required])],
+      'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
+      'ContactLastName': ['', Validators.compose([Validators.required])],
+      'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
+      'Password': ['', Validators.compose([Validators.required])],
+      'Address1': ['', Validators.compose([Validators.required])],
+      'Address2': ['', Validators.compose([Validators.nullValidator])],
+      'ZipCode': ['56898', Validators.compose([Validators.required])],
+      'CountryName': ['USA', Validators.compose([Validators.required])],
+      'StateName': ['texas', Validators.compose([Validators.required])],
+      'CityName': ['austin', Validators.compose([Validators.required])],        
+      'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
+      'FromTime':['', Validators.compose([Validators.nullValidator])],
+      'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
+      'WebSite':['', Validators.compose([Validators.nullValidator])],        
+      'Description': ['', Validators.compose([Validators.nullValidator])],
+      'TimeZoneId'  : [1, Validators.compose([Validators.required])],
+      'UserRoleId':[4, Validators.compose([Validators.required])],   
+      'ObjCompany': ['', Validators.compose([Validators.nullValidator])],
+      'ObjTimeZone':  ['', Validators.compose([Validators.nullValidator])] 
+    });
   }
  
   Login()
@@ -67,6 +101,11 @@ export class SignUpComponent {
     this.show = false;
     if(!this.signUpform.valid)
     {
+      this.signUpform.controls['ContactFirstName'].markAsTouched()
+      this.signUpform.controls['ContactLastName'].markAsTouched()
+      this.signUpform.controls['CompanyName'].markAsTouched()
+      this.signUpform.controls['ContactEmail'].markAsTouched()
+      this.signUpform.controls['Password'].markAsTouched()
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -125,44 +164,7 @@ export class SignUpComponent {
 
   ngOnInit() {
     this.show = false;
-    this.signUpform = this.fb.group({
-      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-      'CustomerId': [0, Validators.compose([Validators.nullValidator])],
-      'UserId'  : [0, Validators.compose([Validators.required])],
-      'CompanyName': ['', Validators.compose([Validators.required])],
-      'CompanySizeId'  : [1, Validators.compose([Validators.required])],
-      'CompanyLogo':['', Validators.compose([Validators.nullValidator])],
-      'ContactFirstName': ['', Validators.compose([Validators.required])],
-      'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
-      'ContactLastName': ['', Validators.compose([Validators.required])],
-      'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
-      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
-      'Password': ['', Validators.compose([Validators.required])],
-      'Address1': ['', Validators.compose([Validators.required])],
-      'Address2': ['', Validators.compose([Validators.nullValidator])],
-      'ZipCode': ['56898', Validators.compose([Validators.required])],
-      'CountryName': ['USA', Validators.compose([Validators.required])],
-      'StateName': ['texas', Validators.compose([Validators.required])],
-      'CityName': ['austin', Validators.compose([Validators.required])],        
-      'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
-      'FromTime':['', Validators.compose([Validators.nullValidator])],
-      'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
-      'WebSite':['', Validators.compose([Validators.nullValidator])],        
-      'Description': ['', Validators.compose([Validators.nullValidator])],
-      'TimeZoneId'  : [1, Validators.compose([Validators.required])],
-      'UserRoleId':[4, Validators.compose([Validators.required])],   
-      'ObjCompany': ['', Validators.compose([Validators.nullValidator])],
-      'ObjTimeZone':  ['', Validators.compose([Validators.nullValidator])]
-    //   'ObjCompany': {
-    //     'CompanySizeId'  : [1, Validators.compose([Validators.required])],
-    //     'CompanySize': ['', Validators.compose([Validators.nullValidator])]
-    //   },
-     
-    //  'ObjTimeZone': {
-    //   'TimeZoneId'  : [1, Validators.compose([Validators.required])],
-    //   'TimeZone': ['', Validators.compose([Validators.nullValidator])]
-    //   },   
-    });
+
     $(".glyphicon-eye-open").on("click", function () {
       $(this).toggleClass("glyphicon-eye-close");
       var type = $("#password").attr("type");
