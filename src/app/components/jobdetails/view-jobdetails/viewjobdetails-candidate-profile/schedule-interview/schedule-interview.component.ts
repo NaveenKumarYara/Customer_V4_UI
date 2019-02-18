@@ -56,7 +56,7 @@ export class ScheduleInterviewComponent implements OnInit {
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
-    this.userId = this.customer.UserId;
+    this.customerUser = this.customer.UserId;
    // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
    }
    process(val) {
