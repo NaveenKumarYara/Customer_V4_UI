@@ -37,11 +37,11 @@
                 </div>
                 <!-- .header -->
                 <div class="candidate-info">
-                    <div class="ui-badge ui-badge--domain" *ngIf="recentapplicants.CertificationName!=null;else nocertification">{{recentapplicants.CertificationName}}</div>
+                    <div class="ui-badge ui-badge--domain" *ngIf="recentapplicants.CertificationName!=null;else nocertification" title="{{recentapplicants.CertificationName}}">{{add3Dots(recentapplicants.CertificationName.split('|')[0],10)}}</div>
                     <ng-template #nocertification>
                         <div class="ui-badge ui-badge--domain no-certification"><img src="../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
                     </ng-template>
-                    <div class="ui-badge ui-badge--industry" *ngIf="recentapplicants.DomainName!=null;else nodomain">{{recentapplicants.DomainName}}</div>
+                    <div class="ui-badge ui-badge--industry" *ngIf="recentapplicants.DomainName!=null;else nodomain" title="{{recentapplicants.DomainName}}">{{add3Dots(recentapplicants.DomainName.split('|')[0],20)}}</div>
                     <ng-template #nodomain>
                         <div class="ui-badge ui-badge--industry no-domain">Explore Profile For Domain!</div>
                     </ng-template>

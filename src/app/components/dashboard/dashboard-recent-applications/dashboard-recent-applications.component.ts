@@ -10,6 +10,13 @@ export class DashboardRecentApplicationsComponent implements OnInit {
     @Input() recentapplicantlist: RecentApplicants;
 
   constructor() { }
+  add3Dots(string, limit) {
+    const dots = '...';
+    if (string.length > limit) {
+      string = string.substring(0, limit) + dots;
+    }
+      return string;
+  }
 
   ngOnInit() {
   }
