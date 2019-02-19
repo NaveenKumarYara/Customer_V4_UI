@@ -14627,7 +14627,7 @@ a.ui-button:active,
     font-weight: 500;
     margin: 0;
     letter-spacing: 0.03em;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     cursor: pointer;
 }
 
