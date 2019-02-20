@@ -100,13 +100,13 @@
                                                 <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
 
                                                 <div class="media">
-                                                    <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
-                                                    <div class="media-body">
-                                                        <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
+                                                    <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
+                                                        <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
+                                                        <div class="media-body">
                                                             <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
                                                             {{add3Dots(profile?.Specialization.split('|')[0],20)}}
-                                                        </ng-container>
-                                                    </div>
+                                                        </div>
+                                                    </ng-container>
                                                 </div>
                                             </a>
                                         </li>
@@ -187,18 +187,20 @@
                                                 <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
 
                                                 <div class="media">
-                                                    <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
-                                                    <div class="media-body">
-                                                        <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
+                                                         <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else EduTemplate">
+                                                        <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
+                                                        <div class="media-body">
+                                                       
                                                             <h5 class="mt-0" title="{{profile.QualificationName}}">{{add3Dots(profile?.QualificationName.split('|')[0],20)}}</h5>
                                                             {{add3Dots(profile?.Specialization.split('|')[0],20)}}
-                                                        </ng-container>
-                                                    </div>
+                                                        </div>
+                                                       </ng-container> 
+                                                       <ng-template #EduTemplate>
+                                                          <h5 align="center"> N/A </h5>
+                                                       </ng-template>
                                                 </div>
                                             </a>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -229,9 +231,16 @@
                     </div>
                 </div>
                 <div class="candidate-status">
+                 <ng-container *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
+                    <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
+                        <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+                    </a>
+                  </ng-container>
+                <ng-template #videoTemp>
                     <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
                         <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
                     </a>
+                </ng-template>
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="" style="margin-right: 15px;">
                     <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="">
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
