@@ -481,7 +481,7 @@
                 <!-- // -->
                 <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">
                     <div class="owl-stage-outer">
-                        <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;" *ngIf="profile?.PrimarySkills != null">
+                        <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
                             <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;" *ngFor="let sk of profile?.PrimarySkills.split(',', 3)">
                                 <div class="item">
                                     <div class="skill">
@@ -536,6 +536,11 @@
                         </div>
                       </div></div> -->
                         </div>
+                        <ng-template #noSkillTemplate>
+                            <div align="center">
+                           <h5> No skills added </h5> 
+                        </div>
+                        </ng-template>
                     </div>
                 </div>
                 <!-- <owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
