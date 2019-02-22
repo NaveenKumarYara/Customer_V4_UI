@@ -34,6 +34,7 @@ export const environment = {
     Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
     ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
     ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
+    CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
     InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
     signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',

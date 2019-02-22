@@ -729,6 +729,12 @@ export class AppService {
     });
   }
 
+  GetCustomerToken(body)
+  {
+    return this.http.post(environment.CustomerTokenLogin, body)
+    .map((res: Response) => res)
+    .catch(this.handleError);
+  }
   getEmploymentType(): Observable<EmploymentType[]> {
     const url = environment.employmentTypeendpoint;
     return this.http.get<string[]>(url)

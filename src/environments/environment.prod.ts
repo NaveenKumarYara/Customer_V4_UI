@@ -26,6 +26,7 @@ export const environment = {
   discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
   updateemail: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdateEmail',
   updatepassword: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
+  CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
   // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
   Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
   signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',

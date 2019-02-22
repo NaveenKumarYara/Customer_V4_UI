@@ -64,6 +64,7 @@ import { FlickityModule } from 'ngx-flickity';
 import { Ng5SliderModule } from 'ng5-slider';
 import {NgxMaskModule} from 'ngx-mask';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {EditDraftComponent} from './components/Postajob/Createajob/EditDraft/draft.component';
 import { UploadvideoprofileComponent } from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
@@ -139,7 +140,7 @@ import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/sa
   FlickityModule,
   Ng5SliderModule
   ],
-  providers: [AppService, ApiService, AuthService],
+  providers: [AppService, ApiService, AuthService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

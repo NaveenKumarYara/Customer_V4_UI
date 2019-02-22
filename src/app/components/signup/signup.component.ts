@@ -37,42 +37,9 @@ export class SignUpComponent  implements OnInit{
         }
       });
       this.toastr.setRootViewContainerRef(_vcr);
-      this.form();
+      
   }
 
-  form()
-  {
-    this.signUpform = this.fb.group({
-      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-      'CustomerId': [0, Validators.compose([Validators.nullValidator])],
-      'UserId'  : [0, Validators.compose([Validators.required])],
-      'CompanyName': ['', Validators.compose([Validators.required])],
-      'CompanySizeId'  : [1, Validators.compose([Validators.required])],
-      'CompanyLogo':['', Validators.compose([Validators.nullValidator])],
-      'ContactFirstName': ['', Validators.compose([Validators.required])],
-      'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
-      'ContactLastName': ['', Validators.compose([Validators.required])],
-      'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
-      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
-      'Password': ['', Validators.compose([Validators.required])],
-      'Address1': ['', Validators.compose([Validators.required])],
-      'Address2': ['', Validators.compose([Validators.nullValidator])],
-      'ZipCode': ['56898', Validators.compose([Validators.required])],
-      'CountryName': ['USA', Validators.compose([Validators.required])],
-      'StateName': ['texas', Validators.compose([Validators.required])],
-      'CityName': ['austin', Validators.compose([Validators.required])],        
-      'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
-      'FromTime':['', Validators.compose([Validators.nullValidator])],
-      'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
-      'WebSite':['', Validators.compose([Validators.nullValidator])],        
-      'Description': ['', Validators.compose([Validators.nullValidator])],
-      'TimeZoneId'  : [1, Validators.compose([Validators.required])],
-      'UserRoleId':[4, Validators.compose([Validators.required])],   
-      'ObjCompany': ['', Validators.compose([Validators.nullValidator])],
-      'ObjTimeZone':  ['', Validators.compose([Validators.nullValidator])] 
-    });
-  }
- 
   Login()
   {
     this.router.navigateByUrl('home'); 
@@ -99,7 +66,7 @@ export class SignUpComponent  implements OnInit{
 
   SignUp() {
     this.show = false;
-    if(!this.signUpform.valid)
+    if(this.signUpform.invalid)
     {
       this.signUpform.controls['ContactFirstName'].markAsTouched()
       this.signUpform.controls['ContactLastName'].markAsTouched()
@@ -113,38 +80,27 @@ export class SignUpComponent  implements OnInit{
     }
     else
     {
-
         this.appService.signUp(this.signUpform.value)
         .subscribe(
-        data => {
-          
+        data => {         
         if(data>0)
         {   
           this.Email(data);
-        }
+        }  
+      });
+    }
         
-        },
-    
-        error => {
-          this.toastr.error('Please provide the valid details!', 'Oops!');
-          this.signUpform.reset();
-          setTimeout(() => {
-            this.toastr.dismissToast;
-        }, 3000);
-        },
-        () => console.log('Call Sucessfull')
-        ); 
 
       
-  }
-  }
+  
+}
 
   Email(userId)
   {
     this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
     this.info.ToEmailId = this.signUpform.value.ContactEmail;
     this.info.ApplicationName = 'Arytic';
-    this.info.AppLink ='http://demo.tenendus.com:1060/home;Uid='+userId; 
+    this.info.AppLink ='http://169.46.102.195:1010/home;Uid='+userId; 
     this.info.ClientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {
@@ -164,7 +120,35 @@ export class SignUpComponent  implements OnInit{
 
   ngOnInit() {
     this.show = false;
-
+    this.signUpform = this.fb.group({
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': [0, Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.required])],
+      'CompanyName': ['', Validators.compose([Validators.required])],
+      'CompanySizeId'  : [1, Validators.compose([Validators.required])],
+      'CompanyLogo':['', Validators.compose([Validators.nullValidator])],
+      'ContactFirstName': ['', Validators.compose([Validators.required])],
+      'ContactMiddleName': ['', Validators.compose([Validators.nullValidator])],
+      'ContactLastName': ['', Validators.compose([Validators.required])],
+      'ContactNumber': ['',  Validators.compose([Validators.nullValidator,Validators.minLength(10)])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
+      'Password': ['', Validators.compose([Validators.required])],
+      'Address1': ['', Validators.compose([Validators.nullValidator])],
+      'Address2': ['', Validators.compose([Validators.nullValidator])],
+      'ZipCode': ['56898', Validators.compose([Validators.required])],
+      'CountryName': ['USA', Validators.compose([Validators.required])],
+      'StateName': ['texas', Validators.compose([Validators.required])],
+      'CityName': ['austin', Validators.compose([Validators.required])],        
+      'PreferredContactDate': ['', Validators.compose([Validators.nullValidator])],
+      'FromTime':['', Validators.compose([Validators.nullValidator])],
+      'ToTime'   : ['', Validators.compose([Validators.nullValidator])],
+      'WebSite':['', Validators.compose([Validators.nullValidator])],        
+      'Description': ['', Validators.compose([Validators.nullValidator])],
+      'TimeZoneId'  : [1, Validators.compose([Validators.required])],
+      'UserRoleId':[4, Validators.compose([Validators.required])],   
+      'ObjCompany': ['', Validators.compose([Validators.nullValidator])],
+      'ObjTimeZone':  ['', Validators.compose([Validators.nullValidator])] 
+    });
     $(".glyphicon-eye-open").on("click", function () {
       $(this).toggleClass("glyphicon-eye-close");
       var type = $("#password").attr("type");

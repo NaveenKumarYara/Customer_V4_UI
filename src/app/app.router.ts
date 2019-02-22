@@ -89,7 +89,7 @@ import { aboutcompany } from './components/company-profile/aboutcompany/aboutcom
 
 const appRoutes: Routes =
 [
-  { path: '', redirectTo: 'layout', pathMatch: 'full' , canActivate: [AuthGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
     {path:'guest',component:GuestComponent},
@@ -215,8 +215,8 @@ const appRoutes: Routes =
       ]
     },
 
-    { path: '', redirectTo: '/layout', pathMatch: 'full' , canActivate: [AuthGuard] },
-    { path: '**', component: LayoutComponent }
+    { path: '', redirectTo: '/home', pathMatch: 'full' , canActivate: [AuthGuard] },
+    { path: '**', component: HomeComponent  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: false});
