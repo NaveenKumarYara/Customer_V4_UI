@@ -28,6 +28,7 @@ export class LogoHeaderComponent implements OnInit {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
     this.router.navigateByUrl('/home' , { replaceUrl: true });
+    window.location.href = 'http://demo.tenendus.com:1070/customerLogin';
 }
 
 ngOnInit()

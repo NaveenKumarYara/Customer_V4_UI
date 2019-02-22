@@ -52,6 +52,7 @@ import { ManagejobsModule } from './components/managejobs/managejobs.module';
 import { JobdetailsModule } from './components/jobdetails/jobdetails.module';
 import { CompanyProfileModule } from './components/company-profile/company-profile.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import {dLoginComponent} from '../app/components/Login/dlogin.component';
 import { AccountsettingsModule } from './components/accountsettings/accountsettings.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -90,6 +91,7 @@ import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/sa
     Step4Component,
     ForgotComponent,
     ResetComponent,
+    dLoginComponent,
     EditDraftComponent,
     DashboardComponent,
     JobdetailsComponent,

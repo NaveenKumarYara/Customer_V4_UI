@@ -49,7 +49,7 @@ import {CandidateProfileComponent} from './components/company-profile/candidatep
 import { JobdetailsAdvanceSearchComponent } from '../app/components/jobdetails/view-jobdetails/jobdetails-advance-search/jobdetails-advance-search.component';
 import { ViewjobdetailsmodelComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
 import { UploadProfilesComponent } from '../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component';
-
+import {dLoginComponent} from '../app/components/Login/dlogin.component';
 import { ViewjobdetailsScComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 import { GuestComponent} from './components/GuestSignUp/guest.component';
@@ -92,6 +92,7 @@ const appRoutes: Routes =
   { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
+    { path: 'dlogin', component: dLoginComponent },
     {path:'guest',component:GuestComponent},
     { path: 'ForgotPassword', component: ForgotComponent },
     { path: 'ResetPassword', component: ResetComponent },
