@@ -9,16 +9,21 @@
                     </h4>
                     <div class="meta">
                         <div>
-                            <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="Avatar" class="ui-pic" width="50" height="50">
+                            <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="Avatar" class="ui-pic"
+                                width="50" height="50">
                             <h5>{{jobdetailscustomer?.JobInfo?.CompanyName}}</h5>
                             <!-- <h5>{{data.JobId}}</h5> -->
                             <!-- <h5>{{data.JobId}}</h5> -->
                         </div>
                         <div class="h-19">
                             <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
-                <path class="st0" d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z"></path>
-                <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z"></path>
-              </svg>
+                                <path class="st0"
+                                    d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z">
+                                </path>
+                                <path class="st0"
+                                    d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z">
+                                </path>
+                            </svg>
                             <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation; let i=index">
                                 <h5 class="location">{{location?.CityName}},{{location?.StateName}}</h5>
                             </ng-container>
@@ -26,9 +31,11 @@
                         <div>
                             <a href="javascript:void(0)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21.1" height="21.1">
-                  <path d="M13.8 6L8.5 8c-.2.1-.4.3-.5.5l-2 5.3c-.1.4 0 .8.2 1.1.2.2.4.3.7.3.1 0 .2 0 .4-.1l5.3-2c.3-.1.5-.3.6-.6l2-5.3c.1-.4 0-.8-.2-1.1s-.8-.3-1.2-.1zm-2.4 5.4l-2.8 1 1-2.8 2.8-1-1 2.8z" />
-                  <path d="M10.5 0A10.5 10.5 0 1 0 21 10.5C21.1 4.7 16.3 0 10.5 0zm0 19.1c-4.7 0-8.5-3.8-8.5-8.5S5.8 2 10.5 2 19 5.8 19 10.5s-3.8 8.6-8.5 8.6z" />
-                </svg>
+                                    <path
+                                        d="M13.8 6L8.5 8c-.2.1-.4.3-.5.5l-2 5.3c-.1.4 0 .8.2 1.1.2.2.4.3.7.3.1 0 .2 0 .4-.1l5.3-2c.3-.1.5-.3.6-.6l2-5.3c.1-.4 0-.8-.2-1.1s-.8-.3-1.2-.1zm-2.4 5.4l-2.8 1 1-2.8 2.8-1-1 2.8z" />
+                                    <path
+                                        d="M10.5 0A10.5 10.5 0 1 0 21 10.5C21.1 4.7 16.3 0 10.5 0zm0 19.1c-4.7 0-8.5-3.8-8.5-8.5S5.8 2 10.5 2 19 5.8 19 10.5s-3.8 8.6-8.5 8.6z" />
+                                </svg>
                             </a>
                         </div>
                     </div>
@@ -36,94 +43,105 @@
 
                 <div class="modal-actions">
                     <button mat-button mat-dialog-close class="btn btn-border">Cancel</button>
-                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial *ngIf="jobdetailscustomer?.JobInfo?.IsActive==true;else isactives" id="InactiveJob" class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,false)">Inactive</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+                        *ngIf="jobdetailscustomer?.JobInfo?.IsActive==true;else isactives" id="InactiveJob"
+                        class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,false)">Inactive</button>
                     <ng-template #isactives>
-                        <button id="ActiveJob" mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,true)">active</button>
+                        <button id="ActiveJob" mat-button [mat-dialog-close]="true" cdkFocusInitial
+                            class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,true)">active</button>
                     </ng-template>
                 </div>
-
-
             </div>
             <div class="modal-body">
-                <!-- <ul class="nav nav-tabs">
-          <li routerlinkactive="active"><a data-toggle="tab" href="#description">Description</a></li>
-          <li routerlinkactive="active"><a data-toggle="tab" href="#roles">Roles and Responsibilities</a></li>
-          <li routerlinkactive="active"><a data-toggle="tab" href="#skills">Skills</a></li> -->
-                <!-- <span class="active-line" style="width: 45.4375px; left: 0px;"></span> -->
+                <ul class="nav nav-tabs">
+                    <li routerlinkactive="active"><a data-toggle="tab" href="#description">Description</a></li>
+                    <li routerlinkactive="active"><a data-toggle="tab" href="#roles">Roles and Responsibilities</a></li>
+                    <li routerlinkactive="active"><a data-toggle="tab" href="#skills">Skills</a></li> 
+                    <span class="active-line" style="width: 45.4375px; left: 0px;"></span>
+                </ul>
 
-
-                <div class="tab-content">
-                    <div id="description" class="tab-pane fade in active">
-                        <div class="group">
-                            <h4>Description</h4>
-                            <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
-                            </p>
-                        </div>
-                        <div class="group">
+                    <div class="tab-content">
+                        <div id="description" class="tab-pane fade in active">
+                            <div class="group">
+                                <h4>Description</h4>
+                                <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                                </p>
+                            </div>
+                            <!-- <div class="group">
                             <h4>Job Roles and Responsbilities</h4>
                             <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
                                 {{response?.RolesAndResponsibilities}}
                             </p>
-                        </div>
-                        <div class="group">
+                        </div> -->
+                            <!-- <div class="group">
                             <h4>Skills</h4>
                             <ul class="list">
-                                <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">{{skill?.SkillName}}</li>
+                                <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
+                                    {{skill?.SkillName}}</li>
                             </ul>
-                        </div>
-                        <div class="group">
-                            <h4>Domain</h4>
-                            <ul class="list">
-                                <li *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">{{domain?.DomainName}}</li>
-                            </ul>
-                        </div>
-                        <div class="group">
-                            <h4>Benefits</h4>
-                            <ul class="list">
-                                <li class="item" *ngFor="let companybenfit of getcompanybenfit">
-                                    {{companybenfit?.CompanyBenefit}}</li>
-                            </ul>
-                        </div>
-                        <div class="group review-group">
-                            <h4>Reviews</h4>
-                            <ul class="reviews">
-                                <li *ngFor="let comment of jobComments">
-                                    <div class="img-wrapper">
-                                        <img [src]="comment?.ProfilePic" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <div class="review-header">
-                                            <div>
-                                                <h5>{{comment?.FirstName}} {{comment?.LastName}}</h5>
-                                                <h6>{{comment?.ProfileTitle}}</h6>
-                                            </div>
-                                            <div class="time">{{comment?.CommentedDate | date:'shortTime'}}</div>
+                        </div> -->
+                            <div class="group">
+                                <h4>Domain</h4>
+                                <ul class="list">
+                                    <li *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                                        {{domain?.DomainName}}</li>
+                                </ul>
+                            </div>
+                            <div class="group">
+                                <h4>Benefits</h4>
+                                <ul class="list">
+                                    <li class="item" *ngFor="let companybenfit of getcompanybenfit">
+                                        {{companybenfit?.CompanyBenefit}}</li>
+                                </ul>
+                            </div>
+                            <div class="group review-group">
+                                <h4>Reviews</h4>
+                                <ul class="reviews">
+                                    <li *ngFor="let comment of jobComments">
+                                        <div class="img-wrapper">
+                                            <img [src]="comment?.ProfilePic" alt="">
                                         </div>
-                                        <p>
-                                            {{comment?.CommentText}}
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
+                                        <div class="review-content">
+                                            <div class="review-header">
+                                                <div>
+                                                    <h5>{{comment?.FirstName}} {{comment?.LastName}}</h5>
+                                                    <h6>{{comment?.ProfileTitle}}</h6>
+                                                </div>
+                                                <div class="time">{{comment?.CommentedDate | date:'shortTime'}}</div>
+                                            </div>
+                                            <p>
+                                                {{comment?.CommentText}}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
-                        <!-- <div class="group">
-              <h4>Job Roles and Responsbilities</h4>
-              <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
-                {{response?.RolesAndResponsibilities}}
-              </p>
-          </div> -->
-                        <!-- <div class="group">
-            <h4>Skills</h4>
-            <p *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">{{skill?.SkillName}}</p>
-        </div> -->
+                        <div id="roles" class="tab-pane fade">
+                            <div class="group">
+                                <h4>Job Roles and Responsbilities</h4>
+                                <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
+                                    {{response?.RolesAndResponsibilities}}
+                                </p>
+                            </div>
+                            <div class="group">
+                                <h4>Video Sizzle</h4>
+                                <video _ngcontent-c21="" class="video-align" controls="" type="video/mp4" width="440" src="http://api.tenendus.com:1090/IdentityAPI/EsolvitVideos/Lisa_20190214070351.mp4"></video>
+                            </div>
+
+                        
+                        </div>
+                        <div id="skills" class="tab-pane fade">
+                            <div class="group">
+                                <h4>Skills</h4>
+                                <ul class="list">
+                                    <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
+                                        {{skill?.SkillName}}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <!-- <div id="roles" class="tab-pane fade">
-      
-          </div> -->
-                    <!-- <div id="skills" class="tab-pane fade">
-          
-          </div> -->
-                </div>
             </div>
         </mat-dialog-content>
         <mat-dialog-actions class="modal-footer">
