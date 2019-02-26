@@ -135,6 +135,6 @@ export const environment = {
   GetCitySearch: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
 
 
-
+  InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?',
   EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?'
 };

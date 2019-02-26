@@ -32,11 +32,12 @@ export class HomeComponent implements OnInit {
         this.tkeyres  = this._cookieService.get('token');
         if(this.tkeyres !=null)
         {
+          debugger
           this.GetLogin(this.tkeyres);
         }
         else
         {
-          window.location.href = 'http://demo.tenendus.com:1070/customerLogin';
+          window.location.href = 'http://arytic.com/customerLogin';
         }
   }
 
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
         }
         else
         {
-          window.location.href = 'http://demo.tenendus.com:1070/customerLogin';
+          window.location.href = 'http://arytic.com/customerLogin';
         }
       })
   }
