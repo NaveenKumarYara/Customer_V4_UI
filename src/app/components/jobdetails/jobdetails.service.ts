@@ -21,6 +21,7 @@ import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
 import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
 import {ProfileLinks} from './models/ProfileLinks';
+import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 
 @Injectable()
@@ -57,7 +58,6 @@ export class JobdetailsService {
     return Observable.throw(errMsg);
   }
 
-
   getProfileLinks(userId: number) {
     const url = environment.profileLink + 'userId=' + userId;
     return this.http.get<ProfileLinks[]>(url)
@@ -65,7 +65,20 @@ export class JobdetailsService {
             this.handleError
         );
   }
-
+  getInterviewtype(jobId: number) {
+    const url = environment.InterviewScheduleType + 'jobId=' + jobId;
+    return this.http.get<ScheduleType>(url)
+        .catch(
+            this.handleError
+        );
+   }
+   getInterViewTypes(): Observable<ScheduleType[]> {
+    const url = environment.interviewtypeendpoint;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+    }
   getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
     const url = environment.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;

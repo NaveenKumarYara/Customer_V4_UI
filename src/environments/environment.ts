@@ -119,5 +119,8 @@ export const environment = {
 
     CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
 
-    EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?'
+    EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?',
+
+    InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?'
+
 };

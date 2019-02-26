@@ -107,11 +107,15 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div class="interview-type">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" (click)="process(1)" href="#inperson">In Person</a></li>
-                                    <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
-                                    <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li>
+                            <div class="interview-type" >
+                                <ul class="nav nav-tabs" >
+                                            <li *ngFor="let type of typeList" > 
+                                                    <a data-toggle="tab" href="javascript:void(0)" > 
+                                                         {{type?.InterviewType}}
+                                                     </a>                                                                                                                         
+                                             </li>
+                                    <!-- <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
+                                    <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li> -->
                                 </ul>
 
                                 <div class="tab-content">

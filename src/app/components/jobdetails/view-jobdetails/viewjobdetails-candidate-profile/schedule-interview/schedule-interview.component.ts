@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
+import {ScheduleType} from '../../../models/ScheduleType';
 import { Subject } from 'rxjs/Subject';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
@@ -46,6 +47,8 @@ export class ScheduleInterviewComponent implements OnInit {
   selectedUserName = '';
   teammembers: '';
   teammemberslist: CustomerUsers[];
+  typeList: ScheduleType[];
+  jobInterview: ScheduleType;
   addedteammembers: '';
   addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
@@ -76,6 +79,8 @@ export class ScheduleInterviewComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.GetInterView();
+    this.GetType();
     $('body').on('change', '#datePickerCert', function () {
       $('#datePickerCert').trigger('click');
     });
@@ -151,6 +156,7 @@ if (this.processSelection == null || this.processSelection === undefined) {
      }) ;
     }
 }
+
   getcustomerusers()  {
     this.managersList = concat(
       of([]), // default items
@@ -165,6 +171,18 @@ if (this.processSelection == null || this.processSelection === undefined) {
       )
     );
   }
+  GetType() {
+   return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
+    this.jobInterview = res;
+   });
+   }
+GetInterView() {
+  return this.jobdetailsservice.getInterViewTypes().subscribe(res => {
+ this.typeList = res;
+  });
+    }
+
+
   changeTeam(val) {
     this.getTeammember = val;
   }
