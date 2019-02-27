@@ -31,13 +31,12 @@ export class HomeComponent implements OnInit {
         this.spinner.show();
         this.tkeyres  = this._cookieService.get('token');
         if(this.tkeyres !=null)
-        {
-          debugger
+        {         
           this.GetLogin(this.tkeyres);
         }
         else
         {
-          window.location.href = 'http://arytic.com/customerLogin';
+          this.router.navigateByUrl('login');
         }
   }
 
@@ -61,7 +60,7 @@ export class HomeComponent implements OnInit {
         }
         else
         {
-          window.location.href = 'http://arytic.com/customerLogin';
+          this.router.navigateByUrl('login');
         }
       })
   }

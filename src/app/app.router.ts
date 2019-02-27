@@ -92,7 +92,7 @@ const appRoutes: Routes =
   { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
-    { path: 'dlogin', component: dLoginComponent },
+    { path: 'login', component: dLoginComponent },
     {path:'guest',component:GuestComponent},
     { path: 'ForgotPassword', component: ForgotComponent },
     { path: 'ResetPassword', component: ResetComponent },
