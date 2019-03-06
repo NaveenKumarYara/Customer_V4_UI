@@ -190,7 +190,6 @@ this.schIntw.RequiredFurtherInterview = this.inPersonRI;
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
     this.typeId = this.jobInterview.InterviewTypeId;
-    this.interviewtype = this.jobInterview.InterviewType;
    });
    }
 GetInterView() {
