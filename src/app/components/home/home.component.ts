@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,private _cookieService: CookieService,
       private fb: FormBuilder, private router: Router,private appService: AppService) {
         this.spinner.show();
-        this.tkeyres  = this._cookieService.get('token');
+        this.tkeyres  = this._cookieService.get('custkn');
         if(this.tkeyres !=null)
         {         
           this.GetLogin(this.tkeyres);
@@ -45,18 +45,16 @@ export class HomeComponent implements OnInit {
 
   GetLogin(res)
   {
-    this.tkey.UserToken = res;
-    this.appService.GetCustomerToken(this.tkey).subscribe(
+    this.appService.GetCustomerToken(res).subscribe(
       data => {
-        if(data.UserId>0 && data.IsActive == true)
+        if(data.UserId>0)
         {
         this.spinner.hide();
+        this.tkeyres = '';
+        this._cookieService.remove('custkn'); 
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
         sessionStorage.setItem('userData', JSON.stringify(data));
         this.router.navigateByUrl('app-dashboardview');
-        this.tkeyres = null;
-        this.tkey.UserToken= null;
-        this._cookieService.remove('token'); 
         }
         else
         {

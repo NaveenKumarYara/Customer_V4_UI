@@ -34,6 +34,7 @@ export class ScheduleInterviewComponent implements OnInit {
   hourStep = 1;
   minuteStep = 1;
   secondStep = 1;
+  typeId:number;
   InterviewDate: any;
   @Input() userId: number;
   @Input() jobResponseId: number;
@@ -62,14 +63,17 @@ export class ScheduleInterviewComponent implements OnInit {
     this.customerUser = this.customer.UserId;
    // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
    }
-   process(val) {
-// if (val === 1) {
-  this.processSelection = val;
-// } else if (val === 2) {
+   process(val,res) {
+  if(val>0)
+  {
+    this.processSelection = val;
+    this.typeId = 0;
+  }
+  else if(this.typeId>0)
+  {
+    this.processSelection = this.typeId;
+  }
 
-// } else {
-
-// }
    }
 
   changeDate(updateSeasonStartDate: any)  {
@@ -117,7 +121,8 @@ export class ScheduleInterviewComponent implements OnInit {
   // toggleSeconds() {
   //   this.seconds = !this.seconds;
   // }
-  ScheduleInterview() {
+ScheduleInterview() {
+  debugger
 if (this.schedule.valid) {
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
@@ -132,23 +137,33 @@ this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.Inte
 // this.schIntw.AccessId=this.userId;
 // this.schIntw.SkypeId=this.userId;
   this.schIntw.Comments = '';
-   this.schIntw.ResponseStatusId = 7; // what stage it is..hired...
+   this.schIntw.ResponseStatusId = 7; 
+   if (this.processSelection == null || this.processSelection === undefined) {
+    this.schIntw.InterviewTypeId =this.typeId;   
+  }
+  else if(this.processSelection!=null)
+  {
+    this.schIntw.InterviewTypeId = this.processSelection;  
+  }
+  // what stage it is..hired...
 // this.schIntw.IsActive=this.userId;
 // this.schIntw.Rating=this.userId;
-if (this.processSelection === 1) {
-  this.schIntw.RequiredFurtherInterview = this.inPersonRI;
-} else if (this.processSelection === 2) {
-  this.schIntw.RequiredFurtherInterview = this.skypeRI;
-  // this.schIntw.SkypeId=this.userId;
-} else if (this.processSelection === 3) {
-  this.schIntw.RequiredFurtherInterview = this.webxRI;
-  // this.schIntw.PhoneNumber=this.userId;
-}
+// if (this.processSelection === 1) {
+//   this.schIntw.RequiredFurtherInterview = this.inPersonRI;
+// } else if (this.processSelection === 2) {
+//   this.schIntw.RequiredFurtherInterview = this.phone;
+//   // this.schIntw.SkypeId=this.userId;
+// } else if (this.processSelection === 3) {
+//   this.schIntw.RequiredFurtherInterview = this.skypeRI;
+//   // this.schIntw.PhoneNumber=this.userId;
+// }
+// else if (this.processSelection === 4) {
+//   this.schIntw.RequiredFurtherInterview = this.webxRI;
+//   // this.schIntw.PhoneNumber=this.userId;
+// }
 
-if (this.processSelection == null || this.processSelection === undefined) {
-  this.processSelection === 1;
-}
- this.schIntw.InterviewTypeId = this.processSelection;
+
+this.schIntw.RequiredFurtherInterview = this.inPersonRI;
  this.schIntw.StatusChangedByUserId = this.customerUser;
  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
@@ -174,6 +189,8 @@ if (this.processSelection == null || this.processSelection === undefined) {
   GetType() {
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
+    this.typeId = this.jobInterview.InterviewTypeId;
+    this.interviewtype = this.jobInterview.InterviewType;
    });
    }
 GetInterView() {

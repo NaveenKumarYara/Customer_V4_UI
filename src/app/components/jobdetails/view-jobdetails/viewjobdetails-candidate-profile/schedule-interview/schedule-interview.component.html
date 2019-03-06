@@ -1,6 +1,6 @@
 <div class="page page--job-details pt-4r">
     <div id="scheduleInterview">
-        <form action="" #schedule="ngForm" (ngSubmit)="ScheduleInterview()">
+        <form  #schedule="ngForm" (ngSubmit)="ScheduleInterview()">
             <h4 mat-dialog-title class="modal-title">
                 Schedule Interview
             </h4>
@@ -22,7 +22,7 @@
                   <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-top" style="display: block; top: 202px; left: 712.5px; z-index: 1010;">
         
                   </div> -->
-                                        <input class="form-control custom-ngbDatepicker" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" ngbDatepicker #d="ngbDatepicker">
+                                        <input class="form-control custom-ngbDatepicker" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
                                         <div class="input-group-btn">
                                             <button class="btn" (click)="d.toggle()" type="button">
                                                 <img src="../../../../../../assets/images/calender.svg" width="22" />
@@ -86,12 +86,12 @@
                                     <div class="input-group">
                                         <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
                                         <ng-select class="custom-style interview-schedule-popup" [items]="managersList | async" name="team" placeholder="Type and Search" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" [virtualScroll]="true" required #TMember="ngModel">
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" required #TMember="ngModel">
                                         </ng-select>
 
                                         <span class="input-group-btn">
-                      <button (click)="addTeammembers()" class="btn">+</button>
-                    </span>
+                                        <button type="button" (click)="addTeammembers()" class="btn">+</button>
+                                        </span>
                                     </div>
                                     <span class="text-danger" *ngIf="TMember.invalid && TMember.touched">Required.</span>
                                 </div>
@@ -109,11 +109,19 @@
                         <div class="col-md-8">
                             <div class="interview-type" >
                                 <ul class="nav nav-tabs" >
-                                            <li *ngFor="let type of typeList" > 
+                                            <!-- <li *ngFor="let type of typeList" > 
                                                     <a data-toggle="tab" href="javascript:void(0)" > 
                                                          {{type?.InterviewType}}
                                                      </a>                                                                                                                         
-                                             </li>
+                                             </li> -->
+                                             <ng-container *ngFor="let type of typeList" >
+                                                    <li [ngClass]="jobInterview.InterviewTypeId==type.InterviewTypeId ? 'active' : 'ACTIVE' "> 
+                                                            <a data-toggle="tab" href="javascript:void(0)" (click)="process(type?.InterviewTypeId,type?.InterviewType)"> 
+                                                                 {{type?.InterviewType}}
+                                                             </a>                                                                                                                         
+                                                     </li>
+                                                    </ng-container>
+                                             
                                     <!-- <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
                                     <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li> -->
                                 </ul>
@@ -147,7 +155,7 @@
                                     <div id="skype" class="tab-pane fade">
                                         <div class="form-group skype-group">
                                             <label for="">Skype</label>
-                                            <h2><input class="form-control" type="text" [(ngModel)]="schIntw.SkypeId"></h2>
+                                            <h2><input class="form-control" type="text" [(ngModel)]="schIntw.SkypeId" name="skype"></h2>
                                             <label for="request-skype" class="radio">
                         <input type="checkbox" id="request-skype" name="requestSkypeID" class="radio-input">
                         <span class="radio-btn"></span>
@@ -214,15 +222,15 @@
                                     <div class="clearfix">
                                         <div class="radio-btn bordered">
                                             <label>
-                  <input type="radio" [(ngModel)]="inPersonRI" name="contract-duration" value="true">
-                  <span class="box">Yes</span>
-                </label>
-                                        </div>
+                                     <input type="radio" [(ngModel)]="inPersonRI" name="inPersonRI"  value="true">
+                                      <span class="box">Yes</span>
+                                           </label>
+                                        </div> 
                                         <div class="radio-btn bordered">
-                                            <label>
-                  <input type="radio" [(ngModel)]="inPersonRI" name="contract-duration" value="false">
-                  <span class="box">No</span>
-                </label>
+                                         <label>
+                                       <input type="radio" [(ngModel)]="inPersonRI" name="inPersonRI" value="false">
+                                        <span class="box">No</span>
+                                        </label>
                                         </div>
                                     </div>
                                 </div>
@@ -234,9 +242,9 @@
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">
                     <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-                    <button mat-button type="submit" [mat-dialog-close]="true" c000dkFocusInitial class="btn btn-filled">Schedule
-          Interview</button>
-
+                    <button mat-button type="submit" [mat-dialog-close]="true" (click)="ScheduleInterview()" c000dkFocusInitial class="btn btn-filled">
+                        Schedule Interview</button>
+               
                 </div>
             </mat-dialog-actions>
         </form>
