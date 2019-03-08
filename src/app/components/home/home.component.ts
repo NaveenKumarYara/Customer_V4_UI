@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
-import { CookieService } from 'angular2-cookie';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any; 
@@ -11,7 +10,7 @@ declare var $: any;
   
   selector: 'home',
   templateUrl: './home.component.html',
-  providers:[AppService,CookieService,NgxSpinnerService]
+  providers:[AppService,NgxSpinnerService]
 })
 export class HomeComponent implements OnInit {
          
@@ -26,18 +25,19 @@ export class HomeComponent implements OnInit {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
   userId:any;
-  constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,private _cookieService: CookieService,
+  constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService) {
+        
+        this.route.params.subscribe(params => {
+          if (params['tk']!=null) {
+            this.GetLogin(params['tk']);
+          }
+          else
+          {
+            this.router.navigateByUrl('login');
+          }
+        });
         this.spinner.show();
-        this.tkeyres  = this._cookieService.get('custkn');
-        if(this.tkeyres !=null)
-        {         
-          this.GetLogin(this.tkeyres);
-        }
-        else
-        {
-          this.router.navigateByUrl('login');
-        }
   }
 
 
@@ -45,13 +45,12 @@ export class HomeComponent implements OnInit {
 
   GetLogin(res)
   {
-    this.appService.GetCustomerToken(res).subscribe(
+    this.tkey.UserToken = res;
+    this.appService.GetCustomerToken(this.tkey).subscribe(
       data => {
         if(data.UserId>0)
         {
         this.spinner.hide();
-        this.tkeyres = '';
-        this._cookieService.remove('custkn'); 
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
         sessionStorage.setItem('userData', JSON.stringify(data));
         this.router.navigateByUrl('app-dashboardview');
