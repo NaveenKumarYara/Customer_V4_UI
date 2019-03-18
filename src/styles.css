@@ -21902,3 +21902,13 @@ a:hover {
     bottom: -6px;
     left: 20%;
 }
+
+.page--manage-jobs .card .meta .client{
+    border-right: 1px solid #E0E3EC;
+}
+.page--job-details .meta h5.client{
+    border-right: 1px solid #E0E3EC;
+}
+.ml-1{
+    margin-right: 10px !important;
+}
