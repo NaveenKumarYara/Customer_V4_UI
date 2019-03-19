@@ -17,10 +17,18 @@ export class AdvanceSearchComponent implements OnInit {
   userId: any;
   location:any;
   exp:any;
+  departmentId:any;
+  clientId:any;
   advancesearch:any;
+  cn = new client();
+  dn = new dept();
   showadvancesearch = false;
   empolymentId:any;
+  clientName: any;
+  deptName:any;
   searchString:any;
+  SearchDept:any =[];
+  SearchClients:any = [];
   SearchList: any = [];
   expYears: any = [];
   employmentList: any = [];
@@ -57,15 +65,29 @@ export class AdvanceSearchComponent implements OnInit {
     this.location = val;
   }
 
+  SetSearchCName(val,str)
+  {
+    this.clientName = str;
+    this.SearchClients = [];
+    this.clientId = val;
+  }
+
+  SetSearchDName(val,str)
+  {
+    this.deptName = str;
+    this.SearchDept  = [];
+    this.departmentId = val;
+  }
 
   all()
   {
-    this.parentApi.callFilterMethod(0,0,0);
+    this.parentApi.callFilterMethod(0,0,0,0,0);
   }
 
   apply()
   {
-    this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location);
+    debugger
+    this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
   }
 
@@ -74,6 +96,48 @@ export class AdvanceSearchComponent implements OnInit {
   }
   changeJobType(empolyment) {
     this.empolymentId= empolyment;
+  }
+
+  GetSearchClients(cname)
+  {
+    this.cn.ClientName = cname;
+    this.cn.IsSuggested = false;
+    return this.appService.SearchClients(this.cn)
+    .subscribe(data => {
+          if (data.length > 0) {  
+            this.SearchClients =data;
+          }
+          else {
+            this.SearchClients = [];
+          }
+        
+          }, 
+     
+        error => { 
+          this.SearchClients  = [];
+         });
+  
+  }
+
+  GetSearchDepartments(dname)
+  {
+    this.dn.DepartmentName = dname;
+    this.dn.IsSuggested = false;
+    return this.appService.SearchDepartments(this.dn)
+    .subscribe(data => {
+          if (data.length > 0) {  
+            this.SearchDept = data;
+          }
+          else {
+            this.SearchDept = [];
+          }
+        
+          }, 
+     
+        error => { 
+          this.SearchDept   = [];
+         });
+  
   }
 
   GetCity(val) {
@@ -99,4 +163,16 @@ export class AdvanceSearchComponent implements OnInit {
     this.getExpYears();
   }
 
+}
+
+export class dept
+{
+  DepartmentName: string;
+  IsSuggested: boolean;
+}
+
+export class client
+{
+  ClientName: string;
+  IsSuggested: boolean;
 }

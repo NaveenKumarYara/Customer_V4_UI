@@ -36,10 +36,10 @@
                     <div class="form-group">
                         <label for="job-type">client</label>
                         <form #form="ngForm" class="cls-rel">
-                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText (keyup)="GetCity(searchText.value)">
-                            <div class="searchList" *ngIf="SearchList.length>0">
+                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="clientName" name="clientName" placeholder="Clients" #searchc  (keyup)="GetSearchClients(searchc.value)">
+                            <div class="searchList" *ngIf="SearchClients.length>0">
                                 <ul class="searchList-dropdown">
-                                    <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.CityId,slist.CityName.split(',')[0])">{{slist.CityName.split(',')[0]}}</li>
+                                    <li class="searchList-options" *ngFor="let cname of SearchClients" (click)="SetSearchCName(cname.ClientId,cname.ClientName)">{{cname.ClientName}}</li>
                                 </ul>
                             </div>
                         </form>
@@ -49,9 +49,14 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="job-type">department</label>
-                        <select name="view" id="view" (change)="changeDomain($event.target.value)" class="styled-select-box block">
-                <option *ngFor="let domain of domains" [value]="domain.DomainName">{{domain.DomainName}}</option>
-            </select>
+                        <form #form="ngForm" class="cls-rel">
+                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="deptName" name="deptName" placeholder="department" #searchd (keyup)="GetSearchDepartments(searchd.value)">
+                            <div class="searchList" *ngIf="SearchDept.length>0">
+                                <ul class="searchList-dropdown">
+                                    <li class="searchList-options" *ngFor="let dname of  SearchDept" (click)="SetSearchDName(dname.DepartmentId,dname.CustomerDepartment)">{{dname.CustomerDepartment}}</li>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </form>

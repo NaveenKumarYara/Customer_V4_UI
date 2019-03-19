@@ -59,9 +59,9 @@ export class ManageJobService {
       );
   }
 
-  getJobDetailsByFilter(customerId:number,userId:number,employmentTypeId : number,experience: number,cityId: number,viewBy: number,count: number): Observable<JobDetails[]> {
+  getJobDetailsByFilter(customerId:number,userId:number,employmentTypeId : number,experience: number,cityId: number,viewBy: number,clientId:number,departmentId:number,count: number): Observable<JobDetails[]> {
     const url = environment.GetJobsFilterBy +
-    'customerId=' + customerId + '&userId='+ userId + '&employmentTypeId='+employmentTypeId+ '&experience=' +experience+'&cityId=' +cityId+ '&viewBy='+viewBy+ '&pageNumber=1' + '&numberOfRows=' + count;
+    'customerId=' + customerId + '&userId='+ userId + '&employmentTypeId='+employmentTypeId+ '&experience=' +experience+'&cityId=' +cityId+ '&viewBy='+viewBy+  '&clientId='+clientId+  '&departmentId='+departmentId+ '&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails[]>(url)
       .debounceTime(1000)
       .catch(

@@ -79,14 +79,16 @@ export class LoadJoblistComponent implements OnInit {
     }); 
   }
 
-  populateJoblistByFilter(customerId, userId,employmentTypeId=0,experience=0,cityId=0) { 
+  populateJoblistByFilter(customerId, userId,employmentTypeId=0,experience=0,cityId=0,clientId=0,departmentId=0) { 
+   debugger
     $('#searchStr').val('');
     this.employmentTypeId = employmentTypeId;
     this.experience = experience;
     this.viewBy=this.sortBy;
     this.cityId = cityId;
-    return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,this.joblistcount).subscribe(res => {
+    return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,clientId,departmentId,this.joblistcount).subscribe(res => {
       this.loaddata = true;
+     debugger
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
@@ -127,14 +129,14 @@ export class LoadJoblistComponent implements OnInit {
         this.defaultValue='0';
       this.populateJoblist(this.customerId, this.userId,this.searchString);
       },
-      callFilterMethod : (employmentTypeId,experience,cityId)=>{ 
-        if(employmentTypeId > 0 || experience > 0 || cityId > 0) 
+      callFilterMethod : (employmentTypeId,experience,cityId,clientId,departmentId)=>{ 
+        if(employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId>0||departmentId>0) 
         {
           this.searchString = ''; 
           this.sortBy = 0;
           this.defaultValue='0';
         }
-         this.populateJoblistByFilter(this.customerId, this.userId,employmentTypeId,experience,cityId);
+         this.populateJoblistByFilter(this.customerId, this.userId,employmentTypeId,experience,cityId,clientId,departmentId);
     }
   };
   }
@@ -161,5 +163,5 @@ export class LoadJoblistComponent implements OnInit {
 
 export interface ParentComponentApi {
   callSearchMethod : (string) => void; 
-  callFilterMethod : (employmentTypeId,experience,cityId) => void;
+  callFilterMethod : (employmentTypeId,experience,cityId,clientId,departmentId) => void;
 }
