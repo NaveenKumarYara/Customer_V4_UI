@@ -48,7 +48,7 @@
                 <div class="editable-input">
                     <input type="password" id="oldPassword" formControlName="OldPassword" placeholder="Old Password" class="form-control" (keypress)="MissClear()"
                     (keyup)="MissClear()">
-                  <span class="glyphicon" [ngClass]="oldstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="oldPassword()"></span>
+                  <span class="glyphicon p-icon" [ngClass]="oldstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="oldPassword()"></span>
                   <alert></alert>
                   <div *ngIf="passForm.controls['OldPassword'].invalid && (passForm.controls['OldPassword'].dirty || passForm.controls['OldPassword'].touched)"
                   class="alert alert-danger">
@@ -62,7 +62,7 @@
                 <label for="newPassword"></label>
                 <div class="editable-input">
                     <input type="password" id="password" formControlName="NewPassword" placeholder="New Password" class="form-control">
-                    <span class="glyphicon" [ngClass]="newstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="newPassword()"></span>
+                    <span class="glyphicon p-icon" [ngClass]="newstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="newPassword()"></span>
                     <div *ngIf="passForm.controls['NewPassword'].invalid && (passForm.controls['NewPassword'].dirty || passForm.controls['NewPassword'].touched)"
                     class="alert alert-danger">
                     <div *ngIf="passForm.controls['NewPassword'].errors.required">
@@ -78,7 +78,7 @@
                 <label for="confirmPassword"></label>
                 <div class="editable-input">
                     <input type="password" id="confirmPassword" formControlName="ConfirmPassword" placeholder="Confirm Password" class="form-control">
-                    <span class="glyphicon" [ngClass]="confirmstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="confirmPassword()"></span>
+                    <span class="glyphicon p-icon" [ngClass]="confirmstatus ? 'glyphicon-eye-close' : 'glyphicon-eye-open'" (click)="confirmPassword()"></span>
                     <div *ngIf="passForm.controls['ConfirmPassword'].invalid && (passForm.controls['ConfirmPassword'].dirty || passForm.controls['ConfirmPassword'].touched)"
                     class="alert alert-danger"> 
                     <small *ngIf="passForm.controls['ConfirmPassword'].errors.required">
