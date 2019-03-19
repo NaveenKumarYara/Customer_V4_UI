@@ -734,6 +734,38 @@ export class AppService {
       );
   }
 
+  SearchClients(clientName: string = null): Observable<string[]> {
+    const url = environment.SearchClients + '?clientName=' + clientName;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  SearchDepartments(departmentName: string = null): Observable<string[]> {
+    const url = environment.SearchDepartments + '?departmentName=' + departmentName;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetCustomerClients(customerId: number): Observable<string[]> {
+    const url = environment.GetCustomerClients + '?customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetCustomerDepartments(customerId: number): Observable<string[]> {
+    const url = environment.GetCustomerDepartments + '?customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   SignUpEmail(body) {
     return this.http.post(environment.EmailInvite, body)
     .map((res: Response) => res)

@@ -96,7 +96,10 @@ export const environment = {
 
   CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
 
-
+  GetCustomerClients : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerClients?',
+  GetCustomerDepartments:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerDepartments?',
+  SearchClients:'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients?',
+  SearchDepartments:'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments?',
 
 
   SuggestJobTitleEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
