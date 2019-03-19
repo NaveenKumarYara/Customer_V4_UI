@@ -7,7 +7,7 @@
         <h5 class="client" *ngFor="let c of clients">
             {{c?.ClientName}}
             </h5>
-            <h5  *ngFor="let d of dept"> {{d?.CustomerDepartment}}</h5>
+            <h5 class="ml-1"  *ngFor="let d of dept"> {{d?.CustomerDepartment}}</h5>
         </div>
         <div class="meta h-19">
             <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
@@ -16,7 +16,7 @@
                 </svg>
             <h5 class="location" *ngIf="job?.JobLocations!=null"> {{ job?.JobLocations[0].CityName}}, {{ job?.JobLocations[0].StateCode}}</h5>
             <h5>{{job?.PostedOn}}</h5>
-        </div>
+        </div>       
     </div>
     <div class="options-group">
         <button class="btn btn-border btn-share">
