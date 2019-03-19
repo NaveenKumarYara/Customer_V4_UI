@@ -97,6 +97,9 @@ export class AppService {
   jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
+  videoProfile = new BehaviorSubject('');
+  currentVideo = this.videoProfile.asObservable();
+
   stepNumber = new BehaviorSubject('');
   currentStepNumber = this.stepNumber.asObservable();
 
@@ -223,6 +226,9 @@ export class AppService {
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
   }
+  updateVideoProfile(videoUrl: string) {
+    this.videoProfile.next(videoUrl);
+  }
   updateStepNumber(step: string) {
     this.stepNumber.next(step);
   }
@@ -243,6 +249,13 @@ export class AppService {
   }
   searchJobTitle(term: string = null): Observable<string[]> {
     const url = environment.jobTitleEndpoint + '?jobtitle=' + term;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+  searchClient(term: string = null): Observable<string[]> {
+    const url = environment.searchclientsendpoint + '?clientName=' + term;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -729,8 +742,7 @@ export class AppService {
     });
   }
 
-  GetCustomerToken(body)
-  {
+  GetCustomerToken(body) {
     return this.http.post(environment.CustomerTokenLogin, body)
     .map((res: Response) => res)
     .catch(this.handleError);

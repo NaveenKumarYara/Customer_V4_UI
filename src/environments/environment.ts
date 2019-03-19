@@ -53,7 +53,7 @@ export const environment = {
     Deletedraft: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteDraftedJob?',
     ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
-
+ searchclientsendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
     SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
     JobdetailsBasicInfoEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
