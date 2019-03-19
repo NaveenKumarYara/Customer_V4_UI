@@ -11,6 +11,8 @@ export class Jobs {
   public ReferralId: string;
   public JobPositionId: string;
   public UserId: string;
+  public ClientName : string;
+  public Departments : string;
   public ResumeId: string;
   public JobResponseId: string;
   public ReferredByUser: string;

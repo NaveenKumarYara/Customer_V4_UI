@@ -4,6 +4,8 @@ export class JobdetailsBasicInfo {
   public CustomerId: string;
   public UserId: string;
   public JobId: string;
+  public ClientName : string;
+  public Departments : string;
   public JobTitle: string;
   public JobStatus: string;
   public PostedOn: string;
