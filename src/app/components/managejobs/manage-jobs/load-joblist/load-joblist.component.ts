@@ -80,7 +80,6 @@ export class LoadJoblistComponent implements OnInit {
   }
 
   populateJoblistByFilter(customerId, userId,employmentTypeId=0,experience=0,cityId=0,clientId=0,departmentId=0) { 
-   debugger
     $('#searchStr').val('');
     this.employmentTypeId = employmentTypeId;
     this.experience = experience;
@@ -88,7 +87,6 @@ export class LoadJoblistComponent implements OnInit {
     this.cityId = cityId;
     return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,clientId,departmentId,this.joblistcount).subscribe(res => {
       this.loaddata = true;
-     debugger
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();

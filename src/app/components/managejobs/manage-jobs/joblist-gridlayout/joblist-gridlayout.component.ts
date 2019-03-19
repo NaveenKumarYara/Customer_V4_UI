@@ -46,8 +46,8 @@ export class JoblistGridlayoutComponent implements OnInit {
 
   ngOnInit() {
     this.GetProfileCount();
-    this.GetCustomerClients();
-    this.GetCustomerDepartment();
+    //this.GetCustomerClients();
+    //this.GetCustomerDepartment();
   }
 
   editJob(jobId,active) {

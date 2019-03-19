@@ -86,7 +86,6 @@ export class AdvanceSearchComponent implements OnInit {
 
   apply()
   {
-    debugger
     this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
   }
