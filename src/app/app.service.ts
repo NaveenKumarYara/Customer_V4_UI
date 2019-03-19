@@ -18,6 +18,8 @@ import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
 import{draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
+import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
+import { GetCustomerClients } from "../models/GetCustomerClients";
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 
@@ -734,25 +736,25 @@ export class AppService {
       );
   }
 
-  SearchClients(clientName: string = null): Observable<string[]> {
-    const url = environment.SearchClients + '?clientName=' + clientName;
-    return this.http.get<string[]>(url)
-      .catch(
-        this.handleError
-      );
+  SearchClients(body){
+    return this.http.post(environment.SearchClients, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
   }
 
-  SearchDepartments(departmentName: string = null): Observable<string[]> {
-    const url = environment.SearchDepartments + '?departmentName=' + departmentName;
-    return this.http.get<string[]>(url)
-      .catch(
-        this.handleError
-      );
+  SearchDepartments(body){
+    return this.http.post(environment.SearchDepartments, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
   }
 
   GetCustomerClients(customerId: number): Observable<string[]> {
     const url = environment.GetCustomerClients + '?customerId=' + customerId;
-    return this.http.get<string[]>(url)
+    return this.http.get<GetCustomerClients[]>(url)
       .catch(
         this.handleError
       );
@@ -760,7 +762,7 @@ export class AppService {
 
   GetCustomerDepartments(customerId: number): Observable<string[]> {
     const url = environment.GetCustomerDepartments + '?customerId=' + customerId;
-    return this.http.get<string[]>(url)
+    return this.http.get<GetCustomerDepartments[]>(url)
       .catch(
         this.handleError
       );
