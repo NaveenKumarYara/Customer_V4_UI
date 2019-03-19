@@ -21912,3 +21912,15 @@ a:hover {
 .ml-1{
     margin-right: 10px !important;
 }
+
+.page--account-settings .right .editable-input{
+    position: relative;
+    }
+    
+.form-group .glyphicon{
+    position: relative !important;
+        left: 90% !important;
+        top: -36px !important;
+    }
+
+    
