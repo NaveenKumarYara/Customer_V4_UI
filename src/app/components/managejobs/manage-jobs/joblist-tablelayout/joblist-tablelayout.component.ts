@@ -23,6 +23,8 @@ export class JoblistTablelayoutComponent implements OnInit {
   @Input() index: number;
   @Input() joblist: JobDetails;
   jobId:any;
+  clients: any;
+  dept: any;
   customer:any;
   complete:any;
   userId:any;
@@ -40,6 +42,8 @@ export class JoblistTablelayoutComponent implements OnInit {
 
   ngOnInit() {
     this.GetProfileCount();
+    this.GetCustomerClients();
+    this.GetCustomerDepartment();
   }
   ViewJobdetails(jobId)
   {
@@ -59,6 +63,21 @@ export class JoblistTablelayoutComponent implements OnInit {
     },
       error => console.log(error));
 }
+
+GetCustomerClients()
+{
+  return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
+    this.clients = res;
+  });
+}
+
+GetCustomerDepartment()
+{
+  return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
+    this.dept = res;
+  });
+}
+
 editJob(jobId,active) {
   if(active == false )
   {

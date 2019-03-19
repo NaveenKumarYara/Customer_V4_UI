@@ -8,6 +8,8 @@ import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
+import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
+import { GetCustomerClients } from "../../../../../models/GetCustomerClients";
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 
 declare var $: any;
@@ -27,6 +29,8 @@ export class JoblistGridlayoutComponent implements OnInit {
   customer: any;
   complete:any;
   userId: any;
+  clients: any;
+  dept: any;
   jobData: any;
   customerId: any;
   isActive: any;
@@ -42,6 +46,8 @@ export class JoblistGridlayoutComponent implements OnInit {
 
   ngOnInit() {
     this.GetProfileCount();
+    this.GetCustomerClients();
+    this.GetCustomerDepartment();
   }
 
   editJob(jobId,active) {
@@ -74,6 +80,20 @@ export class JoblistGridlayoutComponent implements OnInit {
     return this.managejobservice.getJobCount(this.jobId, this.customerId).subscribe(res => {
      this.jobData = res;
    });
+  }
+
+  GetCustomerClients()
+  {
+    return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
+      this.clients = res;
+    });
+  }
+
+  GetCustomerDepartment()
+  {
+    return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
+      this.dept = res;
+    });
   }
 
   changeJobStatus(job, val) {
