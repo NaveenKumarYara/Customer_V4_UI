@@ -21964,3 +21964,24 @@ a:hover {
 .page--company-profile .card--withTabs .card-header .nav-tabs.ftabs li:not(:last-of-type) {
     margin-right: 24px;
 }
+
+/**/
+.cdk-global-overlay-wrapper{
+    align-items: normal !important;
+}
+.dropdown-menu li a {
+    cursor: pointer;
+}
+.page--manage-jobs .card .card-dropdown.dropdown .dropdown-menu>li a{
+    padding: 4px;
+}
+.page--manage-jobs .card .card-dropdown.dropdown .dropdown-menu>:hover{
+    background-color: #eee;
+}
+.mrll0-tb8{
+    margin-left: 0rem;
+    margin-right: 0rem;
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+}
+/**/
