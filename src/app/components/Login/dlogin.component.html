@@ -3,7 +3,7 @@
 <body class="signpage">
         <div class="container-fluid full-height">
            <div class="row row-height">
-              <div class="col-lg-6 content-left">
+              <div class="col-lg-6 content-left sl-hide">
                  <div class="content-left-wrapper">
                     <div class="jobs_hide">
                        <h2>I'm here for Hiring</h2>
@@ -12,6 +12,7 @@
                  </div>
               </div>
               <div class="col-lg-6 content-right recrit_div " id="start">
+                  
                  <div id="wizard_container">
                     <div id="top-wizard">
                        <div id="progressbar"></div>
@@ -22,10 +23,13 @@
                        <div class="logo">
                           <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
                        </div>
+                       <div class="sl-show hidden">
+                           <a href=""><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                       </div>
      
                        <div class="step animated slideInRight" style="text-align:left">
                           <h2 class="main_question">
-                             Welcome!!! Login here.
+                             Welcome <span class="sl-text-show hidden">Job Seeker</span>!!! Login here.
                           </h2>                   
                           <div *ngIf="show" class="alert alert-danger">
                              Email not registered.

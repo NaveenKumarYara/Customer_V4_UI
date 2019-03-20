@@ -21923,9 +21923,132 @@ a:hover {
         top: -36px !important;
     }
 
+/* login layout */
+@media only screen and (max-width: 768px) {
+.smpr-0{
+    padding-right:0px !important; 
+}
+.smpl-0{
+    padding-left:0px !important; 
+}
+}
+
+@media only screen and (max-width: 991px) {
+ 
+    .sl-hide {
+        display: none;
+    }
+    .sl-show {
+        display: block !important;
+    }
+    .sign_logo {
+        display: none;
+    }
+    /* .content-left-wrapper {
+        padding: 0px 10px 0px 10px !important;
+    } */
+    .signpage .container-fluid, .signpage .row.row-height {
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    .hiring-c {
+        background-color: #fff !important;
+    }
+    .hiring-c * {
+        color: #475B66 !important;
+    }
+    .hiring-c a, .hiring-c .hr-click, .job_links .job-click, .job_links a{
+        color: #434bdf !important;
+    }
+    .job-c {
+        background-color: #fff !important;
+    }
+    .job-c * {
+        color: #475B66 !important;
+    }
+    .signpage a.btn_1, .signpage .btn_1 {
+        background: #66dab5 !important;
+        color: #ffffff !important;
+    }
+    .hr-click, .job-click {
+        cursor: pointer;
+    }
+    #hiring_sign .logo, #hiring_login .logo {
+        display: none;
+    }
+    .sl-hidden {
+        display: none !important;
+    }
+    .content-left-wrapper .row, .content-left-wrapper .col-md-6 {
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .sign-up-btn{
+        float: none !important;
+        margin-bottom: 1rem;
+    }
+    .hiring_forgot .main_question{
+        text-align: center;
+    }
+    .homepage .section h1, h2 {
+        margin-bottom: 0px;
+    }
+   .text-sl-center{
+       text-align: center !important;
+   }
+   /* .content-left-wrapper {
+       text-align: left;
+   } */
+   .content-left-wrapper {
+    display: block;
+    justify-content: left;
+    align-items: normal;
+    }
+    .sl-text-show{
+        display: inline-block !important;
+    }
+}
+.text-ml-right{
+    text-align: right;
+}
+.ml-hidden{
+    display: none;
+}
+
+.hiring_forgot .main_question{
+    text-align: left;
+}
+/* @login layout */
+.d-block{
+    display: block;
+}
+
+@media only screen and (max-width: 991px){
+.slideInRight .col-md-6 {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.slideInRight .row.spt-2{
+    margin-right:0px;
+    margin-left: 0px; 
+}
+.row.row-height{
+    width: auto !important;
+}
+.sign_btn {
+    float: none !important;
+    margin-bottom: 1rem;
+}
+}
+
+
   /*zoom*/
 /** Styles added to fix the issue with zoom in on iphone **/
-/ iPhone < 5: /
+/* iPhone < 5: */
 @media screen and (device-aspect-ratio: 2/3) {
     select, textarea, input[type="text"], input[type="password"],
     input[type="datetime"], input[type="datetime-local"],
@@ -21934,7 +22057,7 @@ a:hover {
     input[type="url"], input[role="combobox"], input[type="tel"], .ng-input, select:focus, textarea { font-size: 16px; }
 }
 
-/ iPhone 5, 5C, 5S, iPod Touch 5g /
+/* iPhone 5, 5C, 5S, iPod Touch 5g */
 @media screen and (device-aspect-ratio: 40/71) {
     select, textarea, input[type="text"], input[type="password"],
     input[type="datetime"], input[type="datetime-local"],
@@ -21943,7 +22066,7 @@ a:hover {
     input[type="url"], input[role="combobox"], input[type="tel"], .ng-input, select:focus, textarea { font-size: 16px; }
 }
 
-/ iPhone 6, iPhone 6s, iPhone 7 portrait/landscape /
+/* iPhone 6, iPhone 6s, iPhone 7 portrait/landscape */
 @media screen and (device-aspect-ratio: 375/667) {
     select, textarea, input[type="text"], input[type="password"],
     input[type="datetime"], input[type="datetime-local"],
@@ -21952,7 +22075,7 @@ a:hover {
     input[type="url"],input[role="combobox"], input[type="tel"], .ng-input, select:focus, textarea { font-size: 16px; }
 }
 
-/ iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape /
+/* iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape */
 @media screen and (device-aspect-ratio: 9/16) {
     select, textarea, input[type="text"], input[type="password"],
     input[type="datetime"], input[type="datetime-local"],
@@ -21985,3 +22108,4 @@ a:hover {
     margin-bottom: 2rem;
 }
 /**/
+

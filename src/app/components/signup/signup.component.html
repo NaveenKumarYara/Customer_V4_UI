@@ -7,7 +7,7 @@
 <body class="signpage">
     <div class="container-fluid full-height">
         <div class="row row-height">
-            <div class="col-lg-6 content-left">
+            <div class="col-lg-6 content-left sl-hide">
                 <div class="content-left-wrapper">
                     <div class="jobs_hide">
                         <h2>I'm here for Hiring</h2>
@@ -27,12 +27,15 @@
                         <div id="hiring_sign">
                             <div class="logo">
                                 <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo"> </div>
+                                <div class="sl-show hidden">
+                                        <a href=""><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                                    </div>
                             <div class="step animated slideInRight">
                                 <h2 class="main_question">
-                                    Welcome !!! Let's Sign Up!
+                                    Welcome <span class="sl-text-show hidden">Job Seeker</span>!!! Let's Sign Up!
                                 </h2>
                                 <div class="row">
-                                    <div class="form-group col-md-6 spt-2 padding-right">
+                                    <div class="form-group col-md-6 spt-2 padding-right smpr-0">
                                         <div class="p-rel">
 
                                             <input type="text" class="form-control" formControlName="ContactFirstName" placeholder="First Name *" minlength=3 (keypress)="MissClear()" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
@@ -49,7 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6 spt-2 padding-left">
+                                    <div class="form-group col-md-6 spt-2 padding-left smpl-0">
                                         <div class="p-rel">
                                             <input type="text" class="form-control" formControlName="ContactLastName" minlength=3 (keypress)="MissClear()" placeholder="Last Name *" (keyup)="MissClear()" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
                                                 required>
