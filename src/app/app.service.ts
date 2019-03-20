@@ -752,7 +752,7 @@ export class AppService {
     });
   }
 
-  GetCustomerClients(customerId: number): Observable<string[]> {
+  GetCustomerClients(customerId: number): Observable<GetCustomerClients[]> {
     const url = environment.GetCustomerClients + '?customerId=' + customerId;
     return this.http.get<GetCustomerClients[]>(url)
       .catch(
@@ -760,7 +760,7 @@ export class AppService {
       );
   }
 
-  GetCustomerDepartments(customerId: number): Observable<string[]> {
+  GetCustomerDepartments(customerId: number): Observable<GetCustomerDepartments[]> {
     const url = environment.GetCustomerDepartments + '?customerId=' + customerId;
     return this.http.get<GetCustomerDepartments[]>(url)
       .catch(

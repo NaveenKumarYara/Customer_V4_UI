@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
+import { GetCustomerClients } from "../../../../models/GetCustomerClients";
+import { AppService } from '../../../app.service';
 import { CompanyProfileService } from '../company-profile.service';
 import { CompanyProfile } from '../../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';
@@ -19,12 +22,15 @@ import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement'
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
-  styleUrls: ['./companyprofile.component.css']
+  styleUrls: ['./companyprofile.component.css'],
+  providers: [AppService]
 })
 export class CompanyprofileComponent implements OnInit {
     customer:any;
     customerId:any;
     userId:any;
+    getCustomerDepartments: GetCustomerDepartments[];
+    getCustomerClients:GetCustomerClients[];
     companyprofile: CompanyProfile;
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[]=[];
@@ -40,7 +46,7 @@ export class CompanyprofileComponent implements OnInit {
     getcompanycluture:GetCompanyCulture[];
     getcompanyachivements: GetCompanyAchievement[];
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private appService: AppService,
       private router: Router, private companyprofileservice: CompanyProfileService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
         this.customerId =this.customer.CustomerId;
@@ -134,6 +140,22 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
+    GetCustomerClients()
+    {
+    return this.appService.GetCustomerClients(this.customer.CustomerId).subscribe(res => {
+    debugger
+        this.getCustomerClients = res;
+    });
+    }
+
+    GetCustomerDepartment()
+   {
+       debugger
+    return this.appService.GetCustomerDepartments(this.customer.CustomerId).subscribe(res => {
+    this.getCustomerDepartments = res;
+   });
+   }
+
     ngOnInit() {
         this.populateCompanyProfile(this.customerId);
         this.populateCompanyProfileOtherInfo(this.customerId);
@@ -149,6 +171,8 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyCertifications(this.customerId);
         this.populateCompanyCultures(this.customerId);
         this.populateCompanyPartners(this.customerId);
+        this.GetCustomerClients();
+        this.GetCustomerDepartment();
   }
 
 }

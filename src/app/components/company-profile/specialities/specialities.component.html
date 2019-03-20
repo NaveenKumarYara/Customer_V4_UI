@@ -178,8 +178,8 @@
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                 <ul class="list--filled">
         
-                  <li class="item" *ngFor="let companytechnology of getcompanytechnology">
-                    {{companytechnology?.TechnologyName}}
+                  <li class="item" *ngFor="let c of getCustomerClients">
+                      {{c?.ClientName}}
                     <div class="actions">
                       <button class="btn btn-transparent no-padding" (click)="deletetechnology(companytechnology?.CompanyTechnologyId)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="19.1">
@@ -218,8 +218,8 @@
               <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                 <ul class="list--filled">
         
-                  <li class="item" *ngFor="let companytechnology of getcompanytechnology">
-                    {{companytechnology?.TechnologyName}}
+                  <li class="item" *ngFor="let d of getCustomerDepartments">
+                      {{d?.CustomerDepartment}}
                     <div class="actions">
                       <button class="btn btn-transparent no-padding" (click)="deletetechnology(companytechnology?.CompanyTechnologyId)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="19.1">

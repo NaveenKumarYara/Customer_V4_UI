@@ -5,17 +5,23 @@ import { ApiService } from '../../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import {specialities} from './specialities';
+import { AppService } from '../../../app.service';
 import {technologies} from './technologies';
+import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
+import { GetCustomerClients } from "../../../../models/GetCustomerClients";
 declare var $: any;
 
 @Component({
   selector: 'app-specialities',
   templateUrl: './specialities.component.html',
-  styleUrls: ['./specialities.component.css']
+  styleUrls: ['./specialities.component.css'],
+  providers: [AppService]
 })
 export class SpecialitiesComponent implements OnInit {
    @Input() companyspecialities : CompanySpecialities[];
    @Input() getcompanytechnology : GetCompanyTechnology[];
+   @Input() getCustomerDepartments: GetCustomerDepartments[];
+   @Input() getCustomerClients:GetCustomerClients[];
    customer : any;
    customerId:any;
    userId:any;
@@ -27,7 +33,7 @@ export class SpecialitiesComponent implements OnInit {
    technologyId:any;
    specialities = new specialities();
    technologies = new technologies();
-   constructor(private _service: ApiService, private route: Router, private companyprofileservice: CompanyProfileService) {
+   constructor(private _service: ApiService, private appService: AppService, private route: Router, private companyprofileservice: CompanyProfileService) {
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.customerId =this.customer.CustomerId;
      this.userId = this.customer.UserId;
@@ -124,6 +130,7 @@ deleteSpecialities(special)
   }, error => { this._service.DebugMode(error); });
 }
   ngOnInit() {
+
   }
 
 }
