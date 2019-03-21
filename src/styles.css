@@ -22108,4 +22108,32 @@ a:hover {
     margin-bottom: 2rem;
 }
 /**/
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+.p-_9{
+    padding-left: .9rem;
+    padding-right: .9rem;
 
+}
+.li-hover{
+    height: 50px;
+}
+.hover-h{
+    display: none;
+}
+.li-hover:hover .hover-h{
+    display: block;
+}
+.li-hover .btn,.s-btn{
+color: #ffffff;
+background-color: #448AFA;
+min-width: 120px;
+/* padding: 15px 30px; */
+}
+.s-btn:hover{
+    color: #ffffff;
+}
+.p-19{
+    padding: 19px;
+}
