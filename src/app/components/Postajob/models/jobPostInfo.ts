@@ -37,6 +37,9 @@ export class InsertJob {
     public SaveAsTemplate: boolean;
     public StepNumber: number;
     public IsDrafted: boolean;
+    public ClientName: string;
+    public ClientId: number;
+    public XmlDepartment: PjDepartments[] = [];
   }
   export class PjSkill {
     public SkillName: string;
@@ -120,19 +123,30 @@ export class DiscResult {
   // related
 
   export class CustomerUsers {
-      // public  JobAccessId: number;
-     // public JobId: number;
       public  UserId: number;
       public FirstName: string;
-     // public  MiddleName: string;
-      // public  LastName: string;
-      /// public  ProfilePic: string;
-      // public CustomerId: number;
   }
+  export class ClientModel {
+    public  ClientId: number;
+    public ClientName: string;
+} export class AutoSearchClient {
+    public  ClientName: string;
+    public IsSuggested: boolean;
+} export class AutoSearchDepartment {
+  public  DepartmentName: string;
+  public IsSuggested: boolean;
+}export class DepartmentModel {
+    public DepartmentId: number;
+    public CustomerDepartment: string;
+}
+export class PjDepartments {
+  public DepartmentId: number;
+}
   //
   export class PjTechnicalTeam {
     public UserId: number;
   }
+
   export class PjJobAccessTo {
     public UserId: number;
     public CustomerId: number;

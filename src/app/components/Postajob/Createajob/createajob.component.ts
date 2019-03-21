@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step1/Jobresponsibilities.component';
@@ -31,6 +31,9 @@ ejLocations = new PrefLocation();
 ejTechnicalTeamList: CustomerUsers[] = [];
 // ejTechnicalTeam = new CustomerUsers();
 ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
+eJclient = new ClientModel();
+ejDepartmentList: DepartmentModel[] = [];
+ejDepartmentIdList: PjDepartments[] = [];
 // ejTechnicalTeamId = new PjTechnicalTeam();
 ejRoleList: Roles[] = [];
 // ejRole = new Roles();
@@ -97,6 +100,27 @@ ejPersonSingleList: PjDisc[] = [];
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
       this.appService.jobcategory.next(this.eJcategory);
+        // Departments
+        if (this.jobdetailscustomer.JobDepartment.length > 0) {
+          for (const dept of this.jobdetailscustomer.JobDepartment) {
+            const ejDepartment = new DepartmentModel();
+            const ejDepartmentId = new PjDepartments();
+            ejDepartment.DepartmentId = dept.DepartmentId;
+            ejDepartment.CustomerDepartment = dept.CustomerDepartment;
+              ejDepartmentId.DepartmentId = dept.DepartmentId;
+              this.ejDepartmentList.push(ejDepartment);
+              this.ejDepartmentIdList.push(ejDepartmentId);
+          }
+        }
+        this.appService.departments = this.jobdetailscustomer.JobDepartment;
+        this.appService.departmentsChanged.next(this.appService.departments);
+        this.appService.addeddepartments = this.ejDepartmentIdList;
+        this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
+        // Client model
+        this.eJclient.ClientId = this.jobdetailscustomer.JobInfo.ClientId;
+        this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
+        localStorage.setItem('clientName', this.eJclient.ClientName );
+        this.appService.clientModel.next(this.eJclient);
       this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));
@@ -166,6 +190,7 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.teammembersChanged.next(this.appService.teammembers);
       this.appService.addedteammembers = this.ejTechnicalTeamIdList;
       this.appService.addedteammembersChanged.next(this.appService.addedteammembers); //  =new Subject<PjTechnicalTeam[]>();
+
 
 
       if (this.jobdetailscustomer.JobResponsibility.length > 0) {

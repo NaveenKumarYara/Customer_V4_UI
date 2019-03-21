@@ -1,0 +1,93 @@
+<!-- <div class="form-group ">  
+     <div class="col-md-5 col-sm-5">
+     <label for="Clients" class="question">Clients</label>  
+         <ng-select class="custom-style" 
+         [items]="clientsList | async" 
+         placeholder="Type and Select" 
+         bindLabel="ClientName"
+         bindValue="ClientId"
+         [typeahead]="clientInput" 
+         [hideSelected]="true" 
+         [loading]="clientLoading"
+         [(ngModel)]="selectClient" 
+         [virtualScroll]="true" 
+         required 
+         #Client="ngModel" 
+         name="Client" 
+         (change)="updateClient($event)">
+         <ng-template ng-label-tmp let-item="clientsList">   
+                {{selectClient}} 
+       </ng-template>
+       </ng-select>
+     <small class="text-danger error1" *ngIf="Client.invalid && Client.touched">Required.</small>
+ </div>
+</div> -->
+  
+<!-- <div class="job-title-suggestions">
+ <div class="checkbox" *ngFor="let  client of suggestedClients; let i = index">
+   <label><input type="radio" [(ngModel)]="selectedClient"  (change)="updateClient(client)" name="jobClient" [value]="client"><span class="box">{{client.ClientName}}</span> </label>
+ </div>      
+</div> -->
+ <!-- </div> -->
+ 
+
+ <div class="form-group education-group t-35">
+
+  <div class="row">
+      
+     <form #eduForm="ngForm" (ngSubmit)="addQualification()">
+        
+    <div class="col-md-12 col-sm-12">
+        <label for="Clients" class="question">Clients</label>
+        <!-- <ng-select class="custom-style" 
+         [items]="clientsList | async" 
+         bindLabel="ClientName"
+         bindValue="ClientName"
+         placeholder="Type and Select"  
+         [typeahead]="clientInput" 
+         [hideSelected]="true" 
+         [loading]="clientLoading"
+         [(ngModel)]="selectClient" 
+         [virtualScroll]="true" 
+         [addTag]="addClient"
+         required 
+         #Clients="ngModel" 
+         name="Client" 
+         (change)="updateClient($event)">
+         <ng-template ng-label-tmp let-item="clientsList">   
+                {{selectClient}} 
+       </ng-template>
+       </ng-select> -->
+       <ng-select class="custom-style" 
+  [items]="clientsList | async" 
+  placeholder="Type and Select" 
+  [addTag]="addClient"
+  bindLabel="ClientName"
+  bindValue="ClientName" [typeahead]="clientInput" 
+  [hideSelected]="true" [loading]="clientLoading"
+  [(ngModel)]="selectClient" [virtualScroll]="true" required #Clients="ngModel" name="Client" (change)="updateClient($event)">
+  <ng-template ng-label-tmp let-item="clientsList" let-index="index">  
+         <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
+         {{selectClient}}
+         <!-- {{selectClient.ClientName}} -->
+         <!-- {{selectClient.JobCategoryId}} -->
+         <!-- {{selectedClient.ClientName}} -->
+    <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
+</ng-template>  </ng-select>
+<!-- Value : {{ selectedClient.ClientName }}
+Value : {{selectClient}}  -->
+     <small class="text-danger error1" *ngIf="Clients.invalid && Clients.touched">Required.</small>
+    </div>
+   
+    <!-- <div class="col-md-2 col-sm-2">
+      <button class="btn add-btn form-control m-42" type="submit">+</button>
+    </div> -->
+  </form>
+    </div>
+  </div>
+ <div class="job-title-suggestions">
+    <div class="checkbox" *ngFor="let  client of suggestClients; let i = index">
+       <label><input type="radio" [(ngModel)]="selectedClient"  (change)="updateClient(client)" name="jobClient" [value]="client"><span class="box">{{client.ClientName}}</span> </label>
+    </div>     
+    
+  </div>

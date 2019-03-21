@@ -13,6 +13,8 @@ declare var jQuery: any;
 import {InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo} from '../../models/jobPostInfo';
 import { CreateajobComponent } from '../createajob.component';
 import { StepsComponent } from '../steps.component';
+import { ClientsComponent } from './clients.component';
+import { DepartmentsComponent } from './departments.component';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -24,6 +26,8 @@ export class Step1Component implements OnInit {
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  @ViewChild(ClientsComponent) client: ClientsComponent;
+  @ViewChild(DepartmentsComponent) department: DepartmentsComponent;
   // formData: any;
   // joblist = new InsertJob();
 
@@ -46,7 +50,7 @@ export class Step1Component implements OnInit {
   pjEducationDetailsList: any = [];
   pjTechnicalTeamList: any = [];
   pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
     , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -96,6 +100,9 @@ export class Step1Component implements OnInit {
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
     this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+    this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    this.insertJob.XmlDepartment = this.department.addedDepartmentList;
     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
       this.appService.currentEmploymentType.subscribe((data) => {
         this.insertJob.EmploymentTypeId = data.EmploymentTypeId;

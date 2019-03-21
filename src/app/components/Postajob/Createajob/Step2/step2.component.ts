@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild,ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DomainExpertiseComponent } from './domainexpertise.component';
 import { LocationwiseJobsComponent } from './locationwisejobs.component';
@@ -41,6 +41,8 @@ export class Step2Component implements OnInit {
   jobResponsibility: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
+  departments: any;
+  client: any;
   customer: any;
   complete: any;
   userId: any;
@@ -67,7 +69,7 @@ export class Step2Component implements OnInit {
   // pjEducationDetailsList: any = [];
   // pjTechnicalTeamList: any = [];
   // pjJobAccessToList: any = [];
-  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
@@ -107,6 +109,12 @@ export class Step2Component implements OnInit {
     this.appService.jobsecondaryskillsChanged.subscribe((data) => {
       this.jobSkillsSecondary = data; // And he have data here too!
     });
+    this.appService.currentClient.subscribe((data) => {
+      this.client = data; // And he have data here too!
+    });
+    this.appService.addeddepartmentsChanged.subscribe((data) => {
+      this.departments = data; // And he have data here too!
+    });
   }
   ngOnInit() {
     this.alertService.clear();
@@ -139,6 +147,13 @@ export class Step2Component implements OnInit {
     this.insertJob.CompleteDescription = this.jobHasDescription; // this.appService.hasDescription.value;
     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
+    this.insertJob.ClientId = this.client.ClientId;
+    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    this.insertJob.XmlDepartment = this.appService.addeddepartments; // this.departments;
+
+    // this.insertJob.DepartmentId = this.appService.addeddepartments;
+
+
     //  this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
 
     // step2

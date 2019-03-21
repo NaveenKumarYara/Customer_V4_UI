@@ -86,6 +86,8 @@ import { AccountsettingdetailsComponent } from './components/accountsettings/acc
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
 import { UsersComponent } from './components/accountsettings/users/users.component';
 import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
+import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
+import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 
 const appRoutes: Routes =
 [
@@ -93,14 +95,14 @@ const appRoutes: Routes =
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'login', component: dLoginComponent },
-    {path:'guest',component:GuestComponent},
+    {path: 'guest', component: GuestComponent},
     { path: 'ForgotPassword', component: ForgotComponent },
     { path: 'ResetPassword', component: ResetComponent },
     { path: 'about', component: AboutComponent},
     { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
-    {path: 'app-editdraft' ,component:EditDraftComponent },
-  
+    {path: 'app-editdraft' , component: EditDraftComponent },
+
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [
     //     { path: '', redirectTo: 'app-steps-step1', pathMatch: 'full' },
@@ -120,7 +122,7 @@ const appRoutes: Routes =
         {path: 'app-steps-step2', component: Step2Component},
         {path: 'app-steps-step3', component: Step3Component},
         {path: 'app-steps-step4', component: Step4Component},
-    
+
       ]
   },
     { path: 'app-createajob/:jobId', component: CreateajobComponent ,
@@ -130,13 +132,15 @@ const appRoutes: Routes =
          {path: 'app-steps-step1', component: Step1Component},
           {path: 'app-steps-step2', component: Step2Component},
           {path: 'app-steps-step3', component: Step3Component},
-          {path: 'app-steps-step4', component: Step4Component},       
+          {path: 'app-steps-step4', component: Step4Component},
         ]
     },
     { path: 'app-searchresults', component: SearchresultsComponent },
     { path: 'app-steps-step1-jobcategory', component: JobcategoryComponent },
     { path: 'app-steps-step1-jobdetails', component: JobdetailsComponent },
     { path: 'app-steps-step1-jobprofile', component: JobprofileComponent },
+    { path: 'app-steps-step1-clients', component: ClientsComponent },
+    { path: 'app-steps-step1-departments', component: DepartmentsComponent },
     { path: 'app-steps-step1-jobskillset', component: JobskillsetComponent },
     { path: 'app-steps-step1-jobresponsibilities', component: JobResponsibilitiesComponent },
     { path: 'app-steps-step2-locationwisejobs', component: LocationwiseJobsComponent },

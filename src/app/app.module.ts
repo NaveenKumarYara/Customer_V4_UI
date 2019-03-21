@@ -69,6 +69,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {EditDraftComponent} from './components/Postajob/Createajob/EditDraft/draft.component';
 import { UploadvideoprofileComponent } from './components/Postajob/Createajob/Step3/uploadvideoprofile.component';
 import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
+import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
+import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/sa
     NoofopeningsComponent,
     UploadvideoprofileComponent,
     SalarysliderComponent,
+    DepartmentsComponent,
+    ClientsComponent,
     // SalarysliderComponent,
   ],
   imports: [

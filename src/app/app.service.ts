@@ -19,8 +19,8 @@ import {CustomerContacts} from '../models/customercontacts';
 import{draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
-import { GetCustomerClients } from "../models/GetCustomerClients";
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary } from './components/Postajob/models/jobPostInfo';
+import { GetCustomerClients } from '../models/GetCustomerClients';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary, ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel, PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 
 
@@ -163,6 +163,9 @@ export class AppService {
   jobcategory = new BehaviorSubject(this.myjobcategory);
   currentcategorytitle = this.jobcategory.asObservable();
 
+  myClient = new ClientModel();
+  clientModel = new BehaviorSubject(this.myClient);
+  currentClient = this.clientModel.asObservable();
 
  selectedskilltype = new BehaviorSubject('Primary');
  selectedskilltypechanges = this.selectedskilltype.asObservable();
@@ -191,6 +194,12 @@ export class AppService {
 
   addedteammembers: PjTechnicalTeam[] = [];
   addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
+
+  departments: DepartmentModel[] = [];
+  departmentsChanged = new Subject<DepartmentModel[]>();
+
+  addeddepartments: PjDepartments[] = [];
+  addeddepartmentsChanged = new Subject<PjDepartments[]>();
 
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
@@ -256,12 +265,59 @@ export class AppService {
         this.handleError
       );
   }
-  searchClient(term: string = null): Observable<string[]> {
-    const url = environment.searchclientsendpoint + '?clientName=' + term;
-    return this.http.get<string[]>(url)
-      .catch(
-        this.handleError
-      );
+  // searchClient(term: string = null): Observable<string[]> {
+  //   const url = environment.searchclientsendpoint + '?clientName=' + term;
+  //   return this.http.get<string[]>(url)
+  //     .catch(
+  //       this.handleError
+  //     );
+  // }
+  searchClient(val: boolean, term?: any): any {
+    // const url = environment.searchclientsendpoint + '?clientName=' + term;
+    // return this.http.get<string[]>(url)
+    //   .catch(
+    //     this.handleError
+    //   );
+    const client = new AutoSearchClient();
+    client.ClientName = term;
+    client.IsSuggested = val;
+    // if(val==false)
+    return this.http.post(environment.searchclientsendpoint, client)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+  searchDepartment(term, val: boolean) {
+
+    const department = new AutoSearchDepartment();
+    department.DepartmentName = term;
+    department.IsSuggested = val;
+    return this.http.post(environment.searchdepartmentendpoint, department)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+  getDepartment() {
+    return this.departments.slice();
+  }
+  getaddedDepartments() {
+    return this.addeddepartments.slice();
+  }
+  addDepartment(department: DepartmentModel) {
+    this.departments.push(department);
+    this.departmentsChanged.next(this.departments.slice());
+    const dept = new PjDepartments();
+    dept.DepartmentId = department.DepartmentId;
+    this.addeddepartments.push(dept);
+    this.addeddepartmentsChanged.next(this.addeddepartments.slice());
+  }
+  deleteDepartment(index: number) {
+    this.departments.splice(index, 1);
+    this.departmentsChanged.next(this.departments.slice());
+    this.addeddepartments.splice(index, 1);
+    this.addeddepartmentsChanged.next(this.addeddepartments.slice());
   }
   getDraftCategory(jobId: number): Observable<CategoryList> {
     const url = environment.draftCategory + '?jobId=' + jobId;
@@ -297,7 +353,9 @@ export class AppService {
     // this.jobcategory.push(jobcategories);
     this.jobcategory.next(jobcategories);
   }
-
+  updateClient(clients: ClientModel) {
+    this.clientModel.next(clients);
+  }
   searchJobCategory(categoryterm: string = null): Observable<CategoryList[]> {
     const url = environment.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
    return this.http.get<string[]>(url)
@@ -560,7 +618,7 @@ export class AppService {
     return this.http.post(environment.postjob, body)
     .map((res: Response) => res)
     .catch((error: any) => {
-      return Observable.throw(error.json());
+      return Observable.throw(error);
       });
   }
   getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
@@ -736,16 +794,16 @@ export class AppService {
       );
   }
 
-  SearchClients(body){
-    return this.http.post(environment.SearchClients, body)
+  SearchClients(body) {
+    return this.http.post(environment.searchclientsendpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
 
-  SearchDepartments(body){
-    return this.http.post(environment.SearchDepartments, body)
+  SearchDepartments(body) {
+    return this.http.post(environment.searchdepartmentendpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());

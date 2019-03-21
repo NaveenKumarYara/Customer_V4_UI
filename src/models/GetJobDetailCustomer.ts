@@ -3,7 +3,7 @@ import {JobRequiredDomain} from './JobRequiredDomain';
 import {JobRequiredSkills} from './JobRequiredSkills';
 import {JobResponsibility} from './JobResponsibility';
 import { Qualifications } from './qualifications.model';
-import { CustomerUsers, Roles, GetDomain, EditRoles } from '../app/components/Postajob/models/jobPostInfo';
+import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel } from '../app/components/Postajob/models/jobPostInfo';
 import { Jobskills } from './jobskills.model';
 
 export class GetJobDetailCustomer {
@@ -13,6 +13,7 @@ export class GetJobDetailCustomer {
     JobRequiredSkills: Jobskills [];
     JobResponsibility: EditRoles [];
     EducationDetails: Qualifications [];
+    JobDepartment: DepartmentModel [];
     TechnicalTeam: any ;
 }
 // export class GetJobDetailsCustomer {
@@ -85,4 +86,9 @@ export class JobInfo {
     JobStatus: string;
     StepNumber: string;
     IsDrafted: boolean;
+    VideoSizzleId: number;
+    VideoURL: string;
+    VideoFormat: string;
+    ClientId: number;
+    ClientName: string;
 }

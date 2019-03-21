@@ -21,6 +21,8 @@ export class Step4Component implements OnInit {
   jobResponsibility: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
+  departments: any;
+  client: any;
 // step2
   domain: any;
   locations: any;
@@ -72,7 +74,12 @@ export class Step4Component implements OnInit {
     this.appService.jobsecondaryskillsChanged.subscribe((data) => {
       this.jobSkillsSecondary = data; // And he have data here too!
     });
-
+    this.appService.currentClient.subscribe((data) => {
+      this.client = data; // And he have data here too!
+    });
+    this.appService.addeddepartmentsChanged.subscribe((data) => {
+      this.departments = data; // And he have data here too!
+    });
     // step2:
 
     this.appService.adddomainChanged.subscribe((data) => {
@@ -133,7 +140,9 @@ export class Step4Component implements OnInit {
     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
     this.insertJob.XmlSkills =  this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
-
+    this.insertJob.ClientId = this.client.ClientId;
+    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    this.insertJob.XmlDepartment = this.appService.addeddepartments; // this.departments;
     // step2
 
     this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;

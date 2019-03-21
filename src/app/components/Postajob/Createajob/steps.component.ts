@@ -7,14 +7,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-  complete:any;
+  complete: any;
   step1isClicked = true;
   step2isClicked = false;
   step3isClicked = false;
   step4isClicked = false;
   constructor(private route: ActivatedRoute,
     private router: Router) {
-      this.complete=JSON.parse(localStorage.getItem('completed'));
+      this.complete = JSON.parse(localStorage.getItem('completed'));
 
   }
 
@@ -24,11 +24,9 @@ export class StepsComponent implements OnInit {
     this.step2isClicked = false;
     this.step3isClicked = false;
     this.step4isClicked = false;
-    
   }
 
   step2toggleClass(complete) {
-    debugger
     this.complete = complete;
     this.step2isClicked = !this.step2isClicked;
     this.step1isClicked = false;
