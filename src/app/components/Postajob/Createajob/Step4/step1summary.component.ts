@@ -18,13 +18,17 @@ completeDescription: string;
 primarySkills = [];
 secondarySkills = [];
 roles = [];
-
+client: string;
   constructor(private route: ActivatedRoute,
     private router: Router,  private appService: AppService) {
      this.appService.currentcategorytitle.subscribe((data) => {
           this.jobCategoryId = data.JobCategoryId; // And he have data here too!
           this.jobCategory = data.Category;
       });
+      this.appService.currentClient.subscribe((data) => {
+        // this.jobCategoryId = data.ClientId; // And he have data here too!
+        this.client = data.ClientName;
+    });
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!
       });
@@ -43,6 +47,7 @@ roles = [];
       this.appService.currentDescription.subscribe((data) => {
         this.completeDescription = data; // And he have data here too!
       });
+
       // this.appService.jobprimaryskillsChanged.subscribe((data) => {
       //   this.primarySkills = data; // And he have data here too!
       // });
