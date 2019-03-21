@@ -7,3 +7,6 @@ export class Jobskills {
 export class AddSkill {
   public SkillName: string;
 }
+export class AddClient {
+  public ClientName: string;
+}
