@@ -64,19 +64,19 @@ export class JoblistTablelayoutComponent implements OnInit {
       error => console.log(error));
 }
 
-GetCustomerClients()
-{
-  return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
-    this.clients = res;
-  });
-}
+// GetCustomerClients()
+// {
+//   return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
+//     this.clients = res;
+//   });
+// }
 
-GetCustomerDepartment()
-{
-  return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
-    this.dept = res;
-  });
-}
+// GetCustomerDepartment()
+// {
+//   return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
+//     this.dept = res;
+//   });
+// }
 
 editJob(jobId,active) {
   if(active == false )

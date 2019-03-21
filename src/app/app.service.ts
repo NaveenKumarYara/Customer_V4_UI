@@ -810,16 +810,16 @@ export class AppService {
     });
   }
 
-  GetCustomerClients(customerId: number): Observable<GetCustomerClients[]> {
-    const url = environment.GetCustomerClients + '?customerId=' + customerId;
+  GetCustomerClients(customerId: number,clientId:number): Observable<GetCustomerClients[]> {
+    const url = environment.GetCustomerClients + '?clientId=' +clientId+'&customerId=' + customerId;
     return this.http.get<GetCustomerClients[]>(url)
       .catch(
         this.handleError
       );
   }
 
-  GetCustomerDepartments(customerId: number): Observable<GetCustomerDepartments[]> {
-    const url = environment.GetCustomerDepartments + '?customerId=' + customerId;
+  GetCustomerDepartments(customerId: number,departmentId : number): Observable<GetCustomerDepartments[]> {
+    const url = environment.GetCustomerDepartments +'?departmentId='+departmentId+ '&customerId=' + customerId;
     return this.http.get<GetCustomerDepartments[]>(url)
       .catch(
         this.handleError

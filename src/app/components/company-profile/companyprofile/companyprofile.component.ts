@@ -33,7 +33,7 @@ export class CompanyprofileComponent implements OnInit {
     getCustomerClients:GetCustomerClients[];
     companyprofile: CompanyProfile;
     companyprofileotherinfo: CompanyProfileOtherIno;
-    companyprofilelocationinfo: CustomerLocationInfo[]=[];
+    companyprofilelocationinfo: CustomerLocationInfo[];
     getaboutcompany: GetAboutCompany[];
     getcompanybenfit: GetCompanyBenefit[];
     companyspecialities : CompanySpecialities[];
@@ -140,18 +140,16 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
-    GetCustomerClients()
+    GetCustomerClients(customerId)
     {
-    return this.appService.GetCustomerClients(this.customer.CustomerId).subscribe(res => {
-    debugger
+    return this.appService.GetCustomerClients(customerId,0).subscribe(res => {
         this.getCustomerClients = res;
     });
     }
 
-    GetCustomerDepartment()
+    GetCustomerDepartment(customerId)
    {
-       debugger
-    return this.appService.GetCustomerDepartments(this.customer.CustomerId).subscribe(res => {
+    return this.appService.GetCustomerDepartments(customerId,0).subscribe(res => {
     this.getCustomerDepartments = res;
    });
    }
@@ -171,8 +169,8 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyCertifications(this.customerId);
         this.populateCompanyCultures(this.customerId);
         this.populateCompanyPartners(this.customerId);
-        this.GetCustomerClients();
-        this.GetCustomerDepartment();
+        this.GetCustomerClients(this.customerId);
+        this.GetCustomerDepartment(this.customerId);
   }
 
 }

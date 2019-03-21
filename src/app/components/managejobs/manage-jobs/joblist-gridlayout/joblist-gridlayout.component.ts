@@ -82,19 +82,19 @@ export class JoblistGridlayoutComponent implements OnInit {
    });
   }
 
-  GetCustomerClients()
-  {
-    return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
-      this.clients = res;
-    });
-  }
+  // GetCustomerClients()
+  // {
+  //   return this.appService.GetCustomerClients(this.customerId).subscribe(res => {
+  //     this.clients = res;
+  //   });
+  // }
 
-  GetCustomerDepartment()
-  {
-    return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
-      this.dept = res;
-    });
-  }
+  // GetCustomerDepartment()
+  // {
+  //   return this.appService.GetCustomerDepartments(this.customerId).subscribe(res => {
+  //     this.dept = res;
+  //   });
+  // }
 
   changeJobStatus(job, val) {
     this.alertService.clear();

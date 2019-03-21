@@ -28,11 +28,17 @@ export class SpecialitiesComponent implements OnInit {
    companyspecialityId:any;
    specialityId:any;
    speciality:any;
+   clientId:any;
+   clientName:any;
+   departmentId:any;
+   departmentName:any;
    companytechnologyId:any;
    companytechnology:any;
    technologyId:any;
    specialities = new specialities();
    technologies = new technologies();
+   client = new GetCustomerClients();
+   department = new GetCustomerDepartments();
    constructor(private _service: ApiService, private appService: AppService, private route: Router, private companyprofileservice: CompanyProfileService) {
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.customerId =this.customer.CustomerId;
@@ -49,6 +55,76 @@ export class SpecialitiesComponent implements OnInit {
         this.getcompanytechnology = res;
     });
 }
+GetCustomerClients(customerId,clientId)
+{
+return this.appService.GetCustomerClients(customerId,clientId).subscribe(res => {
+    this.getCustomerClients = res;
+});
+}
+
+GetCustomerDepartment(customerId,departmentId)
+{
+return this.appService.GetCustomerDepartments(customerId,departmentId).subscribe(res => {
+this.getCustomerDepartments = res;
+});
+}
+
+SaveClients()
+{
+if(this.clientName != "" || this.clientName!= null || this.clientName != undefined)
+{
+  
+  if(this.clientId > 0)
+  {
+    this.client.ClientId = this.clientId;
+  }
+  else
+  {
+    this.client.ClientId = 0;
+  }
+  this.client.CustomerId = this.customerId;
+  this.client.ClientName = this.clientName;
+  this._service.PostService(this.client, 'ProfileAPI/api/InsertCustomerClients')
+  .subscribe(data => {
+    this.clientId = null;
+    this.clientName = '';
+    this.client.ClientId = null;
+    this.client.ClientName = null;
+    this.GetCustomerClients(this.customerId,0);
+  },
+  
+    error => console.log(error));
+  }
+}
+
+SaveDepartments()
+{
+  if(this.departmentName != "")
+{
+  
+  if(this.departmentId > 0)
+  {
+    this.department.DepartmentId = this.departmentId;
+  }
+  else
+  {
+    this.department.DepartmentId = 0;
+  }
+  this.department.CustomerId = this.customerId;
+  this.department.Department = this.departmentName;
+  this._service.PostService(this.department, 'ProfileAPI/api/InsertCustomerDepartments')
+  .subscribe(data => {
+    this.departmentId = null;
+    this.departmentName = '';
+    this.department.DepartmentId = null;
+    this.department.Department = null;
+    this.GetCustomerDepartment(this.customerId,0);
+  },
+  
+    error => console.log(error));
+  }
+}
+
 savetechnologies()
 {
   if(this.technologyId>0)
@@ -71,6 +147,7 @@ savetechnologies()
      this.populateCompanyTechnologies(this.customerId);
    },
      error => console.log(error));
+
 
 }
 saveSpecialities()
@@ -111,6 +188,18 @@ Edittechnology(technology)
   var contents = technology.TechnologyName;
   this.companytechnology = $("#techVal").val(contents);
  
+}
+
+EditDepartments(dept)
+{
+  this.departmentId = dept.DepartmentId;
+  this.departmentName = dept.CustomerDepartment;
+}
+
+EditClient(client)
+{
+  this.clientId = client.ClientId;
+  this.clientName = client.ClientName;
 }
 
 deletetechnology(technology)
