@@ -20,13 +20,13 @@
         <small class="text-danger" *ngIf="other.value === null && Education.touched">Required.</small>
     </div>
     <div class="col-md-5 col-sm-5">
-      <input type="text" class="form-control" #other="ngModel" name="education" [(ngModel)]="newQualification" (ngModelChange)="updateQualification($event)" placeholder="Other">
+      <input type="text" class="form-control mt-0" #other="ngModel" name="education" [(ngModel)]="newQualification" (ngModelChange)="updateQualification($event)" placeholder="Other">
       <small class="text-danger" *ngIf="Education.value === null && other.invalid && other.touched">Required.</small>
       <!-- <small class="text-danger" *ngIf="Education.invalid && Education.touched">Qualification is required.</small> -->
 
     </div>
     <div class="col-md-2 col-sm-2">
-      <button class="btn add-btn form-control" type="submit">+</button>
+      <button class="btn add-btn form-control mt-0" type="submit">+</button>
     </div>
   </form>
     </div>

@@ -45,6 +45,38 @@ export class UploadProfilesComponent implements OnInit {
       'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator]
     });
     this.alertService.clear();
+
+  /**/
+
+    /**/
+    // $.fn.toggleCheckbox = function() {
+    //   this.attr('checked', !this.attr('checked'));
+    // }
+    
+    // $(document).ready(function(){
+    //   $('.li-hover').click(function (e) {    
+    //     if (e.target.tagName != 'INPUT') {
+    //       $(this).find("input").toggleCheckbox();
+    //       return false;
+    //     }
+    //   });
+    // });
+    /** */
+
+  $(function(){
+ 
+    $('[name="list1"]').change(function()
+    {
+      if ($(this).is(':checked')) {
+      
+         $(this).parent().parent().children(".hover-h").addClass("dblock");  
+      }
+      else if ($(this).prop('checked', false)) {
+        $(this).parent().parent().children(".hover-h").removeClass("dblock");
+      };
+    });
+  }); 
+  /**/
   }
   getFileDetails(e) {
     this.selectedFileNames = [];
