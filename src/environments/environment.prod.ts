@@ -11,133 +11,125 @@ export const environment = {
   OfferApiUrl: 'https://orca-ux-g1-blue.cfapps.pcf1.vc1.pcf.dell.com/#/opportunity/',
   production: true,
   jobTitleEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobTitles',
-  getskillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetSkills',
-  addSkillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/AddSkill',
-  GetPersonTypeEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetPersonType?',
-  // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
-  educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',
-  employmentTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType',
-  interviewtypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewType',
-  NotificationEndPoint: 'http://api.tenendus.com:1090/IdentityAPI/api/GetNotification?',
-  listofJobsEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
-  activatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/ActivateJob?jobId=1000108',
-  deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false',
-  JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
-  discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
-  updateemail: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdateEmail',
-  updatepassword: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
-  CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
-  // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
-  Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
-  signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',
-  postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
-  addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
-  getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
-  domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
-  getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
-   customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
-  jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
-  scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
- // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
+    getskillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetSkills',
+    addSkillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/AddSkill',
+    GetPersonTypeEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetPersonType?',
+    // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
+    SuggestJobTitleEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
+    SuggestJobCategoryEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobCategory?',
+    draftCategory: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftCategory',
+    educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',
+    addneweducationEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveQualification',
+    employmentTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetEmploymentType',
+    salaryTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetSalaryType',
+    contractDurationendpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetContractDuration',
+    workAuthorizationendpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetWorkauthorization',
+    interviewtypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewType',
+    NotificationEndPoint: 'http://api.tenendus.com:1090/IdentityAPI/api/GetNotification?',
+    GetCustomerContacts: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
+    listofJobsEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
+    activatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/ActivateJob?jobId=1000108',
+    deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false',
+    JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
+    GetUserId: 'http://api.tenendus.com:1090/ProfileAPI/api/GetUserId?',
+    discTestEndpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetDisc',
+    updateemail: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdateEmail',
+    updatepassword: 'http://api.tenendus.com:1090/IdentityAPI/api/UpdatePassword',
+    // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
+    Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
+    ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
+    ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
+    CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
+    InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
+    signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',
+    postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
+    addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
+    getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
+    domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
+    getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
+    customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+    getCitiesendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities?',
+    jobCategoryEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobCategory',
+    profileLink: 'http://api.tenendus.com:1090/ProfileAPI/api/GetProfileLink?',
+    scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
+    EmailVaild: 'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
+    EmailInvite: 'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
+    ActivateUser: 'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',
+    Deletedraft: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteDraftedJob?',
+    ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
+    GetCustomerClients : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerClients',
+    GetCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerDepartments',
+    // SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
+    // SearchDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+   // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
+    searchclientsendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
+    searchdepartmentendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+    SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
+    JobdetailsBasicInfoEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 
+        JobdetailsStatisticsEndpoint:
+        'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?',
 
-  JobdetailsBasicInfoEndpoint:
-      'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
+    JobdetailsProfileEndpoint:
+        'http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?',
 
-      JobdetailsStatisticsEndpoint:
-      'http://api.tenendus.com:1090/JobsAPI/api/GetJobStatistics?',
+    MatchingDetailEndPoint:
+        'http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage',
 
-  JobdetailsProfileEndpoint:
-      'http://api.tenendus.com:1090/JobsAPI/api/GetProfiles?',
+     VideoProfileEndPoint:
+        'http://api.tenendus.com:1090/ProfileAPI/api/GetVideoSizzles',
+    GetAutoSearch: 'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
 
-  MatchingDetailEndPoint:
-      'http://api.tenendus.com:1090/JobsAPI/api/GetJobMatchingPercentage',
+    GetJobsFilterBy: 'http://api.tenendus.com:1090/JobsAPI/api/SearchJobFilter?',
 
-  JobdetailsSuggestedProfileEndpoint:
-      'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
+    GetProfileAutoSearch: 'http://api.tenendus.com:1090/ProfileAPI/api/ProfileAutoSearch',
 
-  RecentJobs: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
+    GetCitySearch: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
 
-  RecentApplicants: 'http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?',
+    JobdetailsSuggestedProfileEndpoint:
+        'http://api.tenendus.com:1090/JobsAPI/api/GetMatchedProfiles?',
 
-  DashboardStatistics: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?',
+    RecentJobs: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
 
-  ApplicantStatistics: 'http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?',
+    RecentApplicants: 'http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?',
 
-  CompanyProfileBasicInfo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBasicInfo?',
+    DashboardStatistics: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?',
 
-  CompanyProfileOtherInfo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetOtherInfo?',
+    ApplicantStatistics: 'http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?',
 
-  GetAboutCompany: 'http://api.tenendus.com:1090/ProfileAPI/api/GetAboutCompany?',
+    CompanyProfileBasicInfo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBasicInfo?',
 
-  GetCompanyLogo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyLogo?',
+    CompanyProfileOtherInfo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetOtherInfo?',
 
-  CompanyTechnologies: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyTechnology?',
+    GetAboutCompany: 'http://api.tenendus.com:1090/ProfileAPI/api/GetAboutCompany?',
 
-  CompanySpecialities: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanySpeciality?',
+    GetCompanyLogo: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyLogo?',
 
-  CompanyWhitePapers: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyWhitePaper?',
+    CompanyTechnologies: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyTechnology?',
 
-  ComapnyAchivements: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyAchievement?',
+    CompanySpecialities: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanySpeciality?',
 
-  CompanyPartnerships: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyPartner?',
+    CompanyWhitePapers: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyWhitePaper?',
 
-  CompanyCertifications: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCertification?',
+    ComapnyAchivements: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyAchievement?',
 
-  CompanyCultures : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCulture?',
+    CompanyPartnerships: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyPartner?',
 
-  CompanyNewsPapers : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyNewsInfo?',
+    CompanyCertifications: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCertification?',
 
-  GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
+    CompanyCultures : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyCulture?',
 
-  JobsProfileCount: 'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
+    CompanyNewsPapers : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyNewsInfo?',
 
-  GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
+    GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
 
-  CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
+    JobsProfileCount: 'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
 
-  GetCustomerClients : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerClients',
-  GetCustomerDepartments:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerDepartments',
-  SearchClients:'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
-  SearchDepartments:'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+    GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
 
+    CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
 
-  SuggestJobTitleEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
-  SuggestJobCategoryEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobCategory?',
-  draftCategory: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftCategory',
-  addneweducationEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveQualification',
-  salaryTypeendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetSalaryType',
-  contractDurationendpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetContractDuration',
-  workAuthorizationendpoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetWorkauthorization',
-  GetCustomerContacts: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
-  GetUserId: 'http://api.tenendus.com:1090/ProfileAPI/api/GetUserId?',
-  // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
-  ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
-  ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
-  InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
-  getCitiesendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities?',
-  profileLink: 'http://api.tenendus.com:1090/ProfileAPI/api/GetProfileLink?',
-  EmailVaild: 'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
-  EmailInvite: 'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
-  ActivateUser: 'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',
-  Deletedraft: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteDraftedJob?',
-  ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
- // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
+    EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?',
 
-  SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
-
-
-   VideoProfileEndPoint:
-      'http://api.tenendus.com:1090/ProfileAPI/api/GetVideoSizzles',
-  GetAutoSearch: 'http://api.tenendus.com:1090/JobsAPI/api/GetAutoSearch',
-
-  GetJobsFilterBy: 'http://api.tenendus.com:1090/JobsAPI/api/SearchJobFilter?',
-
-  GetProfileAutoSearch: 'http://api.tenendus.com:1090/ProfileAPI/api/ProfileAutoSearch',
-
-  GetCitySearch: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCities',
-
-
-  InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?',
-  EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?'
+    InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?'
 };
