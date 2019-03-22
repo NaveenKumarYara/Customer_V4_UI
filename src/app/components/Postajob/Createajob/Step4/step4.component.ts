@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
-import { InsertJob } from '../../models/jobPostInfo';
+import { InsertJob, PjDepartments } from '../../models/jobPostInfo';
 import { Location } from '@angular/common';
 import { StepsComponent } from '../steps.component';
 @Component({
@@ -23,6 +23,7 @@ export class Step4Component implements OnInit {
   jobSkillsSecondary: any;
   departments: any;
   client: any;
+  pjDepartments:  PjDepartments[] = [];
 // step2
   domain: any;
   locations: any;
@@ -141,8 +142,10 @@ export class Step4Component implements OnInit {
     this.insertJob.XmlSkills =  this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
     this.insertJob.ClientId = this.client.ClientId;
-    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
-    this.insertJob.XmlDepartment = this.appService.addeddepartments; // this.departments;
+    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
+    // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
+    // this.insertJob.ClientName = localStorage.getItem('clientName');
+    this.insertJob.XmlDepartment = this.pjDepartments; // this.appService.addeddepartments; // this.departments;
     // step2
 
     this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;

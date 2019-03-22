@@ -27,7 +27,7 @@ client: string;
       });
       this.appService.currentClient.subscribe((data) => {
         // this.jobCategoryId = data.ClientId; // And he have data here too!
-        this.client = data.ClientName;
+        this.client = data.ClientName; // localStorage.getItem('clientName'); //
     });
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!

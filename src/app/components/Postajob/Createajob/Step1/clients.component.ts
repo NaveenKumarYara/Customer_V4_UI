@@ -12,7 +12,7 @@ import { AddClient } from '../../../../../models/jobskills.model';
   styleUrls: ['./clients.component.css'],
   providers: [AppService]
 })
-export class ClientsComponent implements OnInit,  AfterViewChecked {
+export class ClientsComponent implements OnInit {
 
   clientsList: Observable<any>;
   clientInput = new Subject<string>();
@@ -70,23 +70,32 @@ suggestedClients() {
     // if (this.selectedClient != null) {
     //   this.updateClient(this.selectedClient);
     // }
+    // this.selectClient = localStorage.getItem('clientName');
     this.selectClient =  this.selectedClient.ClientName;
-    // if (this.selectClient === undefined && localStorage.getItem('jobId') != null) {
+    if (this.selectClient === undefined && localStorage.getItem('jobId') != null) {
+      this.appService.getDraftClient(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
+        x => this.selectClient = x.ClientName);
+    }
+    // if (this.selectCategory === undefined && localStorage.getItem('jobId') != null) {
     //   this.appService.getDraftCategory(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
-    //     x => this.selectClient = x.Category);
+    //     x => this.selectCategory = x.Category);
     // }
   }
   // ngAfterViewInit() {
   //   this.appService.currentClient.subscribe(x => this.selectedClient = x);
   //   this.selectClient = this.selectedClient.ClientName;
   // }
-  ngAfterViewChecked() {
-    this.appService.currentClient.subscribe(x => this.selectedClient = x);
-    if (this.selectedClient.ClientName === null || this.selectedClient.ClientName === undefined) {
-    this.selectClient = localStorage.getItem('clientName');
-    } else {
-      localStorage.removeItem('clientName');
-      this.selectClient = this.selectedClient.ClientName;
-    }
-  }
+  // ngAfterViewChecked() {
+  //   this.appService.currentClient.subscribe(x => this.selectedClient = x);
+  //   if (this.selectedClient.ClientName === null || this.selectedClient.ClientName === undefined) {
+  //   this.selectClient = localStorage.getItem('clientName');
+  //   // localStorage.setItem('clientId', this.selectedClient.ClientId.toString());
+  //   } else {
+  //     // localStorage.removeItem('clientName');
+  //     // localStorage.setItem('clientId', this.selectedClient.ClientId.toString());
+  //     this.selectClient = this.selectedClient.ClientName;
+  //      localStorage.setItem('clientName', this.selectClient );
+  //     // this.updateClient(this.selectedClient);
+  //   }
+  // }
 }
