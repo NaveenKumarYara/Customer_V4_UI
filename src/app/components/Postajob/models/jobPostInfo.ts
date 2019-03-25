@@ -138,6 +138,11 @@ export class DiscResult {
 }export class DepartmentModel {
     public DepartmentId: number;
     public CustomerDepartment: string;
+     public DepartmentName: string;
+}
+export class GetDepartmentModel {
+    public DepartmentId: number;
+    public DepartmentName: string;
 }
 export class PjDepartments {
   public DepartmentId: number;
