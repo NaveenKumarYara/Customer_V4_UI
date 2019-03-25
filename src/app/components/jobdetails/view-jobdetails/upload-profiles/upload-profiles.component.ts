@@ -67,6 +67,20 @@ export class UploadProfilesComponent implements OnInit {
     });
     this.SearchProfiles();
     this.alertService.clear();
+    /** */
+    $(function(){
+        $('[name="list1"]').change(function()
+         {
+          if ($(this).is(':checked')) {
+            $(this).parent().parent().children(".hover-h").addClass("dblock");  
+          }
+           else if ($(this).prop('checked', false)) {
+             $(this).parent().parent().children(".hover-h").removeClass("dblock");
+           };
+        });
+       }); 
+    /** */
+
   }
   SearchProfiles()
   {
