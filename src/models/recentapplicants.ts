@@ -21,4 +21,5 @@
     public CandidateReference: string;
     public VideoProfile: string;
     public TotalApplicants: number;
+    public length:number;
 } 
