@@ -34,11 +34,11 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   }
 
   updateDepartment(val) {
-  this.getDepartment = val;
-}
-private deleteDepartment(index: number) {
-  this.appService.deleteDepartment(index);
-}
+    this.getDepartment = val;
+  }
+  private deleteDepartment(index: number) {
+    this.appService.deleteDepartment(index);
+  }
   private searchDepartment() {
     this.departmentList = concat(of([]),
     this.departmentInput.pipe(
@@ -75,30 +75,31 @@ suggestedDepartment() {
 ngOnInit() {
   this.searchDepartment();
   if (this.departmentsList.length === 0) {
- this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
-  x => {this.departmentsList = x;
-  if (this.departmentsList.length > 0) {
-      for (const dept of this.departmentsList) {
-        const ejDepartment = new DepartmentModel();
-        const ejDepartmentId = new PjDepartments();
-        ejDepartment.DepartmentId = dept.DepartmentId;
-        ejDepartment.CustomerDepartment = dept.DepartmentName;
-          ejDepartmentId.DepartmentId = dept.DepartmentId;
-          // this.departmentsList.push(ejDepartment);
-          this.addedDepartmentList.push(ejDepartmentId);
+  this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
+    x => {this.departmentsList = x;
+    if (this.departmentsList.length > 0) {
+        for (const dept of this.departmentsList) {
+          const ejDepartment = new DepartmentModel();
+          const ejDepartmentId = new PjDepartments();
+          ejDepartment.DepartmentId = dept.DepartmentId;
+          ejDepartment.CustomerDepartment = dept.DepartmentName;
+            ejDepartmentId.DepartmentId = dept.DepartmentId;
+            // this.departmentsList.push(ejDepartment);
+            this.addedDepartmentList.push(ejDepartmentId);
+        }
       }
-    }
 
-  this.appService.departments = this.departmentsList;
-  this.appService.departmentsChanged.next(this.appService.departments);
-  this.appService.addeddepartments = this.addedDepartmentList;
-  this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
-  this.subscription = this.appService.departmentsChanged
-    .subscribe(
-    (departmentlist: DepartmentModel[]) => {
-      this.departmentsList = departmentlist;
-      }
-    );
+    this.appService.departments = this.departmentsList;
+    this.appService.departmentsChanged.next(this.departmentsList);
+    this.appService.addeddepartments = this.addedDepartmentList;
+    this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
+    localStorage.setItem('departments', JSON.stringify(this.departmentsList));
+    this.subscription = this.appService.departmentsChanged
+      .subscribe(
+      (departmentlist: DepartmentModel[]) => {
+        this.departmentsList = departmentlist;
+        }
+      );
 
     this.addedDepartmentList = this.appService.getaddedDepartments();
     this.subscriptions = this.appService.addeddepartmentsChanged
@@ -113,6 +114,6 @@ ngOnInit() {
 }
 ngOnDestroy() {
   this.subscription.unsubscribe();
-   this.subscriptions.unsubscribe();
-}
+  this.subscriptions.unsubscribe();
+  }
 }

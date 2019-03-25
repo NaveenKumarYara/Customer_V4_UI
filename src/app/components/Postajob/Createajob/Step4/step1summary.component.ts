@@ -17,7 +17,7 @@ hasDescription: boolean;
 completeDescription: string;
 primarySkills = [];
 secondarySkills = [];
-departments = [];
+departments: any;
 roles = [];
 client: any;
   constructor(private route: ActivatedRoute,
@@ -72,7 +72,8 @@ client: any;
     this.primarySkills = this.appService.primaryjobskills;
     this.secondarySkills = this.appService.secondaryjobskills;
     this.roles = this.appService.responsibilities;
-    this.departments = this.appService.departments;
+    this.departments = JSON.parse(localStorage.getItem('departments'));
+    // this.appService.departmentsChanged.subscribe(x =>  = x);
     this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';
     // this.insertJob.SalaryTypeId = 1;
