@@ -5,6 +5,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { IfObservable } from 'rxjs/observable/IfObservable';
+import {SearchProfileDeatils} from '../../models/SearchProfileDeatils';
+import {Profile} from '../../models/SearchProfileDeatils';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 declare var $: any;
 export interface DialogData {
@@ -18,9 +20,18 @@ export interface DialogData {
 })
 export class UploadProfilesComponent implements OnInit {
   fileUploadForm: FormGroup;
+  searchprofilesFrom:FormGroup;
+  searchprofiles : Profile[];
+  profiles:Profile[];
+  searchprocess:any;
+  Count: any;
   selectedFileNames: string[] = [];
   inviteinfo =new InviteInfo();
   loaddata = true ;
+  searchString :any;
+  SearchList: any = [];
+  norecord:any= false;
+  isFullDisplayed:any= false;
   email:any;
   customerId = null;
   userId: number;
@@ -34,6 +45,16 @@ export class UploadProfilesComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.searchprofilesFrom = this.fb.group({
+      'CustomerId':  [this.customerName.CustomerId, Validators.required],
+      'JobId':['', Validators.required],
+      'SearchString': ['', Validators.nullValidator],
+      'Experience': ['', Validators.nullValidator],
+      'Location': ['', Validators.nullValidator],
+      'QualificationId': [0, Validators.nullValidator],
+      'PageNumber': [1, Validators.nullValidator],
+      'NumberOfRows': [1000, Validators.nullValidator],
+    });
     this.fileUploadForm = this.fb.group({
       'userId': [5, Validators.required],
       'Url': ['', Validators.nullValidator],
@@ -44,40 +65,79 @@ export class UploadProfilesComponent implements OnInit {
       'JobId': [ null, Validators.nullValidator],
       'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator]
     });
+    this.SearchProfiles();
     this.alertService.clear();
-
-  /**/
-
-    /**/
-    // $.fn.toggleCheckbox = function() {
-    //   this.attr('checked', !this.attr('checked'));
-    // }
-    
-    // $(document).ready(function(){
-    //   $('.li-hover').click(function (e) {    
-    //     if (e.target.tagName != 'INPUT') {
-    //       $(this).find("input").toggleCheckbox();
-    //       return false;
-    //     }
-    //   });
-    // });
-    /** */
-
-  $(function(){
- 
-    $('[name="list1"]').change(function()
-    {
-      if ($(this).is(':checked')) {
-      
-         $(this).parent().parent().children(".hover-h").addClass("dblock");  
-      }
-      else if ($(this).prop('checked', false)) {
-        $(this).parent().parent().children(".hover-h").removeClass("dblock");
-      };
-    });
-  }); 
-  /**/
   }
+  SearchProfiles()
+  {
+    this.searchprofilesFrom.value.JobId = JSON.parse(sessionStorage.getItem('jobId')); 
+    if(this.searchString != null)
+    {
+      this.searchprofilesFrom.value.SearchString = this.searchString;
+      this.searchprofilesFrom.value.CustomerId = this.customerName.CustomerId;
+      this.searchprofilesFrom.value.QualificationId = 0;
+      this.searchprofilesFrom.value.Location = '';
+      this.searchprofilesFrom.value.Experience = '';
+      this.searchprofilesFrom.value.PageNumber = 1;
+      this.searchprofilesFrom.value.NumberOfRows = 1000;
+    }
+    this.jobdetailsservice.searchCandidateProfiles(this.searchprofilesFrom.value)
+    .subscribe(
+    data => {    
+      this.isFullDisplayed = true;
+      this.Count = data.TotalProfileCount;   
+      this.profiles = data.Profile;   
+      debugger  
+      this.searchprofilesFrom.reset();
+      //this.searchprocess = data.Profile;
+      //this.profiles = this.searchprofiles.slice(0,10);
+  });
+
+  }
+
+  SetSearch(val)
+ {
+   this.SearchList = [];
+   this.searchString = val;
+ }
+
+ searchProfile(value)
+ {
+   this.searchString = value;
+   this.SearchProfiles();
+ }
+
+  GetSearchText(value) {
+    return this.jobdetailsservice.GetAutoSearch(value)
+    .subscribe(data => {
+          if (data.length > 0) {  
+            this.SearchList =data;
+          }
+          else {
+            this.SearchList = [];
+          }
+        
+          }, 
+     
+        error => { 
+          this.SearchList = [];
+         });
+  
+  }
+  // getData(){
+  //   debugger
+  //   if(this.profiles.length < this.searchprofiles.length){  
+  //     let len = this.profiles.length;
+  //     for(let i=len;i<=len+9;i++)
+  //     {
+  //       this.profiles.push(this.searchprofiles[i]);
+  //     }
+  //   }
+  //   else{
+  //     this.isFullDisplayed = true;
+  // }
+  
+  // }
   getFileDetails(e) {
     this.selectedFileNames = [];
     this.spinner.show();
@@ -131,6 +191,9 @@ export class UploadProfilesComponent implements OnInit {
 
  Clear()
  {
+  this.searchString = '';
+  this.SearchProfiles();
+  this.searchprofilesFrom.reset();
   this.toastr.dismissToast;
  }
   CheckEmail()

@@ -1,6 +1,6 @@
 export class SearchProfileDeatils {
 
-    public TotalProfileCount: string;
+    public TotalProfileCount: number;
     public Profile : Profile[];
     }
     
