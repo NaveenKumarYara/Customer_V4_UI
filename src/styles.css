@@ -22221,3 +22221,30 @@ div.options{
     padding-top: 26px;
     margin-bottom: 10px;
 }    
+.searchList{
+    position: absolute;
+    z-index: 999;
+    height: 50vh;
+    left: 10px;
+    width: 94%;
+}
+.nojobbg{
+    /* background-image: url("assets/images/nojob.png");
+    background-repeat: no-repeat; */
+    text-align: center;
+    height:100vh;
+    width: 75%
+}
+.m-auto{
+    margin:auto;
+}
+.d-inline{
+    display: inline;
+}
+.h4t{
+    font-size: 18px;
+}
+.w-50c{
+    width: 50%;
+    float: left;
+}
