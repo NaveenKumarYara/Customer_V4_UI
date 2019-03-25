@@ -3,11 +3,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { JobResponsibilitiesComponent } from './Jobresponsibilities.component';
 import { JobcategoryComponent } from './Jobcategory.component';
 import { JobdetailsComponent } from './Jobdetails.component';
 import { JobprofileComponent } from './Jobprofile.component';
-import { JobskillsetComponent } from './Jobskillset.component';
+// import { JobskillsetComponent } from '../Step2/Jobskillset.component';
+// import { JobResponsibilitiesComponent } from '../Step2/Jobresponsibilities.component';
+
 declare var $: any;
 declare var jQuery: any;
 import {InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo, PjDepartments} from '../../models/jobPostInfo';
@@ -15,6 +16,8 @@ import { CreateajobComponent } from '../createajob.component';
 import { StepsComponent } from '../steps.component';
 import { ClientsComponent } from './clients.component';
 import { DepartmentsComponent } from './departments.component';
+import { LocationwiseJobsComponent } from './locationwisejobs.component';
+import { NoofopeningsComponent } from './noofopenings.component';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -24,8 +27,10 @@ export class Step1Component implements OnInit {
   @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
   @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
-  @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
-  @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  // @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
+  // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
+  @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
   @ViewChild(ClientsComponent) client: ClientsComponent;
   @ViewChild(DepartmentsComponent) department: DepartmentsComponent;
   // formData: any;
@@ -84,7 +89,9 @@ export class Step1Component implements OnInit {
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
    if ((this.jobDetail.selectedTitle !== '' || null) &&
    this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
-   this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0 ) {
+  //  this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0
+    this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
+   ) {
    //  && this.jobResponsibility.roleIdList.length > 0
    if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
    return false;
@@ -99,8 +106,13 @@ export class Step1Component implements OnInit {
     this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
-    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
-    this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+    // moved to step1
+    // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
+    // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+
+this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
+this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
+// Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;

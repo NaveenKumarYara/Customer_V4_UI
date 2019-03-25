@@ -7,7 +7,7 @@ import { RecentApplicants } from '../../../../models/recentapplicants';
   styleUrls: ['./dashboard-recent-applications.component.css']
 })
 export class DashboardRecentApplicationsComponent implements OnInit {
-    @Input() recentapplicantlist: RecentApplicants;
+    @Input() recentapplicantlist: any;
 
   constructor() { }
   add3Dots(string, limit) {

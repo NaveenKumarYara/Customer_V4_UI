@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DomainExpertiseComponent } from './domainexpertise.component';
-import { LocationwiseJobsComponent } from './locationwisejobs.component';
 import { PersonalityTypeComponent } from './PersonalityType.component';
 import { QualificationsComponent } from './qualifications.component';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
-import { NoofopeningsComponent } from './noofopenings.component';
+// import { LocationwiseJobsComponent } from '../Step1/locationwisejobs.component';
+// import { NoofopeningsComponent } from '../Step1/noofopenings.component';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo, PjDepartments } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
@@ -13,8 +13,8 @@ import { Step1Component } from '../Step1/step1.component';
 import { JobcategoryComponent } from '../Step1/Jobcategory.component';
 import { JobdetailsComponent } from '../Step1/Jobdetails.component';
 import { JobprofileComponent } from '../Step1/Jobprofile.component';
-import { JobResponsibilitiesComponent } from '../Step1/Jobresponsibilities.component';
-import { JobskillsetComponent } from '../Step1/Jobskillset.component';
+import { JobResponsibilitiesComponent } from '../Step2/Jobresponsibilities.component';
+import { JobskillsetComponent } from '../Step2/Jobskillset.component';
 import { StepsComponent } from '../steps.component';
 
 @Component({
@@ -38,7 +38,7 @@ export class Step2Component implements OnInit {
   salaryMaxRate: number;
   jobDescription: string;
   jobHasDescription: boolean;
-  jobResponsibility: any;
+  jobResponsibilities: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
   departments: any;
@@ -49,10 +49,12 @@ export class Step2Component implements OnInit {
   customerId: any;
   pjDepartments:  PjDepartments[] = [];
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
-  @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
-  @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
+  // @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
+  // @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
   @ViewChild(PersonalityTypeComponent) personalityType: PersonalityTypeComponent;
   @ViewChild(QualificationsComponent) qualification: QualificationsComponent;
+  @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
+  @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
   // formData: any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
@@ -96,7 +98,7 @@ export class Step2Component implements OnInit {
       this.jobMaxExp = data; // And he have data here too!
     });
     this.appService.addedresponsibilitiesChanged.subscribe((data) => {
-      this.jobResponsibility = data; // And he have data here too!
+      this.jobResponsibilities = data; // And he have data here too!
     });
     this.appService.currentDescriptionChecked.subscribe((data) => {
       this.jobHasDescription = data; // And he have data here too!
@@ -134,7 +136,9 @@ export class Step2Component implements OnInit {
     // // this.insertJob.JobDescription = this.step1.jobProfile.jobDescription;
     //  this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     // // this.insertJob.XmlRoleId = this.step1.jobResponsibility.roleIdList;
-    if (this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0 ) {
+    if (
+       // this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
+      this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0) {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = '';
@@ -160,8 +164,12 @@ export class Step2Component implements OnInit {
     //  this.jobSkillsPrimary.concat(this.jobSkillsSecondary);
 
     // step2
-    this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
-    this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
+    // moved to step2
+    // this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
+    // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
+    this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
+    this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+    // end moved to step2
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
