@@ -105,6 +105,9 @@ export class Step1Component implements OnInit {
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
     this.insertJob.XmlDepartment = this.department.addedDepartmentList;
+    if (this.insertJob.XmlDepartment.length > 0) {
+      this.appService.departmentsChanged.next(this.department.departmentsList);
+    }
     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
       this.appService.currentEmploymentType.subscribe((data) => {
         this.insertJob.EmploymentTypeId = data.EmploymentTypeId;
