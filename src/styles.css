@@ -22210,4 +22210,10 @@ div.options{
 }
 .page--create-a-job .form-steps .data-list li:last-child {
     margin-bottom: 0px !important;
-}        
+} 
+.page--dashboard .applications .card.d-block1, .page--dashboard .card.d-block1{
+    display: block ;
+    padding: 7px;
+    margin-bottom: 1rem;
+    color:#41536E;
+}       
