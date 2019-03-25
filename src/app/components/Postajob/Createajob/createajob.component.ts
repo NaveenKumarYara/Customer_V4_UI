@@ -92,6 +92,7 @@ ejPersonSingleList: PjDisc[] = [];
   }
 
   PopulateJobdetail (jobId) {
+    // localStorage.removeItem('clientName');
     localStorage.setItem('jobId', jobId);
     localStorage.setItem('EditMode', 'Yes');
     const workAuthorization = new WorkAuthorization();
@@ -119,7 +120,7 @@ ejPersonSingleList: PjDisc[] = [];
         // Client model
         this.eJclient.ClientId = this.jobdetailscustomer.JobInfo.ClientId;
         this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
-        localStorage.setItem('clientName', this.eJclient.ClientName );
+        // localStorage.setItem('clientName', this.eJclient.ClientName );
         this.appService.clientModel.next(this.eJclient);
       this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));

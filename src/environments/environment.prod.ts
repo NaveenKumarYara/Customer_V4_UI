@@ -62,8 +62,13 @@ export const environment = {
     // SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
     // SearchDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
    // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',
-    searchclientsendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
-    searchdepartmentendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+
+   SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
+   SearchDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+   searchdepartmentendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
+   searchclientsendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
+   getDraftClient: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobClient',
+
     SearchProfile: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
     JobdetailsBasicInfoEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobBasicInfo?',
 

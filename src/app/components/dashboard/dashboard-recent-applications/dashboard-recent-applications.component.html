@@ -65,6 +65,11 @@
             </div>
             <!-- .right -->
         </div>
+        <ng-container *ngIf="recentapplicantlist?.length==0">                                                               
+            <div class="card text-center d-block1">
+                <h5 class="p-4">No Applicants!</h5>
+            </div>
+    </ng-container>
         <!-- .card -->
 
     </section>

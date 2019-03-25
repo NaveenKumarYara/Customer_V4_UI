@@ -22118,12 +22118,13 @@ a:hover {
 }
 .li-hover{
     height: 50px;
+    cursor: pointer;
 }
 .hover-h{
     display: none;
 }
 .li-hover:hover .hover-h{
-    display: block;
+    display: inline-block;
 }
 .li-hover .btn,.s-btn{
 color: #ffffff;
@@ -22137,3 +22138,86 @@ min-width: 120px;
 .p-19{
     padding: 19px;
 }
+.ulpb-4 li.item.li-hover:last-child{
+    padding-bottom: 1rem;
+}
+
+/**/
+.list--filled.ulpb-4  input.h {
+    display: none;
+  }
+
+  .list--filled.ulpb-4 input.h[type="checkbox"]:checked ~ li.hover-h {
+    display: block !important;
+  }
+ 
+  .mt-10{
+      margin-top: 10px;
+  }
+  .dblock{
+      display: block;
+  }
+  .dnone{
+      display: none;
+  }
+  /* input[name="list1"] {
+display: none;
+  }
+  .li-label{
+      width: 100%;
+      font-weight: normal;
+      display: inline-block;
+  } */
+  .page--create-a-job .form-steps .form-group {
+    margin-bottom: 10px;
+    padding-top: 26px;
+}
+.page--create-a-job .form-steps .candidate-group .form-row .add-btn {
+    margin-top: 73px;
+}
+.page--create-a-job .form-steps .checkbox .box {
+    padding: 5px 21px;
+    height: auto !important;
+}
+.page--create-a-job .form-steps .form-control.h-auto {
+     height: auto !important;
+    margin-top: 15px;
+}
+label {
+    margin-bottom: 10px;
+}
+.page--create-a-job .form-steps .options {
+     padding-top: 0px;
+}
+div.options{
+    padding-bottom:10px; 
+}
+.pbt-10{
+    padding-bottom: 10px;
+    padding-top:20px;
+}
+.ng-select.custom-style>.ng-select-container{
+    margin-top: 0px; 
+}
+.gp-0 .form-group.skill-name.col-md-6,.pt-0{
+    padding-top: 0px !important;
+}
+.mt-0{
+    margin-top:0px !important;
+}
+.mt-20,.mt-29{
+    margin-top:29px !important;
+}
+.page--create-a-job .form-steps .data-list li:last-child {
+    margin-bottom: 0px !important;
+} 
+.page--dashboard .applications .card.d-block1, .page--dashboard .card.d-block1{
+    display: block ;
+    padding: 7px;
+    margin-bottom: 1rem;
+    color:#41536E;
+}   
+.pbt26-m10{
+    padding-top: 26px;
+    margin-bottom: 10px;
+}    

@@ -1,9 +1,9 @@
-<div class="form-group candidate-group">
+<div class="form-group candidate-group gp-0">
     <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
     <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
     <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
         <div class="form-row row">
-            <div class="form-group skill-name col-md-6" [class.has.error]="skill.invalid && skill.touched">
+            <div class="form-group skill-name col-md-6 pt-0" [class.has.error]="skill.invalid && skill.touched">
                 <label for="">Skill Name</label>
                 <ng-select class="custom-style" [items]="skilllist | async" placeholder="Search here..." bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1"
                     name="selectedSkillName" #skill="ngModel" [addTag]="addSkill" [virtualScroll]="true" required>
@@ -22,7 +22,7 @@
         </div> -->
             </div>
             <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-            <div class="form-group exp col-md-2">
+            <div class="form-group exp col-md-2 pt-0">
                 <label for="">Min Experience</label>
                 <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                 </ng-select>
@@ -42,7 +42,7 @@
                         Can't be > Max Exp!
         </small>
             </div>
-            <div class="form-group exp col-md-2">
+            <div class="form-group exp col-md-2 pt-0">
                 <label for="">Max Experience</label>
                 <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
                 </ng-select>
@@ -62,7 +62,7 @@
         </small>
             </div>
             <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-            <div class="form-group primary col-md-2">
+            <div class="form-group primary col-md-2 mt-0">
                 <label for="r1primary" class="radio">
           <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary" value="Primary"
             class="radio-input" [checked]='true' ngMode />
@@ -76,7 +76,7 @@
           <span>Secondary</span>
         </label> -->
             </div>
-            <button class="btn add-btn" type="submit">+</button>
+            <button class="btn add-btn mt-20" type="submit">+</button>
             <!-- (click)="addSkills()" -->
         </div>
     </form>

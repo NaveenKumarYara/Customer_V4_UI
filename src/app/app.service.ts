@@ -326,6 +326,13 @@ export class AppService {
         this.handleError
       );
   }
+   getDraftClient(jobId: number): Observable<ClientModel> {
+    const url = environment.getDraftClient + '?jobId=' + jobId;
+    return this.http.get<string>(url)
+      .catch(
+        this.handleError
+      );
+  }
   // private reportingManager = new BehaviorSubject('');
   // currentManager = this.reportingManager.asObservable();
 
@@ -810,16 +817,16 @@ export class AppService {
     });
   }
 
-  GetCustomerClients(customerId: number,clientId:number): Observable<GetCustomerClients[]> {
-    const url = environment.GetCustomerClients + '?clientId=' +clientId+'&customerId=' + customerId;
+  GetCustomerClients(customerId: number, clientId: number): Observable<GetCustomerClients[]> {
+    const url = environment.GetCustomerClients + '?clientId=' + clientId + '&customerId=' + customerId;
     return this.http.get<GetCustomerClients[]>(url)
       .catch(
         this.handleError
       );
   }
 
-  GetCustomerDepartments(customerId: number,departmentId : number): Observable<GetCustomerDepartments[]> {
-    const url = environment.GetCustomerDepartments +'?departmentId='+departmentId+ '&customerId=' + customerId;
+  GetCustomerDepartments(customerId: number, departmentId: number): Observable<GetCustomerDepartments[]> {
+    const url = environment.GetCustomerDepartments + '?departmentId=' + departmentId + '&customerId=' + customerId;
     return this.http.get<GetCustomerDepartments[]>(url)
       .catch(
         this.handleError

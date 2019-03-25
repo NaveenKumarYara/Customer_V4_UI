@@ -53,6 +53,7 @@ export const environment = {
     Deletedraft: 'http://api.tenendus.com:1090/JobsAPI/api/DeleteDraftedJob?',
     ValidateUser: 'http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?',
     GetCustomerClients : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerClients',
+    getDraftClient: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobClient',
     GetCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerDepartments',
     // SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
     // SearchDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',

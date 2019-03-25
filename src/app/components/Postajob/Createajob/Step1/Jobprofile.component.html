@@ -17,9 +17,11 @@
     </label> -->
   </div>
   <div class="clearfix">&nbsp;</div>
-  <textarea name="" [disabled]="hasCompleteDescription === false" id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
+  <div *ngIf="hasCompleteDescription">
+  <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
       <small class="text-danger" *ngIf="hasCompleteDescription==true && jobDescription==''">          <!-- valdiateExperience(minExperience,maxExperience) -->
        *Required
      </small>
+    </div>
 </div>
 

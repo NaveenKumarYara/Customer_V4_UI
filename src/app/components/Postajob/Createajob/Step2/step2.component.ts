@@ -7,7 +7,7 @@ import { QualificationsComponent } from './qualifications.component';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { NoofopeningsComponent } from './noofopenings.component';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo } from '../../models/jobPostInfo';
+import { InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo, PjDepartments } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 import { Step1Component } from '../Step1/step1.component';
 import { JobcategoryComponent } from '../Step1/Jobcategory.component';
@@ -47,6 +47,7 @@ export class Step2Component implements OnInit {
   complete: any;
   userId: any;
   customerId: any;
+  pjDepartments:  PjDepartments[] = [];
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -148,8 +149,10 @@ export class Step2Component implements OnInit {
     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     this.insertJob.ClientId = this.client.ClientId;
-    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
-    this.insertJob.XmlDepartment = this.appService.addeddepartments; // this.departments;
+    this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
+    // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
+    // this.insertJob.ClientName = localStorage.getItem('clientName');
+    this.insertJob.XmlDepartment = this.pjDepartments; // this.appService.addeddepartments; // this.departments;
 
     // this.insertJob.DepartmentId = this.appService.addeddepartments;
 
