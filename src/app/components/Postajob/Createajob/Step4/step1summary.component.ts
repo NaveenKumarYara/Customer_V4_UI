@@ -17,18 +17,22 @@ hasDescription: boolean;
 completeDescription: string;
 primarySkills = [];
 secondarySkills = [];
+departments = [];
 roles = [];
-client: string;
+client: any;
   constructor(private route: ActivatedRoute,
     private router: Router,  private appService: AppService) {
      this.appService.currentcategorytitle.subscribe((data) => {
           this.jobCategoryId = data.JobCategoryId; // And he have data here too!
           this.jobCategory = data.Category;
       });
-      this.appService.currentClient.subscribe((data) => {
-        // this.jobCategoryId = data.ClientId; // And he have data here too!
-        this.client = data.ClientName; // localStorage.getItem('clientName'); //
-    });
+    //   this.appService.currentClient.subscribe((data) => {
+    //     // this.jobCategoryId = data.ClientId; // And he have data here too!
+    //     this.client = data.ClientName; // localStorage.getItem('clientName'); //
+    // });
+    // this.appService.currentClient.subscribe((data) => {
+    //   this.client = data; // And he have data here too!
+    // });
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!
       });
@@ -65,11 +69,11 @@ client: string;
     // this.maxExp = this.appService.maxExperience.value;
     // this.hasDescription = this.appService.hasDescription.value;
     // this.completeDescription = this.appService.description.value;
-     this.primarySkills = this.appService.primaryjobskills;
+    this.primarySkills = this.appService.primaryjobskills;
     this.secondarySkills = this.appService.secondaryjobskills;
-     this.roles = this.appService.responsibilities;
-
-
+    this.roles = this.appService.responsibilities;
+    this.departments = this.appService.departments;
+    this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';
     // this.insertJob.SalaryTypeId = 1;
     // this.insertJob.MinimumSalary = '1';

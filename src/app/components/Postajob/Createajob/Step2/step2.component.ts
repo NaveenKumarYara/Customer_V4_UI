@@ -152,7 +152,7 @@ export class Step2Component implements OnInit {
     this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     // this.insertJob.ClientName = localStorage.getItem('clientName');
-    this.insertJob.XmlDepartment = this.pjDepartments; // this.appService.addeddepartments; // this.departments;
+    this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
 
     // this.insertJob.DepartmentId = this.appService.addeddepartments;
 

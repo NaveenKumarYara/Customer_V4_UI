@@ -65,7 +65,7 @@
   bindLabel="ClientName"
   bindValue="ClientName" [typeahead]="clientInput" 
   [hideSelected]="true" [loading]="clientLoading"
-  [(ngModel)]="selectClient" [virtualScroll]="true" required #Clients="ngModel" name="Client" (change)="updateClient($event)">
+  [(ngModel)]="selectClient" [virtualScroll]="true" #Clients="ngModel" name="Client" (change)="updateClient($event)">
   <ng-template ng-label-tmp let-item="clientsList" let-index="index">  
          <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
          {{selectClient}}
@@ -76,7 +76,7 @@
 </ng-template>  </ng-select>
 <!-- Value : {{ selectedClient.ClientName }}
 Value : {{selectClient}}  -->
-     <small class="text-danger error1" *ngIf="Clients.invalid && Clients.touched">Required.</small>
+     <!-- <small class="text-danger error1" *ngIf="Clients.invalid && Clients.touched">Required.</small> -->
     </div>
    
     <!-- <div class="col-md-2 col-sm-2">

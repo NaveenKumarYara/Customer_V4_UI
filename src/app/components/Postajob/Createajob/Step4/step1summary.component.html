@@ -38,6 +38,21 @@
       </h6>
   </div>
   <div class="form-data-group skill-set-group">
+      <h3 class="question">
+        What departments does the job includes?
+      </h3>
+      <div class="lists row">
+        <div class="col-md-6">
+          <h4 for="" class="light">Departments</h4>
+          <ul class="data-list">
+            <li *ngFor="let department of departments">
+              <span class="name">{{department.CustomerDepartment}}</span>
+            </li> 
+          </ul>
+        </div>
+        </div>
+  </div>
+  <div class="form-data-group skill-set-group">
     <h3 class="question">
       What is the skill set that you are looking for in the candidate?
     </h3>

@@ -98,30 +98,31 @@ ejPersonSingleList: PjDisc[] = [];
     const workAuthorization = new WorkAuthorization();
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
+      // Departments
+      // if (this.jobdetailscustomer.JobDepartment.length > 0) {
+      //   for (const dept of this.jobdetailscustomer.JobDepartment) {
+      //     const ejDepartment = new DepartmentModel();
+      //     const ejDepartmentId = new PjDepartments();
+      //     ejDepartment.DepartmentId = dept.DepartmentId;
+      //     ejDepartment.CustomerDepartment = dept.DepartmentName;
+      //       ejDepartmentId.DepartmentId = dept.DepartmentId;
+      //       this.ejDepartmentList.push(ejDepartment);
+      //       this.ejDepartmentIdList.push(ejDepartmentId);
+      //   }
+      // }
+      // this.appService.departments = this.jobdetailscustomer.JobDepartment;
+      // this.appService.departmentsChanged.next(this.appService.departments);
+      // this.appService.addeddepartments = this.ejDepartmentIdList;
+      // this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
+      // Client model
+      // this.eJclient.ClientId = this.jobdetailscustomer.JobInfo.ClientId;
+      // this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
+      // // localStorage.setItem('clientName', this.eJclient.ClientName );
+      // this.appService.clientModel.next(this.eJclient);
+      // category
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
       this.appService.jobcategory.next(this.eJcategory);
-        // Departments
-        if (this.jobdetailscustomer.JobDepartment.length > 0) {
-          for (const dept of this.jobdetailscustomer.JobDepartment) {
-            const ejDepartment = new DepartmentModel();
-            const ejDepartmentId = new PjDepartments();
-            ejDepartment.DepartmentId = dept.DepartmentId;
-            ejDepartment.CustomerDepartment = dept.CustomerDepartment;
-              ejDepartmentId.DepartmentId = dept.DepartmentId;
-              this.ejDepartmentList.push(ejDepartment);
-              this.ejDepartmentIdList.push(ejDepartmentId);
-          }
-        }
-        this.appService.departments = this.jobdetailscustomer.JobDepartment;
-        this.appService.departmentsChanged.next(this.appService.departments);
-        this.appService.addeddepartments = this.ejDepartmentIdList;
-        this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
-        // Client model
-        this.eJclient.ClientId = this.jobdetailscustomer.JobInfo.ClientId;
-        this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
-        // localStorage.setItem('clientName', this.eJclient.ClientName );
-        this.appService.clientModel.next(this.eJclient);
       this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));

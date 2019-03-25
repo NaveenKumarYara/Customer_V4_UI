@@ -75,11 +75,12 @@
     </div>
   
     <div class="lists row">
-      <div class="col-md-12" *ngIf="departmentsList.length>0">
+      <div class="col-md-12" *ngIf="departmentsList.length > 0">
         <p class="description">Departments</p>
         <ul class="data-list">
           <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
             <span title="{{department.CustomerDepartment}}" class="name">{{ department.CustomerDepartment}}</span>
+            <!-- {{department.DepartmentName}} -->
             <span class="close" (click)="deleteDepartment(i)">&times;</span>
           </li>
         </ul>

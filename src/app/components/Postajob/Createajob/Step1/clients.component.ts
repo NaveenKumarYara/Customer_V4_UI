@@ -29,18 +29,20 @@ export class ClientsComponent implements OnInit {
     //  // this.selectedSkillName = val;
     //  // this.selectedSkillName = this.skill.nativeElement.value;
     //  $('#skills').val('1');
-       localStorage.setItem('client', val);
+      //  localStorage.setItem('client', val);
       return { name: client.ClientName , tag: true };
   }
   updateClient(val) {
-
     // this.selectClient = val.ClientName === undefined ? val.name : val.ClientName;
     if (val.ClientName === undefined) {
       this.selectClient = val.name;
       this.selectedClient.ClientId = 0;
       this.selectedClient.ClientName = val.name;
-    } else {this.selectClient = val.ClientName;
-      this.selectedClient  = val; }
+    } else {
+      this.selectClient = val.ClientName;
+      this.selectedClient  = val;
+    }
+    localStorage.setItem('client', this.selectClient);
     this.appService.updateClient(this.selectedClient);
    }
   private searchClients() {
@@ -74,7 +76,15 @@ suggestedClients() {
     this.selectClient =  this.selectedClient.ClientName;
     if (this.selectClient === undefined && localStorage.getItem('jobId') != null) {
       this.appService.getDraftClient(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
-        x => this.selectClient = x.ClientName);
+        x => {
+          this.selectedClient = x;
+          this.selectClient = x.ClientName;
+          localStorage.setItem('client', this.selectClient);
+          // this.appService.clientModel.next(this.selectedClient);
+        // this.appService.updateClient(this.selectedClient);
+        }
+        );
+        this.appService.clientModel.next(this.selectedClient);
     }
     // if (this.selectCategory === undefined && localStorage.getItem('jobId') != null) {
     //   this.appService.getDraftCategory(parseInt(localStorage.getItem('jobId'), 10)).subscribe(

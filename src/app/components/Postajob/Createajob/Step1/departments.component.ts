@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPos
   styleUrls: ['./departments.component.css'],
   providers: [AppService]
 })
-export class DepartmentsComponent implements OnInit {
+export class DepartmentsComponent implements OnInit, OnDestroy {
   @ViewChild('deptForm') deptForm: any;
   departmentList: Observable<DepartmentModel[]>;
   departmentInput = new Subject<string>();
@@ -22,18 +22,21 @@ export class DepartmentsComponent implements OnInit {
   // selectedClient: ClientModel;
   selectDepartment: '';
   suggestDepartments: DepartmentModel[];
-  departmentsList: DepartmentModel[]; // to check added departments
+  departmentsList: DepartmentModel[] = []; // to check added departments
   // convertObservable: DepartmentModel[];
   getDepartment: DepartmentModel;
   private subscription: Subscription;
+  private subscriptions: Subscription;
   addedDepartmentList: PjDepartments[] = [];
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {
+    // this.getDepartment = new DepartmentModel();
+  }
 
   updateDepartment(val) {
   this.getDepartment = val;
 }
-private deleteTeammember(index: number) {
+private deleteDepartment(index: number) {
   this.appService.deleteDepartment(index);
 }
   private searchDepartment() {
@@ -71,7 +74,25 @@ suggestedDepartment() {
 }
 ngOnInit() {
   this.searchDepartment();
-  this.departmentsList = this.appService.getDepartment();
+  if (this.departmentsList.length === 0) {
+ this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
+  x => {this.departmentsList = x;
+  if (this.departmentsList.length > 0) {
+      for (const dept of this.departmentsList) {
+        const ejDepartment = new DepartmentModel();
+        const ejDepartmentId = new PjDepartments();
+        ejDepartment.DepartmentId = dept.DepartmentId;
+        ejDepartment.CustomerDepartment = dept.DepartmentName;
+          ejDepartmentId.DepartmentId = dept.DepartmentId;
+          // this.departmentsList.push(ejDepartment);
+          this.addedDepartmentList.push(ejDepartmentId);
+      }
+    }
+
+  this.appService.departments = this.departmentsList;
+  this.appService.departmentsChanged.next(this.appService.departments);
+  this.appService.addeddepartments = this.addedDepartmentList;
+  this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
   this.subscription = this.appService.departmentsChanged
     .subscribe(
     (departmentlist: DepartmentModel[]) => {
@@ -80,12 +101,18 @@ ngOnInit() {
     );
 
     this.addedDepartmentList = this.appService.getaddedDepartments();
-    this.subscription = this.appService.addeddepartmentsChanged
+    this.subscriptions = this.appService.addeddepartmentsChanged
       .subscribe(
       (departmentlist: PjDepartments[]) => {
         this.addedDepartmentList = departmentlist;
         }
       );
+    });
+  }
 
+}
+ngOnDestroy() {
+  this.subscription.unsubscribe();
+   this.subscriptions.unsubscribe();
 }
 }

@@ -832,7 +832,13 @@ export class AppService {
         this.handleError
       );
   }
-
+ GetJobDepartments(jobId: number): Observable<DepartmentModel[]> {
+    const url = environment.GetJobDepartment + '?jobId=' + jobId;
+    return this.http.get<DepartmentModel[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   SignUpEmail(body) {
     return this.http.post(environment.EmailInvite, body)
     .map((res: Response) => res)
