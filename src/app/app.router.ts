@@ -15,9 +15,9 @@ import { Step4Component } from './components/Postajob/Createajob/Step4/step4.com
 import { JobcategoryComponent } from './components/Postajob/Createajob/Step1/Jobcategory.component';
 import { JobdetailsComponent } from './components/Postajob/Createajob/Step1/Jobdetails.component';
 import { JobprofileComponent } from './components/Postajob/Createajob/Step1/Jobprofile.component';
-import { JobskillsetComponent } from './components/Postajob/Createajob/Step1/Jobskillset.component';
-import { JobResponsibilitiesComponent } from './components/Postajob/Createajob/Step1/Jobresponsibilities.component';
-import { LocationwiseJobsComponent } from './components/Postajob/Createajob/Step2/locationwisejobs.component';
+import { JobskillsetComponent } from './components/Postajob/Createajob/Step2/Jobskillset.component';
+import { JobResponsibilitiesComponent } from './components/Postajob/Createajob/Step2/Jobresponsibilities.component';
+import { LocationwiseJobsComponent } from './components/Postajob/Createajob/Step1/locationwisejobs.component';
 import { QualificationsComponent } from './components/Postajob/Createajob/Step2/qualifications.component';
 import { DomainExpertiseComponent } from './components/Postajob/Createajob/Step2/domainexpertise.component';
 import { PersonalityTypeComponent } from './components/Postajob/Createajob/Step2/PersonalityType.component';
@@ -32,7 +32,7 @@ import { Step1SummaryComponent } from './components/Postajob/Createajob/Step4/st
 import { Step2SummaryComponent } from './components/Postajob/Createajob/Step4/step2summary.component';
 import { Step3SummaryComponent } from './components/Postajob/Createajob/Step4/step3summary.component';
 import { SearchresultsComponent } from './components/Postajob/Createajob/searchresults.component';
-import { NoofopeningsComponent } from './components/Postajob/Createajob/Step2/noofopenings.component';
+import { NoofopeningsComponent } from './components/Postajob/Createajob/Step1/noofopenings.component';
 import { ManageJobsComponent } from './components/managejobs/manage-jobs/manage-jobs.component';
 import { ViewjobsComponent } from './components/managejobs/manage-jobs/viewjobs/viewjobs.component';
 import { SearchjobsComponent } from './components/managejobs/manage-jobs/searchjobs/searchjobs.component';

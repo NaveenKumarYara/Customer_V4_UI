@@ -6,7 +6,7 @@ import { AppService } from '../../../app.service';
 import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
-import { PjRole } from './Step1/Jobresponsibilities.component';
+import { PjRole } from './Step2/Jobresponsibilities.component';
 import { Jobskills } from '../../../../models/jobskills.model';
 import { Qualifications } from '../../../../models/qualifications.model';
 import { WorkAuthorization } from '../../../../models/workAuthorization';
