@@ -219,6 +219,15 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
     });
   }
 
+  
+  searchCandidateProfiles(body) {
+    return this.http.post(environment.SearchCandidateProfiles, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   SearchProfile(body) {
     return this.http.post(environment.SearchProfile, body)
     .map((res: Response) => res)
