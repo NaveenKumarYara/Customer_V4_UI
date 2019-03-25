@@ -22232,8 +22232,7 @@ div.options{
     /* background-image: url("assets/images/nojob.png");
     background-repeat: no-repeat; */
     text-align: center;
-    height:100vh;
-    width: 75%
+    width: 50%
 }
 .m-auto{
     margin:auto;
@@ -22242,7 +22241,8 @@ div.options{
     display: inline;
 }
 .h4t{
-    font-size: 18px;
+    font-size: 31px;
+    margin-top: 15rem;
 }
 .w-50c{
     width: 50%;
