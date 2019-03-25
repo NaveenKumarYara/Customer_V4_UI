@@ -22223,6 +22223,7 @@ div.options{
 }    
 .searchList{
     position: absolute;
+    background: transparent!important;
     z-index: 999;
     height: 50vh;
     left: 10px;
@@ -22247,4 +22248,9 @@ div.options{
 .w-50c{
     width: 50%;
     float: left;
+}
+
+/*25-03-2019*/
+.domain-exp-group .form-group{
+    padding-top: 0px!important;
 }
