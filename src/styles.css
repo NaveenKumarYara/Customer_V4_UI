@@ -18493,6 +18493,7 @@ a.ui-button:active,
 
 .page--dashboard .statistics.card .stats h1 {
     font-size: 1.75rem;
+    cursor:pointer;
 }
 
 .page--dashboard .statistics.card .stats>div:not(:last-child) {
@@ -18631,6 +18632,7 @@ a.ui-button:active,
     display: inline-block;
     margin-right: 5px;
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 .page--dashboard .jobs .card h2,
@@ -20809,8 +20811,8 @@ a.ui-button:active,
     background-color: #6A7E9C;
     border-radius: 50%;
     content: " ";
-    height: 9px;
-    width: 9px;
+    height: 12px;
+    width: 12px;
     position: absolute;
     top: 50%;
     left: 50%;
