@@ -90,15 +90,15 @@
     <div class="card-inner">
       <div class="card-content">
         <div class="tab-content">
-          <div id="specialities" class="tab-pane fade in active">
+          <div id="specialities" class="specialities tab-pane fade in active">
             <div class="input-group">
               <input id="specialVal" type="text" class="form-control" name="benefits" placeholder="Fortes">
               <span class="input-group-btn">
                 <button class="btn" (click)="saveSpecialities()">+</button>
               </span>
             </div>
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 350px;">
+            <div class="scroll-wrapper tab-inner scrollbar-inner">
+              <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; ">
                 <ul class="list--filled">
         
                   <li class="item" *ngFor="let companyspeciality of companyspecialities">
@@ -128,15 +128,15 @@
               </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 281px; top: 0px;"></div></div></div>
             </div>
           </div>
-          <div id="companyTech" class="tab-pane fade">
+          <div id="companyTech" class="companyTech tab-pane fade">
               <div class="input-group">
                   <input id="techVal" type="text" class="form-control" name="benefits" placeholder="Technologies">
                   <span class="input-group-btn">
                     <button class="btn" (click)="savetechnologies()">+</button>
                   </span>
                 </div>
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+            <div class="scroll-wrapper tab-inner scrollbar-inner">
+              <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; ">
                 <ul class="list--filled">
         
                   <li class="item" *ngFor="let companytechnology of getcompanytechnology">
@@ -167,7 +167,7 @@
             </div>
           </div>
           <!---->
-     <div id="client" class="tab-pane fade">
+          <div id="client" class="client tab-pane fade">
             
             <form #form="ngForm">
               <div class="input-group">              
@@ -187,8 +187,8 @@
                     </span>                
                 </div>
               </form>
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+            <div class="scroll-wrapper tab-inner scrollbar-inner" >
+              <div class="tab-inner scrollbar-inner scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; ">
                 <ul class="list--filled">
         
                   <li class="item" *ngFor="let c of getCustomerClients">
@@ -212,7 +212,7 @@
             </div>
           </div>
           
-          <div id="departments" class="tab-pane fade">
+          <div id="departments" class="departments tab-pane fade">
               
               <form #form="ngForm">
               <div class="input-group">             
@@ -232,8 +232,8 @@
                   </span>             
                 </div>
               </form>
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+            <div class="scroll-wrapper tab-inner scrollbar-inner">
+              <div class="tab-inner scrollbar-inner scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px;">
                 <ul class="list--filled">
         
                   <li class="item" *ngFor="let d of getCustomerDepartments">
