@@ -14,8 +14,8 @@
                     <!-- {{responsibility.value.length}}  
            {{responsibilities.length}}
            {{responsibility.value}} -->
-                    <div class="searchList" *ngIf="roleJobTitleList!=null && responsibility.value.length > 0">
-                        <ul class="searchList-dropdown">
+                    <div class="searchList l0 " *ngIf="roleJobTitleList!=null && responsibility.value.length > 0">
+                        <ul class="searchList-dropdown mb-0">
                             <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
                         </ul>
                     </div>
