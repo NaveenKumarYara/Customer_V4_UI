@@ -22285,3 +22285,10 @@ div.options{
     font-size: 70%;
     font-style: italic;
 }
+
+.mr-0{
+    margin-right: 0px !important;
+}
+.mr-20{
+    margin-right:20px !important;
+}
