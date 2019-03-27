@@ -22265,3 +22265,13 @@ div.options{
 .domain-exp-group .form-group{
     padding-top: 0px!important;
 }
+.p8{
+    padding: 8px;
+}
+.bl-1 span:not(:last-child)::after { 
+    content: "|";
+    padding: 0 7px;
+}
+.bl-1 span{
+    font-size: 12px;
+}

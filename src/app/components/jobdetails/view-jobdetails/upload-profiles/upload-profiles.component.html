@@ -116,16 +116,18 @@
                               <ng-container *ngFor="let list of profiles">                             
                               <li class="item li-hover"  *ngIf="list.ProfileTitle!=''">
                           
-                                <div class="p-_9 hover-h">
-                                <input type="checkbox" name="list1"/>
+                                <div class="hover-h">
+                                <input type="checkbox" class="chk"  name="list1"/>
                               </div>
-                              <div class="p-_9 hover-h">
-                                <img src="{{list?.ProfilePic}}" width="50px" height="50px" class="rounded-circle" />
+                              <div class="hover-h">
+                                <img src="{{list?.ProfilePic}}" width="50px" height="50px" class="rounded-circle p8" />
                               </div>
-                              <div class="p-_9">
+                              <div class="bl-1">
+                                  <span>James Barret</span>
                                   <span>{{list?.ProfileTitle| slice:0:30}}</span>
+                                  <span>3 yrs</span>
                               </div>
-                              <span class="ml-auto p-_9 hover-h">
+                              <span class="ml-auto hover-h">
                                 <button class="btn">Submit</button>
                               </span>
                          
