@@ -218,6 +218,27 @@ deleteSpecialities(special)
     this.populateCompanySpecialities(this.customerId);
   }, error => { this._service.DebugMode(error); });
 }
+
+
+deleteClient(CId)
+{
+  return this.appService.DeleteClients(CId).subscribe(res => {
+    if(res == 0)
+    {
+      this.GetCustomerClients(this.customerId,0);
+    }
+   })
+}
+
+deleteDepart(deptId)
+{
+  return this.appService.DeleteDepartments(deptId).subscribe(res => {
+    if(res == 0)
+    {
+      this.GetCustomerDepartment(this.customerId,0);
+    }
+   })
+}
   ngOnInit() {
 
   }

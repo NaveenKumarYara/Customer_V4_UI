@@ -744,6 +744,23 @@ export class AppService {
       );
   }
 
+  DeleteClients(customerClientId: number) {
+    const url = environment.DeleteCustomerClients+'customerClientId=' + customerClientId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  DeleteDepartments(customerDeptId: number) {
+    const url = environment.DeleteCustomerDepartments+'customerDeptId=' + customerDeptId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = environment.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)

@@ -5,4 +5,5 @@ export class GetCustomerDepartments
     public CustomerId: number;
     public CustomerDepartment: string;
     public Department : string;
+    public CustomerDeptId : number;
 }

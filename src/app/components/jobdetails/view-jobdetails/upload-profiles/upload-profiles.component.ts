@@ -241,7 +241,7 @@ SaveInvite(email)
    this.inviteinfo.CandFullName =email;
    this.inviteinfo.CustFullName = 'Arytic';
    this.inviteinfo.ClientLogo = '';
-   this.inviteinfo.AppLink ='http://demo.tenendus.com:1070/signup'; 
+   this.inviteinfo.AppLink ='http://dev.arytic.com/candidatesignup'; 
    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data==0) {
        $("#Email").val('');

@@ -100,7 +100,7 @@ export class SignUpComponent  implements OnInit{
     this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
     this.info.ToEmailId = this.signUpform.value.ContactEmail;
     this.info.ApplicationName = 'Arytic';
-    this.info.AppLink ='http://169.46.102.195:1010/home;Uid='+userId; 
+    this.info.AppLink ='http://dev.arytic.com/customerlogin;Uid='+userId; 
     this.info.ClientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {
