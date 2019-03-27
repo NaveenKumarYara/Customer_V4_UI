@@ -115,7 +115,7 @@
                                                      </a>                                                                                                                         
                                              </li> -->
                                              <ng-container *ngFor="let type of typeList" >
-                                                    <li [ngClass]="jobInterview.InterviewTypeId==type.InterviewTypeId ? 'active' : 'ACTIVE' "> 
+                                                    <li [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' "> 
                                                             <a data-toggle="tab" href="javascript:void(0)" (click)="process(type?.InterviewTypeId,type?.InterviewType)"> 
                                                                  {{type?.InterviewType}}
                                                              </a>                                                                                                                         

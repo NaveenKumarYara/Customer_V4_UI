@@ -10,7 +10,7 @@ import { AppService } from '../../../../../app.service';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
-import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig,NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { EventEmitter } from 'events';
 declare var $: any;
@@ -55,13 +55,18 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private jobdetailsservice: JobdetailsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private config: NgbDatepickerConfig,private appService: AppService, private jobdetailsservice: JobdetailsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
-   // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+     // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    const current = new Date();
+    config.minDate = { year: current.getFullYear(), month: 
+    current.getMonth() + 1, day: current.getDate() };
+    config.outsideDays = 'hidden';  
+    this.clearTeamMemebers();
    }
    process(val,res) {
   if(val>0)
@@ -82,6 +87,17 @@ export class ScheduleInterviewComponent implements OnInit {
       // $('.jsDatePicker').datepicker('hide');
     }
   }
+
+ clearTeamMemebers()
+ {
+  for(var i=0;i<=10;i++)
+  {
+    let index = i;
+    this.appService.deleteTeammember(index);
+  }
+  this.deleteTeammember(0);
+ }
+
   ngOnInit() {
     this.GetInterView();
     this.GetType();
@@ -122,7 +138,6 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
-  debugger
 if (this.schedule.valid) {
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
