@@ -7,6 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import { AppService } from '../../../../app.service';
 import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPostInfo';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-steps-step1-departments',
@@ -15,7 +16,7 @@ import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPos
   providers: [AppService]
 })
 export class DepartmentsComponent implements OnInit, OnDestroy {
-  @ViewChild('deptForm') deptForm: any;
+  @ViewChild('deptForm') deptForm: NgForm;
   departmentList: Observable<DepartmentModel[]>;
   departmentInput = new Subject<string>();
   departmentLoading = false;
@@ -58,7 +59,8 @@ public addDepartment() {
   if (check === false) {
     this.appService.addDepartment(this.getDepartment);
   }
-  this.selectDepartment = '';
+  // this.selectDepartment = '';
+  this.deptForm.reset();
   }
 }
 departmentExists(team, list) {​

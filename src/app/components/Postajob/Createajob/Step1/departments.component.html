@@ -64,11 +64,11 @@
                  {{selectDepartment}} 
         </ng-template> -->
         </ng-select>
-      <small class="text-danger error1" *ngIf="Department.touched && Department.invalid">Required.</small>
+      <small class="text-danger error1" *ngIf="Department.invalid && Department.touched && Department.dirty">Required.</small>
       </div>
      
       <div class="col-md-4 col-sm-4">
-        <button class="btn add-btn form-control m-42" type="submit">+</button>
+        <button class="btn add-btn form-control m-42" [disabled]="!deptForm.valid" type="submit">+</button>
       </div>
     </form>
       </div>

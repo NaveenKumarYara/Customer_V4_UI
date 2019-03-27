@@ -6,11 +6,12 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class ApiService {
-  baseUrll = 'http://api.tenendus.com:1090/';
-  //baseUrll = 'http://localhost:61297/';
+  // baseUrll = 'http://api.tenendus.com:1090/';
+  // baseUrll = 'http://localhost:61297/';
   baseUrll2 = 'http://localhost:12167/';
   isDebug = true;
   constructor(private _http: Http, private http: HttpClient) { }
@@ -27,7 +28,7 @@ export class ApiService {
     // headers.append('Access-Control-Allow-Headers', ' Origin, Content-Type, X-Auth-Token');
     headers.append('X-Frame-Options', 'http://facebook.com/');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(this.baseUrll + Url, request, { headers: headers })
+    return this._http.post(environment.baseUrll + Url, request, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -55,7 +56,7 @@ export class ApiService {
     if (body !== '') {
       request = JSON.stringify(body);
     }
-    let _formData: FormData = new FormData();
+    const _formData: FormData = new FormData();
     if (body !== '') {
       request = JSON.stringify(body);
     }
@@ -65,7 +66,7 @@ export class ApiService {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(this.baseUrll + url, _formData, { headers: headers })
+    return this._http.post(environment.baseUrll + url, _formData, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -74,7 +75,7 @@ export class ApiService {
   pushFileToStorage1(file: File, body, url: string): Observable<HttpEvent<{}>> {
     let request = '';
 
-    let _formData: FormData = new FormData();
+    const _formData: FormData = new FormData();
     if (body !== '') {
       request = JSON.stringify(body);
     }
@@ -107,7 +108,7 @@ export class ApiService {
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
 
-    return this._http.post(this.baseUrll + url, body, { headers: headers })
+    return this._http.post(environment.baseUrll + url, body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -130,7 +131,7 @@ export class ApiService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.put(this.baseUrll + Url + params, request, { headers: headers })
+    return this._http.put(environment.baseUrll + Url + params, request, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -142,7 +143,7 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     // headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.get(this.baseUrll + url + prams, { headers: headers })
+    return this._http.get(environment.baseUrll + url + prams, { headers: headers })
       .map((response: Response) => response.json())
       .retry(2)
       .catch((error) => {
@@ -166,7 +167,7 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     // headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.delete(this.baseUrll + url + prams, { headers: headers })
+    return this._http.delete(environment.baseUrll + url + prams, { headers: headers })
       .map((response: Response) => response.json())
       .catch((error) => {
         return 'seomething gone wrong';
@@ -253,14 +254,14 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.get(this.baseUrll + path + params, { headers: headers }).map(
+    return this._http.get(environment.baseUrll + path + params, { headers: headers }).map(
       (res: any) => {
         // return new Blob([res.blob()], { type: 'application/pdf' });
         return res;
       });
   }
   public getFile(path: string): Observable<Blob> {
-    let options = new RequestOptions({ responseType: ResponseContentType.Blob });
+    const options = new RequestOptions({ responseType: ResponseContentType.Blob });
 
     return this._http.get(path, options)
       .map((response: Response) => <Blob>response.blob());

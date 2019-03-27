@@ -26,7 +26,7 @@ import { DiscResult } from '../Postajob/models/jobPostInfo';
 
 @Injectable()
 export class JobdetailsService {
-  baseUrll = 'http://api.tenendus.com:1090/';
+  // baseUrll = 'http://api.tenendus.com:1090/';
   baseUrll1 = 'http://localhost:61297/';
   constructor(private _http: Http, private http: HttpClient) {
   }
@@ -196,7 +196,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(this.baseUrll + url, body, { headers: headers })
+    return this._http.post(environment.baseUrll + url, body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -219,7 +219,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
     });
   }
 
-  
+
   searchCandidateProfiles(body) {
     return this.http.post(environment.SearchCandidateProfiles, body)
     .map((res: Response) => res)

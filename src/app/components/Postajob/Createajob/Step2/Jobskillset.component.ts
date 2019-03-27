@@ -8,14 +8,14 @@ import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { Jobskills, AddSkill } from '../../../../../models/jobskills.model';
 import { Subscription } from 'rxjs/Subscription';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobskillset',
   templateUrl: './Jobskillset.component.html'
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
-  @ViewChild('f') form: any;
+  @ViewChild('f') form: NgForm;
   @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
@@ -86,9 +86,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       if (check === false) {
           this.appService.addJobSkill(newskills);
       }
-      this.selectedSkillName = '';
-      this.minexperience = 0;
-      this.maxexperience = 0;
+      // this.selectedSkillName = '';
+      // this.minexperience = 0;
+      // this.maxexperience = 0;
+      this.form.resetForm();
       localStorage.removeItem('skill');
      this.form.reset();
     }

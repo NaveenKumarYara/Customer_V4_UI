@@ -19,7 +19,7 @@
                             <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
                         </ul>
                     </div>
-                    <small class="text-danger error1" *ngIf="responsibility.invalid && responsibility.touched">Required.</small>
+                    <small class="text-danger error1" *ngIf="responsibility.invalid && responsibility.touched && responsibility.dirty">Required.</small>
                     <!-- <div *ngIf="responsibility.touched">
               <div *ngIf="responsibility.errors && (responsibility.dirty)" class="alert alert-danger">
                 <div [hidden]="!responsibility.errors.required">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <button class="btn add-btn form-control" type="submit">+</button>
+                <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button>
             </div>
         </form>
     </div>

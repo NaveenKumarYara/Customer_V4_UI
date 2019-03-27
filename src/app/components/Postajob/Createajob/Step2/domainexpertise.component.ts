@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { concat } from 'rxjs/observable/concat';
@@ -15,7 +15,7 @@ import { of } from 'rxjs/observable/of';
 })
 
 export class DomainExpertiseComponent implements OnInit, OnDestroy {
-@ViewChild('domainForm') domainForm: any;
+@ViewChild('domainForm') domainForm: NgForm;
   private subscription: Subscription;
   private subscriptions: Subscription;
   domain: '';
@@ -42,9 +42,9 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   // }
 
   public addDomain() {
-if (this.domainForm.valid) {
-  if (this.MaximumExperience < this.MinimumExperience) {
-    return false;
+  if (this.domainForm.valid) {
+    if (this.MaximumExperience < this.MinimumExperience) {
+      return false;
   }
     // const newDomain = new GetDomain();
     // // newDomain.DomainName = this.selecteddomainname;
@@ -59,9 +59,10 @@ if (this.domainForm.valid) {
         this.appService.addDomain(this.getDomain);
       }
     // this.getDomain = new GetDomain();
-    this.selecteddomainname = '';
-    this.MaximumExperience = 1;
-      this.MinimumExperience = 1;
+    // this.selecteddomainname = '';
+    this.domainForm.resetForm();
+    // this.MaximumExperience = 1;
+    // this.MinimumExperience = 1;
     this.getDomain = new GetDomain();
 }
   }

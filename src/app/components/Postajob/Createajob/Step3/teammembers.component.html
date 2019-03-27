@@ -7,11 +7,11 @@
                 <div class="p-rel">
                     <ng-select class="custom-style" [items]="managersList | async" placeholder="Select Technical Team" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading" [(ngModel)]="selectedUserName"
                         [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
-                    <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched">Team Members are required.</small>
+                    <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Team Members are required.</small>
                 </div>
             </div>
             <div class="col-md-2">
-                <button class="btn add-btn form-control mt-0" type="submit">+</button>
+                <button class="btn add-btn form-control mt-0" [disabled]="!teamForm.valid" type="submit">+</button>
             </div>
         </div>
     </form>

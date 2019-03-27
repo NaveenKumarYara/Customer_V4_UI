@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RoleModel, Roles } from '../../models/jobPostInfo';
@@ -16,7 +16,7 @@ declare var $: any;
 export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
  // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
- @ViewChild('rolesForm') rolesForm: any;
+ @ViewChild('rolesForm') rolesForm: NgForm;
   private subscription: Subscription;
   responsibilities: '';
   responsibilitieslist: Roles[];
@@ -42,7 +42,8 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
 
   private deleteResponsibility(index: number) {
     if ($('#responsibilitiesName').val() === '') {
-      this.responsibilities = '';
+      // this.responsibilities = '';
+      this.rolesForm.reset();
     }
     this.appService.deleteResponsibilities(index);
     this.roleList.splice(index, 1);
@@ -89,7 +90,8 @@ if (this.rolesForm.valid) {
       this.itemCollection(this.roleModel, this.roleList);
       this.roleModel = new RoleModel(0, null, null);
       this.roleJobTitleList = [];
-      $('#responsibilitiesName').val('');
+      // $('#responsibilitiesName').val('');
+      this.rolesForm.reset();
     } else if ($('#responsibilitiesName').val() && this.roleModel.RoleId <= 0) {
       // this.roleModel.RoleId = 0;
       this.roleModel.RolesAndResponsibilities = $('#responsibilitiesName').val();
@@ -106,7 +108,8 @@ if (this.rolesForm.valid) {
             this.roleModel = new RoleModel(0, null, null);
             this.roleJobTitleList = [];
           });
-      $('#responsibilitiesName').val('');
+      // $('#responsibilitiesName').val('');
+      this.rolesForm.reset();
     } else {
       return false;
     }

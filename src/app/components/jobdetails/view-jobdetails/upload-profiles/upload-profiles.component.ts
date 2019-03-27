@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject,ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
@@ -16,38 +16,38 @@ export interface DialogData {
   selector: 'app-upload-profiles',
   templateUrl: './upload-profiles.component.html',
   styleUrls: ['./upload-profiles.component.css'],
-  providers: [NgxSpinnerService,AlertService]
+  providers: [NgxSpinnerService, AlertService]
 })
 export class UploadProfilesComponent implements OnInit {
   fileUploadForm: FormGroup;
-  searchprofilesFrom:FormGroup;
-  searchprofiles : Profile[];
-  profiles:Profile[];
-  searchprocess:any;
+  searchprofilesFrom: FormGroup;
+  searchprofiles: Profile[];
+  profiles: Profile[];
+  searchprocess: any;
   Count: any;
   selectedFileNames: string[] = [];
-  inviteinfo =new InviteInfo();
+  inviteinfo = new InviteInfo();
   loaddata = true ;
-  searchString :any;
+  searchString: any;
   SearchList: any = [];
-  norecord:any= false;
-  isFullDisplayed:any= false;
-  email:any;
+  norecord: any = false;
+  isFullDisplayed: any = false;
+  email: any;
   customerId = null;
-  userId: number;
+  // userId: number;
   customerName = null;
   // tslint:disable-next-line:max-line-length
-  constructor(private spinner: NgxSpinnerService,private toastr:ToastsManager,private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData,private alertService : AlertService) {
+  constructor(private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
     this.selectedFileNames = [];
     this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
-    this.userId = this.customerName.UserId;
+    // this.userId = this.customerName.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
    }
 
   ngOnInit() {
     this.searchprofilesFrom = this.fb.group({
       'CustomerId':  [this.customerName.CustomerId, Validators.required],
-      'JobId':['', Validators.required],
+      'JobId': ['', Validators.required],
       'SearchString': ['', Validators.nullValidator],
       'Experience': ['', Validators.nullValidator],
       'Location': ['', Validators.nullValidator],
@@ -56,7 +56,7 @@ export class UploadProfilesComponent implements OnInit {
       'NumberOfRows': [1000, Validators.nullValidator],
     });
     this.fileUploadForm = this.fb.group({
-      'userId': [5, Validators.required],
+      'userId': [this.customerName.UserId, Validators.required],
       'Url': ['', Validators.nullValidator],
       'FileName': ['', Validators.nullValidator],
       'UserName': ['', Validators.nullValidator],
@@ -68,25 +68,21 @@ export class UploadProfilesComponent implements OnInit {
     this.SearchProfiles();
     this.alertService.clear();
     /** */
-    $(function(){
-        $('[name="list1"]').change(function()
-         {
+    $(function() {
+        $('[name="list1"]').change(function() {
           if ($(this).is(':checked')) {
-            $(this).parent().parent().children(".hover-h").addClass("dblock");  
-          }
-           else if ($(this).prop('checked', false)) {
-             $(this).parent().parent().children(".hover-h").removeClass("dblock");
-           };
+            $(this).parent().parent().children('.hover-h').addClass('dblock');
+          } else if ($(this).prop('checked', false)) {
+             $(this).parent().parent().children('.hover-h').removeClass('dblock');
+           }
         });
-       }); 
+       });
     /** */
 
   }
-  SearchProfiles()
-  {
-    this.searchprofilesFrom.value.JobId = JSON.parse(sessionStorage.getItem('jobId')); 
-    if(this.searchString != null)
-    {
+  SearchProfiles() {
+    this.searchprofilesFrom.value.JobId = JSON.parse(sessionStorage.getItem('jobId'));
+    if (this.searchString != null) {
       this.searchprofilesFrom.value.SearchString = this.searchString;
       this.searchprofilesFrom.value.CustomerId = this.customerName.CustomerId;
       this.searchprofilesFrom.value.QualificationId = 0;
@@ -97,26 +93,24 @@ export class UploadProfilesComponent implements OnInit {
     }
     this.jobdetailsservice.searchCandidateProfiles(this.searchprofilesFrom.value)
     .subscribe(
-    data => {    
+    data => {
       this.isFullDisplayed = true;
-      this.Count = data.TotalProfileCount;   
-      this.profiles = data.Profile;   
-      debugger  
+      this.Count = data.TotalProfileCount;
+      this.profiles = data.Profile;
+      // debugger;
       this.searchprofilesFrom.reset();
-      //this.searchprocess = data.Profile;
-      //this.profiles = this.searchprofiles.slice(0,10);
+      // this.searchprocess = data.Profile;
+      // this.profiles = this.searchprofiles.slice(0,10);
   });
 
   }
 
-  SetSearch(val)
- {
+  SetSearch(val) {
    this.SearchList = [];
    this.searchString = val;
  }
 
- searchProfile(value)
- {
+ searchProfile(value) {
    this.searchString = value;
    this.SearchProfiles();
  }
@@ -124,23 +118,22 @@ export class UploadProfilesComponent implements OnInit {
   GetSearchText(value) {
     return this.jobdetailsservice.GetAutoSearch(value)
     .subscribe(data => {
-          if (data.length > 0) {  
-            this.SearchList =data;
-          }
-          else {
+          if (data.length > 0) {
+            this.SearchList = data;
+          } else {
             this.SearchList = [];
           }
-        
-          }, 
-     
-        error => { 
+
+          },
+
+        error => {
           this.SearchList = [];
          });
-  
+
   }
   // getData(){
   //   debugger
-  //   if(this.profiles.length < this.searchprofiles.length){  
+  //   if(this.profiles.length < this.searchprofiles.length){
   //     let len = this.profiles.length;
   //     for(let i=len;i<=len+9;i++)
   //     {
@@ -150,7 +143,7 @@ export class UploadProfilesComponent implements OnInit {
   //   else{
   //     this.isFullDisplayed = true;
   // }
-  
+
   // }
   getFileDetails(e) {
     this.selectedFileNames = [];
@@ -182,13 +175,13 @@ export class UploadProfilesComponent implements OnInit {
     }
   }
   uploadMultiple(formData) {
-    this.jobdetailsservice.byteStorage(formData, 'ProfileAPI/api/ParseResume').subscribe(data => {
+    this.jobdetailsservice.byteStorage(formData, 'api/ParseResume').subscribe(data => {
       if (data) {
        // setTimeout(() => {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
        // }, 60000);
-        this.toastr.success('Uploaded successfully','Success');
+        this.toastr.success('Uploaded successfully', 'Success');
         setTimeout(() => {
          this.toastr.dismissToast;
      }, 3000);
@@ -203,49 +196,42 @@ export class UploadProfilesComponent implements OnInit {
           });
   }
 
- Clear()
- {
+ Clear() {
   this.searchString = '';
   this.SearchProfiles();
   this.searchprofilesFrom.reset();
   this.toastr.dismissToast;
  }
-  CheckEmail()
-  {
-    this.email = $("#Email").val();
-    this.jobdetailsservice.getUserId(this.email,this.customerId).subscribe(data =>
-      {
-      if(data == null)
-      {
+  CheckEmail() {
+    this.email = $('#Email').val();
+    this.jobdetailsservice.getUserId(this.email, this.customerId).subscribe(data => {
+      if (data == null) {
       this.SaveInvite(this.email);
-      } 
-      else if (data == this.email)   
-      {
+      } else if (data === this.email) {
         this.toastr.error('Email already exits!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 3000);
-      } 
+      }
       });
   }
 
-SaveInvite(email)
-{
-   this.inviteinfo.userId = this.userId;
+SaveInvite(email) {
+   this.inviteinfo.userId = this.customerName.UserId;
    this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
    this.inviteinfo.userName = email;
    this.inviteinfo.fullName = 'user';
    this.inviteinfo.statusId = 0;
    this.inviteinfo.ToEmailId = email;
    this.inviteinfo.ApplicationName = 'Arytic';
-   this.inviteinfo.CandFullName =email;
+   this.inviteinfo.CandFullName = email;
    this.inviteinfo.CustFullName = 'Arytic';
    this.inviteinfo.ClientLogo = '';
-   this.inviteinfo.AppLink ='http://dev.arytic.com/candidatesignup'; 
+   this.inviteinfo.AppLink = 'http://dev.arytic.com/candidatesignup';
    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
-      if (data==0) {
-       $("#Email").val('');
-       this.toastr.success('Mail sent successfully','Success');
+      if (data === 0) {
+       $('#Email').val('');
+       this.toastr.success('Mail sent successfully', 'Success');
        setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
@@ -262,14 +248,13 @@ SaveInvite(email)
 
 
 
-export class InviteInfo
-{
+export class InviteInfo {
     userId: number;
     jobId: number;
     fullName: string;
     userName: string;
     statusId: number;
-    CustFullName:string;
+    CustFullName: string;
     CandFullName: string;
     AppLink: string;
     ToEmailId: string;
