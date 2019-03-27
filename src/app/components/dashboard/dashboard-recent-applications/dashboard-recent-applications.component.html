@@ -9,7 +9,7 @@
                     <img class="ui-pic" *ngIf="recentapplicants?.IsConfirmed == null" src="https://ui-avatars.com/api/?name={{recentapplicants.FirstName}}+{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
                     <div>
                         <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseBlock">
-                            {{recentapplicants?.FirstName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img src="../../../../assets/images/c_name_hide.png"> </h2>
+                            {{recentapplicants?.FirstName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png"> </h2>
 
                         <ng-template #firstelseBlock>
                             <h2>{{recentapplicants?.FirstName | slice:0:12}} {{recentapplicants?.LastName | slice:0:12}}</h2>

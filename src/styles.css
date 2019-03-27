@@ -19859,15 +19859,24 @@ a.ui-button:active,
     padding-right: 30px;
 }
 
-.page--company-profile .card--special #specialities .tab-inner {
+.page--company-profile .card--special #specialities .tab-inner, 
+.page--company-profile .card--special #companyTech .tab-inner,
+.page--company-profile .card--special #client .tab-inner,
+.page--company-profile .card--special #departments .tab-inner
+ {
     height: 346.5px;
     max-height: 350px;
 }
-
-.page--company-profile .card--special #companyTech .tab-inner {
-    height: 420px;
-    max-height: 420px;
+/*Added on 26-03-2019*/
+.specialities .scroll-wrapper,
+.companyTech .scroll-wrapper,
+.client .scroll-wrapper,
+.departments .scroll-wrapper
+{
+    position: relative;
 }
+/*Added on 26-03-2019*/
+
 
 .page--company-profile .card--whitepapers .bs-responsive-tabs {
     -ms-flex-preferred-size: 100%;
