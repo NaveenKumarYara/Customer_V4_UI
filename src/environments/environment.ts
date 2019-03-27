@@ -130,6 +130,10 @@ export const environment = {
 
     InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?',
 
-    SearchCandidateProfiles: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles'
+    SearchCandidateProfiles: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
+
+    DeleteCustomerClients: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerClients?',
+
+    DeleteCustomerDepartments:'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerDepartments?'
 
 };
