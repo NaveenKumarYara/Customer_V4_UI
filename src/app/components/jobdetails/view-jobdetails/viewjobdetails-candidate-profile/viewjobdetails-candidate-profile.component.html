@@ -1,6 +1,19 @@
+
 <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i=index">
     <div class="card candidate">
-        <header>
+        <header class="p-rel">
+            <div class="ptr" >
+                    <div class="checkbox">
+                                    
+                            <label class="bookmark-c">
+                                <input type="checkbox" class="dnone" />
+                                        
+                                <i class="unchecked fa fa-bookmark-o"></i>
+                                <i class="checked fa fa-bookmark" ></i>
+                     
+                     </label>
+                        </div>
+            </div>
             <div class="candidate-badges">
                 <!-- <div *ngIf="profile?.DomainName?.split(',')[0]">
                 <div class="ui-badge ui-badge--industry" data-toggle="tooltip" title={{profile?.DomainName}}>
