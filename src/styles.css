@@ -14153,9 +14153,11 @@ a.ui-button:active,
 }
 
 .page--manage-jobs .status.withdrawn {
-    background-color: #AEB1D9;
+    background-color: rgb(197, 14, 14);
 }
-
+.page--manage-jobs .status.Uploaded {
+    background-color: rgb(197, 14, 14);
+}
 .page--manage-jobs .card .stats {
     text-align: center;
 }
