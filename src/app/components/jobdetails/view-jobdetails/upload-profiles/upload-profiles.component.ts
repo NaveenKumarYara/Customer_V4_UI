@@ -256,6 +256,7 @@ SaveInvite(email) {
     this.bulkApply.ResponseStatusId = 13;
     this.appService.bulkApply(this.bulkApply).subscribe(
       (data) => {console.log(data);
+        this.appService.xmlResponse = [];
   });
   }
   onCheckboxChange(option, event) {
