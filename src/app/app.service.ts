@@ -22,7 +22,8 @@ import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary, ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel, PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
-
+import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
+import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -272,7 +273,7 @@ export class AppService {
   //       this.handleError
   //     );
   // }
-  searchClient(customerId:number,val: boolean, term?: any): any {
+  searchClient(customerId: number, val: boolean, term?: any): any {
     // const url = environment.searchclientsendpoint + '?clientName=' + term;
     // return this.http.get<string[]>(url)
     //   .catch(
@@ -289,7 +290,7 @@ export class AppService {
       return Observable.throw(error.json());
     });
   }
-  searchDepartment(term, val: boolean,customerId:number) {
+  searchDepartment(term, val: boolean, customerId: number) {
 
     const department = new AutoSearchDepartment();
     department.CustomerId = customerId;
@@ -493,7 +494,49 @@ export class AppService {
     this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
 
+  xmlResponse: XmlJobResponse[] = [];
+  xmlResponseChanged = new Subject<XmlJobResponse[]>();
 
+
+ addResponses(response: XmlJobResponse, val) {
+    //  this.xmlResponse = responseList; // ush(personType);
+    // this.xmlResponseChanged.next(this.xmlResponse.slice());
+    // ?if (val === false) {
+      // this.xmlResponse.filter((el, i, a) => i === a.indexOf(el))
+     const chk = this.checkDuplciate(response, this.xmlResponse);
+     if (chk === false) {
+      this.xmlResponse.push(response);
+     }      // for (let i = 0 ; i < this.xmlResponse.length; i++) {
+        for (const xmlResp of this.xmlResponse) {
+          // if (this.xmlResponse[i].ProfileId === response.ProfileId && val === false ) {
+            if (xmlResp.ProfileId === response.ProfileId && val === false ) {
+            // this.xmlResponse = this.xmlResponse.filter(resp => resp.ProfileId !== resp.ProfileId);
+            // this.orders.indexOf(order), 1
+            // this.xmlResponseChanged.next(this.xmlResponse.splice(i, 1));
+            this.xmlResponse.splice(this.xmlResponse.indexOf(xmlResp), 1);
+            this.xmlResponseChanged.next(this.xmlResponse.slice());
+          } else {
+            // this.xmlResponse.push(response);
+            this.xmlResponseChanged.next(this.xmlResponse.slice());
+          }
+        }
+    // } else {
+    // this.xmlResponse.push(response);
+    // this.xmlResponseChanged.next(this.xmlResponse.slice());
+    // }
+}
+checkDuplciate(response, list) {​
+  return list.some(function(elem) {
+       return elem.ProfileId === response.ProfileId;
+  });
+}
+bulkApply(body) {
+  return this.http.post(environment.bulkApply, body)
+  .map((res: Response) => res)
+  .catch((error: any) => {
+    return Observable.throw(error);
+    });
+}
   // private reportingManager: string[] = [];
   // reportingManagerChanged = new Subject<string[]>();
 
@@ -747,7 +790,7 @@ export class AppService {
   }
 
   DeleteClients(customerClientId: number) {
-    const url = environment.DeleteCustomerClients+'customerClientId=' + customerClientId;
+    const url = environment.DeleteCustomerClients + 'customerClientId=' + customerClientId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
@@ -755,7 +798,7 @@ export class AppService {
   }
 
   DeleteDepartments(customerDeptId: number) {
-    const url = environment.DeleteCustomerDepartments+'customerDeptId=' + customerDeptId;
+    const url = environment.DeleteCustomerDepartments + 'customerDeptId=' + customerDeptId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
