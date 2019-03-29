@@ -20,7 +20,10 @@ export class ClientsComponent implements OnInit {
   selectedClient: ClientModel;
   selectClient: string;
   suggestClients: string[];
-  constructor(private appService: AppService) { }
+  customerId: any;
+  constructor(private appService: AppService) {
+    this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
+   }
 
 
   addClient(val) {
@@ -51,7 +54,7 @@ export class ClientsComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       tap(() => this.clientLoading = true),
-      switchMap(term => this.appService.searchClient(false, term).pipe(
+      switchMap(term => this.appService.searchClient(this.customerId,false, term).pipe(
         catchError(() => of([])), // empty list on error
         tap(() => this.clientLoading = false)
       ))
@@ -59,7 +62,7 @@ export class ClientsComponent implements OnInit {
   );
 }
 suggestedClients() {
-  this.appService.searchClient(true).subscribe(res => {
+  this.appService.searchClient(this.customerId,true).subscribe(res => {
     this.suggestClients = res;
     // this.discResult.forEach(cc => cc.checked = false);
   });

@@ -22,6 +22,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   departmentLoading = false;
   // selectedClient: ClientModel;
   selectDepartment: '';
+  customerId: any;
   suggestDepartments: DepartmentModel[];
   departmentsList: DepartmentModel[] = []; // to check added departments
   // convertObservable: DepartmentModel[];
@@ -32,6 +33,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
 
   constructor(private appService: AppService) {
     // this.getDepartment = new DepartmentModel();
+    this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
   }
 
   updateDepartment(val) {
@@ -46,7 +48,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
       debounceTime(200),
       distinctUntilChanged(),
       tap(() => this.departmentLoading = true),
-      switchMap(term => this.appService.searchDepartment(term, false).pipe(
+      switchMap(term => this.appService.searchDepartment(term, false,this.customerId).pipe(
         catchError(() => of([])), // empty list on error
         tap(() => this.departmentLoading = false)
       ))
@@ -69,7 +71,7 @@ departmentExists(team, list) {​
   });
 }
 suggestedDepartment() {
-  this.appService.searchClient(true).subscribe(res => {
+  this.appService.searchClient(this.customerId,true).subscribe(res => {
     this.suggestDepartments = res;
     // this.discResult.forEach(cc => cc.checked = false);
   });

@@ -130,9 +130,11 @@ export class DiscResult {
     public  ClientId: number;
     public ClientName: string;
 } export class AutoSearchClient {
+    public CustomerId:number;
     public  ClientName: string;
     public IsSuggested: boolean;
 } export class AutoSearchDepartment {
+  public CustomerId:number;
   public  DepartmentName: string;
   public IsSuggested: boolean;
 }export class DepartmentModel {

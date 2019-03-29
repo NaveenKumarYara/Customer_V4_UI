@@ -272,13 +272,14 @@ export class AppService {
   //       this.handleError
   //     );
   // }
-  searchClient(val: boolean, term?: any): any {
+  searchClient(customerId:number,val: boolean, term?: any): any {
     // const url = environment.searchclientsendpoint + '?clientName=' + term;
     // return this.http.get<string[]>(url)
     //   .catch(
     //     this.handleError
     //   );
     const client = new AutoSearchClient();
+    client.CustomerId = customerId;
     client.ClientName = term;
     client.IsSuggested = val;
     // if(val==false)
@@ -288,9 +289,10 @@ export class AppService {
       return Observable.throw(error.json());
     });
   }
-  searchDepartment(term, val: boolean) {
+  searchDepartment(term, val: boolean,customerId:number) {
 
     const department = new AutoSearchDepartment();
+    department.CustomerId = customerId;
     department.DepartmentName = term;
     department.IsSuggested = val;
     return this.http.post(environment.searchdepartmentendpoint, department)
