@@ -19,6 +19,7 @@ export class EditDraftComponent {
   counter:number;
   userId: any;
   draft : any;
+  draftItem:true;
   isFullDisplayed:any= false;
   drafts: draftDetails[];
   constructor( private fb: FormBuilder, private router: Router,private appService: AppService,private spinner: NgxSpinnerService) {
@@ -33,6 +34,7 @@ export class EditDraftComponent {
       this.complete = 4;
       this.router.navigate(['/app-createajob/', {jobId} ]);
       localStorage.setItem('completed', JSON.stringify(this.complete));
+      localStorage.setItem('draftItem', JSON.stringify(this.draftItem));
       this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
     
 

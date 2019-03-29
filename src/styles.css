@@ -14156,7 +14156,7 @@ a.ui-button:active,
     background-color: rgb(197, 14, 14);
 }
 .page--manage-jobs .status.Uploaded {
-    background-color: rgb(197, 14, 14);
+    background-color: rgb(3, 128, 30);
 }
 .page--manage-jobs .card .stats {
     text-align: center;
@@ -14713,6 +14713,12 @@ a.ui-button:active,
 .page--job-details .status.Active {
     background-color: #A4D975;
 }
+
+.page--job-details .status.Uploaded{
+    background-color: rgb(14, 105, 6);
+}
+
+
 
 .page--job-details .ui-badge {
     padding: 4px 10px;
@@ -18732,6 +18738,10 @@ a.ui-button:active,
 
 .page--dashboard .jobs .status.withdrawn {
     background-color: #AEB1D9;
+}
+
+.page--dashboard .jobs .status.Uploaded{
+    background-color: rgb(35, 46, 141);
 }
 
 .page--dashboard .jobs .stats {

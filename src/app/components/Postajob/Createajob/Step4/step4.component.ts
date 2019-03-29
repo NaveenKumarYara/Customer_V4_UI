@@ -30,6 +30,7 @@ export class Step4Component implements OnInit {
   openings: any;
   personalityType: any;
   qualification: any;
+  draftItem : any;
 // step3
   contractDuration: any;
   contractExtension: any;
@@ -47,6 +48,7 @@ export class Step4Component implements OnInit {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.complete = JSON.parse(localStorage.getItem('completed'));
+      this.draftItem = JSON.parse(localStorage.getItem('draftItem')); 
       this.userId = this.customer.UserId;
       this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
@@ -219,13 +221,19 @@ export class Step4Component implements OnInit {
   // } // this.appService.contractDuration.value;
     this.insertJob.HiringProcessId = this.intwType; // this.appService.interviewType.value.InterviewTypeId;
     this.insertJob.HiringManagerId = this.reporting; // this.appService.reportingManager.value.UserId;
-    this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers; // this.team;
+    this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers;
+    if(this.draftItem === true)
+    {
+    this.insertJob.Draft = this.draftItem;
+    this.insertJob.Email = this.customer.Email;
+    } // this.team;
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
         // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
         // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-         this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        localStorage.removeItem('draftItem');
+        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);       
       }
     });
   }

@@ -40,6 +40,8 @@ export class InsertJob {
     public ClientName: string;
     public ClientId: number;
     public XmlDepartment: PjDepartments[] = [];
+    public Draft : boolean;
+    public Email :string;
   }
   export class PjSkill {
     public SkillName: string;
