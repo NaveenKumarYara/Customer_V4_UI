@@ -14670,7 +14670,7 @@ a.ui-button:active,
     letter-spacing: 0.03em;
 }
 
-.page--job-details .status.Candidate.Withdrawn {
+.page--job-details .status.Withdrawn {
     background-color: #f79734;
 }
 
@@ -18736,7 +18736,7 @@ a.ui-button:active,
     background-color: #A4D975;
 }
 
-.page--dashboard .jobs .status.withdrawn {
+.page--dashboard .jobs .status.Withdrawn {
     background-color: #AEB1D9;
 }
 
