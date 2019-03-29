@@ -1,5 +1,6 @@
 import { Component ,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.prod';
 @Component({
     selector: 'app-Logoheader',
     templateUrl: './logoheader.component.html'   
@@ -27,8 +28,8 @@ export class LogoHeaderComponent implements OnInit {
   Logout() {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
-    this.router.navigateByUrl('/login' , { replaceUrl: true });
-    window.location.href = 'http://dev.arytic.com/customerlogin';
+    //this.router.navigateByUrl('/login' , { replaceUrl: true });
+    window.location.href = environment.customerLogin;
 }
 
 ngOnInit()

@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Http, ResponseContentType, URLSearchParams, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
@@ -28,8 +28,8 @@ import { GetCompanyAchievement } from '../../../models/GetCompanyAchievement';
 
 @Injectable()
 export class CompanyProfileService {
-    baseUrll = 'http://api.tenendus.com:1090/';
-    constructor(private http: HttpClient) {
+    //baseUrll = 'http://v1.tenendus.com:1020/';
+    constructor(private http: HttpClient,private _http: Http) {
     }
     private handleError(error: any) {
         const errMsg = (error.message) ? error.message :

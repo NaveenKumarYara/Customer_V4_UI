@@ -49,11 +49,13 @@ export class dLoginComponent {
 // }
   SignUp()
   {
-    this.router.navigateByUrl('signup'); 
+    //this.router.navigateByUrl('signup'); 
+    window.location.href = environment.customerSignUp ;
   }
   forgot()
   {
-    this.router.navigateByUrl('ForgotPassword'); 
+    //this.router.navigateByUrl('ForgotPassword'); 
+    window.location.href = environment.ForgotPasswordurl;
   }
 
   login() {
