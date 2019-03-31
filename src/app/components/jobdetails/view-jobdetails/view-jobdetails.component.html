@@ -79,8 +79,8 @@
                 <alert></alert>
                 <div class="card-footer">
                     <ul class="nav nav-tabs">
-                        <li class="disabled">
-                            <a data-toggle="tab" href="#all-candidates">
+                        <li>
+                            <a data-toggle="tab" href="#all-candidates" (click)="updateallcandidatesstatus()">
                                 <!-- (click)="updateallcandidatesstatus()" -->
                                 <div>
                                     <h1>{{jobstatistics?.AllCandidates}}</h1>
