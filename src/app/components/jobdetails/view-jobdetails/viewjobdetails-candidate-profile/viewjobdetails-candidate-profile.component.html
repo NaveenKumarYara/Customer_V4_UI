@@ -1,19 +1,18 @@
-
 <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i=index">
     <div class="card candidate">
         <header class="p-rel">
-            <div class="ptr" >
-                    <div class="checkbox">
-                                    
-                            <label class="bookmark-c">
-                                <input type="checkbox" class="dnone" />
+                <div class="ptr" >
+                        <div class="checkbox">
                                         
-                                <i class="unchecked fa fa-bookmark-o"></i>
-                                <i class="checked fa fa-bookmark" ></i>
-                     
-                     </label>
-                        </div>
-            </div>
+                                <label class="bookmark-c">
+                                    <input type="checkbox" class="dnone" />
+                                            
+                                    <i class="unchecked fa fa-bookmark-o"></i>
+                                    <i class="checked fa fa-bookmark" ></i>
+                         
+                         </label>
+                            </div>
+                </div>
             <div class="candidate-badges">
                 <!-- <div *ngIf="profile?.DomainName?.split(',')[0]">
                 <div class="ui-badge ui-badge--industry" data-toggle="tooltip" title={{profile?.DomainName}}>
@@ -145,7 +144,8 @@
                         <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
-                            <a href="javascript:void(0)" (click)="GetCandidateProfile(profile.ProfileId)">
+                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
+                                <!-- GetCandidateProfile(profile.ProfileId) -->
                             {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
                         </a>
                         </ng-template>
@@ -498,7 +498,7 @@
                             <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;" *ngFor="let sk of profile?.PrimarySkills.split(',', 3)">
                                 <div class="item">
                                     <div class="skill">
-                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
+                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                         <div>
                                             <h5>{{ sk.split('|')[1] }} Yrs</h5>
                                             <h5>{{ sk.split('|')[2] }}</h5>
@@ -616,7 +616,8 @@
                         </a>
                         <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='InActive'">
                             <!-- applied -->
-                            <div *ngIf="profile?.ResponseStatusId == 4">
+                            <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
+                            <div *ngIf="profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 13">
                                 <div *ngIf="profile?.IsConfirmed != false">
                                     <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlist</a></li>
                                 </div>
@@ -662,23 +663,28 @@
 
                 <div class="details">
                     <!-- <div *ngIf="" -->
-                    <div class="video-scroll">
-                        <div class="w-75 m-auto d-block cls-rel">
-                            <h6 class="video-tittle">Sizzle Video</h6>
-                            <!-- <video controls="">
+ <div class="video-scroll">
+    <div class="w-75 m-auto d-block cls-rel">
+        <h6 class="video-tittle">Sizzle Video</h6>
+        <!-- <video controls="">
 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
 </video>-->
-                            <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                            <div class="status shortlisted pull-right"><a class="show-matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,false)" data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a></div>
-                        </div>
-                        <!--                         
-                        <div class="col-md-6">
-                            <h6>Video Sizzle</h6>
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                        </div> -->
+        <div  *ngIf="profileFlipVideo?.VideoSizzle === null">
+            "No Video "
+        </div>
+        <div  *ngIf="profileFlipVideo?.VideoSizzle != null">
+        <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+        </div>
+        <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+        <div class="status shortlisted pull-right"><a class="show-matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,false)" data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a></div>
+    </div>
+    <!--                         
+    <div class="col-md-6">
+        <h6>Video Sizzle</h6>
+        <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+    </div> -->
 
-                    </div>
+</div>
                 </div>
             </div>
             <div class="matching-details h-a" id="profileVideo-{{profile.ProfileId}}">
@@ -686,22 +692,27 @@
 
                 <div class="details">
                     <!-- <div *ngIf="" -->
-                    <div class="video-scroll">
-                        <div class="w-75 m-auto d-block cls-rel">
-                            <h6 class="video-tittle">Candidate Profile</h6>
-                            <!-- <video controls="">
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
-    </video>-->
-                            <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                            <div class="status shortlisted pull-right"><a class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)" href="javascript:void(0)">Sizzle Video</a></div>
-                        </div>
-                        <!--                         
-                            <div class="col-md-6">
-                                <h6>Video Sizzle</h6>
-                                <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                            </div> -->
-
+                        <div class="video-scroll">
+                            <div class="w-75 m-auto d-block cls-rel" *ngIf="profileFlipVideo?.VideoProfile!=null">
+                                <h6 class="video-tittle">Candidate Profile</h6>
+                                <!-- <video controls="">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> 
+        </video>-->
+                                <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
+                                <div  *ngIf="profileFlipVideo?.VideoProfile === null">
+                                    "No Video "
+                                </div>
+                                <div  *ngIf="profileFlipVideo?.VideoProfile != null">
+                                    <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
+                                </div>
+                                <div class="status shortlisted pull-right"><a class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)" href="javascript:void(0)">Sizzle Video</a></div>
+                            </div>
+                            <!--                         
+                                <div class="col-md-6">
+                                    <h6>Video Sizzle</h6>
+                                    <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+                                </div> -->
+    
                     </div>
                 </div>
             </div>

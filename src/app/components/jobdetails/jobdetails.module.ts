@@ -29,6 +29,8 @@ import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-can
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlickityModule } from 'ngx-flickity';
+// import { ViewcandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/viewcandidateprofile/viewcandidateprofile.component';
+import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,7 +52,7 @@ import { FlickityModule } from 'ngx-flickity';
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ProfileLinkComponent,ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent,ConversationComponent],
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })
