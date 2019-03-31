@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     this.tkey.UserToken = res;
     this.appService.GetCustomerToken(this.tkey).subscribe(
       data => {
-        if(data.UserId>0)
+        if(data.UserId>0&&data.IsActive==true)
         {
         this.spinner.hide();
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
         }
         else
         {
-          this.router.navigateByUrl('login');
+          window.location.href = environment.customerLogin;
+          //this.router.navigateByUrl('login');
         }
       })
   }
