@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { AppService } from '../../../../app.service';
 declare var $: any;
 declare var require: any;
 const RecordRTC = require('recordrtc//RecordRTC.min');
@@ -21,7 +22,7 @@ export class UploadvideoprofileComponent implements OnInit {
     saveImage: FormGroup;
     videoSizzles: any;
   @ViewChild('video') video;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private fb: FormBuilder) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private appService: AppService, private fb: FormBuilder) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -169,14 +170,16 @@ this.GetVideoSizzle();
       alert('video upload successful');
     });
   }
-  InsertSizzle(sizzleId, jobId) {
+  InsertSizzle(sizzleId) {
     this.createVideoForm();
     this.saveVideo.value.VideoProfileId = sizzleId;
-    // this.saveVideo.value.JobId = ;
+    this.saveVideo.value.JobId = this.data.jobId ;
     this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
       .subscribe(data => {
-        // alert(data);
-        // this.saveVideo.reset();
+          alert('video upload successful');
+          // this.appService.videoProfile.subscribe(x => this.prfLoc = x);
+          this.appService.updateVideoProfile(data);
+          this.saveVideo.reset();
       });
   }
   toggleControls() {
