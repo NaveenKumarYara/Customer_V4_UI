@@ -34,11 +34,12 @@ export class JobdetailsService {
   private detailsAdvanceSearch = new BehaviorSubject(false);
   ShowDetailsadvanceSearch = this.detailsAdvanceSearch.asObservable();
 
+  private profilecount = new BehaviorSubject(6);
+  currentProfilecount = this.profilecount.asObservable();
+
   updateDetailsAdvanceSearch(showdetailadvancesearch: boolean) {
     this.detailsAdvanceSearch.next(showdetailadvancesearch);
   }
-  private profilecount = new BehaviorSubject(6);
-  currentProfilecount = this.profilecount.asObservable();
 
   updateprofileCount(updatedtotal: number) {
     this.profilecount.next(updatedtotal);
@@ -50,7 +51,8 @@ export class JobdetailsService {
         .catch(
             this.handleError
         );
-}
+  }
+
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -65,6 +67,7 @@ export class JobdetailsService {
             this.handleError
         );
   }
+
   getInterviewtype(jobId: number) {
     const url = environment.InterviewScheduleType + 'jobId=' + jobId;
     return this.http.get<ScheduleType>(url)
@@ -72,6 +75,7 @@ export class JobdetailsService {
             this.handleError
         );
    }
+
    getInterViewTypes(): Observable<ScheduleType[]> {
     const url = environment.interviewtypeendpoint;
     return this.http.get<string[]>(url)
@@ -79,7 +83,8 @@ export class JobdetailsService {
         this.handleError
       );
     }
-  getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
+
+    getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
     const url = environment.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
@@ -88,6 +93,7 @@ export class JobdetailsService {
         this.handleError
       );
   }
+
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)
@@ -104,6 +110,7 @@ export class JobdetailsService {
         this.handleError
       );
   }
+
   getUserId(email: string, customerId: number): Observable<DiscResult[]> {
     const url = environment.GetUserId + 'email=' + email + '&customerId=' + customerId ;
     return this.http.get<GetJobDetailCustomer>(url)
@@ -113,6 +120,7 @@ export class JobdetailsService {
       );
 
   }
+
   getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
     const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<GetJobDetailCustomer>(url)
@@ -145,6 +153,7 @@ export class JobdetailsService {
         this.handleError
       );
   }
+
 getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
     const url = environment.MatchingDetailEndPoint +
      '?userId=' + profileId + '&jobId=' + jobId;
@@ -210,7 +219,13 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       return Observable.throw(error.json());
     });
   }
-
+  updateWishlist(body) {
+    return this.http.post(environment.UpdateWishlist, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
   InviteContact(body) {
     return this.http.post(environment.InviteContact, body)
     .map((res: Response) => res)

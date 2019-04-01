@@ -10,7 +10,7 @@ import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
-import { VideoSizzle,GetVideoProfile } from '../../models/VideoProfile';
+import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -22,7 +22,7 @@ declare var jQuery: any;
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
   styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
-  providers: [NgxSpinnerService,AlertService]
+  providers: [NgxSpinnerService, AlertService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
@@ -32,23 +32,24 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    jobdetailsprofiles = new JobdetailsProfile() ;
    matchingDetails: MatchingDetails;
    // profileVideo= new  VideoProfile();
-   profileFlipVideo= new GetVideoProfile();
+   profileFlipVideo = new GetVideoProfile();
    customerId: any;
    userId: any;
    profiles: any;
-   customer:any;
-   searchString:any;
+   customer: any;
+   searchString: any;
    domainName: any;
    experience: any;
    location: any;
    skills: any = null;
    loading: boolean;
    schIntw = new ScheduleInterview();
+   wsList = new WishList();
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
   @Output() loadMoreEvent = new EventEmitter();
-  @Input() jobStatus : string;
+  @Input() jobStatus: string;
   @Input() options: object;
   $owlElement: any;
   defaultOptions: object = {};
@@ -81,7 +82,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     },
     nav: true
   };
-  constructor(private el: ElementRef, private spinner: NgxSpinnerService,private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+  constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -90,7 +91,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
      }
 
   OpenChatboxDialog() {
-    if (this.jobStatus!== 'InActive') {
+    if (this.jobStatus !== 'InActive') {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
         width: '750',
@@ -365,6 +366,13 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
+  updateWishlist(event, jobResponseId) {
+    this.wsList.IsSaved = event.target.checked;
+    this.wsList.JobResponseId = jobResponseId;
+    this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
+      console.log(res);
+    });
+  }
   displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle ) {
     // (function ($) {
     // // TODO: test multiple cards -- open and close function
@@ -418,4 +426,8 @@ if (profileOrSizzle === true) {
     // }
   }
 }
+}
+export class WishList {
+  public JobResponseId: number;
+  public IsSaved: boolean;
 }

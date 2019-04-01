@@ -92,15 +92,23 @@
                             <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.Applied}}</h1>
-                                    <h4>Applied</h4>
+                                    <h4>Prospect profiles</h4>
                                 </div>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a data-toggle="tab" href="#suggested" (click)="updatesuggestedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.Suggested}}</h1>
                                     <h4>Suggested</h4>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+                                <div>
+                                    <h1>{{jobstatistics?.Screening}}</h1>
+                                    <h4>Screening</h4>
                                 </div>
                             </a>
                         </li>
@@ -109,14 +117,6 @@
                                 <div>
                                     <h1>{{jobstatistics?.ShortListed}}</h1>
                                     <h4>Shortlisted</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.Screening}}</h1>
-                                    <h4>Screening</h4>
                                 </div>
                             </a>
                         </li>

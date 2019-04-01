@@ -16,11 +16,14 @@ import { retry } from 'rxjs/operator/retry';
 import { EmploymentType } from '../models/employmenttype.model';
 import { Postajob } from '../models/postajob.model';
 import {CustomerContacts} from '../models/customercontacts';
-import{draftDetails} from '../models/draftDetails';
+import {draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
 import { GetCustomerClients } from '../models/GetCustomerClients';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary, ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel, PjDepartments } from './components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,
+        PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
+        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,
+        PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
@@ -201,6 +204,9 @@ export class AppService {
 
   addeddepartments: PjDepartments[] = [];
   addeddepartmentsChanged = new Subject<PjDepartments[]>();
+
+  xmlResponse: XmlJobResponse[] = [];
+  xmlResponseChanged = new Subject<XmlJobResponse[]>();
 
   updatecDuration(cDuration: string) {
     this.contractDuration.next(cDuration);
@@ -493,9 +499,6 @@ export class AppService {
     this.addedteammembers.splice(index, 1);
     this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
-
-  xmlResponse: XmlJobResponse[] = [];
-  xmlResponseChanged = new Subject<XmlJobResponse[]>();
 
 
  addResponses(response: XmlJobResponse, val) {
