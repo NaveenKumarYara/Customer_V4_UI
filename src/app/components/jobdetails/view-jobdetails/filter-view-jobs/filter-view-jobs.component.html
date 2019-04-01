@@ -13,22 +13,61 @@
             
           </label>
           -->
-                    <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy" (change)="changeViewby($event.target.value)">
-            <option default value="1">Highest Matching</option>
-            <option value="2">Least Matching</option>
-            <option value="3">Highest Experience</option>
-            <option value="4">Uploaded By Customer</option>
-            <option value="5">Applied By Candidate</option>
-          </select>
+                    <select name="view" id="view" class="styled-select-box" [(ngModel)]="ViewBy"
+                        (change)="changeViewby($event.target.value)">
+                        <option default value="1">Highest Matching</option>
+                        <option value="2">Least Matching</option>
+                        <option value="3">Highest Experience</option>
+                        <option value="4">Uploaded By Customer</option>
+                        <option value="5">Applied By Candidate</option>
+                    </select>
                 </div>
             </div>
+            <!--AllCandidatesTilesStart-->
+            <div class="form-group quick-sort">
+                <label for="title">Quick Sort Options</label>
+                <div class="options">
+                    <div class="checkbox">
+                        <label>
+                            <input type="radio" name="contract-duration" value="">
+                            <span class="box">Uploaded</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="radio" name="contract-duration" value="">
+                            <span class="box">Suggested</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="radio" name="contract-duration" value="">
+                            <span class="box">Wishlisted</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--AllCandidatesTilesEnd-->
             <div class="pull-right">
+                <!--Upload & Invite PlaceHolder buttons Starts-->
+                     <div class="adv-filters-btn btn" title="Upload Profiles">
+                            <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="adv-filters-btn btn ml-2" title="Invite Profiles">
+                            <i class="fa fa-user-plus fa-2" aria-hidden="true"></i>
+                     </div>
+                <!--Upload & Invite Placeholder buttons ends-->
+
+
                 <div class="search-toggle cls-rel">
                     <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
-                        <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">
+                        <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
+                            placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">
                         <div class="searchList" *ngIf="SearchList.length>0">
                             <ul class="searchList-dropdown">
-                                <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+                                <li class="searchList-options" *ngFor="let slist of SearchList"
+                                    (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
                             </ul>
                         </div>
                         <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
@@ -56,8 +95,10 @@
 
                 <div class="adv-filters-btn btn ml-2" (click)="updateDetailAdvanceSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19.3" height="21.1">
-            <path d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z"></path>
-          </svg>
+                        <path
+                            d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z">
+                        </path>
+                    </svg>
                 </div>
             </div>
         </form>
