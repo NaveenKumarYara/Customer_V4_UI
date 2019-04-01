@@ -40,16 +40,16 @@ export class ViewJobdetailsComponent implements OnInit {
   joblocation: any;
   jobstatistics: Jobstatistics;
   statistics: number;
-  closedjob:any;
-  exp:any;
-  location:any;
-  domain:any;
+  closedjob: any;
+  exp: any;
+  location: any;
+  domain: any;
   customerId: any;
-  customer:any;
-  searchString:any;
+  customer: any;
+  searchString: any;
   userId: any;
   jobid: any;
-  jobStatus:any;
+  jobStatus: any;
   viewJobJobId: any;
   statusid = 4;
   sortBy = 1;
@@ -63,7 +63,7 @@ export class ViewJobdetailsComponent implements OnInit {
   // showVar:  = true;
   // readChild: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute, private toastr: ToastsManager,private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
    ) {
@@ -117,7 +117,7 @@ export class ViewJobdetailsComponent implements OnInit {
     }, 3000);
   }
   openCandidateUploadDialog() {
-    if(this.closedjob === 2) {
+    if (this.closedjob === 2) {
       this.toastr.error('Job is Closed');
     setTimeout(() => {
       this.toastr.dismissToast;
@@ -297,6 +297,10 @@ export class ViewJobdetailsComponent implements OnInit {
     //  this.profilecount = 0;
     //  this.profilecount += 6;
     // }
+    if (this.statusid === 0) {
+      // this.statistics=this.jobstatistics.Applied;
+      this.statistics = this.jobstatistics.AllCandidates;
+     }
     if (this.statusid === 4) {
       // this.statistics=this.jobstatistics.Applied;
       this.statistics = this.jobstatistics.Applied;
