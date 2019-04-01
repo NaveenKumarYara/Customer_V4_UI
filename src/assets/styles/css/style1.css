@@ -2137,6 +2137,13 @@ a.btn2:hover, .btn2:hover {
 .text-white {
 	color: white;
 }
+.p-rel{
+	position: relative;
+}
+.ptr{
+	top:2px;
+	right: 10px;
+}
 
 /* #custom css */
 

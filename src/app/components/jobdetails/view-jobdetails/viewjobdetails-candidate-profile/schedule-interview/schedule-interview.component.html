@@ -116,9 +116,11 @@
                                              </li> -->
                                              <ng-container *ngFor="let type of typeList" >
                                                     <li [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' "> 
-                                                            <a data-toggle="tab" href="javascript:void(0)" (click)="process(type?.InterviewTypeId,type?.InterviewType)"> 
-                                                                 {{type?.InterviewType}}
-                                                             </a>                                                                                                                         
+                                                            <a data-toggle="tab" href="javascript:void(0)" data-target="{{type?.InterviewType}}"> 
+                                                                <!-- (click)="process(type?.InterviewTypeId,type?.InterviewType)  -->
+                                                                 {{type?.InterviewType}} 
+                                                             </a>            
+                                                             <!-- {{type?.InterviewType}} -->
                                                      </li>
                                                     </ng-container>
                                              
@@ -127,7 +129,7 @@
                                 </ul>
 
                                 <div class="tab-content">
-                                    <div id="inperson" class="tab-pane fade in active">
+                                    <div id="In-Person" class="tab-pane fade in active">
                                         <a href="javascript:void(0)" class="tui-tooltip">
                       See how much would it cost to you. <span>&#63;</span>
                       <div class="tooltip-content">
@@ -152,7 +154,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="skype" class="tab-pane fade">
+                                    <div id="Skype" class="tab-pane fade">
                                         <div class="form-group skype-group">
                                             <label for="">Skype</label>
                                             <h2><input class="form-control" type="text" [(ngModel)]="schIntw.SkypeId" name="skype"></h2>
@@ -182,7 +184,7 @@
                                         </div> -->
 
                                     </div>
-                                    <div id="webex" class="tab-pane fade">
+                                    <div id="Webex" class="tab-pane fade">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="">Dial-in number</label>

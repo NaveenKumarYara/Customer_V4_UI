@@ -14155,6 +14155,9 @@ a.ui-button:active,
 .page--manage-jobs .status.withdrawn {
     background-color: rgb(197, 14, 14);
 }
+.page--manage-jobs .status.waitingforresponse {
+    background-color: #ACB0F3
+}
 .page--manage-jobs .status.Uploaded {
     background-color: #8ddf29;
 }
@@ -14717,7 +14720,9 @@ a.ui-button:active,
 .page--job-details .status.Uploaded{
     background-color: #8ddf29;
 }
-
+.page--job-details .status.waitingforresponse {
+    background-color: #ACB0F3
+}
 
 
 .page--job-details .ui-badge {
@@ -18739,7 +18744,9 @@ a.ui-button:active,
 .page--dashboard .jobs .status.Withdrawn {
     background-color: #AEB1D9;
 }
-
+.page--dashboard .jobs .status.waitingforresponse {
+    background-color: #AEB1D9;
+}
 .page--dashboard .jobs .status.Uploaded{
     background-color: #8ddf29;
 }
@@ -22322,4 +22329,50 @@ div.options{
     border: 1px solid #ccc;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.06);
     box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.ptr{
+    position: absolute;
+	top:2px;
+	right: 10px;
+}
+
+.box.inputbox {
+    /* padding: 16px 22px; */
+        text-align: center;
+        display: block;
+        /* padding: 16px 22px; */
+        /* height: 55px; */
+        /* background-color: #ffffff; */
+        /* border: 1px solid #E0E3EF; */
+        /* border-radius: 3px; */
+        font-size: 1rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+}
+
+input.dnone {
+    opacity: 0;
+    position: absolute;
+}
+
+i.unchecked,i.checked{
+    transform: scale(1, 1.4);
+    color:#6a7e9c;
+}
+input.dnone:checked~i.unchecked{
+    display: none;
+
+}
+input.dnone~i.checked{
+display: none;
+}
+input.dnone:checked~i.checked{
+    display: block;
+    color:#66DAB5;
+}
+.wh-20{
+    width:20px;
+    height: 20px;
 }

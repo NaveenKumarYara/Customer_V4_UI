@@ -8,6 +8,8 @@ import { IfObservable } from 'rxjs/observable/IfObservable';
 import {SearchProfileDeatils} from '../../models/SearchProfileDeatils';
 import {Profile} from '../../models/SearchProfileDeatils';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
+import { BulkApply, XmlJobResponse } from './bulkApply';
+import { AppService } from '../../../../app.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -19,6 +21,7 @@ export interface DialogData {
   providers: [NgxSpinnerService, AlertService]
 })
 export class UploadProfilesComponent implements OnInit {
+  emailCheck = true;
   fileUploadForm: FormGroup;
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
@@ -27,6 +30,8 @@ export class UploadProfilesComponent implements OnInit {
   Count: any;
   selectedFileNames: string[] = [];
   inviteinfo = new InviteInfo();
+  bulkApply = new BulkApply();
+  xmlJobResponse: XmlJobResponse[] = [];
   loaddata = true ;
   searchString: any;
   SearchList: any = [];
@@ -37,7 +42,7 @@ export class UploadProfilesComponent implements OnInit {
   // userId: number;
   customerName = null;
   // tslint:disable-next-line:max-line-length
-  constructor(private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
+  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
     this.selectedFileNames = [];
     this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
     // this.userId = this.customerName.UserId;
@@ -63,7 +68,8 @@ export class UploadProfilesComponent implements OnInit {
       'ResumeFile': ['', Validators.compose([Validators.required])],
       'FileExtension': ['', Validators.nullValidator],
       'JobId': [ null, Validators.nullValidator],
-      'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator]
+      'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator],
+      'EmailCheck' : ['', Validators.nullValidator]
     });
     this.SearchProfiles();
     this.alertService.clear();
@@ -80,30 +86,7 @@ export class UploadProfilesComponent implements OnInit {
     /** */
 
   }
-  SearchProfiles() {
-    this.searchprofilesFrom.value.JobId = JSON.parse(sessionStorage.getItem('jobId'));
-    if (this.searchString != null) {
-      this.searchprofilesFrom.value.SearchString = this.searchString;
-      this.searchprofilesFrom.value.CustomerId = this.customerName.CustomerId;
-      this.searchprofilesFrom.value.QualificationId = 0;
-      this.searchprofilesFrom.value.Location = '';
-      this.searchprofilesFrom.value.Experience = '';
-      this.searchprofilesFrom.value.PageNumber = 1;
-      this.searchprofilesFrom.value.NumberOfRows = 1000;
-    }
-    this.jobdetailsservice.searchCandidateProfiles(this.searchprofilesFrom.value)
-    .subscribe(
-    data => {
-      this.isFullDisplayed = true;
-      this.Count = data.TotalProfileCount;
-      this.profiles = data.Profile;
-      // debugger;
-      this.searchprofilesFrom.reset();
-      // this.searchprocess = data.Profile;
-      // this.profiles = this.searchprofiles.slice(0,10);
-  });
 
-  }
 
   SetSearch(val) {
    this.SearchList = [];
@@ -155,6 +138,7 @@ export class UploadProfilesComponent implements OnInit {
     this.fileUploadForm.value.FileExtension = e.target.files[0].type;
     this.fileUploadForm.value.UserName = null;
     this.fileUploadForm.value.JobId = (<HTMLInputElement>document.getElementById('jobId')).value;
+    this.fileUploadForm.value.EmailCheck = this.emailCheck;
     // document.getElementById('jobId').value; //this.jobid;
     // this.fileUploadForm.value.ResumeFile = e.target.files[0];
     if (this.fileUploadForm.value !== '') {
@@ -175,7 +159,7 @@ export class UploadProfilesComponent implements OnInit {
     }
   }
   uploadMultiple(formData) {
-    this.jobdetailsservice.byteStorage(formData, 'ProfileAPI/api/ParseResume').subscribe(data => {
+    this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {
       if (data) {
        // setTimeout(() => {
           /** spinner ends after 5 seconds */
@@ -227,7 +211,7 @@ SaveInvite(email) {
    this.inviteinfo.CandFullName = email;
    this.inviteinfo.CustFullName = 'Arytic';
    this.inviteinfo.ClientLogo = '';
-   this.inviteinfo.AppLink = 'http://demo.arytic.com/candidatesignup';
+   this.inviteinfo.AppLink = 'http://dev.arytic.com/candidatesignup';
    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data === 0) {
        $('#Email').val('');
@@ -242,6 +226,59 @@ SaveInvite(email) {
           });
   }
 
+  SearchProfiles() {
+    this.searchprofilesFrom.value.JobId = JSON.parse(sessionStorage.getItem('jobId'));
+    if (this.searchString != null) {
+      this.searchprofilesFrom.value.SearchString = this.searchString;
+      this.searchprofilesFrom.value.CustomerId = this.customerName.CustomerId;
+      this.searchprofilesFrom.value.QualificationId = 0;
+      this.searchprofilesFrom.value.Location = '';
+      this.searchprofilesFrom.value.Experience = '';
+      this.searchprofilesFrom.value.PageNumber = 1;
+      this.searchprofilesFrom.value.NumberOfRows = 1000;
+    }
+    this.jobdetailsservice.searchCandidateProfiles(this.searchprofilesFrom.value)
+    .subscribe(
+    data => {
+      this.isFullDisplayed = true;
+      this.Count = data.TotalProfileCount;
+      this.profiles = data.Profile;
+      // debugger;
+      this.searchprofilesFrom.reset();
+      // this.searchprocess = data.Profile;
+      // this.profiles = this.searchprofiles.slice(0,10);
+  });
+
+  }
+  BulkApplyCandidates() {
+    this.bulkApply.JobId = JSON.parse(sessionStorage.getItem('jobId'));
+      this.bulkApply.XmlJobResponse = this.appService.xmlResponse; // new XmlJobResponse
+    this.bulkApply.ResponseStatusId = 13;
+    this.appService.bulkApply(this.bulkApply).subscribe(
+      (data) => {console.log(data);
+        this.appService.xmlResponse = [];
+  });
+  }
+  onCheckboxChange(option, event) {
+    const response = new XmlJobResponse;
+    response.ProfileId = option.ProfileId;
+    response.ResumeId = option.ResumeId;
+    option.checked = event.target.checked;
+    // this.xmlJobResponse.push(response);
+    this.appService.addResponses(response, option.checked);
+    // this.appService.bulkApply(this.xmlJobResponse, response, option.checked);
+    // if (event.target.checked) {
+    //    this.profiles.find(iitem => iitem.ProfileId === option.ProfileId).checked = option.checked;
+
+    //    //  we need to send profiles that contained check mark so that add for loop in servidce page
+    //     this.xmlJobResponse.push();
+    //     this.appService.bulkApply(this.profiles, response, option.checked);
+    //    } else {
+    //      this.appService.bulkApply(this.profiles, response, option.checked); // false
+    //    }
+       // // console.log(this.checkpersonType);
+    // }
+  }
 }
 
 

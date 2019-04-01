@@ -21,7 +21,7 @@ import { ViewjobdetailsCandidateProfileComponent } from './view-jobdetails/viewj
 import { ChatboxdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
-import { ConversationComponent}  from './view-jobdetails/viewjobdetails-candidate-profile/conversations/conversation.component';
+import { ConversationComponent} from './view-jobdetails/viewjobdetails-candidate-profile/conversations/conversation.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import {SharedModule} from '../../shared/shared.module';
@@ -29,6 +29,7 @@ import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-can
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlickityModule } from 'ngx-flickity';
+import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,7 +51,10 @@ import { FlickityModule } from 'ngx-flickity';
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent, ProfileLinkComponent,ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent, ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent, UploadProfilesComponent, ScheduleInterviewComponent,ConversationComponent],
+  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,
+                  ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
+                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,
+                  UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })

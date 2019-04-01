@@ -28,6 +28,10 @@
               Browse & Upload
               <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
             </div>
+            <br/>
+            <br/>
+            <input type="checkbox" checked [(ngModel)]="emailCheck">
+            Send Email for uploaded candidates
             <input type="hidden" id="jobId" [value]=data.JobId>
             <div class="col-md-12 manage-profiles-card" *ngIf="selectedFileNames.Count > 0">
               <ul class="list--empty">
@@ -67,8 +71,9 @@
             <div class="card-inner">
               <div class="card-content">
                 <div class="tab-content">
+                   <form #form="ngForm" (ngSubmit)="searchProfile(searchString)"> 
                   <div id="specialities" class="tab-pane fade active in">
-                      <form #form="ngForm" (ngSubmit)="searchProfile(searchString)">
+                   
                     <div class="input-group">
                       <input autocomplete="off" name="searchString" type="text" [(ngModel)]="searchString" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr"  class="form-control"  placeholder="Search here">
                       <div class="searchList search-p" *ngIf="SearchList.length>0">
@@ -81,19 +86,11 @@
                       </span>
                     </div>
                     <div class="row">
-
-
-                                         <div class="col-sm-12 p-19">
-                        
-                        
-                                           <button class="btn s-btn pull-right">Submit Selected</button>
-                        
-                        
-                                        </div>
-                        
-                        
-                                        </div>
-                  </form>
+                  <div class="col-sm-12 p-19">
+                    <button class="btn s-btn pull-right" type="button" (click)="BulkApplyCandidates()">Submit Selected</button>
+                </div>
+                </div>
+                  <!-- </form> -->
                     <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
                       <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible">
                         <!-- <div class="row"> -->
@@ -113,19 +110,19 @@
                                 </button>
                                 </div>                    
                               </ng-container> -->
-                              <ng-container *ngFor="let list of profiles">                             
+                              <ng-container *ngFor="let list of profiles; let i=index">                             
                               <li class="item li-hover"  *ngIf="list.ProfileTitle!=''">
-                          
                                 <div class="hover-h">
-                                <input type="checkbox" class="chk"  name="list1"/>
+                                <input type="checkbox" (change)="onCheckboxChange(list,$event)"  [(ngModel)]="list.checked" [value]="list.DISCTestId" [checked]="list.checked" id="{{i}}" class="chk" name="list1"/>
+                                <!-- <input type="checkbox" id="{{i}}" [(ngModel)]="disc.checked" [value]="disc.DISCTestId" [checked]="disc.checked" (change)="onCheckboxChange(disc,$event)" class="radio-input"  /> -->
                               </div>
                               <div class="hover-h">
                                 <img src="{{list?.ProfilePic}}" width="50px" height="50px" class="rounded-circle p8" />
                               </div>
                               <div class="bl-1">
-                                  <span>James Barret</span>
+                                  <span>{{list?.FirstName}}</span>
                                   <span>{{list?.ProfileTitle| slice:0:30}}</span>
-                                  <span>3 yrs</span>
+                                  <span>{{TotalExperience}} yrs</span>
                               </div>
                               <span class="ml-auto hover-h">
                                 <button class="btn">Submit</button>
@@ -153,7 +150,7 @@
                        
                         
                       </div>
-                      <div class="scroll-element scroll-x scroll-scrolly_visible">
+                      <!-- <div class="scroll-element scroll-x scroll-scrolly_visible">
                         <div class="scroll-element_outer">
                           <div class="scroll-element_size"></div>
                           <div class="scroll-element_track"></div>
@@ -166,10 +163,11 @@
                           <div class="scroll-element_track"></div>
                           <div class="scroll-bar" style="height: 281px; top: 0px;"></div>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
-                  <div id="companyTech" class="tab-pane fade">
+                 </form>
+                  <!-- <div id="companyTech" class="tab-pane fade">
                     <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
                       <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
                         <h3>Menu 1</h3>
@@ -190,7 +188,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

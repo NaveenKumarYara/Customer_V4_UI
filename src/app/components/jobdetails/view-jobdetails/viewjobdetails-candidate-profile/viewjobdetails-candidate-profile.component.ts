@@ -10,7 +10,8 @@ import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
-import { VideoSizzle,GetVideoProfile } from '../../models/VideoProfile';
+import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
+import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -21,32 +22,34 @@ declare var jQuery: any;
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
   styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
-  providers: [NgxSpinnerService,AlertService]
+  providers: [NgxSpinnerService, AlertService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
+  viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
    jobdetailsprofiles = new JobdetailsProfile() ;
    matchingDetails: MatchingDetails;
    // profileVideo= new  VideoProfile();
-   profileFlipVideo= new GetVideoProfile();
+   profileFlipVideo = new GetVideoProfile();
    customerId: any;
    userId: any;
    profiles: any;
-   customer:any;
-   searchString:any;
+   customer: any;
+   searchString: any;
    domainName: any;
    experience: any;
    location: any;
    skills: any = null;
    loading: boolean;
    schIntw = new ScheduleInterview();
+   wsList = new WishList();
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
   @Output() loadMoreEvent = new EventEmitter();
-  @Input() jobStatus : string;
+  @Input() jobStatus: string;
   @Input() options: object;
   $owlElement: any;
   defaultOptions: object = {};
@@ -79,7 +82,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     },
     nav: true
   };
-  constructor(private el: ElementRef, private spinner: NgxSpinnerService,private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+  constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -88,7 +91,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
      }
 
   OpenChatboxDialog() {
-    if (this.jobStatus!='InActive') {
+    if (this.jobStatus !== 'InActive') {
     const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
       {
         width: '750',
@@ -106,7 +109,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenShareDialog() {
-    if (this.jobStatus!='InActive') {
+    if (this.jobStatus !== 'InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
         // width: '1000px',
@@ -124,7 +127,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenRejectDialog(jobResponseId) {
-    if (this.jobStatus!='InActive') {
+    if (this.jobStatus !== 'InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
           data: {
@@ -164,6 +167,25 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       console.log('Chatbox Dialog result: ${result}');
     });
   }
+
+  OpenCandidateDialog(profileId) {
+    // if (this.jobStatus!='InActive') {
+      const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
+        {
+          data: {
+            ProfileId: profileId,
+            jobId: this.jobid,
+            // status : this.statusid
+          }
+        }
+      );
+      viewCandidatedialogRef.afterClosed().subscribe(result => {
+       // this.jobDetails.populateJobsStaticInfo(this.jobid);
+        // this.myEvent.emit(null);
+        console.log('candidate Dialog result: ${result}');
+      });
+    // }
+  }
 // updateOnDialogClose() {
 //   this.eventStat.emit(null);
 //   this.myEvent.emit(null);
@@ -196,7 +218,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       }) ;
     }
   GetCandidateProfile(profileId) {
-    if (this.jobStatus!=='InActive') {
+    if (this.jobStatus !== 'InActive') {
       sessionStorage.setItem('profileId', JSON.stringify(profileId));
       this.router.navigateByUrl('app-cprofile');
     }
@@ -204,13 +226,13 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString='', experience= 0, location= '', domainName= '', noofRows= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString= '', experience= 0, location= '', domainName= '', noofRows= 6) {
     this.alertService.clear();
     $('#searchStr').val('');
     this.spinner.show();
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
-      this.statusid = statusid === 0 ? 4 : statusid;
+      this.statusid = statusid ; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
     }
     if (statistics === 0 && statusid >= 4 ) {
     this.jobdetailsprofiles = new JobdetailsProfile();
@@ -224,11 +246,11 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     } else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, noofRows)
     .subscribe(res => {
-      this.jobdetailsprofiles = res;    
+      this.jobdetailsprofiles = res;
       this.profiles = res;
 
       this.spinner.hide();
-       if(this.profiles === 'No records found') {
+       if (this.profiles === 'No records found') {
          this.myEvent.emit('min');
       // this.alertService.warn('No Profiles Matched!!');
       }
@@ -241,8 +263,8 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       //  else {
       //   this.myEvent.emit(true);
       //  }
-    
-    });    
+
+    });
   }
   }
   add3Dots(string, limit) {
@@ -344,6 +366,13 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
+  updateWishlist(event, jobResponseId) {
+    this.wsList.IsSaved = event.target.checked;
+    this.wsList.JobResponseId = jobResponseId;
+    this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
+      console.log(res);
+    });
+  }
   displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle ) {
     // (function ($) {
     // // TODO: test multiple cards -- open and close function
@@ -397,4 +426,8 @@ if (profileOrSizzle === true) {
     // }
   }
 }
+}
+export class WishList {
+  public JobResponseId: number;
+  public IsSaved: boolean;
 }

@@ -21,7 +21,7 @@ contractExtended: boolean;
 salaryType: number;
 minRate: number;
 maxRate: number;
-
+videoProfile: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService ) {
       this.appService.currentEmploymentType.subscribe((data) => {
@@ -44,6 +44,9 @@ maxRate: number;
       });
       this.appService.currentEmploymentType.subscribe((data) => {
         this.empType = data.EmploymentTypeId; // And he have data here too!
+      });
+      this.appService.currentVideo.subscribe((data) => {
+        this.videoProfile = data; // And he have data here too!
       });
       // this.appService.addedteammembersChanged.subscribe((data) => {
       //   this.teamMembers = data; // And he have data here too!

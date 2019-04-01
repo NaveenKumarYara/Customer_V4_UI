@@ -88,6 +88,7 @@ import { UsersComponent } from './components/accountsettings/users/users.compone
 import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
+import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 
 const appRoutes: Routes =
 [
@@ -182,6 +183,7 @@ const appRoutes: Routes =
     { path: 'app-sharedialog', component: SharedialogComponent },
     { path: 'app-conversation', component: ConversationComponent },
     { path: 'app-rejectdialog', component: RejectdialogComponent },
+    { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
 
     { path: 'app-companyprofile', component: CompanyprofileComponent },
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
