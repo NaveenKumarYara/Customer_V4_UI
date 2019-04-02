@@ -240,11 +240,7 @@ input::-webkit-input-placeholder {
     position: relative;
     cursor: pointer;
 }
-.filters .quick-sort .options .checkbox .box{
-    padding: 5px 21px !important;
-    height: auto !important;
-    font-size: 0.7rem !important;
-}
+
 
 .filters .quick-sort .options .checkbox label {
     padding: 0 !important;
@@ -258,12 +254,11 @@ input::-webkit-input-placeholder {
  .filters .quick-sort .options .checkbox .box {
     text-align: center;
     display: block;
-    padding: 16px 22px;
-    height: 55px;
+    padding: 14px 15px;
     background-color: #ffffff;
     border: 1px solid #E0E3EF;
     border-radius: 3px;
-    font-size: 1rem;
+    font-size: 0.875rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

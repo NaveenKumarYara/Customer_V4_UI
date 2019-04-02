@@ -14159,7 +14159,7 @@ a.ui-button:active,
     background-color: #ACB0F3
 }
 .page--manage-jobs .status.Uploaded {
-    background-color: #8ddf29;
+    background-color: #66dab5;
 }
 .page--manage-jobs .card .stats {
     text-align: center;
@@ -14718,7 +14718,7 @@ a.ui-button:active,
 }
 
 .page--job-details .status.Uploaded{
-    background-color: #8ddf29;
+    background-color: #66dab5;
 }
 .page--job-details .status.waitingforresponse {
     background-color: #ACB0F3
@@ -18748,7 +18748,7 @@ a.ui-button:active,
     background-color: #AEB1D9;
 }
 .page--dashboard .jobs .status.Uploaded{
-    background-color: #8ddf29;
+    background-color: #66dab5;
 }
 
 .page--dashboard .jobs .stats {

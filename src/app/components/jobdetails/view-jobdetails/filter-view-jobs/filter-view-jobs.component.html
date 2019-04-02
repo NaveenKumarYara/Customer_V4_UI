@@ -30,24 +30,24 @@
             </div>
             <!--AllCandidatesTilesStart-->
             <div class="form-group quick-sort" *ngIf="displayQuick==1">
-                <label for="title">Quick Sort Options</label>
+                <!-- <label for="title">Quick Sort Options</label> -->
                 <div class="options">
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="contract-duration" value="">
-                            <span class="box"  (click)="changeViewby(7)">Uploaded({{Count?.Uploaded||0}})</span>
+                            <span class="box"  (click)="changeViewby(7)">Uploaded ({{Count?.Uploaded||0}})</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="contract-duration" value="">
-                                <span class="box" (click)="changeViewby(8)">Suggested({{Count?.Suggested||0}})</span>
+                                <span class="box" (click)="changeViewby(8)">Suggested ({{Count?.Suggested||0}})</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="contract-duration" value="">
-                            <span class="box" (click)="changeViewby(6)">Wishlisted({{Count?.Wishlist||0}})</span>
+                            <span class="box" (click)="changeViewby(6)">Wishlisted ({{Count?.Wishlist||0}})</span>
                         </label>
                     </div>
                 </div>
