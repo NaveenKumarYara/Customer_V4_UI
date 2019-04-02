@@ -76,7 +76,7 @@
                         <div class="searchList" *ngIf="SearchList.length>0">
                             <ul class="searchList-dropdown">
                                 <li class="searchList-options" *ngFor="let slist of SearchList"
-                                    (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+                                    (click)="SetSearch(slist?.slice(0, -3))">{{slist?.slice(0, -3)}}</li>
                             </ul>
                         </div>
                         <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
