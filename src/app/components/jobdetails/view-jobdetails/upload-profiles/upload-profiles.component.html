@@ -12,10 +12,10 @@
           <li role="presentation" class="active">
             <a data-toggle="tab" href="#uploadProfiles" aria-expanded="false" (click)="Clear()">Upload Profiles</a>
           </li>
-          <li role="presentation" class="">
+          <li role="presentation" class="" *ngIf="displayprofiles!=1">
             <a data-toggle="tab" href="#searchProfiles" aria-expanded="true" (click)="Clear()">Search Profiles</a>
           </li>
-          <li role="presentation" class="">
+          <li role="presentation" class="" *ngIf="displayprofiles!=1">
               <a data-toggle="tab" href="#InviteProfiles" aria-expanded="true" (click)="Clear()">Invite Profile</a>
             </li>
           <span class="active-line"></span>

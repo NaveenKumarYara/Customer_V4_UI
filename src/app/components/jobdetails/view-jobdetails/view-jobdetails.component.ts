@@ -125,6 +125,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.toastr.dismissToast;
     }, 2000);
   } else {
+    localStorage.removeItem('DisplayUpload')
     const abc = {
       'animal': 'panda',
        'JobId' : this.jobid
@@ -141,7 +142,7 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      this.populateJobsStaticInfo(this.jobid, 1);
+      this.populateJobsStaticInfo(this.customerId,this.jobid, 1);
       // this.updateappliedstatus();
       console.log('Dialog result: ${result}');
     });
@@ -346,13 +347,13 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
 
-  populateJobsStaticInfo(jobid, onload?) {
+  populateJobsStaticInfo(customerId,jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId,this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.Count= this.jobstatistics;
-      if (onload === 1) {
-        this.updateappliedstatus();
-      }
+      // if (onload === 1) {
+      //   this.updateappliedstatus();
+      // }
     });
   }
   // PopulateJobdetailProfiles() {
@@ -361,7 +362,7 @@ export class ViewJobdetailsComponent implements OnInit {
   //   });
   // }
   updateStatistics(value: any) {
-    this.populateJobsStaticInfo(this.jobid);
+    this.populateJobsStaticInfo(this.customerId,this.jobid);
     if (value === 'max' || value === 'min') {
       this.loadMore = false;
     }  else { // if (value === true) {
