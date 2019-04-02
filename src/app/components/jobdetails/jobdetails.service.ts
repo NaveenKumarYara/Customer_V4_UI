@@ -79,7 +79,8 @@ export class JobdetailsService {
 
   getSortByOption() {
     const url = environment.profilesSortBy;
-    return this.http.post(url, null).map((res: Response) => res)
+    // return this.http.post(url, null).map((res: Response) => res)
+    return this.http.get<string[]>(url)
         .catch(
             this.handleError
         );
@@ -144,7 +145,7 @@ export class JobdetailsService {
   //   // return promise;
   }
 
-  getJobDetailsStatisticsInfo(customerId:number,jobId: number): Observable<Jobstatistics> {
+  getJobDetailsStatisticsInfo(customerId: number, jobId: number): Observable<Jobstatistics> {
     const url = environment.JobdetailsStatisticsEndpoint + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<Jobstatistics>(url)
       .debounceTime(1000)

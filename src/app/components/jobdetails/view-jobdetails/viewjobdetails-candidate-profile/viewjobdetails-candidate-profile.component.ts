@@ -55,35 +55,35 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   $owlElement: any;
   defaultOptions: object = {};
   images = [1, 2, 3].map(() => 'https://picsum.photos/900/500?random&t=${Math.random()}');
- mySlideImages = [1, 2, 3].map((i) => 'https://picsum.photos/640/480?image=${i}');
- myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
- mySlideOptions = {items: 1, dots: true, nav: false};
- myCarouselOptions = {items: 3, dots: true, nav: true};
+  mySlideImages = [1, 2, 3].map((i) => 'https://picsum.photos/640/480?image=${i}');
+  myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
+  mySlideOptions = {items: 1, dots: true, nav: false};
+  myCarouselOptions = {items: 3, dots: true, nav: true};
   customOptions: any = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
+  loop: true,
+  mouseDrag: false,
+  touchDrag: false,
+  pullDrag: false,
+  dots: false,
+  navSpeed: 700,
+  navText: ['', ''],
+  responsive: {
+    0: {
+      items: 1
     },
-    nav: true
-  };
-  constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+    400: {
+      items: 2
+    },
+    740: {
+      items: 3
+    },
+    940: {
+      items: 4
+    }
+  },
+  nav: true
+};
+ constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -391,9 +391,10 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   ngOnChange() {
     console.log('on change', this.jobid, this.statusid);
   }
-  updateWishlist(event, jobResponseId) {
+  updateWishlist(event, profileId) {
     this.wsList.IsSaved = event.target.checked;
-    this.wsList.JobResponseId = jobResponseId;
+    this.wsList.ProfileId = profileId;
+    this.wsList.JobId = this.jobid;
     this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
       console.log(res);
     });
@@ -453,6 +454,7 @@ if (profileOrSizzle === true) {
 }
 }
 export class WishList {
-  public JobResponseId: number;
+  public JobId: number;
+  public ProfileId: number;
   public IsSaved: boolean;
 }
