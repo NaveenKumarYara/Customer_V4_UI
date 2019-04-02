@@ -90,6 +90,9 @@ import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/dep
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
+import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+// import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+
 
 const appRoutes: Routes =
 [
@@ -186,6 +189,7 @@ const appRoutes: Routes =
     { path: 'app-rejectdialog', component: RejectdialogComponent },
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
     { path: 'app-invite-profiledialog', component: InviteProfiledialogComponent },
+    { path: 'app-send-email', component: SendEmailComponent },
 
     { path: 'app-companyprofile', component: CompanyprofileComponent },
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
