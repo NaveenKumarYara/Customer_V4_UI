@@ -148,7 +148,7 @@
                 </div>
                 <!-- .selected .job-card -->
             </div>
-            <app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [parentApi]="getParentApi()"></app-filter-view-jobs>
+            <app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [displayQuick]="displayQuick" [Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
             <div *ngIf="showDetailadvancesearch">
                 <app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
             </div>

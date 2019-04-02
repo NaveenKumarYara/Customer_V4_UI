@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Jobstatistics } from '../../models/jobstatistics';
 import { SortbyInProfiles } from '../../models/SortbyInProfiles';
 declare var $: any;
 // import { ViewjobdetailsCandidateProfileComponent } from '../viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
@@ -20,6 +21,8 @@ export class FilterViewJobsComponent implements OnInit {
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
   @Input() statusid: number;
+  @Input() displayQuick:number;
+  @Input() Count : Jobstatistics;
   customerId: any;
   userId: any;
   sortByOrder: any;
@@ -55,6 +58,11 @@ export class FilterViewJobsComponent implements OnInit {
    this.parentApi.callSearchMethod(this.searchString);
    this.SearchList = [];
    this.GetSearchText(null);
+  }
+
+  updatesuggestedstatus()
+  {
+    this.parentApi.callSuggested();
   }
 
   GetSearchText(value) {

@@ -144,8 +144,8 @@ export class JobdetailsService {
   //   // return promise;
   }
 
-  getJobDetailsStatisticsInfo(jobId: number): Observable<Jobstatistics> {
-    const url = environment.JobdetailsStatisticsEndpoint + 'jobId=' + jobId;
+  getJobDetailsStatisticsInfo(customerId:number,jobId: number): Observable<Jobstatistics> {
+    const url = environment.JobdetailsStatisticsEndpoint + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<Jobstatistics>(url)
       .debounceTime(1000)
       .catch(

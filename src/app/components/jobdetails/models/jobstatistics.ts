@@ -7,5 +7,7 @@ export class Jobstatistics {
     public Screening: number;
     public Interviewed: number;
     public Hired: number;
+    public Wishlist:number;
+    public Uploaded: number;
     public RejectedORWithdrawn: number;
 }
