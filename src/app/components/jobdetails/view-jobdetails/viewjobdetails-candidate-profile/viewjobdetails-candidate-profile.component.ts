@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
 import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
+import { SendEmailComponent } from './send-email/send-email.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -183,6 +184,27 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         }
       );
       viewCandidatedialogRef.afterClosed().subscribe(result => {
+       // this.jobDetails.populateJobsStaticInfo(this.jobid);
+        // this.myEvent.emit(null);
+        console.log('candidate Dialog result: ${result}');
+      });
+    // }
+  }
+  OpenSendEmailDialog(profileId) {
+    // if (this.jobStatus!='InActive') {
+      const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
+        {
+          width: '750',
+          position: {right : '0px'},
+          height : '750px',
+          data: {
+            ProfileId: profileId,
+            jobId: this.jobid,
+            // status : this.statusid
+          }
+        }
+      );
+      sendEmaildialogRef.afterClosed().subscribe(result => {
        // this.jobDetails.populateJobsStaticInfo(this.jobid);
         // this.myEvent.emit(null);
         console.log('candidate Dialog result: ${result}');
