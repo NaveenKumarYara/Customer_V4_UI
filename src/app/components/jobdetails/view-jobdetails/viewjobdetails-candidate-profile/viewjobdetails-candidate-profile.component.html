@@ -133,7 +133,7 @@
                         <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
-                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.Email)">
+                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
                                 <!-- GetCandidateProfile(profile.ProfileId) -->
                             {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
                         </a>
@@ -564,7 +564,7 @@
             <div class="footer">
                 <ul class="actions">
                     <li>
-                        <a href="javascript:void(0)" (click)="OpenSendEmailDialog(profile?.ProfileId)" data-toggle="modal" data-target="#inbox">
+                        <a href="javascript:void(0)" (click)="OpenSendEmailDialog(profile?.Email)" data-toggle="modal" data-target="#inbox">
                             <!--(click)="OpenChatboxDialog()"-->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                   <path d="M1 17.9c-.1 0-.3 0-.4-.1-.4-.2-.6-.5-.6-.9V2.8C0 1.3 1.2 0 2.8 0h12.3c.7 0 1.4.3 2 .8.5.5.8 1.2.8 2v8.8c0 .2-.1.4-.1.5-.1.5-.4 1-.8 1.5-.5.5-1.2.8-2 .8H4.9l-3.2 3.2c-.2.2-.4.3-.7.3zM15.1 2H2.8c-.2 0-.4.1-.6.2-.1.2-.2.4-.2.6v11.7l1.8-1.8c.2-.2.4-.3.7-.3H15c.2 0 .4-.1.6-.2.1-.2.2-.3.2-.6 0-.2 0-.3.1-.4V2.8c0-.2-.1-.4-.2-.6s-.4-.2-.6-.2z" />
