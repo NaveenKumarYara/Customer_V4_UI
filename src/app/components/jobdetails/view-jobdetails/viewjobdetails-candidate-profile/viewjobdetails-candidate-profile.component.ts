@@ -169,7 +169,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profileId) {
+  OpenCandidateDialog(emailId) {
     // if (this.jobStatus!='InActive') {
       const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
         {
@@ -177,7 +177,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           position: {right : '0px'},
           height : '750px',
           data: {
-            ProfileId: profileId,
+            EmailId: emailId,
             jobId: this.jobid,
             // status : this.statusid
           }

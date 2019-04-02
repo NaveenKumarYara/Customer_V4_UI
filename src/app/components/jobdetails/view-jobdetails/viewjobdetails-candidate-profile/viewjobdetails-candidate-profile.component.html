@@ -97,11 +97,8 @@
                                     </ul>
                                 </div> -->
                             </div>
-
                         </div>
                         <div class="dropdown ">
-
-
                             <div class="tooltip1">
                                 <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                     <img src="../../../../../assets/images/graduation.svg" style="width: 25px;height: 25px;" />
@@ -111,7 +108,6 @@
                                         <li>
                                             <a href="javascript:void(0)">
                                                 <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
-
                                                 <div class="media">
                                                     <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">
                                                         <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="">
@@ -123,29 +119,21 @@
                                                 </div>
                                             </a>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </h1>
                 </ng-container>
                 <ng-template #firstBlock>
                     <h1 class="title">
-
                         <!-- {{profile.FirstName}} {{profile.LastName}} -->
                         <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
                         <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
-
                         <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
-                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
+                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.Email)">
                                 <!-- GetCandidateProfile(profile.ProfileId) -->
                             {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
                         </a>
@@ -155,17 +143,13 @@
           <ng-template #lastelseBlock>
               {{profile.LastName}}
           </ng-template> -->
-
                         <div class="dropdown ">
-
-
                             <div class="tooltip1">
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
-                  </a>
+                                </a>
                                 <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="display: block;">
                                         <li>
-
                                             <a class="email-overflow" href="javascript:void(0)" title="{{profile.Email}}">
                                                 <img src="../../../../../assets/images/email-icon.svg" alt="email" title="{{profile.Email}}"> {{profile.Email}}
                                             </a>

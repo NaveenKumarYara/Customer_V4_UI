@@ -242,7 +242,13 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       return Observable.throw(error.json());
     });
   }
-
+  StartConversation(body) {
+    return this.http.post(environment.StartConversation, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
 
   searchCandidateProfiles(body) {
     return this.http.post(environment.SearchCandidateProfiles, body)
