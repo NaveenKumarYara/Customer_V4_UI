@@ -30,6 +30,8 @@ import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-can
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlickityModule } from 'ngx-flickity';
 import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
+import { SendEmailComponent } from './view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -54,7 +56,7 @@ import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-
   declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,
                   ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,
-                  UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent],
+                  UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })

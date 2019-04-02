@@ -5,6 +5,9 @@ import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Jobstatistics } from '../../models/jobstatistics';
 import { SortbyInProfiles } from '../../models/SortbyInProfiles';
+import { MatDialog } from '@angular/material';
+import { InviteProfiledialogComponent } from './invite-profiledialog/invite-profiledialog.component';
+import { UploadProfilesComponent } from '../upload-profiles/upload-profiles.component';
 declare var $: any;
 // import { ViewjobdetailsCandidateProfileComponent } from '../viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 
@@ -21,8 +24,8 @@ export class FilterViewJobsComponent implements OnInit {
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
   @Input() statusid: number;
-  @Input() displayQuick:number;
-  @Input() Count : Jobstatistics;
+  @Input() displayQuick: number;
+  @Input() Count: Jobstatistics;
   customerId: any;
   userId: any;
   sortByOrder: any;
@@ -36,7 +39,7 @@ export class FilterViewJobsComponent implements OnInit {
   // ];
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
-    private router: Router, private jobdetailsservice: JobdetailsService,
+    private router: Router, private jobdetailsservice: JobdetailsService,  private dialog: MatDialog
    ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
@@ -60,8 +63,7 @@ export class FilterViewJobsComponent implements OnInit {
    this.GetSearchText(null);
   }
 
-  updatesuggestedstatus()
-  {
+  updatesuggestedstatus() {
     this.parentApi.callSuggested();
   }
 
@@ -101,5 +103,38 @@ dislaySortByOptions() {
   ngOnInit() {
   this.dislaySortByOptions();
   }
-
+  OpenInviteProfileDialog() {
+      // if (this.jobStatus !== 'InActive') {
+      const inviteProfiledialogRef = this.dialog.open(InviteProfiledialogComponent,
+        {
+          width: '750',
+          position: {right : '0px'},
+          height : '750px',
+          data: {
+            animal: 'panda'
+          }
+        }
+      );
+      inviteProfiledialogRef.afterClosed().subscribe(result => {
+        console.log('Chatbox Dialog result: ${result}');
+      });
+    // }
+  }
+  OpenUploadProfilesDialog() {
+    // if (this.jobStatus !== 'InActive') {
+    const uploadProfiledialogRef = this.dialog.open(UploadProfilesComponent,
+      {
+        width: '750',
+        position: {right : '0px'},
+        height : '750px',
+        data: {
+          animal: 'panda'
+        }
+      }
+    );
+    uploadProfiledialogRef.afterClosed().subscribe(result => {
+      console.log('Chatbox Dialog result: ${result}');
+    });
+  // }
+}
 }
