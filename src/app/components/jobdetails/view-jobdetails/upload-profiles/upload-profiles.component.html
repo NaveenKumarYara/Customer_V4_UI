@@ -2,26 +2,15 @@
     <p style="font-size: 20px; color: white">Loading...</p>
   </ngx-spinner>
   <div class="">
-      <h3 mat-dialog-title class="modal-title">Manage Profiles </h3>
+      <h3 mat-dialog-title class="modal-title">Upload Profiles</h3>
   </div>
   <mat-dialog-content class="mat-typography" *ngIf="loaddata">
     <!--Tab View-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card manage-uploads clearfix">
-        <ul class="nav nav-tabs">
-          <li role="presentation" class="active">
-            <a data-toggle="tab" href="#uploadProfiles" aria-expanded="false" (click)="Clear()">Upload Profiles</a>
-          </li>
-          <li role="presentation" class="" *ngIf="displayprofiles!=1">
-            <a data-toggle="tab" href="#searchProfiles" aria-expanded="true" (click)="Clear()">Search Profiles</a>
-          </li>
-          <li role="presentation" class="" *ngIf="displayprofiles!=1">
-              <a data-toggle="tab" href="#InviteProfiles" aria-expanded="true" (click)="Clear()">Invite Profile</a>
-            </li>
-          <span class="active-line"></span>
-        </ul>   
+        
         <div class="tab-content">
-          <div id="uploadProfiles" class="tab-pane fade active in">
+          <div id="uploadProfiles" class="tab-pane fade active in w-50">
             <div class="clearfix">&nbsp;</div>
             <h5>Please upload maximum of 5 profiles </h5>
             <div class="file btn btn-lg btn-primary">
@@ -61,211 +50,11 @@
               <p class="lead text-center">Uploaded Profiles will be shown here!</p>
             </div> -->
             <alert></alert>
-            <h3>Uploaded Profiles will be shown here!</h3>
+            <h4>Uploaded Profiles will be shown here!</h4>
             <!--End of Empty View-->
   
           </div>
-          <div id="searchProfiles" class="tab-pane fade searchProfiles card">
-        
-            <!--Search Candidates-->
-            <div class="card-inner">
-              <div class="card-content">
-                <div class="tab-content">
-                   <form #form="ngForm" (ngSubmit)="searchProfile(searchString)"> 
-                  <div id="specialities" class="tab-pane fade active in">
-                   
-                    <div class="input-group">
-                      <input autocomplete="off" name="searchString" type="text" [(ngModel)]="searchString" #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr"  class="form-control"  placeholder="Search here">
-                      <div class="searchList search-p" *ngIf="SearchList.length>0">
-                          <ul class="searchList-dropdown">
-                              <li class="searchList-options" *ngFor="let slist of SearchList"  (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
-                          </ul>
-                      </div>
-                      <span class="input-group-btn">
-                        <button class="btn" type="submit">Search</button>
-                      </span>
-                    </div>
-                    <div class="row">
-                  <div class="col-sm-12 p-19">
-                    <button class="btn s-btn pull-right" type="button" (click)="BulkApplyCandidates()">Submit Selected</button>
-                </div>
-                </div>
-                  <!-- </form> -->
-                    <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-                      <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible">
-                        <!-- <div class="row"> -->
-                          <!-- <div class="col-sm-12 p-19">
-                              <button class="btn s-btn pull-right">Submit Selected</button>
-                          </div> -->
-                          <div class="loader" *ngIf="isFullDisplayed == false">
-                             
-                          </div>
-                            
-                          <ul class="list--filled ulpb-4">
-                          
-                              <!-- <ng-container *ngIf='Count>10'>
-                                  <div class="col-sm-12 p-19">
-                                  <button *ngIf="isFullDisplayed == false" class="btn" (click)="getData()">
-                                    More Profiles
-                                </button>
-                                </div>                    
-                              </ng-container> -->
-                              <ng-container *ngFor="let list of profiles; let i=index">                             
-                              <li class="item li-hover"  *ngIf="list.ProfileTitle!=''">
-                                <div class="hover-h">
-                                <input type="checkbox" (change)="onCheckboxChange(list,$event)"  [(ngModel)]="list.checked" [value]="list.DISCTestId" [checked]="list.checked" id="{{i}}" class="chk" name="list1"/>
-                                <!-- <input type="checkbox" id="{{i}}" [(ngModel)]="disc.checked" [value]="disc.DISCTestId" [checked]="disc.checked" (change)="onCheckboxChange(disc,$event)" class="radio-input"  /> -->
-                              </div>
-                              <div class="hover-h">
-                                <img src="{{list?.ProfilePic}}" width="50px" height="50px" class="rounded-circle p8" />
-                              </div>
-                              <div class="bl-1">
-                                  <span>{{list?.FirstName}}</span>
-                                  <span>{{list?.ProfileTitle| slice:0:30}}</span>
-                                  <span>{{TotalExperience}} yrs</span>
-                              </div>
-                              <span class="ml-auto hover-h">
-                                <button class="btn">Submit</button>
-                              </span>
-                         
-                                
-                              </li>
-                             
-                            </ng-container>
-                            
-                            <ng-container *ngIf="Count==0">
-                              <p class="text-center">No Profiles Found!!</p>
-                            </ng-container>
-
-                            <div class="load-more btn btn-border btn-block mt-10">
-                                Load More
-                            </div>
-                            <div style="height:15rem;"></div> 
-                                
-                            </ul>
-  
-  
-                          
-                        <!-- </div>   -->
-                       
-                        
-                      </div>
-                      <!-- <div class="scroll-element scroll-x scroll-scrolly_visible">
-                        <div class="scroll-element_outer">
-                          <div class="scroll-element_size"></div>
-                          <div class="scroll-element_track"></div>
-                          <div class="scroll-bar" style="width: 0px;"></div>
-                        </div>
-                      </div>
-                      <div class="scroll-element scroll-y scroll-scrolly_visible">
-                        <div class="scroll-element_outer">
-                          <div class="scroll-element_size"></div>
-                          <div class="scroll-element_track"></div>
-                          <div class="scroll-bar" style="height: 281px; top: 0px;"></div>
-                        </div>
-                      </div> -->
-                    </div>
-                  </div>
-                 </form>
-                  <!-- <div id="companyTech" class="tab-pane fade">
-                    <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-                      <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
-                        <h3>Menu 1</h3>
-                        <p>Some content in menu 1.</p>
-                      </div>
-                      <div class="scroll-element scroll-x">
-                        <div class="scroll-element_outer">
-                          <div class="scroll-element_size"></div>
-                          <div class="scroll-element_track"></div>
-                          <div class="scroll-bar" style="width: 0px;"></div>
-                        </div>
-                      </div>
-                      <div class="scroll-element scroll-y">
-                        <div class="scroll-element_outer">
-                          <div class="scroll-element_size"></div>
-                          <div class="scroll-element_track"></div>
-                          <div class="scroll-bar" style="height: 0px;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-  
-            <!--End-->
-          </div>
-          <div id="InviteProfiles" class="tab-pane fade searchProfiles card">
-              <!--Search Candidates-->
-              <div class="card-inner">
-                <div class="card-content">
-                  <div class="tab-content">
-                    <div id="specialities" class="tab-pane fade active in">
-                      <div >
-                        <div class="tab-inner">
-                            <form action="">
-                                <div class="input-group">
-                                  <div>
-                                    <input id="Email" type="text" class="form-control" name="benefits"
-                                      placeholder="Email" (keypress)="Clear()" (keyup)="Clear()">
-                                  </div>
-                                  <span class="input-group-btn">
-                                      <button class="btn" (click)="CheckEmail()">Submit</button>
-                                    </span>
-                                </div>
-  
-                                <!-- <div class="form-group">
-                                  <label for="">Comments</label>
-                                  <textarea type="text" class="form-control" rows="3" placeholder="Please add your comments"></textarea>
-                                </div> -->
-                              </form>
-                              <alert></alert>
-                        </div>
-                        <div class="scroll-element scroll-x scroll-scrolly_visible">
-                          <div class="scroll-element_outer">
-                            <div class="scroll-element_size"></div>
-                            <div class="scroll-element_track"></div>
-                            <div class="scroll-bar" style="width: 0px;"></div>
-                          </div>
-                        </div>
-                        <div class="scroll-element scroll-y scroll-scrolly_visible">
-                          <div class="scroll-element_outer">
-                            <div class="scroll-element_size"></div>
-                            <div class="scroll-element_track"></div>
-                            <div class="scroll-bar" style="height: 281px; top: 0px;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="companyTech" class="tab-pane fade">
-                      <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-                        <div class="tab-inner scrollbar-inner scroll-content" style="height: 420px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
-                          <h3>Menu 1</h3>
-                          <p>Some content in menu 1.</p>
-                        </div>
-                        <div class="scroll-element scroll-x">
-                          <div class="scroll-element_outer">
-                            <div class="scroll-element_size"></div>
-                            <div class="scroll-element_track"></div>
-                            <div class="scroll-bar" style="width: 0px;"></div>
-                          </div>
-                        </div>
-                        <div class="scroll-element scroll-y">
-                          <div class="scroll-element_outer">
-                            <div class="scroll-element_size"></div>
-                            <div class="scroll-element_track"></div>
-                            <div class="scroll-bar" style="height: 0px;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-    
-              <!--End-->
-            </div>
-       
+         
         </div>
         <!-- .tab-content -->
       </div>

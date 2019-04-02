@@ -428,7 +428,9 @@ margin-bottom: 2rem;
 width: 85%;
 top: 50px;
 }
-
+.w-50{
+  width: 50vw;
+}
 
 
 
