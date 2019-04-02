@@ -169,7 +169,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(emailId) {
+  OpenCandidateDialog(profileId) {
     // if (this.jobStatus!='InActive') {
       const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
         {
@@ -177,7 +177,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           position: {right : '0px'},
           height : '750px',
           data: {
-            EmailId: emailId,
+            ProfileId: profileId,
             jobId: this.jobid,
             // status : this.statusid
           }
@@ -190,7 +190,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
     // }
   }
-  OpenSendEmailDialog(profileId) {
+  OpenSendEmailDialog(emailId) {
     // if (this.jobStatus!='InActive') {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
         {
@@ -198,7 +198,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           position: {right : '0px'},
           height : '750px',
           data: {
-            ProfileId: profileId,
+            EmailId: emailId,
             jobId: this.jobid,
             // status : this.statusid
           }
