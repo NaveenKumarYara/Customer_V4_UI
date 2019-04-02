@@ -172,6 +172,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // if (this.jobStatus!='InActive') {
       const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
         {
+          width: '750',
+          position: {right : '0px'},
+          height : '750px',
           data: {
             ProfileId: profileId,
             jobId: this.jobid,

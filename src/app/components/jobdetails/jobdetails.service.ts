@@ -23,6 +23,7 @@ import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
 import {ProfileLinks} from './models/ProfileLinks';
 import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
+import { SortbyInProfiles } from './models/SortbyInProfiles';
 
 @Injectable()
 export class JobdetailsService {
@@ -76,6 +77,13 @@ export class JobdetailsService {
         );
    }
 
+  getSortByOption() {
+    const url = environment.profilesSortBy;
+    return this.http.post(url, null).map((res: Response) => res)
+        .catch(
+            this.handleError
+        );
+   }
    getInterViewTypes(): Observable<ScheduleType[]> {
     const url = environment.interviewtypeendpoint;
     return this.http.get<string[]>(url)
