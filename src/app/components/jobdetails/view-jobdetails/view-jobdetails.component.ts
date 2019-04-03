@@ -42,6 +42,9 @@ export class ViewJobdetailsComponent implements OnInit {
   statistics: number;
   closedjob: any;
   exp: any;
+  uploaded:any;
+  suggested:any;
+  wishlist:any;
   location: any;
   domain: any;
   customerId: any;
@@ -175,7 +178,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profilecount = 6;
     if (this.jobstatistics.AllCandidates > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
-      this.sortBy, this.viewBy,this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
     this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -192,7 +195,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.PopulateJobdetailProfiles();
     if (this.jobstatistics.Suggested > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
-      this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded,this.suggested,this.wishlist,6);
     this.loadMore = this.jobstatistics.Suggested > 6 ? true : false;
   } else {
     // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
@@ -213,7 +216,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // console.log(this.jobid);
     if (this.jobstatistics.Applied > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
-      this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
    } else {
     this.loadMore = false;
@@ -229,7 +232,7 @@ export class ViewJobdetailsComponent implements OnInit {
    this.profilecount = 6;
      if (this.jobstatistics.ShortListed > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.ShortListed,
-      this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
     this.loadMore =  this.jobstatistics.ShortListed > 6 ? true : false;
 
    } else {
@@ -246,7 +249,7 @@ export class ViewJobdetailsComponent implements OnInit {
   this.profilecount = 6;
   if (this.jobstatistics.Screening > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Screening,
-      this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
     this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -262,7 +265,7 @@ export class ViewJobdetailsComponent implements OnInit {
   this.profilecount = 6;
   if (this.jobstatistics.Interviewed > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Interviewed,
-      this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
     this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
 
   } else {
@@ -279,7 +282,7 @@ export class ViewJobdetailsComponent implements OnInit {
    this.profilecount = 6;
    if (this.jobstatistics.Hired > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Hired,
-      this.sortBy, this.viewBy,this.searchString, this.exp, this.location, this.domain, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
     this.loadMore =  this.jobstatistics.Hired > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -295,7 +298,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profilecount = 6;
     if (this.jobstatistics.RejectedORWithdrawn > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.RejectedORWithdrawn,
-       this.sortBy, this.viewBy,this.searchString, this.exp, this.location, this.domain, 6);
+       this.sortBy,this.searchString, this.exp, this.location, this.domain, this.uploaded,this.suggested,this.wishlist,6);
     this.loadMore =  this.jobstatistics.RejectedORWithdrawn > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -329,7 +332,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profileLoader = true;
     this.jobdetailsservice.updateprofileCount(this.profilecount);
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,
-       this.sortBy,this.viewBy, this.searchString, this.exp, this.location, this.domain, this.profilecount);
+       this.sortBy,this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, this.profilecount);
     this.loader();
    }
    loader() {
@@ -368,7 +371,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.loadMore = false;
     }  else { // if (value === true) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,
-      this.jobstatistics.Applied, 1,this.viewBy, this.searchString, this.exp, this.location, this.domain, this.profilecount);
+      this.jobstatistics.Applied, 1, this.searchString, this.exp, this.location, this.domain, this.uploaded,this.suggested,this.wishlist,this.profilecount);
    }
   }
   changeJobStatus(job, val) {
@@ -435,7 +438,7 @@ export class ViewJobdetailsComponent implements OnInit {
           this.statistics = this.jobstatistics.Suggested; }
           this.loadMore = this.statistics > 6 ? true : false;
        // this.parentMethod(name);
-        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.viewBy,this.searchString, this.exp, this.location, this.domain, this.profilecount);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, this.profilecount);
       },
       callfilterMethod : (exp, location, domain) => {  if (this.statusid === 4) {
         this.sortBy = 1;
@@ -454,7 +457,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.viewBy,this.searchString, exp, location, domain, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString, exp, location, domain,this.uploaded,this.suggested,this.wishlist, this.profilecount);
      },
       callSearchMethod : (searchString) => {
         this.exp = 0;
@@ -475,13 +478,13 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.viewBy,searchString, this.exp, this.location, this.domain, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, this.profilecount);
       },
       callSuggested:()=>
       {
         this.openCandidateUploadDialog();
       },
-      CallViewBy:(viewBy) =>
+      CallViewBy:(uploaded,suggested,wishlist) =>
       {
         this.sortBy = 0;
         this.searchString = '';
@@ -503,7 +506,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.sortBy,viewBy, this.searchString, this.exp, this.location, this.domain, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.sortBy, this.searchString, this.exp, this.location, this.domain,uploaded,suggested,wishlist, this.profilecount);
       }
     };
     
@@ -516,5 +519,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested:()=>void;
-  CallViewBy:(string) => void;
+  CallViewBy:(uploaded,suggested,wishlist) => void;
 }

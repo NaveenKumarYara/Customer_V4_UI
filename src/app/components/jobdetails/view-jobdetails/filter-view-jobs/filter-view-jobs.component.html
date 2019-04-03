@@ -34,20 +34,20 @@
                 <div class="options">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="contract-duration" value="">
-                            <span class="box"  (click)="viewby(2)">Uploaded ({{Count?.Uploaded||0}})</span>
+                            <input type="checkbox" name="contract-duration" (change)="viewby(2, $event.target.checked)">
+                            <span class="box">Uploaded ({{Count?.Uploaded||0}})</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="contract-duration" value="">
-                                <span class="box" (click)="viewby(3)">Suggested ({{Count?.Suggested||0}})</span>
+                            <input type="checkbox" name="contract-duration" (change)="viewby(3, $event.target.checked)">
+                                <span class="box">Suggested ({{Count?.Suggested||0}})</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="contract-duration" value="">
-                            <span class="box" (click)="viewby(1)">Wishlisted ({{Count?.Wishlist||0}})</span>
+                            <input type="checkbox" name="contract-duration" (change)="viewby(1, $event.target.checked)">
+                            <span class="box">Wishlisted ({{Count?.Wishlist||0}})</span>
                         </label>
                     </div>
                 </div>

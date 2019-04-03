@@ -89,29 +89,42 @@ export class FilterViewJobsComponent implements OnInit {
 
  }
 
- viewby(value)
+ viewby(value, isChecked: boolean)
  {
   if(value === 1)
   {
-    this.wishlist = 1;
-    this.uploaded = 0;
-    this.suggested = 0;
+    if(isChecked)
+    {
+      this.wishlist = 1;
+    }
+    else
+    {
+      this.wishlist = 0;
+    }  
   }
   else if (value === 2)
   {
-    this.uploaded = 2;
-    this.suggested = 0;
-    this.wishlist = 0;
+    if(isChecked)
+    {
+      this.uploaded = 1;
+    }
+    else
+    {
+      this.uploaded = 0;
+    } 
   }
   else if (value === 3)
   {
-     this.suggested = 3;
-     this.uploaded = 0;
-     this.wishlist = 0;
+    if(isChecked)
+    {
+      this.suggested = 1;
+    }
+    else
+    {
+      this.suggested = 0;
+    }     
   }
-  this.view = this.uploaded+','+this.suggested+','+this.wishlist;
-  debugger
-  this.parentApi.CallViewBy(this.view);
+  this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist);
  }
 dislaySortByOptions() {
   this.jobdetailsservice.getSortByOption().subscribe(x => this.sortByOrder = x);
