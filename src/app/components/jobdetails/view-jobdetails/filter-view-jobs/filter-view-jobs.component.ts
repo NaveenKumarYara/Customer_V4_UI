@@ -20,6 +20,8 @@ declare var $: any;
 export class FilterViewJobsComponent implements OnInit {
   ViewBy: number ;
   searchString: any;
+  uploaded:any;
+  view :any;
   SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
@@ -28,6 +30,8 @@ export class FilterViewJobsComponent implements OnInit {
   @Input() Count: Jobstatistics;
   customerId: any;
   userId: any;
+  suggested:any;
+  wishlist:any;
   sortByOrder: any;
   @Input() parentApi: ParentComponentApi;
   // selectedCountry:Country = new Country(2, 'India');
@@ -56,6 +60,7 @@ export class FilterViewJobsComponent implements OnInit {
     this.jobdetailsservice.updateDetailsAdvanceSearch(this.showdetailssearch);
   }
 
+
   search(val) {
    this.searchString = val;
    this.parentApi.callSearchMethod(this.searchString);
@@ -82,6 +87,31 @@ export class FilterViewJobsComponent implements OnInit {
          this.SearchList = [];
         });
 
+ }
+
+ viewby(value)
+ {
+  if(value === 1)
+  {
+    this.wishlist = 1;
+    this.uploaded = 0;
+    this.suggested = 0;
+  }
+  else if (value === 2)
+  {
+    this.uploaded = 2;
+    this.suggested = 0;
+    this.wishlist = 0;
+  }
+  else if (value === 3)
+  {
+     this.suggested = 3;
+     this.uploaded = 0;
+     this.wishlist = 0;
+  }
+  this.view = this.uploaded+','+this.suggested+','+this.wishlist;
+  debugger
+  this.parentApi.CallViewBy(this.view);
  }
 dislaySortByOptions() {
   this.jobdetailsservice.getSortByOption().subscribe(x => this.sortByOrder = x);

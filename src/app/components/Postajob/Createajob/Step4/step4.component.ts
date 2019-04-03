@@ -230,9 +230,9 @@ export class Step4Component implements OnInit {
       if (data) {
         // this.insertJob.JobId = data;
         // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-        localStorage.removeItem('draftItem');
+        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');       
         this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        localStorage.removeItem('draftItem');
       }
     });
   }
