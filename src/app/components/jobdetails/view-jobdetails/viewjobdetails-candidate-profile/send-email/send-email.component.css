@@ -527,3 +527,9 @@ textarea.form-control{
 .notification-list li:not(:last-of-type) {
     border-bottom: 1px solid #E5E6EB;
 }
+.w-100{
+  width: 100%;
+}
+.p-rel{
+  position: relative;
+}
