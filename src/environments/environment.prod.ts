@@ -116,6 +116,7 @@ export const environment = {
     DeleteCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerDepartments?',
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',
+    StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/StartConversation',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
 bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
