@@ -478,7 +478,7 @@ export class ViewJobdetailsComponent implements OnInit {
       },
       callSuggested:()=>
       {
-        this.updatesuggestedstatus();
+        this.openCandidateUploadDialog();
       }
     };
     

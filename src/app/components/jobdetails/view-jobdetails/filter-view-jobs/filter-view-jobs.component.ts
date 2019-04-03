@@ -63,7 +63,7 @@ export class FilterViewJobsComponent implements OnInit {
    this.GetSearchText(null);
   }
 
-  updatesuggestedstatus() {
+  updatestatus() {
     this.parentApi.callSuggested();
   }
 
@@ -122,8 +122,6 @@ dislaySortByOptions() {
   }
   OpenUploadProfilesDialog() {
     // if (this.jobStatus !== 'InActive') {
-      let val = 1;
-      localStorage.setItem('DisplayUpload', JSON.stringify(val));
     const uploadProfiledialogRef = this.dialog.open(UploadProfilesComponent,
       {
         width: '750',
