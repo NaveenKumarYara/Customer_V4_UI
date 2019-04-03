@@ -1,6 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsService } from '../../../jobdetails.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -11,23 +13,48 @@ export interface DialogData {
 })
 export class SendEmailComponent implements OnInit {
 conversation = new  StartConversation();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,private jobdetailsservice: JobdetailsService) { 
+    this.toastr.setRootViewContainerRef(_vcr);
+  }
 subject: string;
+ToEmailID:string;
+mailbox:any=false;
 body: string;
   ngOnInit() {
+  this.mailbox = false;
   this.body = 'We really appreciate your participation. But unfortunately, your profile has not matched our criteria with few skills. I suggest you to update skills which might enhance your skills.';
   this.subject = 'Need more profiles to get shortlisted';
   }
 sendEmail() {
-  this.conversation.FullName = this.data.EmailId;
+  debugger
+  this.conversation.FullName = this.data.firstname + this.data.lastname;
   this.conversation.Subject = this.subject;
   this.conversation.Body = this.body;
   // this.conversation.FromID=
-  this.conversation.ToEmailID = this.data.EmailId;
+  this.conversation.ToEmailID = this.ToEmailID;
   this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
-    if (data === 0) {}});
+    if (data === 0) {
+      this.toastr.success('Mail Sent', 'Success');
+      setTimeout(() => {
+       this.toastr.dismissToast;
+   }, 3000);
+      this.conversation.FullName = '';
+      this.conversation.Subject = '';
+      this.conversation.Body = '';
+      this.conversation.ToEmailID = '';
+      this.mailbox = false;
+    }
+  }
+    );
+}
+
+EditMail()
+{
+  this.ToEmailID = this.data.EmailId;
+  this.mailbox = true;
 }
 }
+
 export class StartConversation {
   // userId: number;
   // jobId: number;

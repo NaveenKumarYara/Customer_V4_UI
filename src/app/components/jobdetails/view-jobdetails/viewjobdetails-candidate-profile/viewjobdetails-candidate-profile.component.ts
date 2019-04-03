@@ -190,7 +190,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
     // }
   }
-  OpenSendEmailDialog(emailId) {
+  OpenSendEmailDialog(emailId,firstname,lastname) {
     // if (this.jobStatus!='InActive') {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
         {
@@ -200,6 +200,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           data: {
             EmailId: emailId,
             jobId: this.jobid,
+            firstname: firstname,
+            lastname:lastname
             // status : this.statusid
           }
         }
