@@ -41,6 +41,7 @@ export class ViewJobdetailsComponent implements OnInit {
   joblocation: any;
   wishlistCount : WishlistCount;
   jobstatistics: Jobstatistics;
+  wishsort:0;
   statistics: number;
   closedjob: any;
   exp: any;
@@ -508,13 +509,13 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         this.openCandidateUploadDialog();
       },
-      CallViewBy:(uploaded,suggested,wishlist,count) =>
+      CallViewBy:(uploaded,suggested,wishlist,sortBy,count) =>
       {
         this.searchString = '';
         this.exp = 0;
         this.domain = 0;
         this.location = '';
-      
+        this.wishsort = sortBy;
        if (this.statusid === 4) {
         // this.statistics=this.jobstatistics.Applied;
         this.statistics = this.jobstatistics.Applied;
@@ -534,7 +535,7 @@ export class ViewJobdetailsComponent implements OnInit {
       }    
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.sortBy, this.searchString, this.exp, this.location, this.domain,uploaded,suggested,wishlist, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.wishsort, this.searchString, this.exp, this.location, this.domain,uploaded,suggested,wishlist, this.profilecount);
       }
     };
     
@@ -547,5 +548,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested:()=>void;
-  CallViewBy:(uploaded,suggested,wishlist,count) => void; 
+  CallViewBy:(uploaded,suggested,wishlist,sortBy,count) => void; 
 }

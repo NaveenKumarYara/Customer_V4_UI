@@ -35,6 +35,7 @@ export class FilterViewJobsComponent implements OnInit {
   customerId: any;
   userId: any;
   suggested:any;
+  sortBy:any;
   wishlist:any;
   sortByOrder: any;
   @Input() parentApi: ParentComponentApi;
@@ -130,11 +131,11 @@ export class FilterViewJobsComponent implements OnInit {
   }
   if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
   {
-    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,count);
+    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,count);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,0);
+    this.parentApi.CallViewBy(0,0,0,0,0);
   }
  
  }
@@ -155,6 +156,7 @@ dislaySortByOptions() {
    this.search(val);
  }
   changeViewby(sortBy) {
+    this.sortBy = sortBy;
     // this.viewdetailscand.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, sortBy.target.value);
     this.parentApi.callParentMethod(sortBy);
   }

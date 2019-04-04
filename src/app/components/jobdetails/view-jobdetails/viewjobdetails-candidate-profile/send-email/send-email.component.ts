@@ -22,11 +22,10 @@ mailbox:any=false;
 body: string;
   ngOnInit() {
   this.mailbox = false;
-  this.body = 'We really appreciate your participation. But unfortunately, your profile has not matched our criteria with few skills. I suggest you to update skills which might enhance your skills.';
-  this.subject = 'Need more profiles to get shortlisted';
+  this.body = 'Join hands with us and make your goals achieved!.';
+  this.subject = 'Please submit the consent';
   }
 sendEmail() {
-  debugger
   this.conversation.FullName = this.data.firstname + this.data.lastname;
   this.conversation.Subject = this.subject;
   this.conversation.Body = this.body;
