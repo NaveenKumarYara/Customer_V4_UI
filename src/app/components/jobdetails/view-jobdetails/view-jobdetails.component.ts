@@ -446,27 +446,8 @@ export class ViewJobdetailsComponent implements OnInit {
 
   getParentApi(): ParentComponentApi {
     return {
-      callParentMethod: (sortBy) => {
-        this.sortBy = sortBy;
-        if (this.statusid === 4) {
-          // this.statistics=this.jobstatistics.Applied;
-          this.statistics = this.jobstatistics.Applied;
-         }   else if (this.statusid === 5) {
-          this.statistics = this.jobstatistics.ShortListed;
-         } else if (this.statusid === 7) {
-          this.statistics = this.jobstatistics.Interviewed;
-         } else if (this.statusid === 11) {
-          this.statistics = this.jobstatistics.Hired;
-         } else if (this.statusid === 6) {
-          this.statistics = this.jobstatistics.RejectedORWithdrawn;
-        } else if (this.statusid === 15) {
-          this.statistics = this.jobstatistics.Suggested; }
-          this.loadMore = this.statistics > 6 ? true : false;
-       // this.parentMethod(name);
-        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy,this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, this.profilecount);
-      },
       callfilterMethod : (exp, location, domain) => {  if (this.statusid === 4) {
-        this.sortBy = 1;
+        this.sortBy = 0;
         this.searchString = '';
         // this.statistics=this.jobstatistics.Applied;
         this.statistics = this.jobstatistics.Applied;
@@ -509,8 +490,9 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         this.openCandidateUploadDialog();
       },
-      CallViewBy:(uploaded,suggested,wishlist,sortBy,count) =>
+      CallViewBy:(uploaded,suggested,wishlist,count,sortBy) =>
       {
+        debugger
         this.searchString = '';
         this.exp = 0;
         this.domain = 0;
@@ -544,7 +526,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
 }
 export interface ParentComponentApi {
-  callParentMethod: (number) => void;
+  //callParentMethod: (number) => void;
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested:()=>void;

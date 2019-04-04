@@ -21,7 +21,7 @@
                         <option value="4">Uploaded By Customer</option>
                         <option value="5">Applied By Candidate</option>
                     </select> -->
-                    <select name="view" id="view" class="styled-select-box"  [(ngModel)]="ViewBy" (change)="changeViewby($event.target.value)">
+                    <select name="view" id="view" class="styled-select-box"  [(ngModel)]="ViewBy" (change)="viewby(0, $event.target.checked,Count?.Uploaded,$event.target.value)">
                       <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}}>
                         {{sortyBy.SortBy}}
                       </option>
