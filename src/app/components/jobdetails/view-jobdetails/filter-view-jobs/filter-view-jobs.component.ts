@@ -94,7 +94,7 @@ export class FilterViewJobsComponent implements OnInit {
 
  }
 
- viewby(value, isChecked: boolean,count,sortBy)
+ viewby(value, isChecked: boolean,sortBy)
  {
    if(sortBy>0)
    {
@@ -135,11 +135,11 @@ export class FilterViewJobsComponent implements OnInit {
   }
   if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
   {
-    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,count,this.sortBy);
+    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,0,this.sortBy);
+    this.parentApi.CallViewBy(0,0,0,this.sortBy);
   }
  
  }

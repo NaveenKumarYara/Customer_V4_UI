@@ -490,31 +490,23 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         this.openCandidateUploadDialog();
       },
-      CallViewBy:(uploaded,suggested,wishlist,count,sortBy) =>
+      CallViewBy:(uploaded,suggested,wishlist,sortBy) =>
       {
-        debugger
         this.searchString = '';
         this.exp = 0;
         this.domain = 0;
         this.location = '';
         this.wishsort = sortBy;
-       if (this.statusid === 4) {
-        // this.statistics=this.jobstatistics.Applied;
-        this.statistics = this.jobstatistics.Applied;
-       }   else if (this.statusid === 5) {
-        this.statistics = this.jobstatistics.ShortListed;
-       } else if (this.statusid === 7) {
+        if (this.statusid === 4) {
+          this.statistics = this.jobstatistics.Applied;
+         } else if (this.statusid === 7) {
         this.statistics = this.jobstatistics.Interviewed;
        } else if (this.statusid === 11) {
         this.statistics = this.jobstatistics.Hired;
        } else if (this.statusid === 6) {
         this.statistics = this.jobstatistics.RejectedORWithdrawn;
       } else if (this.statusid === 15) {
-        this.statistics = this.jobstatistics.Suggested; }
-      else if(count>0)
-      {     
-        this.statistics = count;
-      }    
+        this.statistics = this.jobstatistics.Suggested; }   
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,this.wishsort, this.searchString, this.exp, this.location, this.domain,uploaded,suggested,wishlist, this.profilecount);
@@ -530,5 +522,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested:()=>void;
-  CallViewBy:(uploaded,suggested,wishlist,sortBy,count) => void; 
+  CallViewBy:(uploaded,suggested,wishlist,sortBy) => void; 
 }
