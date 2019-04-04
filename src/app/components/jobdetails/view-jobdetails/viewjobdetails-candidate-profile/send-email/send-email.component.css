@@ -569,3 +569,7 @@ input[type="text"].form-control {
   color: #6A7E9C;
   font-weight: 500;
 }
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #ffffff26;
+  opacity: 1;
+}
