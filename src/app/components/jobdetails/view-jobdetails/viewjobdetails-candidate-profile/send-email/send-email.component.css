@@ -431,6 +431,12 @@
   .pt-2{
       padding-top: 2rem;
   }
+  .pt-1{
+    padding-top: 1rem;
+}
+.ml-2{
+  margin-left: 2rem;
+}
   .pb-2{
     padding-bottom: 2rem;
 }
@@ -532,4 +538,34 @@ textarea.form-control{
 }
 .p-rel{
   position: relative;
+}
+input[type="text"].form-control {
+   color: #9EABC0 !important ;
+}
+
+.mail-con{
+  font-size: 14px;
+}
+
+.mail-sub{
+  padding: 10px 0px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+.mail-body p{
+  font-size: 12px;
+}
+.mt-8px{
+  margin-top: 2px;
+}
+.mail-label{
+  font-size: 12px;
+  color: #6A7E9C;
+  font-weight: 500;
 }
