@@ -204,7 +204,13 @@ export class Step4Component implements OnInit {
      }
     // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
     // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
-    this.insertJob.IsDrafted = false;
+    // this.insertJob.IsDrafted = true;
+    if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+      this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+   // this.insertJob.StepNumber = 4;
+    } else {
+        this.insertJob.IsDrafted = true;
+    }
     this.insertJob.StepNumber = 4;
     // }
   //   else {
@@ -230,9 +236,9 @@ export class Step4Component implements OnInit {
       if (data) {
         // this.insertJob.JobId = data;
         // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');       
-        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
         localStorage.removeItem('draftItem');
+        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });
   }
