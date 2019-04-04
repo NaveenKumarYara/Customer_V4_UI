@@ -2649,3 +2649,13 @@ button.close {
     line-height: 1;
     color: #9eabc0;
 }
+
+.progress-bar{
+   background-color:  #879ab7;
+}
+.mb-22{
+    margin-bottom: 22px;
+}
+.pl-0{
+    padding-left:0px;
+}
