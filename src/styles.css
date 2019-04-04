@@ -22376,3 +22376,6 @@ input.dnone:checked~i.checked{
     width:20px;
     height: 20px;
 }
+body *{
+    outline: none;
+}
