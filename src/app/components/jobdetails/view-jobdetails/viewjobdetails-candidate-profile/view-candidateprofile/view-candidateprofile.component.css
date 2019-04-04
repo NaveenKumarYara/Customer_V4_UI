@@ -1930,7 +1930,7 @@
 }
 
 .summary-view .profile-pic-lg {
-    width: 282px;
+    width: 124px;
     max-width: 100%;
     border: 2px solid #e0e3ec;
     border-radius: 100%;
@@ -2658,4 +2658,150 @@ button.close {
 }
 .pl-0{
     padding-left:0px;
+}
+.summary-view .left h2{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px; 
+    margin-top: 0;
+}
+.summary-view .left p{
+    font-size: 12px;
+}
+.summary-view .left .divider{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.summary-view .section-title{
+    font-size: 18px;
+}
+.summary-view .timeline .date{
+    font-size: 15px;
+}
+.summary-view .timeline .details .title{
+    font-size: 15px;
+}
+
+.summary-view .timeline .info .name{
+    font-size: 15px;
+}
+
+.summary-view .timeline .info .meta{
+    font-size: 15px;
+}
+.summary-view .personal-skills .skills {
+    padding-top: 0;
+}
+.skills {
+    position: relative;
+}
+.personal-skills .skills .letter {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 13px 0;
+    font-weight: 600;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #ffb503;
+}
+.personal-skills .skills .text{
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 100px);
+    padding-left: 20px;
+}
+.summary-view .personal-skills .skills .text .title{
+    font-size: 22px;
+    font-weight: 500;
+}
+.summary-view .personal-skills .skills .text p{
+    font-size: 15px;
+    color: #6a7e9c !important;
+}
+.cert-card {
+    position: relative;
+    border: 1px solid #e0e3ec;
+    border-radius: 4px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cert-card .settings-dot {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.settings-dot {
+    display: inline-block;
+    cursor: pointer;
+}
+.settings-dot span:not(:last-of-type) {
+    margin-right: 4px;
+}
+
+.settings-dot span {
+    display: inline-block;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: #b6c2d6;
+}
+.cert-card .logo {
+    flex: 0.67;
+    padding: 20px 10px;
+    border: 1px solid #e0e3ec;
+    border-radius: 4px;
+}
+.cert-card .logo img {
+    max-width: 100%;
+}
+.cert-card .info {
+    flex: none;
+    padding-left: 20px;
+}
+.cert-card .title {
+    font-size: 15px;
+    color: #6a7e9c;
+    margin-top: 0;
+}
+.cert-card .year {
+    font-size: 12px;
+    color: #9eabc0;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+
+.close:focus, .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+    outline: none;
+}
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    outline: none;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
 }
