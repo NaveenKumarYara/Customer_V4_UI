@@ -4,7 +4,7 @@ import { JobdetailsService } from '../../jobdetails.service';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Jobstatistics } from '../../models/jobstatistics';
-import { SortbyInProfiles } from '../../models/SortbyInProfiles';
+import {WishlistCount} from '../../models/WishlistCount';
 import { MatDialog } from '@angular/material';
 import { InviteProfiledialogComponent } from './invite-profiledialog/invite-profiledialog.component';
 import { UploadProfilesComponent } from '../upload-profiles/upload-profiles.component';
@@ -27,7 +27,8 @@ export class FilterViewJobsComponent implements OnInit {
   @Input() jobid: number;
   @Input() statusid: number;
   @Input() displayQuick: number;
-  @Input() Count: Jobstatistics;
+  @Input() Count: WishlistCount;
+  count:number;
   customerId: any;
   userId: any;
   suggested:any;
@@ -89,13 +90,14 @@ export class FilterViewJobsComponent implements OnInit {
 
  }
 
- viewby(value, isChecked: boolean)
+ viewby(value, isChecked: boolean,count)
  {
   if(value === 1)
   {
     if(isChecked)
     {
       this.wishlist = 1;
+      this.count = count;
     }
     else
     {
@@ -107,6 +109,7 @@ export class FilterViewJobsComponent implements OnInit {
     if(isChecked)
     {
       this.uploaded = 1;
+      this.count= count;
     }
     else
     {
@@ -118,14 +121,26 @@ export class FilterViewJobsComponent implements OnInit {
     if(isChecked)
     {
       this.suggested = 1;
+      this.count= count;
     }
     else
     {
       this.suggested = 0;
     }     
   }
-  this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist);
+  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
+  {
+    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,count);
+  }
+  else
+  {
+    this.parentApi.CallViewBy(0,0,0,0);
+  }
+ 
  }
+
+
+
 dislaySortByOptions() {
   this.jobdetailsservice.getSortByOption().subscribe(x => this.sortByOrder = x);
 }

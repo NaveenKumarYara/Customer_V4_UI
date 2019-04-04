@@ -24,6 +24,7 @@ import {ProfileLinks} from './models/ProfileLinks';
 import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SortbyInProfiles } from './models/SortbyInProfiles';
+import {WishlistCount} from './models/WishlistCount';
 
 @Injectable()
 export class JobdetailsService {
@@ -148,6 +149,16 @@ export class JobdetailsService {
   getJobDetailsStatisticsInfo(customerId: number, jobId: number): Observable<Jobstatistics> {
     const url = environment.JobdetailsStatisticsEndpoint + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<Jobstatistics>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getWishListCount(customerId: number, jobId: number,statusId:number): Observable<WishlistCount> {
+    debugger
+    const url = environment.WishlistCount+ 'customerId=' + customerId + '&jobId=' + jobId + '&statusId=' + statusId;
+    return this.http.get<WishlistCount>(url)
       .debounceTime(1000)
       .catch(
         this.handleError

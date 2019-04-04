@@ -119,7 +119,8 @@ export const environment = {
     StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/StartConversation',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
-bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
+    bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
+
     // END URLS
 
     /// DEMO URLS
