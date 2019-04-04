@@ -120,7 +120,7 @@ export const environment = {
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
     bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
-
+    WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?'
     // END URLS
 
     /// DEMO URLS

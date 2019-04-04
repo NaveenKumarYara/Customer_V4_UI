@@ -156,7 +156,6 @@ export class JobdetailsService {
   }
 
   getWishListCount(customerId: number, jobId: number,statusId:number): Observable<WishlistCount> {
-    debugger
     const url = environment.WishlistCount+ 'customerId=' + customerId + '&jobId=' + jobId + '&statusId=' + statusId;
     return this.http.get<WishlistCount>(url)
       .debounceTime(1000)
