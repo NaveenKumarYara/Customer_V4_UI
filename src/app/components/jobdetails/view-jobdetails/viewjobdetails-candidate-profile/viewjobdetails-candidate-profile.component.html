@@ -32,20 +32,20 @@
                 </ng-template>
             </div>
             <div class="candidate-info">
-                <ng-container *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else Block">
-                    <img *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null;" src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}" width="66" height="66">
+                <ng-container *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null; else Block">
+                    <img *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null;" src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}" width="66" height="66">
                 </ng-container>
                 <ng-template #Block>
                     <img src={{profile.ProfilePic}} alt="" width="66" height="66">
                 </ng-template>
-                <ng-container *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstBlock">
+                <ng-container *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstBlock">
                     <h1 class="title">
 
                         <!-- {{profile.FirstName}} {{profile.LastName}} -->
                         <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
                         <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
 
-                        <div class="upgrade-pitch-text" *ngIf="(profile?.ResponseStatusId <= 5 && profile?.ResponseStatusId > 0)&& profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
+                        <div class="upgrade-pitch-text" *ngIf="(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.ResponseStatusId > 0 )&& profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
                             <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
@@ -130,7 +130,7 @@
                         <!-- {{profile.FirstName}} {{profile.LastName}} -->
                         <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
                         <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
-                        <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
+                        <div class="upgrade-pitch-text" *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null; else firstelseBlock">
                             {{profile.FirstName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
                             <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <div class="candidate-status">
-                 <ng-container *ngIf="profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
+                 <ng-container *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
                     <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
                         <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
                     </a>
@@ -623,11 +623,11 @@
                             <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
                             <div *ngIf="profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 13">
                                 <div *ngIf="profile?.IsConfirmed != false">
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlist</a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
                                 </div>
                                 <div *ngIf="profile?.IsConfirmed === false">
                                     <li role="presentation" disabled>
-                                        <p role="menuitem" href="javascript:void(0)"> Shortlist</p>
+                                        <p role="menuitem" href="javascript:void(0)"> Screening</p>
                                     </li>
                                 </div>
                                 <!-- <li role="presentation" class="divider"></li>
@@ -636,14 +636,14 @@
                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
                             </div>
                             <!-- shortlisted -->
-                            <div *ngIf="profile?.ResponseStatusId == 5">
-                                <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
+                            <div *ngIf="profile?.ResponseStatusId == 8">
+                                <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlisted</a></li>
                                 <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
                             </div>
                             <!-- screening -->
-                            <div *ngIf="profile?.ResponseStatusId == 8">
+                            <div *ngIf="profile?.ResponseStatusId == 5">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)">Schedule Interview</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>
