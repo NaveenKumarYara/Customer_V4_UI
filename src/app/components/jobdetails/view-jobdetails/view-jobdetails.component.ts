@@ -179,6 +179,12 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 0;
     this.displayQuick = 1;
     this.profilecount = 6;
+    this.base.UploadedFlag = false;
+    this.base.WishlistFlag = false;
+    this.base.SuggestedFlag = false;
+    this.base.uploaded =0;
+    this.base.suggested =0;
+    this.base.wishlist =0;
     if (this.jobstatistics.AllCandidates > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
       this.sortBy, this.searchString, this.exp, this.location, this.domain,this.uploaded,this.suggested,this.wishlist, 6);
@@ -213,6 +219,12 @@ export class ViewJobdetailsComponent implements OnInit {
     this.sortBy = 1;
     this.statusid = 4;
     this.displayQuick = 1;
+    this.base.UploadedFlag = false;
+    this.base.WishlistFlag = false;
+    this.base.SuggestedFlag = false;
+    this.base.uploaded =0;
+    this.base.suggested =0;
+    this.base.wishlist =0;
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
     // console.log(this.statusid);
@@ -517,7 +529,7 @@ export class ViewJobdetailsComponent implements OnInit {
       } else if (this.statusid === 15) {
         this.statistics = this.jobstatistics.Suggested; }
       else if(count>0)
-      {       
+      {     
         this.statistics = count;
       }    
         this.loadMore = this.statistics > 6 ? true : false;

@@ -22,6 +22,9 @@ export class FilterViewJobsComponent implements OnInit {
   searchString: any;
   uploaded:any;
   view :any;
+  UploadedFlag:boolean;
+  WishlistFlag:boolean;
+  SuggestedFlag:boolean;
   SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
@@ -48,7 +51,7 @@ export class FilterViewJobsComponent implements OnInit {
    ) {
       this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = JSON.parse(sessionStorage.getItem('userId'));
-      this.ViewBy = 1;
+      this.ViewBy = 1;    
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
 
@@ -97,7 +100,6 @@ export class FilterViewJobsComponent implements OnInit {
     if(isChecked)
     {
       this.wishlist = 1;
-      this.count = count;
     }
     else
     {
@@ -109,7 +111,6 @@ export class FilterViewJobsComponent implements OnInit {
     if(isChecked)
     {
       this.uploaded = 1;
-      this.count= count;
     }
     else
     {
@@ -121,7 +122,6 @@ export class FilterViewJobsComponent implements OnInit {
     if(isChecked)
     {
       this.suggested = 1;
-      this.count= count;
     }
     else
     {
