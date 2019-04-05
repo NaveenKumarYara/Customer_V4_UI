@@ -46,7 +46,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    loading: boolean;
    schIntw = new ScheduleInterview();
    wsList = new WishList();
-   TotalCount : any;
+   TotalCount: any;
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
@@ -191,7 +191,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
     // }
   }
-  OpenSendEmailDialog(emailId,firstname,lastname) {
+  OpenSendEmailDialog(emailId, firstname, lastname, jobResponseId, profileId, responseStatusId) {
     // if (this.jobStatus!='InActive') {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
         {
@@ -202,7 +202,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
             EmailId: emailId,
             jobId: this.jobid,
             firstname: firstname,
-            lastname:lastname
+            lastname: lastname,
+            responseStatusId: responseStatusId,
+            profileId : profileId,
+            jobResponseId: jobResponseId
             // status : this.statusid
           }
         }
@@ -254,9 +257,9 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString= '', experience= 0, location= '', domainName= '',uploaded=0,suggested=0,wishlist=0, noofRows= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString= '', experience= 0, location= '', domainName= '', uploaded= 0, suggested= 0, wishlist= 0, noofRows= 6) {
     this.alertService.clear();
-    //$('#searchStr').val('');
+    // $('#searchStr').val('');
     this.spinner.show();
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
@@ -272,7 +275,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy,searchString, experience, location, domainName, uploaded,suggested,wishlist,noofRows)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
       this.profiles = res;

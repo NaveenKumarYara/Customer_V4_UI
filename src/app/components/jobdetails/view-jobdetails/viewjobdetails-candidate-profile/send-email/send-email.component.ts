@@ -13,63 +13,67 @@ export interface DialogData {
 })
 export class SendEmailComponent implements OnInit {
 conversation = new  StartConversation();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,private jobdetailsservice: JobdetailsService) { 
-    this.toastr.setRootViewContainerRef(_vcr);
-  }
+emailUpdate = new  EmailUpdateStatus();
 subject: string;
-ToEmailID:string;
-mailbox:any=false;
+ToEmailID: string;
+mailbox: any = false;
 body: string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService) {
+    this.toastr.setRootViewContainerRef(_vcr);
+    this.emailUpdate.JobId = data.jobId;
+    this.emailUpdate.JobResponseId =  data.jobResponseId;
+    this.emailUpdate.ProfileId = data.profileId;
+    this.emailUpdate.ResponseStatusId = data.responseStatusId;
+    this.mailbox = false;
+    this.body = 'Join hands with us and make your goals achieved!.';
+    this.subject = 'Please submit the consent';
+    this.ToEmailID = this.data.EmailId;
+  }
+
   ngOnInit() {
-  this.mailbox = false;
-  this.body = 'Join hands with us and make your goals achieved!.';
-  this.subject = 'Please submit the consent';
+
   }
-sendEmail() {
-  this.conversation.FullName = this.data.firstname + this.data.lastname;
-  this.conversation.Subject = this.subject;
-  this.conversation.Body = this.body;
-  // this.conversation.FromID=
-  this.conversation.ToEmailID = this.ToEmailID;
-  this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
-    if (data === 0) {
-      this.toastr.success('Mail Sent', 'Success');
-      setTimeout(() => {
-       this.toastr.dismissToast;
-   }, 3000);
-      this.conversation.FullName = '';
-      this.conversation.Subject = '';
-      this.conversation.Body = '';
-      this.conversation.ToEmailID = '';
-      this.mailbox = false;
+  sendEmail() {
+    this.conversation.FullName = this.data.firstname + this.data.lastname;
+    this.conversation.Subject = this.subject;
+    this.conversation.Body = this.body;
+    // this.conversation.FromID=
+    this.conversation.ToEmailID = this.ToEmailID;
+    this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
+      if (data === 0) {
+          this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
+        });
+        this.toastr.success('Mail Sent', 'Success');
+        setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+        this.conversation.FullName = '';
+        this.conversation.Subject = '';
+        this.conversation.Body = '';
+        this.conversation.ToEmailID = '';
+        this.mailbox = false;
     }
-  }
-    );
+  });
 }
 
-EditMail()
-{
-  this.ToEmailID = this.data.EmailId;
-  this.mailbox = true;
-}
+  EditMail() {
+    this.ToEmailID = this.data.EmailId;
+    this.mailbox = true;
+  }
 }
 
 export class StartConversation {
-  // userId: number;
-  // jobId: number;
-  // fullName::string;
-  // userName::string;
-  // statusId: number;
-  // CustFullName::string;
-  // CandFullName::string;
-  // // AppLink::string;
-  // ToEmailId::string;
-  // ApplicationName::string;
-  // ClientLogo::string;
-    FullName: string;
-   Subject: string;
- Body: string;
- ToEmailID: string;
- FromID: string;
- ApplicationName: string;
-  }
+  FullName: string;
+  Subject: string;
+  Body: string;
+  ToEmailID: string;
+  FromID: string;
+  ApplicationName: string;
+}
+export class EmailUpdateStatus {
+  JobResponseId: number;
+  ProfileId: number;
+  JobId: number;
+  ResumeId: number;
+  ResponseStatusId: number;
+}
