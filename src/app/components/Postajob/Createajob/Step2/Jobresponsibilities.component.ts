@@ -4,6 +4,8 @@ import { FormControl, NgForm } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RoleModel, Roles } from '../../models/jobPostInfo';
+import { MatDialog } from '@angular/material';
+import { ResponsibilitiesDialogComponent } from './responsibilities-dialog/responsibilities-dialog.component';
 // import { JobdetailsComponent } from './Jobdetails.component';
 // tslint:disable-next-line:no-unused-expression
 declare var $: any;
@@ -29,7 +31,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   jobTitle: string;
   // jobTitle: string;
   constructor(private route: ActivatedRoute,
-    private router: Router, private appService: AppService) {
+    private router: Router, private appService: AppService, private dialog: MatDialog) {
       this.roleModel = new RoleModel(0, null, null);
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!
@@ -166,6 +168,23 @@ if (this.rolesForm.valid) {
   }
   changeRoles12(val) {
     alert(val);
+  }
+  OpenResponsibilityDialog() {
+
+    const responsibilitiesdialogRef = this.dialog.open(ResponsibilitiesDialogComponent,
+      {
+        width: '750px',
+        position: {right : '0px'},
+        height : '750px',
+        data: {
+          animal: 'panda'
+        }
+      }
+    );
+    responsibilitiesdialogRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+    });
+
   }
 }
 export class RoleJobTitle {

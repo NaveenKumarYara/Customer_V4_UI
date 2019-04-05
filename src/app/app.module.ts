@@ -71,6 +71,7 @@ import { UploadvideoprofileComponent } from './components/Postajob/Createajob/St
 import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
+import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients
     SalarysliderComponent,
     DepartmentsComponent,
     ClientsComponent,
+    ResponsibilitiesDialogComponent,
     // SalarysliderComponent,
   ],
   imports: [

@@ -33,7 +33,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button>
+                <!-- <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button> -->
+                <button (click)="OpenResponsibilityDialog()">OpenDialog</button>
             </div>
         </form>
     </div>
