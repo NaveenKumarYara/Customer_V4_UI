@@ -506,6 +506,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.domain = 0;
         this.location = '';
         this.wishsort = sortBy;
+        this.searchString = search;
         if (this.statusid === 4) {
           this.statistics = this.jobstatistics.Applied;
          } else if (this.statusid === 7) {
