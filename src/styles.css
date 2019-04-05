@@ -22379,3 +22379,11 @@ input.dnone:checked~i.checked{
 body *{
     outline: none;
 }
+.page--create-a-job .form-steps .add-btn.btn-b{
+    border: 1px solid #E0E3EF;
+    color: #9eabc0;
+    background-color: #fff; 
+  }
+  .ml-20{
+    margin-left: 10px;
+  }
