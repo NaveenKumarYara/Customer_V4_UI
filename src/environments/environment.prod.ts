@@ -106,6 +106,7 @@ export const environment = {
     CompanyNewsPapers : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyNewsInfo?',
     GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
     JobsProfileCount: 'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
+    UpdateStatusOnEmailConversation: 'http://api.tenendus.com:1090/ProfileAPI/api/UpdateProfileStatus',
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
     CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
     EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?',
@@ -114,16 +115,17 @@ export const environment = {
     baseUrll : 'http://api.tenendus.com:1090/',
     DeleteCustomerClients: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerClients?',
     DeleteCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerDepartments?',
+    StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',
+    bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
+    WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
+    // Redirections
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',
-    StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
-    bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
-    WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?'
     // END URLS
 
-    /// DEMO URLS
+    /// Demo URLS
     // jobTitleEndpoint: 'http://arytic.com:1120/JobsAPI/api/GetJobTitles',
     // getskillsEndpoint: 'http://arytic.com:1120/ProfileAPI/api/GetSkills',
     // addSkillsEndpoint: 'http://arytic.com:1120/ProfileAPI/api/AddSkill',
