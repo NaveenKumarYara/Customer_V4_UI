@@ -70,14 +70,14 @@
                 <div class="search-toggle cls-rel">
                     <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
                         <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString"
-                            placeholder="Search" #searchText (ngModelChange)="GetSearchText($event)"  id="searchStr">
+                            placeholder="Search" #searchText (keyup)="GetSearchText(searchText.value)"  id="searchStr">
                         <div class="searchList" *ngIf="SearchList.length>0">
                             <ul class="searchList-dropdown">
                                 <li class="searchList-options" *ngFor="let slist of SearchList"
                                     (click)="SetSearch(slist?.slice(0, -3))">{{slist?.slice(0, -3)}}</li>
                             </ul>
                         </div>
-                        <button type="submit" (ngModelChange)="SearchEnter(searchString)" style="display: none;"></button>
+                        <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
                     </form>
                 </div>
                 <!--search-->

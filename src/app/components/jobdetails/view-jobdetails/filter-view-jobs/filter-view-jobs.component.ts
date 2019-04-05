@@ -84,7 +84,16 @@ export class FilterViewJobsComponent implements OnInit {
       return this.jobdetailsservice.GetAutoSearch(value,this.customerId)
       .subscribe(data => 
         {
-          this.SearchList = data;
+          if (data.length > 0) {  
+            this.SearchList =data;
+          }
+          else {
+            this.SearchList = [];
+          }
+        
+          },     
+        error => { 
+          this.SearchList = [];
         });
  }
 
