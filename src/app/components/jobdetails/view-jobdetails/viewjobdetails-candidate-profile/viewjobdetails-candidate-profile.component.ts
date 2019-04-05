@@ -46,6 +46,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    loading: boolean;
    schIntw = new ScheduleInterview();
    wsList = new WishList();
+   TotalCount : any;
   @Input() jobid: number;
   @Input() statusid: number;
   @Output() myEvent = new EventEmitter();
@@ -255,7 +256,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
   }
   PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1,searchString= '', experience= 0, location= '', domainName= '',uploaded=0,suggested=0,wishlist=0, noofRows= 6) {
     this.alertService.clear();
-    $('#searchStr').val('');
+    //$('#searchStr').val('');
     this.spinner.show();
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
@@ -275,7 +276,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     .subscribe(res => {
       this.jobdetailsprofiles = res;
       this.profiles = res;
-
+      this.TotalCount = this.jobdetailsprofiles;
       this.spinner.hide();
        if (this.profiles === 'No records found') {
          this.myEvent.emit('min');

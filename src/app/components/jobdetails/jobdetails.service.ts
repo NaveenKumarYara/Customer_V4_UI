@@ -191,8 +191,8 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
         this.handleError
       );
   }
-  GetAutoSearch(term: string = null): Observable<string[]> {
-    const url = environment.GetProfileAutoSearch + '?searchText=' + term;
+  GetAutoSearch(term: string = null,customerId : number): Observable<string[]> {
+    const url = environment.GetProfileAutoSearch + '?searchText=' + term +'&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

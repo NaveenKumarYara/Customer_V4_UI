@@ -4,7 +4,7 @@
                 <div class="ptr" >
                         <div class="checkbox">
                                         
-                                <label class="bookmark-c">
+                                <label class="bookmark-c" *ngIf="statusid==0||statusid==4">
                                     <input type="checkbox" [checked]="profile?.IsSaved"  (change)="updateWishlist($event, profile.ProfileId)" class="dnone" />
                                             
                                     <i class="unchecked fa fa-bookmark-o"></i>
@@ -32,7 +32,7 @@
                 </ng-template>
             </div>
             <div class="candidate-info">
-                <ng-container *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null; else Block">
+                <ng-container *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else Block">
                     <img *ngIf="profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId == 8 && profile?.UserId > 0 && profile?.IsConfirmed == null;" src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}" width="66" height="66">
                 </ng-container>
                 <ng-template #Block>

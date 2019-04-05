@@ -28,12 +28,14 @@ export class FilterViewJobsComponent implements OnInit {
   SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
+  @Input() Counts: Jobstatistics;
   @Input() statusid: number;
   @Input() displayQuick: number;
   @Input() Count: WishlistCount;
   count:number;
   customerId: any;
   userId: any;
+  value:any;
   suggested:any;
   sortBy:0;
   wishlist:any;
@@ -60,7 +62,7 @@ export class FilterViewJobsComponent implements OnInit {
   showdetailssearch = false;
 
   updateDetailAdvanceSearch() {
-    $('#searchStr').val('');
+    this.searchString ='';
     this.showdetailssearch = !this.showdetailssearch;
     this.jobdetailsservice.updateDetailsAdvanceSearch(this.showdetailssearch);
   }
@@ -68,7 +70,8 @@ export class FilterViewJobsComponent implements OnInit {
 
   search(val) {
    this.searchString = val;
-   this.parentApi.callSearchMethod(this.searchString);
+   //this.parentApi.callSearchMethod(this.searchString);
+   this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString);
    this.SearchList = [];
    this.GetSearchText(null);
   }
@@ -78,20 +81,11 @@ export class FilterViewJobsComponent implements OnInit {
   }
 
   GetSearchText(value) {
-   return this.jobdetailsservice.GetAutoSearch(value)
-   .subscribe(data => {
-         if (data.length > 0) {
-           this.SearchList = data;
-         } else {
-           this.SearchList = [];
-         }
-
-         },
-
-       error => {
-         this.SearchList = [];
+      return this.jobdetailsservice.GetAutoSearch(value,this.customerId)
+      .subscribe(data => 
+        {
+          this.SearchList = data;
         });
-
  }
 
  viewby(value, isChecked: boolean,sortBy)
@@ -135,11 +129,11 @@ export class FilterViewJobsComponent implements OnInit {
   }
   if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
   {
-    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy);
+    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,this.sortBy);
+    this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString);
   }
  
  }
@@ -149,11 +143,11 @@ export class FilterViewJobsComponent implements OnInit {
 dislaySortByOptions() {
   this.jobdetailsservice.getSortByOption().subscribe(x => this.sortByOrder = x);
 }
- SearchEnter(searchval) {
-   this.SearchList = [];
-   this.GetSearchText(null);
-   this.search(searchval);
- }
+SearchEnter(searchval) {
+  this.SearchList = [];
+  this.GetSearchText(null);
+  this.search(searchval);
+}
 
  SetSearch(val) {
    this.SearchList = [];

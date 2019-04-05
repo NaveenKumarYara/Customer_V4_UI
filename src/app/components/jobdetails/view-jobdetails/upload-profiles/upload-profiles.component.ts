@@ -101,7 +101,7 @@ export class UploadProfilesComponent implements OnInit {
  }
 
   GetSearchText(value) {
-    return this.jobdetailsservice.GetAutoSearch(value)
+    return this.jobdetailsservice.GetAutoSearch(value,this.customerName.CustomerId)
     .subscribe(data => {
           if (data.length > 0) {
             this.SearchList = data;

@@ -41,6 +41,7 @@ export class ViewJobdetailsComponent implements OnInit {
   joblocation: any;
   wishlistCount: WishlistCount;
   jobstatistics: Jobstatistics;
+  Counts : Jobstatistics;
   wishsort: 0;
   statistics: number;
   closedjob: any;
@@ -174,18 +175,15 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
   }
-  updateallcandidatesstatus() {
-    this.base.ViewBy = 1;
+  updateallcandidatesstatus() { 
     this.sortBy = 1;
     this.statusid = 0;
     this.displayQuick = 1;
-    this.profilecount = 6;
+    this.profilecount = 6;  
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
-    this.base.uploaded = 0;
-    this.base.suggested = 0;
-    this.base.wishlist = 0;
+    this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, 6);
@@ -196,11 +194,10 @@ export class ViewJobdetailsComponent implements OnInit {
    this.child.NoRecords();
   }
   }
-  updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others
-    this.base.ViewBy = 1;
+  updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others  
     this.sortBy = 1;
     this.statusid = 15;
-
+    this.ClearallValues();
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     // this.PopulateJobdetailProfiles();
@@ -215,17 +212,14 @@ export class ViewJobdetailsComponent implements OnInit {
    this.child.NoRecords();
   }
   }
-  updateappliedstatus() {// 1000080;
-    this.base.ViewBy = 1;
+  updateappliedstatus() {// 1000080;  
     this.sortBy = 1;
     this.statusid = 4;
-    this.displayQuick = 1;
+    this.displayQuick = 1;  
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
-    this.base.uploaded = 0;
-    this.base.suggested = 0;
-    this.base.wishlist = 0;
+    this.ClearallValues();
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
     // console.log(this.statusid);
@@ -242,10 +236,10 @@ export class ViewJobdetailsComponent implements OnInit {
    }
   }
   updateshortlistedstatus() { // 1000007;
-    this.sortBy = 1;
-    this.base.ViewBy = 1;
+    this.sortBy = 1;  
     this.statusid = 5;
     this.displayQuick = 0;
+    this.ClearallValues();
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
      if (this.jobstatistics.ShortListed > 0) {
@@ -259,10 +253,10 @@ export class ViewJobdetailsComponent implements OnInit {
    }
   }
   updatescreeningstatus() { // 1000007;
-    this.base.ViewBy = 1;
     this.sortBy = 1;
     this.statusid = 8;
     this.displayQuick = 0;
+    this.ClearallValues();
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
   if (this.jobstatistics.Screening > 0) {
@@ -274,11 +268,11 @@ export class ViewJobdetailsComponent implements OnInit {
    this.child.NoRecords();
   }
   }
-  updateinterviewedstatus() { // 1000007;
-    this.base.ViewBy = 1;
+  updateinterviewedstatus() { // 1000007;  
     this.sortBy = 1;
     this.statusid = 7;
     this.displayQuick = 0;
+    this.ClearallValues();
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
   if (this.jobstatistics.Interviewed > 0) {
@@ -292,10 +286,10 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updatehiredstatus() { // 1000028;
-    this.base.ViewBy = 1;
     this.sortBy = 1;
     this.statusid = 11;
     this.displayQuick = 0;
+    this.ClearallValues();
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
    if (this.jobstatistics.Hired > 0) {
@@ -308,10 +302,11 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   }
   updaterejectedstatus() {
-    this.base.ViewBy = 1;
+   
     this.sortBy = 1;
     this.statusid = 6;
     this.displayQuick = 0;
+    this.ClearallValues();
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     if (this.jobstatistics.RejectedORWithdrawn > 0) {
@@ -372,6 +367,7 @@ export class ViewJobdetailsComponent implements OnInit {
   populateJobsStaticInfo(customerId, jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
+      this.Counts = this.child.TotalCount;
         if (onload === 1) {
           if (this.statusid === 4) {
         this.updateappliedstatus();
@@ -422,6 +418,17 @@ export class ViewJobdetailsComponent implements OnInit {
     },
       error => console.log(error));
 }
+
+  ClearallValues()
+   {
+  this.base.ViewBy = 1;
+  this.searchString='';
+  this.base.SearchList =[];
+  this.base.searchString= undefined;
+  this.base.uploaded = 0;
+  this.base.suggested = 0;
+  this.base.wishlist = 0;
+   }
   ngOnInit() {
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
      // this.loadMoreStat=0;
@@ -492,8 +499,9 @@ export class ViewJobdetailsComponent implements OnInit {
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
-      CallViewBy: (uploaded, suggested, wishlist, sortBy) => {
-        this.searchString = '';
+      CallViewBy: (uploaded, suggested, wishlist, sortBy,search) => {
+        this.searchString = search;
+        this.base.GetSearchText(null);
         this.exp = 0;
         this.domain = 0;
         this.location = '';
@@ -510,7 +518,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, this.searchString, this.exp, this.location, this.domain, uploaded, suggested, wishlist, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort,search, this.exp, this.location, this.domain, uploaded, suggested, wishlist, this.profilecount);
       }
     };
 
@@ -523,5 +531,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
-  CallViewBy: (uploaded, suggested, wishlist, sortBy) => void;
+  CallViewBy: (uploaded, suggested, wishlist, sortBy,search) => void;
 }
