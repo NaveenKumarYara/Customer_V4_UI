@@ -4,6 +4,7 @@ import {  ApplicantStatistics } from '../../../../models/applicantstatistics';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { DashboardService } from '../dashboard.service';
+declare var $: any;
 @Component({
   selector: 'app-dashboard-jobsview',
   templateUrl: './dashboard-jobsview.component.html',
@@ -57,6 +58,46 @@ export class DashboardJobsviewComponent implements OnInit {
 
 
   ngOnInit() {
+    (function ($) {
+      function navLineResizeHandler() {
+        var nav = $('.nav-tabs');
+        var activeLink = nav.children('li.active');
+        var activeLine = nav.children('.active-line');
+        var windowWidth = $(window).scrollLeft();
+    
+        $.each(activeLine, function (index, element) {
+          var $element = $(element);
+          $element.css({
+            width: $element.parent().children(".active").css("width"),
+            left: $element.parent().children(".active").position().left - windowWidth
+          });
+        });
+      }
+    
+      function navLineClickHandler() {
+        var btnWidth = $(this).css("width");
+        var line = $(this).parent().find(".active-line");
+        var btnBox = this.getBoundingClientRect();
+        var windowBox = this.parentNode.getBoundingClientRect();
+    
+        line.css({
+          width: btnWidth,
+          left: btnBox.left - windowBox.left
+        });
+      }
+    
+      $(document).ready(navLineResizeHandler);
+    
+      $(window).resize(function () {
+        setTimeout(navLineResizeHandler, 1000);
+      });
+    
+      var appliedTabBtn = $(".statistics .nav-tabs li");
+      var appliedLine = $(".statistics .nav-tabs .active-line");
+      appliedTabBtn.on("click", navLineClickHandler);
+    
+      
+    })($);
   }
   public randomize(): void {
     const _lineChartData: Array<any> = new Array(this.lineChartData.length);

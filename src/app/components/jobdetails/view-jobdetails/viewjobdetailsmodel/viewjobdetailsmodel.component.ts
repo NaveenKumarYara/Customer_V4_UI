@@ -8,6 +8,7 @@ import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
+import { animation } from '@angular/core/src/animation/dsl';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -31,17 +32,17 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
-  PopulateJobdetail (customerId,jobid) { 
+  PopulateJobdetail (customerId,jobid) {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId,this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
     });
-    
+
 }
-PopulateJobComments (jobid) { 
+PopulateJobComments (jobid) {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
     this.jobComments = res;
   });
-  
+
 }
 changeJobStat(job, val) {
   if (val === true) {
@@ -71,5 +72,49 @@ ngOnInit() {
   this.PopulateJobComments(this.jobid);
   this.populateCompanyBenfits(this.customerId);
   //console.log('abc');
+
+  /*tabs animation*/
+  (function ($) {
+    function navLineResizeHandler() {
+      var nav = $('.nav-tabs');
+      var activeLink = nav.children('li.active');
+      var activeLine = nav.children('.active-line');
+      var windowWidth = $(window).scrollLeft();
+  
+      $.each(activeLine, function (index, element) {
+        var $element = $(element);
+        $element.css({
+          width: $element.parent().children(".active").css("width"),
+          left: $element.parent().children(".active").position().left - windowWidth
+        });
+      });
+    }
+  
+    function navLineClickHandler() {
+      var btnWidth = $(this).css("width");
+      var line = $(this).parent().find(".active-line");
+      var btnBox = this.getBoundingClientRect();
+      var windowBox = this.parentNode.getBoundingClientRect();
+  
+      line.css({
+        width: btnWidth,
+        left: btnBox.left - windowBox.left
+      });
+    }
+  
+    $(document).ready(navLineResizeHandler);
+  
+    $(window).resize(function () {
+      setTimeout(navLineResizeHandler, 1000);
+    });
+  
+    var appliedTabBtn = $(".modal-body .nav-tabs li");
+    var appliedLine = $(".modal-body .nav-tabs .active-line");
+    appliedTabBtn.on("click", navLineClickHandler);
+  
+    
+  })($);
+
+
 }
 }

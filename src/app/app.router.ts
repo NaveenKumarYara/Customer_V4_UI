@@ -91,6 +91,7 @@ import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients
 import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -183,6 +184,7 @@ const appRoutes: Routes =
       { path: 'app-UploadProfiles', component: UploadProfilesComponent },
     { path: 'app-viewjobdetails-candidate-profile', component: ViewjobdetailsCandidateProfileComponent },
 
+    // dialog
     { path: 'app-chatboxdialog', component: ChatboxdialogComponent },
     { path: 'app-sharedialog', component: SharedialogComponent },
     { path: 'app-conversation', component: ConversationComponent },
@@ -190,6 +192,7 @@ const appRoutes: Routes =
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
     { path: 'app-invite-profiledialog', component: InviteProfiledialogComponent },
     { path: 'app-send-email', component: SendEmailComponent },
+    { path: 'app-responsibilities-dialog', component: ResponsibilitiesDialogComponent },
 
     { path: 'app-companyprofile', component: CompanyprofileComponent },
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
