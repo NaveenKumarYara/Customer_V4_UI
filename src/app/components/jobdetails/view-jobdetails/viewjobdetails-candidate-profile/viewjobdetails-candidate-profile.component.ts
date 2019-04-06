@@ -191,7 +191,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
     // }
   }
-  OpenSendEmailDialog(emailId, firstname, lastname, jobResponseId, profileId, responseStatusId) {
+  OpenSendEmailDialog(emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId) {
     // if (this.jobStatus!='InActive') {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
         {
@@ -205,14 +205,16 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
             lastname: lastname,
             responseStatusId: responseStatusId,
             profileId : profileId,
-            jobResponseId: jobResponseId
+            jobResponseId: jobResponseId,
+            ccpid: ccpid,
+            userId : userId
             // status : this.statusid
           }
         }
       );
       sendEmaildialogRef.afterClosed().subscribe(result => {
        // this.jobDetails.populateJobsStaticInfo(this.jobid);
-        // this.myEvent.emit(null);
+        this.myEvent.emit(null);
         console.log('candidate Dialog result: ${result}');
       });
     // }
