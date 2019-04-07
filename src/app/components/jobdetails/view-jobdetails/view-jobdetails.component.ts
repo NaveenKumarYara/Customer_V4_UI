@@ -384,6 +384,8 @@ export class ViewJobdetailsComponent implements OnInit {
   // }
   updateStatistics(value: any) {
     this.populateJobsStaticInfo(this.customerId, this.jobid);
+    // if(this.statusid==)
+    this.CallList(this.statusid);
     if (value === 'max' || value === 'min') {
       this.loadMore = false;
     }  else { // if (value === true) {
@@ -419,12 +421,11 @@ export class ViewJobdetailsComponent implements OnInit {
       error => console.log(error));
 }
 
-  ClearallValues()
-   {
+  ClearallValues() {
   this.base.ViewBy = 1;
-  this.searchString='';
-  this.base.SearchList =[];
-  this.base.searchString= undefined;
+  this.searchString = '';
+  this.base.SearchList = [];
+  this.base.searchString = undefined;
   this.base.uploaded = 0;
   this.base.suggested = 0;
   this.base.wishlist = 0;
@@ -499,7 +500,7 @@ export class ViewJobdetailsComponent implements OnInit {
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
-      CallViewBy: (uploaded, suggested, wishlist, sortBy,search) => {
+      CallViewBy: (uploaded, suggested, wishlist, sortBy, search) => {
         this.searchString = search;
         this.base.GetSearchText(null);
         this.exp = 0;
@@ -519,7 +520,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort,search, this.exp, this.location, this.domain, uploaded, suggested, wishlist, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist, this.profilecount);
       }
     };
 
@@ -532,5 +533,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
-  CallViewBy: (uploaded, suggested, wishlist, sortBy,search) => void;
+  CallViewBy: (uploaded, suggested, wishlist, sortBy, search) => void;
 }

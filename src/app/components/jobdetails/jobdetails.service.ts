@@ -155,7 +155,7 @@ export class JobdetailsService {
       );
   }
 
-  getWishListCount(customerId: number, jobId: number,statusId: number): Observable<WishlistCount> {
+  getWishListCount(customerId: number, jobId: number, statusId: number): Observable<WishlistCount> {
     const url = environment.WishlistCount + 'customerId=' + customerId + '&jobId=' + jobId + '&statusId=' + statusId;
     return this.http.get<WishlistCount>(url)
       .debounceTime(1000)
@@ -173,7 +173,7 @@ export class JobdetailsService {
       );
   }
 
-getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
+  getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
     const url = environment.MatchingDetailEndPoint +
      '?userId=' + profileId + '&jobId=' + jobId;
     return this.http.get<MatchingDetails>(url)
@@ -191,7 +191,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
         this.handleError
       );
   }
-  GetAutoSearch(term: string = null,customerId: number): Observable<string[]> {
+  GetAutoSearch(term: string = null, customerId: number): Observable<string[]> {
     const url = environment.GetProfileAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
@@ -199,7 +199,7 @@ getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails
       );
   }
 
-  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string,uploaded:number,suggested:number,wishlist:number, noOfRows: number= 6):
+  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string, uploaded: number, suggested: number, wishlist: number, noOfRows: number= 6):
   Observable<JobdetailsProfile> {
    const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString + '&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&uploaded=' + uploaded  + '&suggested=' + suggested + '&wishlist=' + wishlist + '&pageNumber=1&noOfRows=' + noOfRows;
