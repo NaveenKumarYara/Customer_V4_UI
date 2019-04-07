@@ -180,7 +180,18 @@ this.insertJob.StepNumber = step;
       }
     });
   } else {
-    this.toastr.error('Please enter mandatory fields!', 'Oops!');
+    if (this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) {
+      this.toastr.error('Please enter No of Positions!', 'Oops!');
+    }
+    if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
+    this.toastr.error('Please enter Job Title!', 'Oops!');
+    }
+    if (this.locations.prfLoc.CityId === undefined || this.locations.prfLoc.CityId === 0) {
+      this.toastr.error('Please Select Location!', 'Oops!');
+    }
+    if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
+      this.toastr.error('Please Select Experience!', 'Oops!');
+    }
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 3000);

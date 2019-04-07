@@ -47,7 +47,7 @@ export class PostajobComponent implements OnInit {
   this.appService.adddomainChanged = new Subject<PjDomain[]>();
   this.appService.jobtitle.next('');
   this.appService.jobcategory.next(new CategoryList());
-  this.appService.minExperience.next(0);
+  this.appService.minExperience.next(1);
   this.appService.maxExperience.next(1);
   this.appService.hasDescription.next(false);
   this.appService.description.next('');
@@ -93,8 +93,15 @@ export class PostajobComponent implements OnInit {
   // setTimeout(() => {
   //   this._setOption.next(null);
   // }, 100);
-  }
 
+  // leave page
+  // window.addEventListener('beforeunload', function (e) {
+  //   const confirmationMessage = '\o/';
+  // console.log('cond');
+  //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+  //   return confirmationMessage;
+  // });
+}
 createJob() {
   this.router.navigateByUrl('/app-createajob');
   // this.location.go('/app-createajob');
