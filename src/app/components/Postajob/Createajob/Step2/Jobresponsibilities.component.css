@@ -23,4 +23,8 @@
   .searchList li.searchList-options:hover, .searchList li.searchList-options::selection{
     background-color: #ebf5ff;
   }
-  
+  .page--create-a-job .form-steps .add-btn.btn-b{
+    border-color: #bec5de;
+    color: #9eabc0;
+    background-color: #fff; 
+  }

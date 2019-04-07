@@ -3,6 +3,7 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { environment } from '../../../../../../environments/environment.prod';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -37,7 +38,10 @@ body: string;
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.Body = this.body;
-    // this.conversation.FromID=
+    // if(){
+    this.conversation.AppLink = this.data.userId > 0 ? environment.CandidateLogin + ';lid=' + this.data.ccpid :
+    environment.CandidateSignUp + ';sid=' + this.data.ccpid;
+    // }
     this.conversation.ToEmailID = this.ToEmailID;
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
       if (data === 0) {
@@ -69,6 +73,7 @@ export class StartConversation {
   ToEmailID: string;
   FromID: string;
   ApplicationName: string;
+  AppLink: string;
 }
 export class EmailUpdateStatus {
   JobResponseId: number;

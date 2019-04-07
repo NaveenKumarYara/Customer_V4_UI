@@ -4,7 +4,7 @@
 
     <div class="form-row row">
         <form (ngSubmit)="AddRoles()" #rolesForm="ngForm">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="p-rel">
                     <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
         [(ngModel)]="responsibilities"> -->
@@ -32,9 +32,9 @@
             </div> -->
                 </div>
             </div>
-            <div class="col-md-2">
-                <!-- <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button> -->
-                <button (click)="OpenResponsibilityDialog()">OpenDialog</button>
+            <div class="col-md-3">
+                <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button>
+                <button class="btn add-btn form-control btn-b ml-20" (click)="OpenResponsibilityDialog()" type="submit"><i class="fa fa-copy"></i></button>
             </div>
         </form>
     </div>

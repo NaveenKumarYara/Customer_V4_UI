@@ -123,6 +123,7 @@ export const environment = {
     customerSignUp: 'http://dev.arytic.com/customersignup',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
+    CandidateLogin: 'http://dev.arytic.com/candidatelogin',
     // END URLS
 
     /// Demo URLS

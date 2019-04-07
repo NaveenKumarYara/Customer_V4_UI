@@ -100,16 +100,16 @@ export const environment = {
     profilesSortBy: 'http://api.tenendus.com:1090/ProfileAPI/api/GetProfileSortBy',
     SearchCandidateProfiles: 'http://api.tenendus.com:1090/JobsAPI/api/SearchCandidateProfiles',
     DeleteCustomerClients: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerClients?',
-
     DeleteCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerDepartments?',
     baseUrll : 'http://api.tenendus.com:1090/',
+    bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
+    WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
+
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
-    bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
-    WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?'
-
+    CandidateLogin: 'http://dev.arytic.com/candidatelogin',
 
     // jobTitleEndpoint: 'http://arytic.com:1120/JobsAPI/api/GetJobTitles',
     // getskillsEndpoint: 'http://arytic.com:1120/ProfileAPI/api/GetSkills',
