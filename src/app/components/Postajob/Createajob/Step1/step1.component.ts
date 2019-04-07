@@ -94,9 +94,17 @@ export class Step1Component implements OnInit {
    ) {
    //  && this.jobResponsibility.roleIdList.length > 0
    if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
-   return false;
+    this.toastr.error('minimum experience should not be greater than maximum experience!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+        return false;
    }
    if (this.jobProfile.hasCompleteDescription === true && this.jobProfile.jobDescription === '') {
+    this.toastr.error('Please enter description!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
      return false;
    }
     //  && this.jobResponsibility.roleIdList.length > 0

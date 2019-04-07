@@ -231,7 +231,7 @@ export class Step2Component implements OnInit {
       }
     });
   } else {
-    this.toastr.error('Please enter mandatory fields!', 'Oops!');
+    this.toastr.error('Please enter Skills!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
