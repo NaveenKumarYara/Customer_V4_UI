@@ -39,7 +39,7 @@ export const environment = {
     StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',
     UpdateStatusOnEmailConversation: 'http://api.tenendus.com:1090/ProfileAPI/api/UpdateProfileStatus',
     signUp: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerRegistration',
-    postjob : 'http://localhost:8982/api/CreateJob',
+    postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
     domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
