@@ -7,7 +7,7 @@ import { AppService } from '../../../../app.service';
  // styleUrls: ['./noofopenings.component.css']
 })
 export class NoofopeningsComponent implements OnInit {
-  noOfOpenings: number;
+  noOfOpenings: any;
   openingsList: number[];
   constructor(private appService: AppService) { }
 
