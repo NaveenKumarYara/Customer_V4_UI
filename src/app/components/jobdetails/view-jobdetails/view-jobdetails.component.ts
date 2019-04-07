@@ -39,6 +39,7 @@ export class ViewJobdetailsComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
+  totalCount:any;
   wishlistCount: WishlistCount;
   jobstatistics: Jobstatistics;
   Counts : Jobstatistics;
@@ -327,12 +328,26 @@ export class ViewJobdetailsComponent implements OnInit {
     // }
     if (this.statusid === 0) {
       // this.statistics=this.jobstatistics.Applied;
-      this.statistics = this.jobstatistics.AllCandidates;
+      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0))
+      {
+        this.statistics = this.totalCount;
+      }
+      else if(this.totalCount === 0)
+      {
+        this.statistics = this.jobstatistics.AllCandidates;
+      }      
      }
-    if (this.statusid === 4) {
-      // this.statistics=this.jobstatistics.Applied;
-      this.statistics = this.jobstatistics.Applied;
-     }   else if (this.statusid === 5) {
+   else if (this.statusid === 4) {
+      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0))
+      {
+        this.statistics = this.totalCount;
+      }
+      else if(this.totalCount === 0)
+      {
+        this.statistics = this.jobstatistics.Applied;
+      }    
+     }   
+     else if (this.statusid === 5) {
       this.statistics = this.jobstatistics.ShortListed;
      } else if (this.statusid === 7) {
       this.statistics = this.jobstatistics.Interviewed;
@@ -500,16 +515,38 @@ export class ViewJobdetailsComponent implements OnInit {
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
-      CallViewBy: (uploaded, suggested, wishlist, sortBy, search) => {
+      CallViewBy: (uploaded, suggested, wishlist, sortBy, search,count) => {
         this.searchString = search;
+        this.totalCount = count;
         this.base.GetSearchText(null);
         this.exp = 0;
         this.domain = 0;
+        this.uploaded = uploaded;
+        this.suggested = suggested;
+        this.wishlist = wishlist;
         this.location = '';
         this.wishsort = sortBy;
         this.searchString = search;
-        if (this.statusid === 4) {
-          this.statistics = this.jobstatistics.Applied;
+        if (this.statusid === 0) {
+          if(count === 0)
+          {
+            this.statistics = this.jobstatistics.Applied;
+          }
+          else if(uploaded > 0 || suggested > 0 || wishlist > 0)
+          {
+            this.statistics = count;
+          }
+          
+         }
+        else if (this.statusid === 4) {
+          if(count === 0)
+          {
+            this.statistics = this.jobstatistics.Applied;
+          }
+          else if(uploaded > 0 || suggested > 0 || wishlist > 0)
+          {
+            this.statistics = count;
+          }         
          } else if (this.statusid === 7) {
         this.statistics = this.jobstatistics.Interviewed;
        } else if (this.statusid === 11) {
@@ -533,5 +570,5 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
-  CallViewBy: (uploaded, suggested, wishlist, sortBy, search) => void;
+  CallViewBy: (uploaded, suggested, wishlist, sortBy, search,count) => void;
 }

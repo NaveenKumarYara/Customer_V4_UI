@@ -5,6 +5,7 @@ import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Jobstatistics } from '../../models/jobstatistics';
 import {WishlistCount} from '../../models/WishlistCount';
+import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import { MatDialog } from '@angular/material';
 import { InviteProfiledialogComponent } from './invite-profiledialog/invite-profiledialog.component';
 import { UploadProfilesComponent } from '../upload-profiles/upload-profiles.component';
@@ -32,12 +33,14 @@ export class FilterViewJobsComponent implements OnInit {
   @Input() statusid: number;
   @Input() displayQuick: number;
   @Input() Count: WishlistCount;
+  TotalCount: any;
   count:number;
   customer:any;
   customerId: any;
   userId: any;
   value:any;
   suggested:any;
+  jobdetailsprofiles = new JobdetailsProfile() ;
   sortBy:0;
   wishlist:any;
   sortByOrder: any;
@@ -73,7 +76,7 @@ export class FilterViewJobsComponent implements OnInit {
   search(val) {
    this.searchString = val;
    //this.parentApi.callSearchMethod(this.searchString);
-   this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString);
+   this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString,this.TotalCount);
    this.SearchList = [];
    this.GetSearchText(null);
   }
@@ -104,7 +107,7 @@ export class FilterViewJobsComponent implements OnInit {
    if(sortBy>0)
    {
      this.sortBy = sortBy;
-   }
+   }  
   if(value === 1)
   {
     if(isChecked)
@@ -114,7 +117,7 @@ export class FilterViewJobsComponent implements OnInit {
     else
     {
       this.wishlist = 0;
-    }  
+    } 
   }
   else if (value === 2)
   {
@@ -137,16 +140,29 @@ export class FilterViewJobsComponent implements OnInit {
     {
       this.suggested = 0;
     }     
-  }
+  } 
   if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
   {
-    this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString);
+    this.calldata(this.uploaded,this.suggested,this.wishlist);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString);
+    this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString,0);
   }
  
+ }
+
+ calldata(uploaded,suggested,wishlist)
+ {
+  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,6)
+  .subscribe(res => {
+    this.jobdetailsprofiles = res;
+    this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;
+    if(this.TotalCount>0)
+    {
+      this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString,this.TotalCount);
+    }
+  });
  }
 
 
