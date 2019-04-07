@@ -20,22 +20,22 @@ export class ViewCandidateprofileComponent implements OnInit {
   profileId: any;
   list: any;
   otherSkills: any = [];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private _service: ApiService, private router: Router) {
-    this.profileId = JSON.parse(sessionStorage.getItem('profileId'));
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private router: Router) {
+    // this.profileId = JSON.parse(sessionStorage.getItem('profileId'));
   }
 
   ngOnInit() {
     this.GetUserProfileInfo();
   }
   GetUserProfileInfo() {
-    this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
-      data => {
-        this.profileview = data;
+    this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.data.ProfileId).subscribe(
+      datas => {
+        this.profileview = datas;
 
-        this.list = data.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
+        this.list = datas.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
          && (u.ExpInYears != null && u.ExpInMonths != null));
 
-        this.otherSkills = data.ProfileSkillset.filter(u => (u.ExpInYears === 0 && u.ExpInMonths === 0)
+        this.otherSkills = datas.ProfileSkillset.filter(u => (u.ExpInYears === 0 && u.ExpInMonths === 0)
           || (u.ExpInYears == null && u.ExpInMonths == null));
 
         }, error => {

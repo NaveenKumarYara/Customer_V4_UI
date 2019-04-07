@@ -1,380 +1,390 @@
 <main class="main-wrapper">
-    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     <!-- <div class="clearfix"> 
-      <div class="pull-left">
-        <a href="profile-edit-name-and-location.html" class="green-btn">Edit Profile</a>  
-      </div> 
-      <ul class="nav nav-pills navbar-right">
-        <li class="active"><a data-toggle="pill" href="#summaryView">Summary View</a></li>
-        <li><a data-toggle="pill" href="#detailView">Detail View</a></li>
-      </ul> 
-    </div> -->
-    <div class="tab-content">
-      <div id="summaryView" class="tab-pane fade in active summary-view">
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            <div class="left">
-              <div class="pic-lg">
-                <img class="profile-pic-lg" src="../../../../../../assets/images/profile.jpg" alt="">
-                <h1>Marry James</h1>
-                <h4 class="meta">Senior UX designer @ Upwork</h4>
-              </div>
-              <hr class="divider" >
-              <div class="contact">
-                <h2>Contact</h2>
-                <address>
-                  <p>marryjames@gmail.com</p>
-                  <p>+23-111-2223</p>
-                  <p>Austin, Texas. United States</p>
-                </address>
-              </div>
-              <hr class="divider" >
-              <div>
-                <h2>Summary</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                  euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                  Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-                  suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+    <div class="pull-left">
+      <a href="profile-edit-name-and-location.html" class="green-btn">Edit Profile</a>  
+    </div> 
+    <ul class="nav nav-pills navbar-right">
+      <li class="active"><a data-toggle="pill" href="#summaryView">Summary View</a></li>
+      <li><a data-toggle="pill" href="#detailView">Detail View</a></li>
+    </ul> 
+  </div> -->
+  <div class="tab-content">
+    <div id="summaryView" class="tab-pane fade in active summary-view">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="left">
+            <div class="pic-lg">
+              <img class="profile-pic-lg" src="{{profileview?.ProfileBasicInfo?.ProfilePic}}" alt="">
+              <h1>{{profileview?.ProfileBasicInfo?.FirstName}} {{profileview?.ProfileBasicInfo?.LastName}}</h1>
+              <h4 class="meta">{{profileview?.ProfileBasicInfo?.ProfileTitle}} @
+                {{profileview?.ProfileBasicInfo?.CompanyName}}</h4>
+            </div>
+            <hr class="divider" >
+            <div class="contact">
+              <h2>Contact</h2>
+              <address>
+                <p>{{profileview?.ProfileBasicInfo?.Email}}</p>
+                <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
+                <p>{{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
+                  {{profileview?.ProfileBasicInfo?.CountryName}}
                 </p>
-              </div>
-              <hr class="divider" >
-              <div>
-                <h2>Roles &amp; Responsibilities</h2>
-                <ul>
-                  <li>ABC Award</li>
-                  <li>Hot Shot Employee of the month</li>
-                  <li>Best performance Award</li>
-                  <li>Hot Shot Employee of the month</li>
-                </ul>
-              </div>
-              <hr class="divider" >
-              <div>
-                <h2>Achievements</h2>
-                <ul>
-                  <li>ABC Award</li>
-                  <li>Hot Shot Employee of the month</li>
-                  <li>Best performance Award</li>
-                  <li>Hot Shot Employee of the month</li>
-                </ul>
-              </div>
+              </address>
+            </div>
+            <hr class="divider" >
+            <div>
+              <h2>Summary</h2>
+              <p>
+                <span [innerHTML] class="more">
+                  {{profileview?.ProfileBasicInfo?.AboutMe}}
+                </span>
+                <ng-container *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
+                  <p>No Summary Is Added</p>
+                </ng-container>
+              </p>
+            </div>
+            <hr class="divider" >
+            <div>
+              <h2>Roles &amp; Responsibilities</h2>
+              <ul>
+                <ng-container *ngFor="let roles of profileview?.ProfileExperience">
+                  <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
+                    <li *ngFor="let role of roles?.Roles">
+                      {{role}}
+                    </li>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                  No Roles Added
+                </ng-container>
+              </ul>
+            </div>
+            <hr class="divider" >
+            <div>
+              <h2>Achievements</h2>
+              <ul>
+                <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+                  <span *ngIf="achivements.Achievements!=null&&achivements.Achievements!=''">
+                    <li *ngFor="let achivement of achivements?.Achievements">
+                      {{achivement}}
+                    </li>
+                  </span>
+                </ng-container>
+                <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                  No Achievements Added
+                </ng-container>
+              </ul>
             </div>
           </div>
-          <div class="col-md-8 col-sm-12">
-            <div class="right pl-0">
-            <div class="top-tech-skills">
-              <h2 class="section-title mb-22">Top Technical Skills</h2>
-              <div class="col-sm-2"><span>Angular Js</span></div>
-              <div class="col-sm-10 progress-bar-color">
-                  <div class="progress ">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                        90%
-                      </div>
-                    </div>
-              </div>
-              <div class="col-sm-2"><span>Python</span></div>
-              <div class="col-sm-10 progress-bar-color">
-                  <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        60%
-                      </div>
-                    </div>
-              </div>
-              <div class="col-sm-2"><span>Java</span></div>
-              <div class="col-sm-10 progress-bar-color">
-                  <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
-                        85%
-                      </div>
-                    </div>
-              </div>
-              <div class="col-sm-2"><span>HTML</span></div>
-              <div class="col-sm-10 progress-bar-color">
-                  <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                        90%
-                      </div>
-                    </div>
-              </div>
-              <div class="col-sm-2"><span>CSS</span></div>
-              <div class="col-sm-10 progress-bar-color">
-                  <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                        70%
-                      </div>
-                    </div>
-              </div>
-              
-              
-
-
-              <!-- <div class="flex-row">
-              <div class="skill">
-                <div>
-                  <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
-                    xml:space="preserve">
-                  <defs>
-                  </defs>
-                  <g>
-                    <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
-                    <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
-                  </g>
-                  </svg>
-                  <h4 class="level">Expert</h4>
-                </div>
-                <h4 class="name">ASP .net</h4>
-              </div>
-              <div class="skill">
-                <div>
-                  <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
-                    xml:space="preserve">
-                  
-                  <defs>
-                  </defs>
-                  <g>
-                    <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
-                    <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
-                  </g>
-                  </svg>
-                  <h4 class="level">Expert</h4>
-                </div>
-                <h4 class="name">ASP .net</h4>
-              </div>
-              <div class="skill">
-                <div>
-                  <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
-                    xml:space="preserve">
-                  
-                  <defs>
-                  </defs>
-                  <g>
-                    <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
-                    <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
-                  </g>
-                  </svg>
-                  <h4 class="level">Expert</h4>
-                </div>
-                <h4 class="name">ASP .net</h4>
-              </div>
-              <div class="skill">
-                <div>
-                  <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
-                    xml:space="preserve">
-                  
-                  <defs>
-                  </defs>
-                  <g>
-                    <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
-                    <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
-                  </g>
-                  </svg>
-                  <h4 class="level">Expert</h4>
-                </div>
-                <h4 class="name">ASP .net</h4>
-              </div>
-              <div class="skill">
-                <div>
-                  <svg version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
-                    xml:space="preserve">
-                  
-                  <defs>
-                  </defs>
-                  <g>
-                    <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
-                    <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
-                  </g>
-                  </svg>
-                  <h4 class="level">Expert</h4>
-                </div>
-                <h4 class="name">ASP .net</h4>
-              </div>
-              </div> -->
-            </div> 
-            <!-- top-tech-skills end -->
-            <div class="other-skills-row row">
-                <div class="col-md-6">
-                    <div class="skills-section">
-                      <h2 class="section-title">Domain Skills</h2>
-                      <ul class="skills clearfix">
-                        <li class="skill tag">
-                          UX Design
-                        </li>
-                        <li class="skill tag">
-                          Interaction
-                        </li>
-                        <li class="skill tag">
-                          Adobe CC
-                        </li>
-                        <li class="skill tag">
-                          User Interface
-                        </li>
-                        <li class="skill tag">
-                          UI Design
-                        </li>
-                        <li class="skill tag">
-                          HTML
-                        </li>
-                        <li class="skill tag">
-                          CSS
-                        </li>
-                      </ul>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <div class="right pl-0">
+          <div class="top-tech-skills">
+            <h2 class="section-title mb-22">Top Technical Skills</h2>
+            <div *ngFor="let skil of list ">
+            <div class="col-sm-2"><span>{{skil.SkillName}}</span></div>
+            <div class="col-sm-10 progress-bar-color">
+                <div class="progress ">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                      90%
                     </div>
                   </div>
-              <div class="col-md-6">
-                <div class="skills-section">
-                  <h2 class="section-title">Other Skills</h2>
-                  <ul class="skills clearfix">
-                    <li class="skill tag">
-                      UX Design
-                    </li>
-                    <li class="skill tag">
-                      Interaction
-                    </li>
-                    <li class="skill tag">
-                      Adobe CC
-                    </li>
-                    <li class="skill tag">
-                      User Interface
-                    </li>
-                    <li class="skill tag">
-                      UI Design
-                    </li>
-                    <li class="skill tag">
-                      HTML
-                    </li>
-                    <li class="skill tag">
-                      CSS
-                    </li>
-                  </ul>
-                </div>
-              </div>
-             
+            </div>
+          </div>
+            <!-- <div class="col-sm-2"><span>Python</span></div>
+            <div class="col-sm-10 progress-bar-color">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                      60%
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-2"><span>Java</span></div>
+            <div class="col-sm-10 progress-bar-color">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                      85%
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-2"><span>HTML</span></div>
+            <div class="col-sm-10 progress-bar-color">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                      90%
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-2"><span>CSS</span></div>
+            <div class="col-sm-10 progress-bar-color">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                      70%
+                    </div>
+                  </div>
             </div>
             
-            <div class="personal-skills">
-              <h2 class="section-title">Personal Skills</h2>
-              <div class="skills">
-                <div class="letter">D</div>
-                <div class="text">
-                  <h2 class="title">Dominance</h2>
-                  <p>
-                    Person places emphasis on accomplishing
-                    results, the bottom line, confidence
-                  </p>  
-                </div>
-              </div>
-            </div>
+             -->
 
-            <div class="professional-experience">
-              <h2 class="section-title">Professional Experience</h2>
-              <div class="timeline-wrap clearfix">
-                <ul class="timeline">
-                  <li class="clearfix">
-                    <div class="date">
-                      Jun-2013 - Present
-                    </div>
-                    <div class="badge-circle"></div>
-                    <div class="details">
-                      <h3 class="title">Lead user Experience Engineer</h3>
-                      <div class="info">
-                        <img src="../../../../../../assets/images/oxford.png" alt="">
-                        <h4 class="name">Fantasy</h4>
-                        <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>                          
-                      </div>
-                    </div>
-                  </li>
-                  <li class="clearfix">
-                    <div class="date">
-                      Jun-2013 - Present
-                    </div>
-                    <div class="badge-circle"></div>
-                    <div class="details">
-                      <h3 class="title">Lead user Experience Engineer</h3>
-                      <div class="info">
-                        <img src="../../../../../../assets/images/oxford.png" alt="">
-                        <h4 class="name">Fantasy</h4>
-                        <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>                          
-                      </div>
-                    </div>
-                  </li>
-                  <li class="clearfix">
-                    <div class="date">
-                      Jun-2013 - Present
-                    </div>
-                    <div class="badge-circle"></div>
-                    <div class="details">
-                      <h3 class="title">Lead user Experience Engineer</h3>
-                      <div class="info">
-                        <img src="../../../../../../assets/images/oxford.png" alt="">
-                        <h4 class="name">Fantasy</h4>
-                        <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>                          
-                      </div>
-                    </div>
-                  </li>
+
+            <!-- <div class="flex-row">
+            <div class="skill">
+              <div>
+                <svg version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                  x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                  xml:space="preserve">
+                <defs>
+                </defs>
+                <g>
+                  <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
+                  <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
+                </g>
+                </svg>
+                <h4 class="level">Expert</h4>
+              </div>
+              <h4 class="name">ASP .net</h4>
+            </div>
+            <div class="skill">
+              <div>
+                <svg version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                  x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                  xml:space="preserve">
+                
+                <defs>
+                </defs>
+                <g>
+                  <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
+                  <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
+                </g>
+                </svg>
+                <h4 class="level">Expert</h4>
+              </div>
+              <h4 class="name">ASP .net</h4>
+            </div>
+            <div class="skill">
+              <div>
+                <svg version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                  x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                  xml:space="preserve">
+                
+                <defs>
+                </defs>
+                <g>
+                  <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
+                  <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
+                </g>
+                </svg>
+                <h4 class="level">Expert</h4>
+              </div>
+              <h4 class="name">ASP .net</h4>
+            </div>
+            <div class="skill">
+              <div>
+                <svg version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                  x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                  xml:space="preserve">
+                
+                <defs>
+                </defs>
+                <g>
+                  <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
+                  <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
+                </g>
+                </svg>
+                <h4 class="level">Expert</h4>
+              </div>
+              <h4 class="name">ASP .net</h4>
+            </div>
+            <div class="skill">
+              <div>
+                <svg version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                  x="0px" y="0px" width="116.5px" height="116.4px" viewBox="0 0 116.5 116.4" style="enable-background:new 0 0 116.5 116.4;"
+                  xml:space="preserve">
+                
+                <defs>
+                </defs>
+                <g>
+                  <ellipse class="st0" cx="58.3" cy="58.2" rx="53.3" ry="53.2"/>
+                  <path class="st1" d="M58.3,111.4C28.8,111.4,5,87.6,5,58.2S28.8,5,58.3,5"/>
+                </g>
+                </svg>
+                <h4 class="level">Expert</h4>
+              </div>
+              <h4 class="name">ASP .net</h4>
+            </div>
+            </div> -->
+          </div> 
+          <!-- top-tech-skills end -->
+          <div class="other-skills-row row">
+              <div class="col-md-6">
+                  <div class="skills-section">
+                    <h2 class="section-title">Domain Skills</h2>
+                    <ul class="skills clearfix">
+                      <!-- <li class="skill tag">
+                        UX Design
+                      </li> -->
+                      <li *ngFor=" let domain of profileview?.ProfileDomain ">
+                        <span class="skill tag " *ngIf="domain.DomainName!=null&&domain.DomainName!='' ">
+                          {{domain.DomainName}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            <div class="col-md-6">
+              <div class="skills-section">
+                <h2 class="section-title">Other Skills</h2>
+                <ul class="skills clearfix">
+                  <!-- <li class="skill tag">
+                    UX Design
+                  </li> -->
+                  <ng-container *ngFor="let skills of otherSkills">
+                    <li>
+                      <span class="skill tag " *ngIf="skills.ExpInYears ===0 &&skills.SkillName!=''||skills.ExpInYears ==null&& skills.SkillName!='' ">
+                        {{skills.SkillName }}</span>
+                    </li>
+
+                  </ng-container>
                 </ul>
               </div>
             </div>
-
-             <div class="certifications">
-              <h2 class="section-title">Certifications</h2>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <div class="cert-card">
-                    <div class="settings-dot">
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div class="logo">
-                      <img src="../../../../../../assets/images/microsoft-logo.png" alt="">  
-                    </div>  
-                    <div class="info">
-                      <h2 class="title">Javascript</h2>
-                      <h4 class="year">2013</h4>
-                    </div>
-                  </div>  
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="cert-card">
-                    <div class="settings-dot">
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div class="logo">
-                      <img src="../../../../../../assets/images/microsoft-logo.png" alt="">  
-                    </div>  
-                    <div class="info">
-                      <h2 class="title">Javascript</h2>
-                      <h4 class="year">2013</h4>
-                    </div>
-                  </div>  
-                </div>
+           
+          </div>
+          
+          <div class="personal-skills">
+            <h2 class="section-title">Personal Skills</h2>
+            <div class="skills">
+              <div class="letter">D</div>
+              <div class="text">
+                <h2 class="title">Dominance</h2>
+                <p>
+                  Person places emphasis on accomplishing
+                  results, the bottom line, confidence
+                </p>  
               </div>
             </div>
-            <div style="height: 5vh;"></div>
+          </div>
 
-
+          <div class="professional-experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline-wrap clearfix">
+              <ul class="timeline">
+                <li class="clearfix " *ngFor="let exp of profileview?.ProfileExperience ">
+                  <div class="date ">
+                    {{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}
+                  </div>
+                  <div class="badge-circle "></div>
+                  <div class="details ">
+                    <h3 class="title ">{{exp.JobRole}}</h3>
+                    <div class="info ">
+                      <img src="../../../../../../assets/images/oxford.png" alt=" ">
+                      <h4 class="name ">{{exp.CompanyName}}</h4>
+                      <h5 class="meta meta-dark ">
+                        <span class="icon-location "></span> {{exp.JobLocation}}</h5>
+                    </div>
+                  </div>
+                </li>
+                <!-- <li class="clearfix">
+                  <div class="date">
+                    Jun-2013 - Present
+                  </div>
+                  <div class="badge-circle"></div>
+                  <div class="details">
+                    <h3 class="title">Lead user Experience Engineer</h3>
+                    <div class="info">
+                      <img src="images/oxford.png" alt="">
+                      <h4 class="name">Fantasy</h4>
+                      <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>                          
+                    </div>
+                  </div>
+                </li> -->
+              </ul>
             </div>
           </div>
-          <!-- col-md-8 -->
+
+           <div class="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <div class="row">
+              <div *ngIf="profileview?.Certifications?.length>0">
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngFor="let certificate of profileview?.Certifications ">
+                  <div class="cert-card">
+                    <div class="settings-dot">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="logo">
+                      <img [src]="certificate.ImageUrl" alt="">
+                    </div>
+                    <div class="info ">
+                      <h2 class="title " data-toggle="tooltip" title={{certificate.CertificationName}}>{{certificate.CertificationName}}</h2>
+                      <h4 class="year ">{{certificate.YearOfAchievement| date:'mediumDate'}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngIf="profileview?.Certifications?.length==0">
+                <p>No Certifications added</p>
+              </div>
+            </div>
+          </div>
+
+          <div >
+            <h2 class="section-title">Professional Skills</h2>
+            <div class="timeline-wrap clearfix">
+              <ul class="timeline">
+                <li class="clearfix " *ngFor="let education of profileview?.Education ">
+                  <div class="date ">
+                    {{education.FromYear}} - {{education.ToYear}}
+                  </div>
+                  <div class="badge-circle "></div>
+                  <div class="details ">
+                    <h3 class="title ">{{education.QualificationName}} in {{education.Specialization}}</h3>
+                    <div class="info ">
+                      <img src="assets/images/oxford.png " alt=" ">
+                      <h4 class="name ">{{education.InstituteORUniversity}}</h4>
+                      <h5 class="meta meta-dark ">
+                        <span class="icon-location "></span> {{education.Location}}</h5>
+                    </div>
+                  </div>
+                </li>
+                <li class="clearfix " *ngIf="profileview?.Education.length==0">
+                  <p>No Professional Education added</p>
+                </li>
+                <!-- <li class="clearfix">
+                  <div class="date">
+                    Jun-2013 - Present
+                  </div>
+                  <div class="badge-circle"></div>
+                  <div class="details">
+                    <h3 class="title">Lead user Experience Engineer</h3>
+                    <div class="info">
+                      <img src="images/oxford.png" alt="">
+                      <h4 class="name">Fantasy</h4>
+                      <h5 class="meta meta-dark"><span class="icon-location"></span> Oxford, UK</h5>                          
+                    </div>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div style="height: 5vh;"></div>
+          </div>
         </div>
+        <!-- col-md-8 -->
       </div>
-      <div id="detailView" class="tab-pane fade">
-        <h3>Detail View</h3>
-        <p>
-          Ut enim ad minim veniam, quis nostrud exercitation 
-          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-      </div>
-    </div>  
-  
-  <!-- container -->
+    </div>
+    <div id="detailView" class="tab-pane fade">
+      <h3>Detail View</h3>
+      <p>
+        Ut enim ad minim veniam, quis nostrud exercitation 
+        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </div>
+  </div>  
+
+<!-- container -->
 </main>
 <div class="blackLayer modalClose"></div>
