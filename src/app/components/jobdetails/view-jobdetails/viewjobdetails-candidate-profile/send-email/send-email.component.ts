@@ -40,6 +40,7 @@ body: string;
     this.conversation.Body = this.body;
     // if(){
     this.conversation.AppLink = this.data.userId > 0 ? environment.CandidateLogin + ';lid=' + this.data.ccpid :
+    this.conversation.UserCheck = this.data.userId > 0 ? 'Login' :  'Yes I will Join';
     environment.CandidateSignUp + ';sid=' + this.data.ccpid;
     // }
     this.conversation.ToEmailID = this.ToEmailID;
@@ -74,6 +75,7 @@ export class StartConversation {
   FromID: string;
   ApplicationName: string;
   AppLink: string;
+  UserCheck: string;
 }
 export class EmailUpdateStatus {
   JobResponseId: number;
