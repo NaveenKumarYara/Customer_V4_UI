@@ -526,6 +526,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.wishlist = wishlist;
         this.location = '';
         this.wishsort = sortBy;
+        this.sortBy = sortBy;
         this.searchString = search;
         if (this.statusid === 0) {
           if(count === 0)
