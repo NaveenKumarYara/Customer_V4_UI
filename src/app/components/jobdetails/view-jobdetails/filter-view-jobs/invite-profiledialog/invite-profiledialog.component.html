@@ -14,21 +14,31 @@
         <div id="sendEmail" class="tab-pane fade active in  w-50">
           <div class="clearfix">&nbsp;</div>
          
-          <form action="">
+          <form [formGroup]="inviteform"  (ngSubmit)="SaveInvite()">
             
             <div class="input-group">
-                <div>
-                  <input class="form-control" id="Email" name="benefits" placeholder="Email" type="text">
+                <div class="form-group p-rel">
+                  <input  formControlName="inviteEmail"
+           id="Email"  [pattern]="emailPattern" class="form-control" name="inviteEmail" placeholder="Email" type="email" required>
+           <div *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)" class="error1">
+            <div *ngIf="inviteform.controls['inviteEmail'].errors.required">
+                Email Required.
+            </div>
+            <div *ngIf="inviteform.controls['inviteEmail'].errors.pattern">
+                Incorrect Email!.
+            </div>
+        </div>
                 </div>
+          
                 <span class="input-group-btn">
-                    <button class="btn">Submit</button>
+                    <button type="submit" class="btn">Submit</button>
                   </span>
               </div>
           
          
           </form>
           <div class="clearfix">&nbsp;</div>
-          <div>
+          <!-- <div>
               <h5>April 01, 2019</h5>
                 <ul class="notification-list">
                   <li>
@@ -56,7 +66,7 @@
                     <div class="time">2:30pm</div>
                   </li>
                 </ul>
-              </div>
+              </div> -->
           
   
         </div>

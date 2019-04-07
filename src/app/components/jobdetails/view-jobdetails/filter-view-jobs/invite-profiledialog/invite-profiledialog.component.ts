@@ -1,5 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewContainerRef  } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { JobdetailsService } from '../../../jobdetails.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { environment } from '../../../../../../environments/environment.prod';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -10,10 +15,72 @@ export interface DialogData {
 })
 
   export class InviteProfiledialogComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+    inviteinfo = new InviteInfo();
+    inviteform: FormGroup;
+    customer:any;
+    customerId: any;
+    userId: any;
+    emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
+    Emailinvite:any;
+    inviteEmail:any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId = this.customer.CustomerId;
+    this.userId =  this.customer.UserId;
+   }
 
   ngOnInit() {
+    this.inviteform = this.fb.group({
+      'inviteEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
+    });
+  }
+
+
+  SaveInvite() {
+    if(this.inviteform.invalid)
+    {
+      this.inviteform.controls['inviteEmail'].markAsTouched()
+    }
+    else 
+    {
+    this.inviteinfo.userId = this.userId;
+    this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
+    this.inviteinfo.userName =  this.inviteform.value.inviteEmail;
+    this.inviteinfo.fullName = 'Arytic User';
+    this.inviteinfo.statusId = 0;
+    this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;;
+    this.inviteinfo.ApplicationName = 'Arytic';
+    this.inviteinfo.CandFullName = this.inviteform.value.inviteEmail;;
+    this.inviteinfo.CustFullName = 'Arytic';
+    this.inviteinfo.ClientLogo = '';
+    this.inviteinfo.AppLink = environment.CandidateSignUp;
+    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
+       if (data === 0) {
+        this.inviteform.reset();
+        this.toastr.success('Mail sent successfully', 'Success');
+        setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
+       }
+     }, error => {
+       alert('error ');
+            console.log('error:', JSON.stringify(error));
+           });
+   }
   }
 
 }
+
+export class InviteInfo {
+  userId: number;
+  jobId: number;
+  fullName: string;
+  userName: string;
+  statusId: number;
+  CustFullName: string;
+  CandFullName: string;
+  AppLink: string;
+  ToEmailId: string;
+  ApplicationName: string;
+  ClientLogo: string;
+  }

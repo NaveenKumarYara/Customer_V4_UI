@@ -33,6 +33,7 @@ export class FilterViewJobsComponent implements OnInit {
   @Input() displayQuick: number;
   @Input() Count: WishlistCount;
   count:number;
+  customer:any;
   customerId: any;
   userId: any;
   value:any;
@@ -52,8 +53,9 @@ export class FilterViewJobsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
     private router: Router, private jobdetailsservice: JobdetailsService,  private dialog: MatDialog
    ) {
-      this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-      this.userId = JSON.parse(sessionStorage.getItem('userId'));
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId =  this.customer.UserId;
       this.ViewBy = 1;    
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
      }
