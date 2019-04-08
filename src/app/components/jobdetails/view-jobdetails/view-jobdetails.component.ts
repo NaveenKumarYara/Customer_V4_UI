@@ -444,6 +444,10 @@ export class ViewJobdetailsComponent implements OnInit {
   this.base.uploaded = 0;
   this.base.suggested = 0;
   this.base.wishlist = 0;
+  this.sortBy =0;
+  this.uploaded = 0;
+  this.suggested = 0;
+  this.wishlist = 0;
    }
   ngOnInit() {
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
