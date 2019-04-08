@@ -164,7 +164,7 @@ export class FilterViewJobsComponent implements OnInit {
   .subscribe(res => {
     this.jobdetailsprofiles = res;
     this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;
-    if(this.TotalCount>0)
+    if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0 || this.wishlist>0))
     {
       this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString,this.TotalCount);
     }
