@@ -24,7 +24,7 @@
             <div class="contact">
               <h2>Contact</h2>
               <address>
-                <p>{{profileview?.ProfileBasicInfo?.Email}}</p>
+                <p>{{profileview?.ProfileBasicInfo?.UserName}}</p>
                 <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
                 <p>{{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
                   {{profileview?.ProfileBasicInfo?.CountryName}}
@@ -356,7 +356,7 @@
           </div>
 
           <div >
-            <h2 class="section-title">Professional Skills</h2>
+            <h2 class="section-title">Qualification</h2>
             <div class="timeline-wrap clearfix">
               <ul class="timeline">
                 <li class="clearfix " *ngFor="let education of profileview?.Education ">
