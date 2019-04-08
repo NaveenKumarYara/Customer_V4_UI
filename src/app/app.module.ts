@@ -73,6 +73,7 @@ import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/dep
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
+import {ProgressBarModule} from 'angular-progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,7 +146,8 @@ import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajo
   NgbModule.forRoot(),
   NgxMaskModule.forRoot(),
   FlickityModule,
-  Ng5SliderModule
+  Ng5SliderModule,
+  ProgressBarModule
   ],
   providers: [AppService, ApiService, AuthService],
   bootstrap: [AppComponent]

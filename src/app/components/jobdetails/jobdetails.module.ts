@@ -32,6 +32,7 @@ import { FlickityModule } from 'ngx-flickity';
 import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { SendEmailComponent } from './view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
+import {ProgressBarModule} from 'angular-progress-bar';
 @NgModule({
   imports: [
     CommonModule,
@@ -48,7 +49,7 @@ import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs
     HttpClientModule,
     NgxSpinnerModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
-    FlickityModule
+    FlickityModule, ProgressBarModule
     // ,
     // ModalDialogModule.forRoot()
   ],
