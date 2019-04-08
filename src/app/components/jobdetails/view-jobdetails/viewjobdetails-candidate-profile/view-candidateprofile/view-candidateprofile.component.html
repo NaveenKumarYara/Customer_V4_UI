@@ -94,17 +94,23 @@
           </div>  -->
           <table class="table">
             <tbody>
-                <tr *ngFor="let skil of list ">
+                <tr *ngFor="let skil of list| slice:0:5; let i = index ">
+                    <!-- <td *ngIf="i<=4">
+                      <tr> -->
                     <td style="width:40%;">
                         <span class="ellipsis">{{skil.SkillName}}</span>
                     </td>
                     <td >
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                              90%
-                            </div>
-                          </div>
+                        <!-- <div class="progress"> -->
+                            <!-- <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"  width="skil.SkillRating">
+                              {{skil.SkillRating * 20}}%
+                            </div> -->
+                            <progress-bar [progress]="skil.SkillRating * 20" [color]="'#488aff'">
+                              </progress-bar>
+                          <!-- </div> -->
                     </td>
+                  <!-- </tr>
+                  </td> -->
                   </tr>
             </tbody>
           
@@ -262,7 +268,7 @@
                   </li> -->
                   <ng-container *ngFor="let skills of otherSkills">
                     <li>
-                      <span class="skill tag " *ngIf="skills.ExpInYears ===0 &&skills.SkillName!=''||skills.ExpInYears ==null&& skills.SkillName!='' ">
+                      <span class="skill tag " >
                         {{skills.SkillName }}</span>
                     </li>
 
