@@ -22399,3 +22399,16 @@ body *{
   .pt-0{
       padding-top:0px ;
   }
+
+  .progress-outer{
+    margin: 0px !important;
+    padding: 3px;
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    color: #fff;
+     border-radius:0px !important;
+    text-align: center;
+}
+.progress-inner{
+    border-radius:0px !important;
+}

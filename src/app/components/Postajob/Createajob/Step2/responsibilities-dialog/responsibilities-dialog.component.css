@@ -33,3 +33,6 @@ textarea.form-control{
     padding: 15px 30px;
     font-size: 14px;
 }
+.table tbody tr td{
+    vertical-align: middle !important;
+} 
