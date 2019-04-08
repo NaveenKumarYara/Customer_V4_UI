@@ -184,12 +184,12 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
+    this.CallList(this.statusid);
     this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, 6);
-    this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false;
-    this.CallList(this.statusid);
+    this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false; 
   } else {
    this.loadMore = false;
    this.child.NoRecords();
@@ -221,6 +221,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
     this.ClearallValues();
+    this.CallList(this.statusid);
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
     // console.log(this.statusid);
@@ -230,7 +231,6 @@ export class ViewJobdetailsComponent implements OnInit {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, 6);
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
-      this.CallList(this.statusid);
    } else {
     this.loadMore = false;
     this.child.NoRecords();
@@ -516,6 +516,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.openCandidateUploadDialog();
       },
       CallViewBy: (uploaded, suggested, wishlist, sortBy, search,count) => {
+        debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);

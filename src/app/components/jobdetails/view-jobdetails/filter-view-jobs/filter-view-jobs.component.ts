@@ -76,7 +76,7 @@ export class FilterViewJobsComponent implements OnInit {
   search(val) {
    this.searchString = val;
    //this.parentApi.callSearchMethod(this.searchString);
-   this.parentApi.CallViewBy(this.uploaded,this.wishlist,this.suggested,this.sortBy,this.searchString,this.TotalCount);
+   this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString,this.TotalCount);
    this.SearchList = [];
    this.GetSearchText(null);
   }
