@@ -266,7 +266,7 @@
                   <!-- <li class="skill tag">
                     UX Design
                   </li> -->
-                  <ng-container *ngFor="let skills of otherSkills">
+                  <ng-container *ngFor="let skills of otherSkills| slice:0:5">
                     <li>
                       <span class="skill tag " >
                         {{skills.SkillName }}</span>
@@ -297,7 +297,7 @@
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline-wrap clearfix">
               <ul class="timeline">
-                <li class="clearfix " *ngFor="let exp of profileview?.ProfileExperience ">
+                <li class="clearfix " *ngFor="let exp of profileview?.ProfileExperience | slice:0:5">
                   <div class="date ">
                     {{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}
                   </div>

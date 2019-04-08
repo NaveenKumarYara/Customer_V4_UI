@@ -12,48 +12,47 @@ import { Jobs } from '../../../../../models/jobs';
 export class RecentjobsCountComponent implements OnInit {
   @Input() job: Jobs;
   @Input() joblist: RecentJobs[];
-  customer:any;
-   jobLoader =false;
-   jobId:any;
-   jobS:any;
-   customerId:any;
-   userId:any;
+  customer: any;
+   jobLoader = false;
+   jobId: any;
+   jobS: any;
+   customerId: any;
+   userId: any;
 
-    
+
     // progressValue = 60;
     // isDeterminate = true;
-  
+
     // step(val: number) {
     //   this.progressValue = Math.max(0, Math.min(100, val + this.progressValue));
     // }
     constructor(private spinner: NgxSpinnerService, private dashboardservice: DashboardService, private router: Router) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
-      this.customerId =this.customer.CustomerId;
-      this.userId=this.customer.UserId;
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
      }
 
 
-    
+
 
     ngOnInit() {
-       this.GetProfileCount();       
+      //  this.GetProfileCount();
   }
 
-  GetProfileCount()
-  {
-  this.jobId = this.job.JobId;
-    return this.dashboardservice.getJobCount(this.jobId,this.customerId).subscribe(res => {
-    this.jobS = res;
-   });
-  }
+  // GetProfileCount()
+  // {
+  // this.jobId = this.job.JobId;
+  //   return this.dashboardservice.getJobCount(this.jobId,this.customerId).subscribe(res => {
+  //   this.jobS = res;
+  //  });
+  // }
 
-  GetJobsRedirect(statusId)
-  {
+  GetJobsRedirect(statusId) {
    sessionStorage.setItem('jobId', JSON.stringify(this.jobId));
    sessionStorage.setItem('statusid', JSON.stringify(statusId));
    this.router.navigateByUrl('app-view-jobdetails');
   }
- 
- 
+
+
 
 }
