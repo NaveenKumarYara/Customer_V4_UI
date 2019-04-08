@@ -172,6 +172,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   OpenCandidateDialog(profileId) {
     // if (this.jobStatus!='InActive') {
+      this.spinner.show();
+      setTimeout(() => {
+      this.spinner.hide();
+      }, 1500);
       const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
         {
           width: '750',
