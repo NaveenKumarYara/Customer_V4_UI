@@ -85,7 +85,9 @@ export class FilterViewJobsComponent implements OnInit {
     this.parentApi.callSuggested();
   }
 
+
   GetSearchText(value) {
+    this.value = value;
       return this.jobdetailsservice.GetAutoSearch(value,this.customerId)
       .subscribe(data => 
         {
@@ -93,6 +95,10 @@ export class FilterViewJobsComponent implements OnInit {
             this.SearchList =data;
           }
           else {
+            if (this.value == "") {
+             this.SearchList = [];
+             this.search(this.value);           
+            }
             this.SearchList = [];
           }
         

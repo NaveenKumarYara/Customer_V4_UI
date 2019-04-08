@@ -516,7 +516,6 @@ export class ViewJobdetailsComponent implements OnInit {
         this.openCandidateUploadDialog();
       },
       CallViewBy: (uploaded, suggested, wishlist, sortBy, search,count) => {
-        debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);

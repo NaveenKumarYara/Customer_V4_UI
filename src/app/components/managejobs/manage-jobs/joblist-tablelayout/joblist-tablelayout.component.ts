@@ -41,7 +41,7 @@ export class JoblistTablelayoutComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.GetProfileCount();
+    //this.GetProfileCount();
     //this.GetCustomerClients();
     //this.GetCustomerDepartment();
   }

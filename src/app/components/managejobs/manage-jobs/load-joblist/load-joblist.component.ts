@@ -118,6 +118,7 @@ export class LoadJoblistComponent implements OnInit {
   getParentApi(): ParentComponentApi {
     return {   
       callSearchMethod : (searchString)=>{ 
+        this.spinner.show();
        // this.parentMethod(name);
       this.searchString = searchString; 
         this.cityId = 0;

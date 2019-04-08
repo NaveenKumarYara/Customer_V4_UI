@@ -14,6 +14,7 @@ declare var $: any;
 export class SearchjobsComponent implements OnInit {
   customer: any;
   userId: any;
+  value:any;
   splitVal: any = [];
   SearchList: any = [];
   customerId: any;
@@ -35,21 +36,24 @@ export class SearchjobsComponent implements OnInit {
    }
 
    GetSearchText(value) {
+    this.value = value;
     return this.managejobservice.GetAutoSearch(value,this.customerId)
     .subscribe(data => {
           if (data.length > 0) {  
             this.SearchList =data;
           }
           else {
+            if (this.value == "") {
+             this.SearchList = [];
+             this.search(this.value);           
+            }
             this.SearchList = [];
           }
         
-          }, 
-     
+          },     
         error => { 
           this.SearchList = [];
-         });
-  
+        });
   }
 
   SearchEnter(searchval)
