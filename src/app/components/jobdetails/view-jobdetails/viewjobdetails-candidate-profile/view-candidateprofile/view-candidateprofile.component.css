@@ -2805,3 +2805,25 @@ button.close {
     filter: alpha(opacity=20);
     opacity: .2;
 }
+.progress {
+    margin-bottom: 0px;
+}
+tr td{
+    margin-bottom: 10px; 
+}
+.table>tbody>tr>td{
+    border-top:none;
+}
+.summary-view .skills-section .skills .tag.skill{
+    margin-right: 10px;
+}
+
+.details{
+    max-width: 400px;
+}
+h3.ellipsis{
+    white-space: nowrap; 
+    width:90%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
