@@ -271,7 +271,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       this.jobid = jobid;
       this.statusid = statusid ; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
     }
-    if (statistics === 0 && statusid >= 4 ) {
+    if (statistics === 0 && statusid > 4 ) {
     this.jobdetailsprofiles = new JobdetailsProfile();
     } else if (this.statusid === 15) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
@@ -282,7 +282,7 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
       });
     } else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, noofRows)
-    .subscribe(res => {
+    .subscribe(res => {   
       this.jobdetailsprofiles = res;
       this.profiles = res;
       this.TotalCount = this.jobdetailsprofiles;
