@@ -33,6 +33,8 @@ export class LoadJoblistComponent implements OnInit {
   joblistcount: number;
   defaultValue:any;
   jobs: any;
+  clientId:any;
+  departmentId:any;
   loaddata = false;
   sortBy: any;
    jobLoader = false;
@@ -84,12 +86,15 @@ export class LoadJoblistComponent implements OnInit {
     this.employmentTypeId = employmentTypeId;
     this.experience = experience;
     this.viewBy=this.sortBy;
+    this.clientId = clientId;
+    this.departmentId = departmentId;
     this.cityId = cityId;
     return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,clientId,departmentId,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
+      this.clearAll();
     }); 
   }
 
@@ -97,9 +102,9 @@ export class LoadJoblistComponent implements OnInit {
     this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
     this.jobLoader = true;
-     if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0)
+    if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0 || this.clientId>0 || this.departmentId>0)
     {
-      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId);
+      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.clientId,this.departmentId);
     }
     else
     {
@@ -113,8 +118,28 @@ export class LoadJoblistComponent implements OnInit {
   {
     this.sortBy = sort;
     this.spinner.show();
-    this.populateJoblist(this.customerId,this.userId,this.searchString);
+    if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0 || this.clientId>0 || this.departmentId>0)
+    {
+      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.clientId,this.departmentId);
+    }
+    else
+    {
+      this.populateJoblist(this.customerId, this.userId,this.searchString);
+    }
   } 
+  clearAll()
+  {
+    debugger
+    this.sortBy = 0;
+    this.viewBy =0 ;
+    this.employmentTypeId =0;
+    this.experience = 0;
+    this.cityId = 0;
+    this.clientId = 0;
+    this.departmentId = 0;
+    this.defaultValue = 0;
+
+  }
   getParentApi(): ParentComponentApi {
     return {   
       callSearchMethod : (searchString)=>{ 
