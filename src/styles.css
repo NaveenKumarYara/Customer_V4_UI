@@ -26079,6 +26079,7 @@ body *{
         border-color: #E0E3EF;
         color: #9EABC0;
         resize: none;
+        height: auto !important;
     }
     p.p6 {
         margin: 5px 0 6px 0px !important;
