@@ -26010,8 +26010,11 @@ body *{
   .ml-20{
     margin-left: 10px;
   }
-  .searchList{
-      left:22px !important;
+  .searchList.l22{
+      left: 22px !important;
+  }
+  .form-group .searchList{
+    left: 0px !important;
   }
   .pl-0{
       padding-left:0px; 
