@@ -114,8 +114,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== 'InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
-        // width: '1000px',
-        // position: {right : '0px'},
+         //width: '1000px',
+         position: {right : '0px'},
         // height : '750px',
         data: {
           animal: 'panda'

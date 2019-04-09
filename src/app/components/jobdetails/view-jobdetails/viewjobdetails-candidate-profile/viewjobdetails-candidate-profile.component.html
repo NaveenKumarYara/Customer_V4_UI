@@ -641,7 +641,8 @@
                                 </div>
                                 <!-- shortlisted -->
                                 <div *ngIf="profile?.ResponseStatusId == 8">
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlisted</a></li>
+                                    <li role="presentation"><p class="p6"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlisted</a></p></li>
+                                    <!-- <li role="presentation" class="divider"></li> -->
                                     <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
                     <li role="presentation" class="divider"></li>
                     <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
