@@ -22412,3 +22412,23 @@ body *{
 .progress-inner{
     border-radius:0px !important;
 }
+.dropdown-menu.dropdown-menu-right div li {
+    padding: 0px 10px;
+    /* margin: 10px 0px; */
+}
+.dropdown-menu.dropdown-menu-right div li:not(:last-of-type){
+    border-bottom: 1px solid #EFF1F6;
+}
+.dropdown-menu.dropdown-menu-right div li a {
+    padding: 4px;
+}
+.dropdown-menu.dropdown-menu-right div li a {
+    color: #6A7E9C;
+    letter-spacing: 0.03em;
+}
+.dropdown-menu.dropdown-menu-right div li:hover {
+    background-color: #eee;
+}
+.dropup .dropdown-menu.dropdown-menu-right {
+    padding: 5px 0 !important;
+}
