@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { environment } from '../../../../../../environments/environment.prod';
+import { AnimationStyleMetadata } from '@angular/core/src/animation/dsl';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -20,7 +21,7 @@ export interface DialogData {
     customer:any;
     customerId: any;
     userId: any;
-    emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
+    //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     Emailinvite:any;
     inviteEmail:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
@@ -35,22 +36,15 @@ export interface DialogData {
     });
   }
 
-
   SaveInvite() {
-    if(this.inviteform.invalid)
-    {
-      this.inviteform.controls['inviteEmail'].markAsTouched()
-    }
-    else 
-    {
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
-    this.inviteinfo.userName =  this.inviteform.value.inviteEmail;
+    this.inviteinfo.userName =  'Arytic User';
     this.inviteinfo.fullName = 'Arytic User';
     this.inviteinfo.statusId = 0;
     this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;;
     this.inviteinfo.ApplicationName = 'Arytic';
-    this.inviteinfo.CandFullName = this.inviteform.value.inviteEmail;;
+    this.inviteinfo.CandFullName = 'Arytic User';
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
     this.inviteinfo.AppLink = environment.CandidateSignUp;
@@ -67,7 +61,7 @@ export interface DialogData {
             console.log('error:', JSON.stringify(error));
            });
    }
-  }
+  
 
 }
 
@@ -83,4 +77,5 @@ export class InviteInfo {
   ToEmailId: string;
   ApplicationName: string;
   ClientLogo: string;
+  readonly modules: ReadonlyArray<{}> = [];
   }
