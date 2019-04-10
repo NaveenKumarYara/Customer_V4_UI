@@ -8,7 +8,7 @@
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="form-row clearfix">
                                 <div class="form-group interview-date-group">
                                     <label for="">
@@ -103,7 +103,7 @@
                                     <span class="text-danger"
                                         *ngIf="TMember.invalid && TMember.touched">Required.</span>
                                 </div>
-                                <ul class="team-members-list">
+                                <!-- <ul class="team-members-list">
                                     <li *ngFor="let teammember of teammemberslist; let i = index">
                                         <div>
                                             <img src="images/ui-face-1.png" alt="">
@@ -111,10 +111,21 @@
                                         </div>
                                         <span class="close" (click)="deleteTeammember(i)">&times;</span>
                                     </li>
-                                </ul>
+                                </ul> -->
+                                <ul class="team-members-list pb-4">
+                                        <li *ngFor="let teammember of teammemberslist; let i = index">
+                                          <div class="w-100">
+                                            <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img">
+                                            <h4>{{teammember.FirstName}}
+                                              <span class="dept">HR Office</span>
+                                          </h4>
+                                          <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                        </div>
+                                        </li>
+                                      </ul>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="interview-type">
 
                                 <!--Condition based Tabs in Comments Starts here-
