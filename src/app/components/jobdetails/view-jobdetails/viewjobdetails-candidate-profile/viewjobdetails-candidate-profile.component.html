@@ -628,12 +628,12 @@
                                 <div *ngIf="profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 13 || profile?.ResponseStatusId ===14">
                                         <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
                                                 <div *ngIf="(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null); else otherMenu">
-                                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
+                                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)"><p class="p6">Screening</p></a></li>
                                                 </div>
                                                 <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
                                             <ng-template #otherMenu>
-                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
-                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlist</a></li>
+                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)"><p class="p6">Screening</p></a></li>
+                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)"><p class="p6">Shortlist</p></a></li>
                                             </ng-template>
                                                    <!-- </div> -->
                                        <!-- </div> -->

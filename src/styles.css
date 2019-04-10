@@ -20857,10 +20857,14 @@ a.ui-button:active,
     background-position: center;
 }
 
-.page--create-a-job .form-steps .question {
+.page--create-a-job .form-steps .question, .page--create-a-job .form-steps .jobid{
     font-size: 1.25rem;
     color: #6A7E9C;
     font-weight: 500;
+}
+
+.page--create-a-job .jobid-section .form-control{
+    margin-top:0px !important;
 }
 
 .page--create-a-job .form-steps label {
