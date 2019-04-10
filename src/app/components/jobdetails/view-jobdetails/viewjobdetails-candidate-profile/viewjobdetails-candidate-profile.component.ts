@@ -155,7 +155,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
       {
-        //width: '750',
+        width: '750px',
         position: {right : '0px'},
         height : '750px',
         data: {

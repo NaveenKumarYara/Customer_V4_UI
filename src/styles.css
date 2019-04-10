@@ -26092,3 +26092,13 @@ body *{
     .mlr-9{
         margin:0px 9px;
     }
+
+    .w-100{
+        width: 100% !important;
+    }
+    .mt-14{
+        margin-top: 14px;
+    }
+    .pb-4{
+        padding-bottom: 4rem !important;
+    }
