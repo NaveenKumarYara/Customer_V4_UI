@@ -117,3 +117,14 @@
       transform: rotate(360deg);
     }
   }
+
+  /*ShowCount Styles*/
+  .show-count{
+    float: left;
+    padding:0.5rem;
+  }
+
+  .manage-searchjobs{
+    display: flex; 
+    justify-content: flex-end
+  }

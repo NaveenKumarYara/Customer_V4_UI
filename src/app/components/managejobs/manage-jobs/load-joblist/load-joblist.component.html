@@ -16,16 +16,20 @@
             </svg>
             
           </label> -->
-                <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue" (change)="PopulateSort($event.target.value)">
-            <option default value="0">All Jobs</option>
-            <option value="1">Active Jobs</option>
-            <option value="2">InActive Jobs</option>
-            <option value="3">Closed Jobs</option>
-          </select>
+                <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue"
+                    (change)="PopulateSort($event.target.value)">
+                    <option default value="0">All Jobs</option>
+                    <option value="1">Active Jobs</option>
+                    <option value="2">InActive Jobs</option>
+                    <option value="3">Closed Jobs</option>
+                </select>
             </div>
         </form>
     </div>
-    <div style="display: flex; justify-content: flex-end">
+
+    <h5 class="show-count">Showing 6 out of 186 Jobs </h5>
+
+    <div class="manage-searchjobs">
         <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
     </div>
 </div>
@@ -37,31 +41,29 @@
 
 
 <div id="grid-view" class="grid tab-pane fade in active" *ngIf="id==1">
-
     <div class="col-md-12">
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist.Jobs; let i=index">
-                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i"></app-manage-joblist-gridlayout>
+                <app-manage-joblist-gridlayout [job]="job" [joblist]="joblist" [index]="i">
+                </app-manage-joblist-gridlayout>
             </div>
-
         </div>
-        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode"
+            strokeWidth="3" [diameter]="50">
         </mat-progress-spinner>
     </div>
     <div class="col-md-12" *ngIf="loaddata">
         <ng-container *ngIf="joblist.TotalCount == 0 || joblist.TotalCount == null">
             <div>
-            <div class="nojobbg m-auto">
-                <div class="w-50c">
-                            <h4 class="text-left h4t">Oh Snap! <br/>
-                                No Jobs Posted yet...</h4>
-            </div>
-                <div class="w-50c">
-                <img src="../../../../../assets/images/nojob.png" class="m-auto"/>
-            </div>
-           
-
-        </div>
+                <div class="nojobbg m-auto">
+                    <div class="w-50c">
+                        <h4 class="text-left h4t">Oh Snap! <br />
+                            No Jobs Posted yet...</h4>
+                    </div>
+                    <div class="w-50c">
+                        <img src="../../../../../assets/images/nojob.png" class="m-auto" />
+                    </div>
+                </div>
             </div>
         </ng-container>
         <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
@@ -79,26 +81,25 @@
                     <app-manage-joblist-tablelayout [job]="job" [joblist]="joblist" [index]="i">
                     </app-manage-joblist-tablelayout>
                 </li>
-
-
             </ul>
-            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3"
+                [diameter]="50">
             </mat-progress-spinner>
         </div>
         <ng-container *ngIf="joblist.TotalCount == 0 || joblist.TotalCount == null">
             <div>
                 <div class="nojobbg m-auto">
                     <div class="w-50c">
-                                <h4 class="text-left h4t">Oh Snap! <br/>
-                                    No Jobs Posted yet...</h4>
-                </div>
+                        <h4 class="text-left h4t">Oh Snap! <br />
+                            No Jobs Posted yet...</h4>
+                    </div>
                     <div class="w-50c">
-                    <img src="../../../../../assets/images/nojob.png" class="m-auto"/>
+                        <img src="../../../../../assets/images/nojob.png" class="m-auto" />
+                    </div>
+
+
                 </div>
-               
-    
             </div>
-                </div>
         </ng-container>
         <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
             <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">

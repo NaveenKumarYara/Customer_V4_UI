@@ -183,3 +183,47 @@
     .mat-typography .modal-header{
         justify-content: end;
     }
+
+    /*Skills experience styles*/
+  
+
+.data-list.skills-view {
+    padding: 0 ;
+    list-style: none;
+    margin: 0;
+}
+.data-list.skills-view li:last-child {
+    margin-bottom: 0!important;
+}
+.data-list.skills-view li.no-exp {
+    padding-right: 0;
+}
+.data-list.skills-view li {
+    border: 1px solid #e0e3ef;
+    border-radius: 3px;
+    background-color: #fbfcff;
+    color: #6a7e9c;
+    margin-right: 10px;
+}
+
+.data-list.skills-view li .name {
+    padding: 10px 0 0 3px;
+    font-size: 13px;
+    font-weight: 500;
+    width: 65%;
+    display: block;
+}
+.data-list.skills-view li:not(:last-of-type) {
+    margin-bottom: 5px;
+}
+.data-list.skills-view li>span {
+    float: left;
+}
+.data-list.skills-view li .experience {
+    padding: 10px 7px;
+    font-size: 13px;
+    font-weight: 500;
+    width: 35%;
+    border-left: 1px solid #e0e3ef;
+    border-right: 1px solid #e0e3ef;
+}
