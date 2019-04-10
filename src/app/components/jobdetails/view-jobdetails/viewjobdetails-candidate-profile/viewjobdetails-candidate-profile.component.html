@@ -627,9 +627,13 @@
                                 <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
                                 <div *ngIf="profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 13 || profile?.ResponseStatusId ===14">
                                         <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
-                                            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)"><p class="p6">Screening</p></a></li>
-                                            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)"><p class="p6">Shortlisted</p></a></li>
-                                        <!-- </div> -->
+                                                <div *ngIf="(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)">
+                                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
+                                                </div>
+                                                <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)">
+                                            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)">Screening</a></li>
+                                            <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)">Shortlisted</a></li></div>
+                                       <!-- </div> -->
                                         <!--start commented as it is not required now -->
                                         <!-- <div *ngIf="profile?.IsConfirmed === false">
                                             <li role="presentation" disabled>
