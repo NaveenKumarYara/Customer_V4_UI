@@ -1,6 +1,6 @@
 <div class="page page--job-details">
     <div id="scheduleInterview">
-        <form #schedule="ngForm" (ngSubmit)="ScheduleInterview()">
+        <form #schedule="ngForm">
             <h4 mat-dialog-title class="modal-title">
                 Schedule Interview
             </h4>
@@ -281,7 +281,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label for="">Phone Number</label>
-                                                <input type="text" class="form-control" [(ngModel)]="schIntw.PhoneNumber" name="PhoneNumber" placeholder="e.g. 852477231">
+                                                <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="PhoneNumber" placeholder="e.g. 852477231">
                                             </div>
                                         </div>
                                         <div class="clearfix">&nbsp;</div>
@@ -293,14 +293,14 @@
                                         <div class="radio-btn bordered">
                                             <label>
                                                 <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
-                                                    value="true">
+                                                    [value]="true">
                                                 <span class="box">Yes</span>
                                             </label>
                                         </div>
                                         <div class="radio-btn bordered">
                                             <label>
                                                 <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
-                                                    value="false">
+                                                   [value]="false">
                                                 <span class="box">No</span>
                                             </label>
                                         </div>
@@ -314,7 +314,7 @@
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">
                     <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-                    <button mat-button type="submit" [mat-dialog-close]="true"
+                    <button mat-button type="submit"   (click)="ScheduleInterview()"
                         c000dkFocusInitial class="btn btn-filled"> 
                         <!-- [mat-dialog-close]="true" -->
                         Schedule Interview</button>

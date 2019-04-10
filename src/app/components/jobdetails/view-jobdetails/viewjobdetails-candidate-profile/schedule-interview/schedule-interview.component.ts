@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input, Output, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import {ScheduleType} from '../../../models/ScheduleType';
 import { Subject } from 'rxjs/Subject';
@@ -60,7 +60,7 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -177,10 +177,11 @@ if (this.processSelection === 1) {
 }
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
- this.schIntw.StatusChangedByUserId = this.customerUser;
- this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
+this.schIntw.StatusChangedByUserId = this.customerUser;
+this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
+      this.dialogRef.close();
      }) ;
     } else {
       return false;
