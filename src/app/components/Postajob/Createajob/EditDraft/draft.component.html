@@ -13,6 +13,8 @@
                 <div class="col-md-12">
                     <a class="btn btn-border btn-lg" (click)='back()'>Back</a>
                 </div>
+                <div class="clearfix">&nbsp;</div>
+                
                 <ng-container *ngIf="drafts?.length>0;else Nodrafts">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of draft">
                         <div class="card" *ngIf="job!=null">
