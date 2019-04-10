@@ -278,4 +278,8 @@ input::-webkit-input-placeholder {
 .adv-filters-btn i.fa{
     color: #9eabc0;
 }
+
+.disabled:hover {
+    cursor:not-allowed
+ }
 /*Upload & Invite Buttons CSS ends*/
