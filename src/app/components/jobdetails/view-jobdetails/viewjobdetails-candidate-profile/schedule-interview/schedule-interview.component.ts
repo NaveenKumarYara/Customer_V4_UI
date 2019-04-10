@@ -10,9 +10,10 @@ import { AppService } from '../../../../../app.service';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
-import { NgbDatepickerConfig,NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { EventEmitter } from 'events';
+import { NgForm } from '@angular/forms';
 declare var $: any;
 
 export interface DialogData {
@@ -24,17 +25,21 @@ export interface DialogData {
   styleUrls: ['./schedule-interview.component.css']
 })
 export class ScheduleInterviewComponent implements OnInit {
-  @ViewChild('schedule') schedule: any;
+  @ViewChild('schedule') schedule: NgForm;
   schIntw = new ScheduleInterview();
  @Output() eventStat = new EventEmitter();
   webxRI: boolean;
-  skypeRI: boolean;
-  inPersonRI: boolean;
+  skypeId: string;
+  furtherInterview: boolean;
+  travelExpense: boolean;
+  phoneNumber: string;
+  dailInNumber: string;
+  bridgeUrl: string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
   minuteStep = 1;
   secondStep = 1;
-  typeId:number;
+  // typeId: number;
   InterviewDate: any;
   @Input() userId: number;
   @Input() jobResponseId: number;
@@ -50,34 +55,33 @@ export class ScheduleInterviewComponent implements OnInit {
   teammemberslist: CustomerUsers[];
   typeList: ScheduleType[];
   jobInterview: ScheduleType;
-  addedteammembers: '';
-  addedteammemberslist: any; // PjTechnicalTeam[];
+  // addedteammembers: '';
+  // addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private config: NgbDatepickerConfig,private appService: AppService, private jobdetailsservice: JobdetailsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
-    const current = new Date();
-    config.minDate = { year: current.getFullYear(), month: 
-    current.getMonth() + 1, day: current.getDate() };
-    config.outsideDays = 'hidden';  
-    this.clearTeamMemebers();
+    // const current = new Date();
+    // config.minDate = { year: current.getFullYear(), month:
+    // current.getMonth() + 1, day: current.getDate() };
+    // config.outsideDays = 'hidden';
+
+    // this.clearTeamMemebers();
    }
-   process(val,res) {
-  if(val>0)
-  {
+   process(val) {
+  // if (val > 0) {
     this.processSelection = val;
-    this.typeId = 0;
-  }
-  else if(this.typeId>0)
-  {
-    this.processSelection = this.typeId;
-  }
+    // this.typeId = val;
+  // }
+  //  else if (this.typeId > 0) {
+  //   this.processSelection = this.typeId;
+  // }
 
    }
 
@@ -87,57 +91,47 @@ export class ScheduleInterviewComponent implements OnInit {
       // $('.jsDatePicker').datepicker('hide');
     }
   }
-
- clearTeamMemebers()
- {
-  for(var i=0;i<=10;i++)
-  {
-    let index = i;
+  // changeInterviewType(event) {
+  //   this.typeId = event;
+  // }
+ clearTeamMemebers() {
+  for (let i = 0; i <= 10; i++) {
+    const index = i;
     this.appService.deleteTeammember(index);
   }
   this.deleteTeammember(0);
  }
 
   ngOnInit() {
+    this.getcustomerusers();
     this.GetInterView();
     this.GetType();
-    $('body').on('change', '#datePickerCert', function () {
-      $('#datePickerCert').trigger('click');
-    });
-    // $('.datepicker').datepicker({
-    //   daysOfWeekDisabled: '06',
-    //   startDate: new Date(),
-    //   format: 'M, dd yyyy'
-    // }).on('changeDate', function () {
-    //   $(this).datepicker('hide');
-    // });
-    if (this.processSelection == null || this.processSelection === undefined) {
-  this.schIntw.InterviewTypeId = 1;
-} else {
-  this.schIntw.InterviewTypeId = this.processSelection;
-}
-    this.getcustomerusers();
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
       (teammemberlist: CustomerUsers[]) => {
         this.teammemberslist = teammemberlist;
-        // this.addedteammemberslist.push(this.teammemberslist.forEach(x => x.UserId));
         }
       );
 
-      // this.addedteammemberslist = this.appService.getaddedTeammembers();
-      // this.subscription = this.appService.addedteammembersChanged
-      //   .subscribe(
-      //   (teammemberlist: PjTechnicalTeam[]) => {
-      //     this.addedteammemberslist = teammemberlist;
-      //     }
-      //   );
+    $('body').on('change', '#datePickerCert', function () {
+      $('#datePickerCert').trigger('click');
+    });
+    $('.datepicker').datepicker({ minDate: new Date() });
+
+    if (this.processSelection == null || this.processSelection === undefined) {
+  this.schIntw.InterviewTypeId = 1;
+} else {
+  this.schIntw.InterviewTypeId = this.processSelection;
+}
+
+
   }
   // toggleSeconds() {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
+  debugger;
 if (this.schedule.valid) {
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
@@ -152,59 +146,65 @@ this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.Inte
 // this.schIntw.AccessId=this.userId;
 // this.schIntw.SkypeId=this.userId;
   this.schIntw.Comments = '';
-   this.schIntw.ResponseStatusId = 7; 
-   if (this.processSelection == null || this.processSelection === undefined) {
-    this.schIntw.InterviewTypeId =this.typeId;   
-  }
-  else if(this.processSelection!=null)
-  {
-    this.schIntw.InterviewTypeId = this.processSelection;  
-  }
+   this.schIntw.ResponseStatusId = 7;
+  //  if (this.processSelection == null || this.processSelection === undefined) {
+  //   this.schIntw.InterviewTypeId = this.typeId;
+  // } else if (this.processSelection != null) {
+    this.schIntw.InterviewTypeId = this.processSelection;
+  // }
   // what stage it is..hired...
 // this.schIntw.IsActive=this.userId;
 // this.schIntw.Rating=this.userId;
-// if (this.processSelection === 1) {
-//   this.schIntw.RequiredFurtherInterview = this.inPersonRI;
-// } else if (this.processSelection === 2) {
-//   this.schIntw.RequiredFurtherInterview = this.phone;
-//   // this.schIntw.SkypeId=this.userId;
-// } else if (this.processSelection === 3) {
-//   this.schIntw.RequiredFurtherInterview = this.skypeRI;
-//   // this.schIntw.PhoneNumber=this.userId;
-// }
-// else if (this.processSelection === 4) {
-//   this.schIntw.RequiredFurtherInterview = this.webxRI;
-//   // this.schIntw.PhoneNumber=this.userId;
-// }
 
+if (this.processSelection === 1) {
+  // this.schIntw.RequiredFurtherInterview = this.inPersonRI;
+  this.schIntw.TravelExpense = this.travelExpense;
 
-this.schIntw.RequiredFurtherInterview = this.inPersonRI;
+} else if (this.processSelection === 2) {
+  this.schIntw.PhoneNumber = this.phoneNumber;
+    // this.schIntw.RequiredFurtherInterview = this.phone;
+  // this.schIntw.SkypeId=this.userId;
+
+} else if (this.processSelection === 3) {
+  this.schIntw.SkypeId = this.skypeId;
+  // this.schIntw.RequiredFurtherInterview = this.skypeRI;
+  // this.schIntw.PhoneNumber=this.userId;
+} else if (this.processSelection === 4) {
+  this.schIntw.PhoneNumber = this.dailInNumber;
+  this.schIntw.BridgeUrl = this.bridgeUrl;
+  // this.schIntw.RequiredFurtherInterview = this.webxRI;
+  // this.schIntw.PhoneNumber=this.userId;
+}
+this.schIntw.RequiredFurtherInterview = this.furtherInterview;
+this.schIntw.TravelExpense = this.travelExpense;
  this.schIntw.StatusChangedByUserId = this.customerUser;
  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
      }) ;
+    } else {
+      return false;
     }
 }
 
-  getcustomerusers()  {
-    this.managersList = concat(
-      of([]), // default items
-      this.selectedUserInput.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.customerUser, false, term).pipe(
-          catchError(() => of([])), // empty list on error
-          tap(() => this.usersloading = false)
-        ))
-      )
-    );
-  }
+getcustomerusers() {
+  this.managersList = concat(
+    of([]), // default items
+    this.selectedUserInput.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      tap(() => this.usersloading = true),
+      switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
+        catchError(() => of([])), // empty list on error
+        tap(() => this.usersloading = false)
+      ))
+    )
+  );
+}
   GetType() {
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
-    this.typeId = this.jobInterview.InterviewTypeId;
+    this.processSelection = this.jobInterview.InterviewTypeId;
    });
    }
 GetInterView() {
@@ -259,6 +259,7 @@ export class ScheduleInterview {
     public IsActive = true;
     public Rating: number;
     public RequiredFurtherInterview: boolean;
+    public TravelExpense: boolean;
     public InterviewingPerson: string;
     public StatusChangedByUserId: number;
 

@@ -25,7 +25,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   userId:any;
  jobid: number;
  deactivate = new deactivate();
- getcompanybenfit: GetCompanyBenefit[];;
+ getcompanybenfit: GetCompanyBenefit[];
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments : JobComments[];
   constructor(private router: Router, private appService: AppService,private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -84,35 +84,35 @@ ngOnInit() {
       $.each(activeLine, function (index, element) {
         var $element = $(element);
         $element.css({
-          width: $element.parent().children(".active").css("width"),
-          left: $element.parent().children(".active").position().left - windowWidth
+          width: $element.parent().children('.active').css("width"),
+          left: $element.parent().children('.active').position().left - windowWidth
         });
       });
     }
-  
+
     function navLineClickHandler() {
-      var btnWidth = $(this).css("width");
-      var line = $(this).parent().find(".active-line");
-      var btnBox = this.getBoundingClientRect();
-      var windowBox = this.parentNode.getBoundingClientRect();
-  
+      let btnWidth = $(this).css("width");
+      let line = $(this).parent().find(".active-line");
+      let btnBox = this.getBoundingClientRect();
+      let windowBox = this.parentNode.getBoundingClientRect();
+
       line.css({
         width: btnWidth,
         left: btnBox.left - windowBox.left
       });
     }
-  
+
     $(document).ready(navLineResizeHandler);
-  
+
     $(window).resize(function () {
       setTimeout(navLineResizeHandler, 1000);
     });
-  
-    var appliedTabBtn = $(".modal-body .nav-tabs li");
-    var appliedLine = $(".modal-body .nav-tabs .active-line");
-    appliedTabBtn.on("click", navLineClickHandler);
-  
-    
+
+    const appliedTabBtn = $('.modal-body .nav-tabs li');
+    const appliedLine = $('.modal-body .nav-tabs .active-line');
+    appliedTabBtn.on('click', navLineClickHandler);
+
+
   })($);
 
 

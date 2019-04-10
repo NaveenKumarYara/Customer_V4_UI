@@ -114,8 +114,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== 'InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
-        // width: '1000px',
-        // position: {right : '0px'},
+         //width: '1000px',
+         position: {right : '0px'},
         // height : '750px',
         data: {
           animal: 'panda'
@@ -132,6 +132,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== 'InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
+          position: {right : '0px'},
           data: {
             jobResponseId: jobResponseId,
             jobId: this.jobid,
@@ -152,7 +153,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
       {
-        width: '750',
+        //width: '750',
         position: {right : '0px'},
         height : '750px',
         data: {

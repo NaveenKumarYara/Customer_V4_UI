@@ -22,9 +22,7 @@
                   <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-top" style="display: block; top: 202px; left: 712.5px; z-index: 1010;">
         
                   </div> -->
-                                        <input class="form-control custom-ngbDatepicker" placeholder="yyyy-mm-dd"
-                                            name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel"
-                                            name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
+                  <input class="form-control datepicker"  placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
                                         <div class="input-group-btn">
                                             <button class="btn" (click)="d.toggle()" type="button">
                                                 <img src="../../../../../../assets/images/calender.svg" width="22" />
@@ -95,7 +93,7 @@
                                             (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId"
                                             [typeahead]="selectedUserInput" [hideSelected]="true"
                                             [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName"
-                                            name="selectedUserName" [virtualScroll]="true" required #TMember="ngModel">
+                                            name="selectedUserName" [virtualScroll]="true"  #TMember="ngModel">
                                         </ng-select>
 
                                         <span class="input-group-btn">
@@ -151,10 +149,24 @@
                                           /**already commented**/
                                      </ul>
                                 Condition based Tabs in Comments Ends-->
-
-
-                                <!--Basic Tabs HTML added on 02-04-2019 Starts here-->
                                 <ul class="nav nav-tabs">
+                                <!-- <ng-container *ngFor="let type of typeList"> -->
+                                        <!-- <li
+                                            [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                            <a data-toggle="tab" href="javascript:void(0)"
+                                                data-target="{{type?.InterviewType}}"> 
+                                                {{type?.InterviewType}}
+                                            </a>
+                                             
+                                        </li> -->
+                                        <ng-container *ngFor="let type of typeList"> 
+                                        <li  (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                                <a data-toggle="tab" href="#{{type?.InterviewType}}"aria-expanded="true">{{type?.InterviewType}}</a>
+                                            </li>
+                                    </ng-container>
+                                    </ul>
+                                <!--Basic Tabs HTML added on 02-04-2019 Starts here-->
+                                <!-- <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a data-toggle="tab" href="#In-Person" aria-expanded="true">In Person</a>
                                     </li>
@@ -167,7 +179,7 @@
                                     <li class="">
                                         <a data-toggle="tab" href="#Phone" aria-expanded="false">Phone</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <!--Basic Tabs HTML added on 02-04-2019-->
 
                                 <div class="tab-content">
@@ -185,14 +197,14 @@
                                                 ?</label>
                                             <div class="clearfix">
                                                 <label for="travelExpense-yes" class="radio">
-                                                    <input type="radio" id="travelExpense-yes" name="travelExpense"
-                                                        class="radio-input">
+                                                    <input type="radio" id="travelExpense-yes"  [(ngModel)]="travelExpense"  name="travelExpense"
+                                                        class="radio-input" value="true">
                                                     <span class="radio-btn"></span>
-                                                    <span>Yes</span>
+                                                    <span>Yes</span> 
                                                 </label>
                                                 <label for="travelExpense-no" class="radio">
-                                                    <input type="radio" id="travelExpense-no" name="travelExpense"
-                                                        class="radio-input">
+                                                    <input type="radio" id="travelExpense-no"  [(ngModel)]="travelExpense"  name="travelExpense"
+                                                        class="radio-input" value="false">
                                                     <span class="radio-btn"></span>
                                                     <span>No</span>
                                                 </label>
@@ -202,7 +214,7 @@
                                     <div id="Skype" class="tab-pane fade">
                                         <div class="form-group skype-group">
                                             <label for="">Skype</label>
-                                            <h2><input class="form-control" type="text" [(ngModel)]="schIntw.SkypeId"
+                                            <h2><input class="form-control" type="text" [(ngModel)]="skypeId"
                                                     name="skype"></h2>
                                             <label for="request-skype" class="radio">
                                                 <input type="checkbox" id="request-skype" name="requestSkypeID"
@@ -231,15 +243,15 @@
                                         </div> -->
 
                                     </div>
-                                    <div id="Webex" class="tab-pane fade">
+                                    <div id="WebEX" class="tab-pane fade">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="">Dial-in number</label>
-                                                <input type="text" class="form-control" placeholder="e.g. 852477231">
+                                                <input type="text" [(ngModel)]="dailInNumber" name="PhoneNumber" class="form-control" placeholder="e.g. 852477231">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="">Meeting/Conf. ID</label>
-                                                <input type="text" class="form-control" placeholder="e.g. HGKS2553GV">
+                                                <input type="text" [(ngModel)]="bridgeUrl" name="bridgeUrl"  class="form-control" placeholder="e.g. HGKS2553GV">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -269,7 +281,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label for="">Phone Number</label>
-                                                <input type="text" class="form-control" placeholder="e.g. 852477231">
+                                                <input type="text" class="form-control" [(ngModel)]="schIntw.PhoneNumber" name="PhoneNumber" placeholder="e.g. 852477231">
                                             </div>
                                         </div>
                                         <div class="clearfix">&nbsp;</div>
@@ -280,14 +292,14 @@
                                     <div class="clearfix">
                                         <div class="radio-btn bordered">
                                             <label>
-                                                <input type="radio" [(ngModel)]="inPersonRI" name="inPersonRI"
+                                                <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
                                                     value="true">
                                                 <span class="box">Yes</span>
                                             </label>
                                         </div>
                                         <div class="radio-btn bordered">
                                             <label>
-                                                <input type="radio" [(ngModel)]="inPersonRI" name="inPersonRI"
+                                                <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
                                                     value="false">
                                                 <span class="box">No</span>
                                             </label>
@@ -302,8 +314,9 @@
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">
                     <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-                    <button mat-button type="submit" [mat-dialog-close]="true" (click)="ScheduleInterview()"
-                        c000dkFocusInitial class="btn btn-filled">
+                    <button mat-button type="submit" 
+                        c000dkFocusInitial class="btn btn-filled"> 
+                        <!-- [mat-dialog-close]="true" -->
                         Schedule Interview</button>
 
                 </div>
