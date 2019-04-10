@@ -13,6 +13,7 @@ import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interv
 import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
 import { SendEmailComponent } from './send-email/send-email.component';
+import { ParentComponentApi } from '../view-jobdetails.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -53,6 +54,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   @Output() loadMoreEvent = new EventEmitter();
   @Input() jobStatus: string;
   @Input() options: object;
+  @Input() parentApi: ParentComponentApi;
   $owlElement: any;
   defaultOptions: object = {};
   images = [1, 2, 3].map(() => 'https://picsum.photos/900/500?random&t=${Math.random()}');
@@ -405,12 +407,13 @@ shortlisthiredwithdrawn(stat, jobResponseId) {
     console.log('on change', this.jobid, this.statusid);
   }
   updateWishlist(event, profileId) {
-    this.wsList.IsSaved = event.target.checked;
-    this.wsList.ProfileId = profileId;
-    this.wsList.JobId = this.jobid;
-    this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
-      console.log(res);
-    });
+    // this.wsList.IsSaved = event.target.checked;
+    // this.wsList.ProfileId = profileId;
+    // this.wsList.JobId = this.jobid;
+    // this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
+    //   console.log(res);
+    // });
+    this.parentApi.CallwishList(event,profileId,this.jobid);
   }
   displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle ) {
     // (function ($) {

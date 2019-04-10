@@ -40,6 +40,7 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount:any;
+  wsList = new WishList();
   wishlistCount: WishlistCount;
   jobstatistics: Jobstatistics;
   Counts : Jobstatistics;
@@ -513,6 +514,16 @@ export class ViewJobdetailsComponent implements OnInit {
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
+      CallwishList:(event, profileId,jobId) =>
+      {
+        this.wsList.IsSaved = event.target.checked;
+        this.wsList.ProfileId = profileId;
+        this.wsList.JobId = jobId;
+        this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
+          console.log(res);
+          this.CallList(this.statusid);
+        });
+      },
       CallViewBy: (uploaded, suggested, wishlist, sortBy, search, count) => {
         this.searchString = search;
         this.totalCount = count;
@@ -562,5 +573,12 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
+  CallwishList:(event, profileId,jobId) => void;
   CallViewBy: (uploaded, suggested, wishlist, sortBy, search, count) => void;
+}
+
+export class WishList {
+  public JobId: number;
+  public ProfileId: number;
+  public IsSaved: boolean;
 }
