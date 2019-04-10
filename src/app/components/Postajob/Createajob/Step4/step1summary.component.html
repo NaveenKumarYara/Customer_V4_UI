@@ -2,6 +2,14 @@
   <h1>Step 1</h1>
   <div class="form-data-group">
     <h3 class="question">
+      what is the Job Id?
+    </h3>
+    <h5 class="data">
+      {{jobPositionId}}
+    </h5>
+  </div>
+  <div class="form-data-group">
+    <h3 class="question">
       Which Category this job belongs to?
     </h3>
     <h5 class="data">
@@ -43,12 +51,15 @@
       </h3>
       <div class="lists row">
         <div class="col-md-6">
-          <h4 for="" class="light">Departments</h4>
+          <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
           <ul class="data-list">
             <li *ngFor="let department of departments">
               <span class="name">{{department.CustomerDepartment}}</span>
             </li> 
           </ul>
+           <!-- <h6 class="data" *ngIf="department.length === 0" >
+              NA
+            </h6> -->
         </div>
         </div>
   </div>

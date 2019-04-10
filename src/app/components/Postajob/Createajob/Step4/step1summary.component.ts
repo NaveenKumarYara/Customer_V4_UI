@@ -15,6 +15,7 @@ minExp: number;
 maxExp: number;
 hasDescription: boolean;
 completeDescription: string;
+jobPositionId: string;
 primarySkills = [];
 secondarySkills = [];
 departments: any;
@@ -51,7 +52,9 @@ client: any;
       this.appService.currentDescription.subscribe((data) => {
         this.completeDescription = data; // And he have data here too!
       });
-
+      this.appService.currentjobPosition.subscribe((data) => {
+        this.jobPositionId = data; // And he have data here too!
+      });
       // this.appService.jobprimaryskillsChanged.subscribe((data) => {
       //   this.primarySkills = data; // And he have data here too!
       // });

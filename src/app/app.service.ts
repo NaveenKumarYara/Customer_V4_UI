@@ -132,6 +132,9 @@ export class AppService {
   description = new BehaviorSubject('');
   currentDescription = this.description.asObservable();
 
+  jobPosition = new BehaviorSubject('');
+  currentjobPosition = this.jobPosition.asObservable();
+
   // textOPening = new BehaviorSubject('');
   // currenttextOPening = this.textOPening.asObservable();
 
@@ -231,6 +234,9 @@ export class AppService {
   }
   updateOpenings(openings: number) {
     this.noofOpenings.next(openings);
+  }
+  updateJobPosition(jobpositionId: string) {
+    this.jobPosition.next(jobpositionId);
   }
   updatehaddescription(isdescription: boolean) {
     this.hasDescription.next(isdescription);

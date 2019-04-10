@@ -1,7 +1,8 @@
 <!--Job ID Div Starts-->
 <div class="form-group jobid-section">
-  <label for="jobid" class="jobid">Enter Job Id</label>
-  <input class="form-control" name="jobid" placeholder="Example: ABC123456" required="" type="text">
+  <label for="jobid" class="jobid">What is the Job Id?</label>
+  <input class="form-control"  name="jobPositionId" [(ngModel)]="jobPositionId" (ngModelChange)="changeJobPosition($event)" placeholder="Example: ABC123456" required  type="text">
+  <!-- <small class="text-danger radio-error1" *ngIf="jobPositionId.invalid && jobPositionId.touched">JobId is required!</small> -->
 </div>
 <!--Job ID Div Ends-->
 

@@ -37,6 +37,7 @@ export class Step2Component implements OnInit {
   salaryMinRate: number;
   salaryMaxRate: number;
   jobDescription: string;
+  jobPositionId: string;
   jobHasDescription: boolean;
   jobResponsibilities: any;
   jobSkillsPrimary: any;
@@ -106,6 +107,9 @@ export class Step2Component implements OnInit {
     this.appService.currentDescription.subscribe((data) => {
       this.jobDescription = data; // And he have data here too!
     });
+    this.appService.currentjobPosition.subscribe((data) => {
+      this.jobPositionId = data; // And he have data here too!
+    });
     this.appService.jobprimaryskillsChanged.subscribe((data) => {
       this.jobSkillsPrimary = data; // And he have data here too!
     });
@@ -141,7 +145,7 @@ export class Step2Component implements OnInit {
       this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0) {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
-    this.insertJob.JobPositionId = '';
+    this.insertJob.JobPositionId = this.jobPositionId;
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;

@@ -13,6 +13,7 @@ declare;
 hasCompleteDescription: boolean;
 jobDescription: string;
 hasCompleteDescriptionList: any;
+jobPositionId:string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -36,6 +37,8 @@ hasCompleteDescriptionList: any;
     //   this.hasCompleteDescription = false;
     // }
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
+    this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
+
   // }
 }
 populatedescriptioncheck() {
@@ -46,7 +49,11 @@ populatedescriptioncheck() {
     this.jobDescription = val;
     this.appService.updatedescription(this.jobDescription);
   }
-
+  
+  changeJobPosition(val) {
+    this.jobPositionId = val;
+    this.appService.updateJobPosition(this.jobPositionId);
+  }
 
 
 }

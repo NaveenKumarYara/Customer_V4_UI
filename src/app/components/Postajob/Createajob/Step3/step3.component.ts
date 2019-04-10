@@ -45,6 +45,7 @@ export class Step3Component implements OnInit {
   jobMaxExp: number;
   jobTitle: string;
   jobDescription: string;
+  jobPositionId: string;
   jobHasDescription: boolean;
   jobResponsibility: any;
   jobSkillsPrimary: any;
@@ -121,6 +122,9 @@ export class Step3Component implements OnInit {
     });
     this.appService.currentDescription.subscribe((data) => {
       this.jobDescription = data; // And he have data here too!
+    });
+    this.appService.currentjobPosition.subscribe((data) => {
+      this.jobPositionId = data; // And he have data here too!
     });
     // this.appService.jobprimaryskillsChanged.subscribe((data) => {
     //   this.jobSkillsPrimary = data; // And he have data here too!
@@ -231,7 +235,7 @@ export class Step3Component implements OnInit {
     // step1
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
-    this.insertJob.JobPositionId = '';
+    this.insertJob.JobPositionId = this.jobPositionId;
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
 

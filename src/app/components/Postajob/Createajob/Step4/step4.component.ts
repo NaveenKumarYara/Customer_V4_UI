@@ -17,6 +17,7 @@ export class Step4Component implements OnInit {
   jobMaxExp: number;
   jobTitle: string;
   jobDescription: string;
+  jobPositionId: string;
   jobHasDescription: boolean;
   jobResponsibility: any;
   jobSkillsPrimary: any;
@@ -70,6 +71,9 @@ export class Step4Component implements OnInit {
     });
     this.appService.currentDescription.subscribe((data) => {
       this.jobDescription = data; // And he have data here too!
+    });
+    this.appService.currentjobPosition.subscribe((data) => {
+      this.jobPositionId = data; // And he have data here too!
     });
     this.appService.jobprimaryskillsChanged.subscribe((data) => {
       this.jobSkillsPrimary = data; // And he have data here too!
@@ -132,7 +136,7 @@ export class Step4Component implements OnInit {
     this.insertJob.JobId = parseInt(res, 10);
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
-    this.insertJob.JobPositionId = '';
+    this.insertJob.JobPositionId = this.jobPositionId;
 
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;

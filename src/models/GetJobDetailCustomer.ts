@@ -28,7 +28,7 @@ export class GetJobDetailCustomer {
 export class JobInfo {
     JobInfoId: number;
     JobId: number;
-    JobPositionId: number;
+    JobPositionId: string;
     UserId: number;
     CustomerId: number;
     JobCategoryId: number;

@@ -128,6 +128,7 @@ ejPersonSingleList: PjDisc[] = [];
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));
       this.appService.hasDescription.next(this.jobdetailscustomer.JobInfo.CompleteDescription);
       this.appService.description.next(this.jobdetailscustomer.JobInfo.JobDescription);
+      this.appService.jobPosition.next(this.jobdetailscustomer.JobInfo.JobPositionId);
       this.appService.noofOpenings.next(this.jobdetailscustomer.JobInfo.NumberOfVacancies);
       if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 2) {
       this.appService.minAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
