@@ -26102,3 +26102,27 @@ body *{
     .pb-4{
         padding-bottom: 4rem !important;
     }
+    textarea.form-control{
+    border-color: #E0E3EF;
+    color: #9EABC0;
+    resize: none;
+}
+.form-control{
+    height: auto !important;
+}
+.plr{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/**/
+.skills .settings-dot {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+.skills-box .settings-dot {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+} 
