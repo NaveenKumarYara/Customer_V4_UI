@@ -2835,3 +2835,51 @@ h5.meta.meta-light{
 }
 /**************************/
 /**************************/
+.skills.card h3 {
+    font-size: 16px;
+    color: #9eabc0;
+    font-weight: 400;
+    margin-top: 0;
+}
+.skills.card h2 {
+    font-size: 20px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.profile-pg .technical-skills .top-skills .skills.card .label-caps, .profile-pg .technical-skills .top-skills .skills.card table th, .profile-pg .technical-skills .top-skills table .skills.card th {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.label-caps.light, .profile-pg .technical-skills .top-skills table th.light {
+    color: #9eabc0;
+}
+.profile-pg .technical-skills .top-skills .skills.card p {
+    margin-bottom: 0;
+}
+
+.skills.card div[class^="col-"] p, .skills.card div[class*="col-"] p {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.profile-pg .card .card-content p {
+    color: #6a7e9c;
+}
+.personal-skills .skills .text .title, .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .personal-skills .skills label .title {
+    font-size: 18px;
+}
+.profile-pg .card .card-content p {
+    font-size: 16px;
+}
+
+.personal-skills .skills .text p, .personal-skills .skills .search-results-pg .results label p, .search-results-pg .results .personal-skills .skills label p {
+    color: #9eabc0 !important;
+}
+.clearfix:after, .profile-pg .profile-completeness .progress-wrap:after, .profile-pg .card .card-header:after, .viewJobsModal .job-header .summary .summary-row:after, .my-jobs .job-card:after, .my-jobs .stats-row:after, .my-jobs .timeline li:after, .interview-jobs .slider-nav:after, .application-history .shortlisted-jobs .slider-nav:after, .find-options:after, .btn-row:after, .advance-filters .field:after, .quick-search-card .card-header:after, .jobs-by-card .card-header:after {
+    clear: both;
+}
+.clearfix:before, .profile-pg .profile-completeness .progress-wrap:before, .viewJobsModal .job-header .summary .summary-row:before, .my-jobs .job-card:before, .my-jobs .stats-row:before, .my-jobs .timeline li:before, .interview-jobs .slider-nav:before, .application-history .shortlisted-jobs .slider-nav:before, .find-options:before, .btn-row:before, .advance-filters .field:before, .quick-search-card .card-header:before, .jobs-by-card .card-header:before, .clearfix:after, .profile-pg .profile-completeness .progress-wrap:after, .profile-pg .card .card-header:after, .viewJobsModal .job-header .summary .summary-row:after, .my-jobs .job-card:after, .my-jobs .stats-row:after, .my-jobs .timeline li:after, .interview-jobs .slider-nav:after, .application-history .shortlisted-jobs .slider-nav:after, .find-options:after, .btn-row:after, .advance-filters .field:after, .quick-search-card .card-header:after, .jobs-by-card .card-header:after {
+    /* content: " "; */
+    display: table;
+}
