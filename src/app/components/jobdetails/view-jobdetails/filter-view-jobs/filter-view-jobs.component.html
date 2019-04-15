@@ -74,14 +74,14 @@
             <!--AllCandidatesTilesEnd-->
             <div class="pull-right">
                 <!--Upload & Invite PlaceHolder buttons Starts-->
-                     <div class="adv-filters-btn btn" title="Upload Profiles"  *ngIf="displayQuick==1">
+                     <div class="adv-filters-btn btn" (click)="updatestatus()" title="Upload Profiles"  *ngIf="displayQuick==1">
                         <!-- <i class="fa fa-cloud-upload fa-2" aria-hidden="true"> -->
-                            <a href="javascript:void(0)" (click)="updatestatus()"> <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
+                            <a href="javascript:void(0)"> <i class="fa fa-cloud-upload fa-2" aria-hidden="true"></i></a>
                         <!-- </i> -->
                     </div>
 
-                    <div class="adv-filters-btn btn ml-2" title="Invite Profiles"  *ngIf="displayQuick==1">
-                                <a  href="javascript:void(0)" (click)="OpenInviteProfileDialog()"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
+                    <div class="adv-filters-btn btn ml-2"  (click)="OpenInviteProfileDialog()" title="Invite Profiles"  *ngIf="displayQuick==1">
+                                <a  href="javascript:void(0)"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
                      </div> 
                 <!--Upload & Invite Placeholder buttons ends-->
 
