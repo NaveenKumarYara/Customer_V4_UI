@@ -29,7 +29,7 @@ export class LoadJoblistComponent implements OnInit {
   showadvancesearch = false;
   experience:any;
   cityId:any;
-  joblist: JobDetails[] = [];
+  joblist= new JobDetails();
   joblistcount: number;
   defaultValue:any;
   jobs: any;
@@ -131,7 +131,7 @@ export class LoadJoblistComponent implements OnInit {
   {
     debugger
     this.sortBy = 0;
-    this.viewBy =0 ;
+    this.viewBy = 0 ;
     this.employmentTypeId =0;
     this.experience = 0;
     this.cityId = 0;
@@ -141,26 +141,25 @@ export class LoadJoblistComponent implements OnInit {
 
   }
   getParentApi(): ParentComponentApi {
-    return {   
-      callSearchMethod : (searchString)=>{ 
+    return {
+      callSearchMethod : (searchString) => {
         this.spinner.show();
        // this.parentMethod(name);
-      this.searchString = searchString; 
+      this.searchString = searchString;
         this.cityId = 0;
         this.experience = 0;
         this.employmentTypeId = 0;
         this.sortBy = 0;
-        this.defaultValue='0';
-      this.populateJoblist(this.customerId, this.userId,this.searchString);
+        this.defaultValue = '0';
+      this.populateJoblist(this.customerId, this.userId, this.searchString);
       },
-      callFilterMethod : (employmentTypeId,experience,cityId,clientId,departmentId)=>{ 
-        if(employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId>0||departmentId>0) 
-        {
-          this.searchString = ''; 
+      callFilterMethod : (employmentTypeId, experience, cityId, clientId, departmentId) => {
+        if (employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId > 0 || departmentId > 0) {
+          this.searchString = '';
           this.sortBy = 0;
-          this.defaultValue='0';
+          this.defaultValue = '0';
         }
-         this.populateJoblistByFilter(this.customerId, this.userId,employmentTypeId,experience,cityId,clientId,departmentId);
+         this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     }
   };
   }
@@ -177,15 +176,15 @@ export class LoadJoblistComponent implements OnInit {
       }
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
-    this.populateJoblist(this.customerId, this.userId,this.searchString);
+    this.populateJoblist(this.customerId, this.userId, this.searchString);
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
-    //this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
+    // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     localStorage.removeItem('sortBy');
    // this.spinner.hide();
   }
 }
 
 export interface ParentComponentApi {
-  callSearchMethod : (string) => void; 
-  callFilterMethod : (employmentTypeId,experience,cityId,clientId,departmentId) => void;
+  callSearchMethod: (string) => void;
+  callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
 }

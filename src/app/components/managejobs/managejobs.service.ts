@@ -41,10 +41,10 @@ export class ManageJobService {
   private joblistcount = new BehaviorSubject(6);
   currentjoblistcount = this.joblistcount.asObservable();
 
-  getJobDetails(customerId:number,userId:number,sortBy : number,searchString:string,count: number): Observable<JobDetails[]> {
+  getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
     const url = environment.listofJobsEndpoint +
-    'customerId=' + customerId + '&userId='+ userId + '&sortBy='+sortBy+ '&searchString=' +searchString+'&status=0&pageNumber=1' + '&numberOfRows=' + count;
-    return this.http.get<JobDetails[]>(url)
+    'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
+    return this.http.get<JobDetails>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
@@ -59,17 +59,17 @@ export class ManageJobService {
       );
   }
 
-  getJobDetailsByFilter(customerId:number,userId:number,employmentTypeId : number,experience: number,cityId: number,viewBy: number,clientId:number,departmentId:number,count: number): Observable<JobDetails[]> {
+  getJobDetailsByFilter(customerId: number, userId: number, employmentTypeId: number, experience: number, cityId: number, viewBy: number, clientId: number, departmentId: number, count: number): Observable<JobDetails> {
     const url = environment.GetJobsFilterBy +
-    'customerId=' + customerId + '&userId='+ userId + '&employmentTypeId='+employmentTypeId+ '&experience=' +experience+'&cityId=' +cityId+ '&viewBy='+viewBy+  '&clientId='+clientId+  '&departmentId='+departmentId+ '&pageNumber=1' + '&numberOfRows=' + count;
-    return this.http.get<JobDetails[]>(url)
+    'customerId=' + customerId + '&userId=' + userId + '&employmentTypeId=' + employmentTypeId + '&experience=' + experience + '&cityId=' + cityId + '&viewBy=' + viewBy +  '&clientId=' + clientId +  '&departmentId=' + departmentId + '&pageNumber=1' + '&numberOfRows=' + count;
+    return this.http.get<JobDetails>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
     );
   }
 
-  getJobCount(jobId:number,customerId:number): Observable<JobCount> {
+  getJobCount(jobId: number, customerId: number): Observable<JobCount> {
     const url = environment.JobsProfileCount +
     'jobId=' + jobId + '&customerId=' + customerId;
     return this.http.get<JobCount>(url)
@@ -79,7 +79,7 @@ export class ManageJobService {
     );
   }
 
-  GetAutoSearch(term: string = null,customerId:number): Observable<string[]> {
+  GetAutoSearch(term: string = null, customerId: number): Observable<string[]> {
     const url = environment.GetAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
