@@ -27,7 +27,7 @@
         </form>
     </div>
 
-    <h5 class="show-count">Showing 6 out of 186 Jobs </h5>
+    <h5 class="show-count">Showing {{joblistcount}} out of {{joblist?.TotalCount||0}} Jobs </h5>
 
     <div class="manage-searchjobs">
         <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
