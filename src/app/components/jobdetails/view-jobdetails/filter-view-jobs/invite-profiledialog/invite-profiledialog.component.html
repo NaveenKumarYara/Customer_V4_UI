@@ -1,20 +1,22 @@
 <div class="col-md-12">
-    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-    <h3 mat-dialog-title class="modal-title">Invite profiles</h3>
-    <p>
-        invite more candidates for the current position
-    </p>
-  </div>
-  
-  <div class="mat-typography">
-    <!--Tab View-->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">×</span></button>
+  <h3 mat-dialog-title class="modal-title">Invite profiles</h3>
+  <p>
+    Invite more candidates for the current position
+    <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+  </p>
+</div>
+
+<div class="mat-typography">
+  <!--Tab View-->
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="card manage-uploads clearfix">
- 
+
       <div class="tab-content">
         <div id="sendEmail" class="tab-pane fade active in  w-50">
-          <div class="clearfix">&nbsp;</div>
- <!--APR-12-->
+
+          <!--APR-12-->
           <!-- <form [formGroup]="inviteform"  (ngSubmit)="SaveInvite()">
             
             <div class="input-group">
@@ -33,20 +35,22 @@
           
               <span>please send multiple emails with , seperated</span>
           </form> -->
-<!--#APR-12-->
-<form>
-    <div class="input-group col-sm-12 pt-2">
-        <small class="theme-color">please send multiple emails with , seperated</small>
-        <div class="clearfix">&nbsp;</div>
-      <textarea id="copy-data" class="form-control col-sm-12" name="body" cols="30" rows="10"></textarea>
-    </div>
-    <div class="clearfix">&nbsp;</div>
-    <div class="col-sm-12 plr-0">
-        <div class="pull-right">
-            <button data-toggle="tab" id="text-data" href="#processone" aria-expanded="false" class="btn btn-filled btn-next">Next</button>
-          </div>
-    </div>
-  </form>
+          <!--#APR-12-->
+          <form [formGroup]="inviteform" (ngSubmit)="SaveInvite()">
+            <div class="input-group col-sm-12 pt-2">
+
+              <div class="clearfix">&nbsp;</div>
+              <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+                name="inviteEmail" cols="30" rows="10">
+            </textarea>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="col-sm-12 plr-0">
+              <div class="pull-right">
+                <button class="btn btn-filled btn-next" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
 
           <div class="clearfix">&nbsp;</div>
           <!-- <div>
@@ -78,16 +82,16 @@
                   </li>
                 </ul>
               </div> -->
-          
-  
+
+
         </div>
-  
-     
+
+
       </div>
       <!-- .tab-content -->
     </div>
-   
+
     <!-- .card.statistics -->
   </div>
   <!--Tab View End-->
-  </div>
+</div>

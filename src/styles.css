@@ -26107,9 +26107,13 @@ body *{
     color: #9EABC0;
     resize: none;
 }
-/* .form-control{
+ .inputh-auto{
     height: auto !important;
-} */
+} 
+.title-subtext{
+    font-size: 74%;
+    font-style: italic;
+}
 .plr{
     padding-left: 0px;
     padding-right: 0px;
