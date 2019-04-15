@@ -26107,9 +26107,9 @@ body *{
     color: #9EABC0;
     resize: none;
 }
-.form-control{
+/* .form-control{
     height: auto !important;
-}
+} */
 .plr{
     padding-left: 0px;
     padding-right: 0px;
