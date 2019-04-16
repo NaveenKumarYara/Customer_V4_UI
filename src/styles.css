@@ -26173,3 +26173,6 @@ body *{
     padding: 10px 7px;
     border-left: 1px solid #e0e3ef;
 }
+.page--manage-jobs .card .meta .jobbl-1{
+    border-left: 1px solid #E0E3EC;
+}
