@@ -229,7 +229,7 @@
                             </ng-container>
                             <h5 class="location mr-0 pl-0 pr-0">{{profile.CurrentLocation}}</h5>
                             <div class="status {{profile.JobStatus ==='Waiting for response' ? 'waitingforresponse' :  profile.JobStatus}}">{{profile.JobStatus}}</div>
-                            <small *ngIf="profile.CompanyName != null" title="ESolvIT">By <span>{{profile.CompanyName}}</span></small>
+                            <small *ngIf="profile.CompanyName != null" title="{{profile.CompanyName}}">By <span>{{profile.CompanyName}}</span></small>
                         </div>
                     </div>
                     <div class="candidate-status">
