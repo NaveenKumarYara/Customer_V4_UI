@@ -26130,3 +26130,46 @@ body *{
     top: 5px;
     right: 25px;
 } 
+
+
+/**/
+@media (min-width: 576px){
+    .pill-badges {
+        padding: 1.5rem;
+        margin-right: 0;
+        margin-left: 0;
+        border-width: .2rem;
+    }
+}
+
+
+.pill-badges {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -15px 0;
+    border: solid #f7f7f9;
+    border-width: .2rem 0 0;
+}
+.pill-badges .pillbadge {
+    display: inline-block;
+    padding: .81em .4em;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    background-color: #fbfcff;
+    color: #93A2BB;
+    border: 1px solid #e0e3ef;
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+    margin: 5px 5px;
+}
+.pbadge-name{
+    padding: 10px 7px;
+}
+.pbadge-experience{
+    padding: 10px 7px;
+    border-left: 1px solid #e0e3ef;
+}
