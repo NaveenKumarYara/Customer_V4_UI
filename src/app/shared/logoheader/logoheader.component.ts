@@ -28,8 +28,8 @@ export class LogoHeaderComponent implements OnInit {
   Logout() {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
-    //this.router.navigateByUrl('/login' , { replaceUrl: true });
-    window.location.href = environment.customerLogin;
+    this.router.navigateByUrl('/login' , { replaceUrl: true });
+    //window.location.href = environment.customerLogin;
 }
 
 ngOnInit()
