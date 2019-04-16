@@ -27,6 +27,7 @@ import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
+import { ParseResponsibilities } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -191,7 +192,6 @@ export class AppService {
 
   responsibilities: Roles[] = [];
   responsibilitesChanged = new Subject<Roles[]>();
-
 
   addedresponsibilities: PjRole[] = [];
   addedresponsibilitiesChanged = new Subject<PjRole[]>();
@@ -447,7 +447,14 @@ export class AppService {
     this.jobsecondaryskillsChanged.next(this.secondaryjobskills.slice());
   }
 
-
+  getJobResponsibilities(jobid:number) {
+    // return this.responsibilities.slice();
+    const url = environment.getJobResponsibilities + '?jobId=' + jobid;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getResponsibilities() {
     return this.responsibilities.slice();
   }
@@ -463,6 +470,13 @@ export class AppService {
     this.addedresponsibilitiesChanged.next(this.addedresponsibilities.slice());
   }
 
+  addBulkResponsibilities(responsibility: ParseResponsibilities) {
+    return this.http.post(environment.bulkResponsibilities, responsibility)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
   deleteResponsibilities(index: number) {
     this.responsibilities.splice(index, 1);
     this.responsibilitesChanged.next(this.responsibilities.slice());
