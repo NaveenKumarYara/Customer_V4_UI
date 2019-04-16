@@ -1,8 +1,10 @@
-import { Component, OnInit,  Input, ViewChild  } from '@angular/core';
+import { Component, OnInit,  Input, ViewChild,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
 import { AppService } from '../../../../app.service';
 import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
+import { IfObservable } from 'rxjs/observable/IfObservable';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any;
 
 @Component({
@@ -34,7 +36,7 @@ export class AdvanceSearchComponent implements OnInit {
   employmentList: any = [];
   @Input() parentApi: ParentComponentApi;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private managejobservice: ManageJobService,private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -86,8 +88,20 @@ export class AdvanceSearchComponent implements OnInit {
 
   apply()
   {
-    this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
-    this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
+    if(this.empolymentId>0||this.exp>0||this.location>0||this.clientId>0||this.departmentId>0)
+    {
+      this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
+      this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
+      this.advancesearch = !this.advancesearch;
+    }
+    else
+    {
+      this.toastr.error('Please provide valid details to apply filters!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 10000);
+    }
+
   }
 
   changeExperience(exp) {
@@ -139,6 +153,14 @@ export class AdvanceSearchComponent implements OnInit {
   
   }
 
+  ClearAll()
+  {
+    this.exp = 0;
+    this.empolymentId= 0;
+    this.clientId= 0;
+    this.departmentId= 0;
+  }
+
   GetCity(val) {
     return this.managejobservice.GetSearch(val)
     .subscribe(data => {
@@ -157,6 +179,7 @@ export class AdvanceSearchComponent implements OnInit {
   
   }
   ngOnInit() {
+    this.ClearAll();
     $('#searchStr').val('');
     this.GetEmployementType();
     this.getExpYears();

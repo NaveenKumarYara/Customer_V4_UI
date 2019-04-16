@@ -129,7 +129,6 @@ export class LoadJoblistComponent implements OnInit {
   } 
   clearAll()
   {
-    debugger
     this.sortBy = 0;
     this.viewBy = 0 ;
     this.employmentTypeId =0;
