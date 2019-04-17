@@ -447,7 +447,7 @@ export class AppService {
     this.jobsecondaryskillsChanged.next(this.secondaryjobskills.slice());
   }
 
-  getJobResponsibilities(jobid:number) {
+  getJobResponsibilities(jobid: number) {
     // return this.responsibilities.slice();
     const url = environment.getJobResponsibilities + '?jobId=' + jobid;
     return this.http.get<string[]>(url)
@@ -788,8 +788,8 @@ bulkApply(body) {
       );
   }
 
-  getLocationwisejobs(customerId: number, userId: number) {
-    const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&userId=' + userId;
+  getLocationwisejobs(customerId: number) { // , userId: number
+    const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&isPostajob=true'; // + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

@@ -47,7 +47,7 @@ isDrafted: boolean;
   }
 
   populateLocationwiseJobs() {
-    this.appService.getLocationwisejobs(this.customerId, this.userId).subscribe(res => {
+    this.appService.getLocationwisejobs(this.customerId).subscribe(res => { // , this.userId
       this.locationwisejobs = res;
       const check = this.locationExists(this.prfLoc, this.locationwisejobs);
     if (!check && this.prfLoc.CityId > 0 ) {

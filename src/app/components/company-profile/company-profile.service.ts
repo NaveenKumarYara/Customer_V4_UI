@@ -28,7 +28,7 @@ import { GetCompanyAchievement } from '../../../models/GetCompanyAchievement';
 
 @Injectable()
 export class CompanyProfileService {
-    //baseUrll = 'http://v1.tenendus.com:1020/';
+    // baseUrll = 'http://v1.tenendus.com:1020/';
     constructor(private http: HttpClient,private _http: Http) {
     }
     private handleError(error: any) {
@@ -40,14 +40,14 @@ export class CompanyProfileService {
 
     getCompanyProfile(customerId:number): Observable<CompanyProfile> {
         const url = environment.CompanyProfileBasicInfo+ 'customerId='+customerId ;
-        return this.http.get<CompanyProfile>(url)            
+        return this.http.get<CompanyProfile>(url)
             .catch(
                 this.handleError
             );
     }
 
     getCompanyProfileOtherInfo(customerId:number): Observable<CompanyProfileOtherIno> {
-        const url = environment.CompanyProfileOtherInfo+ 'customerId='+customerId ;
+        const url = environment.CompanyProfileOtherInfo+ 'customerId=' + customerId ;
         return this.http.get<CompanyProfileOtherIno>(url)
             .catch(
                 this.handleError
@@ -55,96 +55,96 @@ export class CompanyProfileService {
     }
 
 
-    getCompanyCustomerLocationInfo(customerId:number): Observable<CustomerLocationInfo[]> {
-        const url = environment.CompanyProfileLocationInfo+ 'customerId='+customerId ;
+    getCompanyCustomerLocationInfo(customerId: number): Observable<CustomerLocationInfo[]> {
+        const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&isPostajob=false' ;
         return this.http.get<CustomerLocationInfo[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyBenfits(customerId:number): Observable<GetCompanyBenefit[]> {
-        const url = environment.GetCompanyBenfits+ 'customerId='+customerId+'&companyBenefitId=0';
+    getCompanyBenfits(customerId: number): Observable<GetCompanyBenefit[]> {
+        const url = environment.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
         return this.http.get<GetCompanyBenefit[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanySpecialities(customerId:number): Observable<CompanySpecialities[]> {
-        const url = environment.CompanySpecialities+ 'customerId='+customerId+'&companySpecialityId=0';
+    getCompanySpecialities(customerId: number): Observable<CompanySpecialities[]> {
+        const url = environment.CompanySpecialities + 'customerId=' + customerId + '&companySpecialityId=0';
         return this.http.get<CompanySpecialities[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    GetCompanyTechnologies(customerId:number): Observable<GetCompanyTechnology[]> {
-        const url = environment.CompanyTechnologies+ 'customerId='+customerId+'&companyTechnologyId=0';
+    GetCompanyTechnologies(customerId: number): Observable<GetCompanyTechnology[]> {
+        const url = environment.CompanyTechnologies + 'customerId=' + customerId + '&companyTechnologyId=0';
         return this.http.get<GetCompanyTechnology[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyAboutInfo(customerId:number): Observable<GetAboutCompany[]> {
-        const url = environment.GetAboutCompany+ 'customerId='+customerId;
+    getCompanyAboutInfo(customerId: number): Observable<GetAboutCompany[]> {
+        const url = environment.GetAboutCompany + 'customerId=' + customerId;
         return this.http.get<GetAboutCompany[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyWhitePapers(customerId:number): Observable<GetCompanyWhitePaper[]> {
-        const url = environment.CompanyWhitePapers+ 'customerId='+customerId;
+    getCompanyWhitePapers(customerId: number): Observable<GetCompanyWhitePaper[]> {
+        const url = environment.CompanyWhitePapers + 'customerId=' + customerId;
         return this.http.get<GetCompanyWhitePaper[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyNewsInfo(customerId:number): Observable<GetCompanyNewsInfo[]> {
-        const url = environment.CompanyNewsPapers+ 'customerId='+customerId+'&companyNewsInfoId=0';
+    getCompanyNewsInfo(customerId: number): Observable<GetCompanyNewsInfo[]> {
+        const url = environment.CompanyNewsPapers + 'customerId=' + customerId + '&companyNewsInfoId=0';
         return this.http.get<GetCompanyNewsInfo[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyAchivements(customerId:number): Observable<GetCompanyAchievement[]> {
-        const url = environment.ComapnyAchivements + 'customerId='+customerId+'&companyAchievementId=0';
+    getCompanyAchivements(customerId: number): Observable<GetCompanyAchievement[]> {
+        const url = environment.ComapnyAchivements + 'customerId=' + customerId + '&companyAchievementId=0';
         return this.http.get<GetCompanyAchievement[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyCultures(customerId:number): Observable<GetCompanyCulture[]> {
-        const url = environment.CompanyCultures+ 'customerId='+customerId+'&companyCultureId=0';
+    getCompanyCultures(customerId: number): Observable<GetCompanyCulture[]> {
+        const url = environment.CompanyCultures + 'customerId=' + customerId + '&companyCultureId=0';
         return this.http.get<GetCompanyCulture[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyCertifications(customerId:number): Observable<GetCompanyCertification[]> {
-        const url = environment.CompanyCertifications+ 'customerId='+customerId+'&companyCertificationId=0';
+    getCompanyCertifications(customerId: number): Observable<GetCompanyCertification[]> {
+        const url = environment.CompanyCertifications + 'customerId=' + customerId + '&companyCertificationId=0';
         return this.http.get<GetCompanyCertification[]>(url)
             .catch(
                 this.handleError
             );
     }
 
-    getCompanyPartnerShips(customerId:number): Observable<GetCompanyPartner[]> {
-        const url = environment.CompanyPartnerships+ 'customerId='+customerId+'&companyPartnerId=0';
+    getCompanyPartnerShips(customerId: number): Observable<GetCompanyPartner[]> {
+        const url = environment.CompanyPartnerships + 'customerId=' + customerId + '&companyPartnerId=0';
         return this.http.get<GetCompanyPartner[]>(url)
             .catch(
                 this.handleError
             );
     }
-    
-    getCompanyLogo(customerId:number): Observable<GetCompanyLogo> {
-        const url = environment.GetCompanyLogo+ 'customerId='+customerId;
+
+    getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
+        const url = environment.GetCompanyLogo + 'customerId=' + customerId;
         return this.http.get<GetCompanyLogo>(url)
             .catch(
                 this.handleError
