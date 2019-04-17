@@ -18,7 +18,7 @@
     </div>
     <a>
         <header>
-            <h3 class="medium" (click)="ViewJobdetails(job?.JobId)" title="{{job?.JobTitle}}">{{job?.JobTitle |slice:0:22}} <span class="status {{job?.JobStatus}} mlr-9"  >{{job?.JobStatus}}</span></h3>
+            <h3 class="medium" (click)="ViewJobdetails(job?.JobId)" title="{{job?.JobTitle}}">{{add3Dots(job?.JobTitle.split('|')[0],20)}} <span class="status {{job?.JobStatus}} mlr-9"  >{{job?.JobStatus}}</span></h3>
            
             
            

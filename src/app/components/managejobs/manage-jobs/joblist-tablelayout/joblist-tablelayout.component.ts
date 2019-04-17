@@ -78,6 +78,14 @@ export class JoblistTablelayoutComponent implements OnInit {
 //   });
 // }
 
+add3Dots(string, limit) {
+  const dots = '...';
+  if (string.length > limit) {
+    string = string.substring(0, limit) + dots;
+  }
+    return string;
+}
+
 editJob(jobId,active) {
   if(active == false )
   {
