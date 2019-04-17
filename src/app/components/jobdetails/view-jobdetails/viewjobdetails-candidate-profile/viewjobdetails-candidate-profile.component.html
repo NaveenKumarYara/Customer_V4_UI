@@ -596,14 +596,14 @@
                             </a>
                         </li>
                         <li *ngIf="profile?.ResponseStatusId != 6">
-                            <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)">
+                            <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                       <path d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
                     </svg>
                             </a>
                         </li>
                         <li *ngIf="profile?.ResponseStatusId === 6" class="disabled">
-                            <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId)">
+                            <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                       <path d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
                     </svg>
@@ -628,12 +628,12 @@
                                 <div *ngIf="profile?.ResponseStatusId === 4 || profile?.ResponseStatusId === 13 || profile?.ResponseStatusId ===14">
                                         <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
                                                 <div *ngIf="(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null); else otherMenu">
-                                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)"><p class="p6">Screening</p></a></li>
+                                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Screening</p></a></li>
                                                 </div>
                                                 <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
                                             <ng-template #otherMenu>
-                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId)"><p class="p6">Screening</p></a></li>
-                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)"><p class="p6">Shortlist</p></a></li>
+                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Screening</p></a></li>
+                                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Shortlist</p></a></li>
                                             </ng-template>
                                                    <!-- </div> -->
                                        <!-- </div> -->
@@ -651,30 +651,34 @@
                                     </div>
                                     <!-- shortlisted -->
                                     <div *ngIf="profile?.ResponseStatusId == 8">
-                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId)"><p class="p6">Shortlist</p></a></li>
-                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)"><p class="p6">Schedule Interview</p></a></li>
+                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Shortlist</p></a></li>
+                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId)"><p class="p6">Schedule Interview</p></a></li>
                                         <!-- <li role="presentation" class="divider"></li> -->
-                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)"><p class="p6">Not Interested</p></a></li>
+                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Not Interested</p></a></li>
                                         <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
                                     </div>
                                 <!-- screening -->
                                 <div *ngIf="profile?.ResponseStatusId == 5">
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId)"><p class="p6">Schedule Interview</p></a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate" (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId)"><p class="p6">Schedule Interview</p></a></li>
                                     <!-- <li role="presentation" class="divider"></li> -->
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)"><p class="p6">Not Interested</p></a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Not Interested</p></a></li>
                                 </div>
                                 <!-- interviewed -->
                                 <div *ngIf="profile?.ResponseStatusId == 7">
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(11,profile?.JobResponseId)"><p class="p6">Hired</p></a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(11,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Hired</p></a></li>
                                     <!-- <li role="presentation" class="divider"></li> -->
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId)"><p class="p6">Not Interested</p></a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Not Interested</p></a></li>
                                 </div>
                                 <!-- hired -->
                                 <div *ngIf="profile?.ResponseStatusId == 11">
-                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(9,profile?.JobResponseId)"><p class="p6">WithDrawn</p></a></li>
+                                    <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(9,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">WithDrawn</p></a></li>
                                 </div>
+                                <div *ngIf="profile?.ResponseStatusId == null">
+                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Screening</p></a></li>
+                                        <li role="presentation"><a role="menuitem" href="javascript:void(0)" (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId)"><p class="p6">Shortlist</p></a></li>
+                                    </div>
                             </ul>
                     </ul>
                 </div>

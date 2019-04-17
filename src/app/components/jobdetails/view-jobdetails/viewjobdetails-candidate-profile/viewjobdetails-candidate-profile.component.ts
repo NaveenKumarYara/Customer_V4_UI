@@ -130,7 +130,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
   }
 
-  OpenRejectDialog(jobResponseId) {
+  OpenRejectDialog(jobResponseId,profileId) {
     if (this.jobStatus !== 'InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
@@ -138,6 +138,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           data: {
             jobResponseId: jobResponseId,
             jobId: this.jobid,
+            ProfileId:profileId
             // status : this.statusid
           }
         }
@@ -150,7 +151,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  OpenScheduleInterviewDialog(jobResponseId, userId) {
+  OpenScheduleInterviewDialog(jobResponseId, userId,profileId) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
@@ -161,6 +162,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
+          ProfileId: profileId,
           userId: userId
          // status : this.statusid
         }
@@ -230,9 +232,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 //   this.eventStat.emit(null);
 //   this.myEvent.emit(null);
 // }
-shortlisthiredwithdrawn(stat, jobResponseId) {
+shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.jobid;
+    this.schIntw.ProfileId = profileId;
     this.schIntw.JobInterviewId = 0;
     this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
     this.schIntw.InterviewDate = null;

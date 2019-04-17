@@ -28,6 +28,7 @@ export class RejectdialogComponent {
   Reject() {
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.data.jobId;
+    this.schIntw.ProfileId = this.data.ProfileId;
     this.schIntw.JobInterviewId = 0;
     this.schIntw.JobResponseId =  this.data.jobResponseId; // gemerated when sortlisted or applied
     this.schIntw.InterviewDate = null;

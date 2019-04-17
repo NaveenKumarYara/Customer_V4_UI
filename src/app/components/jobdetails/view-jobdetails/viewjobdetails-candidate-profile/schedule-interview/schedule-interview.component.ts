@@ -131,10 +131,10 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
-  debugger;
 if (this.schedule.valid) {
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
+this.schIntw.ProfileId = this.data.ProfileId;
 this.schIntw.JobInterviewId = this.data.userId;
 this.schIntw.JobResponseId = this.data.jobResponseId; // gemerated when sortlisted or applied
 this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
@@ -245,6 +245,7 @@ GetInterView() {
 export class ScheduleInterview {
     public UserId: number;
     public JobId: number;
+    public ProfileId:number;
     public JobInterviewId: number;
     public JobResponseId: number;
     public InterviewDate: Date;
