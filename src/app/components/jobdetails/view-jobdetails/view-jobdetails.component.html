@@ -58,7 +58,9 @@
                 </header>
                 <div class="card-body">
                     <div>
+                            <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'"> 
                         <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Inactive</button>
+                            </ng-container>
                         <ng-template #isactive>
                             <button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Active</button>
                         </ng-template>
