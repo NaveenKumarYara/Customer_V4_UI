@@ -9,12 +9,12 @@
                     <!-- <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits" placeholder="Add more responsibilities"
         [(ngModel)]="responsibilities"> -->
 
-                    <input class="form-control" autocomplete="off" type="text" name="RolesAndResponsibilities" required [(ngModel)]="responsibilities" name="resposibilities" #responsibility="ngModel" minlength="1" id="responsibilitiesName" (keyup)="GetTitleRoles()" placeholder="Type and Select"
+                    <input class="form-control" autocomplete="off" type="text" required [(ngModel)]="responsibilities" name="resposibilities" #responsibility="ngModel" minlength="1" id="responsibilitiesName" (keyup)="GetTitleRoles()" placeholder="Type and Select"
                         required>
                     <!-- {{responsibility.value.length}}  
            {{responsibilities.length}}
            {{responsibility.value}} -->
-                    <div class="searchList l0 " *ngIf="roleJobTitleList!=null && responsibility.value.length > 0">
+                    <div class="searchList l0 " *ngIf="roleJobTitleList!=null">
                         <ul class="searchList-dropdown mb-0">
                             <li class="searchList-options" *ngFor="let roleTitle of roleJobTitleList" (click)="SetRoleValue(roleTitle)">{{roleTitle.RolesAndResponsibilities}}</li>
                         </ul>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-3">
                 <button class="btn add-btn form-control" [disabled]="!rolesForm.valid" type="submit">+</button>
-                <button class="btn add-btn form-control btn-b ml-20" (click)="OpenResponsibilityDialog()" type="submit"><i class="fa fa-copy"></i></button>
+                <button class="btn add-btn form-control btn-b ml-20" (click)="OpenResponsibilityDialog()"><i class="fa fa-copy"></i></button>
             </div>
         </form>
     </div>

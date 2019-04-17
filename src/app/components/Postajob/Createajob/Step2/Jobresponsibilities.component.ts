@@ -52,7 +52,9 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
      this.roleIdList.splice(index, 1);
 
   }
-
+  // onResponsibilitiesChange(event) {
+  //   this.responsibilitieslist = event;
+  // }
   ngOnInit() {
     // if (localStorage.getItem('jobId') != null) {
     this.responsibilitieslist = this.appService.getResponsibilities();
@@ -84,7 +86,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   // adding roles and saving them
 
   AddRoles() {
-if (this.rolesForm.valid) {
+    if (this.rolesForm.valid) {
     if ($('#responsibilitiesName').val() && this.roleModel.RoleId > 0) {
       // if (this.roleModel.RoleId > 0) {
       // this.roleList.push(this.roleModel);
@@ -177,11 +179,13 @@ if (this.rolesForm.valid) {
         position: {right : '0px'},
         height : '750px',
         data: {
-          animal: 'panda'
+          JobId: localStorage.getItem('jobId'),
+          // UserId: this.user
         }
       }
     );
     responsibilitiesdialogRef.afterClosed().subscribe(result => {
+      this.appService.getJobResponsibilities(parseInt(localStorage.getItem('jobId'), 10)).subscribe(x => this.responsibilities = x);
       console.log('share Dialog result: ${result}');
     });
 
