@@ -87,7 +87,7 @@ export class Step1Component implements OnInit {
     // if (res != null) {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
-   if ((this.jobDetail.selectedTitle !== '' || null) && (this.jobProfile.jobPositionId!== '' || null || undefined)
+   if ((this.jobDetail.selectedTitle !== '' || null) // && (this.jobProfile.jobPositionId!== '' || null || undefined)
    && this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
   //  this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0
     this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
@@ -114,7 +114,7 @@ export class Step1Component implements OnInit {
     this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
-    this.insertJob.JobPositionId=this.jobProfile.jobPositionId;
+    this.insertJob.JobPositionId = this.jobProfile.jobPositionId;
     // moved to step1
     // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
@@ -184,9 +184,9 @@ this.insertJob.StepNumber = step;
     if (this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) {
       this.toastr.error('Please enter No of Positions!', 'Oops!');
     }
-    if (this.jobProfile.jobPositionId === undefined || this.openings.noOfOpenings === '' || this.openings.noOfOpenings === null ) {
-      this.toastr.error('Please enter Job Id!', 'Oops!');
-    }
+    // if (this.jobProfile.jobPositionId === undefined || this.openings.noOfOpenings === '' || this.openings.noOfOpenings === null ) {
+    //   this.toastr.error('Please enter Job Id!', 'Oops!');
+    // }
     if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
     this.toastr.error('Please enter Job Title!', 'Oops!');
     }
