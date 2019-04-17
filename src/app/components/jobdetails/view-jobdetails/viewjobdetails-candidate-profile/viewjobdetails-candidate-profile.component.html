@@ -691,13 +691,13 @@
     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
     </video>-->
             <div  *ngIf="profileFlipVideo?.VideoSizzle === null">
-                "No Video "
+                    <img src="../../../assets/images/no-video.png" class="icon" alt=".">               
             </div>
             <div  *ngIf="profileFlipVideo?.VideoSizzle != null">
             <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
             </div>
             <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
-            <div class="status shortlisted pull-right"><a class="show-matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,false)" data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a></div>
+            <div class="status shortlisted pull-right"><a class="show-matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,false)" data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a></div>        
         </div>
         <!--
         <div class="col-md-6">
@@ -721,7 +721,7 @@
             </video>-->
                                     <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
                                     <div  *ngIf="profileFlipVideo?.VideoProfile === null">
-                                        "No Video "
+                                            <img src="../../../assets/images/no-video.png" class="icon" alt=".">  
                                     </div>
                                     <div  *ngIf="profileFlipVideo?.VideoProfile != null">
                                         <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
