@@ -3,7 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { a } from '@angular/core/src/render3';
 import { AppService } from '../../../../../app.service';
 import { Roles } from '../../../models/jobPostInfo';
-// import {  } from 'events';
+import { PjRole } from '../Jobresponsibilities.component';
+import { Subject } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-responsibilities-dialog',
@@ -18,25 +19,52 @@ export class ResponsibilitiesDialogComponent implements OnInit {
   newresponsibility = '';
   loadResponsibilities: LoadResponsibilities[] = [];
   // @Output()responsibilitiesAdded = new EventEmitter<XMLResponsibilities[]>();
-  constructor(public dialogRef: MatDialogRef<ResponsibilitiesDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: any, private appService: AppService) {
+  constructor(public dialogRef: MatDialogRef<ResponsibilitiesDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: any,
+  private appService: AppService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
    }
-
   ngOnInit() {
-      // $('#text-data').click(function() {
-      //   const x = $('#copy-data').val();
-      //   const str = x;
-      //   const result = str.match( /[^\.!,\.$\?]+[\.!,\.$\?]+/g );
-      //   console.log(result);
-      //   const i = 0;
-        /*
-        for(i=0;i<=result.length-1;i++)
-        {
-        document.write("<option>"+result[i]+"</option>");
-        }
-        */
-      // })
   }
+  ParseResponsibilities() {
+    const x = this.parseRoles;
+    if (x.length > 0) {
+    const result =  x.split(/(.+)((\r?\.+)*)/igm); // working
+      // let  i = 1;
+    result.forEach(element => {
+      const resp = new XMLResponsibilities();
+      if (element === undefined) {
+        return false;
+      } else if (element !== '') {
+      resp.RolesandResponsibilities = element.trim();
+      if (resp.RolesandResponsibilities !== '') {
+        // resp.Index = i;
+        const check = this.respExists(resp, this.responsibilities);
+      if (check === false) {
+        this.responsibilities.push(resp);
+       }
+      }
+      }
+    });
+    } else {return false; }
+  }
+
+  addResponsibility() {
+    if (this.newresponsibility.length > 0 ) {
+    const resp = new XMLResponsibilities();
+    resp.RolesandResponsibilities = this.newresponsibility;
+    const check = this.respExists(resp, this.responsibilities);
+    if (check === false) {
+      this.responsibilities.push(resp);
+     }
+    }
+  this.newresponsibility = '';
+  }
+  respExists(resp, list) {​
+    return list.some(function(elem) {
+         return elem.RolesandResponsibilities === resp.RolesandResponsibilities;
+    });
+  }
+
   SaveBulkResponsibilities() {
     // const x = this.parseRoles;
     // // const result = x.match(/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)(\s|[A-Z].*)/g);
@@ -63,7 +91,7 @@ export class ResponsibilitiesDialogComponent implements OnInit {
     // console.log(result);
     this.saveBulk.UserId = this.customer.UserId;
     this.saveBulk.JobId = this.data.JobId;
-      this.saveBulk.XmlRoles = this.responsibilities;
+    this.saveBulk.XmlRoles = this.responsibilities;
     // result.forEach(element => {
     //   const resp = new XMLResponsibilities();
     //   if (element === undefined) {
@@ -73,85 +101,37 @@ export class ResponsibilitiesDialogComponent implements OnInit {
     //   if (resp.RolesandResponsibilities !== '') {
     //     this.saveBulk.XmlRoles.push(resp);
     //   }
-
     //   }
-
     // });
-this.appService.addBulkResponsibilities(this.saveBulk).subscribe(
-  (data) => {
-     this.appService.getJobResponsibilities(this.data.JobId).subscribe(x => {
-        this.loadResponsibilities = x; // need to check condition
-      // this.appService.this.responsibilities
-      const roles: Roles[] = [] as Roles[];
-      // [] as Car[];
-      this.loadResponsibilities.forEach(element => {
-        const role = new Roles();
-        role.Role = element.RolesAndResponsibilities;
-        role.RoleId = element.RoleId;
-        this.appService.addResponsibilities(role);
-        this.dialogRef.close();
-        // this.appService.addedresponsibilities.push(role);
-      });
-    });
+    this.appService.addBulkResponsibilities(this.saveBulk).subscribe(
+      (data) => {
+        this.appService.getJobResponsibilities(this.data.JobId).subscribe(x => {
+            this.loadResponsibilities = x; // need to check condition
+          // this.appService.this.responsibilities
+          const roles: Roles[] = [] as Roles[];
+          // [] as Car[];
+          this.loadResponsibilities.forEach(element => {
+            this.clearExistingResponsibilities();
+            const role = new Roles();
+            role.Role = element.RolesAndResponsibilities;
+            role.RoleId = element.RoleId;
+            this.appService.addResponsibilities(role);
+            this.dialogRef.close();
+          });
+        });
      //  this.responsibilitiesAdded.emit(this.responsibilities);
-
-  }
-
-);
-  // this.appser
-    // const i = 0;
-  }
-ParseResponsibilities() {
-  const x = this.parseRoles;
-  if (x.length > 0) {
-  const result =  x.split(/(.+)((\r?\.+)*)/igm); // working
-  // console.log(result);
-  // const resplist = [];
-  // this.saveBulk.UserId = this.customer.UserId;
-  // this.saveBulk.JobId = this.data.JobId;
-  //  this.saveBulk.XmlRoles = result;
-  // let  i = 1;
-  result.forEach(element => {
-    const resp = new XMLResponsibilities();
-    if (element === undefined) {
-      return false;
-    } else if (element !== '') {
-    resp.RolesandResponsibilities = element.trim();
-    if (resp.RolesandResponsibilities !== '') {
-      // resp.Index = i;
-      const check = this.respExists(resp, this.responsibilities);
-    if (check === false) {
-      this.responsibilities.push(resp);
-     }
-      // this.responsibilities.push(resp);
-      // i++;
-    }
-    }
-  });
-} else {return false; }
-}
-  addResponsibility() {
-    if (this.newresponsibility.length > 0 ) {
-    const resp = new XMLResponsibilities();
-
-    resp.RolesandResponsibilities = this.newresponsibility;
-    const check = this.respExists(resp, this.responsibilities);
-    if (check === false) {
-      this.responsibilities.push(resp);
-     }
-    }
-  // this.responsibilities.push(resp);
-  this.newresponsibility = '';
-  }
-  respExists(resp, list) {​
-    return list.some(function(elem) {
-         return elem.RolesandResponsibilities === resp.RolesandResponsibilities;
     });
- }
+  }
+  clearExistingResponsibilities() {
+    this.appService.responsibilities = [];
+        this.appService.responsibilitesChanged = new Subject<Roles[]>();
+        this.appService.addedresponsibilities = [];
+        this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
+  }
 
   deleteResponsibilities(index) {
     this.responsibilities.splice(this.responsibilities.indexOf(index), 1);
-    // this.responsibilities =  this.responsibilities.filter(x => x.Index !== index);
+    // this.responsibilities =  this.responsibilities.filter(x => x.Index !== index); this works as well
   }
 }
  export class ParseResponsibilities {
@@ -161,9 +141,7 @@ ParseResponsibilities() {
   constructor() {
     this.XmlRoles = [];
   }
-
  }
-
 export class XMLResponsibilities {
  public RolesandResponsibilities: string;
 }
@@ -173,7 +151,4 @@ export class LoadResponsibilities {
   public RoleId: number;
   public RolesAndResponsibilities: string;
 }
-// export class AddResp {
-//   public Index: number;
-//   public RolesAndResponsibilities: string;
-// }
+

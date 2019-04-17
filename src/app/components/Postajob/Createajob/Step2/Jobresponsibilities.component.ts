@@ -185,7 +185,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       }
     );
     responsibilitiesdialogRef.afterClosed().subscribe(result => {
-      this.appService.getJobResponsibilities(parseInt(localStorage.getItem('jobId'), 10)).subscribe(x => this.responsibilities = x);
+      // this.appService.getJobResponsibilities(parseInt(localStorage.getItem('jobId'), 10)).subscribe(x => this.responsibilities = x);
       console.log('share Dialog result: ${result}');
     });
 
