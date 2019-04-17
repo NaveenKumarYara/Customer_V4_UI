@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { a } from '@angular/core/src/render3';
 import { AppService } from '../../../../../app.service';
 import { Roles } from '../../../models/jobPostInfo';
@@ -18,7 +18,7 @@ export class ResponsibilitiesDialogComponent implements OnInit {
   newresponsibility = '';
   loadResponsibilities: LoadResponsibilities[] = [];
   // @Output()responsibilitiesAdded = new EventEmitter<XMLResponsibilities[]>();
-  constructor(@Inject (MAT_DIALOG_DATA) public data: any, private appService: AppService) {
+  constructor(public dialogRef: MatDialogRef<ResponsibilitiesDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: any, private appService: AppService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
    }
 
@@ -89,10 +89,12 @@ this.appService.addBulkResponsibilities(this.saveBulk).subscribe(
         role.Role = element.RolesAndResponsibilities;
         role.RoleId = element.RoleId;
         this.appService.addResponsibilities(role);
+        this.dialogRef.close();
         // this.appService.addedresponsibilities.push(role);
       });
     });
      //  this.responsibilitiesAdded.emit(this.responsibilities);
+
   }
 
 );
@@ -101,6 +103,7 @@ this.appService.addBulkResponsibilities(this.saveBulk).subscribe(
   }
 ParseResponsibilities() {
   const x = this.parseRoles;
+  if (x.length > 0) {
   const result =  x.split(/(.+)((\r?\.+)*)/igm); // working
   // console.log(result);
   // const resplist = [];
@@ -125,6 +128,7 @@ ParseResponsibilities() {
     }
     }
   });
+} else {return false; }
 }
   addResponsibility() {
     if (this.newresponsibility.length > 0 ) {

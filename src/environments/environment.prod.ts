@@ -47,6 +47,8 @@ export const environment = {
     postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob',
     addRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/SaveRoles',
     getRoles: 'http://api.tenendus.com:1090/ProfileAPI/api/GetRolesAndResponsibility',
+    bulkResponsibilities : 'http://api.tenendus.com:1090/JobsAPI/api/SaveJobRoles',
+    getJobResponsibilities : 'http://api.tenendus.com:1090/JobsAPI/api/GetJobResponsibility',
     domaincriteriaendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetDomainName',
     getCustomerUsersendpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerContacts?',
     customerPreferredLocationendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
