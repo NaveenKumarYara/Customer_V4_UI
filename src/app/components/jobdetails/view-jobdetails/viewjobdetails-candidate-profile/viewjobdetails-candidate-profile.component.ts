@@ -238,8 +238,8 @@ shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
     this.schIntw.ProfileId = profileId;
     this.schIntw.JobInterviewId = 0;
     this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
-    this.schIntw.InterviewDate = null;
-    this.schIntw.InterviewDate = null;
+    this.schIntw.InterviewDatevalue  = '';
+    //this.schIntw.InterviewDate = null;
     this.schIntw.StartTime = null;
     this.schIntw.EndTime = null;
     this.schIntw.InterviewTypeId = null; // skype or anytype

@@ -682,6 +682,7 @@
                             </ul>
                     </ul>
                 </div>
+                <ng-container *ngIf="profileFlipVideo?.VideoSizzle != null || profileFlipVideo?.VideoProfile != null ">
                 <div class="matching-details h-a" id="sizzleVideo-{{profile.ProfileId}}">
                     <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>
 
@@ -741,6 +742,20 @@
                         </div>
                     </div>
                 </div>
+             </ng-container>
+             <ng-container *ngIf="profileFlipVideo?.VideoSizzle == null && profileFlipVideo?.VideoProfile == null ">
+                        <div class="matching-details h-a" id="sizzleVideo-{{profile.ProfileId}}">
+                            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,2)" class="close">×</a>       
+                             <div class="details">                              
+                                <div class="video-scroll">
+                                  <div class="w-75 m-auto d-block cls-rel">
+                                      <h6 class="video-tittle">Video</h6>                         
+                                        <img src="../../../assets/images/no-video.png" class="icon" alt=".">                                        
+                                  </div>                   
+                                </div>
+                            </div>
+                        </div>
+             </ng-container>
             </div>
 
             <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">

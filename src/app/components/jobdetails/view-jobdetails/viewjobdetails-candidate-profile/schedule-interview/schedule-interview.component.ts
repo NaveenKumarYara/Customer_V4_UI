@@ -136,8 +136,9 @@ this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
 this.schIntw.ProfileId = this.data.ProfileId;
 this.schIntw.JobInterviewId = this.data.userId;
-this.schIntw.JobResponseId = this.data.jobResponseId; // gemerated when sortlisted or applied
-this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
+this.schIntw.JobResponseId = this.data.jobResponseId; 
+this.schIntw.InterviewDatevalue =  new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString();// gemerated when sortlisted or applied
+//this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
   this.schIntw.StartTime = this.time.hour + ':' + this.time.minute;
 // this.schIntw.EndTime=this.userId;
 // skype or anytype
@@ -249,6 +250,7 @@ export class ScheduleInterview {
     public JobInterviewId: number;
     public JobResponseId: number;
     public InterviewDate: Date;
+    public InterviewDatevalue:string;
     public StartTime: string;
     public EndTime: string;
     public InterviewTypeId: number;
