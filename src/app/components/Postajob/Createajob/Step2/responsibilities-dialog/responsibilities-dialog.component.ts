@@ -15,9 +15,11 @@ export class ResponsibilitiesDialogComponent implements OnInit {
   saveBulk = new ParseResponsibilities();
   parseRoles: string;
   customer: any;
-  responsibilities: XMLResponsibilities[] = []; // LoadResponsibilities[] = [];
+  // acutalresponsibilities: XMLResponsibilities[] = []; // LoadResponsibilities[] = [];
+  responsibilities: AddResp[] = [];
   newresponsibility = '';
   loadResponsibilities: LoadResponsibilities[] = [];
+  editRole = new AddResp();
   // @Output()responsibilitiesAdded = new EventEmitter<XMLResponsibilities[]>();
   constructor(public dialogRef: MatDialogRef<ResponsibilitiesDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: any,
   private appService: AppService) {
@@ -29,35 +31,64 @@ export class ResponsibilitiesDialogComponent implements OnInit {
     const x = this.parseRoles;
     if (x.length > 0) {
     const result =  x.split(/(.+)((\r?\.+)*)/igm); // working
-      // let  i = 1;
+        let  i = 1;
     result.forEach(element => {
-      const resp = new XMLResponsibilities();
+      const resp = new AddResp(); // new XMLResponsibilities();
       if (element === undefined) {
         return false;
       } else if (element !== '') {
       resp.RolesandResponsibilities = element.trim();
       if (resp.RolesandResponsibilities !== '') {
-        // resp.Index = i;
+         resp.Index = i;
         const check = this.respExists(resp, this.responsibilities);
       if (check === false) {
         this.responsibilities.push(resp);
+        i++;
        }
       }
       }
     });
     } else {return false; }
   }
+  // addHero() {
+  //   const findHero = this.heroes.find(hero => hero.name === this.lastName);
+  //   if(findHero) {
+  //     findHero.name = this.heroName;
+  //   } else {
+  //     this.heroes.push(new Hero(3, this.heroName));
+  //   }
+  //   this.heroName = '';
+  // }
+  // onEdit(hero) {
+  //   this.lastName = hero.name;
+  //   this.heroName = hero.name;
+  // }
 
+editResponsibilities(resp) {
+    this.newresponsibility = resp.RolesandResponsibilities;
+    this.editRole = resp;
+  }
   addResponsibility() {
     if (this.newresponsibility.length > 0 ) {
-    const resp = new XMLResponsibilities();
+    // const resp = new XMLResponsibilities();
+    if (this.editRole.RolesandResponsibilities != null) {
+    this.responsibilities.find(iitem => iitem.Index === this.editRole.Index).RolesandResponsibilities = this.newresponsibility;
+    } else {
+    const resp = new AddResp();
     resp.RolesandResponsibilities = this.newresponsibility;
     const check = this.respExists(resp, this.responsibilities);
     if (check === false) {
       this.responsibilities.push(resp);
+      // if (this.editRole.length > 0 && this.newresponsibility.length > 0) {
+      //   const result = new XMLResponsibilities();
+      //   result.RolesandResponsibilities = this.editRole;
+      //     this.responsibilities.splice(this.responsibilities.indexOf(result), 1);
+      // }
      }
     }
+    }
   this.newresponsibility = '';
+  this.editRole = new AddResp();
   }
   respExists(resp, list) {​
     return list.some(function(elem) {
@@ -110,8 +141,8 @@ export class ResponsibilitiesDialogComponent implements OnInit {
           // this.appService.this.responsibilities
           const roles: Roles[] = [] as Roles[];
           // [] as Car[];
+          this.clearExistingResponsibilities();
           this.loadResponsibilities.forEach(element => {
-            this.clearExistingResponsibilities();
             const role = new Roles();
             role.Role = element.RolesAndResponsibilities;
             role.RoleId = element.RoleId;
@@ -124,9 +155,9 @@ export class ResponsibilitiesDialogComponent implements OnInit {
   }
   clearExistingResponsibilities() {
     this.appService.responsibilities = [];
-        this.appService.responsibilitesChanged = new Subject<Roles[]>();
+        // this.appService.responsibilitesChanged = new Subject<Roles[]>();
         this.appService.addedresponsibilities = [];
-        this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
+        // this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
   }
 
   deleteResponsibilities(index) {
@@ -150,5 +181,9 @@ export class LoadResponsibilities {
   public JobId: number;
   public RoleId: number;
   public RolesAndResponsibilities: string;
+}
+export class AddResp {
+  public RolesandResponsibilities: string;
+  public Index: number;
 }
 
