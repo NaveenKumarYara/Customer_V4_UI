@@ -25930,7 +25930,7 @@ div.options{
 .page--create-a-job .form-steps .checkbox .box.inputbox{
     padding: 16px 22px;
 }
-.question small{
+.question small, .jobid-section small{
     font-size: 70%;
     font-style: italic;
 }
