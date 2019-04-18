@@ -39,7 +39,9 @@
                     {{job?.JobLocations[0].CityName}}, {{job?.JobLocations[0].StateCode}}
                 </h5>
                 <h5>{{job?.PostedOn}}</h5>
+                <ng-container *ngIf="job.JobPositionId !=''">    
                 <h5 class="jobbl-1">Job Id : {{job?.JobPositionId}}</h5>
+                </ng-container>
             </div>
             
         </header>
