@@ -76,7 +76,8 @@ export class SalarysliderComponent implements OnInit {
  onAnnualChange(changeContext: ChangeContext): void {
    // this.logText += `onAnnualChange(${this.getChangeContextString(changeContext)})\n`;
    this.minHourRate = this.minAnnualRate / 2000;
-     this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate,  this.salaryTypeSelected.SalaryTypeId  );
+   this.maxHourRate = this.maxAnnualRate / 2000;
+   this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate,  this.salaryTypeSelected.SalaryTypeId  );
  }
  maxAnnualChangeEnd(changeContext: ChangeContext): void {
   // this.logText += `maxAnnualChangeEnd(${this.getChangeContextString(changeContext)})\n`;
@@ -92,6 +93,7 @@ export class SalarysliderComponent implements OnInit {
 onHourlyChange(changeContext: ChangeContext): void {
  // this.logText += `onAnnualChange(${this.getChangeContextString(changeContext)})\n`;
  this.minAnnualRate = this.minHourRate * 2000;
+ this.maxAnnualRate = this.maxHourRate * 2000;
  this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate, this.salaryTypeSelected.SalaryTypeId  );
 }
 
