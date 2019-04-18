@@ -36,3 +36,11 @@ textarea.form-control{
 .table tbody tr td{
     vertical-align: middle !important;
 } 
+
+/*Added on 18-04-2019*/
+.responsibilities-step-2{
+    display: inline-flex;
+}
+.responsibilities-step-2 .btn-delete{
+    margin-right: 10px;
+}
