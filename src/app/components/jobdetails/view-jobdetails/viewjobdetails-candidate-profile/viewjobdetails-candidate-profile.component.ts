@@ -444,13 +444,22 @@ shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
     this.profileFlipVideo.VideoSizzle = videoSizzle;
     // $('.matching-details').removeClass('open');
     // $('#matchingDetails-' + profileId).toggleClass('open');
-if (profileOrSizzle === true) {
+  if (profileOrSizzle === true) {
+    if(this.profileFlipVideo.VideoSizzle == null&&this.profileFlipVideo.VideoProfile !=null)
+    {
+      $('.matching-details').removeClass('open');
+      $('#profileVideo-' + profileId).toggleClass('open');
+    }
+   else 
+   {
     $('.matching-details').removeClass('open');
-    $('#sizzleVideo-' + profileId).toggleClass('open');
-} else {
+    $('#sizzleVideo-' + profileId).toggleClass('open'); 
+   }  
+  }
+ else {
     $('.matching-details').removeClass('open');
     $('#profileVideo-' + profileId).toggleClass('open');
-}
+   }
 
   }
   // this function is not required as of now as there is split in UI

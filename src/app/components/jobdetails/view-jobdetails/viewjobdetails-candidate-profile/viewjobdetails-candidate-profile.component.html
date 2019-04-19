@@ -731,7 +731,7 @@
                                     <div  *ngIf="profileFlipVideo?.VideoProfile != null">
                                         <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video>
                                     </div>
-                                    <div class="status shortlisted pull-right"><a class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)" href="javascript:void(0)">Sizzle Video</a></div>
+                                    <div class="status shortlisted pull-right"  *ngIf="profileFlipVideo?.VideoSizzle != null"><a class="show-matching-details" data-toggle="matching-details" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)" href="javascript:void(0)">Sizzle Video</a></div>
                                 </div>
                                 <!--
                                     <div class="col-md-6">
