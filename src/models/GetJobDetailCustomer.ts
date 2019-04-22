@@ -13,7 +13,7 @@ export class GetJobDetailCustomer {
     JobRequiredSkills: Jobskills [];
     JobResponsibility: EditRoles [];
     EducationDetails: Qualifications [];
-    JobDepartment: DepartmentModel [];
+    JobDepartments: DepartmentModel [];
     TechnicalTeam: any ;
 }
 // export class GetJobDetailsCustomer {

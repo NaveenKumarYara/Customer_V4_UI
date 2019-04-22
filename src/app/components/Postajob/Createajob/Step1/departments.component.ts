@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-steps-step1-departments',
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.css'],
-  providers: [AppService]
+  // providers: [AppService]
 })
 export class DepartmentsComponent implements OnInit, OnDestroy {
   @ViewChild('deptForm') deptForm: NgForm;
@@ -48,7 +48,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
       debounceTime(200),
       distinctUntilChanged(),
       tap(() => this.departmentLoading = true),
-      switchMap(term => this.appService.searchDepartment(term, false,this.customerId).pipe(
+      switchMap(term => this.appService.searchDepartment(term, false, this.customerId).pipe(
         catchError(() => of([])), // empty list on error
         tap(() => this.departmentLoading = false)
       ))
@@ -71,33 +71,33 @@ departmentExists(team, list) {​
   });
 }
 suggestedDepartment() {
-  this.appService.searchClient(this.customerId,true).subscribe(res => {
+  this.appService.searchClient(this.customerId, true).subscribe(res => {
     this.suggestDepartments = res;
     // this.discResult.forEach(cc => cc.checked = false);
   });
 }
 ngOnInit() {
   this.searchDepartment();
-  if (this.departmentsList.length === 0) {
-  this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
-    x => {this.departmentsList = x;
-    if (this.departmentsList.length > 0) {
-        for (const dept of this.departmentsList) {
-          const ejDepartment = new DepartmentModel();
-          const ejDepartmentId = new PjDepartments();
-          ejDepartment.DepartmentId = dept.DepartmentId;
-          ejDepartment.CustomerDepartment = dept.DepartmentName;
-            ejDepartmentId.DepartmentId = dept.DepartmentId;
-            // this.departmentsList.push(ejDepartment);
-            this.addedDepartmentList.push(ejDepartmentId);
-        }
-      }
+  // if (this.departmentsList.length === 0) {
+  // this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
+  //   x => {this.departmentsList = x;
+  //   if (this.departmentsList.length > 0) {
+  //       for (const dept of this.departmentsList) {
+  //         const ejDepartment = new DepartmentModel();
+  //         const ejDepartmentId = new PjDepartments();
+  //         ejDepartment.DepartmentId = dept.DepartmentId;
+  //         ejDepartment.CustomerDepartment = dept.DepartmentName;
+  //           ejDepartmentId.DepartmentId = dept.DepartmentId;
+  //           // this.departmentsList.push(ejDepartment);
+  //           this.addedDepartmentList.push(ejDepartmentId);
+  //       }
+  //     }
 
-    this.appService.departments = this.departmentsList;
-    this.appService.departmentsChanged.next(this.departmentsList);
-    this.appService.addeddepartments = this.addedDepartmentList;
-    this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
-    localStorage.setItem('departments', JSON.stringify(this.departmentsList));
+    // this.appService.departments = this.departmentsList;
+    // this.appService.departmentsChanged.next(this.departmentsList);
+    // this.appService.addeddepartments = this.addedDepartmentList;
+    // this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
+    // localStorage.setItem('departments', JSON.stringify(this.departmentsList));
     this.subscription = this.appService.departmentsChanged
       .subscribe(
       (departmentlist: DepartmentModel[]) => {
@@ -112,8 +112,8 @@ ngOnInit() {
         this.addedDepartmentList = departmentlist;
         }
       );
-    });
-  }
+    // });
+  // }
 
 }
 ngOnDestroy() {

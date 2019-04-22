@@ -10,7 +10,7 @@ import { AddClient } from '../../../../../models/jobskills.model';
   selector: 'app-steps-step1-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css'],
-  providers: [AppService]
+  // providers: [AppService]
 })
 export class ClientsComponent implements OnInit {
 
@@ -54,7 +54,7 @@ export class ClientsComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       tap(() => this.clientLoading = true),
-      switchMap(term => this.appService.searchClient(this.customerId,false, term).pipe(
+      switchMap(term => this.appService.searchClient(this.customerId, false, term).pipe(
         catchError(() => of([])), // empty list on error
         tap(() => this.clientLoading = false)
       ))
@@ -62,7 +62,7 @@ export class ClientsComponent implements OnInit {
   );
 }
 suggestedClients() {
-  this.appService.searchClient(this.customerId,true).subscribe(res => {
+  this.appService.searchClient(this.customerId, true).subscribe(res => {
     this.suggestClients = res;
     // this.discResult.forEach(cc => cc.checked = false);
   });

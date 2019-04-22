@@ -6,6 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
+import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 declare var $: any;
 declare var jQuery: any;
 
@@ -23,13 +24,30 @@ export class JobdetailsComponent implements OnInit {
   expYears: any = [];
   jobtitleloading = false;
   jobtitleinput = new Subject<string>();
-  minExperience: number;
-  maxExperience: number;
+  minExperience = 36;
+  maxExperience = 60;
+  minYears: number;
+  maxYears: number;
 suggestedTitle: string[];
 customerId: any;
   //
-
-
+  // minValue = 100;
+  // maxValue = 400;
+  options: Options = {
+    floor: 0,
+    ceil: 240,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return  (value / 12).toFixed(1)   + 'Years';
+        case LabelType.High:
+          return (value / 12).toFixed(1)   + 'Years' ;
+          default:
+          return ' ';
+      }
+    }
+  };
+  //
   // companies: any[] = [];
   // loading = false;
   // companiesNames = ['Miškas', 'Žalias', 'Flexigen'];
@@ -56,13 +74,13 @@ customerId: any;
     );
   }
 
-  updateMinExp() {
-    this.appService.updateMinExp(this.minExperience);
-  }
+  // updateMinExp() {
+  //   this.appService.updateMinExp(this.minExperience);
+  // }
 
-  updateMaxExp() {
-    this.appService.updateMaxExp(this.maxExperience);
-  }
+  // updateMaxExp() {
+  //   this.appService.updateMaxExp(this.maxExperience);
+  // }
 
   updateJobTitle(val?: any) {
     if (val != null) {
@@ -70,21 +88,21 @@ customerId: any;
   }
     this.appService.updateJobtitle(this.selectedTitle);
   }
-  public getExpYears() {
-    this.expYears = [];
-    for (let i = 1; i <= 50; i++) {
-        this.expYears.push(i);
-    }
-    return this.expYears;
-}
-valdiateExperience(min, max): boolean {
-const maximum = parseInt(max, 10);
-const minium = parseInt(min, 10);
-if (maximum < minium) {
-  return true;
-}
-return false;
-}
+//   public getExpYears() {
+//     this.expYears = [];
+//     for (let i = 1; i <= 50; i++) {
+//         this.expYears.push(i);
+//     }
+//     return this.expYears;
+// }
+// valdiateExperience(min, max): boolean {
+// const maximum = parseInt(max, 10);
+// const minium = parseInt(min, 10);
+// if (maximum < minium) {
+//   return true;
+// }
+// return false;
+// }
 suggestedJobTitle() {
   this.appService.suggestJobTitle(this.customerId).subscribe(res => {
     this.suggestedTitle = res;
@@ -92,13 +110,19 @@ suggestedJobTitle() {
   });
 }
   ngOnInit() {
-    this.getExpYears();
+    // this.getExpYears();
     this.searchJobTitle();
     this.suggestedJobTitle();
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
-    this.appService.currentminExp.subscribe(x => this.minExperience = x);
-    this.appService.currentmaxExp.subscribe(x => this.maxExperience = x);
+    this.appService.currentminExp.subscribe(x => {
+        this.minExperience = x;
+        this.minYears = this.minExperience / 12;
+      });
+    this.appService.currentmaxExp.subscribe(x => {
+      this.maxExperience = x;
+      this.maxYears = this.maxExperience / 12;
+    } );
    // }
 //    this.companiesNames.forEach((c, i) => {
 //     this.companies.push({ id: i, name: c });
@@ -109,7 +133,21 @@ suggestedJobTitle() {
       this.selectedTitle = name;
         return { name: this.selectedTitle , tag: true };
     }
-
+    minExperienceChangeStart(changeContext: ChangeContext): void {
+      // this.logText += `minAnnualChangeStart(${this.getChangeContextString(changeContext)})\n`;
+      // this.minYears = this.minExperience / 12;
+       this.appService.updateMinExp(this.minExperience);
+   }
+   onExperienceChange(changeContext: ChangeContext): void {
+    // this.minYears = this.minExperience / 12;
+    // this.maxYears = this.maxExperience / 12;
+      this.appService.updateMinExp(this.minExperience);
+      this.appService.updateMaxExp(this.maxExperience);
+   }
+   maxExperienceChangeEnd(changeContext: ChangeContext): void {
+      // this.maxYears = this.maxExperience / 12;
+      this.appService.updateMaxExp(this.maxExperience);
+   }
     // addTagPromise(name) {
     //     return new Promise((resolve) => {
     //         this.loading = true;

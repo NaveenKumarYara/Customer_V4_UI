@@ -27,10 +27,10 @@ client: any;
           this.jobCategoryId = data.JobCategoryId; // And he have data here too!
           this.jobCategory = data.Category;
       });
-    //   this.appService.currentClient.subscribe((data) => {
-    //     // this.jobCategoryId = data.ClientId; // And he have data here too!
-    //     this.client = data.ClientName; // localStorage.getItem('clientName'); //
-    // });
+      this.appService.currentClient.subscribe((data) => {
+        // this.jobCategoryId = data.ClientId; // And he have data here too!
+        this.client = data.ClientName; // localStorage.getItem('clientName'); //
+    });
     // this.appService.currentClient.subscribe((data) => {
     //   this.client = data; // And he have data here too!
     // });
@@ -55,6 +55,9 @@ client: any;
       this.appService.currentjobPosition.subscribe((data) => {
         this.jobPositionId = data; // And he have data here too!
       });
+      this.appService.departmentsChanged.subscribe(x =>  {
+        this.departments = x;
+      } );
       // this.appService.jobprimaryskillsChanged.subscribe((data) => {
       //   this.primarySkills = data; // And he have data here too!
       // });
@@ -75,9 +78,9 @@ client: any;
     this.primarySkills = this.appService.primaryjobskills;
     this.secondarySkills = this.appService.secondaryjobskills;
     this.roles = this.appService.responsibilities;
-    this.departments = JSON.parse(localStorage.getItem('departments'));
+    // this.departments = JSON.parse(localStorage.getItem('departments'));
     // this.appService.departmentsChanged.subscribe(x =>  = x);
-    this.client = localStorage.getItem('client');
+    // this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';
     // this.insertJob.SalaryTypeId = 1;
     // this.insertJob.MinimumSalary = '1';

@@ -16,37 +16,42 @@
     </div>
     <div class="col-md-6">
         <div class="form-group re-group">
-            <label for="requiredExperience" class="question">Required Experience</label>
+            <label for="requiredExperience" class="question">Required Experience</label>  <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
             <div class="row">
                 <!-- <div class="styled-select-box block experience-output"></div> -->
-                <div class="col-md-6">
-                    <div class="p-rel">
-
-
-                        <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
+                <div class="col-md-12">
+                    <div class="p-rel"> 
+                        <!-- <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
                             required>
-                        </ng-select>
-                        <small class="text-danger error1" *ngIf="totMinExp.invalid && totMinExp.touched">Required.</small>
-                        <!-- {{minExperience}} {{ maxExperience}} -->
-                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
-              Can't be > Max Exp!
-          </small>
-                    </div>
-                    <!-- <small class="text-danger" *ngIf="maxExperience < minExperience">
-            Can't be > Max Exp!
-          </small> -->
+                        </ng-select> 
+                          <small class="text-danger error1" *ngIf="totMinExp.invalid && totMinExp.touched">Required.</small>
+                         {{minExperience}} {{ maxExperience}} 
+                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          valdiateExperience(minExperience,maxExperience)  
+                            Can't be > Max Exp!
+                        </small> --> 
+                        <ng5-slider [(value)]="minExperience"
+                            [(highValue)]="maxExperience"
+                            [options]="options"
+                            (userChangeStart)="minExperienceChangeStart($event)"
+                            (userChange)="onExperienceChange($event)"
+                            (userChangeEnd)="maxExperienceChangeEnd($event)"
+                            name="hourly">
+                        </ng5-slider> 
+                        <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider> -->
+                    </div> 
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="p-rel">
                         <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true" placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [(ngModel)]="maxExperience" #totMaxExp="ngModel" name="maxiEperience" required>
                         </ng-select>
                         <small class="text-danger error1" *ngIf="totMaxExp.invalid && totMaxExp.touched">Required.</small>
-                        <!-- <small class="text-danger" *ngIf="totMinExp.value > totMaxExp.value">  -->
-                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          <!-- valdiateExperience(minExperience,maxExperience) -->
+                        
+                        <small class="text-danger error1" *ngIf="minExperience > maxExperience">          
+                             valdiateExperience(minExperience,maxExperience)  
              Can't be < Min Exp!
           </small>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
