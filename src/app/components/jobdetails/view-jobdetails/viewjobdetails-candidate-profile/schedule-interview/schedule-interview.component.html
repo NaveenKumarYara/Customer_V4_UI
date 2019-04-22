@@ -117,7 +117,7 @@
                                           <div class="w-100">
                                             <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img">
                                             <h4>{{teammember.FirstName}}
-                                              <span class="dept">HR Office</span>
+                                              <span class="dept">{{teammember.RoleName}}</span>
                                           </h4>
                                           <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                         </div>
@@ -172,7 +172,7 @@
                                         </li> -->
                                         <ng-container *ngFor="let type of typeList"> 
                                         <li  (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
-                                                <a data-toggle="tab" href="#{{type?.InterviewType}}"aria-expanded="true">{{type?.InterviewType}}</a>
+                                                <a data-toggle="tab" href="#{{type?.InterviewType}}" (click)="GetId(type?.InterviewTypeId)" aria-expanded="true">{{type?.InterviewType}}</a>
                                             </li>
                                     </ng-container>
                                     </ul>
@@ -194,7 +194,7 @@
                                 <!--Basic Tabs HTML added on 02-04-2019-->
 
                                 <div class="tab-content">
-                                    <div id="In-Person" class="tab-pane fade in active">
+                                    <div id="In-Person" *ngIf="interviewId == 1">
                                         <a href="javascript:void(0)" class="tui-tooltip">
                                             See how much would it cost to you. <span>&#63;</span>
                                             <div class="tooltip-content">
@@ -222,7 +222,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="Skype" class="tab-pane fade">
+                                    <div id="Skype" *ngIf="interviewId == 3">
                                         <div class="form-group skype-group">
                                             <label for="">Skype</label>
                                             <h2><input class="form-control" type="text" [(ngModel)]="skypeId"
@@ -254,7 +254,7 @@
                                         </div> -->
 
                                     </div>
-                                    <div id="WebEX" class="tab-pane fade">
+                                    <div id="WebEX" *ngIf="interviewId == 4">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="">Dial-in number</label>
@@ -288,7 +288,7 @@
                                         </div>
                                          -->
                                     </div>
-                                    <div id="Phone" class="tab-pane fade">
+                                    <div id="Phone" *ngIf="interviewId == 2">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label for="">Phone Number</label>

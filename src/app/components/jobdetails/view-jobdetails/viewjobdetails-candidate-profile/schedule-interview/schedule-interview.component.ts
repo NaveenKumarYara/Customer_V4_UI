@@ -45,6 +45,7 @@ export class ScheduleInterviewComponent implements OnInit {
   @Input() jobResponseId: number;
   customerUser: number;
   customerId: number;
+  interviewId:number;
   processSelection: number;
   @Input() jobid: number;
   managersList: Observable<CustomerUsers[]>;
@@ -189,6 +190,19 @@ this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toStri
     }
 }
 
+GetId(val)
+{
+  if(val>0)
+  {
+    this.interviewId = val;
+  }
+  else 
+  {
+    this.interviewId = 1;
+  }
+
+}
+
 getcustomerusers() {
   this.managersList = concat(
     of([]), // default items
@@ -207,6 +221,7 @@ getcustomerusers() {
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
     this.processSelection = this.jobInterview.InterviewTypeId;
+    this.GetId(this.processSelection);
    });
    }
 GetInterView() {
