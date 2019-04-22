@@ -104,6 +104,7 @@ export class ScheduleInterviewComponent implements OnInit {
  }
 
   ngOnInit() {
+    this.clearTeamMemebers();
     this.getcustomerusers();
     this.GetInterView();
     this.GetType();
