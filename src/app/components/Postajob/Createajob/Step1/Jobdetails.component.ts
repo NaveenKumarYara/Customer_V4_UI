@@ -34,7 +34,7 @@ customerId: any;
   // minValue = 100;
   // maxValue = 400;
   options: Options = {
-    floor: 0,
+    floor: 1,
     ceil: 240,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -47,15 +47,9 @@ customerId: any;
       }
     }
   };
-  //
-  // companies: any[] = [];
-  // loading = false;
-  // companiesNames = ['Miškas', 'Žalias', 'Flexigen'];
-
 
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
-     // this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
   }
 
@@ -106,14 +100,12 @@ customerId: any;
 suggestedJobTitle() {
   this.appService.suggestJobTitle(this.customerId).subscribe(res => {
     this.suggestedTitle = res;
-    // this.discResult.forEach(cc => cc.checked = false);
   });
 }
   ngOnInit() {
     // this.getExpYears();
     this.searchJobTitle();
     this.suggestedJobTitle();
-   // if (localStorage.getItem('jobId') != null) {
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
     this.appService.currentminExp.subscribe(x => {
         this.minExperience = x;
@@ -123,10 +115,7 @@ suggestedJobTitle() {
       this.maxExperience = x;
       this.maxYears = this.maxExperience / 12;
     } );
-   // }
-//    this.companiesNames.forEach((c, i) => {
-//     this.companies.push({ id: i, name: c });
-// });
+
    }
 
     addTitle(name) {

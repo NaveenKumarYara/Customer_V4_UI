@@ -9,6 +9,7 @@ import { PjEducationDetails, GetDomain, PjDomain } from '../../models/jobPostInf
 import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { ChangeContext, LabelType, Options } from 'ng5-slider';
 @Component({
   selector: 'app-steps-step2-domainexpertise',
   templateUrl: './domainexpertise.component.html'
@@ -23,14 +24,28 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
   getDomain = new GetDomain ();
-  MinimumExperience: number;
-  MaximumExperience: number;
+  MinimumExperience = 6;
+  MaximumExperience = 12;
   addDomainList: PjDomain[];
   domainId: number;
   domaintitleloading = false;
   selecteddomaininput = new Subject<string>();
   selecteddomainname = '';
-  expYears: any = [];
+  // expYears: any = [];
+  options: Options = {
+    floor: 1,
+    ceil: 240,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return (value  / 12).toFixed(1)   + 'Years';
+        case LabelType.High:
+          return (value / 12).toFixed(1)   + 'Years' ;
+          default:
+          return ' ';
+      }
+    }
+  };
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.getDomain = new GetDomain();
@@ -52,8 +67,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     //   newDomain.MinimumExperience = this.minExperience;
     //   newDomain.DomainId = this.getDomain.DomainId;
     //   newDomain.DomainName = this.getDomain.DomainName;
-    this.getDomain.MaximumExperience = this.MaximumExperience;
-    this.getDomain.MinimumExperience = this.MinimumExperience;
+    this.getDomain.MaximumExperience = this.MaximumExperience;  // parseFloat((this.MaximumExperience / 12).toFixed(1));
+    this.getDomain.MinimumExperience = this.MinimumExperience; //  parseFloat((this.MinimumExperience / 12).toFixed(1)) ;
     const check = this.domainExists(this.getDomain, this.domainlist);
       if (check === false) {
         this.appService.addDomain(this.getDomain);
@@ -82,29 +97,23 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   private deleteDomain(index: number) {
     this.appService.deleteDomain(index);
   }
-  public getExpYears() {
-    this.expYears = [];
-    for (let i = 1; i <= 50; i++) {
-        this.expYears.push(i);
-    }
-    return this.expYears;
-}
+//   public getExpYears() {
+//     this.expYears = [];
+//     for (let i = 1; i <= 50; i++) {
+//         this.expYears.push(i);
+//     }
+//     return this.expYears;
+// }
   ngOnInit() {
   this.getDomains();
-  this.getExpYears() ;
-  // if (localStorage.getItem('jobId') != null) {
+  // this.getExpYears() ;
     this.domainlist = this.appService.getDomainlist();
-    // this.domains.subscribe(domainsList => {
-    //   this.getDomainList = domainsList as GetDomain[];
-    // });
     this.subscription = this.appService.domainChanged
       .subscribe(
       (domain: GetDomain[]) => {
         this.domainlist = domain;
         }
       );
-
-
     this.addDomainList = this.appService.getAddedDomainlist();
     this.subscriptions = this.appService.adddomainChanged
       .subscribe(
@@ -112,7 +121,6 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
         this.addDomainList = domain;
         }
       );
-     // }
   }
 
   private getDomains() {
@@ -129,7 +137,16 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
       )
     );
   }
-
+  minExperienceChangeStart(changeContext: ChangeContext): void {
+     this.appService.updateMinExp(this.MinimumExperience);
+ }
+ onExperienceChange(changeContext: ChangeContext): void {
+    this.appService.updateMinExp(this.MinimumExperience);
+    this.appService.updateMaxExp(this.MaximumExperience);
+ }
+ maxExperienceChangeEnd(changeContext: ChangeContext): void {
+    this.appService.updateMaxExp(this.MaximumExperience);
+ }
   ngOnDestroy() {
     this.subscription.unsubscribe();
      this.subscriptions.unsubscribe();

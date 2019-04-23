@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Jobskills, AddSkill } from '../../../../../models/jobskills.model';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl, NgForm } from '@angular/forms';
+import { ChangeContext, LabelType, Options } from 'ng5-slider';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobskillset',
@@ -19,8 +20,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience: number;
-  maxexperience: number;
+  minexperience = 6;
+  maxexperience = 12;
   expYears: any = [];
   skillType  = false;
 
@@ -30,19 +31,24 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   selectedSkillName = '';
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
-
-
   private selectedLink = 'Primary';
-  // public addSkill: (name) => void;
-
+  options: Options = {
+    floor: 1,
+    ceil: 240,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return  (value / 12).toFixed(1)   + 'Years';
+        case LabelType.High:
+          return (value / 12).toFixed(1)   + 'Years' ;
+          default:
+          return ' ';
+      }
+    }
+  };
   setSkillType() {
-    // if(!this.skillType)
-    //   {
         this.selectedLink = this.skillType === true ? 'primary' : 'secondary';
-      // }
-      // else
-
-}
+  }
 
   setSkillType1(e: string): void {
     this.selectedLink = e;
@@ -56,7 +62,6 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   }
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
-      // this.addSkill = this.addTagNow.bind(this);
   }
   addTagNow(val) {
     this.selectedSkillName = val;
@@ -70,7 +75,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
    $('#skills').val('1');
      localStorage.setItem('skill', val);
     return { name: SkillName.SkillName , tag: true };
-}
+  }
   public addSkills() {
     if ($('#skills').val() === '1') {
       if (this.maxexperience < this.minexperience) {
@@ -101,15 +106,15 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       const newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
-      newskills.MaximumExp = this.maxexperience;
-      newskills.MinimumExp = this.minexperience;
+      newskills.MaximumExp = this.maxexperience ; // parseFloat((this.maxexperience / 12).toFixed(1));
+      newskills.MinimumExp = this.minexperience; // parseFloat((this.minexperience / 12).toFixed(1));
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
       if (check === false) {
           this.appService.addJobSkill(newskills);
       }
       this.selectedSkillName = '';
-      this.minexperience = 0;
-      this.maxexperience = 0;
+      this.minexperience = 6;
+      this.maxexperience = 12;
       localStorage.removeItem('skill');
      this.form.reset();
     } else {
@@ -121,13 +126,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
          return elem.SkillName === skill.SkillName;
     });
  }
-  public getExpYears() {
-    this.expYears = [];
-    for (let i = 1; i <= 50; i++) {
-        this.expYears.push(i);
-    }
-    return this.expYears;
-}
+//   public getExpYears() {
+//     this.expYears = [];
+//     for (let i = 1; i <= 50; i++) {
+//         this.expYears.push(i);
+//     }
+//     return this.expYears;
+// }
   private deletePrimarySkills(index: number) {
     this.appService.deletePrimarySkills(index);
   }
@@ -164,27 +169,32 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.getSkills();
-    this.getExpYears();
-
+    // this.getExpYears();
     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
     this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
-     // if (localStorage.getItem('jobId') != null) {
     this.subscription = this.appService.jobprimaryskillsChanged
       .subscribe(
       (jobskills: Jobskills[]) => {
         this.primaryjobskills = jobskills;
       }
     );
-
     this.subscription = this.appService.jobsecondaryskillsChanged
       .subscribe(
       (jobskills: Jobskills[]) => {
         this.secondaryjobskills = jobskills;
         }
       );
-      // }
   }
-
+  minExperienceChangeStart(changeContext: ChangeContext): void {
+    this.appService.updateMinExp(this.minexperience);
+}
+onExperienceChange(changeContext: ChangeContext): void {
+   this.appService.updateMinExp(this.minexperience);
+   this.appService.updateMaxExp(this.maxexperience);
+}
+maxExperienceChangeEnd(changeContext: ChangeContext): void {
+   this.appService.updateMaxExp(this.maxexperience);
+}
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
