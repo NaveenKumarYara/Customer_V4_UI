@@ -33,7 +33,7 @@ export class UploadProfilesComponent implements OnInit {
   bulkApply = new BulkApply();
   xmlJobResponse: XmlJobResponse[] = [];
   loaddata = true ;
-  displayprofiles:any;
+  displayprofiles: any;
   searchString: any;
   SearchList: any = [];
   norecord: any = false;
@@ -46,7 +46,7 @@ export class UploadProfilesComponent implements OnInit {
   constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
     this.selectedFileNames = [];
     this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
-     this.displayprofiles=  JSON.parse(localStorage.getItem('DisplayUpload'));
+     this.displayprofiles =  JSON.parse(localStorage.getItem('DisplayUpload'));
     // this.userId = this.customerName.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
    }
@@ -101,7 +101,7 @@ export class UploadProfilesComponent implements OnInit {
  }
 
   GetSearchText(value) {
-    return this.jobdetailsservice.GetAutoSearch(value,this.customerName.CustomerId)
+    return this.jobdetailsservice.GetAutoSearch(value, this.customerName.CustomerId)
     .subscribe(data => {
           if (data.length > 0) {
             this.SearchList = data;
@@ -161,7 +161,7 @@ export class UploadProfilesComponent implements OnInit {
     }
   }
   uploadMultiple(formData) {
-    this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {
+    this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
        // setTimeout(() => {
           /** spinner ends after 5 seconds */

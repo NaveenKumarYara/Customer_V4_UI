@@ -26176,3 +26176,25 @@ body *{
 .page--manage-jobs .card .meta .jobbl-1{
     border-left: 1px solid #E0E3EC;
 }
+
+/*exp slider*/
+.ng5-slider .ng5-slider-pointer {
+    cursor: pointer;
+    width: 12px !important;
+    height: 12px !important;
+    top: -5px !important;
+    background-color: #0db9f0;
+    z-index: 3;
+    border-radius: 16px;
+}
+.ng5-slider .ng5-slider-pointer:after {
+    content: '';
+    width: 8px !important;
+    height: 8px !important;
+    position: absolute;
+    top: 2px !important;
+    left: 2px !important;
+    border-radius: 4px;
+    background: #fff;
+}
+/*# exp slider*/

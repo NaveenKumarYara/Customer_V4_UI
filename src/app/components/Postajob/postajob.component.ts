@@ -30,8 +30,8 @@ export class PostajobComponent implements OnInit {
   localStorage.removeItem('completed');
   localStorage.removeItem('jobId');
   localStorage.removeItem('EditMode');
-  localStorage.removeItem('client');
-  localStorage.removeItem('departments');
+  // localStorage.removeItem('client');
+  // localStorage.removeItem('departments');
   localStorage.removeItem('draftItem');
   this.appService.personTypes = [];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
@@ -57,8 +57,8 @@ export class PostajobComponent implements OnInit {
   this.appService.maxAnnualRate.next(10000);
   this.appService.minHourlyRate.next(20);
   this.appService.maxHourlyRate.next(100);
-  this.appService.minExperience.next(6);
-  this.appService.maxExperience.next(12);
+  this.appService.minExperience.next(36);
+  this.appService.maxExperience.next(60);
   this.appService.location.next(new PrefLocation());
   this.appService.reportingManager.next(new CustomerUsers());
   this.appService.selectedskilltype.next('');

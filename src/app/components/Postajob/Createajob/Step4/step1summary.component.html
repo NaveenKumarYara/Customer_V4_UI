@@ -26,7 +26,7 @@
     <h3 class="question">
       What experience does the job requires?
     </h3>
-    <h5 class="data">{{minExp}} - {{maxExp}} years</h5>
+    <h5 class="data">{{(minExp/12) | number:'1.0-1' }} - {{(maxExp/12)| number: '1.0-1'}} years</h5>
   </div>
   <div class="form-data-group">
       <h3 class="question">
@@ -54,7 +54,7 @@
           <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
           <ul class="data-list">
             <li *ngFor="let department of departments">
-              <span class="name">{{department.CustomerDepartment}}</span>
+              <span class="name">{{department.DepartmentName}}</span>
             </li> 
           </ul>
            <!-- <h6 class="data" *ngIf="department.length === 0" >

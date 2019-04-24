@@ -40,8 +40,8 @@ export class InsertJob {
     public ClientName: string;
     public ClientId: number;
     public XmlDepartment: PjDepartments[] = [];
-    public Draft : boolean;
-    public Email :string;
+    public Draft: boolean;
+    public Email: string;
   }
   export class PjSkill {
     public SkillName: string;
@@ -132,11 +132,11 @@ export class DiscResult {
     public  ClientId: number;
     public ClientName: string;
 } export class AutoSearchClient {
-    public CustomerId:number;
+    public CustomerId: number;
     public  ClientName: string;
     public IsSuggested: boolean;
 } export class AutoSearchDepartment {
-  public CustomerId:number;
+  public CustomerId: number;
   public  DepartmentName: string;
   public IsSuggested: boolean;
 }export class DepartmentModel {
