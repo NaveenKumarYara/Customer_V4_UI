@@ -120,6 +120,7 @@ export const environment = {
     StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',
     bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
     WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
+    GetCustomerUsers:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerUsers?',
     // Redirections
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',

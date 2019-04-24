@@ -643,9 +643,9 @@ bulkApply(body) {
         this.handleError
       );
   }
-  getCustomerContacts(customerId: number, userId: number): Observable<CustomerContacts[]> {
+  getCustomerContacts(customerId: number): Observable<CustomerContacts[]> {
 
-    const url = environment.GetCustomerContacts + 'customerId=' + customerId + '&userId=' + userId;
+    const url = environment.GetCustomerUsers + 'customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
