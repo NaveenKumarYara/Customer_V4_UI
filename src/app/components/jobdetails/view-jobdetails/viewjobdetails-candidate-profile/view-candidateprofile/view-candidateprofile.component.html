@@ -28,8 +28,14 @@
               <address>
                 <p>{{profileview?.ProfileBasicInfo?.UserName}}</p>
                 <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
-                <p>{{profileview?.ProfileBasicInfo?.CityName}}, {{profileview?.ProfileBasicInfo?.StateName}}.
-                  {{profileview?.ProfileBasicInfo?.CountryName}}
+                <p>
+                  <ng-container *ngIf="profileview?.ProfileBasicInfo?.CityName!=null">
+                      {{profileview?.ProfileBasicInfo?.CityName}}, 
+                  </ng-container>
+                  <ng-container *ngIf="profileview?.ProfileBasicInfo?.StateName!=null">
+                      {{profileview?.ProfileBasicInfo?.StateName}}.
+                  </ng-container>
+                   {{profileview?.ProfileBasicInfo?.CountryName}}
                 </p>
               </address>
             </div>
@@ -56,7 +62,7 @@
                     </li>
                   </ng-container>
                 </ng-container>
-                <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                <ng-container *ngIf="profileview?.ProfileExperience.length==0">
                   No Roles Added
                 </ng-container>
               </ul>
@@ -72,7 +78,7 @@
                     </li>
                   </span>
                 </ng-container>
-                <ng-container *ngIf=" profileview?.ProfileExperience.length==0">
+                <ng-container *ngIf="profileview?.ProfileExperience.length==0">
                   No Achievements Added
                 </ng-container>
               </ul>
@@ -257,6 +263,9 @@
                       <li *ngFor=" let domain of profileview?.ProfileDomain ">
                         <span class="skill tag " *ngIf="domain.DomainName!=null&&domain.DomainName!='' ">
                           {{domain.DomainName}}</span>
+                          <ng-container *ngIf="domain.DomainName==null||domain.DomainName==''">
+                            <span>Domain Knowledge not provided </span>
+                          </ng-container>
                       </li>
                     </ul>
                   </div>

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit,ViewContainerRef, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Jobstatistics } from '../../models/jobstatistics';
 import {WishlistCount} from '../../models/WishlistCount';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { JobdetailsProfile } from '../../models/jobdetailsprofile';
 import { MatDialog } from '@angular/material';
 import { InviteProfiledialogComponent } from './invite-profiledialog/invite-profiledialog.component';
@@ -32,6 +33,7 @@ export class FilterViewJobsComponent implements OnInit {
   @Input() Counts: Jobstatistics;
   @Input() statusid: number;
   @Input() displayQuick: number;
+  @Input() closedjob: number;
   @Input() Count: WishlistCount;
   TotalCount: any;
   count:number;
@@ -53,7 +55,7 @@ export class FilterViewJobsComponent implements OnInit {
   //    new Country(4, 'Brazil')
   // ];
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder,
+  constructor(private route: ActivatedRoute, private fb: FormBuilder,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private jobdetailsservice: JobdetailsService,  private dialog: MatDialog
    ) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -196,6 +198,14 @@ SearchEnter(searchval) {
   }
   OpenInviteProfileDialog() {
       // if (this.jobStatus !== 'InActive') {
+        if (this.closedjob === 2)
+        {
+         this.toastr.error('Job is Closed');
+       setTimeout(() => {
+         this.toastr.dismissToast;
+       }, 2000);
+     }
+     else{
       const inviteProfiledialogRef = this.dialog.open(InviteProfiledialogComponent,
         {
           width: '750',
@@ -211,6 +221,7 @@ SearchEnter(searchval) {
       });
     // }
   }
+}
   OpenUploadProfilesDialog() {
     // if (this.jobStatus !== 'InActive') {
     const uploadProfiledialogRef = this.dialog.open(UploadProfilesComponent,
