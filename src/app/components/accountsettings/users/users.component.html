@@ -59,10 +59,10 @@
               </tr>
               <tr  *ngFor="let contact of customercontacts">
                 <td>
-                  <img src="../../../../assets/images/professional.png" alt="" width="50" height="50">
-                  <h3 class="name">{{contact?.FirstName}}</h3>
+                  <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                  <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
                 </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
+                <td><h3 class="email">{{contact?.Email}}</h3></td>
                 <td><h3 class="role">{{contact?.RoleName}}</h3></td>
                 <td><span class="close">×</span></td>
               </tr>          

@@ -23,9 +23,7 @@ export class UsersComponent implements OnInit {
 
   GetCustomerContacts()
   {
-    debugger
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-      debugger
       this.customercontacts = res;
   });
   }
