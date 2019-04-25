@@ -5,10 +5,50 @@
       <div id="users" class="tab-pane fade active in">
         <header>
           <h1>Users</h1>
-          <a href="" class=" add-btn" data-toggle="modal" data-target="#addUser"><span class="add">+</span>Add Users</a>
+          <a href="" class=" add-btn" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser"><span class="add">+</span>Add Users</a>
 
         </header>
         <div class="table-responsive">
+        
+        <table class="table add_user collapse" id="addUser" role="addUser">
+         
+            <tbody>
+              <tr class="form-group">
+              <button type="button" class="close" data-dismiss="addUser" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <td>
+                <label for="">Enter Details</label>
+                <input type="text" class="form-control" placeholder="Name" />
+                </td>
+                <td>
+                <label for="">&nbsp;</label>
+                <input type="mail" class="form-control" placeholder="Email" />
+                </td>
+                <td>
+                <label for="">&nbsp;</label>
+                 <input list="selectrole" class="form-control" placeholder="Type and Select" >
+
+<datalist id="selectrole">
+  <option value="Hiring Leader">
+  <option value="Technical Person">
+</datalist> 
+                </td>
+                <td>
+                 <label for="">&nbsp;</label>
+                <label for="q1" class="radio">
+                                      <div>
+                                        <input type="checkbox" id="q1" name="q1" class="radio-input" />
+                                        <span class="radio-btn radio-active"></span>
+                                      </div>
+                                    </label>
+                </td>
+                <td>
+               <label for="">&nbsp;</label>
+<button class="btn btn-filled">Add User</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
           <table class="table">
             <tbody>
               <tr>
@@ -28,6 +68,8 @@
               </tr>          
             </tbody>
           </table>
+
+          
         </div>
       </div>     
     </div>

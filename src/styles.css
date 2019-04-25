@@ -26198,3 +26198,17 @@ body *{
     background: #fff;
 }
 /*# exp slider*/
+
+.page--account-settings .right .add_user label{
+    width:100%;
+}
+.page--account-settings #users .table.add_user td{
+    padding:8px;
+}
+.radio-active::before { 
+  content: "Active";
+  position: relative;
+  right: -34px;
+  top: -12px;
+  color:#6A7E9C;
+}
