@@ -11,10 +11,10 @@
         <div class="table-responsive">
         
         <table class="table add_user collapse" id="addUser" role="addUser">
-         
+          <button type="button" class="close" data-dismiss="addUser" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <tbody>
               <tr class="form-group">
-              <button type="button" class="close" data-dismiss="addUser" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              
                 <td>
                 <label for="">Enter Details</label>
                 <input type="text" class="form-control" placeholder="Name" />
@@ -55,6 +55,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Status</th>
                 <th></th>
               </tr>
               <tr  *ngFor="let contact of customercontacts">
@@ -64,6 +65,16 @@
                 </td>
                 <td><h3 class="email">{{contact?.Email}}</h3></td>
                 <td><h3 class="role">{{contact?.RoleName}}</h3></td>
+                <td>
+                  <label class="radio">
+                    <div>
+                      <input type="checkbox"  class="radio-input" checked="checked" />
+                      <span class="radio-btn"></span>
+                      Active
+                    </div>
+                  </label>
+                  
+                </td>
                 <td><span class="close">×</span></td>
               </tr>          
             </tbody>
