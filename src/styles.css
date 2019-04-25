@@ -26200,7 +26200,7 @@ body *{
 /*# exp slider*/
 
 .page--account-settings .right .add_user label{
-    width:100%;
+    width:auto;
 }
 .page--account-settings #users .table.add_user td{
     padding:8px;
@@ -26208,7 +26208,33 @@ body *{
 .radio-active::before { 
   content: "Active";
   position: relative;
-  right: -34px;
-  top: -12px;
+  right: -33px;
+  top: -16px;
   color:#6A7E9C;
+}
+.add_user .radio .radio-btn{
+    width: 25px;
+    height: 25px;
+}
+.add_user .btn.btn-filled{
+    min-width: 120px;
+padding: 3px 7px;
+}
+.page--account-settings .right .add_user label.pr-0{
+    padding-right: 0px;
+    width: 100px;
+}
+.add_user .input-group {
+    margin-bottom: 10px;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.mr-auto, .mx-auto {
+    margin-right: auto !important;
+}
+.p-2 {
+    padding: .5rem !important;
 }
