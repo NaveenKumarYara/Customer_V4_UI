@@ -14,6 +14,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './../../app.router';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -24,7 +26,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ToastModule.forRoot(), BrowserAnimationsModule,
   ],
   declarations: [AccountsettingsComponent, UsersComponent, BillingAndPaymentsComponent, EstimatesComponent, BillingDetailsComponent, BillingHistoryComponent, ManageSubscriptionsComponent, NavigationcomponentComponent, AccountsettingdetailsComponent]
 })

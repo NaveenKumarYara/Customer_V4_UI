@@ -871,6 +871,12 @@ bulkApply(body) {
     .catch(this.handleError);
     }
 
+    addCustomerUser(body)  {
+      return this.http.post(environment.InsertCustomerUser, body)
+      .map((res: Response) => res)
+      .catch(this.handleError);
+      }
+
     suggestJobTitle(customerId: number) {
     const url = environment.SuggestJobTitleEndPoint + 'customerId=' + customerId;
     return this.http.get<string[]>(url)

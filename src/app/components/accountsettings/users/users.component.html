@@ -5,7 +5,7 @@
       <div id="users" class="tab-pane fade active in">
         <header>
           <h1>Users</h1>
-          <a href="" class=" add-btn" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser"><span class="add">+</span>Add Users</a>
+          <a  class=" add-btn" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser"><span class="add">+</span>Add Users</a>
 
         </header>
         <div class="table-responsive">
@@ -14,23 +14,52 @@
             <div class="col-md-12">
                 <label for="">Enter Details</label>
             </div>
-              
-            <div class="col-md-6 form-group">
-                <input type="text" class="form-control" placeholder="First Name" />
-            </div>
-            <div class="col-md-6 form-group">
-                <input type="text" class="form-control" placeholder="Last Name" />
-            </div>
-            <div class="col-md-6 form-group">
-                <input type="mail" class="form-control" placeholder="Email" />
-            </div>
-            <div class="col-md-6 form-group">
-                <input list="selectrole" class="form-control" placeholder="Type and Select" >
+            <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+            <div class="col-md-5 form-group p-rel">
+                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name *" minlength=3  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                required>
+            <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)" class="error1">
 
-<datalist id="selectrole">
-  <option value="Hiring Leader">
-  <option value="Technical Person">
-</datalist> 
+                <div *ngIf="Addform.controls['FirstName'].errors.required">
+                    Required.
+                </div>
+
+                <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                    Minimum 3 Characters allowed.
+                </div>
+            </div>
+            </div>
+            <div class="col-md-5 form-group p-rel">
+                <input type="text" class="form-control" formControlName="LastName" minlength=3  placeholder="Last Name *"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                required>
+               <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)" class="error1">
+                <div *ngIf="Addform.controls['LastName'].errors.required">
+                    Required.
+                </div>
+                <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                    Minimum 3 Characters allowed.
+                </div>
+            </div>
+            </div>
+            <div class="col-md-5 form-group p-rel">
+                <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
+                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                        Required.
+                    </div>
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                        Incorrect Email!.
+                    </div>
+                </div>
+                <div *ngIf="show" class="error1">
+                    Email already registered.
+                </div>
+            </div>
+            <div class="col-md-5 form-group">
+                <select name="Value" id="view" class="styled-select-box" [value]='4' (change)="PopulateRoles($event.target.value)">
+                <option default value=4>Hiring Leader</option>
+                <option value=6>Reporting Manager</option>
+            </select>
             </div>
             <div class="col-md-12">
               
@@ -38,19 +67,20 @@
                     <div class="mr-auto p-2 ">
                         <label class="radio">
                             <div>
-                              <input type="checkbox"  class="radio-input" checked="checked" />
+                              <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
                               <span class="radio-btn"></span>
                               Active
                             </div>
                           </label>
                     </div>
                     <div class="p-2">
-                        <button class="btn btn-filled pull-right">Add User</button>
+                        <button type="submit" class="btn btn-filled pull-right">Add User</button>
                     </div>
                   </div>
                
                 
             </div>
+            </form>
           </div>
         </div>
         <!-- add user table view-->
