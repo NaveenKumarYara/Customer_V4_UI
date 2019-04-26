@@ -26199,10 +26199,10 @@ body *{
 }
 /*# exp slider*/
 
-.page--account-settings .right .add_user label{
+.page--account-settings .right #add_user label{
     width:auto;
 }
-.page--account-settings #users .table.add_user td{
+.page--account-settings #users .table#add_user td{
     padding:8px;
 }
 .radio-active::before { 
@@ -26227,6 +26227,21 @@ padding: 3px 7px;
 .add_user .input-group {
     margin-bottom: 10px;
 }
+#addUser .styled-select-box{
+    min-width:100%;
+}
+#addUser .form-control:focus {
+    border-color: #6b7188;
+}
+#addUser .p-rel .error1 {
+    top: -20px;
+    right: 14px;
+}
+#addUser .radio .radio-btn,
+.adduser-checkbox .radio .radio-btn
+ {
+    border-radius: 0%;
+}
 
 .d-flex {
     display: -ms-flexbox !important;
@@ -26237,4 +26252,7 @@ padding: 3px 7px;
 }
 .p-2 {
     padding: .5rem !important;
+}
+.mt--13{
+    margin-top:-13px;
 }

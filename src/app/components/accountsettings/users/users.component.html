@@ -10,12 +10,12 @@
         </header>
         <div class="table-responsive">
         <div class="collapse" id="addUser" role="addUser">
-          <div class="row">
+          <div class="">
             <div class="col-md-12">
                 <label for="">Enter Details</label>
             </div>
             <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
-            <div class="col-md-5 form-group p-rel">
+            <div class="col-md-6 form-group p-rel">
                 <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name *" minlength=3  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
                 required>
             <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)" class="error1">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-md-5 form-group p-rel">
+            <div class="col-md-6 form-group p-rel">
                 <input type="text" class="form-control" formControlName="LastName" minlength=3  placeholder="Last Name *"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
                 required>
                <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)" class="error1">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-md-5 form-group p-rel">
+            <div class="col-md-6 form-group p-rel">
                 <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
                 <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
                     <div *ngIf="Addform.controls['ContactEmail'].errors.required">
@@ -55,8 +55,8 @@
                     Email already registered.
                 </div>
             </div>
-            <div class="col-md-5 form-group">
-                <select name="Value" id="view" class="styled-select-box" [value]='4' (change)="PopulateRoles($event.target.value)">
+            <div class="col-md-6 form-group">
+                <select name="Value" id="view" class="styled-select-box w-100" [value]='4' (change)="PopulateRoles($event.target.value)">
                 <option default value=4>Hiring Leader</option>
                 <option value=6>Reporting Manager</option>
             </select>
@@ -66,7 +66,7 @@
                 <div class="d-flex  mb-3">
                     <div class="mr-auto p-2 ">
                         <label class="radio">
-                            <div>
+                            <div class="mt--13">
                               <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
                               <span class="radio-btn"></span>
                               Active
@@ -74,7 +74,8 @@
                           </label>
                     </div>
                     <div class="p-2">
-                        <button type="submit" class="btn btn-filled pull-right">Add User</button>
+                        <button type="submit" class="btn btn-filled">Add User</button>
+                        <button class="btn btn-border">Cancel</button>
                     </div>
                   </div>
                
@@ -125,14 +126,14 @@
           </table> -->
           <!-- #add User table view-->
           
-          <table class="table">
+          <table class="table adduser-checkbox">
             <tbody>
               <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Status</th>
-                <th></th>
+                <th>Active</th>
+               
               </tr>
               <tr  *ngFor="let contact of customercontacts">
                 <td>
@@ -146,12 +147,11 @@
                     <div>
                       <input type="checkbox"  class="radio-input" checked="checked" />
                       <span class="radio-btn"></span>
-                      Active
                     </div>
                   </label>
                   
                 </td>
-                <td><span class="close">×</span></td>
+               
               </tr>          
             </tbody>
           </table>
