@@ -20,7 +20,8 @@ export class UsersComponent implements OnInit {
   result :any;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   Value: number;
-  flag:boolean;
+  Flag:boolean;
+  Forgotform: any;
   ActiveFlag: any;
   customercontacts : CustomerContacts[]=[];
   constructor(private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
@@ -61,9 +62,10 @@ export class UsersComponent implements OnInit {
         data => {         
         if(data>0)
         {   
-        this.appService.ForgotPassword(this.Addform.value.ContactEmail)
+        this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+        this.appService.ForgotPassword(this.Forgotform.value)
         .subscribe(
-        data => {
+        data1 => {
            this.toastr.success('Please check your email to reset the password','Success');
               setTimeout(() => { 
                   this.Addform.reset();            
@@ -72,7 +74,7 @@ export class UsersComponent implements OnInit {
                 }, 3000);
                
              } 
-            
+                        
         );
         }  
       });
@@ -99,9 +101,38 @@ export class UsersComponent implements OnInit {
   });
   }
 
+  // userDeactivate(contact, isChecked: boolean)
+  // {
+  //   debugger
+  //   if(!isChecked)
+  //   {
+  //     this.Flag= false;
+  //   }
+  //   else if(isChecked)
+  //   {
+  //     this.Flag = true;
+  //   }
+  //   this.Addform.value.FirstName = contact.FirstName;
+  //   this.Addform.value.LastName = contact.LastName;
+  //   this.Addform.value.ContactEmail = contact.Email;
+  //   this.Addform.value.UserId= contact.UserId;
+  //   this.Addform.value.UserRoleId= contact.RoleId;
+  //   this.Addform.value.IsActive = this.Flag;
+  //   this.appService.addCustomerUser(this.Addform.value)
+  //   .subscribe(
+  //   res => {         
+  //   if(res>0)
+  //      {  
+  //         this.Addform.reset();            
+  //         this.GetCustomerContacts();  
+  //       }              
+  // });
+  // }
+
 
   ngOnInit() {
     this.show = false;
+    this.Flag = true;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
@@ -114,7 +145,9 @@ export class UsersComponent implements OnInit {
       'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
       'IsActive':[ true, Validators.compose([Validators.required])],    
     });
-
+    this.Forgotform = this.fb.group({
+      'EmailId': ['', Validators.compose([Validators.required])],  
+    });
     this.GetCustomerContacts();
   }
 
