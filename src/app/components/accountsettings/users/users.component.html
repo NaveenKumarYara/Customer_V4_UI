@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="col-md-6 form-group">
-                <select name="Value" id="view" class="styled-select-box w-100" [value]='4' (change)="PopulateRoles($event.target.value)">
-                <option default value=4>Hiring Leader</option>
+                <select name="Value" id="view" class="styled-select-box w-100"  (change)="PopulateRoles($event.target.value)">
+                <option default selected="selected" value=4>Hiring Leader</option>
                 <option value=6>Reporting Manager</option>
             </select>
             </div>
@@ -170,7 +170,9 @@
                           </td>
                         </tr>     
                 </ng-container>
-        
+                <ng-container *ngIf="customercontacts.length==0">
+                    <h5> No Users Added!</h5> 
+                </ng-container>
                
                  
             </tbody>
