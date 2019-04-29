@@ -46,7 +46,6 @@ export class UsersComponent implements OnInit {
 
   SaveUser()
   {
-    debugger
     if(this.Addform.invalid)
     {
       this.Addform.controls['FirstName'].markAsTouched()
