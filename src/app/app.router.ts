@@ -104,7 +104,7 @@ const appRoutes: Routes =
     {path: 'guest', component: GuestComponent},
     { path: 'ForgotPassword', component: ForgotComponent },
     { path: 'ResetPassword', component: ResetComponent },
-    { path: 'about', component: AboutComponent},
+    { path: 'ActivateAndResetPassword', component: AboutComponent},
     { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
     {path: 'app-editdraft' , component: EditDraftComponent },

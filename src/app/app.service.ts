@@ -719,6 +719,14 @@ bulkApply(body) {
     });
   }
 
+  ActivateCustomerUser(body) {
+    return this.http.post(environment.ActivateCustomerUser, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   ResetPassword(body) {
     return this.http.post(environment.ResetPassword, body)
     .map((res: Response) => res)

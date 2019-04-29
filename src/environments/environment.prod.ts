@@ -40,6 +40,7 @@ export const environment = {
     // interviewProcess : 'http://localhost:54226/api/ScheduleInterview',
     Login: 'http://api.tenendus.com:1090/IdentityAPI/api/CustomerLogin',
     ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
+    ActivateCustomerUser:'http://api.tenendus.com:1090/IdentityAPI/api/ActivateCustomerUser',
     ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
     CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
     InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',

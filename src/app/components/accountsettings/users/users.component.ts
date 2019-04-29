@@ -5,6 +5,7 @@ import { AppService } from '../../../app.service';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 declare var $: any; 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { ResetComponent } from '../../ResetPassword/resetpassword.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -38,8 +39,14 @@ export class UsersComponent implements OnInit {
    this.Value= val;
   }
 
+  ResetUser()
+  {
+    this.Addform.reset();            
+  }
+
   SaveUser()
   {
+    debugger
     if(this.Addform.invalid)
     {
       this.Addform.controls['FirstName'].markAsTouched()
@@ -64,7 +71,7 @@ export class UsersComponent implements OnInit {
         if(data>0)
         {   
         this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
-        this.appService.ForgotPassword(this.Forgotform.value)
+        this.appService.ActivateCustomerUser(this.Forgotform.value)
         .subscribe(
         data1 => {
            this.toastr.success('Please check your email to reset the password','Success');
@@ -145,7 +152,7 @@ export class UsersComponent implements OnInit {
       'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
       'Password': ['123456', Validators.compose([Validators.required])],                   
       'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ '', Validators.compose([Validators.required])],    
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
