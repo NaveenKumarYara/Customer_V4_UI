@@ -63,7 +63,7 @@ export class UsersComponent implements OnInit {
     else if(this.result.UserId==0)
     {
       this.Addform.value.UserRoleId = this.Value;
-      this.Addform.value.IsActive = true;
+      this.Addform.value.IsActive = false;
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
