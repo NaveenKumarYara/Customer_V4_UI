@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
   Flag:boolean;
   Forgotform: any;
   ActiveFlag: any;
-  customercontacts : CustomerContacts[]=[];
+  customercontacts : CustomerContacts[];
   constructor(private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
   { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -57,6 +57,7 @@ export class UsersComponent implements OnInit {
     else if(this.result.UserId==0)
     {
       this.Addform.value.UserRoleId = this.Value;
+      this.Addform.value.IsActive = true;
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
@@ -101,38 +102,39 @@ export class UsersComponent implements OnInit {
   });
   }
 
-  // userDeactivate(contact, isChecked: boolean)
-  // {
-  //   debugger
-  //   if(!isChecked)
-  //   {
-  //     this.Flag= false;
-  //   }
-  //   else if(isChecked)
-  //   {
-  //     this.Flag = true;
-  //   }
-  //   this.Addform.value.FirstName = contact.FirstName;
-  //   this.Addform.value.LastName = contact.LastName;
-  //   this.Addform.value.ContactEmail = contact.Email;
-  //   this.Addform.value.UserId= contact.UserId;
-  //   this.Addform.value.UserRoleId= contact.RoleId;
-  //   this.Addform.value.IsActive = this.Flag;
-  //   this.appService.addCustomerUser(this.Addform.value)
-  //   .subscribe(
-  //   res => {         
-  //   if(res>0)
-  //      {  
-  //         this.Addform.reset();            
-  //         this.GetCustomerContacts();  
-  //       }              
-  // });
-  // }
+  userDeactivate(contact, isChecked: boolean)
+  {
+    if(!isChecked)
+    {
+      this.Flag= false;
+    }
+    else if(isChecked)
+    {
+      this.Flag = true;
+    }
+    this.Addform.value.FirstName = contact.FirstName;
+    this.Addform.value.LastName = contact.LastName;
+    this.Addform.value.ContactEmail = contact.Email;
+    this.Addform.value.UserId= contact.UserId;
+    this.Addform.value.UserRoleId= contact.RoleId;
+    this.Addform.value.Password = 123456;
+    this.Addform.value.CandidateIdentifier ='';
+    this.Addform.value.CustomerId = this.customerId;
+    this.Addform.value.IsActive = this.Flag;
+    this.appService.addCustomerUser(this.Addform.value)
+    .subscribe(
+    res => {         
+    if(res>0)
+       {  
+          this.Addform.reset();            
+          this.GetCustomerContacts();  
+        }              
+  });
+  }
 
 
   ngOnInit() {
     this.show = false;
-    this.Flag = true;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
@@ -143,7 +145,7 @@ export class UsersComponent implements OnInit {
       'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
       'Password': ['123456', Validators.compose([Validators.required])],                   
       'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ true, Validators.compose([Validators.required])],    
+      'IsActive':[ '', Validators.compose([Validators.required])],    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  

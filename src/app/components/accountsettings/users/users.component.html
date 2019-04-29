@@ -135,24 +135,44 @@
                 <th>Active</th>
                
               </tr>
-              <tr  *ngFor="let contact of customercontacts">
-                <td>
-                  <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
-                  <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
-                </td>
-                <td><h3 class="email">{{contact?.Email}}</h3></td>
-                <td><h3 class="role">{{contact?.RoleName}}</h3></td>
-                <td>
-                  <label class="radio">
-                    <div>
-                      <input type="checkbox"  class="radio-input" checked="checked" />
-                      <span class="radio-btn"></span>
-                    </div>
-                  </label>
-                  
-                </td>
+             
+                <ng-container  *ngFor="let contact of customercontacts">
+                    <tr  *ngIf="contact?.IsActive == false" class="user-unchecked">
+                    <td>
+                        <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                        <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
+                      </td>
+                      <td><h3 class="email">{{contact?.Email}}</h3></td>
+                      <td><h3 class="role">{{contact?.RoleName}}</h3></td>
+                      <td>
+                        <label class="radio">
+                          <div>
+                            <input type="checkbox"  class="radio-input"  (change)="userDeactivate(contact, $event.target.checked)"/>
+                            <span class="radio-btn"></span>
+                          </div>
+                        </label>                        
+                      </td>
+                    </tr> 
+                    <tr  *ngIf="contact?.IsActive == true">
+                        <td>
+                            <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                            <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
+                          </td>
+                          <td><h3 class="email">{{contact?.Email}}</h3></td>
+                          <td><h3 class="role">{{contact?.RoleName}}</h3></td>
+                          <td>
+                            <label class="radio">
+                              <div>
+                                <input type="checkbox"  class="radio-input" checked="checked"  (change)="userDeactivate(contact, $event.target.checked)"/>
+                                <span class="radio-btn"></span>
+                              </div>
+                            </label>                           
+                          </td>
+                        </tr>     
+                </ng-container>
+        
                
-              </tr>          
+                 
             </tbody>
           </table>
 
