@@ -26256,3 +26256,7 @@ padding: 3px 7px;
 .mt--13{
     margin-top:-13px;
 }
+.adduser-checkbox tr.user-unchecked td:not(:last-child) {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
