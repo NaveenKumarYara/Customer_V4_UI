@@ -129,6 +129,7 @@ export const environment = {
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
     CandidateLogin: 'http://dev.arytic.com/candidatelogin',
+    Arytic:'http://dev.arytic.com'
     // END URLS
 
     /// Demo URLS

@@ -115,6 +115,7 @@ export const environment = {
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',
     CandidateLogin: 'http://dev.arytic.com/candidatelogin',
+    Arytic:'http://dev.arytic.com'
 
     // jobTitleEndpoint: 'http://arytic.com:1120/JobsAPI/api/GetJobTitles',
     // getskillsEndpoint: 'http://arytic.com:1120/ProfileAPI/api/GetSkills',

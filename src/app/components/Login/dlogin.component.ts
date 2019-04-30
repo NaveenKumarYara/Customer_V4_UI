@@ -57,6 +57,10 @@ export class dLoginComponent {
     //this.router.navigateByUrl('ForgotPassword'); 
     window.location.href = environment.ForgotPasswordurl;
   }
+  Redirect()
+  {
+    window.location.href = environment.Arytic;
+  }
 
   login() {
     if(!this.loginform.valid)
