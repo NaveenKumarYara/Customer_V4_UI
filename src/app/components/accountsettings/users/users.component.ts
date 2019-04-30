@@ -62,6 +62,9 @@ export class UsersComponent implements OnInit {
     }
     else if(this.result.UserId==0)
     {
+      this.Addform.value.UserId = 0;
+      this.Addform.value.CustomerId = this.customerId;
+      this.Addform.value.Password = 123456;
       this.Addform.value.UserRoleId = this.Value;
       this.Addform.value.IsActive = false;
         this.appService.addCustomerUser(this.Addform.value)
@@ -143,13 +146,13 @@ export class UsersComponent implements OnInit {
     this.show = false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-      'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
-      'UserId'  : [0, Validators.compose([Validators.required])],    
+      'CustomerId': ['', Validators.compose([Validators.nullValidator])],
+      'UserId'  : ['', Validators.compose([Validators.nullValidator])],    
       'FirstName': ['', Validators.compose([Validators.required])],   
       'LastName': ['', Validators.compose([Validators.required])],
       'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
-      'ContactEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
-      'Password': ['123456', Validators.compose([Validators.required])],                   
+      'ContactEmail'   : ['', Validators.compose([Validators.required])],
+      'Password': ['', Validators.compose([Validators.nullValidator])],                   
       'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
       'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
     });
