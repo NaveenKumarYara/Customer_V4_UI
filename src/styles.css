@@ -26265,3 +26265,43 @@ padding: 3px 7px;
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 15px;
 }
+ul.list-active li.active a{
+    cursor: pointer !important;
+}
+.box-shadow-none{
+    box-shadow: none !important;
+}
+#addUser .form-control{
+    border: 1px solid #E0E3EF;
+}
+#addUser .form-control:focus{
+    color: #6A7E9C;
+    border: 1px solid #b4bcd8;
+}
+.tr-scroll{
+    height: 50vh;
+    overflow-y: scroll;
+}
+table .table-prl-0 td{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+/* scrollbar-track */
+.tr-scroll::-webkit-scrollbar-track
+{
+	width:2px;
+	background-color: #F5F5F5;
+}
+
+.tr-scroll::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #bec1c5;
+}
+
+.tr-scroll::-webkit-scrollbar-thumb
+{
+	background-color: #898c91;
+}
+/* scrollbar-track */

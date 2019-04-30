@@ -74,8 +74,8 @@
                           </label> -->
                     </div>
                     <div class="p-2">
-                        <button type="submit" class="btn btn-filled">Add User</button>
-                        <button (click)="ResetUser()" class="btn btn-border">Cancel</button>
+                        <button type="submit" class="btn btn-filled box-shadow-none">Add User</button>
+                        <button (click)="ResetUser()" class="btn btn-border" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser">Cancel</button>
                     </div>
                   </div>
                
@@ -127,7 +127,7 @@
           <!-- #add User table view-->
           
           <table class="table adduser-checkbox">
-            <tbody>
+            <thead>
               <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -135,7 +135,17 @@
                 <th>Active</th>
                
               </tr>
+            </thead>
+            
+            <tbody>
+              <tr>
+                <td colspan="4">
+                  <div class="tr-scroll">
+                    <table class="table-prl-0" style="width: 100%">
+                        
+                
              
+            
                 <ng-container  *ngFor="let contact of customercontacts">
                     <tr  *ngIf="contact?.IsActive == false" class="user-unchecked">
                     <td>
@@ -170,14 +180,21 @@
                           </td>
                         </tr>     
                 </ng-container>
+              
+
                 <ng-container *ngIf="customercontacts.length==0">
                     <h5> No Users Added!</h5> 
                 </ng-container>
+              </table>
+            </div>
+          </td>
+        </tr>
                
                  
             </tbody>
+         
           </table>
-
+        
           
         </div>
       </div>     
