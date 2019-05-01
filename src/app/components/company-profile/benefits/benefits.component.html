@@ -47,9 +47,19 @@
         <div class="tab-content">
           <div id="benefits" class="tab-pane fade in active">
             <div class="input-group">
-              <input id="benefitsVal" type="text" class="form-control" name="benefits" placeholder="benefits">
+              <input id="benefitsVal" [(ngModel)]="benefit" type="text" class="form-control" name="benefits" placeholder="benefits">
               <span class="input-group-btn">
+                  <ng-container *ngIf="benefit!=undefined;else nben">   
+                      <ng-container *ngIf="benefit!=''; else noben">
                 <button class="btn" (click)="saveBenefits()">+</button>
+              </ng-container>  
+              <ng-template #noben>
+                  <button class="btn">+</button>
+               </ng-template>                                               
+            </ng-container>
+             <ng-template #nben>
+                <button class="btn">+</button>
+             </ng-template>    
               </span>
             </div>
             <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">

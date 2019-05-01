@@ -92,9 +92,19 @@
         <div class="tab-content">
           <div id="specialities" class="specialities tab-pane fade in active">
             <div class="input-group">
-              <input id="specialVal" type="text" class="form-control" name="benefits" placeholder="Fortes">
+              <input id="specialVal" [(ngModel)]="speciality" type="text" class="form-control" name="benefits" placeholder="Fortes">
               <span class="input-group-btn">
-                <button class="btn" (click)="saveSpecialities()">+</button>
+                  <ng-container *ngIf="speciality!=undefined;else nsep">   
+                      <ng-container *ngIf="speciality!=''; else nosep">
+                          <button class="btn" (click)="saveSpecialities()">+</button>
+                      </ng-container>  
+                      <ng-template #nosep>
+                          <button class="btn">+</button>
+                       </ng-template>                                               
+                    </ng-container>
+                     <ng-template #nsep>
+                        <button class="btn">+</button>
+                     </ng-template>               
               </span>
             </div>
             <div class="scroll-wrapper tab-inner scrollbar-inner">
@@ -130,9 +140,19 @@
           </div>
           <div id="companyTech" class="companyTech tab-pane fade">
               <div class="input-group">
-                  <input id="techVal" type="text" class="form-control" name="benefits" placeholder="Technologies">
+                  <input id="techVal" type="text" [(ngModel)]="companytechnology" class="form-control" name="benefits" placeholder="Technologies">
                   <span class="input-group-btn">
-                    <button class="btn" (click)="savetechnologies()">+</button>
+                      <ng-container *ngIf="companytechnology!=undefined;else nter">   
+                          <ng-container *ngIf="companytechnology!=''; else noter">
+                              <button class="btn" (click)="saveSpecialities()">+</button>
+                          </ng-container>  
+                          <ng-template #noter>
+                              <button class="btn">+</button>
+                           </ng-template>                                               
+                        </ng-container>
+                         <ng-template #nter>
+                            <button class="btn">+</button>
+                         </ng-template>             
                   </span>
                 </div>
             <div class="scroll-wrapper tab-inner scrollbar-inner">

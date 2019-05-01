@@ -44,7 +44,7 @@ saveBenefits()
   this.benefitId = 0;
   this.companybenfitId=this.benefitId;
  }
-  this.benefit = $("#benefitsVal").val();
+  //this.benefit = $("#benefitsVal").val();
   this.benefits.companyBenefitId =  this.companybenfitId;
   this.benefits.customerId = this.customerId;
   this.benefits.companyBenefit = this.benefit;

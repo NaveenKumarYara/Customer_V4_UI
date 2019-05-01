@@ -127,6 +127,8 @@ SaveDepartments()
 
 savetechnologies()
 {
+  if( this.companytechnology!= ""|| this.companytechnology != undefined)
+  {
   if(this.technologyId>0)
   {
    this.companytechnologyId=this.technologyId;
@@ -147,11 +149,13 @@ savetechnologies()
      this.populateCompanyTechnologies(this.customerId);
    },
      error => console.log(error));
-
+  }
 
 }
 saveSpecialities()
 {
+  if( this.speciality!= ""|| this.speciality != undefined)
+  {
  if(this.specialityId>0)
  {
   this.companyspecialityId=this.specialityId;
@@ -161,7 +165,6 @@ saveSpecialities()
   this.specialityId = 0;
   this.companyspecialityId=this.specialityId;
  }
-  this.speciality = $("#specialVal").val();
   this.specialities.companySpecialityId =  this.companyspecialityId;
   this.specialities.customerId = this.customerId;
   this.specialities.companySpeciality = this.speciality;
@@ -173,20 +176,19 @@ saveSpecialities()
   },
     error => console.log(error));
 }
+}
 
 EditSpecialities(special)
 {
   this.specialityId = special.CompanySpecialityId ;
-  var contents = special.CompanySpeciality;
-  this.speciality = $("#specialVal").val(contents);
+  this.speciality = special.CompanySpeciality;
  
 }
 
 Edittechnology(technology)
 {
   this.technologyId = technology.CompanyTechnologyId;
-  var contents = technology.TechnologyName;
-  this.companytechnology = $("#techVal").val(contents);
+  this.companytechnology = technology.TechnologyName;
  
 }
 
