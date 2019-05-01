@@ -125,11 +125,13 @@
             </tbody>
           </table> -->
           <!-- #add User table view-->
+          <div [ngClass]="customercontacts.length>3 ? 'tr-scroll' : 'unscroll' ">
+
           
           <table class="table adduser-checkbox">
             <thead>
               <tr>
-                <th>Name</th>
+                <th colspan="2">Name</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Active</th>
@@ -138,18 +140,18 @@
             </thead>
             
             <tbody>
-              <tr>
-                <td colspan="4" class="border-none">
-                  <div [ngClass]="customercontacts.length>3 ? 'tr-scroll' : 'unscroll' ">
-                    <table class="table-prl-0" style="width: 100%">
+          
+                 
+                   
                         
                 
              
             
                 <ng-container  *ngFor="let contact of customercontacts">
                     <tr  *ngIf="contact?.IsActive == false" class="user-unchecked">
+                      <td> <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50"></td>
                     <td>
-                        <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                       
                         <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
                       </td>
                       <td><h3 class="email">{{contact?.Email}}</h3></td>
@@ -164,8 +166,11 @@
                       </td>
                     </tr> 
                     <tr  *ngIf="contact?.IsActive == true">
+                      <td>
+                          <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                      </td>
                         <td>
-                            <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
+                            
                             <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
                           </td>
                           <td><h3 class="email">{{contact?.Email}}</h3></td>
@@ -190,15 +195,15 @@
                   </tr>
                      
                 </ng-container>
-              </table>
-            </div>
-          </td>
-        </tr>
+              
+            
+        
                
                  
             </tbody>
          
           </table>
+        </div>
         
           
         </div>
