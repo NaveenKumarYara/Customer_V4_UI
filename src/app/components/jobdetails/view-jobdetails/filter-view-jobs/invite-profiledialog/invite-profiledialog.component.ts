@@ -48,6 +48,15 @@ export interface DialogData {
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
     this.inviteinfo.AppLink = environment.CandidateSignUp;
+    if(this.inviteinfo.ToEmailId == "")
+    {
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+    }
+    else if(this.inviteinfo.ToEmailId != "")
+    {
     this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
        if (data === 0) {
         this.inviteform.reset();
@@ -61,6 +70,7 @@ export interface DialogData {
             console.log('error:', JSON.stringify(error));
            });
    }
+  }
   
 
 }
