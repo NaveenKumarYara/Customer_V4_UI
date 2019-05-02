@@ -8,7 +8,7 @@
           <a  class=" add-btn" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser"><span class="add">+</span>Add Users</a>
 
         </header>
-        <div class="table-responsive">
+        
         <div class="collapse" id="addUser" role="addUser">
           <div class="">
             <div class="col-md-12">
@@ -125,14 +125,15 @@
             </tbody>
           </table> -->
           <!-- #add User table view-->
-          <div [ngClass]="customercontacts.length>3 ? 'tr-scroll' : 'unscroll' ">
+           <div [ngClass]="customercontacts.length>3 ? 'tr-scroll' : 'unscroll' "> 
 
-          
+            
+              <div class="table-responsive" style="width: 100%">
           <table class="table adduser-checkbox">
             <thead>
               <tr>
                 <th colspan="2">Name</th>
-                <th>Email</th>
+                <th class="w-250">Email</th>
                 <th>Role</th>
                 <th>Active</th>
                
@@ -151,10 +152,9 @@
                     <tr  *ngIf="contact?.IsActive == false" class="user-unchecked">
                       <td> <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50"></td>
                     <td>
-                       
                         <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
                       </td>
-                      <td><h3 class="email">{{contact?.Email}}</h3></td>
+                      <td><h3 class="email w-250">{{contact?.Email}}</h3></td>
                       <td><h3 class="role">{{contact?.RoleName}}</h3></td>
                       <td>
                         <label class="radio">
@@ -164,7 +164,7 @@
                           </div>
                         </label>                        
                       </td>
-                    </tr> 
+                    </tr>  
                     <tr  *ngIf="contact?.IsActive == true">
                       <td>
                           <img src="{{contact?.ProfilePic}}" alt="" width="50" height="50">
@@ -173,7 +173,7 @@
                             
                             <h3 class="name">{{contact?.FirstName}} {{contact?.LastName}}</h3>
                           </td>
-                          <td><h3 class="email">{{contact?.Email}}</h3></td>
+                          <td><h3 class="email w-250">{{contact?.Email}}</h3></td>
                           <td><h3 class="role">{{contact?.RoleName}}</h3></td>
                           <td>
                             <label class="radio">
@@ -204,9 +204,10 @@
          
           </table>
         </div>
+      
         
           
-        </div>
+         </div>
       </div>     
     </div>
   </div>

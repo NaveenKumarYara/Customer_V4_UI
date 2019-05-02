@@ -26279,6 +26279,7 @@ ul.list-active li.active a{
     border: 1px solid #b4bcd8;
 }
 .tr-scroll{
+    width: 100%;
     height: 58vh;
     overflow-y: scroll;
 }
@@ -26307,3 +26308,7 @@ table .table-prl-0 td{
 /* scrollbar-track */
 .c-6A7E9C{color:#6A7E9C}
 .border-none{border-bottom: 0px solid rgba(221, 221, 221, 0) !important;}
+.w-250{
+    width:250px;
+    word-wrap: break-word ;
+}
