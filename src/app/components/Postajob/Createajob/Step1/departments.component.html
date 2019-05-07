@@ -79,7 +79,7 @@
         <p class="description">Departments</p>
         <ul class="data-list">
           <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
-            <span title="{{department.DepartmentName}}" class="name">{{ department.DepartmentName}}</span>
+            <span title="{{department?.CustomerDepartment}}" class="name">{{department?.CustomerDepartment}}</span>
             <!-- {{department | json}} -->
             <!-- {{department.DepartmentName}} -->
             <span class="close" (click)="deleteDepartment(i)">&times;</span>
