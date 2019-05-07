@@ -54,8 +54,12 @@
           <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
           <ul class="data-list">
             <li *ngFor="let department of departments">
-              <span class="name">{{department.DepartmentName}}</span>
+                <ng-container *ngIf="department?.DepartmentName != null; else customSummaryDept">
+              <span class="name">{{department.DepartmentName}}</span> </ng-container> 
+              <ng-template #customSummaryDept>
+              <span class="name">{{department.CustomerDepartment}}</span></ng-template>
             </li> 
+            {{department | json}}
           </ul>
            <!-- <h6 class="data" *ngIf="department.length === 0" >
               NA
@@ -73,7 +77,7 @@
         <ul class="data-list">
           <li *ngFor="let primaryjobskill of primarySkills">
             <span class="name">{{primaryjobskill.SkillName}}</span>
-            <span class="experience">{{primaryjobskill.MinimumExp}} - {{primaryjobskill.MaximumExp}} Yrs</span>
+            <span class="experience">{{(primaryjobskill.MinimumExp/2 | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp/2 | number:'1.0-1')}} Yrs</span>
           </li>
            
         </ul>
@@ -83,7 +87,7 @@
         <ul class="data-list">
           <li *ngFor="let secondarySkill of secondarySkills">
             <span class="name">{{secondarySkill.SkillName}}</span>
-            <span class="experience">{{secondarySkill.MinimumExp}} - {{secondarySkill.MaximumExp}} Yrs</span>
+            <span class="experience">{{(secondarySkill.MinimumExp/2 | number:'1.0-1')}} - {{(secondarySkill.MaximumExp/2 | number:'1.0-1')}} Yrs</span>
           </li>
           
         </ul>

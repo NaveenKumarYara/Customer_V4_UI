@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -14,7 +14,7 @@ import { concat } from 'rxjs/observable/concat';
   templateUrl: './locationwisejobs.component.html'
 })
 
-export class LocationwiseJobsComponent implements OnInit, OnDestroy {
+export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   locationwisejobs: Cities[];
 // location: string;
@@ -34,8 +34,7 @@ isDrafted: boolean;
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
-      this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-      this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+
   }
 
   selectLocation(loc) {
@@ -108,7 +107,14 @@ isDrafted: boolean;
 
     // }
   }
-
+// ngAfterViewInit() {
+//   this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+//   this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+// }
+ngAfterViewChecked() {
+  this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+  this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+}
   ngOnDestroy() {
   }
 }

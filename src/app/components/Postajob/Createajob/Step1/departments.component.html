@@ -79,11 +79,22 @@
         <p class="description">Departments</p>
         <ul class="data-list">
           <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
-            <span title="{{department?.CustomerDepartment}}" class="name">{{department?.CustomerDepartment}}</span>
-            <!-- {{department | json}} -->
-            <!-- {{department.DepartmentName}} -->
+              <!-- <ng-container *ngIf="department?.DepartmentName != null >= 0;else customDept"> -->
+              <ng-container *ngIf="department?.DepartmentName != null; else customDept">
+            <span  title="{{department?.DepartmentName}}" class="name">{{ department?.DepartmentName}}</span></ng-container>
+            <ng-template  #customDept>
+            <span title="{{department?.CustomerDepartment}" class="name">{{ department?.CustomerDepartment}}</span>
+          </ng-template>
+           
             <span class="close" (click)="deleteDepartment(i)">&times;</span>
           </li>
+          <!-- {{department | json}} -->
+          <!-- <li class="col-md-5 no-exp" *ngFor="let department of departmentsList; let i = index">
+              <span title="{{department.DepartmentName}}" class="name">{{ department.DepartmentName}}</span>
+              {{department | json}}
+             
+              <span class="close" (click)="deleteDepartment(i)">&times;</span>
+            </li> -->
         </ul>
       </div>
     </div>
