@@ -55,9 +55,9 @@ client: any;
       this.appService.currentjobPosition.subscribe((data) => {
         this.jobPositionId = data; // And he have data here too!
       });
-      this.appService.departmentsChanged.subscribe(x =>  {
-        this.departments = x;
-      } );
+      // this.appService.departmentsChanged.subscribe(x =>  {
+      //   this.departments = x;
+      // } );
       // this.appService.jobprimaryskillsChanged.subscribe((data) => {
       //   this.primarySkills = data; // And he have data here too!
       // });
@@ -78,7 +78,7 @@ client: any;
     this.primarySkills = this.appService.primaryjobskills;
     this.secondarySkills = this.appService.secondaryjobskills;
     this.roles = this.appService.responsibilities;
-    // this.departments = JSON.parse(localStorage.getItem('departments'));
+      this.departments = this.appService.departments;
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';

@@ -100,6 +100,25 @@
                                             </li>
                                         </ul>
                                     </div> -->
+                                    <div class="bottom1">
+                                        <ul class="custom_dropdown-menu" style="display: block;">
+                                            <li>
+                                                <a class="email-overflow" href="javascript:void(0)" title="{{profile.Email}}">
+                                                    <img src="../../../../../assets/images/email-icon.svg" alt="email" title="{{profile.Email}}"> {{profile.Email}}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <ng-container *ngIf="profile?.MobilePhone!=null; else false">
+                                                    <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
+                                                        <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number" title="{{profile.MobilePhone}}"> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
+                                                    </a>
+                                                </ng-container>
+                                            </li>
+                                            <li>
+                                                <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown ">
