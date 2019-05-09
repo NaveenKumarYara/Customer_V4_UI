@@ -39,6 +39,7 @@ export class Step1Component implements OnInit {
   customer: any;
   userId: any;
   customerId: any;
+  jobIdExists:any;
   insertJob = new InsertJob();
   pjSkill: PjSkill;
   pjRole: PjRole;
@@ -69,6 +70,12 @@ export class Step1Component implements OnInit {
           // this.populatePersonType(params['jobId']);
           // this.PopulateJobdetail(params['jobId']);
           this.creteComponent.PopulateJobdetail(params['jobId']);
+          this.jobIdExists= params['jobId'];
+        }
+        else 
+        {
+          this.jobIdExists = 0;
+          localStorage.setItem('hide',JSON.stringify(this.jobIdExists));
         }
       });
       this.toastr.setRootViewContainerRef(_vcr);

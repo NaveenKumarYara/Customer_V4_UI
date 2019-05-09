@@ -242,6 +242,7 @@ export class Step4Component implements OnInit {
         // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
         // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
         localStorage.removeItem('draftItem');
+        localStorage.removeItem('hide');
         this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });

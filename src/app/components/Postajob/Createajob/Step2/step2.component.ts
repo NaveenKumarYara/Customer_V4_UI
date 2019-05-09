@@ -29,7 +29,7 @@ export class Step2Component implements OnInit {
   // @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   // @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
-
+  jobIdExists:any;
   jobCategory: number;
   jobMinExp: number;
   jobMaxExp: number;
@@ -79,6 +79,7 @@ export class Step2Component implements OnInit {
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.jobIdExists= localStorage.getItem('hide');
       this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!

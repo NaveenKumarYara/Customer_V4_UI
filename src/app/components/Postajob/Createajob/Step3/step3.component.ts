@@ -70,6 +70,7 @@ export class Step3Component implements OnInit {
   // @ViewChild(SalarysliderComponent) salary: SalarysliderComponent;
   formData: any;
   customer: any;
+  jobIdExists:any;
   userId: any;
   customerId: any;
   complete: any;
@@ -101,6 +102,7 @@ export class Step3Component implements OnInit {
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.jobIdExists= localStorage.getItem('hide');
       this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
