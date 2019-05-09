@@ -26,7 +26,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   selectedDepartment=new DepartmentModel();
   customerId: any;
   selectCustDept:any;
-  department = new GetCustomerDepartments();
+  saveDepartment = new GetCustomerDepartments();
   suggestDepartments: DepartmentModel[];
   departmentsList: DepartmentModel[] = []; // to check added departments
   // convertObservable: DepartmentModel[];
@@ -42,35 +42,22 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
 
   addDepartments(val) {
     const  department = new AddDepartment();
-    department.DepartmentName = val; 
-    return {name: department.DepartmentName};
+    department.CustomerDepartment = val; 
+    $('#depts').val('1');
+    localStorage.setItem('departmentName',val);
+    return {name: department.CustomerDepartment};
+
   }
-  updateDepartment(val) {
-    if (val.name != null) {     
-      this.selectDepartment = val.name;
-      this.department.DepartmentId = 0;
-      this.department.CustomerId = this.customerId;
-      this.department.Department = this.selectDepartment;
-      this.appService.AddDepartment(this.department).subscribe(
-        data => {
-          if(data>0)
-          {
-            this.selectedDepartment.DepartmentId =  data;
-            this.selectedDepartment.CustomerDepartment = this.selectDepartment;
-            this.getDepartment = this.selectedDepartment;
-          }
-        });   
-    }
-     else if(val.CustomerDepartment != null) {  
-      this.selectDepartment = val.CustomerDepartment;   
-      this.selectedDepartment  = val;   
-      this.getDepartment = this.selectedDepartment;
-    }  
-   }
- // updateDepartment(val) {
-  //   this.getDepartment = val;
-  // }
- 
+
+ updateDepartment(val) {
+  if (val.CustomerDepartment === undefined) {
+    this.selectDepartment = val.name;
+  } else {
+    this.selectDepartment= val.CustomerDepartment;
+      this.getDepartment  = val;
+  }
+  }
+
   private deleteDepartment(index: number) {
     this.appService.deleteDepartment(index);
   }
@@ -88,8 +75,27 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   );
 }
 public addDepartment() {
-  this.selectDepartment == '';
-  if (this.deptForm.valid) {
+  if ($('#depts').val() === '1') {    
+      this.selectDepartment = localStorage.getItem('departmentName');
+      this.saveDepartment.DepartmentId = 0;
+      this.saveDepartment.CustomerId = this.customerId;
+      this.saveDepartment.Department = localStorage.getItem('departmentName');
+      this.appService.AddDepartment(this.saveDepartment).subscribe(
+        data => {
+          if(data>0)
+          {
+            this.selectedDepartment.DepartmentId =  data;
+            this.selectedDepartment.CustomerDepartment = this.selectDepartment;
+            // this.getDepartment = this.selectedDepartment;
+            // const check = this.departmentExists(this.getDepartment, this.departmentsList);
+            // if (check === false) {
+                this.appService.addDepartment(this.selectedDepartment);
+            // }
+            this.deptForm.reset();
+                   }
+        });     
+  }
+ else {
   const check = this.departmentExists(this.getDepartment, this.departmentsList);
   if (check === false) {
       this.appService.addDepartment(this.getDepartment);

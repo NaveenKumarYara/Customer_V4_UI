@@ -50,7 +50,7 @@
           [items]="departmentList | async" 
           placeholder="Type and Select"  
           bindLabel="CustomerDepartment" 
-          bindValue="DepartmentId" 
+          bindValue="CustomerDepartment" 
           [addTag]="addDepartments"
           [typeahead]="departmentInput" 
           [hideSelected]="true" 
@@ -62,9 +62,10 @@
           name="Department" 
           (change)="updateDepartment($event)">
           <ng-template ng-label-tmp let-item="departmentList">   
-                 {{selectDepartment}} 
+                 {{selectDepartment}}  
         </ng-template>
         </ng-select>
+        <input type hidden id="depts">
       <small class="text-danger error1" *ngIf="Department.invalid && Department.touched">Required.</small>
       </div>
      

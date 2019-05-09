@@ -12,5 +12,5 @@ export class AddClient {
 }
 
 export class AddDepartment {
-  public DepartmentName: string;
+  public CustomerDepartment: string;
 }
