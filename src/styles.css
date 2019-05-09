@@ -14078,6 +14078,11 @@ a.ui-button:active,
 .page--manage-jobs .card h3.medium {
     font-weight: 500;
     text-transform: capitalize;
+    
+}
+.page--manage-jobs .card h3 span.job-title {
+    font-weight: 500;
+    text-transform: capitalize;
     cursor: pointer;
 }
 
