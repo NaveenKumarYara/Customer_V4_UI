@@ -127,7 +127,7 @@ export class Step2Component implements OnInit {
     this.alertService.clear();
   }
 
-  postJob(step) {
+  postJob(step,exit?) {
    // this.appService.updateStepNumber(step);
     // this.insertJob.JobCategoryId =  this.appService.jobcategory.value.JobCategoryId;
     // this.insertJob.CustomerId = 1;
@@ -225,7 +225,12 @@ export class Step2Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-
+        if(exit == 0)
+        {
+          this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        }
+        else 
+        {
         if (this.complete > 0) {
           this.steps.step3toggleClass(this.complete);
         } else {
@@ -233,6 +238,7 @@ export class Step2Component implements OnInit {
         }
         this.router.navigate(['/app-createajob/app-steps-step3']);
       }
+    }
     });
   } else {
     this.toastr.error('Please enter Skills!', 'Oops!');

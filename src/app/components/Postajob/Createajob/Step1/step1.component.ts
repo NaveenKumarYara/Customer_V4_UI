@@ -77,7 +77,7 @@ export class Step1Component implements OnInit {
     this.alertService.clear();
   }
 
-  postJob(step) {
+  postJob(step,exit?) {
     // this.appService.updateStepNumber(step);
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
@@ -171,6 +171,12 @@ this.insertJob.StepNumber = step;
       if (data) {
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
+        if(exit == 0)
+        {
+          this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        }
+        else 
+        {
        // this.steps.step2isClicked = true;
         if (this.complete > 0) {
           this.steps.step2toggleClass(this.complete);
@@ -178,6 +184,7 @@ this.insertJob.StepNumber = step;
           this.steps.step2toggleClass(1);
         }
         this.router.navigate(['/app-createajob/app-steps-step2']);
+      }
       }
     });
   } else {
