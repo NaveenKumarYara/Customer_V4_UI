@@ -339,12 +339,10 @@ export class Step3Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        if(exit == 0)
-        {
-          this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-        }
-        else 
-        {
+        if(exit === 0) {
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+        } else {
         if (this.complete > 0) {
           this.steps.step4toggleClass(this.complete);
         } else {
@@ -357,7 +355,10 @@ export class Step3Component implements OnInit {
     });
 
   }
-
+  ViewJobdetails(jobId) {
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
 
   backtoStep2() {
     if (this.complete > 0) {

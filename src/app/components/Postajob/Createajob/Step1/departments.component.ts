@@ -9,7 +9,7 @@ import { AppService } from '../../../../app.service';
 import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
 import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPostInfo';
 import { NgForm } from '@angular/forms';
-
+declare var $: any;
 @Component({
   selector: 'app-steps-step1-departments',
   templateUrl: './departments.component.html',
@@ -23,7 +23,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   departmentLoading = false;
   // selectedClient: ClientModel;
   selectDepartment: string;
-  selectedDepartment=new DepartmentModel();
+  selectedDepartment =new DepartmentModel();
   customerId: any;
   selectCustDept:any;
   saveDepartment = new GetCustomerDepartments();
@@ -42,7 +42,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
 
   addDepartments(val) {
     const  department = new AddDepartment();
-    department.CustomerDepartment = val; 
+    department.CustomerDepartment = val;
     $('#depts').val('1');
     localStorage.setItem('departmentName',val);
     return {name: department.CustomerDepartment};
@@ -53,7 +53,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   if (val.CustomerDepartment === undefined) {
     this.selectDepartment = val.name;
   } else {
-    this.selectDepartment= val.CustomerDepartment;
+    this.selectDepartment = val.CustomerDepartment;
       this.getDepartment  = val;
   }
   }
@@ -75,15 +75,14 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   );
 }
 public addDepartment() {
-  if ($('#depts').val() === '1') {    
+  if ($('#depts').val() === '1') {
       this.selectDepartment = localStorage.getItem('departmentName');
       this.saveDepartment.DepartmentId = 0;
       this.saveDepartment.CustomerId = this.customerId;
       this.saveDepartment.Department = localStorage.getItem('departmentName');
       this.appService.AddDepartment(this.saveDepartment).subscribe(
         data => {
-          if(data>0)
-          {
+          if(data > 0) {
             this.selectedDepartment.DepartmentId =  data;
             this.selectedDepartment.CustomerDepartment = this.selectDepartment;
             // this.getDepartment = this.selectedDepartment;
@@ -93,9 +92,8 @@ public addDepartment() {
             // }
             this.deptForm.reset();
                    }
-        });     
-  }
- else {
+        });
+  } else {
   const check = this.departmentExists(this.getDepartment, this.departmentsList);
   if (check === false) {
       this.appService.addDepartment(this.getDepartment);
@@ -139,7 +137,7 @@ ngOnInit() {
     // localStorage.setItem('departments', JSON.stringify(this.departmentsList));
     this.subscription = this.appService.departmentsChanged
       .subscribe(
-      (departmentlist: DepartmentModel[]) => {       
+      (departmentlist: DepartmentModel[]) => {
         this.departmentsList = departmentlist;
         }
       );

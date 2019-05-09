@@ -1,4 +1,4 @@
-import { Component, Inject,OnInit,Input,ViewChild} from '@angular/core';
+import { Component, Inject, OnInit, Input, ViewChild, ViewContainerRef} from '@angular/core';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
@@ -9,6 +9,7 @@ import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 import { animation } from '@angular/core/src/animation/dsl';
+import { ToastsManager } from 'ng2-toastr';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -21,19 +22,20 @@ export interface DialogData {
 })
 export class ViewjobdetailsmodelComponent  implements OnInit {
   // @Input() jobid: number;
-  customerId:any;
-  userId:any;
+  complete: any;
+  customerId: any;
+  userId: any;
  jobid: number;
  deactivate = new deactivate();
  getcompanybenfit: GetCompanyBenefit[];
   jobdetailscustomer: GetJobDetailCustomer;
-  jobComments : JobComments[];
-  constructor(private router: Router, private appService: AppService,private jobdetailsservice: JobdetailsService,@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  jobComments: JobComments[];
+  constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef, private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
-  PopulateJobdetail (customerId,jobid) {
-    return this.jobdetailsservice.getJobDetailCustomer(this.customerId,this.jobid).subscribe(res => {
+  PopulateJobdetail (customerId, jobid) {
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
     });
 
@@ -58,7 +60,7 @@ changeJobStat(job, val) {
     .subscribe(
     data => {
       this.PopulateJobdetail(this.deactivate.customerId, this.deactivate.jobId);
-      //this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
+      // this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
   },
     error => console.log(error));
 }
@@ -67,34 +69,52 @@ populateCompanyBenfits(customerId) {
       this.getcompanybenfit = res;
   });
 }
+editJob(jobId, active) {
+  if (active === false ) {
+  this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
+  setTimeout(() => {
+      this.toastr.dismissToast;
+  }, 3000);
+  } else {
+    this.complete = 4;
+    this.router.navigate(['/app-createajob/', {jobId} ]);
+    localStorage.setItem('completed', JSON.stringify(this.complete));
+    localStorage.setItem('EditViewJob', 'yes');
+    this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
+  }
+
+    // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
+ // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
+}
+
 ngOnInit() {
-  this.PopulateJobdetail(this.customerId,this.jobid);
+  this.PopulateJobdetail(this.customerId, this.jobid);
   this.PopulateJobComments(this.jobid);
   this.populateCompanyBenfits(this.customerId);
-  //console.log('abc');
+  // console.log('abc');
 
   /*tabs animation*/
   (function ($) {
     function navLineResizeHandler() {
-      var nav = $('.nav-tabs');
-      var activeLink = nav.children('li.active');
-      var activeLine = nav.children('.active-line');
-      var windowWidth = $(window).scrollLeft();
-  
+      const nav = $('.nav-tabs');
+      const activeLink = nav.children('li.active');
+      const activeLine = nav.children('.active-line');
+      const windowWidth = $(window).scrollLeft();
+
       $.each(activeLine, function (index, element) {
-        var $element = $(element);
+        const $element = $(element);
         $element.css({
-          width: $element.parent().children('.active').css("width"),
+          width: $element.parent().children('.active').css('width'),
           left: $element.parent().children('.active').position().left - windowWidth
         });
       });
     }
 
     function navLineClickHandler() {
-      let btnWidth = $(this).css("width");
-      let line = $(this).parent().find(".active-line");
-      let btnBox = this.getBoundingClientRect();
-      let windowBox = this.parentNode.getBoundingClientRect();
+      const btnWidth = $(this).css('width');
+      const line = $(this).parent().find('.active-line');
+      const btnBox = this.getBoundingClientRect();
+      const windowBox = this.parentNode.getBoundingClientRect();
 
       line.css({
         width: btnWidth,

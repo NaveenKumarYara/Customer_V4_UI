@@ -243,11 +243,16 @@ export class Step4Component implements OnInit {
         // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
         localStorage.removeItem('draftItem');
         localStorage.removeItem('hide');
-        this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+        this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+        this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });
   }
-
+  ViewJobdetails(jobId) {
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
   backtoStep3() {
     if (this.complete > 0) {
       this.steps.step3toggleClass(this.complete);

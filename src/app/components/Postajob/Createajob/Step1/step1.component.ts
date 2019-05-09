@@ -39,7 +39,7 @@ export class Step1Component implements OnInit {
   customer: any;
   userId: any;
   customerId: any;
-  jobIdExists:any;
+  jobIdExists: any;
   insertJob = new InsertJob();
   pjSkill: PjSkill;
   pjRole: PjRole;
@@ -70,12 +70,10 @@ export class Step1Component implements OnInit {
           // this.populatePersonType(params['jobId']);
           // this.PopulateJobdetail(params['jobId']);
           this.creteComponent.PopulateJobdetail(params['jobId']);
-          this.jobIdExists= params['jobId'];
-        }
-        else 
-        {
+          this.jobIdExists = params['jobId'];
+        } else {
           this.jobIdExists = 0;
-          localStorage.setItem('hide',JSON.stringify(this.jobIdExists));
+          localStorage.setItem('hide', JSON.stringify(this.jobIdExists));
         }
       });
       this.toastr.setRootViewContainerRef(_vcr);
@@ -84,7 +82,7 @@ export class Step1Component implements OnInit {
     this.alertService.clear();
   }
 
-  postJob(step,exit?) {
+  postJob(step, exit?) {
     // this.appService.updateStepNumber(step);
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
@@ -178,12 +176,10 @@ this.insertJob.StepNumber = step;
       if (data) {
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
-        if(exit == 0)
-        {
-          this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-        }
-        else 
-        {
+        if (exit === 0) {
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+        } else {
        // this.steps.step2isClicked = true;
         if (this.complete > 0) {
           this.steps.step2toggleClass(this.complete);
@@ -216,7 +212,10 @@ this.insertJob.StepNumber = step;
     return false;
    }
   }
-
+  ViewJobdetails(jobId) {
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
   postJob1(step) {
     this.pjSkill = new PjSkill();
     this.pjSkill.MaximumExp = 10;

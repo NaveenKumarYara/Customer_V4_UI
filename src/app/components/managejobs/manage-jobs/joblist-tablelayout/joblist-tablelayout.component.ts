@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input, ViewChild  ,ViewContainerRef } from '@angular/core';
+import { Component, OnInit,  Input, ViewChild  , ViewContainerRef } from '@angular/core';
 import { JobDetails } from '../../models/jobdetails';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
@@ -15,25 +15,25 @@ declare var $: any;
   selector: 'app-manage-joblist-tablelayout',
   templateUrl: './joblist-tablelayout.component.html',
   styleUrls: ['./joblist-tablelayout.component.css'],
-  providers: [AppService,AlertService]
+  providers: [AppService, AlertService]
 })
 export class JoblistTablelayoutComponent implements OnInit {
 
   @Input() job: Jobs;
   @Input() index: number;
   @Input() joblist: JobDetails;
-  jobId:any;
+  jobId: any;
   clients: any;
   dept: any;
-  customer:any;
-  complete:any;
-  userId:any;
-  jobData:any;
-  customerId:any;
-  isActive:any;
+  customer: any;
+  complete: any;
+  userId: any;
+  jobData: any;
+  customerId: any;
+  isActive: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
-    private router: Router, private managejobservice: ManageJobService,private appService: AppService, private loadJobs :LoadJoblistComponent,private alertService : AlertService) { 
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+    private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -41,25 +41,24 @@ export class JoblistTablelayoutComponent implements OnInit {
     }
 
   ngOnInit() {
-    //this.GetProfileCount();
-    //this.GetCustomerClients();
-    //this.GetCustomerDepartment();
+    // this.GetProfileCount();
+    // this.GetCustomerClients();
+    // this.GetCustomerDepartment();
   }
-  ViewJobdetails(jobId)
-  {
+  ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
   }
-  changeJobStatus(job,val) {
+  changeJobStatus(job, val) {
     this.alertService.clear();
-    var search = '';
+    const search = '';
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = this.customerId;
-    this.deactivate.isActive = val;  
+    this.deactivate.isActive = val;
       this.appService.deactivateJob(this.deactivate)
       .subscribe(
       data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId,search);
+      this.loadJobs.populateJoblist(this.customerId, this.userId, search);
     },
       error => console.log(error));
 }
@@ -86,30 +85,25 @@ add3Dots(string, limit) {
     return string;
 }
 
-editJob(jobId,active) {
-  if(active == false )
-  {
+editJob(jobId, active) {
+  localStorage.removeItem('EditViewJob');
+  if (active === false ) {
     this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
-  }
-  else
-  {
+  } else {
     this.complete = 4;
     this.router.navigate(['/app-createajob/', {jobId} ]);
     localStorage.setItem('completed', JSON.stringify(this.complete));
-
     this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
   }
-
     // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
  // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
 }
-  GetProfileCount()
-  {
+  GetProfileCount() {
     this.jobId = this.job.JobId;
-    return this.managejobservice.getJobCount(this.jobId,this.customerId).subscribe(res => {
+    return this.managejobservice.getJobCount(this.jobId, this.customerId).subscribe(res => {
      this.jobData = res;
    });
   }

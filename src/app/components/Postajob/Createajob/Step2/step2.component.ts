@@ -29,7 +29,7 @@ export class Step2Component implements OnInit {
   // @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   // @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
-  jobIdExists:any;
+  jobIdExists: any;
   jobCategory: number;
   jobMinExp: number;
   jobMaxExp: number;
@@ -79,7 +79,7 @@ export class Step2Component implements OnInit {
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
-      this.jobIdExists= localStorage.getItem('hide');
+      this.jobIdExists = localStorage.getItem('hide');
       this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
@@ -128,7 +128,7 @@ export class Step2Component implements OnInit {
     this.alertService.clear();
   }
 
-  postJob(step,exit?) {
+  postJob(step, exit?) {
    // this.appService.updateStepNumber(step);
     // this.insertJob.JobCategoryId =  this.appService.jobcategory.value.JobCategoryId;
     // this.insertJob.CustomerId = 1;
@@ -226,12 +226,10 @@ export class Step2Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        if(exit == 0)
-        {
-          this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-        }
-        else 
-        {
+        if (exit === 0) {
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+        } else {
         if (this.complete > 0) {
           this.steps.step3toggleClass(this.complete);
         } else {
@@ -249,7 +247,10 @@ export class Step2Component implements OnInit {
     return false;
   }
   }
-
+  ViewJobdetails(jobId) {
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
   backtoStep1() {
     if (this.complete > 0) {
       this.steps.step1toggleClass(this.complete);

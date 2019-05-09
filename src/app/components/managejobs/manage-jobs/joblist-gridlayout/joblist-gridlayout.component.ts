@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input, ViewChild ,ViewContainerRef } from '@angular/core';
+import { Component, OnInit,  Input, ViewChild , ViewContainerRef } from '@angular/core';
 import { JobDetails } from '../../models/jobdetails';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
@@ -9,7 +9,7 @@ import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
-import { GetCustomerClients } from "../../../../../models/GetCustomerClients";
+import { GetCustomerClients } from '../../../../../models/GetCustomerClients';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 
 declare var $: any;
@@ -19,7 +19,7 @@ declare var $: any;
   selector: 'app-manage-joblist-gridlayout',
   templateUrl: './joblist-gridlayout.component.html',
   styleUrls: ['./joblist-gridlayout.component.css'],
-  providers: [AppService,AlertService]
+  providers: [AppService, AlertService]
 })
 export class JoblistGridlayoutComponent implements OnInit {
   @Input() job: Jobs;
@@ -36,7 +36,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   isActive: any;
   deactivate = new deactivate();
 
-  constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
+  constructor( private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
     private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent,private alertService : AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -45,21 +45,19 @@ export class JoblistGridlayoutComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.GetProfileCount();
-    //this.GetCustomerClients();
-    //this.GetCustomerDepartment();
+    // this.GetProfileCount();
+    // this.GetCustomerClients();
+    // this.GetCustomerDepartment();
   }
 
   editJob(jobId,active) {
-    if(active == false )
-    {
+    localStorage.removeItem('EditViewJob');
+    if(active === false ) {
     this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
-    }
-    else
-    {
+    } else {
       this.complete = 4;
       this.router.navigate(['/app-createajob/', {jobId} ]);
       localStorage.setItem('completed', JSON.stringify(this.complete));
@@ -106,7 +104,7 @@ export class JoblistGridlayoutComponent implements OnInit {
 
   changeJobStatus(job, val) {
     this.alertService.clear();
-    var search = '';
+    const search = '';
     if (val === true) {
      $('#Inactive').replaceWith('#Active');
 
@@ -119,7 +117,7 @@ export class JoblistGridlayoutComponent implements OnInit {
       this.appService.deactivateJob(this.deactivate)
       .subscribe(
       data => {
-      this.loadJobs.populateJoblist(this.customerId, this.userId,search);
+      this.loadJobs.populateJoblist(this.customerId, this.userId, search);
     },
       error => console.log(error));
 }

@@ -31,8 +31,7 @@ export class PostajobComponent implements OnInit {
   localStorage.removeItem('jobId');
   localStorage.removeItem('EditMode');
   localStorage.removeItem('hide');
-  // localStorage.removeItem('client');
-  // localStorage.removeItem('departments');
+  localStorage.removeItem('EditViewJob');
   localStorage.removeItem('draftItem');
   this.appService.personTypes = [];
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
