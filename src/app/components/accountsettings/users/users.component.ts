@@ -41,6 +41,7 @@ export class UsersComponent implements OnInit {
 
   ResetUser()
   {
+    this.show = false;
     this.Addform.reset();            
   }
 

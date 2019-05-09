@@ -4,8 +4,9 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
-
+import { AddDepartment} from '../../../../../models/jobskills.model';
 import { AppService } from '../../../../app.service';
+import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
 import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPostInfo';
 import { NgForm } from '@angular/forms';
 
@@ -21,8 +22,11 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   departmentInput = new Subject<string>();
   departmentLoading = false;
   // selectedClient: ClientModel;
-  selectDepartment: '';
+  selectDepartment: string;
+  selectedDepartment=new DepartmentModel();
   customerId: any;
+  selectCustDept:any;
+  department = new GetCustomerDepartments();
   suggestDepartments: DepartmentModel[];
   departmentsList: DepartmentModel[] = []; // to check added departments
   // convertObservable: DepartmentModel[];
@@ -36,9 +40,37 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
     this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
   }
 
-  updateDepartment(val) {
-    this.getDepartment = val;
+  addDepartments(val) {
+    const  department = new AddDepartment();
+    department.DepartmentName = val; 
+    return {name: department.DepartmentName};
   }
+  updateDepartment(val) {
+    if (val.name != null) {     
+      this.selectDepartment = val.name;
+      this.department.DepartmentId = 0;
+      this.department.CustomerId = this.customerId;
+      this.department.Department = this.selectDepartment;
+      this.appService.AddDepartment(this.department).subscribe(
+        data => {
+          if(data>0)
+          {
+            this.selectedDepartment.DepartmentId =  data;
+            this.selectedDepartment.CustomerDepartment = this.selectDepartment;
+            this.getDepartment = this.selectedDepartment;
+          }
+        });   
+    }
+     else if(val.CustomerDepartment != null) {  
+      this.selectDepartment = val.CustomerDepartment;   
+      this.selectedDepartment  = val;   
+      this.getDepartment = this.selectedDepartment;
+    }  
+   }
+ // updateDepartment(val) {
+  //   this.getDepartment = val;
+  // }
+ 
   private deleteDepartment(index: number) {
     this.appService.deleteDepartment(index);
   }
@@ -56,10 +88,11 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   );
 }
 public addDepartment() {
+  this.selectDepartment == '';
   if (this.deptForm.valid) {
   const check = this.departmentExists(this.getDepartment, this.departmentsList);
   if (check === false) {
-    this.appService.addDepartment(this.getDepartment);
+      this.appService.addDepartment(this.getDepartment);
   }
   // this.selectDepartment = '';
   this.deptForm.reset();
@@ -100,7 +133,7 @@ ngOnInit() {
     // localStorage.setItem('departments', JSON.stringify(this.departmentsList));
     this.subscription = this.appService.departmentsChanged
       .subscribe(
-      (departmentlist: DepartmentModel[]) => {
+      (departmentlist: DepartmentModel[]) => {       
         this.departmentsList = departmentlist;
         }
       );

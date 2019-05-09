@@ -120,6 +120,12 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     // this.populateSalaryTypes();
   //  if (localStorage.getItem('jobId') != null) {
     this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
+    if (this.employmentType.EmploymentType === undefined) {
+      this.employmentType = new EmploymentType();
+      this.employmentType.EmploymentType = 'Full Time';
+      this.employmentType.EmploymentTypeId = 1;
+      this.selectEmpType(this.employmentType);
+    }
   //  this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
   // this.appService.currentSalaryTYpe.subscribe(x => this.salaryTypeSelected = x);
   // this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);

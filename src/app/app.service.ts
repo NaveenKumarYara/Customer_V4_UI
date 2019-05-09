@@ -437,6 +437,15 @@ export class AppService {
     });
   }
 
+  AddDepartment(body) {
+    return this.http.post(environment.AddDepartment, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
   deletePrimarySkills(index: number) {
     this.primaryjobskills.splice(index, 1);
     this.jobprimaryskillsChanged.next(this.primaryjobskills.slice());

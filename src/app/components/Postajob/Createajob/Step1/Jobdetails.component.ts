@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -17,7 +17,7 @@ declare var jQuery: any;
   styleUrls: ['./jobdetails.component.css'],
 })
 
-export class JobdetailsComponent implements OnInit {
+export class JobdetailsComponent implements OnInit, AfterViewChecked {
   @ViewChild('detailForm') detailForm: any;
   jobtitlelist: Observable<string[]>;
   selectedTitle = '';
@@ -107,17 +107,26 @@ suggestedJobTitle() {
     this.searchJobTitle();
     this.suggestedJobTitle();
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
-    this.appService.currentminExp.subscribe(x => {
-        this.minExperience = x;
-        this.minYears = this.minExperience / 12;
-      });
-    this.appService.currentmaxExp.subscribe(x => {
-      this.maxExperience = x;
-      this.maxYears = this.maxExperience / 12;
-    } );
+    // this.appService.currentminExp.subscribe(x => {
+    //     this.minExperience = x;
+    //     this.minYears = this.minExperience / 12;
+    //   });
+    // this.appService.currentmaxExp.subscribe(x => {
+    //   this.maxExperience = x;
+    //   this.maxYears = this.maxExperience / 12;
+    // } );
 
    }
-
+   ngAfterViewChecked() {
+    this.appService.currentminExp.subscribe(x => {
+      this.minExperience = x;
+      this.minYears = this.minExperience / 12;
+    });
+  this.appService.currentmaxExp.subscribe(x => {
+    this.maxExperience = x;
+    this.maxYears = this.maxExperience / 12;
+  } );
+  }
     addTitle(name) {
       this.selectedTitle = name;
         return { name: this.selectedTitle , tag: true };

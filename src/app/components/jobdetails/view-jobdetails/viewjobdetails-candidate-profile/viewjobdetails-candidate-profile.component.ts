@@ -116,7 +116,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (this.jobStatus !== 'InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
-         //width: '1000px',
+         // width: '1000px',
          position: {right : '0px'},
         // height : '750px',
         data: {
@@ -130,7 +130,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
   }
 
-  OpenRejectDialog(jobResponseId,profileId) {
+  OpenRejectDialog(jobResponseId, profileId) {
     if (this.jobStatus !== 'InActive') {
       const rejectdialogRef = this.dialog.open(RejectdialogComponent,
         {
@@ -138,7 +138,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           data: {
             jobResponseId: jobResponseId,
             jobId: this.jobid,
-            ProfileId:profileId
+            ProfileId: profileId
             // status : this.statusid
           }
         }
@@ -151,7 +151,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  OpenScheduleInterviewDialog(jobResponseId, userId,profileId) {
+  OpenScheduleInterviewDialog(jobResponseId, userId, profileId) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
@@ -200,8 +200,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
     // }
   }
-  OpenSendEmailDialog(emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId) {
+  OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId) {
     // if (this.jobStatus!='InActive') {
+      if (!noEmail) {
       const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
         {
           width: '750',
@@ -226,20 +227,22 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         this.myEvent.emit(null);
         console.log('candidate Dialog result: ${result}');
       });
+    }
+    return false;
     // }
   }
 // updateOnDialogClose() {
 //   this.eventStat.emit(null);
 //   this.myEvent.emit(null);
 // }
-shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
+shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.jobid;
     this.schIntw.ProfileId = profileId;
     this.schIntw.JobInterviewId = 0;
     this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
     this.schIntw.InterviewDatevalue  = '';
-    //this.schIntw.InterviewDate = null;
+    // this.schIntw.InterviewDate = null;
     this.schIntw.StartTime = null;
     this.schIntw.EndTime = null;
     this.schIntw.InterviewTypeId = null; // skype or anytype
@@ -288,7 +291,7 @@ shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
       });
     } else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, noofRows)
-    .subscribe(res => {   
+    .subscribe(res => {
       this.jobdetailsprofiles = res;
       this.profiles = res;
       this.TotalCount = this.jobdetailsprofiles;
@@ -416,7 +419,7 @@ shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
     // this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
     //   console.log(res);
     // });
-    this.parentApi.CallwishList(event,profileId,this.jobid);
+    this.parentApi.CallwishList(event, profileId, this.jobid);
   }
   displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle ) {
     // (function ($) {
@@ -445,18 +448,14 @@ shortlisthiredwithdrawn(stat, jobResponseId,profileId) {
     // $('.matching-details').removeClass('open');
     // $('#matchingDetails-' + profileId).toggleClass('open');
   if (profileOrSizzle === true) {
-    if(this.profileFlipVideo.VideoSizzle == null&&this.profileFlipVideo.VideoProfile !=null)
-    {
+    if (this.profileFlipVideo.VideoSizzle == null && this.profileFlipVideo.VideoProfile != null) {
       $('.matching-details').removeClass('open');
       $('#profileVideo-' + profileId).toggleClass('open');
-    }
-   else 
-   {
+    } else {
     $('.matching-details').removeClass('open');
-    $('#sizzleVideo-' + profileId).toggleClass('open'); 
-   }  
-  }
- else {
+    $('#sizzleVideo-' + profileId).toggleClass('open');
+   }
+  } else {
     $('.matching-details').removeClass('open');
     $('#profileVideo-' + profileId).toggleClass('open');
    }
