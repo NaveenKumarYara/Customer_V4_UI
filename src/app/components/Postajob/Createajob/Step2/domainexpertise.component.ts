@@ -33,14 +33,14 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   selecteddomainname = '';
   // expYears: any = [];
   options: Options = {
-    floor: 1,
-    ceil: 240,
+    floor: 0,
+    ceil: 40,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return (value  / 12).toFixed(1)   + 'Years';
+          return (value  / 2).toFixed(1)   + 'Years';
         case LabelType.High:
-          return (value / 12).toFixed(1)   + 'Years' ;
+          return (value / 2).toFixed(1)   + 'Years' ;
           default:
           return ' ';
       }
