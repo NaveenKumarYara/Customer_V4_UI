@@ -247,7 +247,7 @@
                 </svg>
                             </ng-container>
                             <h5 class="location mr-0 pl-0 pr-0">{{profile.CurrentLocation}}</h5>
-                            <div class="status {{profile.JobStatus ==='Waiting for response' ? 'waitingforresponse' :  profile.JobStatus}}">{{profile.JobStatus}}</div>
+                            <div class="status {{profile.JobStatus ==='Waiting for response' ? 'waitingforresponse' :  profile.JobStatus}}">{{profile?.NoEmail === true ? 'Uploaded' : profile.JobStatus}}</div>
                             <small *ngIf="profile.CompanyName != null" title="{{profile.CompanyName}}">By <span>{{profile.CompanyName}}</span></small>
                         </div>
                     </div>
