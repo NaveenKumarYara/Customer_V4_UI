@@ -42,7 +42,7 @@
 
     <div class="row">
         
-       <form #deptForm="ngForm" (ngSubmit)="addDepartment()">
+      <form #deptForm="ngForm" (ngSubmit)="addDepartment()"> 
           
       <div class="col-md-8 col-sm8">
           <label for="Department" class="question">Which Department does the Job belongs to? <small>(Optional)</small></label>
@@ -51,6 +51,7 @@
           placeholder="Type and Select"  
           bindLabel="CustomerDepartment" 
           bindValue="DepartmentId" 
+          [addTag]="addDepartments"
           [typeahead]="departmentInput" 
           [hideSelected]="true" 
           [loading]="departmentLoading"
@@ -60,17 +61,17 @@
           #Department="ngModel" 
           name="Department" 
           (change)="updateDepartment($event)">
-          <!-- <ng-template ng-label-tmp let-item="departmentList">   
+          <ng-template ng-label-tmp let-item="departmentList">   
                  {{selectDepartment}} 
-        </ng-template> -->
+        </ng-template>
         </ng-select>
-      <small class="text-danger error1" *ngIf="Department.invalid && Department.touched && Department.dirty">Required.</small>
+      <small class="text-danger error1" *ngIf="Department.invalid && Department.touched">Required.</small>
       </div>
      
       <div class="col-md-4 col-sm-4">
         <button class="btn add-btn form-control m-42" [disabled]="!deptForm.valid" type="submit">+</button>
       </div>
-    </form>
+   </form> 
       </div>
     </div>
   
@@ -83,9 +84,9 @@
               <ng-container *ngIf="department?.DepartmentName != null; else customDept">
             <span  title="{{department?.DepartmentName}}" class="name">{{ department?.DepartmentName}}</span></ng-container>
             <ng-template  #customDept>
-            <span title="{{department?.CustomerDepartment}" class="name">{{ department?.CustomerDepartment}}</span>
+                  <span title="{{department?.CustomerDepartment}}" class="name">{{ department?.CustomerDepartment}}</span>
           </ng-template>
-           
+          
             <span class="close" (click)="deleteDepartment(i)">&times;</span>
           </li>
           <!-- {{department | json}} -->

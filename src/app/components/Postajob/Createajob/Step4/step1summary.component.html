@@ -55,11 +55,11 @@
           <ul class="data-list">
             <li *ngFor="let department of departments">
                 <ng-container *ngIf="department?.DepartmentName != null; else customSummaryDept">
-              <span class="name">{{department.DepartmentName}}</span> </ng-container> 
+              <span class="name">{{department?.DepartmentName}}</span> </ng-container> 
               <ng-template #customSummaryDept>
-              <span class="name">{{department.CustomerDepartment}}</span></ng-template>
+              <span class="name">{{department?.CustomerDepartment}}</span></ng-template>
             </li> 
-            {{department | json}}
+            <!-- {{department | json}} -->
           </ul>
            <!-- <h6 class="data" *ngIf="department.length === 0" >
               NA

@@ -109,7 +109,7 @@ export const environment = {
     bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
     WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
     GetCustomerUsers:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerUsers?',
-
+    AddDepartment :'http://api.tenendus.com:1090/ProfileAPI/api/InsertCustomerDepartments',
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',

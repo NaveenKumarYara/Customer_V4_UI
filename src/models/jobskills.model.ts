@@ -10,3 +10,7 @@ export class AddSkill {
 export class AddClient {
   public ClientName: string;
 }
+
+export class AddDepartment {
+  public DepartmentName: string;
+}
