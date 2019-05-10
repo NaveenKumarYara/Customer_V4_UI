@@ -23,7 +23,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   departmentLoading = false;
   // selectedClient: ClientModel;
   selectDepartment: string;
-  selectedDepartment =new DepartmentModel();
+  selectedDepartment :DepartmentModel;
   customerId: any;
   selectCustDept:any;
   saveDepartment = new GetCustomerDepartments();
@@ -54,7 +54,9 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
     this.selectDepartment = val.name;
   } else {
     this.selectDepartment = val.CustomerDepartment;
+    this.getDepartment= new DepartmentModel();
       this.getDepartment  = val;
+      $('#depts').val('');
   }
   }
 
@@ -83,13 +85,16 @@ public addDepartment() {
       this.appService.AddDepartment(this.saveDepartment).subscribe(
         data => {
           if(data > 0) {
-            this.selectedDepartment.DepartmentId =  data;
-            this.selectedDepartment.CustomerDepartment = this.selectDepartment;
-            // this.getDepartment = this.selectedDepartment;
+            // this.selectedDepartment = new DepartmentModel();
+            // this.selectedDepartment.DepartmentId =  data;
+            // this.selectedDepartment.CustomerDepartment = this.selectDepartment;
+           this.getDepartment.DepartmentId = data;
+           this.getDepartment.CustomerDepartment=this.selectDepartment;
             // const check = this.departmentExists(this.getDepartment, this.departmentsList);
             // if (check === false) {
-                this.appService.addDepartment(this.selectedDepartment);
+                this.appService.addDepartment(this.getDepartment);
             // }
+            // this.getDepartment=new DepartmentModel();
             this.deptForm.reset();
                    }
         });
@@ -101,6 +106,8 @@ public addDepartment() {
   // this.selectDepartment = '';
   this.deptForm.reset();
   }
+  this.getDepartment=new DepartmentModel();
+  localStorage.removeItem('departmentName')
 }
 departmentExists(team, list) {​
   return list.some(function(elem) {

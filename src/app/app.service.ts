@@ -320,7 +320,7 @@ export class AppService {
   getaddedDepartments() {
     return this.addeddepartments.slice();
   }
-  addDepartment(department: DepartmentModel) {
+  addDepartment(department: any) {
     this.departments.push(department);
     this.departmentsChanged.next(this.departments.slice());
     const dept = new PjDepartments();
