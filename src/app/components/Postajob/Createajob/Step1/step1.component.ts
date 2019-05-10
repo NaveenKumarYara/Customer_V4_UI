@@ -71,10 +71,12 @@ export class Step1Component implements OnInit {
           // this.PopulateJobdetail(params['jobId']);
           this.creteComponent.PopulateJobdetail(params['jobId']);
           this.jobIdExists = params['jobId'];
-        } else {
-          this.jobIdExists = 0;
-          localStorage.setItem('hide', JSON.stringify(this.jobIdExists));
         }
+        else 
+        {
+          this.jobIdExists = 0;        
+        }
+        localStorage.setItem('hide', this.jobIdExists);
       });
       this.toastr.setRootViewContainerRef(_vcr);
   }
