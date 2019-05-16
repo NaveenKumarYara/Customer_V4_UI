@@ -8388,7 +8388,7 @@ button.close {
 .page--account-settings .fc-button-group button {
     color: #6A7E9C;
     background-color: #ffffff;
-    border-color: #E0E3EF;
+    border-color: #cccccc;
     font-size: 12px;
     -webkit-transition: ease 0.2s all;
     transition: ease 0.2s all;
@@ -8800,7 +8800,7 @@ button.close {
     color: #98a6bb;
     min-width: 230px;
     border: 0;
-    border: 1px solid #E0E3EF;
+    border: 1px solid #CCCCCC;
     padding: 5px 20px;
     padding-right: 50px;
     font-size: 1rem;
@@ -8912,7 +8912,7 @@ button.close {
 .page--account-settings .fc-button-group button.adv-filters-btn {
     background-color: #ffffff;
     padding: 14px 15px;
-    border: 1px solid #E5E6EB;
+    border: 1px solid #CCCCCC;
     margin-right: 15px;
 }
 
@@ -14879,7 +14879,7 @@ a.ui-button:active,
 
 .page--job-details .card {
     background-color: #ffffff;
-    border: 1px solid #E5E6EB;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     position: relative;
     margin-bottom: 27px;
@@ -15140,7 +15140,7 @@ a.ui-button:active,
     -ms-flex-align: center;
     align-items: center;
     border-bottom: 0;
-    border-top: 1px solid #E0E3EF;
+    border-top: 1px solid #cccccc;
 }
 
 .page--job-details .card-footer .nav-tabs li {
@@ -15173,7 +15173,7 @@ a.ui-button:active,
 
 .page--job-details .card-footer .nav-tabs a {
     border: 0 !important;
-    padding: 13px 0;
+    padding: 14px 0;
 }
 
 .page--job-details .card-footer .nav-tabs a div {
