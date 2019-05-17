@@ -31,7 +31,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.data.ProfileId).subscribe(
       datas => {
         this.profileview = datas;
-
+        // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
          && (u.ExpInYears != null && u.ExpInMonths != null));
 
@@ -41,5 +41,12 @@ export class ViewCandidateprofileComponent implements OnInit {
         }, error => {
         this._service.DebugMode(error);
       });
+    }
+    add3Dots(string, limit) {
+      const dots = '...';
+      if (string.length > limit) {
+        string = string.substring(0, limit) + dots;
+      }
+        return string;
     }
 }

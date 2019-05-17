@@ -33,7 +33,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   selectedskillinput = new Subject<string>();
   private selectedLink = 'Primary';
   options: Options = {
-    floor: 0,
+    floor: 1,
     ceil: 40,
     translate: (value: number, label: LabelType): string => {
       switch (label) {

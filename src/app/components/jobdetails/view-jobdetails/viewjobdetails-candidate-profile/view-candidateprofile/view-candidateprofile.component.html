@@ -26,7 +26,7 @@
             <div class="contact">
               <h2>Contact</h2>
               <address>
-                <p>{{profileview?.ProfileBasicInfo?.UserName}}</p>
+                <p  *ngIf="profileview?.ProfileBasicInfo?.UserName.indexOf('Esolvit') < -1">{{profileview?.ProfileBasicInfo?.UserName}}</p>
                 <p>{{profileview?.ProfileBasicInfo?.MobilePhone}}</p>
                 <p>
                   <ng-container *ngIf="profileview?.ProfileBasicInfo?.CityName!=null">
@@ -346,15 +346,15 @@
             <div class="row">
               <div *ngIf="profileview?.Certifications?.length>0">
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" *ngFor="let certificate of profileview?.Certifications ">
-                  <div class="cert-card">
-                    <div class="settings-dot">
+                  <div class="cert-card" *ngIf="certificate.CertificationName !== '' ">
+                    <!-- <div class="settings-dot">
                       <span></span><span></span><span></span>
-                    </div>
+                    </div> -->
                     <div class="logo">
                       <img [src]="certificate.ImageUrl" alt="">
                     </div>
                     <div class="info ">
-                      <h2 class="title " data-toggle="tooltip" title={{certificate.CertificationName}}>{{certificate.CertificationName}}</h2>
+                      <h2 class="title " data-toggle="tooltip" title={{certificate.CertificationName}}>{{add3Dots(certificate.CertificationName,15)}}</h2>
                       <h4 class="year ">{{certificate.YearOfAchievement| date:'mediumDate'}}</h4>
                     </div>
                   </div>
