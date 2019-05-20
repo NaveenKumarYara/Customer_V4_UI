@@ -2,16 +2,30 @@
   <main>
     <div class="container">
       <div class="card-row row">
-        <div class="col-md-4">
-          <a class="card" (click)="createJob()"   routerLinkActive="active">
-            <!-- routerLink="/app-createajob" -->
-            <div>
-              <img src="assets/images/create-a-job.svg" width="103px" height="91.5px" alt="">
-              <h4>Create a job</h4>
+        <div class="col-md-12">
+          <div class="row pb-30">
+            <div class="col-md-6 pr-0">
+                <a class="card brw-0" >
+                    <div>
+                      <img src="../../../assets/images/jd-parser-icon.svg" width="103px" height="91.5px" alt="">
+                      <h4>Parser</h4>
+                      <small>(It Does Automatically)</small>
+                    </div>
+                  </a>
             </div>
-          </a>
+            <div class="col-md-6 pl-0">
+                <a class="card blw-0" (click)="createJob()"   routerLinkActive="active">
+                    <!-- routerLink="/app-createajob" -->
+                    <div>
+                      <img src="assets/images/create-a-job.svg" width="103px" height="91.5px" alt="">
+                      <h4>Create a job</h4>
+                      <small>(Manual Entry)</small>
+                    </div>
+                  </a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4 card">
+        <div class="col-md-6 card">
           <a href="javascript:void(0)" class="card">
             <div>
               <img src="assets/images/choose-template.svg" width="103px" height="91.5px" alt="">
@@ -19,7 +33,7 @@
             </div>
           </a>
         </div>
-        <div class="col-md-4 card">
+        <div class="col-md-6 card">
           <a href="javascript:void(0)" (click)="editDraft()" class="card">
             <div>
               <img src="assets/images/edit-draft.svg" width="103px" height="91.5px" alt="">
