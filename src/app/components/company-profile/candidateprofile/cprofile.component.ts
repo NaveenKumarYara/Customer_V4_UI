@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 })
 export class CandidateProfileComponent implements OnInit {
   customer:any;
-  customerId:any;
+  customerId: any;
   userId:any;
   profileview:any;
   profileId:any;
   list:any;
   otherSkills: any = [];
-  constructor(private _service: ApiService,private router: Router) { 
+  constructor(private _service: ApiService,private router: Router) {
       this.profileId = JSON.parse(sessionStorage.getItem('profileId'));
     }
 
@@ -27,6 +27,7 @@ export class CandidateProfileComponent implements OnInit {
 			.subscribe(
 			data => {
         this.profileview = data;
+        this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = data.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
         && (u.ExpInYears != null && u.ExpInMonths != null));
         this.otherSkills =

@@ -17,7 +17,7 @@ export class SalarysliderComponent implements OnInit {
   // salaryTypeSelected: any;
   annual: Options = {
     floor: 0,
-    step: 500,
+    step: 100,
     ceil: 400000,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -32,7 +32,7 @@ export class SalarysliderComponent implements OnInit {
   };
   hourly: Options = {
     floor: 0,
-    step: 5,
+    step: 1,
     ceil: 200,
     translate: (value: number, label: LabelType): string => {
       switch (label) {

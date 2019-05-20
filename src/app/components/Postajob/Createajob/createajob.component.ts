@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
@@ -15,7 +15,7 @@ import { WorkAuthorization } from '../../../../models/workAuthorization';
   selector: 'app-createajob',
   templateUrl: './createajob.component.html'
 })
-export class CreateajobComponent implements OnInit {
+export class CreateajobComponent implements OnInit, AfterViewChecked {
 @Input() jobId: number;
 customerId: number;
 customer: any;
@@ -53,6 +53,7 @@ ejQualificationIdList: PjEducationDetails[] = [];
 // ejPersonTypeList: DiscResult[] = [];
 // ejPersonSingle = new PjDisc();
 ejPersonSingleList: PjDisc[] = [];
+editMode: string;
   constructor(private route: ActivatedRoute,
     private router: Router, private jobdetailsservice: JobdetailsService, private appService: AppService) {
      // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
@@ -83,18 +84,32 @@ ejPersonSingleList: PjDisc[] = [];
   //  }
 
   }
+  ngAfterViewChecked() {
+    this.editMode = localStorage.getItem('EditMode');
+  }
+
   // populatePersonType(jobid) {
 
 
   // }
   back() {
-    this.router.navigateByUrl('/app-postajob');
+    if (localStorage.getItem('EditViewJob') === null &&  localStorage.getItem('EditMode') === null) {
+      this.router.navigateByUrl('/app-postajob');
+    } else {
+    this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+    this.ViewJobdetails() : '/app-manage-jobs/app-manage-load-joblist/1']);
+    }
+    // this.router.navigateByUrl('/app-postajob');
   }
-
+  ViewJobdetails() {
+    sessionStorage.setItem('jobId', JSON.stringify(localStorage.getItem('jobId')));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
   PopulateJobdetail (jobId) {
     // localStorage.removeItem('clientName');
     localStorage.setItem('jobId', jobId);
-    localStorage.setItem('EditMode', 'Yes');
+   localStorage.setItem('EditMode', 'Yes');
+
     const workAuthorization = new WorkAuthorization();
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;

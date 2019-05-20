@@ -6,7 +6,8 @@
           <div class="card__form">
             <header>
               <a (click)="back()"><img src="/assets/images/right-arrow.svg" class="arrow-left" width="31.9px" height="21.2px" alt=""></a>
-              <h3>Create new Job</h3>
+              <h3 *ngIf="editMode === null">Create new Job</h3>
+              <h3 *ngIf="editMode !== null">Edit Job</h3>
             </header>
             <div class="form-steps">
               <app-steps></app-steps>

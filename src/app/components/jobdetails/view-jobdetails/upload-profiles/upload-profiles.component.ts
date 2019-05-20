@@ -172,14 +172,14 @@ export class UploadProfilesComponent implements OnInit {
          this.toastr.dismissToast;
      }, 3000);
       }
-      else if(data === null){
-        this.toastr.warning('Email Not Exists', 'Oops!');
-        this.spinner.hide();
-        setTimeout(() => {
-         this.toastr.dismissToast;
-     }, 3000);
-    //  return false;
-      }
+    //   else if(data === null){
+    //     this.toastr.warning('Email Not Exists', 'Oops!');
+    //     this.spinner.hide();
+    //     setTimeout(() => {
+    //      this.toastr.dismissToast;
+    //  }, 3000);
+    // //  return false;
+    //   }
     }, error => {
      this.toastr.error('error in uploading profiles!', 'Oops!');
      setTimeout(() => {
