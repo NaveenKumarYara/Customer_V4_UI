@@ -277,6 +277,10 @@ input::-webkit-input-placeholder {
 /*Upload & Invite Buttons CSS starts*/
 .adv-filters-btn i.fa{
     color: #9eabc0;
+    font-size:25px;
+}
+.adv-filters-btn.btn{
+    padding: 12px 14px;
 }
 
 .disabled:hover {
