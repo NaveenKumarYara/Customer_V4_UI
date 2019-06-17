@@ -7,7 +7,7 @@ import {EmploymentType} from '../../../models/employmenttype.model';
 import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation } from '../../components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 @Component({
   selector: 'app-postajob',
@@ -47,11 +47,17 @@ export class PostajobComponent implements OnInit {
   this.appService.adddomainChanged = new Subject<PjDomain[]>();
   this.appService.jobtitle.next('');
   this.appService.jobcategory.next(new CategoryList());
-  this.appService.minExperience.next(1);
-  this.appService.maxExperience.next(1);
+  // this.appService.minExperience.next(1);
+  // this.appService.maxExperience.next(1);
   this.appService.hasDescription.next(false);
   this.appService.description.next('');
   this.appService.jobPosition.next('');
+  this.appService.clientModel.next(new ClientModel());
+  this.appService.departments = [];
+  this.appService.departmentsChanged = new Subject<DepartmentModel[]>();
+  this.appService.addeddepartments = [];
+  this.appService.addeddepartmentsChanged = new Subject<PjDepartments[]>();
+
   this.appService.noofOpenings.next(0);
   this.appService.minAnnualRate.next(1000);
   this.appService.maxAnnualRate.next(10000);
