@@ -23,9 +23,9 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   departmentLoading = false;
   // selectedClient: ClientModel;
   selectDepartment: string;
-  selectedDepartment :DepartmentModel;
+  selectedDepartment: DepartmentModel;
   customerId: any;
-  selectCustDept:any;
+  selectCustDept: any;
   saveDepartment = new GetCustomerDepartments();
   suggestDepartments: DepartmentModel[];
   departmentsList: DepartmentModel[] = []; // to check added departments
@@ -44,7 +44,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
     const  department = new AddDepartment();
     department.CustomerDepartment = val;
     $('#depts').val('1');
-    localStorage.setItem('departmentName',val);
+    localStorage.setItem('departmentName', val);
     return {name: department.CustomerDepartment};
 
   }
@@ -54,7 +54,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
     this.selectDepartment = val.name;
   } else {
     this.selectDepartment = val.CustomerDepartment;
-    this.getDepartment= new DepartmentModel();
+    this.getDepartment = new DepartmentModel();
       this.getDepartment  = val;
       $('#depts').val('');
   }
@@ -84,12 +84,12 @@ public addDepartment() {
       this.saveDepartment.Department = localStorage.getItem('departmentName');
       this.appService.AddDepartment(this.saveDepartment).subscribe(
         data => {
-          if(data > 0) {
+          if (data > 0) {
             // this.selectedDepartment = new DepartmentModel();
             // this.selectedDepartment.DepartmentId =  data;
             // this.selectedDepartment.CustomerDepartment = this.selectDepartment;
            this.getDepartment.DepartmentId = data;
-           this.getDepartment.CustomerDepartment=this.selectDepartment;
+           this.getDepartment.CustomerDepartment = this.selectDepartment;
             // const check = this.departmentExists(this.getDepartment, this.departmentsList);
             // if (check === false) {
                 this.appService.addDepartment(this.getDepartment);
@@ -106,8 +106,8 @@ public addDepartment() {
   // this.selectDepartment = '';
   this.deptForm.reset();
   }
-  this.getDepartment=new DepartmentModel();
-  localStorage.removeItem('departmentName')
+  this.getDepartment = new DepartmentModel();
+  localStorage.removeItem('departmentName');
 }
 departmentExists(team, list) {​
   return list.some(function(elem) {
@@ -122,6 +122,7 @@ suggestedDepartment() {
 }
 ngOnInit() {
   this.searchDepartment();
+  this.departmentsList = this.appService.getDepartment();
   // if (this.departmentsList.length === 0) {
   // this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
   //   x => {this.departmentsList = x;
