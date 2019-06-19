@@ -51,6 +51,7 @@ saveBenefits()
   this._service.PostService(this.benefits, 'ProfileAPI/api/InsertCompanyBenefits')
   .subscribe(data => {
     this.benefit = '';
+    this.benefitId = 0;
     this.populateCompanyBenfits(this.customerId);
   },
     error => console.log(error));
