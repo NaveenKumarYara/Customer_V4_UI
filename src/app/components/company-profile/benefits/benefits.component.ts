@@ -50,8 +50,7 @@ saveBenefits()
   this.benefits.companyBenefit = this.benefit;
   this._service.PostService(this.benefits, 'ProfileAPI/api/InsertCompanyBenefits')
   .subscribe(data => {
-    $("#benefitsVal").val('');
-    this.benefitId = null;
+    this.benefit = '';
     this.populateCompanyBenfits(this.customerId);
   },
     error => console.log(error));
@@ -60,9 +59,7 @@ saveBenefits()
 EditBenefits(benefit)
 {
   this.benefitId = benefit.CompanyBenefitId;
-  var contents = benefit.CompanyBenefit;
-  this.benefit = $("#benefitsVal").val(contents);
- 
+  this.benefit = benefit.CompanyBenefit;
 }
 
 
