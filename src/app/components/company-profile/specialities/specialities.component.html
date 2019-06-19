@@ -140,11 +140,11 @@
           </div>
           <div id="companyTech" class="companyTech tab-pane fade">
               <div class="input-group">
-                  <input id="techVal" type="text" [(ngModel)]="companytechnology" class="form-control" name="benefits" placeholder="Technologies">
+                  <input id="techVal" type="text" [(ngModel)]="companytechnology" class="form-control" name="companytechnology" placeholder="Technologies">
                   <span class="input-group-btn">
                       <ng-container *ngIf="companytechnology!=undefined;else nter">   
                           <ng-container *ngIf="companytechnology!=''; else noter">
-                              <button class="btn" (click)="saveSpecialities()">+</button>
+                              <button class="btn" (click)="savetechnologies()">+</button>
                           </ng-container>  
                           <ng-template #noter>
                               <button class="btn">+</button>

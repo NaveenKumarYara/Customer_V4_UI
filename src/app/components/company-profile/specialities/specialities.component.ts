@@ -144,8 +144,7 @@ savetechnologies()
    this.technologies.technologyName = this.companytechnology;
    this._service.PostService(this.technologies, 'ProfileAPI/api/InsertCompanyTechnology')
    .subscribe(data => {
-     $("#techVal").val('');
-     this.technologyId=null;
+    this.companytechnology='';
      this.populateCompanyTechnologies(this.customerId);
    },
      error => console.log(error));
@@ -170,8 +169,7 @@ saveSpecialities()
   this.specialities.companySpeciality = this.speciality;
   this._service.PostService(this.specialities, 'ProfileAPI/api/InsertCompanySpeciality')
   .subscribe(data => {
-    $("#specialVal").val('');
-    this.specialityId=null;
+    this.speciality = '';
     this.populateCompanySpecialities(this.customerId);
   },
     error => console.log(error));
