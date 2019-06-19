@@ -87,8 +87,8 @@
           <div class="form-group col-md-3">
             <label>Company type</label>
             <select name="company-type" id="company-type" class="styled-select-box block">
-              <option value="0">Public Limited</option>
-              <option value="1">Private Limited</option>
+              <option [value]="0" [selected]="companyprofileotherinfo?.CompanyType == 'Public Limited'">Public Limited</option>
+              <option [value]="1" [selected]="companyprofileotherinfo?.CompanyType == 'Private Limited'">Private Limited</option>
             </select>
           </div>
         </div>
