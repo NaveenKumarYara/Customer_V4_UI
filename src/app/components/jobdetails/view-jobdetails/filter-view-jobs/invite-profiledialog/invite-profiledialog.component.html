@@ -37,17 +37,21 @@
           </form> -->
           <!--#APR-12-->
           <form [formGroup]="inviteform" (ngSubmit)="SaveInvite()">
-            <div class="input-group col-sm-12 pt-2">
-
+            <div class="input-group col-sm-12 pt-2 p-rel">
               <div class="clearfix">&nbsp;</div>
-              <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
-                name="inviteEmail" cols="30" rows="10">
+              <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto" autocomplete="new-email" type="email" multiple
+                name="inviteEmail" cols="30" rows="10" required>
             </textarea>
+            <div *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)" class="error1">
+                <div *ngIf="inviteform.controls['inviteEmail']">
+                    Incorrect Email.
+                </div>
+            </div>
             </div>
             <div class="clearfix">&nbsp;</div>
             <div class="col-sm-12 plr-0">
               <div class="pull-right">
-                <button class="btn btn-filled btn-next" type="submit">Submit</button>
+                <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit">Submit</button>
               </div>
             </div>
           </form>

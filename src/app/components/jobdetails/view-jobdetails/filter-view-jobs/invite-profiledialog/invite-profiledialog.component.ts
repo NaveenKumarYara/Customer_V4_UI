@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject,ViewContainerRef  } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
+import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
@@ -21,6 +21,7 @@ export interface DialogData {
     customer:any;
     customerId: any;
     userId: any;
+    emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     Emailinvite:any;
     inviteEmail:any;
@@ -28,13 +29,21 @@ export interface DialogData {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId =  this.customer.UserId;
+
    }
 
   ngOnInit() {
     this.inviteform = this.fb.group({
-      'inviteEmail'   : ['', Validators.compose([Validators.required, Validators.email])],
+      'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
   }
+
+  commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
+    const emails = control.value.split(',');
+    const forbidden = emails.some(email => Validators.email(new FormControl(email)));
+    console.log(forbidden);
+    return forbidden ? { 'inviteEmail': { value: control.value } } : null;
+  };
 
   SaveInvite() {
     this.inviteinfo.userId = this.userId;
@@ -50,6 +59,7 @@ export interface DialogData {
     this.inviteinfo.AppLink = environment.CandidateSignUp;
     if(this.inviteinfo.ToEmailId == "")
     {
+      debugger
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;

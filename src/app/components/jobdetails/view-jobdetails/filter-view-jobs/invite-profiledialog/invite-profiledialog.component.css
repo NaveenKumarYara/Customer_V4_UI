@@ -48,3 +48,6 @@
     border-color: #E0E3EF;
     color: #9EABC0;
 }
+.p-rel .error1 {
+    z-index: 9;
+}
