@@ -26,7 +26,7 @@
                 <h5 class="client">
                         {{job?.ClientName !=null ? job?.ClientName : 'N/A' }}
                 </h5>
-                <h5 class="ml-1" >  {{job?.Departments != null ? job?.Departments : 'N/A'}}</h5>
+                <h5 class="ml-1" title="{{job?.Departments != null ? job?.Departments : 'N/A'}}" >  {{job?.Departments != null ? add3Dots(job.Departments.split('|')[0],35) : 'N/A'}}</h5>
             </div>
             <div class="meta h-19">
                 <svg *ngIf="job?.JobLocations!=null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
