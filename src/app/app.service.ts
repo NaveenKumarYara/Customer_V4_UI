@@ -254,7 +254,16 @@ export class AppService {
     this.videoProfile.next(videoUrl);
   }
   updateStepNumber(step: string) {
-    this.stepNumber.next(step);
+      this.stepNumber.next(step);
+  }
+  updateJobDraft(draft?: boolean) {
+      this.isDrafted.next(draft);
+  }
+  getDraftStatus() {
+    return this.isDrafted.value;
+  }
+  getStepNumber() {
+    return this.stepNumber.value;
   }
   // getSalaryType() {
   //   return this.salaryType;

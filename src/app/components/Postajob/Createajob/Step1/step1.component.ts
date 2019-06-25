@@ -83,7 +83,7 @@ export class Step1Component implements OnInit {
   }
 
   postJob(step, exit?) {
-    // this.appService.updateStepNumber(step);
+
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     // this.insertJob.JobPositionId = '';
@@ -172,6 +172,12 @@ this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
 
   }
 this.insertJob.StepNumber = step;
+if (this.appService.stepNumber.value <= step) {
+this.appService.updateStepNumber(step);
+}
+if (this.appService.isDrafted.value != null) {
+  this.appService.updateJobDraft(this.insertJob.IsDrafted);
+  }
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

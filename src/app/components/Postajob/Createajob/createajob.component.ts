@@ -152,8 +152,9 @@ editMode: string;
       this.appService.minHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
       this.appService.maxHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
       }
-      this.appService.stepNumber.next(this.jobdetailscustomer.JobInfo.StepNumber);
-      this.appService.isDrafted.next(this.jobdetailscustomer.JobInfo.IsDrafted);
+      // this.appService.stepNumber.next(this.jobdetailscustomer.JobInfo.StepNumber);
+      this.appService.updateStepNumber(this.jobdetailscustomer.JobInfo.StepNumber);
+      this.appService.updateJobDraft(this.jobdetailscustomer.JobInfo.IsDrafted);
 
       this.ejEmploymentType.EmploymentType = this.jobdetailscustomer.JobInfo.EmploymentType;
       this.ejEmploymentType.EmploymentTypeId = this.jobdetailscustomer.JobInfo.EmploymentTypeId;

@@ -70,7 +70,7 @@ export class Step3Component implements OnInit {
   // @ViewChild(SalarysliderComponent) salary: SalarysliderComponent;
   formData: any;
   customer: any;
-  jobIdExists:any;
+  jobIdExists: any;
   userId: any;
   customerId: any;
   complete: any;
@@ -102,7 +102,7 @@ export class Step3Component implements OnInit {
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
-      this.jobIdExists= localStorage.getItem('hide');
+      this.jobIdExists = localStorage.getItem('hide');
       this.toastr.setRootViewContainerRef(_vcr);
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
@@ -207,7 +207,7 @@ export class Step3Component implements OnInit {
     }
   }
 
-  postJob(step,exit?) {
+  postJob(step, exit?) {
     // this.appService.updateStepNumber(step);
 //     this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId; // this.appService.jobcategory.JobCategoryId;
 //     this.insertJob.CustomerId = 1;
@@ -317,6 +317,12 @@ export class Step3Component implements OnInit {
         this.insertJob.IsDrafted = true;
     }
     this.insertJob.StepNumber = step;
+    if (this.appService.stepNumber.value <= step) {
+      this.appService.updateStepNumber(step);
+      }
+      if (this.appService.isDrafted.value != null) {
+        this.appService.updateJobDraft(this.insertJob.IsDrafted);
+        }
    // }
   //    else {
   //   this.insertJob.EmploymentTypeId = 1;
@@ -339,7 +345,7 @@ export class Step3Component implements OnInit {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
-        if(exit === 0) {
+        if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
         } else {

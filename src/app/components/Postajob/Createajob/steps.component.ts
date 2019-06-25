@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AppService } from '../../../app.service';
 
 @Component({
   selector: 'app-steps',
@@ -12,10 +13,11 @@ export class StepsComponent implements OnInit {
   step2isClicked = false;
   step3isClicked = false;
   step4isClicked = false;
+  stepNumber: string;
+  draft = false;
   constructor(private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private appService: AppService) {
       this.complete = JSON.parse(localStorage.getItem('completed'));
-
   }
 
   step1toggleClass(complete) {
@@ -50,8 +52,12 @@ export class StepsComponent implements OnInit {
     this.step3isClicked = false;
   }
   ngOnInit() {
+  this.stepNumber = this.appService.getStepNumber();
+  this.draft = this.appService.getDraftStatus();
   }
-
+// getStepCount() {
+//   return this.appService.getStepNumber();
+// }
 
 
 

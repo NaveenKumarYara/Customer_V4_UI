@@ -129,7 +129,7 @@ export class Step2Component implements OnInit {
   }
 
   postJob(step, exit?) {
-   // this.appService.updateStepNumber(step);
+  //  this.appService.updateStepNumber(step);
     // this.insertJob.JobCategoryId =  this.appService.jobcategory.value.JobCategoryId;
     // this.insertJob.CustomerId = 1;
     // this.insertJob.UserId = 5;
@@ -223,6 +223,12 @@ export class Step2Component implements OnInit {
     this.insertJob.IsDrafted = true;
   }
     this.insertJob.StepNumber = step;
+    if (this.appService.stepNumber.value <= step) {
+      this.appService.updateStepNumber(step);
+      }
+    if (this.appService.isDrafted.value != null) {
+      this.appService.updateJobDraft(this.insertJob.IsDrafted);
+      }
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;

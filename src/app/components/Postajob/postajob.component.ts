@@ -46,6 +46,7 @@ export class PostajobComponent implements OnInit {
   this.appService.adddomain = [];
   this.appService.adddomainChanged = new Subject<PjDomain[]>();
   this.appService.jobtitle.next('');
+  this.appService.stepNumber.next('1');
   this.appService.jobcategory.next(new CategoryList());
   // this.appService.minExperience.next(1);
   // this.appService.maxExperience.next(1);

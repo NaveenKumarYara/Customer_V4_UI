@@ -132,6 +132,7 @@ export class Step4Component implements OnInit {
   }
 
   postJob(step) {
+    // this.appService.updateStepNumber(step);
     const res = localStorage.getItem('jobId');
     this.insertJob.JobId = parseInt(res, 10);
     this.insertJob.CustomerId = this.customerId;
@@ -216,6 +217,12 @@ export class Step4Component implements OnInit {
         this.insertJob.IsDrafted = true;
     }
     this.insertJob.StepNumber = 4;
+    if (this.appService.stepNumber.value <= step) {
+      this.appService.updateStepNumber(step);
+      }
+      if (this.appService.isDrafted.value != null) {
+        this.appService.updateJobDraft(this.insertJob.IsDrafted);
+        }
     // }
   //   else {
   //   this.insertJob.EmploymentTypeId = 1;
