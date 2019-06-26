@@ -11,8 +11,9 @@
                 <span class="step-check"></span>Step 1</a>
           </ng-template>
       </li>
-  <li class="line"></li>
-  <li [ngClass]="{ 'tab-list':!step2isClicked, 'tab-list active':step2isClicked }"
+  <li class="line"></li>  
+  <li [ngClass]="{ 'tab-list':!step2isClicked, 'tab-list active':step2isClicked, 
+'disabled' : stepNumber <= 1  }"  
       (click)="step2toggleClass(complete)">
       <ng-container *ngIf="complete >1;else nocompl">
       <a data-toggle="tab" [ngClass]="{'completed':true}" title="Step 2" routerLink="app-steps-step2"><span class="step-check"></span>Step 2</a>
@@ -21,8 +22,8 @@
           <a data-toggle="tab" title="Step 2" routerLink="app-steps-step2"><span class="step-check"></span>Step 2</a>
       </ng-template>
     </li>
-  <li class="line"></li>
-  <li [ngClass]="{ 'tab-list':!step3isClicked, 'tab-list active':step3isClicked }"
+  <li class="line"></li> 
+  <li [ngClass]="{ 'tab-list':!step3isClicked, 'tab-list active':step3isClicked, 'disabled' : stepNumber < 2  }" 
       (click)="step3toggleClass(complete)">
       <ng-container *ngIf="complete >2;else nocom">
       <a data-toggle="tab" [ngClass]="{'completed':true}" title="Step 3" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a>
@@ -31,8 +32,8 @@
           <a data-toggle="tab" title="Step 3" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a>
       </ng-template>
     </li>
-  <li class="line"></li>
-  <li [ngClass]="{ 'tab-list':!step4isClicked, 'tab-list active':step4isClicked }"
+  <li class="line"></li> 
+  <li [ngClass]="{ 'tab-list':!step4isClicked, 'tab-list active':step4isClicked, 'disabled' : stepNumber < 3  }" 
       (click)="step4toggleClass(complete)">
       <ng-container *ngIf="complete >3;else nocomp">
         <a data-toggle="tab"  [ngClass]="{'completed':true}"  title="Step 4" routerLink="app-steps-step4">
