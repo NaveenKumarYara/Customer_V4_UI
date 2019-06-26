@@ -60,6 +60,7 @@ import {ApiService} from './shared/services/api.service/api.service';
 import { AuthService } from './shared/guard/auth.service';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 import {SharedModule} from './shared/shared.module';
 import { FlickityModule } from 'ngx-flickity';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -139,6 +140,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
     SharedModule,
     CompanyProfileModule,
     DashboardModule,
+    NgIdleKeepaliveModule.forRoot(),
     ToastModule.forRoot(), BrowserAnimationsModule,
     AccountsettingsModule,
   NgxSpinnerModule,
