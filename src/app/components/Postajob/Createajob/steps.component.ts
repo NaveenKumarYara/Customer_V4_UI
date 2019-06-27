@@ -13,7 +13,7 @@ export class StepsComponent implements OnInit {
   step2isClicked = false;
   step3isClicked = false;
   step4isClicked = false;
-  stepNumber: string;
+  stepNumber: number;
   draft = false;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
@@ -52,7 +52,7 @@ export class StepsComponent implements OnInit {
     this.step3isClicked = false;
   }
   ngOnInit() {
-  this.stepNumber = this.appService.getStepNumber();
+  this.stepNumber = parseInt(this.appService.getStepNumber(),10);
   this.draft = this.appService.getDraftStatus();
   }
 // getStepCount() {
