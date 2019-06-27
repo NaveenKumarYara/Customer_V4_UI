@@ -29,9 +29,9 @@ export class AppComponent {
     let timedOut = false;
     let lastPing: Date = null;
     
-    idle.setIdle(1);
+    idle.setIdle(1800);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
-    idle.setTimeout(1);
+    idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     // sessionStorage.clear();
