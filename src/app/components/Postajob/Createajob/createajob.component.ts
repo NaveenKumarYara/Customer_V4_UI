@@ -139,6 +139,7 @@ editMode: string;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
       this.appService.jobcategory.next(this.eJcategory);
       this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
+      this.appService.videoProfile.next(this.jobdetailscustomer.JobInfo.VideoURL);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));
       this.appService.hasDescription.next(this.jobdetailscustomer.JobInfo.CompleteDescription);
