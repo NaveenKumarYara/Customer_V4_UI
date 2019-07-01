@@ -31,37 +31,34 @@
         </ul>
         <div class="tab-content" *ngFor="let aboutcompany of getaboutcompany">
           <div id="aboutTab" class="tab-pane fade in active">
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 439px;">
+            <div class="tab-inner scrollbar-inner">
+              
                 <p>
                  {{aboutcompany?.CompanyDescription}}
                 </p>
 
-              </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 289px; top: 0px;"></div></div></div>
+              
+              
             </div>
           </div>
           <div id="visionTab" class="tab-pane fade">
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content" style="height: 439px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+            <div class="tab-inner scrollbar-inner">
+              
                 <p>
                   {{aboutcompany?.CompanyVision}}
                 </p>
-              </div>
-              <div class="scroll-element scroll-x">
-                <div class="scroll-element_outer"><div class="scroll-element_size">
-
-                </div><div class="scroll-element_track"></div><div class="scroll-bar">
-
-                </div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
+              
+              
             </div>
           </div>
           <div id="coreTab" class="tab-pane fade">
-            <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-              <div class="tab-inner scrollbar-inner scroll-content" style="height: 439px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+            <div class="tab-inner scrollbar-inner">
+              
                 <p>
                   {{aboutcompany?.CoreValue}}
                 </p>
-              </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
+              
+             
             </div>
           </div>
         </div> <!-- .tab-content -->
@@ -98,37 +95,34 @@
           </ul>
           <div class="tab-content" *ngFor="let aboutcompany of getaboutcompany">
             <div id="aboutTab" class="tab-pane fade in active">
-              <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
+              <div class="tab-inner scrollbar-inner">
                 <div >
 <textarea rows="20" cols="80" id="CompanyDescription">
     {{aboutcompany?.CompanyDescription}}
     </textarea>
-                </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 0px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 289px; top: 0px;"></div></div></div>
+                </div>
+                
               </div>
             </div>
             <div id="visionTab" class="tab-pane fade">
-              <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-                <div class="tab-inner scrollbar-inner scroll-content" style="height: 439px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+              <div class="tab-inner scrollbar-inner">
+                
 
                   <textarea rows="20" cols="80" id="CompanyVision">
                       {{aboutcompany?.CompanyVision}}
                       </textarea>
-                </div>
-                <div class="scroll-element scroll-x">
-                  <div class="scroll-element_outer"><div class="scroll-element_size">
-  
-                  </div><div class="scroll-element_track"></div><div class="scroll-bar">
-  
-                  </div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
+                
+                
               </div>
             </div>
             <div id="coreTab" class="tab-pane fade">
-              <div class="scroll-wrapper tab-inner scrollbar-inner" style="position: relative;">
-                <div class="tab-inner scrollbar-inner scroll-content" style="height: 439px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+              <div class="tab-inner scrollbar-inner">
+                
                   <textarea rows="20" cols="80" id="CoreValue">
                       {{aboutcompany?.CoreValue}}
                       </textarea>
-                </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div>
+                
+                
               </div>
             </div>
           </div> <!-- .tab-content -->
