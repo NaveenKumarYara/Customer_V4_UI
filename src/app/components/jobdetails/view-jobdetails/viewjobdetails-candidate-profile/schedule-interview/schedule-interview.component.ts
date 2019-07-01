@@ -121,11 +121,11 @@ export class ScheduleInterviewComponent implements OnInit {
     });
     $('.datepicker').datepicker({ minDate: new Date() });
 
-    if (this.processSelection == null || this.processSelection === undefined) {
-  this.schIntw.InterviewTypeId = 1;
-} else {
-  this.schIntw.InterviewTypeId = this.processSelection;
-}
+//     if (this.processSelection == null || this.processSelection === undefined) {
+//   this.schIntw.InterviewTypeId = 1;
+// } else {
+//   this.schIntw.InterviewTypeId = this.processSelection;
+// }
 
 
   }
@@ -184,6 +184,7 @@ this.schIntw.StatusChangedByUserId = this.customerUser;
 this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
+      this.schIntw = new ScheduleInterview();
       this.dialogRef.close();
      }) ;
     } else {
@@ -221,7 +222,15 @@ getcustomerusers() {
   GetType() {
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
-    this.processSelection = this.jobInterview.InterviewTypeId;
+    if(this.jobInterview.InterviewTypeId == null)
+    {
+      this.jobInterview.InterviewTypeId = 1; 
+      this.processSelection = 1;
+    }
+    else if(this.jobInterview.InterviewTypeId != null)
+    {
+      this.processSelection = this.jobInterview.InterviewTypeId;
+    }
     this.GetId(this.processSelection);
    });
    }
