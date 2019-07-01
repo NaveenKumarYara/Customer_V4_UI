@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { AppService } from '../../../../app.service';
 declare var $: any;
 declare var require: any;
@@ -17,17 +18,19 @@ export class UploadvideoprofileComponent implements OnInit {
   private stream: MediaStream;
   saveVideo: FormGroup;
   customer: any;
+  uploadVideofile:any;
     customerId: any;
     userId: any;
     saveImage: FormGroup;
     videoSizzles: any;
   @ViewChild('video') video;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private appService: AppService, private fb: FormBuilder) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef, private _service: ApiService, private appService: AppService, private fb: FormBuilder) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.createVideoForm();
-this.GetVideoSizzle();
+    this.toastr.setRootViewContainerRef(_vcr);
+    this.GetVideoSizzle();
   }
 
   createVideoForm() {
@@ -69,13 +72,21 @@ this.GetVideoSizzle();
       const ext = x[1].toLowerCase();
       if (ext === 'mp4' || ext === 'webm' || ext === 'flv') {
         if (file.size > 5048576) {
-          alert('Too Big Size.. File Not Allowed');
+          //alert('Too Big Size.. File Not Allowed');
+          this.toastr.warning('Too Big Size.. File Greater than 5MB Not Allowed!', 'Oops!');
+          setTimeout(() => {
+              this.toastr.dismissToast;
+          }, 3000);
         } else {
           this.currentVideoUpload = file;
           this.uploadVideo(this.currentVideoUpload);
         }
       } else {
-        alert('Please upload the files with extension webm,flv,mp4');
+        //alert('Please upload the files with extension webm,flv,mp4');
+        this.toastr.warning('Please upload the files with extension webm,flv,mp4', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
       }
 
     }
@@ -166,19 +177,30 @@ this.GetVideoSizzle();
     _formData.append('VideoFile', this.currentVideoUpload);
     _formData.append('Model', request);
     this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
+      this.toastr.success('video upload successful', 'Success!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
       $('#btn-upload-videofile').prop('disabled', false);
-      alert('video upload successful');
+      this.uploadVideofile = data;
+      this.appService.updateVideoProfile(this.uploadVideofile);
+      //alert('video upload successful');
+      this.saveVideo.reset();
     });
   }
-  InsertSizzle(sizzleId) {
+  InsertSizzle(sizzleId,sizzleUrl?) {
     this.createVideoForm();
     this.saveVideo.value.VideoProfileId = sizzleId;
     this.saveVideo.value.JobId = this.data.jobId ;
     this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
       .subscribe(data => {
-          alert('video upload successful');
+          //alert('video upload successful');
+          this.toastr.success('video upload successful', 'Success!');
+          setTimeout(() => {
+              this.toastr.dismissToast;
+          }, 3000);
           // this.appService.videoProfile.subscribe(x => this.prfLoc = x);
-          this.appService.updateVideoProfile(data);
+          this.appService.updateVideoProfile(sizzleUrl);
           this.saveVideo.reset();
       });
   }

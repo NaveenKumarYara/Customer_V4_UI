@@ -99,6 +99,7 @@ export class PostajobComponent implements OnInit {
   this.appService.secondaryjobskills = [];
   this.appService.jobsecondaryskillsChanged = new Subject<Jobskills[]>(); // .closed();
   this.appService.jobprimaryskillsChanged = new Subject<Jobskills[]>();
+  this.appService.videoProfile.next('');
   // this._setOption.next(null);
   // setTimeout(() => {
   //   this._setOption.next(null);
