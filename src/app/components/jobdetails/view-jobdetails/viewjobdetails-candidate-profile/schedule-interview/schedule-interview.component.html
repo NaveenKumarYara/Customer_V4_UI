@@ -12,7 +12,7 @@
                             <div class="form-row clearfix">
                                 <div class="form-group interview-date-group">
                                     <label for="">
-                                        Date for Interview
+                                        Date for Interview *
                                     </label>
                                     <div class="input-group cal-icon mt-2_7">
                                         <!-- <input type="text" class="form-control datepicker"> -->
@@ -85,14 +85,14 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="team-members">Add Internal Team Members</label>
+                                    <label for="team-members">Add Internal Team Members *</label>
                                     <div class="input-group">
                                         <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
                                         <ng-select class="custom-style interview-schedule-popup"
                                             [items]="managersList | async" name="team" placeholder="Type and Search"
                                             (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId"
                                             [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName"
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" required
                                             name="selectedUserName" [virtualScroll]="true"  #TMember="ngModel">
                                         </ng-select>
 

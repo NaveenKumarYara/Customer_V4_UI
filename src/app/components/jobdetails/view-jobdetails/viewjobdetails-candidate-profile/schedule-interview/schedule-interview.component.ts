@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject, Input, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, ViewChild,ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {ScheduleType} from '../../../models/ScheduleType';
 import { Subject } from 'rxjs/Subject';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
@@ -61,12 +62,13 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
+    this.toastr.setRootViewContainerRef(_vcr);
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     // const current = new Date();
     // config.minDate = { year: current.getFullYear(), month:
@@ -133,6 +135,11 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
+  debugger
+if(this.schedule.invalid||this.selectedUserName == '')
+{
+    this.toastr.error('Please provide the valid details','Oops')
+}
 if (this.schedule.valid) {
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
@@ -194,6 +201,7 @@ this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toStri
 
 GetId(val)
 {
+  debugger
   if(val>0)
   {
     this.interviewId = val;
@@ -220,6 +228,7 @@ getcustomerusers() {
   );
 }
   GetType() {
+    debugger
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
     if(this.jobInterview.InterviewTypeId == null)
