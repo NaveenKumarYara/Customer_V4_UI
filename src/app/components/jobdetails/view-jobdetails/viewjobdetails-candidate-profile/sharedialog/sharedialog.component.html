@@ -1,13 +1,15 @@
 <div class="page page--job-details">
   <div>
-    <h4 mat-dialog-title class="modal-title text-center">
-      Share Candidate
+      <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">×</span></button>
+    <h4 mat-dialog-title class="modal-title">
+      Share Profile
     </h4>
     <mat-dialog-content class="mat-typography modal-dialog">
       <div>
         <div class="modal-body">
           <form action="">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="">TECHNICAL TEAM FOR SCREENING</label>
               <div class="input-group">
                 <input id="responsibility" type="text" class="form-control ui-autocomplete-input" name="benefits"
@@ -16,11 +18,15 @@
                   <button class="btn">+</button>
                 </span>
               </div>
+            </div> -->
+            <div class="form-group">
+              <p>Invite more candidates for the current position <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small></p>
+              <textarea type="text" class="form-control resize-none" placeholder="Send multiple emails with comma ',' seperated" rows="5"></textarea>
             </div>
             <div class="form-group">
-              <label for="">Comments</label>
-              <textarea type="text" class="form-control resize-none" placeholder="Please add your comments" rows="10"></textarea>
-            </div>
+                <p>Comments</p>
+                <textarea type="text" class="form-control resize-none" placeholder="Please add your comments" rows="5"></textarea>
+              </div>
           </form>
         </div>
       </div>
