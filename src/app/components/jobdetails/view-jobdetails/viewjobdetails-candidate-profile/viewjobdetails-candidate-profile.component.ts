@@ -112,7 +112,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
   }
 
-  OpenShareDialog() {
+  OpenShareDialog(title,jobResponseId, profileId) {
     if (this.jobStatus !== 'InActive') {
     const shareddialogRef = this.dialog.open(SharedialogComponent,
       {
@@ -120,7 +120,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
          position: {right : '0px'},
         // height : '750px',
         data: {
-          animal: 'panda'
+          animal: 'panda',
+          Title:title,
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          ProfileId: profileId
         }
       }
     );

@@ -5,10 +5,11 @@
     <h4 mat-dialog-title class="modal-title">
       Share Profile
     </h4>
+    <form [formGroup]="inviteform" (ngSubmit)="SaveInvite()">
     <mat-dialog-content class="mat-typography modal-dialog">
       <div>
         <div class="modal-body">
-          <form action="">
+         
             <!-- <div class="form-group">
               <label for="">TECHNICAL TEAM FOR SCREENING</label>
               <div class="input-group">
@@ -21,21 +22,35 @@
             </div> -->
             <div class="form-group">
               <p>Invite more candidates for the current position <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small></p>
-              <textarea type="text" class="form-control resize-none" placeholder="Send multiple emails with comma ',' seperated" rows="5"></textarea>
+              <textarea formControlName="inviteEmail" id="Email" class="form-control resize-none" autocomplete="new-email" type="email" multiple
+                name="inviteEmail" cols="30" rows="10" required>
+            </textarea>
+            <div *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)" class="error1">
+                <div *ngIf="inviteform.controls['inviteEmail']">
+                    Incorrect Email.
+                </div>
+            </div>
             </div>
             <div class="form-group">
                 <p>Comments</p>
-                <textarea type="text" class="form-control resize-none" placeholder="Please add your comments" rows="5"></textarea>
+                <textarea type="text" formControlName="inviteComment" class="form-control resize-none" placeholder="Please add your comments" rows="5"></textarea>
               </div>
-          </form>
+
+            
+         
         </div>
       </div>
+    
+
     </mat-dialog-content>
-    <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+
+     <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
       
         <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-filled">Share</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="!inviteform.valid" (click)="SaveInvite()" type="submit" class="btn btn-filled">Share</button> 
      
-    </mat-dialog-actions>
+    </mat-dialog-actions> 
+  </form>
+   
   </div>
 </div>
