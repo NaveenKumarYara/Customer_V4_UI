@@ -8,6 +8,7 @@ import { Offer } from '../models/offer.model';
 import { environment } from '../environments/environment';
 import { Jobskills } from '../models/jobskills.model';
 import { Subject } from 'rxjs/Subject';
+import { RecentJobs } from '../models/recentjobs';
 import { BehaviorSubject } from 'rxjs';
 import { Qualifications } from '../models/qualifications.model';
 import { Notification } from '../models/notifications';
@@ -702,6 +703,14 @@ bulkApply(body) {
   GetEditDrafts(customerId: number, userId: number) {
     const url = environment.EditDraft + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<draftDetails[]>(url)
+        .catch(
+            this.handleError
+        );
+  }
+
+  GetJobTemplates(customerId: number) {
+    const url = environment.GetJobTemplates + 'customerId=' + customerId;
+    return this.http.get<RecentJobs[]>(url)
         .catch(
             this.handleError
         );

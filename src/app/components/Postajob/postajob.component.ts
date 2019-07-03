@@ -118,6 +118,12 @@ createJob() {
   // this.location.go('/app-createajob');
   // this.reload();
 }
+
+editTemplate()
+{
+  this.router.navigateByUrl('/app-jobtemplate'); 
+}
+
 editDraft() {
   this.router.navigateByUrl('/app-editdraft');
 }

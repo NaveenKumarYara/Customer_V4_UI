@@ -15,6 +15,7 @@ export class Step4Component implements OnInit {
   jobCategory: number;
   jobMinExp: number;
   jobMaxExp: number;
+  Template:boolean = false;
   jobTitle: string;
   jobDescription: string;
   jobPositionId: string;
@@ -239,6 +240,7 @@ export class Step4Component implements OnInit {
     this.insertJob.HiringProcessId = this.intwType; // this.appService.interviewType.value.InterviewTypeId;
     this.insertJob.HiringManagerId = this.reporting; // this.appService.reportingManager.value.UserId;
     this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers;
+    this.insertJob.SaveAsTemplate = this.Template;
     if (this.draftItem === true) {
     this.insertJob.Draft = this.draftItem;
     this.insertJob.Email = this.customer.Email;

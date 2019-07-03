@@ -50,6 +50,7 @@ import { Step3SummaryComponent } from './components/Postajob/Createajob/Step4/st
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ManagejobsModule } from './components/managejobs/managejobs.module';
 import { JobdetailsModule } from './components/jobdetails/jobdetails.module';
+import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
 import { CompanyProfileModule } from './components/company-profile/company-profile.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import {dLoginComponent} from '../app/components/Login/dlogin.component';
@@ -95,6 +96,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
     Step4Component,
     ForgotComponent,
     ResetComponent,
+    JobTemplateComponent,
     dLoginComponent,
     EditDraftComponent,
     DashboardComponent,

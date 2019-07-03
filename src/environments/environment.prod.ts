@@ -121,6 +121,7 @@ export const environment = {
     DeleteCustomerDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/DeleteCustomerDepartments?',
     StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',
     bulkApply : 'http://api.tenendus.com:1090/ReferralAPI/api/ApplyBulk',
+    GetJobTemplates:'http://api.tenendus.com:1090/JobsAPI/api/GetJobsTemplate?',
     WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
     GetCustomerUsers:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerUsers?',
     InsertCustomerUser:'http://api.tenendus.com:1090/IdentityAPI/api/InsertCompanyContacts',

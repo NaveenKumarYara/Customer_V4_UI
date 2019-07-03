@@ -86,6 +86,7 @@ import { AccountsettingdetailsComponent } from './components/accountsettings/acc
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
 import { UsersComponent } from './components/accountsettings/users/users.component';
 import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
+import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
@@ -108,6 +109,7 @@ const appRoutes: Routes =
     { path: 'features', component: FeaturesComponent },
     { path: 'app-postajob', component: PostajobComponent },
     {path: 'app-editdraft' , component: EditDraftComponent },
+    {path: 'app-jobtemplate' , component: JobTemplateComponent },
 
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [

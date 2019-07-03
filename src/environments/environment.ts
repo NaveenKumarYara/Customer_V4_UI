@@ -98,6 +98,7 @@ export const environment = {
     GetCompanyBenfits : 'http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBenefit?',
     JobsProfileCount: 'http://api.tenendus.com:1090/JobsAPI/api/GetProfileCount?',
     GetJobDetialCustomerComments: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobComments?',
+    GetJobTemplates:'http://api.tenendus.com:1090/JobsAPI/api/GetJobsTemplate?',
     // CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',
     EditDraft: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftedJobs?',
     InterviewScheduleType: 'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewScheduleType?',
