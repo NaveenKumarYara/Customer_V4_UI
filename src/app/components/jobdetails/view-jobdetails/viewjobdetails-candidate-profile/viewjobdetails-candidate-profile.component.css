@@ -1145,7 +1145,7 @@ h1.title img {
 }
 
 .matching-details.open.h-a {
-    height: auto;
+    height: calc(100% - 72px);
     padding: 38px 47px 13px 47px !important;
 }
 
