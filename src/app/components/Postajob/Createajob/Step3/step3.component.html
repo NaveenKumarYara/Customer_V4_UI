@@ -24,6 +24,25 @@
           <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
         </div>
       </div>
+      <div class="row pbt26-m10">
+          <div class="col-md-12">
+              <label for="" class="question">Save As Template</label>
+          </div>
+          <div class="col-md-2">
+              <div class="clearfix">
+                  <label class="radio checkbox">
+                      <input type="checkbox"   class="radio-input" #template_title (change)="0">
+                       <span class="radio-btn"></span> 
+                       <span>Yes</span>
+                     </label>
+              </div>
+          </div>
+          <div class="col-md-10">
+              <div *ngIf="template_title.checked">
+                  <input type="text" class="form-control mt-0"  placeholder="Template Title">
+               </div>
+          </div>
+        </div>
   </div>
   <hr class="form-divider" />
   <div class="clearfix form-nav">

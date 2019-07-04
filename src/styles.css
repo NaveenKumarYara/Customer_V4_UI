@@ -26379,3 +26379,43 @@ background:#cdcdcd;
 .scrollbar-inner::-webkit-scrollbar-thumb:window-inactive {
 	
 }
+
+.culture-add-imgs{
+    height: calc(487px - 117px);
+    max-height: calc(487px - 117px);
+    }
+    .culture-card{
+        display:inline-block;
+        position: relative;
+    }
+    .wh-100{
+        width:100%;
+        height: 100%;
+    }
+    .mxy-auto{
+        margin:0px auto;
+    }
+    .placeholder {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align:center;
+    }
+    .pointer{
+        cursor: pointer;
+    }
+    .pl-2{
+        padding-left:2rem;
+        padding-right: 0px;
+        padding-top:0px;
+        padding-bottom:0px;
+    }
+    .bl-1{
+        border-left:1px solid #E0E3EF;
+    }
+    .radio.checkbox .radio-btn{
+        border-radius:0px;
+        width: 55px;
+        height: 55px;
+    }
