@@ -38,12 +38,17 @@
       Technical Team for Screening</h3>
       <h6 class="data" *ngFor="let user of teamMembers">{{user.FirstName}}</h6> 
   </div>
-  <div class="form-data-group">
-    <h3 class="question">
-      Video Sizzle</h3>
+  <div class="form-data-group row">
+    <div class="col-md-12">
+        <h3 class="question">
+            Video Sizzle</h3>
+    </div>
+    
+      <div class="col-md-6">
       <video controls>
         <source [src]="videoProfile" type="video/mp4">
       </video>
+    </div>
   </div>
   
 </section>
