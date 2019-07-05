@@ -49,6 +49,7 @@ export class Step1Component implements OnInit {
   pjTechnicalTeam: PjTechnicalTeam;
   pjJobAccessTo: PjJobAccessTo;
   complete: any;
+  disable:any;
   pjSkillList: any = [];
   pjRoleList: any = [];
   pjDiscList: any = [];
@@ -62,6 +63,7 @@ export class Step1Component implements OnInit {
     , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
+      this.disable =  localStorage.getItem('Item');
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.userId = this.customer.UserId;
       this.route.params.subscribe(params => {
@@ -88,9 +90,16 @@ export class Step1Component implements OnInit {
     this.insertJob.UserId = this.userId;
     // this.insertJob.JobPositionId = '';
    // this.insertJob.JobId = 0;
+   if(this.disable == "true")
+   {
+    this.insertJob.JobId =  0;
+   }
+   else 
+   {
     const res = localStorage.getItem('jobId');
     // if (res != null) {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+   }
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
    if ((this.jobDetail.selectedTitle !== '' || null) // && (this.jobProfile.jobPositionId!== '' || null || undefined)
    && this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
@@ -171,6 +180,7 @@ this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
     this.insertJob.IsDrafted = true;
 
   }
+  this.insertJob.SaveAsTemplate = 0;
 this.insertJob.StepNumber = step;
 if (this.appService.stepNumber.value <= step) {
 this.appService.updateStepNumber(step);
@@ -182,6 +192,7 @@ if (this.appService.isDrafted.value != null) {
       if (data) {
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
+        localStorage.setItem('JobId', this.insertJob.JobId.toString());
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);

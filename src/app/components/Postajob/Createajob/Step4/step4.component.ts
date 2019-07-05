@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject ,ViewContainerRef} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { InsertJob, PjDepartments } from '../../models/jobPostInfo';
 import { Location } from '@angular/common';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { StepsComponent } from '../steps.component';
 @Component({
   selector: 'app-steps-step4',
@@ -15,8 +16,9 @@ export class Step4Component implements OnInit {
   jobCategory: number;
   jobMinExp: number;
   jobMaxExp: number;
-  Template:boolean = false;
+  Template:number;
   jobTitle: string;
+  TemplateName:string;
   jobDescription: string;
   jobPositionId: string;
   jobHasDescription: boolean;
@@ -42,13 +44,17 @@ export class Step4Component implements OnInit {
   intwType: any;
   reporting: any;
   customer: any;
+  disable:any;
   userId: any;
   customerId: any;
+  flag:boolean= true;
   team: any;
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private location: Location, private steps: StepsComponent) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
+      this.disable =  localStorage.getItem('Item');    
+      this.toastr.setRootViewContainerRef(_vcr);
       this.complete = JSON.parse(localStorage.getItem('completed'));
       this.draftItem = JSON.parse(localStorage.getItem('draftItem'));
       this.userId = this.customer.UserId;
@@ -126,16 +132,30 @@ export class Step4Component implements OnInit {
     this.appService.addedteammembersChanged.subscribe((data) => {
       this.team = data; // And he have data here too!
     });
+    this.flag = false;
   }
 
 
-  ngOnInit() {
+  ngOnInit() {  
   }
 
+
+  checkValue(event: any){
+    this.Template = event;
+ }
   postJob(step) {
     // this.appService.updateStepNumber(step);
-    const res = localStorage.getItem('jobId');
-    this.insertJob.JobId = parseInt(res, 10);
+    if(this.disable == "true")
+    {
+      const res = localStorage.getItem('JobId');    
+      this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+    }
+    else 
+    {
+     const res = localStorage.getItem('jobId');
+     // if (res != null) {
+     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+    }
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = this.jobPositionId;
@@ -245,6 +265,16 @@ export class Step4Component implements OnInit {
     this.insertJob.Draft = this.draftItem;
     this.insertJob.Email = this.customer.Email;
     } // this.team;
+    if(this.Template == 1 && this.TemplateName == '' || this.Template == 1 && this.TemplateName == undefined)
+    {
+      this.toastr.error('Template name is required!','Oops');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+    }
+    else 
+    {
+    this.insertJob.TemplateSaveTitle = this.TemplateName;
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;
@@ -252,11 +282,13 @@ export class Step4Component implements OnInit {
         // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
         localStorage.removeItem('draftItem');
         localStorage.removeItem('hide');
+        this.TemplateName= null;
         // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
         this.router.navigate([localStorage.getItem('EditViewJob') != null ?
         this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
       }
     });
+  }
   }
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));

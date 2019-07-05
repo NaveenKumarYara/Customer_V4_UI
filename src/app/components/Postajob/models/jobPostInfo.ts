@@ -9,6 +9,7 @@ export class InsertJob {
     public MaxExperienceId: number;
     public CompleteDescription: boolean;
     public JobDescription: string;
+    public TemplateSaveTitle:string;
     public XmlSkills: PjSkill[] = [];
     public XmlRoleId: PjRole[] = [];
     public NumberOfVacancies: number;
@@ -34,7 +35,7 @@ export class InsertJob {
     public IsPrivate: boolean;
     public XmlAccessToUsers: PjJobAccessTo[] = [];
     public ExpiryDate: Date;
-    public SaveAsTemplate: boolean;
+    public SaveAsTemplate: any;
     public StepNumber: number;
     public IsDrafted: boolean;
     public ClientName: string;

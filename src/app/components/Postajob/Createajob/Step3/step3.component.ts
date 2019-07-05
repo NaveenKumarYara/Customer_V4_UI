@@ -78,6 +78,7 @@ export class Step3Component implements OnInit {
   insertJob = new InsertJob();
   departments: any;
   client: any;
+  disable:any;
   employmentType: EmploymentType;
   show = false;
   pjDepartments:  PjDepartments[] = [];
@@ -100,6 +101,7 @@ export class Step3Component implements OnInit {
     private router: Router, private appService: AppService, private steps: StepsComponent, private dialog: MatDialog) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
+      this.disable =  localStorage.getItem('Item');
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
       this.jobIdExists = localStorage.getItem('hide');
@@ -238,8 +240,16 @@ export class Step3Component implements OnInit {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = this.jobPositionId;
-    const res = localStorage.getItem('jobId');
-    this.insertJob.JobId = parseInt(res, 10);
+    if(this.disable == "true")
+    {
+      this.insertJob.JobId =  0;
+    }
+    else 
+    {
+     const res = localStorage.getItem('jobId');
+     // if (res != null) {
+     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+    }
 
   //  this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId;
   //   this.insertJob.JobTitle = this.appService.jobtitle.value;
@@ -264,7 +274,7 @@ export class Step3Component implements OnInit {
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     // this.insertJob.ClientName = localStorage.getItem('clientName');
      this.insertJob.XmlDepartment = this.appService.addeddepartments;  //  this.pjDepartments; // this.departments;
-
+     this.insertJob.SaveAsTemplate = 0;
     // step2
 
     this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;

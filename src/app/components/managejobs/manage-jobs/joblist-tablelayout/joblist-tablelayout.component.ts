@@ -96,6 +96,7 @@ editJob(jobId, active) {
     this.complete = 4;
     this.router.navigate(['/app-createajob/', {jobId} ]);
     localStorage.setItem('completed', JSON.stringify(this.complete));
+    localStorage.setItem('Item', false.toString());
     this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
   }
     // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);

@@ -60,6 +60,7 @@ export class JoblistGridlayoutComponent implements OnInit {
     } else {
       this.complete = 4;
       this.router.navigate(['/app-createajob/', {jobId} ]);
+      localStorage.setItem('Item', false.toString());
       localStorage.setItem('completed', JSON.stringify(this.complete));
       this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
     }

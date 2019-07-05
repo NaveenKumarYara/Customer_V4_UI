@@ -9,10 +9,33 @@
   </div>
 </div>
 
-<label>
-  <input type="checkbox" checked [(ngModel)]="Template">
+
+<div class="row pbt26-m10">
+    <div class="col-md-12">
+        <label for="" class="question">Save As Template</label>
+    </div>
+    <div class="col-md-2">
+        <div class="clearfix">
+            <label class="radio checkbox">
+                <input type="checkbox"   class="radio-input" #template_title [(ngModel)]="flag"  [checked]="flag" (change)="checkValue(flag?1:0)">
+                 <span class="radio-btn"></span> 
+                 <span>Yes</span>
+               </label>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div *ngIf="template_title.checked">
+            <input type="text" class="form-control mt-0" #Tname="ngModel" name="TemplateName" [(ngModel)]="TemplateName" placeholder="Template Title*" required>
+            <span class="text-danger"
+            *ngIf="Tname.invalid && Tname.touched">Required.</span>
+          </div>
+         
+    </div>
+  </div>
+<!-- <label>
+  <input type="checkbox" [(ngModel)]="flag"  [checked]="flag" (change)="checkValue(flag?'1':'0')" />
   <span> Save As Template</span>
-</label>
+</label> -->
 
 <hr class="form-divider" />
 <div class="clearfix form-nav">

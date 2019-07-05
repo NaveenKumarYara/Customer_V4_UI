@@ -44,6 +44,7 @@ export class Step2Component implements OnInit {
   jobSkillsSecondary: any;
   departments: any;
   client: any;
+  disable:any;
   customer: any;
   complete: any;
   userId: any;
@@ -77,6 +78,7 @@ export class Step2Component implements OnInit {
     private router: Router, private appService: AppService, private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.complete = JSON.parse(localStorage.getItem('completed'));
+      this.disable =  localStorage.getItem('Item');
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
       this.jobIdExists = localStorage.getItem('hide');
@@ -147,8 +149,16 @@ export class Step2Component implements OnInit {
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = this.jobPositionId;
-    const res = localStorage.getItem('jobId');
-    this.insertJob.JobId = parseInt(res, 10);
+    if(this.disable == "true")
+    {  
+      this.insertJob.JobId = 0;
+    }
+    else 
+    {
+     const res = localStorage.getItem('jobId');
+     // if (res != null) {
+     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
+    }
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
     this.insertJob.MinExperienceId = this.jobMinExp; // this.appService.minExperience.value;
@@ -158,6 +168,7 @@ export class Step2Component implements OnInit {
     this.insertJob.JobDescription = this.jobDescription; // this.appService.description.value;
     this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
     this.insertJob.ClientId = this.client.ClientId;
+    this.insertJob.SaveAsTemplate = 0;
     this.insertJob.ClientName = this.insertJob.ClientId > 0 ? '' : this.client.ClientName ;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     // this.insertJob.ClientName = localStorage.getItem('clientName');

@@ -27,6 +27,7 @@ cityloading = false;
 prfLoc = new PrefLocation();
 convertObservable: Cities[];
 selectedCityName: Cities;
+disable:any;
 disableLoc = false;
 isDrafted: boolean;
   constructor(private route: ActivatedRoute,
@@ -34,7 +35,7 @@ isDrafted: boolean;
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
-
+      this.disable =  localStorage.getItem('Item');
   }
 
   selectLocation(loc) {
@@ -113,7 +114,15 @@ isDrafted: boolean;
 // }
 ngAfterViewChecked() {
   this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-  this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+  if(this.disable == "true")
+  {
+    this.disableLoc = false;
+  }
+  else 
+  {
+    this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+  }
+ 
 }
   ngOnDestroy() {
   }

@@ -35,6 +35,7 @@ export class EditDraftComponent {
       this.router.navigate(['/app-createajob/', {jobId} ]);
       localStorage.setItem('completed', JSON.stringify(this.complete));
       localStorage.setItem('draftItem', true.toString());
+      localStorage.setItem('Item', false.toString());
       this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
 
 

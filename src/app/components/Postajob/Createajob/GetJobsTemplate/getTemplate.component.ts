@@ -35,12 +35,13 @@ export class JobTemplateComponent {
   editJob(jobId, active) {
 
       this.complete = 4;
+      this.counter
       this.router.navigate(['/app-createajob/', {jobId} ]);
       localStorage.setItem('completed', JSON.stringify(this.complete));
-      localStorage.setItem('draftItem', true.toString());
-      this.router.navigate(['/app-createajob/app-steps-step1/', {jobId} ]);
-
-
+      localStorage.setItem('draftItem', false.toString());
+      localStorage.setItem('Item', true.toString());
+      localStorage.setItem('newJobId',  JSON.stringify(this.complete));
+      this.router.navigate(['/app-createajob/app-steps-step1/', {jobId}]);    
       // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
    // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
   }
