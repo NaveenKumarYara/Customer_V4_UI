@@ -252,6 +252,14 @@ export class JobdetailsService {
       return Observable.throw(error.json());
     });
   }
+
+  ProfileShareInvite(body) {
+    return this.http.post(environment.ProfileShareInvite, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
   StartConversation(body) {
     return this.http.post(environment.StartConversation, body)
     .map((res: Response) => res)

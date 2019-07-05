@@ -125,6 +125,7 @@ export const environment = {
     WishlistCount: 'http://api.tenendus.com:1090/ProfileAPI/api/GetWishlistCount?',
     GetCustomerUsers:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerUsers?',
     InsertCustomerUser:'http://api.tenendus.com:1090/IdentityAPI/api/InsertCompanyContacts',
+    ProfileShareInvite: 'http://api.tenendus.com:1090/EmailAPI/api/ProfileShare',
     // Redirections
     customerLogin: 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',

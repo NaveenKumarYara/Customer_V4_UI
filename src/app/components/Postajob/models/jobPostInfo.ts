@@ -128,6 +128,7 @@ export class DiscResult {
   export class CustomerUsers {
       public  UserId: number;
       public FirstName: string;
+      public Email:string;
   }
   export class ClientModel {
     public  ClientId: number;

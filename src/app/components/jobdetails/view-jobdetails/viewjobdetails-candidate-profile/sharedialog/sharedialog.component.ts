@@ -1,10 +1,18 @@
-import { Component, OnInit, Inject,Input,ViewContainerRef  } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { distinctUntilChanged, debounceTime, switchMap, tap, catchError} from 'rxjs/operators';
+import { concat } from 'rxjs/observable/concat';
+import { Component, Inject,ViewContainerRef } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { environment } from '../../../../../../environments/environment.prod';
+import { Subject } from 'rxjs/Subject';
+import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
+import { AppService } from '../../../../../app.service';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { environment } from '../../../../../../environments/environment.prod';
+import {CustomerContacts} from '../../../../../../models/customercontacts';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { of } from 'rxjs/observable/of';
+declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -13,88 +21,142 @@ export interface DialogData {
   templateUrl: './sharedialog.component.html',
   styleUrls: ['./sharedialog.component.css']
 })
-export class SharedialogComponent implements OnInit {
-  inviteinfo = new InviteInfo();
-  inviteform: FormGroup;
-  customer:any;
-  @Input() jobid: number;
-  customerId: any;
-  userId: any;
-  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
-  //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
-  Emailinvite:any;
-  inviteEmail:any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
+export class SharedialogComponent {
+ managersList: Observable<CustomerUsers[]>;
+ teammembers: '';
+ customercontacts : CustomerContacts[];
+  teammemberslist: CustomerUsers[];
+  getTeammember: CustomerUsers;
+  profileSharing= new ProfileShare();
+  customer: any;
+  customerId: number;
+  UserId:any;
+  usersloading: boolean;
+  customerUser: number;
+  selectedUserName = '';
+  selectedComments:any;
+  userId:number;
+  private subscription: Subscription;
+  selectedUserInput = new Subject<string>();
+  constructor( public dialogRef: MatDialogRef<SharedialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
-    this.userId =  this.customer.UserId;
-    this.toastr.setRootViewContainerRef(_vcr);
-
-   }
-
+    this.customerUser = this.customer.UserId;
+  }
+ 
   ngOnInit() {
-    this.inviteform = this.fb.group({
-      'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
-      'inviteComment'   : ['', Validators.compose([Validators.nullValidator])],
+    this.clearTeamMemebers();
+    this.getcustomerusers();
+    //this.GetInterView();
+    //this.GetType();
+    this.teammemberslist = this.appService.getTeammembers();
+    this.subscription = this.appService.teammembersChanged
+      .subscribe(
+      (teammemberlist: CustomerUsers[]) => {
+        this.teammemberslist = teammemberlist;
+        }
+      );
+  }
+        getcustomerusers() {
+          this.managersList = concat(
+            of([]), // default items
+            this.selectedUserInput.pipe(
+              debounceTime(200),
+              distinctUntilChanged(),
+              tap(() => this.usersloading = true),
+              switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
+                catchError(() => of([])), // empty list on error
+                tap(() => this.usersloading = false)
+              ))
+            )
+          );
+        }
+
+
+  changeTeam(val) {
+    this.getTeammember = val;
+  }
+
+  clearTeamMemebers() {
+    for (let i = 0; i <= 10; i++) {
+      const index = i;
+      this.appService.deleteTeammember(index);
+    }
+    this.deleteTeammember(0);
+   }
+  public addTeammembers() {
+    // const newDomain = new CustomerUsers();
+    // newDomain.FirstName = this.selectedUserName;
+    if (this.getTeammember !== undefined) {
+    const check = this.teamExists(this.getTeammember, this.teammemberslist);
+    if (check === false) {
+    this.appService.addTeammember(this.getTeammember);
+    }
+     // this.selectedUserName = '';
+     $('#teamMbr').val('');
+  }
+  }
+  private deleteTeammember(index: number) {
+    this.appService.deleteTeammember(index);
+  }
+  teamExists(team, list)
+   {
+    return list.some(function(elem) {
+         return elem.UserId === team.UserId;
     });
-  }
-
-    commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
-      const emails = control.value.split(',');
-      const forbidden = emails.some(email => Validators.email(new FormControl(email)));
-      console.log(forbidden);
-      return forbidden ? { 'inviteEmail': { value: control.value } } : null;
-    };
-  
-    SaveInvite() {
-      this.inviteinfo.userId = this.userId;
-      this.inviteinfo.jobId = this.data.jobId;
-      this.inviteinfo.userName =  'Arytic User';
-      this.inviteinfo.fullName = 'Arytic User';
-      this.inviteinfo.statusId = 0;
-      this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;;
-      this.inviteinfo.ApplicationName = 'Arytic';
-      this.inviteinfo.CandFullName = this.data.Title;
-      this.inviteinfo.CustFullName = this.inviteform.value.inviteComment;
-      this.inviteinfo.ClientLogo = '';
-      this.inviteinfo.AppLink = environment.CandidateSignUp+';Pid='+this.data.ProfileId;
-      if(this.inviteinfo.ToEmailId == "")
-      {
-        this.toastr.error('Please provide the valid details!', 'Oops!');
-          setTimeout(() => {
-              this.toastr.dismissToast;
-          }, 3000);
-      }
-      else if(this.inviteinfo.ToEmailId != "")
-      {
-      this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
-         if (data === 0) {
-          this.inviteform.reset();
-          this.toastr.success('Mail sent successfully', 'Success');
-          setTimeout(() => {
-           this.toastr.dismissToast;
-       }, 3000);
-         }
-       }, error => {
-         alert('error ');
-              console.log('error:', JSON.stringify(error));
-             });
-     }
+ }
+ ShareProfile() {
+    this.profileSharing.InviteFriendId = 0;
+    this.profileSharing.FromuserId = this.customerUser;
+    this.UserId = this.teammemberslist.map(x => x.UserId).toString();
+    this.profileSharing.ToUserId= parseInt(this.UserId);
+    this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
+    this.profileSharing.ApplicationName = 'Arytic';
+    this.profileSharing.AppLink = environment.CandidateSignUp+';Preid='+this.data.ProfileId;
+    this.profileSharing.Comments=this.selectedComments;
+    if(this.profileSharing.ToEmailId == "")
+    {
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
     }
+    else if(this.profileSharing.ToEmailId != "")
+    {
+      debugger
+    this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
+       if (data === 0) {
+        //this.inviteform.reset();
+        this.teammemberslist = [];
+        $('#teamMbr').val('');
+        this.selectedUserName = ''
+        this.getTeammember = new CustomerUsers();
+        this.profileSharing= new ProfileShare();
+        this.clearTeamMemebers();
+        this.selectedComments = "";
+        this.toastr.success('Mail sent successfully', 'Success');
+        setTimeout(() => {
+         this.toastr.dismissToast;
+         this.dialogRef.close();
+     }, 3000);
+       }
+     }, error => {
+            console.log('error:', JSON.stringify(error));
+           });
+   }
   }
+ 
+ 
+}
 
-
-  export class InviteInfo {
-    userId: number;
-    jobId: number;
-    fullName: string;
-    userName: string;
-    statusId: number;
-    CustFullName: string;
-    CandFullName: string;
-    AppLink: string;
-    ToEmailId: string;
-    ApplicationName: string;
-    ClientLogo: string;
-    readonly modules: ReadonlyArray<{}> = [];
-    }
+export class ProfileShare {
+  InviteFriendId : number;
+  FromuserId: number;
+  ToUserId: number;
+  Comments:string;
+  AppLink: string;
+  ToEmailId: string;
+  FromEmailId:string;
+  ApplicationName:string;
+  readonly modules: ReadonlyArray<{}> = []
+}

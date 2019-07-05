@@ -4,3 +4,38 @@
     float: right;
     width: 100%;
 }
+
+.share_candidate.team-members-list {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.share_candidate.team-members-list li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.share_candidate.team-members-list li h4 {
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    display: inline-block;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.share_candidate.team-members-list li .close {
+    padding: 0 10px;
+    opacity: 0.6;
+    font-size: 1.4rem;
+    font-weight: 300;
+}
