@@ -24,12 +24,17 @@ export class dLoginComponent {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
   userId:any;
+  preId:any;
   constructor(  private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
           if (params['Uid']>0) {
             this.ActivatetheUser(params['Uid']);
           }
+         if (params['Preid']>0) {
+           sessionStorage.setItem('Preid',params['Preid']);
+          }
+
         });
         this.toastr.setRootViewContainerRef(_vcr);
       
@@ -96,7 +101,15 @@ export class dLoginComponent {
               sessionStorage.setItem('userData', JSON.stringify(data));
               this.customerId = data.customerId;
               this.userId =data.userId;
-                  this.router.navigateByUrl('app-dashboardview');
+              if(this.preId !=null)
+              {
+                this.router.navigate(['/app-Getcandidateprofile']);
+              }
+              else if(this.preId ==null || this.preId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                
               }
                 },
       
@@ -138,8 +151,10 @@ export class dLoginComponent {
       })
   }
 
+
   ngOnInit() {
     this.show= false;
+    this.preId = sessionStorage.getItem('Preid');
     this.loginform = this.fb.group({
       'UserName': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],

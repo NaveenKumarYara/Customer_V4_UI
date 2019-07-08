@@ -89,6 +89,7 @@ import { aboutcompany } from './components/company-profile/aboutcompany/aboutcom
 import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
+import {GetCandidateprofileComponent} from './components/GetProfileDetails/GetProfile.component';
 import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
@@ -110,6 +111,7 @@ const appRoutes: Routes =
     { path: 'app-postajob', component: PostajobComponent },
     {path: 'app-editdraft' , component: EditDraftComponent },
     {path: 'app-jobtemplate' , component: JobTemplateComponent },
+    {path: 'app-Getcandidateprofile' , component: GetCandidateprofileComponent},
 
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [

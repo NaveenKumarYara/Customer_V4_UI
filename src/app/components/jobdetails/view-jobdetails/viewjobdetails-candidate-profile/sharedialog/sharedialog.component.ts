@@ -108,11 +108,11 @@ export class SharedialogComponent {
  ShareProfile() {
     this.profileSharing.InviteFriendId = 0;
     this.profileSharing.FromuserId = this.customerUser;
-    this.UserId = this.teammemberslist.map(x => x.UserId).toString();
-    this.profileSharing.ToUserId= parseInt(this.UserId);
+    this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
+    //this.profileSharing.ToUserId= parseInt(this.UserId);
     this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
     this.profileSharing.ApplicationName = 'Arytic';
-    this.profileSharing.AppLink = environment.CandidateSignUp+';Preid='+this.data.ProfileId;
+    this.profileSharing.AppLink = environment.CandidateLogin+';Preid='+this.data.ProfileId;
     this.profileSharing.Comments=this.selectedComments;
     if(this.profileSharing.ToEmailId == "")
     {
@@ -152,7 +152,7 @@ export class SharedialogComponent {
 export class ProfileShare {
   InviteFriendId : number;
   FromuserId: number;
-  ToUserId: number;
+  ToUserId: string;
   Comments:string;
   AppLink: string;
   ToEmailId: string;

@@ -76,6 +76,7 @@ import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import {ProgressBarModule} from 'angular-progress-bar';
+import { GetCandidateprofileComponent } from './components/GetProfileDetails/GetProfile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -127,6 +128,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
     DepartmentsComponent,
     ClientsComponent,
     ResponsibilitiesDialogComponent,
+    GetCandidateprofileComponent
     // SalarysliderComponent,
   ],
   imports: [
