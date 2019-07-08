@@ -35,6 +35,7 @@ export const environment = {
     ForgotPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ForgotPassword',
     ResetPassword: 'http://api.tenendus.com:1090/IdentityAPI/api/ResetPassword',
     CustomerTokenLogin:  'http://api.tenendus.com:1090/IdentityAPI/api/CustomerTokenLogin',
+    CustomerAppLogin: 'http://devapp.arytic.com/login',
     InviteContact: 'http://api.tenendus.com:1090/EmailAPI/api/EmailInviteContact',
     ProfileShareInvite: 'http://api.tenendus.com:1090/EmailAPI/api/ProfileShare',
     StartConversation: 'http://api.tenendus.com:1090/EmailAPI/api/SendEmailConversation',

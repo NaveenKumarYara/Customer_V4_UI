@@ -112,7 +112,7 @@ export class SharedialogComponent {
     //this.profileSharing.ToUserId= parseInt(this.UserId);
     this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
     this.profileSharing.ApplicationName = 'Arytic';
-    this.profileSharing.AppLink = environment.CandidateLogin+';Preid='+this.data.ProfileId;
+    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId;
     this.profileSharing.Comments=this.selectedComments;
     if(this.profileSharing.ToEmailId == "")
     {
@@ -123,7 +123,6 @@ export class SharedialogComponent {
     }
     else if(this.profileSharing.ToEmailId != "")
     {
-      debugger
     this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
        if (data === 0) {
         //this.inviteform.reset();

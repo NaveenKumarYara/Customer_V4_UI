@@ -127,7 +127,8 @@ export const environment = {
     InsertCustomerUser:'http://api.tenendus.com:1090/IdentityAPI/api/InsertCompanyContacts',
     ProfileShareInvite: 'http://api.tenendus.com:1090/EmailAPI/api/ProfileShare',
     // Redirections
-    customerLogin: 'http://dev.arytic.com/customerlogin',
+    CustomerAppLogin: 'http://devapp.arytic.com/login',
+    customerLogin : 'http://dev.arytic.com/customerlogin',
     customerSignUp: 'http://dev.arytic.com/customersignup',
     ForgotPasswordurl: 'http://dev.arytic.com/ForgotPassword',
     CandidateSignUp: 'http://dev.arytic.com/candidatesignup',

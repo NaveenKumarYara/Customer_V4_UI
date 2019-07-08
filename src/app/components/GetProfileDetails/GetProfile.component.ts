@@ -27,6 +27,12 @@ export class GetCandidateprofileComponent implements OnInit {
   ngOnInit() {
     this.GetUserProfileInfo();
   }
+
+  Close()
+  {
+    this.router.navigateByUrl('login');
+  }
+
   GetUserProfileInfo() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
       datas => {
