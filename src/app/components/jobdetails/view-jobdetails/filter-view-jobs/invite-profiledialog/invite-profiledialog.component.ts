@@ -56,10 +56,9 @@ export interface DialogData {
     this.inviteinfo.CandFullName = 'Arytic User';
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.AppLink = environment.CandidateSignUp;
+    this.inviteinfo.AppLink = environment.CandidateSignUp+';JId='+JSON.parse(sessionStorage.getItem('jobId'));
     if(this.inviteinfo.ToEmailId == "")
     {
-      debugger
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
