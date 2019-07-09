@@ -20,7 +20,7 @@ export class GetCandidateprofileComponent implements OnInit {
   profileId: any;
   list: any;
   otherSkills: any = [];
-  constructor(private _service: ApiService, private router: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService, private router: Router) {
      this.profileId = sessionStorage.getItem('Preid');
   }
 

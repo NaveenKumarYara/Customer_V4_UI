@@ -1,9 +1,11 @@
 import { Component , ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
+import {GetCandidateprofileComponent} from '../GetProfileDetails/GetProfile.component';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any; 
 @Component({
@@ -25,7 +27,7 @@ export class dLoginComponent {
   password:any;
   userId:any;
   preId:any;
-  constructor(  private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
+  constructor( private dialog: MatDialog, private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
           if (params['Uid']>0) {
@@ -103,7 +105,21 @@ export class dLoginComponent {
               this.userId =data.userId;
               if(this.preId !=null)
               {
-                this.router.navigate(['/app-Getcandidateprofile']);
+                this.router.navigateByUrl('app-dashboardview');
+                const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                  {
+                    width: '750',
+                    position: {right : '0px'},
+                    height : '750px',
+                    data: {
+                      animal: 'panda'
+                    }
+                  }
+                );
+                chatboxdialogRef.afterClosed().subscribe(result => {
+                  console.log('Chatbox Dialog result: ${result}');
+                });
+                //this.router.navigate(['/app-Getcandidateprofile']);
               }
               else if(this.preId ==null || this.preId == undefined)
               {

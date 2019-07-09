@@ -21,7 +21,8 @@ export class ViewCandidateprofileComponent implements OnInit {
   list: any;
   otherSkills: any = [];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private router: Router) {
-    // this.profileId = JSON.parse(sessionStorage.getItem('profileId'));
+    //this.preId = sessionStorage.getItem('Preid');
+    this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
   }
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.data.ProfileId).subscribe(
       datas => {
         this.profileview = datas;
+        debugger
         // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
          && (u.ExpInYears != null && u.ExpInMonths != null));
