@@ -35,6 +35,7 @@ export class dLoginComponent {
           }
          if (params['Preid']>0) {
            sessionStorage.setItem('Preid',params['Preid']);
+           sessionStorage.setItem('jobId',params['Id']);
           }
 
         });
@@ -104,8 +105,8 @@ export class dLoginComponent {
               this.customerId = data.customerId;
               this.userId =data.userId;
               if(this.preId !=null)
-              {
-                this.router.navigateByUrl('app-dashboardview');
+              {             
+                this.router.navigateByUrl('app-view-jobdetails');
                 const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
                   {
                     width: '750',

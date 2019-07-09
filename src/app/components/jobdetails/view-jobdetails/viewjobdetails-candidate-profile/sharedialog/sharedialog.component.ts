@@ -112,9 +112,9 @@ export class SharedialogComponent {
     //this.profileSharing.ToUserId= parseInt(this.UserId);
     this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
     this.profileSharing.ApplicationName = 'Arytic';
-    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId;
+    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId;
     this.profileSharing.Comments=this.selectedComments;
-    if(this.profileSharing.ToEmailId == "")
+    if(this.profileSharing.ToEmailId == ""&& this.profileSharing.Comments == "")
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
