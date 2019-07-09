@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject,ViewContainerRef  } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
@@ -25,7 +25,7 @@ export interface DialogData {
     //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     Emailinvite:any;
     inviteEmail:any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
+  constructor(public dialogRef: MatDialogRef<InviteProfiledialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId =  this.customer.UserId;
@@ -67,12 +67,13 @@ export interface DialogData {
     else if(this.inviteinfo.ToEmailId != "")
     {
     this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
-       if (data === 0) {
-        this.inviteform.reset();
+       if (data === 0) {  
         this.toastr.success('Mail sent successfully', 'Success');
         setTimeout(() => {
          this.toastr.dismissToast;
+         this.inviteform.reset();
      }, 3000);
+     this.dialogRef.close();
        }
      }, error => {
        alert('error ');
