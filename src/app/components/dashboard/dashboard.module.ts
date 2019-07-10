@@ -6,6 +6,7 @@ import { DashboardActivejobsComponent } from './dashboard-activejobs/dashboard-a
 import { DashboardScheduledInterviewComponent } from './dashboard-scheduled-interview/dashboard-scheduled-interview.component';
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { DashboardRecentjobsComponent } from './dashboard-recentjobs/dashboard-recentjobs.component';
+import {InviteFriendContentComponent} from './invite-friend/invite.component';
 import { DashboardRecentApplicationsComponent } from './dashboard-recent-applications/dashboard-recent-applications.component';
 import {RecentjobsCountComponent} from './dashboard-recentjobs/recentjobscount/recentjobscount.component';
 import { DashboardService } from './dashboard.service';
@@ -19,6 +20,6 @@ import {SharedModule} from '../../shared/shared.module';
     ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule
     ],
     providers: [DashboardService],
-  declarations: [DashboardviewComponent, DashboardJobsviewComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent]
+  declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent]
 })
 export class DashboardModule { }

@@ -94,6 +94,7 @@ import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobd
 import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
+import{InviteFriendContentComponent} from './components/dashboard/invite-friend/invite.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -216,6 +217,7 @@ const appRoutes: Routes =
     { path: 'app-dashboardview', component: DashboardviewComponent },
     { path: 'app-dashboard-activejobs', component: DashboardActivejobsComponent },
     { path: 'app-dashboard-scheduled-interview', component: DashboardScheduledInterviewComponent },
+    { path: 'app-invite-friend', component: InviteFriendContentComponent},
     { path: 'app-dashboard-jobsview', component: DashboardJobsviewComponent },
     { path: 'app-dashboard-content', component: DashboardContentComponent },
     { path: 'app-dashboard-recent-applications', component: DashboardRecentApplicationsComponent },

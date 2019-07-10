@@ -27,5 +27,8 @@ export class DashboardScheduledInterviewComponent implements OnInit {
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }
-
+  Schedule()
+  {
+    this.router.navigateByUrl('app-invite-friend');
+  }
 }
