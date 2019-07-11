@@ -112,7 +112,7 @@ export class SharedialogComponent {
     //this.profileSharing.ToUserId= parseInt(this.UserId);
     this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
     this.profileSharing.ApplicationName = 'Arytic';
-    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId;
+    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+this.data.customerId;
     this.profileSharing.Comments=this.selectedComments;
     if(this.profileSharing.ToEmailId == ""&& this.profileSharing.Comments == "")
     {

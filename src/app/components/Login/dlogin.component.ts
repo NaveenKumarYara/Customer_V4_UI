@@ -27,6 +27,7 @@ export class dLoginComponent {
   password:any;
   userId:any;
   preId:any;
+  cid:any;
   constructor( private dialog: MatDialog, private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
@@ -36,6 +37,7 @@ export class dLoginComponent {
          if (params['Preid']>0) {
            sessionStorage.setItem('Preid',params['Preid']);
            sessionStorage.setItem('jobId',params['Id']);
+           sessionStorage.setItem('Cid',params['Cid'])
           }
 
         });
@@ -87,6 +89,7 @@ export class dLoginComponent {
           this.result = data;
           if(this.result.UserId>0&&this.result.CustomerId>0)
           {
+            
             this.appService.Login(this.loginform.value)
             .subscribe(
             data => {
@@ -102,10 +105,15 @@ export class dLoginComponent {
               sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
               sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
               sessionStorage.setItem('userData', JSON.stringify(data));
-              this.customerId = data.customerId;
-              this.userId =data.userId;
+              this.customerId = data.CustomerId;
+              this.userId =data.UserId;
+              debugger  
               if(this.preId !=null)
-              {             
+              {    
+                debugger  
+                if(this.cid==this.customerId)
+                { 
+                
                 this.router.navigateByUrl('app-view-jobdetails');
                 const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
                   {
@@ -120,6 +128,10 @@ export class dLoginComponent {
                 chatboxdialogRef.afterClosed().subscribe(result => {
                   console.log('Chatbox Dialog result: ${result}');
                 });
+              }
+              else{
+                this.router.navigateByUrl('app-dashboardview');
+              }
                 //this.router.navigate(['/app-Getcandidateprofile']);
               }
               else if(this.preId ==null || this.preId == undefined)
@@ -172,6 +184,7 @@ export class dLoginComponent {
   ngOnInit() {
     this.show= false;
     this.preId = sessionStorage.getItem('Preid');
+    this.cid=sessionStorage.getItem('Cid')
     this.loginform = this.fb.group({
       'UserName': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],
