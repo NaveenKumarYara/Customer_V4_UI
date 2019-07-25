@@ -26418,3 +26418,9 @@ background:#cdcdcd;
         border-radius:0px;
         margin: 11px;
     }
+    .w-auto{
+        width: auto !important;
+    }
+    .p10-20{
+        padding:10px 20px !important;
+    }
