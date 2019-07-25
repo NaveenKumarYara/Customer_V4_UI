@@ -37,6 +37,7 @@ import { ManageJobsComponent } from './components/managejobs/manage-jobs/manage-
 import { ViewjobsComponent } from './components/managejobs/manage-jobs/viewjobs/viewjobs.component';
 import { SearchjobsComponent } from './components/managejobs/manage-jobs/searchjobs/searchjobs.component';
 import { FilterjobsComponent } from './components/managejobs/manage-jobs/filterjobs/filterjobs.component';
+import {InterviewListComponent} from './components/managejobs/manage-jobs/GetInterviewJobsList/interviewList.component';
 import { JoblistGridlayoutComponent } from './components/managejobs/manage-jobs/joblist-gridlayout/joblist-gridlayout.component';
 import { JoblistTablelayoutComponent } from './components/managejobs/manage-jobs/joblist-tablelayout/joblist-tablelayout.component';
 import { LoadJoblistComponent } from './components/managejobs/manage-jobs/load-joblist/load-joblist.component';
@@ -175,6 +176,7 @@ const appRoutes: Routes =
     { path: 'app-manage-advance-search', component: AdvanceSearchComponent },
     { path: 'app-manage-joblist-gridlayout', component: JoblistGridlayoutComponent },
     { path: 'app-manage-joblist-tablelayout', component: JoblistTablelayoutComponent },
+    {path:'app-interviewList',component:InterviewListComponent},
     {
       path: 'app-manage-jobs', component: ManageJobsComponent,
       children: [
@@ -182,6 +184,7 @@ const appRoutes: Routes =
         { path: 'app-manage-load-joblist/:id', component: LoadJoblistComponent },
       ]
     },
+   
     { path: 'app-view-jobdetails', component: ViewJobdetailsComponent },
     { path: 'app-filter-view-jobs', component: FilterViewJobsComponent },
     { path: 'app-jobdetails-advance-search', component: JobdetailsAdvanceSearchComponent },

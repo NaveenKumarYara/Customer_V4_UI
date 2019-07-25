@@ -29,6 +29,6 @@ export class DashboardScheduledInterviewComponent implements OnInit {
   }
   Schedule()
   {
-    this.router.navigateByUrl('app-invite-friend');
+    this.router.navigateByUrl('app-interviewList');
   }
 }

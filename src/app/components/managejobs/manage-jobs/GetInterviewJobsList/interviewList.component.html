@@ -1,0 +1,323 @@
+<app-Logoheader></app-Logoheader>
+
+<main class="page page--manage-jobs">
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+  <div class="container">
+    <div class="filters">
+      <div class="pull-left">
+        <form class="form-inline" action="">
+          <div class="form-group view-group">
+            <select name="view" id="view" class="styled-select-box">
+              <option value="">All Jobs</option>
+              <option value="">Pending</option>
+              <option value="">Rejected</option>
+              <option value="">Hired</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <h5 class="show-count">Showing 6 out of 138 Jobs</h5>
+      <div class="pull-right">
+        <div class="search-toggle">
+          <div class="search-input-group">
+            <input type="text" id="search" placeholder="Search ...">
+          </div>
+          <a href="javascript:void(0)">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="19.1" height="19.1">
+              <path class="st0"
+                d="M7.9 15.8C3.6 15.8 0 12.3 0 7.9 0 3.6 3.5 0 7.9 0c4.3 0 7.9 3.5 7.9 7.9 0 4.3-3.6 7.9-7.9 7.9zm0-14c-3.3 0-6.1 2.7-6.1 6.1 0 3.3 2.7 6.1 6.1 6.1 3.3 0 6.1-2.7 6.1-6.1-.1-3.4-2.8-6.1-6.1-6.1z" />
+              <path class="st0"
+                d="M18.2 19.1c-.2 0-.5-.1-.6-.3l-5.3-5.3c-.4-.4-.4-.9 0-1.3s.9-.4 1.3 0l5.3 5.3c.4.4.4.9 0 1.3-.2.2-.5.3-.7.3z" />
+            </svg>
+          </a>
+        </div>
+        <div class="adv-filters-btn btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19.3" height="21.1">
+            <path
+              d="M7.2 21.1c-.2 0-.3 0-.5-.1-.3-.2-.5-.5-.5-.9v-9.9L.3 4.4a.9.9 0 0 1-.3-.7V1c0-.6.4-1 1-1h17.3c.6 0 1 .4 1 1v2.8c0 .3-.1.5-.3.7l-5.9 5.8v6.9c0 .4-.2.7-.5.9L7.7 21c-.1.1-.3.1-.5.1zM2 3.3l5.9 5.8c.2.2.3.4.3.7v8.5l2.9-1.7V9.9c0-.3.1-.5.3-.7l5.9-5.8V2H2v1.3z" />
+          </svg>
+        </div>
+        <ul class="nav btn-group">
+          <li class="active btn">
+            <a data-toggle="tab" href="#grid-view">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
+                <path
+                  d="M7 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h4V2H2v4zM18.9 8h-6c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zm-5-2h4V2h-4v4zM7 20H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4H2v4zM18.9 20h-6c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4h-4v4z" />
+              </svg>
+            </a>
+          </li>
+          <li class="btn">
+            <a data-toggle="tab" href="#list-view">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="19.9">
+                <path class="st0"
+                  d="M18.9 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h15.9V2H2v4zM18.9 19.9H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 17.9h15.9v-4H2v4z" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="adv-filters">
+      <div class="col-md-12">
+        <div class="input-row row">
+          <form action="">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="job-type">Job Type</label>
+                <select name="" id="" class="styled-select-box block">
+                  <option value="" disabled selected>Select Job Type</option>
+                  <option value="">Part Time</option>
+                  <option value="">Full Time</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="job-type">Experience</label>
+                <select name="" id="" class="styled-select-box block">
+                  <option value="" disabled selected>Select Experience</option>
+                  <option value="">2 Years</option>
+                  <option value="">3 Years</option>
+                  <option value="">4 Years</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="job-type">Career Level</label>
+                <select name="" id="" class="styled-select-box block">
+                  <option value="" disabled selected>Select Career Level</option>
+                  <option value="">Part Time</option>
+                  <option value="">Full Time</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-right">
+              <button class="btn btn-border">Cancel</button>
+              <button class="btn btn-filled">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="tab-content">
+        <div id="grid-view" class="tab-pane fade in active"  >
+          <div class="col-md-12">
+            <div class="row" >
+              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist">
+                <div class="card" >
+                  <!-- <div class="dropdown card-dropdown">
+                      <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                          <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                            fill="#448afa" />
+                        </svg>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <ahref="javascript:void(0)">Edit</a>
+                        </li>
+                        <li>
+                          <ahref="javascript:void(0)">Inactive</a>
+                        </li>
+                        <li>
+                          <ahref="javascript:void(0)">Share</a>
+                        </li>
+                      </ul>
+                    </div> -->
+                  <a href="job-details.html">
+                    <header>
+                      <h3 class="medium">{{job?.JobTitle}}</h3>
+                      <div class="meta">
+                        <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
+                          <path class="st0"
+                            d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
+                          <path class="st0"
+                            d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
+                        </svg>
+                        <h5 class="location border-b-0">{{job?.JobLocations}}</h5>
+
+                      </div>
+                      <!-- <div class="status pending">pending</div> -->
+                    </header>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                          <div class="stats text-left">
+                            <h6>Interview Date & Time</h6>
+                            <h4>{{job?.InterviewDate | date :'medium' }}</h4>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                          <div class="stats text-left">
+                            <h6>Interview Type</h6>
+                            <h4><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="stats text-left ptb-14">
+                            <h6>screening person</h6>
+                            <div class="media-obj">
+                              <img class="align-self-center" src="../../../../assets/images/ui-face-2.png" alt="">
+                              <div class="media-body">
+                                <h4 class="pl-10">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 ptb-14">
+                          <div class="stats border-b-0 text-left">
+                            <!-- <h3>Interview Update</h3> -->
+                            <div class="pt-14">
+                              <div class="checkbox">
+                                <label><input name="interview-update" type="radio"><span class="box">Accept</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <label><input name="interview-update" type="radio"><span class="box">Reject</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <label><input name="interview-update" type="radio"><span class="box">Schedule
+                                    date</span> </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- .card-body -->
+                    <div class="card-footer">
+                      <img src="../../../../assets/images/ui-face-1.png" alt="">
+                      <h3>{{job?.HiringLeaderFirstName}} {{job?.HiringLeaderLastName}}</h3>
+                      <h5 class="meta">In process</h5>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="load-more btn btn-border btn-block">
+              Load More
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="list-view" class="tab-pane fade">
+          <ul class="job-list">
+            <li class="card" *ngFor="let job of joblist">
+              <div class="row list-header">
+                <div class="col-md-3">
+                  <div class="job-details">
+                    <h3 class="medium">{{job?.JobTitle}}</h3>
+                    <div class="meta">
+                      <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
+                        <path class="st0"
+                          d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
+                        <path class="st0"
+                          d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
+                      </svg>
+                      <h5 class="location border-b-0">{{job?.JobLocations}}</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 f-right">
+
+                  <div class="d-inherit">
+                    <div class="stats text-left">
+                      <div class="list-stats">
+                        <h6>Interview Date & Time</h6>
+                        <h4>{{job?.InterviewDate  | date :'medium' }}</h4>
+                      </div>
+
+                    </div>
+                    <div class="stats text-left">
+                      <div class="list-stats pl-20">
+                        <h6>Interview Type</h6>
+                        <h4><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                      </div>
+
+
+                    </div>
+                    <div class="stats text-left">
+                      <div class="pl-20">
+                          <h6>screening person</h6>
+                          <div class="media-obj">
+                            <img class="align-self-center" src="../../../../assets/images/ui-face-2.png" alt="">
+                            <div class="media-body1">
+                              <h4 class="pl-10">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
+                            </div>
+                          </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="card-footer">
+                <div class="h-manager">
+                  <img src="../../../../assets/images/ui-face-1.png" alt="">
+                  <div>
+                    <h3>{{job?.HiringLeaderFirstName}} {{job?.HiringLeaderLastName}}</h3>
+                    <h5 class="meta">In process</h5>
+                  </div>
+                </div>
+                <div class="stats-group">
+
+                  <div>
+                    <h3>Interview Update</h3>
+                    <div class="mt-7">
+                      <div class="checkbox">
+                        <label><input name="interview-update" type="radio"><span class="box">Accept</span>
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input name="interview-update" type="radio"><span class="box">Reject</span>
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input name="interview-update" type="radio"><span class="box">Schedule
+                            date</span> </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="load-more btn btn-border btn-block">
+            Load More
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

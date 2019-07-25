@@ -51,6 +51,18 @@ export class ManageJobService {
     );
   }
 
+  GetInterviewList( userId: number,customerId: number)
+  {
+
+    const url = environment.GetInterViewList +'&userId=' + userId + 
+    '&customerId=' + customerId +'&month=0&year=0&sortBy=0&pageNumber=1&numberOfRows=100';
+    return this.http.get<JobDetails>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
+
   GetSearch(city: string = null): Observable<string[]> {
     const url = environment.GetCitySearch + '?cityName=' + city;
     return this.http.get<string[]>(url)

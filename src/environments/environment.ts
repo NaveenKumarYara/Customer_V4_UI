@@ -9,6 +9,7 @@ export const environment = {
     getskillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/GetSkills',
     addSkillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/AddSkill',
     GetPersonTypeEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetPersonType?',
+    GetInterViewList:'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewList?',
     // locationwisejobtitlesendpoint: "http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
     SuggestJobTitleEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
     SuggestJobCategoryEndPoint : ' http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobCategory?',

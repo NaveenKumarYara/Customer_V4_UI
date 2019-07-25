@@ -17,6 +17,7 @@ import { ManageJobService } from './managejobs.service';
 import { LoadJoblistComponent } from './manage-jobs/load-joblist/load-joblist.component';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {InterviewListComponent} from './manage-jobs/GetInterviewJobsList/interviewList.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from '../../shared/shared.module';
@@ -35,8 +36,8 @@ import {SharedModule} from '../../shared/shared.module';
     MatCardModule, MatProgressSpinnerModule, NgxSpinnerModule
   ],
   providers: [ManageJobService],
-  declarations: [ManageJobsComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent, AdvanceSearchComponent, LoadJoblistComponent],
-  exports: [ManageJobsComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent]
+  declarations: [ManageJobsComponent,InterviewListComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent, AdvanceSearchComponent, LoadJoblistComponent],
+  exports: [ManageJobsComponent,InterviewListComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent]
 })
 export class ManagejobsModule {
 
