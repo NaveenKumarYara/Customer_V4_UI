@@ -29,8 +29,11 @@ export class SharedialogComponent {
   getTeammember: CustomerUsers;
   profileSharing= new ProfileShare();
   customer: any;
+  AddUser:boolean= false;
   customerId: number;
   UserId:any;
+  EmailId:any;
+  Name:any;
   usersloading: boolean;
   customerUser: number;
   selectedUserName = '';
@@ -47,6 +50,7 @@ export class SharedialogComponent {
   ngOnInit() {
     this.clearTeamMemebers();
     this.getcustomerusers();
+    this.AddUser = false;
     //this.GetInterView();
     //this.GetType();
     this.teammemberslist = this.appService.getTeammembers();
@@ -57,7 +61,13 @@ export class SharedialogComponent {
         }
       );
   }
-        getcustomerusers() {
+
+  teamchange(val)
+  {
+  this.AddUser= val;
+  }
+
+   getcustomerusers() {
           this.managersList = concat(
             of([]), // default items
             this.selectedUserInput.pipe(
@@ -106,15 +116,23 @@ export class SharedialogComponent {
     });
  }
  ShareProfile() {
+
     this.profileSharing.InviteFriendId = 0;
     this.profileSharing.FromuserId = this.customerUser;
-    this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
-    //this.profileSharing.ToUserId= parseInt(this.UserId);
-    this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
+    if((this.Name != null && this.EmailId != null)||(this.Name != "" && this.EmailId != ""))
+    {
+      this.profileSharing.ToUserId = "0";
+      this.profileSharing.ToEmailId = this.EmailId;
+    }
+    else 
+    {
+      this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
+      //this.profileSharing.ToUserId= parseInt(this.UserId);
+      this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
+    } 
     this.profileSharing.ApplicationName = 'Arytic';
     this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
     this.profileSharing.Comments=this.selectedComments;
-    debugger
     if(this.profileSharing.ToEmailId == "" && this.profileSharing.Comments == undefined)
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -148,17 +166,19 @@ export class SharedialogComponent {
         this.profileSharing= new ProfileShare();
         this.clearTeamMemebers();
         this.selectedComments = "";
+        this.Name = " ";
+        this.EmailId = " ";
         this.toastr.success('Mail sent successfully', 'Success');
         setTimeout(() => {
          this.toastr.dismissToast;
          this.dialogRef.close();
-     }, 3000);
+     }, 3000);      
        }
      }, error => {
             console.log('error:', JSON.stringify(error));
            });
    }
-  }
+ }
  
  
 }
