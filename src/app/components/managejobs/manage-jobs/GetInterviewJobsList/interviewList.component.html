@@ -154,13 +154,33 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <div class="stats text-left">
                             <h6>Interview Date & Time</h6>
-                            <h4>{{job?.InterviewDate | date :'medium' }}</h4>
+                            <h5>{{job?.InterviewDate | date :'medium' }}</h5>
                           </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <div class="stats text-left">
                             <h6>Interview Type</h6>
-                            <h4><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                            <div class="row m-0">
+                              <div class="col-md-6 w-auto p-0">
+                                <h4 class="m-rb-10 c93A2BB"><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                              </div>
+                              <div class="col-md-6 w-auto p-0">
+                                <div class="dropdown d-inline">
+                                  <a class="dropdown-toggle interview-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    i
+                                  </a>
+                                  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                    <li><a  href="skype:live:dbharath.scv?chat">
+                                      <img src="../../../../../assets/images/skype.svg" />
+                                      skype:live:dbharath
+                                    </a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            
+                            
 
                           </div>
                         </div>
@@ -231,7 +251,7 @@
         <div id="list-view" class="tab-pane fade">
           <ul class="job-list">
             <li class="card" *ngFor="let job of joblist">
-              <div class="row list-header">
+              <header class="row list-header">
                 <div class="col-md-3">
                   <div class="job-details">
                     <h3 class="medium">{{job?.JobTitle}}</h3>
@@ -246,31 +266,48 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 f-right">
+                <div class="col-md-9 f-right">
 
-                  <div class="d-inherit">
-                    <div class="stats text-left">
+                  <div class="row">
+                    <div class="stats text-left col-md-4">
                       <div class="list-stats">
-                        <h6>Interview Date & Time</h6>
-                        <h4>{{job?.InterviewDate  | date :'medium' }}</h4>
+                        <h3 class="medium">Interview Date & Time</h3>
+                        <h4 class="c93A2BB">{{job?.InterviewDate  | date :'medium' }}</h4>
                       </div>
 
                     </div>
-                    <div class="stats text-left">
-                      <div class="list-stats pl-20">
-                        <h6>Interview Type</h6>
-                        <h4><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                    <div class="stats text-left col-md-4">
+                      <div class="list-stats">
+                        <h3 class="medium">Interview Type</h3>
+                        <div class="row mt-10-0">
+                            <div class="col-md-6 w-auto p-0">
+                              <h4 class="m-rb-10 c93A2BB"><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                            </div>
+                            <div class="col-md-6 w-auto p-0">
+                              <div class="dropdown d-inline">
+                                <a class="dropdown-toggle interview-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                  i
+                                </a>
+                                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                  <li><a  href="skype:live:dbharath.scv?chat">
+                                    <img src="../../../../../assets/images/skype.svg" />
+                                    skype:live:dbharath
+                                  </a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
                       </div>
 
 
                     </div>
-                    <div class="stats text-left">
+                    <div class="stats text-left col-md-4">
                       <div class="pl-20">
-                          <h6>screening person</h6>
+                          <h3 class="medium">screening person</h3>
                           <div class="media-obj">
                             <img class="align-self-center" src="../../../../assets/images/ui-face-2.png" alt="">
                             <div class="media-body1">
-                              <h4 class="pl-10">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
+                              <h4 class="c93A2BB">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
                             </div>
                           </div>
                       </div>
@@ -278,7 +315,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </header>
 
 
 

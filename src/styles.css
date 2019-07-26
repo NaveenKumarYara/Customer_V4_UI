@@ -26405,6 +26405,9 @@ background:#cdcdcd;
     .pointer{
         cursor: pointer;
     }
+    .mt-10-0{
+        margin:10px 0px 0px 0px;
+    }
     .pl-2{
         padding-left:2rem;
         padding-right: 0px;
@@ -26423,4 +26426,48 @@ background:#cdcdcd;
     }
     .p10-20{
         padding:10px 20px !important;
+    }
+    .c93A2BB{
+    color:#93A2BB;
+    }
+    .interview-dropdown{
+        border-radius: 50%;
+        border: 1px solid #6A7E9C;
+        color: #6A7E9C;
+        line-height: 1;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        font-size: 9.53px;
+        padding: 2px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .m-rb-10{
+        margin:0px 10px 10px 0px;
+    }
+    .m-0{
+        margin:0px;
+    }
+    .dropdown-menu-r{
+        position: absolute;
+        top: 100%;
+        /* left: 0; */
+        right: 0px;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 160px;
+        padding: 5px 0;
+        margin: 2px 0 0;
+        list-style: none;
+        font-size: 14px;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
     }
