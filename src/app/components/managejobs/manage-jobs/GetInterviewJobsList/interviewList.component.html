@@ -18,7 +18,7 @@
           </div>
         </form>
       </div>
-      <h5 class="show-count">Showing 6 out of 138 Jobs</h5>
+      <h5 class="show-count">Showing 6 out of 40  Jobs</h5>
       <div class="pull-right">
         <div class="search-toggle">
           <div class="search-input-group">
@@ -112,8 +112,8 @@
       <div class="tab-content">
         <div id="grid-view" class="tab-pane fade in active"  >
           <div class="col-md-12">
-            <div class="row" >
-              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist">
+            <div class="row" *ngIf="joblist" >
+              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of joblist | valueArray">
                 <div class="card" >
                   <!-- <div class="dropdown card-dropdown">
                       <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
@@ -154,7 +154,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <div class="stats text-left">
                             <h6>Interview Date & Time</h6>
-                            <h5>{{job?.InterviewDate | date :'medium' }}</h5>
+                            <h5>{{job?.InterviewDate | date}} @ {{job?.StartTime}}</h5>
                           </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -162,7 +162,7 @@
                             <h6>Interview Type</h6>
                             <div class="row m-0">
                               <div class="col-md-6 w-auto p-0">
-                                <h4 class="m-rb-10 c93A2BB"><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                                <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType}}</a></h4>
                               </div>
                               <div class="col-md-6 w-auto p-0">
                                 <div class="dropdown d-inline">
@@ -170,7 +170,7 @@
                                     i
                                   </a>
                                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                    <li><a  href="skype:live:dbharath.scv?chat">
+                                    <li><a  href="javascript:void(0)">
                                       <img src="../../../../../assets/images/skype.svg" />
                                       skype:live:dbharath
                                     </a></li>
@@ -249,8 +249,8 @@
 
 
         <div id="list-view" class="tab-pane fade">
-          <ul class="job-list">
-            <li class="card" *ngFor="let job of joblist">
+          <ul class="job-list" *ngIf="joblist">
+            <li class="card" *ngFor="let job of joblist | valueArray">
               <header class="row list-header">
                 <div class="col-md-3">
                   <div class="job-details">
@@ -272,7 +272,7 @@
                     <div class="stats text-left col-md-4">
                       <div class="list-stats">
                         <h3 class="medium">Interview Date & Time</h3>
-                        <h4 class="c93A2BB">{{job?.InterviewDate  | date :'medium' }}</h4>
+                        <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
                       </div>
 
                     </div>
@@ -281,7 +281,7 @@
                         <h3 class="medium">Interview Type</h3>
                         <div class="row mt-10-0">
                             <div class="col-md-6 w-auto p-0">
-                              <h4 class="m-rb-10 c93A2BB"><a href="skype:live:dbharath.scv?chat">Skype</a></h4>
+                              <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType}}</a></h4>
                             </div>
                             <div class="col-md-6 w-auto p-0">
                               <div class="dropdown d-inline">
@@ -289,7 +289,7 @@
                                   i
                                 </a>
                                 <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                  <li><a  href="skype:live:dbharath.scv?chat">
+                                  <li><a  href="javascript:void(0)">
                                     <img src="../../../../../assets/images/skype.svg" />
                                     skype:live:dbharath
                                   </a></li>

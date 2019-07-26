@@ -6,19 +6,21 @@ import { JobDetails } from '../../models/jobdetails';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {ValueArrayPipe} from '../../../managejobs/manage-jobs/ValueArrayPipe.pipe';
 declare var $: any;
 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-interviewList',
   templateUrl: './interviewList.component.html',
-  styleUrls: ['./interviewList.component.css']
+  styleUrls: ['./interviewList.component.css'],
+  providers: [ ValueArrayPipe ]
 })
 export class InterviewListComponent implements OnInit {
     jobId: any;
     customer: any;
     customerId: any;
-    joblist= new JobDetails();
+    joblist= new invterviewList();
     userId: any;
     constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
         private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService) {
@@ -39,4 +41,20 @@ export class InterviewListComponent implements OnInit {
     }); 
   }
 
+}
+
+
+
+export class invterviewList
+{
+    public JobTitle :string;
+    public JobLocations :string;
+    public InterviewDate :Date;
+    public InterviewType :string;
+    public StartTime :string;
+    public CandidateProfilePic : string;
+    public CandidateFirstName:string;
+    public CandidateLastName:string;
+    public HiringLeaderFirstName:string;
+    public HiringLeaderLastName:string;
 }
