@@ -41,6 +41,11 @@ export class InterviewListComponent implements OnInit {
     }); 
   }
 
+  ViewJobdetails(jobId) {
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
+
 }
 
 

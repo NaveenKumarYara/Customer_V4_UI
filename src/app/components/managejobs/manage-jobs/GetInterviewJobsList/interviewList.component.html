@@ -134,9 +134,9 @@
                         </li>
                       </ul>
                     </div> -->
-                  <a href="job-details.html">
+                  <a href="javascript:void(0)">
                     <header>
-                      <h3 class="medium">{{job?.JobTitle}}</h3>
+                      <h3 class="medium" title="{{job?.JobTitle}}"  (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}</h3>
                       <div class="meta">
                         <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
                           <path class="st0"
@@ -144,7 +144,7 @@
                           <path class="st0"
                             d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
                         </svg>
-                        <h5 class="location border-b-0">{{job?.JobLocations}}</h5>
+                        <h5 class="location border-b-0">{{job?.JobLocations || N/A}}</h5>
 
                       </div>
                       <!-- <div class="status pending">pending</div> -->
@@ -162,7 +162,7 @@
                             <h6>Interview Type</h6>
                             <div class="row m-0">
                               <div class="col-md-6 w-auto p-0">
-                                <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType}}</a></h4>
+                                <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType || N/A }}</a></h4>
                               </div>
                               <div class="col-md-6 w-auto p-0">
                                 <div class="dropdown d-inline">
@@ -190,7 +190,7 @@
                             <div class="media-obj">
                               <img class="align-self-center" src="../../../../assets/images/ui-face-2.png" alt="">
                               <div class="media-body">
-                                <h4 class="pl-10">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
+                                <h4 class="pl-10">{{job?.CandidateFirstName || N/A }} {{job?.CandidateLastName}}</h4>
                               </div>
                             </div>
                           </div>
@@ -254,7 +254,7 @@
               <header class="row list-header">
                 <div class="col-md-3">
                   <div class="job-details">
-                    <h3 class="medium">{{job?.JobTitle}}</h3>
+                    <h3 class="medium" title="{{job?.JobTitle}}"  (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}</h3>
                     <div class="meta">
                       <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
                         <path class="st0"
@@ -262,7 +262,7 @@
                         <path class="st0"
                           d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
                       </svg>
-                      <h5 class="location border-b-0">{{job?.JobLocations}}</h5>
+                      <h5 class="location border-b-0">{{job?.JobLocations || N/A}}</h5>
                     </div>
                   </div>
                 </div>
@@ -281,7 +281,7 @@
                         <h3 class="medium">Interview Type</h3>
                         <div class="row mt-10-0">
                             <div class="col-md-6 w-auto p-0">
-                              <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType}}</a></h4>
+                              <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType || N/A}}</a></h4>
                             </div>
                             <div class="col-md-6 w-auto p-0">
                               <div class="dropdown d-inline">
@@ -307,7 +307,7 @@
                           <div class="media-obj">
                             <img class="align-self-center" src="../../../../assets/images/ui-face-2.png" alt="">
                             <div class="media-body1">
-                              <h4 class="c93A2BB">{{job?.CandidateFirstName}} {{job?.CandidateLastName}}</h4>
+                              <h4 class="c93A2BB">{{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h4>
                             </div>
                           </div>
                       </div>
