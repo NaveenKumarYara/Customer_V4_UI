@@ -9,7 +9,7 @@
           <div class="row">
               <div class="col-md-6 w-auto">
                   <label class="radio checkbox">  
-                      <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false)">  
+                      <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false,0)">  
                      <span class="radio-btn ml-0"></span>
                      <span> INTERNAL </span>
                      
@@ -17,7 +17,7 @@
               </div>
               <div class="col-md-6 w-auto">
                   <label class="radio checkbox">  
-                      <input type="radio" class="radio-input" name="team" (click)="teamchange(true)">  
+                      <input type="radio" class="radio-input" name="team" (click)="teamchange(true,1)">  
                       <span class="radio-btn ml-0"></span>
                       <span> EXTERNAL</span>
                    
@@ -27,9 +27,10 @@
           
                 
                  
-          <form action="">
-              <div class="form-row">
+
           <ng-container *ngIf="!AddUser">
+              <form action="">
+                  <div class="form-row">
           <div class="form-group" >
               <label for="">TECHNICAL PERSON FOR SCREENING</label>
               <div class="input-group">                   
@@ -60,24 +61,36 @@
                     </ul>
                 
           </div>
+        </div>
+        <div class="form-group">
+          <label for="">Comments</label>
+          <textarea type="text" [(ngModel)]="selectedComments" name= "Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+        </div>
+      </form>
+
           </ng-container>
           <ng-container *ngIf="AddUser">
+              <form action="">
+                  <div class="form-row">
                 <div class="form-group">
                     <label for="">EXTERNAL PERSON FOR SCREENING</label>
                     <div> 
-                    <input type="text" class="form-control"  [(ngModel)]="Name" name="Name" placeholder="user name">                                           
+                    <input type="text" class="form-control"  [(ngModel)]="Name" name="Name" placeholder="Fullname *">                                           
                    </div>
                    <div class="pt-2">
-                      <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId" placeholder="Email">
+                      <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId" placeholder="Email *">
                    </div>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="">Comments</label>
+                <textarea type="text" [(ngModel)]="selectedComments" name= "Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+              </div>
+            </form>
+
             </ng-container>
-            </div>
-            <div class="form-group">
-              <label for="">Comments</label>
-              <textarea type="text" [(ngModel)]="selectedComments" name= "Comments" class="form-control resize-none" placeholder="Please add your comments" rows="10"></textarea>
-            </div>
-          </form>
+      
+         
         </div>
       </div>
     </mat-dialog-content>
