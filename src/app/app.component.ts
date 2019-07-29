@@ -1,6 +1,7 @@
 import {Keepalive} from '@ng-idle/keepalive';
 import {EventTargetInterruptSource,DEFAULT_INTERRUPTSOURCES, Idle} from '@ng-idle/core';
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef,ViewContainerRef} from '@angular/core';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {
   Router,
   Event as RouterEvent,
@@ -22,7 +23,15 @@ export class AppComponent {
   timedOut = false;
   lastPing?: Date = null;
   items: string[];
-  constructor(private route: Router,private appService: AppService,private element: ElementRef, private idle: Idle, private keepalive: Keepalive) {
+  constructor( private toastr: ToastsManager, private _vcr: ViewContainerRef,private route: Router,private appService: AppService,private element: ElementRef, private idle: Idle, private keepalive: Keepalive) {
+    this.toastr.setRootViewContainerRef(_vcr);
+    setInterval(()=>{
+      if(navigator.onLine){
+      }else{
+     this.toastr.info('No Internet','Oops!',{ maxShown:0});
+      }
+   }, 5000)
+    
     this.items = [];
     this.populateItems();
     let idleState = 'Not started.';
