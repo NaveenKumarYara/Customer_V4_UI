@@ -1,126 +1,117 @@
 <div class="page page--job-details">
-  <div>
-    <h4 mat-dialog-title class="modal-title text-center">
-      Share Candidate
-    </h4>
-    <mat-dialog-content class="mat-typography modal-dialog h-auto">
-      <div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6 w-auto">
-              <label class="radio checkbox">
+    <div>
+        <h4 mat-dialog-title class="modal-title text-center">
+            Share Candidate
+        </h4>
+        <mat-dialog-content class="mat-typography modal-dialog h-auto">
+            <div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 w-auto">
+                            <label class="radio checkbox">
                 <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false,0)">
-                <span class="radio-btn ml-0"></span>
+                <span class="radio-btn wh-22 ml-0"></span>
                 <span> INTERNAL </span>
 
               </label>
-            </div>
-            <div class="col-md-6 w-auto">
-              <label class="radio checkbox">
+                        </div>
+                        <div class="col-md-6 w-auto">
+                            <label class="radio checkbox">
                 <input type="radio" class="radio-input" name="team" (click)="teamchange(true,1)">
-                <span class="radio-btn ml-0"></span>
+                <span class="radio-btn wh-22 ml-0"></span>
                 <span> EXTERNAL</span>
 
               </label>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
 
 
 
-          <ng-container *ngIf="!AddUser">
-            <form action="">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="">TECHNICAL PERSON FOR SCREENING</label>
-                  <div class="input-group">
-                    <ng-select class="custom-style interview-schedule-popup" [items]="managersList  | async" name="team"
-                      placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
-                      bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
-                      id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
-                      #TMemb="ngModel">
-                    </ng-select>
+                    <ng-container *ngIf="!AddUser">
+                        <form action="">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="">TECHNICAL PERSON FOR SCREENING</label>
+                                    <div class="input-group">
+                                        <ng-select class="custom-style interview-schedule-popup" [items]="managersList  | async" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
+                                        </ng-select>
 
-                    <span class="input-group-btn">
+                                        <span class="input-group-btn">
                       <button class="btn" (click)="addTeammembers()">+</button>
                     </span>
-                    <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
-                  </div>
-                  <ul class="share_candidate team-members-list pb-4">
-                    <li *ngFor="let teammember of teammemberslist; let i = index">
-                      <div class="w-100">
-                        <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                        <h4>{{teammember.FirstName}}
-                          <!-- <span class="dept">{{teammember.RoleName}}</span> -->
-                        </h4>
-                        <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
-                      </div>
-                    </li>
-                  </ul>
+                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                    </div>
+                                    <ul class="share_candidate team-members-list pb-4">
+                                        <li *ngFor="let teammember of teammemberslist; let i = index">
+                                            <div class="w-100">
+                                                <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+                                                <h4>{{teammember.FirstName}}
+                                                    <!-- <span class="dept">{{teammember.RoleName}}</span> -->
+                                                </h4>
+                                                <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Comments</label>
+                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                            </div>
+                        </form>
+
+                    </ng-container>
+                    <ng-container *ngIf="AddUser">
+                        <form action="">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="">EXTERNAL PERSON FOR SCREENING</label>
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5">
+                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Fullname *">
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 sm-pt-2">
+                                            <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId" placeholder="Email *">
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 sm-pt-2">
+                                            <button class="btn add-btn form-control mt-0" type="submit">+</button>
+                                        </div>
+                                        <div class="col-md-12 pr-30">
+                                            <ul class="data-list">
+                                                <li class="col-md-12 pr-0  mt-10">
+                                                    <span class="name w-45">Abc</span>
+                                                    <span class="experience w-45 pl-15">abc@domain.com</span>
+                                                    <span class="close w-10">×</span>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Comments</label>
+                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                            </div>
+                        </form>
+
+                    </ng-container>
+
 
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="">Comments</label>
-                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
-                  placeholder="Please add your comments *" rows="10"></textarea>
-              </div>
-            </form>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
-          </ng-container>
-          <ng-container *ngIf="AddUser">
-            <form action="">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="">EXTERNAL PERSON FOR SCREENING</label>
-                  <div class="row">
-                    <div class="col-md-5 col-sm-5">
-                      <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Fullname *">
-                    </div>
-                    <div class="col-md-5 col-sm-5 sm-pt-2">
-                      <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId"
-                        placeholder="Email *">
-                    </div>
-                    <div class="col-md-2 col-sm-2 sm-pt-2">
-                      <button class="btn add-btn form-control mt-0" type="submit">+</button>
-                    </div>
+            <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+            <button mat-button (click)="ShareProfile()" class="btn btn-filled">Share</button>
 
-                    <div class="col-md-12">
-                      <ul class="data-list">
-                        <li class="col-md-6 w-auto no-exp p-0 mt-10">
-                          <span class="name w-auto p10-20">Abc</span>
-                          <span class="experience w-auto p10-20">abc@domain.com</span>
-                          <span class="close w-auto p10-20">×</span>
-                        </li>
-                        <li class="col-md-6 w-auto no-exp p-0 mt-10">
-                          <span class="name w-auto p10-20">Xyz</span>
-                          <span class="experience w-auto p10-20">xyz@domain.com</span>
-                          <span class="close w-auto p10-20">×</span>
-                        </li>
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="">Comments</label>
-                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
-                  placeholder="Please add your comments *" rows="10"></textarea>
-              </div>
-            </form>
-
-          </ng-container>
-
-
-        </div>
-      </div>
-    </mat-dialog-content>
-    <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-
-      <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-      <button mat-button (click)="ShareProfile()" class="btn btn-filled">Share</button>
-
-    </mat-dialog-actions>
-  </div>
+        </mat-dialog-actions>
+    </div>
 </div>
