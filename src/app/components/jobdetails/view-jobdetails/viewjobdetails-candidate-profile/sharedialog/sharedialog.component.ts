@@ -24,6 +24,7 @@ export interface DialogData {
 export class SharedialogComponent {
  managersList: Observable<CustomerUsers[]>;
  teammembers: '';
+ GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
   getTeammember: CustomerUsers;
@@ -32,6 +33,7 @@ export class SharedialogComponent {
   AddUser:boolean= false;
   customerId: number;
   UserId:any;
+  SaveInfo = new contactInfo();
   info:number;
   EmailId:any = null;
   Name:any = null;
@@ -49,6 +51,7 @@ export class SharedialogComponent {
   }
  
   ngOnInit() {
+    this.GetContacts();
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.AddUser = false;
@@ -62,6 +65,46 @@ export class SharedialogComponent {
         this.teammemberslist = teammemberlist;
         }
       );
+  }
+
+onItemDeleted(index){ 
+    this.GetContactsList.splice(index, 1); 
+}
+
+  // DeleteContactInfo(Id)
+  // {
+  //   return this.appService.DeleteShareContactInfo(Id).subscribe(res => {
+  //     if(res == 0)
+  //     {
+  //       this.GetContacts();
+  //     }    
+  //   });
+  // }
+
+  GetContacts()
+  {
+    return this.appService.GetContactInfo(this.customerId,0).subscribe(res => {
+      this.GetContactsList = res;
+    });
+  }
+
+  AddContacts()
+  {
+    this.SaveInfo.Infoid = 0;
+    this.SaveInfo.CustomerId = this.customerId;
+    this.SaveInfo.UserId = this.userId;
+    this.SaveInfo.Fullname = this.Name;
+    this.SaveInfo.EmailId = this.EmailId;
+    this.appService.AddContactInfo(this.SaveInfo).subscribe(res => {
+        this.toastr.success('Added successfully', 'Success');
+        setTimeout(() => {
+         this.toastr.dismissToast;
+         this.Name = '';
+         this.EmailId= '';
+         this.GetContacts();
+        }, 3000);  
+      
+    })
   }
 
   teamchange(val,inf)
@@ -123,8 +166,8 @@ export class SharedialogComponent {
   {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
-      this.profileSharing.ToUserId = "0";
-      this.profileSharing.ToEmailId = this.EmailId;
+      this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
+      this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
       this.profileSharing.ApplicationName = 'Arytic';
       this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
       this.profileSharing.Comments=this.selectedComments;
@@ -133,8 +176,8 @@ export class SharedialogComponent {
    {
     this.profileSharing.InviteFriendId = 0;
     this.profileSharing.FromuserId = this.customerUser;
-    this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
-    this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
+    this.profileSharing.ToUserId = "0";
+    this.profileSharing.ToEmailId = this.GetContactsList.map(x => x.EmailId).toString();
     this.profileSharing.ApplicationName = 'Arytic';
     this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
     this.profileSharing.Comments=this.selectedComments;
@@ -186,4 +229,13 @@ export class ProfileShare {
   FromEmailId:string;
   ApplicationName:string;
   readonly modules: ReadonlyArray<{}> = []
+}
+
+export class contactInfo
+{
+  Infoid :number;
+  CustomerId: number;
+  UserId: number;
+  Fullname: string;
+  EmailId: string;
 }

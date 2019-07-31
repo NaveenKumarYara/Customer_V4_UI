@@ -416,6 +416,19 @@ export class AppService {
       this.personTypeSingleChanged.next(this.personTypeSingle.slice());
       }
   }
+
+  AddContactInfo(body)
+  {
+    return this.http.post(environment.AddContactShareInfo, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
+ 
+
   getPersonTypes() {
     return this.personTypes.slice();
   }
@@ -539,6 +552,15 @@ export class AppService {
     this.addedteammembersChanged.next(this.addedteammembers.slice());
   }
 
+  DeleteShareContactInfo(infoId: number)
+  {
+    const url = environment.DeleteShareContactInfo + 'infoid=' + infoId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
 
  addResponses(response: XmlJobResponse, val) {
     //  this.xmlResponse = responseList; // ush(personType);
@@ -637,6 +659,15 @@ bulkApply(body) {
   }
   getCustomerUsers(customerId: number, userId: number, isSuggest: boolean, SearchString: string): Observable<CustomerUsers[]> {
     const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId + '&IsSuggest=' + isSuggest + '&SearchString=' + SearchString;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetContactInfo(customerId: number, infoid: number)
+  {
+    const url = environment.GetCustomerContactsShareInfo + 'customerId=' + customerId + '&infoid=' + infoid;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
