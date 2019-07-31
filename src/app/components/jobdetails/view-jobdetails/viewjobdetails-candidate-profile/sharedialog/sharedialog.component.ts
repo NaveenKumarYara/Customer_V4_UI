@@ -201,7 +201,6 @@ onItemDeleted(index){
     this.profileSharing= new ProfileShare();
     this.clearTeamMemebers();
     this.selectedComments = "";
-    this.Name = " ";
     this.EmailId = " ";
     this.toastr.success('Mail sent successfully', 'Success');
     setTimeout(() => {
