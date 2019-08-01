@@ -90,6 +90,15 @@ onItemDeleted(index){
 
   AddContacts()
   {
+    if((this.Name == undefined && this.EmailId == undefined)|| (this.Name == '' && this.EmailId == ''))
+    {
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+    }
+    else
+    {
     this.SaveInfo.Infoid = 0;
     this.SaveInfo.CustomerId = this.customerId;
     this.SaveInfo.UserId = this.userId;
@@ -105,6 +114,7 @@ onItemDeleted(index){
         }, 3000);  
       
     })
+  }
   }
 
   teamchange(val,inf)
