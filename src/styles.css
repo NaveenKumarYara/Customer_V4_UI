@@ -26529,3 +26529,26 @@ background:#cdcdcd;
     top: 7px;
     right: 10px;
 }
+.wh-auto{
+    width:auto !important;
+    height:auto !important;
+} 
+.b-0{
+    border:0px !important;
+}
+.notes-dropdown:hover .notes-list {display: block;}
+.f-14{
+    font-size: 14px;
+}
+.dropdown-menu.notes-list{
+min-width: 230px;
+}
+.note-info{
+    right: -12px;
+    top: 0px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 50%;
+}
