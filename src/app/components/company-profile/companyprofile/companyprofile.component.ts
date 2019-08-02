@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
@@ -89,11 +89,7 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
-    populateCompanyCultures(customerId) {
-        return this.companyprofileservice.getCompanyCultures(customerId).subscribe(res => {
-            this.getcompanycluture = res;
-        });
-    }
+ 
 
     populateCompanyCertifications(customerId) {
         return this.companyprofileservice.getCompanyCertifications(customerId).subscribe(res => {
@@ -166,8 +162,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanyWhitePapers(this.customerId);
         this.populateCompanyNewsInfo(this.customerId);
         this.populateCompanyAchivements(this.customerId);
-        this.populateCompanyCertifications(this.customerId);
-        this.populateCompanyCultures(this.customerId);
+        this.populateCompanyCertifications(this.customerId);     
         this.populateCompanyPartners(this.customerId);
         this.GetCustomerClients(this.customerId);
         this.GetCustomerDepartment(this.customerId);

@@ -22,6 +22,7 @@ export const environment = {
     DeleteShareContactInfo:'http://api.tenendus.com:1090/ProfileAPI/api/DeleteShareContactInfo?',
     // locationwisejobtitlesendpoint: " http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",
     SuggestJobTitleEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobTitles?',
+    JobShareInvite:'http://api.tenendus.com:1090/EmailAPI/api/JobShare',
     SuggestJobCategoryEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/SuggestedJobCategory?',
     draftCategory: 'http://api.tenendus.com:1090/JobsAPI/api/GetDraftCategory',
     educationcriteriaendpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetQualification',

@@ -12,7 +12,7 @@
         </svg>
         <span>Culture</span>
       </h1>
-      <a href="javascript:void(0)" class="add-btn" data-toggle="modal" data-target=".culture">
+      <a href="javascript:void(0)" class="add-btn" data-toggle="modal" data-target="#culture">
         <span class="add add--green rounded">+</span>
         <span>Add Images</span>
       </a>
@@ -25,13 +25,13 @@
               <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
                 <div class="item cultural-item">
                   <div class="img-wrapper">
-                    <button class="btn delete-btn">X</button>
+                    <button class="btn delete-btn" (click)="DeleteId(companycluture?.CompanyCultureId)">X</button>
 
-                    <img class="img-responsive" title="{{companycluture.EventName}}" src="{{companycluture.EventPhoto}}"
+                    <img class="img-responsive" title="{{companycluture?.EventName}}" src="{{companycluture.EventPhoto}}"
                       alt="">
-                      <h4>IBM</h4>
+                      <h4>{{companycluture?.EventName}}</h4>
                       <p>
-                        IBM wins ATD Excellence in Practice Award for its digital credentials program
+                        {{companycluture?.EventDescription}}
                       </p>
                   </div>
                 </div>
@@ -209,7 +209,7 @@
     </div>
 
     <!--modal-->
-    <div class="modal fade culture" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div  id="culture" class="modal fade culture" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <!---->
@@ -242,13 +242,13 @@
                           <label class="title-lab">
                             Title
                           </label>
-                          <input type="text" class="form-control" />
+                          <input type="text" class="form-control" name="name"  [(ngModel)]="name" placeholder="Title"/>
                         </div>
                         <div class="form-group c-form-group">
                           <label class="title-lab">
                             Description
                           </label>
-                          <input type="text" class="form-control" />
+                          <input type="text" class="form-control" name="description" [(ngModel)]="description" placeholder="Description" />
                         </div>
 
 
@@ -269,11 +269,13 @@
 
                           <div class="culture-card file-upload-dashed">
                             <div class="img-wrapper">
-                              <button class="btn delete-btn t14-r20">X</button>
-                              <img class="img-responsive" src="https://via.placeholder.com/150" alt="">
+                              <button class="btn delete-btn t14-r20" (click)="Clear()">X</button>
+                            
+                                <img class="img-responsive" [src]="imageSrc || 'https://via.placeholder.com/150'" id="profile" alt="">
                             </div>
-                            <div class="culture-card text-center pointer pt-1" (click)="addcultureimages.click()">
-                              <input type="file" #addcultureimages style="display:none;">
+                            <div class="culture-card text-center pointer pt-1" (click)="photo.click()">
+                            <input class="hidden" type="file" #photo (click)="photo.value = null" value=""
+                              (change)="onFileChange($event)">
                               <img src="../../../../assets/images/upload-icon.svg" style="max-width:22px" alt="icon">
                               <p class="m-0">Upload Image</p>
                             </div>
@@ -287,7 +289,7 @@
                   </div>
                   <div class="col-md-12 p0-30">
                     <div class="bt-1-E0E3EF mrl--15">
-                      <a class="btn btn-filled btn-next pull-right mtb-5r-25" href="javascript:void(0)">Submit</a>
+                      <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25" href="javascript:void(0)" (click)="uploadPhoto()">Submit</a>
 
                     </div>
                   </div>

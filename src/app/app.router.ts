@@ -54,6 +54,7 @@ import {dLoginComponent} from '../app/components/Login/dlogin.component';
 import { ViewjobdetailsScComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { ViewjobdetailsCandidateProfileComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 import { GuestComponent} from './components/GuestSignUp/guest.component';
+import {ShareJobComponent} from '../app/components/jobdetails/view-jobdetails/share-job/sharejob.component';
 import { ChatboxdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/sharedialog/sharedialog.component';
 import { RejectdialogComponent } from '../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/rejectdialog/rejectdialog.component';
@@ -197,6 +198,7 @@ const appRoutes: Routes =
     { path: 'app-sharedialog', component: SharedialogComponent },
     { path: 'app-conversation', component: ConversationComponent },
     { path: 'app-rejectdialog', component: RejectdialogComponent },
+    { path: 'app-sharejob', component: ShareJobComponent},
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
     { path: 'app-invite-profiledialog', component: InviteProfiledialogComponent },
     { path: 'app-send-email', component: SendEmailComponent },

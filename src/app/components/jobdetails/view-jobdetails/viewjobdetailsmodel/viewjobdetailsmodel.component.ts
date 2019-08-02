@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit, Input, ViewChild, ViewContainerRef} from '@angular/core';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { JobComments } from '../../models/JobComments';
 import { GetCompanyBenefit } from '../../../../../models/GetCompanyBenefit';
 import {deactivate} from '../../../managejobs/models/deactivate';
 import { AppService } from '../../../../app.service';
+import {ShareJobComponent} from '../share-job/sharejob.component';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
@@ -22,6 +23,7 @@ export interface DialogData {
 })
 export class ViewjobdetailsmodelComponent  implements OnInit {
   // @Input() jobid: number;
+  viewshareddialogueref: MatDialogRef<ShareJobComponent>;
   complete: any;
   customerId: any;
   userId: any;
@@ -30,10 +32,32 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  getcompanybenfit: GetCompanyBenefit[];
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments: JobComments[];
-  constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef, private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(private dialog: MatDialog ,private toastr: ToastsManager, private _vcr: ViewContainerRef, private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
+
+
+   OpenShareJobDialog() {
+    const sharedRef = this.dialog.open(ShareJobComponent,
+      {
+         // width: '1000px',
+         position: {right : '0px'},
+        // height : '750px',
+        data: {
+          animal: 'panda',
+          JobId: this.jobid
+
+        }
+      }
+    );
+    sharedRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+    });
+  }
+  
+
+
   PopulateJobdetail (customerId, jobid) {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;

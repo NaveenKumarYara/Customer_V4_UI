@@ -1,0 +1,64 @@
+<div class="page page--job-details">
+    <div>
+        <h4 mat-dialog-title class="modal-title text-center">
+            Share Job
+        </h4>
+        <mat-dialog-content class="mat-typography modal-dialog h-auto">
+            <div>
+                <div class="modal-body">
+                    <div class="row">
+                   
+                  
+                    </div>
+
+
+
+                        <form action="">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="">TECHNICAL PERSON FOR SCREENING</label>
+                                    <div class="input-group">
+                                        <ng-select class="custom-style interview-schedule-popup" [items]="managersList  | async" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
+                                        </ng-select>
+
+                                        <span class="input-group-btn">
+                      <button class="btn" (click)="addTeammembers()">+</button>
+                    </span>
+                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                    </div>
+                                    <ul class="share_candidate team-members-list pb-4">
+                                        <li *ngFor="let teammember of teammemberslist; let i = index">
+                                            <div class="w-100">
+                                                <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+                                                <h4>{{teammember.FirstName}}
+                                                    <!-- <span class="dept">{{teammember.RoleName}}</span> -->
+                                                </h4>
+                                                <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Comments</label>
+                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                            </div>
+                        </form>
+
+                  
+                
+
+
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
+
+            <button mat-button mat-dialog-close class="btn btn-border">Close</button>
+            <button mat-button (click)="ShareJob()" class="btn btn-filled">Share</button>
+
+        </mat-dialog-actions>
+    </div>
+</div>

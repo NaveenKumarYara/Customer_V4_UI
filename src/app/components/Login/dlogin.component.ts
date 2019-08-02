@@ -28,6 +28,8 @@ export class dLoginComponent {
   userId:any;
   preId:any;
   cid:any;
+  JobId:any;
+  CId:any;
   constructor( private dialog: MatDialog, private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
         this.route.params.subscribe(params => {
@@ -39,6 +41,10 @@ export class dLoginComponent {
            sessionStorage.setItem('jobId',params['Id']);
            sessionStorage.setItem('Cid',params['Cid'])
           }
+          if (params['JobId']>0) {
+            sessionStorage.setItem('JobId',params['JobId']);
+            sessionStorage.setItem('CId',params['CId'])
+           }
 
         });
         this.toastr.setRootViewContainerRef(_vcr);
@@ -106,11 +112,9 @@ export class dLoginComponent {
               sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
               sessionStorage.setItem('userData', JSON.stringify(data));
               this.customerId = data.CustomerId;
-              this.userId =data.UserId;
-              debugger  
+              this.userId =data.UserId; 
               if(this.preId !=null)
               {    
-                debugger  
                 if(this.cid==this.customerId)
                 { 
                 
@@ -134,7 +138,23 @@ export class dLoginComponent {
               }
                 //this.router.navigate(['/app-Getcandidateprofile']);
               }
+              if(this.JobId !=null)
+              {    
+                if(this.CId==this.customerId)
+                { 
+                sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
+                this.router.navigateByUrl('app-view-jobdetails');
+              }
+              else {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                //this.router.navigate(['/app-Getcandidateprofile']);
+              }
               else if(this.preId ==null || this.preId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+              else if(this.JobId ==null || this.JobId == undefined)
               {
                 this.router.navigateByUrl('app-dashboardview');
               }
@@ -184,7 +204,9 @@ export class dLoginComponent {
   ngOnInit() {
     this.show= false;
     this.preId = sessionStorage.getItem('Preid');
-    this.cid=sessionStorage.getItem('Cid')
+    this.cid=sessionStorage.getItem('Cid');
+    this.CId=sessionStorage.getItem('CId');
+    this.JobId = sessionStorage.getItem('JobId');
     this.loginform = this.fb.group({
       'UserName': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],
