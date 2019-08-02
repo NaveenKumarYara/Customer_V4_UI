@@ -26447,7 +26447,7 @@ background:#cdcdcd;
         margin:0px 10px 10px 0px;
     }
     .m-0{
-        margin:0px;
+        margin:0px !important;
     }
     .mtb-5{
         margin-top:5px;
@@ -26544,11 +26544,18 @@ background:#cdcdcd;
 min-width: 230px;
 }
 .note-info{
-    right: -12px;
-    top: 0px;
+    right: 0px;
+    top: -2px;
     position: absolute;
     width: 10px;
     height: 10px;
     background: #f00;
     border-radius: 50%;
+    border: 2px solid #fff;
+}
+.w-24{
+    width:24px;
+}
+.b_r-0{
+    border-radius:0% !important;
 }
