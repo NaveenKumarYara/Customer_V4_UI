@@ -26449,6 +26449,18 @@ background:#cdcdcd;
     .m-0{
         margin:0px;
     }
+    .mtb-5{
+        margin-top:5px;
+        margin-bottom: 5px;
+    }
+    .mtb-5r-25{
+        margin-top:5px;
+        margin-bottom: 5px;
+        margin-right:25px;
+    }
+    .p0-30{
+        padding:0px 30px;
+    }
     .dropdown-menu-r{
         position: absolute;
         top: 100%;
@@ -26471,3 +26483,49 @@ background:#cdcdcd;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
         background-clip: padding-box;
     }
+.title-lab
+{
+    font-size: 1.25rem !important;
+    color: #6A7E9C !important;
+    font-weight: 500 !important;
+    margin-bottom: 10px !important;
+}
+.c-form-group{
+    margin-bottom: 10px;
+    padding-top: 15px;
+}
+.file-upload-dashed{
+    padding: 8px 15px;
+    border: 2px #cdcdcd dashed;
+}
+.bt-1-E0E3EF{
+    border-top: 1px solid #E0E3EF;
+}
+.mrl--15{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.t14-r20{
+    top:14px  !important;
+    right:20px !important;
+}
+.pt-1{
+    padding-top:1rem;
+}
+.cultural-item{
+    border-right: 1px solid #E0E3EF;
+    padding: 0 15px;
+}
+.c-close-btn{
+    background: none;
+    border: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 50%;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    top: 7px;
+    right: 10px;
+}
