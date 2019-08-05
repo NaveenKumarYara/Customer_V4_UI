@@ -54,7 +54,7 @@ Login()
   Send() {
     if(!this.Resetform.valid)
     {
-      this.toastr.error('Password MissMaTched!', 'Oops!');
+      this.toastr.error('Password Mismatched!', 'Oops!');
       setTimeout(() => {
           this.toastr.dismissToast;
       }, 3000);
