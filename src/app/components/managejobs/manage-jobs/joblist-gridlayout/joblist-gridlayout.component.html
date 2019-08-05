@@ -13,7 +13,7 @@
             <ng-template #isactive>
                 <li id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
             </ng-template>
-            <li><a>Share</a></li>
+            <li><a (click)="OpenShareJobDialog(job.JobId)">Share</a></li>
         </ul>
     </div>
     <a>

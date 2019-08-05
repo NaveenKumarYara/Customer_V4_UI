@@ -2,11 +2,13 @@ import { Component, OnInit,  Input, ViewChild  , ViewContainerRef } from '@angul
 import { JobDetails } from '../../models/jobdetails';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ManageJobService } from '../../managejobs.service';
 // import { ApiService } from '../../../../shared/services/api.service/api.service';
 import {deactivate} from '../../models/deactivate';
 import {LoadJoblistComponent} from '../load-joblist/load-joblist.component';
 import { AppService } from '../../../../app.service';
+import {ShareJobComponent} from '../../../jobdetails/view-jobdetails/share-job/sharejob.component';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any;
@@ -32,7 +34,8 @@ export class JoblistTablelayoutComponent implements OnInit {
   customerId: any;
   isActive: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  viewshareddialogueref: MatDialogRef<ShareJobComponent>;
+  constructor( private dialog: MatDialog ,private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -44,6 +47,24 @@ export class JoblistTablelayoutComponent implements OnInit {
     // this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
+  }
+  OpenShareJobDialog(jobid) {
+    const sharedRef = this.dialog.open(ShareJobComponent,
+      {
+         // width: '1000px',
+         position: {right : '0px'},
+        // height : '750px',
+        data: {
+          animal: 'panda',
+          JobId: jobid
+
+        }
+      }
+    );
+    sharedRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+    });
+  
   }
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));

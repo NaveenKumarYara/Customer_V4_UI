@@ -1,7 +1,9 @@
 import { Component, OnInit,  Input, ViewChild , ViewContainerRef } from '@angular/core';
 import { JobDetails } from '../../models/jobdetails';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Jobs } from '../../models/jobs';
+import {ShareJobComponent} from '../../../jobdetails/view-jobdetails/share-job/sharejob.component';
 import { ManageJobService } from '../../managejobs.service';
 // import { ApiService } from '../../../../shared/services/api.service/api.service';
 import {deactivate} from '../../models/deactivate';
@@ -35,8 +37,8 @@ export class JoblistGridlayoutComponent implements OnInit {
   customerId: any;
   isActive: any;
   deactivate = new deactivate();
-
-  constructor( private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
+  viewshareddialogueref: MatDialogRef<ShareJobComponent>;
+  constructor( private dialog: MatDialog ,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
     private router: Router, private managejobservice: ManageJobService, private appService: AppService, private loadJobs: LoadJoblistComponent,private alertService : AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -48,6 +50,25 @@ export class JoblistGridlayoutComponent implements OnInit {
     // this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
+  }
+
+  OpenShareJobDialog(jobid) {
+    const sharedRef = this.dialog.open(ShareJobComponent,
+      {
+         // width: '1000px',
+         position: {right : '0px'},
+        // height : '750px',
+        data: {
+          animal: 'panda',
+          JobId: jobid
+
+        }
+      }
+    );
+    sharedRef.afterClosed().subscribe(result => {
+      console.log('share Dialog result: ${result}');
+    });
+  
   }
 
   editJob(jobId,active) {
