@@ -17,7 +17,7 @@ export const environment = {
     addSkillsEndpoint: 'http://api.tenendus.com:1090/ProfileAPI/api/AddSkill',
     GetPersonTypeEndPoint : 'http://api.tenendus.com:1090/JobsAPI/api/GetPersonType?',
     AddContactShareInfo:'http://api.tenendus.com:1090/ProfileAPI/api/InsertShareContactInfo',
-    GetInterViewList:'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewList?',
+    GetInterViewList:'http://api.tenendus.com:1090/JobsAPI/api/InterviewSortBy?',
     GetCustomerContactsShareInfo:'http://api.tenendus.com:1090/ProfileAPI/api/GetShareContactInfo?',
     DeleteShareContactInfo:'http://api.tenendus.com:1090/ProfileAPI/api/DeleteShareContactInfo?',
     // locationwisejobtitlesendpoint: " http://api.tenendus.com:1090/JobsAPI/api/GetLocationWiseJobsCount",

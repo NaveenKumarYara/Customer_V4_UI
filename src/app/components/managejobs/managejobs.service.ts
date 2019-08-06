@@ -13,6 +13,7 @@ import { Jobs } from './models/jobs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {GetInterviewSortList} from '../../../models/GetInterviewSortList';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 @Injectable()
 export class ManageJobService {
@@ -41,6 +42,11 @@ export class ManageJobService {
   private joblistcount = new BehaviorSubject(6);
   currentjoblistcount = this.joblistcount.asObservable();
 
+  private listcount = new BehaviorSubject(6);
+  currentlistcount = this.listcount.asObservable();
+
+
+
   getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
     const url = environment.listofJobsEndpoint +
     'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
@@ -51,12 +57,12 @@ export class ManageJobService {
     );
   }
 
-  GetInterviewList( userId: number,customerId: number)
+  GetInterviewList( userId: number,customerId: number,sortBy: number,count: number)
   {
 
     const url = environment.GetInterViewList +'&userId=' + userId + 
-    '&customerId=' + customerId +'&month=0&year=0&sortBy=0&pageNumber=1&numberOfRows=100';
-    return this.http.get<JobDetails>(url)
+    '&customerId=' + customerId +'&sortBy='+sortBy + '&pageNumber=1' +'&numberOfRows=' +count;
+    return this.http.get<GetInterviewSortList>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
@@ -110,5 +116,11 @@ export class ManageJobService {
   updateJobListCount(updatedtotal: number) {
     this.joblistcount.next(updatedtotal);
   }
+
+  updateListCount(total: number) {
+    this.listcount.next(total);
+  }
+
+ 
 
 }
