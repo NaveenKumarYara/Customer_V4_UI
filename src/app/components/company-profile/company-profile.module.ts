@@ -23,6 +23,9 @@ import {GooglelocationComponent}from '../../shared/googlelocation/googlelocation
 import {locationComponent} from '../../shared/locations/location.component';
 import {EditCandidateProfileComponent} from './editcandidateprofile/editcandidateprofile.component';
 import {CandidateProfileComponent} from './candidateprofile/cprofile.component';
+import {PartnerComponent} from './achievementsandawards/Companypartner/partner.component';
+import {AchievementsComponent} from  './achievementsandawards/Achievements/achieve.component';
+import {CertificationComponent} from './achievementsandawards/CompanyCertification/certification.component';
 import {SharedModule} from '../../shared/shared.module';
 @NgModule({
   imports: [
@@ -41,6 +44,6 @@ import {SharedModule} from '../../shared/shared.module';
     }),
     ],
     providers: [CompanyProfileService],
-  declarations: [CompanyprofileComponent,locationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
+  declarations: [CompanyprofileComponent,locationComponent,AchievementsComponent,PartnerComponent,CertificationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
 })
 export class CompanyProfileModule { }

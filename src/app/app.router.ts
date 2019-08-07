@@ -65,6 +65,8 @@ import { AchievementsandawardsComponent } from '../app/components/company-profil
 import { BasicinfoComponent } from '../app/components/company-profile/basicinfo/basicinfo.component';
 import { BenefitsComponent } from '../app/components/company-profile/benefits/benefits.component';
 import { ResetComponent } from './components/ResetPassword/resetpassword.component';
+import {AchievementsComponent} from '../app/components/company-profile/achievementsandawards/Achievements/achieve.component';
+import {PartnerComponent} from '../app/components/company-profile/achievementsandawards/Companypartner/partner.component';
 import { CultureComponent } from '../app/components/company-profile/culture/culture.component';
 import { LocationsComponent } from '../app/components/company-profile/locations/locations.component';
 import { OtherinfoComponent } from '../app/components/company-profile/otherinfo/otherinfo.component';
@@ -88,6 +90,7 @@ import { AccountsettingdetailsComponent } from './components/accountsettings/acc
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
 import { UsersComponent } from './components/accountsettings/users/users.component';
 import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
+import {CertificationComponent} from '../app/components/company-profile/achievementsandawards/CompanyCertification/certification.component';
 import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
@@ -208,8 +211,11 @@ const appRoutes: Routes =
     { path: 'app-aboutcompany', component: AboutcompanyComponent },
     { path: 'app-achievementsandawards', component: AchievementsandawardsComponent },
     {path: 'app-cprofile', component: CandidateProfileComponent},
+    {path: 'app-partner',component:PartnerComponent},
     { path: 'app-basicinfo', component: BasicinfoComponent },
     { path: 'app-editcprofile', component: EditCandidateProfileComponent },
+    {path: 'app-achievements', component:AchievementsComponent},
+    {path: 'app-certification', component: CertificationComponent},
     { path: 'app-benefits', component: BenefitsComponent },
     { path: 'app-culture', component: CultureComponent },
     { path: 'app-locations', component: LocationsComponent },

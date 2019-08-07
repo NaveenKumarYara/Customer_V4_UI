@@ -83,28 +83,6 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
-    populateCompanyAchivements(customerId) {
-        return this.companyprofileservice.getCompanyAchivements(customerId).subscribe(res => {
-            this.getcompanyachivements = res;
-        });
-    }
-
- 
-
-    populateCompanyCertifications(customerId) {
-        return this.companyprofileservice.getCompanyCertifications(customerId).subscribe(res => {
-            this.getcompanycertification = res;
-        });
-    }
-
-    populateCompanyPartners(customerId) {
-        return this.companyprofileservice.getCompanyPartnerShips(customerId).subscribe(res => {
-            this.getcompanypertner = res;
-        });
-    }
-
-
-
     populateCompanyTechnologies(customerId) {
         return this.companyprofileservice.GetCompanyTechnologies(customerId).subscribe(res => {
             this.getcompanytechnology = res;
@@ -160,10 +138,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateCompanySpecialities(this.customerId);
         this.populateCompanyTechnologies(this.customerId);
         this.populateCompanyWhitePapers(this.customerId);
-        this.populateCompanyNewsInfo(this.customerId);
-        this.populateCompanyAchivements(this.customerId);
-        this.populateCompanyCertifications(this.customerId);     
-        this.populateCompanyPartners(this.customerId);
+        this.populateCompanyNewsInfo(this.customerId);       
         this.GetCustomerClients(this.customerId);
         this.GetCustomerDepartment(this.customerId);
   }
