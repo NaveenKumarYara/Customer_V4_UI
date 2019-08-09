@@ -10,7 +10,7 @@
         <ul class="achievements__list">
             <li class="item" *ngFor="let companycertification of getcompanycertification">
                 <button class="btn delete-btn" (click)="DeleteCId(companycertification?.CompanyCertificationId)">X</button>
-              <img src="{{companycertification?.CertificationLogo}}" alt="">
+              <img  height="200" src="{{companycertification?.CertificationLogo}}" alt="">
               <p>
                   {{companycertification?.CertificationName}}
               </p>
