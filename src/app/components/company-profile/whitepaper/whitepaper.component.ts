@@ -36,16 +36,14 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
   this.customerId = this.customer.CustomerId;
   this.userId = this.customer.UserId;
   this.toastr.setRootViewContainerRef(_vcr);
-  this.fileUploadForm = this.fb.group({
-    'CustomerId': [this.customerId, Validators.required],
+  this.fileUploadForm = this.fb.group({ 
     'CompanyWhitePaperId':[0, Validators.nullValidator],
+    'CustomerId': [this.customerId, Validators.required],
     'WhitePaper': [null, Validators.nullValidator],
     'Description': ['', Validators.nullValidator],
     'Title':['', Validators.nullValidator],
     'CompanyWhitePaper': ['', Validators.nullValidator],
     'Url': ['', Validators.nullValidator],
-    'FileName': ['', Validators.nullValidator],
-    'UserName': ['', Validators.nullValidator],
     'FileExtension': ['', Validators.nullValidator],
   });
  }
@@ -86,7 +84,7 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
       this.fileUploadForm.value.Title = this.name;
       this.fileUploadForm.value.Description = this.description;
       this.fileUploadForm.value.Url = '';
-      this.fileUploadForm.value.FileName = e.target.files[0].name;
+      this.fileUploadForm.value.CompanyWhitePaper = e.target.files[0].name;
       this.fileUploadForm.value.FileExtension = e.target.files[0].type;
       request = JSON.stringify(this.fileUploadForm.value);
     }
@@ -106,46 +104,11 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     }
   }
   uploadMultiple() {
-    if(this.name==undefined&&this.description==undefined)
-    {
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-                setTimeout(() => {
-                    this.toastr.dismissToast;
-                }, 3000);
-    }
-    else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
-    {
-    this._service.byteStorage(this.filedata, 'ProfileAPI/api/SaveWhitePaper').subscribe(data => {  // 'api/JobDescriptionParse'
-      if (data) {
-       // setTimeout(() => {
-          /** spinner ends after 5 seconds */
-       
-       // }, 60000);
-        this.toastr.success('Uploaded successfully', 'Success');
-        setTimeout(() => {
-         this.toastr.dismissToast;
+    this._service.byteStorage(this.filedata, 'ProfileAPI/api/SaveWhitePaper').subscribe(data => {
          this.name = '';
          this.description = '';
-         this.populateCompanyWhitePapers();
-     }, 3000);
-      }
-    //   else if(data === null){
-    //     this.toastr.warning('Email Not Exists', 'Oops!');
-    //     this.spinner.hide();
-    //     setTimeout(() => {
-    //      this.toastr.dismissToast;
-    //  }, 3000);
-    // //  return false;
-    //   }
-    }, error => {
-     this.toastr.error('error in uploading profiles!', 'Oops!');
-     setTimeout(() => {
-         this.toastr.dismissToast;
-     }, 3000);
-      this.spinner.hide();
-           console.log('download error:', JSON.stringify(error));
-          });
-  }
+         this.populateCompanyWhitePapers();    
+    });  
 }
 
 

@@ -69,7 +69,7 @@
                             <path d="M26.4 11.4H15.9c-.6 0-1-.4-1-1V1c0-.4.2-.8.6-.9.4-.2.8-.1 1.1.2L27 9.7c.3.3.4.7.3 1.1-.2.4-.5.6-.9.6zm-9.5-2h6.8l-6.8-6.2v6.2z" id="XMLID_3_"></path>
                           </g>
                         </svg>
-                        <span>{{companywhitepaper?.CompanyWhitePaper}}</span>
+                        <span>{{companywhitepaper?.Title}}</span>
                       </div>
                       <div class="actions">
                         <button class="btn btn-transparent no-padding" (click)="DeleteId(companywhitepaper?.CompanyWhitePaperId)">
@@ -152,15 +152,12 @@
                   <div class="culture-add-imgs scrollbar-inner">
   
                     <div class="card-inner placeholder">
-                      <div class="card-content">
-  
-  
-                        <div class="culture-card file-upload-dashed">
-                            <div class="img-wrapper">
-                                <button class="btn delete-btn t14-r20" (click)="Clear()">X</button>
-                              
-                                  <img class="img-responsive" [src]="Src || 'https://via.placeholder.com/150'" id="profile" alt="">
-                              </div>
+                      <div class="card-content"> 
+                        <div class="culture-card file-upload-dashed">        <div class="img-wrapper">
+                            <!-- <button class="btn delete-btn t14-r20" (click)="Clear()">X</button>
+                          
+                              <img class="img-responsive" [src]="Src || 'https://via.placeholder.com/150'" id="profile" alt=""> -->
+                          </div>
                               <div class="culture-card text-center pointer pt-1" (click)="photo.click()">
                               <input class="hidden" type="file" #photo (click)="photo.value = null" value=""
                                 (change)="getFileDetails($event)">
