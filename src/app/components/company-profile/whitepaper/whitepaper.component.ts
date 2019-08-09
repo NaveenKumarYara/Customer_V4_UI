@@ -22,6 +22,7 @@ customer: any;
 name:any;
 description:any;
 Src: string;
+filedata=new FormData();
 PUpload: File;
 customerId: any;
 userId: any;
@@ -41,7 +42,11 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     'WhitePaper': [null, Validators.nullValidator],
     'Description': ['', Validators.nullValidator],
     'Title':['', Validators.nullValidator],
-    'CompanyWhitePaper': ['', Validators.nullValidator]
+    'CompanyWhitePaper': ['', Validators.nullValidator],
+    'Url': ['', Validators.nullValidator],
+    'FileName': ['', Validators.nullValidator],
+    'UserName': ['', Validators.nullValidator],
+    'FileExtension': ['', Validators.nullValidator],
   });
  }
 
@@ -66,23 +71,23 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
   populateCompanyWhitePapers() {
     return this.companyprofileservice.getCompanyWhitePapers(this.customerId).subscribe(res => {
         this.getcompanywhitepaper = res;
-        debugger
     });
 }
 
   getFileDetails(e) {
     debugger
     this.selectedFileNames = [];
-    this.spinner.show();
     let request = '';
     const formData = new FormData();
-    this.fileUploadForm.value.FileName = this.name;
-    
+
     // document.getElementById('jobId').value; //this.jobid;
     // this.fileUploadForm.value.ResumeFile = e.target.files[0];
     if (this.fileUploadForm.value !== '') {
       this.fileUploadForm.value.Title = this.name;
       this.fileUploadForm.value.Description = this.description;
+      this.fileUploadForm.value.Url = '';
+      this.fileUploadForm.value.FileName = e.target.files[0].name;
+      this.fileUploadForm.value.FileExtension = e.target.files[0].type;
       request = JSON.stringify(this.fileUploadForm.value);
     }
     if (e.target.files.length > 5) {
@@ -92,24 +97,36 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     } else {
       for (let i = 0; i < e.target.files.length; i++) {
         this.selectedFileNames.push(e.target.files[i].name);
-        formData.append('CompanyWhitePaper', e.target.files[i]);
+        formData.append('WhitePaper', e.target.files[i]);
       }
      // this.loaddata = false;
       formData.append('Model', request);
-      this.uploadMultiple(formData);
+      this.filedata= formData;
+      //this.uploadMultiple(formData);
     }
   }
-  uploadMultiple(formData) {
-    debugger
-    this._service.byteStorage(formData, 'ProfileAPI/api/SaveWhitePaper').subscribe(data => {  // 'api/JobDescriptionParse'
+  uploadMultiple() {
+    if(this.name==undefined&&this.description==undefined)
+    {
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
+    }
+    else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
+    {
+    this._service.byteStorage(this.filedata, 'ProfileAPI/api/SaveWhitePaper').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
        // setTimeout(() => {
           /** spinner ends after 5 seconds */
-          this.spinner.hide();
+       
        // }, 60000);
         this.toastr.success('Uploaded successfully', 'Success');
         setTimeout(() => {
          this.toastr.dismissToast;
+         this.name = '';
+         this.description = '';
+         this.populateCompanyWhitePapers();
      }, 3000);
       }
     //   else if(data === null){
@@ -129,66 +146,11 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
            console.log('download error:', JSON.stringify(error));
           });
   }
+}
 
-  onFileChange(event) {
-    //this.alertService.clear();
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const stringToSplit = file.name;
-      const x = stringToSplit.split('.');
-      const ext = x[1];
-    
-        if (file.size > 2048576) {
-          //this.alertService.error('Too Big Size.. File Not Allowed');
-          this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
-          setTimeout(() => {
-              this.toastr.dismissToast;
-            
-          }, 3000);
-        } else {
-          
-          reader.readAsDataURL(file);
-        reader.onload = () => {        
-          this.Src = 'data:doc/pdf;base64,' + reader.result.split(',')[1];
-          this.PUpload = file;      
-        }
-        }
-      } 
-  
-    
-  
-  }
 
-  upload() {
-    if(this.name==undefined)
-    {
-      this.toastr.error('Please provide the valid details!', 'Oops!');
-                setTimeout(() => {
-                    this.toastr.dismissToast;
-                }, 3000);
-    }
-    else if((this.name!=undefined)||(this.name!=""))
-    {
-    let request = '';
-    const _formData: FormData = new FormData();
-    if (this.fileUploadForm.value !== '') 
-    {
-      this.fileUploadForm.value.Title = this.name;
-      this.fileUploadForm.value.Description = this.description;
-      request = JSON.stringify(this.fileUploadForm.value);
-    }
-    debugger
-    _formData.append('WhitePaper', this.PUpload);
-    _formData.append('Model', request);
-    const reader = new FileReader();
-    debugger
-    this._service.byteStorage(_formData, 'ProfileAPI/api/SaveWhitePaper').subscribe(data => {
-      this.name = '';
-      this.populateCompanyWhitePapers();
-    });
-  }
-  }
+
+
 
 
 }
