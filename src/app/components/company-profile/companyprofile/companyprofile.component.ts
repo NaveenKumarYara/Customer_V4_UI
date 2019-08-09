@@ -89,17 +89,9 @@ export class CompanyprofileComponent implements OnInit {
         });
     }
 
-    populateCompanyWhitePapers(customerId) {
-        return this.companyprofileservice.getCompanyWhitePapers(customerId).subscribe(res => {
-            this.getcompanywhitepaper = res;
-        });
-    }
 
-    populateCompanyNewsInfo(customerId) {
-        return this.companyprofileservice.getCompanyNewsInfo(customerId).subscribe(res => {
-            this.getcompanynewsinfo = res;
-        });
-    }
+
+  
 
     populateCompanySpecialities(customerId)
     {
@@ -136,9 +128,7 @@ export class CompanyprofileComponent implements OnInit {
         this.populateAboutCompanyInfo(this.customerId);
         this.populateCompanyBenfits(this.customerId);
         this.populateCompanySpecialities(this.customerId);
-        this.populateCompanyTechnologies(this.customerId);
-        this.populateCompanyWhitePapers(this.customerId);
-        this.populateCompanyNewsInfo(this.customerId);       
+        this.populateCompanyTechnologies(this.customerId);      
         this.GetCustomerClients(this.customerId);
         this.GetCustomerDepartment(this.customerId);
   }
