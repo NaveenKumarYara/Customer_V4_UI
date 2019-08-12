@@ -8,10 +8,26 @@
 
 <div class="tab-inner scrollbar-inner" >
              
-        <ul class="achievements__list">
+        <ul class="achievements__list edit-delete-dropdown">
             <li class="item" *ngFor="let companypartner of getcompanypartner">
-                <button class="btn delete-btn" (click)="DeletepartnerId(companypartner?.CompanyPartnerId)">X</button>
-              <img  height="200" src="{{companypartner?.PartnerLogo}}" alt="">
+                    <div class="dropdown card-dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                                <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                              </svg>
+                            </button>
+                       <ul class="dropdown-menu">
+                        <li>
+                          <a href="javascript:void(0)" data-toggle="modal" href="#partnershipsModel" (click)="Edit(companypartner)">Edit</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)" (click)="DeletepartnerId(companypartner?.CompanyPartnerId)">Delete</a>
+                        </li>
+                      </ul>
+                      </div>
+               
+               
+              <img  height="200" width="200" src="{{companypartner?.PartnerLogo}}" alt="">
               <p>
                 {{companypartner?.PartnerName}}
                 

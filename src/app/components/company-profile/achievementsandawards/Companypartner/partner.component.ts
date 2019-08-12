@@ -47,6 +47,19 @@ export class PartnerComponent implements OnInit {
       'Photo': [null, Validators.nullValidator],
     });
  }
+
+
+ Edit(val)
+ {
+     this.Pname = val.PartnerName;
+     this.Pdescription = val.Description;
+     this.Image.value.CompanyPartnerId = val.CompanyPartnerId;
+     this.Image.value.CustomerId = this.customerId;
+     this.Image.value.PartnerName = this.Pname;
+     this.Image.value.Description = this.Pdescription;
+     this.ImageUpload = val.PartnerLogo;
+     this.imageSrc = val.PartnerLogo;
+ }
   
     ngOnInit() {
       this.populateCompanyPartners();
