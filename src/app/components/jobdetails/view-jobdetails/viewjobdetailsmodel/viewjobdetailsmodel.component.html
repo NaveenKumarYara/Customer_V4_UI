@@ -83,6 +83,15 @@
                                     {{skill?.SkillName}}</li>
                             </ul>
                         </div> -->
+                        <div class="group">
+                            <h4>Work Authorization</h4>
+                            <p>
+                                {{jobdetailscustomer?.JobInfo?.WorkAuthorizationType}}
+                            </p>
+                            <p  *ngIf="jobdetailscustomer?.JobInfo?.WorkAuthorizationType==null">
+                                N/A
+                                </p>
+                        </div>
                             <div class="group">
                                 <h4>Domain</h4>
                                 <ul class="list">
