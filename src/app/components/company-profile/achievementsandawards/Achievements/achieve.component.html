@@ -6,23 +6,7 @@
 </div>
 
 
-  <div class="tab-inner scrollbar-inner">
-    
-      <ul class="achievements__list">
-        <li class="item" *ngFor="let companyachivements of getcompanyachivements">
-            <button class="btn delete-btn" (click)="DeleteId(companyachivements?.CompanyAchievementId)">X</button>
-          <img src="{{companyachivements?.AwardLogo}}" alt="">
-            <p>
-                {{companyachivements?.AwardTitle}}
-            </p>
-            <!-- <p>
-              {{companyachivements?.Description}}                        
-            </p> -->
-        </li>                 
-      </ul>
-    
-    
-  </div>
+
 
 <div class="tab-inner scrollbar-inner">
 
@@ -37,10 +21,10 @@
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#">Edit</a>
+              <a href="javascript:void(0)">Edit</a>
             </li>
             <li>
-              <a href="/#/" (click)="DeleteId(companyachivements?.CompanyAchievementId)">Delete</a>
+              <a href="javascript:void(0)" (click)="DeleteId(companyachivements?.CompanyAchievementId)">Delete</a>
             </li>
           </ul>
         </div>
@@ -52,9 +36,9 @@
       <p>
         {{companyachivements?.AwardTitle}}
       </p>
-      <p>
+      <!-- <p>
         {{companyachivements?.Description}}
-      </p>
+      </p> -->
     </li>
   </ul>
 
@@ -88,7 +72,6 @@
                     aria-hidden="true">&times;</span></button>
               </div>
             </div> <!-- .header -->
->>>>>>> 8e19e9c49f091aecb24a05d6dce084634bb89915
 
             <div class="row">
               <div class="col-md-5">
