@@ -79,6 +79,18 @@ export class CertificationComponent implements OnInit {
   
     }
 
+    Edit(val)
+    {
+        this.Cname = val.CertificationName;
+        this.Cdescription = val.CertifiedUnder;
+        this.CImage.value.CompanyCertificationId = val.CompanyCertificationId;
+        this.CImage.value.CustomerId = this.customerId;
+        this.CImage.value.CertificationName = this.Cname;
+        this.CImage.value.Description = this.Cdescription;
+        this.CImageUpload = val.CertificationLogo;
+        this.CimageSrc = val.CertificationLogo;
+    }
+
     onFileChangeCertification(event) {
       //this.alertService.clear();
       const reader = new FileReader();
