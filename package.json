@@ -37,6 +37,7 @@
     "ng2-charts": "^1.6.0",
     "ng2-toastr": "^4.1.2",
     "ng5-slider": "^1.1.6",
+    "ngx-document-view": "^1.0.1",
     "ngx-flickity": "0.0.9",
     "ngx-mask": "^7.3.5",
     "ngx-spinner": "^1.2.0",

@@ -28,6 +28,7 @@ import {AchievementsComponent} from  './achievementsandawards/Achievements/achie
 import {NewsComponent} from './whitepaper/NewsPaper/news.component';
 import {CertificationComponent} from './achievementsandawards/CompanyCertification/certification.component';
 import {SharedModule} from '../../shared/shared.module';
+import { DocumentViewModule } from 'ngx-document-view';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ import {SharedModule} from '../../shared/shared.module';
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
+    DocumentViewModule,
     SharedModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',
