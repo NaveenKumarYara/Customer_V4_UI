@@ -70,10 +70,13 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     return this.companyprofileservice.getCompanyWhitePapers(this.customerId).subscribe(res => {
         this.getcompanywhitepaper = res;
     });
-}
+  }
+
+  goToLink(url: string){
+   window.open(url, "_blank");
+  }
 
   getFileDetails(e) {
-    debugger
     this.selectedFileNames = [];
     let request = '';
     const formData = new FormData();
