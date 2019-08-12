@@ -22,10 +22,28 @@
         <div id="cultural-carousel">
           <div class="row">
             <div class="column" *ngFor="let companycluture of getcompanycluture">
-              <div class="owl-item cloned">
+              <div class="owl-item cloned edit-delete-dropdown">
                 <div class="item cultural-item">
-                  <div class="img-wrapper">
-                    <button class="delete-btn" (click)="DeleteId(companycluture?.CompanyCultureId)">x</button>
+                  <div class="img-wrapper ">
+                    <!--New Edit Delete-->
+                    <div class="dropdown card-dropdown culture-dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                            <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                          </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="javascript:void(0)" data-toggle="modal" href="/#/" >Edit</a>
+                          </li>
+                          <li>
+                            <a href="javascript:void(0)" (click)="DeleteId(companycluture?.CompanyCultureId)">Delete</a>
+                          </li>
+                        </ul>
+                      </div>
+
+                    <!--New Edit Delete-->
+                    <!-- <button class="delete-btn" (click)="DeleteId(companycluture?.CompanyCultureId)">x</button> -->
 
                     <img class="img-responsive" height="150" title="{{companycluture?.EventName}}" src="{{companycluture.EventPhoto}}"
                       alt="companycluture?.EventName">
