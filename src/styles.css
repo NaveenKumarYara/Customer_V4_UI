@@ -20033,7 +20033,8 @@ a.ui-button:active,
 
 .page--company-profile .card--achievements .achievements__list .item img {
     margin-bottom: 24px;
-    width: 100%;
+    max-width:100%;
+    display: block;
 }
 
 .page--company-profile .card--achievements .achievements__list .item:nth-child(4n) {
@@ -20061,13 +20062,14 @@ a.ui-button:active,
     border: 0;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
+    font-size:12px;
     font-weight: 500;
     color: #ffffff;
     border-radius: 50%;
     -webkit-box-shadow: none;
     box-shadow: none;
-    top: 7px;
-    right: 10px;
+    top: 2px;
+    right: 5px;
 }
 
 .page--company-profile .card--culture .delete-btn:focus,
@@ -26558,4 +26560,25 @@ min-width: 230px;
 }
 .b_r-0{
     border-radius:0% !important;
+}
+
+/*Company Profile Edit Delete Dropdown*/
+.edit-delete-dropdown .item{
+    position: relative;
+}
+
+.edit-delete-dropdown .item .dropdown{
+    position: relative;
+    right: 21px;
+    top: 5px;
+    position: absolute;
+}
+
+.edit-delete-dropdown .item .dropdown-toggle{
+    background-color: #fff;
+}
+
+.edit-delete-dropdown .item .dropdown-menu{
+    right: 0;
+    left: auto;
 }

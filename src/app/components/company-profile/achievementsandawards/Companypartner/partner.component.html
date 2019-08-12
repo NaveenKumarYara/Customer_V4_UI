@@ -11,7 +11,7 @@
         <ul class="achievements__list">
             <li class="item" *ngFor="let companypartner of getcompanypartner">
                 <button class="btn delete-btn" (click)="DeletepartnerId(companypartner?.CompanyPartnerId)">X</button>
-              <img src="{{companypartner?.PartnerLogo}}" alt="">
+              <img  height="200" src="{{companypartner?.PartnerLogo}}" alt="">
               <p>
                 {{companypartner?.PartnerName}}
                 

@@ -22,13 +22,13 @@
         <div id="cultural-carousel">
           <div class="row">
             <div class="column" *ngFor="let companycluture of getcompanycluture">
-              <div class="owl-item cloned" style="width: 205px; margin-right: 10px;">
+              <div class="owl-item cloned">
                 <div class="item cultural-item">
                   <div class="img-wrapper">
-                    <button class="btn delete-btn" (click)="DeleteId(companycluture?.CompanyCultureId)">X</button>
+                    <button class="delete-btn" (click)="DeleteId(companycluture?.CompanyCultureId)">x</button>
 
-                    <img class="img-responsive" title="{{companycluture?.EventName}}" src="{{companycluture.EventPhoto}}"
-                      alt="">
+                    <img class="img-responsive" height="150" title="{{companycluture?.EventName}}" src="{{companycluture.EventPhoto}}"
+                      alt="companycluture?.EventName">
                       <h4>{{companycluture?.EventName}}</h4>
                       <!-- <p>
                         {{companycluture?.EventDescription}}
