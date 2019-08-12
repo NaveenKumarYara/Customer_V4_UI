@@ -75,9 +75,21 @@ export class AchievementsComponent implements OnInit {
       )
   
     }
+
+    Edit(val)
+    {
+        this.name = val.AwardTitle;
+        this.description = val.Description;
+        this.saveImage.value.CompanyAchievementId = val.CompanyAchievementId;
+        this.saveImage.value.CustomerId = this.customerId;
+        this.saveImage.value.AwardTitle = this.name;
+        this.saveImage.value.Description = this.description;
+        this.currentImageUpload = val.AwardLogo;
+        this.imageSrc = val.AwardLogo;
+    }
  
     uploadPhoto() {
-      debugger
+        debugger
       if(this.name==undefined&&this.description==undefined)
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -107,7 +119,6 @@ export class AchievementsComponent implements OnInit {
     }
     }
     onFileChange(event) {
-      debugger
       //this.alertService.clear();
       const reader = new FileReader();
       if (event.target.files && event.target.files.length > 0) {
