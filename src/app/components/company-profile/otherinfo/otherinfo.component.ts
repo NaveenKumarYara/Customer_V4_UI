@@ -18,6 +18,7 @@ export class OtherinfoComponent implements OnInit {
  userId:any;
  iseditOther: any = false;
 companyTypeId:any;
+RevenueInfo:any;
 numberOfOffices:any;
 numberOfEmployees:any;
 dateOfEstablishment:any;
@@ -36,11 +37,13 @@ dateOfEstablishment:any;
     this.numberOfEmployees=$("#NumberOfEmployees").val();
     this.numberOfOffices=$("#NumberOfOffices").val();
     this.companyTypeId=$("#company-type").val();
+    this.RevenueInfo=$("#revenueinfo").val();
     this.otherInfo.customerId = this.customerId;
     this.otherInfo.dateOfEstablishment= this.dateOfEstablishment;
     this.otherInfo.numberOfEmployees=this.numberOfEmployees;
     this.otherInfo.numberOfOffices=this.numberOfOffices;
     this.otherInfo.companyTypeId= this.companyTypeId;
+    this.otherInfo.RevenueInfo=this.RevenueInfo;
     this._service.PostService(this.otherInfo, 'ProfileAPI/api/UpdateOtherinfo')
     .subscribe(data => {
       this.populateCompanyProfileOtherInfo(this.customerId);
