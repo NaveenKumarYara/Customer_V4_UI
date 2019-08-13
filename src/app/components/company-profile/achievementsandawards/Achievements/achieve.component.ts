@@ -40,7 +40,7 @@ export class AchievementsComponent implements OnInit {
 
     this.saveImage = this.fb.group({
       'CompanyAchievementId':[0, Validators.required],
-      'CustomerId': [this.customerId, Validators.required],
+      'CustomerId': ['', Validators.nullValidator],
       'AwardTitle': ['', Validators.nullValidator],
       'AwardedYear': ['2019', Validators.nullValidator],
       'Description': ['', Validators.nullValidator],
@@ -76,21 +76,28 @@ export class AchievementsComponent implements OnInit {
   
     }
 
+    ClearThevalues()
+    {
+        this.name = '';
+        this.description = '';
+        this.imageSrc ='';  
+        this.saveImage.reset();
+        this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
+        this.saveImage.patchValue({ 'AwardedYear': 2019 });
+    }
+
     Edit(val)
     {
         this.name = val.AwardTitle;
         this.description = val.Description;
         this.saveImage.value.CompanyAchievementId = val.CompanyAchievementId;
-        this.saveImage.value.CustomerId = this.customerId;
-        this.saveImage.value.AwardTitle = this.name;
-        this.saveImage.value.Description = this.description;
         this.currentImageUpload = val.AwardLogo;
         this.imageSrc = val.AwardLogo;
     }
  
     uploadPhoto() {
         debugger
-      if(this.name==undefined&&this.description==undefined)
+      if((this.name==undefined&&this.description==undefined)||(this.name==""&&this.description==""))
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
@@ -103,6 +110,7 @@ export class AchievementsComponent implements OnInit {
       const _formData: FormData = new FormData();
       if (this.saveImage.value !== '') {
         this.saveImage.value.AwardTitle = this.name;
+        this.saveImage.value.CustomerId = this.customerId;
         this.saveImage.value.Description = this.description;
         request = JSON.stringify(this.saveImage.value);
       }
@@ -114,6 +122,9 @@ export class AchievementsComponent implements OnInit {
         this.name = '';
         this.description = '';
         this.imageSrc ='';
+        this.saveImage.reset();
+        this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
+        this.saveImage.patchValue({ 'AwardedYear': 2019 });
         this.populateCompanyAchivements();
       });
     }
