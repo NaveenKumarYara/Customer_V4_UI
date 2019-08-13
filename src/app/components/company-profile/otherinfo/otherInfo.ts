@@ -4,4 +4,5 @@ export class otherInfo{
       numberOfOffices: number;
       dateOfEstablishment: string;
       companyTypeId:number;
+      RevenueInfo:string;
     }
