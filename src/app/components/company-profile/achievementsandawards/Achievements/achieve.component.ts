@@ -96,7 +96,6 @@ export class AchievementsComponent implements OnInit {
     }
  
     uploadPhoto() {
-        debugger
       if((this.name==undefined&&this.description==undefined)||(this.name==""&&this.description==""))
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -117,7 +116,6 @@ export class AchievementsComponent implements OnInit {
       _formData.append('Photo', this.currentImageUpload);
       _formData.append('Model', request);
       const reader = new FileReader();
-      debugger
       this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyAchievement').subscribe(data => {
         this.name = '';
         this.description = '';
