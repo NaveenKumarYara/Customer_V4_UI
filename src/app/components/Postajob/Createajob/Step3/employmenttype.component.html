@@ -1,66 +1,79 @@
 <div class="form-group position-group">
-  <div class="row">
-    <div class="col-md-12">
-      <label for="" class="question">Do you Prefer exact match from the search <small>(Optional)</small></label>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="" class="question">Do you Prefer exact match from the search <small>(Optional)</small></label>
+
+        </div>
+        <div class="col-md-5">
+            <select class="styled-select-box form-control mt-0" id="view" (change)="onChange($event.target.value)">
+                <option default="" value="0">Select</option>
+                <option *ngFor="let skill of Skill_DATA" value="{{skill.Id}}">{{skill.Parameter}}</option>
+                <!--<option value="2">Domain</option>
+                <option value="3">Role</option>
+                <option value="4">Skils</option>-->
+            </select>
+        </div>
+        <div class="col-md-5">
+            <input class="form-control mt-0" placeholder="Enter match % " type="text" [(ngModel)]="Percentage">
+        </div>
+        <div class="col-md-2">
+            <button class="btn add-btn form-control mt-0" type="submit" (click)="addSkill()">+</button>
+        </div>
+        <div class="col-md-12 mt-10">
+            <!-- <p class="description mt-10">Prefer exact match</p> -->
+            <ul class="data-list">
+                <li class="col-md-6 w-auto no-exp p-0" *ngFor="let skill of SkillDataList; let i = index">
+                    <span class="name w-auto p10-20">{{skill.Name}}</span>
+                    <span class="experience w-auto p10-20">{{skill.Percentage}}%</span>
+                    <span class="close w-auto p10-20" (click)="deleteSkill(i)">×</span>
+                </li>
+                <!--<li class="col-md-6 w-auto no-exp p-0">
+                    <span class="name w-auto p10-20">Experience</span>
+                    <span class="experience w-auto p10-20">40%</span>
+                    <span class="close w-auto p10-20">×</span>
+                </li>-->
+
+            </ul>
+        </div>
+        <!--<div class="lists row">
+            <div class="col-md-12" *ngIf="Store_DATA.length>0">
+                <p class="description">Skils</p>
+                <ul class="data-list">
+                    <li class="col-md-6 no-exp" *ngFor="let skill of SkillData; let i = index">
+                        <span class="name">{{skill.Pame}}</span>
+                        <span class="experience"> {{(skill.Percentage}}%</span>
+                        <span class="close" (click)="deleteDomain(i)">&times;</span>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
 
     </div>
-    <div class="col-md-5">
-      <select class="styled-select-box form-control mt-0" id="view">
-        <option default="" value="0">Select</option>
-        <option value="1">Experience</option>
-        <option value="2">Domain</option>
-        <option value="3">Role</option>
-        <option value="4">Skils</option>
-      </select>
-    </div>
-    <div class="col-md-5">
-      <input class="form-control mt-0" placeholder="Enter match % " type="text">
-    </div>
-    <div class="col-md-2">
-      <button class="btn add-btn form-control mt-0" type="submit" disabled="">+</button>
-    </div>
-    <div class="col-md-12 mt-10">
-      <!-- <p class="description mt-10">Prefer exact match</p> -->
-      <ul class="data-list">
-        <li class="col-md-6 w-auto no-exp p-0">
-          <span class="name w-auto p10-20">Domain</span>
-          <span class="experience w-auto p10-20">60%</span>
-          <span class="close w-auto p10-20">×</span>
-        </li>
-        <li class="col-md-6 w-auto no-exp p-0">
-            <span class="name w-auto p10-20">Experience</span>
-            <span class="experience w-auto p10-20">40%</span>
-            <span class="close w-auto p10-20">×</span>
-          </li>
-         
-      </ul>
-    </div>
-
-  </div>
 
 </div>
 
 
 <div class="form-group position-group">
-  <div class="row">
-    <div class="col-md-12">
-      <label for="" class="question">What is the Employment Type? <small>(Optional)</small></label>
-      <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-      <div class="options">
-        <div class="checkbox" *ngFor="let type of employmenttypelist">
-          <!-- <label><input type="radio" (change)="selectEmpType(type.EmploymentTypeId)" name="emptype" value=""><span class="box">{{type.EmploymentType}}</span> </label> -->
-          <label><input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId"
-              (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span
-              class="box">{{type.EmploymentType}}</span> </label>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="" class="question">What is the Employment Type? <small>(Optional)</small></label>
+            <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+            <div class="options">
+                <div class="checkbox" *ngFor="let type of employmenttypelist">
+                    <!-- <label><input type="radio" (change)="selectEmpType(type.EmploymentTypeId)" name="emptype" value=""><span class="box">{{type.EmploymentType}}</span> </label> -->
+                    <label>
+                        <input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId"
+                               (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span class="box">{{type.EmploymentType}}</span>
+                    </label>
+                </div>
+            </div>
         </div>
-      </div>
+        <!-- <div class="col-md-6">
+           MOVED TO teammembers.component.html
+            <label for="" class="question">Video Sizzle <small>(Optional)</small></label>
+            <p class="description">Make a lively interaction via Your Job Requirement Intro Video with Candidates.</p>
+            <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
+        </div> -->
     </div>
-    <!-- <div class="col-md-6">
-       MOVED TO teammembers.component.html
-        <label for="" class="question">Video Sizzle <small>(Optional)</small></label>
-        <p class="description">Make a lively interaction via Your Job Requirement Intro Video with Candidates.</p>
-        <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
-    </div> -->
-  </div>
 
 </div>
