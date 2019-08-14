@@ -90,33 +90,46 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     this.selectedFileNames = [];
     let request = '';
     const formData = new FormData();
-
-    // document.getElementById('jobId').value; //this.jobid;
-    // this.fileUploadForm.value.ResumeFile = e.target.files[0];
-    if (this.fileUploadForm.value !== '') {
-      this.fileUploadForm.value.Title = this.name;
-      this.fileUploadForm.value.Description = this.description;
-      this.fileUploadForm.value.Url = '';
-      this.fileUploadForm.value.customerId = this.customerId;
-      this.fileUploadForm.value.CompanyWhitePaper = e.target.files[0].name;
-      this.fileUploadForm.value.FileExtension = e.target.files[0].type;
-      this.edit = 0;
-      request = JSON.stringify(this.fileUploadForm.value);
-    }
-    if (e.target.files.length > 5) {
-     this.toastr.warning('Please select max 5 files.','Oops!');
-      this.spinner.hide();
-      e.preventDefault();
-    } else {
-      for (let i = 0; i < e.target.files.length; i++) {
-        this.selectedFileNames.push(e.target.files[i].name);
-        formData.append('WhitePaper', e.target.files[i]);
+    const fileSelected: File = e.target.files[0];
+    const stringToSplitDoc = fileSelected.name;
+    const y = stringToSplitDoc.split('.');
+    const exp = y[1];
+    if ((exp === 'doc' || exp === 'pdf' || exp === 'docx') || (exp === 'DOC' || exp === 'PDF' || exp === 'DOCX')) {
+      if (fileSelected.size > 2048576) {
+        // Swal('Too Big Size.. File Not Allowed');
+        this.toastr.warning('Too Big Size.. File size greater than 2MB Not Allowed!', 'Oops!');
+        setTimeout(() => {
+          this.toastr.dismissToast;
+        }, 3000);
       }
-     // this.loaddata = false;
-      formData.append('Model', request);
-      this.filedata= formData;
-      //this.uploadMultiple(formData);
+      if (this.fileUploadForm.value !== '') {
+        this.fileUploadForm.value.Title = this.name;
+        this.fileUploadForm.value.Description = this.description;
+        this.fileUploadForm.value.Url = '';
+        this.fileUploadForm.value.customerId = this.customerId;
+        this.fileUploadForm.value.CompanyWhitePaper = e.target.files[0].name;
+        this.fileUploadForm.value.FileExtension = e.target.files[0].type;
+        this.edit = 0;
+        request = JSON.stringify(this.fileUploadForm.value);
+      }
+  
+        for (let i = 0; i < e.target.files.length; i++) {
+          this.selectedFileNames.push(e.target.files[i].name);
+          formData.append('WhitePaper', e.target.files[i]);
+        }
+       // this.loaddata = false;
+        formData.append('Model', request);
+        this.filedata= formData;
     }
+    else 
+    {
+      this.toastr.warning('Please upload the files with extension doc, pdf', 'Oops!');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);    
+  }
+
+  
   }
   Edit(val)
   {
