@@ -30,6 +30,7 @@ export class AchievementsComponent implements OnInit {
   public debug_size_before: string[] = [];
   public debug_size_after: string[] = [];
   currentImageUpload: File;
+  ImageFile: string;
   ImageUpload: File;
   CImageUpload: File;
   constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,private _service: ApiService, private route: Router, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
@@ -91,7 +92,7 @@ export class AchievementsComponent implements OnInit {
         this.name = val.AwardTitle;
         this.description = val.Description;
         this.saveImage.value.CompanyAchievementId = val.CompanyAchievementId;
-        this.currentImageUpload = val.AwardLogo;
+        this.ImageFile = val.Logotitle;
         this.imageSrc = val.AwardLogo;
     }
  
@@ -105,27 +106,49 @@ export class AchievementsComponent implements OnInit {
       }
       else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
       {
-      let request = '';
-      const _formData: FormData = new FormData();
+      if(this.currentImageUpload != undefined)
+      {
+        let request = '';
+        const _formData: FormData = new FormData();
+        if (this.saveImage.value !== '') {
+          this.saveImage.value.AwardTitle = this.name;
+          this.saveImage.value.CustomerId = this.customerId;
+          this.saveImage.value.Description = this.description;
+          request = JSON.stringify(this.saveImage.value);
+        }
+        _formData.append('Photo', this.currentImageUpload);
+        _formData.append('Model', request);
+        const reader = new FileReader();
+        this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyAchievement').subscribe(data => {
+          this.name = '';
+          this.description = '';
+          this.imageSrc ='';
+          this.saveImage.reset();
+          this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
+          this.saveImage.patchValue({ 'AwardedYear': 2019 });
+          this.populateCompanyAchivements();
+        });
+      }
+      else if (this.saveImage.value.CompanyAchievementId>0 && this.currentImageUpload == undefined)
+      {
       if (this.saveImage.value !== '') {
         this.saveImage.value.AwardTitle = this.name;
         this.saveImage.value.CustomerId = this.customerId;
         this.saveImage.value.Description = this.description;
-        request = JSON.stringify(this.saveImage.value);
+        this.saveImage.value.AwardLogo = this.ImageFile;
       }
-      _formData.append('Photo', this.currentImageUpload);
-      _formData.append('Model', request);
-      const reader = new FileReader();
-      this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyAchievement').subscribe(data => {
+      this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyAchievement').subscribe(data => {
         this.name = '';
         this.description = '';
         this.imageSrc ='';
+        this.ImageFile = '';
         this.saveImage.reset();
         this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
         this.saveImage.patchValue({ 'AwardedYear': 2019 });
         this.populateCompanyAchivements();
       });
-    }
+      }
+     }
     }
     onFileChange(event) {
       //this.alertService.clear();
@@ -148,7 +171,7 @@ export class AchievementsComponent implements OnInit {
             reader.readAsDataURL(file);
           reader.onload = () => {
             this.imageSrc = 'data:image/png;base64,' + reader.result.split(',')[1];
-            this.currentImageUpload = file;      
+            this.currentImageUpload = file;    
           }
           }
         } else {
