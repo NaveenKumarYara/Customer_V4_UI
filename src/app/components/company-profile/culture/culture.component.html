@@ -25,6 +25,7 @@
               <div class="owl-item cloned edit-delete-dropdown">
                 <div class="item cultural-item">
                   <div class="img-wrapper ">
+                    <div class="img-170">
                     <!--New Edit Delete-->
                     <div class="dropdown card-dropdown culture-dropdown">
                         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -47,6 +48,7 @@
 
                     <img class="img-responsive" height="200" title="{{companycluture?.EventName}}" src="{{companycluture.EventPhoto}}"
                       alt="companycluture?.EventName">
+                    </div>
                       <h4>{{companycluture?.EventName}}</h4>
                       <!-- <p>
                         {{companycluture?.EventDescription}}
@@ -287,10 +289,12 @@
 
                           <div class="culture-card file-upload-dashed">
                             <div class="img-wrapper">
-                              <button class="btn delete-btn t14-r20" (click)="Clear()">X</button>
+                                <div class="img-170">
+                              <button class="btn delete-btn r-30" (click)="Clear()">X</button>
                             
                                 <img class="img-responsive" [src]="imageSrc || 'https://via.placeholder.com/150'" id="profile" alt="">
-                            </div>
+                              </div>
+                              </div>
                             <div class="culture-card text-center pointer pt-1" (click)="photo.click()">
                             <input class="hidden" type="file" #photo (click)="photo.value = null" value=""
                               (change)="onFileChange($event)">
