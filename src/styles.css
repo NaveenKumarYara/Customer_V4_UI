@@ -12346,7 +12346,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 .page--manage-jobs .card .status {
     border-radius: 3px;
     display: inline-block;
-    padding: 3px 6px;
+    padding: 2px 6px;
     line-height: 1;
     color: #ffffff;
     text-transform: uppercase;
