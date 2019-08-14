@@ -24059,6 +24059,10 @@ table .table-prl-0 td {
     top: 14px !important;
     right: 20px !important;
 }
+.t2-r30 {
+    top: 2px !important;
+    right: 30px !important;
+}
 
 .pt-1 {
     padding-top: 1rem;
@@ -24198,6 +24202,16 @@ table .table-prl-0 td {
 }
 .r-30{
     right:30px !important;
+}
+.edit-delete-dropdown .item .img-170 .dropdown {
+    right: 0px;
+    top: 5px;
+    position: absolute;
+    z-index: 1;
+}
+.edit-delete-dropdown .item .img-170 .dropdown-toggle {
+    background-color: #fff;
+    border: 1px solid #cdcdcd;
 }
 /*temp*/
 .temp-flex-basis16{
