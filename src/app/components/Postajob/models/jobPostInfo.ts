@@ -43,6 +43,7 @@ export class InsertJob {
     public XmlDepartment: PjDepartments[] = [];
     public Draft: boolean;
     public Email: string;
+    public MatchingCrieterias : SkillPostData[]=[];
   }
   export class PjSkill {
     public SkillName: string;
@@ -56,6 +57,12 @@ export class InsertJob {
     Role: string;
 
   }
+//skills
+  export class SkillPostData {
+    ParameerId: number;
+    Percentage: number;
+}
+
   // For GetRoles
   export class Roles {
     public RoleId: number;

@@ -29,6 +29,7 @@ import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
 import { ParseResponsibilities } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
+import { SkillDetails, SkillData,SkillPostData } from '../models/skill.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -55,6 +56,9 @@ export class AppService {
 
   addqualifications: PjEducationDetails[] = [];
   addqualificationsChanged = new Subject<PjEducationDetails[]>();
+
+  addSkillslist: SkillData[] = [];
+  skillPostData: SkillPostData[] = [];
 
   customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
@@ -327,6 +331,16 @@ export class AppService {
   getDepartment() {
     return this.departments.slice();
   }
+
+  getSkillDetails(): Observable<SkillDetails[]> {
+    const url = environment.JobMatchingParameter;
+    var skilllist = this.http.get<string[]>(url)
+        .catch(
+            this.handleError
+    );
+    return skilllist;
+}
+
   getaddedDepartments() {
     return this.addeddepartments.slice();
   }
@@ -716,6 +730,20 @@ bulkApply(body) {
     this.addqualifications.push(addQlfcn);
     this.addqualificationsChanged.next(this.addqualifications.slice());
   }
+
+  addSkill(skill : SkillPostData,skillDisplay : SkillData){
+this.addSkillslist.push(skillDisplay);
+this.skillPostData.push(skill);
+console.log("add" + this.addSkillslist);
+console.log("add" + this.skillPostData);
+  }
+
+  deleteSkill(index : number){
+    this.addSkillslist.splice(index,1);
+    this.skillPostData.splice(index,1);
+console.log("deleteskill" + this.addSkillslist);
+console.log("deleteskill" + this.skillPostData);
+}
 
   deleteQualifications(index: number) {
     this.qualifications.splice(index, 1);

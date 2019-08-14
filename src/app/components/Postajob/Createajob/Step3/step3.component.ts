@@ -292,6 +292,7 @@ export class Step3Component implements OnInit {
       this.insertJob.ContractDuration = this.contractDuration.contractDuration;
       this.insertJob.WorkAuthorizationId = this.contractExtension.contractExtension.WorkAuthorizationId;
     }
+    this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     // this.insertJob.MinimumSalary = this.salary.minAnnualRate.toString();
     // this.insertJob.MaximumSalary = this.salary.minAnnualRate.toString();
 
