@@ -32,6 +32,7 @@ export class CertificationComponent implements OnInit {
   public debug_size_after: string[] = [];
   currentImageUpload: File;
   ImageUpload: File;
+  ImageFile: string;
   CImageUpload: File;
   constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,private _service: ApiService, private route: Router, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -41,7 +42,7 @@ export class CertificationComponent implements OnInit {
 
     this.CImage = this.fb.group({
       'CompanyCertificationId':[0, Validators.required],
-      'CustomerId': [this.customerId, Validators.required],
+      'CustomerId': ['', Validators.required],
       'CertificationName': ['', Validators.nullValidator],
       'CertifiedUnder': ['', Validators.nullValidator],
       'CertificationLogo':['', Validators.nullValidator],
@@ -79,15 +80,23 @@ export class CertificationComponent implements OnInit {
   
     }
 
+    ClearThevalues()
+    {
+        this.Cname = '';
+        this.Cdescription = '';
+        this.CimageSrc =''; 
+        this.CImage.reset();
+        this.CImage.patchValue({ 'CompanyCertificationId': 0 });
+        this.CImage.patchValue({ 'StartDate': '' });
+        this.CImage.patchValue({ 'ExpiryDate': '' });
+    }
+
     Edit(val)
     {
         this.Cname = val.CertificationName;
         this.Cdescription = val.CertifiedUnder;
-        this.CImage.value.CompanyCertificationId = val.CompanyCertificationId;
-        this.CImage.value.CustomerId = this.customerId;
-        this.CImage.value.CertificationName = this.Cname;
-        this.CImage.value.Description = this.Cdescription;
-        this.CImageUpload = val.CertificationLogo;
+        this.CImage.value.CompanyCertificationId = val.CompanyCertificationId;     
+        this.ImageFile = val.Logotitle;
         this.CimageSrc = val.CertificationLogo;
     }
 
@@ -138,9 +147,12 @@ export class CertificationComponent implements OnInit {
       }
       else if((this.Cname!=undefined&&this.Cdescription!=undefined)||(this.Cname!=""&&this.Cdescription!=""))
       {
+      if(this.CImageUpload!= undefined)
+      {
       let request = '';
       const _formData: FormData = new FormData();
       if (this.CImage.value !== '') {
+        this.CImage.value.CustomerId = this.customerId;
         this.CImage.value.CertificationName = this.Cname;
         this.CImage.value.CertifiedUnder = this.Cdescription;
         request = JSON.stringify(this.CImage.value);
@@ -154,7 +166,28 @@ export class CertificationComponent implements OnInit {
         this.CimageSrc ='';
         this.populateCompanyCertifications();
       });
-    }
+        }
+        else if (this.CImage.value.CompanyCertificationId>0 && this.CImageUpload == undefined)
+        {
+          if (this.CImage.value !== '') {
+            this.CImage.value.CertificationName = this.Cname;
+            this.CImage.value.CustomerId = this.customerId;
+            this.CImage.value.CertifiedUnder = this.Cdescription;
+            this.CImage.value.CertificationLogo = this.ImageFile;
+          }
+          this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyCertification').subscribe(data => {
+            this.Cname = '';
+            this.Cdescription = '';
+            this.CimageSrc ='';
+            this.ImageFile = '';
+            this.CImage.reset();
+            this.CImage.patchValue({ 'CompanyCertificationId': 0 });
+            this.CImage.patchValue({ 'StartDate': '' });
+            this.CImage.patchValue({ 'ExpiryDate': '' });
+            this.populateCompanyCertifications();
+          });
+        }
+      }
     }
   
   }
