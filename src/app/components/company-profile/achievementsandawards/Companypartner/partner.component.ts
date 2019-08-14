@@ -26,6 +26,7 @@ export class PartnerComponent implements OnInit {
   Pname:any;
   Pdescription:any;
   profileId: any;
+  ImageFile: string;
   Image: FormGroup;
   public file_srcs: string[] = [];
   public debug_size_before: string[] = [];
@@ -48,16 +49,24 @@ export class PartnerComponent implements OnInit {
     });
  }
 
+ 
+ ClearThevalues()
+ {
+     this.Pname = '';
+     this.Pdescription = '';
+     this.imageSrc ='';  
+     this.Image.reset();
+     this.Image.patchValue({ 'CompanyPartnerId': 0 });
+ }
+
+
 
  Edit(val)
  {
      this.Pname = val.PartnerName;
      this.Pdescription = val.Description;
      this.Image.value.CompanyPartnerId = val.CompanyPartnerId;
-     this.Image.value.CustomerId = this.customerId;
-     this.Image.value.PartnerName = this.Pname;
-     this.Image.value.Description = this.Pdescription;
-     this.ImageUpload = val.PartnerLogo;
+     this.ImageFile = val.Logotitle;
      this.imageSrc = val.PartnerLogo;
  }
   
@@ -134,11 +143,14 @@ export class PartnerComponent implements OnInit {
       }
       else if((this.Pname!=undefined&&this.Pdescription!=undefined)||(this.Pname!=""&&this.Pdescription!=""))
       {
+        if(this.ImageUpload != undefined)
+        {
       let request = '';
       const _formData: FormData = new FormData();
       if (this.Image.value !== '') {
         this.Image.value.PartnerName = this.Pname;
         this.Image.value.Description= this.Pdescription;
+        this.Image.value.CustomerId = this.customerId;
         request = JSON.stringify(this.Image.value);
       }
       _formData.append('Photo', this.ImageUpload);
@@ -148,9 +160,31 @@ export class PartnerComponent implements OnInit {
         this.Pname = '';
         this.Pdescription = '';
         this.imageSrc ='';
+        this.Image.reset();
+        this.Image.patchValue({ 'CompanyPartnerId': 0 });
         this.populateCompanyPartners();
-      });
-    }
+        });
+       }
+       
+      else if (this.Image.value.CompanyPartnerId>0 && this.ImageUpload == undefined)
+      {
+        if (this.Image.value !== '') {
+          this.Image.value.PartnerName = this.Pname;
+          this.Image.value.Description= this.Pdescription;
+          this.Image.value.CustomerId = this.customerId;
+          this.Image.value.PartnerLogo = this.ImageFile;         
+        }
+
+        this._service.PostService(this.Image.value, 'ProfileAPI/api/UpdateCompanyPartner').subscribe(data => {
+          this.Pname = '';
+          this.Pdescription = '';
+          this.imageSrc ='';
+          this.Image.reset();
+          this.Image.patchValue({ 'CompanyPartnerId': 0 });
+          this.populateCompanyPartners();
+          });
+      }
+     }
     }
 
   
