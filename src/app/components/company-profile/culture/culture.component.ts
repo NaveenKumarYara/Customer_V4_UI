@@ -26,6 +26,7 @@ name:any;
 description:any;
 videoUrl: string;
 profileId: any;
+ImageFile: string;
 saveImage: FormGroup;
 public file_srcs: string[] = [];
 public debug_size_before: string[] = [];
@@ -39,15 +40,35 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
   this.toastr.setRootViewContainerRef(_vcr);
   this.saveImage = this.fb.group({
     'companyCultureId':[0, Validators.required],
-    'customerId': [this.customerId, Validators.required],
-    'eventName': [this.customer.FirstName, Validators.nullValidator],
+    'customerId': ['', Validators.nullValidator],
+    'eventName': ['', Validators.nullValidator],
     'eventDate': ['2018-09-09', Validators.nullValidator],
-    'eventDescription': [this.customer.FirstName, Validators.nullValidator],
+    'eventDescription': ['', Validators.nullValidator],
     'Photo': [null, Validators.nullValidator],
   }); }
 
   ngOnInit() {
     this.populateCompanyCultures();
+  }
+
+  ClearThevalues()
+  {
+      this.name = '';
+      this.description = '';
+      this.imageSrc ='';  
+      this.saveImage.reset();
+      this.saveImage.patchValue({ 'companyCultureId': 0 });
+      this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
+  }
+
+
+  Edit(val)
+  {
+      this.name = val.EventName;
+      this.description = val.EventDescription;
+      this.ImageFile = val.Logotitle;
+      this.imageSrc = val.EventPhoto;
+      this.saveImage.value.companyCultureId = val.CompanyCultureId;
   }
 
   populateCompanyCultures() {
@@ -74,7 +95,6 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
   }
 
   uploadPhoto() {
-    debugger
     if(this.name==undefined&&this.description==undefined)
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -84,11 +104,14 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
     }
     else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
     {
+      if(this.currentImageUpload != undefined)
+      {
     let request = '';
     const _formData: FormData = new FormData();
     if (this.saveImage.value !== '') {
       this.saveImage.value.eventName = this.name;
       this.saveImage.value.eventDescription = this.description;
+      this.saveImage.value.customerId = this.customerId;
       request = JSON.stringify(this.saveImage.value);
     }
     _formData.append('Photo', this.currentImageUpload);
@@ -98,9 +121,33 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
       this.name = '';
       this.description = '';
       this.imageSrc ='';
+      this.saveImage.reset();
+      this.saveImage.patchValue({ 'companyCultureId': 0 });
+      this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
+      this.populateCompanyCultures();
+    });
+    
+  
+  }
+  else if (this.saveImage.value.companyCultureId>0 && this.currentImageUpload == undefined)
+  {
+    if (this.saveImage.value !== '') {
+      this.saveImage.value.eventName = this.name;
+      this.saveImage.value.eventDescription = this.description;
+      this.saveImage.value.customerId = this.customerId;
+      this.saveImage.value.EventPhoto = this.ImageFile;
+    }
+    this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyCulture').subscribe(data => {
+      this.name = '';
+      this.description = '';
+      this.imageSrc ='';
+      this.saveImage.reset();
+      this.saveImage.patchValue({ 'companyCultureId': 0 });
+      this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
       this.populateCompanyCultures();
     });
   }
+}
   }
   onFileChange(event) {
     //this.alertService.clear();

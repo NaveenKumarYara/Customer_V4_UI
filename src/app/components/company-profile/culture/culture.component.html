@@ -12,7 +12,7 @@
         </svg>
         <span>Culture</span>
       </h1>
-      <a href="javascript:void(0)" class="add-btn" data-toggle="modal" data-target="#culture">
+      <a href="javascript:void(0)" class="add-btn"  (click)="ClearThevalues()" data-toggle="modal" data-target="#culture">
         <span class="add add--green rounded">+</span>
         <span>Add Images</span>
       </a>
@@ -34,7 +34,7 @@
                         </button>
                         <ul class="dropdown-menu">
                           <li>
-                            <a href="javascript:void(0)" data-toggle="modal" href="/#/" >Edit</a>
+                            <a href="javascript:void(0)" data-toggle="modal" href="#culture" (click)="Edit(companycluture)" >Edit</a>
                           </li>
                           <li>
                             <a href="javascript:void(0)" (click)="DeleteId(companycluture?.CompanyCultureId)">Delete</a>
