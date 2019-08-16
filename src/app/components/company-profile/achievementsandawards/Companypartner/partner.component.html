@@ -1,6 +1,6 @@
 
   <div style="text-align: end">
-        <a href="javascript:void(0)" class="add-btn" data-toggle="modal" href="#partnershipsModel">
+        <a href="javascript:void(0)" class="add-btn" data-toggle="modal" (click)="ClearThevalues()" href="#partnershipsModel">
                 <span class="add add--green rounded">+</span>
                 <span>Add</span>
               </a>
@@ -9,25 +9,29 @@
 <div class="tab-inner scrollbar-inner" >
              
         <ul class="achievements__list edit-delete-dropdown">
-            <li class="item" *ngFor="let companypartner of getcompanypartner">
-                    <div class="dropdown card-dropdown">
-                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
-                                <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
-                              </svg>
-                            </button>
-                       <ul class="dropdown-menu">
-                        <li>
-                          <a href="javascript:void(0)" data-toggle="modal" href="#partnershipsModel" (click)="Edit(companypartner)">Edit</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)" (click)="DeletepartnerId(companypartner?.CompanyPartnerId)">Delete</a>
-                        </li>
-                      </ul>
-                      </div>
-               
-               
-              <img  height="200"  src="{{companypartner?.PartnerLogo}}" alt="">
+            <li class="item text-center" *ngFor="let companypartner of getcompanypartner">
+<div class="img-170">
+    <div class="dropdown card-dropdown">
+        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+            <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+          </svg>
+        </button>
+   <ul class="dropdown-menu">
+    <li>
+      <a href="javascript:void(0)" data-toggle="modal" href="#partnershipsModel" (click)="Edit(companypartner)">Edit</a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" (click)="DeletepartnerId(companypartner?.CompanyPartnerId)">Delete</a>
+    </li>
+  </ul>
+  </div>
+
+
+<img src="{{companypartner?.PartnerLogo}}" alt="">
+</div>
+
+                    
               <p>
                 {{companypartner?.PartnerName}}
                 
@@ -47,7 +51,7 @@
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="card card--other-info">
-                      <div class="card-header">
+                      <div class="card-header header-title">
                         <h1 class="title">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" fill="#448AFA">
                             <g>
@@ -98,10 +102,13 @@
           
                                 <div class="culture-card file-upload-dashed">
                                     <div class="img-wrapper">
-                                        <button class="btn delete-btn t14-r20" (click)="Clear()">X</button>
+                                      <div class="img-170">
+                                          <button class="btn delete-btn t2-r30 upload-close-btn" (click)="Clear()">X</button>
                                       
                                           <img class="img-responsive" [src]="imageSrc || 'https://via.placeholder.com/150'" id="profile" alt="">
+                                      
                                       </div>
+                                        </div>
                                       <div class="culture-card text-center pointer pt-1" (click)="photo.click()">
                                       <input class="hidden" type="file" #photo (click)="photo.value = null" value=""
                                         (change)="onFileChangePartner($event)">

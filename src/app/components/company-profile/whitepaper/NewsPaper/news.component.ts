@@ -30,6 +30,7 @@ export class NewsComponent implements OnInit {
   public debug_size_before: string[] = [];
   public debug_size_after: string[] = [];
   currentImageUpload: File;
+  ImageFile : string;
   ImageUpload: File;
   CImageUpload: File;
   constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,private _service: ApiService, private route: Router, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
@@ -40,7 +41,7 @@ export class NewsComponent implements OnInit {
 
     this.CImage = this.fb.group({
       'companyNewsInfoId':[0, Validators.required],
-      'CustomerId': [this.customerId, Validators.required],
+      'CustomerId': ['', Validators.required],
       'newsTypeId': [1, Validators.nullValidator],
       'newsTitle': ['', Validators.nullValidator],
       'imageURL':['', Validators.nullValidator],
@@ -63,6 +64,25 @@ export class NewsComponent implements OnInit {
     Clear()
     {
       this.imageSrc = null;
+    }
+
+    ClearThevalues()
+    {
+        this.name = '';
+        this.description = '';
+        this.imageSrc =''; 
+        this.CImage.reset();
+        this.CImage.patchValue({ 'companyNewsInfoId': 0 });
+        this.CImage.patchValue({ 'newsTypeId': 1 });
+    }
+
+    Edit(val)
+    {
+        this.name = val.NewsTitle;
+        this.description = val.NewsDescription;
+        this.CImage.value.companyNewsInfoId = val.CompanyNewsInfoId;     
+        this.ImageFile = val.Logotitle;
+        this.imageSrc = val.ImageURL;
     }
 
     DeleteId(id)
@@ -125,11 +145,14 @@ export class NewsComponent implements OnInit {
       }
       else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
       {
+        if(this.CImageUpload!= undefined)
+        {
       let request = '';
       const _formData: FormData = new FormData();
       if (this.CImage.value !== '') {
         this.CImage.value.newsTitle = this.name;
         this.CImage.value.newsDescription = this.description;
+        this.CImage.value.customerId = this.customerId;
         request = JSON.stringify(this.CImage.value);
       }
       _formData.append('Photo', this.CImageUpload);
@@ -139,9 +162,32 @@ export class NewsComponent implements OnInit {
         this.name = '';
         this.description = '';
         this.imageSrc ='';
+        this.CImage.reset();
+        this.CImage.patchValue({ 'companyNewsInfoId': 0 });
+        this.CImage.patchValue({ 'newsTypeId': 1 });
         this.populateCompanyNewsInfo();
-      });
-    }
+         });
+         }
+         else if (this.CImage.value.companyNewsInfoId>0 && this.CImageUpload == undefined)
+         {
+          if (this.CImage.value !== '') {
+            this.CImage.value.newsTitle = this.name;
+            this.CImage.value.newsDescription = this.description;
+            this.CImage.value.customerId = this.customerId;
+            this.CImage.value.imageURL = this.ImageFile;
+          }
+          this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyNewsInfo').subscribe(data => {
+            this.name = '';
+            this.description = '';
+            this.imageSrc ='';
+            this.ImageFile = '';
+            this.CImage.reset();
+            this.CImage.patchValue({ 'companyNewsInfoId': 0 });
+            this.CImage.patchValue({ 'newsTypeId': 1 });
+            this.populateCompanyNewsInfo();
+             });
+         }
+      }
     }
   
   }

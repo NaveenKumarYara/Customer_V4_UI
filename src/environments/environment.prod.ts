@@ -131,6 +131,7 @@ export const environment = {
     GetCustomerUsers:'http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerUsers?',
     InsertCustomerUser:'http://api.tenendus.com:1090/IdentityAPI/api/InsertCompanyContacts',
     ProfileShareInvite: 'http://api.tenendus.com:1090/EmailAPI/api/ProfileShare',
+    JobMatchingParameter: 'http://api.tenendus.com:1090/JobsAPI/api/JobSearchMatchingParameters',
     // Redirections
     CustomerAppLogin: 'http://devapp.arytic.com/login',
     customerLogin : 'http://dev.arytic.com/customerlogin',
