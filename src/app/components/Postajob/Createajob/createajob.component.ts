@@ -153,7 +153,7 @@ editMode: string;
       // this.appService.skillDataList=(this.jobdetailscustomer.MatchingCrieterias);
       
       this.appService.skillDataList = this.skillList;
-      this.appService.skillDataListChanged.next(this.appService.skillList);
+      this.appService.skillDataListChanged.next(this.appService.skillDataList);
 
       // category
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
