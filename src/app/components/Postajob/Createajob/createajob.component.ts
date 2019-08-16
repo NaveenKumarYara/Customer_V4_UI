@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step2/Jobresponsibilities.component';
@@ -45,6 +45,7 @@ ejDomainIdList: PjDomain[] = [];
 // ejDomainId = new PjDomain();
 // ejDomain = new GetDomain();
 ejPrimarySkills: PjSkill[] = [];
+skillList: SkillPostData[] = [];
 ejSecondarySkills: PjSkill[] = [];
 // ejSkills = new PjSkill();
 // ejQualificationList: Qualifications[] = [];
@@ -142,6 +143,18 @@ editMode: string;
       this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
       // // localStorage.setItem('clientName', this.eJclient.ClientName );
       this.appService.clientModel.next(this.eJclient);
+      //Matchingcriteria
+      for (const team of this.jobdetailscustomer.MatchingCrieterias) {
+        const skill = new SkillPostData();
+        skill.ParameerId = team.ParameerId;
+        skill.Percentage = team.Percentage;
+        this.skillList.push(skill);
+      }
+      // this.appService.skillDataList=(this.jobdetailscustomer.MatchingCrieterias);
+      
+      this.appService.skillDataList = this.skillList;
+      this.appService.skillDataListChanged.next(this.appService.skillList);
+
       // category
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;

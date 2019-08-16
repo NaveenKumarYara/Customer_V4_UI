@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="col-md-5">
-            <input class="form-control mt-0" placeholder="Enter match % " type="text" [(ngModel)]="Percentage">
+            <input class="form-control mt-0" placeholder="Enter match % " pattern="[0-9]*" maxlength="3" type="text" [(ngModel)]="Percentage">
         </div>
         <div class="col-md-2">
             <button class="btn add-btn form-control mt-0" type="submit" (click)="addSkill()">+</button>

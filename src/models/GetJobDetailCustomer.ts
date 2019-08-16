@@ -5,6 +5,7 @@ import {JobResponsibility} from './JobResponsibility';
 import { Qualifications } from './qualifications.model';
 import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel } from '../app/components/Postajob/models/jobPostInfo';
 import { Jobskills } from './jobskills.model';
+import { SkillPostData } from './skill.model';
 
 export class GetJobDetailCustomer {
     JobInfo: JobInfo;
@@ -15,6 +16,7 @@ export class GetJobDetailCustomer {
     EducationDetails: Qualifications [];
     JobDepartments: DepartmentModel [];
     TechnicalTeam: any ;
+    MatchingCrieterias : SkillPostData[];
 }
 // export class GetJobDetailsCustomer {
 //     JobInfo:JobInfo;

@@ -30,6 +30,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
     SkillDataList: SkillData[] = [];
     skillPostData : SkillPostData;
+    skillPostDataList : SkillPostData[]=[];
     selectedSkillData: SkillData = new SkillData();
     Percentage: number;
     SkillName: string;
@@ -156,12 +157,28 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     //   // this.salaryTypelist = this.appService.getSalaryType();
     // }
     ngOnInit() {
+        
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()
         .subscribe(data => {
            this.Skill_DATA = data;
+
+           console.log("in EmpType");
+           this.skillPostDataList = this.appService.skillDataList;
+           console.log("asdasdasd");
+           console.log(this.appService.skillDataList);
+           if(this.skillPostDataList.length>0){
+           this.skillPostDataList.forEach(data=>{
+           this.selectedSkillData = new SkillData();
+           this.selectedSkillData.Name =this.Skill_DATA.find(x => x.Id == data.ParameerId).Parameter;
+           this.selectedSkillData.Percentage = data.Percentage;
+           this.SkillDataList.push(this.selectedSkillData);
+           console.log(this.SkillDataList);
+           });
+       }
         });
+
         // this.populateSalaryTypes();
         //  if (localStorage.getItem('jobId') != null) {
         this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);

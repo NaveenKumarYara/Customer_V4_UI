@@ -63,6 +63,10 @@ export class AppService {
   customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
 
+  skillDataList: SkillPostData[] =[];
+  skillDataListChanged=new Subject<SkillPostData[]>();
+
+
   private interviewtype: InterviewType[] = [];
 
   private notifications: Notification[] = [];
@@ -734,15 +738,11 @@ bulkApply(body) {
   addSkill(skill : SkillPostData,skillDisplay : SkillData){
 this.addSkillslist.push(skillDisplay);
 this.skillPostData.push(skill);
-console.log("add" + this.addSkillslist);
-console.log("add" + this.skillPostData);
   }
 
   deleteSkill(index : number){
     this.addSkillslist.splice(index,1);
     this.skillPostData.splice(index,1);
-console.log("deleteskill" + this.addSkillslist);
-console.log("deleteskill" + this.skillPostData);
 }
 
   deleteQualifications(index: number) {
