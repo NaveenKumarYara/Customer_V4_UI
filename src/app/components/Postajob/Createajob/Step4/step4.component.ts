@@ -181,8 +181,10 @@ export class Step4Component implements OnInit {
     this.insertJob.XmlQualifications = this.appService.addqualifications; //  this.qualification;
     this.insertJob.XmlDomains = this.appService.adddomain; // this.domain;
      this.insertJob.XmlPersonType = this.appService.personTypeSingle; //  this.personalityType;
+     //matching Criteria
+     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
 
-
+    
 
     // this.insertJob.JobCategoryId = this.appService.jobcategory.value.JobCategoryId;
     // this.insertJob.JobTitle = this.appService.jobtitle.value;
