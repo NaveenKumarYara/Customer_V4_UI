@@ -134,56 +134,57 @@ export class PartnerComponent implements OnInit {
     
     }
     uploadPhotoPartner() {
-      if(this.Pname==undefined)
+      if(this.Pname == undefined || this.Pname == "")
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.Pname!=undefined)||(this.Pname!=""))
+      else if(this.Pname !=undefined || this.Pname !="")
       {
-        if(this.ImageUpload != undefined)
+        if(this.ImageUpload != undefined && this.Image.value !== '')
         {
-      let request = '';
-      const _formData: FormData = new FormData();
-      if (this.Image.value !== '') {
+
+        let request = '';
+        const _formData: FormData = new FormData();
         this.Image.value.PartnerName = this.Pname;
         this.Image.value.Description= this.Pdescription;
         this.Image.value.CustomerId = this.customerId;
         request = JSON.stringify(this.Image.value);
-      }
-      _formData.append('Photo', this.ImageUpload);
-      _formData.append('Model', request);
-      const reader = new FileReader();
-      this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyPartner').subscribe(data => {
-        this.Pname = '';
-        this.Pdescription = '';
-        this.imageSrc ='';
-        this.Image.reset();
-        this.Image.patchValue({ 'CompanyPartnerId': 0 });
-        this.populateCompanyPartners();
-        });
-       }
+        _formData.append('Photo', this.ImageUpload);
+        _formData.append('Model', request);
+        const reader = new FileReader();
+        this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyPartner').subscribe(data => {
+          this.Pname = '';
+          this.Pdescription = '';
+          this.imageSrc ='';
+          this.ImageUpload == undefined
+          this.Image.reset();
+          this.Image.patchValue({ 'CompanyPartnerId': 0 });
+          this.populateCompanyPartners();
+          });
+         }
        
-      else if (this.Image.value.CompanyPartnerId>0 && this.ImageUpload == undefined)
+        else if (this.Image.value.CompanyPartnerId>0 && this.ImageUpload == undefined)
       {
         if (this.Image.value !== '') {
           this.Image.value.PartnerName = this.Pname;
           this.Image.value.Description= this.Pdescription;
           this.Image.value.CustomerId = this.customerId;
-          this.Image.value.PartnerLogo = this.ImageFile;         
+          this.Image.value.PartnerLogo = this.ImageFile;    
+          this._service.PostService(this.Image.value, 'ProfileAPI/api/UpdateCompanyPartner').subscribe(data => {
+            this.Pname = '';
+            this.Pdescription = '';
+            this.imageSrc ='';
+            this.Image.reset();
+            this.Image.patchValue({ 'CompanyPartnerId': 0 });
+            this.populateCompanyPartners();
+            });     
         }
 
-        this._service.PostService(this.Image.value, 'ProfileAPI/api/UpdateCompanyPartner').subscribe(data => {
-          this.Pname = '';
-          this.Pdescription = '';
-          this.imageSrc ='';
-          this.Image.reset();
-          this.Image.patchValue({ 'CompanyPartnerId': 0 });
-          this.populateCompanyPartners();
-          });
-      }
+  
+        }
      }
     }
 

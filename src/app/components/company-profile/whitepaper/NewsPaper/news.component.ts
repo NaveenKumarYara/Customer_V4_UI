@@ -136,25 +136,24 @@ export class NewsComponent implements OnInit {
     }
 
     uploadNews() {
-      if(this.name==undefined)
+      if(this.name==undefined || this.name == "" )
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.name!=undefined)||(this.name!=""))
+      else if(this.name != undefined || this.name != "")
       {
-        if(this.CImageUpload!= undefined)
+        if(this.CImageUpload!= undefined && this.CImage.value !== '')
         {
       let request = '';
       const _formData: FormData = new FormData();
-      if (this.CImage.value !== '') {
         this.CImage.value.newsTitle = this.name;
         this.CImage.value.newsDescription = this.description;
         this.CImage.value.customerId = this.customerId;
         request = JSON.stringify(this.CImage.value);
-      }
+      
       _formData.append('Photo', this.CImageUpload);
       _formData.append('Model', request);
       const reader = new FileReader();
@@ -162,6 +161,7 @@ export class NewsComponent implements OnInit {
         this.name = '';
         this.description = '';
         this.imageSrc ='';
+        this.CImageUpload == undefined;
         this.CImage.reset();
         this.CImage.patchValue({ 'companyNewsInfoId': 0 });
         this.CImage.patchValue({ 'newsTypeId': 1 });
@@ -175,17 +175,18 @@ export class NewsComponent implements OnInit {
             this.CImage.value.newsDescription = this.description;
             this.CImage.value.customerId = this.customerId;
             this.CImage.value.imageURL = this.ImageFile;
+            this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyNewsInfo').subscribe(data => {
+              this.name = '';
+              this.description = '';
+              this.imageSrc ='';
+              this.ImageFile = '';
+              this.CImage.reset();
+              this.CImage.patchValue({ 'companyNewsInfoId': 0 });
+              this.CImage.patchValue({ 'newsTypeId': 1 });
+              this.populateCompanyNewsInfo();
+               });
           }
-          this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyNewsInfo').subscribe(data => {
-            this.name = '';
-            this.description = '';
-            this.imageSrc ='';
-            this.ImageFile = '';
-            this.CImage.reset();
-            this.CImage.patchValue({ 'companyNewsInfoId': 0 });
-            this.CImage.patchValue({ 'newsTypeId': 1 });
-            this.populateCompanyNewsInfo();
-             });
+  
          }
       }
     }

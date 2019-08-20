@@ -97,25 +97,23 @@ export class AchievementsComponent implements OnInit {
     }
  
     uploadPhoto() {
-      if((this.name==undefined)||(this.name==""))
+      if(this.name == undefined || this.name == "")
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.name!=undefined)||(this.name!=""))
+      else if(this.name != undefined || this.name != "")
       {
-      if(this.currentImageUpload != undefined)
+      if(this.currentImageUpload != undefined && this.saveImage.value !== '')
       {
         let request = '';
         const _formData: FormData = new FormData();
-        if (this.saveImage.value !== '') {
           this.saveImage.value.AwardTitle = this.name;
           this.saveImage.value.CustomerId = this.customerId;
           this.saveImage.value.Description = this.description;
           request = JSON.stringify(this.saveImage.value);
-        }
         _formData.append('Photo', this.currentImageUpload);
         _formData.append('Model', request);
         const reader = new FileReader();
@@ -123,6 +121,7 @@ export class AchievementsComponent implements OnInit {
           this.name = '';
           this.description = '';
           this.imageSrc ='';
+          this.currentImageUpload = undefined;
           this.saveImage.reset();
           this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
           this.saveImage.patchValue({ 'AwardedYear': 2019 });
@@ -136,17 +135,17 @@ export class AchievementsComponent implements OnInit {
         this.saveImage.value.CustomerId = this.customerId;
         this.saveImage.value.Description = this.description;
         this.saveImage.value.AwardLogo = this.ImageFile;
+        this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyAchievement').subscribe(data => {
+          this.name = '';
+          this.description = '';
+          this.imageSrc ='';
+          this.ImageFile = '';
+          this.saveImage.reset();
+          this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
+          this.saveImage.patchValue({ 'AwardedYear': 2019 });
+          this.populateCompanyAchivements();
+        });
       }
-      this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyAchievement').subscribe(data => {
-        this.name = '';
-        this.description = '';
-        this.imageSrc ='';
-        this.ImageFile = '';
-        this.saveImage.reset();
-        this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
-        this.saveImage.patchValue({ 'AwardedYear': 2019 });
-        this.populateCompanyAchivements();
-      });
       }
      }
     }
