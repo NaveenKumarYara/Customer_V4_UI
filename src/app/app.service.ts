@@ -736,7 +736,10 @@ bulkApply(body) {
   }
 
   addSkill(skill : SkillPostData,skillDisplay : SkillData){
-this.addSkillslist.push(skillDisplay);
+      this.addSkillslist.push(skillDisplay);
+      if (this.skillDataList.length > 0) {
+          this.skillPostData = this.skillDataList;
+      }
 this.skillPostData.push(skill);
   }
 

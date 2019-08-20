@@ -151,7 +151,7 @@ editMode: string;
         this.skillList.push(skill);
       }
       // this.appService.skillDataList=(this.jobdetailscustomer.MatchingCrieterias);
-      
+        this.appService.skillDataList = [];
       this.appService.skillDataList = this.skillList;
       this.appService.skillDataListChanged.next(this.appService.skillDataList);
 
