@@ -101,7 +101,7 @@ export class CompanyprofileComponent implements OnInit {
     }
 
     populateCompanyProfileLocationInfo(customerId) {
-        return this.companyprofileservice.getCompanyCustomerLocationInfo(customerId).subscribe(res => {
+        return this.companyprofileservice.getCompanyCustomerLocationList(customerId).subscribe(res => {
             this.companyprofilelocationinfo = res;
         });
     }

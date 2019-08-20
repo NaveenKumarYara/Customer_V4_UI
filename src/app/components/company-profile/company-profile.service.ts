@@ -63,6 +63,22 @@ export class CompanyProfileService {
             );
     }
 
+    DeleteLocation(LocationId:number,customerId: number) {
+        const url = environment.DeleteCustomerLocation+ 'preferredLocationId=' + LocationId + '&customerId=' + customerId;
+        return this.http.delete<string[]>(url)
+          .catch(
+            this.handleError
+          );
+      }
+
+    getCompanyCustomerLocationList(customerId: number): Observable<CustomerLocationInfo[]> {
+        const url = environment.customerPreferredLocationendList + 'customerId=' + customerId;
+        return this.http.get<CustomerLocationInfo[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
     getCompanyBenfits(customerId: number): Observable<GetCompanyBenefit[]> {
         const url = environment.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
         return this.http.get<GetCompanyBenefit[]>(url)

@@ -31,13 +31,13 @@ export class LocationsComponent implements OnInit {
   ngOnInit() {
   }
   populateCompanyProfileLocationInfo(customerId) {
-    return this.companyprofileservice.getCompanyCustomerLocationInfo(this.customerId).subscribe(res => {
-        this.companyprofilelocationinfo = res;
+    return this.companyprofileservice.getCompanyCustomerLocationList(this.customerId).subscribe(res => {
+      this.companyprofilelocationinfo = res;
     });
 }
 deleteLocation(locationinfo)
 {
-    this._service.DeleteService('JobsAPI/api/DeleteCustomerPreferredLocation?preferredLocationId=', locationinfo)
+    return this.companyprofileservice.DeleteLocation(locationinfo,this.customerId)
     .subscribe(data => {
       this.populateCompanyProfileLocationInfo(this.customerId);
     }, error => { this._service.DebugMode(error); });
