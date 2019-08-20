@@ -7,6 +7,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CompanyProfileService } from '../company-profile.service';
 import { ApiService } from '../../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-whitepaper',
@@ -66,6 +67,48 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
 
   ngOnInit() {
     this.populateCompanyWhitePapers();
+
+    (function ($) {
+      function navLineResizeHandler() {
+        var nav = $('.nav-tabs');
+        var activeLink = nav.children('li.active');
+        var activeLine = nav.children('.active-line');
+        var windowWidth = $(window).scrollLeft();
+    
+        $.each(activeLine, function (index, element) {
+          var $element = $(element);
+          $element.css({
+            width: $element.parent().children(".active").css("width"),
+            left: $element.parent().children(".active").position().left - windowWidth
+          });
+        });
+      }
+    
+      function navLineClickHandler() {
+        var btnWidth = $(this).css("width");
+        var line = $(this).parent().find(".active-line");
+        var btnBox = this.getBoundingClientRect();
+        var windowBox = this.parentNode.getBoundingClientRect();
+    
+        line.css({
+          width: btnWidth,
+          left: btnBox.left - windowBox.left
+        });
+      }
+    
+      $(document).ready(navLineResizeHandler);
+    
+      $(window).resize(function () {
+        setTimeout(navLineResizeHandler, 1000);
+      });
+    
+      var appliedTabBtn = $(".active-line-move .nav-tabs li");
+      var appliedLine = $(".active-line-move .nav-tabs .active-line");
+      appliedTabBtn.on("click", navLineClickHandler);
+    
+      
+    })($);
+
   }
 
   ClearThevalues()

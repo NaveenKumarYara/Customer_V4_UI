@@ -95,39 +95,37 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
   }
 
   uploadPhoto() {
-    if(this.name==undefined&&this.description==undefined)
+    if(this.name == undefined || this.name == "")
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
                 setTimeout(() => {
                     this.toastr.dismissToast;
                 }, 3000);
     }
-    else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
+    else if(this.name != undefined || this.name != "")
     {
-      if(this.currentImageUpload != undefined)
-      {
-    let request = '';
-    const _formData: FormData = new FormData();
-    if (this.saveImage.value !== '') {
+    if (this.saveImage.value !== '' && this.currentImageUpload != undefined) {
+      let request = '';
+      const _formData: FormData = new FormData();
       this.saveImage.value.eventName = this.name;
       this.saveImage.value.eventDescription = this.description;
       this.saveImage.value.customerId = this.customerId;
       request = JSON.stringify(this.saveImage.value);
-    }
-    _formData.append('Photo', this.currentImageUpload);
-    _formData.append('Model', request);
-    const reader = new FileReader();
-    this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyCulture').subscribe(data => {
-      this.name = '';
-      this.description = '';
-      this.imageSrc ='';
-      this.saveImage.reset();
-      this.saveImage.patchValue({ 'companyCultureId': 0 });
-      this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
-      this.populateCompanyCultures();
-    });
+      _formData.append('Photo', this.currentImageUpload);
+      _formData.append('Model', request);
+      const reader = new FileReader();
+      this._service.byteStorage(_formData, 'ProfileAPI/api/InsertCompanyCulture').subscribe(data => {
+        this.name = '';
+        this.description = '';
+        this.imageSrc ='';
+        this.currentImageUpload == undefined;
+        this.saveImage.reset();
+        this.saveImage.patchValue({ 'companyCultureId': 0 });
+        this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
+        this.populateCompanyCultures();
+      });
     
-  
+ 
   }
   else if (this.saveImage.value.companyCultureId>0 && this.currentImageUpload == undefined)
   {
@@ -136,18 +134,18 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
       this.saveImage.value.eventDescription = this.description;
       this.saveImage.value.customerId = this.customerId;
       this.saveImage.value.EventPhoto = this.ImageFile;
+      this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyCulture').subscribe(data => {
+        this.name = '';
+        this.description = '';
+        this.imageSrc ='';
+        this.saveImage.reset();
+        this.saveImage.patchValue({ 'companyCultureId': 0 });
+        this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
+        this.populateCompanyCultures();
+      });
+     }
     }
-    this._service.PostService(this.saveImage.value, 'ProfileAPI/api/UpdateCompanyCulture').subscribe(data => {
-      this.name = '';
-      this.description = '';
-      this.imageSrc ='';
-      this.saveImage.reset();
-      this.saveImage.patchValue({ 'companyCultureId': 0 });
-      this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
-      this.populateCompanyCultures();
-    });
-  }
-}
+   }
   }
   onFileChange(event) {
     //this.alertService.clear();

@@ -138,25 +138,25 @@ export class CertificationComponent implements OnInit {
     }
 
     uploadCertification() {
-      if(this.Cname==undefined&&this.Cdescription==undefined)
+      if(this.Cname == undefined || this.Cname =="")
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.Cname!=undefined&&this.Cdescription!=undefined)||(this.Cname!=""&&this.Cdescription!=""))
+      else if(this.Cname != undefined || this.Cname != "")
       {
-      if(this.CImageUpload!= undefined)
+      if(this.CImageUpload!= undefined && this.CImage.value !== '')
       {
       let request = '';
       const _formData: FormData = new FormData();
-      if (this.CImage.value !== '') {
+
         this.CImage.value.CustomerId = this.customerId;
         this.CImage.value.CertificationName = this.Cname;
         this.CImage.value.CertifiedUnder = this.Cdescription;
         request = JSON.stringify(this.CImage.value);
-      }
+      
       _formData.append('Photo', this.CImageUpload);
       _formData.append('Model', request);
       const reader = new FileReader();
@@ -164,6 +164,7 @@ export class CertificationComponent implements OnInit {
         this.Cname = '';
         this.Cdescription = '';
         this.CimageSrc ='';
+        this.CImageUpload == undefined;
         this.populateCompanyCertifications();
       });
         }
@@ -174,18 +175,19 @@ export class CertificationComponent implements OnInit {
             this.CImage.value.CustomerId = this.customerId;
             this.CImage.value.CertifiedUnder = this.Cdescription;
             this.CImage.value.CertificationLogo = this.ImageFile;
+            this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyCertification').subscribe(data => {
+              this.Cname = '';
+              this.Cdescription = '';
+              this.CimageSrc ='';
+              this.ImageFile = '';
+              this.CImage.reset();
+              this.CImage.patchValue({ 'CompanyCertificationId': 0 });
+              this.CImage.patchValue({ 'StartDate': '' });
+              this.CImage.patchValue({ 'ExpiryDate': '' });
+              this.populateCompanyCertifications();
+            });
           }
-          this._service.PostService(this.CImage.value, 'ProfileAPI/api/UpdateCompanyCertification').subscribe(data => {
-            this.Cname = '';
-            this.Cdescription = '';
-            this.CimageSrc ='';
-            this.ImageFile = '';
-            this.CImage.reset();
-            this.CImage.patchValue({ 'CompanyCertificationId': 0 });
-            this.CImage.patchValue({ 'StartDate': '' });
-            this.CImage.patchValue({ 'ExpiryDate': '' });
-            this.populateCompanyCertifications();
-          });
+     
         }
       }
     }
