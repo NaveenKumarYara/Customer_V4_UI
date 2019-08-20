@@ -138,14 +138,14 @@ export class CertificationComponent implements OnInit {
     }
 
     uploadCertification() {
-      if(this.Cname==undefined&&this.Cdescription==undefined)
+      if(this.Cname==undefined)
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.Cname!=undefined&&this.Cdescription!=undefined)||(this.Cname!=""&&this.Cdescription!=""))
+      else if((this.Cname!=undefined)||(this.Cname!=""))
       {
       if(this.CImageUpload!= undefined)
       {

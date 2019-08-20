@@ -134,14 +134,14 @@ export class PartnerComponent implements OnInit {
     
     }
     uploadPhotoPartner() {
-      if(this.Pname==undefined&&this.Pdescription==undefined)
+      if(this.Pname==undefined)
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.Pname!=undefined&&this.Pdescription!=undefined)||(this.Pname!=""&&this.Pdescription!=""))
+      else if((this.Pname!=undefined)||(this.Pname!=""))
       {
         if(this.ImageUpload != undefined)
         {

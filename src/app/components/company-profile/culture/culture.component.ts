@@ -95,14 +95,14 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
   }
 
   uploadPhoto() {
-    if(this.name==undefined&&this.description==undefined)
+    if(this.name==undefined)
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
                 setTimeout(() => {
                     this.toastr.dismissToast;
                 }, 3000);
     }
-    else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
+    else if((this.name!=undefined)||(this.name!=""))
     {
       if(this.currentImageUpload != undefined)
       {

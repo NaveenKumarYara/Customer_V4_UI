@@ -97,14 +97,14 @@ export class AchievementsComponent implements OnInit {
     }
  
     uploadPhoto() {
-      if((this.name==undefined&&this.description==undefined)||(this.name==""&&this.description==""))
+      if((this.name==undefined)||(this.name==""))
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
+      else if((this.name!=undefined)||(this.name!=""))
       {
       if(this.currentImageUpload != undefined)
       {

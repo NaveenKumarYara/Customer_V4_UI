@@ -60,7 +60,7 @@ export class NewsComponent implements OnInit {
             this.getcompanynewsinfo = res;
         });
     }
-  
+
     Clear()
     {
       this.imageSrc = null;
@@ -136,14 +136,14 @@ export class NewsComponent implements OnInit {
     }
 
     uploadNews() {
-      if(this.name==undefined&&this.description==undefined)
+      if(this.name==undefined)
       {
         this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
                       this.toastr.dismissToast;
                   }, 3000);
       }
-      else if((this.name!=undefined&&this.description!=undefined)||(this.name!=""&&this.description!=""))
+      else if((this.name!=undefined)||(this.name!=""))
       {
         if(this.CImageUpload!= undefined)
         {
