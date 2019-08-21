@@ -57,11 +57,11 @@ export class ManageJobService {
     );
   }
 
-  GetInterviewList( userId: number,customerId: number,sortBy: number,count: number)
+  GetInterviewList(customerId: number,sortBy: number,count: number)
   {
 
-    const url = environment.GetInterViewList +'&userId=' + userId + 
-    '&customerId=' + customerId +'&sortBy='+sortBy + '&pageNumber=1' +'&numberOfRows=' +count;
+    const url = environment.GetInterViewList +
+    'customerId=' + customerId +'&sortBy='+sortBy + '&pageNumber=1' +'&numberOfRows=' +count;
     return this.http.get<GetInterviewSortList>(url)
       .debounceTime(1000)
       .catch(

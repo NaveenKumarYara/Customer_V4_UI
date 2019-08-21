@@ -156,7 +156,7 @@
                       <div class="pl-20">
                         <h3 class="medium">candidate</h3>
                         <div class="media-obj">
-                          <img class="align-self-center" src="../../../../assets/images/ui-face-1.png" alt="">
+                          <img class="align-self-center"  src="{{job?.CandidateProfilePic}}"  height="50" width="50" alt="">
                           <div class="media-body1">
                             <h4 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h4>
                           </div>
@@ -185,7 +185,7 @@
 
               <div class="card-footer">
                 <div class="h-manager">
-                  <img src="../../../../assets/images/ui-face-2.png" alt="">
+                  <img src="{{job?.HiringLeaderProfilePic}}" height="50" width="50" alt="">
                   <div>
                     <h3>{{job?.HiringLeaderFirstName}} {{job?.HiringLeaderLastName}}</h3>
                     <h5 class="meta">screening person</h5>

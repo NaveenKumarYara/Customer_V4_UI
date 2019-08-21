@@ -46,8 +46,7 @@ export class InterviewListComponent implements OnInit {
 
 
   populateJobInterViewlist(sortBy=0) { 
-    debugger
-    return this.managejobservice.GetInterviewList(this.userId,this.customerId,sortBy,this.joblistcount).subscribe(res => {
+    return this.managejobservice.GetInterviewList(this.customerId,sortBy,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.spinner.hide();
@@ -101,6 +100,7 @@ export class invterviewList
     public CandidateProfilePic : string;
     public CandidateFirstName:string;
     public CandidateLastName:string;
+    public HiringLeaderProfilePic:string;
     public HiringLeaderFirstName:string;
     public HiringLeaderLastName:string;
 }
