@@ -135,7 +135,6 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
-  debugger
 if(this.schedule.invalid||this.selectedUserName == '')
 {
     this.toastr.error('Please provide the valid details','Oops')
@@ -180,7 +179,7 @@ if (this.processSelection === 1) {
   // this.schIntw.RequiredFurtherInterview = this.skypeRI;
   // this.schIntw.PhoneNumber=this.userId;
 } else if (this.processSelection === 4) {
-  this.schIntw.PhoneNumber = this.dailInNumber;
+  this.schIntw.AccessId = this.dailInNumber;
   this.schIntw.BridgeUrl = this.bridgeUrl;
   // this.schIntw.RequiredFurtherInterview = this.webxRI;
   // this.schIntw.PhoneNumber=this.userId;
@@ -201,7 +200,6 @@ this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toStri
 
 GetId(val)
 {
-  debugger
   if(val>0)
   {
     this.interviewId = val;
@@ -228,7 +226,6 @@ getcustomerusers() {
   );
 }
   GetType() {
-    debugger
    return this.jobdetailsservice.getInterviewtype(this.data.jobId).subscribe(res => {
     this.jobInterview = res;
     if(this.jobInterview.InterviewTypeId == null)
