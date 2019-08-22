@@ -24213,6 +24213,25 @@ table .table-prl-0 td {
     background-color: #fff;
     border: 1px solid #cdcdcd;
 }
+.mr-10{
+    margin-right: 10px;
+}
+.mt-10{
+    margin-top: 10px !important;
+}
+.ml-0{
+    margin-left:0px !important;
+}
+.mtr-10{
+    margin-top:10px !important;
+    margin-right:10px !important;
+}
+.mb-0{
+    margin-bottom:0px !important;
+}
+.d-block{
+    display: block !important;
+}
 /*temp*/
 .temp-flex-basis16{
     flex-basis:16% !important;

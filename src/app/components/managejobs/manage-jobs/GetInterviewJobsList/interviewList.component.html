@@ -79,42 +79,52 @@
         <div id="list-view" class="tab-pane fade in active">
           <ul class="job-list" *ngIf="joblist">
             <li class="card" *ngFor="let job of joblist.Jobs | valueArray">
-              <header class="row list-header">
-                <div class="col-md-3">
-                  <div class="job-details">
-                    <h3 class="medium" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
-                    </h3>
-                    <ng-container *ngIf="job?.IsCandidateAccepted== null">
-                        <span class="status Interviewing mlr-9">Interviewing</span>
-                    </ng-container>
-                    <ng-container *ngIf="job?.IsCandidateAccepted == 1">
-                        <span class="status Interviewing mlr-9">Candidate Accepted</span>
-                    </ng-container>
-                    <ng-container *ngIf="job?.IsCandidateAccepted == 0">
-                        <span class="status Interviewing mlr-9">Candidate Rejected</span>
-                    </ng-container>
-                    <div class="meta">
-                      <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
-                        <path class="st0"
-                          d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
-                        <path class="st0"
-                          d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
-                      </svg>
-                      <h5 class="location border-b-0">{{job?.JobLocations || N/A}}</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-9 f-right">
+              <header class="row list-header p-0">
+                
+                <div class="col-md-12 f-right">
 
                   <div class="row">
-                    <div class="stats text-left col-md-4">
-                      <div class="list-stats">
-                        <h3 class="medium">Interview Date & Time</h3>
-                        <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
-                      </div>
-
-                    </div>
-                    <div class="stats text-left col-md-4">
+                      <div class="stats text-left col-md-3">
+                          <div class="list-stats">
+                            <div class="media-obj">
+                              <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
+                              <div class="media-body1">
+                                <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
+                                <div class="d-block mt-10">
+                                    <ng-container *ngIf="job?.IsCandidateAccepted== null">
+                                        <span class="status Interviewing">Interviewing</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="job?.IsCandidateAccepted == 1">
+                                        <span class="status Interviewing">Candidate Accepted</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="job?.IsCandidateAccepted == 0">
+                                        <span class="status Interviewing">Candidate Rejected</span>
+                                    </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+    
+                        </div>
+                        <div class="stats text-left col-md-3">
+                          <div class="list-stats">
+                              <div class="job-details">
+                                  <h3 class="medium" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
+                                  </h3>
+                                  
+                                  <div class="meta mt-10">
+                                    <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
+                                      <path class="st0"
+                                        d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
+                                      <path class="st0"
+                                        d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
+                                    </svg>
+                                    <h5 class="location border-b-0 mb-0">{{job?.JobLocations || N/A}}</h5>
+                                  </div>
+                                </div>
+                          </div>
+                        </div>
+                    <div class="stats text-left col-md-3">
                       <div class="list-stats">
                         <h3 class="medium">Interview Type</h3>
                         <div class="row mt-10-0">
@@ -152,18 +162,15 @@
 
 
                     </div>
-                    <div class="stats text-left col-md-4">
-                      <div class="pl-20">
-                        <h3 class="medium">candidate</h3>
-                        <div class="media-obj">
-                          <img class="align-self-center"  src="{{job?.CandidateProfilePic}}"  height="50" width="50" alt="">
-                          <div class="media-body1">
-                            <h4 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h4>
-                          </div>
+                    <div class="stats text-left col-md-3">
+                        <div class="list-stats b-0">
+                          <h3 class="medium">Interview Date & Time</h3>
+                          <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
+                          <h5 class="meta">Neque porro quisquam </h5>
                         </div>
+  
                       </div>
-
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="dropdown card-dropdown">
@@ -185,7 +192,7 @@
 
               <div class="card-footer">
                 <div class="h-manager">
-                  <img src="{{job?.HiringLeaderProfilePic}}" height="50" width="50" alt="">
+                  <img src="{{job?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
                   <div>
                     <h3>{{job?.HiringLeaderFirstName}} {{job?.HiringLeaderLastName}}</h3>
                     <h5 class="meta">screening person</h5>
