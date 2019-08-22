@@ -10,7 +10,7 @@
         <form class="form-inline" action="">
           <div class="form-group view-group">
             <select name="view" id="view" (change)="populateJobInterViewlist($event.target.value)"  class="styled-select-box">
-                <option value="0" default>Select</option>
+                <option value="0" default>Sort By</option>
               <option value="1">Year</option>
               <option value="2">Month</option>
               <option value="3">Day</option>
@@ -19,32 +19,28 @@
         </form>
       </div>
       <ng-container *ngIf="joblist?.TotalCount>=5">
-          <h5 class="show-count">Showing  {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+          <h5 class="show-count">Showing  {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
       </ng-container>
       <ng-container *ngIf="joblist?.TotalCount<5" >
-          <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+          <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
       </ng-container>
       <div class="pull-right">
-
-
-        <!-- <ul class="nav btn-group">
-          <li class="active btn">
-            <a data-toggle="tab" href="#grid-view">
-              <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
-                <path
-                  d="M7 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h4V2H2v4zM18.9 8h-6c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zm-5-2h4V2h-4v4zM7 20H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4H2v4zM18.9 20h-6c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v6c0 .5-.4 1-1 1zm-5-2h4v-4h-4v4z" />
-              </svg>
-            </a>
-          </li>
-          <li class="btn">
-            <a data-toggle="tab" href="#list-view">
-              <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="19.9">
-                <path class="st0"
-                  d="M18.9 8H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 6h15.9V2H2v4zM18.9 19.9H1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h17.9c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1zM2 17.9h15.9v-4H2v4z" />
-              </svg>
-            </a>
-          </li>
-        </ul> -->
+          <form class="form-inline" action="">
+              <div class="search-toggle">
+                 
+                        <input autocomplete="off" id="searchStr" name="searchString" placeholder="Search" type="text" class="ng-pristine ng-valid ng-touched">  
+                          <button style="display: none;" type="submit"></button>                              
+                     
+            </div>
+              <div class="form-group view-group">
+                <select class="styled-select-box min-width-140">
+                    <option value="0" default>Filter By</option>
+                  <option value="1">Year</option>
+                  <option value="2">Month</option>
+                  <option value="3">Day</option>
+                </select>
+              </div>
+            </form> 
       </div>
     </div>
 
@@ -52,29 +48,6 @@
       <div class="clearfix">&nbsp;</div>
       <div class="clearfix">&nbsp;</div>
       <div class="tab-content">
-        <div id="grid-view" class="tab-pane fade">
-          <div class="col-md-12">
-            <div class="row">
-        
-
-            </div>
-          </div>
-          <div class="col-md-12">
-  
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div id="list-view" class="tab-pane fade in active">
           <ul class="job-list" *ngIf="joblist">
