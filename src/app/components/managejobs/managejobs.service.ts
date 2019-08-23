@@ -57,11 +57,21 @@ export class ManageJobService {
     );
   }
 
-  GetInterviewList(customerId: number,sortBy: number,count: number)
+  GetInterViewAcceptance(userId:number,jobId:number): Observable<JobCount> {
+    const url = environment.GetInterviewAccept + 'userId=' + userId +
+    '&jobId=' + jobId;
+    return this.http.get<JobCount>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
+
+  GetInterviewList(customerId: number,sortBy: number,ListSort:number,count: number)
   {
 
     const url = environment.GetInterViewList +
-    'customerId=' + customerId +'&sortBy='+sortBy + '&pageNumber=1' +'&numberOfRows=' +count;
+    'customerId=' + customerId +'&sortBy='+sortBy +'&listSort='+ListSort+ '&pageNumber=1' +'&numberOfRows=' +count;
     return this.http.get<GetInterviewSortList>(url)
       .debounceTime(1000)
       .catch(

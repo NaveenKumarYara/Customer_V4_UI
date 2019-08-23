@@ -26,8 +26,15 @@ export class InterviewListComponent implements OnInit {
     loaddata = false;
     joblistcount: number;
     sort:any;
+    value:any;
+    splitVal: any = [];
+    SearchList: any = [];
+    searchval:any;
+    searchString:any;
     joblist= new GetInterviewSortList();
+    InterviewAcceptance = new GetInterviewSortList();
     userId: any;
+    listSort:any;
     jobs: any;
     viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
     constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
@@ -41,35 +48,53 @@ export class InterviewListComponent implements OnInit {
      this.spinner.show();
      this.managejobservice.updateListCount(6);
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
-     this.populateJobInterViewlist(0);
+     this.populateJobInterViewlist(0,0);
   }
 
 
-  populateJobInterViewlist(sortBy=0) { 
-    return this.managejobservice.GetInterviewList(this.customerId,sortBy,this.joblistcount).subscribe(res => {
+  populateJobInterViewlist(sort=0,listsort=0) { 
+    this.sort=sort;
+    this.listSort=listsort;
+    return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.spinner.hide();
     }); 
   }
 
+  GetInterviewAcceptance(newdate,jobid,userId)
+  {
+   if(newdate=1)
+   {
+   return this.managejobservice.GetInterViewAcceptance(userId,jobid).subscribe(res => {
+    this.loaddata = true;
+    this.spinner.hide();
+   }); 
+   }
+  }
+
   updateListCount() {
     this.joblistcount += 6;
     this.managejobservice.updateListCount(this.joblistcount);
-    this.populateJobInterViewlist(0);   
+    this.populateJobInterViewlist(0,0);   
   }
 
 
-  OpenScheduleInterviewDialog() {
+  OpenScheduleInterviewDialog(jobResponseId,jobid,profileId,userId) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
+    if(profileId>0)
+    {
     const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
       {
         width: '750px',
         position: {right : '0px'},
         height : '750px',
         data: {
-         // status : this.statusid
+         jobResponseId: jobResponseId,
+         jobId: jobid,
+         ProfileId: profileId,
+         userId: userId
         }
       }
     );
@@ -77,6 +102,12 @@ export class InterviewListComponent implements OnInit {
      // this.jobDetails.populateJobsStaticInfo(this.jobid);
       console.log('Chatbox Dialog result: ${result}');
     });
+  }
+  else 
+  {
+    this.toastr.error('Profile Does not Exist','!Oops');
+    
+  }
   }
 
 
@@ -97,6 +128,7 @@ export class invterviewList
     public InterviewDate :Date;
     public InterviewType :string;
     public StartTime :string;
+    public CPFromTime:string;
     public CandidateProfilePic : string;
     public CandidateFirstName:string;
     public CandidateLastName:string;
