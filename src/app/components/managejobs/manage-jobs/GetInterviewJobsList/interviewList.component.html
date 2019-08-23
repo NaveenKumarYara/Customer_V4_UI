@@ -59,21 +59,29 @@
                       <div class="stats text-left col-md-3">
                           <div class="list-stats">
                             <div class="media-obj">
-                              <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
+                              <ng-container *ngIf="job?.ProfileBasicInfo!= null">
+                              <img class="align-self-center mr-10"  src="{{job?.ProfileBasicInfo.ProfilePic}}"  height="32" width="32" alt="">
                               <div class="media-body1">
-                                <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
+                                <h3 class="c93A2BB"> {{job?.ProfileBasicInfo?.FirstName || N/A}} {{job?.ProfileBasicInfo?.LastName}}</h3>
                                 <div class="d-block mt-10">
-                                    <ng-container *ngIf="job?.IsCandidateAccepted== null">
-                                        <span class="status Interviewing">Interviewing</span>
-                                    </ng-container>
-                                    <ng-container *ngIf="job?.IsCandidateAccepted == 1">
-                                        <span class="status Interviewing">Candidate Accepted</span>
-                                    </ng-container>
-                                    <ng-container *ngIf="job?.IsCandidateAccepted == 0">
-                                        <span class="status Interviewing">Candidate Rejected</span>
+                                    <ng-container>
+                                        <span class="status Interviewing">Interview scheduled</span>
                                     </ng-container>
                                 </div>
                               </div>
+                                </ng-container>
+                                <ng-container *ngIf="job?.ProfileBasicInfo == null">
+                                    <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
+                                    <div class="media-body1">
+                                      <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
+                                      <div class="d-block mt-10">
+                                          <ng-container>
+                                              <span class="status Interviewing">Interview scheduled</span>
+                                          </ng-container>
+                                      </div>
+                                    </div>
+                                      </ng-container>
+                             
                             </div>
                           </div>
     
@@ -81,7 +89,7 @@
                         <div class="stats text-left col-md-3">
                           <div class="list-stats">
                               <div class="job-details">
-                                  <h3 class="medium" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
+                                  <h3 href="javascript:void(0)" class="medium" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
                                   </h3>
                                   
                                   <div class="meta mt-10">
@@ -108,15 +116,21 @@
                               <ng-container *ngIf="job?.InterviewTypeId == 2">
                                   <a href="javascript:void(0)">
                                       <!-- <img src="../../../../../assets/images/phn-icon.svg" /> -->
-                                     {{job?.PhoneNumber}}
+                                     {{job?.PhoneNumber || N/A}}
                                     </a>
                               </ng-container>
                               <ng-container *ngIf="job?.InterviewTypeId == 3">
                                   <a href="javascript:void(0)">
                                       <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                     {{job?.SkypeId}}
+                                     {{job?.SkypeId || N/A}}
                                     </a>
                               </ng-container>
+                              <ng-container *ngIf="job?.InterviewTypeId == 4">
+                                <a href="javascript:void(0)">
+                                    <!-- <img src="../../../../../assets/images/skype.svg" /> -->
+                                   {{job?.BridgeUrl|| N/A }} {{job?.AccessId || N/A}}
+                                  </a>
+                            </ng-container>
                             <!-- <div class="dropdown d-inline">
                               <a *ngIf="job?.InterviewTypeId != 1" class="dropdown-toggle interview-dropdown pointer" type="button" id="dropdownMenu1"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -139,7 +153,16 @@
                         <div class="list-stats b-0">
                           <h3 class="medium">Interview Date & Time</h3>
                           <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
-                          <h5 class="meta">Neque porro quisquam </h5>
+                          <ng-container *ngIf="job?.IsCandidateAccepted == 1 && job?.IsCPNewDate == null && job?.IsCPNewDate != 1">
+                              <h5 class="meta">Confirmed</h5>
+                        </ng-container>
+                        <ng-container *ngIf="job?.IsCandidateAccepted == 0 && job?.IsCPNewDate == null">
+                            <h5 class="meta">Not interested</h5>
+                        </ng-container>
+                        <ng-container *ngIf="job?.IsCPNewDate == 1">
+                            <h5 class="meta">New proposal</h5>
+                        </ng-container>
+                         
                         </div>
   
                       </div>
