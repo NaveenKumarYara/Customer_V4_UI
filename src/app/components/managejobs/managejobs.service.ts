@@ -67,11 +67,11 @@ export class ManageJobService {
     );
   }
 
-  GetInterviewList(customerId: number,sortBy: number,ListSort:number,count: number)
+  GetInterviewList(customerId: number,sortBy: number,ListSort:number,search:string,count: number)
   {
 
     const url = environment.GetInterViewList +
-    'customerId=' + customerId +'&sortBy='+sortBy +'&listSort='+ListSort+ '&pageNumber=1' +'&numberOfRows=' +count;
+    'customerId=' + customerId +'&sortBy='+sortBy +'&listSort='+ListSort+ '&searchString='+search+'&pageNumber=1' +'&numberOfRows=' +count;
     return this.http.get<GetInterviewSortList>(url)
       .debounceTime(1000)
       .catch(
@@ -114,6 +114,15 @@ export class ManageJobService {
         this.handleError
       );
   }
+
+  GetInterviewAutoSearch(term: string = null, customerId: number): Observable<string[]> {
+    const url = environment.GetInterviewAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)

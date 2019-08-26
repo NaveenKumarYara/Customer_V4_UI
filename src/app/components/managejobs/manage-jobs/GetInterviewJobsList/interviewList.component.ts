@@ -26,6 +26,7 @@ export class InterviewListComponent implements OnInit {
     loaddata = false;
     joblistcount: number;
     sort:any;
+    search:any='';
     value:any;
     splitVal: any = [];
     SearchList: any = [];
@@ -48,14 +49,16 @@ export class InterviewListComponent implements OnInit {
      this.spinner.show();
      this.managejobservice.updateListCount(6);
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
-     this.populateJobInterViewlist(0,0);
+     this.populateJobInterViewlist(0,0,'');
   }
 
 
-  populateJobInterViewlist(sort=0,listsort=0) { 
+  populateJobInterViewlist(sort=0,listsort=0,search='') { 
     this.sort=sort;
     this.listSort=listsort;
-    return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.joblistcount).subscribe(res => {
+    this.search=search;
+    debugger
+    return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,search,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.spinner.hide();
@@ -71,6 +74,48 @@ export class InterviewListComponent implements OnInit {
     this.spinner.hide();
    }); 
    }
+  }
+
+  Search(val)
+  {
+   this.searchString = val;
+   this.populateJobInterViewlist(0,0,this.searchString);
+   this.SearchList = [];
+   this.GetSearchText(null);    
+  }
+
+  SearchEnter(searchval)
+  {
+    this.SearchList = [];
+    this.GetSearchText(null);    
+    this.Search(searchval);
+  }
+
+  SetSearch(val)
+  {
+    this.SearchList = [];
+    this.Search(val);
+  }
+
+  GetSearchText(value) {
+    this.value = value;
+    return this.managejobservice.GetInterviewAutoSearch(value,this.customerId)
+    .subscribe(data => {
+          if (data.length > 0) {  
+            this.SearchList =data;
+          }
+          else {
+            if (this.value == "") {
+             this.SearchList = [];
+             this.Search(this.value);           
+            }
+            this.SearchList = [];
+          }
+        
+          },     
+        error => { 
+          this.SearchList = [];
+        });
   }
 
   updateListCount() {

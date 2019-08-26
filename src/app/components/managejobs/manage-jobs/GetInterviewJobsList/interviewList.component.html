@@ -26,10 +26,16 @@
       </ng-container>
       <div class="pull-right">
           <form class="form-inline" action="">
-              <div class="search-toggle">
-                 
-                  <input autocomplete="off" id="searchStr" name="searchString" placeholder="Search" type="text" class="ng-pristine ng-valid ng-touched">  
-                  <button style="display: none;" type="submit"></button>                                          
+              <div class="search-toggle">                                 
+                  <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
+                    <input  autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">  
+                      <div class="searchList" *ngIf="SearchList.length>0">
+                        <ul class="searchList-dropdown">
+                          <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+                        </ul>
+                      </div> 
+                      <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>                              
+                  </form>
                      
             </div>
               <div class="form-group view-group">
@@ -59,18 +65,7 @@
                       <div class="stats text-left col-md-3">
                           <div class="list-stats">
                             <div class="media-obj">
-                              <ng-container *ngIf="job?.ProfileBasicInfo!= null">
-                              <img class="align-self-center mr-10"  src="{{job?.ProfileBasicInfo.ProfilePic}}"  height="32" width="32" alt="">
-                              <div class="media-body1">
-                                <h3 class="c93A2BB"> {{job?.ProfileBasicInfo?.FirstName || N/A}} {{job?.ProfileBasicInfo?.LastName}}</h3>
-                                <div class="d-block mt-10">
-                                    <ng-container>
-                                        <span class="status Interviewing">Interview scheduled</span>
-                                    </ng-container>
-                                </div>
-                              </div>
-                                </ng-container>
-                                <ng-container *ngIf="job?.ProfileBasicInfo == null">
+
                                     <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
                                     <div class="media-body1">
                                       <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
@@ -80,7 +75,6 @@
                                           </ng-container>
                                       </div>
                                     </div>
-                                      </ng-container>
                              
                             </div>
                           </div>
