@@ -172,7 +172,7 @@
                     </svg>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a>Accept</a></li>
+                    <li><a (click)="UpdateInterviewAccept(job?.CandidateUserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></li>
                     <!-- <li><a (click)="GetInterviewAcceptance(job?.IsCPNewDate,job?.JobId,job?.ProfileBasicInfo?.UserId)">Accept</a></li> -->
                     <li><a (click)="OpenScheduleInterviewDialog(job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId)">Schedule date</a></li>
                   </ul>

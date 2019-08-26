@@ -32,8 +32,8 @@ export class InterviewListComponent implements OnInit {
     SearchList: any = [];
     searchval:any;
     searchString:any;
+    InterviewAcceptance = new ProposeDate();
     joblist= new GetInterviewSortList();
-    InterviewAcceptance = new GetInterviewSortList();
     userId: any;
     listSort:any;
     jobs: any;
@@ -57,7 +57,6 @@ export class InterviewListComponent implements OnInit {
     this.sort=sort;
     this.listSort=listsort;
     this.search=search;
-    debugger
     return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,search,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
@@ -65,16 +64,25 @@ export class InterviewListComponent implements OnInit {
     }); 
   }
 
-  GetInterviewAcceptance(newdate,jobid,userId)
-  {
-   if(newdate=1)
+ UpdateInterviewAccept(userId,jobid,cdate,ctime,cpdate,cpaccept)
+ {
+   if(cpaccept == 1 && cpdate == 1 )
    {
-   return this.managejobservice.GetInterViewAcceptance(userId,jobid).subscribe(res => {
-    this.loaddata = true;
-    this.spinner.hide();
-   }); 
+     debugger
+    this.InterviewAcceptance.CustomerId = this.customerId;
+    this.InterviewAcceptance.UserId = userId;
+    this.InterviewAcceptance.JobId = jobid;
+    this.InterviewAcceptance.IsCandidateAccepted = true;
+    this.InterviewAcceptance.IsCPNewDate = true;
+    this.InterviewAcceptance.CPDate = cdate;
+    this.InterviewAcceptance.CPFromTime = ctime;
+    this.managejobservice.InterviewAccept(this.InterviewAcceptance)
+    .subscribe(
+    data => {
+    this.populateJobInterViewlist(0,0,'');
+  })
    }
-  }
+ }
 
   Search(val)
   {
@@ -180,4 +188,15 @@ export class invterviewList
     public HiringLeaderProfilePic:string;
     public HiringLeaderFirstName:string;
     public HiringLeaderLastName:string;
+}
+
+export class ProposeDate {
+
+      public CustomerId :string;
+      public UserId: string;
+      public JobId: string;
+      public IsCandidateAccepted: boolean;
+      public IsCPNewDate: boolean;
+      public CPDate: Date;
+      public CPFromTime: string;
 }

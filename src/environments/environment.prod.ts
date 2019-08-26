@@ -39,6 +39,7 @@ export const environment = {
     GetInterviewAccept:'http://api.tenendus.com:1090/JobsAPI/api/GetInterviewAcceptance?',
     listofJobsEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?',
     activatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/ActivateJob?jobId=1000108',
+    CustomerInterviewAccept:'http://api.tenendus.com:1090/JobsAPI/api/UpdateCustomerInterviewAcceptance',
     deactivatejobEndpoint: 'http://api.tenendus.com:1090/JobsAPI/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false',
     JobDetailsofCustomer: 'http://api.tenendus.com:1090/JobsAPI/api/GetJobDetailCustomer?',
     GetUserId: 'http://api.tenendus.com:1090/ProfileAPI/api/GetUserId?',
