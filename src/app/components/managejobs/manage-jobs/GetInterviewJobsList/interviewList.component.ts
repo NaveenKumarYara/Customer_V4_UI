@@ -2,6 +2,7 @@ import { Component, OnInit,  Input, ViewChild , ViewContainerRef } from '@angula
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
 import { ScheduleInterviewComponent, ScheduleInterview } from '../../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
+import {UpdateInterviewComponent} from './UpdateScheduleInterview/updateInterview.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { JobDetails } from '../../models/jobdetails';
 // import { ApiService } from '../../../../shared/services/api.service/api.service';
@@ -37,7 +38,7 @@ export class InterviewListComponent implements OnInit {
     userId: any;
     listSort:any;
     jobs: any;
-    viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
+    viewscheduleInterviewDialgoref: MatDialogRef<UpdateInterviewComponent>;
     constructor( private spinner: NgxSpinnerService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
         private router: Router, private managejobservice: ManageJobService, private appService: AppService,private alertService : AlertService, private dialog: MatDialog) {
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -68,7 +69,6 @@ export class InterviewListComponent implements OnInit {
  {
    if(cpaccept == 1 && cpdate == 1 )
    {
-     debugger
     this.InterviewAcceptance.CustomerId = this.customerId;
     this.InterviewAcceptance.UserId = userId;
     this.InterviewAcceptance.JobId = jobid;
@@ -133,17 +133,19 @@ export class InterviewListComponent implements OnInit {
   }
 
 
-  OpenScheduleInterviewDialog(jobResponseId,jobid,profileId,userId) {
+  OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId) {
+    debugger
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     if(profileId>0)
     {
-    const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
+    const scheduleIntwdialogRef = this.dialog.open(UpdateInterviewComponent,
       {
         width: '750px',
         position: {right : '0px'},
         height : '750px',
         data: {
+         InterviewId:InterviewId,
          jobResponseId: jobResponseId,
          jobId: jobid,
          ProfileId: profileId,

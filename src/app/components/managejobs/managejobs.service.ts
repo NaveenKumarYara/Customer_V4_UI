@@ -123,6 +123,14 @@ export class ManageJobService {
     });
   }
 
+  UpdateinterviewProcess(body) {
+    return this.http.post(environment.UpdateScheduleInterview, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   GetInterviewAutoSearch(term: string = null, customerId: number): Observable<string[]> {
     const url = environment.GetInterviewAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)

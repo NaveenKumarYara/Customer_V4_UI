@@ -70,6 +70,7 @@ export const environment = {
     profilesSortBy: 'http://api.tenendus.com:1090/ProfileAPI/api/GetProfileSortBy',
     profileLink: 'http://api.tenendus.com:1090/ProfileAPI/api/GetProfileLink?',
     scheduleInterview : 'http://api.tenendus.com:1090/ReferralAPI/api/ScheduleInterview',
+    UpdateScheduleInterview:'http://api.tenendus.com:1090/ReferralAPI/api/UpdateCustomerJobInterview',
     EmailVaild: 'http://api.tenendus.com:1090/IdentityAPI/api/ValidateEmail?',
     EmailInvite: 'http://api.tenendus.com:1090/EmailAPI/api/RegisterCustomer',
     ActivateUser: 'http://api.tenendus.com:1090/IdentityAPI/api/ActivateUser?',

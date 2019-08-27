@@ -65,17 +65,29 @@
                       <div class="stats text-left col-md-3">
                           <div class="list-stats">
                             <div class="media-obj">
-
-                                    <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
-                                    <div class="media-body1">
-                                      <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
-                                      <div class="d-block mt-10">
-                                          <ng-container>
-                                              <span class="status Interviewing">Interview scheduled</span>
-                                          </ng-container>
+                              <ng-container *ngIf="job?.ProfileBasicInfo!= null">
+                                <img class="align-self-center mr-10"  src="{{job?.ProfileBasicInfo.ProfilePic}}"  height="32" width="32" alt="">
+                                <div class="media-body1">
+                                  <h3 class="c93A2BB"> {{job?.ProfileBasicInfo?.FirstName || N/A}} {{job?.ProfileBasicInfo?.LastName}}</h3>
+                                  <div class="d-block mt-10">
+                                      <ng-container>
+                                          <span class="status Interviewing">Interview scheduled</span>
+                                      </ng-container>
+                                  </div>
+                                </div>
+                                  </ng-container>
+                            <ng-container *ngIf="job?.ProfileBasicInfo == null">
+                                      <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
+                                      <div class="media-body1">
+                                        <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
+                                        <div class="d-block mt-10">
+                                            <ng-container>
+                                                <span class="status Interviewing">Interview scheduled</span>
+                                            </ng-container>
+                                        </div>
                                       </div>
-                                    </div>
-                             
+                             </ng-container>
+                           
                             </div>
                           </div>
     
@@ -172,9 +184,9 @@
                     </svg>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a (click)="UpdateInterviewAccept(job?.CandidateUserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></li>
+                    <li><a (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></li>
                     <!-- <li><a (click)="GetInterviewAcceptance(job?.IsCPNewDate,job?.JobId,job?.ProfileBasicInfo?.UserId)">Accept</a></li> -->
-                    <li><a (click)="OpenScheduleInterviewDialog(job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId)">Schedule date</a></li>
+                    <li><a (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId)">Schedule date</a></li>
                   </ul>
                 </div>
               </header>
