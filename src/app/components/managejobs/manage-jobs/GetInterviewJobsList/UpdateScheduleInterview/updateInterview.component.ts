@@ -194,7 +194,7 @@ this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toStri
   this.managejobservice.UpdateinterviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
-      this.dialogRef.close();
+      this.dialogRef.close('submit');
      }) ;
     } else {
       return false;

@@ -79,7 +79,7 @@ export class InterviewListComponent implements OnInit {
     this.managejobservice.InterviewAccept(this.InterviewAcceptance)
     .subscribe(
     data => {
-    this.populateJobInterViewlist(0,0,'');
+    this.populateJobInterViewlist(0,1,'');
   })
    }
  }
@@ -134,7 +134,6 @@ export class InterviewListComponent implements OnInit {
 
 
   OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId) {
-    debugger
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
     if(profileId>0)
@@ -154,6 +153,10 @@ export class InterviewListComponent implements OnInit {
       }
     );
     scheduleIntwdialogRef.afterClosed().subscribe(result => {
+      if (result === 'submit') {
+        this.populateJobInterViewlist(0,1,'');
+      }
+    
      // this.jobDetails.populateJobsStaticInfo(this.jobid);
       console.log('Chatbox Dialog result: ${result}');
     });
