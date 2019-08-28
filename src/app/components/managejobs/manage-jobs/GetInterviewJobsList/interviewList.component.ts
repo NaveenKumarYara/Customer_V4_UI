@@ -133,9 +133,10 @@ export class InterviewListComponent implements OnInit {
   }
 
 
-  OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId) {
+  OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId,date,time) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
+    debugger
     if(profileId>0)
     {
     const scheduleIntwdialogRef = this.dialog.open(UpdateInterviewComponent,
@@ -148,7 +149,9 @@ export class InterviewListComponent implements OnInit {
          jobResponseId: jobResponseId,
          jobId: jobid,
          ProfileId: profileId,
-         userId: userId
+         userId: userId,
+         iDate:date,
+         iTime:time
         }
       }
     );

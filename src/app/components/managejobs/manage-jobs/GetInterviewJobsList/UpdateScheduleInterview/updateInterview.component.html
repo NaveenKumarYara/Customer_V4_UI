@@ -22,7 +22,7 @@
                   <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-top" style="display: block; top: 202px; left: 712.5px; z-index: 1010;">
         
                   </div> -->
-                  <input class="form-control datepicker"  placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
+                  <input class="form-control datepicker"  [minDate]="minDate"  placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
                                         <div class="input-group-btn">
                                             <button class="btn" (click)="d.toggle()" type="button">
                                                 <img src="../../../../../../assets/images/calender.svg" width="22" />

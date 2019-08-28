@@ -18,6 +18,8 @@ import { ManageJobService } from '../../../managejobs.service';
 import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
+import { Time } from '@angular/common';
+import { aboutcompany } from '../../../../company-profile/aboutcompany/aboutcompany';
 declare var $: any;
 
 export interface DialogData {
@@ -43,8 +45,10 @@ export class UpdateInterviewComponent implements OnInit {
   hourStep = 1;
   minuteStep = 1;
   secondStep = 1;
+  CurrentTime:any;
   // typeId: number;
   InterviewDate: any;
+  selDate:any;
   @Input() userId: number;
   @Input() jobResponseId: number;
   customerUser: number;
@@ -64,10 +68,23 @@ export class UpdateInterviewComponent implements OnInit {
   // addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
   customer: any;
+  minDate:any;
   private subscription: Subscription;
   constructor(   private router: Router,public dialogRef: MatDialogRef<UpdateInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager,private _vcr: ViewContainerRef,private managejobservice: ManageJobService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
+    const current = new Date();
+    this.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate()
+    };
+    let d: Date = new Date(this.data.iDate);
+    this.InterviewDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};  
+    this.CurrentTime = this.data.iTime.split(':') ;
+    let ti = this.CurrentTime[0];
+    let mi = this.CurrentTime[1];
+    this.time  = {hour: ti, minute: mi, second:0}    
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
