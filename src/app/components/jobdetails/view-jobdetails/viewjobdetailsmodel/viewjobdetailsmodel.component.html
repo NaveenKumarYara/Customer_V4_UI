@@ -5,17 +5,18 @@
                 <div class="modal-header-inner">
                     <h4 mat-dialog-title class="modal-title">
                         {{jobdetailscustomer?.JobInfo?.JobTitle}}
-                        <span class="status {{jobdetailscustomer?.JobInfo?.JobStatus}}">{{jobdetailscustomer?.JobInfo?.JobStatus}}</span>
+                        <span
+                            class="status {{jobdetailscustomer?.JobInfo?.JobStatus}}">{{jobdetailscustomer?.JobInfo?.JobStatus}}</span>
                     </h4>
                     <div class="meta">
-                        <div>
+                        <div class="bw-0">
                             <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="Avatar" class="ui-pic"
                                 width="50" height="50">
                             <h5>{{jobdetailscustomer?.JobInfo?.CompanyName}}</h5>
                             <!-- <h5>{{data.JobId}}</h5> -->
                             <!-- <h5>{{data.JobId}}</h5> -->
                         </div>
-                        <div class="h-19">
+                        <div class="h-19 bl-1">
                             <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
                                 <path class="st0"
                                     d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z">
@@ -28,6 +29,11 @@
                                 <h5 class="location">{{location?.CityName}},{{location?.StateName}}</h5>
                             </ng-container>
                         </div>
+                        <div class="h-19">
+                                <svg  fill="#93a2bb" height="19.3" viewBox="0 -31 512 512" width="16" xmlns="http://www.w3.org/2000/svg"><g><path  class="active-path" d="m497.09375 60.003906c-.03125 0-.0625-.003906-.09375-.003906h-136v-15c0-24.8125-20.1875-45-45-45h-120c-24.8125 0-45 20.1875-45 45v15h-136c-8.351562 0-15 6.84375-15 15v330c0 24.8125 20.1875 45 45 45h422c24.8125 0 45-20.1875 45-45v-329.683594c0-.019531 0-.039062 0-.058594-.574219-9.851562-6.632812-15.199218-14.90625-15.253906zm-316.09375-15.003906c0-8.269531 6.730469-15 15-15h120c8.269531 0 15 6.730469 15 15v15h-150zm295.1875 45-46.582031 139.742188c-2.042969 6.136718-7.761719 10.257812-14.226563 10.257812h-84.378906v-15c0-8.285156-6.714844-15-15-15h-120c-8.285156 0-15 6.714844-15 15v15h-84.378906c-6.464844 0-12.183594-4.121094-14.226563-10.257812l-46.582031-139.742188zm-175.1875 150v30h-90v-30zm181 165c0 8.269531-6.730469 15-15 15h-422c-8.269531 0-15-6.730469-15-15v-237.566406l23.933594 71.796875c6.132812 18.40625 23.289062 30.769531 42.6875 30.769531h84.378906v15c0 8.285156 6.714844 15 15 15h120c8.285156 0 15-6.714844 15-15v-15h84.378906c19.398438 0 36.554688-12.363281 42.6875-30.769531l23.933594-71.796875zm0 0" data-old_color="#93a2bb" data-original="#000000" fill="#93a2bb"></path></g> </svg>
+
+                                    <h5 class="location">2 - 3 Years</h5>
+                            </div>
                         <div>
                             <a href="javascript:void(0)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21.1" height="21.1">
@@ -42,7 +48,11 @@
                 </div>
 
                 <div class="modal-actions">
-                    <button mat-button mat-dialog-close (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)" class="btn btn-border">Edit</button>
+                    <button mat-button mat-dialog-close
+                        (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)"
+                        class="btn btn-border">Edit</button>
+                        <button class="btn btn-filled">Inactive</button>
+
                     <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial
                         *ngIf="jobdetailscustomer?.JobInfo?.IsActive==true;else isactives" id="InactiveJob"
                         class="btn btn-filled" (click)="changeJobStat(jobdetailscustomer,false)">Inactive</button>
@@ -56,120 +66,306 @@
                 <ul class="nav nav-tabs">
                     <li routerlinkactive="active"><a data-toggle="tab" href="#description">Description</a></li>
                     <li routerlinkactive="active"><a data-toggle="tab" href="#roles">Roles and Responsibilities</a></li>
-                    <li routerlinkactive="active"><a data-toggle="tab" href="#skills">Skills</a></li> 
+                    <li routerlinkactive="active"><a data-toggle="tab" href="#skills">Skills</a></li>
                     <span class="active-line" style="width: 327.625px; left: 0px;"></span>
                 </ul>
 
-                    <div class="tab-content">
-                        <div id="description" class="tab-pane fade in active">
-                            <div class="group">
-                                <h4>Description</h4>
-                                <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
-                                </p>
-                                <p  *ngIf="jobdetailscustomer?.JobInfo?.JobDescription==''">
-                                    N/A
+                <div class="tab-content">
+                    <div id="description" class="tab-pane fade in active">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Open Positions</h4>
+                                    <p>
+                                        05
                                     </p>
+                                </div>
                             </div>
-                            <!-- <div class="group">
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Interview Type</h4>
+                                    <p>
+                                        In-Person
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Work Authorizion</h4>
+                                    <p>
+                                        H1B Visa
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Employment Type</h4>
+                                    <p>
+                                        Full-Time
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Salary Range</h4>
+                                    <p>
+                                        Hourly
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Education Criteria</h4>
+                                    <p>
+                                        Bachelors Degree
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Type of Person</h4>
+                                    <p>
+                                        Dominance
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Category</h4>
+                                    <p>
+                                        Application Development
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Department</h4>
+                                    <p>
+                                        Transport
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Reporting Manager</h4>
+                                    <p>
+                                        Lisa Schultz
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Matching Criteria</h4>
+                                    <p>
+                                        70%
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="group">
+                                    <h4>Technical Team for Screening</h4>
+                                    <p>
+                                        Kevin Amorim
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="job-details-reviews">
+                                    <div class="review">
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <a href="#">
+                                                    <img class="media-object" width="40"
+                                                        src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png"
+                                                        alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Harlod Smith</h4>
+                                                <p>1min ago</p>
+                                            </div>
+                                        </div>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum has been the industry's standard dummy text ever since the
+                                            1500s, when an unknown printer took a galley of type and scrambled it to
+                                            make a type specimen book.</p>
+
+                                    </div>
+                                    <div class="review">
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <a href="#">
+                                                    <img class="media-object" width="40"
+                                                        src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png"
+                                                        alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Harlod Smith</h4>
+                                                <p>1min ago</p>
+                                            </div>
+                                        </div>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum has been the industry's standard dummy text ever since the
+                                            1500s, when an unknown printer took a galley of type and scrambled it to
+                                            make a type specimen book.</p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <div class="group">
+                            <h4>Description</h4>
+                            <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                            </p>
+                            <p *ngIf="jobdetailscustomer?.JobInfo?.JobDescription==''">
+                                N/A
+                            </p>
+                        </div> -->
+                        <!-- <div class="group">
                             <h4>Job Roles and Responsbilities</h4>
                             <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
                                 {{response?.RolesAndResponsibilities}}
                             </p>
                         </div> -->
-                            <!-- <div class="group">
+                        <!-- <div class="group">
                             <h4>Skills</h4>
                             <ul class="list">
                                 <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
                                     {{skill?.SkillName}}</li>
                             </ul>
                         </div> -->
-                        <div class="group">
+                        <!-- <div class="group">
                             <h4>Work Authorization</h4>
                             <p>
                                 {{jobdetailscustomer?.JobInfo?.WorkAuthorizationType}}
                             </p>
-                            <p  *ngIf="jobdetailscustomer?.JobInfo?.WorkAuthorizationType==null">
+                            <p *ngIf="jobdetailscustomer?.JobInfo?.WorkAuthorizationType==null">
                                 N/A
-                                </p>
+                            </p>
                         </div>
-                            <div class="group">
-                                <h4>Domain</h4>
-                                <ul class="list">
-                                    <li *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
-                                        {{domain?.DomainName}}
-                                    </li>
-                                    <li *ngIf="jobdetailscustomer?.JobRequiredDomain.length == 0">
-                                     N/A
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="group">
-                                <h4>Benefits</h4>
-                                <ul class="list">
-                                    <li class="item" *ngFor="let companybenfit of getcompanybenfit">
-                                        {{companybenfit?.CompanyBenefit}}
-                                    </li>
-                                    <li *ngIf="getcompanybenfit?.length == 0">
-                                            N/A
-                                           </li>
-                                </ul>
-                            </div>
-                            <div class="group review-group">
-                                <h4>Reviews</h4>
-                                <ul class="reviews">
-                                    <li *ngFor="let comment of jobComments">
-                                        <div class="img-wrapper">
-                                            <img [src]="comment?.ProfilePic" alt="">
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="review-header">
-                                                <div>
-                                                    <h5>{{comment?.FirstName}} {{comment?.LastName}}</h5>
-                                                    <h6>{{comment?.ProfileTitle}}</h6>
-                                                </div>
-                                                <div class="time">{{comment?.CommentedDate | date:'shortTime'}}</div>
+                        <div class="group">
+                            <h4>Domain</h4>
+                            <ul class="list">
+                                <li *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                                    {{domain?.DomainName}}
+                                </li>
+                                <li *ngIf="jobdetailscustomer?.JobRequiredDomain.length == 0">
+                                    N/A
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="group">
+                            <h4>Benefits</h4>
+                            <ul class="list">
+                                <li class="item" *ngFor="let companybenfit of getcompanybenfit">
+                                    {{companybenfit?.CompanyBenefit}}
+                                </li>
+                                <li *ngIf="getcompanybenfit?.length == 0">
+                                    N/A
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="group review-group">
+                            <h4>Reviews</h4>
+                            <ul class="reviews">
+                                <li *ngFor="let comment of jobComments">
+                                    <div class="img-wrapper">
+                                        <img [src]="comment?.ProfilePic" alt="">
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="review-header">
+                                            <div>
+                                                <h5>{{comment?.FirstName}} {{comment?.LastName}}</h5>
+                                                <h6>{{comment?.ProfileTitle}}</h6>
                                             </div>
-                                            <p>
-                                                {{comment?.CommentText}}
-                                            </p>
+                                            <div class="time">{{comment?.CommentedDate | date:'shortTime'}}</div>
                                         </div>
-                                    </li>
-                                    <li *ngIf="jobComments?.length == 0">
-                                      N/A
+                                        <p>
+                                            {{comment?.CommentText}}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li *ngIf="jobComments?.length == 0">
+                                    N/A
+                                </li>
+                            </ul>
+                        </div> -->
+
+                    </div>
+                    <div id="roles" class="tab-pane fade">
+                        <div class="row">
+                            <ul class="job-details-roles">
+                                <li>Tune up design for maintainability, scalability and efficiency.</li>
+                                <li>Assist and support other team members on multiple projects.</li>
+                                <li>All round development and coding of client-side logic within browser environment
+                                </li>
+                                <li>Able to integrate multiple data sources and databases into one system</li>
+                                <li>Support continuous improvement</li>
+                            </ul>
+                        </div>
+                        <!-- <div class="group">
+                            <h4>Job Roles and Responsbilities</h4>
+                            <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
+                                {{response?.RolesAndResponsibilities}}
+                            </p>
+                            <p *ngIf="jobdetailscustomer?.JobResponsibility?.length == 0">
+                                N/A
+                            </p>
+                        </div> -->
+                        <!-- <div class="group">
+                            <h4>Video Sizzle</h4>
+                            <video _ngcontent-c21="" class="video-align" controls="" type="video/mp4" width="440"
+                                [src]="jobdetailscustomer.JobInfo?.VideoURL"></video>
+                        </div> -->
+
+
+                    </div>
+                    <div id="skills" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Domain</h4>
+                                <ul class="data-list job-details-skills">
+                                    <li class="col-md-12 no-exp ng-star-inserted">
+                                        <span class="name">Information Technology</span>
+                                        <span class="experience"> 3 - 6 Yrs</span>
+                                        <!-- <span class="close">×</span> -->
                                     </li>
                                 </ul>
                             </div>
-
-                        </div>
-                        <div id="roles" class="tab-pane fade">
-                            <div class="group">
-                                <h4>Job Roles and Responsbilities</h4>
-                                <p *ngFor="let response of jobdetailscustomer?.JobResponsibility">
-                                    {{response?.RolesAndResponsibilities}}
-                                </p>
-                                <p *ngIf="jobdetailscustomer?.JobResponsibility?.length == 0">
-                                      N/A
-                                    </p>
-                            </div>
-                            <div class="group">
-                                <h4>Video Sizzle</h4>
-                                <video _ngcontent-c21="" class="video-align" controls="" type="video/mp4" width="440" [src]="jobdetailscustomer.JobInfo?.VideoURL"></video>
-                            </div>
-
-                        
-                        </div>
-                        <div id="skills" class="tab-pane fade">
-                            <div class="group">
+                            <div class="col-md-6">
                                 <h4>Skills</h4>
-                                <ul class="list">
-                                    <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
-                                        {{skill?.SkillName}}
+                                <ul class="data-list job-details-skills">
+                                    <li class="col-md-12 no-exp ng-star-inserted">
+                                        <span class="name">Python</span>
+                                        <span class="experience"> 3 - 6 Yrs</span>
                                     </li>
+                                    <li class="col-md-12 no-exp ng-star-inserted">
+                                        <span class="name">Java</span>
+                                        <span class="experience"> 3 - 6 Yrs</span>
+                                    </li>
+                                    <li class="col-md-12 no-exp ng-star-inserted">
+                                        <span class="name">C# ASP.NET MVC</span>
+                                        <span class="experience"> 3 - 6 Yrs</span>
+                                    </li>
+
                                 </ul>
-                                <div class="clearfix">&nbsp;</div>
-                                <!--SkillsWithExperience-->
-                                <!-- Commented As it is not finalised -->
-                                <!-- <div class="lists row">
+                            </div>
+
+                        </div>
+                        <!-- <div class="group"> -->
+                        <!-- <h4>Skills</h4> -->
+                        <!-- <ul class="list">
+                                <li *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
+                                    {{skill?.SkillName}}
+                                </li>
+                            </ul> -->
+                        <!-- <div class="clearfix">&nbsp;</div> -->
+                        <!--SkillsWithExperience-->
+                        <!-- Commented As it is not finalised -->
+                        <!-- <div class="lists row">
                                     <div class="col-md-6">
                                       <h4 for="" class="light">Required Primary Skills</h4>
                                       <div class="pill-badges">
@@ -182,11 +378,11 @@
                                             <span class="pillbadge">
                                                 <span class="pbadge-name">Python</span> <span class="pbadge-experience">1 - 2 Yrs</span>
                                             </span>
-                                            
+
                                       </div>
                                       -->
-                                     
-                                      <!-- <ul class="data-list skills-view">
+
+                        <!-- <ul class="data-list skills-view">
                                         <li class="col-md-12 no-exp ">
                                           <span class="name">NodeJS</span>
                                           <span class="experience"> 1 - 2 Yrs</span>
@@ -200,29 +396,29 @@
                                             <span class="experience"> 1 - 2 Yrs</span>
                                           </li>
                                       </ul> -->
-                                      <!-- <ul class="data-list">
+                        <!-- <ul class="data-list">
                                         <li>
                                           <span class="name">Adobe Photoshop</span>
                                           <span class="experience">2 Yrs</span>
-                                         
+
                                         </li>
                                         <li>
                                           <span class="name">Adobe Photoshop</span>
                                           <span class="experience">2 Yrs</span>
-                                         
+
                                         </li>
                                         <li>
                                           <span class="name">Adobe Photoshop</span>
                                           <span class="experience">2 Yrs</span>
-                                          
+
                                         </li>
                                         <li>
                                           <span class="name">Adobe Photoshop</span>
                                           <span class="experience">2 Yrs</span>
-                                         
+
                                         </li>
                                       </ul> -->
-                                    <!-- </div>
+                        <!-- </div>
                                     <div class="col-md-6">
                                       <h4 for="" class="light">Required Secondary Skills</h4>
                                       <div class="pill-badges">
@@ -235,9 +431,9 @@
                                             <span class="pillbadge">
                                                 <span class="pbadge-name">TFS</span> <span class="pbadge-experience">1 - 2 Yrs</span>
                                             </span>
-                                            
+
                                       </div> -->
-                                      <!-- <ul class="data-list skills-view">
+                        <!-- <ul class="data-list skills-view">
                                         <li class="col-md-12 no-exp ">
                                           <span class="name">Java</span>
                                           <span class="experience"> 1 - 2 Yrs</span>
@@ -251,17 +447,18 @@
                                             <span class="experience"> 1 - 2 Yrs</span>
                                           </li>
                                       </ul> -->
-                                    <!-- </div>
+                        <!-- </div>
                                   </div> -->
-                                <!--SkillsWithExperience-->
-                            </div>
-                        </div>
+                        <!--SkillsWithExperience-->
+                        <!-- </div> -->
                     </div>
+                </div>
             </div>
         </mat-dialog-content>
         <mat-dialog-actions class="modal-footer">
             <!-- <button mat-button mat-dialog-close class="btn btn-border">Close</button> -->
-            <button mat-button cdkFocusInitial [mat-dialog-close]="true" class="btn btn-filled" (click)="OpenShareJobDialog()">Share</button>
+            <button mat-button cdkFocusInitial [mat-dialog-close]="true" class="btn btn-filled"
+                (click)="OpenShareJobDialog()">Share</button>
         </mat-dialog-actions>
     </div>
 </div>
