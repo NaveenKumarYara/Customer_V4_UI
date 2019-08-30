@@ -337,3 +337,8 @@
     z-index: 999;
     height: 50vh;
 }
+.border{
+  background-color: rgba(102, 218, 181, 0) !important;
+  border: solid 1px #ccc;
+  margin-bottom: 10px !important;
+}

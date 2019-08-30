@@ -169,8 +169,10 @@
                         </ng-container>
                          
                         </div>
-  
+                        <span class="status Interviewing border"><a (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></span>
+                        <span class="status Interviewing border"><a (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Schedule date</a></span>
                       </div>
+                      
                     
                   </div>
                 </div>
@@ -183,9 +185,9 @@
                     </svg>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></li>
+                    <li></li>
                     <!-- <li><a (click)="GetInterviewAcceptance(job?.IsCPNewDate,job?.JobId,job?.ProfileBasicInfo?.UserId)">Accept</a></li> -->
-                    <li><a (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Schedule date</a></li>
+                    <li></li>
                   </ul>
                 </div>
               </header>
