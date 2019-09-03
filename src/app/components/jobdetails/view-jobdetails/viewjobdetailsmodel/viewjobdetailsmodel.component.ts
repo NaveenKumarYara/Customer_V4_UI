@@ -32,7 +32,9 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  getcompanybenfit: GetCompanyBenefit[];
   jobdetailscustomer: GetJobDetailCustomer;
   jobComments: JobComments[];
-  constructor(private dialog: MatDialog ,private toastr: ToastsManager, private _vcr: ViewContainerRef, private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(private dialog: MatDialog ,private toastr: ToastsManager,
+        private _vcr: ViewContainerRef, private router: Router,
+     private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
    }
