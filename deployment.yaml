@@ -38,9 +38,9 @@ spec:
         - name: Main_URL
           value: "http://aks.dev.arytic.com"
         - name: CuMain_URL
-          value: "http://aks.dev.arytic.com"
-        - name: Main_URL
-          value: "http://aks.dev.arytic.com"
+          value: "http://customer.aks.dev.arytic.com"
+        - name: Sharing_URL
+          value: "http://socialapi.aks.dev.arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:
