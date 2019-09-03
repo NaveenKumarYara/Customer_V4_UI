@@ -32,7 +32,7 @@
                         <div class="h-19">
                                 <svg  fill="#93a2bb" height="19.3" viewBox="0 -31 512 512" width="16" xmlns="http://www.w3.org/2000/svg"><g><path  class="active-path" d="m497.09375 60.003906c-.03125 0-.0625-.003906-.09375-.003906h-136v-15c0-24.8125-20.1875-45-45-45h-120c-24.8125 0-45 20.1875-45 45v15h-136c-8.351562 0-15 6.84375-15 15v330c0 24.8125 20.1875 45 45 45h422c24.8125 0 45-20.1875 45-45v-329.683594c0-.019531 0-.039062 0-.058594-.574219-9.851562-6.632812-15.199218-14.90625-15.253906zm-316.09375-15.003906c0-8.269531 6.730469-15 15-15h120c8.269531 0 15 6.730469 15 15v15h-150zm295.1875 45-46.582031 139.742188c-2.042969 6.136718-7.761719 10.257812-14.226563 10.257812h-84.378906v-15c0-8.285156-6.714844-15-15-15h-120c-8.285156 0-15 6.714844-15 15v15h-84.378906c-6.464844 0-12.183594-4.121094-14.226563-10.257812l-46.582031-139.742188zm-175.1875 150v30h-90v-30zm181 165c0 8.269531-6.730469 15-15 15h-422c-8.269531 0-15-6.730469-15-15v-237.566406l23.933594 71.796875c6.132812 18.40625 23.289062 30.769531 42.6875 30.769531h84.378906v15c0 8.285156 6.714844 15 15 15h120c8.285156 0 15-6.714844 15-15v-15h84.378906c19.398438 0 36.554688-12.363281 42.6875-30.769531l23.933594-71.796875zm0 0" data-old_color="#93a2bb" data-original="#000000" fill="#93a2bb"></path></g> </svg>
 
-                                    <h5 class="location">2 - 3 Years</h5>
+                                    <h5 class="location">{{jobdetailscustomer.JobInfo.MinExperience/12}} - {{jobdetailscustomer.JobInfo.MaxExperience/12}} Years</h5>
                             </div>
                         <div>
                             <a href="javascript:void(0)">
@@ -77,7 +77,7 @@
                                 <div class="group">
                                     <h4>Open Positions</h4>
                                     <p>
-                                        05
+                                        {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}
                                     </p>
                                 </div>
                             </div>
@@ -85,7 +85,10 @@
                                 <div class="group">
                                     <h4>Interview Type</h4>
                                     <p>
-                                        In-Person
+                                        {{jobdetailscustomer?.JobInfo?.InterviewType}}
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.InterviewType==null">
+                                       N/A
                                     </p>
                                 </div>
                             </div>
@@ -93,7 +96,10 @@
                                 <div class="group">
                                     <h4>Work Authorizion</h4>
                                     <p>
-                                        H1B Visa
+                                       {{jobdetailscustomer?.JobInfo?.WorkAuthorizationType}} 
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.WorkAuthorizationType==null">
+                                            N/A
                                     </p>
                                 </div>
                             </div>
@@ -101,7 +107,10 @@
                                 <div class="group">
                                     <h4>Employment Type</h4>
                                     <p>
-                                        Full-Time
+                                       {{jobdetailscustomer?.JobInfo?.EmploymentType}} 
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType==''">
+                                        N/A
                                     </p>
                                 </div>
                             </div>
@@ -109,15 +118,15 @@
                                 <div class="group">
                                     <h4>Salary Range</h4>
                                     <p>
-                                        Hourly
+                                       {{jobdetailscustomer?.JobInfo?.SalaryType}} 
                                     </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4>Education Criteria</h4>
-                                    <p>
-                                        Bachelors Degree
+                                    <p >
+                                        {{jobdetailscustomer?.EducationDetails?.QualificationName}}
                                     </p>
                                 </div>
                             </div>
@@ -133,7 +142,10 @@
                                 <div class="group">
                                     <h4>Category</h4>
                                     <p>
-                                        Application Development
+                                        {{jobdetailscustomer?.JobInfo?.JobCategory}}
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory==''">
+                                      N/A
                                     </p>
                                 </div>
                             </div>
@@ -141,7 +153,10 @@
                                 <div class="group">
                                     <h4>Department</h4>
                                     <p>
-                                        Transport
+                                        {{jobdetailscustomer?.JobDepartments?.DepartmentName}}
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobDepartments?.DepartmentName==null">
+                                        N/A
                                     </p>
                                 </div>
                             </div>
@@ -149,7 +164,7 @@
                                 <div class="group">
                                     <h4>Reporting Manager</h4>
                                     <p>
-                                        Lisa Schultz
+                                       {{jobdetailscustomer?.JobInfo?.ReportingManager}}
                                     </p>
                                 </div>
                             </div>
@@ -164,8 +179,8 @@
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4>Technical Team for Screening</h4>
-                                    <p>
-                                        Kevin Amorim
+                                    <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
+                                        {{team.FirstName}} {{team.LastName}}
                                     </p>
                                 </div>
                             </div>
@@ -181,17 +196,14 @@
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading">Harlod Smith</h4>
-                                                <p>1min ago</p>
+                                                <h4 class="media-heading" *ngFor="let comment of jobComments">{{comment?.FirstName}} {{comment?.LastName}}</h4>
+                                                <p>{{comment?.CommentedDate | date:'shortTime'}}</p>
                                             </div>
                                         </div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.</p>
+                                        <p>{{comment?.CommentText}}.</p>
 
                                     </div>
-                                    <div class="review">
+                                    <!-- <div class="review">
                                         <div class="media">
                                             <div class="media-left media-middle">
                                                 <a href="#">
@@ -210,7 +222,7 @@
                                             1500s, when an unknown printer took a galley of type and scrambled it to
                                             make a type specimen book.</p>
 
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
@@ -298,13 +310,16 @@
                     <div id="roles" class="tab-pane fade">
                         <div class="row">
                             <ul class="job-details-roles">
-                                <li>Tune up design for maintainability, scalability and efficiency.</li>
-                                <li>Assist and support other team members on multiple projects.</li>
+                                <li *ngFor="let response of jobdetailscustomer?.JobResponsibility">{{response?.RolesAndResponsibilities}}</li>
+                                <!-- <li>Assist and support other team members on multiple projects.</li>
                                 <li>All round development and coding of client-side logic within browser environment
                                 </li>
                                 <li>Able to integrate multiple data sources and databases into one system</li>
-                                <li>Support continuous improvement</li>
+                                <li>Support continuous improvement</li> -->
                             </ul>
+                            <ul class="job-details-roles">
+                                <li *ngIf="jobdetailscustomer?.JobResponsibility?.length == 0">N/A</li>
+                                </ul>
                         </div>
                         <!-- <div class="group">
                             <h4>Job Roles and Responsbilities</h4>
@@ -328,28 +343,31 @@
                             <div class="col-md-6">
                                 <h4>Domain</h4>
                                 <ul class="data-list job-details-skills">
-                                    <li class="col-md-12 no-exp ng-star-inserted">
-                                        <span class="name">Information Technology</span>
-                                        <span class="experience"> 3 - 6 Yrs</span>
+                                    <li class="col-md-12 no-exp ng-star-inserted" *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain" >
+                                        <span class="name" >{{domain.DomainName}}</span>
+                                        <span class="experience"> {{domain.MinimumExperience}} - {{domain.MaximumExperience}} Yrs</span>
                                         <!-- <span class="close">×</span> -->
+                                    </li>
+                                    <li class="col-md-12 no-exp ng-star-inserted"  *ngIf="jobdetailscustomer?.JobRequiredDomain.length == 0">
+                                      Domain knowledge not required
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <h4>Skills</h4>
                                 <ul class="data-list job-details-skills">
-                                    <li class="col-md-12 no-exp ng-star-inserted">
-                                        <span class="name">Python</span>
-                                        <span class="experience"> 3 - 6 Yrs</span>
+                                    <li class="col-md-12 no-exp ng-star-inserted"  *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
+                                        <span class="name">{{skill?.SkillName}}</span>
+                                        <span class="experience"> {{skill.MinimumExp}}-{{skill.MaximumExp}} Yrs</span>
                                     </li>
-                                    <li class="col-md-12 no-exp ng-star-inserted">
+                                    <!-- <li class="col-md-12 no-exp ng-star-inserted">
                                         <span class="name">Java</span>
                                         <span class="experience"> 3 - 6 Yrs</span>
                                     </li>
                                     <li class="col-md-12 no-exp ng-star-inserted">
                                         <span class="name">C# ASP.NET MVC</span>
                                         <span class="experience"> 3 - 6 Yrs</span>
-                                    </li>
+                                    </li> -->
 
                                 </ul>
                             </div>
