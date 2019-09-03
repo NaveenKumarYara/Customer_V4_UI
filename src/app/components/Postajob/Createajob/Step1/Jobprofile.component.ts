@@ -4,8 +4,8 @@ import { AppService } from '../../../../app.service';
 declare var  $: any ;
 @Component({
   selector: 'app-steps-step1-jobprofile',
-  templateUrl: './jobprofile.component.html',
-  styleUrls: ['./jobprofile.component.css']
+  templateUrl: './Jobprofile.component.html',
+  styleUrls: ['./Jobprofile.component.css']
 })
 export class JobprofileComponent implements OnInit {
   @ViewChild('profileForm') profileForm: any;

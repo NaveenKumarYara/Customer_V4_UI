@@ -13,9 +13,9 @@ declare var jQuery: any;
 
 @Component({
   selector: 'app-steps-step1-jobdetails',
-  templateUrl: './jobdetails.component.html',
+  templateUrl: './Jobdetails.component.html',
   // template: '<div class="ng-select-container form-control"></div>',
-  styleUrls: ['./jobdetails.component.css'],
+  styleUrls: ['./Jobdetails.component.css'],
 })
 
 export class JobdetailsComponent implements OnInit, AfterViewChecked {

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-steps-step1-jobcategory',
-  templateUrl: './jobcategory.component.html'
+  templateUrl: './Jobcategory.component.html'
 })
 
 export class JobcategoryComponent implements OnInit {

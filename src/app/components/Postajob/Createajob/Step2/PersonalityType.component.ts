@@ -8,8 +8,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-steps-step2-personalityType',
-  templateUrl: './personalityType.component.html',
-  styleUrls: ['./personalityType.component.css']
+  templateUrl: './PersonalityType.component.html',
+  styleUrls: ['./PersonalityType.component.css']
 })
 
 export class PersonalityTypeComponent implements OnInit, OnDestroy {
