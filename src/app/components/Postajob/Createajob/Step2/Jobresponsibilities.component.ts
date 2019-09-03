@@ -11,7 +11,7 @@ import { ResponsibilitiesDialogComponent } from './responsibilities-dialog/respo
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobresponsibilities',
-  templateUrl: './jobresponsibilities.component.html',
+  templateUrl: './Jobresponsibilities.component.html',
   styleUrls: ['./Jobresponsibilities.component.css']
 })
 
