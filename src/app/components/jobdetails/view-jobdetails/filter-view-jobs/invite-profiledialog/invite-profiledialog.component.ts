@@ -4,8 +4,8 @@ import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup, FormB
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { environment } from '../../../../../../environments/environment.prod';
 import { AnimationStyleMetadata } from '@angular/core/src/animation/dsl';
+import { SettingsService } from '../../../../../../settings/settings.service';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -25,7 +25,7 @@ export interface DialogData {
     //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     Emailinvite:any;
     inviteEmail:any;
-  constructor(public dialogRef: MatDialogRef<InviteProfiledialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router) {
+  constructor(public dialogRef: MatDialogRef<InviteProfiledialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,private fb: FormBuilder, private router: Router, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId =  this.customer.UserId;
@@ -56,7 +56,7 @@ export interface DialogData {
     this.inviteinfo.CandFullName = 'Arytic User';
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.AppLink = environment.CandidateSignUp+';JId='+JSON.parse(sessionStorage.getItem('jobId'));
+    this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+JSON.parse(sessionStorage.getItem('jobId'));
     if(this.inviteinfo.ToEmailId == "")
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');

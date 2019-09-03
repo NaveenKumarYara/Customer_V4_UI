@@ -1,9 +1,10 @@
 import { Component,OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '../../../environments/environment';
+
 import { AppService } from '../../app.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SettingsService } from '../../../settings/settings.service';
 
 declare var $: any; 
 @Component({
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
   password:any;
   userId:any;
   constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,
-      private fb: FormBuilder, private router: Router,private appService: AppService) {
+      private fb: FormBuilder, private router: Router,private appService: AppService, private settingsService: SettingsService) {
         
         this.route.params.subscribe(params => {
           if (params['tk']!=null) {
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit {
         }
         else
         {
-          window.location.href = environment.customerLogin;
+          window.location.href = this.settingsService.settings.customerLogin;
           //this.router.navigateByUrl('login');
         }
       })

@@ -2,7 +2,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError} from 'r
 import { concat } from 'rxjs/observable/concat';
 import { Component, Inject,ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { environment } from '../../../../../../environments/environment.prod';
+
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { AppService } from '../../../../../app.service';
@@ -12,6 +12,7 @@ import {CustomerContacts} from '../../../../../../models/customercontacts';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
+import { SettingsService } from '../../../../../../settings/settings.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -44,7 +45,7 @@ export class SharedialogComponent {
   userId:number;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
-  constructor( public dialogRef: MatDialogRef<SharedialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager) { 
+  constructor( public dialogRef: MatDialogRef<SharedialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -179,7 +180,7 @@ onItemDeleted(index){
       this.profileSharing.ToUserId = this.teammemberslist.map(x => x.UserId).toString();
       this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
       this.profileSharing.ApplicationName = 'Arytic';
-      this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
+      this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
       this.profileSharing.Comments=this.selectedComments;
    }
    if(this.info = 1)
@@ -189,7 +190,7 @@ onItemDeleted(index){
     this.profileSharing.ToUserId = "0";
     this.profileSharing.ToEmailId = this.GetContactsList.map(x => x.EmailId).toString();
     this.profileSharing.ApplicationName = 'Arytic';
-    this.profileSharing.AppLink = environment.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
+    this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
     this.profileSharing.Comments=this.selectedComments;
    }
    if(this.profileSharing.ToEmailId == "" && this.profileSharing.Comments == undefined)

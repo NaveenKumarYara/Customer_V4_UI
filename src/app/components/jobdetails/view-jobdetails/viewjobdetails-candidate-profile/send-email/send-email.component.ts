@@ -3,7 +3,7 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { environment } from '../../../../../../environments/environment.prod';
+import { SettingsService } from '../../../../../../settings/settings.service';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -19,7 +19,7 @@ subject: string;
 ToEmailID: string;
 mailbox: any = false;
 body: string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
     this.emailUpdate.JobId = data.jobId;
     this.emailUpdate.JobResponseId =  data.jobResponseId;
@@ -40,8 +40,8 @@ body: string;
     this.conversation.Subject = this.subject;
     this.conversation.Body = this.body;
     // if(){
-    this.conversation.AppLink = this.data.userId > 0  ? environment.CandidateLogin + ';lid=' + this.data.ccpid :
-    environment.CandidateSignUp + ';sid=' + this.data.ccpid;
+    this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
+    this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' :  'Yes I will Join';
     // }
     this.conversation.ToEmailID = this.ToEmailID;

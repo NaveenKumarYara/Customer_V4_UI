@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpEvent } from '@angular/common/
 import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../../environments/environment';
+
 import { JobDetails } from '../managejobs/models/jobdetails';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
@@ -25,12 +25,13 @@ import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SortbyInProfiles } from './models/SortbyInProfiles';
 import {WishlistCount} from './models/WishlistCount';
+import { SettingsService } from '../../../settings/settings.service';
 
 @Injectable()
 export class JobdetailsService {
   // baseUrll = 'http://api.tenendus.com:1090/';
   baseUrll1 = 'http://localhost:61297/';
-  constructor(private _http: Http, private http: HttpClient) {
+  constructor(private _http: Http, private http: HttpClient, private settingsService: SettingsService) {
   }
 
   private detailsAdvanceSearch = new BehaviorSubject(false);
@@ -48,7 +49,7 @@ export class JobdetailsService {
   }
 
   getCompanyBenfits(customerId: number): Observable<GetCompanyBenefit[]> {
-    const url = environment.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
+    const url = this.settingsService.settings.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
     return this.http.get<GetCompanyBenefit[]>(url)
         .catch(
             this.handleError
@@ -63,7 +64,7 @@ export class JobdetailsService {
   }
 
   getProfileLinks(userId: number) {
-    const url = environment.profileLink + 'userId=' + userId;
+    const url = this.settingsService.settings.profileLink + 'userId=' + userId;
     return this.http.get<ProfileLinks[]>(url)
         .catch(
             this.handleError
@@ -71,7 +72,7 @@ export class JobdetailsService {
   }
 
   getInterviewtype(jobId: number) {
-    const url = environment.InterviewScheduleType + 'jobId=' + jobId;
+    const url = this.settingsService.settings.InterviewScheduleType + 'jobId=' + jobId;
     return this.http.get<ScheduleType>(url)
         .catch(
             this.handleError
@@ -79,7 +80,7 @@ export class JobdetailsService {
    }
 
   getSortByOption() {
-    const url = environment.profilesSortBy;
+    const url = this.settingsService.settings.profilesSortBy;
     // return this.http.post(url, null).map((res: Response) => res)
     return this.http.get<string[]>(url)
         .catch(
@@ -87,7 +88,7 @@ export class JobdetailsService {
         );
    }
    getInterViewTypes(): Observable<ScheduleType[]> {
-    const url = environment.interviewtypeendpoint;
+    const url = this.settingsService.settings.interviewtypeendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -95,7 +96,7 @@ export class JobdetailsService {
     }
 
     getJobDetailsBasicInfo(customerId: number, jobId: number): Observable<JobdetailsBasicInfo> {
-    const url = environment.JobdetailsBasicInfoEndpoint +
+    const url = this.settingsService.settings.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
       .debounceTime(1000)
@@ -105,7 +106,7 @@ export class JobdetailsService {
   }
 
   getPersonType(jobId: number): Observable<DiscResult[]> {
-    const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
+    const url = this.settingsService.settings.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)
     .debounceTime(1000)
     .catch(
@@ -114,7 +115,7 @@ export class JobdetailsService {
   }
 
   GetSearch(city: string = null): Observable<string[]> {
-    const url = environment.GetCitySearch + '?cityName=' + city;
+    const url = this.settingsService.settings.GetCitySearch + '?cityName=' + city;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -122,7 +123,7 @@ export class JobdetailsService {
   }
 
   getUserId(email: string, customerId: number): Observable<DiscResult[]> {
-    const url = environment.GetUserId + 'email=' + email + '&customerId=' + customerId ;
+    const url = this.settingsService.settings.GetUserId + 'email=' + email + '&customerId=' + customerId ;
     return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
@@ -132,14 +133,14 @@ export class JobdetailsService {
   }
 
   getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
-    const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
+    const url = this.settingsService.settings.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<GetJobDetailCustomer>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
       );
   //  // const promise = new Promise((resolve, reject) => {
-  //     const url = environment.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
+  //     const url = this.settingsService.settings.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;
   //    return this.http.get<GetJobDetailCustomer>(url)
   //       .toPromise();
   //   // });
@@ -147,7 +148,7 @@ export class JobdetailsService {
   }
 
   getJobDetailsStatisticsInfo(customerId: number, jobId: number): Observable<Jobstatistics> {
-    const url = environment.JobdetailsStatisticsEndpoint + 'customerId=' + customerId + '&jobId=' + jobId;
+    const url = this.settingsService.settings.JobdetailsStatisticsEndpoint + 'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<Jobstatistics>(url)
       .debounceTime(1000)
       .catch(
@@ -156,7 +157,7 @@ export class JobdetailsService {
   }
 
   getWishListCount(customerId: number, jobId: number, statusId: number): Observable<WishlistCount> {
-    const url = environment.WishlistCount + 'customerId=' + customerId + '&jobId=' + jobId + '&statusId=' + statusId;
+    const url = this.settingsService.settings.WishlistCount + 'customerId=' + customerId + '&jobId=' + jobId + '&statusId=' + statusId;
     return this.http.get<WishlistCount>(url)
       .debounceTime(1000)
       .catch(
@@ -165,7 +166,7 @@ export class JobdetailsService {
   }
 
   getJobDetailsComments(jobId: number): Observable<JobComments[]> {
-    const url = environment.GetJobDetialCustomerComments + 'jobId=' + jobId;
+    const url = this.settingsService.settings.GetJobDetialCustomerComments + 'jobId=' + jobId;
     return this.http.get<JobComments[]>(url)
       .debounceTime(1000)
       .catch(
@@ -174,7 +175,7 @@ export class JobdetailsService {
   }
 
   getMatchingDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
-    const url = environment.MatchingDetailEndPoint +
+    const url = this.settingsService.settings.MatchingDetailEndPoint +
      '?userId=' + profileId + '&jobId=' + jobId;
     return this.http.get<MatchingDetails>(url)
       .debounceTime(1000)
@@ -183,7 +184,7 @@ export class JobdetailsService {
       );
   }
   getVideoProfile(customerId: number, profileId: number) {
-    const url = environment.VideoProfileEndPoint +
+    const url = this.settingsService.settings.VideoProfileEndPoint +
      '?customerId=' + customerId + '&userId=' +  profileId;
     return this.http.get<string>(url)
       .debounceTime(1000)
@@ -192,7 +193,7 @@ export class JobdetailsService {
       );
   }
   GetAutoSearch(term: string = null, customerId: number): Observable<string[]> {
-    const url = environment.GetProfileAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
+    const url = this.settingsService.settings.GetProfileAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -201,7 +202,7 @@ export class JobdetailsService {
 
   getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string, uploaded: number, suggested: number, wishlist: number, noOfRows: number= 6):
   Observable<JobdetailsProfile> {
-   const url = environment.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
+   const url = this.settingsService.settings.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
      '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString + '&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&uploaded=' + uploaded  + '&suggested=' + suggested + '&wishlist=' + wishlist + '&pageNumber=1&noOfRows=' + noOfRows;
      return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
@@ -211,7 +212,7 @@ export class JobdetailsService {
  }
   getJobDetailsSuggestedProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string,
     noOfRows: number= 6): Observable<JobdetailsProfile> {
-    const url = environment.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
+    const url = this.settingsService.settings.JobdetailsSuggestedProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
       '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString + '&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&pageNumber=1&noOfRows=' + noOfRows;
       return this.http.get<JobdetailsProfile>(url)
       .debounceTime(1000)
@@ -224,7 +225,7 @@ export class JobdetailsService {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(environment.baseUrll + url, body, { headers: headers })
+    return this._http.post(this.settingsService.settings.baseUrll + url, body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -232,21 +233,21 @@ export class JobdetailsService {
   }
 
   interviewProcess(body) {
-    return this.http.post(environment.scheduleInterview, body)
+    return this.http.post(this.settingsService.settings.scheduleInterview, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   updateWishlist(body) {
-    return this.http.post(environment.UpdateWishlist, body)
+    return this.http.post(this.settingsService.settings.UpdateWishlist, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   InviteContact(body) {
-    return this.http.post(environment.InviteContact, body)
+    return this.http.post(this.settingsService.settings.InviteContact, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -254,7 +255,7 @@ export class JobdetailsService {
   }
 
   ProfileShareInvite(body) {
-    return this.http.post(environment.ProfileShareInvite, body)
+    return this.http.post(this.settingsService.settings.ProfileShareInvite, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -262,21 +263,21 @@ export class JobdetailsService {
   }
 
   JobShareInvite(body) {
-    return this.http.post(environment.JobShareInvite, body)
+    return this.http.post(this.settingsService.settings.JobShareInvite, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   StartConversation(body) {
-    return this.http.post(environment.StartConversation, body)
+    return this.http.post(this.settingsService.settings.StartConversation, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   UpdateStatusOnEmailConversation(body) {
-    return this.http.post(environment.UpdateStatusOnEmailConversation, body)
+    return this.http.post(this.settingsService.settings.UpdateStatusOnEmailConversation, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -284,7 +285,7 @@ export class JobdetailsService {
   }
 
   searchCandidateProfiles(body) {
-    return this.http.post(environment.SearchCandidateProfiles, body)
+    return this.http.post(this.settingsService.settings.SearchCandidateProfiles, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -292,7 +293,7 @@ export class JobdetailsService {
   }
 
   SearchProfile(body) {
-    return this.http.post(environment.SearchProfile, body)
+    return this.http.post(this.settingsService.settings.SearchProfile, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());

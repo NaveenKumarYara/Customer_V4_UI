@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../../environments/environment';
+
 import {JobCount} from './models/JobCount';
 import { JobDetails } from './models/jobdetails';
 import { Subject } from 'rxjs/Subject';
@@ -15,10 +15,11 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {GetInterviewSortList} from '../../../models/GetInterviewSortList';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
+import { SettingsService } from '../../../settings/settings.service';
 @Injectable()
 export class ManageJobService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
 
@@ -48,7 +49,7 @@ export class ManageJobService {
 
 
   getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
-    const url = environment.listofJobsEndpoint +
+    const url = this.settingsService.settings.listofJobsEndpoint +
     'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails>(url)
       .debounceTime(1000)
@@ -58,7 +59,7 @@ export class ManageJobService {
   }
 
   GetInterViewAcceptance(userId:number,jobId:number): Observable<JobCount> {
-    const url = environment.GetInterviewAccept + 'userId=' + userId +
+    const url = this.settingsService.settings.GetInterviewAccept + 'userId=' + userId +
     '&jobId=' + jobId;
     return this.http.get<JobCount>(url)
       .debounceTime(1000)
@@ -70,7 +71,7 @@ export class ManageJobService {
   GetInterviewList(customerId: number,sortBy: number,ListSort:number,search:string,count: number)
   {
 
-    const url = environment.GetInterViewList +
+    const url = this.settingsService.settings.GetInterViewList +
     'customerId=' + customerId +'&sortBy='+sortBy +'&listSort='+ListSort+ '&searchString='+search+'&pageNumber=1' +'&numberOfRows=' +count;
     return this.http.get<GetInterviewSortList>(url)
       .debounceTime(1000)
@@ -80,7 +81,7 @@ export class ManageJobService {
   }
 
   GetSearch(city: string = null): Observable<string[]> {
-    const url = environment.GetCitySearch + '?cityName=' + city;
+    const url = this.settingsService.settings.GetCitySearch + '?cityName=' + city;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -88,7 +89,7 @@ export class ManageJobService {
   }
 
   getJobDetailsByFilter(customerId: number, userId: number, employmentTypeId: number, experience: number, cityId: number, viewBy: number, clientId: number, departmentId: number, count: number): Observable<JobDetails> {
-    const url = environment.GetJobsFilterBy +
+    const url = this.settingsService.settings.GetJobsFilterBy +
     'customerId=' + customerId + '&userId=' + userId + '&employmentTypeId=' + employmentTypeId + '&experience=' + experience + '&cityId=' + cityId + '&viewBy=' + viewBy +  '&clientId=' + clientId +  '&departmentId=' + departmentId + '&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails>(url)
       .debounceTime(1000)
@@ -98,7 +99,7 @@ export class ManageJobService {
   }
 
   getJobCount(jobId: number, customerId: number): Observable<JobCount> {
-    const url = environment.JobsProfileCount +
+    const url = this.settingsService.settings.JobsProfileCount +
     'jobId=' + jobId + '&customerId=' + customerId;
     return this.http.get<JobCount>(url)
       .debounceTime(1000)
@@ -108,7 +109,7 @@ export class ManageJobService {
   }
 
   GetAutoSearch(term: string = null, customerId: number): Observable<string[]> {
-    const url = environment.GetAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
+    const url = this.settingsService.settings.GetAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -116,7 +117,7 @@ export class ManageJobService {
   }
 
   InterviewAccept(body) {
-    return this.http.post(environment.CustomerInterviewAccept, body)
+    return this.http.post(this.settingsService.settings.CustomerInterviewAccept, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -124,7 +125,7 @@ export class ManageJobService {
   }
 
   UpdateinterviewProcess(body) {
-    return this.http.post(environment.UpdateScheduleInterview, body)
+    return this.http.post(this.settingsService.settings.UpdateScheduleInterview, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -132,7 +133,7 @@ export class ManageJobService {
   }
 
   GetInterviewAutoSearch(term: string = null, customerId: number): Observable<string[]> {
-    const url = environment.GetInterviewAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
+    const url = this.settingsService.settings.GetInterviewAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -140,7 +141,7 @@ export class ManageJobService {
   }
 
   getPersonType(jobId: number): Observable<DiscResult[]> {
-    const url = environment.GetPersonTypeEndPoint + 'jobId=' + jobId;
+    const url = this.settingsService.settings.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)
     .debounceTime(1000)
     .catch(

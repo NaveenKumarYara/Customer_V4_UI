@@ -2,11 +2,12 @@ import { Component , ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { environment } from '../../../environments/environment';
+
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 import {GetCandidateprofileComponent} from '../GetProfileDetails/GetProfile.component';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { SettingsService } from '../../../settings/settings.service';
 declare var $: any; 
 @Component({
   
@@ -31,7 +32,7 @@ export class dLoginComponent {
   JobId:any;
   CId:any;
   constructor( private dialog: MatDialog, private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
-      private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
+      private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService, private settingsService: SettingsService) {
         this.route.params.subscribe(params => {
           if (params['Uid']>0) {
             this.ActivatetheUser(params['Uid']);
@@ -66,16 +67,16 @@ export class dLoginComponent {
   SignUp()
   {
     //this.router.navigateByUrl('signup'); 
-    window.location.href = environment.customerSignUp ;
+    window.location.href = this.settingsService.settings.customerSignUp ;
   }
   forgot()
   {
     //this.router.navigateByUrl('ForgotPassword'); 
-    window.location.href = environment.ForgotPasswordurl;
+    window.location.href = this.settingsService.settings.ForgotPasswordurl;
   }
   Redirect()
   {
-    window.location.href = environment.Arytic;
+    window.location.href = this.settingsService.settings.Arytic;
   }
 
   login() {

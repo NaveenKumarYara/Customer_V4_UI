@@ -1,11 +1,12 @@
 import { Component ,  OnInit,ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
-import { environment } from '../../../environments/environment';
+
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 declare var $: any; 
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { SettingsService } from '../../../settings/settings.service';
 @Component({
   
   selector: 'signup',
@@ -25,7 +26,7 @@ export class SignUpComponent  implements OnInit{
   info =new Register();
   password:any;
   userId:any;
-  constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
+  constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService, private settingsService: SettingsService) {
     this.route.params.subscribe(params => {
         console.log(params);
         if (params['id'] > 0) {
@@ -100,7 +101,7 @@ export class SignUpComponent  implements OnInit{
     this.info.FullName = this.signUpform.value.ContactFirstName+this.signUpform.value.ContactLastName;
     this.info.ToEmailId = this.signUpform.value.ContactEmail;
     this.info.ApplicationName = 'Arytic';
-    this.info.AppLink = environment.customerLogin+';Uid='+userId; 
+    this.info.AppLink = this.settingsService.settings.customerLogin+';Uid='+userId; 
     this.info.ClientLogo = '';
     this.appService.SignUpEmail(this.info).subscribe(data => {
       if (data==0) {

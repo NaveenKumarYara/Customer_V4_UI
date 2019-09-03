@@ -12,7 +12,7 @@ declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobresponsibilities',
   templateUrl: './jobresponsibilities.component.html',
-  styleUrls: ['./jobresponsibilities.component.css']
+  styleUrls: ['./Jobresponsibilities.component.css']
 })
 
 export class JobResponsibilitiesComponent implements OnInit, OnDestroy {

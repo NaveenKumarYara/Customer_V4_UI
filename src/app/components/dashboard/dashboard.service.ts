@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpEvent } from '@angular/common/
 import { Observable } from 'rxjs/Rx';
 import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../../environments/environment';
+
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -15,11 +15,12 @@ import { RecentApplicants } from '../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../models/dashboardstatistics';
 import { ApplicantStatistics } from '../../../models/applicantstatistics';
 import {JobCount} from '../../components/managejobs/models/JobCount';
+import { SettingsService } from '../../../settings/settings.service';
 
 @Injectable()
 export class DashboardService {
     //baseUrll = 'http://v1.tenendus.com:1020/';
-    constructor(private http: HttpClient,private _http: Http) {
+    constructor(private http: HttpClient,private _http: Http, private settingsService: SettingsService) {
     }
 
 
@@ -33,7 +34,7 @@ export class DashboardService {
     }
 
     getRecentJobs(customerId: number, userId:number,count: number): Observable<RecentJobs> {
-        const url = environment.RecentJobs +
+        const url = this.settingsService.settings.RecentJobs +
         'customerId=' +customerId +'&userId='+ userId + '&sortBy=0&&searchString=&status=0&pageNumber=1&numberOfRows=5';
         return this.http.get<RecentJobs>(url)
             .debounceTime(1000)
@@ -43,7 +44,7 @@ export class DashboardService {
     }
 
     getRecentApplicants(customerId:number,userId:number,count: number): Observable<RecentApplicants[]> {
-       const url = environment.RecentApplicants +
+       const url = this.settingsService.settings.RecentApplicants +
        'customerId=' + customerId + '&userId=' + userId + '&page=1&numberOfRows=5';
        return this.http.get<RecentApplicants[]>(url)
            .debounceTime(1000)
@@ -52,7 +53,7 @@ export class DashboardService {
            );
     }
     getJobCount(jobId: number, customerId: number): Observable<JobCount> {
-        const url = environment.JobsProfileCount +
+        const url = this.settingsService.settings.JobsProfileCount +
         'jobId=' + jobId + '&customerId=' + customerId;
         return this.http.get<JobCount>(url)
           .debounceTime(1000)
@@ -62,7 +63,7 @@ export class DashboardService {
       }
 
     getDashboardStatistics(customerId: number, userId: number): Observable<DashboardStatistics> {
-        const url = environment.DashboardStatistics +
+        const url = this.settingsService.settings.DashboardStatistics +
         'customerId=' + customerId + '&userId=' + userId + '&filter=0';
 
         return this.http.get<DashboardStatistics>(url)
@@ -73,7 +74,7 @@ export class DashboardService {
         // return this.dashboardstatistics;
     }
     getApplicantsStatistics(customerId: number, userId: number): Observable<ApplicantStatistics> {
-        const url = environment.ApplicantStatistics +
+        const url = this.settingsService.settings.ApplicantStatistics +
         'customerId=' + customerId + '&userId=' + userId + '&filter=0';
         return this.http.get<ApplicantStatistics>(url)
             .debounceTime(500)

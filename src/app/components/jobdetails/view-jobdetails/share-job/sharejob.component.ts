@@ -2,7 +2,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError} from 'r
 import { concat } from 'rxjs/observable/concat';
 import { Component, Inject,ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { environment } from '../../../../../environments/environment.prod';
+
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../../Postajob/models/jobPostInfo';
 import { AppService } from '../../../../app.service';
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { forEach } from '@angular/router/src/utils/collection';
+import { SettingsService } from '../../../../../settings/settings.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -46,7 +47,7 @@ export class ShareJobComponent {
   userId:number;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
-  constructor( public dialogRef: MatDialogRef<ShareJobComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager) { 
+  constructor( public dialogRef: MatDialogRef<ShareJobComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -143,7 +144,7 @@ export class ShareJobComponent {
             this.Sharing.JobId = this.data.JobId;
             this.Sharing.FromEmail = this.customer.Email;
             this.Sharing.ToUserName =this.teammemberslist.map(x => x.FirstName).toString();
-            this.Sharing.AppLink = environment.CustomerAppLogin+';JobId='+this.data.JobId+';CId='+ this.customerId;
+            this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin+';JobId='+this.data.JobId+';CId='+ this.customerId;
             this.Sharing.Comments = this.selectedComments;
             if(this.Sharing.ToEmailID == "" && this.Sharing.Comments == undefined)
             {

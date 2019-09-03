@@ -6,7 +6,8 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+
+import { SettingsService } from '../../../../settings/settings.service';
 
 @Injectable()
 export class ApiService {
@@ -14,7 +15,7 @@ export class ApiService {
   // baseUrll = 'http://localhost:61297/';
   baseUrll2 = 'http://localhost:12167/';
   isDebug = true;
-  constructor(private _http: Http, private http: HttpClient) { }
+  constructor(private _http: Http, private http: HttpClient, private settingsService: SettingsService) { }
 
   PostService(body, Url) {
     let request = '';
@@ -28,7 +29,7 @@ export class ApiService {
     // headers.append('Access-Control-Allow-Headers', ' Origin, Content-Type, X-Auth-Token');
     headers.append('X-Frame-Options', 'http://facebook.com/');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(environment.baseUrll + Url, request, { headers: headers })
+    return this._http.post(this.getUrl(Url), request, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -66,7 +67,7 @@ export class ApiService {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(environment.baseUrll + url, _formData, { headers: headers })
+    return this._http.post(this.getUrl(url), _formData, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -108,7 +109,7 @@ export class ApiService {
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
 
-    return this._http.post(environment.baseUrll + url, body, { headers: headers })
+    return this._http.post(this.getUrl(url), body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -131,7 +132,7 @@ export class ApiService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.put(environment.baseUrll + Url + params, request, { headers: headers })
+    return this._http.put(this.getUrl(Url) + params, request, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -143,7 +144,7 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     // headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.get(environment.baseUrll + url + prams, { headers: headers })
+    return this._http.get(this.getUrl(url) + prams, { headers: headers })
       .map((response: Response) => response.json())
       .retry(2)
       .catch((error) => {
@@ -167,7 +168,7 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     // headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.delete(environment.baseUrll + url + prams, { headers: headers })
+    return this._http.delete(this.getUrl(url) + prams, { headers: headers })
       .map((response: Response) => response.json())
       .catch((error) => {
         return 'seomething gone wrong';
@@ -254,7 +255,7 @@ export class ApiService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     headers.append('Access-Control-Allow-Origin', '*');
-    return this._http.get(environment.baseUrll + path + params, { headers: headers }).map(
+    return this._http.get(this.getUrl(path) + params, { headers: headers }).map(
       (res: any) => {
         // return new Blob([res.blob()], { type: 'application/pdf' });
         return res;
@@ -267,11 +268,16 @@ export class ApiService {
       .map((response: Response) => <Blob>response.blob());
     // .catch(this.handleError);
   }
-  // public getFile(path: string):Observable<any>{
-  //   let options = new RequestOptions({responseType: ResponseContentType.Blob});
-  //   return this.http.get(path, options)
-  //       .map((response: Response) => <Blob>response.blob())  ;
-  // }
+
+  getUrl(url: string) {
+    return url.replace('ProfileAPI', this.settingsService.settings.ProfilebaseUrl)
+           .replace('IdentityAPI', this.settingsService.settings.IdentitybaseUrl)
+           .replace('ReferralAPI', this.settingsService.settings.RefralbaseUrl)
+      .replace('JobsAPI', this.settingsService.settings.JobbaseUrl)
+        .replace('SocialSharingAPI', this.settingsService.settings.SharingbaseUrl)
+        .replace('EmailAPI', this.settingsService.settings.EmailbaseUrl);
+    
+        }
 }
 
 

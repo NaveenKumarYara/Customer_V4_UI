@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -77,6 +77,14 @@ import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajo
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { GetCandidateprofileComponent } from './components/GetProfileDetails/GetProfile.component';
+
+import { SettingsHttpService } from '../settings/settings.http.service';
+import { SettingsService } from '../settings/settings.service';
+
+
+export function app_Init(settingsHttpService: SettingsHttpService) {
+  return () => settingsHttpService.initializeApp();
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,7 +163,9 @@ import { GetCandidateprofileComponent } from './components/GetProfileDetails/Get
   Ng5SliderModule,
   ProgressBarModule
   ],
-  providers: [AppService, ApiService, AuthService],
+  providers: [SettingsHttpService, SettingsService, HttpClient,
+     { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },
+  AppService, ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

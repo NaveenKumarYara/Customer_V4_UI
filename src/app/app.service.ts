@@ -5,7 +5,7 @@ import { GetCompanyLogo } from '../models/GetCompanyLogo';
 import { Observable  } from 'rxjs/Rx';
 import { Dashboard } from '../models/dashboard.model';
 import { Offer } from '../models/offer.model';
-import { environment } from '../environments/environment';
+
 import { Jobskills } from '../models/jobskills.model';
 import { Subject } from 'rxjs/Subject';
 import { RecentJobs } from '../models/recentjobs';
@@ -30,6 +30,7 @@ import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
 import { ParseResponsibilities } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 import { SkillDetails, SkillData,SkillPostData } from '../models/skill.model';
+import { SettingsService } from '../settings/settings.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -43,7 +44,7 @@ export class AppService {
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
   domain: GetDomain[] = [];
@@ -290,21 +291,21 @@ export class AppService {
     }
   }
   searchJobTitle(term: string = null): Observable<string[]> {
-    const url = environment.jobTitleEndpoint + '?jobtitle=' + term;
+    const url = this.settingsService.settings.jobTitleEndpoint + '?jobtitle=' + term;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   // searchClient(term: string = null): Observable<string[]> {
-  //   const url = environment.searchclientsendpoint + '?clientName=' + term;
+  //   const url = this.settingsService.settings.searchclientsendpoint + '?clientName=' + term;
   //   return this.http.get<string[]>(url)
   //     .catch(
   //       this.handleError
   //     );
   // }
   searchClient(customerId: number, val: boolean, term?: any): any {
-    // const url = environment.searchclientsendpoint + '?clientName=' + term;
+    // const url = this.settingsService.settings.searchclientsendpoint + '?clientName=' + term;
     // return this.http.get<string[]>(url)
     //   .catch(
     //     this.handleError
@@ -314,7 +315,7 @@ export class AppService {
     client.ClientName = term;
     client.IsSuggested = val;
     // if(val==false)
-    return this.http.post(environment.searchclientsendpoint, client)
+    return this.http.post(this.settingsService.settings.searchclientsendpoint, client)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -326,7 +327,7 @@ export class AppService {
     department.CustomerId = customerId;
     department.DepartmentName = term;
     department.IsSuggested = val;
-    return this.http.post(environment.searchdepartmentendpoint, department)
+    return this.http.post(this.settingsService.settings.searchdepartmentendpoint, department)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -337,7 +338,7 @@ export class AppService {
   }
 
   getSkillDetails(): Observable<SkillDetails[]> {
-    const url = environment.JobMatchingParameter;
+    const url = this.settingsService.settings.JobMatchingParameter;
     var skilllist = this.http.get<string[]>(url)
         .catch(
             this.handleError
@@ -363,14 +364,14 @@ export class AppService {
     this.addeddepartmentsChanged.next(this.addeddepartments.slice());
   }
   getDraftCategory(jobId: number): Observable<CategoryList> {
-    const url = environment.draftCategory + '?jobId=' + jobId;
+    const url = this.settingsService.settings.draftCategory + '?jobId=' + jobId;
     return this.http.get<string>(url)
       .catch(
         this.handleError
       );
   }
    getDraftClient(jobId: number): Observable<ClientModel> {
-    const url = environment.getDraftClient + '?jobId=' + jobId;
+    const url = this.settingsService.settings.getDraftClient + '?jobId=' + jobId;
     return this.http.get<string>(url)
       .catch(
         this.handleError
@@ -407,7 +408,7 @@ export class AppService {
     this.clientModel.next(clients);
   }
   searchJobCategory(categoryterm: string = null): Observable<CategoryList[]> {
-    const url = environment.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
+    const url = this.settingsService.settings.jobCategoryEndpoint + '?jobCategory=' + categoryterm;
    return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -437,7 +438,7 @@ export class AppService {
 
   AddContactInfo(body)
   {
-    return this.http.post(environment.AddContactShareInfo, body)
+    return this.http.post(this.settingsService.settings.AddContactShareInfo, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -471,7 +472,7 @@ export class AppService {
     }
   }
   addSkills(body) {
-    return this.http.post(environment.addSkillsEndpoint, body)
+    return this.http.post(this.settingsService.settings.addSkillsEndpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -479,7 +480,7 @@ export class AppService {
   }
 
   AddDepartment(body) {
-    return this.http.post(environment.AddDepartment, body)
+    return this.http.post(this.settingsService.settings.AddDepartment, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -499,7 +500,7 @@ export class AppService {
 
   getJobResponsibilities(jobid: number) {
     // return this.responsibilities.slice();
-    const url = environment.getJobResponsibilities + '?jobId=' + jobid;
+    const url = this.settingsService.settings.getJobResponsibilities + '?jobId=' + jobid;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -521,7 +522,7 @@ export class AppService {
   }
 
   addBulkResponsibilities(responsibility: ParseResponsibilities) {
-    return this.http.post(environment.bulkResponsibilities, responsibility)
+    return this.http.post(this.settingsService.settings.bulkResponsibilities, responsibility)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -535,7 +536,7 @@ export class AppService {
   }
 
   saveRoles(body) {
-    return this.http.post(environment.addRoles, body)
+    return this.http.post(this.settingsService.settings.addRoles, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -543,7 +544,7 @@ export class AppService {
   }
 
   getRoles(body)  {
-  return this.http.post(environment.getRoles, body)
+  return this.http.post(this.settingsService.settings.getRoles, body)
   .map((res: Response) => res)
   .catch(this.handleError);
   }
@@ -572,7 +573,7 @@ export class AppService {
 
   DeleteShareContactInfo(infoId: number)
   {
-    const url = environment.DeleteShareContactInfo + 'infoid=' + infoId;
+    const url = this.settingsService.settings.DeleteShareContactInfo + 'infoid=' + infoId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
@@ -613,7 +614,7 @@ checkDuplciate(response, list) {​
   });
 }
 bulkApply(body) {
-  return this.http.post(environment.bulkApply, body)
+  return this.http.post(this.settingsService.settings.bulkApply, body)
   .map((res: Response) => res)
   .catch((error: any) => {
     return Observable.throw(error);
@@ -669,14 +670,14 @@ bulkApply(body) {
     this.adddomainChanged.next(this.adddomain.slice());
   }
   getQualificationDetails(): Observable<Qualifications[]> {
-    const url = environment.educationcriteriaendpoint;
+    const url = this.settingsService.settings.educationcriteriaendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   getCustomerUsers(customerId: number, userId: number, isSuggest: boolean, SearchString: string): Observable<CustomerUsers[]> {
-    const url = environment.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId + '&IsSuggest=' + isSuggest + '&SearchString=' + SearchString;
+    const url = this.settingsService.settings.getCustomerUsersendpoint + 'customerId=' + customerId + '&userId=' + userId + '&IsSuggest=' + isSuggest + '&SearchString=' + SearchString;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -685,7 +686,7 @@ bulkApply(body) {
 
   GetContactInfo(customerId: number, infoid: number)
   {
-    const url = environment.GetCustomerContactsShareInfo + 'customerId=' + customerId + '&infoid=' + infoid;
+    const url = this.settingsService.settings.GetCustomerContactsShareInfo + 'customerId=' + customerId + '&infoid=' + infoid;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -698,14 +699,14 @@ bulkApply(body) {
   }
 
   getDomainDetails(): Observable<GetDomain[]> {
-    const url = environment.domaincriteriaendpoint;
+    const url = this.settingsService.settings.domaincriteriaendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   getNotifications(userId: number): Observable<Notification[]> {
-    const url = environment.NotificationEndPoint + 'userId=' + userId;
+    const url = this.settingsService.settings.NotificationEndPoint + 'userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -713,7 +714,7 @@ bulkApply(body) {
   }
   getCustomerContacts(customerId: number): Observable<CustomerContacts[]> {
 
-    const url = environment.GetCustomerUsers + 'customerId=' + customerId;
+    const url = this.settingsService.settings.GetCustomerUsers + 'customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -763,7 +764,7 @@ this.skillPostData.push(skill);
   }
 
   GetEditDrafts(customerId: number, userId: number) {
-    const url = environment.EditDraft + 'customerId=' + customerId + '&userId=' + userId;
+    const url = this.settingsService.settings.EditDraft + 'customerId=' + customerId + '&userId=' + userId;
     return this.http.get<draftDetails[]>(url)
         .catch(
             this.handleError
@@ -771,7 +772,7 @@ this.skillPostData.push(skill);
   }
 
   GetJobTemplates(customerId: number) {
-    const url = environment.GetJobTemplates + 'customerId=' + customerId;
+    const url = this.settingsService.settings.GetJobTemplates + 'customerId=' + customerId;
     return this.http.get<RecentJobs[]>(url)
         .catch(
             this.handleError
@@ -779,21 +780,21 @@ this.skillPostData.push(skill);
   }
 
   postjob(body) {
-    return this.http.post(environment.postjob, body)
+    return this.http.post(this.settingsService.settings.postjob, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error);
       });
   }
   getCompanyLogo(customerId: number): Observable<GetCompanyLogo> {
-  const url = environment.GetCompanyLogo + 'customerId=' + customerId;
+  const url = this.settingsService.settings.GetCompanyLogo + 'customerId=' + customerId;
   return this.http.get<GetCompanyLogo>(url)
       .catch(
           this.handleError
       );
   }
   Login(body) {
-    return this.http.post(environment.Login, body)
+    return this.http.post(this.settingsService.settings.Login, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -801,7 +802,7 @@ this.skillPostData.push(skill);
   }
 
   ForgotPassword(body) {
-    return this.http.post(environment.ForgotPassword, body)
+    return this.http.post(this.settingsService.settings.ForgotPassword, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -809,7 +810,7 @@ this.skillPostData.push(skill);
   }
 
   ActivateCustomerUser(body) {
-    return this.http.post(environment.ActivateCustomerUser, body)
+    return this.http.post(this.settingsService.settings.ActivateCustomerUser, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -817,7 +818,7 @@ this.skillPostData.push(skill);
   }
 
   ResetPassword(body) {
-    return this.http.post(environment.ResetPassword, body)
+    return this.http.post(this.settingsService.settings.ResetPassword, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -825,14 +826,14 @@ this.skillPostData.push(skill);
   }
 
   signUp(body) {
-    return this.http.post(environment.signUp, body)
+    return this.http.post(this.settingsService.settings.signUp, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   deactivateJob(body) {
-    return this.http.post(environment.deactivatejobEndpoint, body)
+    return this.http.post(this.settingsService.settings.deactivatejobEndpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -840,7 +841,7 @@ this.skillPostData.push(skill);
   }
 
   validateemail(email: string): Observable<GetEmailValidate> {
-    const url = environment.EmailVaild + 'email=' + email;
+    const url = this.settingsService.settings.EmailVaild + 'email=' + email;
     return this.http.get<GetEmailValidate>(url)
     .debounceTime(1000)
     .catch(
@@ -848,14 +849,14 @@ this.skillPostData.push(skill);
     );
   }
   updateemail(body) {
-    return this.http.post(environment.updateemail, body)
+    return this.http.post(this.settingsService.settings.updateemail, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
     });
   }
   updatepassword(body) {
-    return this.http.put(environment.updatepassword, body)
+    return this.http.put(this.settingsService.settings.updatepassword, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -870,7 +871,7 @@ this.skillPostData.push(skill);
 
 
   getSkills(skill: string = null): Observable<string[]> {
-    const url = environment.getskillsEndpoint + '?skillName=' + skill;
+    const url = this.settingsService.settings.getskillsEndpoint + '?skillName=' + skill;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -878,7 +879,7 @@ this.skillPostData.push(skill);
   }
 
   getDisc() {
-    const url = environment.discTestEndpoint;
+    const url = this.settingsService.settings.discTestEndpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -886,7 +887,7 @@ this.skillPostData.push(skill);
   }
 
   getLocationwisejobs(customerId: number) { // , userId: number
-    const url = environment.customerPreferredLocationendpoint + 'customerId=' + customerId + '&isPostajob=true'; // + '&userId=' + userId;
+    const url = this.settingsService.settings.customerPreferredLocationendpoint + 'customerId=' + customerId + '&isPostajob=true'; // + '&userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -894,7 +895,7 @@ this.skillPostData.push(skill);
   }
 
   ActivateUser(userId: number) {
-    const url = environment.ActivateUser +  'userId=' + userId;
+    const url = this.settingsService.settings.ActivateUser +  'userId=' + userId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -902,7 +903,7 @@ this.skillPostData.push(skill);
   }
 
   Deletedraft(jobId: number) {
-    const url = environment.Deletedraft +  'jobId=' + jobId;
+    const url = this.settingsService.settings.Deletedraft +  'jobId=' + jobId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
@@ -910,7 +911,7 @@ this.skillPostData.push(skill);
   }
 
   DeleteClients(customerClientId: number) {
-    const url = environment.DeleteCustomerClients + 'customerClientId=' + customerClientId;
+    const url = this.settingsService.settings.DeleteCustomerClients + 'customerClientId=' + customerClientId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
@@ -918,7 +919,7 @@ this.skillPostData.push(skill);
   }
 
   DeleteDepartments(customerDeptId: number) {
-    const url = environment.DeleteCustomerDepartments + 'customerDeptId=' + customerDeptId;
+    const url = this.settingsService.settings.DeleteCustomerDepartments + 'customerDeptId=' + customerDeptId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError
@@ -927,14 +928,14 @@ this.skillPostData.push(skill);
 
 
   getCities(cityName: string): Observable<Cities[]> {
-    const url = environment.getCitiesendpoint + 'cityName=' + cityName;
+    const url = this.settingsService.settings.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   getContractduration(): Observable<CDuration[]> {
-    const url = environment.contractDurationendpoint;
+    const url = this.settingsService.settings.contractDurationendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -948,7 +949,7 @@ this.skillPostData.push(skill);
     return this.noOfOpeningsList;
   }
   getContractExtension(): Observable<WorkAuthorization[]> {
-    const url = environment.workAuthorizationendpoint;
+    const url = this.settingsService.settings.workAuthorizationendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -956,33 +957,33 @@ this.skillPostData.push(skill);
     // return this.contractextension;
   }
   getInterviewType(): Observable<InterviewType[]> {
-    const url = environment.interviewtypeendpoint;
+    const url = this.settingsService.settings.interviewtypeendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   addNewQualification(body)  {
-    return this.http.post(environment.addneweducationEndpoint, body)
+    return this.http.post(this.settingsService.settings.addneweducationEndpoint, body)
     .map((res: Response) => res)
     .catch(this.handleError);
     }
 
     addCustomerUser(body)  {
-      return this.http.post(environment.InsertCustomerUser, body)
+      return this.http.post(this.settingsService.settings.InsertCustomerUser, body)
       .map((res: Response) => res)
       .catch(this.handleError);
       }
 
     suggestJobTitle(customerId: number) {
-    const url = environment.SuggestJobTitleEndPoint + 'customerId=' + customerId;
+    const url = this.settingsService.settings.SuggestJobTitleEndPoint + 'customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   suggestJobCategory(customerId: number) {
-    const url = environment.SuggestJobCategoryEndPoint + 'customerId=' + customerId;
+    const url = this.settingsService.settings.SuggestJobCategoryEndPoint + 'customerId=' + customerId;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
@@ -990,7 +991,7 @@ this.skillPostData.push(skill);
   }
 
   SearchClients(body) {
-    return this.http.post(environment.searchclientsendpoint, body)
+    return this.http.post(this.settingsService.settings.searchclientsendpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -998,7 +999,7 @@ this.skillPostData.push(skill);
   }
 
   SearchDepartments(body) {
-    return this.http.post(environment.searchdepartmentendpoint, body)
+    return this.http.post(this.settingsService.settings.searchdepartmentendpoint, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -1006,7 +1007,7 @@ this.skillPostData.push(skill);
   }
 
   GetCustomerClients(customerId: number, clientId: number): Observable<GetCustomerClients[]> {
-    const url = environment.GetCustomerClients + '?clientId=' + clientId + '&customerId=' + customerId;
+    const url = this.settingsService.settings.GetCustomerClients + '?clientId=' + clientId + '&customerId=' + customerId;
     return this.http.get<GetCustomerClients[]>(url)
       .catch(
         this.handleError
@@ -1014,21 +1015,21 @@ this.skillPostData.push(skill);
   }
 
   GetCustomerDepartments(customerId: number, departmentId: number): Observable<GetCustomerDepartments[]> {
-    const url = environment.GetCustomerDepartments + '?departmentId=' + departmentId + '&customerId=' + customerId;
+    const url = this.settingsService.settings.GetCustomerDepartments + '?departmentId=' + departmentId + '&customerId=' + customerId;
     return this.http.get<GetCustomerDepartments[]>(url)
       .catch(
         this.handleError
       );
   }
  GetJobDepartments(jobId: number): Observable<DepartmentModel[]> {
-    const url = environment.GetJobDepartment + '?jobId=' + jobId;
+    const url = this.settingsService.settings.GetJobDepartment + '?jobId=' + jobId;
     return this.http.get<DepartmentModel[]>(url)
       .catch(
         this.handleError
       );
   }
   SignUpEmail(body) {
-    return this.http.post(environment.EmailInvite, body)
+    return this.http.post(this.settingsService.settings.EmailInvite, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -1036,19 +1037,19 @@ this.skillPostData.push(skill);
   }
 
   GetCustomerToken(body) {
-    return this.http.post(environment.CustomerTokenLogin, body)
+    return this.http.post(this.settingsService.settings.CustomerTokenLogin, body)
     .map((res: Response) => res)
     .catch(this.handleError);
   }
   getEmploymentType(): Observable<EmploymentType[]> {
-    const url = environment.employmentTypeendpoint;
+    const url = this.settingsService.settings.employmentTypeendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError
       );
   }
   getSalaryType(): Observable<Salary[]> {
-    const url = environment.salaryTypeendpoint;
+    const url = this.settingsService.settings.salaryTypeendpoint;
     return this.http.get<string[]>(url)
       .catch(
         this.handleError

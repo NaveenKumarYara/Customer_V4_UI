@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customerlatest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customerlatest
+  template:
+    metadata:
+      labels:
+        app: customerlatest
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: customerlatest
+        image: arytic.azurecr.io/tenendus_scv/customerlatest:#{Build.BuildId}#
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: 800M
+          requests:
+            cpu: "0.2"
+            memory: 300M
+        env:
+        - name: Identity_URL
+          value: "http://identityapi.aks.dev.arytic.com"
+        - name: Email_URL
+          value: "http://emailapi.aks.dev.arytic.com"
+        - name: Jobs_URL
+          value: "http://jobsapi.aks.dev.arytic.com"
+        - name: Profile_URL
+          value: "http://identityapi.aks.dev.arytic.com"
+        - name: Referral_URL
+          value: "http://referalapi.aks.dev.arytic.com"
+        - name: Main_URL
+          value: "http://aks.dev.arytic.com"
+        - name: CuMain_URL
+          value: "http://aks.dev.arytic.com"
+        - name: Main_URL
+          value: "http://aks.dev.arytic.com"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: registrysecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-svc
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: customerlatest
+    
+
