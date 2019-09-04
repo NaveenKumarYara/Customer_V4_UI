@@ -5,7 +5,7 @@ import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject, Observable } from 'rxjs';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
-import { SkillData, SkillDetails,SkillPostData } from '../../../../../models/skill.model';
+import { SkillData, SkillDetails, SkillPostData } from '../../../../../models/skill.model';
 // import { SalarysliderComponent } from './salaryslider.component';
 import { Options, LabelType, ChangeContext, PointerType } from 'ng5-slider';
 import { MatDialog } from '@angular/material';
@@ -29,13 +29,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
 
     SkillDataList: SkillData[] = [];
-    skillPostData : SkillPostData;
-    skillPostDataList : SkillPostData[]=[];
+    skillPostData: SkillPostData;
+    skillPostDataList: SkillPostData[] = [];
     selectedSkillData: SkillData = new SkillData();
     Percentage: number;
     SkillName: string;
-    skillId : number;
+    skillId: number;
     Skill_DATA: SkillDetails[] = [];
+    Skill_DATAFiltered: SkillDetails[] = [];
 
     // salaryTypelist: any;
     // // salaryType = 1;
@@ -111,11 +112,11 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         const scheduleIntwdialogRef = this.dialog.open(UploadvideoprofileComponent,
             {
                 width: '750',
-                position: {right : '0px'},
-                height : '750px',
+                position: { right: '0px' },
+                height: '750px',
                 data: {
                     // jobResponseId: jobResponseId,
-                    jobId:  parseInt(localStorage.getItem('jobId'), 10),
+                    jobId: parseInt(localStorage.getItem('jobId'), 10),
                     // userId: userId
                     // status : this.statusid
                 }
@@ -135,7 +136,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         this.skillPostData.Percentage = this.Percentage;
         this.selectedSkillData.Name = this.SkillName;
         this.selectedSkillData.Percentage = this.Percentage;
-        this.appService.addSkill(this.skillPostData,this.selectedSkillData);
+        this.appService.addSkill(this.skillPostData, this.selectedSkillData);
         this.SkillDataList.push(this.selectedSkillData);
         this.Percentage = 0;
     }
@@ -143,12 +144,25 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     onChange(newValue) {
         this.SkillName = this.Skill_DATA.find(x => x.Id == newValue).Parameter;
         this.skillId = newValue;
+        var count = 0;
+        var index = 0;
+        this.Skill_DATA.forEach(a => {
+            if (a.Id != newValue) {
+                count++;
+            }
+            else{
+                index= count;
+            }
+
+        });
+        this.Skill_DATAFiltered = this.Skill_DATAFiltered.splice(index, 1);
+        console.log(this.Skill_DATAFiltered);
     }
 
-    deleteSkill(index:number)
-    {
+    deleteSkill(index: number,skillName) {
         this.appService.deleteSkill(index);
-      this.SkillDataList.splice(index,1);
+        this.SkillDataList.splice(index, 1);
+        this.Skill_DATAFiltered.push(this.Skill_DATA.find(x => x.Parameter == skillName));
     }
     // populateSalaryTypes() {
     //   this.appService.getSalaryType().subscribe(res => {
@@ -157,27 +171,27 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     //   // this.salaryTypelist = this.appService.getSalaryType();
     // }
     ngOnInit() {
-        
+
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()
-        .subscribe(data => {
-           this.Skill_DATA = data;
-
-           console.log("in EmpType");
-           this.skillPostDataList = this.appService.skillDataList;
-           console.log("asdasdasd");
-           console.log(this.appService.skillDataList);
-           if(this.skillPostDataList.length>0){
-           this.skillPostDataList.forEach(data=>{
-           this.selectedSkillData = new SkillData();
-           this.selectedSkillData.Name =this.Skill_DATA.find(x => x.Id == data.ParameerId).Parameter;
-           this.selectedSkillData.Percentage = data.Percentage;
-           this.SkillDataList.push(this.selectedSkillData);
-           console.log(this.SkillDataList);
-           });
-       }
-        });
+            .subscribe(data => {
+                this.Skill_DATA = data;
+                this.Skill_DATAFiltered = data;
+                console.log("in EmpType");
+                this.skillPostDataList = this.appService.skillDataList;
+                console.log("asdasdasd");
+                console.log(this.appService.skillDataList);
+                if (this.skillPostDataList.length > 0) {
+                    this.skillPostDataList.forEach(data => {
+                        this.selectedSkillData = new SkillData();
+                        this.selectedSkillData.Name = this.Skill_DATA.find(x => x.Id == data.ParameerId).Parameter;
+                        this.selectedSkillData.Percentage = data.Percentage;
+                        this.SkillDataList.push(this.selectedSkillData);
+                        console.log(this.SkillDataList);
+                    });
+                }
+            });
 
         // this.populateSalaryTypes();
         //  if (localStorage.getItem('jobId') != null) {
