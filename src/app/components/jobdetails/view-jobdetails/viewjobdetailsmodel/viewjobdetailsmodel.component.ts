@@ -30,8 +30,8 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  jobid: number;
  deactivate = new deactivate();
  getcompanybenfit: GetCompanyBenefit[];
-  jobdetailscustomer: GetJobDetailCustomer;
-  jobComments: JobComments[];
+  jobdetailscustomer = new  GetJobDetailCustomer();
+  jobComments: JobComments[]=[];
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,
         private _vcr: ViewContainerRef, private router: Router,
      private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
