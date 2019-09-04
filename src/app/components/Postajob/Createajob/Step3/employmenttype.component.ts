@@ -155,14 +155,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
             }
 
         });
-        this.Skill_DATAFiltered = this.Skill_DATAFiltered.splice(index, 1);
+       /// this.Skill_DATAFiltered = this.Skill_DATAFiltered.splice(index, 1);
         console.log(this.Skill_DATAFiltered);
     }
 
     deleteSkill(index: number,skillName) {
         this.appService.deleteSkill(index);
         this.SkillDataList.splice(index, 1);
-        this.Skill_DATAFiltered.push(this.Skill_DATA.find(x => x.Parameter == skillName));
+        //this.Skill_DATAFiltered.push(this.Skill_DATA.find(x => x.Parameter == skillName));
     }
     // populateSalaryTypes() {
     //   this.appService.getSalaryType().subscribe(res => {
