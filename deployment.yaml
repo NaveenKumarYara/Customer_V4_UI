@@ -32,7 +32,7 @@ spec:
         - name: Jobs_URL
           value: "http://jobsapi.aks.dev.arytic.com"
         - name: Profile_URL
-          value: "http://identityapi.aks.dev.arytic.com"
+          value: "http://profileapi.aks.dev.arytic.com"
         - name: Referral_URL
           value: "http://referalapi.aks.dev.arytic.com"
         - name: Main_URL
