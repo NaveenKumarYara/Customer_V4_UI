@@ -14,10 +14,10 @@
             </select>
         </div>
         <div class="col-md-5">
-            <input class="form-control mt-0" placeholder="Enter match % " pattern="[0-9]*" maxlength="3" type="text" [(ngModel)]="Percentage">
+            <input class="form-control mt-0" placeholder="Enter match % " min="1" pattern="[0-9]*" maxlength="3" type="text" required name="txtPercentage" #txtPercentage="ngModel" [(ngModel)]="Percentage">
         </div>
         <div class="col-md-2">
-            <button class="btn add-btn form-control mt-0" type="submit" (click)="addSkill()">+</button>
+            <button class="btn add-btn form-control mt-0" [disabled]="txtPercentage.invalid" type="submit" (click)="addSkill()">+</button>
         </div>
         <div class="col-md-12 mt-10">
             <!-- <p class="description mt-10">Prefer exact match</p> -->

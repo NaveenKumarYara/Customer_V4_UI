@@ -138,7 +138,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         this.selectedSkillData.Percentage = this.Percentage;
         this.appService.addSkill(this.skillPostData, this.selectedSkillData);
         this.SkillDataList.push(this.selectedSkillData);
-        this.Percentage = 0;
+        this.Percentage = undefined;
         const selectedSkill = this.Skill_DATAFiltered.find(x => x.Id === this.skillId);
         const index = this.Skill_DATAFiltered.indexOf(selectedSkill);
         if(index > -1)  {
@@ -151,6 +151,8 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         if(selectedSkill){
         this.SkillName = selectedSkill.Parameter;
         this.skillId = selectedSkill.Id;
+    }else{
+        this.Percentage =undefined;
     }
      
         
