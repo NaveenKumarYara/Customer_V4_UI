@@ -180,12 +180,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
                 this.skillPostDataList = this.appService.skillDataList;
                     this.skillPostDataList.forEach(temp => {
                         this.selectedSkillData = new SkillData();
-                        const skilData = this.Skill_DATA.find(x => x.Id === temp.ParameerId);
-                        this.selectedSkillData.Name = skilData.Parameter;
+                        this.selectedSkillData.Name = this.Skill_DATA.find(x => x.Id === temp.ParameerId).Parameter;
                         this.selectedSkillData.Percentage = temp.Percentage;
                         this.SkillDataList.push(this.selectedSkillData);
-
-                        this.Skill_DATAFiltered.splice(this.Skill_DATAFiltered.indexOf(skilData), 1);
+                        const skilData = this.Skill_DATAFiltered.find(x => x.Id === temp.ParameerId);
+                        const index = this.Skill_DATAFiltered.indexOf(skilData);
+                        if (index > -1)  {
+                        this.Skill_DATAFiltered.splice(index, 1);
+                    }
                     });
             });
 
