@@ -139,30 +139,27 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         this.appService.addSkill(this.skillPostData, this.selectedSkillData);
         this.SkillDataList.push(this.selectedSkillData);
         this.Percentage = 0;
+        const selectedSkill = this.Skill_DATAFiltered.find(x => x.Id === this.skillId);
+        const index = this.Skill_DATAFiltered.indexOf(selectedSkill);
+        if(index > -1)  {
+       this.Skill_DATAFiltered.splice(index, 1);
+      }
     }
 
     onChange(newValue) {
-        this.SkillName = this.Skill_DATA.find(x => x.Id == newValue).Parameter;
-        this.skillId = newValue;
-        var count = 0;
-        var index = 0;
-        this.Skill_DATA.forEach(a => {
-            if (a.Id != newValue) {
-                count++;
-            }
-            else{
-                index= count;
-            }
-
-        });
-       /// this.Skill_DATAFiltered = this.Skill_DATAFiltered.splice(index, 1);
-        console.log(this.Skill_DATAFiltered);
+        const selectedSkill = this.Skill_DATAFiltered.find(x => x.Id == newValue);
+        if(selectedSkill){
+        this.SkillName = selectedSkill.Parameter;
+        this.skillId = selectedSkill.Id;
+    }
+     
+        
     }
 
     deleteSkill(index: number,skillName) {
         this.appService.deleteSkill(index);
         this.SkillDataList.splice(index, 1);
-        //this.Skill_DATAFiltered.push(this.Skill_DATA.find(x => x.Parameter == skillName));
+        this.Skill_DATAFiltered.push(this.Skill_DATA.find(x => x.Parameter === skillName));
     }
     // populateSalaryTypes() {
     //   this.appService.getSalaryType().subscribe(res => {
@@ -177,20 +174,17 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         this.appService.getSkillDetails()
             .subscribe(data => {
                 this.Skill_DATA = data;
-                this.Skill_DATAFiltered = data;
-                console.log("in EmpType");
+                this.Skill_DATAFiltered = data.map(x => Object.assign({}, x));
                 this.skillPostDataList = this.appService.skillDataList;
-                console.log("asdasdasd");
-                console.log(this.appService.skillDataList);
-                if (this.skillPostDataList.length > 0) {
-                    this.skillPostDataList.forEach(data => {
+                    this.skillPostDataList.forEach(temp => {
                         this.selectedSkillData = new SkillData();
-                        this.selectedSkillData.Name = this.Skill_DATA.find(x => x.Id == data.ParameerId).Parameter;
-                        this.selectedSkillData.Percentage = data.Percentage;
+                        const skilData = this.Skill_DATA.find(x => x.Id === temp.ParameerId);
+                        this.selectedSkillData.Name = skilData.Parameter;
+                        this.selectedSkillData.Percentage = temp.Percentage;
                         this.SkillDataList.push(this.selectedSkillData);
-                        console.log(this.SkillDataList);
+
+                        this.Skill_DATAFiltered.splice(this.Skill_DATAFiltered.indexOf(skilData), 1);
                     });
-                }
             });
 
         // this.populateSalaryTypes();
