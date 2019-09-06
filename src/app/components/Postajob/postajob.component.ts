@@ -7,7 +7,7 @@ import {EmploymentType} from '../../../models/employmenttype.model';
 import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel } from '../../components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 @Component({
   selector: 'app-postajob',
@@ -39,6 +39,8 @@ export class PostajobComponent implements OnInit {
   this.appService.personTypeChanged = new Subject<DiscResult[]>();
   this.appService.customerUsers = [];
   this.appService.customerUserChanged = new Subject<PjTechnicalTeam[]>();
+  this.appService.skillDataList = [];
+  this.appService.skillDataListChanged = new Subject<SkillPostData[]>();
   this.appService.addedresponsibilities = [];
   this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
   this.appService.domain = [];
