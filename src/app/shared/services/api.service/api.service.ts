@@ -270,14 +270,33 @@ export class ApiService {
   }
 
   getUrl(url: string) {
-    return url.replace('ProfileAPI', this.settingsService.settings.ProfilebaseUrl)
-           .replace('IdentityAPI', this.settingsService.settings.IdentitybaseUrl)
-           .replace('ReferralAPI', this.settingsService.settings.RefralbaseUrl)
-      .replace('JobsAPI', this.settingsService.settings.JobbaseUrl)
-        .replace('SocialSharingAPI', this.settingsService.settings.SharingbaseUrl)
-        .replace('EmailAPI', this.settingsService.settings.EmailbaseUrl);
-    
-        }
+    return url
+      .replace(
+        new RegExp("ProfileAPI", "gi"),
+        this.settingsService.settings.ProfilebaseUrl
+      )
+      .replace(
+        new RegExp("IdentityAPI", "gi"),
+        this.settingsService.settings.IdentitybaseUrl
+      )
+      .replace(
+        new RegExp("ReferralAPI", "gi"),
+        this.settingsService.settings.RefralbaseUrl
+      )
+      .replace(
+        new RegExp("JobsAPI", "gi"),
+        this.settingsService.settings.JobbaseUrl
+      )
+      .replace(
+        new RegExp("SocialSharingAPI", "gi"),
+        this.settingsService.settings.SharingbaseUrl
+      )
+      .replace(
+        new RegExp("EmailAPI", "gi"),
+        this.settingsService.settings.EmailbaseUrl
+      );
+  }
+
 }
 
 
