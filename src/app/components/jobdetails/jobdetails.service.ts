@@ -225,7 +225,11 @@ export class JobdetailsService {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
-    return this._http.post(this.settingsService.settings.baseUrll + url, body, { headers: headers })
+    return this._http.post(url
+      .replace(
+        new RegExp("ProfileAPI", "gi"),
+        this.settingsService.settings.ProfilebaseUrl
+      ), body, { headers: headers })
       .map((res: Response) => res.json())
       .catch((error: any) => {
         return Observable.throw(error.json());
