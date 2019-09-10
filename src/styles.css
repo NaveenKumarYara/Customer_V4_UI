@@ -14987,7 +14987,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     align-items: center;
 }
 
-.page--account-settings #users .table th {
+.page--account-settings #users .table th,
+.page--account-settings.table th
+ {
     font-weight: 600;
     color: #41536E;
     background-color: #EEEFF3;
@@ -14995,7 +14997,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     padding: 17px;
 }
 
-.page--account-settings #users .table td {
+.page--account-settings #users .table td,
+.page--account-settings  .table td
+ {
     vertical-align: middle;
     padding: 20px 17px;
     border-top: 0;
@@ -15020,7 +15024,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-weight: 500;
 }
 
-.page--account-settings #users .table-responsive {
+.page--account-settings #users .table-responsive,
+.page--account-settings .table-responsive
+ {
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
@@ -15029,22 +15035,30 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     /* Handle on hover */
 }
 
-.page--account-settings #users .table-responsive::-webkit-scrollbar {
+.page--account-settings #users .table-responsive::-webkit-scrollbar,
+.page--account-settings .table-responsive::-webkit-scrollbar
+ {
     height: 3px;
     cursor: pointer;
 }
 
-.page--account-settings #users .table-responsive::-webkit-scrollbar-track {
+.page--account-settings #users .table-responsive::-webkit-scrollbar-track,
+.page--account-settings  .table-responsive::-webkit-scrollbar-track
+ {
     background: #f1f1f1;
     opacity: 0.1;
 }
 
-.page--account-settings #users .table-responsive::-webkit-scrollbar-thumb {
+.page--account-settings #users .table-responsive::-webkit-scrollbar-thumb,
+.page--account-settings .table-responsive::-webkit-scrollbar-thumb
+ {
     background: #888;
     opacity: 0.6;
 }
 
-.page--account-settings #users .table-responsive::-webkit-scrollbar-thumb:hover {
+.page--account-settings #users .table-responsive::-webkit-scrollbar-thumb:hover ,
+.page--account-settings .table-responsive::-webkit-scrollbar-thumb:hover 
+{
     background: #555;
     opacity: 0.8;
 }

@@ -18,3 +18,54 @@ input.form-control {
     position: absolute;
     top: 20px;
 }
+/*  box-shadow */
+.box-shadow{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 3px 3px 20px -4px rgba(0,0,0,0.23);
+}
+.m-0{
+    margin: 0px;
+}
+.border-w-0{
+    border-width: 0px !important;
+}
+.p-0{
+    padding:0px;
+}
+.p_5{
+    padding:.5rem;
+}
+.ptrl_5-1_3{
+    padding:.5rem .5rem 1.3rem .5rem ;
+}
+.p_5pt-0{
+    padding: 0rem .5rem .5rem .5rem;
+}
+.pl-_5{
+    padding-left: .5rem;
+}
+.pb_5{
+    padding:0rem 0rem .5rem 0rem;
+}
+.ptb_5{
+    padding:.5rem 0rem;
+}
+.d-inline{
+    display: inline;
+}
+.text-right{
+    text-align: right;
+}
+
+.table th {
+    font-weight: 600;
+    color: #41536E;
+    background-color: #EEEFF3;
+    border: 0;
+    padding: 17px;
+}
+.fill-93a2bb path{
+    fill: #93a2bb;
+}
+.w-16{
+    width: 16px;
+}
