@@ -69,3 +69,6 @@ input.form-control {
 .w-16{
     width: 16px;
 }
+.table.td-p-8 tr td {
+    padding:8px !important;
+}
