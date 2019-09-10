@@ -34,6 +34,7 @@ import { SendEmailComponent } from './view-jobdetails/viewjobdetails-candidate-p
 import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {ShareJobComponent} from './view-jobdetails/share-job/sharejob.component';
+import {UniqueMonthYearPipe} from './view-jobdetails/months.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -55,7 +56,7 @@ import {ShareJobComponent} from './view-jobdetails/share-job/sharejob.component'
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
+  declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe, FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,
                   UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent],
