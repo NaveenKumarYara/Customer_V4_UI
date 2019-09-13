@@ -28,7 +28,6 @@ export class RejectdialogComponent {
 
 
   Reject() {
-    debugger
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.data.jobId;
     this.schIntw.ProfileId = this.data.ProfileId;
