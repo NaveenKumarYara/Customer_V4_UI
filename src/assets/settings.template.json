@@ -124,5 +124,6 @@
   "CandidateSignUp": "${Main_URL}/candidatesignup",
   "CandidateLogin": "${Main_URL}/candidatelogin",
   "JobMatchingParameter": "${Jobs_URL}/api/JobSearchMatchingParameters",
+  "GetInterviewDetails": "${Jobs_URL}/api/GetJobInterviewByProfileId?",
   "Arytic":"${Main_URL}"
 }

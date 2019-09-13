@@ -13,6 +13,7 @@ import { Jobs } from './models/jobs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {getDetails} from './models/getDetails';
 import {GetInterviewSortList} from '../../../models/GetInterviewSortList';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SettingsService } from '../../../settings/settings.service';
@@ -62,6 +63,15 @@ export class ManageJobService {
     const url = this.settingsService.settings.GetInterviewAccept + 'userId=' + userId +
     '&jobId=' + jobId;
     return this.http.get<JobCount>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
+
+  GetInterViewDetails(jobId:number,profileId:number): Observable<getDetails> {
+    const url = this.settingsService.settings.GetInterviewDetails + '&jobId=' + jobId +'&profileId=' +profileId;
+    return this.http.get<getDetails>(url)
       .debounceTime(1000)
       .catch(
         this.handleError

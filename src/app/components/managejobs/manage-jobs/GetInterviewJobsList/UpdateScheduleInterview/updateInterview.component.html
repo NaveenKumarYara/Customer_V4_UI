@@ -116,12 +116,21 @@
                                         <li *ngFor="let teammember of teammemberslist; let i = index">
                                           <div class="w-100">
                                             <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img">
-                                            <h4>{{teammember.FirstName}}
-                                              <span class="dept">{{teammember.RoleName}}</span>
+                                            <h4>{{teammember?.FirstName}}
+                                              <span class="dept">{{teammember?.RoleName}}</span>
                                           </h4>
                                           <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                         </div>
                                         </li>
+                                        <li *ngIf="teammemberslist.length == 0 && list == false">
+                                            <div class="w-100">
+                                              <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img">
+                                              <h4>{{jobinterviewlist?.FirstName}} {{jobinterviewlist?.LastName}}
+                                                <span class="dept">{{jobinterviewlist?.RoleName}}</span>
+                                            </h4>
+                                            <span class="close mt-14" (click)="deletemember()">&times;</span>
+                                          </div>
+                                          </li>
                                       </ul>
                             </div>
                         </div>
@@ -171,7 +180,7 @@
                                              
                                         </li> -->
                                         <ng-container *ngFor="let type of typeList"> 
-                                        <li  (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                        <li  (click)="process(type?.InterviewTypeId)" [ngClass]="jobinterviewlist?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
                                                 <a data-toggle="tab" href="#{{type?.InterviewType}}" (click)="GetId(type?.InterviewTypeId)" aria-expanded="true">{{type?.InterviewType}}</a>
                                             </li>
                                     </ng-container>

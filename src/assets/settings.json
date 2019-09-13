@@ -65,6 +65,7 @@
   "ValidateUser": "http://api.tenendus.com:1090/ProfileAPI/api/ValidateUser?",
   "GetCustomerClients" : "http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerClients",
   "getDraftClient": "http://api.tenendus.com:1090/JobsAPI/api/GetJobClient",
+  "GetInterviewDetails" : "http://api.tenendus.com:1090/JobsAPI/api/GetJobInterviewByProfileId?",
   "GetCustomerDepartments": "http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerDepartments",
   "GetJobDepartment": "http://api.tenendus.com:1090/JobsAPI/api/GetJobDepartment",
   "searchclientsendpoint": "http://api.tenendus.com:1090/ProfileAPI/api/SearchClients",

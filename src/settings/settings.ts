@@ -69,6 +69,7 @@ export class Settings {
   ValidateUser: string;
   GetCustomerClients: string;
   getDraftClient: string;
+  GetInterviewDetails:string;
   GetCustomerDepartments: string;
   GetJobDepartment: string;
  // SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',

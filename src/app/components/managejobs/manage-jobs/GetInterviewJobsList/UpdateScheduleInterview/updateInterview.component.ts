@@ -15,6 +15,7 @@ import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ManageJobService } from '../../../managejobs.service';
+import {getDetails} from '../../../models/getDetails';
 import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
@@ -56,11 +57,13 @@ export class UpdateInterviewComponent implements OnInit {
   interviewId:number;
   processSelection: number;
   @Input() jobid: number;
+  jobinterviewlist = new getDetails();
   managersList: Observable<CustomerUsers[]>;
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
   selectedUserName = '';
   teammembers: '';
+  list:boolean=false;
   teammemberslist: CustomerUsers[];
   typeList: ScheduleType[];
   jobInterview: ScheduleType;
@@ -108,6 +111,24 @@ export class UpdateInterviewComponent implements OnInit {
 
    }
 
+   GetInterviewDetails(jobId,ProfileId)
+   {
+    return this.managejobservice.GetInterViewDetails(jobId,ProfileId).subscribe(res => {
+      this.jobinterviewlist = res;
+      if(this.teammemberslist.length==0)
+      {
+        this.bridgeUrl = this.jobinterviewlist.BridgeUrl;
+        this.skypeId = this.jobinterviewlist.SkypeId;
+        this.phoneNumber = this.jobinterviewlist.PhoneNumber;
+        this.dailInNumber = this.jobinterviewlist.AccessId;
+        this.furtherInterview = this.jobinterviewlist.RequiredFurtherInterview;
+        this.travelExpense = this.jobinterviewlist.TravelExpence;
+        this.selectedUserName = this.jobinterviewlist.FirstName;
+      }
+    }); 
+
+   }
+
   changeDate(updateSeasonStartDate: any)  {
     if (updateSeasonStartDate) {
       this.schIntw.InterviewDate = updateSeasonStartDate;
@@ -129,6 +150,7 @@ export class UpdateInterviewComponent implements OnInit {
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.GetInterView();
+    this.GetInterviewDetails(this.data.jobId,this.data.ProfileId);
     this.GetType();
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
@@ -207,10 +229,19 @@ if (this.processSelection === 1) {
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
-this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
+if(this.teammemberslist.length>0)
+{
+  this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
+}
+else
+{
+  this.schIntw.InterviewingPerson = this.jobinterviewlist.ModifiedBy;
+}
+
   this.managejobservice.UpdateinterviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
+      this.jobinterviewlist= new getDetails();
       this.dialogRef.close('submit');
      }) ;
     } else {
@@ -271,6 +302,7 @@ GetInterView() {
     this.getTeammember = val;
   }
   public addTeammembers() {
+    this.list= true;
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
     if (this.getTeammember !== undefined) {
@@ -290,6 +322,13 @@ GetInterView() {
   private deleteTeammember(index: number) {
     this.appService.deleteTeammember(index);
   }
+
+  private deletemember() {
+   this.list = true;
+   this.selectedUserName = '';
+  }
+
+
   // ngOnDestroy() {
   //   this.subscription.unsubscribe();
   // }
