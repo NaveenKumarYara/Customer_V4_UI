@@ -14,27 +14,28 @@ export class RejectdialogComponent {
   customerId: any;
   userId: any;
   Comment: string;
+  customer: any;
   schIntw = new ScheduleInterview();
  @Input() jobid: number;
  @Input() statusid: number;
  @Output() eventStat = new EventEmitter();
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService) {
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-      this.userId = JSON.parse(sessionStorage.getItem('userId'));
+      this.userId = this.customer.UserId;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
    }
 
 
   Reject() {
+    debugger
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.data.jobId;
     this.schIntw.ProfileId = this.data.ProfileId;
     this.schIntw.JobInterviewId = 0;
     this.schIntw.JobResponseId =  this.data.jobResponseId; // gemerated when sortlisted or applied
-    this.schIntw.InterviewDate = null;
-    this.schIntw.InterviewDate = null;
+    this.schIntw.InterviewDatevalue  = '';
     this.schIntw.StartTime = null;
-    this.schIntw.EndTime = null;
     this.schIntw.InterviewTypeId = null; // skype or anytype
     this.schIntw.PhoneNumber = null;
     this.schIntw.BridgeUrl = null;
