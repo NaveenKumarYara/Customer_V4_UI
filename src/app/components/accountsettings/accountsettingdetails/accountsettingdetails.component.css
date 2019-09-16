@@ -72,3 +72,45 @@ input.form-control {
 .table.td-p-8 tr td {
     padding:8px !important;
 }
+.btn-primary {
+    background-color: #66dab5 !important;
+    border: 0 !important;
+    color: #ffffff !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-transform: uppercase;
+    padding: 12px 41px !important;
+    font-size: 16px;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    background-color: #3dd0a1 !important;
+    border: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.p9-0{
+    padding: 9px 0px !important;
+}
+.features li:before {
+    content: '';
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background-size: 10px;
+    background-image: url("../../../../assets/images/tick-mark.svg");
+    background-repeat: no-repeat;
+    margin-right: 5px;
+  }
+  .features{
+      text-align: left;
+  }
+.pricing-card .price.d-inline {
+font-size: 1.9rem !important;  
+}
+.pricing-card.box-shadow{
+    height: 652px;
+}
+.f-12{
+    font-size: 12px !important;
+}
