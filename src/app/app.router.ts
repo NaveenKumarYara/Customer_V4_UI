@@ -100,6 +100,7 @@ import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-
 import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 import{InviteFriendContentComponent} from './components/dashboard/invite-friend/invite.component';
+import { CandidateViewComponent} from './components/company-profile/candidateview/candidate-view.component'
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -118,6 +119,7 @@ const appRoutes: Routes =
     {path: 'app-editdraft' , component: EditDraftComponent },
     {path: 'app-jobtemplate' , component: JobTemplateComponent },
     {path: 'app-Getcandidateprofile' , component: GetCandidateprofileComponent},
+    {path: 'app-candidateview' , component: CandidateViewComponent },
 
     // { path: 'app-createajob', component: CreateajobComponent ,
     //   children: [

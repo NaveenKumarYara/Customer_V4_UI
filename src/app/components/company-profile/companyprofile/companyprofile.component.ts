@@ -19,6 +19,7 @@ import {  GetCompanyPartner } from '../../../../models/GetCompanyPartner';
 import {  GetCompanyCulture } from '../../../../models/GetCompanyCulture';
 import { GetCompanyCertification } from '../../../../models/GetCompanyCertification';
 import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement';
+
 @Component({
   selector: 'app-companyprofile',
   templateUrl: './companyprofile.component.html',
@@ -119,7 +120,10 @@ export class CompanyprofileComponent implements OnInit {
     this.getCustomerDepartments = res;
    });
    }
-
+   getcandidateview()
+   {
+     this.router.navigateByUrl('app-candidateview')
+   }
     ngOnInit() {
         this.populateCompanyProfile(this.customerId);
         this.populateCompanyProfileOtherInfo(this.customerId);

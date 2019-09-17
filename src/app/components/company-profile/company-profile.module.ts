@@ -28,6 +28,7 @@ import {AchievementsComponent} from  './achievementsandawards/Achievements/achie
 import {NewsComponent} from './whitepaper/NewsPaper/news.component';
 import {CertificationComponent} from './achievementsandawards/CompanyCertification/certification.component';
 import {SharedModule} from '../../shared/shared.module';
+import {CandidateViewComponent} from '../company-profile/candidateview/candidate-view.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +46,6 @@ import {SharedModule} from '../../shared/shared.module';
     }),
     ],
     providers: [CompanyProfileService],
-  declarations: [CompanyprofileComponent,locationComponent,NewsComponent,AchievementsComponent,PartnerComponent,CertificationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent]
+  declarations: [CompanyprofileComponent,locationComponent,NewsComponent,AchievementsComponent,PartnerComponent,CertificationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent, CandidateViewComponent]
 })
 export class CompanyProfileModule { }
