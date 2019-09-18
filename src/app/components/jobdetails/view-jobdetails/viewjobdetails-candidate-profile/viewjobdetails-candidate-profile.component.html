@@ -21,14 +21,14 @@
                   </div>
                   <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
                   </div> -->
-                    <div class="ui-badge ui-badge--domain" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"><a href="javascript:void(0)" title="{{profile.CertificationName}}"> {{profile.CertificationName}}</a></div>
+                    <div class="ui-badge ui-badge--domain cursor_text" *ngIf="profile.CertificationName!=null;else nocertification"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"><a class="cursor_text" href="javascript:void(0)" title="{{profile.CertificationName}}"> {{profile.CertificationName}}</a></div>
 
                     <ng-template #nocertification>
-                        <div class="ui-badge ui-badge--domain"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> <a href="javascript:void(0)" title="Yet to Gain!">Yet to Gain!</a></div>
+                        <div class="ui-badge ui-badge--domain cursor_text"><img src="../../../../../assets/images/certificate.svg" title="Certifications" width="25" height="20"> <a class="cursor_text" href="javascript:void(0)" title="Yet to Gain!">Yet to Gain!</a></div>
                     </ng-template>
-                    <div class="ui-badge ui-badge--industry" *ngIf="profile.DomainName!=null;else nodomain"><a href="javascript:void(0)" title="{{profile.DomainName}}">{{profile.DomainName}}</a></div>
+                    <div class="ui-badge ui-badge--industry cursor_text" *ngIf="profile.DomainName!=null;else nodomain"><a class="cursor_text" href="javascript:void(0)" title="{{profile.DomainName}}">{{profile.DomainName}}</a></div>
                     <ng-template #nodomain>
-                        <div class="ui-badge ui-badge--industry"><a href="javascript:void(0)" title="Explore Profile For Domain!">Explore Profile For Domain!</a></div>
+                        <div class="ui-badge ui-badge--industry cursor_text"><a class="cursor_text" href="javascript:void(0)" title="Explore Profile For Domain!">Explore Profile For Domain!</a></div>
                     </ng-template>
                 </div>
                 <div class="candidate-info">
@@ -100,16 +100,16 @@
                                             </li>
                                         </ul>
                                     </div> -->
-                                    <div class="bottom1">
-                                        <ul class="custom_dropdown-menu" style="display: block;">
+                                    <div class="bottom1 cursor_text_a">
+                                        <ul class="custom_dropdown-menu cursor_text" style="display: block;">
                                             <li *ngIf="!profile?.NoEmail">
-                                                <a class="email-overflow" href="javascript:void(0)" title="{{profile.Email}}">
+                                                <a class="email-overflow cursor_text" href="javascript:void(0)" title="{{profile.Email}}">
                                                     <img src="../../../../../assets/images/email-icon.svg" alt="email" title="{{profile.Email}}"> {{profile.Email}}
                                                 </a>
                                             </li>
                                             <li>
                                                 <ng-container *ngIf="profile?.MobilePhone!=null; else false">
-                                                    <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
+                                                    <a  class="cursor_text"  href="javascript:void(0)" title="{{profile.MobilePhone}}">
                                                         <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number" title="{{profile.MobilePhone}}"> &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
                                                     </a>
                                                 </ng-container>
@@ -126,10 +126,10 @@
                                     <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                         <img src="../../../../../assets/images/graduation.svg" style="width: 25px;height: 25px;" />
                                     </a>
-                                    <div class="bottom1">
-                                        <ul class="custom_dropdown-menu" style="display: block;">
+                                    <div class="bottom1 cursor_text_a">
+                                        <ul class="custom_dropdown-menu cursor_text" style="display: block;">
                                             <li>
-                                                <a href="javascript:void(0)">
+                                                <a href="javascript:void(0)" class="cursor_text">
                                                     <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
                                                     <div class="media">
                                                         <ng-container *ngIf="profile?.QualificationName!=null && profile?.Specialization; else false">

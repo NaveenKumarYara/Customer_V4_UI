@@ -1191,3 +1191,13 @@ meta.a .h-19 .location {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.cursor_text{
+    cursor: text !important;
+}
+.cursor_text_a *
+{
+    cursor: text !important;
+}
+.custom_dropdown-menu li a{
+    cursor: text !important;
+}
