@@ -1,0 +1,111 @@
+.f-right{
+    float: right;
+}
+.d-inline-b{
+    display: inline-block !important;
+}
+.progress-cos{
+    width: 60%;
+    height: 10px;
+    margin: 0px !important;
+}
+.r--90{
+    transform: rotate(-90deg);
+    display: inline-block;
+    fill: none;
+    stroke: #93a2bb;
+    stroke-linecap: round;
+    stroke-width: 2px;
+}
+.pl-2{
+    padding-left: 2rem;
+}
+.p5-10{
+    padding: 5px 10px !important;
+}
+.f-20{
+    font-size: 20px;
+}
+.p19-30{
+    padding: 19px 30px !important;
+}
+.skip-link{
+    padding-left: 30px;
+    padding-left: 30px;
+    margin: 18px 0px;
+    font-size: smaller;
+}
+.m-0{
+    margin: 0px;
+}
+.f-10{
+    font-size: 10px !important;
+}
+.italic{
+    font-style: italic;
+}
+.no-pad{
+    padding: 0px !important;
+}
+.progress.no-pad{
+    height: 3px;
+    margin: 7px 0px;
+}
+.table td{
+    text-align: center;
+}
+.table th{
+    font-weight: 500 !important;
+}
+.table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td, .table>tfoot>tr>th, .table>tfoot>tr>td {
+    border-top-width: 0px !important;
+}
+.table>thead>tr>th {
+    border-bottom-width: 0px !important; 
+}
+.table{
+    border-collapse: collapse;
+border-spacing: 0;
+}
+.radio-box.inline{
+    text-align: center;
+    display: inline-block;
+}
+.page--company-profile .card-header{
+    border-bottom-width: 0px !important;
+    text-align: center;
+    display: block;
+}
+.radio .radio-btn {
+height: 20px;
+width: 20px;
+border: 1px solid #b8c4d7;
+border-radius: 50%;
+display: inline-block;
+vertical-align: middle;
+margin-right: 5px;
+background-size: 8px;
+}
+.mtbr-5-17-25 {
+    margin-top: 5px;
+    margin-bottom: 17px;
+    margin-right: 25px;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+.social-media-share a{
+    padding:0px 10px;
+}
+.social-media-share a:last-child{
+    padding:0px 0px 0px 10px;
+}
+.img-middle .img-responsive{
+    margin: auto;
+}
+.m2{
+    margin: 2rem;
+}

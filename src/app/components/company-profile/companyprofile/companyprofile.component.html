@@ -4,7 +4,35 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
-           <a class="btn btn-border btn-lg" (click)="getcandidateview()" >Candidate View</a>
+          <div class="f-right">
+              <a class="btn btn-border btn-lg p19-30" data-toggle="modal" href="#CultureTest">Take Culture Test</a>
+              <a class="btn btn-border btn-lg p5-10" data-toggle="modal" href="#CultureTest">
+                <div class="d-inline-b">
+                    <div>
+                        Culture Test <span class="italic f-10">(in-progress)</span>
+                    </div>
+                    <div>
+                      
+                          <div class="progress d-inline-b progress-cos">
+                              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <span class="sr-only"></span>
+                              </div>
+                              
+                            </div>
+                       
+                          <span class="d-inline-b f-20 m-0">40%</span>
+                    </div>
+                </div>
+                
+                <div class="d-inline-b pl-2">
+                    <svg class="r--90" height="43.25px" viewBox="-492.7 -2932.5 11.5 6.8" width="14px" xmlns="http://www.w3.org/2000/svg">
+                      <path class="cls-1" d="M303.8,369l4.8,4.8,4.7-4.7" id="down-chevron-sm" transform="translate(-795.5 -3300.5)"></path>
+                    </svg>
+                </div>
+               
+              </a>
+              <!-- <a class="btn btn-border btn-lg" (click)="getcandidateview()" >Candidate</a> -->
+          </div>
         </div>
       </div>
       <div class="row">
@@ -37,4 +65,374 @@
 
     </div>
   </main>
+  <div Id="CultureTest" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+       
+     
+          <!--modal-content1-->
+      <div class="modal-content" style="display: none">
+        <div class="row">
+           <div class="col-md-12 ">
+              <div class="card card--other-info">
+                 <div class="card-header">
+                    <h1 class="title">
+                       <span>Culture Fit</span>
+                    </h1>
+                    <div class="layout layout--btn">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                    </div>
+                 </div>
+                 <!-- .header -->
+                 <div class="row">
+                    <div class="col-md-12">
+                       <div class="card-inner">
+                          <div class="col-md-1">10%</div>
+                          <div class="progress col-md-11 no-pad">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                              aria-valuemax="100" style="width: 10%">
+                              <span class="sr-only">40% Complete (success)</span>
+                            </div>
+                          </div>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>Agree</th>
+                                <th>Somewhat Agree</th>
+                                <th>Somewhat Disagree</th>
+                                <th>Disagree</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
+                                </th>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="radio-box inline">
+                                    <label for="text" class="radio">
+                                      <input type="checkbox" id="" class="radio-input">
+                                      <span class="radio-btn"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                
+                
+                            </tbody>
+                          </table>
+                        
+                       </div>
+                    </div>
+                    <div class="col-md-12 p0-30">
+                       <div class="bt-1-E0E3EF mrl--15">
+                         <div class="mtbr-5-17-25">
+                            <a href="javascript:void(0)" class="pull-left skip-link">Save and Skip to Cultural Test</a>
+                         </div>
+                          <div  class="pull-right mtbr-5-17-25">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-success">Save & Next</button>
+                          </div>
+
+                          
+                         
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <!-- .col-md-12 -->
+           </div>
+           <!-- .row -->
+        </div>
+     </div>
+     <!--#modal-content1-->
+     <!--modal-content2-->
+     <div class="modal-content">
+        <div class="row">
+           <div class="col-md-12 ">
+              <div class="card card--other-info">
+                 <div class="card-header">
+                    <div class="col-md-5 text-left">
+                        <h4>Culture Fit Results <img title="Download Detailed Test Report"
+                            src="../../../../assets/images/down-chevron-icon.png"></h4>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <h6>Share your results</h6>
+                        <div class="social-media-share">
+                          <a href="/#/">
+                            <img alt="linkedin" src="/../../assets/images/linkedin-icon.png" title="http://www.linkedin.com/">
+                          </a>
+                          <a href="/#/">
+                            <img alt="facebook" src="/../../assets/images/fb-icon.png"
+                              title="https://www.facebook.com/emma.sophia">
+                          </a>
+                          <a href="/#/">
+                            <img alt="twitter" src="/../../assets/images/twitter-icon.png"
+                              title="https://www.twitter.com/emma.sophia">
+                          </a>
+                          <a href="/#/">
+                            <img alt="skype" alt="skype" src="../../../../assets/images/skype-icon.png" title="">
+                          </a>
+                        </div>
+                      </div>
+                    <div class="layout layout--btn">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                    </div>
+                 </div>
+                 <!-- .header -->
+                 <div class="row">
+                    <div class="col-md-12">
+                       <div class="card-inner img-middle">
+                          <div>
+                              <div class="col-md-12 text-center">
+                                <img class="img-responsive"
+                                  src="https://images.ctfassets.net/fevtq3bap7tj/68o78rXmGQAWmEGQmikIea/48548c810c0c826fbab6494fc92a01c9/Pie_in_3D.png">
+                              </div>
+                              <div class="col-xs-6 col-md-6">
+                                <img class="img-responsive"
+                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
+                              </div>
+                              <div class="col-xs-6 col-md-6">
+                                <img class="img-responsive"
+                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
+                              </div>
+                              <div class="col-xs-6 col-md-6">
+                                <img class="img-responsive"
+                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
+                              </div>
+                              <div class="col-xs-6 col-md-6">
+                                <img class="img-responsive"
+                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
+                              </div>
+                              <div class="col-xs-12 col-md-12">
+                                  <div style="height: 100px;"></div>
+                              </div>
+                            </div>
+                       </div>
+                    </div>
+                   
+                 </div>
+              </div>
+              <!-- .col-md-12 -->
+           </div>
+           <!-- .row -->
+        </div>
+     </div>
+     <!--#modal-content2-->      
+   
+                
+                
+    </div>
+    </div>
 </body>
