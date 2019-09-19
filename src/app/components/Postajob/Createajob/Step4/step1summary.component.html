@@ -77,7 +77,7 @@
         <ul class="data-list">
           <li *ngFor="let primaryjobskill of primarySkills">
             <span class="name">{{primaryjobskill.SkillName}}</span>
-            <span class="experience">{{(primaryjobskill.MinimumExp/2 | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp/2 | number:'1.0-1')}} Yrs</span>
+            <span class="experience">{{(primaryjobskill.MinimumExp | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp | number:'1.0-1')}} Yrs</span>
           </li>
            
         </ul>
@@ -87,7 +87,7 @@
         <ul class="data-list">
           <li *ngFor="let secondarySkill of secondarySkills">
             <span class="name">{{secondarySkill.SkillName}}</span>
-            <span class="experience">{{(secondarySkill.MinimumExp/2 | number:'1.0-1')}} - {{(secondarySkill.MaximumExp/2 | number:'1.0-1')}} Yrs</span>
+            <span class="experience">{{(secondarySkill.MinimumExp | number:'1.0-1')}} - {{(secondarySkill.MaximumExp | number:'1.0-1')}} Yrs</span>
           </li>
           
         </ul>

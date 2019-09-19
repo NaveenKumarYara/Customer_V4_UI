@@ -24,8 +24,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
   getDomain = new GetDomain ();
-  MinimumExperience = 6;
-  MaximumExperience = 12;
+  MinimumExperience = 3;
+  MaximumExperience = 6;
   addDomainList: PjDomain[];
   domainId: number;
   domaintitleloading = false;
@@ -35,12 +35,13 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   options: Options = {
     floor: 0,
     ceil: 40,
+    step : 0.1,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return (value  / 2).toFixed(1)   + 'Years';
+          return (value).toFixed(1)   + 'Years';
         case LabelType.High:
-          return (value / 2).toFixed(1)   + 'Years' ;
+          return (value).toFixed(1)   + 'Years' ;
           default:
           return ' ';
       }

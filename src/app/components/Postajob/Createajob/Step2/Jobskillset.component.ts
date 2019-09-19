@@ -20,8 +20,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience = 6;
-  maxexperience = 12;
+  minexperience = 3;
+  maxexperience = 6;
   expYears: any = [];
   skillType  = false;
 
@@ -35,12 +35,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   options: Options = {
     floor: 1,
     ceil: 40,
+    step : 0.1,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return  (value / 2).toFixed(1)   + 'Years';
+          return  (value).toFixed(1)   + 'Years';
         case LabelType.High:
-          return (value / 2).toFixed(1)   + 'Years' ;
+          return (value).toFixed(1)   + 'Years' ;
           default:
           return ' ';
       }
@@ -106,15 +107,15 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       const newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
-      newskills.MaximumExp = this.maxexperience ; // parseFloat((this.maxexperience / 12).toFixed(1));
-      newskills.MinimumExp = this.minexperience; // parseFloat((this.minexperience / 12).toFixed(1));
+      newskills.MaximumExp = this.maxexperience;
+      newskills.MinimumExp = this.minexperience;
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
       if (check === false) {
           this.appService.addJobSkill(newskills);
       }
       this.selectedSkillName = '';
-      this.minexperience = 6;
-      this.maxexperience = 12;
+      this.minexperience = 3;
+      this.maxexperience = 6;
       localStorage.removeItem('skill');
      this.form.reset();
     } else {

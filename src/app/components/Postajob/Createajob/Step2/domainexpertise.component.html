@@ -55,7 +55,7 @@
     <ul class="data-list">
       <li class="col-md-6 no-exp" *ngFor="let domain of domainlist; let i = index">
         <span class="name">{{domain.DomainName}}</span>
-        <span class="experience"> {{(domain.MinimumExperience / 2) | number:'1.0-1'}} - {{(domain.MaximumExperience / 2) | number:'1.0-1'}} Yrs</span>
+        <span class="experience"> {{(domain.MinimumExperience) | number:'1.0-1'}} - {{(domain.MaximumExperience) | number:'1.0-1'}} Yrs</span>
         <span class="close" (click)="deleteDomain(i)">&times;</span>
       </li>
     </ul>
