@@ -171,8 +171,19 @@
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4>Matching Criteria</h4>
-                                    <p>
-                                        70%
+                                    <p *ngFor="let match of jobdetailscustomer?.MatchingCrieterias" >
+                                        <ng-container *ngIf="match?.ParameerId==1" > 
+                                          Domain: {{match?.Percentage}}%
+                                        </ng-container>
+                                        <ng-container  *ngIf="match?.ParameerId==2">
+                                           Experience: {{match?.Percentage}}%
+                                        </ng-container>
+                                        <ng-container *ngIf="match?.ParameerId==3">
+                                            Role: {{match?.Percentage}}%
+                                        </ng-container>
+                                        <ng-container *ngIf="match?.ParameerId==4">
+                                           Skills: {{match?.Percentage}}%
+                                        </ng-container>
                                     </p>
                                 </div>
                             </div>
