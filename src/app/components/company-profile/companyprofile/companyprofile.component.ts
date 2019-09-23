@@ -30,6 +30,7 @@ export class CompanyprofileComponent implements OnInit {
     customer:any;
     customerId:any;
     userId:any;
+    show:boolean=false;
     getCustomerDepartments: GetCustomerDepartments[];
     getCustomerClients:GetCustomerClients[];
     companyprofile: CompanyProfile;
