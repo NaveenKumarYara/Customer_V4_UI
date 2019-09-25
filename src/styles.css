@@ -18352,7 +18352,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     -ms-flex-pack: center;
     justify-content: center;
     text-align: center;
-    height: 385px;
+    height: 320px;
     background-color: #ffffff;
     border: 1px solid #E0E3EF;
     cursor: pointer;

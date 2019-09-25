@@ -30,23 +30,36 @@
         <div class="row text-center">
           <div class="stats-col col-md-2">
             <h4 class="title">No. of Employees</h4>
-            <h1 class="number">{{companyprofileotherinfo?.NumberOfEmployees}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.NumberOfEmployees!=null" class="number">{{companyprofileotherinfo?.NumberOfEmployees}}</h1>
+            <h1  *ngIf="companyprofileotherinfo?.NumberOfEmployees==null"> N/A </h1>
           </div>
           <div class="stats-col col-md-2">
             <h4 class="title">No of Offices</h4>
-            <h1 class="number">{{companyprofileotherinfo?.NumberOfOffices}}</h1>
+            <h1  *ngIf="companyprofileotherinfo?.NumberOfOffices!=null" class="number">{{companyprofileotherinfo?.NumberOfOffices}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.NumberOfOffices==null">
+             N/A
+            </h1>
           </div>
           <div class="stats-col col-md-3">
             <h4 class="title">Date of Establishment</h4>
-            <h1>{{companyprofileotherinfo?.EstablishedIn}}</h1>
+            <h1  *ngIf="companyprofileotherinfo?.EstablishedIn!=null" >{{companyprofileotherinfo?.EstablishedIn}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.EstablishedIn==null">
+            N/A
+            </h1>
           </div>
           <div class="stats-col col-md-2">
             <h4 class="title">Company type</h4>
-            <h1>{{companyprofileotherinfo?.CompanyType}}</h1>
+            <h1  *ngIf="companyprofileotherinfo?.CompanyType!=null" >{{companyprofileotherinfo?.CompanyType}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.CompanyType==null">
+                N/A
+            </h1>
           </div>
           <div class="stats-col col-md-3">
             <h4 class="title">Company Revenue</h4>
-            <h1>{{companyprofileotherinfo?.RevenueInfo}}</h1>
+            <h1  *ngIf="companyprofileotherinfo?.RevenueInfo!=null" >{{companyprofileotherinfo?.RevenueInfo}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.RevenueInfo==null">
+              N/A
+            </h1>
           </div>
         </div>
       </div>
