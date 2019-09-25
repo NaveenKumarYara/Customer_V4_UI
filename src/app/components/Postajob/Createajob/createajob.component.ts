@@ -19,7 +19,7 @@ export class CreateajobComponent implements OnInit, AfterViewChecked {
 @Input() jobId: number;
 customerId: number;
 customer: any;
-val:any;
+val:any=true;
 personType: DiscResult[] = [];
 personTypes: DiscResult[] = [];
 jobdetailscustomer: GetJobDetailCustomer;
@@ -61,7 +61,8 @@ editMode: string;
      // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.customerId = this.customer.CustomerId;
-     this.val = localStorage.getItem('Item');
+     //this.val = localStorage.getItem('Item');
+     this.val = localStorage.getItem('Item') != null ? localStorage.getItem('Item'): "true";
     //  this.route.params.subscribe(params => {
     //   console.log(params);
     //   if (params['jobId'] > 0) {
