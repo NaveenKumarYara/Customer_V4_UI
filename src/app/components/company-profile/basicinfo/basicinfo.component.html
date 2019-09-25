@@ -52,7 +52,10 @@
         </div>
         <div class="meta">
           <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
-          <a [attr.href]="'//' + companyprofile?.WebSite" target="_blank">{{companyprofile?.WebSite}}</a>
+          <a *ngIf="companyprofile?.WebSite!=''" [attr.href]="'//' + companyprofile?.WebSite" target="_blank">{{companyprofile?.WebSite}}</a>
+          <ng-container *ngIf="companyprofile?.WebSite==''">
+           N/A
+          </ng-container>
         </div>
         <div class="meta">
           <img class="icon" src="../../../../assets/images/email-icon.svg" alt="Email">
@@ -65,15 +68,29 @@
           <tbody>
             <tr>
               <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-              <td>{{companyprofile?.MobilePhone}}</td>
+              <td *ngIf="companyprofile?.MobilePhone!=null">{{companyprofile?.MobilePhone}}</td>
+              <td *ngIf="companyprofile?.MobilePhone==null">
+                 N/A
+              </td>
             </tr>
             <tr>
               <td><img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax"></td>
-              <td>{{companyprofile?.HomePhone}}</td>
+              <td *ngIf="companyprofile?.HomePhone!=null">{{companyprofile?.HomePhone}}</td>
+              <td *ngIf="companyprofile?.HomePhone==null"> N/A </td>
             </tr>
             <tr>
               <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>
-              <td>{{companyprofile?.Address1}}, {{companyprofile?.Address2}}.</td>
+              <td *ngIf="companyprofile?.Address1=='' && companyprofile?.Address2==''">
+                  N/A
+                 </td>
+              <td>
+                <ng-container *ngIf="companyprofile?.Address1!=''">
+                    {{companyprofile?.Address1}},
+              </ng-container>
+              <ng-container *ngIf="companyprofile?.Address2!=''">
+                  {{companyprofile?.Address2}}.
+              </ng-container>
+                 </td>
             </tr>
           </tbody>
         </table>
