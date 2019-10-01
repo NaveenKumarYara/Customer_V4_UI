@@ -53,6 +53,11 @@ export class InterviewListComponent implements OnInit {
      this.populateJobInterViewlist(0,0,'');
   }
 
+  titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
 
   populateJobInterViewlist(sort=0,listsort=0,search='') { 
     this.sort=sort;
