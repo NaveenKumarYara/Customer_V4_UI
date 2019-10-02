@@ -8,7 +8,7 @@
                     <img *ngIf="recentapplicants?.IsConfirmed != null" src="{{recentapplicants.ProfilePic}}" class="ui-pic" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
                     <img class="ui-pic" *ngIf="recentapplicants?.IsConfirmed == null" src="https://ui-avatars.com/api/?name={{recentapplicants.FirstName}}+{{recentapplicants.LastName}}" alt="User Pic" width="50" height="50">
                     <div>
-                        <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseBlock">
+                        <h2 *ngIf="recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null && (recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8); else firstelseBlock">
                             {{recentapplicants?.FirstName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png"> </h2>
 
                         <ng-template #firstelseBlock>
