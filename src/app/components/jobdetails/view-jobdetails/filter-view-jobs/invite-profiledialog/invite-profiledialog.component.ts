@@ -46,12 +46,13 @@ export interface DialogData {
   };
 
   SaveInvite() {
+    this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
     this.inviteinfo.userName =  'Arytic User';
     this.inviteinfo.fullName = 'Arytic User';
     this.inviteinfo.statusId = 0;
-    this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;;
+    this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
     this.inviteinfo.CandFullName = 'Arytic User';
     this.inviteinfo.CustFullName = 'Arytic';
@@ -86,6 +87,7 @@ export interface DialogData {
 }
 
 export class InviteInfo {
+  customerId:number;
   userId: number;
   jobId: number;
   fullName: string;
