@@ -160,6 +160,10 @@ editResponsibilities(resp) {
         // this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
   deleteResponsibilities(index) {
     this.responsibilities.splice(this.responsibilities.indexOf(index), 1);
     // this.responsibilities =  this.responsibilities.filter(x => x.Index !== index); this works as well
