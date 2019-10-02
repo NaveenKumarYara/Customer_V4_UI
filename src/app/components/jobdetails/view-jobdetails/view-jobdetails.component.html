@@ -59,10 +59,10 @@
                 <div class="card-body">
                     <div>
                             <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'"> 
-                        <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Inactive</button>
+                        <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Make Inactive</button>
                             </ng-container>
                         <ng-template #isactive>
-                            <button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Active</button>
+                            <button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make Active</button>
                         </ng-template>
                         <!-- <ng-container *ngIf="jobdetailsbasicinfo?.IsActive; else isnotActive">
                             <button class="btn btn-border" (click)="openCandidateUploadDialog()" *ngIf="displayQuick!=1">Manage Profiles</button>
