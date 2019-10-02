@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customerlatest
+  name: customerlatest-#{namespace}#
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customerlatest
+      app: customerlatest-#{namespace}#
   template:
     metadata:
       labels:
-        app: customerlatest
+        app: customerlatest-#{namespace}#
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
@@ -19,28 +19,28 @@ spec:
         image: arytic.azurecr.io/tenendus_scv/customerlatest:#{Build.BuildId}#
         resources:
           limits:
-            cpu: "0.2"
-            memory: 800M
+            cpu: "0.1"
+            memory: 500M
           requests:
-            cpu: "0.2"
+            cpu: "0.1"
             memory: 300M
         env:
         - name: Identity_URL
-          value: "http://identityapi.aks.dev.arytic.com"
+          value: "http://identityapi.aks.#{namespace}#.arytic.com"
         - name: Email_URL
-          value: "http://emailapi.aks.dev.arytic.com"
+          value: "http://emailapi.aks.#{namespace}#.arytic.com"
         - name: Jobs_URL
-          value: "http://jobsapi.aks.dev.arytic.com"
+          value: "http://jobsapi.aks.#{namespace}#.arytic.com"
         - name: Profile_URL
-          value: "http://profileapi.aks.dev.arytic.com"
+          value: "http://profileapi.aks.#{namespace}#.arytic.com"
         - name: Referral_URL
-          value: "http://referalapi.aks.dev.arytic.com"
+          value: "http://referalapi.aks.#{namespace}#.arytic.com"
         - name: Main_URL
-          value: "http://aks.dev.arytic.com"
+          value: "http://aks.#{namespace}#.arytic.com"
         - name: CuMain_URL
-          value: "http://customer.aks.dev.arytic.com"
+          value: "http://customer.aks.#{namespace}#.arytic.com"
         - name: Sharing_URL
-          value: "http://socialapi.aks.dev.arytic.com"
+          value: "http://socialapi.aks.#{namespace}#.arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:
@@ -49,11 +49,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-svc
+  name: customer-svc-#{namespace}#
 spec:
   ports:
   - port: 80
   selector:
-    app: customerlatest
+    app: customerlatest-#{namespace}#
     
 
