@@ -276,7 +276,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
   NoRecords() {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
-  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString= '', experience= 0, location= '', domainName= '', uploaded= 0, suggested= 0, wishlist= 0, noofRows= 6) {
+  PopulateJobdetailProfiles (customerId, userid, jobid, statusid, statistics, sortBy= 1, searchString= '', experience= 0, location= '', domainName= '', uploaded= 0, suggested= 0, wishlist= 0, invited=0,noofRows= 6) {
     this.alertService.clear();
     // $('#searchStr').val('');
     this.spinner.show();
@@ -294,7 +294,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
     } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, noofRows)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist,invited, noofRows)
     .subscribe(res => {
       this.jobdetailsprofiles = res;
       this.profiles = res;

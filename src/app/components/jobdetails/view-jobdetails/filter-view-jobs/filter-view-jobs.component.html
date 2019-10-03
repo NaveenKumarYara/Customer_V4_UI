@@ -51,7 +51,7 @@
                             <ng-container *ngIf="Count?.Uploaded==0||closedjob==2">
                                     <input type="checkbox" name="contract-duration"  disabled>
                                     <span class="box disabled">Uploaded ({{Count?.Uploaded||0}})</span>
-                            </ng-container>
+                            </ng-container>                         
                         </label>
                     </div>
                     <div class="checkbox">
@@ -81,11 +81,14 @@
                     </div>
                     <div class="checkbox">
                             <label>
-                                    
-                                            <input type="checkbox" name="contract-duration">
-                                            <span class="box">Invited (0)</span>
-                                   
-                              
+                                    <ng-container *ngIf="Count?.Invited>0 && closedjob!=2">
+                                            <input type="checkbox" name="contract-duration" [(ngModel)]="InvitedFlag"   [checked]="InvitedFlag" (change)="viewby(4, $event.target.checked,$event.target.value)">
+                                            <span class="box">Invited({{Count?.Invited||0}})</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="Count?.Invited==0||closedjob==2">
+                                            <input type="checkbox" name="contract-duration"  disabled>
+                                            <span class="box disabled">Invited ({{Count?.Invited||0}})</span>
+                                    </ng-container>                                                               
                             </label>
                         </div>
                 </div>

@@ -27,6 +27,7 @@ export class FilterViewJobsComponent implements OnInit {
   UploadedFlag:boolean;
   WishlistFlag:boolean;
   SuggestedFlag:boolean;
+  InvitedFlag:boolean;
   SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;
@@ -42,6 +43,7 @@ export class FilterViewJobsComponent implements OnInit {
   userId: any;
   value:any;
   suggested:any;
+  invited:any;
   jobdetailsprofiles = new JobdetailsProfile() ;
   sortBy:0;
   wishlist:any;
@@ -78,7 +80,7 @@ export class FilterViewJobsComponent implements OnInit {
   search(val) {
    this.searchString = val;
    //this.parentApi.callSearchMethod(this.searchString);
-   this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString,this.TotalCount);
+   this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.sortBy,this.searchString,this.TotalCount);
    this.SearchList = [];
    this.GetSearchText(null);
   }
@@ -149,26 +151,37 @@ export class FilterViewJobsComponent implements OnInit {
       this.suggested = 0;
     }     
   } 
-  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0)
+  else if (value === 4)
   {
-    this.calldata(this.uploaded,this.suggested,this.wishlist);
+    if(isChecked)
+    {
+      this.invited = 1;
+    }
+    else
+    {
+      this.invited = 0;
+    }     
+  }
+  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0 || this.invited>0)
+  {
+    this.calldata(this.uploaded,this.suggested,this.wishlist,this.invited);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,this.sortBy,this.searchString,0);
+    this.parentApi.CallViewBy(0,0,0,0,this.sortBy,this.searchString,0);
   }
  
  }
 
- calldata(uploaded,suggested,wishlist)
+ calldata(uploaded,suggested,wishlist,invited)
  {
-  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,6)
+  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,6)
   .subscribe(res => {
     this.jobdetailsprofiles = res;
     this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;
     if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0 || this.wishlist>0))
     {
-      this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.sortBy,this.searchString,this.TotalCount);
+      this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.sortBy,this.searchString,this.TotalCount);
     }
   });
  }
