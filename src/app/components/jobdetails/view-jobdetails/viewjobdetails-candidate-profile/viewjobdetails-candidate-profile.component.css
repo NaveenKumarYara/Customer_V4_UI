@@ -912,7 +912,8 @@ h1.title img {
 .tooltip1 .bottom1 {
     min-width: 200px;
     /* max-width: 400px; */
-    top: 26px;
+    /* top: 26px; */
+    top: 19px;
     left: -72%;
     transform: translate(-50%, 0);
     color: #666666;
@@ -1113,11 +1114,11 @@ h1.title img {
     width: 40px;
     height: auto;
 }
-
+/*
 .tooltip1 {
-    padding-bottom: 10px;
+     padding-bottom: 10px; 
 }
-
+*/
 .tooltip1:hover .custom_dropdown-menu {
     display: block;
 }
