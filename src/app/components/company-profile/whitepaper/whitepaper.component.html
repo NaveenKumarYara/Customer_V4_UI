@@ -111,6 +111,9 @@
                     <span class="add add--green rounded">+</span>
                     <span>Add</span>
                   </a>
+                  <span  *ngIf="getcompanywhitepaper.length==0">
+                      Add Whitepapers
+                     </span>
                 </div>
               <div class="tab-inner scrollbar-inner">
                
@@ -137,12 +140,10 @@
                         
                       </div>
 
-                     
-                     
-                       
                           <div>
                               <a href="javascript:void(0)" (click)="goToLink(companywhitepaper?.CompanyWhitePaper)">
-                                  <span >{{companywhitepaper?.Title}}</span>
+                                  <span>{{companywhitepaper?.Title}}</span>  
+                                                    
                                   </a>
                           </div>
                         
