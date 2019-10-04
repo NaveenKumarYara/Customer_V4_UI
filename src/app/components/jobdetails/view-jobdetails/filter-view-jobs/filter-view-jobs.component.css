@@ -287,3 +287,9 @@ input::-webkit-input-placeholder {
     cursor:not-allowed
  }
 /*Upload & Invite Buttons CSS ends*/
+
+
+.badge.badge-light{
+    background-color: #9eabc0;
+    border-radius: 7px;
+}
