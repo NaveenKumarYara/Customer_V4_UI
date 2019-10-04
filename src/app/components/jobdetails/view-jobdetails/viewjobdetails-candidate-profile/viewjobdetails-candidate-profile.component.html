@@ -296,7 +296,7 @@
                     </div>
                     <div class="d-block text-center min-h40">
                        
-                                <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsUploaded==1"
+                                <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsUploaded==true"
                                 title="{{profile.CompanyName}}">
                                 <span>
                                     Uploaded
@@ -304,7 +304,7 @@
                                 By <span>{{profile.CompanyName}}</span>
                             </small>
                         
-                                    <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsInvited==1"
+                                    <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsInvited==true"
                                     title="{{profile.CompanyName}}">
                                     <span>
                                         Invited
