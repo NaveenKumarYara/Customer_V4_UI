@@ -32,7 +32,7 @@
                         <form action="">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="">TECHNICAL PERSON FOR SCREENING</label>
+                                    <label for="">Add Team Member</label>
                                     <div class="input-group">
                                         <ng-select class="custom-style interview-schedule-popup" [items]="managersList  | async" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
                                             [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
@@ -68,10 +68,10 @@
                         <form action="">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="">EXTERNAL PERSON FOR SCREENING</label>
+                                    <label for="">Add Team Member</label>
                                     <div class="row">
                                         <div class="col-md-5 col-sm-5">
-                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Fullname *">
+                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Name *">
                                         </div>
                                         <div class="col-md-5 col-sm-5 sm-pt-2">
                                             <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId" placeholder="Email *">
