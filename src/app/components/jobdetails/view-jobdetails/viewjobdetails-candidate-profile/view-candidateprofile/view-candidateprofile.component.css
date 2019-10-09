@@ -2883,3 +2883,8 @@ h5.meta.meta-light{
     /* content: " "; */
     display: table;
 }
+
+/*09-10-2019*/
+.top-tech-skills .table span.ellipsis, .certifications p{
+    color: #6a7e9c;
+}
