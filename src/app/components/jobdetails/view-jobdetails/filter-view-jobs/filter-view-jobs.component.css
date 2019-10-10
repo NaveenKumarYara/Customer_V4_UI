@@ -254,7 +254,7 @@ input::-webkit-input-placeholder {
  .filters .quick-sort .options .checkbox .box {
     text-align: center;
     display: block;
-    padding: 15px 15px;
+    padding: 15px 10px;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 3px;
