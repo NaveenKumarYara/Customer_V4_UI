@@ -309,6 +309,14 @@
                             By <span>{{profile.CompanyName}}</span>
                         </small>
 
+                        <small class="l_bl-1" *ngIf="profile.CompanyName == null && profile.IsUploaded==false && profile.IsInvited==false"
+                        title="{{profile.CompanyName}}">
+                        <span>
+                            Submitted
+                        </span>
+                        By <span>Arytic</span>
+                    </small>
+
                         <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsInvited==true"
                             title="{{profile.CompanyName}}">
                             <span>

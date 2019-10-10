@@ -28,6 +28,7 @@ export class FilterViewJobsComponent implements OnInit {
   WishlistFlag:boolean;
   SuggestedFlag:boolean;
   InvitedFlag:boolean;
+  AryticFlag:boolean;
   SearchList: any = [];
   SearchResults: any = { Profile: [] };
   @Input() jobid: number;

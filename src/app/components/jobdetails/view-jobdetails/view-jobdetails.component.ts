@@ -187,6 +187,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
     this.base.InvitedFlag=false;
+    this.base.AryticFlag=false;
     this.CallList(this.statusid);
     this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
@@ -223,6 +224,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
+    this.base.AryticFlag=false;
     this.ClearallValues();
     this.CallList(this.statusid);
    // this.loadMoreStat=this.statusid;

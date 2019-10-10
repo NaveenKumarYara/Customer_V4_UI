@@ -107,6 +107,22 @@
                                     </ng-container>                                                               
                             </label>
                         </div>
+                        <div class="checkbox" *ngIf="statusid>0">
+                            <label>
+                                    <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
+                                            <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"   [checked]="AryticFlag" (change)="viewby(0, $event.target.checked,5)">
+                                            <span class="box">Arytic
+                                                    <span class="badge badge-light">{{Count?.AryticProfiles||0}}</span> 
+                                                </span>
+                                    </ng-container>
+                                    <ng-container *ngIf="Count?.AryticProfiles>0||closedjob==2">
+                                            <input type="checkbox" name="contract-duration"  disabled>
+                                            <span class="box disabled">Arytic 
+                                                    <span class="badge badge-light">{{Count?.AryticProfiles||0}}</span> 
+                                                </span>
+                                    </ng-container>                                     
+                            </label>
+                        </div>
                         
                 </div>
             </div>
