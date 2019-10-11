@@ -1204,7 +1204,7 @@ meta.a .h-19 .location {
 }
 .l_bl-1:nth-last-child(1) {
     padding-right: 7px;
-    border-left: 1px solid #E0E3EC;
+    /* border-left: 1px solid #E0E3EC; */
 } 
 .l_bl-1:first-child{
     padding-right: 0px;
