@@ -206,9 +206,9 @@
                                     </ng-container>
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                                 </a>
-                                <div class="bottom1" *ngIf="profile.Email.substring(0,7) != 'esolvit'">
+                                <div class="bottom1">
                                     <ul class="custom_dropdown-menu" style="display: block;">
-                                        <li *ngIf="!profile?.NoEmail">
+                                        <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
                                             <a class="email-overflow" href="javascript:void(0)"
                                                 title="{{profile.Email}}">
                                                         <img src="../../../../../assets/images/email-icon.svg"  alt="email"
