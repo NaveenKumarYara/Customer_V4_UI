@@ -22,17 +22,26 @@
                         <option value="5">Applied By Candidate</option>
                     </select> -->
                     <ng-container *ngIf="closedjob!=2">
-                        <select name="view" id="view" class="styled-select-box"  [(ngModel)]="ViewBy" (change)="viewby(0, $event.target.checked,$event.target.value)">
-                            <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}}>
-                              {{sortyBy.SortBy}}
-                            </option>
+                        <select name="view" id="view" class="styled-select-box"  [(ngModel)]="ViewBy" (change)="viewby(0, $event.target.checked,$event.target.value)">                            
+                              <ng-container *ngFor="let sortyBy of sortByOrder">
+                                    <option  *ngIf="sortyBy.SortById!=5"  value= {{sortyBy.SortById}}>
+                                        {{sortyBy.SortBy}}
+                                      </option>
+                              </ng-container>                                                        
                           </select>
                     </ng-container >
                     <ng-container *ngIf="closedjob==2">
                         <select name="view" id="view" class="styled-select-box"  [(ngModel)]="ViewBy" (change)="viewby(0, $event.target.checked,$event.target.value)" disabled>
-                            <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}} disabled >
-                              {{sortyBy.SortBy}}
-                            </option>
+                            <!-- <option *ngFor="let sortyBy of sortByOrder"  value= {{sortyBy.SortById}}  >
+                                <ng-container *ngIf="sortyBy.SortById!=5">
+                                    {{sortyBy.SortBy}}
+                                  </ng-container>  
+                            </option> -->
+                            <ng-container *ngFor="let sortyBy of sortByOrder">
+                                    <option  *ngIf="sortyBy.SortById!=5"  value= {{sortyBy.SortById}} disabled>
+                                        {{sortyBy.SortBy}}
+                                      </option>
+                              </ng-container>     
                           </select>
                     </ng-container>
                     
