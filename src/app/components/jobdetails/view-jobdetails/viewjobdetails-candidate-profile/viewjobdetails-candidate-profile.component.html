@@ -81,8 +81,6 @@
                   </ng-template> -->
 
                         <div class="dropdown ">
-
-
                             <div class="tooltip1">
                                 <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                                 </a>
@@ -199,89 +197,92 @@
               <ng-template #lastelseBlock>
                   {{profile.LastName}}
               </ng-template> -->
-                        <div class="dropdown ">
-                            <div class="tooltip1"> 
-                                    <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
-                                            <img src="../../../../../assets/images/No-Email-Icon.svg"  alt="email">
-                                    </ng-container>
-                                <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
-                                </a>
-                                <div class="bottom1">
-                                    <ul class="custom_dropdown-menu" style="display: block;">
-                                        <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
-                                            <a class="email-overflow" href="javascript:void(0)"
-                                                title="{{profile.Email}}">
-                                                        <img src="../../../../../assets/images/email-icon.svg"  alt="email"
-                                                        title="{{profile?.Email}}"> {{profile?.Email}}                                                                                      
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <ng-container *ngIf="profile?.MobilePhone!=null; else false">
-                                                <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
-                                                    <img src="../../../../../assets/images/phn-icon.svg"
-                                                        alt="Phone number" title="{{profile.MobilePhone}}">
-                                                    &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
-                                                </a>
-                                            </ng-container>
-                                        </li>
-                                        <li>
-                                            <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="dropdown ">
-
-
-                            <div class="tooltip1">
-                                <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <img src="../../../../../assets/images/graduation.svg"
-                                        style="width: 25px;height: 25px;" />
-                                </a>
-                                <div class="bottom1">
-                                    <ul class="custom_dropdown-menu" style="display: block;">
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
-
-                                                <div class="media">
-                                                    <ng-container
-                                                        *ngIf="profile?.QualificationName!=null && profile?.Specialization; else EduTemplate">
-                                                        <img class="mr-3"
-                                                            src="../../../../../assets/images/graduate-certificate.svg"
-                                                            alt="">
-                                                        <div class="media-body">
-
-                                                            <h5 class="mt-0" title="{{profile.QualificationName}}">
-                                                                {{add3Dots(profile?.QualificationName.split('|')[0],20)}}
-                                                            </h5>
-                                                            {{add3Dots(profile?.Specialization.split('|')[0],20)}}
-                                                        </div>
-                                                    </ng-container>
-                                                    <ng-template #EduTemplate>
-                                                        <h5 align="center"> N/A </h5>
-                                                    </ng-template>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
+                  
                     </h1>
                 </ng-template>
 
                 <div class="meta a">
+                    <div class="d-block text-center">
+                        <!--Yes Email-->
+                        <div class="dropdown ">
+                                <div class="tooltip1">
+                                    <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
+                                        <img src="../../../../../assets/images/Yes-Email.svg" height="16" alt="email">
+                                    </ng-container>
+                                </div>
+                            </div>
+                        <!--Yes Email-->
+                            <div class="dropdown ">
+                                    <div class="tooltip1">
+                                        <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
+                                            <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email">
+                                        </ng-container>
+                                        <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
+                                        </a>
+                                        <div class="bottom1">
+                                            <ul class="custom_dropdown-menu" style="display: block;">
+                                                <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
+                                                    <a class="email-overflow" href="javascript:void(0)"
+                                                        title="{{profile.Email}}">
+                                                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                                            title="{{profile?.Email}}"> {{profile?.Email}}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <ng-container *ngIf="profile?.MobilePhone!=null; else false">
+                                                        <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
+                                                            <img src="../../../../../assets/images/phn-icon.svg"
+                                                                alt="Phone number" title="{{profile.MobilePhone}}">
+                                                            &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
+                                                        </a>
+                                                    </ng-container>
+                                                </li>
+                                                <li>
+                                                    <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="dropdown ">
+                                    <div class="tooltip1">
+                                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <img src="../../../../../assets/images/graduation.svg"
+                                                style="width: 25px;height: 25px;" />
+                                        </a>
+                                        <div class="bottom1">
+                                            <ul class="custom_dropdown-menu" style="display: block;">
+                                                <li>
+                                                    <a href="javascript:void(0)">
+                                                        <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
+        
+                                                        <div class="media">
+                                                            <ng-container
+                                                                *ngIf="profile?.QualificationName!=null && profile?.Specialization; else EduTemplate">
+                                                                <img class="mr-3"
+                                                                    src="../../../../../assets/images/graduate-certificate.svg"
+                                                                    alt="">
+                                                                <div class="media-body">
+        
+                                                                    <h5 class="mt-0" title="{{profile.QualificationName}}">
+                                                                        {{add3Dots(profile?.QualificationName.split('|')[0],20)}}
+                                                                    </h5>
+                                                                    {{add3Dots(profile?.Specialization.split('|')[0],20)}}
+                                                                </div>
+                                                            </ng-container>
+                                                            <ng-template #EduTemplate>
+                                                                <h5 align="center"> N/A </h5>
+                                                            </ng-template>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+
                     <div class="d-block text-center ptb-5">
                         <h4 class="d-inline l_bl-1" title="{{profile.ProfileTitle}}">
                             {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}}</h4>
@@ -299,10 +300,10 @@
                     </div>
                     <div class="d-block text-center min-h40">
                         <div class="d-block ptb-5">
-                                    <div
-                                        class="status {{profile.JobStatus ==='Waiting for response' ? 'waitingforresponse' :  profile.JobStatus}}">
-                                        {{profile?.NoEmail === true ? 'Uploaded' : profile.JobStatus}}</div>
-                         </div>
+                            <div
+                                class="status {{profile.JobStatus ==='Waiting for response' ? 'waitingforresponse' :  profile.JobStatus}}">
+                                {{profile?.NoEmail === true ? 'Uploaded' : profile.JobStatus}}</div>
+                        </div>
 
                         <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsUploaded==true"
                             title="{{profile.CompanyName}}">
@@ -312,13 +313,14 @@
                             By <span>{{profile.CompanyName}}</span>
                         </small>
 
-                        <small class="l_bl-1" *ngIf="profile.CompanyName == null && profile.IsUploaded==false && profile.IsInvited==false"
-                        title="{{profile.CompanyName}}">
-                        <span>
-                            Submitted
-                        </span>
-                        By <span>Arytic</span>
-                    </small>
+                        <small class="l_bl-1"
+                            *ngIf="profile.CompanyName == null && profile.IsUploaded==false && profile.IsInvited==false"
+                            title="{{profile.CompanyName}}">
+                            <span>
+                                Submitted
+                            </span>
+                            By <span>Arytic</span>
+                        </small>
 
                         <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsInvited==true"
                             title="{{profile.CompanyName}}">
@@ -336,7 +338,7 @@
                         <!--if no data -->
 
 
-                        
+
 
 
                     </div>

@@ -36,6 +36,9 @@ input::-webkit-search-cancel-button {
 .ml-2 {
     margin-left: 1rem;
 }
+.ml-r{
+    margin-right: 0.6rem;
+}
 
 input[type=text] {
     background: #f7f2f2 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
@@ -208,9 +211,9 @@ input::-webkit-input-placeholder {
 }
 
 /*QuickSort Css*/
-.filters .quick-sort {
+/* .filters .quick-sort {
  margin-left: 1%;
-}
+} */
 
 .filters .quick-sort .options {
     padding-top: 0px;

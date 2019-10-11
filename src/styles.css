@@ -12848,7 +12848,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 1.25rem;
     color: #41536E;
     font-weight: 500;
-    margin: 0;
+    margin-bottom: 0.3rem;
     letter-spacing: 0.03em;
     text-transform: capitalize;
     cursor: pointer;
