@@ -547,3 +547,7 @@
 .bl-1{
     border-left: 1px solid #E0E3EF;
 }
+
+.mr-top{
+    margin-top:0px;
+}
