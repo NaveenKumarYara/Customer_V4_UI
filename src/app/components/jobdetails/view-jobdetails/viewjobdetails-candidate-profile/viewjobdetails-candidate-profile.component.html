@@ -203,48 +203,27 @@
 
                 <div class="meta a">
                     <div class="d-block text-center">
-                        <!--Yes Email-->
+                        <!--Email-->
                         <div class="dropdown ">
                                 <div class="tooltip1">
-                                    <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'">
+                                    <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'" class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
                                         <img src="../../../../../assets/images/Yes-Email.svg" height="16" alt="email">
                                     </ng-container>
-                                </div>
-                            </div>
-                        <!--Yes Email-->
-                            <div class="dropdown ">
-                                    <div class="tooltip1">
-                                        <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
-                                            <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email">
-                                        </ng-container>
-                                        <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
-                                        </a>
-                                        <div class="bottom1">
-                                            <ul class="custom_dropdown-menu" style="display: block;">
-                                                <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
-                                                    <a class="email-overflow" href="javascript:void(0)"
-                                                        title="{{profile.Email}}">
-                                                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
-                                                            title="{{profile?.Email}}"> {{profile?.Email}}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <ng-container *ngIf="profile?.MobilePhone!=null; else false">
-                                                        <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
-                                                            <img src="../../../../../assets/images/phn-icon.svg"
-                                                                alt="Phone number" title="{{profile.MobilePhone}}">
-                                                            &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
-                                                        </a>
-                                                    </ng-container>
-                                                </li>
-                                                <li>
-                                                    <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="bottom1">
+                                        <ul class="custom_dropdown-menu" >
+                                            <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
+                                                <a class="email-overflow" href="javascript:void(0)"
+                                                    title="{{profile.Email}}">
+                                                    <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                                        title="{{profile?.Email}}"> {{profile?.Email}}
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-        
+                            </div>
+                        <!-- Email-->
+                                <!--Graduation-->
                                 <div class="dropdown ">
                                     <div class="tooltip1">
                                         <a class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -252,7 +231,7 @@
                                                 style="width: 25px;height: 25px;" />
                                         </a>
                                         <div class="bottom1">
-                                            <ul class="custom_dropdown-menu" style="display: block;">
+                                            <ul class="custom_dropdown-menu" >
                                                 <li>
                                                     <a href="javascript:void(0)">
                                                         <!-- <img src="../../../../../assets/images/graduate-certificate.svg" alt=""> &nbsp;&nbsp;&nbsp; Masters <br> Computer Science -->
@@ -281,6 +260,42 @@
                                         </div>
                                     </div>
                                 </div>
+                        <!--Graduation-->
+                        <!--Info Icon-->
+                            <div class="dropdown info-icon">
+                                    <div class="tooltip1">
+                                        <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
+                                            <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email">
+                                        </ng-container>
+                                        <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
+                                        </a>
+                                        <div class="bottom1">
+                                            <ul class="custom_dropdown-menu">
+                                                <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
+                                                    <a class="email-overflow" href="javascript:void(0)"
+                                                        title="{{profile.Email}}">
+                                                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                                            title="{{profile?.Email}}"> {{profile?.Email}}
+                                                    </a>
+                                                </li> -->
+                                                <li>
+                                                    <ng-container *ngIf="profile?.MobilePhone!=null; else false">
+                                                        <a href="javascript:void(0)" title="{{profile.MobilePhone}}">
+                                                            <img src="../../../../../assets/images/phn-icon.svg"
+                                                                alt="Phone number" title="{{profile.MobilePhone}}">
+                                                            &nbsp;&nbsp;&nbsp; {{profile.MobilePhone}}
+                                                        </a>
+                                                    </ng-container>
+                                                </li>
+                                                <li>
+                                                    <app-profilelinks [userId]="profile?.UserId"></app-profilelinks>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                         <!--Info Icon-->
+                
                     </div>
 
                     <div class="d-block text-center ptb-5">

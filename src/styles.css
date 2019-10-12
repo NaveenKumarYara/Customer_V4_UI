@@ -12954,7 +12954,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--job-details .info-dropdown {
     border-radius: 50%;
-    border: 1px solid #6A7E9C;
+    border: 1.5px solid #6A7E9C;
     color: #6A7E9C;
     line-height: 1;
     width: 16px;
@@ -12964,6 +12964,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     padding: 2px;
     text-align: center;
     vertical-align: middle;
+    font-weight: 500;
 }
 
 .page--job-details .selected-job.card .title {
@@ -24319,7 +24320,7 @@ table .table-prl-0 td {
 .min-h40{
     min-height: 40px;
 }
-
-.ng5-slider-span.ng5-slider-bubble{
+/*Below targetted for experience slider*/
+.exp .ng5-slider-span.ng5-slider-bubble{
     left: 0px !important;
-}
+} 

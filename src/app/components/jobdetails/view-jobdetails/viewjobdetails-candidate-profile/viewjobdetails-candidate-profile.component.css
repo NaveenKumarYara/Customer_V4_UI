@@ -913,7 +913,7 @@ h1.title img {
     min-width: 200px;
     /* max-width: 400px; */
     /* top: 26px; */
-    top: 19px;
+    top: 22px;
     left: -72%;
     transform: translate(-50%, 0);
     color: #666666;
@@ -1120,7 +1120,7 @@ h1.title img {
 }
 */
 .tooltip1:hover .custom_dropdown-menu {
-    display: block;
+    display: contents;
 }
 
 .w-50 {
@@ -1170,8 +1170,12 @@ h1.title img {
     margin-right: 0px !important;
 }
 
-meta.a .h-19 .location {
+.meta.a .h-19 .location {
     margin-right: 0px !important;
+}
+
+.meta.a .info-icon{
+    margin-left: 2px;
 }
 
 .mr-0 {
