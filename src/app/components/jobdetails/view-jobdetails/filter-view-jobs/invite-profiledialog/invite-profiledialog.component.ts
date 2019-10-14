@@ -4,6 +4,7 @@ import { Validators, ValidatorFn, AbstractControl, FormControl, FormGroup, FormB
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import {GetInviteList} from '../../../../../../models/GetCompanyBenefit';
 import { AnimationStyleMetadata } from '@angular/core/src/animation/dsl';
 import { SettingsService } from '../../../../../../settings/settings.service';
 export interface DialogData {
@@ -21,6 +22,8 @@ export interface DialogData {
     customer:any;
     customerId: any;
     userId: any;
+    jobId:any;
+    jobData : GetInviteList[];
     emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
     Emailinvite:any;
@@ -35,6 +38,15 @@ export interface DialogData {
   ngOnInit() {
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
+    });
+    this.GetInviteList();
+  }
+
+  GetInviteList()
+  {
+    this.jobId = JSON.parse(sessionStorage.getItem('jobId'));
+    return this.jobdetailsservice.getInviteList(this.customerId,this.jobId).subscribe(res => {
+      this.jobData = res;
     });
   }
 

@@ -86,6 +86,7 @@
   "UpdateWishlist": "http://api.tenendus.com:1090/ProfileAPI/api/UpdateWishlist",
   "RecentJobs": "http://api.tenendus.com:1090/JobsAPI/api/GetCustomerJobs?",
   "RecentApplicants": "http://api.tenendus.com:1090/JobsAPI/api/GetApplicants?",
+  "GetInviteList":"http://api.tenendus.com:1090/ProfileAPI/api/GetCustomerInvitedProfiles?",
   "DashboardStatistics": "http://api.tenendus.com:1090/ProfileAPI/api/GetDashboardStatistics?",
   "ApplicantStatistics": "http://api.tenendus.com:1090/JobsAPI/api/GetApplicantStatistics?",
   "CompanyProfileBasicInfo": "http://api.tenendus.com:1090/ProfileAPI/api/GetCompanyBasicInfo?",

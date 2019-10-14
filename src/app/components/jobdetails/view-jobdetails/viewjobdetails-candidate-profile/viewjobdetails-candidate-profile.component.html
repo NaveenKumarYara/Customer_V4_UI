@@ -209,6 +209,9 @@
                                     <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'" class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
                                         <img src="../../../../../assets/images/Yes-Email.svg" height="16" alt="email">
                                     </ng-container>
+                                    <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
+                                            <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email">
+                                        </ng-container>
                                     <div class="bottom1">
                                         <ul class="custom_dropdown-menu" >
                                             <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
@@ -263,13 +266,11 @@
                         <!--Graduation-->
                         <!--Info Icon-->
                             <div class="dropdown info-icon">
-                                    <div class="tooltip1">
-                                        <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
-                                            <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email">
-                                        </ng-container>
+                                    <div class="tooltip1" >
+                                        
                                         <a class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">i
                                         </a>
-                                        <div class="bottom1">
+                                        <div class="bottom1"  *ngIf="profile?.MobilePhone!=null">
                                             <ul class="custom_dropdown-menu">
                                                 <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
                                                     <a class="email-overflow" href="javascript:void(0)"

@@ -19,7 +19,7 @@ import { JobdetailsProfile } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
-import { GetCompanyBenefit } from '../../../models/GetCompanyBenefit';
+import { GetCompanyBenefit ,GetInviteList} from '../../../models/GetCompanyBenefit';
 import {ProfileLinks} from './models/ProfileLinks';
 import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
@@ -51,6 +51,14 @@ export class JobdetailsService {
   getCompanyBenfits(customerId: number): Observable<GetCompanyBenefit[]> {
     const url = this.settingsService.settings.GetCompanyBenfits + 'customerId=' + customerId + '&companyBenefitId=0';
     return this.http.get<GetCompanyBenefit[]>(url)
+        .catch(
+            this.handleError
+        );
+  }
+
+  getInviteList(customerId: number,jobId:number): Observable<GetInviteList[]> {
+    const url = this.settingsService.settings.GetInviteList + 'customerId=' + customerId + '&jobId=' +jobId;
+    return this.http.get<GetInviteList[]>(url)
         .catch(
             this.handleError
         );

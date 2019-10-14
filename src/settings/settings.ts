@@ -6,7 +6,7 @@ export class Settings {
   JobbaseUrl: string;
   SharingbaseUrl: string;
   EmailbaseUrl: string;
-  
+  GetInviteList:string;
   jobTitleEndpoint: string;
   getskillsEndpoint: string;
   addSkillsEndpoint: string;

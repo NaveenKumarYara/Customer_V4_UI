@@ -57,38 +57,35 @@
           </form>
           <div class="clearfix">&nbsp;</div>
           <!--Invite Status Code Starts-->
-          <div class="invite-profile-status">
+          <!-- <div class="invite-profile-status">
             <h3>Invite Profile Status</h3>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                    <th scope="col">#</th>
                   <th scope="col">Email Address</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Emma</td>
-                  <td>Accepted</td>
-                
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob Jiffery</td>
-                  <td>Accepted</td>
-                
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>Accepted</td>
+                <tr *ngFor="let job of jobData; let i=index">
+               <ng-container *ngIf="i<5">
+                 <td>{{job?.Email}}</td>
+                 <ng-container *ngIf="job?.ProfileId == null">
+                    <td>Invited</td>
+                 </ng-container>
+                 <ng-container *ngIf="job?.ProfileId > 0">
+                    <td>Profile Created</td>
+                 </ng-container>
                  
+</ng-container>
+               
+                
                 </tr>
+              
               </tbody>
             </table>
-          </div>
+          </div> -->
        
           
 
