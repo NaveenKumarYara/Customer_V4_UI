@@ -40,7 +40,7 @@
             <div class="input-group col-sm-12 pt-2 p-rel">
               <div class="clearfix">&nbsp;</div>
               <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto" autocomplete="new-email" type="email" multiple
-                name="inviteEmail" cols="30" rows="10" required>
+                name="inviteEmail" cols="30" rows="7" required>
             </textarea>
             <div *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)" class="error1">
                 <div *ngIf="inviteform.controls['inviteEmail']">
@@ -55,8 +55,45 @@
               </div>
             </div>
           </form>
-
           <div class="clearfix">&nbsp;</div>
+          <!--Invite Status Code Starts-->
+          <div class="invite-profile-status">
+            <h3>Invite Profile Status</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Email Address</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Emma</td>
+                  <td>Accepted</td>
+                
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob Jiffery</td>
+                  <td>Accepted</td>
+                
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>Accepted</td>
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+       
+          
+
+          <!--Invite Status Code Ends-->
+
           <!-- <div>
               <h5>April 01, 2019</h5>
                 <ul class="notification-list">
