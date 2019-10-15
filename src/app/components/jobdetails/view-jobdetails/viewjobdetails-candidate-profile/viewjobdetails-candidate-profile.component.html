@@ -321,7 +321,7 @@
                                 {{profile?.NoEmail === true ? 'Uploaded' : profile.JobStatus}}</div>
                         </div>
 
-                        <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsUploaded==true"
+                        <small  *ngIf="profile.CompanyName != null && profile.IsUploaded==true"
                             title="{{profile.CompanyName}}">
                             <span>
                                 Uploaded
@@ -329,7 +329,7 @@
                             By <span>{{profile.CompanyName}}</span>
                         </small>
 
-                        <small class="l_bl-1"
+                        <small 
                             *ngIf="profile.CompanyName == null && profile.IsUploaded==false && profile.IsInvited==false"
                             title="{{profile.CompanyName}}">
                             <span>
@@ -338,7 +338,7 @@
                             By <span>Arytic</span>
                         </small>
 
-                        <small class="l_bl-1" *ngIf="profile.CompanyName != null && profile.IsInvited==true"
+                        <small  *ngIf="profile.CompanyName != null && profile.IsInvited==true"
                             title="{{profile.CompanyName}}">
                             <span>
                                 Invited
@@ -346,7 +346,7 @@
                             By <span>{{profile.CompanyName}}</span>
                         </small>
                         <!--if no data -->
-                        <!-- <small class="l_bl-1">
+                        <!-- <small>
                             <span>
                                 &nbsp;
                             </span>

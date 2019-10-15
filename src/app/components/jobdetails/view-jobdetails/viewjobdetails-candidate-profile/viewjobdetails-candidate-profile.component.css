@@ -14,6 +14,7 @@
     font-size: 75%;
     margin-top: 3px;
     margin-left: 3px;
+    padding: 7px;
 }
 
 .mat-dialog-container {
@@ -1208,7 +1209,7 @@ h1.title img {
 }
 .l_bl-1:nth-last-child(1) {
     padding-right: 7px;
-    /* border-left: 1px solid #E0E3EC; */
+    border-left: 1px solid #E0E3EC;
 } 
 .l_bl-1:first-child{
     padding-right: 0px;
