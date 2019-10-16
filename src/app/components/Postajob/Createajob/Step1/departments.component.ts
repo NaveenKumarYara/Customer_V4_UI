@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-
+import { Router, NavigationEnd } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
@@ -17,6 +17,7 @@ declare var $: any;
   // providers: [AppService]
 })
 export class DepartmentsComponent implements OnInit, OnDestroy {
+
   @ViewChild('deptForm') deptForm: NgForm;
   departmentList: Observable<DepartmentModel[]>;
   departmentInput = new Subject<string>();
@@ -35,7 +36,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
   addedDepartmentList: PjDepartments[] = [];
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router: Router) {
     // this.getDepartment = new DepartmentModel();
     this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
   }
@@ -157,6 +158,13 @@ ngOnInit() {
         this.addedDepartmentList = departmentlist;
         }
       );
+      //Placed for Scroll to top on next step
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
     // });
   // }
 

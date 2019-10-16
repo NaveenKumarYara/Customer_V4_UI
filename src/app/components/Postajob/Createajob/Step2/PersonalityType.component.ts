@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd  } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class PersonalityTypeComponent implements OnInit, OnDestroy {
+  
   selectedPersonType: number;
  // discResult:  DiscResult[];
   checkpersonType: PjDisc[] = [];
@@ -124,7 +125,16 @@ export class PersonalityTypeComponent implements OnInit, OnDestroy {
     // if (this.discResult.length === 0) {
     // this.populateDiscValues();
     // }
+         //Placed for Scroll to top on next step
+         this.router.events.subscribe((evt) => {
+          if (!(evt instanceof NavigationEnd)) {
+              return;
+          }
+          window.scrollTo(0, 0)
+      });
   }
+
+  
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
