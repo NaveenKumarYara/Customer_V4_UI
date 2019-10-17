@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Open Positions</h4>
+                                    <h4 >Open Positions</h4>
                                     <p>
                                         {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}
                                     </p>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Interview Type</h4>
+                                    <h4 >Interview Type</h4>
                                     <p>
                                         {{jobdetailscustomer?.JobInfo?.InterviewType}}
                                     </p>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Work Authorizion</h4>
+                                    <h4 >Work Authorization</h4>
                                     <p>
                                        {{jobdetailscustomer?.JobInfo?.WorkAuthorizationType}} 
                                     </p>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Employment Type</h4>
+                                    <h4 >Employment Type</h4>
                                     <p>
                                        {{jobdetailscustomer?.JobInfo?.EmploymentType}} 
                                     </p>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Salary Range</h4>
+                                    <h4 >Salary Range</h4>
                                     <p>
                                        {{jobdetailscustomer?.JobInfo?.SalaryType}} 
                                     </p>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Education Criteria</h4>
+                                    <h4 >Education Criteria</h4>
                                     <p *ngFor= "let education of jobdetailscustomer?.EducationDetails">
                                         {{education?.QualificationName}}
                                     </p>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Type of Person</h4>
+                                    <h4 >Type of Person</h4>
                                     <p>
                                         Dominance
                                     </p>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Category</h4>
+                                    <h4 >Category</h4>
                                     <p>
                                         {{jobdetailscustomer?.JobInfo?.JobCategory}}
                                     </p>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Department</h4>
+                                    <h4 >Department</h4>
                                     <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
                                         {{dept?.DepartmentName}}
                                     </p>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Reporting Manager</h4>
+                                    <h4 >Reporting Manager</h4>
                                     <p>
                                        {{jobdetailscustomer?.JobInfo?.ReportingManager}}
                                     </p>
@@ -170,7 +170,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Matching Criteria</h4>
+                                    <h4 >Matching Criteria</h4>
                                     <p *ngFor="let match of jobdetailscustomer?.MatchingCrieterias" >
                                         <ng-container *ngIf="match?.ParameerId==1" > 
                                           Domain: {{match?.Percentage}}%
@@ -189,7 +189,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
-                                    <h4 class="c_93A2BB">Technical Team for Screening</h4>
+                                    <h4 >Technical Team for Screening</h4>
                                     <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
                                         {{team?.FirstName}} {{team?.LastName}}
                                     </p>
