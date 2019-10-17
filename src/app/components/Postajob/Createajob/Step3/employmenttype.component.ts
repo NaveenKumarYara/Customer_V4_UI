@@ -177,7 +177,12 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
             .subscribe(data => {
                 this.Skill_DATA = data;
                 this.Skill_DATAFiltered = data.map(x => Object.assign({}, x));
+                if(this.appService.skillPostData != null)
+                {
+                    this.skillPostDataList = this.appService.skillPostData;
+                }else{
                 this.skillPostDataList = this.appService.skillDataList;
+                }
                 this.SkillDataList = new Array<SkillData>();
                     this.skillPostDataList.forEach(temp => {
                         this.selectedSkillData = new SkillData();
@@ -189,7 +194,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
                         if (index > -1)  {
                         this.Skill_DATAFiltered.splice(index, 1);
                     }
-                    });
+                    }); 
             });
 
         // this.populateSalaryTypes();

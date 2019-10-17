@@ -40,6 +40,7 @@ export class PostajobComponent implements OnInit {
   this.appService.customerUsers = [];
   this.appService.customerUserChanged = new Subject<PjTechnicalTeam[]>();
   this.appService.skillDataList = [];
+  this.appService.skillPostData = [];
   this.appService.skillDataListChanged = new Subject<SkillPostData[]>();
   this.appService.addedresponsibilities = [];
   this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
