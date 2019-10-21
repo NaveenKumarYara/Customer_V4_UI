@@ -177,11 +177,13 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
             .subscribe(data => {
                 this.Skill_DATA = data;
                 this.Skill_DATAFiltered = data.map(x => Object.assign({}, x));
-                if(this.appService.skillPostData != null)
+                console.log("Sadsadsadsa",this.appService.skillPostData);
+                if(this.appService.skillDataList.length>0)
                 {
-                    this.skillPostDataList = this.appService.skillPostData;
-                }else{
-                this.skillPostDataList = this.appService.skillDataList;
+                    this.skillPostDataList = this.appService.skillDataList;
+                }else
+                {
+                this.skillPostDataList = this.appService.skillPostData;
                 }
                 this.SkillDataList = new Array<SkillData>();
                     this.skillPostDataList.forEach(temp => {

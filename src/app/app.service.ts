@@ -60,6 +60,7 @@ export class AppService {
 
   addSkillslist: SkillData[] = [];
   skillPostData: SkillPostData[] = [];
+  skillPostDataChanged=new Subject<SkillPostData[]>();
 
   customerUsers: PjTechnicalTeam[] = [];
   customerUserChanged = new Subject<PjTechnicalTeam[]>();
