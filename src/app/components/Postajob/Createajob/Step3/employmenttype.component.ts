@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, OnDestroy, Output } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd  } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -177,7 +177,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
             .subscribe(data => {
                 this.Skill_DATA = data;
                 this.Skill_DATAFiltered = data.map(x => Object.assign({}, x));
-                this.skillPostDataList = this.appService.skillDataList;
+                console.log("Sadsadsadsa",this.appService.skillPostData);
+                if(this.appService.skillDataList.length>0)
+                {
+                    this.skillPostDataList = this.appService.skillDataList;
+                }else
+                {
+                this.skillPostDataList = this.appService.skillPostData;
+                }
                 this.SkillDataList = new Array<SkillData>();
                     this.skillPostDataList.forEach(temp => {
                         this.selectedSkillData = new SkillData();
@@ -189,7 +196,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
                         if (index > -1)  {
                         this.Skill_DATAFiltered.splice(index, 1);
                     }
-                    });
+                    }); 
             });
 
         // this.populateSalaryTypes();
@@ -208,6 +215,14 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         //   this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
         //   this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
         // }
+
+             //Placed for Scroll to top on next step
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
     }
     //   minAnnualChangeStart(changeContext: ChangeContext): void {
     //     // this.logText += `minAnnualChangeStart(${this.getChangeContextString(changeContext)})\n`;

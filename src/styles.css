@@ -12947,6 +12947,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-color: #ACB0F3
 }
 
+/*Color for invited*/
+
+.page--job-details .status.Invited {
+    background-color: #5f99e9;
+}
+
+
 .page--job-details .ui-badge {
     padding: 4px 10px;
     max-width: 140px;
@@ -14195,7 +14202,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--job-details #selectedJobDetails .group h4 {
-    font-size: 1.125rem;
+    font-size: 1.025rem;
     color: #41536E;
     margin-bottom: 15px;
     font-weight: 500;
