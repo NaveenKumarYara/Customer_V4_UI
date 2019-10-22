@@ -126,7 +126,12 @@
                                 <div class="group">
                                     <h4 >Education Criteria</h4>
                                     <p *ngFor= "let education of jobdetailscustomer?.EducationDetails">
-                                        {{education?.QualificationName}}
+                                        <ng-container *ngIf="education?.QualificationName!=null ||education?.QualificationName!='' ">
+                                                {{education?.QualificationName}}
+                                        </ng-container>
+                                        <ng-container *ngIf="education?.QualificationName==null ||education?.QualificationName=='' ">
+                                          N/A
+                                        </ng-container>
                                     </p>
                                 </div>
                             </div>
