@@ -145,15 +145,19 @@ editMode: string;
       // // localStorage.setItem('clientName', this.eJclient.ClientName );
       this.appService.clientModel.next(this.eJclient);
       //Matchingcriteria
-      for (const team of this.jobdetailscustomer.MatchingCrieterias) {
+      // for (const team of this.jobdetailscustomer.MatchingCrieterias) {
+        for ( var i= 0; i<this.jobdetailscustomer.MatchingCrieterias.length;i++) {
         const skill = new SkillPostData();
-        skill.ParameerId = team.ParameerId;
-        skill.Percentage = team.Percentage;
+        skill.ParameerId = this.jobdetailscustomer.MatchingCrieterias[i].ParameerId;
+        skill.Percentage = this.jobdetailscustomer.MatchingCrieterias[i].Percentage;
         this.skillList.push(skill);
       }
       // this.appService.skillDataList=(this.jobdetailscustomer.MatchingCrieterias);
         this.appService.skillDataList = [];
-      this.appService.skillDataList = this.skillList;
+        this.appService.skillPostData = [];
+        this.appService.skillDataList = this.skillList;
+        this.appService.skillPostData = this.skillList;
+
       this.appService.skillDataListChanged.next(this.appService.skillDataList);
 
       // category
