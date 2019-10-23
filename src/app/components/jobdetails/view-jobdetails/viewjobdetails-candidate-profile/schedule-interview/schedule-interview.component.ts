@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import {CustomerContacts} from '../../../../../../models/customercontacts';
 import { AppService } from '../../../../../app.service';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
@@ -50,6 +51,7 @@ export class ScheduleInterviewComponent implements OnInit {
   processSelection: number;
   @Input() jobid: number;
   managersList: Observable<CustomerUsers[]>;
+  customercontacts : CustomerContacts[];
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
   selectedUserName = '';
@@ -105,11 +107,20 @@ export class ScheduleInterviewComponent implements OnInit {
   this.deleteTeammember(0);
  }
 
+ GetCustomerContacts()
+  {
+    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+      debugger
+      this.customercontacts = res;
+  });
+  }
+
   ngOnInit() {
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.GetInterView();
     this.GetType();
+    this.GetCustomerContacts();
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(

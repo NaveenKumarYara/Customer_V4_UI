@@ -19,6 +19,7 @@ import {getDetails} from '../../../models/getDetails';
 import { JobdetailsService } from '../../../../jobdetails/jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
+import {CustomerContacts} from '../../../../../../models/customercontacts';
 import { Time } from '@angular/common';
 import { aboutcompany } from '../../../../company-profile/aboutcompany/aboutcompany';
 declare var $: any;
@@ -59,6 +60,7 @@ export class UpdateInterviewComponent implements OnInit {
   @Input() jobid: number;
   jobinterviewlist = new getDetails();
   managersList: Observable<CustomerUsers[]>;
+  customercontacts : CustomerContacts[];
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
   selectedUserName = '';
@@ -146,10 +148,19 @@ export class UpdateInterviewComponent implements OnInit {
   this.deleteTeammember(0);
  }
 
+ GetCustomerContacts()
+ {
+   return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+     debugger
+     this.customercontacts = res;
+ });
+ }
+
   ngOnInit() {
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.GetInterView();
+    this.GetCustomerContacts();
     this.GetInterviewDetails(this.data.jobId,this.data.ProfileId);
     this.GetType();
     this.teammemberslist = this.appService.getTeammembers();
