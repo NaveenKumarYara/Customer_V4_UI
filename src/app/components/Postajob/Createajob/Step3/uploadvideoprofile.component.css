@@ -21,3 +21,17 @@
 .wrap-icon label {
     font-weight: normal;
 }
+
+/*Added enhancement styles on 23-10-2019 */
+.d-inline-block label img, label p{
+    cursor: pointer;
+}
+.video-scrollbar video{
+height: 110px;
+}
+.video-scrollbar  a{
+    cursor: pointer;
+    }
+.video-scrollbar .video-upload-control{
+margin-bottom:10px;
+}
