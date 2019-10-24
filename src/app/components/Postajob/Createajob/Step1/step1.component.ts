@@ -193,6 +193,8 @@ if (this.appService.isDrafted.value != null) {
         this.insertJob.JobId = data;
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
+    localStorage.setItem('Item', false.toString());
+
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
