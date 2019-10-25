@@ -12893,6 +12893,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.03em;
+    cursor: default;
 }
 
 .page--job-details .status.Withdrawn {
@@ -13624,6 +13625,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 0.875rem;
     letter-spacing: 0.03em;
     margin-bottom: 5px;
+    cursor: default;
 }
 
 .page--job-details #applied .ui-badge {

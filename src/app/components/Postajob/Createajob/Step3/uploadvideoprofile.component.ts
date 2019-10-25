@@ -31,7 +31,11 @@ export class UploadvideoprofileComponent implements OnInit {
     this.createVideoForm();
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetVideoSizzle();
+    this.appService.currentVideo.subscribe((data) => {
+      this.videoProfile = data; // Preview of uploaded Video
+    });
   }
+  videoProfile: any;
 
   createVideoForm() {
     this.saveImage = this.fb.group({
@@ -177,10 +181,16 @@ export class UploadvideoprofileComponent implements OnInit {
     _formData.append('VideoFile', this.currentVideoUpload);
     _formData.append('Model', request);
     this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
-      this.toastr.success('video upload successful', 'Success!');
+   
+      this.toastr.success('Video Uploaded Successfully', 'Success!');
       setTimeout(() => {
           this.toastr.dismissToast;
       }, 3000);
+      // Preview of uploaded Video
+      this.appService.currentVideo.subscribe((data) => {
+        this.videoProfile = data;
+      // Preview of uploaded Video
+      });
       $('#btn-upload-videofile').prop('disabled', false);
       this.uploadVideofile = data;
       this.appService.updateVideoProfile(this.uploadVideofile);
@@ -195,7 +205,7 @@ export class UploadvideoprofileComponent implements OnInit {
     this._service.PostService(this.saveVideo.value, 'IdentityAPI/api/SaveVideo')
       .subscribe(data => {
           //alert('video upload successful');
-          this.toastr.success('video upload successful', 'Success!');
+          this.toastr.success('Video Uploaded Successfully', 'Success!');
           setTimeout(() => {
               this.toastr.dismissToast;
           }, 3000);

@@ -178,7 +178,7 @@ export class Step3Component implements OnInit {
     // var candidateId = +candidateUserId;
     const scheduleIntwdialogRef = this.dialog.open(UploadvideoprofileComponent,
       {
-        width: '750',
+        width: '850px',
         position: {right : '0px'},
         height : '750px',
         data: {
