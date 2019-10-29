@@ -12,10 +12,8 @@
   <!--Tab View-->
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="card manage-uploads clearfix">
-
       <div class="tab-content">
         <div id="sendEmail" class="tab-pane fade active in  w-50">
-
           <!--APR-12-->
           <!-- <form [formGroup]="inviteform"  (ngSubmit)="SaveInvite()">
             
@@ -39,14 +37,16 @@
           <form [formGroup]="inviteform" (ngSubmit)="SaveInvite()">
             <div class="input-group col-sm-12 pt-2 p-rel">
               <div class="clearfix">&nbsp;</div>
-              <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto" autocomplete="new-email" type="email" multiple
-                name="inviteEmail" cols="30" rows="7" required>
+              <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+                autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
             </textarea>
-            <div *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)" class="error1">
+              <div
+                *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
+                class="error1">
                 <div *ngIf="inviteform.controls['inviteEmail']">
-                    Incorrect Email.
+                  Incorrect Email.
                 </div>
-            </div>
+              </div>
             </div>
             <div class="clearfix">&nbsp;</div>
             <div class="col-sm-12 plr-0">
@@ -62,31 +62,29 @@
             <table class="table table-striped">
               <thead *ngIf="jobData?.length>0">
                 <tr>
+                  <th scope="col"></th>
                   <th scope="col">Email Address</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let job of jobData; let i=index">
-               <ng-container *ngIf="i<5">
-                 <td>{{job?.Email}}</td>
-                 <ng-container *ngIf="job?.ProfileId == null">
-                    <td>Invited</td>
-                 </ng-container>
-                 <ng-container *ngIf="job?.ProfileId > 0">
-                    <td>Profile Created</td>
-                 </ng-container>
-                 
-</ng-container>
-               
-                
+                  <ng-container *ngIf="i<5">
+                    <td><img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" width="24" alt="img"></td>
+                    <td>{{job?.Email}}</td>
+                    <ng-container *ngIf="job?.ProfileId == null">
+                      <td>Invited</td>
+                    </ng-container>
+                    <ng-container *ngIf="job?.ProfileId > 0">
+                      <td>Profile Created</td>
+                    </ng-container>
+                  </ng-container>
                 </tr>
-              
               </tbody>
             </table>
           </div>
-       
-          
+
+
 
           <!--Invite Status Code Ends-->
 
