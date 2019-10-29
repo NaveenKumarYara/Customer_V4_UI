@@ -57,12 +57,11 @@
           </form>
           <div class="clearfix">&nbsp;</div>
           <!--Invite Status Code Starts-->
-          <!-- <div class="invite-profile-status">
-            <h3>Invite Profile Status</h3>
+          <div class="invite-profile-status">
+            <h3 *ngIf="jobData?.length>0">Invite Profile Status</h3>
             <table class="table table-striped">
-              <thead>
+              <thead *ngIf="jobData?.length>0">
                 <tr>
-                    <th scope="col">#</th>
                   <th scope="col">Email Address</th>
                   <th scope="col">Status</th>
                 </tr>
@@ -85,7 +84,7 @@
               
               </tbody>
             </table>
-          </div> -->
+          </div>
        
           
 
