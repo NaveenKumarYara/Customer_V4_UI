@@ -72,14 +72,14 @@
                   <ng-container *ngIf="i<5">
                     <td *ngIf="job?.CImage!=null"><img class="img-circle" src="{{job?.CImage}}" width="24" alt="img"></td>
                     <td>{{job?.Email}}</td>
-                    <ng-container *ngIf="job?.ProfileId == null && job?.SkillProfileId==null">
+                    <ng-container *ngIf="job?.ProfileId == null && job?.SkillProfileId == null">
                       <td>Invited</td>
-                    </ng-container>
-                    <ng-container *ngIf="job?.ProfileId > 0 && job?.SkillProfileId==null">
-                      <td>Signed up</td>
                     </ng-container>
                     <ng-container *ngIf="job?.ProfileId > 0 && job?.SkillProfileId > 0 ">
                       <td>Profile Created</td>
+                    </ng-container>
+                    <ng-container *ngIf="job?.ProfileId > 0 && job?.SkillProfileId == null">
+                      <td>Signed up</td>
                     </ng-container>
                   </ng-container>
                 </tr>
