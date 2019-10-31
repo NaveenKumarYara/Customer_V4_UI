@@ -109,6 +109,13 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
       
     })($);
 
+    $('#whitepapers_input').change(function() {
+      var i = $(this).prev('label').clone();
+      var file = $('#whitepapers_input')[0].files[0].name;
+      $(this).next('.file-label').text(file);
+    });
+
+
   }
 
   ClearThevalues()
