@@ -147,23 +147,25 @@
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4 >Category</h4>
-                                    <p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory!=''">
                                         {{jobdetailscustomer?.JobInfo?.JobCategory}}
                                     </p>
-                                    <!-- <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory==''">
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory==''">
                                       N/A
-                                    </p> -->
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4 >Department</h4>
                                     <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
-                                        {{dept?.DepartmentName}}
+                                        <ng-container *ngIf="jobdetailscustomer?.JobDepartments?.length!=0">
+                                                {{dept?.DepartmentName}}
+                                        </ng-container>
                                     </p>
-                                    <!-- <p *ngIf="jobdetailscustomer?.JobDepartments?.DepartmentName==null">
+                                    <p *ngIf="jobdetailscustomer?.JobDepartments?.length==0">
                                         N/A
-                                    </p> -->
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -178,6 +180,7 @@
                                 <div class="group">
                                     <h4 >Matching Criteria</h4>
                                     <p *ngFor="let match of jobdetailscustomer?.MatchingCrieterias" >
+                                    <ng-container *ngIf="jobdetailscustomer?.MatchingCrieterias.length!=0">
                                         <ng-container *ngIf="match?.ParameerId==1" > 
                                           Domain: {{match?.Percentage}}%
                                         </ng-container>
@@ -190,14 +193,23 @@
                                         <ng-container *ngIf="match?.ParameerId==4">
                                            Skills: {{match?.Percentage}}%
                                         </ng-container>
+                                    </ng-container>
                                     </p>
+                                    <P *ngIf="jobdetailscustomer?.MatchingCrieterias.length==0">
+                                       N/A
+                                    </P>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="group">
                                     <h4 >Technical Team for Screening</h4>
                                     <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
-                                        {{team?.FirstName}} {{team?.LastName}}
+                                        <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam.length!=0">
+                                                {{team?.FirstName}} {{team?.LastName}}
+                                        </ng-container>
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.TechnicalTeam.length==0">
+                                       N/A
                                     </p>
                                 </div>
                             </div>
