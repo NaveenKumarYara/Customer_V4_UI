@@ -26,21 +26,21 @@ spec:
             memory: 300M
         env:
         - name: Identity_URL
-          value: "http://identityapi.aks.#{namespace}#.arytic.com"
+          value: "https://identityapi.aks.#{namespace}#.arytic.com"
         - name: Email_URL
-          value: "http://emailapi.aks.#{namespace}#.arytic.com"
+          value: "https://emailapi.aks.#{namespace}#.arytic.com"
         - name: Jobs_URL
-          value: "http://jobsapi.aks.#{namespace}#.arytic.com"
+          value: "https://jobsapi.aks.#{namespace}#.arytic.com"
         - name: Profile_URL
-          value: "http://profileapi.aks.#{namespace}#.arytic.com"
+          value: "https://profileapi.aks.#{namespace}#.arytic.com"
         - name: Referral_URL
-          value: "http://referalapi.aks.#{namespace}#.arytic.com"
+          value: "https://referalapi.aks.#{namespace}#.arytic.com"
         - name: Main_URL
-          value: "http://aks.#{namespace}#.arytic.com"
+          value: "https://aks.#{namespace}#.arytic.com"
         - name: CuMain_URL
-          value: "http://customer.aks.#{namespace}#.arytic.com"
+          value: "https://customer.aks.#{namespace}#.arytic.com"
         - name: Sharing_URL
-          value: "http://socialapi.aks.#{namespace}#.arytic.com"
+          value: "https://socialapi.aks.#{namespace}#.arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:
