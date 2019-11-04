@@ -35,6 +35,7 @@ import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs
 import {ProgressBarModule} from 'angular-progress-bar';
 import {ShareJobComponent} from './view-jobdetails/share-job/sharejob.component';
 import {UniqueMonthYearPipe} from './view-jobdetails/months.pipe';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,6 +51,7 @@ import {UniqueMonthYearPipe} from './view-jobdetails/months.pipe';
     SharedModule,
     HttpClientModule,
     NgxSpinnerModule,
+    TagCloudModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule
     // ,

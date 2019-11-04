@@ -77,7 +77,7 @@ import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajo
 // import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { GetCandidateprofileComponent } from './components/GetProfileDetails/GetProfile.component';
-
+import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
 
@@ -152,6 +152,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     SharedModule,
     CompanyProfileModule,
     DashboardModule,
+    TagCloudModule,
     NgIdleKeepaliveModule.forRoot(),
     ToastModule.forRoot(), BrowserAnimationsModule,
     AccountsettingsModule,
