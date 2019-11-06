@@ -36,6 +36,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
 import {ShareJobComponent} from './view-jobdetails/share-job/sharejob.component';
 import {UniqueMonthYearPipe} from './view-jobdetails/months.pipe';
 import { TagCloudModule } from 'angular-tag-cloud-module';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 @NgModule({
   imports: [
     CommonModule,
@@ -52,6 +53,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
     HttpClientModule,
     NgxSpinnerModule,
     TagCloudModule,
+    ChartsModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule
     // ,
