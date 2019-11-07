@@ -41,7 +41,7 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="stats">
-                      <h1>10 yer</h1>
+                      <h1>{{profileview?.ProfileBasicInfo?.TotalExperience}} Years</h1>
                       <small>Professional Experience</small>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="stats">
-                      <h1>3</h1>
+                      <h1> {{profileview?.ProfileBasicInfo?.Achievements?.length || 0}}</h1>
                       <small>Awards</small>
                     </div>
                   </div>
@@ -73,13 +73,21 @@
               <div class="d-list">
                 <ul class="c-content">
                   <li class="mail">
-                    name@domain.com
+                      {{profileview?.ProfileBasicInfo?.UserName}}
                   </li>
                   <li class="mobile">
-                    9985985985
+                    {{profileview?.ProfileBasicInfo?.MobilePhone}}
                   </li>
                   <li class="location">
-                    4041 Kingston Ct Suite B, Marietta, GA 30067, United States
+                  
+                      <ng-container *ngIf="profileview?.ProfileBasicInfo?.CityName!=null">
+                        {{profileview?.ProfileBasicInfo?.CityName}},
+                      </ng-container>
+                      <ng-container *ngIf="profileview?.ProfileBasicInfo?.StateName!=null">
+                        {{profileview?.ProfileBasicInfo?.StateName}}.
+                      </ng-container>
+                      {{profileview?.ProfileBasicInfo?.CountryName}}
+                  
                   </li>
 
                 </ul>
@@ -174,14 +182,15 @@
                     <li class="clearfix">
                       <div class="badge-circle"></div>
                       <div class="details">
-                        <h3 class="title"><span class="domain">Business Analyst </span>, <span>Social Commerce
-                            Ventures</span></h3>
+                        <ng-container *ngFor="let exp of profileview?.ProfileExperience | slice:0:5">
+                        <h3 class="title"><span class="domain">{{exp.JobRole}} </span>, <span>{{exp.CompanyName}}</span></h3>
                         <div class="info">
-                          <small class="name">Jan 1,2016 - Present</small>
+                          <small class="name">{{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}</small>
                         </div>
+                      </ng-container>
                       </div>
                     </li>
-                    <li class="clearfix">
+                    <!-- <li class="clearfix">
                       <div class="badge-circle"></div>
                       <div class="details">
                         <h3 class="title"><span class="domain">Business Analyst </span>, <span>Social Commerce
@@ -200,7 +209,7 @@
                           <small class="name">Jan 1,2016 - Present</small>
                         </div>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -224,12 +233,16 @@
                     <li class="clearfix">
                       <div class="badge-circle "></div>
                       <div class="details">
-                        <h3 class="title">Lorem Ipsum is simply dummy text of the printing and typesetting
-                          industry.</h3>
-
+                          <ng-container *ngFor="let roles of profileview?.ProfileExperience">
+                              <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
+                                <ng-container *ngFor="let role of roles?.Roles">
+                                    <h3 class="title">{{role}}</h3> 
+                                </ng-container>
+                              </ng-container>
+                            </ng-container>
                       </div>
                     </li>
-                    <li class="clearfix">
+                    <!-- <li class="clearfix">
                       <div class="badge-circle "></div>
                       <div class="details">
                         <h3 class="title">Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -260,7 +273,7 @@
                           industry.</h3>
 
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -282,9 +295,11 @@
                         <span>Domain</span>
                       </h1>
                       <div class="p-1-0">
-                          <div class="status Invited">Banking</div>
-                          <div class="status Invited">Finance</div>
-                          <div class="status Invited">Stock Exchange</div>
+                    <ng-container *ngFor=" let domain of profileview?.ProfileDomain ">
+                        <div class="status Invited"> {{domain.DomainName}}</div>
+                        <!-- <div class="status Invited">Finance</div>
+                        <div class="status Invited">Stock Exchange</div> -->
+                    </ng-container>
                       </div>
                 </div>
               <div class="p-1">
@@ -340,9 +355,11 @@
                       <span>Qualification</span>
                     </h1>
                     <div class="p-1-0">
-                        <div class="label-active">Master in Computer Application</div>
-                        <div>University Name</div>
-                        <div>2006 - 2009</div>
+                      <ng-container *ngFor="let education of profileview?.Education ">
+                        <div class="label-active">{{education.QualificationName}} in {{education.Specialization}}</div>
+                        <div>{{education.InstituteORUniversity}}</div>
+                        <div>{{education.FromYear}} - {{education.ToYear}}</div>
+                      </ng-container>
                     </div>
               </div>
               <div class="p-1">
@@ -359,13 +376,15 @@
                     </h1>
                     <div class="p-1-0">
                       <div class="d-in-b">
-                        <img src="../../../../../../assets/images/Certifications/aws.jpg" >
-                          <div class="label-active">AWS Cloud Architect</div>
+                        <ng-container *ngFor="let certificate of profileview?.Certifications " >
+                        <img src="certificate.ImageUrl" >
+                          <div class="label-active">{{certificate.CertificationName}}</div>
+                        </ng-container>
                       </div>
-                      <div class="d-in-b">
+                      <!-- <div class="d-in-b">
                           <img src="../../../../../../assets/images/Certifications/microsoft.jpg">
                           <div class="label-active">.Net Certification</div>
-                      </div>
+                      </div> -->
                     </div>
               </div>
 
@@ -381,15 +400,19 @@
                     </h1>
                     <div class="p-1-0">
                       <div class="d-in-b">
-                          <img src="../../../../../../assets/images/manager.svg" class="w-50" >
-                          <div class="label-active">Team Lead</div>
-                          <div>2006 - 2008</div>
+                        <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+                          <ng-container *ngFor="let achivement of achivements?.Achievements" >
+                            <img src="../../../../../../assets/images/manager.svg" class="w-50" >
+                            <div class="label-active">{{achivement}}</div>
+                            <div>{{achivements.StartDate}} - {{achivements.EndDate}}</div>
+                          </ng-container>
+                        </ng-container>
                       </div>
-                      <div class="d-in-b">
+                      <!-- <div class="d-in-b">
                           <img src="../../../../../../assets/images/idea.svg" class="w-50" >
                           <div class="label-active">Product Lead</div>
                           <div>2008 - 2011</div>
-                      </div>
+                      </div> -->
                     </div>
               </div>
               <div class="p-1">
