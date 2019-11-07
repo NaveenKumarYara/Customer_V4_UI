@@ -179,16 +179,17 @@
                 </h1>
                 <div class="timeline-wrap clearfix">
                   <ul class="timeline pro-exp">
-                    <li class="clearfix">
-                      <div class="badge-circle"></div>
+                    <li class="clearfix" *ngFor="let exp of profileview?.ProfileExperience | slice:0:5">
+                        <ng-container >
+                      <div class="badge-circle">                     </div>
                       <div class="details">
-                        <ng-container *ngFor="let exp of profileview?.ProfileExperience | slice:0:5">
                         <h3 class="title"><span class="domain">{{exp.JobRole}} </span>, <span>{{exp.CompanyName}}</span></h3>
                         <div class="info">
                           <small class="name">{{exp.StartDate | date:'mediumDate'}} - {{exp.EndDate | date:'mediumDate'}}</small>
                         </div>
-                      </ng-container>
                       </div>
+
+                    </ng-container>
                     </li>
                     <!-- <li class="clearfix">
                       <div class="badge-circle"></div>
@@ -230,17 +231,24 @@
                 </h1>
                 <div class="timeline-wrap clearfix">
                   <ul class="timeline border0">
-                    <li class="clearfix">
-                      <div class="badge-circle "></div>
-                      <div class="details">
-                          <ng-container *ngFor="let roles of profileview?.ProfileExperience">
+                    <li class="clearfix" *ngFor="let roles of profileview?.ProfileExperience">
+                      
+                         
+                          
                               <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
+                                  
                                 <ng-container *ngFor="let role of roles?.Roles">
-                                    <h3 class="title">{{role}}</h3> 
+                                    <div class="badge-circle "></div>
+                                    <div class="details">
+
+                                    <h3 class="title">{{role}}</h3>                                          
+                                   </div>
                                 </ng-container>
                               </ng-container>
-                            </ng-container>
-                      </div>
+                              <ng-container *ngIf="roles.length==0 || roles.Roles==null">
+                                  No Roles Added
+                                </ng-container>
+                     
                     </li>
                     <!-- <li class="clearfix">
                       <div class="badge-circle "></div>
@@ -295,11 +303,16 @@
                         <span>Domain</span>
                       </h1>
                       <div class="p-1-0">
+                          <ng-container *ngIf="profileview?.ProfileDomain.length==0">
+                               N/A
+                            </ng-container>
                     <ng-container *ngFor=" let domain of profileview?.ProfileDomain ">
                         <div class="status Invited"> {{domain.DomainName}}</div>
                         <!-- <div class="status Invited">Finance</div>
                         <div class="status Invited">Stock Exchange</div> -->
+                        
                     </ng-container>
+
                       </div>
                 </div>
               <div class="p-1">
@@ -358,7 +371,7 @@
                       <ng-container *ngFor="let education of profileview?.Education ">
                         <div class="label-active">{{education.QualificationName}} in {{education.Specialization}}</div>
                         <div>{{education.InstituteORUniversity}}</div>
-                        <div>{{education.FromYear}} - {{education.ToYear}}</div>
+                        <div>{{education.ToYear}}</div>
                       </ng-container>
                     </div>
               </div>
@@ -377,8 +390,11 @@
                     <div class="p-1-0">
                       <div class="d-in-b">
                         <ng-container *ngFor="let certificate of profileview?.Certifications " >
-                        <img src="certificate.ImageUrl" >
+                        <img src="{{certificate.ImageUrl}}" >
                           <div class="label-active">{{certificate.CertificationName}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="profileview?.Certifications?.length==0">
+                            N/A
                         </ng-container>
                       </div>
                       <!-- <div class="d-in-b">
@@ -404,8 +420,11 @@
                           <ng-container *ngFor="let achivement of achivements?.Achievements" >
                             <img src="../../../../../../assets/images/manager.svg" class="w-50" >
                             <div class="label-active">{{achivement}}</div>
-                            <div>{{achivements.StartDate}} - {{achivements.EndDate}}</div>
+                            <div>{{achivements.StartDate | date:'mediumDate'}} - {{achivements.EndDate | date:'mediumDate'}}</div>
                           </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileExperience.length==0">
+                              No Achievements Added
+                            </ng-container>
                         </ng-container>
                       </div>
                       <!-- <div class="d-in-b">
