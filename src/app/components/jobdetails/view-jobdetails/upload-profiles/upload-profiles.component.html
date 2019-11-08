@@ -12,25 +12,36 @@
         
         <div class="tab-content">
           <div id="uploadProfiles" class="tab-pane fade active in w-50">
-            <h5>Please upload maximum of 5 profiles </h5>
-            <div class="file btn btn-lg btn-primary">
-              Browse & Upload
-              <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
+            <div class="upload-border">
+                <div class="flex_items_center pointer" (click)="browse.click()">
+                  <div class="d-block">
+                      <i aria-hidden="true" class="fa fa-cloud-upload fa-5"></i>
+                      <div class="file">
+                          <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
+                      </div>
+                      <div>Browse & Upload</div>
+                  </div>
+                  </div>
             </div>
+            <h5>Please upload maximum of 5 profiles </h5>
+            <!-- <div class="file btn btn-lg btn-primary"> -->
+              <!-- Browse & Upload -->
+              <!-- <input matInput type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)"> -->
+            <!-- </div> -->
 
-            
-
-
-
-            <br/>
-            <br/>
 
             <div class="d-flex justify-content-between mb-3 w-100">
-              <div class="p-2">
-                <input class='d-inline' type="checkbox" checked [(ngModel)]="emailCheck">
-            <h5 class='d-inline top--3'>Send Email for uploaded candidates</h5>
-            <input class='d-inline' type="checkbox" >
-            <h5 class='d-inline top--3'>Make it Public</h5>
+              <div class="p-2 upload-input">
+                  <label class="radio checkbox">
+                      <input type="checkbox"   class="radio-input" checked [(ngModel)]="emailCheck">
+                       <span class="radio-btn"></span> 
+                       <span>Send Email for uploaded candidates</span>
+                     </label>
+                     <label class="radio checkbox">
+                        <input type="checkbox"   class="radio-input" >
+                         <span class="radio-btn l11"></span> 
+                         <span>Make it Public</span>
+                       </label>
               </div>
               
               <div class="p-2 upload-alerts">
