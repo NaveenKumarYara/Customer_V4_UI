@@ -24547,6 +24547,9 @@ table .table-prl-0 td {
     padding: 3px 10px;
     font-weight: normal;
 }
+.badge.badge-light.ptb-3rl-10{
+    background-color: #9eabc0;
+}
 
 .upload-border{
     border: 1px dashed #b6c2d6;
