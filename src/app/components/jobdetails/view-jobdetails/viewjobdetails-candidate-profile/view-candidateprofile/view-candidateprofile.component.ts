@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject , ViewChild, ElementRef} from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
+import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
 declare var $: any;
 
@@ -20,9 +21,11 @@ export class ViewCandidateprofileComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
+  email:any;
   profileview: any;
   profileId: any;
   list: any;
+  noTest:boolean=false;
   otherSkills: any = [];
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -31,7 +34,10 @@ export class ViewCandidateprofileComponent implements OnInit {
     overflow: false,
     realignOnResize: true,
   };
-
+  graphData: any[] = [];
+  graphLabel: any[] = [];
+  graphLabelList: LegendList[] = [];
+  @ViewChild('testChart') testChart: ElementRef;
   skilllist: CloudData[];
 
   chartOptions = {
@@ -39,8 +45,8 @@ export class ViewCandidateprofileComponent implements OnInit {
   };
 
   chartData = [
-    { data: [330, 600, 260, 700,200], label: 'Account A' },
-  ];
+     { data: [330, 600, 260, 700,200], label: 'Account A' },
+   ];
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness','Neuroticism'];
 
@@ -70,6 +76,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     cloudspan();
     this.GetCandidateSKills();
     this.GetUserProfileInfo();
+    this.GetCandidatePersonalityResult();
   }
 
   onChartClick(event) {
@@ -82,6 +89,83 @@ export class ViewCandidateprofileComponent implements OnInit {
       data => {
         this.skilllist = data;
       })
+  }
+
+  GetCandidatePersonalityResult()
+  {
+    this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=',this.data.ProfileId).subscribe(
+    email => {
+    this.email=email.UserName;
+    this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetQuestionnaireGroupResult?mail=',this.email).subscribe(
+      data => {
+        if(data.length>0)
+        {
+        this.graphData = [];
+        this.graphLabel = [];
+        var userResponse = data;
+        this.graphLabelList = [];
+
+        var count = 0;
+        if (this.testChart) {
+          var testChartCanvas = this.testChart.nativeElement.getContext('2d');
+          userResponse.forEach((a, index) => {
+            this.graphData.push(a.response.toFixed(2));
+            this.graphLabel.push(a.groupName);
+            this.graphLabelList.push(new LegendList());
+            this.graphLabelList[index].GroupLabel = (a.groupName);
+            this.graphLabelList[index].GroupPer = (a.response.toFixed(2));
+          });
+
+          this.graphLabelList[0].GroupColor = ('rgba(101,105, 169, 1)');
+          this.graphLabelList[1].GroupColor = ('rgba(63, 184, 179, 1)');
+          this.graphLabelList[2].GroupColor = ('rgba(236, 136, 133, 1)');
+          this.graphLabelList[3].GroupColor = ('rgba(235, 189, 78, 1)');
+          this.graphLabelList[4].GroupColor = ('rgba(100, 164, 137, 1)');
+
+          var weekChart = new Chart(testChartCanvas, {
+            type: 'doughnut',
+            options: {
+              title: {
+                display: true,
+                text: "Personality Test Chart"
+              },
+              legend: {
+                display: false,
+              },
+            },
+            data: {
+              labels: this.graphLabel,
+              render: 'labels',
+              datasets: [{
+                labels: [
+                  'Red',
+                  'Yellow',
+                  'Blue',
+                  'pink',
+                  'black'
+                ],
+                label: '# of Votes',
+                data: this.graphData,
+                backgroundColor: [
+                  'rgba(101,105, 169, 1)',
+                  'rgba(63, 184, 179, 1)',
+                  'rgba(236, 136, 133, 1)',
+                  'rgba(235, 189, 78, 1)',
+                  'rgba(100, 164, 137, 1)'
+                ],
+
+              }
+              ]
+            }
+          });
+        }
+      }
+      else
+      {
+      this.noTest=true;
+      }
+      })
+    })
   }
 
   GetUserProfileInfo() {
@@ -109,4 +193,10 @@ export class ViewCandidateprofileComponent implements OnInit {
 
 
 
+}
+
+export class LegendList {
+  GroupLabel: string;
+  GroupColor: string;
+  GroupPer: string;
 }

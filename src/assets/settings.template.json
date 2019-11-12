@@ -126,5 +126,6 @@
   "GetInviteList":"${Profile_URL}/api/GetCustomerInvitedProfiles?",
   "JobMatchingParameter": "${Jobs_URL}/api/JobSearchMatchingParameters",
   "GetInterviewDetails": "${Jobs_URL}/api/GetJobInterviewByProfileId?",
-  "Arytic":"${Main_URL}"
+  "Arytic":"${Main_URL}",
+  "QuestionbaseUrl": "${Question_URL}"
 }
