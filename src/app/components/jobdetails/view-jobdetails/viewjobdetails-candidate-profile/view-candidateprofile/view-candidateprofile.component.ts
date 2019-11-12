@@ -41,15 +41,20 @@ export class ViewCandidateprofileComponent implements OnInit {
   skilllist: CloudData[];
 
   chartOptions = {
-    responsive: true
+    responsive: true,
+    legend: {
+      labels: {
+        fontSize: 0
+      }
+    }
   };
 
   chartData = [
-     { data: [330, 600, 260, 700,200], label: 'Account A' },
-   ];
+    { data: [330, 600, 260, 700, 200], label: 'Account A' },
+  ];
 
-  chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness','Neuroticism'];
-
+  chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
+  private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private router: Router) {
     //this.preId = sessionStorage.getItem('Preid');
 
@@ -58,15 +63,15 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   ngOnInit() {
     function cloudspan() {
-      setTimeout(cloudAttr, 3000);
+      setTimeout(cloudAttr, 9000);
     }
-    
+
     function cloudAttr() {
 
-      $( ".word-cloud angular-tag-cloud span" ).each(function() {
-        $( this ).addClass("tooltip1")
+      $(".word-cloud angular-tag-cloud span").each(function () {
+        $(this).addClass("tooltip1")
         // $('<div class="tooltip fade top in">'+$( this ).text()+'</div>').appendTo( this );
-        $('<div class="tooltip fade bottom hover-active"><div class="tooltip-arrow"></div><div class="tooltip-inner">'+$( this ).text()+'</div></div>').appendTo( this );
+        $('<div class="tooltip fade bottom hover-active"><div class="tooltip-arrow"></div><div class="tooltip-inner">' + $(this).text() + '</div></div>').appendTo(this);
       });
 
 
@@ -83,8 +88,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     console.log(event);
   }
 
-  GetCandidateSKills()
-  {
+  GetCandidateSKills() {
     this._service.GetService('ProfileAPI/api/GetCandidatePrimarySkill?profileId=', this.data.ProfileId).subscribe(
       data => {
         this.skilllist = data;
@@ -174,22 +178,22 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.profileview = datas;
         // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
-         && (u.ExpInYears != null && u.ExpInMonths != null));
+          && (u.ExpInYears != null && u.ExpInMonths != null));
 
         this.otherSkills = datas.ProfileSkillset.filter(u => (u.ExpInYears === 0 && u.ExpInMonths === 0)
           || (u.ExpInYears == null && u.ExpInMonths == null));
 
-        }, error => {
+      }, error => {
         this._service.DebugMode(error);
       });
+  }
+  add3Dots(string, limit) {
+    const dots = '...';
+    if (string.length > limit) {
+      string = string.substring(0, limit) + dots;
     }
-    add3Dots(string, limit) {
-      const dots = '...';
-      if (string.length > limit) {
-        string = string.substring(0, limit) + dots;
-      }
-        return string;
-    }
+    return string;
+  }
 
 
 
