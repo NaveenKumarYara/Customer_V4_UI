@@ -56,13 +56,13 @@
                 <div class="row pt-1">
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="stats">
-                      <h1>10 +</h1>
+                      <h1>{{profileview?.ProfileExperience?.length}} +</h1>
                       <small>Prestigioue Clients</small>
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="stats">
-                      <h1> {{profileview?.ProfileBasicInfo?.Achievements?.length || 0}}</h1>
+                      <h1> {{profileview?.ProfileAwards || 0}}</h1>
                       <small>Awards</small>
                     </div>
                   </div>
