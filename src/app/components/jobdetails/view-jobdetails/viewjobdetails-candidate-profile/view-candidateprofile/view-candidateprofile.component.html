@@ -138,14 +138,17 @@
                             <span>- Domainance</span>
                             <p>Person places emphasis on accomplishing results</p>
                           </div>
-                          <canvas width="250" height="250" baseChart [chartType]="'doughnut'" [datasets]="chartData"
+                          <!-- <canvas width="250" height="250" baseChart [chartType]="'doughnut'" [datasets]="chartData"
+                            [labels]="chartLabels" [options]="chartOptions" [legend]="true" [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
+                          </canvas> -->
+                          <p *ngIf="noTest==true">
+                             <canvas width="250" height="250" baseChart [chartType]="'doughnut'" [datasets]="chartData"
                             [labels]="chartLabels" [options]="chartOptions" [legend]="true" [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
                           </canvas>
-                          <p *ngIf="noTest==true">
                             Test not performed.
                           </p>
         
-                          <!-- <canvas #testChart width="250" height="250"></canvas> -->
+                         <canvas #testChart width="250" height="250"></canvas> 
                         </div>
 
                   </div>
@@ -168,13 +171,17 @@
                         <!--css tag cloud-->
                         <div class="tb-2_5">
                           <ul class="cloud">
-                            <li class="m1">ANGULAR
-                              <div class="cloud-data">
-                                <div class="data-title">ANGULAR</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
+                            <ng-container *ngFor="let skill of skilllist">
+                                <li class="m{{skill.weight}}">{{skill.text}}
+                                    <div class="cloud-data">
+                                      <div class="data-title" >{{skill.tooltip}}</div>
+                                      <!-- <div>Experience :<b> 4 Years</b></div>
+                                      <div>Rating : <b>04/05</b></div> -->
+                                    </div>
+                                </li>
+                            </ng-container>
+                            
+                            <!-- </li>
                             <li class="m6">PYTHON
                               <div class="cloud-data">
                                 <div class="data-title">PYTHON</div>
@@ -301,7 +308,7 @@
                                 <div>Experience :<b> 4 Years</b></div>
                                 <div>Rating : <b>04/05</b></div>
                               </div>
-                            </li>
+                            </li> -->
                           </ul>
         
                         </div>
@@ -341,7 +348,6 @@
                               {{exp.EndDate | date:'mediumDate'}}</small>
                           </div>
                         </div>
-
                       </ng-container>
                     </li>
                     <!-- <li class="clearfix">
@@ -385,11 +391,8 @@
                 <div class="timeline-wrap clearfix">
                   <ul class="timeline border0">
                     <li class="clearfix" *ngFor="let roles of profileview?.ProfileExperience">
-
-
-
+                      
                       <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
-
                         <ng-container *ngFor="let role of roles?.Roles">
                           <div class="badge-circle "></div>
                           <div class="details">
@@ -398,10 +401,9 @@
                           </div>
                         </ng-container>
                       </ng-container>
-                      <ng-container *ngIf="roles.length==0 || roles.Roles==null">
-                        No Roles Added
-                      </ng-container>
-
+                        <ng-container *ngIf="roles.length==0 || roles.Roles==null">
+                            No Roles Added
+                          </ng-container>
                     </li>
                     <!-- <li class="clearfix">
                       <div class="badge-circle "></div>
