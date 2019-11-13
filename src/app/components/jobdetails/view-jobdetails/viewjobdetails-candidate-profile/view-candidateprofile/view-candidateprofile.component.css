@@ -2861,8 +2861,8 @@ h5.meta.meta-light {
     padding: 0rem 2rem;
 }
 
-.style1 .p-2 {
-    padding: 2rem;
+.style1 .row.h-bg.p-2 {
+    padding: 2rem !important;
 }
 
 .style1 .card-body .stats {

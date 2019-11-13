@@ -46,7 +46,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       labels: {
         fontSize: 0
       }
-    }
+    },
   };
 
   chartData = [
