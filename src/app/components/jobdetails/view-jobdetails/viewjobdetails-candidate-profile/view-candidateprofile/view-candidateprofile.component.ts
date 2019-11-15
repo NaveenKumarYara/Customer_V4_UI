@@ -38,6 +38,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   graphLabel: any[] = [];
   graphLabelList: LegendList[] = [];
   @ViewChild('testChart') testChart: ElementRef;
+  @ViewChild('testChart1') testChart1: ElementRef;
   skilllist: CloudData[];
 
   chartOptions = {
@@ -206,7 +207,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       }
       else
       {
-      this.noTest=true;
+      this.testChart1;
       }
       })
     })
