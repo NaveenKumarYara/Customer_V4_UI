@@ -60,6 +60,46 @@ export class ViewCandidateprofileComponent implements OnInit {
 
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
   }
+  /*dashboard graph*/
+  // public lineChartData: Array<any> = [
+  //   {data: [1, 2, 2, 3, 3, 4, 5], label: 'ANGULAR'},
+  //   {data: [4, 4, 4, 5, 5, 5, 5], label: '.NET'},
+  //   {data: [3, 4, 2, 4, 3, 5, 4], label: 'AWS'}
+  // ];
+  // public lineChartLabels: Array<any> = ['2013', '2014', '2015', '2016', '2017', '2018', '2019'];
+  // public lineChartOptions: any = {
+  //   responsive: true
+  // };
+
+  // public lineChartColors: Array<any> = [
+  //   {
+  //     backgroundColor: 'rgba(172,154,249,0.2)',
+  //     borderColor: 'rgba(172,154,249,1)',
+  //     pointBackgroundColor: 'rgba(172,154,249,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(172,154,249,0.8)'
+  //   },
+  //   { 
+  //     backgroundColor: 'rgba(132,222,203,0.2)',
+  //     borderColor: 'rgba(132,222,203,1)',
+  //     pointBackgroundColor: 'rgba(132,222,203,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(132,222,203,1)'
+  //   },
+  //   { 
+  //     backgroundColor: 'rgba(231, 172, 243,0.2)',
+  //     borderColor: 'rgba(231, 172, 243,1)',
+  //     pointBackgroundColor: 'rgba(231, 172, 243,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(231, 172, 243,0.8)'
+  //   }
+  // ];
+  // public lineChartLegend = true;
+  // public lineChartType = 'line';
+  /*#dashboard graph*/
 
   ngOnInit() {
     function cloudspan() {

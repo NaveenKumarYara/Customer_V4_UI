@@ -3056,3 +3056,44 @@ h5.meta.meta-light {
     left: -117px;
     top: -41px;
 }
+.ccdata{
+    position: relative;
+    display: block;
+}
+.ccdata canvas{
+    width: 300px !important;
+    height: 300px !important;
+    margin: auto;
+}
+/*skill-set badge*/
+.skill-set .skill-data{
+    position: relative;
+    padding: 5px 15px;
+    margin: 3px;
+    background-color: #F1F2F6;
+    display: inline-block;
+}
+.skill-set .skill-data .skill-tooltip{
+    display: none;   
+    top: 22px;
+    left: 0%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    color: #666666;
+    background-color: #fff;
+    font-weight: normal;
+    font-size: 13px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 99999999;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.36);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.36);
+    display: none;
+    padding: 10px 11px;
+}
+.skill-set .skill-data:hover .skill-tooltip{
+    display: block;  
+}
+/*#skill-set badge*/

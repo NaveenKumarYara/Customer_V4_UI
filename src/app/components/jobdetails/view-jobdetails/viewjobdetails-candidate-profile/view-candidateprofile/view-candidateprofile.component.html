@@ -170,146 +170,39 @@
                         </h1>
                         <!--css tag cloud-->
                         <div class="tb-2_5">
-                          <ul class="cloud">
+                          <!-- <div class="ccdata">
+
+                              <canvas id="jobsDetail-week-chart"  baseChart width="400" height="400"
+                              [datasets]="lineChartData"
+                              [labels]="lineChartLabels"
+                              [options]="lineChartOptions"
+                              [colors]="lineChartColors"
+                              [legend]="true"
+                              [chartType]="lineChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                          </div> -->
+                          <div class="skill-set">
+                              <ng-container *ngFor="let skill of skilllist">
+                                  <div class="skill-data">
+                                {{skill.text}}
+                                      <div class="skill-tooltip">
+                                        <div class="data-title" >{{skill.tooltip}}</div>
+                                      </div>
+                                    </div>
+                              </ng-container>
+                              
+
+                          </div>
+                          <!-- <ul class="cloud">
                             <ng-container *ngFor="let skill of skilllist">
                                 <li class="m{{skill.weight}}">{{skill.text}}
                                     <div class="cloud-data">
                                       <div class="data-title" >{{skill.tooltip}}</div>
-                                      <!-- <div>Experience :<b> 4 Years</b></div>
-                                      <div>Rating : <b>04/05</b></div> -->
                                     </div>
                                 </li>
                             </ng-container>
-                            
-                            <!-- </li>
-                            <li class="m6">PYTHON
-                              <div class="cloud-data">
-                                <div class="data-title">PYTHON</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">HTML
-                              <div class="cloud-data">
-                                <div class="data-title">PYTHON</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m5">TYPESCRIPT
-                              <div class="cloud-data">
-                                <div class="data-title">TYPESCRIPT</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m3">CSS
-                              <div class="cloud-data">
-                                <div class="data-title">CSS</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li>JAVASCRIPT
-                              <div class="cloud-data">
-                                <div class="data-title">JAVASCRIPT</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m1">.NET
-                              <div class="cloud-data">
-                                <div class="data-title">.NET</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">SASS
-                              <div class="cloud-data">
-                                <div class="data-title">SASS</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m1">NODEJS
-                              <div class="cloud-data">
-                                <div class="data-title">NODEJS</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">JAVA
-                              <div class="cloud-data">
-                                <div class="data-title">JAVA</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-        
-                            <li class="m8">CMS
-                              <div class="cloud-data">
-                                <div class="data-title">CMS</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">Automated Marketing Software
-                              <div class="cloud-data">
-                                <div class="data-title">Automated Marketing Software</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">Digital Media
-                              <div class="cloud-data">
-                                <div class="data-title">Digital Media</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m3">Email Marketing
-                              <div class="cloud-data">
-                                <div class="data-title">Email Marketing</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">Website Analytics
-                              <div class="cloud-data">
-                                <div class="data-title">Website Analytics</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m5">SEO
-                              <div class="cloud-data">
-                                <div class="data-title">SEO</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">Web Page Design
-                              <div class="cloud-data">
-                                <div class="data-title">Web Page Design</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m2">Social Media Management
-                              <div class="cloud-data">
-                                <div class="data-title">Social Media Management</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li>
-                            <li class="m8">KPI Software
-                              <div class="cloud-data">
-                                <div class="data-title">KPI Software</div>
-                                <div>Experience :<b> 4 Years</b></div>
-                                <div>Rating : <b>04/05</b></div>
-                              </div>
-                            </li> -->
-                          </ul>
+                          </ul>  -->
         
                         </div>
                         <!--#css tag cloud-->
@@ -552,15 +445,17 @@
                   <span>Certifications</span>
                 </h1>
                 <div class="p-1-0">
-                  <div class="d-in-b">
+                  
                     <ng-container *ngFor="let certificate of profileview?.Certifications ">
+                        <div class="d-in-b">
                       <img src="{{certificate.ImageUrl}}">
                       <div class="label-active">{{certificate.CertificationName}}</div>
+                    </div>
                     </ng-container>
                     <ng-container *ngIf="profileview?.Certifications?.length==0">
                       N/A
                     </ng-container>
-                  </div>
+                  
                   <!-- <div class="d-in-b">
                           <img src="../../../../../../assets/images/Certifications/microsoft.jpg">
                           <div class="label-active">.Net Certification</div>
@@ -583,19 +478,22 @@
                   <span>Achievements</span>
                 </h1>
                 <div class="p-1-0">
-                  <div class="d-in-b">
+                  
                     <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+                        
                       <ng-container *ngFor="let achivement of achivements?.Achievements">
+                          <div class="d-in-b">
                         <img src="../../../../../../assets/images/manager.svg" class="w-50">
                         <div class="label-active">{{achivement}}</div>
                         <div>{{achivements.StartDate | date:'mediumDate'}} - {{achivements.EndDate | date:'mediumDate'}}
                         </div>
+                      </div>
                       </ng-container>
                       <ng-container *ngIf="profileview?.ProfileExperience.length==0">
                         No Achievements Added
                       </ng-container>
                     </ng-container>
-                  </div>
+                  
                   <!-- <div class="d-in-b">
                           <img src="../../../../../../assets/images/idea.svg" class="w-50" >
                           <div class="label-active">Product Lead</div>
