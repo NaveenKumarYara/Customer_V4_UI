@@ -2737,9 +2737,9 @@ tr td {
     margin-right: 10px;
 }
 
-.details {
+/* .details {
     max-width: 400px;
-}
+} */
 
 h3.ellipsis {
     white-space: nowrap;
@@ -2968,8 +2968,8 @@ h5.meta.meta-light {
     color: #5693FF;
 }
 .style1 .timeline.pro-exp .title{
-    border-bottom: 1px dashed #b6c2d6;
-    padding-bottom: 5px;
+    /* border-bottom: 1px dashed #b6c2d6;*/
+    /* padding-bottom: 5px;  */
     margin-bottom: 0px !important;
 }
 .style1 .timeline .info small.name{
@@ -3098,5 +3098,21 @@ h5.meta.meta-light {
 }
 /*#skill-set badge*/
 /* location */
-.mw-700{ min-width: 700px !important;}
+/* .mw-700{ min-width: 700px !important;} */
 /* #location */
+.bb-1{
+    border-bottom: 1px dashed #b6c2d6;
+}
+.timeline .details.f-none{
+    float : none !important;
+}
+.mr0{
+    margin: 0px !important;
+}
+.pl0{
+    padding-left: 0px;
+}
+.profile-note{
+    font-size: 12px;
+    font-style: italic;
+}
