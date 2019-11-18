@@ -228,7 +228,7 @@ export class JobdetailsService {
         this.handleError
       );
   }
-  byteStorage(body, url: string): Observable<HttpEvent<{}>> {
+  byteStorage(body, url: string): Observable<any[]> {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');

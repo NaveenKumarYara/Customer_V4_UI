@@ -33,6 +33,7 @@ export class UploadProfilesComponent implements OnInit {
   bulkApply = new BulkApply();
   xmlJobResponse: XmlJobResponse[] = [];
   loaddata = true ;
+  uploadResponse : UploadResponse[]=[];
   displayprofiles: any;
   searchString: any;
   SearchList: any = [];
@@ -163,11 +164,15 @@ export class UploadProfilesComponent implements OnInit {
   uploadMultiple(formData) {
     this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
+         this.uploadResponse = data;
        // setTimeout(() => {
+
           /** spinner ends after 5 seconds */
           this.spinner.hide();
        // }, 60000);
-        this.toastr.success('Uploaded successfully', 'Success');
+       this.toastr.success('Uploaded successfully', 'Success');
+       console.log('Uploaded successfully', 'Success');
+
         setTimeout(() => {
          this.toastr.dismissToast;
      }, 3000);
@@ -309,3 +314,10 @@ export class InviteInfo {
     ClientLogo: string;
     }
 
+    export class UploadResponse
+    {
+          FirstName:string;
+          LastName :string;
+         ResumeStatus:boolean;
+          MailId :string;
+    }
