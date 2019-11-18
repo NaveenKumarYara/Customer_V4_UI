@@ -2578,11 +2578,12 @@ button.close {
 }
 
 .summary-view .timeline .details .title {
-    font-size: 15px;
+    font-size: 12px;
+    line-height: 18px;
 }
 
 .summary-view .timeline .info .name {
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .summary-view .timeline .info .meta {
