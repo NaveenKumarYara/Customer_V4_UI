@@ -24368,7 +24368,7 @@ table .table-prl-0 td {
 }
 
 .whoami canvas {
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
     width: 250px !important;
     height: auto !important;
 }
