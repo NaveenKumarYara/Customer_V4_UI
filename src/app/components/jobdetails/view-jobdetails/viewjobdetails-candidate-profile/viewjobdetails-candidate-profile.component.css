@@ -1221,3 +1221,7 @@ h1.title img {
 .ptb-5{
     padding:5px 0px;
 }
+
+.d-block.text-center.min-h40{
+    height: 40px;
+}
