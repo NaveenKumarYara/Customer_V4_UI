@@ -2737,9 +2737,9 @@ tr td {
     margin-right: 10px;
 }
 
-.details {
+/* .details {
     max-width: 400px;
-}
+} */
 
 h3.ellipsis {
     white-space: nowrap;
@@ -2861,8 +2861,8 @@ h5.meta.meta-light {
     padding: 0rem 2rem;
 }
 
-.style1 .p-2 {
-    padding: 2rem;
+.style1 .row.h-bg.p-2 {
+    padding: 2rem !important;
 }
 
 .style1 .card-body .stats {
@@ -2968,8 +2968,8 @@ h5.meta.meta-light {
     color: #5693FF;
 }
 .style1 .timeline.pro-exp .title{
-    border-bottom: 1px dashed #b6c2d6;
-    padding-bottom: 5px;
+    /* border-bottom: 1px dashed #b6c2d6;*/
+    /* padding-bottom: 5px;  */
     margin-bottom: 0px !important;
 }
 .style1 .timeline .info small.name{
@@ -3055,4 +3055,64 @@ h5.meta.meta-light {
     height: 300px;
     left: -117px;
     top: -41px;
+}
+.ccdata{
+    position: relative;
+    display: block;
+}
+.ccdata canvas{
+    width: 300px !important;
+    height: 300px !important;
+    margin: auto;
+}
+/*skill-set badge*/
+.skill-set .skill-data{
+    position: relative;
+    padding: 5px 15px;
+    margin: 3px;
+    background-color: #F1F2F6;
+    display: inline-block;
+}
+.skill-set .skill-data .skill-tooltip{
+    display: none;   
+    top: 22px;
+    left: 0%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    color: #666666;
+    background-color: #fff;
+    font-weight: normal;
+    font-size: 13px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 99999999;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.36);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.36);
+    display: none;
+    padding: 10px 11px;
+}
+.skill-set .skill-data:hover .skill-tooltip{
+    display: block;  
+}
+/*#skill-set badge*/
+/* location */
+/* .mw-700{ min-width: 700px !important;} */
+/* #location */
+.bb-1{
+    border-bottom: 1px dashed #b6c2d6;
+}
+.timeline .details.f-none{
+    float : none !important;
+}
+.mr0{
+    margin: 0px !important;
+}
+.pl0{
+    padding-left: 0px;
+}
+.profile-note{
+    font-size: 12px;
+    font-style: italic;
 }
