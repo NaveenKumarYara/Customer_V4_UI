@@ -3075,8 +3075,8 @@ h5.meta.meta-light {
 }
 .skill-set .skill-data .skill-tooltip{
     display: none;   
-    top: 22px;
-    left: 0%;
+    top: 100%;
+    left: 50%;
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     color: #666666;
@@ -3115,4 +3115,23 @@ h5.meta.meta-light {
 .profile-note{
     font-size: 12px;
     font-style: italic;
+}
+.tooltip-arrow{
+    top: -5px   ;
+    left: 50%;
+    margin-left: -5px;
+    
+    border-width: 0 5px 5px;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: #ffffff00 #fff0 #fff #fff0 !important;
+    border-style: solid;
+}
+.p5{padding: 5px;}
+.profile-tooltip tr td:nth-child(2){
+text-align: right;
+color: #5693FF;
 }
