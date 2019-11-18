@@ -57,7 +57,7 @@
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="stats">
                       <h1>{{profileview?.ProfileExperience?.length || 0}} </h1>
-                      <small>Prestigioue Clients</small>
+                      <small>Prestigious Clients</small>
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-6">
@@ -198,7 +198,7 @@
                                       <div class="p5">Rating</div>
                                     </td>
                                     <td>
-                                      <div class="p5">Beginner</div>
+                                      <div class="p5">{{skill.tooltip}}</div>
                                     </td>
                                   </tr>
                                   <tr>
@@ -206,7 +206,7 @@
                                       <div class="p5">Experience</div>
                                     </td>
                                     <td>
-                                      <div class="p5">11</div>
+                                    <div class="p5">{{skill.ExpInYears}}</div>
                                     </td>
                                   </tr>
                                 </table>
@@ -347,10 +347,10 @@
                 </h1>
                 <div class="timeline-wrap clearfix">
                   <ul class="timeline border0">
+                      <ng-container *ngIf="profileview?.RoleCount==0">
+                          Candidate Roles yet to Provide
+                        </ng-container>
                     <li class="clearfix" *ngFor="let roles of profileview?.ProfileExperience; let i=index">
-                      <ng-container *ngIf="i===0">
-                        Candidate Roles yet to Provide
-                      </ng-container>
                       <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
                         <ng-container *ngFor="let role of roles?.Roles">
                           <div class="badge-circle "></div>
@@ -550,11 +550,13 @@
                 </h1>
                 <div class="p-1-0">
 
-                  <ng-container *ngFor="let achivements of profileview?.ProfileExperience;let i =index">
-                    <ng-container *ngIf="i===0">
-                      <span class="profile-note">Candidate yet to provide the Achievement details.</span>
-                    </ng-container>
-                    <ng-container *ngFor="let achivement of achivements?.Achievements">
+                  
+             <ng-container *ngIf="profileview?.ProfileAwards == 0"> 
+            <span class="profile-note">Candidate yet to provide the Achievement details.</span>
+              </ng-container>
+                   <ng-container *ngFor="let achivements of profileview?.ProfileExperience">
+
+                     <ng-container *ngFor="let achivement of achivements?.Achievements">
                       <div class="d-in-b">
                         <img src="../../../../../../assets/images/manager.svg" class="w-50">
                         <div class="label-active">{{achivement}}</div>
@@ -615,19 +617,21 @@
               </div>
               <div class="pt1b4 bt-1">
                 <div>
-                  <h5> You can find me also at</h5>
-                  <div class="row pt-1">
-                    <div class="col-md-12">
-                      <div class="w-75 m-auto">
-                        <div class="d-inline icons">
-                          <img src="../../../../../../assets/images/twitter-icon.svg">
-                        </div>
-                        <div class="d-inline icons">
-                          <img src="../../../../../../assets/images/fb-icon.svg">
-                        </div>
-                        <div class="d-inline icons">
-                          <img src="../../../../../../assets/images/linkedin-icon.png">
-                        </div>
+                    <h5 *ngIf="profileview?.Links.length!==0"> You can find me also at</h5>
+                    <div class="row pt-1">
+                      <div class="col-md-12">
+                        <div class="w-75 m-auto" >
+                          <ng-container *ngFor="let link of profileview?.Links">
+                              <div class="d-inline icons" *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter'">
+                                  <a href="{{link.LinkURL}}"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
+                                </div>
+                                <div class="d-inline icons" *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook'">
+                                 <a href="{{link.LinkURL}}" ><img src="../../../../../../assets/images/fb-icon.svg"></a>
+                                </div>
+                                <div class="d-inline icons"  *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn'">
+                                  <a href="{{link.LinkURL}}"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
+                                </div>
+                              </ng-container>
                       </div>
                     </div>
                   </div>
