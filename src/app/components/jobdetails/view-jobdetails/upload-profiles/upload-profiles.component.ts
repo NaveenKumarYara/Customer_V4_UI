@@ -25,15 +25,19 @@ export class UploadProfilesComponent implements OnInit {
   fileUploadForm: FormGroup;
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
+  isPublic : any = false;
+  fileCount : number = 0;
   profiles: Profile[];
   searchprocess: any;
   Count: any;
   selectedFileNames: string[] = [];
+  totalSelectedDoc : number = 0;
   inviteinfo = new InviteInfo();
   bulkApply = new BulkApply();
   xmlJobResponse: XmlJobResponse[] = [];
   loaddata = true ;
   uploadResponse : UploadResponse[]=[];
+  tempuploadResponse : UploadResponse[]=[];
   displayprofiles: any;
   searchString: any;
   SearchList: any = [];
@@ -132,6 +136,8 @@ export class UploadProfilesComponent implements OnInit {
 
   // }
   getFileDetails(e) {
+    this.fileCount = 0;
+    this.tempuploadResponse = [];
     this.selectedFileNames = [];
     this.spinner.show();
     let request = '';
@@ -147,32 +153,37 @@ export class UploadProfilesComponent implements OnInit {
     if (this.fileUploadForm.value !== '') {
       request = JSON.stringify(this.fileUploadForm.value);
     }
+    this.totalSelectedDoc = e.target.files.length;
     if (e.target.files.length > 40) {
       alert('Please select max 40 files.');
       this.spinner.hide();
       e.preventDefault();
     } else {
       for (let i = 0; i < e.target.files.length; i++) {
+        var temp = new UploadResponse()
         this.selectedFileNames.push(e.target.files[i].name);
-        formData.append('ResumeFile', e.target.files[i]);
-      }
+    temp.FirstName = e.target.files[i];
+    this.tempuploadResponse.push(temp);
+      formData.append('ResumeFile', e.target.files[i]);
+    }
      // this.loaddata = false;
-      formData.append('Model', request);
+     formData.append('Model', request);
+     
+     formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
       this.uploadMultiple(formData);
     }
   }
   uploadMultiple(formData) {
     this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
-         this.uploadResponse = data;
+    this.uploadResponse = data;
+    this.tempuploadResponse[this.fileCount] = data[0];
+    this.fileCount = this.fileCount + 1;
        // setTimeout(() => {
-
           /** spinner ends after 5 seconds */
           this.spinner.hide();
        // }, 60000);
        this.toastr.success('Uploaded successfully', 'Success');
-       console.log('Uploaded successfully', 'Success');
-
         setTimeout(() => {
          this.toastr.dismissToast;
      }, 3000);
@@ -318,6 +329,6 @@ export class InviteInfo {
     {
           FirstName:string;
           LastName :string;
-         ResumeStatus:boolean;
+         ResumeStatus:string;
           MailId :string;
     }
