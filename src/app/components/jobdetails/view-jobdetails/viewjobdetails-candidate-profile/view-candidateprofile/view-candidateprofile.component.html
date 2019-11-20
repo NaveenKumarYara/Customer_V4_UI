@@ -528,7 +528,8 @@
                   <ng-container *ngFor="let certificate of profileview?.Certifications ">
                     <div class="d-in-b">
                       <img src="{{certificate.ImageUrl}}">
-                      <div class="label-active">{{certificate.CertificationName}}</div>
+                      <div class="label-active" title={{certificate.CertificationName}}>
+                          {{add3Dots(certificate.CertificationName,15)}}</div>
                     </div>
                   </ng-container>
                   <ng-container *ngIf="profileview?.Certifications?.length==0">
@@ -570,7 +571,7 @@
                      <ng-container *ngFor="let achivement of achivements?.Achievements">
                       <div class="d-in-b">
                         <img src="../../../../../../assets/images/manager.svg" class="w-50">
-                        <div class="label-active">{{achivement}}</div>
+                        <div class="label-active" title="{{achivement}}">{{add3Dots(achivement,15)}}</div>
                         <div>{{achivements.StartDate | date:'mediumDate'}} - {{achivements.EndDate | date:'mediumDate'}}
                         </div>
                       </div>
