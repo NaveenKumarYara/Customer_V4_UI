@@ -72,9 +72,12 @@
             <div class="col-md-5">
               <div class="d-list">
                 <ul class="c-content">
-                  <li class="mail">
+                  <li class="mail" *ngIf="profileview?.ProfileBasicInfo?.UserName.substring(0,7) != 'esolvit'">
                     {{profileview?.ProfileBasicInfo?.UserName}}
                   </li>
+                  <li class="mail" *ngIf="profileview?.ProfileBasicInfo?.UserName.substring(0,7) == 'esolvit'">
+                      Yet to Provide
+                    </li>
                   <li class="mobile">
                     {{profileview?.ProfileBasicInfo?.MobilePhone || "Yet to Provide" }}
                   </li>
