@@ -13,11 +13,11 @@ jobCategory: string;
 jobTitle = '';
 minExp: number;
 maxExp: number;
+noOfopenings:number;
+location:string;
 hasDescription: boolean;
 completeDescription: string;
 jobPositionId: string;
-primarySkills = [];
-secondarySkills = [];
 departments: any;
 roles = [];
 client: any;
@@ -55,6 +55,12 @@ client: any;
       this.appService.currentjobPosition.subscribe((data) => {
         this.jobPositionId = data; // And he have data here too!
       });
+      this.appService.currentlocation.subscribe((data) => {
+        this.location = data.location; // And he have data here too!
+      });
+      this.appService.currentOpenings.subscribe((data) => {
+        this.noOfopenings = data; // And he have data here too!
+      });
       // this.appService.departmentsChanged.subscribe(x =>  {
       //   this.departments = x;
       // } );
@@ -75,9 +81,6 @@ client: any;
     // this.maxExp = this.appService.maxExperience.value;
     // this.hasDescription = this.appService.hasDescription.value;
     // this.completeDescription = this.appService.description.value;
-    this.primarySkills = this.appService.primaryjobskills;
-    this.secondarySkills = this.appService.secondaryjobskills;
-    this.roles = this.appService.responsibilities;
       this.departments = this.appService.departments;
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');

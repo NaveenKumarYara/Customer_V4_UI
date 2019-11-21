@@ -10,6 +10,17 @@
   </div>
   <div class="form-data-group">
     <h3 class="question">
+      Do you have a complete description of the Job profile?
+    </h3>
+    <h6 class="data" *ngIf="hasDescription==true">
+     {{completeDescription}}
+    </h6>
+    <h6 class="data" *ngIf="hasDescription==false">
+        NA
+      </h6>
+  </div>
+  <div class="form-data-group">
+    <h3 class="question">
       Which Category this job belongs to?
     </h3>
     <h5 class="data">
@@ -24,84 +35,46 @@
   </div>
   <div class="form-data-group">
     <h3 class="question">
-      What experience does the job requires?
+      What is the Client Name?
     </h3>
-    <h5 class="data">{{(minExp/12) | number:'1.0-1' }} - {{(maxExp/12)| number: '1.0-1'}} years</h5>
+    <h5 class="data">{{client}}</h5>
   </div>
-  <div class="form-data-group">
-      <h3 class="question">
-        What is the Client Name?
-      </h3>
-      <h5 class="data">{{client}}</h5>
-    </div>
   <div class="form-data-group">
     <h3 class="question">
-      Do you have a complete description of the Job profile?
+      At which location the job is available?
     </h3>
-    <h6 class="data" *ngIf="hasDescription==true">
-     {{completeDescription}}
-    </h6>
-    <h6 class="data" *ngIf="hasDescription==false">
-        NA
-      </h6>
+      <h4 class="data">
+        {{location}}
+      </h4>
   </div>
-  <div class="form-data-group skill-set-group">
-      <h3 class="question">
-        What departments does the job includes?
-      </h3>
-      <div class="lists row">
-        <div class="col-md-6">
-          <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
-          <ul class="data-list">
-            <li *ngFor="let department of departments">
-                <ng-container *ngIf="department?.DepartmentName != null; else customSummaryDept">
-              <span class="name">{{department?.DepartmentName}}</span> </ng-container> 
-              <ng-template #customSummaryDept>
-              <span class="name">{{department?.CustomerDepartment}}</span></ng-template>
-            </li> 
-            <!-- {{department | json}} -->
-          </ul>
-           <!-- <h6 class="data" *ngIf="department.length === 0" >
-              NA
-            </h6> -->
-        </div>
-        </div>
+  <div class="form-data-group">
+    <h3 class="question">
+      How many open positions do you currently have for this Job Title?
+    </h3>
+      <h4 class="data">
+        {{noOfopenings}}
+      </h4>
   </div>
   <div class="form-data-group skill-set-group">
     <h3 class="question">
-      What is the skill set that you are looking for in the candidate?
+      What departments does the job includes?
     </h3>
     <div class="lists row">
       <div class="col-md-6">
-        <h4 for="" class="light">Primary Skills</h4>
+        <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
         <ul class="data-list">
-          <li *ngFor="let primaryjobskill of primarySkills">
-            <span class="name">{{primaryjobskill.SkillName}}</span>
-            <span class="experience">{{(primaryjobskill.MinimumExp | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp | number:'1.0-1')}} Yrs</span>
-          </li>
-           
+          <li *ngFor="let department of departments">
+              <ng-container *ngIf="department?.DepartmentName != null; else customSummaryDept">
+            <span class="name">{{department?.DepartmentName}}</span> </ng-container> 
+            <ng-template #customSummaryDept>
+            <span class="name">{{department?.CustomerDepartment}}</span></ng-template>
+          </li> 
+          <!-- {{department | json}} -->
         </ul>
+         <!-- <h6 class="data" *ngIf="department.length === 0" >
+            NA
+          </h6> -->
       </div>
-      <div class="col-md-6">
-        <h4 for="" class="light">Secondary Skills</h4>
-        <ul class="data-list">
-          <li *ngFor="let secondarySkill of secondarySkills">
-            <span class="name">{{secondarySkill.SkillName}}</span>
-            <span class="experience">{{(secondarySkill.MinimumExp | number:'1.0-1')}} - {{(secondarySkill.MaximumExp | number:'1.0-1')}} Yrs</span>
-          </li>
-          
-        </ul>
       </div>
-    </div>
-  </div>
-  <!-- .form-data-group -->
-  <div class="form-data-group">
-    <h3 class="question">
-      What are the responsibilities you are looking for in the candidate?
-    </h3>
-    <ul class="responsibility-list">
-      <li *ngFor="let role of roles">{{role.Role}}</li> 
-    </ul>
-  </div>
-  <!-- .form-data-group -->
+</div>
 </section>

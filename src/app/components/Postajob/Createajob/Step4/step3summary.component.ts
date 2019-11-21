@@ -22,6 +22,7 @@ salaryType: number;
 minRate: number;
 maxRate: number;
 videoProfile: any;
+matchingPersentage=[];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService ) {
       this.appService.currentEmploymentType.subscribe((data) => {
@@ -61,7 +62,7 @@ videoProfile: any;
     // this.interviewType = '';
     // this.reportinManager = '';
     // this.teamMembers = '';
-
+    this.matchingPersentage =  this.appService.skillDataList;
     // this.employmentTypeId = this.appService.employmentType.value.EmploymentTypeId;
     // this.employmentType = this.appService.employmentType.value.EmploymentType;
     if (this.employmentTypeId === 2) {

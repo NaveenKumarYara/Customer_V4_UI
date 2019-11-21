@@ -13,6 +13,10 @@ location: any;
 education: any;
 domain: any;
 personType: any;
+primarySkills = [];
+secondarySkills = [];
+roles = [];
+
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -40,6 +44,9 @@ personType: any;
      this.education = this.appService.qualifications;
     this.domain = this.appService.domain;
      this.personType = this.appService.personTypes;
+     this.primarySkills = this.appService.primaryjobskills;
+     this.secondarySkills = this.appService.secondaryjobskills;
+     this.roles = this.appService.responsibilities;
 
   }
 
