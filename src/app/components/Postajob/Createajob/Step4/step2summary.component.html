@@ -2,19 +2,45 @@
   <h1>Step 2</h1>
   <div class="form-data-group">
     <h3 class="question">
-      How many open positions do you currently have for this Job Title?
+      Which domain/(s) is the project into?
     </h3>
-      <h4 class="data">
-        {{noOfopenings}}
-      </h4>
+      <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
   </div>
+  <div class="form-data-group skill-set-group">
+    <h3 class="question">
+      What is the skill set that you are looking for in the candidate?
+    </h3>
+    <div class="lists row">
+      <div class="col-md-6">
+        <h4 for="" class="light">Primary Skills</h4>
+        <ul class="data-list">
+          <li *ngFor="let primaryjobskill of primarySkills">
+            <span class="name">{{primaryjobskill.SkillName}}</span>
+            <span class="experience">{{(primaryjobskill.MinimumExp | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp | number:'1.0-1')}} Yrs</span>
+          </li>
+           
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 for="" class="light">Secondary Skills</h4>
+        <ul class="data-list">
+          <li *ngFor="let secondarySkill of secondarySkills">
+            <span class="name">{{secondarySkill.SkillName}}</span>
+            <span class="experience">{{(secondarySkill.MinimumExp | number:'1.0-1')}} - {{(secondarySkill.MaximumExp | number:'1.0-1')}} Yrs</span>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  
   <div class="form-data-group">
     <h3 class="question">
-      At which location the job is available?
+      What are the responsibilities you are looking for in the candidate?
     </h3>
-      <h4 class="data">
-        {{location}}
-      </h4>
+    <ul class="responsibility-list">
+      <li *ngFor="let role of roles">{{role.Role}}</li> 
+    </ul>
   </div>
   <div class="form-data-group">
     <h3 class="question">
@@ -22,12 +48,7 @@
     </h3>
       <h4 class="data" *ngFor="let edu of education">{{edu.QualificationName}}</h4>
   </div>
-  <div class="form-data-group">
-    <h3 class="question">
-      Which domain/(s) is the project into?
-    </h3>
-      <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
-  </div>
+ 
   <!-- <div class="form-data-group">
     <h3 class="question">Are you seriously considering that the candidate have the required domain experience?</h3>
     <h4 class="data">No</h4>
