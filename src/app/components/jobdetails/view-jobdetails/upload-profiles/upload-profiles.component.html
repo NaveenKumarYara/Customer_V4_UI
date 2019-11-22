@@ -51,13 +51,13 @@
               <a href="javascript:void(0)">
                 <span class="alert-success">
                   Uploaded
-                  <span class="badge badge-light">3</span>
+                  <span class="badge badge-light">{{successCount}}</span>
                 </span>
               </a>
               <a href="javascript:void(0)">
                 <span class="alert-warning">
                   Issues
-                  <span class="badge badge-light">3</span>
+                  <span class="badge badge-light">{{issueCount}}</span>
                 </span>
               </a>
 
@@ -66,7 +66,7 @@
           </div>
           <!--Upload Profile alerts starts here-->
           <div class="uploaded-list">
-            <div class="media uploaded-files" *ngFor="let data of uploadResponse; let i = index">
+            <div class="media uploaded-files" *ngFor="let data of tempuploadResponse; let i = index">
               <img class="align-self-center mr-3" src="../../../../../assets/images/customer-parser-icon.svg" alt="">
               <div class="media-body">
                 <h3 class="m-0">{{data.FirstName}}&nbsp;{{data.LastName}}</h3>
