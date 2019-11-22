@@ -23,13 +23,11 @@ export interface DialogData {
 export class UploadProfilesComponent implements OnInit {
   emailCheck = true;
   fileUploadForm: FormGroup;
+  totalFile : number = 0;
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
   isPublic: any = false;
-//   data = [{" Uploading Resume  "},
-//   {"Resume Parsing "},
-// {}
-// ];
+  public profileStatus:ProfileStatus[] = [];
   fileCount: number = 0;
   successCount : number = 0;
   issueCount : number = 0;
@@ -53,6 +51,7 @@ export class UploadProfilesComponent implements OnInit {
   customerId = null;
   // userId: number;
   customerName = null;
+  slice: number;
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
     this.selectedFileNames = [];
@@ -148,7 +147,7 @@ export class UploadProfilesComponent implements OnInit {
     this.issueCount = 0;
     this.tempuploadResponse = [];
     this.selectedFileNames = [];
-    this.spinner.show();
+    // this.spinner.show();
     let request = '';
     var formData = new FormData();
     this.fileUploadForm.value.Url = '';
@@ -162,18 +161,26 @@ export class UploadProfilesComponent implements OnInit {
     if (this.fileUploadForm.value !== '') {
       request = JSON.stringify(this.fileUploadForm.value);
     }
+    this.totalFile =  e.target.files.length;
     this.totalSelectedDoc = e.target.files.length;
     if (e.target.files.length > 40) {
       alert('Please select max 40 files.');
       this.spinner.hide();
       e.preventDefault();
     } else {
+      this.slice = 100 / e.target.files.length;
       for (let i = 0; i < e.target.files.length; i++) {
-        
+        var Profdata = new ProfileStatus();
+        Profdata.id = i ;
+        Profdata.percentage = (e.target.files.length- i - 1) * this.slice;
+        if(!Profdata.percentage)
+          Profdata.percentage =5;
+        Profdata.text ="Parsing the Document......";
+        this.profileStatus.push(Profdata);
         formData = new FormData();
         var temp = new UploadResponse()
         this.selectedFileNames.push(e.target.files[i].name);
-        temp.FirstName = e.target.files[i];
+        temp.FirstName = e.target.files[i].name;
         this.tempuploadResponse.push(temp);
         formData.append('ResumeFile', e.target.files[i]);
         formData.append('Model', request);
@@ -190,16 +197,22 @@ export class UploadProfilesComponent implements OnInit {
       if (data) {
         this.uploadResponse = data;
         this.tempuploadResponse[this.fileCount] = data[0];
+        this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
         this.fileCount = this.fileCount + 1;
-        // setTimeout(() => {
 
+        // setTimeout(() => {
+          for(var i= this.fileCount ; i<this.totalFile; i++){
+            this.profileStatus[i].percentage =this.profileStatus[i].percentage  + this.slice;
+          }
+          
           if(data[0].ResumeStatus == 'Successful'){
             this.successCount = this.successCount +1;
           }else{
             this.issueCount = this.issueCount +1;
           }
+          
         /** spinner ends after 5 seconds */
-        this.spinner.hide();
+        // this.spinner.hide();
         // }, 60000);
         this.toastr.success('Uploaded successfully', 'Success');
         setTimeout(() => {
@@ -349,4 +362,10 @@ export class UploadResponse {
   LastName: string;
   ResumeStatus: string;
   MailId: string;
+}
+
+export class ProfileStatus {
+  text: string;
+  percentage: number;
+  id: number; 
 }
