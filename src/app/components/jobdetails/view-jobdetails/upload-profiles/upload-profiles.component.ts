@@ -147,6 +147,7 @@ export class UploadProfilesComponent implements OnInit {
     this.issueCount = 0;
     this.tempuploadResponse = [];
     this.selectedFileNames = [];
+    this.profileStatus = [];
     // this.spinner.show();
     let request = '';
     var formData = new FormData();
