@@ -3,10 +3,10 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { IfObservable } from 'rxjs/observable/IfObservable';
-import {SearchProfileDeatils} from '../../models/SearchProfileDeatils';
-import {Profile} from '../../models/SearchProfileDeatils';
+import { SearchProfileDeatils } from '../../models/SearchProfileDeatils';
+import { Profile } from '../../models/SearchProfileDeatils';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { BulkApply, XmlJobResponse } from './bulkApply';
 import { AppService } from '../../../../app.service';
@@ -23,21 +23,25 @@ export interface DialogData {
 export class UploadProfilesComponent implements OnInit {
   emailCheck = true;
   fileUploadForm: FormGroup;
+  totalFile : number = 0;
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
-  isPublic : any = false;
-  fileCount : number = 0;
+  isPublic: any = false;
+  public profileStatus:ProfileStatus[] = [];
+  fileCount: number = 0;
+  successCount : number = 0;
+  issueCount : number = 0;
   profiles: Profile[];
   searchprocess: any;
   Count: any;
   selectedFileNames: string[] = [];
-  totalSelectedDoc : number = 0;
+  totalSelectedDoc: number = 0;
   inviteinfo = new InviteInfo();
   bulkApply = new BulkApply();
   xmlJobResponse: XmlJobResponse[] = [];
-  loaddata = true ;
-  uploadResponse : UploadResponse[]=[];
-  tempuploadResponse : UploadResponse[]=[];
+  loaddata = true;
+  uploadResponse: UploadResponse[] = [];
+  tempuploadResponse: UploadResponse[] = [];
   displayprofiles: any;
   searchString: any;
   SearchList: any = [];
@@ -47,18 +51,20 @@ export class UploadProfilesComponent implements OnInit {
   customerId = null;
   // userId: number;
   customerName = null;
+  slice: number;
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
     this.selectedFileNames = [];
-    this.customerName =  JSON.parse(sessionStorage.getItem('userData'));
-     this.displayprofiles =  JSON.parse(localStorage.getItem('DisplayUpload'));
+    this.customerName = JSON.parse(sessionStorage.getItem('userData'));
+    this.displayprofiles = JSON.parse(localStorage.getItem('DisplayUpload'));
+    this.customerId = this.customerName.CustomerId;
     // this.userId = this.customerName.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
-   }
+  }
 
   ngOnInit() {
     this.searchprofilesFrom = this.fb.group({
-      'CustomerId':  [this.customerName.CustomerId, Validators.required],
+      'CustomerId': [this.customerName.CustomerId, Validators.required],
       'JobId': ['', Validators.required],
       'SearchString': ['', Validators.nullValidator],
       'Experience': ['', Validators.nullValidator],
@@ -74,51 +80,51 @@ export class UploadProfilesComponent implements OnInit {
       'UserName': ['', Validators.nullValidator],
       'ResumeFile': ['', Validators.compose([Validators.required])],
       'FileExtension': ['', Validators.nullValidator],
-      'JobId': [ null, Validators.nullValidator],
-      'CustomerName' : [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator],
-      'EmailCheck' : ['', Validators.nullValidator]
+      'JobId': [null, Validators.nullValidator],
+      'CustomerName': [this.customerName.FirstName + ' ' + this.customerName.LastName, Validators.nullValidator],
+      'EmailCheck': ['', Validators.nullValidator]
     });
     this.SearchProfiles();
     this.alertService.clear();
     /** */
-    $(function() {
-        $('[name="list1"]').change(function() {
-          if ($(this).is(':checked')) {
-            $(this).parent().parent().children('.hover-h').addClass('dblock');
-          } else if ($(this).prop('checked', false)) {
-             $(this).parent().parent().children('.hover-h').removeClass('dblock');
-           }
-        });
-       });
+    $(function () {
+      $('[name="list1"]').change(function () {
+        if ($(this).is(':checked')) {
+          $(this).parent().parent().children('.hover-h').addClass('dblock');
+        } else if ($(this).prop('checked', false)) {
+          $(this).parent().parent().children('.hover-h').removeClass('dblock');
+        }
+      });
+    });
     /** */
 
   }
 
 
   SetSearch(val) {
-   this.SearchList = [];
-   this.searchString = val;
- }
+    this.SearchList = [];
+    this.searchString = val;
+  }
 
- searchProfile(value) {
-   this.searchString = value;
-   this.SearchProfiles();
- }
+  searchProfile(value) {
+    this.searchString = value;
+    this.SearchProfiles();
+  }
 
   GetSearchText(value) {
     return this.jobdetailsservice.GetAutoSearch(value, this.customerName.CustomerId)
-    .subscribe(data => {
-          if (data.length > 0) {
-            this.SearchList = data;
-          } else {
-            this.SearchList = [];
-          }
+      .subscribe(data => {
+        if (data.length > 0) {
+          this.SearchList = data;
+        } else {
+          this.SearchList = [];
+        }
 
-          },
+      },
 
         error => {
           this.SearchList = [];
-         });
+        });
 
   }
   // getData(){
@@ -137,11 +143,14 @@ export class UploadProfilesComponent implements OnInit {
   // }
   getFileDetails(e) {
     this.fileCount = 0;
+    this.successCount = 0;
+    this.issueCount = 0;
     this.tempuploadResponse = [];
     this.selectedFileNames = [];
-    this.spinner.show();
+    this.profileStatus = [];
+    // this.spinner.show();
     let request = '';
-    const formData = new FormData();
+    var formData = new FormData();
     this.fileUploadForm.value.Url = '';
     this.fileUploadForm.value.FileName = e.target.files[0].name;
     this.fileUploadForm.value.FileExtension = e.target.files[0].type;
@@ -153,103 +162,126 @@ export class UploadProfilesComponent implements OnInit {
     if (this.fileUploadForm.value !== '') {
       request = JSON.stringify(this.fileUploadForm.value);
     }
+    this.totalFile =  e.target.files.length;
     this.totalSelectedDoc = e.target.files.length;
     if (e.target.files.length > 40) {
       alert('Please select max 40 files.');
       this.spinner.hide();
       e.preventDefault();
     } else {
+      this.slice = 100 / e.target.files.length;
       for (let i = 0; i < e.target.files.length; i++) {
+        var Profdata = new ProfileStatus();
+        Profdata.id = i ;
+        Profdata.percentage = (e.target.files.length- i - 1) * this.slice;
+        if(!Profdata.percentage)
+          Profdata.percentage =5;
+        Profdata.text ="Parsing the Document......";
+        this.profileStatus.push(Profdata);
+        formData = new FormData();
         var temp = new UploadResponse()
         this.selectedFileNames.push(e.target.files[i].name);
-    temp.FirstName = e.target.files[i];
-    this.tempuploadResponse.push(temp);
-      formData.append('ResumeFile', e.target.files[i]);
-    }
-     // this.loaddata = false;
-     formData.append('Model', request);
-     
-     formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
-      this.uploadMultiple(formData);
+        temp.FirstName = e.target.files[i].name;
+        this.tempuploadResponse.push(temp);
+        formData.append('ResumeFile', e.target.files[i]);
+        formData.append('Model', request);
+        formData.append('CustomerId',this.customerId);
+        formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
+        this.uploadMultiple(formData);
+      }
+      // this.loaddata = false;
+
     }
   }
   uploadMultiple(formData) {
     this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
-    this.uploadResponse = data;
-    this.tempuploadResponse[this.fileCount] = data[0];
-    this.fileCount = this.fileCount + 1;
-       // setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-       // }, 60000);
-       this.toastr.success('Uploaded successfully', 'Success');
+        this.uploadResponse = data;
+        this.tempuploadResponse[this.fileCount] = data[0];
+        this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
+        this.fileCount = this.fileCount + 1;
+
+        // setTimeout(() => {
+          for(var i= this.fileCount ; i<this.totalFile; i++){
+            this.profileStatus[i].percentage =this.profileStatus[i].percentage  + this.slice;
+          }
+          
+          if(data[0].ResumeStatus == 'Successful'){
+            this.successCount = this.successCount +1;
+          }else{
+            this.issueCount = this.issueCount +1;
+          }
+          
+        /** spinner ends after 5 seconds */
+        // this.spinner.hide();
+        // }, 60000);
+        this.toastr.success('Uploaded successfully', 'Success');
         setTimeout(() => {
-         this.toastr.dismissToast;
-     }, 3000);
+          this.toastr.dismissToast;
+        }, 3000);
       }
-    //   else if(data === null){
-    //     this.toastr.warning('Email Not Exists', 'Oops!');
-    //     this.spinner.hide();
-    //     setTimeout(() => {
-    //      this.toastr.dismissToast;
-    //  }, 3000);
-    // //  return false;
-    //   }
+      //   else if(data === null){
+      //     this.toastr.warning('Email Not Exists', 'Oops!');
+      //     this.spinner.hide();
+      //     setTimeout(() => {
+      //      this.toastr.dismissToast;
+      //  }, 3000);
+      // //  return false;
+      //   }
     }, error => {
-     this.toastr.error('error in uploading profiles!', 'Oops!');
-     setTimeout(() => {
-         this.toastr.dismissToast;
-     }, 3000);
+      this.toastr.error('error in uploading profiles!', 'Oops!');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
       this.spinner.hide();
-           console.log('download error:', JSON.stringify(error));
-          });
+      console.log('download error:', JSON.stringify(error));
+    });
   }
 
- Clear() {
-  this.searchString = '';
-  this.SearchProfiles();
-  this.searchprofilesFrom.reset();
-  this.toastr.dismissToast;
- }
+  Clear() {
+    this.searchString = '';
+    this.SearchProfiles();
+    this.searchprofilesFrom.reset();
+    this.toastr.dismissToast;
+  }
   CheckEmail() {
     this.email = $('#Email').val();
     this.jobdetailsservice.getUserId(this.email, this.customerId).subscribe(data => {
       if (data == null) {
-      this.SaveInvite(this.email);
+        this.SaveInvite(this.email);
       } else if (data === this.email) {
         this.toastr.error('Email already exits!', 'Oops!');
         setTimeout(() => {
-            this.toastr.dismissToast;
+          this.toastr.dismissToast;
         }, 3000);
       }
-      });
+    });
   }
 
-SaveInvite(email) {
-   this.inviteinfo.userId = this.customerName.UserId;
-   this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
-   this.inviteinfo.userName = email;
-   this.inviteinfo.fullName = 'user';
-   this.inviteinfo.statusId = 0;
-   this.inviteinfo.ToEmailId = email;
-   this.inviteinfo.ApplicationName = 'Arytic';
-   this.inviteinfo.CandFullName = email;
-   this.inviteinfo.CustFullName = 'Arytic';
-   this.inviteinfo.ClientLogo = '';
-   this.inviteinfo.AppLink = 'http://dev.arytic.com/candidatesignup';
-   this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
+  SaveInvite(email) {
+    this.inviteinfo.userId = this.customerName.UserId;
+    this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
+    this.inviteinfo.userName = email;
+    this.inviteinfo.fullName = 'user';
+    this.inviteinfo.statusId = 0;
+    this.inviteinfo.ToEmailId = email;
+    this.inviteinfo.ApplicationName = 'Arytic';
+    this.inviteinfo.CandFullName = email;
+    this.inviteinfo.CustFullName = 'Arytic';
+    this.inviteinfo.ClientLogo = '';
+    this.inviteinfo.AppLink = 'http://dev.arytic.com/candidatesignup';
+    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data === 0) {
-       $('#Email').val('');
-       this.toastr.success('Mail sent successfully', 'Success');
-       setTimeout(() => {
-        this.toastr.dismissToast;
-    }, 3000);
+        $('#Email').val('');
+        this.toastr.success('Mail sent successfully', 'Success');
+        setTimeout(() => {
+          this.toastr.dismissToast;
+        }, 3000);
       }
     }, error => {
       alert('error ');
-           console.log('error:', JSON.stringify(error));
-          });
+      console.log('error:', JSON.stringify(error));
+    });
   }
 
   SearchProfiles() {
@@ -264,26 +296,27 @@ SaveInvite(email) {
       this.searchprofilesFrom.value.NumberOfRows = 1000;
     }
     this.jobdetailsservice.searchCandidateProfiles(this.searchprofilesFrom.value)
-    .subscribe(
-    data => {
-      this.isFullDisplayed = true;
-      this.Count = data.TotalProfileCount;
-      this.profiles = data.Profile;
-      // debugger;
-      this.searchprofilesFrom.reset();
-      // this.searchprocess = data.Profile;
-      // this.profiles = this.searchprofiles.slice(0,10);
-  });
+      .subscribe(
+        data => {
+          this.isFullDisplayed = true;
+          this.Count = data.TotalProfileCount;
+          this.profiles = data.Profile;
+          // debugger;
+          this.searchprofilesFrom.reset();
+          // this.searchprocess = data.Profile;
+          // this.profiles = this.searchprofiles.slice(0,10);
+        });
 
   }
   BulkApplyCandidates() {
     this.bulkApply.JobId = JSON.parse(sessionStorage.getItem('jobId'));
-      this.bulkApply.XmlJobResponse = this.appService.xmlResponse; // new XmlJobResponse
+    this.bulkApply.XmlJobResponse = this.appService.xmlResponse; // new XmlJobResponse
     this.bulkApply.ResponseStatusId = 13;
     this.appService.bulkApply(this.bulkApply).subscribe(
-      (data) => {console.log(data);
+      (data) => {
+        console.log(data);
         this.appService.xmlResponse = [];
-  });
+      });
   }
   onCheckboxChange(option, event) {
     const response = new XmlJobResponse;
@@ -302,7 +335,7 @@ SaveInvite(email) {
     //    } else {
     //      this.appService.bulkApply(this.profiles, response, option.checked); // false
     //    }
-       // // console.log(this.checkpersonType);
+    // // console.log(this.checkpersonType);
     // }
   }
 }
@@ -312,23 +345,28 @@ SaveInvite(email) {
 
 
 export class InviteInfo {
-    userId: number;
-    jobId: number;
-    fullName: string;
-    userName: string;
-    statusId: number;
-    CustFullName: string;
-    CandFullName: string;
-    AppLink: string;
-    ToEmailId: string;
-    ApplicationName: string;
-    ClientLogo: string;
-    }
+  userId: number;
+  jobId: number;
+  fullName: string;
+  userName: string;
+  statusId: number;
+  CustFullName: string;
+  CandFullName: string;
+  AppLink: string;
+  ToEmailId: string;
+  ApplicationName: string;
+  ClientLogo: string;
+}
 
-    export class UploadResponse
-    {
-          FirstName:string;
-          LastName :string;
-         ResumeStatus:string;
-          MailId :string;
-    }
+export class UploadResponse {
+  FirstName: string;
+  LastName: string;
+  ResumeStatus: string;
+  MailId: string;
+}
+
+export class ProfileStatus {
+  text: string;
+  percentage: number;
+  id: number; 
+}
