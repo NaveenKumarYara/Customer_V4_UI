@@ -24,7 +24,7 @@ import {ProfileLinks} from './models/ProfileLinks';
 import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SortbyInProfiles } from './models/SortbyInProfiles';
-import {WishlistCount} from './models/WishlistCount';
+import {WishlistCount,LegendList} from './models/WishlistCount';
 import { SettingsService } from '../../../settings/settings.service';
 
 @Injectable()
@@ -54,6 +54,16 @@ export class JobdetailsService {
         .catch(
             this.handleError
         );
+  }
+
+
+  getPersonalityTest(email:string): Observable<LegendList[]> {
+    const url = this.settingsService.settings.QuestionResult + 'mail=' + email;
+    return this.http.get<LegendList[]>(url)
+    .debounceTime(1000)
+    .catch(
+      this.handleError
+    );
   }
 
   getInviteList(customerId: number,jobId:number): Observable<GetInviteList[]> {

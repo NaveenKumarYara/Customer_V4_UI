@@ -135,5 +135,5 @@ export class Settings {
   JobMatchingParameter: string;
   Arytic: string;
   QuestionbaseUrl:string;
-   
+  QuestionResult:string;
   }

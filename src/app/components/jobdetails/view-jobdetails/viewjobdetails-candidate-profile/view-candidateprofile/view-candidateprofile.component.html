@@ -145,12 +145,13 @@
                             [labels]="chartLabels" [options]="chartOptions" [legend]="true" [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
                           </canvas> -->
                       <ng-container *ngIf="!noTest">
+                      <p class="profile-note">Yet to be Performed</p>
                         <canvas #testChart1 width="250" height="250" baseChart [chartType]="'doughnut'"
                           [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true"
                           [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
-                        </canvas>
+                        </canvas>                        
                       </ng-container>
-                      <!-- <canvas #testChart width="250" height="250"></canvas> -->
+                    <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result-->
                     </div>
 
                   </div>
@@ -209,7 +210,7 @@
                                       <div class="p5">Experience</div>
                                     </td>
                                     <td>
-                                    <div class="p5">{{skill.ExpInYears}}</div>
+                                    <div class="p5">{{skill?.ExpInYears}}.{{skill?.ExpInMonths||0}}</div>
                                     </td>
                                   </tr>
                                   <tr>
