@@ -27,7 +27,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     selectedskillinput = new Subject<string>();
     selectedData: SkillData;
 
-
+  IsDomain:boolean=false;
     SkillDataList: SkillData[] = [];
     skillPostData: SkillPostData;
     skillPostDataList: SkillPostData[] = [];
@@ -35,6 +35,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     Percentage: number;
     SkillName: string;
     skillId: number;
+    domain:any;
     Skill_DATA: SkillDetails[] = [];
     Skill_DATAFiltered: SkillDetails[] = [];
 
@@ -148,9 +149,17 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
 
     onChange(newValue) {
         const selectedSkill = this.Skill_DATAFiltered.find(x => x.Id == newValue);
+       
         if(selectedSkill){
+            if(selectedSkill.Id==1 && this.domain.length==0)
+            {
+                this.IsDomain=true;
+            }
+            else{
         this.SkillName = selectedSkill.Parameter;
         this.skillId = selectedSkill.Id;
+        this.IsDomain=false;
+            }
     }else{
         this.Percentage =undefined;
     }
@@ -170,7 +179,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     //   // this.salaryTypelist = this.appService.getSalaryType();
     // }
     ngOnInit() {
-
+        this.domain = this.appService.domain;
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()
