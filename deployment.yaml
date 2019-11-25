@@ -41,6 +41,8 @@ spec:
           value: "https://customer-#{namespace}#.arytic.com"
         - name: Sharing_URL
           value: "https://socialapi-#{namespace}#.arytic.com"
+        - name: Question_URL
+          value: "https://questionnaireapi-#{namespace}#.arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:
