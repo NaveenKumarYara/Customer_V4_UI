@@ -24652,9 +24652,9 @@ table .table-prl-0 td {
 }
 /*Parser Loader Icon Styles*/
 .media.uploaded-files img[alt="parser-loader"] {
-    position: absolute;
-    bottom: 20px;
-    left: 54px;
+    position: relative;
+    bottom: -38px;
+    left: -14px;
     width: 20px;
     animation: rotation 1s infinite linear;
 }
@@ -24668,16 +24668,16 @@ table .table-prl-0 td {
   }
 
   .media.uploaded-files img[alt="parser-alert"] {
-    position: absolute;
-    bottom: 29px;
-    left: 54px;
+    position: relative;
+    bottom: -38px;
+    left: -14px;
     width: 20px;
 }
 .media.uploaded-files img[alt="parser-success"] {
-    position: absolute;
-    bottom: 18px;
-    left: 52px;
-    width: 25px;
+    position: relative;
+    bottom: -38px;
+    left: -14px;
+    width: 20px;
 }
 /*Parser Loader Icon Styles*/
 
