@@ -1015,7 +1015,21 @@
         <div class="matching-details" id="matchingDetail-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header">
-                <div class="match">
+                    <circle-progress
+                    [percent]="matchingDetails?.MatchingPercentage"
+                    [radius]="80"
+                    [outerStrokeWidth]="10"
+                    [innerStrokeWidth]="10"
+                    [outerStrokeColor]="'#4882c2'"
+                    [innerStrokeColor]="'#e7e8ea'"
+                    [space] = "-8"
+                    [titleFontSize]= "40"
+                    [unitsFontSize]= "24"
+                    [showSubtitle] = "false"
+                    [animation]="true"
+                    [animationDuration]="300"
+                  ></circle-progress>
+                <!-- <div class="match">
                     <svg xmlns="http://www.w3.org/2000/svg" width="158.1" height="159.1">
                         <path
                             d="M79.03 159.06c-43.6 0-79-35.7-79-79.5s35.5-79.5 79-79.5 79 35.7 79 79.5-35.4 79.5-79 79.5zm0-149.1c-38.1 0-69 31.2-69 69.5s31 69.5 69 69.5 69-31.2 69-69.5-30.9-69.5-69-69.5z"
@@ -1025,7 +1039,7 @@
                             fill="#787efe" />
                     </svg>
                     <h1>{{matchingDetails?.MatchingPercentage}}%</h1>
-                </div>
+                </div> -->
                 <h2>Matching</h2>
             </div>
             <div class="details">

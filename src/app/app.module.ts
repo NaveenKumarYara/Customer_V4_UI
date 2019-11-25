@@ -80,6 +80,7 @@ import { GetCandidateprofileComponent } from './components/GetProfileDetails/Get
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -162,7 +163,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   NgxMaskModule.forRoot(),
   FlickityModule,
   Ng5SliderModule,
-  ProgressBarModule
+  ProgressBarModule,
+  NgCircleProgressModule.forRoot({})
   ],
   providers: [SettingsHttpService, SettingsService, HttpClient,
      { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },
