@@ -204,25 +204,27 @@ export class UploadProfilesComponent implements OnInit {
         this.fileCount = this.fileCount + 1;
 
         // setTimeout(() => {
-          for(var i= this.fileCount ; i<this.totalFile; i++){
+          for(var i= 0 ; i<this.totalFile; i++){
             if(data[0].DocId != this.profileStatus[i].id)
-              this.profileStatus[i].percentage =this.profileStatus[i].percentage  + this.slice;
+              this.profileStatus[i].percentage =this.profileStatus[i].percentage  + 5;
             else
-              this.profileStatus[this.fileCount].percentage =100;
+              this.profileStatus[i].percentage =100;
             if(this.tempuploadResponse[i].DocId == data[0].DocId)
               this.tempuploadResponse[i] = data[0];
           }
           
           if(data[0].ResumeStatus == 'Successful'){
             this.successCount = this.successCount +1;
+            this.toastr.success('Uploaded successfully', 'Success');
           }else{
             this.issueCount = this.issueCount +1;
+            this.toastr.info('Partially Uploaded', 'Success');
           }
           
         /** spinner ends after 5 seconds */
         // this.spinner.hide();
         // }, 60000);
-        this.toastr.success('Uploaded successfully', 'Success');
+        
         setTimeout(() => {
           this.toastr.dismissToast;
         }, 3000);
