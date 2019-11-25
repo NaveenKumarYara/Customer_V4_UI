@@ -183,6 +183,7 @@ export class UploadProfilesComponent implements OnInit {
         this.selectedFileNames.push(e.target.files[i].name);
         temp.FirstName = e.target.files[i].name;
         temp.DocId  = i;
+        temp.ResumeStatus = null;
         this.tempuploadResponse.push(temp);
         formData.append('ResumeFile', e.target.files[i]);
         formData.append('Model', request);
@@ -191,7 +192,6 @@ export class UploadProfilesComponent implements OnInit {
         formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
         this.uploadMultiple(formData);
       }
-      // this.loaddata = false;
 
     }
   }
