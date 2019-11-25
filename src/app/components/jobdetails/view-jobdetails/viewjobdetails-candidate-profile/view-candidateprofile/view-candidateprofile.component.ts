@@ -2,6 +2,7 @@ import { Component, OnInit, Inject , ViewChild, ElementRef} from '@angular/core'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { JobdetailsService } from '../../../jobdetails.service';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
@@ -56,7 +57,7 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private router: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private router: Router,private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
     this.noTest=false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
@@ -141,7 +142,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=',this.data.ProfileId).subscribe(
     email => {
     this.email=email.UserName;
-    this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetQuestionnaireGroupResult?mail=',this.email).subscribe(
+    this.jobdetailsservice.getPersonalityTest(this.email).subscribe(
       data => {
         if(data.length>0)
         {
@@ -245,4 +246,6 @@ export class LegendList {
   GroupLabel: string;
   GroupColor: string;
   GroupPer: string;
+  groupName:any;
+  response:any;
 }
