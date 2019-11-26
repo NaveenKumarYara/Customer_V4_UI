@@ -24550,6 +24550,9 @@ table .table-prl-0 td {
     font-size: 11px;
     font-style: italic;
 }
+.uploaded-files .media-body h3{
+    padding-left: 1%;
+}
 
 .text-warning {
     color: #856404;
@@ -24577,6 +24580,7 @@ table .table-prl-0 td {
 
 .progress.h-5 {
     margin-bottom: 4px;
+    border:none!important;
 }
 
 .vh-100.s-none {
@@ -24648,39 +24652,8 @@ table .table-prl-0 td {
 }
 
 .media.uploaded-files img {
-    width: 50px;
+    width: 55px;
 }
-/*Parser Loader Icon Styles*/
-.media.uploaded-files img[alt="parser-loader"] {
-    position: relative;
-    bottom: -38px;
-    left: -14px;
-    width: 20px;
-    animation: rotation 1s infinite linear;
-}
-@keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-  }
-
-  .media.uploaded-files img[alt="parser-alert"] {
-    position: relative;
-    bottom: -38px;
-    left: -14px;
-    width: 20px;
-}
-.media.uploaded-files img[alt="parser-success"] {
-    position: relative;
-    bottom: -38px;
-    left: -14px;
-    width: 20px;
-}
-/*Parser Loader Icon Styles*/
-
 /* css tag cloud */
 
 .cloud {
