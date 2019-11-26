@@ -35,12 +35,12 @@
         <!-- <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5> -->
       </div>
   </div>
-  <div class="form-data-group">
+  <div class="form-data-group" *ngIf="employmentType!='Full-Time'">
     <h3 class="question">
       Contract Duration</h3>
       <h4 class="data">{{contractDuration}}</h4>
   </div>
-  <div class="form-data-group">
+  <div class="form-data-group" *ngIf="employmentType!='Full-Time'">
     <h3 class="question">
       Contract Extension</h3>
       <h4 class="data">{{contractExtension}}</h4>
@@ -48,17 +48,23 @@
   <div class="form-data-group">
     <h3 class="question">
       Interview Type</h3>
-      <h4 class="data">{{interviewType}}</h4>
+      <h4 class="data">{{interviewType || N/A }}</h4>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       Reporting Manager</h3>
-      <h6 class="data">{{reportinManager}}</h6>
+      <h6 class="data">{{reportinManager || N/A }}</h6>
   </div>
   <div class="form-data-group tech-team-group">
     <h3 class="question">
       Technical Team for Screening</h3>
-      <h6 class="data" *ngFor="let user of teamMembers">{{user.FirstName}}</h6> 
+      <ng-container *ngIf="teamMembers.length!=0" >
+          <h6 class="data" *ngFor="let user of teamMembers">{{user.FirstName}}</h6> 
+      </ng-container>
+      <ng-container *ngIf="teamMembers?.length==0" >
+          <h6 class="data"> N/A </h6> 
+      </ng-container>
+      
   </div>
   <div class="form-data-group row">
     <div class="col-md-12">
