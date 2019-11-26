@@ -373,6 +373,7 @@ export class UploadResponse {
   ResumeStatus: string;
   MailId: string;
   DocId : number;
+  UserProfilePictureUrl:string;
 }
 
 export class ProfileStatus {
