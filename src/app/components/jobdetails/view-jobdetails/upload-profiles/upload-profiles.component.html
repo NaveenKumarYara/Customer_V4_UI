@@ -67,6 +67,9 @@
           <!--Upload Profile alerts starts here-->
           <div class="uploaded-list">
             <div class="media uploaded-files" *ngFor="let data of tempuploadResponse; let i = index">
+                <div class="profile-pic">
+                    <img [src]="data.UserProfilePictureUrl" id="headerProfilePic" alt="" class="img-circle">
+                  </div>
               <img class="align-self-center mr-3" src="../../../../../assets/images/customer-parser-icon.svg" alt="parser">
               <!--Parser Loader Status Icons/ Show & hide below image tags based on the conditions-->
               <img class="parser-loader" *ngIf="data.ResumeStatus == null" src="../../../../../assets/images/parser-loader.svg" alt="parser-loader">
