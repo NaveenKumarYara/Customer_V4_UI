@@ -193,9 +193,17 @@ dislaySortByOptions() {
   this.jobdetailsservice.getSortByOption().subscribe(x => this.sortByOrder = x);
 }
 SearchEnter(searchval) {
+  if(searchval == '#')
+  {
+    this.SearchList = [];
+    this.search('');
+  }
+  else
+  {
   this.SearchList = [];
   this.GetSearchText(null);
   this.search(searchval);
+  }
 }
 
  SetSearch(val) {
