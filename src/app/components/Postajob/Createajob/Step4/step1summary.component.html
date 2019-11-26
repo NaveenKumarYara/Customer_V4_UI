@@ -16,15 +16,15 @@
      {{completeDescription}}
     </h6>
     <h6 class="data" *ngIf="hasDescription==false">
-        NA
+        N/A
       </h6>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       Which Category this job belongs to?
     </h3>
-    <h5 class="data">
-      {{jobCategory}}
+    <h5 class="data" >
+      {{jobCategory || N/A}}
     </h5>
   </div>
   <div class="form-data-group">
@@ -37,7 +37,7 @@
     <h3 class="question">
       What is the Client Name?
     </h3>
-    <h5 class="data">{{client}}</h5>
+    <h5 class="data">{{client || N/A}}</h5>
   </div>
   <div class="form-data-group">
     <h3 class="question">
@@ -52,7 +52,7 @@
       How many open positions do you currently have for this Job Title?
     </h3>
       <h4 class="data">
-        {{noOfopenings}}
+        {{noOfopenings || 0}}
       </h4>
   </div>
   <div class="form-data-group skill-set-group">
@@ -71,9 +71,9 @@
           </li> 
           <!-- {{department | json}} -->
         </ul>
-         <!-- <h6 class="data" *ngIf="department.length === 0" >
-            NA
-          </h6> -->
+         <h6 class="data" *ngIf="departments.length === 0" >
+            N/A
+          </h6> 
       </div>
       </div>
 </div>

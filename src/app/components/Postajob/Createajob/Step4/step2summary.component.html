@@ -4,7 +4,12 @@
     <h3 class="question">
       Which domain/(s) is the project into?
     </h3>
-      <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
+    <ng-container *ngIf="domain?.length!=0">
+        <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
+    </ng-container>
+     <ng-container *ngIf="domain?.length==0">
+        <h4 class="data">N/A</h4>
+     </ng-container>
   </div>
   <div class="form-data-group skill-set-group">
     <h3 class="question">
@@ -38,15 +43,27 @@
     <h3 class="question">
       What are the responsibilities you are looking for in the candidate?
     </h3>
-    <ul class="responsibility-list">
-      <li *ngFor="let role of roles">{{role.Role}}</li> 
+    <ul class="responsibility-list" >
+      <ng-container *ngIf="roles?.length!=0">
+          <li *ngFor="let role of roles">{{role.Role}}</li> 
+      </ng-container>
+      <ng-container *ngIf="roles?.length==0">
+        <li> N/A</li>
+      </ng-container>
+     
     </ul>
   </div>
   <div class="form-data-group">
     <h3 class="question">
       Preferred Education criteria?
     </h3>
-      <h4 class="data" *ngFor="let edu of education">{{edu.QualificationName}}</h4>
+    <ng-container *ngIf="education?.length!=0">
+        <h4 class="data" *ngFor="let edu of education">{{edu.QualificationName}}</h4>
+    </ng-container>
+    <ng-container *ngIf="education?.length==0">
+        <h4 class="data">N/A</h4>
+    </ng-container>
+     
   </div>
  
   <!-- <div class="form-data-group">
@@ -54,7 +71,8 @@
     <h4 class="data">No</h4>
   </div> -->
   <div class="form-data-group personality-group">
-    <h3 class="question">Which type of person you are looking for?</h3>
+    <h3 class="question">Which type of person you are looking for?</h3> 
+    <ng-container *ngIf="personType?.length!=0">
     <div *ngFor="let person of personType">
       <div  class="type"  *ngIf="person.checked">
       <div class="type-img">
@@ -68,5 +86,9 @@
       </div>
     </div>
     </div>
+   </ng-container>
+   <ng-container *ngIf="personType?.length==0"> 
+     N/A
+   </ng-container>
   </div>
 </section>
