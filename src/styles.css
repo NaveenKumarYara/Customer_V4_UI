@@ -24550,6 +24550,9 @@ table .table-prl-0 td {
     font-size: 11px;
     font-style: italic;
 }
+.uploaded-files .media-body h3{
+    padding-left: 1%;
+}
 
 .text-warning {
     color: #856404;
@@ -24577,6 +24580,7 @@ table .table-prl-0 td {
 
 .progress.h-5 {
     margin-bottom: 4px;
+    border:none!important;
 }
 
 .vh-100.s-none {
@@ -24648,7 +24652,7 @@ table .table-prl-0 td {
 }
 
 .media.uploaded-files img {
-    width: 40px;
+    width: 55px;
 }
 /* css tag cloud */
 
