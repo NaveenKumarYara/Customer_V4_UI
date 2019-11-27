@@ -215,10 +215,10 @@ export class UploadProfilesComponent implements OnInit {
           
           if(data[0].ResumeStatus == 'Successful'){
             this.successCount = this.successCount +1;
-            this.toastr.success('Uploaded successfully', 'Success');
+            // this.toastr.success('Uploaded successfully', 'Success');
           }else{
             this.issueCount = this.issueCount +1;
-            this.toastr.info('Partially Uploaded', 'Success');
+            // this.toastr.info('Partially Uploaded', 'Success');
           }
           
         /** spinner ends after 5 seconds */
