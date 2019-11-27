@@ -2,6 +2,7 @@ import {Keepalive} from '@ng-idle/keepalive';
 import {EventTargetInterruptSource,DEFAULT_INTERRUPTSOURCES, Idle} from '@ng-idle/core';
 import {Component, ElementRef,ViewContainerRef} from '@angular/core';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import {MatDialog} from '@angular/material';
 import {
   Router,
   Event as RouterEvent,
@@ -23,7 +24,7 @@ export class AppComponent {
   timedOut = false;
   lastPing?: Date = null;
   items: string[];
-  constructor( private toastr: ToastsManager, private _vcr: ViewContainerRef,private route: Router,private appService: AppService,private element: ElementRef, private idle: Idle, private keepalive: Keepalive) {
+  constructor( private dialogRef: MatDialog,private toastr: ToastsManager, private _vcr: ViewContainerRef,private route: Router,private appService: AppService,private element: ElementRef, private idle: Idle, private keepalive: Keepalive) {
     this.toastr.setRootViewContainerRef(_vcr);
     setInterval(()=>{
       if(navigator.onLine){
@@ -51,6 +52,8 @@ export class AppComponent {
       this.timedOut = true;
       sessionStorage.removeItem('userData');
       sessionStorage.clear();
+      this.dialogRef.closeAll();
+      $('.modal-backdrop').remove();
       this.route.navigateByUrl('/login' , { replaceUrl: true });
     });
     idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
