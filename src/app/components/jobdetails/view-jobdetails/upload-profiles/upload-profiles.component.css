@@ -433,4 +433,8 @@ top: 50px;
 }
 
 
-
+.uploaded-files img.user-profile-pic{
+  height: 58px;
+  width: 54px;
+  border-radius: 5px;
+}
