@@ -70,12 +70,14 @@
                   </div>
               <!-- <img class="align-self-center mr-3" *ngIf="data.UserProfilePictureUrl == null" src="../../../../../assets/images/customer-parser-icon.svg" alt="parser"> -->
               <!--Parser Loader Status Icons/ Show & hide below image tags based on the conditions-->
+              <div *ngIf="data.UserProfilePictureUrl == null">
               <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == null"
                 src="../../../../../assets/images/parser-loader.gif" alt="parser-loader">
               <img class="align-self-center mr-3" *ngIf="data.ResumeStatus != null && data.ResumeStatus != 'Successful'"
                 src="../../../../../assets/images/parser-alert.svg" alt="parser-alert">
               <img class="align-self-center mr-3" *ngIf="data.ResumeStatus == 'Successful'"
                 src="../../../../../assets/images/parser-success.svg" alt="parser-success">
+                </div>
               <!--Parser Loader Status Icons-->
               <div class="media-body">
                 <h3 class="m-0">{{data.FirstName}}&nbsp;{{data.LastName}}<span *ngIf="data.ResumeStatus != null">{{data.MailId}}</span></h3>
