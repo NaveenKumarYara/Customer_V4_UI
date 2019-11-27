@@ -80,8 +80,10 @@
               <div class="media-body">
                 <h3 class="m-0">{{data.FirstName}}&nbsp;{{data.LastName}}<span *ngIf="data.ResumeStatus != null">{{data.MailId}}</span></h3>
                 <div class="progress h-5">
-                  <div class="progress-bar progress-bar-striped active" [style.width.%]="profileStatus[i].percentage"
-                    role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar rprogress-bar-info progress-bar-striped active"  *ngIf="data.ResumeStatus == null" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar progress-bar-warning  progress-bar-striped active" *ngIf="data.ResumeStatus != null && data.ResumeStatus != 'Successful'" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar progress-bar-success  progress-bar-striped active"  *ngIf="data.ResumeStatus == 'Successful'" [style.width.%]="profileStatus[i].percentage" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar progress-bar-danger progress-bar-striped active"  *ngIf="data.ResumeStatus == 'Error'" [style.width.%]="profileStatus[i].percentage"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div *ngIf="data.ResumeStatus == null">
                   <p class="text-success m-0">{{profileStatus[i].text}}...</p>
@@ -89,6 +91,9 @@
                 <div *ngIf="data.ResumeStatus == 'Successful'">
                   <p class="text-success m-0">Profile Parsed and Uploaded Successfully!!!</p>
                 </div>
+                <div *ngIf="data.ResumeStatus == 'Error'">
+                    <p class="text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
+                  </div>
                 <div *ngIf="data.ResumeStatus == 'Associated'">
                   <p class="text-primary m-0">Already Associated for Same Job!!!</p>
                 </div>
