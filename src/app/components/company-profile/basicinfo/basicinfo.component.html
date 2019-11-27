@@ -308,20 +308,23 @@
               <video #video class="video"></video>
             </div>
           </div>
-          <div class="wrap-icon">
-            <div>
+          <div class="wrap-icon actions">
+            <div class="item">
               <img id="btn-start-recording" (click)="startRecording()" src="assets/images/record-icon.png" alt="">
               <p id="record_p">Record</p>
               <img src="assets/images/upload-icon.png" id="btn-stop-recording" hidden (click)="stopRecording()" alt="">
               <p id="upload_p" hidden>Stop & Upload</p>
             </div>
-            <div>
-              <a (click)="videoval.click()">
-                <input type="file" #videovalue (click)="videovalue.value = null" value=""
-                  (change)="onVideoFileChange($event)">
-                <img src="assets/images/upload-icon.png" alt="upload-icon">
-                <p>Upload</p>
+            <div class="item">
+              <a href="javascript:void(0)">
+                  <a (click)="videovalue.click()" href="javascript:void(0)">
+                      <input  type="file" class="hidden" #videovalue (click)="videovalue.value = null" value=""
+                        (change)="onVideoFileChange($event)">
+                      <img src="assets/images/upload-icon.png" alt="upload-icon">
+                      <p>Upload</p>
+                    </a>
               </a>
+          
               <!-- <form class="form-inline" action="" enctype="multipart/form-data">
                        
                         <label for="browse">
