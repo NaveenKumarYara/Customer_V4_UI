@@ -202,7 +202,7 @@ export class UploadProfilesComponent implements OnInit {
         
         // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
         this.fileCount = this.fileCount + 1;
-
+// alert(this.fileCount);
         // setTimeout(() => {
           for(var i= 0 ; i<this.totalFile; i++){
             if(data[0].DocId != this.profileStatus[i].id)
@@ -220,11 +220,7 @@ export class UploadProfilesComponent implements OnInit {
             this.issueCount = this.issueCount +1;
             // this.toastr.info('Partially Uploaded', 'Success');
           }
-          
-        /** spinner ends after 5 seconds */
-        // this.spinner.hide();
-        // }, 60000);
-        
+           
         setTimeout(() => {
           this.toastr.dismissToast;
         }, 3000);
