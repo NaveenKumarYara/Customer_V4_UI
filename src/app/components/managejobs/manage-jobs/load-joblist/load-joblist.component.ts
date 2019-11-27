@@ -50,6 +50,27 @@ export class LoadJoblistComponent implements OnInit {
     this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
+    if(this.customer!=null){
+   //---------------------------------------Oninit Data call-------------------------------
+       // this.jobLoader = false;
+    // this.spinner.show();
+    this.sub =
+      this.route.params.subscribe(params => {
+      this.id = params['id'];
+      });
+      if (this.id === 2) {
+        this.filter.toggleTableLayout();
+      }
+    this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
+    this.spinner.show();
+    this.populateJoblist(this.customerId, this.userId, this.searchString);
+    this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
+    // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
+    localStorage.removeItem('sortBy');
+   // this.spinner.hide();
+
+   //----------------------------------------Oninit Data call end-------------------------------
+  }
     if(this.sortBy == null || this.sortBy == undefined)
     {
       this.defaultValue ='0';
@@ -164,22 +185,7 @@ export class LoadJoblistComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.jobLoader = false;
-    // this.spinner.show();
-    this.sub =
-      this.route.params.subscribe(params => {
-      this.id = params['id'];
-      });
-      if (this.id === 2) {
-        this.filter.toggleTableLayout();
-      }
-    this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
-    this.spinner.show();
-    this.populateJoblist(this.customerId, this.userId, this.searchString);
-    this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
-    // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
-    localStorage.removeItem('sortBy');
-   // this.spinner.hide();
+ 
   }
 }
 
