@@ -248,7 +248,7 @@ export class UploadProfilesComponent implements OnInit {
       //   }
     }, (error :any) => {
 
-      for(var i= 0 ; i<this.totalFile; i++){
+      for(var i= 0 ; i<this.totalFile; i++){ 
         if(DocId != this.profileStatus[i].id)
           this.profileStatus[i].percentage =this.profileStatus[i].percentage  + 5;
         else
