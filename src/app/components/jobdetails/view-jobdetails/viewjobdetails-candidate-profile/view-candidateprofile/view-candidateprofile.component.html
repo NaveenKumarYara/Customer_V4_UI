@@ -146,10 +146,11 @@
                           </canvas> -->
                       <ng-container *ngIf="!noTest">
                       <p class="profile-note">Yet to be Performed</p>
-                        <canvas #testChart1 width="250" height="250" baseChart [chartType]="'doughnut'"
+                        <!-- <canvas #testChart1 width="250" height="250" baseChart [chartType]="'doughnut'"
                           [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true"
                           [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
-                        </canvas>                        
+                        </canvas>                         -->
+                        <img #testChart1 width="350" src="../../../assets/images/YetToPerformed.svg" alt="personality-test">
                       </ng-container>
                     <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result-->
                     </div>
