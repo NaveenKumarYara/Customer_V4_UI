@@ -19,11 +19,11 @@ spec:
         image: arytic.azurecr.io/tenendus_scv/customerlatest:#{Build.BuildId}#
         resources:
           limits:
-            cpu: "0.1"
-            memory: 500M
+            cpu: "0.05"
+            memory: 200M
           requests:
-            cpu: "0.1"
-            memory: 300M
+            cpu: "0.025"
+            memory: 100M
         env:
         - name: Identity_URL
           value: "https://identityapi-#{namespace}#.arytic.com"
