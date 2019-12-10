@@ -23,14 +23,14 @@ export interface DialogData {
 export class UploadProfilesComponent implements OnInit {
   emailCheck = true;
   fileUploadForm: FormGroup;
-  totalFile : number = 0;
+  totalFile: number = 0;
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
   isPublic: any = false;
-  public profileStatus:ProfileStatus[] = [];
+  public profileStatus: ProfileStatus[] = [];
   fileCount: number = 0;
-  successCount : number = 0;
-  issueCount : number = 0;
+  successCount: number = 0;
+  issueCount: number = 0;
   profiles: Profile[];
   searchprocess: any;
   Count: any;
@@ -161,7 +161,7 @@ export class UploadProfilesComponent implements OnInit {
     if (this.fileUploadForm.value !== '') {
       request = JSON.stringify(this.fileUploadForm.value);
     }
-    this.totalFile =  e.target.files.length;
+    this.totalFile = e.target.files.length;
     this.totalSelectedDoc = e.target.files.length;
     if (e.target.files.length > 40) {
       alert('Please select max 40 files.');
@@ -171,66 +171,66 @@ export class UploadProfilesComponent implements OnInit {
       this.slice = 100 / e.target.files.length;
       for (let i = 0; i < e.target.files.length; i++) {
         var Profdata = new ProfileStatus();
-        Profdata.id = i ;
-        Profdata.percentage = (e.target.files.length- i - 1) * this.slice;
-        if(!Profdata.percentage)
-          Profdata.percentage =5;
-        Profdata.text ="Parsing the Document......";
+        Profdata.id = i;
+        Profdata.percentage = (e.target.files.length - i - 1) * this.slice;
+        if (!Profdata.percentage)
+          Profdata.percentage = 5;
+        Profdata.text = "Parsing the Document......";
         Profdata.id = i;
         this.profileStatus.push(Profdata);
         formData = new FormData();
         var temp = new UploadResponse()
         this.selectedFileNames.push(e.target.files[i].name);
         temp.FirstName = e.target.files[i].name;
-        temp.DocId  = i;
+        temp.DocId = i;
         temp.ResumeStatus = null;
         this.tempuploadResponse.push(temp);
         formData.append('ResumeFile', e.target.files[i]);
         formData.append('Model', request);
-        formData.append('CustomerId',this.customerId);
-        formData.append('DocId',JSON.stringify(i.toString()));
+        formData.append('CustomerId', this.customerId);
+        formData.append('DocId', JSON.stringify(i.toString()));
         formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
-        this.uploadMultiple(formData,i);
+        this.uploadMultiple(formData, i);
       }
 
     }
   }
-  uploadMultiple(formData,DocId) {
+  uploadMultiple(formData, DocId) {
     this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
         this.uploadResponse = data;
-        if(this.uploadResponse[0].ResumeStatus!=null){
-        // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
-        this.fileCount = this.fileCount + 1;
-// alert(this.fileCount);
-        // setTimeout(() => {
-          for(var i= 0 ; i<this.totalFile; i++){
-            if(data[0].DocId != this.profileStatus[i].id)
-              this.profileStatus[i].percentage =this.profileStatus[i].percentage  + 5;
+        if (this.uploadResponse[0].ResumeStatus != null) {
+          // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
+          this.fileCount = this.fileCount + 1;
+          // alert(this.fileCount);
+          // setTimeout(() => {
+          for (var i = 0; i < this.totalFile; i++) {
+            if (data[0].DocId != this.profileStatus[i].id)
+              this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
             else
-              this.profileStatus[i].percentage =100;
-            if(this.tempuploadResponse[i].DocId == data[0].DocId)
+              this.profileStatus[i].percentage = 100;
+            if (this.tempuploadResponse[i].DocId == data[0].DocId)
               this.tempuploadResponse[i] = data[0];
           }
-          
-          if(data[0].ResumeStatus == 'Successful'){
-            this.successCount = this.successCount +1;
+
+          if (data[0].ResumeStatus == 'Successful') {
+            this.successCount = this.successCount + 1;
             // this.toastr.success('Uploaded successfully', 'Success');
-          }else{
-            this.issueCount = this.issueCount +1;
+          } else {
+            this.issueCount = this.issueCount + 1;
             // this.toastr.info('Partially Uploaded', 'Success');
           }
-        }else{
-          for(var i= 0 ; i<this.totalFile; i++){
-            if(data[0].DocId != this.profileStatus[i].id)
-              this.profileStatus[i].percentage =this.profileStatus[i].percentage  + 5;
+        } else {
+          for (var i = 0; i < this.totalFile; i++) {
+            if (data[0].DocId != this.profileStatus[i].id)
+              this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
             else
-              this.profileStatus[i].percentage =100;
-            if(this.tempuploadResponse[i].DocId == data[0].DocId)
-              this.tempuploadResponse[i].ResumeStatus="Error";
-              // this.tempuploadResponse[i].ResumeStatus="Error";
-              // error in uploading profiles!
-          } 
+              this.profileStatus[i].percentage = 100;
+            if (this.tempuploadResponse[i].DocId == data[0].DocId)
+              this.tempuploadResponse[i].ResumeStatus = "Error";
+            // this.tempuploadResponse[i].ResumeStatus="Error";
+            // error in uploading profiles!
+          }
 
         }
 
@@ -246,18 +246,18 @@ export class UploadProfilesComponent implements OnInit {
       //  }, 3000);
       // //  return false;
       //   }
-    }, (error :any) => {
+    }, (error: any) => {
 
-      for(var i= 0 ; i<this.totalFile; i++){
-        if(DocId != this.profileStatus[i].id)
-          this.profileStatus[i].percentage =this.profileStatus[i].percentage  + 5;
+      for (var i = 0; i < this.totalFile; i++) {
+        if (DocId != this.profileStatus[i].id)
+          this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
         else
-          this.profileStatus[i].percentage =100;
-        if(this.tempuploadResponse[i].DocId == DocId)
-          this.tempuploadResponse[i].ResumeStatus="Error";
-          // this.tempuploadResponse[i].ResumeStatus="Error";
-          // error in uploading profiles!
-      } 
+          this.profileStatus[i].percentage = 100;
+        if (this.tempuploadResponse[i].DocId == DocId)
+          this.tempuploadResponse[i].ResumeStatus = "Error";
+        // this.tempuploadResponse[i].ResumeStatus="Error";
+        // error in uploading profiles!
+      }
       // this.toastr.error('error in uploading profiles!', 'Oops!');
       // setTimeout(() => {
       //   this.toastr.dismissToast;
@@ -284,6 +284,26 @@ export class UploadProfilesComponent implements OnInit {
         setTimeout(() => {
           this.toastr.dismissToast;
         }, 3000);
+      }
+    });
+  }
+
+  CanceledAction(data, index) {
+    this.tempuploadResponse[index].ResumeStatus = "Canceled";
+
+  }
+
+  UploadAction(index, data, type) {
+    if (type == 1)
+      this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
+    else if (type == 2)
+      this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+    else
+      this.tempuploadResponse[index].ResumeStatus = "Requested";
+    this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
+      if (data) {
+        // alert("sdfdsfsdfsd");
+
       }
     });
   }
@@ -393,12 +413,16 @@ export class UploadResponse {
   LastName: string;
   ResumeStatus: string;
   MailId: string;
-  DocId : number;
-  UserProfilePictureUrl:string;
+  DocId: number;
+  UserProfilePictureUrl: string;
+  JobId: number;
+  CustomerId: number;
+  IsPublic: boolean;
+  UserId: number;
 }
 
 export class ProfileStatus {
   text: string;
   percentage: number;
-  id: number; 
+  id: number;
 }
