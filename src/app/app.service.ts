@@ -20,7 +20,7 @@ import {CustomerContacts} from '../models/customercontacts';
 import {draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
-import {PlanFeature} from '../models/Pricing';
+import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
@@ -352,7 +352,7 @@ export class AppService {
 
 getPricingPlans(): Observable<PlanFeature[]> {
   const url = this.settingsService.settings.GetPlans;
-  return this.http.get<string[]>(url)
+  return this.http.get<PlanFeature[]>(url)
   .catch(
     this.handleError
   );

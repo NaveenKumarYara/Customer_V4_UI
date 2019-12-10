@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../../app.service';
-import {PlanFeature} from  '../../../../../models/Pricing';
+import { PlanFeature } from "../../../../../models/PlanFeature";
 
 @Component({
   selector: 'app-manage-subscriptions',
@@ -9,7 +9,7 @@ import {PlanFeature} from  '../../../../../models/Pricing';
   providers: [AppService]
 })
 export class ManageSubscriptionsComponent implements OnInit {
-  Plans:PlanFeature[] = [];
+  Plans:PlanFeature[]=[];
   constructor(private appService: AppService) {
 
    }
@@ -21,7 +21,6 @@ export class ManageSubscriptionsComponent implements OnInit {
   GetPlans()
   {
     return this.appService.getPricingPlans().subscribe(res => {
-      debugger
       this.Plans = res;
   });
   }

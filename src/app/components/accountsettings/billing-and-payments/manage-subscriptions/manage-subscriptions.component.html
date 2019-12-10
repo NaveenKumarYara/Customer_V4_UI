@@ -1,5 +1,5 @@
 
-<div class="row pricing-row">
+<div class="row pricing-row" *ngIf="Plans">
     <ng-container *ngFor="let plans of Plans?.plansoffered">
     <div class="col-md-4" *ngIf="plans.id != 4">
       <div class="pricing-card box-shadow">
