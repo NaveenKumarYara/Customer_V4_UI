@@ -1,9 +1,8 @@
-import { Component, OnInit,ViewContainerRef } from '@angular/core';
-import {CustomerContacts} from '../../../../models/customercontacts';
+import { Component, OnInit ,ViewChild} from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
-import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
-import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 declare var $: any; 
 @Component({
   selector: 'app-billing-and-payments',
@@ -11,8 +10,10 @@ declare var $: any;
   styleUrls: ['./billing-and-payments.component.css']
 })
 export class BillingAndPaymentsComponent implements OnInit {
-
-  constructor() { }
+  customer:any;  
+  constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+  }
 
   ngOnInit() {
   }
