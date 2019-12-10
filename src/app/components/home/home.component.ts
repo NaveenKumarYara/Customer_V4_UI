@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   show : any = false;
   result :any;
   Uid:any;
+  Plan:any;
   tkeyres :any;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"; 
   password:any;
@@ -32,6 +33,9 @@ export class HomeComponent implements OnInit {
         this.route.params.subscribe(params => {
           if (params['tk']!=null) {
             this.GetLogin(params['tk']);
+          }
+          if (params["pId"] != null) {
+            sessionStorage.setItem("PlanId", params["pId"]);
           }
           else
           {
@@ -54,7 +58,17 @@ export class HomeComponent implements OnInit {
         this.spinner.hide();
         sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
         sessionStorage.setItem('userData', JSON.stringify(data));
-        this.router.navigateByUrl('app-dashboardview');
+        this.Plan = sessionStorage.getItem("PlanId")
+        if(this.Plan != null || this.Plan > 0)
+        {
+          this.router.navigateByUrl('app-accountsettings/app-billing-and-payments');
+          
+        }
+        else 
+        {
+          this.router.navigateByUrl('app-dashboardview');
+        }
+      
         }
         else
         {

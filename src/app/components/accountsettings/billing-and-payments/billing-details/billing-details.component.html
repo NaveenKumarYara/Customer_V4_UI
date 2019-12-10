@@ -1,3 +1,115 @@
-<p>
-  billing-details works!
-</p>
+<div class="table-row">
+    <div class="edit-group address-group">
+      <form action="" class="edit-form form-inline">
+        <div class="form-group">
+          <label for="address">Mailing Address</label>
+          <div class="editable-input">
+            <div class="row">
+              <div class="col-md-12">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-filled">Save</button>
+          <button class="btn btn-border">Cancel</button>
+        </div>
+      </form>
+      <div class="form-inline data">
+        <div class="form-group">
+          <label for="email">Mailing Address</label>
+          <div class="editable-input">
+            <p>
+                <ng-container *ngIf="companyprofile?.Address1!=''">
+                    {{companyprofile?.Address1}},
+              </ng-container>
+              <ng-container *ngIf="companyprofile?.Address2!=''">
+                  {{companyprofile?.Address2}}.
+              </ng-container>
+            </p>
+            <a href="javascript:void(0)" class="edit-btn">Edit address</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-row">
+    <div class="edit-group email-group">
+      <form action="" class="edit-form form-inline">
+        <div class="form-group">
+          <label for="address">Send copies of Invoice to</label>
+          <div class="editable-input">
+            <div class="row">
+              <div class="col-md-12">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-filled">Save</button>
+          <button class="btn btn-border">Cancel</button>
+        </div>
+      </form>
+      <div class="form-inline data">
+        <div class="form-group">
+          <label for="email">Send copies of Invoice to</label>
+          <div class="editable-input">
+            <input type="text" class="form-control" value="{{customer?.Email}}" readonly>
+            <a href="javascript:void(0)" class="edit-btn">Edit address</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-row">
+    <div class="payment-group">
+      <div class="form-group ">
+        <label for="address">Payment Methods</label>
+        <div class="edit-group">
+          <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
+          <div>
+            <h4>Paypal</h4>
+            <p>XXXX XXXX XXXX 3456</p>
+          </div>
+          <div>
+            <h5>Expiry</h5>
+            <p>3 / 23 / 2019</p>
+          </div>
+          <div class="actions">
+            <a href="javascript:void(0)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="21.3">
+                <path d="M16.1 21.3H3c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1s1 .4 1 1v11.3h11.1V8c0-.6.4-1 1-1s1 .4 1 1v12.3c0 .6-.4 1-1 1zm3-17.2c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1s.4 1 1 1h17.1c.6 0 1-.4 1-1zm-5-3.1c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h7.1c.6 0 1-.4 1-1zM8.6 16.4V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1zm4 0V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1z" fill="#93a2bb"></path>
+              </svg>
+            </a>
+            <a href="javascript:void(0)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
+                <g transform="translate(-1427.7 -604.8)" fill="#93a2bb">
+                  <path d="M1430.5 624.8a2.8 2.8 0 0 1-2.8-2.8v-12.3c0-1.5 1.2-2.8 2.8-2.8h5.5c.6 0 1 .4 1 1s-.4 1-1 1h-5.5c-.4 0-.8.4-.8.8V622c0 .4.4.8.8.8h12.3c.4 0 .8-.4.8-.8v-5.5c0-.6.4-1 1-1s1 .4 1 1v5.5c0 1.5-1.2 2.8-2.8 2.8h-12.3z"></path>
+                  <path d="M1434.4 619a.9.9 0 0 1-.7-.3c-.3-.3-.4-.6-.3-1l.7-2.6c0-.2.1-.3.3-.5l9.7-9.6c.4-.4 1-.4 1.4 0l1.8 1.8c.4.4.4 1 0 1.4l-9.6 9.7c-.1.1-.3.2-.5.3l-2.6.7c0 .1-.1.1-.2.1zm1.6-3.1l-.2.7.7-.2 8.7-8.8-.4-.4-8.8 8.7z"></path>
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="btn-row">
+          <a href="javascript:void(0)" class="add-btn"><span class="add">+</span>Add payment method</a>
+        </div>
+      </div>
+    </div>
+  </div>

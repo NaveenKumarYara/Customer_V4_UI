@@ -43,6 +43,8 @@ spec:
           value: "https://socialapi-#{namespace}#.arytic.com"
         - name: Question_URL
           value: "https://questionnaireapi-#{namespace}#.arytic.com"
+        - name: Pricing_URL
+          value: "https://pricingapi-#{namespace}#.arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:

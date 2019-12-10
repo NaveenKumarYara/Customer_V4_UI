@@ -136,4 +136,5 @@ export class Settings {
   Arytic: string;
   QuestionbaseUrl:string;
   QuestionResult:string;
+  GetPlans:string;
   }

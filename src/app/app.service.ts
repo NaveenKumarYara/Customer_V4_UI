@@ -20,6 +20,7 @@ import {CustomerContacts} from '../models/customercontacts';
 import {draftDetails} from '../models/draftDetails';
 import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
+import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
@@ -31,6 +32,7 @@ import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-p
 import { ParseResponsibilities } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 import { SkillDetails, SkillData,SkillPostData } from '../models/skill.model';
 import { SettingsService } from '../settings/settings.service';
+import { CompanyProfile } from '../models/companyprofile';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -345,6 +347,23 @@ export class AppService {
             this.handleError
     );
     return skilllist;
+}
+
+
+getPricingPlans(): Observable<PlanFeature[]> {
+  const url = this.settingsService.settings.GetPlans;
+  return this.http.get<PlanFeature[]>(url)
+  .catch(
+    this.handleError
+  );
+}
+
+getCompanyProfile(customerId:number): Observable<CompanyProfile> {
+  const url = this.settingsService.settings.CompanyProfileBasicInfo+ 'customerId='+customerId ;
+  return this.http.get<CompanyProfile>(url)
+      .catch(
+          this.handleError
+      );
 }
 
   getaddedDepartments() {

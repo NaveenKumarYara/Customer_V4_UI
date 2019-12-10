@@ -128,5 +128,6 @@
   "GetInterviewDetails": "${Jobs_URL}/api/GetJobInterviewByProfileId?",
   "Arytic":"${Main_URL}",
   "QuestionbaseUrl": "${Question_URL}",
-  "QuestionResult":"${Question_URL}/api/QuestionnaireResult/GetQuestionnaireGroupResult?"
+  "QuestionResult":"${Question_URL}/api/QuestionnaireResult/GetQuestionnaireGroupResult?",
+  "GetPlans": "${Pricing_URL}/api/PlanFeature"
 }
