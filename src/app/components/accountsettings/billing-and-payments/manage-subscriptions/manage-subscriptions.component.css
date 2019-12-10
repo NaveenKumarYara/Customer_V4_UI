@@ -109,7 +109,8 @@ input.form-control {
 font-size: 1.9rem !important;  
 }
 .pricing-card.box-shadow{
-    height: 652px;
+    /* height: 652px; */
+    height: 139vh;
 }
 .f-12{
     font-size: 12px !important;
