@@ -1,134 +1,178 @@
-
 <div class="col-lg-9">
   <div class="right">
     <div class="tab-content">
-        <div id="billing" class="tab-pane fade active in">
-           <h1>Billing and Payments</h1>
-            <ul class="nav nav-tabs ">
-  <li class=""><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
-  <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
-  <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
-  <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
-  <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a></li>
-             </ul>
-         <div class="tab-content">
-        <div id="overview" class="tab-pane fade">
-          <div class="row">
-      
-            <div class="col-md-6">
-        <div class="panel panel-default box-shadow">
-          <div class="panel-body">
-            <div><h1 class="panel-title">Bill Estimate</h1></div>
-            <div class="p_5">
-              <div class="pb_5"><h4 class="d-inline">USD 52.49</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees & Taxes)</small>  </div>
-              <div class="pb_5">Plan: <span class="pl-_5">Basic</span></div>
-              <div class="pb_5">Next Renewal on : <span class="pl-_5">Oct 05, 2019</span> </div>
-              <a href="javascript:void(0)">View More</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-default box-shadow">
-          <div class="panel-body">
-            <div><h1 class="panel-title">Billing Details</h1></div>
-            <div class="p_5pt-0">
-                <div class="table-row">
-                    <div class="payment-group">
-                      <div class="form-group p-0">
-                     
-                        <div class="edit-group p-0 border-w-0">
-                          <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
-                          <div>
-                            <h4>Paypal</h4>
-                            <p class="m-0">XXXX XXXX XXXX 3456</p>
-                          </div>
-                          <div>
-                            <h5>Expiry</h5>
-                            <p class="m-0">3 / 23 / 2019</p>
-                          </div>
-                        
-                        </div>
-                     
+      <div id="billing" class="tab-pane fade active in">
+        <h1>Billing and Payments</h1>
+        <ul class="nav nav-tabs ">
+          <li class=""><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
+          <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
+          <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
+          <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
+          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="overview" class="tab-pane fade">
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="panel panel-default box-shadow">
+                  <div class="panel-body">
+                    <div>
+                      <h1 class="panel-title">Bill Estimate</h1>
+                    </div>
+                    <div class="p_5">
+                      <div class="pb_5">
+                        <h4 class="d-inline">USD 52.49</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                          Taxes)</small>
                       </div>
+                      <div class="pb_5">Plan: <span class="pl-_5">Basic</span></div>
+                      <div class="pb_5">Next Renewal on : <span class="pl-_5">Oct 05, 2019</span> </div>
+                      <a href="javascript:void(0)">View More</a>
                     </div>
+
                   </div>
-              <div class="pb_5">Billing Period: <span class="pl-_5">Monthly</span></div>
-              <a href="javascript:void(0)">Manage Billing Details</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default box-shadow">
-          <div class="panel-body">
-            <div><h1 class="panel-title">Bill History</h1></div>
-            <div class="p_5">
-             <table class="table m-0 td-p-8">
-               <tr>
-                 <td>Sep 04, 2019 </td>
-                 <td>$ 49.99</td>
-               </tr>
-               <tr>
-                <td>Aug 04, 2019</td>
-                <td>$ 29.99</td>
-              </tr>
-              <tr>
-                <td>Jul 04, 2019</td>
-                <td>$ 29.99</td>
-              </tr>
-             
-             </table>
-              <a href="javascript:void(0)">View More</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-default box-shadow">
-          <div class="panel-body">
-            <div><h1 class="panel-title">Billing Contacts</h1></div>
-            <div class="ptrl_5-1_3">
-                <div class="media">
-                    <div class="media-left media-middle">
-                      <a href="javascript:void(0)">
-                        <img class="media-object" src="https://ui-avatars.com/api/?name=Emma+Watson" alt="User">
-                      </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="panel panel-default box-shadow">
+                  <div class="panel-body">
+                    <div>
+                      <h1 class="panel-title">Billing Details</h1>
                     </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{customer?.FirstName}}{{customer?.LastName}}</h4>
-                      <span>{{customer?.Email}}</span>
+                    <div class="p_5pt-0">
+                      <div class="table-row">
+                        <div class="payment-group">
+                          <div class="form-group p-0">
+
+                            <div class="edit-group p-0 border-w-0">
+                              <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
+                              <div>
+                                <h4>Paypal</h4>
+                                <p class="m-0">XXXX XXXX XXXX 3456</p>
+                              </div>
+                              <div>
+                                <h5>Expiry</h5>
+                                <p class="m-0">3 / 23 / 2019</p>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pb_5">Billing Period: <span class="pl-_5">Monthly</span></div>
+                      <a href="javascript:void(0)">Manage Billing Details</a>
                     </div>
+
                   </div>
-              <div class="ptb_5">Send Copy to:  <span class="pl-_5"> accountsteam@abc.com</span> </div>
-              <a href="javascript:void(0)">Manage Billing Contacts</a>
-              
+                </div>
+              </div>
             </div>
-            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="panel panel-default box-shadow">
+                  <div class="panel-body">
+                    <div>
+                      <h1 class="panel-title">Bill History</h1>
+                    </div>
+                    <div class="p_5">
+                      <!-- If billing -->
+                      <div style="display: none;">
+                        <table class="table m-0 td-p-8">
+                          <tr>
+                            <td>Sep 04, 2019 </td>
+                            <td>$ 49.99</td>
+                          </tr>
+                          <tr>
+                            <td>Aug 04, 2019</td>
+                            <td>$ 29.99</td>
+                          </tr>
+                          <tr>
+                            <td>Jul 04, 2019</td>
+                            <td>$ 29.99</td>
+                          </tr>
+
+                        </table>
+                        <a href="javascript:void(0)">View More</a>
+
+                      </div>
+
+                      <!-- #If billing -->
+                      <!-- If no billing -->
+                      <div class="no-billing">
+                        <div class="media">
+                          <div class="media-left media-middle">
+                            <a href="javascript:void(0)">
+                              <img class="media-object" width="52px" src="../../../../assets/images/no-billing-image.png" alt="...">
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading">No Billing History</h4>
+                            <p>Your Billing history snippet will be shown here</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- #If no billing -->
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="panel panel-default box-shadow">
+                  <div class="panel-body">
+                    <div>
+                      <h1 class="panel-title">Billing Contacts</h1>
+                    </div>
+                    <div class="ptrl_5-1_3">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <a href="javascript:void(0)">
+                            <img class="media-object" src="https://ui-avatars.com/api/?name=Emma+Watson" alt="User">
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">{{customer?.FirstName}}{{customer?.LastName}}</h4>
+                          <span>{{customer?.Email}}</span>
+                        </div>
+                      </div>
+                      <div class="ptb_5">Send Copy to: <span class="pl-_5"> accountsteam@abc.com</span> </div>
+                      <a href="javascript:void(0)">Manage Billing Contacts</a>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="estimates" class="tab-pane fade">
+            <app-estimates></app-estimates>
+          </div>
+          <div id="billing-details" class="tab-pane fade">
+            <app-billing-details></app-billing-details>
+          </div>
+          <div id="billing-history" class="tab-pane fade">
+            <!-- if billing-history -->
+            <div style="display: none;">
+              <app-billing-history></app-billing-history>
+            </div>
+            <!-- #if billing-history -->
+            <!-- if no billing-history -->
+            <div class="no-billing-view">
+              <img src="./../../../../assets/images/no-billing-image.png">
+              <h5>No Billing History</h5>
+              <p>Your Billing history snippet will be shown here</p>
+            </div>
+            <!-- #if no billing-history -->
+          </div>
+          <div id="subscription" class="tab-pane fade bs-responsive-tabs active in">
+            <app-manage-subscriptions id="subscription"></app-manage-subscriptions>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div id="estimates" class="tab-pane fade">
-  <app-estimates></app-estimates>
-  </div>
-  <div id="billing-details" class="tab-pane fade">
-<app-billing-details></app-billing-details>
-  </div>
-  <div id="billing-history" class="tab-pane fade">
-<app-billing-history></app-billing-history>
-  </div>
-  <div id="subscription" class="tab-pane fade bs-responsive-tabs active in">
-    <app-manage-subscriptions id="subscription"></app-manage-subscriptions>     
-  </div>
-            </div>
-         </div>
-          </div>
-    </div>
 </div>
