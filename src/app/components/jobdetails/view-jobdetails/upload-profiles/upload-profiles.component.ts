@@ -296,8 +296,10 @@ export class UploadProfilesComponent implements OnInit {
   UploadAction(index, data, type) {
     if (type == 1)
       this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
-    else if (type == 2)
-      this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+    else if (type == 2) {
+    this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+      data.isPublic = true;
+    }
     else
       this.tempuploadResponse[index].ResumeStatus = "Requested";
     this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'

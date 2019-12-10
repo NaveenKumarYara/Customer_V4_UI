@@ -35,7 +35,7 @@
 
           <div class="d-flex justify-content-between mb-3 w-100">
             <div class="p-2 upload-input">
-              <label class="radio checkbox">
+              <!-- <label class="radio checkbox">
                 <input type="checkbox" class="radio-input" checked [(ngModel)]="emailCheck">
                 <span class="radio-btn"></span>
                 <span>Notify</span>
@@ -44,7 +44,7 @@
                 <input type="checkbox" [(ngModel)]="isPublic" class="radio-input">
                 <span class="radio-btn l11"></span>
                 <span>Make it Public</span>
-              </label>
+              </label> -->
             </div>
 
             <div class="p-2 upload-alerts">
@@ -140,10 +140,10 @@
                 <div *ngIf="data.ResumeStatus == 'Arytic'">
                   <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
                     profile from Arytic?</p>
-                  <a (click)="UploadAction(i,data,2)">
+                  <a (click)="UploadAction(i,data,3)">
                     <span class="badge badge-light ptb-3rl-10">Send Request</span>
                   </a>
-                  <a (click)="UploadAction(i,data,1)">
+                  <a (click)="UploadAction(i,data,2)">
                     <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
                   </a>
                 </div>
