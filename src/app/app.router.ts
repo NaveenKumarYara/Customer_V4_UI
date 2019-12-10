@@ -42,7 +42,7 @@ import { JoblistGridlayoutComponent } from './components/managejobs/manage-jobs/
 import { JoblistTablelayoutComponent } from './components/managejobs/manage-jobs/joblist-tablelayout/joblist-tablelayout.component';
 import { LoadJoblistComponent } from './components/managejobs/manage-jobs/load-joblist/load-joblist.component';
 import { AdvanceSearchComponent } from './components/managejobs/manage-jobs/advance-search/advance-search.component';
-
+import {BillingAndPaymentsComponent} from './components/accountsettings/billing-and-payments/billing-and-payments.component';
 import { ViewJobdetailsComponent } from './components/jobdetails/view-jobdetails/view-jobdetails.component';
 import { FilterViewJobsComponent } from './components/jobdetails/view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 
@@ -247,6 +247,7 @@ const appRoutes: Routes =
         { path: '', redirectTo: 'app-accountsettingdetails', pathMatch: 'full' },
         { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
         { path: 'app-users', component: UsersComponent },
+        { path: 'app-billing-and-payments', component: BillingAndPaymentsComponent }
       ]
     },
 
