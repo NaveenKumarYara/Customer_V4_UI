@@ -8050,6 +8050,14 @@ video {
     line-height: 78px;
     padding: 0 15px;
 }
+.main-nav .user-options li.text-danger {
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.main-nav .user-options li.text-danger a{
+    color: #721c24!important;
+}
 
 .main-nav .dropdown-menu>li>a {
     line-height: 50px;
