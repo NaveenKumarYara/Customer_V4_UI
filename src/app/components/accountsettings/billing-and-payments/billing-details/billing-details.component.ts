@@ -18,12 +18,11 @@ export class BillingDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.populateCompanyProfile();
+    this.populateCompanyProfile(); 
   }
 
   populateCompanyProfile() {
     return this.appService.getCompanyProfile(this.customer.CustomerId).subscribe(res => {
-      debugger
         this.companyprofile = res;
     });
   }
