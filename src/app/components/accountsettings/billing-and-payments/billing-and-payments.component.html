@@ -17,7 +17,7 @@
 
               <div class="col-md-6">
                 <div class="panel panel-default box-shadow">
-                  <div class="panel-body">
+                  <div class="panel-body" *ngIf="Plans">
                     <div>
                       <h1 class="panel-title">Bill Estimate</h1>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="payment-group">
                           <div class="form-group p-0">
 
-                            <div class="edit-group p-0 border-w-0">
+                            <!-- <div class="edit-group p-0 border-w-0">
                               <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
                               <div>
                                 <h4>Paypal</h4>
@@ -61,12 +61,25 @@
                                 <p class="m-0">3 / 23 / 2019</p>
                               </div>
 
-                            </div>
+                            </div> -->
 
+                            <div class="edit-group p-0 border-w-0">
+                                <div> <img class="media-object" width="52px" src="../../../../assets/images/no-billing-image.png" alt="..."></div>
+                                <!-- <div>
+                                  <h4>Paypal</h4>
+                                  <p class="m-0">XXXX XXXX XXXX 3456</p>
+                                </div>
+                                <div>
+                                  <h5>Expiry</h5>
+                                  <p class="m-0">3 / 23 / 2019</p>
+                                </div> -->
+  
+                              </div>
+                           
                           </div>
                         </div>
                       </div>
-                      <div class="pb_5">Billing Period: <span class="pl-_5">Monthly</span></div>
+                      <div class="pb_5">Billing Period: <span class="pl-_5">  No Billing History</span></div>
                       <a href="javascript:void(0)">Manage Billing Details</a>
                     </div>
 
