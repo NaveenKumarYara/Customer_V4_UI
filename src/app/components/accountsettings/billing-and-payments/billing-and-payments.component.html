@@ -3,7 +3,7 @@
     <div class="tab-content">
       <div id="billing" class="tab-pane fade active in">
         <h1>Billing and Payments</h1>
-        <ul class="nav nav-tabs ">
+        <ul class="nav nav-tabs ">         
           <li class=""><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
           <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
           <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
@@ -148,7 +148,7 @@
                       <div class="media">
                         <div class="media-left media-middle">
                           <a href="javascript:void(0)">
-                            <img class="media-object" src="https://ui-avatars.com/api/?name=Emma+Watson" alt="User">
+                            <img class="media-object" src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}" alt="User">
                           </a>
                         </div>
                         <div class="media-body">
