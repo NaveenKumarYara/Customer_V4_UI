@@ -28,6 +28,8 @@ export class UploadProfilesComponent implements OnInit {
   searchprofiles: Profile[];
   isPublic: any = false;
   public profileStatus: ProfileStatus[] = [];
+  formDAtaList : Array<FormData>=[];
+  formData = new FormData();
   fileCount: number = 0;
   successCount: number = 0;
   issueCount: number = 0;
@@ -188,11 +190,13 @@ export class UploadProfilesComponent implements OnInit {
         formData.append('ResumeFile', e.target.files[i]);
         formData.append('Model', request);
         formData.append('CustomerId', this.customerId);
-        formData.append('DocId', JSON.stringify(i.toString()));
-        formData.append('IsPublic', JSON.stringify(this.isPublic.toString()));
+        formData.append('DocId', i.toString());//JSON.stringify(i.toString()));
+        formData.append('IsPublic', this.isPublic.toString());//JSON.stringify(this.isPublic.toString()));
+        formData.append("Upload",this.isPublic.toString());
+        this.formDAtaList.push(formData);
         this.uploadMultiple(formData, i);
-      }
 
+      }
     }
   }
   uploadMultiple(formData, DocId) {
@@ -294,10 +298,7 @@ export class UploadProfilesComponent implements OnInit {
   }
 
   UploadAction(index, data, type) {
-    if (type == 1)
-      this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
-    else if (type == 2) {
-    this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+    if (type == 2) {
       data.isPublic = true;
     }
     else if(type == 3){
@@ -309,11 +310,32 @@ export class UploadProfilesComponent implements OnInit {
     });
     }
     if(type != 3){
-    this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
-      if (data) {
-        // alert("sdfdsfsdfsd");
+      if(data.isPublic == true){
+        // alert("asdasdasdas");
+
+        this.formDAtaList.forEach(a=>{
+          var docid =(a.get("DocId").valueOf());
+          var doc = data.DocId.toString();
+          if(docid == doc)
+          {
+a.set("Upload",true.toString());
+            this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
+            if (data) {
+      alert("asdasdasdas");
+    this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+  }});
+          }
+        })
+        
+      }else{
+        this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
+          if (data) {
+            this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
+           
+          }
+        }); 
       }
-    });
+    // 
   }
   }
 
