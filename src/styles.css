@@ -1503,6 +1503,7 @@ p {
 }
 
 @media (min-width: 768px) {
+ 
     .lead {
         font-size: 21px;
     }
@@ -2704,6 +2705,7 @@ table td[class*="col-"], table th[class*="col-"] {
 }
 
 @media screen and (max-width: 767px) {
+    
     .table-responsive {
         width: 100%;
         margin-bottom: 15px;
@@ -8051,12 +8053,13 @@ video {
     padding: 0 15px;
 }
 .main-nav .user-options li.text-danger {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
     text-decoration: underline;
 }
 .main-nav .user-options li.text-danger a{
     color: #721c24!important;
+    padding: 0 5px;;
 }
 
 .main-nav .dropdown-menu>li>a {
@@ -24347,99 +24350,7 @@ table .table-prl-0 td {
     visibility: hidden;
 }
 
-/*Word Clod*/
 
-.word-cloud angular-tag-cloud {
-    /* width: 100% !important; */
-    position: relative !important;
-}
-
-.word-cloud angular-tag-cloud span a {
-    text-transform: uppercase;
-}
-
-.word-cloud angular-tag-cloud span {
-    /* left:calc(140.159px - 100px) !important; */
-    /* left:calc(inherit - 100px) !important; */
-}
-
-.word-cloud angular-tag-cloud div.data-show {
-    position: absolute;
-    left: -107px;
-    top: -42px;
-}
-
-.word-cloud angular-tag-cloud {
-    width: 500px;
-    left: -117px;
-    top: -41px;
-}
-
-.whoami canvas {
-    /* padding-top: 2rem; */
-    width: 250px !important;
-    height: auto !important;
-}
-
-.word-cloud angular-tag-cloud .hover-active {
-    display: none;
-}
-
-.word-cloud angular-tag-cloud .tooltip1:hover .hover-active {
-    display: block;
-    z-index: 9999;
-}
-
-.word-cloud angular-tag-cloud .tooltip1:hover .tooltip {
-    opacity: 1;
-    display: block;
-    z-index: 9999;
-}
-
-.word-cloud angular-tag-cloud .tooltip {
-    position: absolute;
-    z-index: 1030;
-    display: block;
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: 0;
-    display: none;
-    filter: alpha(opacity=0);
-    visibility: visible;
-}
-
-.word-cloud angular-tag-cloud .fade.in {
-    opacity: 1;
-}
-
-.word-cloud angular-tag-cloud .tooltip.bottom .tooltip-arrow {
-    top: 0;
-    left: 50%;
-    margin-left: -5px;
-    border-bottom-color: #000;
-    border-width: 0 5px 5px;
-    z-index: 1030;
-}
-
-.word-cloud angular-tag-cloud .tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    z-index: 1030;
-}
-
-.word-cloud angular-tag-cloud .tooltip-inner {
-    max-width: 200px;
-    padding: 3px 8px;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    background-color: #000;
-    border-radius: 4px;
-    z-index: 1030;
-}
 .br-b{
     position: relative;
 }
@@ -24818,4 +24729,16 @@ table .table-prl-0 td {
   .vdivider{
       display: none;
   }
+}
+
+/*Upgrade Text for mobile view*/
+.page--dashboard a.mobile-version-upgrade{
+    float: right;
+    padding-bottom: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.page--dashboard a.mobile-version-upgrade:hover, .page--dashboard a.mobile-version-upgrade:visited, .page--dashboard a.mobile-version-upgrade:active  {
+    text-decoration: underline;
+    cursor: pointer;
 }
