@@ -7,7 +7,13 @@
         <div><h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small></div>
         <div>+</div>
         <p>5 to 7% on Successful Hire</p>
-        <div class="p9-0"><button class="btn-primary">Buy Now</button></div>
+        <ng-container *ngIf="bill?.planId==plans.id">
+          <div class="p9-0"><button class="btn-primary">Renew</button></div>
+        </ng-container>
+        <ng-container *ngIf="bill?.planId!=plans.id">
+          <div class="p9-0"><button class="btn-primary">Buy Now</button></div>
+        </ng-container>
+      
         <div ><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
         <hr>
         <ul class="features">

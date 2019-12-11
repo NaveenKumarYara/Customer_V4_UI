@@ -21,15 +21,20 @@
                     <div>
                       <h1 class="panel-title">Bill Estimate</h1>
                     </div>
-                    <div class="p_5">
-                      <div class="pb_5">
-                        <h4 class="d-inline">USD 52.49</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
-                          Taxes)</small>
-                      </div>
-                      <div class="pb_5">Plan: <span class="pl-_5">Basic</span></div>
-                      <div class="pb_5">Next Renewal on : <span class="pl-_5">Oct 05, 2019</span> </div>
-                      <a href="javascript:void(0)">View More</a>
-                    </div>
+                    <ng-container *ngFor="let plans of Plans?.plansoffered">
+                      <ng-container *ngIf="bill?.planId==plans.id">
+                          <div class="p_5">
+                              <div class="pb_5">
+                                <h4 class="d-inline">{{plans?.dailyCharges}} </h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                                  Taxes)</small>
+                              </div>
+                              <div class="pb_5">Plan: <span class="pl-_5">{{plans?.planName}} </span></div>
+                              <div class="pb_5">Next Renewal on : <span class="pl-_5">{{bill?.endDate | date}}</span> </div>
+                              <a href="javascript:void(0)">View More</a>
+                            </div>
+                            </ng-container>           
+                      </ng-container>
+                   
 
                   </div>
                 </div>

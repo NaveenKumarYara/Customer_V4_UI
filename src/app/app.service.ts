@@ -33,6 +33,7 @@ import { ParseResponsibilities } from './components/Postajob/Createajob/Step2/re
 import { SkillDetails, SkillData,SkillPostData } from '../models/skill.model';
 import { SettingsService } from '../settings/settings.service';
 import { CompanyProfile } from '../models/companyprofile';
+import {billEstimates} from '../models/billEstimates';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -356,6 +357,14 @@ getPricingPlans(): Observable<PlanFeature[]> {
   .catch(
     this.handleError
   );
+}
+
+getBillEstimates(UserId:number): Observable<billEstimates> {
+  const url = this.settingsService.settings.GetPlanDuration+ '?UserId='+UserId ;
+  return this.http.get<billEstimates>(url)
+      .catch(
+          this.handleError
+      );
 }
 
 getCompanyProfile(customerId:number): Observable<CompanyProfile> {
