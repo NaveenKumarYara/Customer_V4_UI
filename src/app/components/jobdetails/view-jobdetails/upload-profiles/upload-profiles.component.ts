@@ -300,14 +300,21 @@ export class UploadProfilesComponent implements OnInit {
     this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
       data.isPublic = true;
     }
-    else
-      this.tempuploadResponse[index].ResumeStatus = "Requested";
-    this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
+    else if(type == 3){
+      this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/SendRequest').subscribe(data => {  // 'api/JobDescriptionParse'
       if (data) {
-        // alert("sdfdsfsdfsd");
+        this.tempuploadResponse[index].ResumeStatus = "Requested";
 
       }
     });
+    }
+    if(type != 3){
+    this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
+      if (data) {
+        // alert("sdfdsfsdfsd");
+      }
+    });
+  }
   }
 
   SaveInvite(email) {
