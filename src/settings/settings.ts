@@ -137,5 +137,6 @@ export class Settings {
   QuestionbaseUrl:string;
   QuestionResult:string;
   GetPlans:string;
+  AddPlan:string;
   GetPlanDuration:string;
   }

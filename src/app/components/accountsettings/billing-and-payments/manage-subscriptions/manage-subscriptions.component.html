@@ -8,7 +8,7 @@
         <div>+</div>
         <p>5 to 7% on Successful Hire</p>
         <ng-container *ngIf="bill?.planId==plans.id">
-          <div class="p9-0"><button class="btn-primary">Renew</button></div>
+          <div class="p9-0"><button class="btn-primary" (click)="buyPlan(plans?.id)">Renew</button></div>
         </ng-container>
         <ng-container *ngIf="bill?.planId!=plans.id">
           <div class="p9-0"><button class="btn-primary">Buy Now</button></div>
@@ -26,9 +26,7 @@
  </ng-container>
  <ng-container *ngIf="plans?.id == 3">
      <span> 10 Jobs </span>  
- </ng-container>
-            
-
+ </ng-container>        
           <ng-container *ngFor="let feature of Plans?.featuresOffered">
            
                            
