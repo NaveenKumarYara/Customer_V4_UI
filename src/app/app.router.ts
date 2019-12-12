@@ -101,6 +101,7 @@ import { SendEmailComponent } from './components/jobdetails/view-jobdetails/view
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
 import{InviteFriendContentComponent} from './components/dashboard/invite-friend/invite.component';
 import { CandidateViewComponent} from './components/company-profile/candidateview/candidate-view.component'
+import { billEstimates } from '../models/billEstimates';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -247,7 +248,8 @@ const appRoutes: Routes =
         { path: '', redirectTo: 'app-accountsettingdetails', pathMatch: 'full' },
         { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
         { path: 'app-users', component: UsersComponent },
-        { path: 'app-billing-and-payments', component: BillingAndPaymentsComponent }
+        { path: 'app-billing-and-payments', component: BillingAndPaymentsComponent},
+        { path: 'app-billing-and-payments/:id',  component: BillingAndPaymentsComponent}              
       ]
     },
 

@@ -32,11 +32,11 @@ export class HomeComponent implements OnInit {
         
         this.route.params.subscribe(params => {
           if (params['tk']!=null) {
+            if (params["pId"] != null) {
+              sessionStorage.setItem("PlanId", params["pId"]);
+            }
             this.GetLogin(params['tk']);
-          }
-          if (params["pId"] != null) {
-            sessionStorage.setItem("PlanId", params["pId"]);
-          }
+          }        
           else
           {
             this.router.navigateByUrl('login');

@@ -138,4 +138,5 @@ export class Settings {
   QuestionResult:string;
   GetPlans:string;
   GetPlanDuration:string;
+  AddPlan:string;
   }
