@@ -23,6 +23,13 @@ export class EstimatesComponent implements OnInit {
     this.GetBillingEstimates();
   }
 
+  GetBillingEstimates()
+  {
+    return this.appService.getBillEstimates(this.customer.UserId).subscribe(res => {
+      this.bill = res;
+  });
+  }
+
   GetPlans()
   {
     return this.appService.getPricingPlans().subscribe(res => {
@@ -30,11 +37,6 @@ export class EstimatesComponent implements OnInit {
   });
   }
 
-  GetBillingEstimates()
-  {
-    return this.appService.getBillEstimates(this.customer.UserId).subscribe(res => {
-      this.bill = res;
-  });
-  }
+ 
 
 }

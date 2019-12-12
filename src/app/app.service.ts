@@ -360,6 +360,15 @@ getPricingPlans(): Observable<PlanFeature[]> {
 }
 
 
+getBillEstimates(UserId:number): Observable<billEstimates> {
+  const url = this.settingsService.settings.GetPlanDuration+ '?UserId='+UserId ;
+  return this.http.get<billEstimates>(url)
+      .catch(
+          this.handleError
+      );
+}
+
+
  AddPlanDetails(body) :any {
     return this.http.post(this.settingsService.settings.AddPlan, body)
       .map((res: Response) => res)
@@ -369,15 +378,6 @@ getPricingPlans(): Observable<PlanFeature[]> {
   }
 
   
-
-getBillEstimates(UserId:number): Observable<billEstimates> {
-  const url = this.settingsService.settings.GetPlanDuration+ '?UserId='+UserId ;
-  return this.http.get<billEstimates>(url)
-      .catch(
-          this.handleError
-      );
-}
-
 getCompanyProfile(customerId:number): Observable<CompanyProfile> {
   const url = this.settingsService.settings.CompanyProfileBasicInfo+ 'customerId='+customerId ;
   return this.http.get<CompanyProfile>(url)

@@ -130,6 +130,6 @@
   "QuestionbaseUrl": "https://questionnaireapi-dev.arytic.com/",
   "QuestionResult":"https://questionnaireapi-dev.arytic.com/api/QuestionnaireResult/GetQuestionnaireGroupResult?",
   "GetPlans": "https://pricingapi-dev.arytic.com/api/PlanFeature",
-  "GetPlanDuration" :"https://pricingapi-dev.arytic.com/api/PlanDuration/GetPlanduration",
-  "AddPlan":"https://pricingapi-dev.arytic.com/api/PlanDuration/AddCustomerPlanDetails"
+  "AddPlan":"https://pricingapi-dev.arytic.com/api/PlanDuration/AddCustomerPlanDetails",
+  "GetPlanDuration" :"https://pricingapi-dev.arytic.com/api/PlanDuration/GetPlanduration"
 }

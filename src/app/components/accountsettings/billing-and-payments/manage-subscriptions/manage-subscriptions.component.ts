@@ -61,6 +61,14 @@ export class ManageSubscriptionsComponent implements OnInit {
 //   }
 // }
 
+
+GetPlans()
+{
+  return this.appService.getPricingPlans().subscribe(res => {
+    this.Plans = res;
+});
+}
+
   GetBillingDuration()
   {
     return this.appService.getBillEstimates(this.customer.UserId).subscribe(res => {
@@ -68,12 +76,6 @@ export class ManageSubscriptionsComponent implements OnInit {
   });
 }
 
-  GetPlans()
-  {
-    return this.appService.getPricingPlans().subscribe(res => {
-      this.Plans = res;
-  });
-  }
 
 }
 
