@@ -3046,17 +3046,6 @@ h5.meta.meta-light {
     padding-top: 2rem;
 }
 
-/*Word Clod*/
-/* .word-cloud angular-tag-cloud {
-    width: 100% !important;
-} */
-
-.word-cloud angular-tag-cloud{
-    width: 500px;
-    height: 300px;
-    left: -117px;
-    top: -41px;
-}
 .ccdata{
     position: relative;
     display: block;

@@ -21,7 +21,7 @@ export interface DialogData {
   providers: [NgxSpinnerService, AlertService]
 })
 export class UploadProfilesComponent implements OnInit {
-  emailCheck = true;
+  emailCheck = false;
   fileUploadForm: FormGroup;
   totalFile: number = 0;
   searchprofilesFrom: FormGroup;
