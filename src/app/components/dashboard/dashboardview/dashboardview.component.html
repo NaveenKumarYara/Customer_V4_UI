@@ -1,26 +1,27 @@
 <app-Logoheader></app-Logoheader>
-  <main class="page page--dashboard">
-    <div class="container">
-      <div class="row">
-        <app-dashboard-jobsview
-                               [dashboardstatistics]="dashboardstatistics"  [applicantStatistics]="applicantStatistics"></app-dashboard-jobsview>
-        <app-dashboard-activejobs
-                                [dashboardstatistics]="dashboardstatistics"></app-dashboard-activejobs>
-        <app-dashboard-scheduled-interview
-                                [dashboardstatistics]="dashboardstatistics"></app-dashboard-scheduled-interview>
-        <app-dashboard-content></app-dashboard-content>
-      </div>
-      <div class="row">
-        <app-dashboard-recentjobs
-                          ></app-dashboard-recentjobs>
-        <app-dashboard-recent-applications
-                                [recentapplicantlist]="recentapplicantlist">                       
-                              </app-dashboard-recent-applications>
-                              <!-- <ng-container *ngIf="recentapplicantlist?.length==0">                                                               
+<main class="page page--dashboard">
+  <div class="container">
+    <!--Upgrade Text for Mobile View-->
+      <a class="visible-xs text-danger mobile-version-upgrade" href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
+        Free Trial Expires, Upgrade Now!</a>
+    <!--Upgrade Text for Mobile View-->
+    <div class="row">
+      <app-dashboard-jobsview [dashboardstatistics]="dashboardstatistics" [applicantStatistics]="applicantStatistics">
+      </app-dashboard-jobsview>
+      <app-dashboard-activejobs [dashboardstatistics]="dashboardstatistics"></app-dashboard-activejobs>
+      <app-dashboard-scheduled-interview [dashboardstatistics]="dashboardstatistics">
+      </app-dashboard-scheduled-interview>
+      <app-dashboard-content></app-dashboard-content>
+    </div>
+    <div class="row">
+      <app-dashboard-recentjobs></app-dashboard-recentjobs>
+      <app-dashboard-recent-applications [recentapplicantlist]="recentapplicantlist">
+      </app-dashboard-recent-applications>
+      <!-- <ng-container *ngIf="recentapplicantlist?.length==0">                                                               
                                       <div class="card text-center">
                                           <h5 class="p-4">No Applicants!</h5>
                                       </div>
                               </ng-container> -->
-      </div>     
-      </div>
+    </div>
+  </div>
 </main>
