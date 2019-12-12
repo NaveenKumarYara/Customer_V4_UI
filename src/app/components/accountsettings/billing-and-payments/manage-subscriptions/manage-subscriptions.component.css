@@ -108,9 +108,24 @@ input.form-control {
 .pricing-card .price.d-inline {
 font-size: 1.9rem !important;  
 }
-.pricing-card.box-shadow{
-    /* height: 652px; */
-    height: 139vh;
+
+@media only screen and (min-width: 992px) {
+    .pricing-card.box-shadow{
+        height: 1000px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .pricing-card.box-shadow{
+        height: 1008px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .pricing-card.box-shadow{
+        height: auto;
+    }
+}
+.pricing-card.box-shadow li span{
+    font-size: 10px;
 }
 .f-12{
     font-size: 12px !important;
