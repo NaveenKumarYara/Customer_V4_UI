@@ -148,6 +148,7 @@ export class UploadProfilesComponent implements OnInit {
     this.issueCount = 0;
     this.tempuploadResponse = [];
     this.selectedFileNames = [];
+     this.formDAtaList = [];
     this.profileStatus = [];
     // this.spinner.show();
     let request = '';
@@ -321,7 +322,7 @@ export class UploadProfilesComponent implements OnInit {
 a.set("Upload",true.toString());
             this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
             if (data) {
-      alert("asdasdasdas");
+      // alert("asdasdasdas");
     this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
   }});
           }
