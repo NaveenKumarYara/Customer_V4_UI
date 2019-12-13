@@ -24756,3 +24756,56 @@ table .table-prl-0 td {
     text-decoration: underline;
     cursor: pointer;
 }
+/**/
+
+@media only screen and (max-width: 769px) {
+    .tr-scroll {
+        height: 100vh;
+    }
+    .page--account-settings #users .table td, .page--account-settings .table td{
+        padding:0px 8px;
+    }
+    .page--account-settings #users .table img{
+        width: 32px;
+        height: 32px;
+    }
+    .page--account-settings #users label {
+        line-height: 0px; 
+        vertical-align: middle;
+        width: auto; 
+        padding-right: 0px; 
+        float: left;
+    }
+    .page--account-settings #users thead th { position: sticky; top: 0; }
+    .role.tdw-100{
+    width: 100px;
+    word-wrap: break-word;
+    }    
+    .tdw-100{
+    width: 100px;
+    word-wrap: break-word;
+    }    
+    
+  }
+  /*
+ *  STYLE 3
+ */
+
+.tr-scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.tr-scroll::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: rgb(109, 109, 109);
+}
+
+.tr-scroll::-webkit-scrollbar-thumb
+{
+	background-color: #797979;
+}
+
+/**/
