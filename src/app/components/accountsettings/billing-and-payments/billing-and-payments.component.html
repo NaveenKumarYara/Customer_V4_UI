@@ -25,12 +25,12 @@
                       <ng-container *ngIf="bill?.planId==plans.id">
                           <div class="p_5">
                               <div class="pb_5">
-                                <h4 class="d-inline">{{plans?.dailyCharges}} </h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                                <h4 class="d-inline">USD {{plans?.dailyCharges}} </h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
                                   Taxes)</small>
                               </div>
                               <div class="pb_5">Plan: <span class="pl-_5">{{plans?.planName}} </span></div>
                               <div class="pb_5">Next Renewal on : <span class="pl-_5">{{bill?.endDate | date}}</span> </div>
-                              <a href="javascript:void(0)">View More</a>
+                              <a data-toggle="tab" href="#estimates">View More</a>
                             </div>
                             </ng-container>           
                       </ng-container>
@@ -64,7 +64,19 @@
                             </div> -->
 
                             <div class="edit-group p-0 border-w-0">
-                                <div> <img class="media-object" width="52px" src="../../../../assets/images/no-billing-image.png" alt="..."></div>
+                              <!--NO  Billing Details -->
+                              <div class="media">
+                                <div class="media-left media-middle">
+                                  <a href="javascript:void(0)">
+                                    <img class="media-object" width="52px" src="../../../../assets/images/addpayment.svg" alt="...">
+                                  </a>
+                                </div>
+                                <div class="media-body">
+                                  <h4 class="media-heading">No Billing Details</h4>
+                                  <p>Please Add Payment Type</p>
+                                </div>
+                              </div>
+                              <!-- NO Billing Details -->
                                 <!-- <div>
                                   <h4>Paypal</h4>
                                   <p class="m-0">XXXX XXXX XXXX 3456</p>
@@ -79,8 +91,10 @@
                           </div>
                         </div>
                       </div>
-                      <div class="pb_5">Billing Period: <span class="pl-_5">  No Billing History</span></div>
-                      <a href="javascript:void(0)">Manage Billing Details</a>
+                      <!-- if data -->
+                      <!-- <div class="pb_5">Billing Period: <span class="pl-_5">  No Billing History</span></div> -->
+                      <!-- #if data -->
+                      <a data-toggle="tab" href="#billing-details">Manage Billing Details</a>
                     </div>
 
                   </div>
@@ -112,7 +126,7 @@
                           </tr>
 
                         </table>
-                        <a href="javascript:void(0)">View More</a>
+                        <a data-toggle="tab" href="#billing-history">View More</a>
 
                       </div>
 
@@ -157,7 +171,7 @@
                         </div>
                       </div>
                       <div class="ptb_5">Send Copy to: <span class="pl-_5"> accountsteam@abc.com</span> </div>
-                      <a href="javascript:void(0)">Manage Billing Contacts</a>
+                      <a data-toggle="tab" href="#subscription">Manage Billing Contacts</a>
 
                     </div>
 
