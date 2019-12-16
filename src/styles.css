@@ -15372,9 +15372,11 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     margin-left: 275px;
 }
 
-.page--account-settings #billing-details .address-group .form-control {
+.page--account-settings #billing-details .address-group .form-control,
+.page--account-settings #billing-details .payment-group .form-control {
     margin-bottom: 1.25rem;
 }
+
 
 .page--account-settings #billing-details .address-group p {
     font-size: 1.125rem;
