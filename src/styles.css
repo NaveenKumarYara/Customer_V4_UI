@@ -24741,12 +24741,23 @@ table .table-prl-0 td {
   }
 /*#same height col*/
 @media only screen and (max-width: 991px) {
+    .table-r {
+        display: row;
+        width: 100%;
+      }
 .table-c {
-    display: table-cell;
+    display: block !important;
     width: 100%;
   }
   .vdivider{
       display: none;
+  }
+  .style1 .col-md-4.bl-1-solid{
+    border-left:0px solid #b7c3de00;
+  }
+  .smw-50{
+      width: 50%;
+      margin: auto;
   }
 }
 
