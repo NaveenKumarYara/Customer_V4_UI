@@ -152,7 +152,9 @@
                         </canvas>                         -->
                         <img #testChart1 width="350" src="../../../assets/images/YetToPerformed.svg" alt="personality-test">
                       </ng-container>
+                      <ng-container *ngIf="noTest" >
                     <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result-->
+                  </ng-container>
                     </div>
 
                   </div>
@@ -187,7 +189,7 @@
                               (chartClick)="chartClicked($event)"></canvas>
                           </div> -->
                       <div class="skill-set">
-                        <ng-container *ngIf="skilllist.length==0">
+                        <ng-container *ngIf="skilllist.length==0 ||skilllist==0 ">
                             <span class="profile-note">Candidate yet to provide the Skills.</span>
                         </ng-container>
                         <ng-container *ngFor="let skill of skilllist">
