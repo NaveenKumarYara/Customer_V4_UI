@@ -7357,6 +7357,9 @@ button.close {
 }
 
 @media all and (max-width: 767px) {
+    .page--company-profile .card--withTabs .card-header{
+        position: relative;
+    }
     .selected-tab {
         border-radius: 3px;
         display: block;
@@ -7372,12 +7375,12 @@ button.close {
     }
     .nav-tabs.responsive, .nav-pills.responsive {
         position: absolute !important;
-        z-index: 10;
+        z-index: 1000;
         background: #ffffff;
         -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
         padding: 10px 5px !important;
-        display: none;
+        /* display: none; */
     }
     .nav-tabs.responsive>li, .nav-pills.responsive>li {
         float: none;
