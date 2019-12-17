@@ -139,4 +139,5 @@ export class Settings {
   GetPlans:string;
   AddPlan:string;
   GetPlanDuration:string;
+  PlanUpdate:string;
   }

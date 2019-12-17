@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { DashboardService } from '../dashboard.service';
+import { AppService } from '../../../app.service';
 import { RecentJobs } from '../../../../models/recentjobs';
 import { RecentApplicants } from '../../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
 import {  ApplicantStatistics } from '../../../../models/applicantstatistics';
+import { billEstimates } from '../../../../models/billEstimates';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
@@ -25,7 +27,8 @@ export class DashboardviewComponent implements OnInit {
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
     jobLoader : boolean;
-    constructor(private route: ActivatedRoute, private dashboardservice: DashboardService) { 
+    bill:billEstimates; 
+    constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
         this.customerId =this.customer.CustomerId;
         this.userId=this.customer.UserId;
@@ -59,12 +62,23 @@ export class DashboardviewComponent implements OnInit {
         }); 
     }
 
+    GetBillingDuration()
+    {
+     return this.appService.getBillEstimates(this.userId).subscribe(res => {
+       this.bill = res;
+       if(new Date(this.bill.endDate) < new Date())
+       {
+        this.router.navigateByUrl('app-accountsettings/app-billing-and-payments');
+      }
+    });
+}
+
     ngOnInit() {
         // this.populateRecentJoblist(5); 
+        this.GetBillingDuration();
         this.populateRecentApplicants(this.customerId,this.userId,5); 
         this.populateDashboardStatistics(this.customerId,this.userId);
-        this.populateApplicantsStatistics(this.customerId,this.userId);
-        
+        this.populateApplicantsStatistics(this.customerId,this.userId);       
   }
 
 }

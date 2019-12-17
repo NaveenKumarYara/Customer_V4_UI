@@ -24742,3 +24742,7 @@ table .table-prl-0 td {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.pointer-events-none {
+    pointer-events: none;
+  }

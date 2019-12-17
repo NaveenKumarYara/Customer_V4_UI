@@ -1,10 +1,11 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { billEstimates } from '../../../../../models/billEstimates';
 import { AppService } from '../../../../app.service';
 import { PlanFeature } from "../../../../../models/PlanFeature";
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-estimates',
   templateUrl: './estimates.component.html',
@@ -14,7 +15,7 @@ export class EstimatesComponent implements OnInit {
   Plans:PlanFeature[]=[];
   customer:any;  
   bill:billEstimates;
-  constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
+  constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
   }
 

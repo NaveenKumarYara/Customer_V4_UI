@@ -131,6 +131,6 @@
   "QuestionResult":"${Question_URL}/api/QuestionnaireResult/GetQuestionnaireGroupResult?",
   "GetPlans": "${Pricing_URL}/api/PlanFeature",
   "AddPlan":"${Pricing_URL}/api/PlanDuration/AddCustomerPlanDetails",
-  "GetPlanDuration" :"${Pricing_URL}/api/PlanDuration/GetPlanduration"
-
+  "GetPlanDuration" :"${Pricing_URL}/api/PlanDuration/GetPlanduration",
+  "PlanUpdate":"${Pricing_URL}/api/PlanDuration/UpdatePlan"
 }

@@ -377,6 +377,14 @@ getBillEstimates(UserId:number): Observable<billEstimates> {
       });
   }
 
+  UpdatePlanDetails(body) :any {
+    return this.http.post(this.settingsService.settings.PlanUpdate, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   
 getCompanyProfile(customerId:number): Observable<CompanyProfile> {
   const url = this.settingsService.settings.CompanyProfileBasicInfo+ 'customerId='+customerId ;
