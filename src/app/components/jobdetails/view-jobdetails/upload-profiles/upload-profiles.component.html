@@ -130,20 +130,20 @@
                   <p class="text-danger m-0">Profile is already existed and submitted for other job. Do you want to
                     attach
                     or submit to this job?</p>
-                  <a (click)="UploadAction(i,data,1)">
+                  <a href="javascript:void(0)" (click)="UploadAction(i,data,1)">
                     <span class="badge badge-light ptb-3rl-10">Yes</span>
                   </a>
-                  <a (click)="CanceledAction(data,i)">
+                  <a href="javascript:void(0)" (click)="CanceledAction(data,i)">
                     <span class="badge badge-light ptb-3rl-10">No</span>
                   </a>
                 </div>
                 <div *ngIf="data.ResumeStatus == 'Arytic'">
                   <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
                     profile from Arytic?</p>
-                  <a (click)="UploadAction(i,data,3)">
+                  <a href="javascript:void(0)" (click)="UploadAction(i,data,3)">
                     <span class="badge badge-light ptb-3rl-10">Send Request</span>
                   </a>
-                  <a (click)="UploadAction(i,data,2)">
+                  <a href="javascript:void(0)" (click)="UploadAction(i,data,2)">
                     <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
                   </a>
                 </div>
