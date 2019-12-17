@@ -3133,3 +3133,8 @@ position: relative;
     left: 0%;
     color: #666666;
   }
+  .canvas-rel{
+    position: relative;
+    width: 250px;
+    height: 250px;
+  }

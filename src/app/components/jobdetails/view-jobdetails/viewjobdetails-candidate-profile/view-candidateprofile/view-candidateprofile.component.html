@@ -151,8 +151,10 @@
                           [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
                         </canvas>                         -->
                         <img #testChart1 width="350" src="../../../assets/images/YetToPerformed.svg" alt="personality-test">
-                      </ng-container>
-                    <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result-->
+                      </ng-container>            
+                        <div class="canvas-rel">
+                          <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result--> 
+                        </div>           
                     </div>
 
                   </div>
@@ -531,7 +533,7 @@
                     <div class="d-in-b">
                       <img src="{{certificate.ImageUrl}}">
                       <div class="label-active" title={{certificate.CertificationName}}>
-                          {{add3Dots(certificate.CertificationName,15)}}</div>
+                          {{add3Dots(certificate.CertificationName,8)}}</div>
                     </div>
                   </ng-container>
                   <ng-container *ngIf="profileview?.Certifications?.length==0">
@@ -652,7 +654,11 @@
                   <div class="row pt-2">
 
 
-                    <div class="col-md-4"><img src="../../../../.././../assets/images/qr-code.svg"></div>
+                    <div class="col-md-4">
+                      <div class="smw-50">
+                        <img src="../../../../.././../assets/images/qr-code.svg">
+                      </div>
+                    </div>
                     <div class="col-md-8">
                       <p>Scan the code to see my Arytic Profile</p>
                     </div>

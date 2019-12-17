@@ -28,7 +28,7 @@ export class UploadProfilesComponent implements OnInit {
   searchprofiles: Profile[];
   isPublic: any = false;
   public profileStatus: ProfileStatus[] = [];
-  formDAtaList : Array<FormData>=[];
+  formDAtaList: Array<FormData> = [];
   formData = new FormData();
   fileCount: number = 0;
   successCount: number = 0;
@@ -148,6 +148,7 @@ export class UploadProfilesComponent implements OnInit {
     this.issueCount = 0;
     this.tempuploadResponse = [];
     this.selectedFileNames = [];
+    this.formDAtaList = [];
     this.profileStatus = [];
     // this.spinner.show();
     let request = '';
@@ -192,7 +193,9 @@ export class UploadProfilesComponent implements OnInit {
         formData.append('CustomerId', this.customerId);
         formData.append('DocId', i.toString());//JSON.stringify(i.toString()));
         formData.append('IsPublic', this.isPublic.toString());//JSON.stringify(this.isPublic.toString()));
-        formData.append("Upload",this.isPublic.toString());
+        formData.append("Upload", this.isPublic.toString());
+        formData.append("SendMail", this.isPublic.toString());
+
         this.formDAtaList.push(formData);
         this.uploadMultiple(formData, i);
 
@@ -301,42 +304,51 @@ export class UploadProfilesComponent implements OnInit {
     if (type == 2) {
       data.isPublic = true;
     }
-    else if(type == 3){
-      this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/SendRequest').subscribe(data => {  // 'api/JobDescriptionParse'
-      if (data) {
-        this.tempuploadResponse[index].ResumeStatus = "Requested";
-
-      }
-    });
+    else if (type == 3) {
+      this.formDAtaList.forEach(a => {
+        var docid = (a.get("DocId").valueOf());
+        var doc = data.DocId.toString();
+        if (docid == doc) {
+          a.set("SendMail", true.toString());
+          a.set("Upload", true.toString());
+          this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
+            if (data) {
+              // alert("asdasdasdas");
+              this.tempuploadResponse[index].ResumeStatus = "Requested";
+            }
+          });
+        }
+      })
     }
-    if(type != 3){
-      if(data.isPublic == true){
+    if (type != 3) {
+      if (data.isPublic == true) {
         // alert("asdasdasdas");
 
-        this.formDAtaList.forEach(a=>{
-          var docid =(a.get("DocId").valueOf());
+        this.formDAtaList.forEach(a => {
+          var docid = (a.get("DocId").valueOf());
           var doc = data.DocId.toString();
-          if(docid == doc)
-          {
-a.set("Upload",true.toString());
+          if (docid == doc) {
+            a.set("SendMail", false.toString());
+            a.set("Upload", true.toString());
             this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
-            if (data) {
-      alert("asdasdasdas");
-    this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
-  }});
+              if (data) {
+                // alert("asdasdasdas");
+                this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+              }
+            });
           }
         })
-        
-      }else{
+
+      } else {
         this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
-           
+
           }
-        }); 
+        });
       }
-    // 
-  }
+      // 
+    }
   }
 
   SaveInvite(email) {

@@ -2,7 +2,10 @@
     <div class="table-row" *ngIf="Plans">
       <h4>Bill Estimate</h4>
       <ng-container *ngFor="let plans of Plans?.plansoffered">
-        <div><div class="currency" *ngIf="bill?.planId==plans.id">{{plans?.dailyCharges}}  <small>(Inclusive of tax)</small></div></div>
+      
+          <div class="currency" *ngIf="bill?.planId==plans.id">{{plans?.dailyCharges}}  
+            <small>(Inclusive of tax)</small>
+          </div>
       </ng-container>
      
     </div>
