@@ -56,8 +56,8 @@
                     </div>
 
                 </header>
-                <div class="card-body">
-                    <div>
+                <div class="card-body mob-btn">
+                    <div class="sm-d-inline">
                             <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'"> 
                         <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Make Inactive</button>
                             </ng-container>
@@ -71,7 +71,7 @@
                             <button class="btn btn-border" (click)="openCandidate()" *ngIf="displayQuick!=1">Manage Profiles</button>
                         </ng-template> -->
                     </div>
-                    <div>
+                    <div  class="sm-d-inline sm-f-r">
                         <!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
                         <button class="btn btn-filled" mat-button (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">View Job Detail</button>
                     </div>
