@@ -17561,8 +17561,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--company-profile .card--location .card-content {
-    height: 408px;
-    max-height: 408px;
+    height: 151px;
+    max-height: 151px;
 }
 
 .page--company-profile .card--about .card-inner {
@@ -17989,7 +17989,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-image: none;
 }
 
-.page--company-profile .card-header {
+.page--company-profile .card-header,.page--company-profile .card-header.cultur-header {
     padding-top: 24px;
     padding-bottom: 24px;
     padding-left: 30px;
@@ -19548,6 +19548,7 @@ nav.navbar {
 
 .mat-dialog-container {
     padding: 1.75rem 3.25rem;
+    height: 100vh;
 }
 
 .mat-body, .mat-body-1, .mat-typography, .mat-h4, .mat-subheading-1, .mat-typography h4, .mat-h3, .mat-subheading-2, .mat-typography h3 {
@@ -24895,5 +24896,38 @@ table .table-prl-0 td {
       }
     /* #mobile oreder */
     
+}
+
+.culture-row{
+    margin-bottom: 30px;
+}
+.culture-row .placeholder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%;
+}
+.culture-row .placeholder img {
+    max-width: 110px;
+}
+.culture-row .placeholder p {
+    padding-left: 35px;
+    padding-right: 60px;
+}
+.culture-row img.arrow {
+    max-width: 110px;
+    left: -80px;
+    position: relative;
+    top: -17px;
 }
 

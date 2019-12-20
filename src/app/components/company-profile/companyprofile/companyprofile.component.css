@@ -76,7 +76,25 @@ border-spacing: 0;
     text-align: center;
     display: block;
 }
-.radio .radio-btn {
+.page--company-profile .card-header.cultur-header {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #E0E3EF !important;
+}
+.radio .radio-btn { 
 height: 20px;
 width: 20px;
 border: 1px solid #b8c4d7;
