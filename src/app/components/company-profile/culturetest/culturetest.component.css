@@ -125,3 +125,7 @@ table {
 .bl-1{
     border-left: 1px solid #b6b6b6;
 }
+tbody td{
+    text-align: center;
+    width: 12%;
+}
