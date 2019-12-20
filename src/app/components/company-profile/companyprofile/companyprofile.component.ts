@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
 import { GetCustomerClients } from "../../../../models/GetCustomerClients";
 import { AppService } from '../../../app.service';
@@ -19,6 +20,7 @@ import {  GetCompanyPartner } from '../../../../models/GetCompanyPartner';
 import {  GetCompanyCulture } from '../../../../models/GetCompanyCulture';
 import { GetCompanyCertification } from '../../../../models/GetCompanyCertification';
 import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement';
+import { CultureTestComponent } from '../culturetest/culturetest.component';
 
 @Component({
   selector: 'app-companyprofile',
@@ -27,6 +29,7 @@ import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement'
   providers: [AppService]
 })
 export class CompanyprofileComponent implements OnInit {
+    culturetestref: MatDialogRef<CultureTestComponent>;
     customer:any;
     customerId:any;
     userId:any;
@@ -48,7 +51,7 @@ export class CompanyprofileComponent implements OnInit {
     getcompanycluture:GetCompanyCulture[];
     getcompanyachivements: GetCompanyAchievement[];
 
-  constructor(private route: ActivatedRoute, private appService: AppService,
+  constructor(private route: ActivatedRoute, private appService: AppService, private dialog: MatDialog, 
       private router: Router, private companyprofileservice: CompanyProfileService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
         this.customerId =this.customer.CustomerId;
@@ -90,7 +93,22 @@ export class CompanyprofileComponent implements OnInit {
             this.getcompanytechnology = res;
         });
     }
-
+    OpenCultureTestDialog() {
+        const testRef = this.dialog.open(CultureTestComponent,
+          {
+             // width: '1000px',
+             position: {right : '0px'},
+            // height : '750px',
+            data: {
+              animal: 'panda',
+    
+            }
+          }
+        );
+        testRef.afterClosed().subscribe(result => {
+          console.log('share Dialog result: ${result}');
+        });
+      }
 
 
   

@@ -102,6 +102,7 @@ import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajo
 import{InviteFriendContentComponent} from './components/dashboard/invite-friend/invite.component';
 import { CandidateViewComponent} from './components/company-profile/candidateview/candidate-view.component'
 import { billEstimates } from '../models/billEstimates';
+import{CultureTestComponent} from './components/company-profile/culturetest/culturetest.component'
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -227,6 +228,7 @@ const appRoutes: Routes =
     { path: 'app-specialities', component: SpecialitiesComponent },
     { path: 'app-whitepaper', component: WhitepaperComponent },
     { path: 'app-notifications', component: NotificationsComponent },
+    { path: 'app-culturetest', component: CultureTestComponent},
 
     { path: 'app-dashboardview', component: DashboardviewComponent },
     { path: 'app-dashboard-activejobs', component: DashboardActivejobsComponent },

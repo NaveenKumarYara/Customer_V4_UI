@@ -28,7 +28,9 @@ import {AchievementsComponent} from  './achievementsandawards/Achievements/achie
 import {NewsComponent} from './whitepaper/NewsPaper/news.component';
 import {CertificationComponent} from './achievementsandawards/CompanyCertification/certification.component';
 import {SharedModule} from '../../shared/shared.module';
-import {CandidateViewComponent} from '../company-profile/candidateview/candidate-view.component'
+import {CandidateViewComponent} from '../company-profile/candidateview/candidate-view.component';
+import{CultureTestComponent} from '../company-profile/culturetest/culturetest.component';
+import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,12 +42,14 @@ import {CandidateViewComponent} from '../company-profile/candidateview/candidate
     NgSelectModule,
     HttpClientModule,
     SharedModule,
+    MatDialogModule,
+    MatCardModule, MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',
       libraries: ['places']
     }),
     ],
     providers: [CompanyProfileService],
-  declarations: [CompanyprofileComponent,locationComponent,NewsComponent,AchievementsComponent,PartnerComponent,CertificationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent, CandidateViewComponent]
+  declarations: [CompanyprofileComponent,locationComponent,NewsComponent,AchievementsComponent,PartnerComponent,CertificationComponent,GooglelocationComponent,CandidateProfileComponent, BasicinfoComponent, OtherinfoComponent, LocationsComponent, AboutcompanyComponent, BenefitsComponent, SpecialitiesComponent, WhitepaperComponent, EditCandidateProfileComponent,QuestionsComponent, AchievementsandawardsComponent, CultureComponent, CandidateViewComponent,CultureTestComponent]
 })
 export class CompanyProfileModule { }
