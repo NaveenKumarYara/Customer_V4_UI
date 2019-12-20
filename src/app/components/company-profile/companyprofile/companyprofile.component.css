@@ -127,3 +127,36 @@ background-size: 8px;
 .m2{
     margin: 2rem;
 }
+.mw-110{
+    max-width: 110px;
+}
+.br-1{
+    border-right: 1px solid #b8c4d7;
+}
+.progress-bar.progress-bar-striped.active{
+    background-color: #5cb85c;
+}
+.nxt{
+    padding: 10px 30px;
+    color: #ffffff;
+    background-color: #448AFA;
+    min-width: 120px;
+    border: none;
+}
+.mt-0{
+    margin-top: 0px;
+}
+.mr-0{
+    margin: 0px;
+}
+.col-md-4.w-auto{
+    width: auto;
+    padding: 0px;
+}
+.col-md-8.w-inherit{
+    width: inherit;
+    padding: 0px 0px 0px 15px;
+}
+.col-md-8.w-inherit .progress{
+    margin: 2px 0px 9px 0px;
+}
