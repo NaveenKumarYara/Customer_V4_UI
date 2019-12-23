@@ -183,17 +183,17 @@
               id="companyName" readonly>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" value="Design &amp; Animation">
+            <input type="text" class="form-control" value="Design &amp; Animation" placeholder="Domain">
           </div>
         </div>
         <div class="form-group meta-info">
-          <label for="">Online</label>
+          <label for="" class="opacity1">Online</label>
           <div class="meta">
             <div class="input-group transparent">
               <span class="input-group-addon">
                 <img src="../../../../assets/images/globe-icon.svg" alt="Website">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.WebSite}}" id="webSite">
+              <input type="text" class="form-control" value="{{companyprofile?.WebSite}}" id="webSite" placeholder="Company URL">
             </div>
           </div>
           <div class="meta">
@@ -213,7 +213,7 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.TwitterURL}}" id="twitterUrl">
+              <input type="text" class="form-control" value="{{companyprofile?.TwitterURL}}" id="twitterUrl" placeholder="http://www.twitter.com">
             </div>
           </div>
           <div class="form-group">
@@ -221,7 +221,7 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.LinkedInURL}}" id="linkedinUrl">
+              <input type="text" class="form-control" value="{{companyprofile?.LinkedInURL}}" id="linkedinUrl" placeholder="http://www.linkedin.com">
             </div>
           </div>
           <div class="form-group">
@@ -229,7 +229,7 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/fb-icon.svg" alt="Linkedin">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.FacebookURL}}" id="facebookUrl">
+              <input type="text" class="form-control" value="{{companyprofile?.FacebookURL}}" id="facebookUrl" placeholder="http://www.facebook.com">
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.MobilePhone}}" id="mobile">
+              <input type="text" class="form-control" value="{{companyprofile?.MobilePhone}}" id="mobile" placeholder="Phone Number">
             </div>
           </div>
           <div class="form-group">
@@ -250,7 +250,7 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/fax-icon.svg" class="icon" alt="Fax">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.HomePhone}}" id="home">
+              <input type="text" class="form-control" value="{{companyprofile?.HomePhone}}" id="home" placeholder="Fax">
             </div>
           </div>
           <div class="form-group">
@@ -258,7 +258,7 @@
               <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
               Address
             </label>
-            <input type="text" class="form-control" value="{{companyprofile?.Address1}}" id="address1">
+            <input type="text" class="form-control" value="{{companyprofile?.Address1}}" id="address1" placeholder="Address">
           </div>
           <div class="form-group">
             <app-googlelocation></app-googlelocation>
