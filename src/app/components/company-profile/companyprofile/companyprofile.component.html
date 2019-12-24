@@ -51,23 +51,70 @@
             <!-- culture -->
 <div class="col-md-12 culture-row">
   <div class="card card--location">
-    <div class="wrap">
-      <header class="card-header">
-        <h2 class="card-title">Company Cultural Test</h2>
-        <div class="pull-right">
-          <!-- <a href="javascript:void(0)"  (click)="Test()" class="add-btn">
-            <span>+</span>
-            <p>Retake Test</p>
-          </a> -->
-          <a (click)="isChecked()" data-toggle="modal" data-target="#personality-test" class="add-btn pointer">
-            <span>+</span>
-            <p>Start Test</p>
-          </a>
+    <div class="card-header cultur-header">
+      <h1 class="title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20.5" height="24">
+          <path class="st0"
+            d="M13 24c-.6 0-1.1-.2-1.6-.5l-4.9-3.9c-.6-.5-1-1.2-1-2V7.9c0-1.4 1.1-2.6 2.6-2.6h9.8c1.4 0 2.6 1.1 2.6 2.6v9.7c0 .8-.4 1.5-1 2l-4.9 3.9c-.5.3-1 .5-1.6.5zM8.1 7.3c-.3 0-.6.3-.6.6v9.7c0 .2.1.3.2.4l4.9 3.9c.2.2.5.2.7 0l4.9-3.9c.1-.1.2-.3.2-.4V7.9c0-.3-.3-.6-.6-.6H8.1z"
+            fill="#448AFA"></path>
+          <path class="st0"
+            d="M3.4 13.3c-.4 0-.8-.2-.9-.6L.2 7.4c-.3-.6-.3-1.3 0-2C.5 4.8.9 4.3 1.6 4l9-3.9c1.3-.6 2.8 0 3.4 1.3l.9 2.1c.2.5 0 1.1-.5 1.3-.5.2-1.1 0-1.3-.5l-.9-2.1c-.2-.1-.5-.3-.8-.2l-9 3.9c-.2.1-.3.2-.4.3s0 .3 0 .4l2.3 5.3c.2.5 0 1.1-.5 1.3-.1.1-.3.1-.4.1zM8.9 11.3h3.2v2H8.9zM14.4 11.3h3.2v2h-3.2zM13 19.6c-2.6 0-4.7-2.1-4.7-4.7h2c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7h2c0 2.6-2.1 4.7-4.7 4.7z"
+            fill="#448AFA"></path>
+        </svg>
+        <span>Company Cultural Test</span>
+      </h1>
+      <a class="add-btn" (click)="isChecked()" data-toggle="modal" data-target="#personality-test" href="#WhitePaperModel">
+        <span class="add add--green rounded">+</span>
+        <span>Start Test</span>
+      </a>
+    </div> <!-- .card-header -->
+    <div class="card-inner">
+    <div *ngIf="CulturalTestStatus == 0" class="placeholder">
+    <img alt="icon" src="../../../../assets/images/personal-skills.svg">
+     <p >Take a Cultural test and we will tell you what kind of Company it is in Cultural Values.</p>
+     <img alt="" class="arrow" src="../../../../assets/images/skills-arrow.png">
+      </div>
+      <!-- if culture data -->
+      <div class="row" *ngIf="CulturalTestStatus > 0">
+        <div class="col-md-3 br-1">
+          <img class="mw-110" alt="icon" src="../../../../assets/images/personal-skills.svg" >
         </div>
-      </header>
+        <div class="col-md-9">
+          <h4 class="mt-0">Cultural Test <small><i *ngIf="CulturalTestStatus<100 && CulturalTestStatus != 0 ">(in-progress)</i></small></h4>
+          <div class="col-md-4 w-auto">
+            <h5 class="mr-0">45%</h5>
+          </div>
+          <div class="col-md-8 w-inherit">
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" 
+              aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'min-width.%' : getCulturalTestStatus()}">
+                <span class="sr-only">{{CulturalTestStatus}}% Complete</span>
+              </div>
+            </div>
+          </div>
+          
+          
+
+          <div *ngIf="CulturalTestStatus==100">
+            <button class="btn btn-success nxt" type="button" (click)="showGraph()" data-toggle="modal"
+            data-target="#personality-test">View Detailed Report</button>
+          </div>
+          <div *ngIf="CulturalTestStatus<100">
+            <button class="btn btn-success nxt" type="button" (click)="scroll(test,'Cultural Test')" data-toggle="modal"
+            data-target="#personality-test">Complete Test</button>
+          </div>
+          
+        </div>
+      </div>
+      <!-- if culture data -->
+      
+      
+       </div>
+    <div class="wrap" style="display: none;">
+
       <div class="card-content scroll-inner personality-test-results">
         <!--Need to show this commented section by default-->
-        <div *ngIf="CulturalTestStatus == 0" class="placeholder">
+        <div  class="placeholder">
           <img src="assets/images/personal-skills.svg" alt="icon">
           <p>Take a Cultural test and we will tell you what kind of Company it is in Cultural Values.</p>
           <img class="arrow" src="assets/images/skills-arrow.png" alt="">
@@ -108,7 +155,7 @@
           </div> -->
           <div class="col-md-5 culture-result-view">
             <h4>Culture Test <i class="test-status"
-                *ngIf="CulturalTestStatus<100 && CulturalTestStatus != 0 ">(In-Progress)</i></h4>
+                >(In-Progress)</i></h4>
             <div class="row">
               <div class="col-md-8">
                 <div class="progress">
@@ -197,7 +244,7 @@
   id="personality-test">
   <div class="modal-dialog" role="document">
     <!--Slide 1 Starts-->
-    <div class="modal-content" style="height: 100%;" *ngIf="progress== -1">
+    <div class="modal-content" *ngIf="progress== -1">
       <div class="modal-header">
         <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
@@ -298,8 +345,8 @@
                   </th>
                   <td *ngFor="let res of response; let i = index" style="width:12%">
                     <div class="radio-box inline">
-                      <label for="text" class="radio">
-                        <input type="radio" id="{{que.id}}_1" name="{{que.id}}_1" [(ngModel)]="Radioans[j].checked"
+                      <label for="text" class="radio" for="{{que.id}}_{{i}}_1">
+                        <input type="radio" id="{{que.id}}_{{i}}_1" name="{{que.id}}_1" [(ngModel)]="Radioans[j].checked"
                           value="{{que.id}}_{{i}}_1" class="radio-input radiobtn"
                           (change)="handleChange($event, i, que.id)">
                         <span class="radio-btn"></span>
