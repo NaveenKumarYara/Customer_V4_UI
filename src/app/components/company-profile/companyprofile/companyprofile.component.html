@@ -51,24 +51,92 @@
             <!-- culture -->
 <div class="col-md-12 culture-row">
   <div class="card card--location">
-    <div class="card-header cultur-header">
-      <h1 class="title">
-        <svg height="24" width="20.5" xmlns="http://www.w3.org/2000/svg">
-          <path class="st0" d="M13 24c-.6 0-1.1-.2-1.6-.5l-4.9-3.9c-.6-.5-1-1.2-1-2V7.9c0-1.4 1.1-2.6 2.6-2.6h9.8c1.4 0 2.6 1.1 2.6 2.6v9.7c0 .8-.4 1.5-1 2l-4.9 3.9c-.5.3-1 .5-1.6.5zM8.1 7.3c-.3 0-.6.3-.6.6v9.7c0 .2.1.3.2.4l4.9 3.9c.2.2.5.2.7 0l4.9-3.9c.1-.1.2-.3.2-.4V7.9c0-.3-.3-.6-.6-.6H8.1z" fill="#448AFA"></path>
-          <path class="st0" d="M3.4 13.3c-.4 0-.8-.2-.9-.6L.2 7.4c-.3-.6-.3-1.3 0-2C.5 4.8.9 4.3 1.6 4l9-3.9c1.3-.6 2.8 0 3.4 1.3l.9 2.1c.2.5 0 1.1-.5 1.3-.5.2-1.1 0-1.3-.5l-.9-2.1c-.2-.1-.5-.3-.8-.2l-9 3.9c-.2.1-.3.2-.4.3s0 .3 0 .4l2.3 5.3c.2.5 0 1.1-.5 1.3-.1.1-.3.1-.4.1zM8.9 11.3h3.2v2H8.9zM14.4 11.3h3.2v2h-3.2zM13 19.6c-2.6 0-4.7-2.1-4.7-4.7h2c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7h2c0 2.6-2.1 4.7-4.7 4.7z" fill="#448AFA"></path>
-        </svg>
-        <span>Company Cultural Test</span>
-      </h1>
-       <a href="javascript:void(0)" class="add-btn" (click)="OpenCultureTestDialog()">
-        <span class="add add--green rounded">+</span>
-        <span>Start Test</span>
-      </a> 
-    </div> <!-- .card-header -->
-    <div class="card-inner">
-      <div class="placeholder">
-        <img alt="icon" src="../../../../assets/images/personal-skills.svg">
-        <p >Take a Cultural test and we will tell you what kind of Company it is in Cultural Values.</p>
-        <img alt="" class="arrow" src="../../../../assets/images/skills-arrow.png">
+    <div class="wrap">
+      <header class="card-header">
+        <h2 class="card-title">Company Cultural Test</h2>
+        <div class="pull-right">
+          <!-- <a href="javascript:void(0)"  (click)="Test()" class="add-btn">
+            <span>+</span>
+            <p>Retake Test</p>
+          </a> -->
+          <a (click)="isChecked()" data-toggle="modal" data-target="#personality-test" class="add-btn pointer">
+            <span>+</span>
+            <p>Start Test</p>
+          </a>
+        </div>
+      </header>
+      <div class="card-content scroll-inner personality-test-results">
+        <!--Need to show this commented section by default-->
+        <div *ngIf="CulturalTestStatus == 0" class="placeholder">
+          <img src="assets/images/personal-skills.svg" alt="icon">
+          <p>Take a Cultural test and we will tell you what kind of Company it is in Cultural Values.</p>
+          <img class="arrow" src="assets/images/skills-arrow.png" alt="">
+        </div>
+
+        <!--Progress Bars Code-->
+        <div class="row placeholder" style="text-align:left"
+          *ngIf="CulturalTestStatus > 0">
+          <img src="assets/images/personal-skills.svg" alt="icon">
+          <!-- <div class="col-md-5 personality-result-view">
+            <h4>Personality Test <i class="test-status"
+                *ngIf="PersonalityTestStatus<100 && PersonalityTestStatus != 0">(In-Progress)</i></h4>
+            <div class="row">
+              <div class="col-md-8 ">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{'min-width.%' : getPesonalityTestStatus()}">
+                    <span class="sr-only">{{PersonalityTestStatus}}% Complete (success)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <h3>{{PersonalityTestStatus}}%</h3>
+              </div>
+            </div>
+            <div *ngIf="PersonalityTestStatus==100">
+              <button class="btn btn-success" (click)="showGraph()" data-toggle="modal"
+                data-target="#personality-test">
+                View Detailed Report</button>
+            </div>
+            <div *ngIf="PersonalityTestStatus<100">
+              <button class="btn btn-success" (click)="scroll(test,'Personality Test')" data-toggle="modal"
+                data-target="#personality-test">
+                Complete Test
+              </button>
+            </div>
+          </div> -->
+          <div class="col-md-5 culture-result-view">
+            <h4>Culture Test <i class="test-status"
+                *ngIf="CulturalTestStatus<100 && CulturalTestStatus != 0 ">(In-Progress)</i></h4>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info  progress-bar-striped active" role="progressbar"
+                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{'min-width.%' : getCulturalTestStatus()}">
+                    <span class="sr-only">{{CulturalTestStatus}}% Complete (success)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <h3>{{CulturalTestStatus}}%</h3>
+              </div>
+            </div>
+            <div *ngIf="CulturalTestStatus==100">
+              <button class="btn btn-success" (click)="showGraph()" data-toggle="modal"
+                data-target="#personality-test">
+                View Detailed Report</button>
+            </div>
+            <div *ngIf="CulturalTestStatus<100">
+              <button class="btn btn-success" (click)="scroll(test,'Cultural Test')" data-toggle="modal"
+                data-target="#personality-test">
+                Complete Test
+              </button>
+            </div>
+            <!-- <button class="btn btn-success">View Detailed Report</button> -->
+          </div>
+        </div>
       </div>
     </div>
   </div> <!-- .card--location -->
@@ -99,374 +167,271 @@
 
     </div>
   </main>
-  <div Id="CultureTest" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-       
-     
-          <!--modal-content1-->
-      <div class="modal-content" style="display: none">
-        <div class="row">
-           <div class="col-md-12 ">
-              <div class="card card--other-info">
-                 <div class="card-header">
-                    <h1 class="title">
-                       <span>Culture Fit</span>
-                    </h1>
-                    <div class="layout layout--btn">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                          aria-hidden="true">&times;</span></button>
-                    </div>
-                 </div>
-                 <!-- .header -->
-                 <div class="row">
-                    <div class="col-md-12">
-                       <div class="card-inner">
-                          <div class="col-md-1">10%</div>
-                          <div class="progress col-md-11 no-pad">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                              aria-valuemax="100" style="width: 10%">
-                              <span class="sr-only">40% Complete (success)</span>
-                            </div>
-                          </div>
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th></th>
-                                <th>Agree</th>
-                                <th>Somewhat Agree</th>
-                                <th>Somewhat Disagree</th>
-                                <th>Disagree</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">
-                                  <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6>
-                                </th>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" [checked]="!show" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="radio-box inline">
-                                    <label for="text" class="radio">
-                                      <input type="checkbox" id="" class="radio-input">
-                                      <span class="radio-btn"></span>
-                                    </label>
-                                  </div>
-                                </td>
-                              </tr>
-                
-                
-                            </tbody>
-                          </table>
-                        
-                       </div>
-                    </div>
-                    <div class="col-md-12 p0-30">
-                       <div class="bt-1-E0E3EF mrl--15">
-                         <div class="mtbr-5-17-25">
-                            <a href="javascript:void(0)" class="pull-left skip-link">Save and Skip to Cultural Test</a>
-                         </div>
-                          <div  class="pull-right mtbr-5-17-25">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-success">Save & Next</button>
-                          </div>
+  <div class="modal fade news  personality-test-dialog " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  id="personality-test">
+  <div class="modal-dialog" role="document">
+    <!--Slide 1 Starts-->
+    <div class="modal-content" style="height: 100%;" *ngIf="progress== -1">
+      <div class="modal-header">
+        <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center">Take Test</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <!-- <div class="col-xs-6 col-md-6">
+            <h5>Personality Test</h5>
+            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet,
+              consectetur adipiscing elit</p>
+            <button *ngIf="PersonalityTestStatus < 100" (click)="scroll(test,'Personality Test')" class="thumbnail">
+              <img src="assets/images/Personality-test.png" alt="Personality Test">
+            </button>
+            <button *ngIf="PersonalityTestStatus == 100" class="thumbnail" style="position: relative; z-index: 1;">
+              <img src="assets/images/Personality-test.png" alt="Personality Test" style="-webkit-filter: blur(2px);">
+              <span style="
+              top: 20%;
+              left: 35%;
+              position: absolute;
+              z-index: 2;
+              align-self: center;
+              ">
+                <img src="assets/images/complete.png" style="all: unset;" alt="complete Test">
+                <br>
+                <button type="button" class="btn btn-success" (click)="showGraph()">View Results</button>
+              </span>
+            </button>
+          </div> -->
+          <div class="col-xs-6 col-md-6">
+            <h5>Cultural Test</h5>
+            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet,
+              consectetur adipiscing elit</p>
+            <button (click)="scroll(test,'Cultural Test')" class="thumbnail" *ngIf="CulturalTestStatus < 100">
+              <img src="assets/images/Cultural-test.png" alt="Cultural Test">
+            </button>
+            <button *ngIf="CulturalTestStatus == 100" class="thumbnail" style="position: relative; z-index: 1;">
+              <img src="assets/images/Cultural-test.png" alt="Cultural Test" style="-webkit-filter: blur(2px);">
+              <span style="
+              top: 20%;
+              left: 35%;
+              position: absolute;
+              z-index: 2;
+              align-self: center;
+              ">
+                <img src="assets/images/complete.png" style="all: unset;" alt="complete Test">
+                <br>
+                <button type="button" class="btn btn-success" (click)="showGraph()">View Results</button>
+              </span>
+            </button>
+            <!-- <div *ngIf="CulturalTestStatus == 100" >
+              <img src="assets/images/complete.png" alt="Personality Test">
+              <br>
+              <button type="button" class="btn btn-success" (click)="showGraph()">View Results</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+    <!--Slide 1 Ends-->
 
-                          
-                         
-                       </div>
-                    </div>
-                 </div>
-              </div>
-              <!-- .col-md-12 -->
-           </div>
-           <!-- .row -->
+
+    <!--Slide 2 Starts-->
+    <div #test>
+      <div class="modal-content" style="height: 100%;" *ngIf="progress > -1">
+        <div class="modal-header">
+          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center">{{testType}} Fit</h4>
         </div>
-     </div>
-     <!--#modal-content1-->
-     <!--modal-content2-->
-     <div class="modal-content">
-        <div class="row">
-           <div class="col-md-12 ">
-              <div class="card card--other-info">
-                 <div class="card-header">
-                    <div class="col-md-5 text-left">
-                        <h4>Culture Fit Results <img title="Download Detailed Test Report"
-                            src="../../../../assets/images/down-chevron-icon.png"></h4>
-                      </div>
-                      <div class="col-md-6 text-right">
-                        <h6>Share your results</h6>
-                        <div class="social-media-share">
-                          <a href="/#/">
-                            <img alt="linkedin" src="/../../assets/images/linkedin-icon.png" title="http://www.linkedin.com/">
-                          </a>
-                          <a href="/#/">
-                            <img alt="facebook" src="/../../assets/images/fb-icon.png"
-                              title="https://www.facebook.com/emma.sophia">
-                          </a>
-                          <a href="/#/">
-                            <img alt="twitter" src="/../../assets/images/twitter-icon.png"
-                              title="https://www.twitter.com/emma.sophia">
-                          </a>
-                          <a href="/#/">
-                            <img alt="skype" alt="skype" src="../../../../assets/images/skype-icon.png" title="">
-                          </a>
-                        </div>
-                      </div>
-                    <div class="layout layout--btn">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                          aria-hidden="true">&times;</span></button>
-                    </div>
-                 </div>
-                 <!-- .header -->
-                 <div class="row">
-                    <div class="col-md-12">
-                       <div class="card-inner img-middle">
-                          <div>
-                              <div class="col-md-12 text-center">
-                                <img class="img-responsive"
-                                  src="https://images.ctfassets.net/fevtq3bap7tj/68o78rXmGQAWmEGQmikIea/48548c810c0c826fbab6494fc92a01c9/Pie_in_3D.png">
-                              </div>
-                              <div class="col-xs-6 col-md-6">
-                                <img class="img-responsive"
-                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
-                              </div>
-                              <div class="col-xs-6 col-md-6">
-                                <img class="img-responsive"
-                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
-                              </div>
-                              <div class="col-xs-6 col-md-6">
-                                <img class="img-responsive"
-                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
-                              </div>
-                              <div class="col-xs-6 col-md-6">
-                                <img class="img-responsive"
-                                  src="https://images.ctfassets.net/fevtq3bap7tj/4VQQH1mrKUc4CgmU2ewEk2/d6072d66138c2f31a3b89fa71d7bff8d/Bar_charts.svg">
-                              </div>
-                              <div class="col-xs-12 col-md-12">
-                                  <div style="height: 100px;"></div>
-                              </div>
-                            </div>
-                       </div>
-                    </div>
-                   
-                 </div>
+        <div class="modal-body">
+          <div class="col-md-12">
+            <div class="col-md-1">{{progressbarStatus | number }}%</div>
+            <div class="progress col-md-11 no-pad">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                aria-valuemax="100" [ngStyle]="{'min-width.%' : getprogressStatus()}">
+                <span class="sr-only">40% Complete (success)</span>
               </div>
-              <!-- .col-md-12 -->
-           </div>
-           <!-- .row -->
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="clearfix">&nbsp;</div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th *ngFor="let res of response" style="text-align: center;">{{res}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let que of filterquestionList ;let j = index">
+                  <th scope="row">
+                    <h6>{{que.code}}</h6>
+                  </th>
+                  <td *ngFor="let res of response; let i = index" style="width:12%">
+                    <div class="radio-box inline">
+                      <label for="text" class="radio">
+                        <input type="radio" id="{{que.id}}_1" name="{{que.id}}_1" [(ngModel)]="Radioans[j].checked"
+                          value="{{que.id}}_{{i}}_1" class="radio-input radiobtn"
+                          (change)="handleChange($event, i, que.id)">
+                        <span class="radio-btn"></span>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-     </div>
-     <!--#modal-content2-->      
-   
-                
-                
+        <div class="modal-footer">
+          <div class="clearfix">&nbsp;</div>
+          <div class="clearfix">&nbsp;</div>
+          <div class="clearfix">&nbsp;</div>
+          <div class="clearfix">&nbsp;</div>
+          <!-- <div *ngIf="testType=='Personality Test'">
+            <a [ngClass]="{'disabledLink': queans<6}" class="pull-left">
+              <span (click)="switchQue(test,'Cultural Test')">Save
+                and Skip
+                to Cultural Test
+              </span>
+            </a>
+          </div>
+          <div *ngIf="testType=='Cultural Test'">
+            <a [ngClass]="{'disabledLink': queans<6}" class="pull-left">
+              <span (click)="switchQue(test,'Personality Test')">Save
+                and Skip
+                to Personality Test
+              </span>
+            </a>
+          </div> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" [disabled]="queans < 6"
+            (click)="saveTestResponse(test,'Save')">Save &
+            Next</button>
+          <div class="clearfix">&nbsp;</div>
+        </div>
+      </div>
     </div>
+    <!-- /.modal-content -->
+    <!--Slide 2 Ends-->
+
+    <!--Slide 3 Result Draft View-->
+    <div class="modal-content vh100 p1" *ngIf="progress ==-2">
+      <div class="modal-header">
+        <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+
+
+      </div>
+      <div class="modal-body">
+        <div>
+          <!-- <canvas #TestGrapChart width="400" height="400"></canvas> -->
+
+          <div class="row">
+
+            <div class="col-md-5">
+              <h4>Personal Fit Results <img title="Download Detailed Test Report"
+                  src="../../assets/images/download-graph.png" style="width: 32px;"></h4>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right">
+                <h6>Share your results</h6>
+
+                <div class="social-media-share">
+                  <a href="/#/" class="pl-0">
+                    <img alt="linkedin" src="/../../assets/images/linkedin-icon.png" title="http://www.linkedin.com/">
+                  </a>
+                  <a href="/#/">
+                    <img alt="facebook" src="/../../assets/images/fb-icon.png"
+                      title="https://www.facebook.com/emma.sophia">
+                  </a>
+                  <a href="/#/">
+                    <img alt="twitter" src="/../../assets/images/twitter-icon.png"
+                      title="https://www.twitter.com/emma.sophia">
+                  </a>
+                  <a href="/#/">
+                    <img alt="skype" alt="skype" src="/../../assets/images/skype-icon.png" title="">
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            <br>
+
+          </div>
+      
+          <div class="row p-rel">
+            <div class="col-md-6">
+              <!-- <div *ngFor="let label of graphLabelList; let i=index">
+                <a class="d-inline-b" (click)="showSubGraph(i)">
+                  <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
+                  </span>
+                  {{label.GroupLabel}} - {{label.GroupPer}}%
+                </a>
+                <br>
+              </div> -->
+              <div class="clearfix">&nbsp;</div>
+              <div style="width:70%;margin:auto;">
+                <canvas #testChart9 width="400" height="400"></canvas>
+              </div>
+
+
+            </div>
+            <div class="vdivider"></div>
+            <div class="col-md-6">
+              <div class="text-center whoami">
+                <h4><span>Who Am I</span></h4>
+                <div>
+                  <p>Person places emphasis on accomplishing results</p>
+                </div>
+              </div>
+
+              <div class="nodata" *ngIf="selectedSlice == -1">
+                <svg fill="#9eabc0" enable-background="new 0 0 60 60" version="1.1" viewBox="0 0 60 60"
+                  xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m59 51.5h-1v-37h-12v37h-3v-45h-12v45h-3v-14h-12v14h-3v-23h-12v23c-0.552 0-1 0.447-1 1s0.448 1 1 1h58c0.552 0 1-0.447 1-1s-0.448-1-1-1z" />
+                </svg>
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <!-- <div class="w-80 div-m-auto">
+                <div *ngIf="selectedSlice == 0">
+                  <canvas #testChart1 width="400" height="400"></canvas>
+                </div>
+                <div *ngIf="selectedSlice == 1">
+                  <canvas #testChart2 width="400" height="400"></canvas>
+                </div>
+
+                <div *ngIf="selectedSlice == 2">
+                  <canvas #testChart3 width="400" height="400"></canvas>
+                </div>
+                <div *ngIf="selectedSlice == 3">
+                  <canvas #testChart4 width="400" height="400"></canvas>
+                </div>
+
+                <div *ngIf="selectedSlice == 4">
+                  <canvas #testChart5 width="400" height="400"></canvas>
+                </div>
+              </div> -->
+
+
+            </div>
+          </div>        
+          <!-- <div ngIf="CulturalResponse.questionnaireResponses.length == 12"> -->
+          Cultural Test Average = {{culturalAvg | number}} %
+          <!-- </div> -->
+
+        </div>
+      </div>
+
+      <div class="modal-footer modal-p">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!--Slide 3 Ends-->
+
+  </div><!-- /.modal-dialog -->
+</div>
 </body>

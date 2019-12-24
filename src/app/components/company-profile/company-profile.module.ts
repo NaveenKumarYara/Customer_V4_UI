@@ -30,6 +30,7 @@ import {CertificationComponent} from './achievementsandawards/CompanyCertificati
 import {SharedModule} from '../../shared/shared.module';
 import {CandidateViewComponent} from '../company-profile/candidateview/candidate-view.component';
 import{CultureTestComponent} from '../company-profile/culturetest/culturetest.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 @NgModule({
   imports: [
@@ -42,7 +43,7 @@ import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angula
     NgSelectModule,
     HttpClientModule,
     SharedModule,
-    MatDialogModule,
+    MatDialogModule,  ChartsModule,
     MatCardModule, MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',

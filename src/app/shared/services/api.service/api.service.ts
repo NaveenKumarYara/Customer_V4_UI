@@ -139,6 +139,23 @@ export class ApiService {
       });
   }
 
+  
+  GetServiceCall(url) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("x-access-token", sessionStorage.getItem('token'));
+    // headers.append('Access-Control-Allow-Origin', '*');
+    return this._http
+      .get(this.getUrl(url), {
+        headers: headers
+      })
+      .map((response: Response) => response.json())
+      .retry(2)
+      .catch(error => {
+        return "seomething gone wrong";
+      });
+  }
+
   GetService(url, prams) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
