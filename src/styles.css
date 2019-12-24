@@ -4193,6 +4193,13 @@ tbody.collapse.in {
     border-bottom-color: transparent;
     cursor: default;
 }
+.nav-tabs.li-bg-0>li.active>a, .nav-tabs.li-bg-0>li.active>a:hover, .nav-tabs.li-bg-0>li.active>a:focus {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(221, 221, 221, 0);
+    border-bottom-color: transparent;
+    cursor: default;
+}
+
 
 .nav-pills>li {
     float: left;
@@ -18213,6 +18220,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 .page--company-profile.edit-mode .card--basic-info .meta-info label {
     opacity: 0;
 }
+.page--company-profile.edit-mode .card--basic-info .meta-info label.opacity1 {
+    opacity: 1;
+}
 
 .page--company-profile.edit-mode .card--basic-info .video-placeholder {
     border: 1px solid #E0E3EF;
@@ -24930,4 +24940,6 @@ table .table-prl-0 td {
     position: relative;
     top: -17px;
 }
-
+.opacity1{
+    opacity: 1;
+}
