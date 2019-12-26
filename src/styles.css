@@ -23954,7 +23954,10 @@ table .table-prl-0 td {
 }
 
 .c93A2BB {
-    color: #93A2BB;
+    color: #93A2BB !important;
+}
+.f-14 a{
+    font-size:14px;
 }
 
 .interview-dropdown {
@@ -24949,4 +24952,15 @@ table .table-prl-0 td {
 
 .ShortListing{
     background-color:#ACB0F3; 
+}
+.margin-auto{
+    margin: auto !important;
+    float:none !important;
+}
+.p-0,.h-0{
+    padding:0px;
+    height:0px;
+}
+.add-btn.pr-0{
+    padding-right: 0px !important;
 }
