@@ -37,7 +37,6 @@ export class LogoHeaderComponent implements OnInit {
     GetBillingDuration()
    {
     return this.appService.getBillEstimates(this.customer.UserId).subscribe(res => {
-     debugger
       this.bill = res;
       if(new Date(this.bill.endDate) < new Date())
       {

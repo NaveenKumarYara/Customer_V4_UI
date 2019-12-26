@@ -30,7 +30,7 @@
       </a>
     </div>
     <div class="card-inner">
-      <div class="company-logo">
+      <div class="company-logo" *ngIf="getcompanylogo">
         <div class="img">
           <img class="img-responsive" width="200" title="{{getcompanylogo?.CompanyName}}"
             src="{{companyLogo?.CompanyLogo}}" alt="Company Logo">

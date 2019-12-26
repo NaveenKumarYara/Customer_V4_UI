@@ -23,7 +23,7 @@
                   <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
                   </div> -->
                 <div class="ui-badge ui-badge--domain cursor_text"
-                    *ngIf="profile.CertificationName!=null;else nocertification"><img
+                    *ngIf="profile.CertificationName!=null&&profile.CertificationName!='';else nocertification"><img
                         src="../../../../../assets/images/certificate.svg" title="Certifications" width="25"
                         height="20"><a class="cursor_text" href="javascript:void(0)"
                         title="{{profile.CertificationName}}"> {{profile.CertificationName}}</a></div>
