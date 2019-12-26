@@ -127,19 +127,19 @@ background-size: 8px;
 .m2{
     margin: 2rem;
 }
-<<<<<<< HEAD
-.personality-test-dialog .modal-body {
+
+/* .personality-test-dialog .modal-body {
     padding: 1rem;
-}
+} */
 .personality-test-dialog .modal-body h5, .personality-test-dialog .modal-body p{
     text-align: center;
 }
-.personality-test-dialog .modal-title{
+/* .personality-test-dialog .modal-title{
     padding: 2rem;
 }
 .personality-test-dialog .modal-body h5{
     padding: 4rem 1rem;
-}
+} */
 .personality-test-dialog .modal-body p{
     font-size:13px;
 }
@@ -149,9 +149,9 @@ background-size: 8px;
 .personality-test-dialog .modal-body .thumbnail img{
     width:80%;
 }
-.personality-test-dialog .modal-content .modal-footer{
+/* .personality-test-dialog .modal-content .modal-footer{
     padding: 9rem 3.5rem;
-}
+} */
 .personality-test-dialog .modal-header button{
     background-color: transparent;
     border: transparent;
@@ -346,4 +346,30 @@ padding-left: 0px !important;
 }
 .col-md-8.w-inherit .progress{
     margin: 2px 0px 9px 0px;
+}
+/*24-dec-19*/
+#personality-test .modal-content{
+    border-radius: 0px;
+    height: 100vh;
+}
+#personality-test .modal-dialog{
+    position: absolute;
+    right: 0px;
+    margin: 0px;
+    width: 890px;
+}
+#personality-test .modal-body{
+padding: 0px;
+}
+#personality-test .modal-header, #personality-test .modal-footer{
+    border: 0px solid #ffffff00;
+
+}
+#personality-test .table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd !important;
+}
+#personality-test .table>tbody>tr>th,
+#personality-test .table>tbody>tr>td{
+    border-top: 1px solid #ddd !important;
 }
