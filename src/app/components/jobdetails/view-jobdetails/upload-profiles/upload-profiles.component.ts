@@ -301,6 +301,7 @@ export class UploadProfilesComponent implements OnInit {
   }
 
   UploadAction(index, data, type) {
+    this.spinner.show();
     if (type == 2) {
       data.isPublic = true;
     }
@@ -313,6 +314,7 @@ export class UploadProfilesComponent implements OnInit {
           a.set("Upload", true.toString());
           this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
             if (data) {
+              this.spinner.hide();
               // alert("asdasdasdas");
               this.tempuploadResponse[index].ResumeStatus = "Requested";
             }
@@ -332,6 +334,7 @@ export class UploadProfilesComponent implements OnInit {
             a.set("Upload", true.toString());
             this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
               if (data) {
+                this.spinner.hide();
                 // alert("asdasdasdas");
                 this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
               }
@@ -342,6 +345,7 @@ export class UploadProfilesComponent implements OnInit {
       } else {
         this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
+            this.spinner.hide();
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
 
           }

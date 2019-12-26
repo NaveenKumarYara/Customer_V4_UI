@@ -674,7 +674,7 @@
             </div>
             <div class="footer">
                 <ul class="actions">
-                    <li *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock" class="disabled">
+                    <li class="disabled" *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock" class="disabled">
                         <a href="javascript:void(0)" disable
                             (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                             data-toggle="modal" data-target="#inbox">
@@ -740,7 +740,7 @@
                     </li> 
            </ng-container>
            <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'">
-                <li>
+                <li class="disabled">
                         <a href="javascript:void(0)"  
                         (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                         data-toggle="modal" data-target="#inbox">
@@ -820,7 +820,7 @@
                                     d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
                             </svg>
                         </a>
-                        <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='InActive'">
+                        <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='Closed'">
                             <!-- applied -->
                             <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
                             <div
