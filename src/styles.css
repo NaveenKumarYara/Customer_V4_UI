@@ -24943,3 +24943,6 @@ table .table-prl-0 td {
 .opacity1{
     opacity: 1;
 }
+.page--job-details .matching-details.bg-fff{
+    background-color: #fff;
+}
