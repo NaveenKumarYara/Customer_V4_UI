@@ -1225,3 +1225,6 @@ h1.title img {
 .d-block.text-center.min-h40{
     height: 40px;
 }
+.page--job-details .matching-details.bg-fff{
+    background-color: #fff;
+}
