@@ -70,7 +70,7 @@
               <tbody>
                 <tr *ngFor="let job of jobData; let i=index">
                   <ng-container *ngIf="i<5">
-                    <td *ngIf="job?.CImage!=null"><img class="img-circle" src="{{job?.CImage}}" width="24" alt="img"></td>
+                    <td *ngIf="job?.CImage!=null"><img class="img-circle" src="{{job?.CImage}}" width="64" alt="img"></td>
                     <td>{{job?.Email}}</td>
                     <ng-container *ngIf="job?.ProfileId == null && job?.SkillProfileId == null">
                       <td>Invited</td>
