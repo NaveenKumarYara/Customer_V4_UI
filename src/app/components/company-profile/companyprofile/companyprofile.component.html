@@ -405,23 +405,23 @@
           <div class="row">
 
             <div class="col-md-12">
-              <h4>Personal Fit Results <img title="Download Detailed Test Report"
+              <h4>Cultural Fit Results <img title="Download Detailed Test Report"
                   src="../../assets/images/download-graph.png" style="width: 32px;"></h4>
             </div>
             
 
           </div>
       
-          <div class="row p-rel">
+          <div class="row p-rel" *ngIf="culturalAvg > 0">
             <div class="col-md-6">
-              <!-- <div *ngFor="let label of graphLabelList; let i=index">
-                <a class="d-inline-b" (click)="showSubGraph(i)">
+              <div *ngFor="let label of graphLabelList1; let i=index">
+                <a class="d-inline-b">
                   <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
                   </span>
                   {{label.GroupLabel}} - {{label.GroupPer}}%
                 </a>
                 <br>
-              </div> -->
+              </div> 
               <div class="clearfix">&nbsp;</div>
               <div style="width:70%;margin:auto;">
                 <canvas #testChart9 width="400" height="400"></canvas>
@@ -446,7 +446,7 @@
                 </svg>
               </div>
               <div class="clearfix">&nbsp;</div>
-              <!-- <div class="w-80 div-m-auto">
+               <div class="w-80 div-m-auto">
                 <div *ngIf="selectedSlice == 0">
                   <canvas #testChart1 width="400" height="400"></canvas>
                 </div>
@@ -464,13 +464,13 @@
                 <div *ngIf="selectedSlice == 4">
                   <canvas #testChart5 width="400" height="400"></canvas>
                 </div>
-              </div> -->
+              </div> 
 
 
             </div>
           </div>        
           <!-- <div ngIf="CulturalResponse.questionnaireResponses.length == 12"> -->
-          Cultural Test Average = {{culturalAvg | number}} %
+         <!-- Cultural Test Average = {{culturalAvg | number}} % -->
           <!-- </div> -->
 
         </div>

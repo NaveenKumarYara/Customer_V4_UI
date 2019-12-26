@@ -56,6 +56,10 @@ export class CompanyprofileComponent implements OnInit {
     getcompanycertification: GetCompanyCertification[];
     getcompanycluture:GetCompanyCulture[];
     getcompanyachivements: GetCompanyAchievement[];
+    graphLabelCult: any[] = [];
+    graphDataCult: any[] = [];
+    graphLabelList1: LegendList[] = [];
+    pTestAvg: any;
     @ViewChild('testChart1') testChart1: ElementRef;
     @ViewChild('testChart2') testChart2: ElementRef;
     @ViewChild('testChart3') testChart3: ElementRef;
@@ -402,6 +406,7 @@ export class CompanyprofileComponent implements OnInit {
                 this.graphLabelList.push(new LegendList());
                 this.graphLabelList[index].GroupLabel = (a.groupName);
                 this.graphLabelList[index].GroupPer = (a.response.toFixed(2));
+                this.pTestAvg = a.response.toFixed(2);
               });
 
               this.graphLabelList[0].GroupColor = ('rgba(101,105, 169, 1)');
@@ -893,26 +898,34 @@ export class CompanyprofileComponent implements OnInit {
 
 
   getCultGraph(mail) {
+    debugger
     //  var mail = "loft@gmail.com";
-    this._service.GetService('QuestionAPI/api/QuestionnaireResult?mail=', mail)
+    this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetCulturalGraphDetails?mail=', mail)
       .subscribe(
         data => {
           this.graphData = [];
           
           var userResponsedata = data;
-
+          this.graphLabelList1 = [];
           var count = 0;
 
           if (this.testChart9) {
 
             var testChart9Canvas = this.testChart9.nativeElement.getContext('2d');
-            this.graphLabel1 = [];
-            this.graphData1 = [];
-            userResponsedata[0].questionnaireResultList.forEach(b => {
-
-              this.graphData1.push(b.response);
-              this.graphLabel1.push(b.groupName);
+            this.graphLabelCult = [];
+            this.graphDataCult = [];
+            userResponsedata[0].questionnaireResultList.forEach((b, index) => {
+              var value = (b.response / (3 * 16)) * 100
+              this.graphDataCult.push(value);
+              this.graphLabelCult.push(b.groupName);
+              this.graphLabelList1.push(new LegendList());
+              this.graphLabelList1[index].GroupLabel = (b.groupName);
+              this.graphLabelList1[index].GroupPer = (value.toFixed(2));
             })
+            this.graphLabelList1[0].GroupColor = ('rgba(101,105, 169, 1)');
+            this.graphLabelList1[1].GroupColor = ('rgba(63, 184, 179, 1)');
+            this.graphLabelList1[2].GroupColor = ('rgba(236, 136, 133, 1)');
+            this.graphLabelList1[3].GroupColor = ('rgba(235, 189, 78, 1)');
             var weekChart = new Chart(testChart9Canvas, {
               type: 'doughnut',
               options: {
@@ -925,7 +938,7 @@ export class CompanyprofileComponent implements OnInit {
                 },
               },
               data: {
-                labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4'],
+                labels: this.graphLabelCult,// ['Category 1', 'Category 2', 'Category 3', 'Category 4'],
                 render: 'labels',
                 datasets: [{
                   labels: [
@@ -936,7 +949,7 @@ export class CompanyprofileComponent implements OnInit {
                     'black'
                   ],
                   label: '# of Votes',
-                  data: [50, 20, 95, 45, 30],
+                  data: this.graphDataCult,
                   backgroundColor: [
                     'rgba(101,105, 169, 1)',
                     'rgba(63, 184, 179, 1)',
