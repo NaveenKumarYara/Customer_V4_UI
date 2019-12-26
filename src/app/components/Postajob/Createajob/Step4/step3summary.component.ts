@@ -62,7 +62,13 @@ matchingPersentage=[];
     // this.interviewType = '';
     // this.reportinManager = '';
     // this.teamMembers = '';
-    this.matchingPersentage =  this.appService.skillDataList;
+    if(this.appService.skillDataList.length>0)
+    {
+      this.matchingPersentage =  this.appService.skillDataList;
+    }else
+    {
+    this.matchingPersentage = this.appService.skillPostData;
+    } 
     // this.employmentTypeId = this.appService.employmentType.value.EmploymentTypeId;
     // this.employmentType = this.appService.employmentType.value.EmploymentType;
     if (this.employmentTypeId === 2) {
