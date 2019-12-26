@@ -166,9 +166,13 @@ export class UploadProfilesComponent implements OnInit {
     }
     this.totalFile = e.target.files.length;
     this.totalSelectedDoc = e.target.files.length;
-    if (e.target.files.length > 40) {
-      alert('Please select max 40 files.');
+    if (e.target.files.length > 5) {
+      this.toastr.warning('Please select max 5 files.');
       this.spinner.hide();
+      setTimeout(() => {
+             this.toastr.dismissToast;
+         }, 3000);
+     
       e.preventDefault();
     } else {
       this.slice = 100 / e.target.files.length;
