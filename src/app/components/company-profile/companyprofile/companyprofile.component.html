@@ -392,7 +392,7 @@
 
     <!--Slide 3 Result Draft View-->
     <div class="modal-content vh100 p1" *ngIf="progress ==-2">
-      <div class="modal-header">
+      <div class="modal-header p-0 h-0 ">
         <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 
@@ -404,7 +404,7 @@
 
           <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
               <h4>Cultural Fit Results <img title="Download Detailed Test Report"
                   src="../../assets/images/download-graph.png" style="width: 32px;"></h4>
             </div>
@@ -413,58 +413,18 @@
           </div>
       
           <div class="row p-rel" *ngIf="culturalAvg > 0">
-            <div class="col-md-6">
-              <div *ngFor="let label of graphLabelList1; let i=index">
+            <div class="col-md-8 margin-auto text-center">
+              <span *ngFor="let label of graphLabelList1; let i=index" >
                 <a class="d-inline-b">
                   <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
                   </span>
                   {{label.GroupLabel}} - {{label.GroupPer}}%
                 </a>
-                <br>
-              </div> 
+              </span> 
               <div class="clearfix">&nbsp;</div>
               <div style="width:70%;margin:auto;">
                 <canvas #testChart9 width="400" height="400"></canvas>
               </div>
-
-
-            </div>
-            <div class="vdivider"></div>
-            <div class="col-md-6">
-              <div class="text-center whoami">
-                <h4><span>Who Am I</span></h4>
-                <div>
-                  <p>Person places emphasis on accomplishing results</p>
-                </div>
-              </div>
-
-              <div class="nodata" *ngIf="selectedSlice == -1">
-                <svg fill="#9eabc0" enable-background="new 0 0 60 60" version="1.1" viewBox="0 0 60 60"
-                  xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="m59 51.5h-1v-37h-12v37h-3v-45h-12v45h-3v-14h-12v14h-3v-23h-12v23c-0.552 0-1 0.447-1 1s0.448 1 1 1h58c0.552 0 1-0.447 1-1s-0.448-1-1-1z" />
-                </svg>
-              </div>
-              <div class="clearfix">&nbsp;</div>
-               <div class="w-80 div-m-auto">
-                <div *ngIf="selectedSlice == 0">
-                  <canvas #testChart1 width="400" height="400"></canvas>
-                </div>
-                <div *ngIf="selectedSlice == 1">
-                  <canvas #testChart2 width="400" height="400"></canvas>
-                </div>
-
-                <div *ngIf="selectedSlice == 2">
-                  <canvas #testChart3 width="400" height="400"></canvas>
-                </div>
-                <div *ngIf="selectedSlice == 3">
-                  <canvas #testChart4 width="400" height="400"></canvas>
-                </div>
-
-                <div *ngIf="selectedSlice == 4">
-                  <canvas #testChart5 width="400" height="400"></canvas>
-                </div>
-              </div> 
 
 
             </div>

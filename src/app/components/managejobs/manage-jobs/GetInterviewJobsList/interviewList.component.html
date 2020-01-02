@@ -94,7 +94,7 @@
                         <div class="stats text-left col-md-3">
                           <div class="list-stats">
                               <div class="job-details">
-                                  <h3 href="javascript:void(0)" class="medium" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
+                                  <h3 href="javascript:void(0)" class="medium c93A2BB" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
                                   </h3>
                                   
                                   <div class="meta mt-10">
@@ -111,30 +111,37 @@
                         </div>
                     <div class="stats text-left col-md-3">
                       <div class="list-stats">
-                        <h3 class="medium">Interview Type</h3>
-                        <div class="row mt-10-0">
+                        <h3 class="medium c93A2BB">Interview Type</h3>
+                        <div class="row mt-10-0 f-14">
                           <div class="col-md-6 w-auto p-0">
-                            <h4 class="m-rb-10 c93A2BB"><a href="javascript:void(0)">{{job?.InterviewType || N/A}}</a>
+                            <h4 class="m-rb-10 c93A2BB">
+                              <a href="javascript:void(0)">{{job?.InterviewType || N/A}}</a>
                             </h4>
                           </div>
                           <div class="col-md-6 w-auto p-0">
                               <ng-container *ngIf="job?.InterviewTypeId == 2">
-                                  <a href="javascript:void(0)">
+                                  <h4 class="mt-0">
+                                    <a href="javascript:void(0)">
                                       <!-- <img src="../../../../../assets/images/phn-icon.svg" /> -->
-                                     :{{job?.PhoneNumber || N/A}}
+                                     : {{job?.PhoneNumber || N/A}}
                                     </a>
+                                  </h4>
                               </ng-container>
                               <ng-container *ngIf="job?.InterviewTypeId == 3">
+                                <h4 class="mt-0">
                                   <a href="javascript:void(0)">
-                                      <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                     :{{job?.SkypeId || N/A}}
-                                    </a>
+                                    <!-- <img src="../../../../../assets/images/skype.svg" /> -->
+                                   :{{job?.SkypeId || N/A}}
+                                  </a>
+                                </h4>  
                               </ng-container>
                               <ng-container *ngIf="job?.InterviewTypeId == 4">
-                                <a href="javascript:void(0)">
+                                <h4 class="mt-0">
+                                  <a href="javascript:void(0)">
                                     <!-- <img src="../../../../../assets/images/skype.svg" /> -->
                                    :{{job?.BridgeUrl|| N/A }},{{job?.AccessId || N/A}}
                                   </a>
+                                </h4>
                             </ng-container>
                             <!-- <div class="dropdown d-inline">
                               <a *ngIf="job?.InterviewTypeId != 1" class="dropdown-toggle interview-dropdown pointer" type="button" id="dropdownMenu1"
@@ -156,7 +163,7 @@
                     </div>
                     <div class="stats text-left col-md-3">
                         <div class="list-stats b-0">
-                          <h3 class="medium">Interview Date & Time</h3>
+                          <h3 class="medium c93A2BB">Interview Date & Time</h3>
                               <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
                           <ng-container *ngIf="job?.IsCandidateAccepted == 1 && job?.IsCPNewDate == null && job?.IsCPNewDate != 1">
                               <h5 class="meta">Confirmed</h5>
