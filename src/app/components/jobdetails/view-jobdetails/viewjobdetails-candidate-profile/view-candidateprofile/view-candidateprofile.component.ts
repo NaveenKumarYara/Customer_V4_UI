@@ -6,6 +6,7 @@ import { JobdetailsService } from '../../../jobdetails.service';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
+import { mappingdetails } from './mappingdetails';
 declare var $: any;
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
@@ -25,6 +26,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   email:any;
   profileview: any;
   profileId: any;
+  details: mappingdetails;
   list: any;
   noTest:boolean=false;
   otherSkills: any = [];
@@ -34,7 +36,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     height: 400,
     overflow: false,
     realignOnResize: true,
-  };
+  }; 
   graphData: any[] = [];
   graphLabel: any[] = [];
   graphLabelList: LegendList[] = [];
@@ -122,12 +124,21 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
     cloudspan();
     this.GetCandidateSKills();
+    this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetCandidatePersonalityResult();
   }
 
   onChartClick(event) {
     console.log(event);
+  }
+
+  GetProfileDetails()
+  {
+    this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.data.ProfileId).subscribe(
+      data => {
+        this.details = data;
+      })
   }
 
   GetCandidateSKills() {

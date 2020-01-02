@@ -21,16 +21,16 @@
             <div class="media">
               <div class="media-left media-middle">
                 <a href="javascript:void(0)">
-                  <img class="media-object media-img-circle" src="{{profileview?.ProfileBasicInfo?.ProfilePic}}"
+                  <img class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}"
                     alt="...">
                 </a>
               </div>
               <div class="media-body">
                 <h4 class="media-heading">
-                  <span class="fname">{{profileview?.ProfileBasicInfo?.FirstName}}</span>
-                  <span class="lname">{{profileview?.ProfileBasicInfo?.LastName}}</span>
+                  <span class="fname">{{details?.profileVal?.FirstName}}</span>
+                  <span class="lname">{{details?.profileVal?.LastName}}</span>
                 </h4>
-                <span class="job-title">{{profileview?.ProfileBasicInfo?.ProfileTitle}} @
+                <span class="job-title">{{details?.profileVal?.ProfileTitle}} @
                   {{profileview?.ProfileBasicInfo?.CompanyName}}</span>
               </div>
             </div>
@@ -72,24 +72,24 @@
             <div class="col-md-5">
               <div class="d-list">
                 <ul class="c-content">
-                  <li class="mail" *ngIf="profileview?.ProfileBasicInfo?.UserName.substring(0,7) != 'esolvit'">
-                    {{profileview?.ProfileBasicInfo?.UserName}}
+                  <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'">
+                    {{details?.profileVal?.Email}}
                   </li>
-                  <li class="mail" *ngIf="profileview?.ProfileBasicInfo?.UserName.substring(0,7) == 'esolvit'">
+                  <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) == 'esolvit'">
                       Yet to Provide
                     </li>
                   <li class="mobile">
-                    {{profileview?.ProfileBasicInfo?.MobilePhone || "Yet to Provide" }}
+                    {{details?.profileVal?.MobilePhone || "Yet to Provide" }}
                   </li>
                   <li class="location">
 
-                    <ng-container *ngIf="profileview?.ProfileBasicInfo?.CityName!=null">
-                      {{profileview?.ProfileBasicInfo?.CityName}},
+                    <ng-container *ngIf="details?.profileVal?.CityName!=null">
+                      {{details?.profileVal?.CityName}},
                     </ng-container>
-                    <ng-container *ngIf="profileview?.ProfileBasicInfo?.StateName!=null">
-                      {{profileview?.ProfileBasicInfo?.StateName}}.
+                    <ng-container *ngIf="details?.profileVal?.StateName!=null">
+                      {{details?.profileVal?.StateName}}.
                     </ng-container>
-                    {{profileview?.ProfileBasicInfo?.CountryName}}
+                    {{details?.profileVal?.CountryName}}
 
                   </li>
 
