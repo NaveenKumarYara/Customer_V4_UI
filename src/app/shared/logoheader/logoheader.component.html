@@ -76,11 +76,11 @@
                 <!--Upgrade Now Alert starts-->
                 <li class="text-danger hidden-xs" routerLinkActive="active">
                   <a href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
-                    <ng-container  *ngIf="bill?.isActive === true">
-                      Free Trial Expires, Upgrade Now!
-                    </ng-container>
-                    <ng-container *ngIf="bill?.isActive === false">
+                    <ng-container  *ngIf="active === true">
                       Free Trial Expired, Renew Now!
+                    </ng-container>
+                    <ng-container *ngIf="active === false">
+                      Free Trial Expires, Upgrade Now!
                     </ng-container>                  
                   </a>
                   </li>

@@ -4,6 +4,8 @@ import { AppService } from '../../app.service';
 import { environment } from '../../../environments/environment.prod';
 import { billEstimates } from '../../../models/billEstimates';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { CustomerSubscription } from '../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../models/GetSubscriptionDetails';
 @Component({
     selector: 'app-Logoheader',
     templateUrl: './logoheader.component.html'   
@@ -12,7 +14,10 @@ export class LogoHeaderComponent implements OnInit {
   customer:any;
   companyLogo:any;
   bill:billEstimates; 
+  active:boolean=false;
   addPricing = new payment();
+  subdetails:CustomerSubscription;
+  sdetails:GetSubscriptionDetails;
   constructor( private appService: AppService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.toastr.setRootViewContainerRef(_vcr);
@@ -31,7 +36,26 @@ export class LogoHeaderComponent implements OnInit {
     
   }
 
-  
+  GetCustomerSubscription()
+{
+  return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+    this.subdetails = res;
+    this.GetSubscriptionDetails(res.subscriptionId);
+    // this.GetInvoiceEstimates();
+    // this.GetUnbilledChargeDetails();
+});
+}
+
+GetSubscriptionDetails(sid)
+{
+  return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
+    this.sdetails = res;
+    if(new Date(this.sdetails.nextBillingAt) < new Date())
+    {
+      this.active=true;
+    }
+  });
+}
 
 
     GetBillingDuration()
@@ -40,25 +64,12 @@ export class LogoHeaderComponent implements OnInit {
       this.bill = res;
       if(new Date(this.bill.endDate) < new Date())
       {
-      this.PlanExipry(res);
+      this.active=true;
       }
    });
   }
 
-  PlanExipry(bill)
- {
-  this.addPricing.Id = bill.id;
-  this.addPricing.UserId = bill.userId;
-  this.addPricing.PlanId = bill.planId;
-  this.addPricing.StartDate = bill.startDate;
-  this.addPricing.EndDate = bill.endDate;
-  this.addPricing.IsActive = false;
-  this.appService.UpdatePlanDetails(this.addPricing).subscribe(data => {
-    this.GetBillingDuration();
-    this.addPricing= new payment();
-  });
-  
-}
+
 
   
 
@@ -71,7 +82,8 @@ export class LogoHeaderComponent implements OnInit {
 
 ngOnInit()
 {
-    this.GetBillingDuration();
+    this.GetCustomerSubscription();
+    this.active=false;
 }
 }
 

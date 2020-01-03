@@ -7,10 +7,10 @@
         <div><h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small></div>
         <div>+</div>
         <p>5 to 7% on Successful Hire</p>
-        <ng-container *ngIf="bill?.planId==plans.id">
-          <div class="p9-0"><button class="btn-primary" (click)="buyPlan(plans?.id)">Renew</button></div>
+        <ng-container *ngIf="plans?.planName==sdetails?.planId">
+          <div class="p9-0"><button class="btn-primary">Renew</button></div>
         </ng-container>
-        <ng-container *ngIf="bill?.planId!=plans.id">
+        <ng-container *ngIf="plans?.planName!=sdetails?.planId">
           <div class="p9-0"><button class="btn-primary">Buy Now</button></div>
         </ng-container>
       
