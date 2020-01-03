@@ -21,17 +21,17 @@
                     <div>
                       <h1 class="panel-title">Bill Estimate</h1>
                     </div>
-                    <ng-container *ngFor="let unbill of unbilled">
+                    <ng-container>
                           <div class="p_5">
                               <div class="pb_5">
-                                <ng-container *ngFor="let invoicebill of invoice">
-                                  <h4 class="d-inline">{{invoicebill?.currencyCode}} {{invoicebill?.total}}</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                                <ng-container>
+                                  <h4 class="d-inline">{{sdetails?.currencyCode}} {{sdetails?.planAmount}}</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
                                     Taxes)</small>
                                 </ng-container>
                              
                               </div>
-                              <div class="pb_5">Plan: <span class="pl-_5">{{unbill?.description}} </span></div>
-                              <div class="pb_5">Next Renewal on : <span class="pl-_5">{{unbill?.dateTo | date}}</span> </div>
+                              <div class="pb_5">Plan: <span class="pl-_5">{{sdetails?.planId}} </span></div>
+                              <div class="pb_5">Next Renewal on : <span class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
                               <a data-toggle="tab" href="#estimates">View More</a>
                             </div>          
                       </ng-container>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="media-body">
                               <h4 class="media-heading">No Billing Details!!</h4>
-                              <p>Your Billing history snippet will be shown here</p>
+                              <p>Your Billing details snippet will be shown here</p>
                             </div>
                           </div>
                         </div>

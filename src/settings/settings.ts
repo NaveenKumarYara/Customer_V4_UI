@@ -145,4 +145,5 @@ export class Settings {
   UnbillingChargeDetails:string;
   BillingCardDetails:string;
   GetCustomerSubscription:string;
+  GetSubscriptionDetails:string;
   }

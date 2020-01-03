@@ -137,5 +137,6 @@
   "BillingContactDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingContact",
   "UnbillingChargeDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetUnBilledCharges",
   "BillingCardDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingCardDetails",
-  "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription"
+  "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription",
+  "GetSubscriptionDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetSubscriptionDetails"
 }

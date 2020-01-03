@@ -1,21 +1,21 @@
 <div class="table-layout">
-    <div class="table-row" *ngIf="Plans">
+    <div class="table-row" *ngIf="sdetails">
       <h4>Bill Estimate</h4>
      
           <div class="currency">
-             <ng-container *ngFor="let invoice of bill">
-            {{invoice?.amountDue}}
+             <ng-container>
+            {{sdetails?.planAmount}}
           </ng-container> 
             <small>(Inclusive of tax)</small>
           </div>
       
      
     </div>
-    <div class="table-row" *ngFor="let unbill of unbilled">
+    <div class="table-row">
       <h4>Next Charge</h4>
-      <div><div class="date">{{unbill?.dateTo | date}}</div></div>
+      <div><div class="date">{{sdetails?.nextBillingAt | date}}</div></div>
     </div>
-    <div class="table-row" *ngIf="Plans">
+    <div class="table-row" *ngIf="sdetails">
         <h4>Estimate Detail: 
      
         </h4>
@@ -33,17 +33,14 @@
           <div class="amount">54.53</div>
         </div>-->
  
-        <ng-container *ngFor="let unbill of unbilled">        
+   
 
           <div class="details-row total">           
             <div class="desc">Total</div>
-       
-            <ng-container *ngFor="let invoice of bill">
-              <div class="amount">{{invoice?.amountDue}}</div>
-            </ng-container>
+              <div class="amount">{{sdetails?.planAmount}}</div>
           </div> 
   
-        </ng-container>
+
         
       </div>
     </div>

@@ -10,6 +10,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { GetUnbilledChargeDetails } from '../../../../../models/GetUnbilledChargeDetails';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 @Component({
   selector: 'app-estimates',
   templateUrl: './estimates.component.html',
@@ -22,14 +23,15 @@ export class EstimatesComponent implements OnInit {
   bill:invoiceEstimates[];
   unbilled:GetUnbilledChargeDetails[];
   cid:any;
+  sdetails:GetSubscriptionDetails;
   subdetails:CustomerSubscription;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
   }
 
   ngOnInit() {
-    this.GetPlans();
-    this.GetBillExpiryDetails();
+    // this.GetPlans();
+    // this.GetBillExpiryDetails();
     this.GetCustomerSubscription();
   }
 
@@ -38,9 +40,17 @@ export class EstimatesComponent implements OnInit {
     return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
       this.subdetails = res;
       this.cid=res.customerId;
-      this.GetInvoiceEstimates();
-      this.GetUnbilledChargeDetails();
+      this.GetSubscriptionDetails(res.subscriptionId);
+      // this.GetInvoiceEstimates();
+      // this.GetUnbilledChargeDetails();
   });
+  }
+
+  GetSubscriptionDetails(sid)
+  {
+    return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
+      this.sdetails = res;
+    });
   }
 
   GetBillExpiryDetails()
@@ -50,19 +60,19 @@ export class EstimatesComponent implements OnInit {
     });
   }
 
-  GetUnbilledChargeDetails()
-  {
-    return this.appService.GetUnbilledChargeDetails(this.cid).subscribe(res => {
-    this.unbilled = res;
-   });
-  }
+  // GetUnbilledChargeDetails()
+  // {
+  //   return this.appService.GetUnbilledChargeDetails(this.cid).subscribe(res => {
+  //   this.unbilled = res;
+  //  });
+  // }
 
-  GetInvoiceEstimates()
-  {
-      return this.appService.GetBillingEstimateDetails(this.cid).subscribe(res => {
-      this.bill = res;
-  });
-  }
+  // GetInvoiceEstimates()
+  // {
+  //     return this.appService.GetBillingEstimateDetails(this.cid).subscribe(res => {
+  //     this.bill = res;
+  // });
+  // }
 
   GetPlans()
   {
