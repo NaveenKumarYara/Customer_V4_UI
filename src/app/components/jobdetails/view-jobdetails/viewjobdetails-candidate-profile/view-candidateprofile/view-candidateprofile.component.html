@@ -17,7 +17,7 @@
       <!-- New Profile View Code Stats Here -->
       <div class="style1">
         <div class="row h-bg p-2">
-          <div class="col-md-4">
+          <div class="col-md-4" *ngIf="details">
             <div class="media">
               <div class="media-left media-middle">
                 <a href="javascript:void(0)">
@@ -89,8 +89,7 @@
                     <ng-container *ngIf="details?.profileVal?.StateName!=null">
                       {{details?.profileVal?.StateName}}.
                     </ng-container>
-                    {{details?.profileVal?.CountryName}}
-
+                   USA
                   </li>
 
                 </ul>
