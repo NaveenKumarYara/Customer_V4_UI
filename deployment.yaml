@@ -26,25 +26,25 @@ spec:
             memory: 100M
         env:
         - name: Identity_URL
-          value: "https://identityapi-#{namespace}#.arytic.com"
+          value: "https://identityapi#{host}#arytic.com"
         - name: Email_URL
-          value: "https://emailapi-#{namespace}#.arytic.com"
+          value: "https://emailapi#{host}#arytic.com"
         - name: Jobs_URL
-          value: "https://jobsapi-#{namespace}#.arytic.com"
+          value: "https://jobsapi#{host}#arytic.com"
         - name: Profile_URL
-          value: "https://profileapi-#{namespace}#.arytic.com"
+          value: "https://profileapi#{host}#arytic.com"
         - name: Referral_URL
-          value: "https://referalapi-#{namespace}#.arytic.com"
+          value: "https://referalapi#{host}#arytic.com"
         - name: Main_URL
-          value: "https://#{namespace}#.arytic.com"
+          value: "https://#{basehost}#arytic.com"
         - name: CuMain_URL
-          value: "https://customer-#{namespace}#.arytic.com"
+          value: "https://customer#{host}#arytic.com"
         - name: Sharing_URL
-          value: "https://socialapi-#{namespace}#.arytic.com"
+          value: "https://socialapi#{host}#arytic.com"
         - name: Question_URL
-          value: "https://questionnaireapi-#{namespace}#.arytic.com"
+          value: "https://questionnaireapi#{host}#arytic.com"
         - name: Pricing_URL
-          value: "https://pricingapi-#{namespace}#.arytic.com"
+          value: "https://pricingapi#{host}#arytic.com"
         ports:
         - containerPort: 80
       imagePullSecrets:
