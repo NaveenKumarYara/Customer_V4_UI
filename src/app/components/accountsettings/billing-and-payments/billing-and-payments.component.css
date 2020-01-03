@@ -115,13 +115,17 @@ font-size: 1.9rem !important;
 .f-12{
     font-size: 12px !important;
 }
-.no-billing{
+/* .no-billing{
     padding-bottom: 3.8em;
-}
+} */
 .no-billing-view{
     text-align: center;
     padding-top: 5rem;
 }
 .no-billing-view img{
     margin: auto;
+}
+
+.overview-panels .panel-body{
+    min-height: 230px;
 }
