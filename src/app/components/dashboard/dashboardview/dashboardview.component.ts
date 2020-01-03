@@ -75,7 +75,7 @@ export class DashboardviewComponent implements OnInit {
 
     ngOnInit() {
         // this.populateRecentJoblist(5); 
-        this.GetBillingDuration();
+        //this.GetBillingDuration();
         this.populateRecentApplicants(this.customerId,this.userId,5); 
         this.populateDashboardStatistics(this.customerId,this.userId);
         this.populateApplicantsStatistics(this.customerId,this.userId);       
