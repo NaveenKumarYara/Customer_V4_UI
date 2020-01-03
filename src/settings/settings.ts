@@ -140,4 +140,9 @@ export class Settings {
   AddPlan:string;
   GetPlanDuration:string;
   PlanUpdate:string;
+  BillingEstimateDetails:string;
+  BillingContactDetails:string;
+  UnbillingChargeDetails:string;
+  BillingCardDetails:string;
+  GetCustomerSubscription:string;
   }

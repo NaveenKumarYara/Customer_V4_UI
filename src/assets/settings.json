@@ -132,5 +132,10 @@
   "GetPlans": "https://pricingapi-dev.arytic.com/api/PlanFeature",
   "AddPlan":"https://pricingapi-dev.arytic.com/api/PlanDuration/AddCustomerPlanDetails",
   "GetPlanDuration" :"https://pricingapi-dev.arytic.com/api/PlanDuration/GetPlanduration",
-  "PlanUpdate":"https://pricingapi-dev.arytic.com/api/PlanDuration/UpdatePlan"
+  "PlanUpdate":"https://pricingapi-dev.arytic.com/api/PlanDuration/UpdatePlan",
+  "BillingEstimateDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingEstimate",
+  "BillingContactDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingContact",
+  "UnbillingChargeDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetUnBilledCharges",
+  "BillingCardDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingCardDetails",
+  "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription"
 }
