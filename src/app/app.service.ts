@@ -34,6 +34,11 @@ import { SkillDetails, SkillData,SkillPostData } from '../models/skill.model';
 import { SettingsService } from '../settings/settings.service';
 import { CompanyProfile } from '../models/companyprofile';
 import {billEstimates} from '../models/billEstimates';
+import {invoiceEstimates} from '../models/GetBillingEstimates';
+import {getBillingContactDetails} from '../models/getBillingContactDetails';
+import {GetUnbilledChargeDetails} from '../models/GetUnbilledChargeDetails';
+import { GetBillingCardDetails } from '../models/GetBillingCardDetails';
+import {CustomerSubscription} from '../models/CustomerSubscription';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -367,6 +372,55 @@ getBillEstimates(UserId:number): Observable<billEstimates> {
           this.handleError
       );
 }
+
+
+GetBillingEstimateDetails(customerId:number): Observable<invoiceEstimates[]>
+{
+  const url = this.settingsService.settings.BillingEstimateDetails+ '?customerId=' + customerId ;
+  return this.http.get<invoiceEstimates[]>(url)
+      .catch(
+          this.handleError
+      );
+}
+
+
+GetBillingContactDetails(customerId:number): Observable<getBillingContactDetails>
+{
+  const url = this.settingsService.settings.BillingContactDetails+ '?customerId=' + customerId ;
+  return this.http.get<getBillingContactDetails>(url)
+      .catch(
+          this.handleError
+      );
+}
+
+GetUnbilledChargeDetails(customerId:number): Observable<GetUnbilledChargeDetails[]>
+{
+  const url = this.settingsService.settings.UnbillingChargeDetails+ '?customerId=' + customerId ;
+  return this.http.get<GetUnbilledChargeDetails[]>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
+
+GetBilledCardDetails(customerId:number): Observable<GetBillingCardDetails>
+{
+  const url = this.settingsService.settings.BillingCardDetails+ '?customerId=' +customerId ;
+  return this.http.get<GetBillingCardDetails>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
+GetCustomerSubscription(userId :number): Observable<CustomerSubscription>
+{
+  const url = this.settingsService.settings.GetCustomerSubscription+ '?userId=' +userId ;
+  return this.http.get<CustomerSubscription>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
 
 
  AddPlanDetails(body) :any {

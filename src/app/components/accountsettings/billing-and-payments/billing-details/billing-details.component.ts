@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CompanyProfile } from '../../../../../models/companyprofile';
 import { AppService } from '../../../../app.service';
+import { getBillingContactDetails } from '../../../../../models/getBillingContactDetails';
+import { GetBillingCardDetails } from '../../../../../models/GetBillingCardDetails';
+import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 declare var jQuery:any;
 declare var $:any;
 @Component({
@@ -14,12 +17,17 @@ declare var $:any;
 export class BillingDetailsComponent implements OnInit {
   customer:any;  
   companyprofile: CompanyProfile;
+  contactdetails:getBillingContactDetails;
+  carddetails:GetBillingCardDetails;
+  cid:any;
+  subdetails:CustomerSubscription;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
   }
 
   ngOnInit() {
     this.populateCompanyProfile(); 
+    this.GetCustomerSubscription();
     (function ($) {
 
       var $editBtn = $('.edit-btn');
@@ -45,6 +53,31 @@ export class BillingDetailsComponent implements OnInit {
       });
     })(jQuery);
 
+  }
+
+  GetCustomerSubscription()
+  {
+    return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+      this.subdetails = res;
+      this.cid=res.customerId;
+      this.GetBillingContactDetails();
+      this.GetBilledCardDetails();
+  });
+}
+
+  GetBillingContactDetails()
+  {
+    return this.appService.GetBillingContactDetails(this.cid).subscribe(res => {
+    this.contactdetails = res;
+     });
+  }
+
+  GetBilledCardDetails()
+  {
+    return this.appService.GetBilledCardDetails(this.cid).subscribe(res => {
+    debugger
+    this.carddetails = res;
+   });
   }
 
   populateCompanyProfile() {

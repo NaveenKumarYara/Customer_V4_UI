@@ -132,5 +132,10 @@
   "GetPlans": "${Pricing_URL}/api/PlanFeature",
   "AddPlan":"${Pricing_URL}/api/PlanDuration/AddCustomerPlanDetails",
   "GetPlanDuration" :"${Pricing_URL}/api/PlanDuration/GetPlanduration",
-  "PlanUpdate":"${Pricing_URL}/api/PlanDuration/UpdatePlan"
+  "PlanUpdate":"${Pricing_URL}/api/PlanDuration/UpdatePlan",
+  "BillingEstimateDetails":"${Pricing_URL}/api/BillingHistory/GetBillingEstimate",
+  "BillingContactDetails":"${Pricing_URL}/api/BillingHistory/GetBillingContact",
+  "UnbillingChargeDetails":"${Pricing_URL}/api/BillingHistory/GetUnBilledCharges",
+  "BillingCardDetails":"${Pricing_URL}/api/BillingHistory/GetBillingCardDetails",
+  "GetCustomerSubscription":"${Pricing_URL}/api/BillingHistory/GetCustomerSubscription"
 }

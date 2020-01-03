@@ -1,0 +1,21 @@
+export class GetUnbilledChargeDetails
+{
+    "id":string;
+    "customerId":string;
+    "subscriptionId":string;
+    "dateFrom":Date;
+    "dateTo":Date;
+    "unitAmount":number;
+    "pricingModel":number;
+    "quantity":number;
+    "amount":number;
+    "currencyCode":string;
+    "discountAmount":number;
+    "description":string;
+    "entityType":number;
+    "entityId":string;
+    "isVoided":boolean;
+    "voidedAt":Date;
+    "tiers":string;
+    "deleted":boolean;
+}
