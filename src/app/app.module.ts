@@ -81,6 +81,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -154,6 +155,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     CompanyProfileModule,
     DashboardModule,
     TagCloudModule,
+    ChargebeeJsAngularWrapperModule,
     NgIdleKeepaliveModule.forRoot(),
     ToastModule.forRoot(), BrowserAnimationsModule,
     AccountsettingsModule,

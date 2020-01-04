@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewContainerRef  } from '@angular/core';
+import { Component, OnInit,ViewContainerRef,AfterViewInit,ViewChild,ElementRef} from '@angular/core';
 import { AppService } from '../../../../app.service';
 import { PlanFeature } from "../../../../../models/PlanFeature";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -8,6 +8,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { billEstimates } from '../../../../../models/billEstimates';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
+declare const Chargebee: any;
 @Component({
   selector: 'app-manage-subscriptions',
   templateUrl: './manage-subscriptions.component.html',
@@ -22,10 +23,16 @@ export class ManageSubscriptionsComponent implements OnInit {
   bill:billEstimates;
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
+  @ViewChild('divClick') divClick: ElementRef;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
-    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));  
     this.toastr.setRootViewContainerRef(_vcr);
+    window['Chargebee'].init({
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
+    });
   }
+
 
   ngOnInit() {
     this.GetBillingDuration();
@@ -33,10 +40,14 @@ export class ManageSubscriptionsComponent implements OnInit {
     this.GetCustomerSubscription();
   }
 
-//  buyPlan(id)
-//  {
-//   this.router.navigate(['/app-accountsettings/app-billing-and-payments/', {id} ]);
-//  }
+  ngAfterViewInit(): void {
+    Chargebee.registerAgain();
+  }
+
+ buyPlan()
+ {
+  this.divClick.nativeElement.click();
+ }
 
 
 

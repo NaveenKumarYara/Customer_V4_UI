@@ -1,20 +1,27 @@
 
 <div class="row pricing-row" *ngIf="Plans">
-    <ng-container *ngFor="let plans of Plans?.plansoffered">
+    <ng-container *ngFor="let plans of Plans?.plansoffered">     
     <div class="col-md-4" *ngIf="plans.id != 4">
+   
       <div class="pricing-card box-shadow">
-        <div><span class="type">{{plans?.planName}} </span></div>
+        <div><span class="type">{{plans?.planName.slice(0, -6)}} </span></div>
         <div><h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small></div>
         <div>+</div>
         <p>5 to 7% on Successful Hire</p>
+        
         <ng-container *ngIf="plans?.planName==sdetails?.planId">
-          <div class="p9-0"><button class="btn-primary">Renew</button></div>
+        
+          <div class="p9-0"><button class="btn-primary" (click)="buyPlan()">Renew</button></div>
+          <div ><a href="javascript:void(0)" class="f-12">Customize this plan</a>
+          </div>
         </ng-container>
         <ng-container *ngIf="plans?.planName!=sdetails?.planId">
-          <div class="p9-0"><button class="btn-primary">Buy Now</button></div>
+          <div class="p9-0"><button class="btn-primary" disabled>Buy Now</button></div>
+          <div ><a class="f-12" disabled='disabled'>Customize this plan</a>
+          </div>
         </ng-container>
       
-        <div ><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
+       
         <hr>
         <ul class="features">
                                                                                                 
@@ -56,8 +63,8 @@
     </div>
     </ng-container>
 
-
-  </div>
+    <button #divClick class="btn-primary" hidden  data-cb-type="portal">Renew</button></div>
+ 
   <div class="custom-plan">
       <div class="banner">
         <h2>Custom Plan</h2>

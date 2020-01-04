@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,AfterViewInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { GetBillingCardDetails } from '../../../../../models/GetBillingCardDetai
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 declare var jQuery:any;
 declare var $:any;
+declare const Chargebee: any;
 @Component({
   selector: 'app-billing-details',
   templateUrl: './billing-details.component.html',
@@ -28,31 +29,14 @@ export class BillingDetailsComponent implements OnInit {
   ngOnInit() {
     this.populateCompanyProfile(); 
     this.GetCustomerSubscription();
-    (function ($) {
+    window['Chargebee'].init({
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
+    });
+  }
 
-      var $editBtn = $('.edit-btn');
-    
-      $.each($editBtn, function (index, element) {
-        var $element = $(element);
-        $element.on('click', function (e) {
-          e.preventDefault();
-          var $editGroup = $element.closest('.edit-group');
-          var $editForm = $editGroup.find('.edit-form');
-          var $data = $editGroup.find('.data');
-          var $cancelBtn = $editForm.find('.btn-border');
-    
-          $data.hide();
-          $editForm.show();
-    
-          $cancelBtn.on('click', function (e) {
-            e.preventDefault();
-            $data.show();
-            $editForm.hide();
-          });
-        });
-      });
-    })(jQuery);
-
+  ngAfterViewInit(): void {
+    Chargebee.registerAgain();
   }
 
   GetCustomerSubscription()
@@ -75,7 +59,6 @@ export class BillingDetailsComponent implements OnInit {
   GetBilledCardDetails()
   {
     return this.appService.GetBilledCardDetails(this.cid).subscribe(res => {
-    debugger
     this.carddetails = res;
    });
   }

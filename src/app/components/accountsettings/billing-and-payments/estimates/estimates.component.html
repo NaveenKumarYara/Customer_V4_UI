@@ -1,10 +1,11 @@
+
 <div class="table-layout">
     <div class="table-row" *ngIf="sdetails">
       <h4>Bill Estimate</h4>
      
           <div class="currency">
              <ng-container>
-            {{sdetails?.planAmount}}
+            {{amount}}
           </ng-container> 
             <small>(Inclusive of tax)</small>
           </div>
@@ -37,7 +38,7 @@
 
           <div class="details-row total">           
             <div class="desc">Total</div>
-              <div class="amount">{{sdetails?.planAmount}}</div>
+              <div class="amount">{{amount}}</div>
           </div> 
   
 
@@ -50,6 +51,6 @@
 
     <div class="row text-right">
         <div class="fc-button-group">
-            <button type="button" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>                    </div>
+            <button type="button" data-cb-type="portal" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>                    </div>
     </div>
   </div>

@@ -23,6 +23,7 @@ export class BillingAndPaymentsComponent implements OnInit {
   customer:any;  
   bill:billEstimates; 
   cid:any;
+  amount:number;
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   invoice:invoiceEstimates[];
@@ -63,6 +64,7 @@ export class BillingAndPaymentsComponent implements OnInit {
   {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
       this.sdetails = res;
+      this.amount=this.sdetails.planAmount/100;
     });
   }
 
