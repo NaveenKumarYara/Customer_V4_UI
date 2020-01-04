@@ -30,7 +30,7 @@
                                 </ng-container>
                              
                               </div>
-                              <div class="pb_5">Plan: <span class="pl-_5">{{sdetails?.planId}} </span></div>
+                              <div class="pb_5">Plan: <span class="pl-_5">{{sdetails?.planId.slice(0,-6)}} </span></div>
                               <div class="pb_5">Next Renewal on : <span class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
                               <a data-toggle="tab" href="#estimates">View More</a>
                             </div>          
