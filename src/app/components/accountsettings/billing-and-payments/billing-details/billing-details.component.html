@@ -25,14 +25,14 @@
           <label for="email">Mailing Address</label>
           <div class="editable-input">
             <p>
-                <ng-container *ngIf="companyprofile?.Address1!=''">
-                    {{companyprofile?.Address1}},
+                <ng-container *ngIf="billingaddressDetails?.addr!=''">
+                    {{billingaddressDetails?.addr}},{{billingaddressDetails?.city}} {{billingaddressDetails?.stateCode}}.
               </ng-container>
-              <ng-container *ngIf="companyprofile?.Address2!=''">
-                  {{companyprofile?.Address2}}.
-              </ng-container>
+              <ng-container *ngIf="billingaddressDetails?.addr == null">
+               No Billing Address Added.
+          </ng-container>
             </p>
-            <a href="javascript:void(0)" class="edit-btn">Edit address</a>
+            <a href="javascript:void(0)" class="edit-btn" data-cb-type="portal">Edit address</a>    
           </div>
         </div>
       </div>
