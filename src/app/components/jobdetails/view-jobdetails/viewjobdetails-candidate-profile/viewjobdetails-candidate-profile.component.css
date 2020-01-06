@@ -1228,3 +1228,12 @@ h1.title img {
 .page--job-details .matching-details.bg-fff{
     background-color: #fff;
 }
+.matching-details .view-detailed-report{
+    text-align: right;
+}
+.matching-details .view-detailed-report a{
+    padding-top: 1rem;
+    text-decoration: underline;
+    font-size:12px;
+
+}

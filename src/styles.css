@@ -15133,7 +15133,10 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--account-settings #billing .nav-tabs li a {
     color: #6A7E9C;
-    padding-bottom: 1.33rem;
+    /* padding-bottom: 1.33rem; */
+    white-space: nowrap;
+    padding: 10px 11px;
+
 }
 
 .page--account-settings #billing .nav-tabs .active {
@@ -15553,9 +15556,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         overflow-x: scroll;
         overflow-y: hidden;
     }
-    .page--account-settings #billing .nav-tabs li a {
+    /* .page--account-settings #billing .nav-tabs li a {
         white-space: nowrap;
-    }
+    } */
     .page--account-settings .nav-justified {
         max-width: 320px;
     }
