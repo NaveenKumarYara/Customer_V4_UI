@@ -3,7 +3,7 @@
     <div class="tab-content">
       <div id="billing" class="tab-pane fade active in">
         <h1>Billing and Payments</h1>
-        <ul class="nav nav-tabs ">         
+        <ul class="nav nav-tabs ">
           <li class=""><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
           <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
           <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
@@ -19,23 +19,26 @@
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body" *ngIf="Plans">
                     <div>
-                      <h1 class="panel-title">Bill Estimate</h1>
+                      <h2 class="panel-title">Bill Estimate</h2>
                     </div>
                     <ng-container>
-                          <div class="p_5">
-                              <div class="pb_5">
-                                <ng-container>
-                                  <h4 class="d-inline">{{sdetails?.currencyCode}} {{amount}}</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
-                                    Taxes)</small>
-                                </ng-container>
-                             
-                              </div>
-                              <div class="pb_5">Plan: <span class="pl-_5">{{sdetails?.planId.slice(0,-6)}} </span></div>
-                              <div class="pb_5">Next Renewal on : <span class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
-                              <a data-toggle="tab" href="#estimates">View More</a>
-                            </div>          
-                      </ng-container>
-                   
+                      <div>
+                        <div class="pb_5">
+                          <ng-container>
+                            <h4 class="d-inline">{{sdetails?.currencyCode}} {{amount}}</h4><small
+                              class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                              Taxes)</small>
+                          </ng-container>
+
+                        </div>
+                        <div class="pb_5">Plan : <span class="pl-_5 plan-type">{{sdetails?.planId.slice(0,-6)}} </span>
+                        </div>
+                        <div class="pb_5">Next Renewal on : <span
+                            class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
+                        <a data-toggle="tab" href="#estimates">View More</a>
+                      </div>
+                    </ng-container>
+
 
                   </div>
                 </div>
@@ -44,13 +47,12 @@
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
                     <div>
-                      <h1 class="panel-title">Billing Details</h1>
+                      <h2 class="panel-title">Billing Details</h2>
                     </div>
-                    <div class="p_5pt-0">
+                    <div>
                       <div class="table-row">
                         <div class="payment-group">
                           <div class="form-group p-0">
-
                             <div class="edit-group p-0 border-w-0">
                               <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
                               <div>
@@ -61,15 +63,15 @@
                                 <h5>Expiry</h5>
                                 <p class="m-0">3 / 23 / 2019</p>
                               </div>
-
-                            </div> 
+                            </div>
 
                             <div class="edit-group p-0 border-w-0">
                               <!--NO  Billing Details -->
                               <div class="media">
                                 <div class="media-left media-middle">
                                   <a href="javascript:void(0)">
-                                    <img class="media-object" width="52px" src="../../../../assets/images/addpayment.svg" alt="...">
+                                    <img class="media-object" width="52px"
+                                      src="../../../../assets/images/addpayment.svg" alt="...">
                                   </a>
                                 </div>
                                 <div class="media-body">
@@ -78,7 +80,7 @@
                                 </div>
                               </div>
                               <!-- NO Billing Details -->
-                                <!-- <div>
+                              <!-- <div>
                                   <h4>Paypal</h4>
                                   <p class="m-0">XXXX XXXX XXXX 3456</p>
                                 </div>
@@ -86,9 +88,9 @@
                                   <h5>Expiry</h5>
                                   <p class="m-0">3 / 23 / 2019</p>
                                 </div> -->
-  
-                              </div>
-                           
+
+                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -96,21 +98,25 @@
                       <!-- <div class="pb_5">Billing Period: <span class="pl-_5">  No Billing History</span></div> -->
                       <!-- #if data -->
                       <ng-container *ngIf="carddetails!=null">
-                        <div>
-                          <h4>Credit/Debit Card</h4>
-                          <p class="m-0">{{carddetails?.maskedNumber}}</p>
+                        <div class="col-md-3">
+                          <div><img width="50" src="../../../../assets/images/payment/nocreditcard.svg" alt="nocreditcard"></div>
                         </div>
-                        <div>
-                          <h5>Expiry</h5>
-                          <p class="m-0">{{carddetails?.expiryMonth}}/ {{carddetails?.expiryYear}}</p>
-                        </div>
+                                  <div class="col-md-5">
+                                    <h5>Credit/Debit Card</h5>
+                                    <p class="m-0">{{carddetails?.maskedNumber}}</p>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h5>Expiry</h5>
+                                    <p class="m-0">{{carddetails?.expiryMonth}}/ {{carddetails?.expiryYear}}</p>
+                                  </div>
                       </ng-container>
                       <ng-container *ngIf="carddetails==null">
                         <div class="no-billing pb_5">
                           <div class="media">
                             <div class="media-left media-middle">
                               <a href="javascript:void(0)">
-                                <img class="media-object" width="52px" src="../../../../assets/images/no-billing-image.png" alt="...">
+                                <img class="media-object" width="52px"
+                                  src="../../../../assets/images/no-billing-image.png" alt="...">
                               </a>
                             </div>
                             <div class="media-body">
@@ -121,7 +127,7 @@
                         </div>
                       </ng-container>
 
-               
+
                       <a data-toggle="tab" href="#billing-details">Manage Billing Details</a>
                     </div>
 
@@ -134,9 +140,9 @@
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
                     <div>
-                      <h1 class="panel-title">Bill History</h1>
+                      <h2 class="panel-title">Bill History</h2>
                     </div>
-                    <div class="p_5">
+                    <div>
                       <!-- If billing -->
                       <div style="display: none;">
                         <table class="table m-0 td-p-8">
@@ -164,7 +170,8 @@
                         <div class="media">
                           <div class="media-left media-middle">
                             <a href="javascript:void(0)">
-                              <img class="media-object" width="52px" src="../../../../assets/images/no-billing-image.png" alt="...">
+                              <img class="media-object" width="52px"
+                                src="../../../../assets/images/no-billing-image.png" alt="...">
                             </a>
                           </div>
                           <div class="media-body">
@@ -184,13 +191,15 @@
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
                     <div>
-                      <h1 class="panel-title">Billing Contacts</h1>
+                      <h2 class="panel-title">Billing Contacts</h2>
                     </div>
-                    <div class="ptrl_5-1_3">
+                    <div>
                       <div class="media">
                         <div class="media-left media-middle">
                           <a href="javascript:void(0)">
-                            <img class="media-object" src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}" alt="User">
+                            <img class="media-object"
+                              src="https://ui-avatars.com/api/?name={{this.customer?.FirstName}}+{{this.customer?.LastName}}"
+                              alt="User">
                           </a>
                         </div>
                         <div class="media-body">
@@ -198,7 +207,7 @@
                           <span>{{contactdetails?.email}}</span>
                         </div>
                       </div>
-                      <div class="ptb_5">Send Copy to: <span class="pl-_5"> accounts@admin.com</span> </div>
+                      <!-- <div class="ptb_5">Send Copy to: <span class="pl-_5"> accounts@admin.com</span> </div> -->
                       <a data-toggle="tab" href="#subscription">Manage Billing Contacts</a>
 
                     </div>
