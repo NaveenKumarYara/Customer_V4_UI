@@ -15097,7 +15097,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--account-settings #billing .nav-tabs {
     position: relative;
-    border-bottom: 1px solid #E0E3EF;
     margin-bottom: 3rem;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -15133,15 +15132,15 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--account-settings #billing .nav-tabs li a {
     color: #6A7E9C;
-    /* padding-bottom: 1.33rem; */
     white-space: nowrap;
     padding: 10px 11px;
+    margin: 0px;
 
 }
 
 .page--account-settings #billing .nav-tabs .active {
     margin-bottom: 0;
-    border-bottom: 2px solid #448AFA;
+    border-bottom: 3px solid #448AFA;
 }
 
 .page--account-settings #billing .nav-tabs .active a {
@@ -15266,7 +15265,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--account-settings #estimates .table-row .currency {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
     line-height: 1;
 }
 
@@ -15274,7 +15273,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     content: "$";
     color: #9EABC0;
     font-size: 1em;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 
 .page--account-settings #estimates .table-row .currency small {
@@ -15297,7 +15296,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-bottom: 1px solid #E0E3EF;
+    border-top: 1px solid #E0E3EF;
     padding: 1.125rem 0;
 }
 
@@ -15305,6 +15304,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 1.125rem;
     font-weight: 500;
     color: #6A7E9C;
+    flex-basis: 54%;
 }
 
 .page--account-settings #estimates .details-row .amount:before {
@@ -15321,7 +15321,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--account-settings #estimates .details-row.total .amount {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .page--account-settings #billing-details .table-row {
@@ -15414,7 +15414,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--account-settings .pricing-card .price {
     font-size: 2.625rem;
-    color: #66DAB5;
+    color: #93A2BB;
     font-weight: 600;
     margin: 5px 0 13px;
 }
@@ -15438,7 +15438,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--account-settings .pricing-card .features li {
-    color: #93A2BB;
+    color: #41536E;
     font-size: 0.875rem;
     margin-bottom: 12px;
 }

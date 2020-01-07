@@ -34,9 +34,9 @@ input.form-control {
 .p_5{
     padding:.5rem;
 }
-.ptrl_5-1_3{
+/* .ptrl_5-1_3{
     padding:.5rem .5rem 1.3rem .5rem ;
-}
+} */
 .p_5pt-0{
     padding: 0rem .5rem .5rem .5rem;
 }
@@ -108,7 +108,9 @@ input.form-control {
 .pricing-card .price.d-inline {
 font-size: 1.9rem !important;  
 }
-
+.pricing-card small{
+    color: #93A2BB;
+}
 @media only screen and (min-width: 992px) {
     .pricing-card.box-shadow{
         height: 1000px;
@@ -116,7 +118,7 @@ font-size: 1.9rem !important;
 }
 @media only screen and (min-width: 1200px) {
     .pricing-card.box-shadow{
-        height: 1008px;
+        height: 1030px;
     }
 }
 @media only screen and (max-width: 992px) {
@@ -129,4 +131,22 @@ font-size: 1.9rem !important;
 }
 .f-12{
     font-size: 12px !important;
+}
+.pricing-row .active-plan{
+    border-top: 2px #66dab5 solid;
+}
+.pricing-card .btn{
+    border-radius: 10px;
+    padding: 10px 30px;
+    text-transform: capitalize;
+    width: 60%;
+}
+
+.pricing-card .btn-renew{
+    background-color: #66dab5;
+    color:#fff;
+}
+.pricing-card .btn-buy{
+    background-color: #9bbbee;
+    color:#fff;
 }

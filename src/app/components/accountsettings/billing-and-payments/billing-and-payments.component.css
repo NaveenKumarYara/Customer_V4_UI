@@ -127,5 +127,19 @@ font-size: 1.9rem !important;
 }
 
 .overview-panels .panel-body{
-    min-height: 230px;
+    min-height: 220px;
+    color: #41536E;
+    padding: 1.5rem;
+}
+.overview-panels .panel-body a{
+  text-decoration: underline;
+  color:#448AFA;
+  font-size: 13px;
+}
+.overview-panels .panel-body h2{
+    color: #6A7E9C;
+    padding-bottom: 1.5rem ;
+}
+.overview-panels span.plan-type{
+    text-transform: capitalize;
 }
