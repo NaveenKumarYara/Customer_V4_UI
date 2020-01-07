@@ -548,7 +548,7 @@ getDetails(){
               'Blue'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total,30],
+            data: [this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
               'rgba(63, 184, 179, 1)',
@@ -590,7 +590,7 @@ getGraph() {
             'Blue'
           ],
           label: '# of Votes',
-          data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total,30],
+            data: [this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
           backgroundColor: [
             'rgba(101,105, 169, 1)',
             'rgba(63, 184, 179, 1)',
