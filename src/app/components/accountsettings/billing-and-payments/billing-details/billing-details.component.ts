@@ -7,6 +7,7 @@ import { AppService } from '../../../../app.service';
 import { getBillingContactDetails } from '../../../../../models/getBillingContactDetails';
 import { GetBillingCardDetails } from '../../../../../models/GetBillingCardDetails';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
+import { GetBillingAddressCustomer } from '../../../../../models/GetBillingAddressCustomer';
 declare var jQuery:any;
 declare var $:any;
 declare const Chargebee: any;
@@ -20,7 +21,9 @@ export class BillingDetailsComponent implements OnInit {
   companyprofile: CompanyProfile;
   contactdetails:getBillingContactDetails;
   carddetails:GetBillingCardDetails;
+  billingaddressDetails:GetBillingAddressCustomer;
   cid:any;
+  sid:any;
   subdetails:CustomerSubscription;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -44,9 +47,18 @@ export class BillingDetailsComponent implements OnInit {
     return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
       this.subdetails = res;
       this.cid=res.customerId;
+      //this.sid=res.subscriptionId;
       this.GetBillingContactDetails();
       this.GetBilledCardDetails();
+      this.GetBillingAddress();
   });
+}
+
+GetBillingAddress()
+{
+  return this.appService.GetBillingAddressforCustomer(this.cid).subscribe(res => {
+    this.billingaddressDetails = res;
+     });
 }
 
   GetBillingContactDetails()
@@ -70,3 +82,5 @@ export class BillingDetailsComponent implements OnInit {
   }
 
 }
+
+

@@ -25,14 +25,17 @@
           <label for="email">Mailing Address</label>
           <div class="editable-input">
             <p>
-                <ng-container *ngIf="companyprofile?.Address1!=''">
-                    {{companyprofile?.Address1}},
+                <ng-container *ngIf="billingaddressDetails?.addressLine1!=''">
+                    {{billingaddressDetails?.addressLine1}},{{billingaddressDetails?.addressCity}}
+                    <br>
+                    {{billingaddressDetails?.addressState}},
+                    {{billingaddressDetails?.addressZip}}.
               </ng-container>
-              <ng-container *ngIf="companyprofile?.Address2!=''">
-                  {{companyprofile?.Address2}}.
-              </ng-container>
+              <ng-container *ngIf="billingaddressDetails?.addressLine1 == null">
+               No Billing Address Added.
+          </ng-container>
             </p>
-            <a href="javascript:void(0)" class="edit-btn">Edit address</a>
+            <a href="javascript:void(0)" class="edit-btn" data-cb-type="portal">Edit address</a>    
           </div>
         </div>
       </div>
@@ -95,9 +98,18 @@
       <div class="form-group ">
          <label for="address">Payment Methods</label>
         <div class="edit-group" *ngIf="carddetails!=null">
-          <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
+          <!-- <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div> -->
+          <div><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
+              <!--Show based on card type-->
+          <!--<div><img src="../../../../assets/images/payment/mastercard.svg" width="81" alt="Mastercard"></div>
+              <div><img src="../../../../assets/images/payment/visa.svg" width="81" alt="Visa"></div>
+              <div><img src="../../../../assets/images/payment/amex.svg" width="81" alt="amex"></div>
+              <div><img src="../../../../assets/images/payment/discover.svg" width="81" alt="discover"></div>
+              <div><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
+              <div><img src="../../../../assets/images/payment/paypal.svg" width="81" alt="paypal"></div> -->
+          <!--Show based on card type-->
           <div>
-            <h4>Credit/Debit Card</h4>
+            <h5>Credit/Debit Card</h5>
             <p>{{carddetails?.maskedNumber}}</p>
           </div>
           <div>

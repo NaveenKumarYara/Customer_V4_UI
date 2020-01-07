@@ -1,82 +1,88 @@
-
 <div class="row pricing-row" *ngIf="Plans">
-    <ng-container *ngFor="let plans of Plans?.plansoffered">     
+  <ng-container *ngFor="let plans of Plans?.plansoffered">
     <div class="col-md-4" *ngIf="plans.id != 4">
-   
-      <div class="pricing-card box-shadow">
+
+      <div class="pricing-card box-shadow" [ngClass]="(plans?.planName==sdetails?.planId)?'active-plan':''">
         <div><span class="type">{{plans?.planName.slice(0, -6)}} </span></div>
-        <div><h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small></div>
+        <div>
+          <h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small>
+        </div>
         <div>+</div>
         <p>5 to 7% on Successful Hire</p>
-        
+
         <ng-container *ngIf="plans?.planName==sdetails?.planId">
-        
-          <div class="p9-0"><button class="btn-primary" (click)="buyPlan()">Renew</button></div>
-          <div ><a href="javascript:void(0)" class="f-12">Customize this plan</a>
+
+          <div class="p9-0"><button class="btn btn-renew" (click)="buyPlan()">Renew</button></div>
+          <div><a disabled='disabled' class="f-12">With Below Features</a>
           </div>
         </ng-container>
         <ng-container *ngIf="plans?.planName!=sdetails?.planId">
-          <div class="p9-0"><button class="btn-primary" (click)="buyPlan()">Buy Now</button></div>
-          <div ><a class="f-12" disabled='disabled'>Customize this plan</a>
+          <div class="p9-0"><button class="btn btn-buy" (click)="buyPlan()">Buy Now</button></div>
+          <div><a class="f-12" disabled='disabled'>With Below Features</a>
           </div>
         </ng-container>
-      
-       
+
+
         <hr>
         <ul class="features">
-                                                                                                
-            <ng-container  *ngIf="plans?.id == 1">
-       <span>  3 Jobs </span>
- </ng-container>
- <ng-container *ngIf="plans?.id == 2">
-     <span> 5 Jobs </span>
- </ng-container>
- <ng-container *ngIf="plans?.id == 3">
-     <span> 10 Jobs </span>  
- </ng-container>        
-          <ng-container *ngFor="let feature of Plans?.featuresOffered">
-           
-                           
-                          <ng-container *ngIf="plans?.id == 1 && feature?.id <= 5">
-                              <li>   
-                              {{feature?.featureName}}
-                              <span *ngIf="feature?.featureComment!= 'NULL'">{{feature?.featureComment}} </span>
-                              </li>
-                          </ng-container>
-                          <ng-container *ngIf="plans?.id == 2 && feature?.id <= 11">
-                              <li>   
-                                  {{feature?.featureName}}
-                                  <span *ngIf="feature?.featureComment != 'NULL' ">{{feature?.featureComment}} </span>
-                                  </li>
-                          </ng-container>
-                          <ng-container *ngIf="plans?.id == 3">
-                              <li>   
-                                  {{feature?.featureName}}
-                                  <span *ngIf="feature?.featureComment != 'NULL' ">{{feature?.featureComment}} </span>
-                                  </li>
-                          </ng-container> 
-                                                                        
-   
-        </ng-container>
-      </ul>
-      </div>
-    </div>
-    </ng-container>
 
-    <button #divClick class="btn-primary" hidden  data-cb-type="portal">Renew</button></div>
- 
-  <div class="custom-plan">
-      <div class="banner">
-        <h2>Custom Plan</h2>
-        <p>For enterprise companies and large publishers who want powerful tools and a direct account manager while integrating and scaling Disqus.</p>
-        <button class="btn btn-border">
-          Contact us
-        </button>
+          <ng-container *ngIf="plans?.id == 1">
+            <li> Post 3 Jobs </li>
+          </ng-container>
+          <ng-container *ngIf="plans?.id == 2">
+            <li> Post 5 Jobs </li>
+          </ng-container>
+          <ng-container *ngIf="plans?.id == 3">
+            <li> Post 10 Jobs </li>
+          </ng-container>
+          <ng-container *ngFor="let feature of Plans?.featuresOffered">
+
+
+            <ng-container *ngIf="plans?.id == 1 && feature?.id <= 5">
+              <li>
+                {{feature?.featureName}}
+                <span *ngIf="feature?.featureComment!= 'NULL'">{{feature?.featureComment}} </span>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="plans?.id == 2 && feature?.id <= 11">
+              <li>
+                {{feature?.featureName}}
+                <span *ngIf="feature?.featureComment != 'NULL' ">{{feature?.featureComment}} </span>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="plans?.id == 3">
+              <li>
+                {{feature?.featureName}}
+                <span *ngIf="feature?.featureComment != 'NULL' ">{{feature?.featureComment}} </span>
+              </li>
+            </ng-container>
+
+
+          </ng-container>
+        </ul>
       </div>
     </div>
-    <div class="why">
-      <h3>Why Should we upgrade?</h3>
-      <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-      </p>
-    </div>
+  </ng-container>
+
+  <button #divClick class="btn-primary" hidden data-cb-type="portal">Renew</button>
+</div>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="custom-plan">
+  <div class="banner">
+    <h2>Custom Plan</h2>
+    <p>For enterprise companies and large publishers who want powerful tools and a direct account manager while
+      integrating and scaling Disqus.</p>
+    <button class="btn btn-border" (click)="Contact()">
+      Contact us
+    </button>
+  </div>
+</div>
+<div class="why">
+  <h3>Why Should we upgrade?</h3>
+  <p>
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+  </p>
+</div>

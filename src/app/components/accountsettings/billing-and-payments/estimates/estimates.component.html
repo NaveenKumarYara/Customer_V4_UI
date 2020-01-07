@@ -1,27 +1,24 @@
-
 <div class="table-layout">
-    <div class="table-row" *ngIf="sdetails">
-      <h4>Bill Estimate</h4>
-     
-          <div class="currency">
-             <ng-container>
-            {{amount}}
-          </ng-container> 
-            <small>(Inclusive of tax)</small>
-          </div>
-      
-     
+  <div class="table-row" *ngIf="sdetails">
+    <h4>Bill Estimate</h4>
+    <div class="currency">
+      <ng-container>
+        {{amount}}
+      </ng-container>
+      <small>(Inclusive of tax)</small>
     </div>
-    <div class="table-row">
-      <h4>Next Charge</h4>
-      <div><div class="date">{{sdetails?.nextBillingAt | date}}</div></div>
+  </div>
+  <div class="table-row">
+    <h4>Next Charge</h4>
+    <div>
+      <div class="date">{{sdetails?.nextBillingAt | date}}</div>
     </div>
-    <div class="table-row" *ngIf="sdetails">
-        <h4>Estimate Detail: 
-     
-        </h4>
-        <div>
-        <!-- <div class="details-row">
+  </div>
+  <div class="table-row" *ngIf="sdetails">
+    <!-- <h4>Estimate Detail:
+    </h4> -->
+    <div>
+      <!-- <div class="details-row">
           <div class="desc">Feature 1</div>
           <div class="amount">54.53</div>
         </div>
@@ -33,24 +30,19 @@
           <div class="desc">Feature 1</div>
           <div class="amount">54.53</div>
         </div>-->
- 
-   
 
-          <div class="details-row total">           
-            <div class="desc">Total</div>
-              <div class="amount">{{amount}}</div>
-          </div> 
-  
 
-        
+
+      <div class="details-row total">
+        <div class="desc">Total</div>
+        <div class="amount">{{amount}}</div>
       </div>
     </div>
-
-     
-      
-
-    <div class="row text-right">
-        <div class="fc-button-group">
-            <button type="button" data-cb-type="portal" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>                    </div>
-    </div>
   </div>
+
+  <div class="row text-center">
+    <div class="fc-button-group">
+      <button type="button" data-cb-type="portal"
+        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button> </div>
+  </div>
+</div>

@@ -40,6 +40,7 @@ import {GetUnbilledChargeDetails} from '../models/GetUnbilledChargeDetails';
 import { GetBillingCardDetails } from '../models/GetBillingCardDetails';
 import {CustomerSubscription} from '../models/CustomerSubscription';
 import {GetSubscriptionDetails} from '../models/GetSubscriptionDetails';
+import { GetBillingAddressCustomer } from '../models/GetBillingAddressCustomer';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -426,6 +427,15 @@ GetSubscriptionDetails(subscriptionId:number):Observable<GetSubscriptionDetails>
 {
   const url = this.settingsService.settings.GetSubscriptionDetails+ '?subscriptionId=' +subscriptionId ;
   return this.http.get<GetSubscriptionDetails>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
+GetBillingAddressforCustomer(customerId:number):Observable<GetBillingAddressCustomer>
+{
+  const url = this.settingsService.settings.GetBillingAddressCustomer+ '?customerId=' +customerId ;
+  return this.http.get<GetBillingAddressCustomer>(url)
       .catch(
           this.handleError
       ); 
