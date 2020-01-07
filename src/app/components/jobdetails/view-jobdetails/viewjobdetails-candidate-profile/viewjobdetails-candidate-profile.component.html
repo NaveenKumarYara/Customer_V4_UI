@@ -1026,13 +1026,14 @@
                 <div>
                     <!-- placeholder for chart -->
                     <div style="padding-top: 2rem;">
-                        <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;">
+                         <canvas #testChart width="400" height="400"></canvas>
+                        <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
                     </div>
                       <!-- placeholder for chart -->
 
                     <!-- Anchoring dialog for detailed matching criteria charts-->
                     <div class="view-detailed-report">
-                        <a data-toggle="modal" data-target="#matching-criteria" href="javascript:void(0)">View Detailed Report </a>
+                        <a data-toggle="modal" data-target="#matching-criteria" (click)="getDetails()" href="javascript:void(0)">View Detailed Report </a>
                     </div>
                     <!-- Anchoring dialog for detailed matching criteria charts-->
                 </div>
@@ -1094,7 +1095,7 @@
 
 
 
-<div class="modal fade news  personality-test-dialog " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 id="matching-criteria">
 <div class="modal-dialog" role="document">
 
@@ -1103,18 +1104,18 @@ id="matching-criteria">
     <div class="modal-header">
       <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
           aria-hidden="true">&times;</span></button>
-
-
     </div>
     <div class="modal-body">
         Matching Criteria
     </div>
+    <div>
+        <canvas #testChart1 width="200" height="200"></canvas>
+       <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
+   </div>
 
     <div class="modal-footer modal-p">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </div>
-
-
 </div>
 </div>

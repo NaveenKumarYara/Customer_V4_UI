@@ -75,6 +75,7 @@
   "JobdetailsStatisticsEndpoint": "https://jobsapi-dev.arytic.com/api/GetJobStatistics?",
   "JobdetailsProfileEndpoint": "https://jobsapi-dev.arytic.com/api/GetProfiles?",
   "MatchingDetailEndPoint": "https://jobsapi-dev.arytic.com/api/GetJobMatchingPercentage",
+  "GetJobMatchingCriteriaEndPoint": "https://jobsapi-dev.arytic.com/api/GetJobMatchingCriteriaPercentage?",
    "VideoProfileEndPoint": "https://profileapi-dev.arytic.com/api/GetVideoSizzles",
   "GetAutoSearch": "https://jobsapi-dev.arytic.com/api/GetAutoSearch",
   "GetInterviewAutoSearch": "https://jobsapi-dev.arytic.com/api/GetInterviewSearch",
