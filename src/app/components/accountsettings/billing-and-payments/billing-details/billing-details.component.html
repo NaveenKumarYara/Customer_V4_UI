@@ -99,7 +99,7 @@
          <label for="address">Payment Methods</label>
         <div class="edit-group" *ngIf="carddetails!=null">
           <!-- <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div> -->
-          <div><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
+          <div class="col-md-2"><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
               <!--Show based on card type-->
           <!--<div><img src="../../../../assets/images/payment/mastercard.svg" width="81" alt="Mastercard"></div>
               <div><img src="../../../../assets/images/payment/visa.svg" width="81" alt="Visa"></div>
@@ -108,11 +108,11 @@
               <div><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
               <div><img src="../../../../assets/images/payment/paypal.svg" width="81" alt="paypal"></div> -->
           <!--Show based on card type-->
-          <div>
+          <div class="col-md-5">
             <h5>Credit/Debit Card</h5>
             <p>{{carddetails?.maskedNumber}}</p>
           </div>
-          <div>
+          <div class="col-md-3">
             <h5>Expiry</h5>
             <p>{{carddetails?.expiryMonth}}/ {{carddetails?.expiryYear}}</p>
           </div>
