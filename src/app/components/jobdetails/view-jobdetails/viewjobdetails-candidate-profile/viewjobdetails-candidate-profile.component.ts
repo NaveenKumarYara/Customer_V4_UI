@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input,ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
 import { ChatboxdialogComponent } from './chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from './sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { JobdetailsProfile } from '../../models/jobdetailsprofile';
+import { JobdetailsProfile, MatchingParameterDetails } from '../../models/jobdetailsprofile';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
+import * as Chart from 'chart.js';
 import {MatchingDetails} from '../../models/matchingDetails';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
@@ -41,6 +42,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    customer: any;
    searchString: any;
    domainName: any;
+   matchingParameterDetails= new MatchingParameterDetails();
    experience: any;
    location: any;
    skills: any = null;
@@ -290,6 +292,10 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
         sortBy, searchString, experience, location, domainName, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
+        alert(this.customerId);
+        alert(this.userId);
+        alert(this.jobid);
+
         this.spinner.hide();
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
@@ -345,15 +351,18 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     //     var $selectedCard = $(this).closest('.card');
     //     var $detailsDiv = $selectedCard.find('.matching-details');
     //     var $detailsCloseBtn = $selectedCard.find('.close');
+    var data =this.GetMatchingPercentage(profileId,this.jobid);
+console.log("matchingParameterDetails",this.matchingParameterDetails);
+
         return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
           this.matchingDetails = res;
          $('.matching-details').removeClass('open');
          $('#matchingDetail-' + profileId).toggleClass('open');
 
+
           // $('.matching-details1').removeClass('open');
           // $('#matchingDetails-' + profileId).toggleClass('open');
         });
-
 
         // $detailsCloseBtn.on('click', function (e) {
         //   e.preventDefault();
@@ -482,6 +491,107 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     // this.skills=
     // }
   }
+}
+GetMatchingPercentage(profileId,jobid):any{
+  // var profileId = 10;
+  // var jobid = 10;
+  this.jobdetailsservice. GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe(res => {
+    this.matchingParameterDetails = res;
+    console.log("matchingParameterDetails",this.matchingParameterDetails );
+    this.getGraph();
+    });
+    return this.matchingParameterDetails;
+}
+GetPersonalityTestFit(){
+  
+}
+
+@ViewChild('testChart1') testChart1: ElementRef;
+getDetails(){
+    var responseList = [];
+    var count = 0;
+      if (this.testChart1) {
+      var testChartCanvas = this.testChart1.nativeElement.getContext('2d');
+         var weekChart = new Chart(testChartCanvas, {
+        type: 'doughnut',
+        options: {
+          
+          title: {
+            display: true,
+          },
+          circumference: Math.PI,
+        rotation: 1.0 * Math.PI,
+        responsive: true,
+        legend: { position: 'top',},
+        animation: { animateScale: true, animateRotate: true }
+        },
+        data: {
+          value: 35,
+          labels: ["Skill Fit","Job Fit","Personality Fit"],
+          render: 'labels',
+          datasets: [{
+            labels: [
+              'Red',
+              'Yellow',
+              'Blue'
+            ],
+            label: '# of Votes',
+            data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total,30],
+            backgroundColor: [
+              'rgba(101,105, 169, 1)',
+              'rgba(63, 184, 179, 1)',
+              'rgba(236, 136, 133, 1)'
+            ],
+          }
+          ]
+        }
+      });
+    }
+  }
+@ViewChild('testChart') testChart: ElementRef;
+getGraph() {
+  var responseList = [];
+  var count = 0;
+    if (this.testChart) {
+    var testChartCanvas = this.testChart.nativeElement.getContext('2d');
+       var weekChart = new Chart(testChartCanvas, {
+      type: 'doughnut',
+      options: {
+        
+        title: {
+          display: true,
+        },
+        circumference: Math.PI,
+			rotation: 1.0 * Math.PI,
+			responsive: true,
+			legend: { position: 'top',},
+			animation: { animateScale: true, animateRotate: true }
+      },
+      data: {
+        value: 35,
+        labels: ["Skill Fit","Job Fit","Personality Fit"],
+        render: 'labels',
+        datasets: [{
+          labels: [
+            'Red',
+            'Yellow',
+            'Blue'
+          ],
+          label: '# of Votes',
+          data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total,30],
+          backgroundColor: [
+            'rgba(101,105, 169, 1)',
+            'rgba(63, 184, 179, 1)',
+            'rgba(236, 136, 133, 1)'
+          ],
+
+        }
+        ]
+      }
+      
+    });
+  }
+
 }
 }
 export class WishList {

@@ -15,7 +15,7 @@ import 'rxjs/add/observable/throw';
 import './models/jobdetailsbasicinfo';
 import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
 import { Jobstatistics } from './models/jobstatistics';
-import { JobdetailsProfile } from './models/jobdetailsprofile';
+import { JobdetailsProfile, MatchingParameterDetails } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
 import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
@@ -201,6 +201,18 @@ export class JobdetailsService {
         this.handleError
       );
   }
+
+  getMatchingCriteriaDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
+    const url = this.settingsService.settings.MatchingDetailEndPoint +
+     '?userId=' + profileId + '&jobId=' + jobId;
+    return this.http.get<MatchingDetails>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+
   getVideoProfile(customerId: number, profileId: number) {
     const url = this.settingsService.settings.VideoProfileEndPoint +
      '?customerId=' + customerId + '&userId=' +  profileId;
@@ -238,6 +250,18 @@ export class JobdetailsService {
         this.handleError
       );
   }
+  GetJobMatchingCriteriaEndPoint(profileId: number, jobid: number): Observable<MatchingParameterDetails> {
+    const url = this.settingsService.settings.GetJobMatchingCriteriaEndPoint + 'profileId=' + profileId +
+      '&jobId=' + jobid;
+      return this.http.get<MatchingParameterDetails>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+  
+
+  
   byteStorage(body, url: string): Observable<any[]> {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');

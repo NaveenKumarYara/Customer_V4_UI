@@ -146,5 +146,6 @@ export class Settings {
   BillingCardDetails:string;
   GetCustomerSubscription:string;
   GetSubscriptionDetails:string;
+  GetJobMatchingCriteriaEndPoint: string;
   GetBillingAddressCustomer:string;
   }
