@@ -17,6 +17,7 @@ import { routing } from './../../app.router';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 
 @NgModule({
@@ -27,7 +28,7 @@ import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule,NgxSpinnerModule,
     ToastModule.forRoot(), BrowserAnimationsModule,ChargebeeJsAngularWrapperModule 
   ],
   declarations: [AccountsettingsComponent, UsersComponent, BillingAndPaymentsComponent, EstimatesComponent, BillingDetailsComponent, BillingHistoryComponent, ManageSubscriptionsComponent, NavigationcomponentComponent, AccountsettingdetailsComponent]

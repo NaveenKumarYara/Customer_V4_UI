@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { billEstimates } from '../../../../../models/billEstimates';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 declare const Chargebee: any;
@@ -13,7 +14,7 @@ declare const Chargebee: any;
   selector: 'app-manage-subscriptions',
   templateUrl: './manage-subscriptions.component.html',
   styleUrls: ['./manage-subscriptions.component.css'],
-  providers: [AppService]
+  providers: [ NgxSpinnerService,AppService]
 })
 export class ManageSubscriptionsComponent implements OnInit {
   Plans:PlanFeature[]=[];
@@ -24,7 +25,7 @@ export class ManageSubscriptionsComponent implements OnInit {
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   @ViewChild('divClick') divClick: ElementRef;
-  constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
+  constructor( private appService: AppService, private spinner: NgxSpinnerService,private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));  
     this.toastr.setRootViewContainerRef(_vcr);
     window['Chargebee'].init({
@@ -35,6 +36,7 @@ export class ManageSubscriptionsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.spinner.show();
     this.GetBillingDuration();
     this.GetPlans();
     this.GetCustomerSubscription();
@@ -42,6 +44,15 @@ export class ManageSubscriptionsComponent implements OnInit {
 
   ngAfterViewInit(): void {
     Chargebee.registerAgain();
+  }
+
+  Contact()
+  {
+    this.toastr.info('Arytic will soon allow to use the Custom Plan!!','Info')
+    setTimeout(() => {
+      this.toastr.dismissToast;
+  }, 3000);
+
   }
 
  buyPlan()
@@ -92,6 +103,7 @@ GetSubscriptionDetails(sid)
 {
   return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
     this.sdetails = res;
+    this.spinner.hide();
   });
 }
 
@@ -99,6 +111,7 @@ GetPlans()
 {
   return this.appService.getPricingPlans().subscribe(res => {
     this.Plans = res;
+    this.spinner.hide();
 });
 }
 
@@ -106,6 +119,7 @@ GetPlans()
   {
     return this.appService.getBillEstimates(this.customer.UserId).subscribe(res => {
       this.bill = res;
+      this.spinner.hide();
   });
 }
 
