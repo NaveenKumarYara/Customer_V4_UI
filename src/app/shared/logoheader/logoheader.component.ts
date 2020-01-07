@@ -40,7 +40,10 @@ export class LogoHeaderComponent implements OnInit {
 {
   return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
     this.subdetails = res;
-    this.GetSubscriptionDetails(res.subscriptionId);
+    if(res!=null)
+    {
+        this.GetSubscriptionDetails(res.subscriptionId);
+    }
     // this.GetInvoiceEstimates();
     // this.GetUnbilledChargeDetails();
 });
@@ -53,6 +56,10 @@ GetSubscriptionDetails(sid)
     if(new Date(this.sdetails.nextBillingAt) < new Date())
     {
       this.active=true;
+    }
+    else 
+    {
+      this.active=false;
     }
   });
 }
