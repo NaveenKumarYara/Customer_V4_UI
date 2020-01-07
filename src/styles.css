@@ -15191,9 +15191,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--account-settings #billing .payment-group .edit-group {
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: flex; */
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
