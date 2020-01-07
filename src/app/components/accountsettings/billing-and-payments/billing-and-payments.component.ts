@@ -39,6 +39,20 @@ export class BillingAndPaymentsComponent implements OnInit {
     this.GetCustomerSubscription();
   }
 
+
+  removeactive()
+  {
+   $("#ov").removeClass('active');
+   $("#be").addClass('active');
+  }
+
+  removeactives()
+  {
+   $("#ov").removeClass('active');
+   $("#bd").addClass('active');
+  }
+
+ 
   
   GetBillingEstimates()
   {
