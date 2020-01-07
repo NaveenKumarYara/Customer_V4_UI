@@ -432,9 +432,9 @@ GetSubscriptionDetails(subscriptionId:number):Observable<GetSubscriptionDetails>
       ); 
 }
 
-GetBillingAddressforCustomer(subscriptionId:number):Observable<GetBillingAddressCustomer>
+GetBillingAddressforCustomer(customerId:number):Observable<GetBillingAddressCustomer>
 {
-  const url = this.settingsService.settings.GetBillingAddressCustomer+ '?subscriptionId=' +subscriptionId ;
+  const url = this.settingsService.settings.GetBillingAddressCustomer+ '?customerId=' +customerId ;
   return this.http.get<GetBillingAddressCustomer>(url)
       .catch(
           this.handleError

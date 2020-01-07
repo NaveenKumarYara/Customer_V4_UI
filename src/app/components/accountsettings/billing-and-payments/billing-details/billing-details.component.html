@@ -25,10 +25,13 @@
           <label for="email">Mailing Address</label>
           <div class="editable-input">
             <p>
-                <ng-container *ngIf="billingaddressDetails?.addr!=''">
-                    {{billingaddressDetails?.addr}},{{billingaddressDetails?.city}} {{billingaddressDetails?.stateCode}}.
+                <ng-container *ngIf="billingaddressDetails?.addressLine1!=''">
+                    {{billingaddressDetails?.addressLine1}},{{billingaddressDetails?.addressCity}}
+                    <br>
+                    {{billingaddressDetails?.addressState}},
+                    {{billingaddressDetails?.addressZip}}.
               </ng-container>
-              <ng-container *ngIf="billingaddressDetails?.addr == null">
+              <ng-container *ngIf="billingaddressDetails?.addressLine1 == null">
                No Billing Address Added.
           </ng-container>
             </p>
