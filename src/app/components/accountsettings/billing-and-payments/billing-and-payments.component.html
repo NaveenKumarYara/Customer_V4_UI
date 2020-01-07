@@ -3,10 +3,10 @@
     <div class="tab-content">
       <div id="billing" class="tab-pane fade active in">
         <h1>Billing and Payments</h1>
-        <ul class="nav nav-tabs ">
-          <li class=""><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
-          <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
-          <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
+        <ul class="nav nav-tabs">
+          <li class="" id="ov"><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
+          <li class="" id="be"><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
+          <li class="" id="bd"><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
           <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
           <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a>
           </li>
@@ -35,7 +35,8 @@
                         </div>
                         <div class="pb_5">Next Renewal on : <span
                             class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
-                        <a data-toggle="tab" href="#estimates">View More</a>
+                              <a data-toggle="tab" (click)="removeactive()" href="#estimates">View More</a>
+                      
                       </div>
                     </ng-container>
 
@@ -128,7 +129,7 @@
                       </ng-container>
 
 
-                      <a data-toggle="tab" href="#billing-details">Manage Billing Details</a>
+                      <a data-toggle="tab" (click)="removeactives()" href="#billing-details">Manage Billing Details</a>
                     </div>
 
                   </div>
@@ -208,7 +209,7 @@
                         </div>
                       </div>
                       <!-- <div class="ptb_5">Send Copy to: <span class="pl-_5"> accounts@admin.com</span> </div> -->
-                      <a data-toggle="tab" href="#billing-details">Manage Billing Contacts</a>
+                      <a data-toggle="tab" (click)="removeactives()" href="#billing-details">Manage Billing Contacts</a>
 
                     </div>
 

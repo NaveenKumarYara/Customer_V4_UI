@@ -12,6 +12,8 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
+import { CustomerSubscription } from '../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 
 @Component({
   selector: 'app-dashboardview',
@@ -23,6 +25,8 @@ export class DashboardviewComponent implements OnInit {
     customer:any;
     customerId:any;
     userId:any;
+    subdetails:CustomerSubscription;
+    sdetails:GetSubscriptionDetails;
     recentapplicantlist: RecentApplicants[] = [];
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
@@ -44,6 +48,30 @@ export class DashboardviewComponent implements OnInit {
        return this.dashboardservice.getRecentApplicants(customerId,userId,count).subscribe(res => {
            this.recentapplicantlist = res;
        });
+    }
+
+    GetCustomerSubscription()
+    {
+      return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+        this.subdetails = res;
+        if(res!=null)
+        {
+            this.GetSubscriptionDetails(res.subscriptionId);
+        }
+        // this.GetInvoiceEstimates();
+        // this.GetUnbilledChargeDetails();
+    });
+    }
+    
+    GetSubscriptionDetails(sid)
+    {
+      return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
+        this.sdetails = res;
+        if(new Date(this.sdetails.nextBillingAt) < new Date())
+        {
+            this.router.navigateByUrl('app-accountsettings/app-billing-and-payments');
+        }
+      });
     }
 
     populateDashboardStatistics(customerId,userId) {
@@ -76,6 +104,7 @@ export class DashboardviewComponent implements OnInit {
     ngOnInit() {
         // this.populateRecentJoblist(5); 
         //this.GetBillingDuration();
+        this.GetCustomerSubscription();
         this.populateRecentApplicants(this.customerId,this.userId,5); 
         this.populateDashboardStatistics(this.customerId,this.userId);
         this.populateApplicantsStatistics(this.customerId,this.userId);       
