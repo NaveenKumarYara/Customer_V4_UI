@@ -372,7 +372,7 @@
                     <div>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
                             (click)="callSkills(profile.ProfileId)">
-                            <h1>{{profile?.MatchingPercentage}}%</h1>
+                            <h1>{{profile?.MatchingPercentage | number}}%</h1>
                             <h5>Matching</h5>
                         </a>
                     </div>
@@ -1026,7 +1026,7 @@
                 <div>
                     <!-- placeholder for chart -->
                     <div style="padding-top: 2rem;">
-                         <canvas #testChart width="400" height="400"></canvas>
+                         <canvas #testChart name="profile.ProfileId" width="400" height="400"></canvas>
                         <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
                     </div>
                       <!-- placeholder for chart -->

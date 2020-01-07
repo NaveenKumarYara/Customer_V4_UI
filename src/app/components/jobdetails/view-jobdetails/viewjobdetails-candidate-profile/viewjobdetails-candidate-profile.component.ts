@@ -282,6 +282,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     this.alertService.clear();
     // $('#searchStr').val('');
     this.spinner.show();
+    console.log("prolifees");
     if (jobid != null && statusid != null) {
       this.jobid = jobid;
       this.statusid = statusid ; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
@@ -292,9 +293,9 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
       return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
         sortBy, searchString, experience, location, domainName, noofRows).subscribe(res => {
         this.jobdetailsprofiles = res;
-        alert(this.customerId);
-        alert(this.userId);
-        alert(this.jobid);
+        // alert(this.customerId);
+        // alert(this.userId);
+     
 
         this.spinner.hide();
         // this.jobdetailsprofiles[0].TotalProfileCount
@@ -306,6 +307,17 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
       this.profiles = res;
       this.TotalCount = this.jobdetailsprofiles;
       this.spinner.hide();
+      if(this.jobdetailsprofiles.Profile.length>0)
+      {
+        this.jobdetailsprofiles.Profile.forEach(a=>{
+          this.GetMatchingPercentage(a.ProfileId,this.jobid);
+          this.jobdetailsservice. GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
+            this.matchingParameterDetails = res;
+            a.MatchingPercentage = ((this.matchingParameterDetails.Jobfit_Total + this.matchingParameterDetails.Skillfit_Total +30)/3 ).toFixed(2).toString();
+          });
+
+        });
+      }
        if (this.profiles === 'No records found') {
          this.myEvent.emit('min');
       // this.alertService.warn('No Profiles Matched!!');
@@ -503,7 +515,7 @@ GetMatchingPercentage(profileId,jobid):any{
     return this.matchingParameterDetails;
 }
 GetPersonalityTestFit(){
-  
+
 }
 
 @ViewChild('testChart1') testChart1: ElementRef;
