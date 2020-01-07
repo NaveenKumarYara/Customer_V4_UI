@@ -4,7 +4,7 @@ public SubscriptionId:string;
 public  Label:string;
 public  FirstName:string;
 public  LastName:string ;
-public  Addr:string ;
+public  addr:string ;
 public  City:string;
 public  State:string ;
 public  Zip:string;
