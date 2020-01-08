@@ -15,7 +15,7 @@
                 <option value="4">Skils</option>-->
             </select>
             <ng-container *ngIf="IsDomain">
-               You can't select domain as matching perameter!
+               You can't select domain as matching parameter!
             </ng-container>
         </div>
         <div class="col-md-5">
@@ -27,7 +27,7 @@
         <div class="col-md-12 mt-10">
             <!-- <p class="description mt-10">Prefer exact match</p> -->
             <ul class="data-list">
-                <li class="col-md-6 w-auto no-exp p-0" *ngFor="let skill of SkillDataList; let i = index">
+                <li class="col-md-6 w-auto no-exp" *ngFor="let skill of SkillDataList; let i = index">
                     <span class="name w-auto p10-20">{{skill.Name}}</span>
                     <span class="experience w-auto p10-20">{{skill.Percentage}}%</span>
                     <span class="close w-auto p10-20" (click)="deleteSkill(i,skill.Name)">×</span>
