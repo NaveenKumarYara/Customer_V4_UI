@@ -366,7 +366,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     var data =this.GetMatchingPercentage(profileId,this.jobid);
 console.log("matchingParameterDetails",this.matchingParameterDetails);
 
-        return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
+        return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe(res => {
           this.matchingDetails = res;
          $('.matching-details').removeClass('open');
          $('#matchingDetail-' + profileId).toggleClass('open');
@@ -519,47 +519,48 @@ GetPersonalityTestFit(){
 }
 
 @ViewChild('testChart1') testChart1: ElementRef;
-getDetails(){
-    var responseList = [];
-    var count = 0;
-      if (this.testChart1) {
-      var testChartCanvas = this.testChart1.nativeElement.getContext('2d');
-         var weekChart = new Chart(testChartCanvas, {
-        type: 'doughnut',
-        options: {
+// getDetails(){
+//     var responseList = [];
+//     var count = 0;
+//       if (this.testChart1) {
+//       var testChartCanvas = this.testChart1.nativeElement.getContext('2d');
+//          var weekChart = new Chart(testChartCanvas, {
+//         type: 'doughnut',
+//         options: {
           
-          title: {
-            display: true,
-          },
-          circumference: Math.PI,
-        rotation: 1.0 * Math.PI,
-        responsive: true,
-        legend: { position: 'top',},
-        animation: { animateScale: true, animateRotate: true }
-        },
-        data: {
-          value: 35,
-          labels: ["Skill Fit","Job Fit","Personality Fit"],
-          render: 'labels',
-          datasets: [{
-            labels: [
-              'Red',
-              'Yellow',
-              'Blue'
-            ],
-            label: '# of Votes',
-            data: [this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,80],
-            backgroundColor: [
-              'rgba(101,105, 169, 1)',
-              'rgba(63, 184, 179, 1)',
-              'rgba(236, 136, 133, 1)'
-            ],
-          }
-          ]
-        }
-      });
-    }
-  }
+//           title: {
+//             display: true,
+//           },
+//           circumference: Math.PI,
+//         rotation: 1.0 * Math.PI,
+//         responsive: true,
+//         legend: { position: 'top',},
+//         animation: { animateScale: true, animateRotate: true }
+//         },
+//         data: {
+//           value: 35,
+//           labels: ["Skill Fit","Job Fit","Personality Fit"],
+//           render: 'labels',
+//           datasets: [{
+//             labels: [
+//               'Red',
+//               'Yellow',
+//               'Blue'
+//             ],
+//             label: '# of Votes',
+//             // this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5
+//             data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,80],
+//             backgroundColor: [
+//               'rgba(101,105, 169, 1)',
+//               'rgba(63, 184, 179, 1)',
+//               'rgba(236, 136, 133, 1)'
+//             ],
+//           }
+//           ]
+//         }
+//       });
+//     }
+//   }
 @ViewChild('testChart') testChart: ElementRef;
 getGraph() {
   var responseList = [];
