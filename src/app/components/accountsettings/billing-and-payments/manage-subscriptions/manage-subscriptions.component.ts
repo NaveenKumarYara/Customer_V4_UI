@@ -48,7 +48,7 @@ export class ManageSubscriptionsComponent implements OnInit {
 
   Contact()
   {
-    this.toastr.info('Arytic will soon allow to use the Custom Plan!!','Info')
+    this.toastr.info('Arytic Team will contact you soon!! Thank You','Info')
     setTimeout(() => {
       this.toastr.dismissToast;
   }, 3000);
