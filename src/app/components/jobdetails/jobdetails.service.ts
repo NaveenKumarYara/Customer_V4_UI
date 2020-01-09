@@ -203,8 +203,8 @@ export class JobdetailsService {
   }
 
   getMatchingCriteriaDetails(profileId: number, jobId: number): Observable<MatchingDetails> {
-    const url = this.settingsService.settings.MatchingDetailEndPoint +
-     '?userId=' + profileId + '&jobId=' + jobId;
+    const url = this.settingsService.settings.GetJobMatchingCriteriaEndPoint +
+     '?profileId=' + profileId + '&jobId=' + jobId;
     return this.http.get<MatchingDetails>(url)
       .debounceTime(1000)
       .catch(
