@@ -14,4 +14,5 @@ export class MatchingParameterDetails{
   public  Rating: number;
   public  Skillfit_Total: number;
   public  Jobfit_Total: number;
+  public isPublic : boolean;
 }
