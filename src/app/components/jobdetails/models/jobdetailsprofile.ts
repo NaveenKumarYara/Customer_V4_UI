@@ -8,6 +8,7 @@ export class JobdetailsProfile {
 
 export class MatchingParameterDetails{
   public Role : number;
+  public  TotalExp: number;
   public  Domain: number;
   public   Experience: number;
   public  Rating: number;
