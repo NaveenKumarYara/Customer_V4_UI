@@ -313,7 +313,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
           this.GetMatchingPercentage(a.ProfileId,this.jobid);
           this.jobdetailsservice. GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
             this.matchingParameterDetails = res;
-            a.MatchingPercentage = ((this.matchingParameterDetails.Jobfit_Total + this.matchingParameterDetails.Skillfit_Total + 80 )/3 ).toFixed(2).toString();
+            a.MatchingPercentage = ((this.matchingParameterDetails.Jobfit_Total + this.matchingParameterDetails.Skillfit_Total + 30 )/3 ).toFixed(2).toString();
           });
 
         });
@@ -549,7 +549,7 @@ GetPersonalityTestFit(){
 //             ],
 //             label: '# of Votes',
 //             // this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5
-//             data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,80],
+//             data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
 //             backgroundColor: [
 //               'rgba(101,105, 169, 1)',
 //               'rgba(63, 184, 179, 1)',
@@ -591,7 +591,7 @@ getGraph() {
             'Blue'
           ],
           label: '# of Votes',
-            data: [this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,80],
+            data: [this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
           backgroundColor: [
             'rgba(101,105, 169, 1)',
             'rgba(63, 184, 179, 1)',
