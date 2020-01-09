@@ -88,6 +88,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   },
   nav: true
 };
+  ProfileId: any;
  constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog ) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -363,6 +364,7 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
     //     var $selectedCard = $(this).closest('.card');
     //     var $detailsDiv = $selectedCard.find('.matching-details');
     //     var $detailsCloseBtn = $selectedCard.find('.close');
+    this.ProfileId = profileId;
     var data =this.GetMatchingPercentage(profileId,this.jobid);
 console.log("matchingParameterDetails",this.matchingParameterDetails);
 

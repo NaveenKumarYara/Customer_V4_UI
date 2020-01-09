@@ -1023,7 +1023,7 @@
          
             <div class="header">
                 <h2>Matching Criteria</h2>
-                <div>
+                <div *ngIf="ProfileId == profile.ProfileId">
                     <!-- placeholder for chart -->
                     <div style="padding-top: 2rem;">
                          <canvas #testChart name="profile.ProfileId" width="400" height="400"></canvas>
