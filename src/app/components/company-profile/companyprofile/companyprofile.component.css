@@ -373,3 +373,6 @@ padding: 0px;
 #personality-test .table>tbody>tr>td{
     border-top: 1px solid #ddd !important;
 }
+.take-cultural-test button.cultural-test-btn{
+margin-left: 11rem;
+}
