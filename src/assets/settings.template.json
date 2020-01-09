@@ -74,6 +74,7 @@
   "JobdetailsStatisticsEndpoint": "${Jobs_URL}/api/GetJobStatistics?",
   "JobdetailsProfileEndpoint": "${Jobs_URL}/api/GetProfiles?",
   "MatchingDetailEndPoint": "${Jobs_URL}/api/GetJobMatchingPercentage",
+  "GetJobMatchingCriteriaEndPoint": "${Jobs_URL}/api/GetJobMatchingCriteriaPercentage?",
    "VideoProfileEndPoint": "${Profile_URL}/api/GetVideoSizzles",
   "GetAutoSearch": "${Jobs_URL}/api/GetAutoSearch",
   "GetInterviewAutoSearch": "${Jobs_URL}/api/GetInterviewSearch",
