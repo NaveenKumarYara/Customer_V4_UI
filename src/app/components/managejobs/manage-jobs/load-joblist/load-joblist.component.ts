@@ -185,7 +185,7 @@ export class LoadJoblistComponent implements OnInit {
   }
 
   ngOnInit() {
- 
+   this.spinner.show();
   }
 }
 
