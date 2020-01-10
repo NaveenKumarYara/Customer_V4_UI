@@ -629,7 +629,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 'Blue'
               ],
               label: '# of Votes',
-              data: [this.matchingParameterData.Skillfit_Total > 0 ? this.matchingParameterData.Skillfit_Total : 5, this.matchingParameterData.Jobfit_Total > 0 ? this.matchingParameterData.Jobfit_Total : 5, 30],
+              data: [this.matchingParameterData.Skillfit_Total > 0 ? this.matchingParameterData.Skillfit_Total : 0, this.matchingParameterData.Jobfit_Total > 0 ? this.matchingParameterData.Jobfit_Total : 0, 30],
               backgroundColor: [
                 'rgba(101,105, 169, 1)',
                 'rgba(63, 184, 179, 1)',
@@ -665,7 +665,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 'Yellow'
               ],
               label: '# of Votes',
-              data: [this.matchingParameterData.Skillfit_Total > 0 ? this.matchingParameterData.Skillfit_Total : 5, this.matchingParameterData.Jobfit_Total > 0 ? this.matchingParameterData.Jobfit_Total : 5],
+              data: [this.matchingParameterData.Skillfit_Total > 0 ? this.matchingParameterData.Skillfit_Total : 0, this.matchingParameterData.Jobfit_Total > 0 ? this.matchingParameterData.Jobfit_Total : 0],
               backgroundColor: [
                 'rgba(101,105, 169, 1)',
                 'rgba(63, 184, 179, 1)'
