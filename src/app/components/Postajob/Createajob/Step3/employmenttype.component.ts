@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject, OnDestroy, Output } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Output,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router, NavigationEnd  } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject, Observable } from 'rxjs';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { SkillData, SkillDetails, SkillPostData } from '../../../../../models/skill.model';
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -77,9 +78,10 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     //     }
     //   }
     // };
-    constructor(private route: ActivatedRoute,
+    constructor(private route: ActivatedRoute, private toastr: ToastsManager,private _vcr:ViewContainerRef,
         private router: Router, private appService: AppService, private dialog: MatDialog) {// , private salaryRate: SalarysliderComponent
         this.employmentType = new EmploymentType();
+        this.toastr.setRootViewContainerRef(_vcr);
     }
 
 
@@ -154,6 +156,10 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
             if(selectedSkill.Id==1 && this.domain.length==0)
             {
                 this.IsDomain=true;
+                this.toastr.error('You cannot select domain as matching parameter!', 'Oops!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
             }
             else{
         this.SkillName = selectedSkill.Parameter;

@@ -7,16 +7,16 @@
         <div class="col-md-5">
             <select class="styled-select-box form-control mt-0" id="view" (change)="onChange($event.target.value)">
                 <option default="" value="0">Select</option>
-                <option *ngFor="let skill of Skill_DATAFiltered" value="{{skill.Id}}">
+                <option *ngFor="let skill of Skill_DATAFiltered" value="{{skill?.Id}}">
                     {{skill.Parameter}}
                 </option>
                 <!--<option value="2">Domain</option>
                 <option value="3">Role</option>
                 <option value="4">Skils</option>-->
             </select>
-            <ng-container *ngIf="IsDomain">
+            <!-- <ng-container *ngIf="IsDomain">
                You can't select domain as matching parameter!
-            </ng-container>
+            </ng-container> -->
         </div>
         <div class="col-md-5">
             <input class="form-control mt-0" placeholder="Enter match % " min="1" pattern="[0-9]*" maxlength="3" type="text" required name="txtPercentage" #txtPercentage="ngModel" [(ngModel)]="Percentage">
