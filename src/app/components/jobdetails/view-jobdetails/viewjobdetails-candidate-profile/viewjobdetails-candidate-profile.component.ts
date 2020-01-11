@@ -325,7 +325,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                     +
                     ((this.matchingParameterDetails.Skillfit_Total))
                     + 30
-                  ) / 3).toFixed(2).toString();
+                  )).toFixed(2).toString();
                 } else {
                   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
                   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
@@ -334,7 +334,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                     ((this.matchingParameterDetails.Jobfit_Total))
                     +
                     ((this.matchingParameterDetails.Skillfit_Total))
-                  ) / 2).toFixed(2).toString();
+                  )).toFixed(2).toString();
 
                 }
                 this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
