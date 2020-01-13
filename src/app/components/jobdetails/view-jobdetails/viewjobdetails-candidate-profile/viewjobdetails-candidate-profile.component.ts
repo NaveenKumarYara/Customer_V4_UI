@@ -636,7 +636,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 'rgba(236, 136, 133, 1)'
               ],
 
-            }
+            },
+            
             ]
           }
 
@@ -652,7 +653,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
             circumference: Math.PI,
             rotation: 1.0 * Math.PI,
             responsive: true,
-            legend: { position: 'top', },
+            legend: { position: 'bottom', },
             animation: { animateScale: true, animateRotate: true }
           },
           data: {
