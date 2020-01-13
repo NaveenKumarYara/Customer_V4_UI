@@ -115,6 +115,7 @@ export class FilterViewJobsComponent implements OnInit {
 
  viewby(value, isChecked: boolean,sortBy)
  {
+   debugger
    if(sortBy>0)
    {
      this.sortBy = sortBy;
@@ -163,9 +164,20 @@ export class FilterViewJobsComponent implements OnInit {
       this.invited = 0;
     }     
   }
-  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0 || this.invited>0)
+  else if (sortBy==5)
   {
-    this.calldata(this.uploaded,this.suggested,this.wishlist,this.invited);
+    if(isChecked)
+    {
+      this.sortBy = sortBy;
+    }
+    else
+    {
+      this.sortBy =  0;
+    }     
+  }
+  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0 || this.invited>0 || sortBy==5)
+  {
+    this.calldata(this.uploaded,this.suggested,this.wishlist,this.invited,sortBy);
   }
   else
   {
@@ -174,13 +186,13 @@ export class FilterViewJobsComponent implements OnInit {
  
  }
 
- calldata(uploaded,suggested,wishlist,invited)
+ calldata(uploaded,suggested,wishlist,invited,sortBy)
  {
   return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,6)
   .subscribe(res => {
     this.jobdetailsprofiles = res;
     this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;
-    if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0 || this.wishlist>0))
+    if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0 || this.wishlist>0)||sortBy>0)
     {
       this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.sortBy,this.searchString,this.TotalCount);
     }

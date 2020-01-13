@@ -531,6 +531,7 @@ export class ViewJobdetailsComponent implements OnInit {
         });
       },
       CallViewBy: (uploaded, suggested, wishlist,invited, sortBy, search, count) => {
+        debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);
