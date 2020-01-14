@@ -281,7 +281,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.jobdetailsprofiles = new JobdetailsProfile();
   }
   PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0, noofRows = 6) {
-   debugger
     this.alertService.clear();
     // $('#searchStr').val('');
     this.spinner.show();
