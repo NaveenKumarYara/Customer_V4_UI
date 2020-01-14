@@ -86,7 +86,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="team-members">Add Internal Team Members *</label>
-                                    <div class="input-group">
+                                    <div class="input-group" style="display: grid;">
                                         <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
                                         <ng-select class="custom-style interview-schedule-popup"
                                         [items]="customercontacts" name="team" placeholder="Type and Search"
@@ -96,9 +96,9 @@
                                             name="selectedUserName" [virtualScroll]="true"  #TMember="ngModel">
                                         </ng-select>
 
-                                        <span class="input-group-btn">
+                                         <span class="input-group-btn" style="display:none">
                                             <button type="button" (click)="addTeammembers()" class="btn">+</button>
-                                        </span>
+                                        </span> 
                                     </div>
                                     <span class="text-danger"
                                         *ngIf="TMember.invalid && TMember.touched">Required.</span>
@@ -112,7 +112,7 @@
                                         <span class="close" (click)="deleteTeammember(i)">&times;</span>
                                     </li>
                                 </ul> -->
-                                <ul class="team-members-list pb-4">
+                                <!-- <ul class="team-members-list pb-4">
                                         <li *ngFor="let teammember of teammemberslist; let i = index">
                                           <div class="w-100">
                                             <img src="https://identityapi-dev.arytic.com/home/EsolvitImages?id=professional.png" alt="img">
@@ -122,7 +122,7 @@
                                           <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                         </div>
                                         </li>
-                                      </ul>
+                                      </ul> -->
                             </div>
                         </div>
                         <div class="col-md-12">

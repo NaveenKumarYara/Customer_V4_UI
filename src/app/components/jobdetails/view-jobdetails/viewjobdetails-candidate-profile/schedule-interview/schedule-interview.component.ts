@@ -54,7 +54,7 @@ export class ScheduleInterviewComponent implements OnInit {
   customercontacts : CustomerContacts[];
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
-  selectedUserName = '';
+  selectedUserName :number;
   teammembers: '';
   teammemberslist: CustomerUsers[];
   typeList: ScheduleType[];
@@ -110,8 +110,8 @@ export class ScheduleInterviewComponent implements OnInit {
  GetCustomerContacts()
   {
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-      debugger
       this.customercontacts = res;
+      this.selectedUserName= this.customercontacts[0].UserId;
   });
   }
 
@@ -121,13 +121,13 @@ export class ScheduleInterviewComponent implements OnInit {
     this.GetInterView();
     this.GetType();
     this.GetCustomerContacts();
-    this.teammemberslist = this.appService.getTeammembers();
-    this.subscription = this.appService.teammembersChanged
-      .subscribe(
-      (teammemberlist: CustomerUsers[]) => {
-        this.teammemberslist = teammemberlist;
-        }
-      );
+    //this.teammemberslist = this.appService.getTeammembers();
+    // this.subscription = this.appService.teammembersChanged
+    //   .subscribe(
+    //   (teammemberlist: CustomerUsers[]) => {
+    //     this.teammemberslist = teammemberlist;
+    //     }
+    //   );
 
     $('body').on('change', '#datePickerCert', function () {
       $('#datePickerCert').trigger('click');
@@ -146,7 +146,7 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
-if(this.schedule.invalid||this.selectedUserName == '')
+if(this.schedule.invalid||this.selectedUserName ==0)
 {
     this.toastr.error('Please provide the valid details','Oops')
 }
@@ -198,7 +198,8 @@ if (this.processSelection === 1) {
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
-this.schIntw.InterviewingPerson = this.teammemberslist.map(x => x.UserId).toString();
+this.schIntw.InterviewingPerson = this.selectedUserName.toString();
+debugger
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
