@@ -34,7 +34,7 @@ spec:
         - name: Profile_URL
           value: "https://profileapi#{host}#arytic.com"
         - name: Referral_URL
-          value: "https://referalapi#{host}#arytic.com"
+          value: "https://referralapi#{host}#arytic.com"
         - name: Main_URL
           value: "https://#{basehost}#arytic.com"
         - name: CuMain_URL
