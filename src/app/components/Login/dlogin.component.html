@@ -1,66 +1,75 @@
-
 <link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
+
 <body class="signpage">
-        <div class="container-fluid full-height">
-           <div class="row row-height">
-              <div class="col-lg-6 content-left sl-hide">
-                 <div class="content-left-wrapper">
-                    <div class="jobs_hide">
-                       <h2>I'm here for Hiring</h2>
-                       <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
-                    </div>
-                 </div>
-              </div>
-              <div class="col-lg-6 content-right recrit_div " id="start">
-                  
-                 <div id="wizard_container">
-                    <div id="top-wizard">
-                       <div id="progressbar"></div>
-                    </div>
-                    <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
-                    <!-- /top-wizard -->
-                    <div id="hiring_login">
-                       <div class="logo">
-                        <a  href="javascript:void(0)" (click)="Redirect()"><img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo"></a>
-                       </div>
-                       <div class="sl-show hidden">
-                           <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
-                       </div>
-     
-                       <div class="step animated slideInRight" style="text-align:left">
-                          <h2 class="main_question">
-                             Welcome <span class="sl-text-show hidden">Job Seeker</span>!!! <br class="sl-text-show hidden" />Login here.
-                          </h2>                   
-                          <div *ngIf="show" class="alert alert-danger">
-                             Email not registered.
+   <div class="container-fluid full-height">
+      <div class="row row-height">
+         <div class="col-lg-6 content-left sl-hide">
+            <div class="content-left-wrapper">
+               <div class="jobs_hide">
+                  <h2>I'm here for Hiring</h2>
+                  <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt=""
+                        class="img-fluid"></figure>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-6 content-right recrit_div " id="start">
+
+            <div id="wizard_container">
+               <div id="top-wizard">
+                  <div id="progressbar"></div>
+               </div>
+               <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
+               <!-- /top-wizard -->
+               <div id="hiring_login">
+                  <div class="logo">
+                     <a href="javascript:void(0)" (click)="Redirect()"><img src="/assets/images/arytic-logo-2019.png"
+                           alt="Arytic Logo" title="Arytic Logo"></a>
+                  </div>
+                  <div class="sl-show hidden">
+                     <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png"
+                           alt="arytic"></a>
+                  </div>
+
+                  <div class="step animated slideInRight" style="text-align:left">
+                     <h2 class="main_question">
+                        Welcome <span class="sl-text-show hidden">Job Seeker</span>!!! <br
+                           class="sl-text-show hidden" />Login here.
+                     </h2>
+                     <div *ngIf="show" class="alert alert-danger">
+                        Email not registered.
+                     </div>
+                     <form [formGroup]="loginform" (ngSubmit)="login()">
+                        <div class="form-group spt-2">
+                           <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
+                              [formControl]="loginform.controls['UserName']" (keypress)="MissClear()"
+                              (keyup)="MissClear()">
+
+                        </div>
+                        <div class="form-group">
+                           <input class="form-control" id="password" type="password" name="password1"
+                              placeholder="Password" [formControl]="loginform.controls['Password']">
+                           <span class="glyphicon glyphicon-eye-open"></span>
+                        </div>
+                        <div class="text-right">
+                           <div class="d-flex justify-content-between">
+                              <small> <a href="javascript:void(0)" (click)="forgot()">Forgot password</a></small>
+                              <small><span><a href="javascript:void(0)" (click)="SignUp()">I don't have an
+                                       account?</a></span></small>
                            </div>
-                          <form [formGroup]="loginform" (ngSubmit)="login()">
-                             <div class="form-group spt-2">
-                                <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
-                                   [formControl]="loginform.controls['UserName']"  (keypress)="MissClear()" (keyup)="MissClear()">
-                                
-                                </div>
-                             <div class="form-group">
-                                <input class="form-control" id="password" type="password" name="password1" placeholder="Password"
-                                   [formControl]="loginform.controls['Password']">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                             </div>
-                             <div class="text-right">
-                                <div class="d-flex justify-content-between">
-                                   <small> <a href="javascript:void(0)" (click)="forgot()">Forgot password</a></small>
-                                   <small><span><a href="javascript:void(0)" (click)="SignUp()">I don't have an account?</a></span></small>
-                                </div>
-                                <div class="spt-2">
-                                         <button type="submit" class="btn2 pull-right">Login </button>
-                                       
-                                </div>
-                             </div>
-                          </form>
-                       </div>
-                    </div>
-                 </div>
-                 <!-- /Wizard container -->
-              </div>
-           </div>
-        </div>
-     </body>
+                           <div class="spt-2">
+                              <!-- <button type="submit" class="btn2 pull-right">Login </button> -->
+                              <!--Button loader style-->
+                              <button type="submit" class="btn2 pull-right" [class.spinner]="loading"
+                                 (click)="loginstyle()">Login</button>
+                              <!--Button loader style-->
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <!-- /Wizard container -->
+         </div>
+      </div>
+   </div>
+</body>
