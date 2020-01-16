@@ -1,5 +1,4 @@
 <app-Logoheader></app-Logoheader>
-
 <main class="page page--manage-jobs">
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
@@ -9,8 +8,9 @@
       <div class="pull-left">
         <form class="form-inline" action="">
           <div class="form-group view-group">
-            <select name="view" id="view" (change)="populateJobInterViewlist($event.target.value,0,'')"  class="styled-select-box">
-                <option value="0" default>Filter By</option>
+            <select name="view" id="view" (change)="populateJobInterViewlist($event.target.value,0,'')"
+              class="styled-select-box">
+              <option value="0" default>Filter By</option>
               <option value="1">Year</option>
               <option value="2">Month</option>
               <option value="3">Day</option>
@@ -19,96 +19,97 @@
         </form>
       </div>
       <ng-container *ngIf="joblist?.TotalCount>=5">
-          <h5 class="show-count">Showing  {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
+        <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
       </ng-container>
-      <ng-container *ngIf="joblist?.TotalCount<5" >
-          <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
+      <ng-container *ngIf="joblist?.TotalCount<5">
+        <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
       </ng-container>
       <div class="pull-right">
-          <form class="form-inline" action="">
-              <div class="search-toggle">                                 
-                  <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
-                    <input  autocomplete="off" type="text"  [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">  
-                      <div class="searchList" *ngIf="SearchList.length>0">
-                        <ul class="searchList-dropdown">
-                          <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
-                        </ul>
-                      </div> 
-                      <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>                              
-                  </form>
-                     
-            </div>
-              <div class="form-group view-group">
-                <select class="styled-select-box min-width-140" (change)="populateJobInterViewlist(0,$event.target.value,'')">
-                  <option value="0" default>All Interviews</option>
-                  <option value="1">Recent Interviews</option>
-                </select>
+        <form class="form-inline" action="">
+          <div class="search-toggle">
+            <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
+              <input autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" placeholder="Search"
+                #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">
+              <div class="searchList" *ngIf="SearchList.length>0">
+                <ul class="searchList-dropdown">
+                  <li class="searchList-options" *ngFor="let slist of SearchList"
+                    (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>
+                </ul>
               </div>
-            </form> 
+              <button type="submit" (keyDown)="SearchEnter(searchString)" style="display: none;"></button>
+            </form>
+
+          </div>
+          <div class="form-group view-group">
+            <select class="styled-select-box min-width-140"
+              (change)="populateJobInterViewlist(0,$event.target.value,'')">
+              <option value="0" default>All Interviews</option>
+              <option value="1">Recent Interviews</option>
+            </select>
+          </div>
+        </form>
       </div>
     </div>
-
     <div>
       <div class="clearfix">&nbsp;</div>
       <div class="clearfix">&nbsp;</div>
       <div class="tab-content">
-
         <div id="list-view" class="tab-pane fade in active">
           <ul class="job-list" *ngIf="joblist">
             <li class="card" *ngFor="let job of joblist.Jobs | valueArray">
-              <header class="row list-header p-0">
-                
+              <header class="row list-header">
                 <div class="col-md-12 f-right">
-
                   <div class="row">
-                      <div class="stats text-left col-md-3">
-                          <div class="list-stats">
-                            <div class="media-obj">
-                              <ng-container *ngIf="job?.ProfileBasicInfo!= null">
-                                <img class="align-self-center mr-10"  src="{{job?.ProfileBasicInfo.ProfilePic}}"  height="32" width="32" alt="">
-                                <div class="media-body1">
-                                  <h3 class="c93A2BB"> {{job?.ProfileBasicInfo?.FirstName || N/A}} {{job?.ProfileBasicInfo?.LastName}}</h3>
-                                  <div class="d-block mt-10">
-                                      <ng-container>
-                                          <span class="status Interviewing">Interview scheduled</span>
-                                      </ng-container>
-                                  </div>
-                                </div>
-                                  </ng-container>
-                            <ng-container *ngIf="job?.ProfileBasicInfo == null">
-                                      <img class="align-self-center mr-10"  src="{{job?.CandidateProfilePic}}"  height="32" width="32" alt="">
-                                      <div class="media-body1">
-                                        <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
-                                        <div class="d-block mt-10">
-                                            <ng-container>
-                                                <span class="status Interviewing">Interview scheduled</span>
-                                            </ng-container>
-                                        </div>
-                                      </div>
-                             </ng-container>
-                           
+                    <div class="stats text-left col-md-3">
+                      <div class="list-stats">
+                        <div class="media-obj">
+                          <ng-container *ngIf="job?.ProfileBasicInfo!= null">
+                            <img class="align-self-center mr-10" src="{{job?.ProfileBasicInfo.ProfilePic}}" height="32"
+                              width="32" alt="">
+                            <div class="media-body1">
+                              <h3 class="c93A2BB"> {{job?.ProfileBasicInfo?.FirstName || N/A}}
+                                {{job?.ProfileBasicInfo?.LastName}}</h3>
+                              <div class="d-block mt-10">
+                                <ng-container>
+                                  <span class="status Interviewing">Interview scheduled</span>
+                                </ng-container>
+                              </div>
                             </div>
-                          </div>
-    
+                          </ng-container>
+                          <ng-container *ngIf="job?.ProfileBasicInfo == null">
+                            <img class="align-self-center mr-10" src="{{job?.CandidateProfilePic}}" height="32"
+                              width="32" alt="">
+                            <div class="media-body1">
+                              <h3 class="c93A2BB"> {{job?.CandidateFirstName || N/A}} {{job?.CandidateLastName}}</h3>
+                              <div class="d-block mt-10">
+                                <ng-container>
+                                  <span class="status Interviewing">Interview scheduled</span>
+                                </ng-container>
+                              </div>
+                            </div>
+                          </ng-container>
                         </div>
-                        <div class="stats text-left col-md-3">
-                          <div class="list-stats">
-                              <div class="job-details">
-                                  <h3 href="javascript:void(0)" class="medium c93A2BB" title="{{job?.JobTitle}}" (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
-                                  </h3>
-                                  
-                                  <div class="meta mt-10">
-                                    <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
-                                      <path class="st0"
-                                        d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
-                                      <path class="st0"
-                                        d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
-                                    </svg>
-                                    <h5 class="location border-b-0 mb-0">{{job?.JobLocations || N/A}}</h5>
-                                  </div>
-                                </div>
+                      </div>
+                    </div>
+                    <div class="stats text-left col-md-3">
+                      <div class="list-stats">
+                        <div class="job-details">
+                          <h3 href="javascript:void(0)" class="medium c93A2BB" title="{{job?.JobTitle}}"
+                            (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
+                          </h3>
+
+                          <div class="meta mt-10">
+                            <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
+                              <path class="st0"
+                                d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
+                              <path class="st0"
+                                d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
+                            </svg>
+                            <h5 class="location border-b-0 mb-0">{{job?.JobLocations || N/A}}</h5>
                           </div>
                         </div>
+                      </div>
+                    </div>
                     <div class="stats text-left col-md-3">
                       <div class="list-stats">
                         <h3 class="medium c93A2BB">Interview Type</h3>
@@ -119,29 +120,29 @@
                             </h4>
                           </div>
                           <div class="col-md-6 w-auto p-0">
-                              <ng-container *ngIf="job?.InterviewTypeId == 2">
-                                  <h4 class="mt-0">
-                                    <a href="javascript:void(0)">
-                                      <!-- <img src="../../../../../assets/images/phn-icon.svg" /> -->
-                                     : {{job?.PhoneNumber || N/A}}
-                                    </a>
-                                  </h4>
-                              </ng-container>
-                              <ng-container *ngIf="job?.InterviewTypeId == 3">
-                                <h4 class="mt-0">
-                                  <a href="javascript:void(0)">
-                                    <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                   :{{job?.SkypeId || N/A}}
-                                  </a>
-                                </h4>  
-                              </ng-container>
-                              <ng-container *ngIf="job?.InterviewTypeId == 4">
-                                <h4 class="mt-0">
-                                  <a href="javascript:void(0)">
-                                    <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                   :{{job?.BridgeUrl|| N/A }},{{job?.AccessId || N/A}}
-                                  </a>
-                                </h4>
+                            <ng-container *ngIf="job?.InterviewTypeId == 2">
+                              <h4 class="mt-0">
+                                <a href="javascript:void(0)">
+                                  <!-- <img src="../../../../../assets/images/phn-icon.svg" /> -->
+                                  : {{job?.PhoneNumber || N/A}}
+                                </a>
+                              </h4>
+                            </ng-container>
+                            <ng-container *ngIf="job?.InterviewTypeId == 3">
+                              <h4 class="mt-0">
+                                <a href="javascript:void(0)">
+                                  <!-- <img src="../../../../../assets/images/skype.svg" /> -->
+                                  :{{job?.SkypeId || N/A}}
+                                </a>
+                              </h4>
+                            </ng-container>
+                            <ng-container *ngIf="job?.InterviewTypeId == 4">
+                              <h4 class="mt-0">
+                                <a href="javascript:void(0)">
+                                  <!-- <img src="../../../../../assets/images/skype.svg" /> -->
+                                  :{{job?.BridgeUrl|| N/A }},{{job?.AccessId || N/A}}
+                                </a>
+                              </h4>
                             </ng-container>
                             <!-- <div class="dropdown d-inline">
                               <a *ngIf="job?.InterviewTypeId != 1" class="dropdown-toggle interview-dropdown pointer" type="button" id="dropdownMenu1"
@@ -158,29 +159,28 @@
                           </div>
                         </div>
                       </div>
-
-
                     </div>
                     <div class="stats text-left col-md-3">
-                        <div class="list-stats b-0">
-                          <h3 class="medium c93A2BB">Interview Date & Time</h3>
-                              <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
-                          <ng-container *ngIf="job?.IsCandidateAccepted == 1 && job?.IsCPNewDate == null && job?.IsCPNewDate != 1">
-                              <h5 class="meta">Confirmed</h5>
+                      <div class="list-stats b-0">
+                        <h3 class="medium c93A2BB">Interview Date & Time</h3>
+                        <h4 class="c93A2BB">{{job?.InterviewDate  | date }} @ {{job?.StartTime}} </h4>
+                        <ng-container
+                          *ngIf="job?.IsCandidateAccepted == 1 && job?.IsCPNewDate == null && job?.IsCPNewDate != 1">
+                          <h5 class="meta">Confirmed</h5>
                         </ng-container>
                         <ng-container *ngIf="job?.IsCandidateAccepted == 0 && job?.IsCPNewDate == null">
-                            <h5 class="meta">Not interested</h5>
+                          <h5 class="meta">Not interested</h5>
                         </ng-container>
                         <ng-container *ngIf="job?.IsCPNewDate == 1">
-                            <h5 class="meta">New proposal ({{job?.CPDate | date}} @ {{job?.CPFromTime}})</h5>
+                          <h5 class="meta">New proposal ({{job?.CPDate | date}} @ {{job?.CPFromTime}})</h5>
                         </ng-container>
-                         
-                        </div>
-                        <span class="status Interviewing border"><a (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></span>
-                        <span class="status Interviewing border"><a (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Schedule date</a></span>
                       </div>
-                      
-                    
+                      <span class="status Interviewing border"><a
+                          (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></span>
+                      <span class="status Interviewing border"><a
+                          (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Schedule
+                          date</a></span>
+                    </div>
                   </div>
                 </div>
                 <!-- <div class="dropdown card-dropdown">
@@ -198,9 +198,6 @@
                   </ul>
                 </div> -->
               </header>
-
-
-
               <div class="card-footer">
                 <div class="h-manager">
                   <img src="{{job?.HiringLeaderProfilePic}}" height="32" width="32" alt="">
@@ -210,9 +207,7 @@
                   </div>
                 </div>
                 <div class="stats-group">
-
                   <div>
-
                     <div class="mt-7">
                       <!-- <div class="checkbox">
                         <label><input name="interview-update" type="radio"><span class="box">Accept</span>
@@ -228,14 +223,15 @@
                       </div> -->
                       <h3 class="d-inline">Notes</h3>
                       <div class="dropdown notes-dropdown d-inline">
-                        <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
+                        <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
                           id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                           <img src="../../../../../assets/images/note.svg" class="w-24 b_r-0 m-0" />
                           <span class="note-info">&nbsp;</span>
                         </a>
-                        <div *ngIf="job?.CandidateComments!=''&& job?.CandidateComments!=null" class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
+                        <div *ngIf="job?.CandidateComments!=''&& job?.CandidateComments!=null"
+                          class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
                           <div class="p10-20">
-                          {{job?.CandidateComments}}
+                            {{job?.CandidateComments}}
                           </div>
                         </div>
                       </div>
@@ -247,9 +243,9 @@
             </li>
           </ul>
           <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
-              <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateListCount()">
-                  Load More
-              </div>
+            <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateListCount()">
+              Load More
+            </div>
           </ng-container>
         </div>
       </div>

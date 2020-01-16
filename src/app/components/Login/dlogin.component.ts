@@ -17,7 +17,10 @@ declare var $: any;
   providers:[AppService,AlertService]
 })
 export class dLoginComponent {
-         
+  loading = false;
+  loginstyle(): void {
+    this.loading = true;
+  }
   loginform: any;
   customerId:any;
   companyLogo:any;
@@ -221,6 +224,10 @@ export class dLoginComponent {
         $('#password').prop('type', 'text');
       }
     });
+
+    //
+    
+    //
 
   }
 }
