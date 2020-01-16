@@ -362,7 +362,11 @@
                 <div class="timeline-wrap clearfix">
                   <ul class="timeline border0">
                       <ng-container *ngIf="profileview?.RoleCount==0">
-                          Candidate Roles yet to Provide
+                        <li>
+                          <div class="details">
+                            <h3 class="title">Candidate Roles yet to Provide</h3>
+                          </div>
+                        </li>
                         </ng-container>
                     <li class="clearfix" *ngFor="let roles of profileview?.ProfileExperience; let i=index">
                       <ng-container *ngIf="roles.Roles!=null&&roles.Roles!=''">
