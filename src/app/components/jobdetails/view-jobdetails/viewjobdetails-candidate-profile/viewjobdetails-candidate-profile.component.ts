@@ -536,13 +536,13 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // var jobid = 10;
     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe(res => {
       this.matchingParameterDetails = res;
-      if (this.matchingParameterDetails.isPublic) {
-        this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
-        this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
-      } else {
-        this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
-        this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
-      }
+      // if (this.matchingParameterDetails.isPublic) {
+      //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
+      //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
+      // } else {
+      //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
+      //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
+      // }
        this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
       this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
 
@@ -666,7 +666,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 'Yellow'
               ],
               label: '# of Votes',
-              data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
+              data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],
               backgroundColor: [
                 'rgba(101,105, 169, 1)',
                 'rgba(63, 184, 179, 1)'
