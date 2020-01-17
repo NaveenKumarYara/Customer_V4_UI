@@ -309,41 +309,42 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
-          if (this.jobdetailsprofiles.Profile.length > 0) {
-            this.jobdetailsprofiles.Profile.forEach(a => {
-              this.GetMatchingPercentage(a.ProfileId, this.jobid);
-              this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
+          // if (this.jobdetailsprofiles.Profile.length > 0) {
+          //   this.jobdetailsprofiles.Profile.forEach(a => {
+          //     // this.GetMatchingPercentage(a.ProfileId, this.jobid);
+          //     // this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
 
-                this.matchingParameterDetails = res;
-                this.matchingParameterData  = res;
-                // if (this.matchingParameterDetails.isPublic) {
-                //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
-                //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
+          //     //   this.matchingParameterDetails = res;
+          //     //   this.matchingParameterData  = res;
+          //     //   // if (this.matchingParameterDetails.isPublic) {
+          //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
+          //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
                   
-                //   a.MatchingPercentage = ((
-                //     ((this.matchingParameterDetails.Jobfit_Total))
-                //     +
-                //     ((this.matchingParameterDetails.Skillfit_Total))
-                //     + 30
-                //   )).toFixed(2).toString();
-                // } else {
-                //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
-                //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
+          //     //   //   a.MatchingPercentage = ((
+          //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
+          //     //   //     +
+          //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
+          //     //   //     + 30
+          //     //   //   )).toFixed(2).toString();
+          //     //   // } else {
+          //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
+          //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
 
-                //   a.MatchingPercentage = ((
-                //     ((this.matchingParameterDetails.Jobfit_Total))
-                //     +
-                //     ((this.matchingParameterDetails.Skillfit_Total))
-                //   )).toFixed(2).toString();
+          //     //   //   a.MatchingPercentage = ((
+          //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
+          //     //   //     +
+          //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
+          //     //   //   )).toFixed(2).toString();
 
-                // }
-                this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
-                  this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+          //     //   // }
+          //     //   this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+          //     //   this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
+          //     //     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
 
-              });
+          //     // });
 
-            });
-          }
+          //   });
+          // }
           if (this.profiles === 'No records found') {
             this.myEvent.emit('min');
             // this.alertService.warn('No Profiles Matched!!');
@@ -544,6 +545,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
       // }
        this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+       this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
       this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
 
       console.log("matchingParameterDetails", this.matchingParameterDetails);
