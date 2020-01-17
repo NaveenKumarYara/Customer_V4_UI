@@ -348,17 +348,17 @@
                     <ng-template #videoTemp>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
                             (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
-                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="Video Profile" title="Video Profile">
                         </a>
                     </ng-template>
-                    <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt=""
+                    <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="References" title="References"
                         style="margin-right: 15px;">
-                    <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="">
+                    <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="Verified Profile" title="Verified Profile">
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
                         <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
                     </ng-container>
                     <ng-container *ngIf="profile?.IsConfirmed ==false">
-                        <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px" alt="">
+                        <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px" alt="Consent Accepted" title="Consent Accepted">
                     </ng-container>
                 </div>
             </div>
@@ -367,7 +367,7 @@
             <div class="card-body">
                 <div class="type">
                     <div>
-                        <img src="../../../../../assets/images/D-Disc.svg" alt="">
+                        <img src="../../../../../assets/images/D-Disc.svg"  alt="DISC Feature Coming Soon!!!" title="DISC Feature Coming Soon!!!">
                     </div>
                     <div>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
@@ -812,7 +812,7 @@
                         </a>
                     </li>
                     <ng-template #loc>
-                        <li>
+                        <li [ngClass]="{'disabled': jobStatus !== 'InActive'}">
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
                                 (click)="OpenShareDialog(profile?.FirstName,profile?.JobResponseId,profile?.ProfileId)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
