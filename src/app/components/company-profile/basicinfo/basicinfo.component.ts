@@ -263,6 +263,7 @@ onFileChange(event) {
       this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
         $('#btn-upload-videofile').prop('disabled', false);
         alert('video upload successful');
+        this.GetVideo();
       });
     }
     startRecording() {

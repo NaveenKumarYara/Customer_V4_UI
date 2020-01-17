@@ -39,7 +39,7 @@ export interface DialogData {
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
-    this.GetInviteList();
+    //this.GetInviteList();
   }
 
   GetInviteList()

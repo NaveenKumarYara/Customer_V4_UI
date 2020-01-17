@@ -144,7 +144,7 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     const stringToSplitDoc = fileSelected.name;
     const y = stringToSplitDoc.split('.');
     const exp = y[1];
-    if ((exp === 'doc' || exp === 'pdf' || exp === 'docx') || (exp === 'DOC' || exp === 'PDF' || exp === 'DOCX')) {
+    if (exp === 'pdf' || exp === 'PDF' ) {
       if (fileSelected.size > 2048576) {
         // Swal('Too Big Size.. File Not Allowed');
         this.toastr.warning('Too Big Size.. File size greater than 2MB Not Allowed!', 'Oops!');
