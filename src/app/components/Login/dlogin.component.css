@@ -6930,10 +6930,10 @@ a#logo {
   width: 20px;
   height: 20px;
   margin-top: -10px;
-  margin-left: -10px;
+  margin-left: 22px;
   border-radius: 50%;
-  border: 2px solid #ffffff;
-  border-top-color: #000000;
+  border: 2px solid #000000;
+  border-top-color: #ffffff;
   animation: spinner .8s linear infinite;
 }
 /* #button loader css */
