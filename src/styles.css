@@ -12629,9 +12629,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 @media all and (max-width: 991px) {
-    .page--manage-jobs .filters .pull-right, .page--manage-jobs .filters .pull-left {
+    /* .page--manage-jobs .filters .pull-right, .page--manage-jobs .filters .pull-left {
         float: none !important;
-    }
+    } */
     .page--manage-jobs .filters .pull-right {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -12765,7 +12765,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         margin-right: 0;
     }
     .page--manage-jobs .filters .btn-group, .page--manage-jobs .filters .page--account-settings .fc-button-group, .page--account-settings .page--manage-jobs .filters .fc-button-group {
-        margin-top: 15px;
         -ms-flex-item-align: end;
         align-self: flex-end;
     }
@@ -23171,6 +23170,33 @@ a:hover {
     }
 }
 
+/*iPhone 8 Plus*/
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 736px) 
+    and (-webkit-device-pixel-ratio : 3) {
+           /*Manage Jobs*/
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+     }
+
 /*Latest Iphone X*/
 @media only screen 
     and (device-width : 375px) 
@@ -23181,7 +23207,33 @@ a:hover {
         .page--dashboard .statistics.card .stats>div:nth-of-type(4){
             padding-top: 0px;
         }
-
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        #searchStr {
+            width: 64%;
+        }
+        .adv-filters-btn.btn svg{
+            height: 20px;
+        }
+        
      }
 /*Latest Iphone XR*/
      @media only screen 
@@ -23193,9 +23245,49 @@ a:hover {
         .page--dashboard .statistics.card .stats>div:nth-of-type(4){
             padding-top: 0px;
         }
-
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        #searchStr {
+            width: 64%;
+        }
+        .adv-filters-btn.btn svg{
+            height: 20px;
+        }
 
          }
+
+/*IPad*/       
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    .page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4){
+        padding-top: 0px;
+    }
+    .page--dashboard .statistics.card .stats{
+        padding: 2rem 0 1rem 0;
+    }
+    .page--manage-jobs .filters .pull-right{
+        padding-top: 0px;
+    }
+}
 
 
 .page--company-profile .card--withTabs .card-header .nav-tabs.ftabs li:not(:last-of-type) {
