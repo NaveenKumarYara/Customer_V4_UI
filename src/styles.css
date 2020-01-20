@@ -16476,24 +16476,41 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     border-bottom: 1px solid #E0E3EF;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(1) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+/*Dashboard Stats Cards Styles*/
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(1) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(2) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(2) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(3) {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(3) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(4) {
-    padding-top: 1rem;
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(1) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
+
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(2) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(3) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+/*Dashboard Stats Cards Styles*/
 
 .page--dashboard .statistics.card .stats-tabs {
     width: 390px;
@@ -16808,9 +16825,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         padding-right: 0;
         padding: 1rem 0;
     }
-    .page--dashboard .statistics.card .stats h1 {
+    /* .page--dashboard .statistics.card .stats h1 {
         display: none;
-    }
+    } */
     .page--dashboard .statistics.card .stats>div:not(:last-child) {
         border-bottom: 0;
     }
@@ -23153,6 +23170,33 @@ a:hover {
         font-size: 16px;
     }
 }
+
+/*Latest Iphone X*/
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) {
+
+        /*Dashboard*/
+        .page--dashboard .statistics.card .stats>div:nth-of-type(4){
+            padding-top: 0px;
+        }
+
+     }
+/*Latest Iphone XR*/
+     @media only screen 
+         and (device-width : 414px) 
+         and (device-height : 896px) 
+         and (-webkit-device-pixel-ratio : 2) { 
+
+        /*Dashboard*/
+        .page--dashboard .statistics.card .stats>div:nth-of-type(4){
+            padding-top: 0px;
+        }
+
+
+         }
+
 
 .page--company-profile .card--withTabs .card-header .nav-tabs.ftabs li:not(:last-of-type) {
     margin-right: 24px;
