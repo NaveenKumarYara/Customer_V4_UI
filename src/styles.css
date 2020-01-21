@@ -8231,17 +8231,6 @@ video {
   
 }
 
-@media (max-width: 480px) {
-    .main-nav>nav {
-        padding: 0 25px;
-    }
-    .main-nav .navbar-brand a img {
-        width: 75%;
-    }
-    .main-nav .navbar-toggle {
-        margin-left: -15px;
-    }
-}
 
 /*!
  * FullCalendar v3.9.0
@@ -15618,12 +15607,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     }
 }
 
-@media (max-width: 480px) {
-    .page--account-settings .pricing-card {
-        padding: 1.25rem 1.75rem;
-    }
-}
-
 @media (max-width: 1199px) {
     .page--account-settings .left-nav {
         margin-bottom: 30px;
@@ -16926,6 +16909,42 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 @media all and (max-width: 480px) {
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        .page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4){
+            padding-top:0px; 
+        }
+           /*Manage Jobs*/
+    .page--account-settings .pricing-card {
+        padding: 1.25rem 1.75rem;
+    }
+    .main-nav>nav {
+        padding: 0 25px;
+    }
+    .main-nav .navbar-brand a img {
+        width: 75%;
+    }
+    .main-nav .navbar-toggle {
+        margin-left: -15px;
+    }
     .page--dashboard .stats span {
         font-size: 10px;
     }
@@ -16942,6 +16961,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     }
     .page--dashboard .applications .card .header>div {
         padding-left: 37px;
+    }
+    .page--job-details .selected-job.card .title {
+        font-size: 1.3rem;
+    }
+
+    .page--job-details .meta h5{
+        padding: 0 4px;
     }
 }
 
@@ -18078,6 +18104,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--company-profile .video .video-ui {
         position: relative;
     }
+    .page--company-profile .video .video-ui video{
+        width:100%;
+    }
     .page--company-profile .video .video-ui .video__poster {
         margin: 0 auto;
     }
@@ -18315,17 +18344,31 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--company-profile.edit-mode .row .col-md-12:not(:last-of-type) {
         margin-bottom: 30px;
     }
-    .page--company-profile.edit-mode .card--about .card-header, .page--company-profile.edit-mode .card--basic-info .card-header, .page--company-profile.edit-mode .card--other-info .card-header {
+    /*Edit Company Profile*/
+    #edit-btn{
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
     }
-    .page--company-profile.edit-mode .card--about .card-header .title, .page--company-profile.edit-mode .card--basic-info .card-header .title, .page--company-profile.edit-mode .card--other-info .card-header .title {
-        margin-bottom: 20px;
+   #edit-btn h1{
+      margin-bottom: 10px;
     }
+
+    .page--company-profile .card--other-info .card-inner .stats-col{
+        height: 80px;
+    }
+  .page--company-profile .card--other-info .card-inner .stats-col:not(:last-of-type){
+      border:none;
+  }
     .page--company-profile.edit-mode .card--basic-info .card-inner {
         height: auto;
+    }
+    .page--company-profile.edit-mode .card--basic-info .company-address{
+        padding: 0 25px;
+    }
+    .page--company-profile .card--location .card-inner .br-1 {
+        border-right: none;
     }
 }
 
@@ -23162,6 +23205,50 @@ a:hover {
     }
 }
 
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+            /*Manage Jobs*/
+            .page--manage-jobs .filters .btn-group{
+                display: none;
+            }
+            .page--manage-jobs .filters .styled-select-box{
+                min-width: 150px;
+            }
+            .page--manage-jobs .filters{
+                padding:0px;
+            }
+            .page--manage-jobs .filters .pull-right{
+                padding-top: 0px;
+                display: inline-block;
+            }
+            .page--manage-jobs .filters .view-group {
+                margin-bottom:0px;
+            }
+            .manage-searchjobs .search-toggle input{
+                height: 48.5px;
+            }
+            .page--company-profile .card--other-info .card-inner h4.title{
+                font-size:12px;
+            }
+            .page--company-profile .card--about .card-content .nav-tabs li:not(:last-of-type){
+                margin-right: 20px;
+            }
+            .page--company-profile .card-header.cultur-header{
+                padding-left: 15px!important;
+            }
+            .page--company-profile .card--location .card-inner{
+                text-align: center;
+            }
+            .page--company-profile .card--location .card-inner .br-1 {
+                border-right: none;
+            }
+}
+
 /* iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape */
 
 @media screen and (device-aspect-ratio: 9/16) {
@@ -23169,6 +23256,7 @@ a:hover {
         font-size: 16px;
     }
 }
+
 
 /*iPhone 8 Plus*/
 @media only screen 
@@ -23194,6 +23282,15 @@ a:hover {
         }
         .manage-searchjobs .search-toggle input{
             height: 48.5px;
+        }
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
         }
      }
 
@@ -23233,7 +23330,15 @@ a:hover {
         .adv-filters-btn.btn svg{
             height: 20px;
         }
-        
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
+        }
      }
 /*Latest Iphone XR*/
      @media only screen 
@@ -23271,6 +23376,19 @@ a:hover {
         .adv-filters-btn.btn svg{
             height: 20px;
         }
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner {
+            text-align: center;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
+        }
+
 
          }
 

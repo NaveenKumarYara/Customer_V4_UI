@@ -15,7 +15,7 @@
         </svg>
         <span>Basic Info</span>
       </h1>
-      <a (click)="iseditProfile=!iseditProfile" class="edit-btn">
+      <a (click)="iseditProfile=!iseditProfile" class="edit-btn" >
         <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="#93a2bb"
           stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px"
           viewBox="-750.5 -3250.6 19.9 20">
@@ -112,9 +112,9 @@
   </div>
 </div>
 
-<div class="col-xl-12" *ngIf="iseditProfile">
+<div class="col-xl-12" *ngIf="iseditProfile" >
   <div class="card card--basic-info">
-    <div class="card-header">
+    <div class="card-header" id="edit-btn">
       <h1 class="title">
         <svg xmlns="http://www.w3.org/2000/svg" width="18.5px" height="20px" viewBox="-1939 -3251 20.519 22.078"
           fill="none" stroke="#448afa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
