@@ -8,7 +8,7 @@
         <h4 class="data"*ngFor="let dom of domain">{{dom.DomainName}}</h4>
     </ng-container>
      <ng-container *ngIf="domain?.length==0">
-        <h4 class="data">N/A</h4>
+        <h6 class="data">N/A</h6>
      </ng-container>
   </div>
   <div class="form-data-group skill-set-group">
@@ -61,7 +61,7 @@
         <h4 class="data" *ngFor="let edu of education">{{edu.QualificationName}}</h4>
     </ng-container>
     <ng-container *ngIf="education?.length==0">
-        <h4 class="data">N/A</h4>
+        <h6 class="data">N/A</h6>
     </ng-container>
      
   </div>

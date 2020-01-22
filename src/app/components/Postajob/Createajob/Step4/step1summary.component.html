@@ -4,9 +4,12 @@
     <h3 class="question">
       what is the Job Id?
     </h3>
-    <h5 class="data">
+    <h5 class="data" *ngIf="jobPositionId!=''">
       {{jobPositionId}}
     </h5>
+    <h6 class="data" *ngIf="jobPositionId==''"  >
+     N/A
+    </h6 >
   </div>
   <div class="form-data-group">
     <h3 class="question">
@@ -23,9 +26,12 @@
     <h3 class="question">
       Which Category this job belongs to?
     </h3>
-    <h5 class="data" >
+    <h5 class="data" *ngIf="jobCategory!=null||jobCategory!=''" >
       {{jobCategory}}
     </h5>
+    <h6 class="data" *ngIf="jobCategory==null||jobCategory==''">
+    N/A
+    </h6>
   </div>
   <div class="form-data-group">
     <h3 class="question">
@@ -37,7 +43,12 @@
     <h3 class="question">
       What is the Client Name?
     </h3>
-    <h5 class="data">{{client}}</h5>
+    <h5 class="data" *ngIf="client!=null">
+      {{client}}
+    </h5>
+      <h6 class="data" *ngIf="client==null">
+      N/A
+      </h6>
   </div>
   <div class="form-data-group">
     <h3 class="question">
