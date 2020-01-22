@@ -1,5 +1,4 @@
 <app-Logoheader></app-Logoheader>
-
 <body class="page page--company-profile edit-mode">
   <main>
     <div class="container">
@@ -95,8 +94,6 @@
                         </div>
                       </div>
 
-
-
                       <div *ngIf="CulturalTestStatus==100">
                         <button class="btn btn-success nxt" type="button" (click)="showGraph()" data-toggle="modal"
                           data-target="#personality-test">View Detailed Report</button>
@@ -105,15 +102,11 @@
                         <button class="btn btn-success nxt" type="button" (click)="scroll(test,'Cultural Test')"
                           data-toggle="modal" data-target="#personality-test">Complete Test</button>
                       </div>
-
                     </div>
                   </div>
                   <!-- if culture data -->
-
-
                 </div>
                 <div class="wrap" style="display: none;">
-
                   <div class="card-content scroll-inner personality-test-results">
                     <!--Need to show this commented section by default-->
                     <div class="placeholder">
@@ -203,12 +196,9 @@
                           </div>
                         </div>
                       </div>
-
-
                       <div>
                         <button class="btn btn-success nxt" type="button">Complete Test</button>
                       </div>
-
                     </div>
                   </div>
                   <!-- if culture data -->
@@ -217,10 +207,8 @@
             </div>
             <!-- #culture -->
             <app-locations [companyprofilelocationinfo]="companyprofilelocationinfo"></app-locations>
-
           </div>
         </div>
-
       </div>
       <div class="row">
         <app-benefits [getcompanybenfit]="getcompanybenfit" [companyspecialities]="companyspecialities"
@@ -279,14 +267,17 @@
             <div class="col-xs-12 col-md-12 take-cultural-test">
               <!-- <h5>Cultural Test</h5> -->
               <p class="text-center"><em>
-                Having core company values can assist you to ensure each of your employees, from top leadership to entry-level, are working towards the same common goal, and share a bigger purpose.
-              </em>  </p>
+                  Having core company values can assist you to ensure each of your employees, from top leadership to
+                  entry-level, are working towards the same common goal, and share a bigger purpose.
+                </em> </p>
               <div class="clearfix">&nbsp;</div>
               <div class="clearfix">&nbsp;</div>
-              <button (click)="scroll(test,'Cultural Test')" class="thumbnail cultural-test-btn" *ngIf="CulturalTestStatus < 100">
+              <button (click)="scroll(test,'Cultural Test')" class="thumbnail cultural-test-btn"
+                *ngIf="CulturalTestStatus < 100">
                 <img src="assets/images/Cultural-test.png" alt="Cultural Test">
               </button>
-              <button *ngIf="CulturalTestStatus == 100" class="thumbnail cultural-test-btn" style="position: relative; z-index: 1;">
+              <button *ngIf="CulturalTestStatus == 100" class="thumbnail cultural-test-btn"
+                style="position: relative; z-index: 1;">
                 <img src="assets/images/Cultural-test.png" alt="Cultural Test" style="-webkit-filter: blur(2px);">
                 <span style="top: 20%;left: 35%; position: absolute;z-index: 2; align-self: center;">
                   <img src="assets/images/complete.png" style="all: unset;" alt="complete Test">
@@ -308,7 +299,6 @@
       </div>
       <!-- /.modal-content -->
       <!--Slide 1 Ends-->
-
 
       <!--Slide 2 Starts-->
       <div #test>
@@ -392,25 +382,18 @@
       <!--Slide 3 Result Draft View-->
       <div class="modal-content vh100 p1" *ngIf="progress ==-2">
         <div class="modal-header p-0 h-0 ">
-          <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
-
-
+          <!-- <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button> -->
         </div>
         <div class="modal-body">
           <div>
             <!-- <canvas #TestGrapChart width="400" height="400"></canvas> -->
-
             <div class="row">
-
               <div class="col-md-12 text-center">
                 <h4>Cultural Fit Results <img title="Download Detailed Test Report"
                     src="../../assets/images/download-graph.png" style="width: 32px;"></h4>
               </div>
-
-
             </div>
-
             <div class="row p-rel" *ngIf="culturalAvg > 0">
               <div class="col-md-8 margin-auto text-center">
                 <span *ngFor="let label of graphLabelList1; let i=index">
@@ -424,8 +407,6 @@
                 <div style="width:70%;margin:auto;">
                   <canvas #testChart9 width="400" height="400"></canvas>
                 </div>
-
-
               </div>
             </div>
             <!-- <div ngIf="CulturalResponse.questionnaireResponses.length == 12"> -->

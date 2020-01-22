@@ -8231,17 +8231,6 @@ video {
   
 }
 
-@media (max-width: 480px) {
-    .main-nav>nav {
-        padding: 0 25px;
-    }
-    .main-nav .navbar-brand a img {
-        width: 75%;
-    }
-    .main-nav .navbar-toggle {
-        margin-left: -15px;
-    }
-}
 
 /*!
  * FullCalendar v3.9.0
@@ -12629,9 +12618,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 @media all and (max-width: 991px) {
-    .page--manage-jobs .filters .pull-right, .page--manage-jobs .filters .pull-left {
+    /* .page--manage-jobs .filters .pull-right, .page--manage-jobs .filters .pull-left {
         float: none !important;
-    }
+    } */
     .page--manage-jobs .filters .pull-right {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -12765,7 +12754,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         margin-right: 0;
     }
     .page--manage-jobs .filters .btn-group, .page--manage-jobs .filters .page--account-settings .fc-button-group, .page--account-settings .page--manage-jobs .filters .fc-button-group {
-        margin-top: 15px;
         -ms-flex-item-align: end;
         align-self: flex-end;
     }
@@ -15619,12 +15607,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     }
 }
 
-@media (max-width: 480px) {
-    .page--account-settings .pricing-card {
-        padding: 1.25rem 1.75rem;
-    }
-}
-
 @media (max-width: 1199px) {
     .page--account-settings .left-nav {
         margin-bottom: 30px;
@@ -16476,24 +16458,41 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     border-bottom: 1px solid #E0E3EF;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(1) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+/*Dashboard Stats Cards Styles*/
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(1) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(2) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(2) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(3) {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+.page--dashboard .statistics.card .job-stats>div:nth-of-type(3) {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-.page--dashboard .statistics.card .stats>div:nth-of-type(4) {
-    padding-top: 1rem;
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(1) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
+
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(2) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(3) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+/*Dashboard Stats Cards Styles*/
 
 .page--dashboard .statistics.card .stats-tabs {
     width: 390px;
@@ -16808,9 +16807,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         padding-right: 0;
         padding: 1rem 0;
     }
-    .page--dashboard .statistics.card .stats h1 {
+    /* .page--dashboard .statistics.card .stats h1 {
         display: none;
-    }
+    } */
     .page--dashboard .statistics.card .stats>div:not(:last-child) {
         border-bottom: 0;
     }
@@ -16910,6 +16909,42 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 @media all and (max-width: 480px) {
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        .page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4){
+            padding-top:0px; 
+        }
+           /*Manage Jobs*/
+    .page--account-settings .pricing-card {
+        padding: 1.25rem 1.75rem;
+    }
+    .main-nav>nav {
+        padding: 0 25px;
+    }
+    .main-nav .navbar-brand a img {
+        width: 75%;
+    }
+    .main-nav .navbar-toggle {
+        margin-left: -15px;
+    }
     .page--dashboard .stats span {
         font-size: 10px;
     }
@@ -16926,6 +16961,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     }
     .page--dashboard .applications .card .header>div {
         padding-left: 37px;
+    }
+    .page--job-details .selected-job.card .title {
+        font-size: 1.3rem;
+    }
+
+    .page--job-details .meta h5{
+        padding: 0 4px;
     }
 }
 
@@ -18062,6 +18104,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--company-profile .video .video-ui {
         position: relative;
     }
+    .page--company-profile .video .video-ui video{
+        width:100%;
+    }
     .page--company-profile .video .video-ui .video__poster {
         margin: 0 auto;
     }
@@ -18299,17 +18344,43 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--company-profile.edit-mode .row .col-md-12:not(:last-of-type) {
         margin-bottom: 30px;
     }
-    .page--company-profile.edit-mode .card--about .card-header, .page--company-profile.edit-mode .card--basic-info .card-header, .page--company-profile.edit-mode .card--other-info .card-header {
+    /*Edit Company Profile*/
+    #edit-btn{
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
     }
-    .page--company-profile.edit-mode .card--about .card-header .title, .page--company-profile.edit-mode .card--basic-info .card-header .title, .page--company-profile.edit-mode .card--other-info .card-header .title {
-        margin-bottom: 20px;
+   #edit-btn h1{
+      margin-bottom: 10px;
     }
+
+    .page--company-profile .card--other-info .card-inner .stats-col{
+        height: 80px;
+    }
+  .page--company-profile .card--other-info .card-inner .stats-col:not(:last-of-type){
+      border:none;
+  }
     .page--company-profile.edit-mode .card--basic-info .card-inner {
         height: auto;
+    }
+    .page--company-profile.edit-mode .card--basic-info .company-address{
+        padding: 0 25px;
+    }
+    .page--company-profile .card--location .card-inner .br-1 {
+        border-right: none;
+    }
+    .meta img{
+        width:23px;
+        height: 23px;
+        border-radius: 50%;
+    }
+    .mat-typography .modal-header .modal-actions{
+        margin-right:auto;
+        margin-left: 0px!important;
+    }
+    .page--job-details .meta svg{
+        width:23px
     }
 }
 
@@ -23146,6 +23217,50 @@ a:hover {
     }
 }
 
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+            /*Manage Jobs*/
+            .page--manage-jobs .filters .btn-group{
+                display: none;
+            }
+            .page--manage-jobs .filters .styled-select-box{
+                min-width: 150px;
+            }
+            .page--manage-jobs .filters{
+                padding:0px;
+            }
+            .page--manage-jobs .filters .pull-right{
+                padding-top: 0px;
+                display: inline-block;
+            }
+            .page--manage-jobs .filters .view-group {
+                margin-bottom:0px;
+            }
+            .manage-searchjobs .search-toggle input{
+                height: 48.5px;
+            }
+            .page--company-profile .card--other-info .card-inner h4.title{
+                font-size:12px;
+            }
+            .page--company-profile .card--about .card-content .nav-tabs li:not(:last-of-type){
+                margin-right: 20px;
+            }
+            .page--company-profile .card-header.cultur-header{
+                padding-left: 15px!important;
+            }
+            .page--company-profile .card--location .card-inner{
+                text-align: center;
+            }
+            .page--company-profile .card--location .card-inner .br-1 {
+                border-right: none;
+            }
+}
+
 /* iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape */
 
 @media screen and (device-aspect-ratio: 9/16) {
@@ -23153,6 +23268,163 @@ a:hover {
         font-size: 16px;
     }
 }
+
+
+/*iPhone 8 Plus*/
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 736px) 
+    and (-webkit-device-pixel-ratio : 3) {
+           /*Manage Jobs*/
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
+        }
+     }
+
+/*Latest Iphone X*/
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) {
+
+        /*Dashboard*/
+        .page--dashboard .statistics.card .stats>div:nth-of-type(4){
+            padding-top: 0px;
+        }
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        #searchStr {
+            width: 64%;
+        }
+        .adv-filters-btn.btn svg{
+            height: 20px;
+        }
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
+        }
+        .page--job-details #selectedJobDetails .meta>div{
+            padding: 0 5px;
+        }
+        .page--job-details .meta svg{
+            width:23px
+        }
+     }
+/*Latest Iphone XR*/
+     @media only screen 
+         and (device-width : 414px) 
+         and (device-height : 896px) 
+         and (-webkit-device-pixel-ratio : 2) { 
+
+        /*Dashboard*/
+        .page--dashboard .statistics.card .stats>div:nth-of-type(4){
+            padding-top: 0px;
+        }
+        /*Manage Jobs*/
+        .page--manage-jobs .filters .pull-right{
+            padding-top: 0px;
+            display: inline-block;
+        }
+        .page--manage-jobs .filters .btn-group{
+            display: none;
+        }
+        .page--manage-jobs .filters{
+            padding:0px;
+        }
+        .page--manage-jobs .filters .view-group {
+            margin-bottom:0px;
+        }
+        .page--manage-jobs .filters .styled-select-box{
+            min-width: 160px;
+        }
+        .manage-searchjobs .search-toggle input{
+            height: 48.5px;
+        }
+        #searchStr {
+            width: 64%;
+        }
+        .adv-filters-btn.btn svg{
+            height: 20px;
+        }
+        .page--job-details .selected-job.card .title {
+            font-size: 1.3rem;
+        }
+        .page--company-profile .card--other-info .card-inner h4.title{
+            font-size: 13.5px;
+        }
+        .page--company-profile .card--location .card-inner {
+            text-align: center;
+        }
+        .page--company-profile .card--location .card-inner .br-1 {
+            border-right: none;
+        }
+
+
+         }
+
+/*IPad*/       
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    .page--dashboard .statistics.card .applicant-stats>div:nth-of-type(4){
+        padding-top: 0px;
+    }
+    .page--dashboard .statistics.card .stats{
+        padding: 2rem 0 1rem 0;
+    }
+    .page--manage-jobs .filters .pull-right{
+        padding-top: 0px;
+    }
+}
+
 
 .page--company-profile .card--withTabs .card-header .nav-tabs.ftabs li:not(:last-of-type) {
     margin-right: 24px;
