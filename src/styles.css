@@ -18370,6 +18370,18 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--company-profile .card--location .card-inner .br-1 {
         border-right: none;
     }
+    .meta img{
+        width:23px;
+        height: 23px;
+        border-radius: 50%;
+    }
+    .mat-typography .modal-header .modal-actions{
+        margin-right:auto;
+        margin-left: 0px!important;
+    }
+    .page--job-details .meta svg{
+        width:23px
+    }
 }
 
 @media all and (max-width: 767px) {
@@ -23338,6 +23350,12 @@ a:hover {
         }
         .page--company-profile .card--location .card-inner .br-1 {
             border-right: none;
+        }
+        .page--job-details #selectedJobDetails .meta>div{
+            padding: 0 5px;
+        }
+        .page--job-details .meta svg{
+            width:23px
         }
      }
 /*Latest Iphone XR*/
