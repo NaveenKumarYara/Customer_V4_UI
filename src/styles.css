@@ -25080,7 +25080,7 @@ table .table-prl-0 td {
         font-size: 0.875rem;
     }
     .page--job-details #selectedJobDetails .modal-body .tab-content, .page--job-details #selectedJobDetails .modal-header {
-        padding: 1rem 2rem;
+        padding: 1rem 1rem;
     }
     .page--job-details .reviews .review-content {
         padding-left: 4rem;
