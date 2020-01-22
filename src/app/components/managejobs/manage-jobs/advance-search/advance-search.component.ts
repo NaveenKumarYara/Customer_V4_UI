@@ -41,6 +41,7 @@ export class AdvanceSearchComponent implements OnInit {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.toastr.setRootViewContainerRef(_vcr);
      }
     public getExpYears() {
       this.expYears = [];
