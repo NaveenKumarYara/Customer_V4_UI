@@ -40,15 +40,37 @@
         <h1>{{companyprofile?.CompanyName}}</h1>
         <h3>IT Consulting</h3>
         <div class="social-media">
-          <a [attr.href]="'//' + companyprofile?.TwitterURL" target="_blank">
-            <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-          </a>
-          <a [attr.href]="'//' + companyprofile?.LinkedInURL" target="_blank">
-            <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
-          </a>
+          <ng-container *ngIf="companyprofile?.TwitterURL!=null && companyprofile?.TwitterURL!=''">
+            <a [attr.href]="'//' + companyprofile?.TwitterURL" target="_blank">
+              <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
+            </a>
+          </ng-container>
+          <ng-container *ngIf="companyprofile?.TwitterURL==null || companyprofile?.TwitterURL=='' || companyprofile?.TwitterURL==undefined">       
+            <a>
+              <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
+            </a>              
+          </ng-container>
+          <ng-container *ngIf="companyprofile?.LinkedInURL!=null && companyprofile?.LinkedInURL!=''">
+            <a [attr.href]="'//' + companyprofile?.LinkedInURL" target="_blank">
+              <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
+            </a>
+          </ng-container>
+          <ng-container *ngIf="companyprofile?.LinkedInURL==null || companyprofile?.LinkedInURL=='' || companyprofile?.LinkedInURL==undefined" >
+            <a >
+              <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
+            </a>
+          </ng-container>
+         <ng-container *ngIf="companyprofile?.FacebookURL!=null && companyprofile?.FacebookURL!=''" >
           <a [attr.href]="'//' + companyprofile?.FacebookURL" target="_blank">
             <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
           </a>
+         </ng-container>
+         <ng-container *ngIf="companyprofile?.FacebookURL==null || companyprofile?.FacebookURL=='' || companyprofile?.FacebookURL==undefined"  >
+          <a>
+            <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
+          </a>
+         </ng-container>
+          
         </div>
         <div class="meta">
           <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
