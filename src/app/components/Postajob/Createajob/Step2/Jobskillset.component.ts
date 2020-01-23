@@ -28,7 +28,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   private subscription: Subscription;
 
   skilllist: Observable<string[]>;
-  selectedSkillName = '';
+  selectedSkillName;
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
   private selectedLink = 'Primary';

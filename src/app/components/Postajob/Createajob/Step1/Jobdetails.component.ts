@@ -21,7 +21,8 @@ declare var jQuery: any;
 export class JobdetailsComponent implements OnInit, AfterViewChecked {
   @ViewChild('detailForm') detailForm: any;
   jobtitlelist: Observable<string[]>;
-  selectedTitle = '';
+  selectedTitle;
+  newtitle;
   expYears: any = [];
   jobtitleloading = false;
   jobtitleinput = new Subject<string>();
@@ -108,6 +109,10 @@ suggestedJobTitle() {
     this.searchJobTitle();
     this.suggestedJobTitle();
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
+    if(this.selectedTitle=='')
+    {
+      this.selectedTitle= this.newtitle;
+    }
     // this.appService.currentminExp.subscribe(x => {
     //     this.minExperience = x;
     //     this.minYears = this.minExperience / 12;

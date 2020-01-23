@@ -19,7 +19,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 @ViewChild('domainForm') domainForm: NgForm;
   private subscription: Subscription;
   private subscriptions: Subscription;
-  domain: '';
+  domain;
   domainlist: GetDomain[];
   // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
@@ -30,7 +30,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   domainId: number;
   domaintitleloading = false;
   selecteddomaininput = new Subject<string>();
-  selecteddomainname = '';
+  selecteddomainname;
   // expYears: any = [];
   options: Options = {
     floor: 0,
@@ -122,6 +122,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
         this.addDomainList = domain;
         }
       );
+
   }
 
   private getDomains() {
