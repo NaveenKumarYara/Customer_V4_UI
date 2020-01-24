@@ -22,6 +22,7 @@ import {FilterViewJobsComponent} from '../view-jobdetails/filter-view-jobs/filte
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
+import {Location} from '@angular/common';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -77,7 +78,7 @@ export class ViewJobdetailsComponent implements OnInit {
   // showVar:  = true;
   // readChild: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private _location: Location,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
    ) {
@@ -109,6 +110,8 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('Dialog result: ${result}');
     });
   }
+
+  
   OpenDialog() {
     const dialogRef = this.dialog.open(ConversationComponent,
       {
@@ -123,6 +126,10 @@ export class ViewJobdetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('share Dialog result: ${result}');
     });
+  }
+
+  backClicked() {
+    this._location.back();
   }
   openCandidate() {
     this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
