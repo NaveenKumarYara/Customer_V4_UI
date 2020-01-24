@@ -81,10 +81,13 @@
             Video Sizzle</h3>
     </div>
     
-      <div class="col-md-6">
+      <div class="col-md-6" *ngIf="videoProfile!='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='" >
       <video controls>
         <source [src]="videoProfile" type="video/mp4">
       </video>
+    </div>
+    <div class="col-md-6" *ngIf="videoProfile=='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='"  >
+      <img src="../../../../assets/images/no-video.png" class="video" alt="">
     </div>
   </div>
   

@@ -13234,7 +13234,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 .page--job-details .card #skills-carousel {
     position: relative;
     padding: 18px 15px 0;
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
     min-height: 63px;
 }
 
@@ -25239,3 +25240,27 @@ table .table-prl-0 td {
 .add-btn.pr-0{
     padding-right: 0px !important;
 }
+
+/*Basic Info alert styles*/
+ .basic-info-alert .alert{
+    position: absolute;
+    z-index: 9999;
+    right: 16px;
+    top: 100px;
+    box-shadow: 0 0 12px #999;
+    border-color: transparent;
+  }
+  .basic-info-alert .alert-success{
+    background-color: #51a351;
+    color: #fff;
+    border-color: transparent;
+  }
+  .basic-info-alert .alert-dismissable .close{
+    color: #fff;
+  }
+
+.basic-info-alert .alert-danger{
+    background-color: #bd362f;
+    color: #fff;
+}
+  
