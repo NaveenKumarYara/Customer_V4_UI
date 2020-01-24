@@ -591,13 +591,16 @@
                     </div> -->
 
                 <!-- // -->
-                <div id="skills-carousel" class="owl-carousel skills-carousel owl-loaded owl-drag">
-                    <div class="owl-stage-outer">
-                        <div class="owl-stage" style="transition: all 0s ease 0s; width: 2926px;"
+                <div id="skills-carousel-Changed" class="">
+                    <div class="">
+                        
+                        <div class="row" 
                             *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
-                            <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"
-                                *ngFor="let sk of profile?.PrimarySkills.split(',', 3) | removeduplicates">
-                                <div class="item">
+                         <a (click)="prevSkills(profile?.PrimarySkills)"> prev</a>
+                            <div class="col" 
+                                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let i = index">
+                              <div id="i-{{profile.ProfileId}}">
+                                <div class="item" *ngIf="currentNo ==0 && i < 3 ">
                                     <div class="skill">
                                         <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                         <div>
@@ -606,7 +609,38 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="item" *ngIf="currentNo ==1 && i < 6 && i > 2  ">
+                                    <div class="skill">
+                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                        <div>
+                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item" *ngIf="currentNo ==2 && i < 9  && i > 5 ">
+                                    <div class="skill">
+                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                        <div>
+                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item" *ngIf="currentNo ==3 && i > 8 ">
+                                    <div class="skill">
+                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                        <div>
+                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+                            </div>
+                            
+                            <a (click)="nextSkills(profile?.PrimarySkills)"> Next</a>
 
                             <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove
