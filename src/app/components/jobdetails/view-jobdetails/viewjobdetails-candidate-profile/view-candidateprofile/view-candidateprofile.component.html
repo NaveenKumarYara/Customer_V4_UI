@@ -151,7 +151,7 @@
                         </canvas>                         -->
                         <img #testChart1 width="300" src="../../../assets/images/YetToPerformed.svg" alt="personality-test">
                       </ng-container>            
-                        <div class="canvas-rel">
+                        <div class="canvas-rel" *ngIf="noTest">
                           <canvas #testChart width="250" height="250"></canvas> <!-- For Test Result--> 
                         </div>           
                     </div>

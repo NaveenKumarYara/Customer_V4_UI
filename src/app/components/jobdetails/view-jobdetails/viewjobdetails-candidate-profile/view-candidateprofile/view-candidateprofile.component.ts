@@ -130,10 +130,12 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.data.ProfileId).subscribe(
       data => {
         this.noTest = data;
+        if (this.noTest) {
+          this.GetCandidatePersonalityResult();
+        }
+        console.log("asdasdasdas",this.noTest);
       });
-    if (this.noTest) {
-      this.GetCandidatePersonalityResult();
-    }
+    
   }
 
   onChartClick(event) {
