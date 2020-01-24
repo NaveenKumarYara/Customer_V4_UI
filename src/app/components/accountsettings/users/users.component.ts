@@ -67,7 +67,7 @@ export class UsersComponent implements OnInit {
       this.Addform.value.CustomerId = this.customerId;
       this.Addform.value.Password = 123456;
       this.Addform.value.UserRoleId = this.Value;
-      this.Addform.value.IsActive = false;
+      this.Addform.value.IsActive = true;
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
