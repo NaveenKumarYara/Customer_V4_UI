@@ -348,17 +348,20 @@
                     <ng-template #videoTemp>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
                             (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
-                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="Video Profile" title="Video Profile">
+                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px"
+                                alt="Video Profile" title="Video Profile">
                         </a>
                     </ng-template>
-                    <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px" alt="References" title="References"
-                        style="margin-right: 15px;">
-                    <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px" alt="Verified Profile" title="Verified Profile">
+                    <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px"
+                        alt="References" title="References" style="margin-right: 15px;">
+                    <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px"
+                        alt="Verified Profile" title="Verified Profile">
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
                         <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
                     </ng-container>
                     <ng-container *ngIf="profile?.IsConfirmed ==false">
-                        <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px" alt="Consent Accepted" title="Consent Accepted">
+                        <img src="../../../../../assets/images/hand-shake2.png" width="50px" height="50px"
+                            alt="Consent Accepted" title="Consent Accepted">
                     </ng-container>
                 </div>
             </div>
@@ -367,7 +370,8 @@
             <div class="card-body">
                 <div class="type">
                     <div>
-                        <img src="../../../../../assets/images/D-Disc.svg"  alt="DISC Feature Coming Soon!!!" title="DISC Feature Coming Soon!!!">
+                        <img src="../../../../../assets/images/D-Disc.svg" alt="DISC Feature Coming Soon!!!"
+                            title="DISC Feature Coming Soon!!!">
                     </div>
                     <div>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
@@ -591,56 +595,54 @@
                     </div> -->
 
                 <!-- // -->
-                <div id="skills-carousel-Changed" class="">
+                <div id="skills-carousel-Changed" class="skills-carousel-Changed">
                     <div class="">
-                        
-                        <div class="row" 
-                            *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
-                         <a (click)="prevSkills(profile?.PrimarySkills)"> prev</a>
-                            <div class="col" 
+                        <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
+                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills)"> < </a>
+                            <div class="col-md-4"
                                 *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let i = index">
-                              <div id="i-{{profile.ProfileId}}">
-                                <div class="item" *ngIf="currentNo ==0 && i < 3 ">
-                                    <div class="skill">
-                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                        <div>
-                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                <div id="i-{{profile.ProfileId}}">
+                                    <div class="item" *ngIf="currentNo ==0 && i < 3 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item" *ngIf="currentNo ==1 && i < 6 && i > 2  ">
-                                    <div class="skill">
-                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                        <div>
-                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                    <div class="item" *ngIf="currentNo ==1 && i < 6 && i > 2  ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item" *ngIf="currentNo ==2 && i < 9  && i > 5 ">
-                                    <div class="skill">
-                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                        <div>
-                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                    <div class="item" *ngIf="currentNo ==2 && i < 9  && i > 5 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item" *ngIf="currentNo ==3 && i > 8 ">
-                                    <div class="skill">
-                                        <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                        <div>
-                                            <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                            <h5>{{ sk.split('|')[3] }}</h5>
+                                    <div class="item" *ngIf="currentNo ==3 && i > 8 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
-                            </div>
-                            
-                            <a (click)="nextSkills(profile?.PrimarySkills)"> Next</a>
+
+                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills)"> > </a>
 
                             <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove
@@ -1054,16 +1056,16 @@
 
         <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
-         
+
             <div class="header">
                 <h2>Matching Criteria</h2>
                 <div *ngIf="ProfileId == profile.ProfileId">
                     <!-- placeholder for chart -->
                     <div style="padding-top: 2rem;">
-                         <canvas #testChart name="profile.ProfileId" width="400" height="400"></canvas>
+                        <canvas #testChart name="profile.ProfileId" width="400" height="400"></canvas>
                         <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
                     </div>
-                      <!-- placeholder for chart -->
+                    <!-- placeholder for chart -->
 
                     <!-- Anchoring dialog for detailed matching criteria charts-->
                     <div class="view-detailed-report">
@@ -1071,8 +1073,8 @@
                     </div>
                     <!-- Anchoring dialog for detailed matching criteria charts-->
                 </div>
-             
-             <!-- old data -->
+
+                <!-- old data -->
                 <!-- <circle-progress [percent]="matchingDetails?.MatchingPercentage" [radius]="80"
                     [outerStrokeWidth]="10" [innerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'"
                     [innerStrokeColor]="'#e7e8ea'" [space]="-8" [titleFontSize]="40" [unitsFontSize]="24"
@@ -1088,7 +1090,7 @@
                 </svg>
                 <h1>{{matchingDetails?.MatchingPercentage}}%</h1>
             </div> -->
-               
+
             </div>
             <!-- 
             <div class="details">
@@ -1110,7 +1112,7 @@
                 </div>
             </div> -->
             <!-- #old data -->
- 
+
         </div>
     </div>
 
@@ -1129,27 +1131,27 @@
 
 
 
-<div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-id="matching-criteria">
-<div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" id="matching-criteria">
+    <div class="modal-dialog" role="document">
 
-  <!--Slide 3 Result Draft View-->
-  <div class="modal-content vh100 p1">
-    <div class="modal-header">
-      <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
-          aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="modal-body">
-        Matching Criteria
-    </div>
-    <div>
-        <canvas #testChart1 width="200" height="200"></canvas>
-       <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
-   </div>
+        <!--Slide 3 Result Draft View-->
+        <div class="modal-content vh100 p1">
+            <div class="modal-header">
+                <button type="button" class="pull-right" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Matching Criteria
+            </div>
+            <div>
+                <canvas #testChart1 width="200" height="200"></canvas>
+                <!-- <img src="../../../../../assets/images/capture-graph.PNG" style="width: 100%;"> -->
+            </div>
 
-    <div class="modal-footer modal-p">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer modal-p">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
