@@ -43,17 +43,17 @@ export class AboutComponent {
     this.router.navigateByUrl('home'); 
   } 
   
-  ActivatetheUser(id)
-  {
-    this.appService.ActivateUser(id).subscribe(
-      data => {
-      this.toastr.success('Customer is activated. Please login to continue','Success');
-      setTimeout(() => {
-        this.toastr.dismissToast;
-        sessionStorage.removeItem('Uid');
-      }, 3000);
-      })
-  }
+  // ActivatetheUser(id)
+  // {
+  //   this.appService.ActivateUser(id).subscribe(
+  //     data => {
+  //     this.toastr.success('Customer is activated. Please login to continue','Success');
+  //     setTimeout(() => {
+  //       this.toastr.dismissToast;
+  //       sessionStorage.removeItem('Uid');
+  //     }, 3000);
+  //     })
+  // }
     
     Send() {
       if(!this.Resetform.valid)
@@ -83,8 +83,8 @@ export class AboutComponent {
   
     ngOnInit() {
       this.pid =  sessionStorage.getItem('Pid');
-      this.Id = sessionStorage.getItem('Uid');
-      this.ActivatetheUser(this.Id);
+      //this.Id = sessionStorage.getItem('Uid');
+      //this.ActivatetheUser(this.Id);
       this.Resetform = this.fb.group({
         'Email': [this.pid, Validators.compose([Validators.nullValidator])],
         'Password': ['', [Validators.required, FormsValidationService.password]],

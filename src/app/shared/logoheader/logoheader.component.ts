@@ -25,14 +25,14 @@ export class LogoHeaderComponent implements OnInit {
         this.Logout();
     }
     // sessionStorage.setItem('ProfileThumbnail', this.candidateDetails.UserProfilePictureUrl);
-    else {
-        let pic = sessionStorage.getItem('ProfileThumbnail');
-        if (pic) {
-            if (pic.length > 55) {
-                this.customer.UserProfilePictureUrl = pic;
-            }
-        }
-    }
+    // else {
+    //     let pic = sessionStorage.getItem('ProfileThumbnail');
+    //     if (pic) {
+    //         if (pic.length > 55) {
+    //             this.customer.UserProfilePictureUrl = pic;
+    //         }
+    //     }
+    // }
     
   }
 
