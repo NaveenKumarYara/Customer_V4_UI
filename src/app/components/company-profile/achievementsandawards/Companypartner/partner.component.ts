@@ -12,7 +12,8 @@ declare var $: any;
 declare var require: any;
 @Component({
   selector: 'app-partner',
-  templateUrl: './partner.component.html'
+  templateUrl: './partner.component.html',
+  providers: [ApiService, AlertService]
 })
 export class PartnerComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
@@ -107,10 +108,10 @@ export class PartnerComponent implements OnInit {
         const ext = x[1];
         if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
           if (file.size > 2048576) {
-            //this.alertService.error('Too Big Size.. File Not Allowed');
-            this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
+            this.alertService.error('Too Big Size.. File Not Allowed');
+            //this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
             setTimeout(() => {
-                this.toastr.dismissToast;
+              this.alertService.clear();
                 this.imageSrc = '';
             }, 3000);
           } else {
@@ -122,10 +123,10 @@ export class PartnerComponent implements OnInit {
           }
           }
         } else {
-          //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-          this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
+          this.alertService.error('Please upload the files with extension jpg, png or jpeg');
+          //this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
           setTimeout(() => {
-              this.toastr.dismissToast;
+            this.alertService.clear();
               this.imageSrc = '';
           }, 3000);
         }
@@ -136,9 +137,10 @@ export class PartnerComponent implements OnInit {
     uploadPhotoPartner() {
       if(this.Pname == undefined || this.Pname == "")
       {
-        this.toastr.error('Please provide the valid details!', 'Oops!');
+        this.alertService.error('Please provide the valid details');
+        //this.toastr.error('Please provide the valid details!', 'Oops!');
                   setTimeout(() => {
-                      this.toastr.dismissToast;
+                    this.alertService.clear();
                   }, 3000);
       }
       else if(this.Pname !=undefined || this.Pname !="")

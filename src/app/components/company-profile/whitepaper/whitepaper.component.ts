@@ -6,13 +6,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CompanyProfileService } from '../company-profile.service';
 import { ApiService } from '../../../shared/services/api.service/api.service';
+import { AlertService } from '../../../shared/alerts/alerts.service';
 import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
   selector: 'app-whitepaper',
   templateUrl: './whitepaper.component.html',
-  styleUrls: ['./whitepaper.component.css']
+  styleUrls: ['./whitepaper.component.css'],
+  providers: [ApiService, AlertService]
 })
 export class WhitepaperComponent implements OnInit {
 //@Input() getcompanywhitepaper: GetCompanyWhitePaper;
@@ -34,7 +36,7 @@ public debug_size_before: string[] = [];
 public debug_size_after: string[] = [];
 selectedFileNames: string[] = [];
 
-constructor (private companyprofileservice: CompanyProfileService,private _service: ApiService,private _vcr:ViewContainerRef, private route: Router, private fb: FormBuilder,private spinner: NgxSpinnerService, private toastr: ToastsManager) { 
+constructor (private companyprofileservice: CompanyProfileService,private _service: ApiService,private _vcr:ViewContainerRef, private route: Router, private fb: FormBuilder,private spinner: NgxSpinnerService, private toastr: ToastsManager,  private alertService: AlertService) { 
   this.customer = JSON.parse(sessionStorage.getItem('userData'));
   this.customerId = this.customer.CustomerId;
   this.userId = this.customer.UserId;
@@ -147,9 +149,9 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     if (exp === 'pdf' || exp === 'PDF' ) {
       if (fileSelected.size > 2048576) {
         // Swal('Too Big Size.. File Not Allowed');
-        this.toastr.warning('Too Big Size.. File size greater than 2MB Not Allowed!', 'Oops!');
+        this.alertService.error('Too Big Size.. File size greater than 2MB Not Allowed!');
         setTimeout(() => {
-          this.toastr.dismissToast;
+          this.alertService.clear();
         }, 3000);
       }
       if (this.fileUploadForm.value !== '') {
@@ -173,9 +175,9 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     }
     else 
     {
-      this.toastr.warning('Please upload the files with extension doc, pdf', 'Oops!');
+      this.alertService.error('Please upload the files with extension doc, pdf');
       setTimeout(() => {
-        this.toastr.dismissToast;
+        this.alertService.clear();
       }, 3000);    
   }
 
