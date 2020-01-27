@@ -29,6 +29,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   details: mappingdetails;
   list: any;
   noTest: boolean = false;
+  isPublicAvailable: boolean = false;
   otherSkills: any = [];
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -129,11 +130,12 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetUserProfileInfo();
     this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.data.ProfileId).subscribe(
       data => {
-        this.noTest = data;
+        var apiData = data;
+        this.noTest = apiData.profileStatus;
+        this.isPublicAvailable = apiData.isPublicAvailable;
         if (this.noTest) {
           this.GetCandidatePersonalityResult();
         }
-        console.log("asdasdasdas",this.noTest);
       });
     
   }
