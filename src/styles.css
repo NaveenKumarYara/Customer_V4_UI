@@ -12975,6 +12975,12 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 1.5rem;
     padding: 0 10px;
 }
+.page--job-details .selected-job.card .mr-top {
+margin-top: 0px;
+}
+.page--job-details .selected-job .flex a{
+    cursor: pointer;
+}
 
 .page--job-details .selected-job.card header {
     -webkit-box-orient: horizontal;
