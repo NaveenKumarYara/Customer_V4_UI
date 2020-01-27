@@ -19,7 +19,7 @@
             </div>
             <div class="navbar-collapse navbar-left page-nav collapse" id="navbar2">
               <ul class="nav navbar-nav">
-                  <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}" (click)="changetheactive(0)">
+                  <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}">
                       <a routerLink="/app-dashboardview">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
                           <g id="nav-icon">
@@ -30,7 +30,7 @@
                         <span>Dashboard</span>
                       </a>
                     </li>
-                <li  role="presentation" routerLinkActive="active" (click)="changetheactive(0)">
+                <li  role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)" [ngClass]="{'active': postactive === true}">
                   <a routerLink="/app-postajob" [ngClass]="{'pointer-events-none': active === true}">
                     <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                       <g id="post-icon">
@@ -45,7 +45,7 @@
                   </a>
                 </li>
              
-                <li role="presentation" routerLinkActive="active" (click)="changetheactive(0)">
+                <li role="presentation" routerLinkActive="active">
                   <a routerLink="/app-companyprofile" [ngClass]="{'pointer-events-none': active === true}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                       <g id="briefcase-icon">

@@ -16,6 +16,7 @@ export class LogoHeaderComponent implements OnInit {
   bill:billEstimates; 
   active:boolean=false;
   jobsactive:boolean=false;
+  postactive:boolean=false;
   addPricing = new payment();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
@@ -83,11 +84,12 @@ GetSubscriptionDetails(sid)
     {   
       this.jobsactive = true;
     }
-    else
-    {
-      this.jobsactive = false;    
+    if(res == 2)
+    {   
+      this.postactive = true;
     }
     localStorage.removeItem('jobactive');
+    localStorage.removeItem('activepostjob');
   }
 
 
@@ -107,11 +109,10 @@ ngOnInit()
     {
       this.changetheactive(1);
     }
-    else
+    if(localStorage.getItem('activepostjob')!=null&&localStorage.getItem('activepostjob')!=undefined)
     {
-      this.changetheactive(0);
+      this.changetheactive(2);
     }
-
     this.GetCustomerSubscription();
     this.active=false;
     //this.jobsactive=false;
