@@ -15,6 +15,7 @@ export class LogoHeaderComponent implements OnInit {
   companyLogo:any;
   bill:billEstimates; 
   active:boolean=false;
+  jobsactive:boolean=false;
   addPricing = new payment();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
@@ -76,6 +77,19 @@ GetSubscriptionDetails(sid)
    });
   }
 
+  changetheactive(res)
+  {
+    if(res == 1)
+    {   
+      this.jobsactive = true;
+    }
+    else
+    {
+      this.jobsactive = false;    
+    }
+    localStorage.removeItem('jobactive');
+  }
+
 
 
   
@@ -89,8 +103,18 @@ GetSubscriptionDetails(sid)
 
 ngOnInit()
 {
+    if(localStorage.getItem('jobactive')!=null&&localStorage.getItem('jobactive')!=undefined)
+    {
+      this.changetheactive(1);
+    }
+    else
+    {
+      this.changetheactive(0);
+    }
+
     this.GetCustomerSubscription();
     this.active=false;
+    //this.jobsactive=false;
 }
 }
 
