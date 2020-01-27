@@ -122,6 +122,7 @@ export class LoadJoblistComponent implements OnInit {
     this.clientId = clientId;
     this.departmentId = departmentId;
     this.cityId = cityId;
+    debugger
     return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,clientId,departmentId,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
@@ -132,7 +133,7 @@ export class LoadJoblistComponent implements OnInit {
       this.cityId = 0;
       this.clientId = 0;
       this.departmentId = 0;
-      this.viewBy=0;
+      //this.viewBy=0;
       //this.defaultValue = 0;
       //this.clearAll();
     }); 
