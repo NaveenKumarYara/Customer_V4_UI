@@ -56,6 +56,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   @Output() myEvent = new EventEmitter();
   @Output() loadMoreEvent = new EventEmitter();
   @Input() jobStatus: string;
+  debugger
   @Input() options: object;
   @Input() parentApi: ParentComponentApi;
   $owlElement: any;
@@ -330,6 +331,7 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
       .subscribe(res => {
         this.jobdetailsprofiles = res;
         this.profiles = res;
+        debugger
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
         // if (this.jobdetailsprofiles.Profile.length > 0) {

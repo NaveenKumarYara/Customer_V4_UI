@@ -865,7 +865,7 @@
                                     d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
                             </svg>
                         </a>
-                        <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='Closed'">
+                        <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='Closed' &&  jobStatus!='InActive'">
                             <!-- applied -->
                             <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
                             <div
