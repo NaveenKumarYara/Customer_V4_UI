@@ -10,7 +10,8 @@ declare var $: any;
 declare var require: any;
 @Component({
   selector: 'app-achievements',
-  templateUrl: './achieve.component.html'
+  templateUrl: './achieve.component.html',
+  providers: [ApiService, AlertService]
 })
 export class AchievementsComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
@@ -99,10 +100,10 @@ export class AchievementsComponent implements OnInit {
     uploadPhoto() {
       if(this.name == undefined || this.name == "")
       {
-        this.toastr.error('Please provide the valid details!', 'Oops!');
-                  setTimeout(() => {
-                      this.toastr.dismissToast;
-                  }, 3000);
+        this.alertService.error('Please provide the valid details!');
+        setTimeout(() => {
+          this.alertService.clear();
+      }, 3000);
       }
       else if(this.name != undefined || this.name != "")
       {
@@ -125,6 +126,10 @@ export class AchievementsComponent implements OnInit {
           this.saveImage.reset();
           this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
           this.saveImage.patchValue({ 'AwardedYear': 2019 });
+          this.alertService.success('uploaded successfully');
+          setTimeout(() => {
+            this.alertService.clear();
+        }, 3000);
           this.populateCompanyAchivements();
         });
       }
@@ -160,11 +165,10 @@ export class AchievementsComponent implements OnInit {
         if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
           if (file.size > 2048576) {
             //this.alertService.error('Too Big Size.. File Not Allowed');
-            this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
+            this.alertService.error('Too Big Size.. File Not Allowed if file contains more than 2mb!');
             setTimeout(() => {
-                this.toastr.dismissToast;
-                this.imageSrc = '';
-            }, 3000);
+              this.alertService.clear();
+          }, 3000);
           } else {
             
             reader.readAsDataURL(file);
@@ -175,11 +179,10 @@ export class AchievementsComponent implements OnInit {
           }
         } else {
           //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-          this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
+          this.alertService.error('Please upload the files with extension jpg, png or jpeg!');
           setTimeout(() => {
-              this.toastr.dismissToast;
-              this.imageSrc = '';
-          }, 3000);
+            this.alertService.clear();
+        }, 3000);
         }
     
       }

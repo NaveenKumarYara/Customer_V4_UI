@@ -12,7 +12,8 @@ import {  GetCompanyCulture } from '../../../../models/GetCompanyCulture';
 @Component({
   selector: 'app-culture',
   templateUrl: './culture.component.html',
-  styleUrls: ['./culture.component.css']
+  styleUrls: ['./culture.component.css'],
+  providers: [ApiService, AlertService]
 })
 export class CultureComponent implements OnInit {
 
@@ -97,9 +98,9 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
   uploadPhoto() {
     if(this.name == undefined || this.name == "")
     {
-      this.toastr.error('Please provide the valid details!', 'Oops!');
+      this.alertService.error('Please provide the valid details!');
                 setTimeout(() => {
-                    this.toastr.dismissToast;
+                  this.alertService.clear();
                 }, 3000);
     }
     else if(this.name != undefined || this.name != "")
