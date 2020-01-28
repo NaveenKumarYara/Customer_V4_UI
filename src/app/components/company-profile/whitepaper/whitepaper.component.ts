@@ -175,7 +175,7 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
     }
     else 
     {
-      this.alertService.error('Please upload the files with extension doc, pdf');
+      this.alertService.error('Please upload the files with extension pdf');
       setTimeout(() => {
         this.alertService.clear();
       }, 3000);    

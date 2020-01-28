@@ -62,7 +62,7 @@
                     </svg>
                     <span>Company Cultural Test</span>
                   </h1>
-                  <a class="add-btn" (click)="isChecked()" data-toggle="modal" data-target="#personality-test"
+                  <a *ngIf="CulturalTestStatus == 0" class="add-btn" (click)="isChecked()" data-toggle="modal" data-target="#personality-test"
                     href="#WhitePaperModel">
                     <span class="add add--green rounded">+</span>
                     <span>Start Test</span>
