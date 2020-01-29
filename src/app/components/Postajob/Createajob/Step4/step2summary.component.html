@@ -22,7 +22,7 @@
           <li *ngFor="let primaryjobskill of primarySkills">
             <ng-container *ngIf="primarySkills.length>0">
               <span class="name" >{{primaryjobskill.SkillName}}</span>
-              <span class="experience">{{(primaryjobskill.MinimumExp | number:'1.0-1')}} - {{(primaryjobskill.MaximumExp | number:'1.0-1')}} Yrs</span>
+              <span class="experience">{{(primaryjobskill.MinimumExp | number:'1.0-1' | skillmonths )}} - {{(primaryjobskill.MaximumExp | number:'1.0-1' | skillmonths )}} Yrs</span>
             </ng-container>
           </li>
 
@@ -38,7 +38,7 @@
           <li *ngFor="let secondarySkill of secondarySkills">
             <ng-container *ngIf="secondarySkills.length>0">
               <span class="name">{{secondarySkill.SkillName}}</span>
-            <span class="experience">{{(secondarySkill.MinimumExp | number:'1.0-1')}} - {{(secondarySkill.MaximumExp | number:'1.0-1')}} Yrs</span>
+            <span class="experience">{{(secondarySkill.MinimumExp | number:'1.0-1'  | skillmonths )}} - {{(secondarySkill.MaximumExp | number:'1.0-1' |  skillmonths )}} Yrs</span>
             </ng-container>
           </li>
           <ng-container *ngIf="secondarySkills.length==0" >
