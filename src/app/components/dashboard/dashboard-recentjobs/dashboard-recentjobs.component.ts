@@ -3,6 +3,7 @@ import { RecentJobs } from '../../../../models/recentjobs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
+declare var $: any;
 @Component({
   selector: 'app-dashboard-recentjobs',
   templateUrl: './dashboard-recentjobs.component.html',
@@ -55,6 +56,9 @@ export class DashboardRecentjobsComponent implements OnInit {
     sessionStorage.setItem('userId', JSON.stringify(userId));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     sessionStorage.setItem('statusid', JSON.stringify(statusId));
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
     this.router.navigateByUrl('app-view-jobdetails');
   }
   populateRecentJoblist(customerId, userId, count: number) {

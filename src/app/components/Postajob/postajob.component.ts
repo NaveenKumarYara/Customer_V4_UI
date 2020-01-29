@@ -9,6 +9,7 @@ import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
+declare var $: any;
 @Component({
   selector: 'app-postajob',
   templateUrl: './postajob.component.html',
@@ -120,6 +121,9 @@ export class PostajobComponent implements OnInit {
   // });
 }
 createJob() {
+  $("#activepostjob").addClass('active');
+  let activepostjob= true;
+  localStorage.setItem('activepostjob', JSON.stringify(activepostjob));
   this.router.navigateByUrl('/app-createajob');
   // this.location.go('/app-createajob');
   // this.reload();
@@ -127,10 +131,16 @@ createJob() {
 
 editTemplate()
 {
+  $("#activepostjob").addClass('active');
+  let activepostjob= true;
+  localStorage.setItem('activepostjob', JSON.stringify(activepostjob));
   this.router.navigateByUrl('/app-jobtemplate'); 
 }
 
 editDraft() {
+  $("#activepostjob").addClass('active');
+  let activepostjob= true;
+  localStorage.setItem('activepostjob', JSON.stringify(activepostjob));
   this.router.navigateByUrl('/app-editdraft');
 }
 public reload(): any {

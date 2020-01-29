@@ -156,7 +156,10 @@ uploadPhoto() {
     $('#headerProfilePic').attr('src', data[0]);
     this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
     this.iseditProfile = false;
-    this.alertService.success('Photo upload successful');
+    this.alertService.success('Photo uploaded successfully');
+    setTimeout(() => {
+      this.alertService.clear();
+  }, 3000);
     this.populateCompanyProfile(this.customerId);
     this.GetCompanyLogo();
 
@@ -183,6 +186,9 @@ onFileChange(event) {
       }
     } else {
       this.alertService.error('Please upload the files with extension jpg, png or jpeg');
+      setTimeout(() => {
+        this.alertService.clear();
+    }, 3000);
     }
 
   }
@@ -192,7 +198,10 @@ onFileChange(event) {
   saveProfile() {
     this.locations = $('#searchZipCode').val();
     if (this.locations.length <= 7) {
-      alert('please select from Google Location');
+      this.alertService.error('please select from Google Location');
+      setTimeout(() => {
+        this.alertService.clear();
+    }, 3000);
     } else {
       this.iseditProfile = true;
       this.locations = $('#searchZipCode').val();
@@ -238,13 +247,16 @@ onFileChange(event) {
         const ext = x[1].toLowerCase();
         if (ext === 'mp4' || ext === 'webm' || ext === 'flv') {
           if (file.size > 5048576) {
-            alert('Too Big Size.. File Not Allowed');
+            this.alertService.error('Too Big Size.. File Not Allowed');
           } else {
             this.currentVideoUpload = file;
             this.uploadVideo(this.currentVideoUpload);
           }
         } else {
-          alert('Please upload the files with extension webm,flv,mp4');
+          this.alertService.error('Please upload the files with extension webm,flv,mp4');
+          setTimeout(() => {
+            this.alertService.clear();
+        }, 3000);
         }
 
       }
@@ -262,7 +274,10 @@ onFileChange(event) {
       _formData.append('Model', request);
       this._service.byteStorage(_formData, 'IdentityAPI/api/SaveProfileVideo').subscribe(data => {
         $('#btn-upload-videofile').prop('disabled', false);
-        alert('video upload successful');
+        this.alertService.success('video upload successful');
+        setTimeout(() => {
+          this.alertService.clear();
+      }, 3000);
         this.GetVideo();
       });
     }

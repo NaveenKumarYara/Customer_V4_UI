@@ -30,7 +30,7 @@
                         <span>Dashboard</span>
                       </a>
                     </li>
-                <li  role="presentation" routerLinkActive="active">
+                <li  role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)" [ngClass]="{'active': postactive === true}">
                   <a routerLink="/app-postajob" [ngClass]="{'pointer-events-none': active === true}">
                     <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                       <g id="post-icon">
@@ -57,8 +57,8 @@
                     <span>Company Profile</span>
                   </a>
                 </li>
-                <li role="presentation" routerLinkActive="active">
-                  <a routerLink="/app-manage-jobs" [ngClass]="{'pointer-events-none': active === true}" >
+                <li role="presentation" routerLinkActive="active" id="activeMyjob"   [ngClass]="{'active': jobsactive === true}" (click)="changetheactive(1)" > 
+                  <a routerLink="/app-manage-jobs" [ngClass]="{'pointer-events-none': active === true}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                       <g id="briefcase-icon">
                         <path d="M19.8 16.3H2.2A1.155 1.155 0 0 1 1 15.1V2.2A1.155 1.155 0 0 1 2.2 1h17.6A1.155 1.155 0 0 1 21 2.2v12.9a1.155 1.155 0 0 1-1.2 1.2z" />

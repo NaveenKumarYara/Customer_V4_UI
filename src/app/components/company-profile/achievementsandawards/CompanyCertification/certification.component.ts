@@ -10,7 +10,9 @@ declare var $: any;
 declare var require: any;
 @Component({
   selector: 'app-certification',
-  templateUrl: './certification.component.html'
+  templateUrl: './certification.component.html',
+  providers: [ApiService, AlertService]
+
 })
 export class CertificationComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
@@ -110,12 +112,12 @@ export class CertificationComponent implements OnInit {
         const ext = x[1];
         if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
           if (file.size > 2048576) {
-            //this.alertService.error('Too Big Size.. File Not Allowed');
-            this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
+            this.alertService.error('Too Big Size.. File Not Allowed');
+            //this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
             setTimeout(() => {
-                this.toastr.dismissToast;
-                this.CimageSrc = '';
-            }, 3000);
+              this.alertService.clear();
+              this.CimageSrc = '';
+          }, 3000);
           } else {
             
             reader.readAsDataURL(file);
@@ -125,12 +127,12 @@ export class CertificationComponent implements OnInit {
           }
           }
         } else {
-          //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-          this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
+          this.alertService.error('Please upload the files with extension jpg, png or jpeg');
+          //this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
           setTimeout(() => {
-              this.toastr.dismissToast;
-              this.CimageSrc = '';
-          }, 3000);
+            this.alertService.clear();
+            this.CimageSrc = '';
+        }, 3000);
         }
     
       }
@@ -140,10 +142,10 @@ export class CertificationComponent implements OnInit {
     uploadCertification() {
       if(this.Cname == undefined || this.Cname =="")
       {
-        this.toastr.error('Please provide the valid details!', 'Oops!');
-                  setTimeout(() => {
-                      this.toastr.dismissToast;
-                  }, 3000);
+        this.alertService.error('Please provide the valid details!');
+        setTimeout(() => {
+          this.alertService.clear();
+      }, 3000);
       }
       else if(this.Cname != undefined || this.Cname != "")
       {
@@ -165,6 +167,10 @@ export class CertificationComponent implements OnInit {
         this.Cdescription = '';
         this.CimageSrc ='';
         this.CImageUpload == undefined;
+        this.alertService.success('Certification uploaded successfully');
+        setTimeout(() => {
+          this.alertService.clear();
+      }, 3000);
         this.populateCompanyCertifications();
       });
         }
@@ -184,6 +190,10 @@ export class CertificationComponent implements OnInit {
               this.CImage.patchValue({ 'CompanyCertificationId': 0 });
               this.CImage.patchValue({ 'StartDate': '' });
               this.CImage.patchValue({ 'ExpiryDate': '' });
+              this.alertService.success('Certification updated successfully');
+              setTimeout(() => {
+                this.alertService.clear();
+            }, 3000);
               this.populateCompanyCertifications();
             });
           }

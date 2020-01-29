@@ -275,7 +275,7 @@ export class ViewJobdetailsComponent implements OnInit {
   if (this.jobstatistics.Screening > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Screening,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
-    this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
+    this.loadMore =  this.jobstatistics.Screening > 6 ? true : false;
   } else {
    this.loadMore = false;
    this.child.NoRecords();

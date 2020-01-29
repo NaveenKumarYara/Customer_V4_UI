@@ -1237,3 +1237,23 @@ h1.title img {
     font-size:12px;
 
 }
+.skills-carousel-Changed {
+    padding: 18px 15px 0;
+}
+.skills-carousel-Changed a.right-arrow{
+    position: absolute;
+    right: 0px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #9396a0;
+    bottom: 7rem;
+}
+.skills-carousel-Changed a.left-arrow{
+    position: absolute;
+    left: -8px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999;
+    color: #9396a0;
+    bottom: 7rem;
+}

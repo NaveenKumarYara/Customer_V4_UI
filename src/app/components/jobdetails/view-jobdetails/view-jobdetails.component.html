@@ -8,32 +8,47 @@
                         <div class="flex va">
                             <a (click)="backClicked()">
                                 <svg fill="#448AFA" xmlns="http://www.w3.org/2000/svg" width="21.1" height="16.7">
-                    <path class="st0" d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
-                    <path class="st0" d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
-                  </svg>
+                                    <path class="st0"
+                                        d="M8.4 16.7a.9.9 0 0 1-.7-.3L.3 9.1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7L7.7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L2.4 8.4 9.1 15c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z" />
+                                    <path class="st0"
+                                        d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
+                                </svg>
                             </a>
-                            <h3 class="title mr-top" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">{{jobdetailsbasicinfo?.JobTitle}}</h3>
+                            <h3 class="title mr-top"
+                                (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">
+                                {{jobdetailsbasicinfo?.JobTitle}}</h3>
                             <div class="status {{jobdetailsbasicinfo?.JobStatus}}">
                                 {{jobdetailsbasicinfo?.JobStatus}}
                             </div>
                         </div>
                         <div class="meta h-19">
-                            <svg *ngIf="jobdetailsbasicinfo?.ClientName  != null || jobdetailsbasicinfo?.Departments  != null" fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" viewBox="0 -31 512 512" width="16" height="19.3"><g><path d="m497.09375 60.003906c-.03125 0-.0625-.003906-.09375-.003906h-136v-15c0-24.8125-20.1875-45-45-45h-120c-24.8125 0-45 20.1875-45 45v15h-136c-8.351562 0-15 6.84375-15 15v330c0 24.8125 20.1875 45 45 45h422c24.8125 0 45-20.1875 45-45v-329.683594c0-.019531 0-.039062 0-.058594-.574219-9.851562-6.632812-15.199218-14.90625-15.253906zm-316.09375-15.003906c0-8.269531 6.730469-15 15-15h120c8.269531 0 15 6.730469 15 15v15h-150zm295.1875 45-46.582031 139.742188c-2.042969 6.136718-7.761719 10.257812-14.226563 10.257812h-84.378906v-15c0-8.285156-6.714844-15-15-15h-120c-8.285156 0-15 6.714844-15 15v15h-84.378906c-6.464844 0-12.183594-4.121094-14.226563-10.257812l-46.582031-139.742188zm-175.1875 150v30h-90v-30zm181 165c0 8.269531-6.730469 15-15 15h-422c-8.269531 0-15-6.730469-15-15v-237.566406l23.933594 71.796875c6.132812 18.40625 23.289062 30.769531 42.6875 30.769531h84.378906v15c0 8.285156 6.714844 15 15 15h120c8.285156 0 15-6.714844 15-15v-15h84.378906c19.398438 0 36.554688-12.363281 42.6875-30.769531l23.933594-71.796875zm0 0" data-original="#000000" class="active-path" data-old_color="#93a2bb" fill="#93a2bb"/></g> </svg>
+                            <svg *ngIf="jobdetailsbasicinfo?.ClientName  != null || jobdetailsbasicinfo?.Departments  != null"
+                                fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" viewBox="0 -31 512 512" width="16"
+                                height="19.3">
+                                <g>
+                                    <path
+                                        d="m497.09375 60.003906c-.03125 0-.0625-.003906-.09375-.003906h-136v-15c0-24.8125-20.1875-45-45-45h-120c-24.8125 0-45 20.1875-45 45v15h-136c-8.351562 0-15 6.84375-15 15v330c0 24.8125 20.1875 45 45 45h422c24.8125 0 45-20.1875 45-45v-329.683594c0-.019531 0-.039062 0-.058594-.574219-9.851562-6.632812-15.199218-14.90625-15.253906zm-316.09375-15.003906c0-8.269531 6.730469-15 15-15h120c8.269531 0 15 6.730469 15 15v15h-150zm295.1875 45-46.582031 139.742188c-2.042969 6.136718-7.761719 10.257812-14.226563 10.257812h-84.378906v-15c0-8.285156-6.714844-15-15-15h-120c-8.285156 0-15 6.714844-15 15v15h-84.378906c-6.464844 0-12.183594-4.121094-14.226563-10.257812l-46.582031-139.742188zm-175.1875 150v30h-90v-30zm181 165c0 8.269531-6.730469 15-15 15h-422c-8.269531 0-15-6.730469-15-15v-237.566406l23.933594 71.796875c6.132812 18.40625 23.289062 30.769531 42.6875 30.769531h84.378906v15c0 8.285156 6.714844 15 15 15h120c8.285156 0 15-6.714844 15-15v-15h84.378906c19.398438 0 36.554688-12.363281 42.6875-30.769531l23.933594-71.796875zm0 0"
+                                        data-original="#000000" class="active-path" data-old_color="#93a2bb"
+                                        fill="#93a2bb" />
+                                </g>
+                            </svg>
 
-                <h5 class="client">
-                    {{jobdetailsbasicinfo?.ClientName  != null ? jobdetailsbasicinfo?.ClientName : ''}}
-                </h5>
-                <h5 class="ml-1">
-                        {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}
-                </h5>
+                            <h5 class="client">
+                                {{jobdetailsbasicinfo?.ClientName  != null ? jobdetailsbasicinfo?.ClientName : ''}}
+                            </h5>
+                            <h5 class="ml-1" [ngClass]="{'jobdepartments': jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}" title=" {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}">
+                                {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}
+                            </h5>
                             <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
-                                <path class="st0" d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
-                                <path class="st0" d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
-                              </svg>
-                                          <h5 class="location">
-                                              {{joblocation}}
-                                          </h5>
-                                          <h5>Posted on: {{ jobdetailsbasicinfo?.PostedOn }}</h5>
+                                <path class="st0"
+                                    d="M8 19.3l-.6-.4c-.3-.2-7.5-5-7.5-10.9 0-4.4 3.6-8 8-8s8 3.6 8 8c0 5.9-7.1 10.7-7.4 10.9l-.5.4zM8 2C4.7 2 2 4.7 2 8c0 4 4.4 7.7 6 8.9 1.6-1.2 6-4.9 6-8.9 0-3.3-2.7-6-6-6z" />
+                                <path class="st0"
+                                    d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
+                            </svg>
+                            <h5 class="location">
+                                {{joblocation}}
+                            </h5>
+                            <h5>Posted on: {{ jobdetailsbasicinfo?.PostedOn }}</h5>
                         </div>
                     </div>
                     <div class="right">
@@ -58,11 +73,14 @@
                 </header>
                 <div class="card-body mob-btn">
                     <div class="sm-d-inline">
-                            <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'"> 
-                        <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border" id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Make Inactive</button>
-                            </ng-container>
+                        <ng-container *ngIf="jobdetailsbasicinfo?.JobStatus != 'Closed'">
+                            <button *ngIf="jobdetailsbasicinfo?.IsActive;else isactive" class="btn btn-border"
+                                id="Inactive" (click)="changeJobStatus(jobdetailsbasicinfo,false)">Make
+                                Inactive</button>
+                        </ng-container>
                         <ng-template #isactive>
-                            <button id="Active" class="btn btn-border" (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make Active</button>
+                            <button id="Active" class="btn btn-border"
+                                (click)="changeJobStatus(jobdetailsbasicinfo,true)">Make Active</button>
                         </ng-template>
                         <!-- <ng-container *ngIf="jobdetailsbasicinfo?.IsActive; else isnotActive">
                             <button class="btn btn-border" (click)="openCandidateUploadDialog()" *ngIf="displayQuick!=1">Manage Profiles</button>
@@ -71,9 +89,11 @@
                             <button class="btn btn-border" (click)="openCandidate()" *ngIf="displayQuick!=1">Manage Profiles</button>
                         </ng-template> -->
                     </div>
-                    <div  class="sm-d-inline sm-f-r">
+                    <div class="sm-d-inline sm-f-r">
                         <!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
-                        <button class="btn btn-filled" mat-button (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">View Job Detail</button>
+                        <button class="btn btn-filled" mat-button
+                            (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">View
+                            Job Detail</button>
                     </div>
 
                 </div>
@@ -149,7 +169,8 @@
                 </div>
                 <!-- .selected .job-card -->
             </div>
-            <app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob" [displayQuick]="displayQuick" [Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
+            <app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob"
+                [displayQuick]="displayQuick" [Count]="Count" [parentApi]="getParentApi()"></app-filter-view-jobs>
             <div *ngIf="showDetailadvancesearch">
                 <app-jobdetails-advance-search [parentApi]="getParentApi()"></app-jobdetails-advance-search>
             </div>
@@ -158,12 +179,15 @@
             <div>
                 <div class="tab-content">
                     <div id="applied" class="tab-pane fade in active">
-                        <app-viewjobdetails-candidate-profile [jobid]="jobid" [statusid]="statusid" [jobStatus]="jobStatus" (myEvent)="updateStatistics($event)" [parentApi]="getParentApi()">
+                        <app-viewjobdetails-candidate-profile [jobid]="jobid" [statusid]="statusid"
+                            [jobStatus]="jobStatus" (myEvent)="updateStatistics($event)" [parentApi]="getParentApi()">
                         </app-viewjobdetails-candidate-profile>
-                        <mat-progress-spinner *ngIf="profileLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
+                        <mat-progress-spinner *ngIf="profileLoader===true" style="margin:0 auto;" class=""
+                            [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
                         </mat-progress-spinner>
                         <div class="col-md-12" *ngIf="loadMore" id="LoadMore">
-                            <div class="load-more btn btn-border btn-block" (click)="updateProfileCount(jobid,statusid)">
+                            <div class="load-more btn btn-border btn-block"
+                                (click)="updateProfileCount(jobid,statusid)">
                                 Load More
                             </div>
                         </div>

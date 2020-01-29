@@ -41,7 +41,7 @@
         <h3>IT Consulting</h3>
         <div class="social-media">
           <ng-container *ngIf="companyprofile?.TwitterURL!=null && companyprofile?.TwitterURL!=''">
-            <a [attr.href]="'//' + companyprofile?.TwitterURL" target="_blank">
+            <a [attr.href]="companyprofile?.TwitterURL" target="_blank">
               <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
             </a>
           </ng-container>
@@ -51,7 +51,7 @@
             </a>              
           </ng-container>
           <ng-container *ngIf="companyprofile?.LinkedInURL!=null && companyprofile?.LinkedInURL!=''">
-            <a [attr.href]="'//' + companyprofile?.LinkedInURL" target="_blank">
+            <a [attr.href]="companyprofile?.LinkedInURL" target="_blank">
               <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
             </a>
           </ng-container>
@@ -61,7 +61,7 @@
             </a>
           </ng-container>
          <ng-container *ngIf="companyprofile?.FacebookURL!=null && companyprofile?.FacebookURL!=''" >
-          <a [attr.href]="'//' + companyprofile?.FacebookURL" target="_blank">
+          <a [attr.href]="companyprofile?.FacebookURL" target="_blank">
             <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
           </a>
          </ng-container>

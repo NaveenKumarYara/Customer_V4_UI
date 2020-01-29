@@ -10,7 +10,8 @@ declare var $: any;
 declare var require: any;
 @Component({
   selector: 'app-news',
-  templateUrl: './news.component.html'
+  templateUrl: './news.component.html',
+  providers: [ApiService, AlertService]
 })
 export class NewsComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
@@ -99,7 +100,6 @@ export class NewsComponent implements OnInit {
     }
 
     onFileChange(event) {
-      //this.alertService.clear();
       const reader = new FileReader();
       if (event.target.files && event.target.files.length > 0) {
         const file = event.target.files[0];
@@ -108,10 +108,10 @@ export class NewsComponent implements OnInit {
         const ext = x[1];
         if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
           if (file.size > 2048576) {
-            //this.alertService.error('Too Big Size.. File Not Allowed');
-            this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
+            this.alertService.error('Too Big Size.. File Not Allowed');
+            //this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
             setTimeout(() => {
-                this.toastr.dismissToast;
+              this.alertService.clear();
                 this.imageSrc = '';
             }, 3000);
           } else {
@@ -123,10 +123,10 @@ export class NewsComponent implements OnInit {
           }
           }
         } else {
-          //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-          this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
+          this.alertService.error('Please upload the files with extension jpg, png or jpeg');
+          //this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
           setTimeout(() => {
-              this.toastr.dismissToast;
+            this.alertService.clear();
               this.imageSrc = '';
           }, 3000);
         }
@@ -138,9 +138,9 @@ export class NewsComponent implements OnInit {
     uploadNews() {
       if(this.name==undefined || this.name == "" )
       {
-        this.toastr.error('Please provide the valid details!', 'Oops!');
+        this.alertService.error('Please provide the valid details!');
                   setTimeout(() => {
-                      this.toastr.dismissToast;
+                    this.alertService.clear();
                   }, 3000);
       }
       else if(this.name != undefined || this.name != "")

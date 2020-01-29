@@ -73,6 +73,9 @@ export class JoblistTablelayoutComponent implements OnInit {
   }
   
   ViewJobdetails(jobId) {
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');
   }
