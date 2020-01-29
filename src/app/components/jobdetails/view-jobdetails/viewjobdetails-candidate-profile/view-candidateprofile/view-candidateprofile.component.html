@@ -144,7 +144,14 @@
                             [labels]="chartLabels" [options]="chartOptions" [legend]="true" [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
                           </canvas> -->
                       <ng-container *ngIf="!noTest">
-                      <p class="profile-note">Yet to be Performed</p>
+                        <div *ngIf="isPublicAvailable == true">
+                          <p class="profile-note">Yet to be Performed</p>
+
+                        </div>
+                        <div *ngIf="isPublicAvailable == false">
+                          <p class="profile-note">No Report </p>
+
+                        </div>
                         <!-- <canvas #testChart1 width="250" height="250" baseChart [chartType]="'doughnut'"
                           [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true"
                           [colors]="doughnutChartColors" (chartClick)="onChartClick($event)">
