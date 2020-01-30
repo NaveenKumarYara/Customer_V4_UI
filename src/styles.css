@@ -25292,3 +25292,11 @@ table .table-prl-0 td {
   }
   /*Hint text css*/
  
+ /*27-01-2019*/
+ .selected-job h5.jobdepartments, .tablelayoutview h5.jobdepartments{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 10rem;
+    word-spacing: 2px;
+}

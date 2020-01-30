@@ -552,12 +552,3 @@
 .mr-top{
     margin-top:0px;
 }
-
-/*27-01-2019*/
-.selected-job h5.jobdepartments{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 10rem;
-    word-spacing: 2px;
-}
