@@ -25300,3 +25300,6 @@ table .table-prl-0 td {
     width: 10rem;
     word-spacing: 2px;
 }
+.video-scrollbar video{
+    height: 110px;
+    }
