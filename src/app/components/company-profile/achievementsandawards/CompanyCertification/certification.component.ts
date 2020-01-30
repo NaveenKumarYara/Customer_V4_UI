@@ -167,10 +167,10 @@ export class CertificationComponent implements OnInit {
         this.Cdescription = '';
         this.CimageSrc ='';
         this.CImageUpload == undefined;
-        this.alertService.success('Certification uploaded successfully');
-        setTimeout(() => {
-          this.alertService.clear();
-      }, 3000);
+        //this.alertService.success('Certification uploaded successfully');
+       // setTimeout(() => {
+       //   this.alertService.clear();
+     // }, 3000);
         this.populateCompanyCertifications();
       });
         }
