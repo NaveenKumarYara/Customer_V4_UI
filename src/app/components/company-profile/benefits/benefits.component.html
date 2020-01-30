@@ -286,8 +286,8 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" [ngClass]="{'hidden': getcompanybenfit.length==0}">
-              <ul class="list--filled">
+            <div class="tab-inner scrollbar-inner" *ngIf="getcompanybenfit.length!=0"  >
+              <ul class="list--filled" >
                 <li class="item" *ngFor="let companybenfit of getcompanybenfit">
                   {{companybenfit?.CompanyBenefit}}
                   <div class="actions">
@@ -322,7 +322,7 @@
               </ul>
             </div>
             <!--Empty Data Placeholder-->
-            <div class="hint-text text-center" *ngIf="getcompanybenfit.length==0">
+            <div class="hint-text text-center"  *ngIf="getcompanybenfit.length==0"  >
               <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <path class="st0"
@@ -362,7 +362,7 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" [ngClass]="{'hidden': companyspecialities.length==0}">
+            <div class="tab-inner scrollbar-inner" *ngIf="companyspecialities.length!=0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let companyspeciality of companyspecialities">
                   {{companyspeciality?.CompanySpeciality}}
@@ -431,7 +431,7 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" [ngClass]="{'hidden': getcompanytechnology.length==0}" >
+            <div class="tab-inner scrollbar-inner" *ngIf="getcompanytechnology.length!=0" >
               <ul class="list--filled">
                 <li class="item" *ngFor="let companytechnology of getcompanytechnology">
                   {{companytechnology?.TechnologyName}}
@@ -481,7 +481,7 @@
                 </div>
                 <!--Empty Data Placeholder-->
           </div>
-          <div id="client" class="client tab-pane fade" >
+          <div id="client" class="client tab-pane fade"  >
             <form #form="ngForm">
               <div class="input-group">
                 <input id="cVal" type="text" class="form-control" [(ngModel)]="clientName" name="benefits"
@@ -501,7 +501,7 @@
                 </span>
               </div>
             </form>
-            <div class="tab-inner scrollbar-inner" [ngClass]="{'hidden': getCustomerClients.length==0}">
+            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerClients.length!=0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let c of getCustomerClients">
                   {{c?.ClientName}}
@@ -567,7 +567,7 @@
                 </span>
               </div>
             </form>
-            <div class="tab-inner scrollbar-inner" [ngClass]="{'hidden': getCustomerDepartments.length==0}">
+            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerDepartments.length!=0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let d of getCustomerDepartments">
                   {{d?.CustomerDepartment}}

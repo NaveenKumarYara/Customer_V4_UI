@@ -247,7 +247,7 @@
         <!--Mobile Purpose ends here-->
       </div>
     </div>
-    <div class="card-inner" *ngIf="getcompanywhitepaper">
+    <div class="card-inner">
       <div class="card-content">
         <div class="tab-content">
           <div id="whitepapers" class="tab-pane fade in active">
@@ -267,13 +267,13 @@
                 <span class="add add--green rounded">+</span>
                 <!-- <span>Add</span> -->
               </a>
-              <span *ngIf="getcompanywhitepaper.length==0">
+              <span >
                 Add Whitepapers
               </span>
             </div>
             <div class="tab-inner scrollbar-inner">
 
-              <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanywhitepaper.length==0}"> 
+              <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanywhitepaper.length!=0" > 
                 <li class="item text-center" *ngFor="let companywhitepaper of getcompanywhitepaper">
                   <div class="img-170">
                     <div class="dropdown card-dropdown">

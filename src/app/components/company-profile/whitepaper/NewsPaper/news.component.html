@@ -13,11 +13,11 @@
       <span class="add add--green rounded">+</span>
       <!-- <span>Add</span> -->
     </a>
-    <span *ngIf="getcompanynewsinfo.length==0">
+    <span>
       Add News and Events
     </span>
   </div>
-  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanynewsinfo.length==0}">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanynewsinfo.length!=0">
     <li class="item text-center" *ngFor="let companynewsinfo of getcompanynewsinfo">
       <div class="img-170">
         <div class="dropdown card-dropdown">

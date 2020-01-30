@@ -10,8 +10,8 @@
 
   </span>
 </div>
-<div class="tab-inner scrollbar-inner" *ngIf="getcompanyachivements" >
-  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanyachivements.length==0}">
+<div class="tab-inner scrollbar-inner">
+  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanyachivements.length!=0}">
     <li class="item text-center" *ngFor="let companyachivements of getcompanyachivements">
       <div class="img-170">
         <!---->
