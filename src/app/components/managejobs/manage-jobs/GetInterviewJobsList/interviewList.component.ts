@@ -50,7 +50,7 @@ export class InterviewListComponent implements OnInit {
      this.spinner.show();
      this.managejobservice.updateListCount(6);
      this.managejobservice.currentlistcount.subscribe(x => this.joblistcount = x);
-     this.populateJobInterViewlist(0,0,'');
+     this.populateJobInterViewlist(4,0,'');
   }
 
   titleCaseWord(word: string) {
@@ -59,11 +59,53 @@ export class InterviewListComponent implements OnInit {
   }
 
 
-  populateJobInterViewlist(sort=0,listsort=0,search='') { 
-    this.sort=sort;
-    this.listSort=listsort;
-    this.search=search;
-    return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,search,this.joblistcount).subscribe(res => {
+  SortTheProfile(val)
+  {
+    if(val!=null||val!=undefined)
+    {
+      this.sort =val
+      this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+    }
+    else
+    {
+      this.sort=4
+      this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+    }
+  }
+
+  OrderBy(val)
+  {
+    if(val!=null||val!=undefined)
+    {
+      this.listSort =val
+      this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+    }
+    else
+    {
+      this.listSort=0
+      this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
+    }
+  }
+
+  populateJobInterViewlist(sort=4,listsort=0,search='') { 
+    if(this.sort==undefined)
+    {
+      this.sort=4;
+    }
+    else
+    {
+      this.sort=sort;
+    }
+    if(this.listSort==undefined)
+    {
+      this.listSort=0;
+    }
+    else
+    {
+      this.listSort=listsort;
+    }
+    this.searchString=search;
+    return this.managejobservice.GetInterviewList(this.customerId,this.sort,this.listSort,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.spinner.hide();
@@ -84,7 +126,7 @@ export class InterviewListComponent implements OnInit {
     this.managejobservice.InterviewAccept(this.InterviewAcceptance)
     .subscribe(
     data => {
-    this.populateJobInterViewlist(0,1,'');
+    this.populateJobInterViewlist(4,1,'');
   })
    }
  }
@@ -92,9 +134,10 @@ export class InterviewListComponent implements OnInit {
   Search(val)
   {
    this.searchString = val;
-   this.populateJobInterViewlist(0,0,this.searchString);
+   this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);
    this.SearchList = [];
-   this.GetSearchText(null);    
+   this.GetSearchText(null);  
+
   }
 
   SearchEnter(searchval)
@@ -134,14 +177,13 @@ export class InterviewListComponent implements OnInit {
   updateListCount() {
     this.joblistcount += 6;
     this.managejobservice.updateListCount(this.joblistcount);
-    this.populateJobInterViewlist(0,0);   
+    this.populateJobInterViewlist(this.sort,this.listSort,this.searchString);   
   }
 
 
   OpenScheduleInterviewDialog(InterviewId,jobResponseId,jobid,profileId,userId,date,time) {
     // var candidateUserId = $("#candidateUserId").val();
     // var candidateId = +candidateUserId;
-    debugger
     if(profileId>0)
     {
     const scheduleIntwdialogRef = this.dialog.open(UpdateInterviewComponent,
