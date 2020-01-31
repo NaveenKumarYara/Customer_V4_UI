@@ -22,6 +22,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   secondaryjobskills: Jobskills[];
   minexperience = 3;
   maxexperience = 6;
+   maxexpval:any;
+   minexpval:any;
   expYears: any = [];
   skillType  = false;
 
@@ -86,8 +88,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       const newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
+      this.maxexpCalculation(this.maxexperience);
+      this.maxexperience= this.maxexpval;
+      this.minexpCalculation(this.minexperience);
+      this.minexperience = this.minexpval;
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
+      debugger
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
       if (check === false) {
           this.appService.addJobSkill(newskills);
@@ -107,6 +114,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       const newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
+      this.maxexpCalculation(this.maxexperience);
+      this.maxexperience= this.maxexpval;
+      this.minexpCalculation(this.minexperience);
+      this.minexperience = this.minexpval;
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
@@ -186,15 +197,60 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         }
       );
   }
+
+ maxexpCalculation(exp)
+ {
+   var m=exp.toString();
+   if(m!=null)
+   {
+     var e = m.split('.');
+     if(e.length > 1)
+     {
+      let s = (e[0] * 12) + +e[1];
+      this.maxexpval= s;
+      return s;
+     }
+     else
+     {
+       let s = e[0] * 12
+       this.maxexpval= s;
+       return s;
+     }
+   }
+ }
+
+ minexpCalculation(exp)
+ {
+   var m=exp.toString();
+   if(m!=null)
+   {
+     var e = m.split('.');
+     if(e.length > 1)
+     {
+      let s = (e[0] * 12) + +e[1];
+      this.minexpval= s;
+      return s;
+     }
+     else
+     {
+       let s = e[0] * 12
+       this.minexpval= s;
+       return s;
+     }
+      
+   
+   }
+ }
+
   minExperienceChangeStart(changeContext: ChangeContext): void {
-    this.appService.updateMinExp(this.minexperience);
+    this.appService.updateMinExp(this.minexpval);
 }
 onExperienceChange(changeContext: ChangeContext): void {
-   this.appService.updateMinExp(this.minexperience);
-   this.appService.updateMaxExp(this.maxexperience);
+   this.appService.updateMinExp(this.minexpval);
+   this.appService.updateMaxExp(this.maxexpval);
 }
 maxExperienceChangeEnd(changeContext: ChangeContext): void {
-   this.appService.updateMaxExp(this.maxexperience);
+   this.appService.updateMaxExp(this.maxexpval);
 }
   ngOnDestroy() {
     this.subscription.unsubscribe();

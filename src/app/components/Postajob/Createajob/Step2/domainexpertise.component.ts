@@ -24,6 +24,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
   getDomain = new GetDomain ();
+  domminval:any;
+  dommaxval:any;
   MinimumExperience = 3;
   MaximumExperience = 6;
   addDomainList: PjDomain[];
@@ -53,6 +55,47 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 
   }
 
+  domainminCalculation(exp)
+ {
+   var m=exp.toString();
+   if(m!=null)
+   {
+     var e = m.split('.');
+     if(e.length > 1)
+      {
+       let s = (e[0] * 12) + +e[1];
+       this.domminval= s;
+       return s;
+      }
+      else
+      {
+        let s = e[0] * 12
+        this.domminval= s;
+        return s;
+      }
+   }
+ }
+
+ domainmaxCalculation(exp)
+ {
+   var m=exp.toString();
+   if(m!=null)
+   {
+     var e = m.split('.');
+      if(e.length > 1)
+      {
+       let s = (e[0] * 12) + +e[1];
+       this.dommaxval= s;
+       return s;
+      }
+      else
+      {
+        let s = e[0] * 12
+        this.dommaxval= s;
+        return s;
+      }
+   }
+ }
   // private addDomain() {
   //   // this.appService.addDomain(this.domain);
   // }
@@ -68,6 +111,10 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     //   newDomain.MinimumExperience = this.minExperience;
     //   newDomain.DomainId = this.getDomain.DomainId;
     //   newDomain.DomainName = this.getDomain.DomainName;
+    this.domainmaxCalculation(this.MaximumExperience);
+    this.MaximumExperience= this.dommaxval;
+    this.domainminCalculation(this.MinimumExperience);
+    this.MinimumExperience = this.domminval;
     this.getDomain.MaximumExperience = this.MaximumExperience;  // parseFloat((this.MaximumExperience / 12).toFixed(1));
     this.getDomain.MinimumExperience = this.MinimumExperience; //  parseFloat((this.MinimumExperience / 12).toFixed(1)) ;
     const check = this.domainExists(this.getDomain, this.domainlist);
@@ -77,8 +124,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     // this.getDomain = new GetDomain();
     // this.selecteddomainname = '';
     this.domainForm.resetForm();
-    // this.MaximumExperience = 1;
-    // this.MinimumExperience = 1;
+    this.MaximumExperience = 6;
+    this.MinimumExperience = 3;
     this.getDomain = new GetDomain();
 }
   }
@@ -140,14 +187,14 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     );
   }
   minExperienceChangeStart(changeContext: ChangeContext): void {
-     this.appService.updateMinExp(this.MinimumExperience);
+     this.appService.updateMinExp(this.domminval);
  }
  onExperienceChange(changeContext: ChangeContext): void {
-    this.appService.updateMinExp(this.MinimumExperience);
-    this.appService.updateMaxExp(this.MaximumExperience);
+    this.appService.updateMinExp(this.domminval);
+    this.appService.updateMaxExp(this.dommaxval);
  }
  maxExperienceChangeEnd(changeContext: ChangeContext): void {
-    this.appService.updateMaxExp(this.MaximumExperience);
+    this.appService.updateMaxExp(this.dommaxval);
  }
   ngOnDestroy() {
     this.subscription.unsubscribe();

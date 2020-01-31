@@ -8,9 +8,10 @@
       <div class="pull-left">
         <form class="form-inline" action="">
           <div class="form-group view-group">
-            <select name="view" id="view" (change)="populateJobInterViewlist($event.target.value,0,'')"
+            <select name="view" id="view" (change)="SortTheProfile($event.target.value)"
               class="styled-select-box">
-              <option value="0" default>Filter By</option>
+              <option value="4" default>Current</option>  
+              <option value="0">All</option>                        
               <option value="1">Year</option>
               <option value="2">Month</option>
               <option value="3">Day</option>
@@ -42,7 +43,7 @@
           </div>
           <div class="form-group view-group">
             <select class="styled-select-box min-width-140"
-              (change)="populateJobInterViewlist(0,$event.target.value,'')">
+              (change)="OrderBy($event.target.value)">
               <option value="0" default>All Interviews</option>
               <option value="1">Recent Interviews</option>
             </select>

@@ -240,6 +240,7 @@ export class Step2Component implements OnInit {
     if (this.appService.isDrafted.value != null) {
       this.appService.updateJobDraft(this.insertJob.IsDrafted);
       }
+      debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         // this.insertJob.JobId = data;

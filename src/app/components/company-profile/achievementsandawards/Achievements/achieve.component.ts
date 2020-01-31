@@ -126,10 +126,10 @@ export class AchievementsComponent implements OnInit {
           this.saveImage.reset();
           this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
           this.saveImage.patchValue({ 'AwardedYear': 2019 });
-          this.alertService.success('uploaded successfully');
-          setTimeout(() => {
-            this.alertService.clear();
-        }, 3000);
+          //this.alertService.success('uploaded successfully');
+          //setTimeout(() => {
+          //  this.alertService.clear();
+       // }, 3000);
           this.populateCompanyAchivements();
         });
       }

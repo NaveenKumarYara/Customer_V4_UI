@@ -74,9 +74,9 @@
             <ul class="data-list">
                 <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
                     <span title="{{primaryjobskill.SkillName}}" class="name">{{ add3Dots(primaryjobskill.SkillName,25) }}</span>
-                    <span class="experience" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience"> {{(primaryjobskill.MinimumExp) | number:'1.0-1'}} - {{(primaryjobskill.MaximumExp) | number:'1.0-1'}} Yrs</span>
+                    <span class="experience" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience"> {{(primaryjobskill.MinimumExp) | number:'1.0-1' | skillmonths}} - {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
                     <ng-template #noPrimaryExperience>
-                            <span class="experience"> {{(primaryjobskill.MaximumExp) | number:'1.0-1'}} Yrs</span> 
+                            <span class="experience"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }} Yrs</span> 
                     </ng-template>
                     <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
                 </li>
@@ -89,9 +89,9 @@
                 <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
                     <!-- <span class="name">{{secondaryjobskill.SkillName}}</span> -->
                     <span title="{{secondaryjobskill.SkillName}}" class="name">{{ add3Dots(secondaryjobskill.SkillName,25) }}</span>
-                    <span class="experience"  *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience"> {{(secondaryjobskill.MinimumExp) | number:'1.0-1'}} - {{(secondaryjobskill.MaximumExp) | number:'1.0-1'}} Yrs</span>
+                    <span class="experience"  *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience"> {{(secondaryjobskill.MinimumExp) | number:'1.0-1' | skillmonths}} - {{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
                     <ng-template #noSecondaryExperience>
-                         <span class="experience">{{(secondaryjobskill.MaximumExp) | number:'1.0-1'}} Yrs</span>
+                         <span class="experience">{{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
                     </ng-template>
                     <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
                 </li>

@@ -1253,7 +1253,14 @@ h1.title img {
     left: -8px;
     font-size: 24px;
     cursor: pointer;
-    z-index: 999;
+    z-index: 99;
     color: #9396a0;
     bottom: 7rem;
 }
+.skills-carousel-Changed .no-skills h5{
+height: 25.4px;
+}
+.video-scroll  video{
+    height: 135px;
+    width: 100%;
+    }

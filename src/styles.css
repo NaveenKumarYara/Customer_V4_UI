@@ -17602,7 +17602,7 @@ margin-top: 0px;
 }
 
 .page--company-profile .card--other-info .card-inner h1.number {
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .page--company-profile .card--other-info .card-inner h1 {
@@ -25269,4 +25269,37 @@ table .table-prl-0 td {
     background-color: #bd362f;
     color: #fff;
 }
-  
+/*Hint text css*/
+.card--withTabs .hint-text, .card--culture .hint-text{
+    padding: 2rem;
+    height: 170px;
+  }
+  .card--withTabs .hint-text svg, .card--culture .hint-text svg, .card--about .hint-text svg{
+      fill: #448AFA;
+  }
+
+  .card--withTabs .hint-text h4, .card--culture .hint-text h4{
+    color: #9EABC0;
+    font-weight: 400;
+}
+  .card--location .hint-text, .card--about .hint-text{
+    padding: 3rem;
+    height: 161px;
+    }
+  .card--location .hint-text h5, .card--about .hint-text h5{
+  color: #9EABC0;
+  font-weight: 400;
+  }
+  /*Hint text css*/
+ 
+ /*27-01-2019*/
+ .selected-job h5.jobdepartments, .tablelayoutview h5.jobdepartments{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 10rem;
+    word-spacing: 2px;
+}
+.video-scrollbar video{
+    height: 110px;
+    }

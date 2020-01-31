@@ -82,7 +82,8 @@ import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
-
+import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmonth.pipe';
+ 
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -91,6 +92,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   declarations: [
     AppComponent,
     MyFilterPipe,
+    ConvertMonthPipe,
     LayoutComponent,
     AboutComponent,
     SignUpComponent,
