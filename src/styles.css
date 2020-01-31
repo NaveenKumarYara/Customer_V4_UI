@@ -25300,6 +25300,25 @@ table .table-prl-0 td {
     width: 10rem;
     word-spacing: 2px;
 }
-.video-scrollbar video{
-    height: 110px;
-    }
+
+/* #button loader css */
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    opacity: 0.5;
+    bottom: 2.2%;
+    right: 6%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: 22px;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    border-top-color: #ffffff;
+    animation: spinner .8s linear infinite;
+  }
+  /* #button loader css */
