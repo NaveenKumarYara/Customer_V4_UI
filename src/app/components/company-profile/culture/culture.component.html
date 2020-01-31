@@ -16,7 +16,7 @@
       <a href="javascript:void(0)" class="add-btn" (click)="ClearThevalues()" data-toggle="modal"
         data-target="#culture">
         <span class="add add--green rounded">+</span>
-        <span>Add Culture</span>
+        <span *ngIf="getcompanycluture.length==0" >Add Culture</span>
       </a>
     </div>
     <div class="card-inner" *ngIf="getcompanycluture.length>0">
@@ -272,7 +272,7 @@
                           <label class="title-lab">
                             Title
                           </label>
-                          <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Title" />
+                          <input type="text" class="form-control"  maxlength="20" name="name" [(ngModel)]="name" placeholder="Title" />
                         </div>
                         <div class="form-group c-form-group">
                           <label class="title-lab">

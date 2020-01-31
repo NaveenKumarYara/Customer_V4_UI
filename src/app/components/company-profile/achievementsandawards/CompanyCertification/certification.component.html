@@ -4,7 +4,7 @@
     <span class="add add--green rounded">+</span>
     <!-- <span>Add</span> -->
   </a>
-  <span >
+  <span *ngIf="getcompanycertification.length==0">
     Add Company Certifications
   </span>
 </div>
@@ -87,7 +87,7 @@
                       <label class="title-lab">
                         Title
                       </label>
-                      <input type="text" class="form-control" name="cname" [(ngModel)]="Cname" placeholder="Title" />
+                      <input type="text" class="form-control" name="cname" maxlength="20"   [(ngModel)]="Cname" placeholder="Title" />
                     </div>
                     <div class="form-group c-form-group">
                       <label class="title-lab">
