@@ -5,14 +5,14 @@
     <span class="add add--green rounded">+</span>
     <!-- <span>Add</span> -->
   </a>
-  <span *ngIf="getcompanypartner.length==0">
+  <span >
     Add Partnered Companies
   </span>
 </div>
 
-<div class="tab-inner scrollbar-inner" *ngIf="getcompanypartner" >
+<div class="tab-inner scrollbar-inner" >
 
-  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanypartner.length==0}">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanypartner.length>0">
     <li class="item text-center" *ngFor="let companypartner of getcompanypartner">
       <div class="img-170">
         <div class="dropdown card-dropdown">

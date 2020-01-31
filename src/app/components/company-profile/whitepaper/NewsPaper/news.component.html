@@ -7,7 +7,7 @@
           <input  type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
       </ng-container> 
       </button>-->
-<div class="tab-inner scrollbar-inner" *ngIf="getcompanynewsinfo">
+<div class="tab-inner scrollbar-inner" >
   <div style="text-align: end">
     <a href="javascript:void(0)" class="add-btn pr-0" data-toggle="modal" (click)="ClearThevalues()" href="#newsModel">
       <span class="add add--green rounded">+</span>
@@ -17,7 +17,7 @@
       Add News and Events
     </span>
   </div>
-  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanynewsinfo.length!=0">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanynewsinfo.length>0">
     <li class="item text-center" *ngFor="let companynewsinfo of getcompanynewsinfo">
       <div class="img-170">
         <div class="dropdown card-dropdown">
