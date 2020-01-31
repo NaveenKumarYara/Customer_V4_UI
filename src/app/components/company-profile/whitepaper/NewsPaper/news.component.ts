@@ -145,10 +145,10 @@ export class NewsComponent implements OnInit {
       }
       else if(this.name != undefined || this.name != "")
       {
-        if(this.CImageUpload!= undefined && this.CImage.value !== '')
+        if(this.CImageUpload!= undefined && this.CImage.value !== ''&& this.imageSrc!='')
         {
       let request = '';
-      const _formData: FormData = new FormData();
+      let _formData: FormData = new FormData();
         this.CImage.value.newsTitle = this.name;
         this.CImage.value.newsDescription = this.description;
         this.CImage.value.customerId = this.customerId;
@@ -162,6 +162,7 @@ export class NewsComponent implements OnInit {
         this.description = '';
         this.imageSrc ='';
         this.CImageUpload == undefined;
+        _formData = new FormData();
         this.CImage.reset();
         this.CImage.patchValue({ 'companyNewsInfoId': 0 });
         this.CImage.patchValue({ 'newsTypeId': 1 });

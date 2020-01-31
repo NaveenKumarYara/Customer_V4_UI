@@ -127,7 +127,7 @@ export class PartnerComponent implements OnInit {
           //this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
           setTimeout(() => {
             this.alertService.clear();
-              this.imageSrc = '';
+            this.imageSrc = '';
           }, 3000);
         }
     
@@ -145,11 +145,11 @@ export class PartnerComponent implements OnInit {
       }
       else if(this.Pname !=undefined || this.Pname !="")
       {
-        if(this.ImageUpload != undefined && this.Image.value !== '')
+        if(this.ImageUpload != undefined && this.Image.value !== ''&& this.imageSrc!='')
         {
 
         let request = '';
-        const _formData: FormData = new FormData();
+        let _formData: FormData = new FormData();
         this.Image.value.PartnerName = this.Pname;
         this.Image.value.Description= this.Pdescription;
         this.Image.value.CustomerId = this.customerId;
@@ -162,6 +162,7 @@ export class PartnerComponent implements OnInit {
           this.Pdescription = '';
           this.imageSrc ='';
           this.ImageUpload == undefined
+          _formData = new FormData();
           this.Image.reset();
           this.Image.patchValue({ 'CompanyPartnerId': 0 });
           this.populateCompanyPartners();

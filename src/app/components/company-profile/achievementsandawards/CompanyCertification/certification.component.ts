@@ -149,10 +149,10 @@ export class CertificationComponent implements OnInit {
       }
       else if(this.Cname != undefined || this.Cname != "")
       {
-      if(this.CImageUpload!= undefined && this.CImage.value !== '')
+      if(this.CImageUpload!= undefined && this.CImage.value !== '' && this.CimageSrc!='')
       {
       let request = '';
-      const _formData: FormData = new FormData();
+      let _formData: FormData = new FormData();
 
         this.CImage.value.CustomerId = this.customerId;
         this.CImage.value.CertificationName = this.Cname;
@@ -167,6 +167,7 @@ export class CertificationComponent implements OnInit {
         this.Cdescription = '';
         this.CimageSrc ='';
         this.CImageUpload == undefined;
+        _formData = new FormData();
         //this.alertService.success('Certification uploaded successfully');
        // setTimeout(() => {
        //   this.alertService.clear();
@@ -190,10 +191,10 @@ export class CertificationComponent implements OnInit {
               this.CImage.patchValue({ 'CompanyCertificationId': 0 });
               this.CImage.patchValue({ 'StartDate': '' });
               this.CImage.patchValue({ 'ExpiryDate': '' });
-              this.alertService.success('Certification updated successfully');
-              setTimeout(() => {
-                this.alertService.clear();
-            }, 3000);
+            //   this.alertService.success('Certification updated successfully');
+            //   setTimeout(() => {
+            //     this.alertService.clear();
+            // }, 3000);
               this.populateCompanyCertifications();
             });
           }
