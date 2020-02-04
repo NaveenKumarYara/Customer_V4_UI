@@ -1,4 +1,4 @@
-<alert class="basic-info-alert"></alert>
+
 <div style="text-align: end" *ngIf="getcompanypartner">
   <a href="javascript:void(0)" class="add-btn pr-0" data-toggle="modal" (click)="ClearThevalues()"
     href="#partnershipsModel">
@@ -10,9 +10,9 @@
   </span>
 </div>
 
-<div class="tab-inner scrollbar-inner" *ngIf="getcompanypartner" >
+<div class="tab-inner scrollbar-inner" >
 
-  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanypartner.length==0}">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanypartner.length>0">
     <li class="item text-center" *ngFor="let companypartner of getcompanypartner">
       <div class="img-170">
         <div class="dropdown card-dropdown">
@@ -78,6 +78,7 @@
               <h1 class="title">
                 <span>Partnerships</span>
               </h1>
+              <alert class="basic-info-alert"></alert>
               <div class="layout layout--btn">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
@@ -92,7 +93,7 @@
                       <label class="title-lab">
                         Title
                       </label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="Pname" placeholder="Title" />
+                      <input type="text" class="form-control" name="name" maxlength="20"   [(ngModel)]="Pname" placeholder="Title" />
                     </div>
                     <div class="form-group c-form-group">
                       <label class="title-lab">

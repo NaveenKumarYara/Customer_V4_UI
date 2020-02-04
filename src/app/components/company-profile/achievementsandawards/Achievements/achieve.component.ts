@@ -107,10 +107,10 @@ export class AchievementsComponent implements OnInit {
       }
       else if(this.name != undefined || this.name != "")
       {
-      if(this.currentImageUpload != undefined && this.saveImage.value !== '')
+      if(this.currentImageUpload != undefined && this.saveImage.value !== ''&& this.imageSrc!='')
       {
         let request = '';
-        const _formData: FormData = new FormData();
+        let _formData: FormData = new FormData();
           this.saveImage.value.AwardTitle = this.name;
           this.saveImage.value.CustomerId = this.customerId;
           this.saveImage.value.Description = this.description;
@@ -123,6 +123,7 @@ export class AchievementsComponent implements OnInit {
           this.description = '';
           this.imageSrc ='';
           this.currentImageUpload = undefined;
+          _formData= new FormData();
           this.saveImage.reset();
           this.saveImage.patchValue({ 'CompanyAchievementId': 0 });
           this.saveImage.patchValue({ 'AwardedYear': 2019 });
@@ -167,7 +168,9 @@ export class AchievementsComponent implements OnInit {
             //this.alertService.error('Too Big Size.. File Not Allowed');
             this.alertService.error('Too Big Size.. File Not Allowed if file contains more than 2mb!');
             setTimeout(() => {
-              this.alertService.clear();
+              this.imageSrc = '';
+              this.currentImageUpload = undefined;
+              this.saveImage.reset();
           }, 3000);
           } else {
             
@@ -181,7 +184,9 @@ export class AchievementsComponent implements OnInit {
           //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
           this.alertService.error('Please upload the files with extension jpg, png or jpeg!');
           setTimeout(() => {
-            this.alertService.clear();
+            this.imageSrc = '';
+            this.currentImageUpload = undefined;
+            this.saveImage.reset();
         }, 3000);
         }
     

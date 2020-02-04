@@ -267,13 +267,13 @@
                 <span class="add add--green rounded">+</span>
                 <!-- <span>Add</span> -->
               </a>
-              <span >
+              <span *ngIf="getcompanywhitepaper.length==0" >
                 Add Whitepapers
               </span>
             </div>
             <div class="tab-inner scrollbar-inner">
 
-              <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanywhitepaper.length!=0" > 
+              <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanywhitepaper.length>0" > 
                 <li class="item text-center" *ngFor="let companywhitepaper of getcompanywhitepaper">
                   <div class="img-170">
                     <div class="dropdown card-dropdown">
@@ -378,7 +378,7 @@
                       <label class="title-lab">
                         Title
                       </label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Title" />
+                      <input type="text" class="form-control" name="name" maxlength="20"   [(ngModel)]="name" placeholder="Title" />
                     </div>
                     <!-- <div class="form-group c-form-group">
                               <label class="title-lab">

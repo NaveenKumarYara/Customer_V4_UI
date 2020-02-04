@@ -1,4 +1,3 @@
-<alert class="basic-info-alert"></alert>
 <!--<button class="btn btn-border btn-block add-btn">
         <a href="javascript:void(0)"  data-toggle="modal" href="#newsModel">
         <span class="add add--green rounded">+</span>Add News & Events
@@ -7,17 +6,17 @@
           <input  type="file" #browse multiple (click)="browse.value = null" value="" (change)="getFileDetails($event)">
       </ng-container> 
       </button>-->
-<div class="tab-inner scrollbar-inner" *ngIf="getcompanynewsinfo">
+<div class="tab-inner scrollbar-inner" >
   <div style="text-align: end">
     <a href="javascript:void(0)" class="add-btn pr-0" data-toggle="modal" (click)="ClearThevalues()" href="#newsModel">
       <span class="add add--green rounded">+</span>
       <!-- <span>Add</span> -->
     </a>
-    <span>
+    <span *ngIf="getcompanynewsinfo.length==0">
       Add News and Events
     </span>
   </div>
-  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanynewsinfo.length!=0">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanynewsinfo.length>0">
     <li class="item text-center" *ngFor="let companynewsinfo of getcompanynewsinfo">
       <div class="img-170">
         <div class="dropdown card-dropdown">
@@ -81,6 +80,7 @@
               <h1 class="title">
                 <span>News Papers</span>
               </h1>
+              <alert class="basic-info-alert"></alert>
               <div class="layout layout--btn">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
@@ -95,7 +95,7 @@
                       <label class="title-lab">
                         Title
                       </label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Title" />
+                      <input type="text" class="form-control" name="name" maxlength="20" [(ngModel)]="name" placeholder="Title" />
                     </div>
                     <div class="form-group c-form-group">
                       <label class="title-lab">

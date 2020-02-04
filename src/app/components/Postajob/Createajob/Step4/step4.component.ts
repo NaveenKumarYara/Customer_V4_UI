@@ -10,8 +10,11 @@ import { StepsComponent } from '../steps.component';
   templateUrl: './step4.component.html',
   styleUrls: ['./step4.component.css']
 })
-export class Step4Component implements OnInit {
+export class Step4Component implements OnInit {z
 // step1
+//Loader Condition
+  loading = false;
+//Loader Condition
   insertJob = new InsertJob();
   jobCategory: number;
   jobMinExp: number;
@@ -144,6 +147,9 @@ export class Step4Component implements OnInit {
     this.Template = event;
  }
   postJob(step) {
+    //for loader placed the below condition
+    this.loading = true;
+    //
     // this.appService.updateStepNumber(step);
     if(this.disable == "true")
     {

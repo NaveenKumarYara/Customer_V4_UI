@@ -1,17 +1,16 @@
-<alert class="basic-info-alert"></alert>
 <div style="text-align: end" *ngIf="getcompanyachivements">
   <a href="javascript:void(0)" class="add-btn pr-0" data-toggle="modal" (click)="ClearThevalues()"
     href="#achievementsModel">
     <span class="add add--green rounded">+</span>
     <!-- <span>Add</span> -->
   </a>
-  <span *ngIf="getcompanyachivements.length==0">
+  <span *ngIf="getcompanyachivements.length==0" >
     Add Achievements and Awards
 
   </span>
 </div>
 <div class="tab-inner scrollbar-inner">
-  <ul class="achievements__list edit-delete-dropdown" [ngClass]="{'hidden': getcompanyachivements.length!=0}">
+  <ul class="achievements__list edit-delete-dropdown" *ngIf="getcompanyachivements.length>0">
     <li class="item text-center" *ngFor="let companyachivements of getcompanyachivements">
       <div class="img-170">
         <!---->
@@ -74,6 +73,7 @@
               <h1 class="title">
                 <span>Achievements</span>
               </h1>
+              <alert class="basic-info-alert"></alert>
               <div class="layout layout--btn">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
@@ -88,7 +88,7 @@
                       <label class="title-lab">
                         Title
                       </label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Title" />
+                      <input type="text" class="form-control" name="name"  maxlength="20"  [(ngModel)]="name" placeholder="Title" />
                     </div>
                     <div class="form-group c-form-group">
                       <label class="title-lab">

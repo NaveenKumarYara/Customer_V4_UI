@@ -286,7 +286,7 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" *ngIf="getcompanybenfit.length!=0"  >
+            <div class="tab-inner scrollbar-inner" *ngIf="getcompanybenfit.length>0"  >
               <ul class="list--filled" >
                 <li class="item" *ngFor="let companybenfit of getcompanybenfit">
                   {{companybenfit?.CompanyBenefit}}
@@ -362,7 +362,7 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" *ngIf="companyspecialities.length!=0">
+            <div class="tab-inner scrollbar-inner" *ngIf="companyspecialities.length>0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let companyspeciality of companyspecialities">
                   {{companyspeciality?.CompanySpeciality}}
@@ -431,7 +431,7 @@
                 </ng-template>
               </span>
             </div>
-            <div class="tab-inner scrollbar-inner" *ngIf="getcompanytechnology.length!=0" >
+            <div class="tab-inner scrollbar-inner" *ngIf="getcompanytechnology.length>0" >
               <ul class="list--filled">
                 <li class="item" *ngFor="let companytechnology of getcompanytechnology">
                   {{companytechnology?.TechnologyName}}
@@ -501,7 +501,7 @@
                 </span>
               </div>
             </form>
-            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerClients.length!=0">
+            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerClients.length>0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let c of getCustomerClients">
                   {{c?.ClientName}}
@@ -567,7 +567,7 @@
                 </span>
               </div>
             </form>
-            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerDepartments.length!=0">
+            <div class="tab-inner scrollbar-inner" *ngIf="getCustomerDepartments.length>0">
               <ul class="list--filled">
                 <li class="item" *ngFor="let d of getCustomerDepartments">
                   {{d?.CustomerDepartment}}

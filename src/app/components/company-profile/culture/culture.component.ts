@@ -105,9 +105,9 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
     }
     else if(this.name != undefined || this.name != "")
     {
-    if (this.saveImage.value !== '' && this.currentImageUpload != undefined) {
+    if (this.saveImage.value !== '' && this.currentImageUpload != undefined && this.imageSrc!='') {
       let request = '';
-      const _formData: FormData = new FormData();
+      let _formData: FormData = new FormData();
       this.saveImage.value.eventName = this.name;
       this.saveImage.value.eventDescription = this.description;
       this.saveImage.value.customerId = this.customerId;
@@ -119,7 +119,8 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
         this.name = '';
         this.description = '';
         this.imageSrc ='';
-        this.currentImageUpload == undefined;
+        _formData = new FormData();
+        this.currentImageUpload = undefined;
         this.saveImage.reset();
         this.saveImage.patchValue({ 'companyCultureId': 0 });
         this.saveImage.patchValue({ 'eventDate': '2018-09-09' });
@@ -159,9 +160,11 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
       if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
         if (file.size > 2048576) {
           //this.alertService.error('Too Big Size.. File Not Allowed');
-          this.toastr.error('Too Big Size.. File Not Allowed if file contains more than 2mb!', 'Oops!');
+          this.alertService.error('Too Big Size.. File Not Allowed if file contains more than 2mb!');
           setTimeout(() => {
-              this.toastr.dismissToast;
+            this.alertService.clear();
+              this.currentImageUpload = undefined;
+              this.saveImage.reset();
               this.imageSrc = '';
           }, 3000);
         } else {
@@ -174,10 +177,12 @@ constructor( private _vcr: ViewContainerRef, private toastr: ToastsManager,priva
         }
       } else {
         //this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-        this.toastr.error('Please upload the files with extension jpg, png or jpeg!', 'Oops!');
+        this.alertService.error('Please upload the files with extension jpg, png or jpeg!');
         setTimeout(() => {
-            this.toastr.dismissToast;
+          this.alertService.clear();
             this.imageSrc = '';
+            this.currentImageUpload = undefined;
+            this.saveImage.reset();
         }, 3000);
       }
   
