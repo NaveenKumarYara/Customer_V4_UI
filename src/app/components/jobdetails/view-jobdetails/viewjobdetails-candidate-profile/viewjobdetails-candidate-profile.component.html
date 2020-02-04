@@ -598,11 +598,11 @@
                 <div id="skills-carousel-Changed" class="skills-carousel-Changed">
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
-                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills)"> < </a>
+                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)"> < </a>
                             <div class="col-md-4"
-                                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let i = index">
+                                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
                                 <div id="i-{{profile.ProfileId}}">
-                                    <div class="item" *ngIf="currentNo ==0 && i < 3 ">
+                                    <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
                                         <div class="skill">
                                             <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                             <div>
@@ -611,7 +611,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item" *ngIf="currentNo ==1 && i < 6 && i > 2  ">
+                                    <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
                                         <div class="skill">
                                             <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                             <div>
@@ -620,7 +620,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item" *ngIf="currentNo ==2 && i < 9  && i > 5 ">
+                                    <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
                                         <div class="skill">
                                             <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                             <div>
@@ -629,7 +629,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item" *ngIf="currentNo ==3 && i > 8 ">
+                                    <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
                                         <div class="skill">
                                             <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
                                             <div>
@@ -642,7 +642,7 @@
                                 </div>
                             </div>
 
-                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills)"> > </a>
+                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> > </a>
 
                             <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove

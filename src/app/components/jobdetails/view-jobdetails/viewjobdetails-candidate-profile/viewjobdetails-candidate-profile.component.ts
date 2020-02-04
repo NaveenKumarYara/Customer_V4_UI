@@ -91,7 +91,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     nav: true
   };
   ProfileId: any;
-  currentNo: number = 0;
+  currentNo: number[] =[];
   constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     , private dialog: MatDialog) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -141,23 +141,25 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  prevSkills(data) {
-    if (this.currentNo > 0) {
+  prevSkills(data,index) {
+    console.log("current number",this.currentNo);
+    if (this.currentNo[index] > 0) {
 
 
-      this.currentNo = this.currentNo - 1;
+      this.currentNo[index] = this.currentNo[index] - 1;
     } else {
-      this.currentNo = 0;
+      this.currentNo[index] = 0;
     }
+    console.log("current number",this.currentNo);
   }
-  nextSkills(data) {
+  nextSkills(data,index) {
     var len  = data.split(",",10).length / 3; 
-    if (len -1 > this.currentNo) {
+    if (len -1 > this.currentNo[index]) {
 
 
-      this.currentNo = this.currentNo + 1;
+      this.currentNo[index] = this.currentNo[index] + 1;
     } else {
-      this.currentNo = len - 1;
+      this.currentNo[index] =Math.round(len - 1);
     }
   
 }
@@ -321,8 +323,13 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
         this.jobdetailsprofiles = res;
         // alert(this.customerId);
         // alert(this.userId);
+        this.jobdetailsprofiles.Profile.forEach((a,index)=>{
+          // var num = 0;
+          this.currentNo[index] = 0;
+          
+        });
 
-
+// console.log(this.currentNo,"Curskfbsdkvnsdkfm");
         this.spinner.hide();
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
@@ -334,6 +341,11 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
         debugger
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
+        this.jobdetailsprofiles.Profile.forEach((a,index)=>{
+          // var num = 0;
+          this.currentNo[index] = 0;
+          
+        });
         // if (this.jobdetailsprofiles.Profile.length > 0) {
         //   this.jobdetailsprofiles.Profile.forEach(a => {
         //     // this.GetMatchingPercentage(a.ProfileId, this.jobid);
