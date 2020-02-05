@@ -95,8 +95,8 @@
                     <div class="stats text-left col-md-3">
                       <div class="list-stats">
                         <div class="job-details">
-                          <h3 href="javascript:void(0)" class="medium c93A2BB" title="{{job?.JobTitle}}"
-                            (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}
+                          <h3><a href="javascript:void(0)" class="medium c93A2BB" title="{{job?.JobTitle}}"
+                            (click)="ViewJobdetails(job?.JobId)">{{job?.JobTitle}}></a>
                           </h3>
 
                           <div class="meta mt-10">
@@ -117,7 +117,7 @@
                         <div class="row mt-10-0 f-14">
                           <div class="col-md-6 w-auto p-0">
                             <h4 class="m-rb-10 c93A2BB">
-                              <a href="javascript:void(0)">{{job?.InterviewType || N/A}}</a>
+                              <a >{{job?.InterviewType || N/A}}</a>
                             </h4>
                           </div>
                           <div class="col-md-6 w-auto p-0">
@@ -176,9 +176,13 @@
                           <h5 class="meta">New proposal ({{job?.CPDate | date}} @ {{job?.CPFromTime}})</h5>
                         </ng-container>
                       </div>
-                      <span class="status Interviewing border"><a
-                          (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)">Accept</a></span>
-                      <span class="status Interviewing border"><a
+                      <ng-container *ngIf="job?.IsCPNewDate == 1">
+                        <span class="status Interviewing border">
+                          <a href="javascript:void(0)"
+                            (click)="UpdateInterviewAccept(job?.ProfileBasicInfo?.UserId,job?.JobId,job?.CPDate,job?.CPFromTime,job?.IsCandidateAccepted,job?.IsCPNewDate)"> Accept</a></span>
+                      </ng-container>
+                      <span class="status Interviewing border">
+                        <a href="javascript:void(0)"
                           (click)="OpenScheduleInterviewDialog(job?.JobInterviewId,job?.JobResponseId,job?.JobId,job?.ProfileBasicInfo?.ProfileId,job?.ProfileBasicInfo?.UserId,job?.InterviewDate,job?.StartTime)">Schedule
                           date</a></span>
                     </div>
