@@ -402,12 +402,10 @@
                         <div class="culture-card text-center pointer pt-1 w-100" (click)="photo.click()">
                           <input class="hidden" id="whitepapers_input" type="file" #photo (click)="photo.value = null"
                             value="" (change)="getFileDetails($event)">
-                          <p class="file-label">No file chosen</p>
+                          <p class="file-label">Browse and Upload</p>
                           <img src="../../../../assets/images/upload-icon.svg" style="max-width:22px" alt="icon">
-                          <p class="m-0">Upload</p>
-                          <p class="m-0">.pdf only</p>
-
                         </div>
+                        <p class="text-warning">* Upload PDF format only</p>
                       </div>
                     </div>
                   </div>
