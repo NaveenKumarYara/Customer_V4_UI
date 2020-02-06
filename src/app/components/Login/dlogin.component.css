@@ -6695,6 +6695,9 @@ a#logo {
   -webkit-animation-name: slideInRight;
   animation-name: slideInRight;
 }
+.slideInRight h2{
+  font-size: 1.5rem;
+}
 
 @-webkit-keyframes slideInUp {
   from {
