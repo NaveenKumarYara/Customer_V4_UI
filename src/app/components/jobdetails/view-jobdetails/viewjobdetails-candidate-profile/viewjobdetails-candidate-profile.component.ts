@@ -306,7 +306,7 @@ GetCandidateProfile(profileId) {
 NoRecords() {
   this.jobdetailsprofiles = new JobdetailsProfile();
 }
-PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0, noofRows = 6) {
+PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0,arytic=0, noofRows = 6) {
   this.alertService.clear();
   // $('#searchStr').val('');
   this.spinner.show();
@@ -334,11 +334,11 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
         // this.jobdetailsprofiles[0].TotalProfileCount
       });
   } else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited, noofRows)
+    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
         this.jobdetailsprofiles = res;
-        this.profiles = res;
         debugger
+        this.profiles = res;
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
         this.jobdetailsprofiles.Profile.forEach((a,index)=>{

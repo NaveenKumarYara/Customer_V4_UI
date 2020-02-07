@@ -49,6 +49,7 @@ export class FilterViewJobsComponent implements OnInit {
   sortBy:0;
   wishlist:any;
   sortByOrder: any;
+  arytic:any;
   @Input() parentApi: ParentComponentApi;
   // selectedCountry:Country = new Country(2, 'India');
   // countries = [
@@ -81,7 +82,7 @@ export class FilterViewJobsComponent implements OnInit {
   search(val) {
    this.searchString = val;
    //this.parentApi.callSearchMethod(this.searchString);
-   this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.sortBy,this.searchString,this.TotalCount);
+   this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,this.sortBy,this.searchString,this.TotalCount);
    this.SearchList = [];
    this.GetSearchText(null);
   }
@@ -164,37 +165,37 @@ export class FilterViewJobsComponent implements OnInit {
       this.invited = 0;
     }     
   }
-  else if (sortBy==5)
+  else if (value==5)
   {
     if(isChecked)
     {
-      this.sortBy = sortBy;
+      this.arytic = 1;
     }
     else
     {
-      this.sortBy =  0;
+      this.arytic =  0;
     }     
   }
-  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0 || this.invited>0 || sortBy==5)
+  if(this.suggested > 0 || this.uploaded > 0 || this.wishlist>0 || this.invited>0 ||  this.arytic>0)
   {
-    this.calldata(this.uploaded,this.suggested,this.wishlist,this.invited,sortBy);
+    this.calldata(this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,sortBy);
   }
   else
   {
-    this.parentApi.CallViewBy(0,0,0,0,this.sortBy,this.searchString,0);
+    this.parentApi.CallViewBy(0,0,0,0,0,this.sortBy,this.searchString,0);
   }
  
  }
 
- calldata(uploaded,suggested,wishlist,invited,sortBy)
+ calldata(uploaded,suggested,wishlist,invited,arytic,sortBy)
  {
-  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,6)
+  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,6)
   .subscribe(res => {
     this.jobdetailsprofiles = res;
     this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;
-    if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0 || this.wishlist>0)||sortBy>0)
+    if(this.TotalCount>0 ||(this.uploaded>0 || this.suggested > 0|| this.wishlist>0)||this.arytic>0||sortBy>0)
     {
-      this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.sortBy,this.searchString,this.TotalCount);
+      this.parentApi.CallViewBy(this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,this.sortBy,this.searchString,this.TotalCount);
     }
   });
  }

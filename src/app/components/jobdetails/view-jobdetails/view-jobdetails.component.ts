@@ -53,6 +53,7 @@ export class ViewJobdetailsComponent implements OnInit {
   suggested: any;
   invited:any;
   wishlist: any;
+  arytic:any;
   location: any;
   domain: any;
   customerId: any;
@@ -199,7 +200,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
     this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false; 
   } else {
    this.loadMore = false;
@@ -215,7 +216,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.PopulateJobdetailProfiles();
     if (this.jobstatistics.Suggested > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
     this.loadMore = this.jobstatistics.Suggested > 6 ? true : false;
   } else {
     // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
@@ -241,7 +242,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // console.log(this.jobid);
     if (this.jobstatistics.Applied > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
    } else {
     this.loadMore = false;
@@ -257,7 +258,7 @@ export class ViewJobdetailsComponent implements OnInit {
    this.profilecount = 6;
      if (this.jobstatistics.ShortListed > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.ShortListed,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
     this.loadMore =  this.jobstatistics.ShortListed > 6 ? true : false;
 
    } else {
@@ -274,7 +275,7 @@ export class ViewJobdetailsComponent implements OnInit {
   this.profilecount = 6;
   if (this.jobstatistics.Screening > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Screening,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
     this.loadMore =  this.jobstatistics.Screening > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -290,7 +291,7 @@ export class ViewJobdetailsComponent implements OnInit {
   this.profilecount = 6;
   if (this.jobstatistics.Interviewed > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Interviewed,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
     this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
 
   } else {
@@ -307,7 +308,7 @@ export class ViewJobdetailsComponent implements OnInit {
    this.profilecount = 6;
    if (this.jobstatistics.Hired > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Hired,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, 6);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited,this.arytic, 6);
     this.loadMore =  this.jobstatistics.Hired > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -324,7 +325,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profilecount = 6;
     if (this.jobstatistics.RejectedORWithdrawn > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.RejectedORWithdrawn,
-       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,  6);
+       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited, this.arytic, 6);
     this.loadMore =  this.jobstatistics.RejectedORWithdrawn > 6 ? true : false;
   } else {
    this.loadMore = false;
@@ -340,13 +341,13 @@ export class ViewJobdetailsComponent implements OnInit {
     // }
     if (this.statusid === 0) {
       // this.statistics=this.jobstatistics.Applied;
-      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0)) {
+      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0||this.arytic>0)) {
         this.statistics = this.totalCount;
       } else if(this.totalCount === 0) {
         this.statistics = this.jobstatistics.AllCandidates;
       }
      } else if (this.statusid === 4) {
-      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0)) {
+      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0||this.arytic>0)) {
         this.statistics = this.totalCount;
       } else if (this.totalCount === 0) {
         this.statistics = this.jobstatistics.Applied;
@@ -364,7 +365,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profileLoader = true;
     this.jobdetailsservice.updateprofileCount(this.profilecount);
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,
-       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.profilecount);
+       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic,this.profilecount);
     this.loader();
    }
    loader() {
@@ -409,7 +410,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.loadMore = false;
     }  else { // if (value === true) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,
-      this.jobstatistics.Applied, 1, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.profilecount);
+      this.jobstatistics.Applied, 1, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,this.profilecount);
    }
   }
 
@@ -451,11 +452,13 @@ export class ViewJobdetailsComponent implements OnInit {
   this.base.suggested = 0;
   this.base.wishlist = 0;
   this.base.invited=0;
+  this.base.arytic=0;
   this.sortBy = 0;
   this.uploaded = 0;
   this.suggested = 0;
   this.wishlist = 0;
   this.invited=0;
+  this.arytic=0;
    }
   ngOnInit() {
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
@@ -501,7 +504,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.searchString, exp, location, domain, this.uploaded, this.suggested, this.wishlist,this.invited,  this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.searchString, exp, location, domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, this.profilecount);
      },
       callSearchMethod : (searchString) => {
         this.exp = 0;
@@ -522,7 +525,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,this.profilecount);
       },
       callSuggested: () => {
         this.openCandidateUploadDialog();
@@ -537,7 +540,7 @@ export class ViewJobdetailsComponent implements OnInit {
           this.CallList(this.statusid);
         });
       },
-      CallViewBy: (uploaded, suggested, wishlist,invited, sortBy, search, count) => {
+      CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => {
         debugger
         this.searchString = search;
         this.totalCount = count;
@@ -555,14 +558,14 @@ export class ViewJobdetailsComponent implements OnInit {
         if (this.statusid === 0) {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
-          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0) {
+          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0 || arytic>0) {
             this.statistics = count;
           }
 
          } else if (this.statusid === 4) {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
-          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0) {
+          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0 || arytic>0) {
             this.statistics = count;
           }
          } else if (this.statusid === 7) {
@@ -575,7 +578,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited, this.profilecount);
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited,arytic, this.profilecount);
       }
     };
 
@@ -589,7 +592,7 @@ export interface ParentComponentApi {
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
   CallwishList:(event, profileId,jobId) => void;
-  CallViewBy: (uploaded, suggested, wishlist,invited, sortBy, search, count) => void;
+  CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => void;
 }
 
 export class WishList {

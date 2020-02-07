@@ -4,6 +4,7 @@ import { ApiService } from '../../../../../shared/services/api.service/api.servi
 import { Router, ActivatedRoute } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
+import { HttpParams } from '@angular/common/http';
 import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
 import { mappingdetails } from './mappingdetails';
@@ -43,7 +44,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   graphLabelList: LegendList[] = [];
   @ViewChild('testChart') testChart: ElementRef;
   @ViewChild('testChart1') testChart1: ElementRef;
-  skilllist: CloudData[];
+  skilllist: any;
 
   chartOptions = {
     responsive: true,
@@ -152,9 +153,13 @@ export class ViewCandidateprofileComponent implements OnInit {
   }
 
   GetCandidateSKills() {
-    this._service.GetService('ProfileAPI/api/GetCandidatePrimarySkill?profileId=', this.data.ProfileId).subscribe(
+    
+     let params = new HttpParams();
+     params = params.append('jobId',  this.data.jobId);
+     params = params.append('profileId', this.data.ProfileId);
+    this._service.GetService('JobsAPI/api/GetCandidatePrimarySkillUpdated?', params).subscribe(
       data => {
-        this.skilllist = data;
+          this.skilllist = data;     
       })
   }
 

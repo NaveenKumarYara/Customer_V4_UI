@@ -94,7 +94,7 @@
                         <label>
                             <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
                                 <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"
-                                    [checked]="AryticFlag" (change)="viewby(0, $event.target.checked,5)">
+                                    [checked]="AryticFlag" (change)="viewby(5,$event.target.checked,$event.target.value)">
                                 <span class="box sm-w">Arytic
                                     <span class="badge badge-light">{{Count?.AryticProfiles||0}}</span>
                                 </span>

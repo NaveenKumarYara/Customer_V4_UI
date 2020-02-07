@@ -198,20 +198,20 @@
                         <ng-container *ngIf="skilllist.length==0">
                             <span class="profile-note">Candidate yet to provide the Skills.</span>
                         </ng-container>
-                        <ng-container *ngFor="let skill of skilllist">
+                        <ng-container *ngFor="let skill of skilllist | removeduplicates ">
                           <div class="skill-data">
-                            {{skill.text}}
+                            {{skill.split('|')[0]}}
                             <div class="skill-tooltip">
                               <div class="tooltip-arrow"></div>
                               <div class="data-title">
-                                  <!-- {{skill.tooltip}} -->
+                               {{skill.split('|')[0]}} 
                                 <table class="profile-tooltip">
                                   <tr>
                                     <td>
                                       <div class="p5">Rating</div>
                                     </td>
                                     <td>
-                                      <div class="p5">{{skill.tooltip}}</div>
+                                    <div class="p5">{{skill.split('|')[3]}}</div> 
                                     </td>
                                   </tr>
                                   <tr>
@@ -219,17 +219,17 @@
                                       <div class="p5">Experience</div>
                                     </td>
                                     <td>
-                                    <div class="p5">{{skill?.ExpInYears}}.{{skill?.ExpInMonths||0}}</div>
+                                     <div class="p5">{{skill?.split('|')[1] }}.{{skill?.split('|')[2]}}</div> 
                                     </td>
                                   </tr>
-                                  <tr>
+                                  <!-- <tr>
                                     <td>
                                       <div class="p5">Last Used</div>
                                     </td>
                                     <td>
-                                    <div class="p5">{{skilllist?.Lastused || 2019}}</div>
+                                 <div class="p5">{{skilllist?.Lastused || 2019}}</div> 
                                     </td>
-                                  </tr>
+                                  </tr> -->
                                 </table>
 
                               </div>
