@@ -24606,7 +24606,7 @@ table .table-prl-0 td {
 /*Below targetted for experience slider*/
 
 .exp .ng5-slider-span.ng5-slider-bubble {
-    left: 0px !important;
+    left: 0px;
     visibility: hidden;
 }
 
