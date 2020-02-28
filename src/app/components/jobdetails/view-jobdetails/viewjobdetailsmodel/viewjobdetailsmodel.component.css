@@ -297,3 +297,11 @@
 .c_41536E{
     color:#41536E !important;
 }
+.skills h4 span{
+    font-style: italic; 
+    font-size: 10px;
+}
+.skills ul li span i{
+    font-style: italic; 
+    font-size: 10px;
+}
