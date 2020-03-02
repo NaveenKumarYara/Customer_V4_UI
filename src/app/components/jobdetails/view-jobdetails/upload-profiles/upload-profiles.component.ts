@@ -10,6 +10,7 @@ import { Profile } from '../../models/SearchProfileDeatils';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { BulkApply, XmlJobResponse } from './bulkApply';
 import { AppService } from '../../../../app.service';
+import { SettingsService } from '../../../../../settings/settings.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -55,7 +56,7 @@ export class UploadProfilesComponent implements OnInit {
   customerName = null;
   slice: number;
   // tslint:disable-next-line:max-line-length
-  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService) {
+  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.displayprofiles = JSON.parse(localStorage.getItem('DisplayUpload'));
@@ -370,7 +371,7 @@ export class UploadProfilesComponent implements OnInit {
     this.inviteinfo.CandFullName = email;
     this.inviteinfo.CustFullName = 'Arytic';
     this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.AppLink = 'http://dev.arytic.com/candidatesignup';
+    this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp;
     this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
       if (data === 0) {
         $('#Email').val('');
