@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Inject, Input, HostListener ,AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
@@ -56,6 +56,9 @@ ejQualificationIdList: PjEducationDetails[] = [];
 // ejPersonSingle = new PjDisc();
 ejPersonSingleList: PjDisc[] = [];
 editMode: string;
+@HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+      event.returnValue = false;
+}
   constructor(private route: ActivatedRoute,
     private router: Router, private jobdetailsservice: JobdetailsService, private appService: AppService) {
      // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
