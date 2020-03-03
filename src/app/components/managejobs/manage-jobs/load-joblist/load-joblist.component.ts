@@ -23,7 +23,7 @@ export class LoadJoblistComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
-  searchString:any
+  searchString:string;
   viewBy:any;
   employmentTypeId:any;
   showadvancesearch = false;
@@ -98,6 +98,7 @@ export class LoadJoblistComponent implements OnInit {
       this.sortBy=sortBy;
     }
     this.searchString= searchString;
+    debugger
     return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
@@ -122,7 +123,6 @@ export class LoadJoblistComponent implements OnInit {
     this.clientId = clientId;
     this.departmentId = departmentId;
     this.cityId = cityId;
-    debugger
     return this.managejobservice.getJobDetailsByFilter(customerId, userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,clientId,departmentId,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;

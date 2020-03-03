@@ -1,6 +1,6 @@
    <div class="search-toggle">
       <form #form="ngForm" (ngSubmit)="SearchEnter(searchString)">
-        <input  autocomplete="off" type="text"  onkeypress="return  ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32  || (event.charCode >= 48 && event.charCode <= 57))" [(ngModel)]="searchString" name="searchString" placeholder="Search"  #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">  
+        <input  autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" onkeypress="return event.keyCode != 35 " placeholder="Search"  #searchText (keyup)="GetSearchText(searchText.value)" id="searchStr">  
               <div class="searchList" *ngIf="SearchList.length>0">
                 <ul class="searchList-dropdown">
                   <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.split('-')[0])">{{slist.split('-')[0]}}</li>

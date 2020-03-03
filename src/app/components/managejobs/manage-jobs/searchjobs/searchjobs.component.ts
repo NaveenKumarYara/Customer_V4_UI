@@ -74,7 +74,14 @@ export class SearchjobsComponent implements OnInit {
   SetSearch(val)
   {
     this.SearchList = [];
-    this.search(val);
+    if(val=='c#' || val=='C#')
+    {
+      this.search('');
+    }
+    else
+    {
+      this.search(val);
+    }
   }
   ngOnInit() {
   }
