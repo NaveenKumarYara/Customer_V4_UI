@@ -2885,6 +2885,10 @@ h5.meta.meta-light {
 .style1 ul.c-content li.mail {
     background: url("../../../../../../assets/images/email-icon.svg") no-repeat left 9px;
     height: 32px;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .style1 ul.c-content li.mobile {

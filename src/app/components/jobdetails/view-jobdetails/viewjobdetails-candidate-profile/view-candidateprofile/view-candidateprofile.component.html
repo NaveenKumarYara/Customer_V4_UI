@@ -72,7 +72,7 @@
             <div class="col-md-5">
               <div class="d-list">
                 <ul class="c-content">
-                  <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'">
+                  <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'" title=" {{details?.profileVal?.Email}}">
                     {{details?.profileVal?.Email}}
                   </li>
                   <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) == 'esolvit'">

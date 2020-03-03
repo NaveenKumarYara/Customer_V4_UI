@@ -1,4 +1,4 @@
-<div class="">
+<div class="mat-dialog-title">
   <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span
       aria-hidden="true">×</span></button>
   <h3 mat-dialog-title class="modal-title">Send Email</h3>
@@ -19,10 +19,7 @@
       <!-- </ul> -->
       <div class="tab-content">
         <div id="sendEmail" class="tab-pane fade active in  w-50">
-          <div class="clearfix">&nbsp;</div>
-          <div class="pb-2">
-
-
+          <!-- <div class="pb-2"></div> -->
            <!--  <div class="d-block w-100" *ngIf="mailbox==false">
              
              
@@ -71,10 +68,7 @@
 
             </div>-->
 
-
-
-
-          </div>
+       
           <ng-container>
             <form #form="ngForm" (ngSubmit)="sendEmail()">
               <!-- <div > -->
@@ -91,7 +85,7 @@
                 <textarea class="form-control col-sm-12" [disabled]="!mailbox" [(ngModel)]="body" name="body" cols="30" rows="40"></textarea>
               </div>
             <!-- </div> -->
-              <div class="col-sm-12 p-19 pr-0">
+              <div class="col-sm-12 p-19 pr-0 edit-mail">
                   <div class="pull-right" >
                     <span *ngIf="!mailbox">
                       Edit Email &nbsp;
@@ -106,7 +100,8 @@
                             </path>
                           </g>
                         </svg>
-                      </button></span>
+                      </button>
+                    </span>
                       <button type="submit" class="btn s-btn">Send Email</button>
                     </div>
                 <!-- <button type="submit"  class="btn s-btn pull-right">Send Email</button> -->

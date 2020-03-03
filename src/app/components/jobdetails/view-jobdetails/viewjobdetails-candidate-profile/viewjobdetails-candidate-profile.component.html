@@ -715,11 +715,9 @@
             </div>
             <div class="footer">
                 <ul class="actions">
-                    <li class="disabled"
-                        *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock"
-                        class="disabled">
-                        <a href="javascript:void(0)" disable
-                            (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
+                    <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
+                    <li *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock">
+                        <a href="javascript:void(0)" (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                             data-toggle="modal" data-target="#inbox">
                             <!--(click)="OpenChatboxDialog()"-->
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -750,9 +748,8 @@
                     </li>
                     <ng-template #elseBlock>
                         <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
-                            <li class="disabled">
-                                <a href="javascript:void(0)" disable
-                                    (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
+                            <li>
+                                <a href="javascript:void(0)"  (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                                     data-toggle="modal" data-target="#inbox">
                                     <!--(click)="OpenChatboxDialog()"-->
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -784,7 +781,7 @@
                             </li>
                         </ng-container>
                         <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'">
-                            <li class="disabled">
+                            <li>
                                 <a href="javascript:void(0)"
                                     (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                                     data-toggle="modal" data-target="#inbox">

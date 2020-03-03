@@ -65,14 +65,24 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs">
                     <li routerlinkactive="active"><a class="c_41536E" data-toggle="tab" href="#description">Description</a></li>
-                    <li routerlinkactive="active"><a class="c_41536E" data-toggle="tab" href="#roles">Roles and Responsibilities</a></li>
                     <li routerlinkactive="active"><a class="c_41536E" data-toggle="tab" href="#skills">Skills</a></li>
+                    <li routerlinkactive="active"><a class="c_41536E" data-toggle="tab" href="#roles">Roles and Responsibilities</a></li>
                     <span class="active-line" style="width: 327.625px; left: 0px;"></span>
                 </ul>
 
                 <div class="tab-content">
                     <div id="description" class="tab-pane fade in active">
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="group">
+                                    <h4>Description</h4>
+                                    <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobDescription==''">
+                                        N/A
+                                    </p>
+                                </div>
+                            </div>
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Open Positions</h4>
@@ -369,6 +379,20 @@
                     </div>
                     <div id="skills" class="tab-pane fade">
                         <div class="row">
+                            <div class="col-md-6 skills">
+                                <h4>Skills <span>(Primary & Secondary)</span></h4>
+                                <ul class="data-list job-details-skills">
+                                    <li class="col-md-12 col-xs-12 no-exp ng-star-inserted"  *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
+                                        <span class="name">{{skill?.SkillName}} </span>
+                                        <span class="experience"> {{skill?.MinimumExp|monthsPipe}}-{{skill?.MaximumExp|monthsPipe}} Yrs</span>
+                                    </li>
+                                    <li class="col-md-12 col-xs-12 no-exp ng-star-inserted">
+                                        <!--Implement below div when splitting of Secondary Skill and display the same-->
+                                        <span class="name"> MS Office <i>(Secondary Skill)</i></span>
+                                        <span class="experience"> 3.0-6.0 Yrs</span>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="col-md-6">
                                 <h4>Domain</h4>
                                 <ul class="data-list job-details-skills">
@@ -382,24 +406,7 @@
                                     </li> -->
                                 </ul>
                             </div>
-                            <div class="col-md-6">
-                                <h4>Skills</h4>
-                                <ul class="data-list job-details-skills">
-                                    <li class="col-md-12 col-xs-12 no-exp ng-star-inserted"  *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
-                                        <span class="name">{{skill?.SkillName}}</span>
-                                        <span class="experience"> {{skill?.MinimumExp|monthsPipe}}-{{skill?.MaximumExp|monthsPipe}} Yrs</span>
-                                    </li>
-                                    <!-- <li class="col-md-12 no-exp ng-star-inserted">
-                                        <span class="name">Java</span>
-                                        <span class="experience"> 3 - 6 Yrs</span>
-                                    </li>
-                                    <li class="col-md-12 no-exp ng-star-inserted">
-                                        <span class="name">C# ASP.NET MVC</span>
-                                        <span class="experience"> 3 - 6 Yrs</span>
-                                    </li> -->
-
-                                </ul>
-                            </div>
+                         
 
                         </div>
                         <!-- <div class="group"> -->

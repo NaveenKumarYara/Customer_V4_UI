@@ -13368,8 +13368,10 @@ margin-top: 0px;
 
 .page--job-details .card-footer .nav-tabs li {
     padding: 0;
-    -ms-flex-preferred-size: 14.2857%;
-    flex-basis: 14.2857%;
+    /* -ms-flex-preferred-size: 14.2857%;
+    flex-basis: 14.2857%; */
+    -ms-flex-preferred-size: 16.66666666666667%;
+    flex-basis: 16.66666666666667%;
     text-align: center;
 }
 
@@ -24604,7 +24606,7 @@ table .table-prl-0 td {
 /*Below targetted for experience slider*/
 
 .exp .ng5-slider-span.ng5-slider-bubble {
-    left: 0px !important;
+    left: 0px;
     visibility: hidden;
 }
 
@@ -25322,3 +25324,11 @@ table .table-prl-0 td {
     animation: spinner .8s linear infinite;
   }
   /* #button loader css */
+/*Mozilla oriented CSS*/
+@-moz-document url-prefix() {
+  .scrollbar-inner{
+    overflow-y: auto;
+  }
+
+  }
+/*Mozilla oriented CSS*/

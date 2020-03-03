@@ -1,3 +1,6 @@
+.mat-title .modal-title {
+  color: #6A7E9C;
+}
 .mat-typography .list--empty {
     list-style-type: none;
   }
@@ -311,6 +314,7 @@
   }
   .mat-dialog-title {
   font-family: inherit;
+  color: #6A7E9C;
   }
   
   .mat-typography h3{
@@ -572,4 +576,7 @@ input[type="text"].form-control {
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background-color: #ffffff26;
   opacity: 1;
+}
+.edit-mail span{
+  color: #6A7E9C;
 }
