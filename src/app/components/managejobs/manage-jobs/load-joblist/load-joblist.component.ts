@@ -98,7 +98,6 @@ export class LoadJoblistComponent implements OnInit {
       this.sortBy=sortBy;
     }
     this.searchString= searchString;
-    debugger
     return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;

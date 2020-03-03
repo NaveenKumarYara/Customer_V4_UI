@@ -85,7 +85,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         return false;
       }
       this.appService.addSkills(localStorage.getItem('skill'));
-      const newskills = new Jobskills();
+     let newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
       this.maxexpCalculation(this.maxexperience);
@@ -96,12 +96,21 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       newskills.MinimumExp = this.minexperience;
       debugger
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
-      if (check === false) {
+      if (check === false&&newskills.SkillName!=null) {
           this.appService.addJobSkill(newskills);
+          this.selectedSkillName=undefined;
+          this.minexperience = 3;
+          this.maxexperience = 6;
+          this.form.resetForm();
+          localStorage.removeItem('skill');
+          this.form.reset();
+          newskills = new Jobskills();
       }
       // this.selectedSkillName = '';
       // this.minexperience = 0;
       // this.maxexperience = 0;
+      this.minexperience = 3;
+      this.maxexperience = 6;
       this.form.resetForm();
       localStorage.removeItem('skill');
      this.form.reset();
@@ -111,7 +120,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         return false;
       }
       this.appService.addSkills(localStorage.getItem('skill'));
-      const newskills = new Jobskills();
+      let newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
       newskills.SkillType = this.skillType;
       this.maxexpCalculation(this.maxexperience);
@@ -121,8 +130,14 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
-      if (check === false) {
+      if (check === false&&newskills.SkillName!=null) {
           this.appService.addJobSkill(newskills);
+          this.selectedSkillName=undefined;
+          this.minexperience = 3;
+          this.maxexperience = 6;
+          newskills = new Jobskills();
+          localStorage.removeItem('skill');
+          this.form.reset();
       }
       this.selectedSkillName = '';
       this.minexperience = 3;
