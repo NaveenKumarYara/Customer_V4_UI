@@ -172,7 +172,7 @@ onItemDeleted(index){
          return elem.UserId === team.UserId;
     });
  }
- ShareProfile() { 
+ ShareProfile() {
    if(this.info = 0)
   {
       this.profileSharing.InviteFriendId = 0;
@@ -188,7 +188,7 @@ onItemDeleted(index){
     this.profileSharing.InviteFriendId = 0;
     this.profileSharing.FromuserId = this.customerUser;
     this.profileSharing.ToUserId = "0";
-    this.profileSharing.ToEmailId = this.GetContactsList.map(x => x.EmailId).toString();
+    this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
     this.profileSharing.ApplicationName = 'Arytic';
     this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin+';Preid='+this.data.ProfileId+';Id='+this.data.jobId+';Cid='+ this.customerId;
     this.profileSharing.Comments=this.selectedComments;
