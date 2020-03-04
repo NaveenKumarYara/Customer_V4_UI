@@ -35,7 +35,7 @@ body: string;
 
   }
   sendEmail() {
-    if (this.data.ccpid != null) { 
+    
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.Body = this.body;
@@ -60,12 +60,7 @@ body: string;
         this.mailbox = false;
     }
   });
-} else {
-  this.toastr.warning('User has applied for this job ', 'Mail not sent');
-  setTimeout(() => {
-  this.toastr.dismissToast;
-}, 3000);
-}
+
 }
 
   EditMail() {
