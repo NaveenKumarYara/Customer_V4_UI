@@ -19,6 +19,7 @@
           </div>
         </form>
       </div>
+
       <ng-container *ngIf="joblist?.TotalCount>=5">
         <h5 class="show-count">Showing {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Interviews </h5>
       </ng-container>
@@ -56,6 +57,9 @@
       <div class="clearfix">&nbsp;</div>
       <div class="tab-content">
         <div id="list-view" class="tab-pane fade in active">
+          <ng-container *ngIf="joblist.Jobs.length==0">
+            <h5 class="show-count"> No scheduled interviews</h5>
+          </ng-container>
           <ul class="job-list" *ngIf="joblist">
             <li class="card" *ngFor="let job of joblist.Jobs | valueArray">
               <header class="row list-header">

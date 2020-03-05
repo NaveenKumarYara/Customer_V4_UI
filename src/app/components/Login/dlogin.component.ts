@@ -85,6 +85,7 @@ export class dLoginComponent {
   login() {
     if(!this.loginform.valid)
     {
+      this.loading = false;
       this.toastr.error('Please provide the valid details!', 'Oops!');
       setTimeout(() => {
           this.toastr.dismissToast;
@@ -104,6 +105,7 @@ export class dLoginComponent {
             .subscribe(
             data => {
               if (data.IsActive == false) {
+                this.loading = false;
                 this.toastr.error('Please activate the link to login!', 'Oops!');
                 setTimeout(() => {
                     this.toastr.dismissToast;
@@ -167,6 +169,7 @@ export class dLoginComponent {
                 },
       
             error => {
+              this.loading = false;
               this.toastr.error('Please provide the valid details!', 'Oops!');
               setTimeout(() => {
                   this.toastr.dismissToast;
@@ -179,6 +182,7 @@ export class dLoginComponent {
           }  
           else
           {
+            this.loading = false;
             this.toastr.error('Email Not Registered!', 'Oops!');
             setTimeout(() => {
                 this.toastr.dismissToast;
@@ -197,6 +201,7 @@ export class dLoginComponent {
   {
     this.appService.ActivateUser(Uid).subscribe(
       data => {
+        this.loading = false;
       this.toastr.success('Customer is activated. Please login to continue','Success');
       setTimeout(() => {
         this.toastr.dismissToast;
