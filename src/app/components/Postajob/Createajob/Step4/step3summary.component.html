@@ -35,7 +35,14 @@
     <h3 class="question">
         What is the Employment Type?</h3>
       <div>
-        <h5 class="data"> {{employmentType}} :  <span class="big">$ {{minRate}} - {{maxRate}}</span></h5>
+        <h5 class="data"> {{employmentType}} : 
+          <ng-container *ngIf="salaryTypeId=='2'">
+            <span class="big">$ {{minAnnualRate}} - {{maxAnnualRate}}</span>
+          </ng-container>
+          <ng-container *ngIf="salaryTypeId=='1'">
+            <span class="big">$ {{minHourRate}} - {{maxHourRate}}</span>
+          </ng-container>
+        </h5> 
         <!-- <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5> -->
       </div>
   </div>

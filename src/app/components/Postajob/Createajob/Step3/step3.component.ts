@@ -287,6 +287,7 @@ export class Step3Component implements OnInit {
     // step3
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
     this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
+    localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
     if (this.insertJob.EmploymentTypeId === 2) {
       this.insertJob.ContractExtended = true;
       this.insertJob.ContractDuration = this.contractDuration.contractDuration;

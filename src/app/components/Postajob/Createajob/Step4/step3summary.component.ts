@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { SalarysliderComponent } from '../Step3/salaryslider.component';
 import { AppService } from '../../../../app.service';
 
 @Component({
@@ -18,7 +19,12 @@ reportinManager: string;
 teamMembers: any;
 empType: number;
 contractExtended: boolean;
-salaryType: number;
+salaryType: any;
+salaryTypeId: any;
+minAnnualRate = 1000;
+maxAnnualRate = 10000;
+minHourRate = 20;
+maxHourRate = 100;
 minRate: number;
 maxRate: number;
 videoProfile: any;
@@ -74,13 +80,14 @@ matchingPersentage=[];
     if (this.employmentTypeId === 2) {
     this.contractExtended = true;
     }
+    this.salaryTypeId=localStorage.getItem('SalaryTypeId');
     this.salaryType = this.empType;
-    if (this.empType === 2) {
-      this.appService.currentMinRate.subscribe(x => this.minRate = x);
-      this.appService.currentMaxRate.subscribe(x => this.maxRate = x);
-    } else if (this.empType === 1) {
-      this.appService.currentMinHourlyRate.subscribe(x => this.minRate = x);
-      this.appService.currentMaxHourlyRate.subscribe(x => this.maxRate = x);
+    if (this.salaryTypeId == "2") {
+      this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);
+      this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x);
+    } else if (this.salaryTypeId == "1") {
+      this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
+      this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
     }
     // this.contractDuration = this.appService.contractDuration.value;
     // this.interviewTypeId = this.appService.interviewType.value.InterviewTypeId;
