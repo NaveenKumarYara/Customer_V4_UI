@@ -75,7 +75,7 @@ export class DashboardviewComponent implements OnInit {
     }
 
     populateDashboardStatistics(customerId,userId) {
-        return this.dashboardservice.getDashboardStatistics(customerId,userId).subscribe(res => {
+        return this.dashboardservice.getDashboardStatistics(customerId,userId,0).subscribe(res => {
             this.dashboardstatistics = res;
         });
 
@@ -85,7 +85,7 @@ export class DashboardviewComponent implements OnInit {
         //});   
     }
     populateApplicantsStatistics(customerId,userId) {
-        return this.dashboardservice.getApplicantsStatistics(customerId,userId).subscribe(res => {
+        return this.dashboardservice.getApplicantsStatistics(customerId,userId,0).subscribe(res => {
             this.applicantStatistics = res;
         }); 
     }

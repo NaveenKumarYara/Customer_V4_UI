@@ -14,6 +14,7 @@ import { RecentJobs } from '../../../models/recentjobs';
 import { RecentApplicants } from '../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../models/dashboardstatistics';
 import { ApplicantStatistics } from '../../../models/applicantstatistics';
+import { StatsDasboard} from '../../../models/StatsDasboard';
 import {JobCount} from '../../components/managejobs/models/JobCount';
 import { SettingsService } from '../../../settings/settings.service';
 
@@ -62,9 +63,9 @@ export class DashboardService {
         );
       }
 
-    getDashboardStatistics(customerId: number, userId: number): Observable<DashboardStatistics> {
+    getDashboardStatistics(customerId: number, userId: number,filter:number): Observable<DashboardStatistics> {
         const url = this.settingsService.settings.DashboardStatistics +
-        'customerId=' + customerId + '&userId=' + userId + '&filter=0';
+        'customerId=' + customerId + '&userId=' + userId + '&filter=' +filter;
 
         return this.http.get<DashboardStatistics>(url)
             .debounceTime(500)
@@ -73,9 +74,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    getApplicantsStatistics(customerId: number, userId: number): Observable<ApplicantStatistics> {
+    getApplicantsStatistics(customerId: number, userId: number,filter:number): Observable<ApplicantStatistics> {
         const url = this.settingsService.settings.ApplicantStatistics +
-        'customerId=' + customerId + '&userId=' + userId + '&filter=0';
+        'customerId=' + customerId + '&userId=' + userId + '&filter=' +filter;
         return this.http.get<ApplicantStatistics>(url)
             .debounceTime(500)
             .catch(
@@ -83,4 +84,75 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
+    GetDashboardStatisticsForJobsPosted(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetDashboardStatisticsForJobsPosted+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+
+    GetDashboardStatisticsForJobsFilled(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetDashboardStatisticsForJobsFilled+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+
+    GetDashboardStatisticsForJobsCancelled(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings. GetDashboardStatisticsForJobsCancelled+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+
+    GetCustomerApplicantsStatistics(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetCustomerApplicantsStatistics+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+    }
+    GetCustomerShortListedStatistics(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetCustomerShortListedStatistics+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+    }
+    GetCustomerInterviewStatistics(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetCustomerInterviewStatistics+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+    }
+    GetCustomerHiredStatistics(customerId: number, filter: number): Observable<StatsDasboard[]> {
+        const url = this.settingsService.settings.GetCustomerHiredStatistics+
+        '?customerId=' + customerId + '&filter='+filter;
+        return this.http.get<StatsDasboard[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+    }
+
+
 }

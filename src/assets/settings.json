@@ -140,5 +140,12 @@
   "BillingCardDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingCardDetails",
   "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription",
   "GetSubscriptionDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetSubscriptionDetails",
-  "GetBillingAddressCustomer":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerBillingAddress"
+  "GetBillingAddressCustomer":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerBillingAddress",
+  "GetDashboardStatisticsForJobsPosted":"https://identityapi-dev.arytic.com/api/GetDashboardStatisticsForJobsPosted",
+  "GetDashboardStatisticsForJobsFilled":"https://identityapi-dev.arytic.com/api/GetDashboardStatisticsForJobsFilled",
+  "GetDashboardStatisticsForJobsCancelled":"https://identityapi-dev.arytic.com/api/GetDashboardStatisticsForJobsCancelled",
+  "GetCustomerApplicantsStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerApplicantsStatistics",
+  "GetCustomerShortListedStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerShortListedStatistics",
+  "GetCustomerInterviewStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerInterviewStatistics",
+  "GetCustomerHiredStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerHiredStatistics"
 }

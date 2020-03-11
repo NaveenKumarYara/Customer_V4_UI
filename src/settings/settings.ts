@@ -148,4 +148,11 @@ export class Settings {
   GetSubscriptionDetails:string;
   GetJobMatchingCriteriaEndPoint: string;
   GetBillingAddressCustomer:string;
+  GetDashboardStatisticsForJobsPosted:string;
+  GetDashboardStatisticsForJobsFilled:string;
+  GetDashboardStatisticsForJobsCancelled:string;
+  GetCustomerApplicantsStatistics:string;
+  GetCustomerShortListedStatistics:string;
+  GetCustomerInterviewStatistics:string;
+  GetCustomerHiredStatistics:string;
   }

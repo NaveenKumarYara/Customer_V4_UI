@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-dashboard-activejobs',
@@ -8,12 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard-activejobs.component.css']
 })
 export class DashboardActivejobsComponent implements OnInit {
-   @Input() dashboardstatistics: DashboardStatistics;
+  dashboardstatistics: DashboardStatistics;
+  customer:any;
+  customerId:any;
+  userId:any;
+  constructor(private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId =this.customer.CustomerId;
+    this.userId=this.customer.UserId;
+}
+ngOnInit() {
+  this.populateDashboardallStatistics();
+}
 
-  constructor(private router: Router) { }
+populateDashboardallStatistics() {
+  return this.dashboardservice.getDashboardStatistics(this.customerId,this.userId,0).subscribe(res => {
+      this.dashboardstatistics = res;
+  });
+}
 
-  ngOnInit() {
-  }
 
   ActiveJobsClick(sort) {
     let sortBy;
