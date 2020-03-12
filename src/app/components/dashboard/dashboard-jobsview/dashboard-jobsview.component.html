@@ -34,12 +34,14 @@
         </div>
         <div class="stats-tabs">
           <ul class="nav nav-tabs navbar-right">
-            <li role="presentation" class="active"><a data-toggle="tab" href="#jobsDetail-week" (click)="populateDashboardallStatistics(1)">Week</a></li>
-            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-month" (click)="populateDashboardallStatistics(3)">Year</a></li>
+            <li role="presentation" class="active"><a data-toggle="tab" href="#jobsDetail-all" (click)="populateDashboardallStatistics(0)">All</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-week" (click)="populateDashboardallStatistics(1)">Week</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-month" (click)="populateDashboardallStatistics(2)">Month</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#jobsDetail-year" (click)="populateDashboardallStatistics(3)">Year</a></li>
             <span class="active-line" style="width: 45.3125px; left: 0px;"></span>
           </ul>
           <div class="tab-content">
-            <div id="jobsDetail-week" class="tab-pane fade in active">
+            <div id="jobsDetail-all" class="tab-pane fade in active">
               <div class="chartjs-size-monitor"
                 style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
                 <div class="chartjs-size-monitor-expand"
@@ -53,16 +55,36 @@
               </div>
               <!-- <canvas id="jobsDetail-week-chart" height="325" width="486" style="display: block; height: 260px; width: 389px;" class="chartjs-render-monitor"></canvas> -->
               <div style="display: block;">
+                <canvas id="jobsDetail-all-chart" baseChart width="400" height="400" [datasets]="lineChartDataall"
+                  [labels]="lineChartLabelsall" [options]="lineChartOptionsall" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="jobsDetail-week" class="tab-pane">
+              <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
                 <canvas id="jobsDetail-week-chart" baseChart width="400" height="400" [datasets]="lineChartData"
                   [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors1" [legend]="false"
                   [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
               </div>
             </div>
+
             <div id="jobsDetail-month" class="tab-pane">
               <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
               <div style="display: block;">
-                <canvas id="jobsDetail-month-chart" baseChart width="400" height="400" [datasets]="lineChartDatam"
+                <canvas id="jobsDetail-month-chart" baseChart width="400" height="400" [datasets]="lineChartDatamw"
+                  [labels]="lineChartLabelsmw" [options]="lineChartOptionsmw" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+
+            <div id="jobsDetail-year" class="tab-pane">
+              <!-- <canvas  height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="jobsDetail-year-chart" baseChart width="400" height="400" [datasets]="lineChartDatam"
                   [labels]="lineChartLabelsm" [options]="lineChartOptionsm" [colors]="lineChartColors1" [legend]="false"
                   [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
@@ -122,12 +144,23 @@
         </div>
         <div class="stats-tabs">
           <ul class="nav nav-tabs navbar-right">
-            <li role="presentation" class="active"><a data-toggle="tab" href="#applicantsDetail-week" (click)="populateApplicantsStatistics(1)">Week</a></li>
-            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-month" (click)="populateApplicantsStatistics(3)">Year</a></li>
+            <li role="presentation" class="active"><a data-toggle="tab" href="#applicantsDetail-all" (click)="populateApplicantsStatistics(0)">All</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-week" (click)="populateApplicantsStatistics(1)">Week</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-month" (click)="populateApplicantsStatistics(2)">Month</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#applicantsDetail-year" (click)="populateApplicantsStatistics(3)">Year</a></li>
             <span class="active-line" style="width: 0px; left: 0px;"></span>
           </ul>
           <div class="tab-content">
-            <div id="applicantsDetail-week" class="tab-pane fade in active">
+            <div id="applicantsDetail-all" class="tab-pane fade in active">
+              <!-- <canvas height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-week-chart"  baseChart width="400" height="400" [datasets]="ApplicantlineChartDataAll"
+                  [labels]="lineChartLabelsall" [options]="lineChartOptionsall" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="applicantsDetail-week" class="tab-pane">
               <!-- <canvas height="0" width="0" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
               <div style="display: block;">
                 <canvas id="applicantsDetail-week-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartData"
@@ -139,7 +172,16 @@
             <div id="applicantsDetail-month" class="tab-pane">
               <!-- <canvas height="0" width="0" id="applicantsDetail-month-chart" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
               <div style="display: block;">
-                <canvas id="applicantsDetail-month-chart" baseChart width="400" height="400" [datasets]="YApplicantlineChartData"
+                <canvas id="applicantsDetail-month-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartDatam"
+                  [labels]="lineChartLabelsmw" [options]="lineChartOptionsmw" [colors]="lineChartColors1" [legend]="false"
+                  [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div id="applicantsDetail-year" class="tab-pane">
+              <!-- <canvas height="0" width="0" id="applicantsDetail-month-chart" class="chartjs-render-monitor" style="display: block; height: 0px; width: 0px;"></canvas> -->
+              <div style="display: block;">
+                <canvas id="applicantsDetail-year-chart" baseChart width="400" height="400" [datasets]="ApplicantlineChartDatay"
                   [labels]="lineChartLabelsm" [options]="lineChartOptionsm" [colors]="lineChartColors1" [legend]="false"
                   [chartType]="lineChartType" (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>

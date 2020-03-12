@@ -22,52 +22,81 @@ export class DashboardJobsviewComponent implements OnInit {
   jobposted:string;
   userId:any;  
   jobFilter:number=0;
-  alljobposted =[];
-  allcount = [];
-  allcancelcount = [];
+
+  allpostedcount =[];
   postedcount = [];
-  count = [];
-  cancelcount = [];
+  mwpostedcount = [];
   mpostedcount = [];
+
+
+  allcount = [];
+  count = [];
+  mwcount = [];
   mcount = [];
+
+
+  allcancelcount = []; 
+  cancelcount = [];
+  mwcancelcount = [];
   mcancelcount = [];
  
-
+  allapplicantCount=[];
   applicantCount=[];
+  mapplicantCount=[];
   yapplicantCount=[];
 
+  allShortListedCount=[];
   ShortListedCount=[];
+  mShortListedCount=[];
   yShortListedCount=[];
 
+  allInterviewCount=[];
   InterviewCount=[];
+  mInterviewCount=[];
   yInterviewCount=[];
 
+  allHiredCount=[];
   HiredCount=[];
+  mHiredCount=[];
   yHiredCount=[];
 
+ alldashboardStatisticsForJobsPosted: StatsDasboard[]=[];
  dashboardStatisticsForJobsPosted: StatsDasboard[]=[];
+ mwdashboardStatisticsForJobsPosted: StatsDasboard[]=[];
  mdashboardStatisticsForJobsPosted: StatsDasboard[]=[];
 
+  alldashboardStatisticsForJobsFilled: StatsDasboard[]=[];
   dashboardStatisticsForJobsFilled: StatsDasboard[]=[];
+  mwdashboardStatisticsForJobsFilled: StatsDasboard[]=[];
   mdashboardStatisticsForJobsFilled: StatsDasboard[]=[];
 
+  alldashboardStatisticsForJobsCancelled: StatsDasboard[]=[];
   dashboardStatisticsForJobsCancelled: StatsDasboard[]=[];
+  mwdashboardStatisticsForJobsCancelled: StatsDasboard[]=[];
   mdashboardStatisticsForJobsCancelled: StatsDasboard[]=[];
 
+ allcustomerApplicantsStatistics: StatsDasboard[]=[];
  customerApplicantsStatistics: StatsDasboard[]=[];
+ mcustomerApplicantsStatistics: StatsDasboard[]=[];
  ycustomerApplicantsStatistics: StatsDasboard[]=[];
 
+ allcustomerShortListedStatistics: StatsDasboard[]=[];
  customerShortListedStatistics: StatsDasboard[]=[];
+ mcustomerShortListedStatistics: StatsDasboard[]=[];
  ycustomerShortListedStatistics: StatsDasboard[]=[];
 
+ allcustomerInterviewStatistics: StatsDasboard[]=[];
  customerInterviewStatistics: StatsDasboard[]=[];
+ mcustomerInterviewStatistics: StatsDasboard[]=[];
  ycustomerInterviewStatistics: StatsDasboard[]=[];
 
+ allcustomerHiredStatistics: StatsDasboard[]=[];
  customerHiredStatistics: StatsDasboard[]=[];
+ mcustomerHiredStatistics: StatsDasboard[]=[];
  ycustomerHiredStatistics: StatsDasboard[]=[];
 
    dashboardstatistics: DashboardStatistics;
-     dashboardstats:DashboardStatistics;
+   dashboardstats:DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
 
 
@@ -85,7 +114,11 @@ export class DashboardJobsviewComponent implements OnInit {
     //   {data: this.allcancelcount, label: 'JobsCancelled' }
     // ];
 
-
+    public lineChartDataall: Array<any> = [
+      {data: this.allpostedcount, label: 'JobsPosted'},
+      {data: this.allcount, label: 'JobsFilled'},
+      {data: this.allcancelcount, label: 'JobsCancelled' }
+    ];
 
     public lineChartData: Array<any> = [
       {data: this.postedcount, label: 'JobsPosted'},
@@ -93,18 +126,10 @@ export class DashboardJobsviewComponent implements OnInit {
       {data: this.cancelcount, label: 'JobsCancelled' }
     ];
 
-    public ApplicantlineChartData: Array<any> = [
-      {data: this.applicantCount},
-      {data: this.ShortListedCount},
-      {data: this.InterviewCount},
-      {data: this.HiredCount}
-    ];
-
-    public YApplicantlineChartData: Array<any> = [
-      {data: this.yapplicantCount},
-      {data: this.yShortListedCount},
-      {data: this.yInterviewCount},
-      {data: this.yHiredCount}
+    public lineChartDatamw: Array<any> = [
+      {data: this.mwpostedcount, label: 'JobsPosted'},
+      {data: this.mwcount, label: 'JobsFilled'},
+      {data: this.mwcancelcount, label: 'JobsCancelled' }
     ];
 
     public lineChartDatam: Array<any> = [
@@ -113,9 +138,42 @@ export class DashboardJobsviewComponent implements OnInit {
       {data: this.mcancelcount, label: 'JobsCancelled' }
     ];
 
-   
+    public ApplicantlineChartDataAll: Array<any> = [
+      {data: this.allapplicantCount,label: 'Applicant'},
+      {data: this.allShortListedCount,label: 'ShortListed'},
+      {data: this.allInterviewCount,label: 'Interview'},
+      {data: this.allHiredCount,label: 'Hired'}
+    ];
 
+    public ApplicantlineChartData: Array<any> = [
+      {data: this.applicantCount,label: 'Applicant'},
+      {data: this.ShortListedCount,label: 'ShortListed'},
+      {data: this.InterviewCount,label: 'Interview'},
+      {data: this.HiredCount,label: 'Hired'}
+    ];
+
+    public ApplicantlineChartDatam: Array<any> = [
+      {data: this.mapplicantCount,label: 'Applicant'},
+      {data: this.mShortListedCount,label: 'ShortListed'},
+      {data: this.mInterviewCount,label: 'Interview'},
+      {data: this.mHiredCount,label: 'Hired'}
+    ];
+
+
+
+    public ApplicantlineChartDatay: Array<any> = [
+      {data: this.yapplicantCount,label: 'Applicant'},
+      {data: this.yShortListedCount,label: 'ShortListed'},
+      {data: this.yInterviewCount,label: 'Interview'},
+      {data: this.yHiredCount,label: 'Hired'}
+    ];
+
+ 
+
+   
+    public lineChartLabelsall: Label[] = ['Year2019','Year2020'];
     public lineChartLabels: Label[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday','Sunday'];
+    public lineChartLabelsmw: Label[] = ['week1','week2','week3','week4','week5'];
     public lineChartLabelsm: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
 
 
@@ -124,13 +182,11 @@ export class DashboardJobsviewComponent implements OnInit {
       scales: {
       xAxes: [{
         //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        //labels: ['JobsPosted', 'JobsFilled', 'JobsCancelled']
+        labels: ['Year2019','Year2020']
+         
               }],
-              yAxes: [{
-                ticks: {
-                  min: 0,
-                    stepSize: 1
-                }
+              yAxes: [ {
+             
             }]
       }
     };
@@ -146,6 +202,22 @@ export class DashboardJobsviewComponent implements OnInit {
                 ticks: {
                     min: 0,
                     stepSize: 1
+                }
+            }]
+      }
+    };
+
+    public lineChartOptionsmw: (ChartOptions & { annotation: any }) = {
+      responsive: true,
+      scales: {
+      xAxes: [{
+        //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        labels: ['week1','week2','week3','week4','week5']
+              }],
+              yAxes: [{
+                ticks: {
+                  min: 0,
+                    stepSize: 2
                 }
             }]
       }
@@ -243,7 +315,7 @@ export class DashboardJobsviewComponent implements OnInit {
 
 
 
-  ChangeFilter(filter=0)
+  ChangeFilter(filter=3)
   {
      this.JobPostedStats(filter);
      this.JobFilledStats(filter);
@@ -270,7 +342,7 @@ populateApplicantsStatistics(filter=0) {
     }); 
 }
 
-  JobPostedStats(filter=0)
+  JobPostedStats(filter)
   {
             if(filter==0)
             {
@@ -314,10 +386,50 @@ populateApplicantsStatistics(filter=0) {
                   ))         
               }
             });
-            }   
+            }
+            if(filter==2)
+            {
+              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mwresult => {
+                this.mwdashboardStatisticsForJobsPosted= mwresult;
+              if(mwresult.length>0)
+              {
+                
+                this.lineChartLabelsmw.forEach(
+                  (mwe1)=>
+                  this.mwdashboardStatisticsForJobsPosted.forEach((mwe2)=> 
+                  {
+                    if(mwe1 === mwe2.PostedValue)
+                    {           
+                      this.mwpostedcount.push(mwe2.JobCount);
+                    }
+                  }      
+                  ))         
+              }
+            });
+            } 
+            if(filter==3)
+            {
+              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(allresult => {
+                this.alldashboardStatisticsForJobsPosted= allresult;
+              if(allresult.length>0)
+              {
+                
+                this.lineChartLabelsall.forEach(
+                  (ame1)=>
+                  this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
+                  {
+                    if(ame1 === ame2.PostedValue)
+                    {           
+                      this.allpostedcount.push(ame2.JobCount);
+                    }
+                  }      
+                  ))         
+              }
+            });
+            }     
   }
 
-  JobFilledStats(filter=0)
+  JobFilledStats(filter)
   {
     
             if(filter=0)
@@ -369,13 +481,70 @@ populateApplicantsStatistics(filter=0) {
       
               });
             }
+
+            if(filter=2)
+            {
+            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(wres1 => {
+              this.mwdashboardStatisticsForJobsFilled= wres1;
+              if(wres1.length>0)
+              {
+                
+                this.lineChartLabelsmw.forEach(
+                  (fmwe1)=>
+                  this.mwdashboardStatisticsForJobsFilled.forEach((fmwe2)=> 
+                  {
+                    if(fmwe1 === fmwe2.PostedValue)
+                    {           
+                      this.mwcount.push(fmwe2.JobCount);
+                    }
+                  }      
+                  ))  
+        
+                        
+              }
+
+
+              
+
+      
+              });
+            }
+
+            if(filter=3)
+            {
+            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(allres1 => {
+              this.alldashboardStatisticsForJobsFilled= allres1;
+              if(allres1.length>0)
+              {
+                
+                this.lineChartLabelsall.forEach(
+                  (alfme1)=>
+                  this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
+                  {
+                    if(alfme1 === afme2.PostedValue)
+                    {           
+                      this.allcount.push(afme2.JobCount);
+                    }
+                  }      
+                  ))  
+        
+                        
+              }
+
+
+              
+
+      
+              });
+            }
+       
        
           
      
   }
 
 
-  JobCancelled(filter=0)
+  JobCancelled(filter)
   {
     if(filter==0)
     {
@@ -387,7 +556,6 @@ populateApplicantsStatistics(filter=0) {
             (cre1)=>
             this.dashboardStatisticsForJobsCancelled.forEach((cre2)=> 
             {
-              debugger
               if(cre1 === cre2.PostedValue)
               {           
                 this.cancelcount.push(cre2.JobCount);
@@ -418,6 +586,47 @@ populateApplicantsStatistics(filter=0) {
       
     });
     }
+    if(filter==2)
+    {
+      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(wresultc2 => {
+        this.mwdashboardStatisticsForJobsCancelled= wresultc2;
+        if(wresultc2.length>0)
+        {
+          this.lineChartLabelsmw.forEach(
+            (wce1)=>
+            this.mwdashboardStatisticsForJobsCancelled.forEach((wce2)=> 
+            {
+              if(wce1 === wce2.PostedValue)
+              {       
+                this.mwcancelcount.push(wce2.JobCount);
+              }
+            }      
+            ))         
+        }
+      
+    });
+    }
+    if(filter==3)
+    {
+      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(aresultc2 => {
+        this.alldashboardStatisticsForJobsCancelled= aresultc2;
+        if(aresultc2.length>0)
+        {
+          this.lineChartLabelsall.forEach(
+            (ace1)=>
+            this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
+            {
+              if(ace1 === ace2.PostedValue)
+              {      
+                this.allcancelcount.push(ace2.JobCount);
+              }
+            }      
+            ))         
+        }
+      
+    });
+    }
+  
 
   }
 
@@ -467,6 +676,46 @@ populateApplicantsStatistics(filter=0) {
               }
             });
             }   
+            if(filter==2)
+            {
+              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(ymapres=> {
+                this.mcustomerApplicantsStatistics= ymapres;
+              if(ymapres.length>0)
+              {
+                
+                this.lineChartLabelsmw.forEach(
+                  (yme1)=>
+                  this.mcustomerApplicantsStatistics.forEach((yme2)=> 
+                  {
+                    if(yme1 === yme2.PostedValue)
+                    {           
+                      this.mapplicantCount.push(yme2.JobCount);
+                    }
+                  }      
+                  ))         
+              }
+            });
+            }  
+            if(filter==3)
+            {
+              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(mapres=> {
+                this.allcustomerApplicantsStatistics= mapres;
+              if(mapres.length>0)
+              {
+                
+                this.lineChartLabelsall.forEach(
+                  (ymwe1)=>
+                  this.allcustomerApplicantsStatistics.forEach((ywme2)=> 
+                  {
+                    if(ymwe1 === ywme2.PostedValue)
+                    {           
+                      this.allapplicantCount.push(ywme2.JobCount);
+                    }
+                  }      
+                  ))         
+              }
+            });
+            } 
   }
 
   ShortlistStats(filter=0)
@@ -514,7 +763,47 @@ populateApplicantsStatistics(filter=0) {
           ))         
       }
     });
+    } 
+    if(filter==2)
+    {
+      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(yampsres=> {
+        this.mcustomerShortListedStatistics= yampsres;
+      if(yampsres.length>0)
+      {
+        
+        this.lineChartLabelsmw.forEach(
+          (yesm1)=>
+          this.mcustomerShortListedStatistics.forEach((yes2)=> 
+          {
+            if(yesm1 === yes2.PostedValue)
+            {           
+              this.mShortListedCount.push(yes2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
     }  
+    if(filter==3)
+    {
+      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(ywapsres=> {
+        this.allcustomerShortListedStatistics= ywapsres;
+      if(ywapsres.length>0)
+      {
+        
+        this.lineChartLabelsall.forEach(
+          (yes1)=>
+          this.allcustomerShortListedStatistics.forEach((yes2)=> 
+          {
+            if(yes1 === yes2.PostedValue)
+            {           
+              this.allShortListedCount.push(yes2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
+    }   
 
   }
 
@@ -565,6 +854,48 @@ populateApplicantsStatistics(filter=0) {
     });
     }  
 
+    if(filter==2)
+    {
+      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapimres=> {
+        this.mcustomerInterviewStatistics= yapimres;
+      if(yapimres.length>0)
+      {
+        
+        this.lineChartLabelsmw.forEach(
+          (yesim)=>
+          this.mcustomerInterviewStatistics.forEach((yesi2)=> 
+          {
+            if(yesim === yesi2.PostedValue)
+            {           
+              this.mInterviewCount.push(yesi2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
+    } 
+
+    if(filter==3)
+    {
+      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapiares=> {
+        this.allcustomerInterviewStatistics= yapiares;
+      if(yapiares.length>0)
+      {
+        
+        this.lineChartLabelsall.forEach(
+          (yesi)=>
+          this.allcustomerInterviewStatistics.forEach((yesi2)=> 
+          {
+            if(yesi === yesi2.PostedValue)
+            {           
+              this.allInterviewCount.push(yesi2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
+    } 
+
   }
 
   HiredStats(filter=0)
@@ -612,22 +943,66 @@ populateApplicantsStatistics(filter=0) {
           ))         
       }
     });
-    }  
+    } 
+    
+    if(filter==2)
+    {
+      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres=> {
+        this.mcustomerHiredStatistics= yapshres;
+      if(yapshres.length>0)
+      {
+        
+        this.lineChartLabelsmw.forEach(
+          (myesh1)=>
+          this.mcustomerShortListedStatistics.forEach((yesh2)=> 
+          {
+            if(myesh1 === yesh2.PostedValue)
+            {           
+              this.mHiredCount.push(yesh2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
+    }
+
+    if(filter==3)
+    {
+      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres1=> {
+        this.allcustomerHiredStatistics= yapshres1;
+      if(yapshres1.length>0)
+      {
+        
+        this.lineChartLabelsall.forEach(
+          (yesh1)=>
+          this.allcustomerShortListedStatistics.forEach((ayesh2)=> 
+          {
+            if(yesh1 === ayesh2.PostedValue)
+            {           
+              this.allHiredCount.push(ayesh2.JobCount);
+            }
+          }      
+          ))         
+      }
+    });
+    }
 
   }
 
 
   ngOnInit() {
-    this.populateDashboardallStatistics(1);
-    this.populateApplicantsStatistics(1);
+    this.populateDashboardallStatistics(0);
+    this.populateApplicantsStatistics(0);
+    this.ChangeFilter(3);
     this.ChangeFilter(0);
+    this.ChangeFilter(2);
     this.ChangeFilter(1);
 
     setInterval(() => {
-      this.lineChartData=new Array(
-        {data: this.postedcount, label: 'JobsPosted'},
-        {data: this.count, label: 'JobsFilled'},
-        {data: this.cancelcount, label: 'JobsCancelled' }
+      this.lineChartDataall=new Array(
+        {data: this.allpostedcount, label: 'JobsPosted'},
+        {data: this.allcount, label: 'JobsFilled'},
+        {data: this.allcancelcount, label: 'JobsCancelled' }
       )}, 1000);
   
     (function ($) {
