@@ -7,6 +7,7 @@ export class basicinfo
     twitterURL: string;
     linkedInURL: string;
     facebookURL: string;
+    countryCode:string;
     mobilePhone: string;
     homePhone: string;
     address1: string;

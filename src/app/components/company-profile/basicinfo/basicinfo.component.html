@@ -90,7 +90,7 @@
           <tbody>
             <tr>
               <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-              <td *ngIf="companyprofile?.MobilePhone!=null">{{companyprofile?.MobilePhone}}</td>
+              <td *ngIf="companyprofile?.MobilePhone!=null"> {{companyprofile?.HomeAreaCode}} {{companyprofile?.MobilePhone}}</td>
               <td *ngIf="companyprofile?.MobilePhone==null">
                  N/A
               </td>
@@ -264,6 +264,9 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
               </span>
+              <select (change)="chooseCountry($event.target.value)">
+              <option *ngFor="let ls of selectCountry"  [selected]="ls.dial_code == companyprofile?.HomeAreaCode" value="{{ls?.dial_code}}">{{ls?.dial_code}} {{ls?.name}}</option>                                     
+              </select>
               <input type="text" class="form-control" value="{{companyprofile?.MobilePhone}}" id="mobile" placeholder="Phone Number">
             </div>
           </div>
