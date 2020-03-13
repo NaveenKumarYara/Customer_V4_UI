@@ -171,7 +171,7 @@
                                              
                                         </li> -->
                                         <ng-container *ngFor="let type of typeList"> 
-                                        <li  (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                        <li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
                                                 <a data-toggle="tab" href="#{{type?.InterviewType}}" (click)="GetId(type?.InterviewTypeId)" aria-expanded="true">{{type?.InterviewType}}</a>
                                             </li>
                                     </ng-container>
@@ -224,15 +224,20 @@
                                     </div>
                                     <div id="Skype" *ngIf="interviewId == 3">
                                         <div class="form-group skype-group">
-                                            <label for="">Skype</label>
+                                            <label for="">Link</label>
                                             <h2><input class="form-control" type="text" [(ngModel)]="skypeId"
                                                     name="skype"></h2>
-                                            <label for="request-skype" class="radio">
-                                                <input type="checkbox" id="request-skype" name="requestSkypeID"
-                                                    class="radio-input">
-                                                <span class="radio-btn"></span>
-                                                <span>Request for Skype ID</span>
-                                            </label>
+                                                    <ng-container *ngFor="let option of options">
+                                                        <label class="radio">                                           
+                                                                <input class="radio" 
+                                                                (click)="getValue(option.id)"
+                                                                [checked]="option.id == selectedOption.id"
+                                                                value= {{option.id}}
+                                                                 type="radio">
+                                                                <span class="radio-btn"></span>
+                                                                <span class="radio-text">{{option.name}}</span>
+                                                            </label>                                
+                                            </ng-container>
                                         </div>
                                         <!-- 
                                         <div class="form-group further-interview-group">

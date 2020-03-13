@@ -16,6 +16,7 @@ import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { JobdetailsService } from '../../../jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
+import {Options} from '../schedule-interview/options';
 declare var $: any;
 
 export interface DialogData {
@@ -28,6 +29,13 @@ export interface DialogData {
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;
+  selectedOption:Options = new Options(1, 'Skype Id' );
+  options = [
+    new Options(1, 'Skype Id' ),
+     new Options(2, 'WebEX Id' ),
+     new Options(3, 'Zoom LinkId'),
+      new Options(4, 'Other' )
+  ];
   schIntw = new ScheduleInterview();
  @Output() eventStat = new EventEmitter();
   webxRI: boolean;
@@ -88,6 +96,10 @@ export class ScheduleInterviewComponent implements OnInit {
   //   this.processSelection = this.typeId;
   // }
 
+   }
+
+   getValue(optionid) {
+    this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
    }
 
   changeDate(updateSeasonStartDate: any)  {
