@@ -44,3 +44,20 @@
    .video-col > div {
     padding: 56px 0;
   }
+
+ /*Country Code Styles*/
+ .country-phone-code span.phone-icon{
+  padding: 1.08rem;
+  border-top: 1px solid #E0E3EF;
+  border-bottom: 1px solid #E0E3EF;
+  border-left: 1px solid #E0E3EF;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.country-phone-code select{
+  height: 55px;
+  border-color: #E0E3EF;
+}
+.country-phone-code input {
+ padding-left: 0.5rem!important;
+}

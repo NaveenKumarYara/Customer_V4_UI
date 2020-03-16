@@ -15,7 +15,7 @@
         </svg>
         <span>Basic Info</span>
       </h1>
-      <a (click)="iseditProfile=!iseditProfile" class="edit-btn" >
+      <a (click)="iseditProfile=!iseditProfile" class="edit-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="#93a2bb"
           stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px"
           viewBox="-750.5 -3250.6 19.9 20">
@@ -45,38 +45,42 @@
               <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
             </a>
           </ng-container>
-          <ng-container *ngIf="companyprofile?.TwitterURL==null || companyprofile?.TwitterURL=='' || companyprofile?.TwitterURL==undefined">       
+          <ng-container
+            *ngIf="companyprofile?.TwitterURL==null || companyprofile?.TwitterURL=='' || companyprofile?.TwitterURL==undefined">
             <a>
               <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-            </a>              
+            </a>
           </ng-container>
           <ng-container *ngIf="companyprofile?.LinkedInURL!=null && companyprofile?.LinkedInURL!=''">
             <a [attr.href]="companyprofile?.LinkedInURL" target="_blank">
               <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
             </a>
           </ng-container>
-          <ng-container *ngIf="companyprofile?.LinkedInURL==null || companyprofile?.LinkedInURL=='' || companyprofile?.LinkedInURL==undefined" >
-            <a >
+          <ng-container
+            *ngIf="companyprofile?.LinkedInURL==null || companyprofile?.LinkedInURL=='' || companyprofile?.LinkedInURL==undefined">
+            <a>
               <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
             </a>
           </ng-container>
-         <ng-container *ngIf="companyprofile?.FacebookURL!=null && companyprofile?.FacebookURL!=''" >
-          <a [attr.href]="companyprofile?.FacebookURL" target="_blank">
-            <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
-          </a>
-         </ng-container>
-         <ng-container *ngIf="companyprofile?.FacebookURL==null || companyprofile?.FacebookURL=='' || companyprofile?.FacebookURL==undefined"  >
-          <a>
-            <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
-          </a>
-         </ng-container>
-          
+          <ng-container *ngIf="companyprofile?.FacebookURL!=null && companyprofile?.FacebookURL!=''">
+            <a [attr.href]="companyprofile?.FacebookURL" target="_blank">
+              <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
+            </a>
+          </ng-container>
+          <ng-container
+            *ngIf="companyprofile?.FacebookURL==null || companyprofile?.FacebookURL=='' || companyprofile?.FacebookURL==undefined">
+            <a>
+              <img src="../../../../assets/images/fb-icon.svg" alt="Facebook">
+            </a>
+          </ng-container>
+
         </div>
         <div class="meta">
           <img class="icon" src="../../../../assets/images/globe-icon.svg" alt="Website">
-          <a *ngIf="companyprofile?.WebSite!=''" [attr.href]="'//' + companyprofile?.WebSite" target="_blank">{{companyprofile?.WebSite}}</a>
+          <a *ngIf="companyprofile?.WebSite!=''" [attr.href]="'//' + companyprofile?.WebSite"
+            target="_blank">{{companyprofile?.WebSite}}</a>
           <ng-container *ngIf="companyprofile?.WebSite==''">
-           N/A
+            N/A
           </ng-container>
         </div>
         <div class="meta">
@@ -90,9 +94,10 @@
           <tbody>
             <tr>
               <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
-              <td *ngIf="companyprofile?.MobilePhone!=null"> {{companyprofile?.HomeAreaCode}} {{companyprofile?.MobilePhone}}</td>
+              <td *ngIf="companyprofile?.MobilePhone!=null"> {{companyprofile?.HomeAreaCode}}
+                {{companyprofile?.MobilePhone}}</td>
               <td *ngIf="companyprofile?.MobilePhone==null">
-                 N/A
+                N/A
               </td>
             </tr>
             <tr>
@@ -103,16 +108,16 @@
             <tr>
               <td><img src="../../../../assets/images/location-icon.svg" class="icon" alt="Address"></td>
               <td *ngIf="companyprofile?.Address1=='' && companyprofile?.Address2==''">
-                  N/A
-                 </td>
+                N/A
+              </td>
               <td>
                 <ng-container *ngIf="companyprofile?.Address1!=''">
-                    {{companyprofile?.Address1}},
-              </ng-container>
-              <ng-container *ngIf="companyprofile?.Address2!=''">
+                  {{companyprofile?.Address1}},
+                </ng-container>
+                <ng-container *ngIf="companyprofile?.Address2!=''">
                   {{companyprofile?.Address2}}.
-              </ng-container>
-                 </td>
+                </ng-container>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -134,7 +139,7 @@
   </div>
 </div>
 
-<div class="col-xl-12" *ngIf="iseditProfile" >
+<div class="col-xl-12" *ngIf="iseditProfile">
   <div class="card card--basic-info">
     <div class="card-header" id="edit-btn">
       <h1 class="title">
@@ -158,7 +163,8 @@
     <form class="card-inner">
       <div class="company-logo">
         <div class="img">
-          <img class="img-responsive" width="200" title="{{getcompanylogo?.CompanyName}}" src="{{companyLogo?.CompanyLogo}}" alt="Company Logo">
+          <img class="img-responsive" width="200" title="{{getcompanylogo?.CompanyName}}"
+            src="{{companyLogo?.CompanyLogo}}" alt="Company Logo">
         </div>
         <div class="actions">
           <div class="item">
@@ -215,7 +221,8 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/globe-icon.svg" alt="Website">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.WebSite}}" id="webSite" placeholder="Company URL">
+              <input type="text" class="form-control" value="{{companyprofile?.WebSite}}" id="webSite"
+                placeholder="Company URL">
             </div>
           </div>
           <div class="meta">
@@ -235,7 +242,8 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.TwitterURL}}" id="twitterUrl" placeholder="http://www.twitter.com">
+              <input type="text" class="form-control" value="{{companyprofile?.TwitterURL}}" id="twitterUrl"
+                placeholder="http://www.twitter.com">
             </div>
           </div>
           <div class="form-group">
@@ -243,7 +251,8 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.LinkedInURL}}" id="linkedinUrl" placeholder="http://www.linkedin.com">
+              <input type="text" class="form-control" value="{{companyprofile?.LinkedInURL}}" id="linkedinUrl"
+                placeholder="http://www.linkedin.com">
             </div>
           </div>
           <div class="form-group">
@@ -251,7 +260,8 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/fb-icon.svg" alt="Linkedin">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.FacebookURL}}" id="facebookUrl" placeholder="http://www.facebook.com">
+              <input type="text" class="form-control" value="{{companyprofile?.FacebookURL}}" id="facebookUrl"
+                placeholder="http://www.facebook.com">
             </div>
           </div>
         </div>
@@ -259,17 +269,23 @@
       </div>
       <div class="company-address">
         <div class="form-block">
-          <div class="form-group">
+
+          <!--Country Code and Phone Number-->
+          <div class="form-group country-phone-code">
             <div class="input-group transparent">
-              <span class="input-group-addon">
+              <span class="col-md-2 col-xs-2 phone-icon">
                 <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
               </span>
-              <select (change)="chooseCountry($event.target.value)">
-              <option *ngFor="let ls of selectCountry"  [selected]="ls.dial_code == companyprofile?.HomeAreaCode" value="{{ls?.dial_code}}">{{ls?.dial_code}} {{ls?.name}}</option>                                     
+              <select class="col-md-4 col-xs-4" (change)="chooseCountry($event.target.value)">
+                <option title="{{ls?.dial_code}} {{ls?.name}}" *ngFor="let ls of selectCountry" [selected]="ls.dial_code == companyprofile?.HomeAreaCode"
+                  value="{{ls?.dial_code}}">{{ls?.dial_code}} {{ls?.name}}</option>
               </select>
-              <input type="text" class="form-control" value="{{companyprofile?.MobilePhone}}" id="mobile" placeholder="Phone Number">
+              <input type="text" class="col-md-6 col-xs-6" value="{{companyprofile?.MobilePhone}}" id="mobile"
+                placeholder="Phone Number">
             </div>
           </div>
+          <!---->
+
           <div class="form-group">
             <div class="input-group transparent">
               <span class="input-group-addon">
@@ -283,7 +299,8 @@
               <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
               Address
             </label>
-            <input type="text" class="form-control" value="{{companyprofile?.Address1}}" id="address1" placeholder="Address">
+            <input type="text" class="form-control" value="{{companyprofile?.Address1}}" id="address1"
+              placeholder="Address">
           </div>
           <div class="form-group">
             <app-googlelocation></app-googlelocation>
@@ -341,17 +358,17 @@
               <img src="assets/images/upload-icon.png" id="btn-stop-recording" hidden (click)="stopRecording()" alt="">
               <p id="upload_p" hidden>Stop & Upload</p>
             </div> -->
-              <!--TBD Feature, commenting on 17-01-2020-->
+            <!--TBD Feature, commenting on 17-01-2020-->
             <div class="item">
               <a href="javascript:void(0)">
-                  <a (click)="videovalue.click()" href="javascript:void(0)">
-                      <input  type="file" class="hidden" #videovalue (click)="videovalue.value = null" value=""
-                        (change)="onVideoFileChange($event)">
-                      <img src="assets/images/upload-icon.png" alt="upload-icon">
-                      <p>Upload</p>
-                    </a>
+                <a (click)="videovalue.click()" href="javascript:void(0)">
+                  <input type="file" class="hidden" #videovalue (click)="videovalue.value = null" value=""
+                    (change)="onVideoFileChange($event)">
+                  <img src="assets/images/upload-icon.png" alt="upload-icon">
+                  <p>Upload</p>
+                </a>
               </a>
-          
+
               <!-- <form class="form-inline" action="" enctype="multipart/form-data">
                        
                         <label for="browse">

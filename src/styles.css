@@ -18391,6 +18391,9 @@ margin-top: 0px;
     .page--job-details .meta svg{
         width:23px
     }
+    .country-phone-code span.phone-icon{
+        padding: 1.42rem!important;
+    }
 }
 
 @media all and (max-width: 767px) {
@@ -25332,3 +25335,5 @@ table .table-prl-0 td {
 
   }
 /*Mozilla oriented CSS*/
+
+ 
