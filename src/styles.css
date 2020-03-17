@@ -19194,6 +19194,19 @@ margin-top: 0px;
     font-weight: 500;
 }
 
+   /*City Box redesign*/
+   .page--create-a-job .form-steps .checkbox input:checked~.city-box{
+    background-color: #ebebeb;
+    border-color: #ebebeb;
+    color: #222;
+  }
+  .page--create-a-job .form-steps .checkbox input:checked~.city-box span,  .page--create-a-job .form-steps .checkbox .city-box span{
+    color: #721c24;
+    margin-right: 1rem;
+    border-right: 1px solid #222;
+    padding-right: 1rem;
+  }
+
 .page--create-a-job .form-steps #step1 header {
     margin-bottom: 40px;
 }
