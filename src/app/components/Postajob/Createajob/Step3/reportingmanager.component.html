@@ -1,6 +1,6 @@
 <div class="form-group job-title-group reporting-manager-group">
   <label for="" class="question">Reporting Manager <small>(Optional)</small></label>
-  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->  
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
   <!-- <ng-select class="custom-style" [items]="managersList | async"
   placeholder="e.g. Bachelor of Computer Arts"
   bindLabel="FirstName"
@@ -22,29 +22,89 @@
   [(ngModel)]="selectedManager"
   [virtualScroll]="true">
 </ng-select> -->
-<ng-select class="custom-style" 
-[items]="reportingmanagersList | async" 
-placeholder="Type and Select" 
-bindLabel="FirstName"
-bindValue="FirstName"
-(change)="updateManager($event)" [typeahead]="selectedInput" 
-[hideSelected]="true" [loading]="usersload"
-[(ngModel)]="selectManager" [virtualScroll]="true"  #reportingMngr="ngModel" name="reportingMgr">
-<ng-template ng-label-tmp let-item="reportingmanagersList">  
-       <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
-       {{selectManager}}
-       <!-- {{selectedCategory.JobCategoryId}} -->
-       <!-- {{selectedCategory.Category}} -->
-  <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
-</ng-template>
-</ng-select>
-<!-- <ul class="data-list">
+
+  <!--ACI-17-UI-Implementation-17-03-2020-->
+  <div class="form-row row">
+    <div class="col-md-10">
+      <ng-select class="custom-style" [items]="reportingmanagersList | async" placeholder="Type and Select"
+        bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
+        [hideSelected]="true" [loading]="usersload" [(ngModel)]="selectManager" [virtualScroll]="true"
+        #reportingMngr="ngModel" name="reportingMgr">
+        <ng-template ng-label-tmp let-item="reportingmanagersList">
+          <!-- <b>{{jobcategorylist.JobCategoryId}}</b> is cool -->
+          {{selectManager}}
+          <!-- {{selectedCategory.JobCategoryId}} -->
+          <!-- {{selectedCategory.Category}} -->
+          <!-- <b>{{jobcategorylist.Category}}</b> is cool -->
+        </ng-template>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn add-btn form-control mt-0" type="button" data-toggle="modal" data-target="#managereportingmanager">+</button>
+    </div>
+  </div>
+
+  <!---->
+
+  <!-- <ul class="data-list">
     <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
   </ul> -->
 </div>
 <div class="job-title-suggestions">
-    <div class="checkbox" *ngFor="let  managers of suggestedManagers; let i = index">
-      <label><input type="radio" [(ngModel)]="selectedManager"  (change)="updateManager(managers)" name="mangr" [value]="managers"><span class="box">{{managers.FirstName}}</span> </label>
-    </div>     
-    
+  <div class="checkbox" *ngFor="let  managers of suggestedManagers; let i = index">
+    <label><input type="radio" [(ngModel)]="selectedManager" (change)="updateManager(managers)" name="mangr"
+        [value]="managers"><span class="box">{{managers.FirstName}}</span> </label>
   </div>
+
+</div>
+
+
+<!--Manage Reporting manager Dialog 17-03-2020-->
+<div class="modal fade managereportingmanager" id="managereportingmanager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Add Team Member</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group col-md-6">
+            <label for="first-name" class="control-label">First Name</label>
+            <input type="text" class="form-control" id="first-name" placeholder="*First Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="last-name" class="control-label">Last Name</label>
+            <input type="text" class="form-control" id="last-name" placeholder="*Last Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Work-email" class="control-label">Work Email</label>
+            <input type="text" class="form-control" id="last-name" placeholder="*Work Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Work-email" class="control-label">Role</label>
+            <select id="Work-email" class="form-control">
+              <option>Hiring Leader</option>
+              <option>Reporting Manager</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="send-email-checkbox col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Send Email
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-border btn-prev" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-filled btn-next">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Manage Reporting manager Dialog 17-03-2020-->
