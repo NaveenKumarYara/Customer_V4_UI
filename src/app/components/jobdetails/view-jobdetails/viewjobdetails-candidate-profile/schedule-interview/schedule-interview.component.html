@@ -22,7 +22,9 @@
                   <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-top" style="display: block; top: 202px; left: 712.5px; z-index: 1010;">
         
                   </div> -->
-                  <input class="form-control datepicker"  placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="InterviewDate" required #dataPicker="ngModel" name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
+                                        <input class="form-control datepicker" placeholder="yyyy-mm-dd" name="dp"
+                                            [(ngModel)]="InterviewDate" required #dataPicker="ngModel"
+                                            name="InterviewDate" ngbDatepicker #d="ngbDatepicker">
                                         <div class="input-group-btn">
                                             <button class="btn" (click)="d.toggle()" type="button">
                                                 <img src="../../../../../../assets/images/calender.svg" width="22" />
@@ -83,22 +85,23 @@
   </div> -->
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
+                            <div class="form-row row add-new-user">
+                                <div class="form-group col-md-10">
                                     <label for="team-members">Add Internal Team Members *</label>
                                     <div class="input-group" style="display: grid;">
                                         <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
                                         <ng-select class="custom-style interview-schedule-popup"
-                                        [items]="customercontacts" name="team" placeholder="Type and Search"
+                                            [items]="customercontacts" name="team" placeholder="Type and Search"
                                             (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId"
                                             [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" required
-                                            name="selectedUserName" [virtualScroll]="true"  #TMember="ngModel">
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName"
+                                            required name="selectedUserName" [virtualScroll]="true" #TMember="ngModel">
                                         </ng-select>
 
-                                         <span class="input-group-btn" style="display:none">
-                                            <button type="button" (click)="addTeammembers()" class="btn">+</button>
-                                        </span> 
+                                        <span class="input-group-btn" style="display:none">
+                                            <button type="button" (click)="addTeammembers()"
+                                                class="btn add-btn form-control">+</button>
+                                        </span>
                                     </div>
                                     <span class="text-danger"
                                         *ngIf="TMember.invalid && TMember.touched">Required.</span>
@@ -123,11 +126,95 @@
                                         </div>
                                         </li>
                                       </ul> -->
+                                <div class="col-md-2">
+                                    <button class="btn add-btn form-control" type="button">+</button>
+                                </div>
+                                <!--Add New User-->
+                                <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+                                    <div class="col-md-6 form-group p-rel">
+                                        <input type="text" class="form-control" formControlName="FirstName"
+                                            placeholder="First Name *" minlength=3
+                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                            required>
+                                        <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)"
+                                            class="error1">
+
+                                            <div *ngIf="Addform.controls['FirstName'].errors.required">
+                                                Required.
+                                            </div>
+
+                                            <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                                                Minimum 3 Characters allowed.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group p-rel">
+                                        <input type="text" class="form-control" formControlName="LastName" minlength=3
+                                            placeholder="Last Name *"
+                                            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                            required>
+                                        <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)"
+                                            class="error1">
+                                            <div *ngIf="Addform.controls['LastName'].errors.required">
+                                                Required.
+                                            </div>
+                                            <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                                                Minimum 3 Characters allowed.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group p-rel">
+                                        <input type="email" [pattern]="emailPattern" class="form-control"
+                                            placeholder="Work Email *" autocomplete="new-email"
+                                            formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
+                                            id="semail">
+                                        <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)"
+                                            class="error1">
+                                            <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                                                Required.
+                                            </div>
+                                            <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                                                Incorrect Email!.
+                                            </div>
+                                        </div>
+                                        <div *ngIf="show" class="error1">
+                                            Email already registered.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <select name="Value" id="view" class="styled-select-box w-100"
+                                            (change)="PopulateRoles($event.target.value)">
+                                            <option default selected="selected" value=8>Hiring Leader</option>
+                                            <option value=6>Reporting Manager</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        <div class="d-flex  mb-3">
+                                            <div class="mr-auto p-2 ">
+                                                <!-- <label class="radio">
+                                                        <div class="mt--13">
+                                                          <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
+                                                          <span class="radio-btn"></span>
+                                                          Active
+                                                        </div>
+                                                      </label> -->
+                                            </div>
+                                            <div class="p-2">
+                                                <button type="submit" class="btn btn-filled box-shadow-none">Add
+                                                    User</button>
+                                                <button (click)="ResetUser()" class="btn btn-border"
+                                                    data-toggle="collapse" href="#addUser" aria-expanded="false"
+                                                    aria-controls="addUser">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!---->
+
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <button class="btn add-btn form-control mt-0" type="button">+</button>
-                          </div>
+
 
                         <div class="col-md-12">
                             <div class="interview-type">
@@ -165,8 +252,8 @@
                                      </ul>
                                 Condition based Tabs in Comments Ends-->
                                 <ul class="nav nav-tabs">
-                                <!-- <ng-container *ngFor="let type of typeList"> -->
-                                        <!-- <li
+                                    <!-- <ng-container *ngFor="let type of typeList"> -->
+                                    <!-- <li
                                             [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
                                             <a data-toggle="tab" href="javascript:void(0)"
                                                 data-target="{{type?.InterviewType}}"> 
@@ -174,12 +261,15 @@
                                             </a>
                                              
                                         </li> -->
-                                        <ng-container *ngFor="let type of typeList"> 
-                                        <li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)" [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
-                                                <a data-toggle="tab" href="#{{type?.InterviewType}}" (click)="GetId(type?.InterviewTypeId)" aria-expanded="true">{{type?.InterviewType}}</a>
-                                            </li>
+                                    <ng-container *ngFor="let type of typeList">
+                                        <li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)"
+                                            [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                            <a data-toggle="tab" href="#{{type?.InterviewType}}"
+                                                (click)="GetId(type?.InterviewTypeId)"
+                                                aria-expanded="true">{{type?.InterviewType}}</a>
+                                        </li>
                                     </ng-container>
-                                    </ul>
+                                </ul>
                                 <!--Basic Tabs HTML added on 02-04-2019 Starts here-->
                                 <!-- <ul class="nav nav-tabs">
                                     <li class="active">
@@ -212,13 +302,15 @@
                                                 ?</label>
                                             <div class="clearfix">
                                                 <label for="travelExpense-yes" class="radio">
-                                                    <input type="radio" id="travelExpense-yes"  [(ngModel)]="travelExpense"  name="travelExpense"
+                                                    <input type="radio" id="travelExpense-yes"
+                                                        [(ngModel)]="travelExpense" name="travelExpense"
                                                         class="radio-input" value="true">
                                                     <span class="radio-btn"></span>
-                                                    <span>Yes</span> 
+                                                    <span>Yes</span>
                                                 </label>
                                                 <label for="travelExpense-no" class="radio">
-                                                    <input type="radio" id="travelExpense-no"  [(ngModel)]="travelExpense"  name="travelExpense"
+                                                    <input type="radio" id="travelExpense-no"
+                                                        [(ngModel)]="travelExpense" name="travelExpense"
                                                         class="radio-input" value="false">
                                                     <span class="radio-btn"></span>
                                                     <span>No</span>
@@ -231,16 +323,14 @@
                                             <label for="">Link</label>
                                             <h2><input class="form-control" type="text" [(ngModel)]="skypeId"
                                                     name="skype"></h2>
-                                                    <ng-container *ngFor="let option of options">
-                                                        <label class="radio">                                           
-                                                                <input class="radio" 
-                                                                (click)="getValue(option.id)"
-                                                                [checked]="option.id == selectedOption.id"
-                                                                value= {{option.id}}
-                                                                 type="radio">
-                                                                <span class="radio-btn"></span>
-                                                                <span class="radio-text">{{option.name}}</span>
-                                                            </label>                                
+                                            <ng-container *ngFor="let option of options">
+                                                <label class="radio">
+                                                    <input class="radio" (click)="getValue(option.id)"
+                                                        [checked]="option.id == selectedOption.id" value={{option.id}}
+                                                        type="radio">
+                                                    <span class="radio-btn"></span>
+                                                    <span class="radio-text">{{option.name}}</span>
+                                                </label>
                                             </ng-container>
                                         </div>
                                         <!-- 
@@ -267,11 +357,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="">Dial-in number</label>
-                                                <input type="text" [(ngModel)]="dailInNumber" name="PhoneNumber" class="form-control" placeholder="e.g. 852477231">
+                                                <input type="text" [(ngModel)]="dailInNumber" name="PhoneNumber"
+                                                    class="form-control" placeholder="e.g. 852477231">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="">Meeting/Conf. ID</label>
-                                                <input type="text" [(ngModel)]="bridgeUrl" name="bridgeUrl"  class="form-control" placeholder="e.g. HGKS2553GV">
+                                                <input type="text" [(ngModel)]="bridgeUrl" name="bridgeUrl"
+                                                    class="form-control" placeholder="e.g. HGKS2553GV">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -301,7 +393,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label for="">Phone Number</label>
-                                                <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="PhoneNumber" placeholder="e.g. 852477231">
+                                                <input type="text" class="form-control" [(ngModel)]="phoneNumber"
+                                                    name="PhoneNumber" placeholder="e.g. 852477231">
                                             </div>
                                         </div>
                                         <div class="clearfix">&nbsp;</div>
@@ -312,15 +405,15 @@
                                     <div class="clearfix">
                                         <div class="radio-btn bordered">
                                             <label>
-                                                <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
-                                                    [value]="true">
+                                                <input type="radio" [(ngModel)]="furtherInterview"
+                                                    name="furtherInterview" [value]="true">
                                                 <span class="box">Yes</span>
                                             </label>
                                         </div>
                                         <div class="radio-btn bordered">
                                             <label>
-                                                <input type="radio" [(ngModel)]="furtherInterview" name="furtherInterview"
-                                                   [value]="false">
+                                                <input type="radio" [(ngModel)]="furtherInterview"
+                                                    name="furtherInterview" [value]="false">
                                                 <span class="box">No</span>
                                             </label>
                                         </div>
@@ -329,82 +422,15 @@
                             </div>
                         </div>
 
-                        <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
-                            <div class="col-md-6 form-group p-rel">
-                                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name *" minlength=3  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                                required>
-                            <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)" class="error1">
-                    
-                                <div *ngIf="Addform.controls['FirstName'].errors.required">
-                                    Required.
-                                </div>
-                    
-                                <div *ngIf="Addform.controls['FirstName'].errors.minlength">
-                                    Minimum 3 Characters allowed.
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-md-6 form-group p-rel">
-                                <input type="text" class="form-control" formControlName="LastName" minlength=3  placeholder="Last Name *"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                                required>
-                               <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)" class="error1">
-                                <div *ngIf="Addform.controls['LastName'].errors.required">
-                                    Required.
-                                </div>
-                                <div *ngIf="Addform.controls['LastName'].errors.minlength">
-                                    Minimum 3 Characters allowed.
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-md-6 form-group p-rel">
-                                <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
-                                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
-                                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
-                                        Required.
-                                    </div>
-                                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
-                                        Incorrect Email!.
-                                    </div>
-                                </div>
-                                <div *ngIf="show" class="error1">
-                                    Email already registered.
-                                </div>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <select name="Value" id="view" class="styled-select-box w-100"  (change)="PopulateRoles($event.target.value)">
-                                <option  default selected="selected" value=8>Hiring Leader</option>
-                                <option value=6>Reporting Manager</option>
-                            </select>
-                            </div>
-                            <div class="col-md-12">
-                              
-                                <div class="d-flex  mb-3">
-                                    <div class="mr-auto p-2 ">
-                                        <!-- <label class="radio">
-                                            <div class="mt--13">
-                                              <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
-                                              <span class="radio-btn"></span>
-                                              Active
-                                            </div>
-                                          </label> -->
-                                    </div>
-                                    <div class="p-2">
-                                        <button type="submit" class="btn btn-filled box-shadow-none">Add User</button>
-                                        <button (click)="ResetUser()" class="btn btn-border" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser">Cancel</button>
-                                    </div>
-                                  </div>
-                               
-                                
-                            </div>
-                            </form>
+
                     </div>
                 </div>
             </mat-dialog-content>
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">
                     <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-                    <button mat-button type="submit"   (click)="ScheduleInterview()"
-                        c000dkFocusInitial class="btn btn-filled"> 
+                    <button mat-button type="submit" (click)="ScheduleInterview()" c000dkFocusInitial
+                        class="btn btn-filled">
                         <!-- [mat-dialog-close]="true" -->
                         Schedule Interview</button>
 

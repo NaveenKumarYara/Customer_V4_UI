@@ -13908,11 +13908,11 @@ margin-top: 0px;
     padding: 20px 30px 35px;
 }
 
-.page--job-details #scheduleInterview .modal-body form>.col-md-6:first-of-type {
+.page--job-details #scheduleInterview .modal-body form>.col-md-6:first-of-type, .page--job-details #scheduleInterview .modal-body form>.col-md-6:nth-of-type(3) {
     padding-right: 30px;
 }
 
-.page--job-details #scheduleInterview .modal-body form>.col-md-6:nth-of-type(2) {
+.page--job-details #scheduleInterview .modal-body form>.col-md-6:nth-of-type(2), .page--job-details #scheduleInterview .modal-body form>.col-md-6:nth-of-type(4)  {
     border-left: 1px solid #E0E3EF;
     padding-left: 30px;
 }
@@ -14072,6 +14072,10 @@ margin-top: 0px;
     font-size: 12px;
     color: #9EABC0;
 }
+.page--job-details #scheduleInterview .skype-group label {
+    display: inline-block;
+    margin-right: 3%;
+}
 
 .page--job-details #scheduleInterview .interview-type .nav>li>a {
     color: #6A7E9C;
@@ -14096,6 +14100,7 @@ margin-top: 0px;
 .page--job-details #scheduleInterview .interview-type .tab-content {
     padding: 30px 0 0;
 }
+
 
 .page--job-details #selectedJobDetails .modal-content {
     border-radius: 0;
@@ -18889,6 +18894,27 @@ margin-top: 0px;
     list-style: none;
     margin: 0;
 }
+/*Post a Job Multiple Locations Styles*/
+.page--create-a-job .form-steps .multiple-locations small{
+     font-size: 85% !important;
+     color: #6A7E9C;
+       }
+.page--create-a-job .form-steps .multiple-locations a.clickhere{
+ color: #6A7E9C;
+ text-decoration: underline;
+  cursor: pointer;
+    }
+.page--create-a-job .form-steps .multiple-locations input.form-control{
+margin-top:0px;
+}
+.page--create-a-job .multiple-locations .city-label, .page--create-a-job .multiple-locations .open-positions {
+    font-size: 1rem;
+}
+.page--create-a-job .multiple-locations .btn{
+    margin-top: 17%!important;
+}
+/*Post a Job Multiple Locations Styles*/
+
 
 .page--create-a-job .form-steps .data-list li {
     border: 1px solid #E0E3EF;

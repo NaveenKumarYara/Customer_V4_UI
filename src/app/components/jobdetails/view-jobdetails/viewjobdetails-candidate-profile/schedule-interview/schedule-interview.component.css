@@ -25,5 +25,16 @@
 
 .page--job-details #scheduleInterview .interview-type .tab-content {
     padding: 30px 0 0;
-    width: 30vw;
+}
+
+/*Add new user styles 19-03-2020*/
+.add-new-user .add-btn {
+    margin-top: 35%;
+    text-align: center;
+    color: #ffffff;
+    padding: 18px;
+    width: 55px;
+    background-color: #66DAB5;
+    border: 0;
+    border-radius: 3px;
 }
