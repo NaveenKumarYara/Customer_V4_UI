@@ -125,6 +125,10 @@
                                       </ul> -->
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <button class="btn add-btn form-control mt-0" type="button">+</button>
+                          </div>
+
                         <div class="col-md-12">
                             <div class="interview-type">
 
@@ -324,6 +328,75 @@
                                 </div>
                             </div>
                         </div>
+
+                        <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+                            <div class="col-md-6 form-group p-rel">
+                                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name *" minlength=3  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                required>
+                            <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)" class="error1">
+                    
+                                <div *ngIf="Addform.controls['FirstName'].errors.required">
+                                    Required.
+                                </div>
+                    
+                                <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                                    Minimum 3 Characters allowed.
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6 form-group p-rel">
+                                <input type="text" class="form-control" formControlName="LastName" minlength=3  placeholder="Last Name *"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                                required>
+                               <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)" class="error1">
+                                <div *ngIf="Addform.controls['LastName'].errors.required">
+                                    Required.
+                                </div>
+                                <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                                    Minimum 3 Characters allowed.
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6 form-group p-rel">
+                                <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
+                                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
+                                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                                        Required.
+                                    </div>
+                                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                                        Incorrect Email!.
+                                    </div>
+                                </div>
+                                <div *ngIf="show" class="error1">
+                                    Email already registered.
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <select name="Value" id="view" class="styled-select-box w-100"  (change)="PopulateRoles($event.target.value)">
+                                <option  default selected="selected" value=8>Hiring Leader</option>
+                                <option value=6>Reporting Manager</option>
+                            </select>
+                            </div>
+                            <div class="col-md-12">
+                              
+                                <div class="d-flex  mb-3">
+                                    <div class="mr-auto p-2 ">
+                                        <!-- <label class="radio">
+                                            <div class="mt--13">
+                                              <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
+                                              <span class="radio-btn"></span>
+                                              Active
+                                            </div>
+                                          </label> -->
+                                    </div>
+                                    <div class="p-2">
+                                        <button type="submit" class="btn btn-filled box-shadow-none">Add User</button>
+                                        <button (click)="ResetUser()" class="btn btn-border" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="addUser">Cancel</button>
+                                    </div>
+                                  </div>
+                               
+                                
+                            </div>
+                            </form>
                     </div>
                 </div>
             </mat-dialog-content>

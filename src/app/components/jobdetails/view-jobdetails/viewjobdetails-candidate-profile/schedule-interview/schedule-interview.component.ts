@@ -3,12 +3,14 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {ScheduleType} from '../../../models/ScheduleType';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import {CustomerContacts} from '../../../../../../models/customercontacts';
 import { AppService } from '../../../../../app.service';
+import { ResetComponent } from '../../../../ResetPassword/resetpassword.component';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 // import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
@@ -40,10 +42,16 @@ export class ScheduleInterviewComponent implements OnInit {
  @Output() eventStat = new EventEmitter();
   webxRI: boolean;
   skypeId: string;
+  Addform: FormGroup;
   furtherInterview: boolean;
   travelExpense: boolean;
   phoneNumber: string;
   dailInNumber: string;
+  show : any = false;
+  Value: number;
+  Forgotform: any;
+  result :any;
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
   bridgeUrl: string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
@@ -72,7 +80,7 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -128,6 +136,24 @@ export class ScheduleInterviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.show = false;
+    this.Addform = this.fb.group({
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': ['', Validators.compose([Validators.nullValidator])],
+      'UserId'  : ['', Validators.compose([Validators.nullValidator])],    
+      'FirstName': ['', Validators.compose([Validators.required])],   
+      'LastName': ['', Validators.compose([Validators.required])],
+      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required])],
+      'Password': ['', Validators.compose([Validators.nullValidator])],                   
+      'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
+    });
+    this.Forgotform = this.fb.group({
+      'EmailId': ['', Validators.compose([Validators.required])],  
+    });
+
+
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.GetInterView();
@@ -294,6 +320,79 @@ GetInterView() {
   private deleteTeammember(index: number) {
     this.appService.deleteTeammember(index);
   }
+  PopulateRoles(val)
+  {
+    debugger
+   this.Value= val;
+  }
+  ResetUser()
+  {
+    this.show = false;
+    this.Addform.reset();            
+  }
+
+  SaveUser()
+  {
+    debugger
+    if(this.Addform.invalid)
+    {
+      this.Addform.controls['FirstName'].markAsTouched()
+      this.Addform.controls['LastName'].markAsTouched()
+      this.Addform.controls['ContactEmail'].markAsTouched()
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+    }
+    else if(this.result.UserId>0)
+    {  
+      this.show = true;    
+    }
+    else if(this.result.UserId==0)
+    {
+      this.Addform.value.UserId = 0;
+      this.Addform.value.CustomerId = this.customerId;
+      this.Addform.value.Password = 123456;
+      this.Addform.value.UserRoleId = this.Value?this.Value:"8";
+      this.Addform.value.IsActive = true;
+        this.appService.addCustomerUser(this.Addform.value)
+        .subscribe(
+        data => {         
+        if(data>0)
+        {   
+        this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+        this.appService.ActivateCustomerUser(this.Forgotform.value)
+        .subscribe(
+        data1 => {
+           this.toastr.success('Please check your email to reset the password','Success');
+              setTimeout(() => { 
+                  this.Addform.reset();            
+                  this.toastr.dismissToast; 
+                  this.GetCustomerContacts();  
+                }, 3000);
+               
+             } 
+                        
+        );
+        }  
+      });
+    }
+  }
+  GetEmailValidate()
+  {
+    this.show = false;
+    this.appService.validateemail(this.Addform.value.ContactEmail)
+    .subscribe(
+    data => {
+      this.result = data;
+      debugger
+      if(this.result.UserId>0&&this.result.CustomerId>0)
+      {  
+        this.show = true;    
+      }
+    })
+  }
+
   // ngOnDestroy() {
   //   this.subscription.unsubscribe();
   // }
