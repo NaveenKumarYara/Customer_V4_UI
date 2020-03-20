@@ -30,7 +30,7 @@ export class InsertJob {
     public HideSalary: boolean;
     public BonusOffered: boolean;
     public HiringProcessId: number;
-    public HiringManagerId: number;
+    public HiringManagerId: string;
     public XmlTechnicalTeam: PjTechnicalTeam[] = [];
     public IsPrivate: boolean;
     public XmlAccessToUsers: PjJobAccessTo[] = [];
