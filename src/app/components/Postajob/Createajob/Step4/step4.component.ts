@@ -38,6 +38,7 @@ export class Step4Component implements OnInit {z
   personalityType: any;
   qualification: any;
   draftItem: any;
+  JobIds=[];
 // step3
   contractDuration: any;
   contractExtension: any;
@@ -140,6 +141,7 @@ export class Step4Component implements OnInit {z
 
 
   ngOnInit() {  
+    this.JobIds = this.appService.JobIds;
   }
 
 
@@ -183,7 +185,7 @@ export class Step4Component implements OnInit {z
     // step2
 
     this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;
-    this.insertJob.PreferredLocationId = this.locations ; // this.appService.location.value.locationId.toString();
+    //this.insertJob.PreferredLocationId = this.locations ; // this.appService.location.value.locationId.toString();
     this.insertJob.XmlQualifications = this.appService.addqualifications; //  this.qualification;
     this.insertJob.XmlDomains = this.appService.adddomain; // this.domain;
      this.insertJob.XmlPersonType = this.appService.personTypeSingle; //  this.personalityType;
@@ -282,21 +284,28 @@ export class Step4Component implements OnInit {z
     }
     else 
     {
-    this.insertJob.TemplateSaveTitle = this.TemplateName;
-    this.appService.postjob(this.insertJob).subscribe(data => {
-      if (data) {        
-        // this.insertJob.JobId = data;
-        // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-        // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-        localStorage.removeItem('draftItem');
-        localStorage.removeItem('hide');
-        localStorage.removeItem('SalaryTypeId');
-        this.TemplateName= null;
-        // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-        this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-        this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-      }
-    });
+      let requests =  this.JobIds.map((item) => {
+        this.insertJob.JobId = item;
+        this.insertJob.TemplateSaveTitle = this.TemplateName;
+        this.appService.postjob(this.insertJob).subscribe(data => {
+          if (data) {        
+            // this.insertJob.JobId = data;
+            // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+            // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+            localStorage.removeItem('draftItem');
+            localStorage.removeItem('hide');
+            localStorage.removeItem('SalaryTypeId');
+            this.TemplateName= null;
+            // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          }
+        });
+        return new Promise((resolve) => {  
+        this.asyncFunction(item, resolve);
+  });
+  })
+  Promise.all(requests).then(() => this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']))
   }
   }
   ViewJobdetails(jobId) {
@@ -309,6 +318,13 @@ export class Step4Component implements OnInit {z
     } else {
       this.steps.step3toggleClass(2);
     }
+  }
+
+  asyncFunction (item, cb) {
+    setTimeout(() => {      
+      console.log('done with', item);
+      cb();
+    }, 3000);
   }
 
 

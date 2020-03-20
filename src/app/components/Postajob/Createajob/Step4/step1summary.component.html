@@ -54,9 +54,12 @@
     <h3 class="question">
       At which location the job is available?
     </h3>
+    <ng-container *ngFor="let loc of location">
       <h4 class="data">
-        {{location}}
+        {{loc.CityName}}
       </h4>
+    </ng-container>
+      
   </div>
   <div class="form-data-group">
     <h3 class="question">

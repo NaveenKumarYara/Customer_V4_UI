@@ -22,7 +22,7 @@ import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
 import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
         ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,
         PjDepartments } from './components/Postajob/models/jobPostInfo';
@@ -201,6 +201,9 @@ export class AppService {
 
   personTypes: DiscResult[] = [];
   personTypeChanged = new Subject<DiscResult[]>();
+
+  JobIds:MultipleJobIds[]=[];
+  JobLocations:Cities[]=[];
 
   personTypeSingle: PjDisc[] = [];
   personTypeSingleChanged = new Subject<PjDisc[]>();

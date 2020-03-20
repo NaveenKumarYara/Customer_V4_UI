@@ -173,3 +173,8 @@ export class PjDepartments {
     public JobCategoryId: number;
     public Category: string;
   }
+
+  export class MultipleJobIds
+  {
+    JobId:number;
+  }

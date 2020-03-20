@@ -50,6 +50,7 @@ export class Step3Component implements OnInit {
   jobResponsibility: any;
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
+  JobIds=[];
   // @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   // @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   // @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -198,6 +199,7 @@ export class Step3Component implements OnInit {
   ngOnInit() {
     // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.changeEmploymentType();
+    this.JobIds = this.appService.JobIds;
   }
 
   changeEmploymentType() {
@@ -354,25 +356,31 @@ export class Step3Component implements OnInit {
     this.insertJob.HiringManagerId = this.reporting.selectedManager.UserId;
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
-    debugger
-    this.appService.postjob(this.insertJob).subscribe(data => {
-      if (data) {
-        // this.insertJob.JobId = data;
-        if (exit === 0) {
-          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-        } else {
-        if (this.complete > 0) {
-          this.steps.step4toggleClass(this.complete);
-        } else {
-          this.steps.step4toggleClass(3);
+    let requests =  this.JobIds.map((item) => {
+      this.insertJob.JobId = item;
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {
+          // this.insertJob.JobId = data;
+          if (exit === 0) {
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          } else {
+          if (this.complete > 0) {
+            this.steps.step4toggleClass(this.complete);
+          } else {
+            this.steps.step4toggleClass(3);
+          }
+  
+          //this.router.navigate(['/app-createajob/app-steps-step4']);
         }
+        }
+      });
+      return new Promise((resolve) => { 
 
-        this.router.navigate(['/app-createajob/app-steps-step4']);
-      }
-      }
-    });
-
+    this.asyncFunction(item, resolve);
+  });
+  })
+  Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step4']))
   }
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
@@ -385,6 +393,13 @@ export class Step3Component implements OnInit {
     } else {
     this.steps.step2toggleClass(1);
     }
+  }
+
+  asyncFunction (item, cb) {
+    setTimeout(() => {      
+      console.log('done with', item);
+      cb();
+    }, 3000);
   }
 
 }

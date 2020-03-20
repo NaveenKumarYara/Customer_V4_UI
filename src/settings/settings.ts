@@ -155,4 +155,5 @@ export class Settings {
   GetCustomerShortListedStatistics:string;
   GetCustomerInterviewStatistics:string;
   GetCustomerHiredStatistics:string;
+  GetJobLocationbyJobId:string;
   }

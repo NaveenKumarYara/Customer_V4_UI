@@ -14,7 +14,7 @@ jobTitle = '';
 minExp: number;
 maxExp: number;
 noOfopenings:number;
-location:string;
+location=[];
 hasDescription: boolean;
 completeDescription: string;
 jobPositionId: string;
@@ -55,9 +55,9 @@ client: any;
       this.appService.currentjobPosition.subscribe((data) => {
         this.jobPositionId = data; // And he have data here too!
       });
-      this.appService.currentlocation.subscribe((data) => {
-        this.location = data.location; // And he have data here too!
-      });
+      // this.appService.currentlocation.subscribe((data) => {
+      //   this.location = data.location; // And he have data here too!
+      // });
       this.appService.currentOpenings.subscribe((data) => {
         this.noOfopenings = data; // And he have data here too!
       });
@@ -82,6 +82,8 @@ client: any;
     // this.hasDescription = this.appService.hasDescription.value;
     // this.completeDescription = this.appService.description.value;
       this.departments = this.appService.departments;
+      this.location = this.appService.JobLocations;
+      debugger
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';

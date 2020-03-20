@@ -49,6 +49,7 @@ export class Step2Component implements OnInit {
   complete: any;
   userId: any;
   customerId: any;
+  JobIds=[];
   pjDepartments:  PjDepartments[] = [];
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   // @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
@@ -128,6 +129,7 @@ export class Step2Component implements OnInit {
   }
   ngOnInit() {
     this.alertService.clear();
+    this.JobIds = this.appService.JobIds;
   }
 
   postJob(step, exit?) {
@@ -240,23 +242,30 @@ export class Step2Component implements OnInit {
     if (this.appService.isDrafted.value != null) {
       this.appService.updateJobDraft(this.insertJob.IsDrafted);
       }
-      debugger
-    this.appService.postjob(this.insertJob).subscribe(data => {
-      if (data) {
-        // this.insertJob.JobId = data;
-        if (exit === 0) {
-          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-        } else {
-        if (this.complete > 0) {
-          this.steps.step3toggleClass(this.complete);
-        } else {
-          this.steps.step3toggleClass(2);
+      let requests =  this.JobIds.map((item) => {
+        this.insertJob.JobId = item;
+        this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {
+          // this.insertJob.JobId = data;
+          if (exit === 0) {
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          } else {
+          if (this.complete > 0) {
+            this.steps.step3toggleClass(this.complete);
+          } else {
+            this.steps.step3toggleClass(2);
+          }
+          //this.router.navigate(['/app-createajob/app-steps-step3']);
         }
-        this.router.navigate(['/app-createajob/app-steps-step3']);
       }
-    }
-    });
+      });
+        return new Promise((resolve) => { 
+        this.asyncFunction(item, resolve);
+        });
+        })
+        Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step3']))
+ 
   } else {
     this.toastr.error('Please enter Skills!', 'Oops!');
     setTimeout(() => {
@@ -276,7 +285,12 @@ export class Step2Component implements OnInit {
     this.steps.step1toggleClass(0);
     }
   }
-
+  asyncFunction (item, cb) {
+    setTimeout(() => {      
+      console.log('done with', item);
+      cb();
+    }, 1000);
+  }
 
 
 

@@ -41,6 +41,7 @@ export class Step1Component implements OnInit {
   customerId: any;
   jobIdExists: any;
   insertJob = new InsertJob();
+  jobIdVals = [];
   pjSkill: PjSkill;
   pjRole: PjRole;
   pjDisc: PjDisc;
@@ -104,7 +105,7 @@ export class Step1Component implements OnInit {
    if ((this.jobDetail.selectedTitle !== '' || null) // && (this.jobProfile.jobPositionId!== '' || null || undefined)
    && this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
   //  this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0
-    this.openings.noOfOpenings > 0 && this.locations.prfLoc.CityId > 0
+    this.openings.noOfOpenings > 0 && this.locations.locationwisejobs.length>0
    ) {
    //  && this.jobResponsibility.roleIdList.length > 0
    if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
@@ -188,12 +189,15 @@ this.appService.updateStepNumber(step);
 if (this.appService.isDrafted.value != null) {
   this.appService.updateJobDraft(this.insertJob.IsDrafted);
   }
+  this.locations.locationwisejobs.forEach((e)=>{
+    this.insertJob.PreferredLocationId = e.CityId.toString();
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
+        this.createJobId(data);
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
-    localStorage.setItem('Item', false.toString());
+        localStorage.setItem('Item', false.toString());
 
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
@@ -205,10 +209,18 @@ if (this.appService.isDrafted.value != null) {
         } else {
           this.steps.step2toggleClass(1);
         }
-        this.router.navigate(['/app-createajob/app-steps-step2']);
+        //this.router.navigate(['/app-createajob/app-steps-step2']);
       }
       }
     });
+  })
+  let requests =  this.locations.locationwisejobs.map((item) => {
+    return new Promise((resolve) => {
+      this.asyncFunction(item, resolve);
+    });
+  })
+  Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step2']))
+  
   } else {
     if (this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) {
       this.toastr.error('Please enter No of Positions!', 'Oops!');
@@ -219,7 +231,7 @@ if (this.appService.isDrafted.value != null) {
     if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
     this.toastr.error('Please enter Job Title!', 'Oops!');
     }
-    if (this.locations.prfLoc.CityId === undefined || this.locations.prfLoc.CityId === 0) {
+    if (this.locations.locationwisejobs.length==0) {
       this.toastr.error('Please Select Location!', 'Oops!');
     }
     if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
@@ -231,6 +243,21 @@ if (this.appService.isDrafted.value != null) {
     return false;
    }
   }
+
+  createJobId(val)
+  {
+    this.jobIdVals.push(val);
+    this.appService.JobIds=this.jobIdVals;
+  }
+
+  asyncFunction (item, cb) {
+    setTimeout(() => {      
+      console.log('done with', item);
+      cb();
+    }, 3000);
+  }
+
+
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');

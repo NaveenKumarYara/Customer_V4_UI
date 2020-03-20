@@ -29,6 +29,7 @@ ejSalaryType = new Salary(1, 'Hourly');
 ejInterviewType = new InterviewType();
 ejHiringManager = new CustomerUsers();
 ejLocations = new PrefLocation();
+ejLocationsList = [];
 ejTechnicalTeamList: CustomerUsers[] = [];
 // ejTechnicalTeam = new CustomerUsers();
 ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
@@ -213,9 +214,11 @@ editMode: string;
         for (const loc of this.jobdetailscustomer.JobLocation) {
           this.ejLocations.CityId = loc.CityId;
           this.ejLocations.location = loc.CityName;
+          this.ejLocationsList.push(this.ejLocations);
         }
       }
       this.appService.location.next(this.ejLocations);
+      //this.appService.JobLocations=this.ejLocationsList;
       if (this.jobdetailscustomer.TechnicalTeam.length > 0) {
         // this.jobdetailscustomer.TechnicalTeam.forEach(element => {
         //     this.ejTechnicalTeam.UserId = element.UserId;
