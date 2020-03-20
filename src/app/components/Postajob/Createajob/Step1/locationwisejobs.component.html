@@ -49,17 +49,17 @@
   [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
 </ng-select> -->
 
-        <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
+        <!-- <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
             [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel" name="cities">
-        </ng-select>
+        </ng-select> -->
 
         <!--Location UI redesign and reposition 17-03-2020-->
         <div class="options">
-            <div class="checkbox" *ngFor="let jobs of locationwisejobs">
+            <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
                 <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-                <label><input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId">
+                 <label><!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
                     <!-- <span class="box">{{jobs.CityName}}</span>  -->
-                    <h6 class="box city-box">{{jobs.CityName}} <span>x</span> </h6>
+                    <h6 class="box city-box">{{jobs.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>
                 </label>
             </div>
         </div>

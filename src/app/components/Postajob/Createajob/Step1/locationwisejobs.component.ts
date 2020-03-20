@@ -43,6 +43,8 @@ isDrafted: boolean;
   this.prfLoc.CityId = loc.CityId;  // as changes suggested by anil PreferredLocationId by cityid
   this.prfLoc.location = loc.CityName;
   this.appService.updateLocation(this.prfLoc);
+  this.getSelectedOptionText(null);
+  this.selectedCityName=null;
     // console.log(loc);
   }
 
@@ -79,6 +81,13 @@ isDrafted: boolean;
       )
     );
   }
+
+  deleteLocation(index)
+  {
+    this.locationwisejobs.splice(index,1);
+  }
+
+
   getSelectedOptionText(id: number) {
     this.selectedCityName = this.convertObservable.find(s => s.CityId === id);
     if (this.locationwisejobs.length > 0) {
@@ -90,8 +99,10 @@ isDrafted: boolean;
 
     this.locationwisejobs.push(this.selectedCityName);
   }
+ 
   this.appService.JobLocations = this.locationwisejobs;
-  this.selectLocation(this.selectedCityName);
+  //this.selectLocation(this.selectedCityName);
+
    }
 
    locationExists(loc, list) {​

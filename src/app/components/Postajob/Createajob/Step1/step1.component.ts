@@ -189,8 +189,11 @@ this.appService.updateStepNumber(step);
 if (this.appService.isDrafted.value != null) {
   this.appService.updateJobDraft(this.insertJob.IsDrafted);
   }
-  this.locations.locationwisejobs.forEach((e)=>{
-    this.insertJob.PreferredLocationId = e.CityId.toString();
+  // this.locations.locationwisejobs.forEach((e)=>{
+
+  // })
+  let requests =  this.locations.locationwisejobs.map((item) => {
+    this.insertJob.PreferredLocationId = item.CityId.toString();
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -213,8 +216,6 @@ if (this.appService.isDrafted.value != null) {
       }
       }
     });
-  })
-  let requests =  this.locations.locationwisejobs.map((item) => {
     return new Promise((resolve) => {
       this.asyncFunction(item, resolve);
     });
