@@ -356,10 +356,13 @@ export class Step3Component implements OnInit {
     this.insertJob.HiringManagerId = this.reporting.selectedManager.UserId.toString();
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
-    if(this.JobIds.length>0)
+    if(this.JobIds&&this.JobIds.length>0)
     {
-    let requests =  this.JobIds.map((item) => {
-      this.insertJob.JobId = item;
+      var res = new Promise((resolve, reject) => {
+        this.JobIds.forEach((value, index, array) => {
+    //  let requests =  this.JobIds.map((item) => {
+          this.insertJob.JobId = value;
+          debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;
@@ -377,14 +380,15 @@ export class Step3Component implements OnInit {
         }
         }
       });
-      return new Promise((resolve) => { 
+      if (index === array.length -1) resolve();
+     });
+      });
 
-    this.asyncFunction(item, resolve);
-  });
-  })
-  Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step4']))
+      res.then(() => {
+      this.router.navigate(['/app-createajob/app-steps-step4']);
+      });
     }
-    else if(this.JobIds.length==0 || this.JobIds == undefined)
+     if(this.JobIds.length==0 || this.JobIds == undefined)
     {
       debugger
       this.appService.postjob(this.insertJob).subscribe(data => {

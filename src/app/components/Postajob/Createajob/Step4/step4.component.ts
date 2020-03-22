@@ -284,10 +284,11 @@ export class Step4Component implements OnInit {z
     }
     else 
     {
-      if(this.JobIds.length>0)
+      if(this.JobIds&&this.JobIds.length>0)
       {
-         let requests =  this.JobIds.map((item) => {
-        this.insertJob.JobId = item;
+      var res = new Promise((resolve, reject) => {
+      this.JobIds.forEach((value, index, array) => {
+      this.insertJob.JobId = value;
       this.insertJob.TemplateSaveTitle = this.TemplateName;
       debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
@@ -304,14 +305,18 @@ export class Step4Component implements OnInit {z
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
         }
       });
-      return new Promise((resolve) => {  
-      this.asyncFunction(item, resolve);
-});
-})
-Promise.all(requests).then(() => this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']))
-this.JobIds=[];
-      }
-      else if(this.JobIds.length==0 || this.JobIds == undefined)
+      if (index === array.length -1) resolve();
+      debugger
+    });
+  });
+
+   res.then(() => {
+   this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+   });
+   
+      
+       }
+       if(this.JobIds.length==0 || this.JobIds == undefined)
       {
       this.insertJob.TemplateSaveTitle = this.TemplateName;
       this.appService.postjob(this.insertJob).subscribe(data => {
@@ -329,9 +334,9 @@ this.JobIds=[];
         }
       });
 
-      }
+       }
      
-  }
+     }
   }
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));

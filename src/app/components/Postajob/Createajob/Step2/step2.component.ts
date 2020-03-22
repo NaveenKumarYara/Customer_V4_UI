@@ -242,34 +242,39 @@ export class Step2Component implements OnInit {
     if (this.appService.isDrafted.value != null) {
       this.appService.updateJobDraft(this.insertJob.IsDrafted);
       }
-      if(this.JobIds.length>0)
+      if(this.JobIds&&this.JobIds.length>0)
       {
-       let requests =  this.JobIds.map((item) => {
-        this.insertJob.JobId = item;
-        debugger
-      this.appService.postjob(this.insertJob).subscribe(data => {
-        if (data) {
-          // this.insertJob.JobId = data;
-          if (exit === 0) {
-            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-          } else {
-          if (this.complete > 0) {
-            this.steps.step3toggleClass(this.complete);
-          } else {
-            this.steps.step3toggleClass(2);
+        var res = new Promise((resolve, reject) => {
+          this.JobIds.forEach((value, index, array) => {
+      //  let requests =  this.JobIds.map((item) => {
+            this.insertJob.JobId = value;
+            debugger
+            this.appService.postjob(this.insertJob).subscribe(data => {
+          if (data) {
+            // this.insertJob.JobId = data;
+            if (exit === 0) {
+              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            } else {
+            if (this.complete > 0) {
+              this.steps.step3toggleClass(this.complete);
+            } else {
+              this.steps.step3toggleClass(2);
+            }
+    
+            //this.router.navigate(['/app-createajob/app-steps-step4']);
           }
-         // this.router.navigate(['/app-createajob/app-steps-step3']);
-        }
-      }
-      });
-        return new Promise((resolve) => { 
-        this.asyncFunction(item, resolve);
+          }
         });
-        })
-        Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step3']))
+        if (index === array.length -1) resolve();
+       });
+        });
+  
+        res.then(() => {
+        this.router.navigate(['/app-createajob/app-steps-step3']);
+        });
       }
-      else if(this.JobIds.length==0 || this.JobIds == undefined)
+       if(this.JobIds.length==0 || this.JobIds == undefined)
       {
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {

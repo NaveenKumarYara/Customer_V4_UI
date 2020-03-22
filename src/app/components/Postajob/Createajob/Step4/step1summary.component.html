@@ -56,7 +56,12 @@
     </h3>
     <ng-container *ngFor="let loc of location">
       <h4 class="data">
-        {{loc.CityName}}
+        {{loc?.CityName}}
+      </h4>
+    </ng-container>
+    <ng-container *ngFor="let locs of locations">
+      <h4 class="data">
+        {{locs?.CityName}}
       </h4>
     </ng-container>
       

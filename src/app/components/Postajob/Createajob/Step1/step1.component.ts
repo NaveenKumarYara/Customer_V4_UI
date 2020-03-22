@@ -192,44 +192,78 @@ if (this.appService.isDrafted.value != null) {
 
   // })
 
-  if(this.locations.locationwithpostions.length>0)
+  if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
-    let requests =  this.locations.locationwithpostions.map((item) => {
-      this.insertJob.PreferredLocationId = item.CityId.toString();
-      this.insertJob.NumberOfVacancies = item.Positons;
-      debugger
-      this.appService.postjob(this.insertJob).subscribe(data => {
-        if (data) {
-          this.insertJob.JobId = data;
-          this.createJobId(data);
-          debugger
-          localStorage.setItem('jobId', this.insertJob.JobId.toString());
-          localStorage.setItem('JobId', this.insertJob.JobId.toString());
-          localStorage.setItem('Item', false.toString());
-  
-          if (exit === 0) {
-            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-          } else {
-         // this.steps.step2isClicked = true;
-          if (this.complete > 0) {
-            this.steps.step2toggleClass(true);
-          } else {
-            this.steps.step2toggleClass(1);
+    var res = new Promise((resolve, reject) => {
+      this.locations.locationwithpostions.forEach((value, index, array) => {
+        this.insertJob.PreferredLocationId = value.CityId.toString();
+        this.insertJob.NumberOfVacancies = Number(value.Positons);
+        debugger
+        this.appService.postjob(this.insertJob).subscribe(data => {
+          if (data) {
+            this.insertJob.JobId = data;
+            this.createJobId(data);
+            debugger
+            localStorage.setItem('jobId', this.insertJob.JobId.toString());
+            localStorage.setItem('JobId', this.insertJob.JobId.toString());
+            localStorage.setItem('Item', false.toString());
+    
+            if (exit === 0) {
+              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            }
+            else {
+            if (this.complete > 0) {
+              this.steps.step2toggleClass(this.complete);
+            } else {
+              this.steps.step2toggleClass(1);
+            }
+            //this.router.navigate(['/app-createajob/app-steps-step2']);
           }
-          //this.router.navigate(['/app-createajob/app-steps-step2']);
-        }
-        }
+          }
+        });
+          if (index === array.length -1) resolve();
       });
-      return new Promise((resolve) => {
-        this.asyncFunction(item, resolve);
-      });
-    })
-    Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step2']))
+  });
+  
+  res.then(() => {
+    this.router.navigate(['/app-createajob/app-steps-step2']);
+  });
+    // let requests =  this.locations.locationwithpostions.map((item) => {
+    //   this.insertJob.PreferredLocationId = item.CityId.toString();
+    //   this.insertJob.NumberOfVacancies = item.Positons;
+    //   debugger
+    //   this.appService.postjob(this.insertJob).subscribe(data => {
+    //     if (data) {
+    //       this.insertJob.JobId = data;
+    //       this.createJobId(data);
+    //       debugger
+    //       localStorage.setItem('jobId', this.insertJob.JobId.toString());
+    //       localStorage.setItem('JobId', this.insertJob.JobId.toString());
+    //       localStorage.setItem('Item', false.toString());
+  
+    //       if (exit === 0) {
+    //         this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+    //         this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+    //       } else {
+    //      // this.steps.step2isClicked = true;
+    //       if (this.complete > 0) {
+    //         this.steps.step2toggleClass(true);
+    //       } else {
+    //         this.steps.step2toggleClass(1);
+    //       }
+    //       //this.router.navigate(['/app-createajob/app-steps-step2']);
+    //     }
+    //     }
+    //   });
+    //   return new Promise((resolve) => {
+    //     this.asyncFunction(item, resolve);
+    //   });
+    // })
+    //Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step2']))
   }
-  else if(this.locations.locationwisejobs.length>0)
+  if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
   {
-    debugger
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
     this.appService.postjob(this.insertJob).subscribe(data => {
@@ -256,8 +290,9 @@ if (this.appService.isDrafted.value != null) {
     });
   
   } 
-  } else {
-    debugger
+  } 
+ else 
+ {
     // if ((this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) && this.locations.locationwithpostions.length==0){
     //   this.toastr.error('Please enter No of Positions!', 'Oops!');
     // }
@@ -283,7 +318,6 @@ if (this.appService.isDrafted.value != null) {
   createJobId(val)
   {
     this.jobIdVals.push(val);
-    debugger
     this.appService.JobIds=this.jobIdVals;
   }
 
