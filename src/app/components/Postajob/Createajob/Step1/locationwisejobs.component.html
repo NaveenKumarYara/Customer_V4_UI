@@ -1,26 +1,41 @@
 <div class="form-group position-group multiple-locations">
     <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
         <label for="" class="question">At which location the job is available?</label>
-        <small>( <a class="clickhere">Click here</a> if you would like to post the job for <span>Multiple Locations.</span>)</small>
+        <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to post the job for <span>Multiple Locations.</span>)</small>
 
         <!--Multiple Location implementation 19-03-2020-->
-        <div class="row ">
-            <div class="col-md-6">
-                <label class="city-label">City </label>
-                <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
-                [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel" name="cities">
-            </ng-select>
+        <ng-container *ngIf="showMyContainer">
+            <div class="row" >
+                <div class="col-md-6">
+                    <label class="city-label">City </label>
+                    <ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getmultiSelectedOptionText($event)" [typeahead]="mselectedCityInput" [hideSelected]="true"
+                    [loading]="mcityloading" [(ngModel)]="selectedCity" [virtualScroll]="true" required #mcity="ngModel" name="mcities">
+                </ng-select> 
+                </div>
+                <div class="col-md-3">
+                    <label class="open-positions">Open Positions </label>
+                    <!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
+                    <input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpening" (ngModelChange)="Openings($event)" placeholder="Define here">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn add-btn form-control" type="submit" (click)="addArray()">+</button>
+                </div>
             </div>
-            <div class="col-md-3">
-                <label class="open-positions">Open Positions </label>
-                <input type="text" class="form-control"  required  placeholder="Enter Count">
-            </div>
-            <div class="col-md-3">
-                <button class="btn add-btn form-control" type="submit">+</button>
-            </div>
-        </div>
+
+            <div class="options" *ngIf="locationwithpostions">
+                <div class="checkbox" *ngFor="let job of locationwithpostions;let i = index">
+                    <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+                     <label><!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
+                        <!-- <span class="box">{{jobs.CityName}}</span>  -->
+                        <h6 class="box city-box">{{job?.CityName}},{{job?.Positons}}<span (click)="deletemLocation(i)">x</span> </h6>
+                    </label>
+                </div>
+              </div>                  
+        </ng-container>
+    
      
         <div class="clearfix">&nbsp;</div>
+
         <!--Below can be used for Display of add citity and position-->
         <!-- <div class="lists row">
             <div class="col-md-6" *ngIf="primaryjobskills && primaryjobskills.length > 0">
@@ -48,21 +63,27 @@
   bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
   [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
 </ng-select> -->
+    <ng-container *ngIf="!showMyContainer">
+        <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
+        [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel" name="cities">
+    </ng-select> 
+     <div class="options" *ngIf="locationwisejobs">
+        <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
+            <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+             <label><!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
+                <!-- <span class="box">{{jobs.CityName}}</span>  -->
+                <h6 class="box city-box">{{jobs?.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>
+            </label>
+        </div>
+      </div>
+      <app-steps-step2-noofopenings>
+    </app-steps-step2-noofopenings>
 
-        <!-- <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId" (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
-            [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel" name="cities">
-        </ng-select> -->
+    </ng-container>
+    
 
         <!--Location UI redesign and reposition 17-03-2020-->
-        <div class="options">
-            <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
-                <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-                 <label><!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
-                    <!-- <span class="box">{{jobs.CityName}}</span>  -->
-                    <h6 class="box city-box">{{jobs.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>
-                </label>
-            </div>
-        </div>
+    
          <!--Location UI redesign and reposition 17-03-2020-->
 
         <!-- <span class="help-block radio-error1">Location is required.</span> -->

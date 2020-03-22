@@ -104,7 +104,7 @@ export class Step4Component implements OnInit {z
       this.domain = data; // And he have data here too!
     });
     this.appService.currentlocation.subscribe((data) => {
-      this.locations = data.CityId; // And he have data here too!
+      this.locations = data; // And he have data here too!
     });
     this.appService.currentOpenings.subscribe((data) => {
       this.openings = data; // And he have data here too!
@@ -184,7 +184,7 @@ export class Step4Component implements OnInit {z
     this.insertJob.XmlDepartment = this.appService.addeddepartments; // this.pjDepartments; //  this.departments;
     // step2
 
-    this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;
+    //this.insertJob.NumberOfVacancies = this.openings; // this.appService.noofOpenings.value;
     //this.insertJob.PreferredLocationId = this.locations ; // this.appService.location.value.locationId.toString();
     this.insertJob.XmlQualifications = this.appService.addqualifications; //  this.qualification;
     this.insertJob.XmlDomains = this.appService.adddomain; // this.domain;
@@ -284,28 +284,53 @@ export class Step4Component implements OnInit {z
     }
     else 
     {
-      let requests =  this.JobIds.map((item) => {
+      if(this.JobIds.length>0)
+      {
+         let requests =  this.JobIds.map((item) => {
         this.insertJob.JobId = item;
-        this.insertJob.TemplateSaveTitle = this.TemplateName;
-        this.appService.postjob(this.insertJob).subscribe(data => {
-          if (data) {        
-            // this.insertJob.JobId = data;
-            // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-            // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-            localStorage.removeItem('draftItem');
-            localStorage.removeItem('hide');
-            localStorage.removeItem('SalaryTypeId');
-            this.TemplateName= null;
-            // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-          }
-        });
-        return new Promise((resolve) => {  
-        this.asyncFunction(item, resolve);
-  });
-  })
-  Promise.all(requests).then(() => this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']))
+      this.insertJob.TemplateSaveTitle = this.TemplateName;
+      debugger
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {        
+          // this.insertJob.JobId = data;
+          // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+          // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+          localStorage.removeItem('draftItem');
+          localStorage.removeItem('hide');
+          localStorage.removeItem('SalaryTypeId');
+          this.TemplateName= null;
+          // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+        }
+      });
+      return new Promise((resolve) => {  
+      this.asyncFunction(item, resolve);
+});
+})
+Promise.all(requests).then(() => this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']))
+this.JobIds=[];
+      }
+      else if(this.JobIds.length==0 || this.JobIds == undefined)
+      {
+      this.insertJob.TemplateSaveTitle = this.TemplateName;
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {        
+          // this.insertJob.JobId = data;
+          // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+          // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+          localStorage.removeItem('draftItem');
+          localStorage.removeItem('hide');
+          localStorage.removeItem('SalaryTypeId');
+          this.TemplateName= null;
+          // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+        }
+      });
+
+      }
+     
   }
   }
   ViewJobdetails(jobId) {

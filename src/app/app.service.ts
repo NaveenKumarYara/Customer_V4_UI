@@ -164,9 +164,9 @@ export class AppService {
   noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
-  myLocation = new PrefLocation();
-  location = new BehaviorSubject(this.myLocation);
-  currentlocation = this.location.asObservable();
+  //myLocation = new PrefLocation();
+  location :PrefLocation[]=[];
+  currentlocation = new Subject<PrefLocation[]>();
 
   myMinAnnualRate = 1000;
   myMaxAnnualRate = 10000;
@@ -204,6 +204,7 @@ export class AppService {
 
   JobIds:MultipleJobIds[]=[];
   JobLocations:Cities[]=[];
+  JobLocationsMulti:Cities[]=[];
 
   personTypeSingle: PjDisc[] = [];
   personTypeSingleChanged = new Subject<PjDisc[]>();
@@ -268,8 +269,8 @@ export class AppService {
   updatedescription(isdescription: string) {
     this.description.next(isdescription);
   }
-  updateLocation(loc: PrefLocation) {
-    this.location.next(loc);
+  updateLocation(loc: any) {
+    this.location = loc;
   }
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);

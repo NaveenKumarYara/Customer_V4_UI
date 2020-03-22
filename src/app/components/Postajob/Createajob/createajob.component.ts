@@ -206,19 +206,23 @@ editMode: string;
       this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager;
       this.ejHiringManager.UserId = this.jobdetailscustomer.JobInfo.HiringManagerId;
       this.appService.reportingManager.next(this.ejHiringManager);
+      debugger
       if (this.jobdetailscustomer.JobLocation.length > 0) {
         // this.jobdetailscustomer.JobLocation.forEach(element => {
         //   this.ejLocations.PreferredLocationId = element.PreferredLocationId;
         //   this.ejLocations.location = element.CityName;
         //   });
+        this.ejLocationsList =this.jobdetailscustomer.JobLocation;
         for (const loc of this.jobdetailscustomer.JobLocation) {
           this.ejLocations.CityId = loc.CityId;
           this.ejLocations.location = loc.CityName;
-          this.ejLocationsList.push(this.ejLocations);
+          //this.ejLocationsList.push(this.ejLocations);
         }
       }
-      this.appService.location.next(this.ejLocations);
-      //this.appService.JobLocations=this.ejLocationsList;
+      debugger
+      this.appService.location=this.ejLocationsList;
+      this.appService.JobLocations=this.ejLocationsList;
+      //this.appService.JobLocationsMulti=this.ejLocationsList;
       if (this.jobdetailscustomer.TechnicalTeam.length > 0) {
         // this.jobdetailscustomer.TechnicalTeam.forEach(element => {
         //     this.ejTechnicalTeam.UserId = element.UserId;

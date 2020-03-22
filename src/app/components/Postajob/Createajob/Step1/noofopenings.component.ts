@@ -14,7 +14,7 @@ export class NoofopeningsComponent implements OnInit {
   ngOnInit() {
     this.populateopenings();
    // if (localStorage.getItem('jobId') != null) {
-    this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
+    //this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
    // }
     // this.appService.currentDescriptionChecked.subscribe(x => this.noOfOpenings = x);
     // this.appService.currentDescription.subscribe(x => this.jobDescription = x);

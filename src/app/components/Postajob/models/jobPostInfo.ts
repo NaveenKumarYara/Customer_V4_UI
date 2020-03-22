@@ -130,6 +130,11 @@ export class DiscResult {
       public CityId: number;
       public CityName: string;
       }
+
+      export class MCities {
+        public CityId: number;
+        public CityName: string;
+        }
   // related
 
   export class CustomerUsers {

@@ -82,7 +82,8 @@ client: any;
     // this.hasDescription = this.appService.hasDescription.value;
     // this.completeDescription = this.appService.description.value;
       this.departments = this.appService.departments;
-      this.location = this.appService.JobLocations;
+        this.location = this.appService.JobLocations;
+        this.location =this.appService.JobLocationsMulti;
       debugger
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');

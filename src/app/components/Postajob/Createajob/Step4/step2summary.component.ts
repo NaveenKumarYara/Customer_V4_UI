@@ -24,7 +24,7 @@ roles = [];
       //   this.domain = data; // And he have data here too!
       // });
       this.appService.currentlocation.subscribe((data) => {
-        this.location = data.location; // And he have data here too!
+        this.location = data; // And he have data here too!
       });
       this.appService.currentOpenings.subscribe((data) => {
         this.noOfopenings = data; // And he have data here too!
