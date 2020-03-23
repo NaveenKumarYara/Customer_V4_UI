@@ -3,18 +3,19 @@
     <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
     <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
         <div class="form-row row">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="p-rel">
                     <ng-select class="custom-style" [items]="managersList | async" placeholder="Select Technical Team" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading" [(ngModel)]="selectedUserName"
                         [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
                     <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Team Members are required.</small>
                 </div>
             </div>
-            <div class="col-md-2">
-                <button class="btn add-btn form-control mt-0" [disabled]="!teamForm.valid" type="submit">+</button>
-                
+            <div class="col-md-1">
+                <button class="btn add-btn form-control mt-0"  [disabled]="!teamForm.valid" type="submit">+</button>
             </div>
-            <a data-toggle="modal" data-target="#managereportingmanager" (click)="ResetUser()">Add Team</a>
+            <div class="col-md-1">
+                <button class="btn add-btn form-control mt-0" data-target="#managereportingmanager" data-toggle="modal" type="submit" (click)="ResetUser()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+            </div>
         </div>
     </form>
 </div>
@@ -92,15 +93,14 @@
                         Email already registered.
                     </div>
                 </div>
-                <div class="col-md-6 form-group">
-                    <select name="Value" id="view" class="styled-select-box w-100"
-                        (change)="PopulateRoles($event.target.value)">
+                <div class="col-md-6 form-group add-team-member">
+                    <select name="Value" id="view" class="styled-select-box w-100 "
+                        (change)="PopulateRoles($event.target.value)" style="margin-top: 0px;">
                         <option default selected="selected" value=8>Hiring Leader</option>
                         <option value=6>Reporting Manager</option>
                     </select>
                 </div>
                 <div class="col-md-12">
-
                     <div class="d-flex  mb-3">
                         <div class="mr-auto p-2 ">
                             <!-- <label class="radio">
@@ -111,21 +111,16 @@
                                     </div>
                                   </label> -->
                         </div>
-                        
-                        <div>
-                            <button type="submit" class="btn btn-filled box-shadow-none">Add</button>
-                            <button (click)="ResetUser()" class="btn btn-border"
-                                data-toggle="collapse"  aria-expanded="false"
-                                aria-controls="addUser">Cancel</button>
-                        </div>
                     </div>
                 </div>
             </form>
         </div>
-       
+       <div class="clearfix">&nbsp;</div>
         <div  class="modal-footer">
-          <!-- <button type="button" (click)="ResetUser()" class="btn btn-border btn-prev" data-dismiss="modal">Cancel</button>
-          <button type="button" (click)="SaveUser()" class="btn btn-filled btn-next">Add</button> -->
+            <button type="submit" class="btn btn-filled box-shadow-none">Add</button>
+            <button (click)="ResetUser()" class="btn btn-border"
+                data-dismiss="modal"  aria-expanded="false"
+                aria-controls="addUser">Cancel</button>
         </div>
       </div>
     </div>

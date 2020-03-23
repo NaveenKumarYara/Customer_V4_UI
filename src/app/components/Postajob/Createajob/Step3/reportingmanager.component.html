@@ -25,18 +25,23 @@
 
   <!--ACI-17-UI-Implementation-17-03-2020-->
   <div class="form-row row">
-    <div class="col-md-10">
+    <div class="col-md-9">
       <ng-select class="custom-style" [items]="reportingmanagers" placeholder="Type and Select"
         bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
         [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
         #reportingMngr="ngModel" name="reportingMgr">
       </ng-select>
     </div>
-    <div class="col-md-2">
-      <button class="btn add-btn form-control mt-0" type="button" (click)="Add()">+</button>
+    <div class="col-md-1">
+      <button class="btn add-btn form-control mt-0"  type="button" data-toggle="modal" (click)="Add()">+</button>
     </div>
-  </div>
 
+    <!--If Others-->
+    <div class="col-md-1">
+      <button class="btn add-btn form-control mt-0" type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+    </div>
+    <!---->
+  </div>
   <!---->
 
   <!-- <ul class="data-list">
@@ -131,28 +136,23 @@
                                     </div>
                                   </label> -->
                         </div>
-                        
-                        <div >
-                            <button type="submit" class="btn btn-filled box-shadow-none">Add</button>
-                            <button (click)="ResetUser()" class="btn btn-border"
-                                data-toggle="collapse"  aria-expanded="false"
-                                aria-controls="addUser">Cancel</button>
-                        </div>
                     </div>
                 </div>
             </form>
         </div>
-       
+        <div class="clearfix">&nbsp;</div>
         <div class="modal-footer">
-          <!-- <button type="button" (click)="ResetUser()" class="btn btn-border btn-prev" data-dismiss="modal">Cancel</button>
-          <button type="button" (click)="SaveUser()" class="btn btn-filled btn-next">Add</button> -->
+          <button type="submit" class="btn btn-filled box-shadow-none">Add</button>
+          <button (click)="ResetUser()" class="btn btn-border"
+              data-dismiss="modal"  aria-expanded="false"
+              aria-controls="addUser">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade managereportingmanager" id="othersdialog" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">

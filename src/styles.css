@@ -18868,6 +18868,10 @@ margin-top: 0px;
     margin-top: 15px;
 }
 
+.page--create-a-job .add-team-member .styled-select-box{
+margin-top: 0px!important;
+}
+
 .page--create-a-job .form-steps .form-control {
     border: 1px solid #E0E3EF;
     color: #9EABC0;
@@ -18913,6 +18917,13 @@ margin-top:0px;
 .page--create-a-job .multiple-locations .btn{
     margin-top: 17%!important;
 }
+.page--create-a-job .open-positions-list h6{
+    color: #6A7E9C;
+}
+.page--create-a-job .open-positions-list li{
+    margin-bottom: 5px!important;
+}
+
 /*Post a Job Multiple Locations Styles*/
 
 
@@ -19233,6 +19244,7 @@ margin-top:0px;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-transform: capitalize;
 }
 
 .page--create-a-job .form-steps .checkbox input:checked~.box {
@@ -25401,4 +25413,6 @@ table .table-prl-0 td {
   }
 /*Mozilla oriented CSS*/
 
- 
+.select-team-member .styled-select-box{
+    margin-top: 0px!important;
+}
