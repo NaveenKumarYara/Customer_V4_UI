@@ -28,6 +28,7 @@ ejEmploymentType = new EmploymentType();
 ejSalaryType = new Salary(1, 'Hourly');
 ejInterviewType = new InterviewType();
 ejHiringManager = new CustomerUsers();
+ejHiringManagerList : CustomerUsers[]=[];
 ejLocations = new PrefLocation();
 ejLocationsList = [];
 ejTechnicalTeamList: CustomerUsers[] = [];
@@ -206,6 +207,8 @@ editMode: string;
       this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager;
       this.ejHiringManager.UserId = this.jobdetailscustomer.JobInfo.HiringManagerId;
       this.appService.reportingManager.next(this.ejHiringManager);
+      this.ejHiringManagerList.push(this.ejHiringManager);
+      this.appService.reportingList = this.ejHiringManagerList;
       debugger
       if (this.jobdetailscustomer.JobLocation.length > 0) {
         // this.jobdetailscustomer.JobLocation.forEach(element => {

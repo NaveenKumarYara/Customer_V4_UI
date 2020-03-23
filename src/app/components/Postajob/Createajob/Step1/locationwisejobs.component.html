@@ -27,7 +27,7 @@
                     <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
                      <label><!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
                         <!-- <span class="box">{{jobs.CityName}}</span>  -->
-                        <h6 class="box city-box">{{job?.CityName}},{{job?.Positons}}<span (click)="deletemLocation(i)">x</span> </h6>
+                        <h6 class="box city-box">{{job?.CityName}}-{{job?.Positons}}<span (click)="deletemLocation(i)">x</span> </h6>
                     </label>
                 </div>
               </div>                  

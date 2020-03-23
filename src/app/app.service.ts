@@ -187,6 +187,8 @@ export class AppService {
   myreportingManager = new CustomerUsers();
   reportingManager = new BehaviorSubject(this.myreportingManager);
   currentcustomerUsers = this.reportingManager.asObservable();
+  
+  reportingList:CustomerUsers[]=[];
 
   myjobcategory = new CategoryList();
   jobcategory = new BehaviorSubject(this.myjobcategory);

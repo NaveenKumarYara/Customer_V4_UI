@@ -13,6 +13,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { PjTechnicalTeam, CustomerUsers } from '../../models/jobPostInfo';
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
+declare var $: any;
 
 @Component({
   selector: 'app-steps-step3-reportingmanager',
@@ -23,7 +24,9 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   selectedManager: CustomerUsers;
   selectManager: string;
+  flag:any=false;
   reportingmanagersList: Observable<CustomerUsers[]>;
+  reportingmanagers: CustomerUsers[]=[];
   customer: any;
   customerId: any;
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
@@ -37,6 +40,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   selectedInput = new Subject<string> ();
   usersload: boolean;
   suggestedManagers: CustomerUsers[] = [];
+  slist=[];
 
   // managersAdd: PjTechnicalTeam[] = [];
   // selectedItem: any;
@@ -52,35 +56,55 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   updateManager(val) {
    // this.appService.updateManager(this.selectedItem.toString());
      this.selectManager = val.FirstName;
-     this.selectedManager.FirstName  = val.FirstName;
-   this.selectedManager.UserId  = val.UserId;
-    this.appService.updateManager(this.selectedManager);
+     let selected = new CustomerUsers();
+     selected.FirstName  = val.FirstName;
+     selected.UserId  = val.UserId;
+     this.selectedManager=selected;
+
+     if(val.FirstName='others')
+     {
+     $('#managereportingmanager').modal('show');
+     }
+     
+   
   }
 
   // getjobaccessto1000042
-    getcustomerusers() {
-    this.reportingmanagersList = concat(
-      of([]), // default items
-      this.selectedInput.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap(() => this.usersload = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId, false, term).pipe(
-          catchError(() => of([])), // empty list on error
-          tap(() => this.usersload = false)
-        ))
-      )
-    );
+  //   getcustomerusers() {
+  //   this.reportingmanagersList = concat(
+  //     of([]), // default items
+  //     this.selectedInput.pipe(
+  //       debounceTime(200),
+  //       distinctUntilChanged(),
+  //       tap(() => this.usersload = true),
+  //       switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId, false, term).pipe(
+  //         catchError(() => of([])), // empty list on error
+  //         tap(() => this.usersload = false)
+  //       ))
+  //     )
+  //   );
+  // }
+
+  delete(index)
+  {
+    this.slist.splice(index,1);
   }
 
   suggestedManager() {
     this.appService.getCustomerUsers(this.customerId, this.userId, true, '').subscribe(res => {
-      this.suggestedManagers = res;
+      this.reportingmanagers=res;
+      let cus = new CustomerUsers();
+      cus.FirstName ='others';
+      cus.UserId=this.userId;
+      this.reportingmanagers.push(cus);
+            this.suggestedManagers= this.appService.reportingList;
+      debugger
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
   ngOnInit() {
     this.show = false;
+    this.flag=false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -98,11 +122,23 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     });
     this.suggestedManager();
 
-     this.getcustomerusers();
-   //  if (localStorage.getItem('jobId') != null) {
-      this.appService.currentcustomerUsers.subscribe(x => this.selectedManager = x);
-      this.selectManager = this.selectedManager.FirstName;
-  //   }
+  //    this.getcustomerusers();
+  //  //  if (localStorage.getItem('jobId') != null) {
+  //     this.appService.currentcustomerUsers.subscribe(x => this.selectedManager = x);
+  //     this.selectManager = this.selectedManager.FirstName;
+  // //   }
+    }
+
+    Add()
+    {
+      this.slist.push(this.selectedManager);
+      //this.slist.push(this.selectedManager);
+      this.suggestedManagers=this.slist;
+      debugger
+      this.selectManager='';
+      this.selectManager=null;
+      this.appService.reportingList=this.suggestedManagers;
+     
     }
 
     PopulateRoles(val)
@@ -151,7 +187,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
                 setTimeout(() => { 
                     this.Addform.reset();            
                     this.toastr.dismissToast; 
-                    this.getcustomerusers();
+                    //this.getcustomerusers();
                     this.ngOnInit();
                     //this.GetCustomerContacts();  
                   }, 3000);

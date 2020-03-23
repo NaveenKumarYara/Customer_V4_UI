@@ -15,7 +15,7 @@ contractExtension: string;
 interviewTypeId: number;
 interviewType: string;
 reportinManagerId: number;
-reportinManager: string;
+reportinManager=[];
 teamMembers: any;
 empType: number;
 contractExtended: boolean;
@@ -45,10 +45,10 @@ matchingPersentage=[];
         this.interviewTypeId = data.InterviewTypeId; // And he have data here too!
         this.interviewType = data.InterviewType;
       });
-      this.appService.currentcustomerUsers.subscribe((data) => {
-        this.reportinManagerId = data.UserId; // And he have data here too!
-        this.reportinManager = data.FirstName;
-      });
+      // this.appService.currentcustomerUsers.subscribe((data) => {
+      //   this.reportinManagerId = data.UserId; // And he have data here too!
+      //   this.reportinManager = data.FirstName;
+      // });
       this.appService.currentEmploymentType.subscribe((data) => {
         this.empType = data.EmploymentTypeId; // And he have data here too!
       });
@@ -94,6 +94,7 @@ matchingPersentage=[];
     // this.interviewType = this.appService.interviewType.value.InterviewType;
     // this.reportinManagerId = this.appService.reportingManager.value.UserId;
     // this.reportinManager = this.appService.reportingManager.value.FirstName;
+    this.reportinManager = this.appService.reportingList;
    this.teamMembers = this.appService.teammembers;
   }
 
