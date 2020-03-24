@@ -1,11 +1,12 @@
 <div class="form-group tech-team-group">
     <label for="" class="question">Technical Team for Screening <small>(Optional)</small></label>
     <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-    <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
+  
         <div class="form-row row">
+            <form #teamForm="ngForm" (ngSubmit)="addTeammembers()">
             <div class="col-md-9">
                 <div class="p-rel">
-                    <ng-select class="custom-style" [items]="managersList | async" placeholder="Select Technical Team" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading" [(ngModel)]="selectedUserName"
+                    <ng-select class="custom-style" [items]="managersList" placeholder="Select Technical Team" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"  [(ngModel)]="selectedUserName"
                         [virtualScroll]="true" required #TeamMember="ngModel" name="teamMember"></ng-select>
                     <small class="text-danger error1" *ngIf="TeamMember.invalid && TeamMember.touched && TeamMember.dirty">Team Members are required.</small>
                 </div>
@@ -13,11 +14,12 @@
             <div class="col-md-1">
                 <button class="btn add-btn form-control mt-0"  [disabled]="!teamForm.valid" type="submit">+</button>
             </div>
-            <div class="col-md-1">
-                <button class="btn add-btn form-control mt-0" data-target="#managereportingmanager" data-toggle="modal" type="submit" (click)="ResetUser()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
-            </div>
+        </form>
+            <div class="col-md-1" *ngIf="flag">
+                <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+              </div>
         </div>
-    </form>
+   
 </div>
 <div class="lists row">
     <div class="col-md-12" *ngIf="teammemberslist.length>0">
@@ -34,93 +36,92 @@
 
 
 
-<div class="modal fade managereportingmanager" id="managereportingmanager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
+<div class="modal fade managereportingmanager" id="othersdialog" role="dialog">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="exampleModalLabel">Add Team Member</h4>
         </div>
         <div class="modal-body">
-            <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
-                <div class="col-md-6 form-group p-rel">
-                    <input type="text" class="form-control" formControlName="FirstName"
-                        placeholder="First Name *" minlength=3
-                        onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                        required>
-                    <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)"
-                        class="error1">
+          <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="FirstName"
+                    placeholder="First Name *" minlength=3
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                    required>
+                <div *ngIf="Addform.controls['FirstName'].invalid && (Addform.controls['FirstName'].dirty || Addform.controls['FirstName'].touched)"
+                    class="error1">
 
-                        <div *ngIf="Addform.controls['FirstName'].errors.required">
-                            Required.
-                        </div>
+                    <div *ngIf="Addform.controls['FirstName'].errors.required">
+                        Required.
+                    </div>
 
-                        <div *ngIf="Addform.controls['FirstName'].errors.minlength">
-                            Minimum 3 Characters allowed.
-                        </div>
+                    <div *ngIf="Addform.controls['FirstName'].errors.minlength">
+                        Minimum 3 Characters allowed.
                     </div>
                 </div>
-                <div class="col-md-6 form-group p-rel">
-                    <input type="text" class="form-control" formControlName="LastName" minlength=3
-                        placeholder="Last Name *"
-                        onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
-                        required>
-                    <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)"
-                        class="error1">
-                        <div *ngIf="Addform.controls['LastName'].errors.required">
-                            Required.
-                        </div>
-                        <div *ngIf="Addform.controls['LastName'].errors.minlength">
-                            Minimum 3 Characters allowed.
-                        </div>
+            </div>
+            <div class="col-md-6 form-group p-rel">
+                <input type="text" class="form-control" formControlName="LastName" minlength=3
+                    placeholder="Last Name *"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"
+                    required>
+                <div *ngIf="Addform.controls['LastName'].invalid && (Addform.controls['LastName'].dirty || Addform.controls['LastName'].touched)"
+                    class="error1">
+                    <div *ngIf="Addform.controls['LastName'].errors.required">
+                        Required.
+                    </div>
+                    <div *ngIf="Addform.controls['LastName'].errors.minlength">
+                        Minimum 3 Characters allowed.
                     </div>
                 </div>
-                <div class="col-md-6 form-group p-rel">
-                    <input type="email" [pattern]="emailPattern" class="form-control"
-                        placeholder="Work Email *" autocomplete="new-email"
-                        formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
-                        id="semail">
-                    <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)"
-                        class="error1">
-                        <div *ngIf="Addform.controls['ContactEmail'].errors.required">
-                            Required.
-                        </div>
-                        <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
-                            Incorrect Email!.
-                        </div>
+            </div>
+            <div class="col-md-6 form-group p-rel">
+                <input type="email" [pattern]="emailPattern" class="form-control"
+                    placeholder="Work Email *" autocomplete="new-email"
+                    formControlName="ContactEmail" required (keyup)="GetEmailValidate()"
+                    id="semail">
+                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)"
+                    class="error1">
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.required">
+                        Required.
                     </div>
-                    <div *ngIf="show" class="error1">
-                        Email already registered.
+                    <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
+                        Incorrect Email!.
                     </div>
                 </div>
-                <div class="col-md-6 form-group add-team-member">
-                    <select name="Value" id="view" class="styled-select-box w-100 "
-                        (change)="PopulateRoles($event.target.value)" style="margin-top: 0px;">
-                        <option default selected="selected" value=8>Hiring Leader</option>
-                        <option value=6>Reporting Manager</option>
-                    </select>
+                <div *ngIf="show" class="error1">
+                    Email already registered.
                 </div>
-                <div class="col-md-12">
-                    <div class="d-flex  mb-3">
-                        <div class="mr-auto p-2 ">
-                            <!-- <label class="radio">
-                                    <div class="mt--13">
-                                      <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
-                                      <span class="radio-btn"></span>
-                                      Active
-                                    </div>
-                                  </label> -->
-                        </div>
+            </div>
+            <div class="col-md-6 form-group add-team-member">
+                <select name="Value" id="view" class="styled-select-box w-100 "
+                    (change)="PopulateRoles($event.target.value)" style="margin-top: 0px;">
+                    <option default selected="selected" value=8>Hiring Leader</option>
+                    <option value=6>Reporting Manager</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <div class="d-flex  mb-3">
+                    <div class="mr-auto p-2 ">
+                        <!-- <label class="radio">
+                                <div class="mt--13">
+                                  <input disabled type="checkbox"  class="radio-input"   checked="checked"/>
+                                  <span class="radio-btn"></span>
+                                  Active
+                                </div>
+                              </label> -->
                     </div>
                 </div>
-            </form>
+            </div>
+        </form>
         </div>
-       <div class="clearfix">&nbsp;</div>
-        <div  class="modal-footer">
-            <button type="submit" class="btn btn-filled box-shadow-none">Add</button>
-            <button (click)="ResetUser()" class="btn btn-border"
-                data-dismiss="modal"  aria-expanded="false"
-                aria-controls="addUser">Cancel</button>
+        <div class="modal-footer">
+          <button type="button" (click)="SaveUser()" class="btn btn-filled box-shadow-none">Add</button>
+          <button (click)="ResetUser()" class="btn btn-border"
+              data-dismiss="modal"  aria-expanded="false"
+              aria-controls="addUser">Cancel</button>
         </div>
       </div>
     </div>

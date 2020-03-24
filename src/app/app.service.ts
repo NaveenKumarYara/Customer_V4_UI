@@ -846,6 +846,14 @@ bulkApply(body) {
         this.handleError
       );
   }
+  getCustomerallContacts(customerId: number): Observable<CustomerUsers[]> {
+
+    const url = this.settingsService.settings.GetCustomerUsers + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getaddedQualifications() {
     return this.qualifications.slice();
   }

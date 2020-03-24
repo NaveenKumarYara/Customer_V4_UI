@@ -11,6 +11,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../models/jobPostInfo';
 import { Observable } from 'rxjs/Observable';
+declare var $: any;
 @Component({
   selector: 'app-steps-step3-teammembers',
   templateUrl: './teammembers.component.html'
@@ -24,6 +25,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   customer: any;
   show : any = false;
+  flag : any = false;
   Value: number;
   Forgotform: any;
   result :any;
@@ -34,8 +36,9 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   Addform: FormGroup;
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
-  selectedUserName = '';
-  managersList: Observable<CustomerUsers[]>;
+  selectedUserName :string;
+  slist=[];
+  managersList:CustomerUsers[]=[];
   // completeMembersList: CustomerUsers[];
   getTeammember: CustomerUsers;
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,
@@ -46,19 +49,33 @@ export class TeammembersComponent implements OnInit, OnDestroy {
       //this.toastr.setRootViewContainerRef(_vcr);
   }
   changeTeam(val) {
+    debugger
     this.getTeammember = val;
+    if(this.getTeammember.FirstName=='others')
+    {
+      this.flag=true;
+    }
+    else 
+    {
+      this.flag= false;
+    }
+
   }
   public addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
-if (this.teamForm.valid) {
-    const check = this.teamExists(this.getTeammember, this.teammemberslist);
-      if (check === false) {
-        this.appService.addTeammember(this.getTeammember);
-      }
-
-    this.selectedUserName = '';
+   
+    if(this.getTeammember.FirstName!='others')
+    {
+      this.appService.addTeammember(this.getTeammember);
+      //this.slist.push(this.selectedManager);
+     // this.teammemberslist=this.slist;
+      this.selectedUserName=null;
+      this.flag=false;
+     //this.appService.teammembers=this.teammemberslist;
     }
+
+
   }
   teamExists(team, list) {​
     return list.some(function(elem) {
@@ -69,18 +86,13 @@ if (this.teamForm.valid) {
     this.appService.deleteTeammember(index);
   }
   getcustomerusers() {
-    this.managersList = concat(
-      of([]), // default items
-      this.selectedUserInput.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap(() => this.usersloading = true),
-        switchMap(term => this.appService.getCustomerUsers(this.customerId, this.userId, false, term).pipe(
-          catchError(() => of([])), // empty list on error
-          tap(() => this.usersloading = false)
-        ))
-      )
-    );
+    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
+      this.managersList= res;
+    let cus = new CustomerUsers();
+    cus.FirstName ='others';
+    cus.UserId=this.userId;
+    this.managersList.push(cus);
+    });
   }
   PopulateRoles(val)
   {
@@ -125,13 +137,15 @@ if (this.teamForm.valid) {
         .subscribe(
         data1 => {
            this.toastr.success('Please check your email to reset the password','Success');
-              setTimeout(() => { 
-                  this.Addform.reset();            
-                  this.toastr.dismissToast; 
-                  this.getcustomerusers();
-                  this.ngOnInit();
-                  //this.GetCustomerContacts();  
-                }, 3000);
+           setTimeout(() => { 
+            this.Addform.reset();  
+            this.selectedUserName=null;  
+            this.flag=false;       
+            this.toastr.dismissToast;                   
+            this.getcustomerusers();
+            $("#othersdialog").modal('hide');
+            this.ngOnInit();
+          }, 1000);
                
              } 
                         
@@ -156,6 +170,7 @@ if (this.teamForm.valid) {
   ngOnInit() {
     this.getcustomerusers();
     this.show = false;
+    this.flag=false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],

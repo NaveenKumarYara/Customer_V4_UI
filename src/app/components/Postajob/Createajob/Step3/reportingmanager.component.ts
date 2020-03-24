@@ -61,9 +61,13 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
      selected.UserId  = val.UserId;
      this.selectedManager=selected;
 
-     if(val.FirstName='others')
+     if(val.FirstName=="others")
      {
-     $('#managereportingmanager').modal('show');
+      this.flag = true;
+     }
+     else if(val.FirstName!="others")
+     {
+       this.flag = false;
      }
      
    
@@ -91,14 +95,13 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   }
 
   suggestedManager() {
-    this.appService.getCustomerUsers(this.customerId, this.userId, true, '').subscribe(res => {
+    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
       let cus = new CustomerUsers();
       cus.FirstName ='others';
       cus.UserId=this.userId;
       this.reportingmanagers.push(cus);
             this.suggestedManagers= this.appService.reportingList;
-      debugger
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
@@ -131,13 +134,18 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
     Add()
     {
-      this.slist.push(this.selectedManager);
-      //this.slist.push(this.selectedManager);
-      this.suggestedManagers=this.slist;
-      debugger
-      this.selectManager='';
-      this.selectManager=null;
-      this.appService.reportingList=this.suggestedManagers;
+      this.flag=false;
+      if(this.selectedManager.FirstName!='others')
+      {
+        this.slist.push(this.selectedManager);
+        //this.slist.push(this.selectedManager);
+        this.suggestedManagers=this.slist;
+        this.selectManager='';
+        this.selectManager=null;
+        this.appService.reportingList=this.suggestedManagers;
+      }
+
+      
      
     }
 
@@ -185,12 +193,15 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
           data1 => {
              this.toastr.success('Please check your email to reset the password','Success');
                 setTimeout(() => { 
-                    this.Addform.reset();            
-                    this.toastr.dismissToast; 
-                    //this.getcustomerusers();
+                    this.Addform.reset();  
+                    this.selectManager='';
+                    this.selectManager=null;  
+                    this.flag=false;       
+                    this.toastr.dismissToast;                   
+                    this.suggestedManager();
+                    $("#othersdialog").modal('hide');
                     this.ngOnInit();
-                    //this.GetCustomerContacts();  
-                  }, 3000);
+                  }, 1000);
                  
                } 
                           
