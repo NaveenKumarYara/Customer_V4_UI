@@ -225,14 +225,17 @@ if (this.processSelection === 1) {
 
 } else if (this.processSelection === 3) {
   this.schIntw.SkypeId = this.skypeId;
-  // this.schIntw.RequiredFurtherInterview = this.skypeRI;
-  // this.schIntw.PhoneNumber=this.userId;
-} else if (this.processSelection === 4) {
   this.schIntw.AccessId = this.dailInNumber;
   this.schIntw.BridgeUrl = this.bridgeUrl;
-  // this.schIntw.RequiredFurtherInterview = this.webxRI;
+  // this.schIntw.RequiredFurtherInterview = this.skypeRI;
   // this.schIntw.PhoneNumber=this.userId;
-}
+ } 
+//else if (this.processSelection === 4) {
+//   this.schIntw.AccessId = this.dailInNumber;
+//   this.schIntw.BridgeUrl = this.bridgeUrl;
+//   // this.schIntw.RequiredFurtherInterview = this.webxRI;
+//   // this.schIntw.PhoneNumber=this.userId;
+// }
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;

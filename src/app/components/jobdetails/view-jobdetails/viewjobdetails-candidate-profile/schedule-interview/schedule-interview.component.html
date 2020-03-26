@@ -328,22 +328,25 @@
                                                     <span class="radio-btn"></span>
                                                     <span class="radio-text">{{option.name}}</span>
                                                 </label>
+                                             
                                             </ng-container>
-                                            <div class="form-group">
-                                                <label for="link">Link</label>
+                                            <div class="form-group" *ngIf="selectedOption?.id==1">
+                                                <label for="link">Skype Link</label>
                                                 <input class="form-control" id="link" type="text" [(ngModel)]="skypeId"
                                                         name="skype">
                                             </div>
-                                            <div class="row">
+                                            <div class="row" *ngIf="selectedOption?.id!=1">
                                                 <div class="col-md-6">
                                                   <label for="">Dial-in number</label>
-                                                  <input type="text" class="form-control" placeholder="e.g. 852477231">
+                                                  <input type="text" class="form-control" [(ngModel)]="dailInNumber" placeholder="e.g. 852477231">
                                                 </div>
                                                 <div class="col-md-6">
                                                   <label for="">Meeting ID / Conference Code</label>
-                                                  <input type="text" class="form-control" placeholder="e.g. HGKS2553GV">
+                                                  <input class="form-control" id="link" type="text" placeholder="e.g. 852477231" [(ngModel)]="dailInNumber"
+                                                        name="skype">
                                                 </div>
                                               </div>
+                                     
                                       
                                         </div>
                                         <!-- 
