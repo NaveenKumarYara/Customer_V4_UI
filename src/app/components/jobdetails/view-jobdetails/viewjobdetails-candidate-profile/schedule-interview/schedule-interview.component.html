@@ -218,7 +218,6 @@
 
                         <div class="col-md-12">
                             <div class="interview-type">
-
                                 <!--Condition based Tabs in Comments Starts here-
                                 <ul class="nav nav-tabs">
                                          /**already commented**/
@@ -288,15 +287,15 @@
                                 <!--Basic Tabs HTML added on 02-04-2019-->
 
                                 <div class="tab-content">
+                                    <!--InPerson-->
                                     <div id="In-Person" *ngIf="interviewId == 1">
-                                        <a href="javascript:void(0)" class="tui-tooltip">
+                                        <!--below functionality is under TODO, so commenting the same 26-03-2020-->
+                                        <!-- <a href="javascript:void(0)" class="tui-tooltip">
                                             See how much would it cost to you. <span>&#63;</span>
                                             <div class="tooltip-content">
                                                 <span>54</span>
                                             </div>
-                                        </a>
-
-
+                                        </a> -->
                                         <div class="form-group travel-expense-group">
                                             <label for="" class="question">Do You Provide Travel Expenses for Interview
                                                 ?</label>
@@ -318,11 +317,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!--Skype-->
                                     <div id="Skype" *ngIf="interviewId == 3">
                                         <div class="form-group skype-group">
-                                            <label for="">Link</label>
-                                            <h2><input class="form-control" type="text" [(ngModel)]="skypeId"
-                                                    name="skype"></h2>
                                             <ng-container *ngFor="let option of options">
                                                 <label class="radio">
                                                     <input class="radio" (click)="getValue(option.id)"
@@ -332,6 +329,22 @@
                                                     <span class="radio-text">{{option.name}}</span>
                                                 </label>
                                             </ng-container>
+                                            <div class="form-group">
+                                                <label for="link">Link</label>
+                                                <input class="form-control" id="link" type="text" [(ngModel)]="skypeId"
+                                                        name="skype">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                  <label for="">Dial-in number</label>
+                                                  <input type="text" class="form-control" placeholder="e.g. 852477231">
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="">Meeting ID / Conference Code</label>
+                                                  <input type="text" class="form-control" placeholder="e.g. HGKS2553GV">
+                                                </div>
+                                              </div>
+                                      
                                         </div>
                                         <!-- 
                                         <div class="form-group further-interview-group">
@@ -353,6 +366,7 @@
                                         </div> -->
 
                                     </div>
+                                    <!--WebEx-->
                                     <div id="WebEX" *ngIf="interviewId == 4">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -389,6 +403,7 @@
                                         </div>
                                          -->
                                     </div>
+                                    <!--Phone-->
                                     <div id="Phone" *ngIf="interviewId == 2">
                                         <div class="row">
                                             <div class="col-md-12">
