@@ -70,9 +70,14 @@
     <h3 class="question">
       How many open positions do you currently have for this Job Title?
     </h3>
-      <h4 class="data">
-        {{noOfopenings || 0}}
+      <h4 class="data" *ngIf="noOfopening.length==0">
+        {{noOfopenings}}
       </h4>
+      <ng-container *ngFor="let open of noOfopening">
+        <h4 class="data">
+          {{open}}
+        </h4>
+      </ng-container>
   </div>
   <div class="form-data-group skill-set-group">
     <h3 class="question">

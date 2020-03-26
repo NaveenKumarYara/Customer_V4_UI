@@ -21,7 +21,7 @@
                 <div class="col-md-6">
                     <label class="city-label">City </label>
                     <ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async"
-                        placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId"
+                        placeholder="Select Cities" bindLabel="CityName" bindValue="CityId"
                         (ngModelChange)="getmultiSelectedOptionText($event)" [typeahead]="mselectedCityInput"
                         [hideSelected]="true" [loading]="mcityloading" [(ngModel)]="selectedCity" [virtualScroll]="true"
                         required #mcity="ngModel" name="mcities">
@@ -77,7 +77,7 @@
 </ng-select> -->
         <ng-container *ngIf="!showMyContainer">
             <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
-                placeholder="Select Other Cities" bindLabel="CityName" bindValue="CityId"
+                placeholder="Select Cities" bindLabel="CityName" bindValue="CityId"
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
                 [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
                 name="cities">

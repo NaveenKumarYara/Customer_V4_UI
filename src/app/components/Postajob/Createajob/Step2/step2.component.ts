@@ -248,7 +248,6 @@ export class Step2Component implements OnInit {
           this.JobIds.forEach((value, index, array) => {
       //  let requests =  this.JobIds.map((item) => {
             this.insertJob.JobId = value;
-            debugger
             this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             // this.insertJob.JobId = data;
@@ -266,12 +265,14 @@ export class Step2Component implements OnInit {
           }
           }
         });
-        if (index === array.length -1) resolve();
+        if (index === array.length -1) 
+        
+        resolve();
        });
         });
   
         res.then(() => {
-        this.router.navigate(['/app-createajob/app-steps-step3']);
+            this.router.navigate(['/app-createajob/app-steps-step3']);    
         });
       }
        if(this.JobIds.length==0 || this.JobIds == undefined)

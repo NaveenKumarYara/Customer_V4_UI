@@ -305,13 +305,19 @@ export class Step4Component implements OnInit {z
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
         }
       });
-      if (index === array.length -1) resolve();
-      debugger
+      if (index === array.length -1) 
+      {
+          resolve();
+      }
+     
     });
   });
 
    res.then(() => {
-   this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+    setTimeout(function() { 
+      this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+      }, 3000); 
+ 
    });
    
       

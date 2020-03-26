@@ -210,6 +210,8 @@ export class AppService {
   JobLocations:Cities[]=[];
   JobLocationsMulti:Cities[]=[];
 
+  OpeningsList=[];
+
   Locationswithpositions=[];
 
   personTypeSingle: PjDisc[] = [];

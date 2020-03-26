@@ -16,6 +16,7 @@ maxExp: number;
 noOfopenings:number;
 location=[];
 locations=[];
+noOfopening=[];
 hasDescription: boolean;
 completeDescription: string;
 jobPositionId: string;
@@ -85,7 +86,7 @@ client: any;
       this.departments = this.appService.departments;
         this.location = this.appService.JobLocations;
         this.locations =this.appService.JobLocationsMulti;
-      debugger
+        this.noOfopening=this.appService.OpeningsList;
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');
     // this.insertJob.JobDescription = '';

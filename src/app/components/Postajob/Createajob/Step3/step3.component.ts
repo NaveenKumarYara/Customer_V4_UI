@@ -362,7 +362,6 @@ export class Step3Component implements OnInit {
         this.JobIds.forEach((value, index, array) => {
     //  let requests =  this.JobIds.map((item) => {
           this.insertJob.JobId = value;
-          debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;
@@ -385,7 +384,7 @@ export class Step3Component implements OnInit {
       });
 
       res.then(() => {
-      this.router.navigate(['/app-createajob/app-steps-step4']);
+          this.router.navigate(['/app-createajob/app-steps-step4']);  
       });
     }
      if(this.JobIds.length==0 || this.JobIds == undefined)

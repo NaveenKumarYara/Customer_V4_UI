@@ -79,7 +79,7 @@ this.appService.updateOpenings(this.noOfOpenings);
     this.appService.getLocationwisejobs(this.customerId).subscribe(res => { // , this.userId
       this.locationwisejobs = this.appService.JobLocations;
       this.multilocationwisejobs=this.appService.JobLocationsMulti;
-      this.locationwithpostions=this.appService.Locationswithpositions;
+      this.locationwithpostions;
       this.showMyContainer=this.appService.locationselect;
      this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
       debugger
@@ -206,6 +206,7 @@ this.appService.updateOpenings(this.noOfOpenings);
       locwithpostion.Positons = this.noOfOpening;
     this.locationwithpostions.push(locwithpostion);
     this.appService.Locationswithpositions = this.locationwithpostions;
+    this.appService.OpeningsList = this.openingsLists;
     this.noOfOpening=undefined;
     this.selectedCity=null;
     this.values=new Cities();

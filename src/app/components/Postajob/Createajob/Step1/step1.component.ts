@@ -198,12 +198,10 @@ if (this.appService.isDrafted.value != null) {
       this.locations.locationwithpostions.forEach((value, index, array) => {
         this.insertJob.PreferredLocationId = value.CityId.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
-        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
             this.jobIdVals.push(data);           
-            debugger
             localStorage.setItem('jobId', this.insertJob.JobId.toString());
             localStorage.setItem('JobId', this.insertJob.JobId.toString());
             localStorage.setItem('Item', false.toString());
@@ -222,13 +220,16 @@ if (this.appService.isDrafted.value != null) {
           }
           }
         });       
-          if (index === array.length -1) resolve();
-          this.appService.JobIds=this.jobIdVals;
+          if (index === array.length -1)
+          {
+            resolve();
+            this.appService.JobIds=this.jobIdVals;
+          }          
       });
   });
   
   res.then(() => {
-    this.router.navigate(['/app-createajob/app-steps-step2']);
+      this.router.navigate(['/app-createajob/app-steps-step2']); 
   });
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();

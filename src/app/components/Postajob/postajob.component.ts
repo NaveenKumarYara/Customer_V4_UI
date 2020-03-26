@@ -59,6 +59,9 @@ export class PostajobComponent implements OnInit {
   this.appService.JobLocationsMulti=[];
   this.appService.jobtitle.next('');
   this.appService.stepNumber.next('1');
+  this.appService.OpeningsList=[];
+  this.appService.locationselect=false;
+  this.appService.JobLocationsMulti=[];
   this.appService.jobcategory.next(new CategoryList());
   // this.appService.minExperience.next(1);
   // this.appService.maxExperience.next(1);
