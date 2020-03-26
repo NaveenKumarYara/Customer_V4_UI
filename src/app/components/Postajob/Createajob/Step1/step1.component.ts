@@ -134,7 +134,7 @@ export class Step1Component implements OnInit {
     // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
 
-    this.insertJob.NumberOfVacancies = 1;
+    this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
@@ -202,7 +202,7 @@ if (this.appService.isDrafted.value != null) {
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
-            this.createJobId(data);
+            this.jobIdVals.push(data);           
             debugger
             localStorage.setItem('jobId', this.insertJob.JobId.toString());
             localStorage.setItem('JobId', this.insertJob.JobId.toString());
@@ -221,8 +221,9 @@ if (this.appService.isDrafted.value != null) {
             //this.router.navigate(['/app-createajob/app-steps-step2']);
           }
           }
-        });
+        });       
           if (index === array.length -1) resolve();
+          this.appService.JobIds=this.jobIdVals;
       });
   });
   
@@ -264,6 +265,7 @@ if (this.appService.isDrafted.value != null) {
   }
   if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
   {
+    debugger
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
     this.appService.postjob(this.insertJob).subscribe(data => {

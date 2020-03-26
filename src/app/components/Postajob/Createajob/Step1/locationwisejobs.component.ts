@@ -22,7 +22,9 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
   multilocationwisejobs: MCities[];
   showMyContainer: boolean = false;
   noOfOpening: any;
-  openingsList=[];
+  openingsLists=[];
+  noOfOpenings: any;
+  openingsList: number[];
 // location: string;
 customer: any;
 customerId: any;
@@ -64,11 +66,23 @@ locationwithpostions =[];
   //   // console.log(loc);
   // }
 
+  populateopenings() {
+    this.openingsList  = this.appService.getnoofopenings();
+  }
+  Opening(val) {
+// this.service.
+this.noOfOpenings = val;
+this.appService.updateOpenings(this.noOfOpenings);
+  }
+
   populateLocationwiseJobs() {
     this.appService.getLocationwisejobs(this.customerId).subscribe(res => { // , this.userId
       this.locationwisejobs = this.appService.JobLocations;
       this.multilocationwisejobs=this.appService.JobLocationsMulti;
-      this.locationwithpostions;
+      this.locationwithpostions=this.appService.Locationswithpositions;
+      this.showMyContainer=this.appService.locationselect;
+     this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
+      debugger
     //   const check = this.locationExists(this.prfLoc, this.locationwisejobs);
     // if (!check && this.prfLoc.CityId > 0 ) {
     //   this.selectedCityName = new Cities();
@@ -118,7 +132,7 @@ locationwithpostions =[];
     Openings(val) {
        if(val!='' || val!=undefined)
         {
-        this.openingsList.push(val);
+        this.openingsLists.push(val);
         }
       }
 
@@ -147,9 +161,9 @@ locationwithpostions =[];
     }
     this.values.CityId=this.selectedCity.CityId;
     this.values.CityName=this.selectedCity.CityName;
-    debugger
-    this.appService.JobLocationsMulti = this.multilocationwisejobs;
+   
     this.locationwisejobs=[];
+    this.appService.locationselect = true;
    }
 
   getSelectedOptionText(id: number) {
@@ -166,6 +180,7 @@ locationwithpostions =[];
     this.ngSelect.handleClearClick();
     this.appService.JobLocations = this.locationwisejobs;
     this.multilocationwisejobs=[];
+    this.appService.locationselect = false;
     //this.deletemLocation(1);
    }
 
@@ -189,8 +204,8 @@ locationwithpostions =[];
       locwithpostion.CityId = this.values.CityId;
       locwithpostion.CityName = this.values.CityName;
       locwithpostion.Positons = this.noOfOpening;
-     debugger
     this.locationwithpostions.push(locwithpostion);
+    this.appService.Locationswithpositions = this.locationwithpostions;
     this.noOfOpening=undefined;
     this.selectedCity=null;
     this.values=new Cities();
@@ -201,6 +216,7 @@ locationwithpostions =[];
     this.populateLocationwiseJobs();
     this.populateCities();
     this.populatemultiCities();
+    this.populateopenings();
     this.cities.subscribe(city => {
       this.convertObservable = city as Cities[];
     });

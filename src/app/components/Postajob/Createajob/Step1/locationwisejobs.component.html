@@ -1,8 +1,19 @@
 <div class="form-group position-group multiple-locations">
     <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
         <label for="" class="question">At which location the job is available?</label>
-        <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
-            post the job for <span>Multiple Locations.</span>)</small>
+            <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
+                post the job for 
+                <ng-container *ngIf="!showMyContainer">
+                    <span>Single Location.</span>
+                </ng-container>
+                <ng-container *ngIf="showMyContainer">
+                    <span>Multiple Locations.</span>
+                </ng-container>              
+                )</small>
+      
+
+
+      
 
         <!--Multiple Location implementation 19-03-2020-->
         <ng-container *ngIf="showMyContainer">
@@ -35,8 +46,8 @@
                 </div>
               </div>   
                             -->
-            <div class="lists  open-positions-list" *ngIf="locationwithpostions">
-                <h6 *ngIf="locationwithpostions" class="light">Open Positions at City</h6>
+            <div class="lists  open-positions-list">
+                <h6 *ngIf="locationwithpostions?.length>0" class="light">Open Positions at City</h6>
                 <div class="col-md-6">
                     <ul class="data-list" >
                         <li  *ngFor="let job of locationwithpostions;let i = index">
@@ -81,8 +92,29 @@
                     </label>
                 </div>
             </div>
-            <app-steps-step2-noofopenings>
-            </app-steps-step2-noofopenings>
+            <div class="form-group position-group">
+                <label for="" class="question">How many open positions do you currently have for this Job Title?</label>
+                <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+                <div class="p-rel">
+            
+                    <div class="options">
+            
+                        <div class="checkbox" *ngFor="let type of openingsList">
+                            <label>
+                      <input type="radio" [(ngModel)]="noOfOpenings"  #openings="ngModel" required name="openg" (change)="Opening(type)" [value]="type"><span class="box inputbox">{{type}}</span> </label>
+                        </div>
+                        <!-- <div class="checkbox">
+                    <label><input type="radio" name="openg" (click)="Opening(2)" value="2"><span class="box">2</span></label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
+                  </div> -->
+                        <h4>OR</h4>
+                        <input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here">
+                    </div>
+                </div>
+                <small class="text-danger radio-error1" *ngIf="openings.invalid && openings.touched">Number of Positions are required!</small>
+            </div>
 
         </ng-container>
 

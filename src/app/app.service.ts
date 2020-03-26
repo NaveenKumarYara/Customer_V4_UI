@@ -57,6 +57,8 @@ export class AppService {
   constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
+  locationselect:boolean;
+
   domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();
   adddomain: PjDomain[] = [];
@@ -207,6 +209,8 @@ export class AppService {
   JobIds:MultipleJobIds[]=[];
   JobLocations:Cities[]=[];
   JobLocationsMulti:Cities[]=[];
+
+  Locationswithpositions=[];
 
   personTypeSingle: PjDisc[] = [];
   personTypeSingleChanged = new Subject<PjDisc[]>();
