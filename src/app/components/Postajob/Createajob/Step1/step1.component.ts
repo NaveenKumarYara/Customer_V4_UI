@@ -180,6 +180,7 @@ export class Step1Component implements OnInit {
     this.insertJob.IsDrafted = true;
 
   }
+  this.insertJob.HiringManagerId=this.userId;
   this.insertJob.SaveAsTemplate = 0;
 this.insertJob.StepNumber = step;
 if (this.appService.stepNumber.value <= step) {
@@ -401,7 +402,7 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.HideSalary = false;
     this.insertJob.BonusOffered = true;
     this.insertJob.HiringProcessId = 1;
-    this.insertJob.HiringManagerId = "5";
+    this.insertJob.HiringManagerId = 5;
     this.insertJob.IsPrivate = true;
     this.insertJob.ExpiryDate = new Date();
     this.insertJob.SaveAsTemplate = true;

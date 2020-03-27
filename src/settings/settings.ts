@@ -156,4 +156,5 @@ export class Settings {
   GetCustomerInterviewStatistics:string;
   GetCustomerHiredStatistics:string;
   GetJobLocationbyJobId:string;
+  ReportingTeam:string;
   }

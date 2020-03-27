@@ -10,7 +10,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
-import { PjTechnicalTeam, CustomerUsers } from '../../models/jobPostInfo';
+import { PjTechnicalTeam, CustomerUsers,JobReporting } from '../../models/jobPostInfo';
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 declare var $: any;
@@ -29,6 +29,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   reportingmanagers: CustomerUsers[]=[];
   customer: any;
   customerId: any;
+  report =new JobReporting();
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
@@ -41,6 +42,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   usersload: boolean;
   suggestedManagers: CustomerUsers[] = [];
   slist=[];
+  JobIds=[];
 
   // managersAdd: PjTechnicalTeam[] = [];
   // selectedItem: any;
@@ -52,6 +54,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      
   }
   updateManager(val) {
    // this.appService.updateManager(this.selectedItem.toString());
@@ -108,6 +111,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.show = false;
     this.flag=false;
+    this.JobIds = this.appService.JobIds;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -143,6 +147,47 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         this.selectManager='';
         this.selectManager=null;
         this.appService.reportingList=this.suggestedManagers;
+        
+        // if(this.JobIds&&this.JobIds.length>0)
+        // {
+        //   this.JobIds.forEach((e)=>
+        //   {
+            
+        //     this.report.UserId=this.userId;
+        //     this.report.CustomerId=this.customerId;
+        //     this.report.JobId=Number(e);
+        //     this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+        //     debugger
+        //     this.appService.ReportingTeam(this.report).subscribe(
+        //       data => {
+        //         if(data=0)
+        //         {
+        //           console.log("added");
+        //         }
+        //       });
+        //   }
+        //   )
+        // }
+        // else
+        // {
+        //   const res = localStorage.getItem('jobId');
+        //   this.report.UserId=this.userId;
+        //   this.report.CustomerId=this.customerId;
+        //   this.report.JobId=parseInt(res, 10);
+        //   this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+        //   debugger
+        //   this.appService.ReportingTeam(this.report).subscribe(
+        //     data => {
+        //       if(data=0)
+        //       {
+        //         console.log("added");
+        //       }
+        //     });  
+        // }
+     
+      
+
+        
       }
 
       

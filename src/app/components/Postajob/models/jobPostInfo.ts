@@ -30,7 +30,7 @@ export class InsertJob {
     public HideSalary: boolean;
     public BonusOffered: boolean;
     public HiringProcessId: number;
-    public HiringManagerId: string;
+    public HiringManagerId: number;
     public XmlTechnicalTeam: PjTechnicalTeam[] = [];
     public IsPrivate: boolean;
     public XmlAccessToUsers: PjJobAccessTo[] = [];
@@ -182,4 +182,14 @@ export class PjDepartments {
   export class MultipleJobIds
   {
     JobId:number;
+  }
+
+  export class JobReporting
+  {
+    
+      UserId:number;
+      CustomerId:number;
+      JobId:number;
+      HiringManager:string;
+      
   }

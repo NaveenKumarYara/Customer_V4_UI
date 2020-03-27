@@ -353,7 +353,7 @@ export class Step3Component implements OnInit {
 
 
     this.insertJob.HiringProcessId = this.intwType.interviewType.InterviewTypeId;
-    this.insertJob.HiringManagerId = this.reporting.suggestedManagers.map(x=>x.UserId).toString();
+    //this.insertJob.HiringManagerId = this.reporting.suggestedManagers.map(x=>x.UserId).toString();
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
     if(this.JobIds&&this.JobIds.length>0)

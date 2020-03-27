@@ -24,7 +24,7 @@ import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
-        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,
+        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting,
         PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
@@ -936,6 +936,15 @@ this.skillPostData.push(skill);
   }
   Login(body) {
     return this.http.post(this.settingsService.settings.Login, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  ReportingTeam(body) {
+    debugger
+    return this.http.post(this.settingsService.settings.ReportingTeam, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());

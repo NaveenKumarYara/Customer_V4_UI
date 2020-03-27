@@ -209,21 +209,21 @@ editMode: string;
       this.appService.reportingManager.next(this.ejHiringManager);
       this.ejHiringManagerList.push(this.ejHiringManager);
       this.appService.reportingList = this.ejHiringManagerList;
-      debugger
-      if (this.jobdetailscustomer.JobLocation.length > 0) {
+
+      //if (this.jobdetailscustomer.JobLocation.length > 0) {
         // this.jobdetailscustomer.JobLocation.forEach(element => {
         //   this.ejLocations.PreferredLocationId = element.PreferredLocationId;
         //   this.ejLocations.location = element.CityName;
         //   });
-        this.ejLocationsList =this.jobdetailscustomer.JobLocation;
-        for (const loc of this.jobdetailscustomer.JobLocation) {
-          this.ejLocations.CityId = loc.CityId;
-          this.ejLocations.location = loc.CityName;
-          //this.ejLocationsList.push(this.ejLocations);
-        }
-      }
-      debugger
-      this.appService.location=this.ejLocationsList;
+       
+        // for (const loc of this.jobdetailscustomer.JobLocation) {
+        //   this.ejLocations.CityId = loc.CityId;
+        //   this.ejLocations.location = loc.CityName;
+        //   //this.ejLocationsList.push(this.ejLocations);
+        // }
+     // }
+      this.ejLocationsList =this.jobdetailscustomer.JobLocation;
+      //this.appService.location=this.ejLocationsList;
       this.appService.JobLocations=this.ejLocationsList;
       //this.appService.JobLocationsMulti=this.ejLocationsList;
       if (this.jobdetailscustomer.TechnicalTeam.length > 0) {
