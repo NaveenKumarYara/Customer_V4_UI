@@ -148,42 +148,40 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         this.selectManager=null;
         this.appService.reportingList=this.suggestedManagers;
         
-        // if(this.JobIds&&this.JobIds.length>0)
-        // {
-        //   this.JobIds.forEach((e)=>
-        //   {
+        if(this.JobIds&&this.JobIds.length>0)
+        {
+          this.JobIds.forEach((e)=>
+          {
             
-        //     this.report.UserId=this.userId;
-        //     this.report.CustomerId=this.customerId;
-        //     this.report.JobId=Number(e);
-        //     this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-        //     debugger
-        //     this.appService.ReportingTeam(this.report).subscribe(
-        //       data => {
-        //         if(data=0)
-        //         {
-        //           console.log("added");
-        //         }
-        //       });
-        //   }
-        //   )
-        // }
-        // else
-        // {
-        //   const res = localStorage.getItem('jobId');
-        //   this.report.UserId=this.userId;
-        //   this.report.CustomerId=this.customerId;
-        //   this.report.JobId=parseInt(res, 10);
-        //   this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-        //   debugger
-        //   this.appService.ReportingTeam(this.report).subscribe(
-        //     data => {
-        //       if(data=0)
-        //       {
-        //         console.log("added");
-        //       }
-        //     });  
-        // }
+            this.report.UserId=this.userId;
+            this.report.CustomerId=this.customerId;
+            this.report.JobId=Number(e);
+            this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+            this.appService.ReportingTeam(this.report).subscribe(
+              data => {
+                if(data=0)
+                {
+                  console.log("added");
+                }
+              });
+          }
+          )
+        }
+        else
+        {
+          const res = localStorage.getItem('jobId');
+          this.report.UserId=this.userId;
+          this.report.CustomerId=this.customerId;
+          this.report.JobId=parseInt(res, 10);
+          this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+          this.appService.ReportingTeam(this.report).subscribe(
+            data => {
+              if(data=0)
+              {
+                console.log("added");
+              }
+            });  
+        }
      
       
 

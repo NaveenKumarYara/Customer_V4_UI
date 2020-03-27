@@ -149,5 +149,5 @@
   "GetCustomerInterviewStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerInterviewStatistics",
   "GetCustomerHiredStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerHiredStatistics",
   "GetJobLocationbyJobId":"https://jobsapi-dev.arytic.com/api/GetCustomerHiredStatistics",
-  "ReportingTeam":"https://identityapi-dev.arytic.com/api/SaveReportingTeammembers"
+  "ReportingTeam":"https://identityapi-dev.arytic.com/api/ReportingTeammembers"
 }

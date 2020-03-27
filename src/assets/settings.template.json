@@ -149,5 +149,5 @@
   "GetCustomerInterviewStatistics":"${Identity_URL}/api/GetCustomerInterviewStatistics",
   "GetCustomerHiredStatistics":"${Identity_URL}/api/GetCustomerHiredStatistics",
   "GetJobLocationbyJobId":"${Jobs_URL}/api/GetCustomerHiredStatistics",
-  "ReportingTeam":"${Identity_URL}/api/SaveReportingTeammembers"
+  "ReportingTeam":"${Identity_URL}/api/ReportingTeammembers"
 }
