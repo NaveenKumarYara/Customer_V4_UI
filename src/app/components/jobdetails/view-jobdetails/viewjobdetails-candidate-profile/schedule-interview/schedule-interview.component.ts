@@ -57,6 +57,7 @@ export class ScheduleInterviewComponent implements OnInit {
   hourStep = 1;
   minuteStep = 1;
   secondStep = 1;
+  showadd:boolean=false;
   // typeId: number;
   InterviewDate: any;
   @Input() userId: number;
@@ -137,6 +138,7 @@ export class ScheduleInterviewComponent implements OnInit {
 
   ngOnInit() {
     this.show = false;
+    this.showadd=false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -240,7 +242,6 @@ this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
 this.schIntw.InterviewingPerson = this.selectedUserName.toString();
-debugger
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
@@ -325,7 +326,6 @@ GetInterView() {
   }
   PopulateRoles(val)
   {
-    debugger
    this.Value= val;
   }
   ResetUser()
@@ -336,7 +336,6 @@ GetInterView() {
 
   SaveUser()
   {
-    debugger
     if(this.Addform.invalid)
     {
       this.Addform.controls['FirstName'].markAsTouched()
@@ -369,7 +368,8 @@ GetInterView() {
         data1 => {
            this.toastr.success('Please check your email to reset the password','Success');
               setTimeout(() => { 
-                  this.Addform.reset();            
+                  this.Addform.reset(); 
+                  this.showadd=false;           
                   this.toastr.dismissToast; 
                   this.GetCustomerContacts();  
                 }, 3000);
@@ -388,7 +388,6 @@ GetInterView() {
     .subscribe(
     data => {
       this.result = data;
-      debugger
       if(this.result.UserId>0&&this.result.CustomerId>0)
       {  
         this.show = true;    

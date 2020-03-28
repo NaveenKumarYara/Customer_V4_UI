@@ -15,7 +15,7 @@
                 <button class="btn add-btn form-control mt-0"  [disabled]="!teamForm.valid" type="submit">+</button>
             </div>
         </form>
-            <div class="col-md-1" *ngIf="flag">
+            <div class="col-md-1">
                 <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
               </div>
         </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="modal-footer">
-          <button type="button" (click)="SaveUser()" class="btn btn-filled box-shadow-none">Add</button>
+          <button type="button" (click)="SaveUser()"  data-dismiss="modal"  aria-expanded="false" class="btn btn-filled box-shadow-none">Add</button>
           <button (click)="ResetUser()" class="btn btn-border"
               data-dismiss="modal"  aria-expanded="false"
               aria-controls="addUser">Cancel</button>

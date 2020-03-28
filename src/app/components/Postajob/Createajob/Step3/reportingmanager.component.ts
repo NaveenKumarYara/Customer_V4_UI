@@ -100,10 +100,6 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   suggestedManager() {
     return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
-      let cus = new CustomerUsers();
-      cus.FirstName ='others';
-      cus.UserId=this.userId;
-      this.reportingmanagers.push(cus);
             this.suggestedManagers= this.appService.reportingList;
       // this.discResult.forEach(cc => cc.checked = false);
     });
@@ -138,9 +134,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
     Add()
     {
-      this.flag=false;
-      if(this.selectedManager.FirstName!='others')
-      {
+            this.flag=false;
         this.slist.push(this.selectedManager);
         //this.slist.push(this.selectedManager);
         this.suggestedManagers=this.slist;
@@ -186,7 +180,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       
 
         
-      }
+      
 
       
      
@@ -239,7 +233,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
                     this.Addform.reset();  
                     this.selectManager='';
                     this.selectManager=null;  
-                    this.flag=false;       
+                    //this.flag=false;       
                     this.toastr.dismissToast;                   
                     this.suggestedManager();
                     $("#othersdialog").modal('hide');

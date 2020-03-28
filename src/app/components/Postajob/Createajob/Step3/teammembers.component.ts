@@ -49,17 +49,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
       //this.toastr.setRootViewContainerRef(_vcr);
   }
   changeTeam(val) {
-    debugger
     this.getTeammember = val;
-    if(this.getTeammember.FirstName=='others')
-    {
-      this.flag=true;
-    }
-    else 
-    {
-      this.flag= false;
-    }
-
   }
   public addTeammembers() {
     // const newDomain = new CustomerUsers();
@@ -88,10 +78,6 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   getcustomerusers() {
     return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
       this.managersList= res;
-    let cus = new CustomerUsers();
-    cus.FirstName ='others';
-    cus.UserId=this.userId;
-    this.managersList.push(cus);
     });
   }
   PopulateRoles(val)
