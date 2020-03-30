@@ -137,17 +137,23 @@
                               <h4 class="mt-0">
                                 <a href="javascript:void(0)">
                                   <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                  :{{job?.SkypeId || N/A}}
+                                 
+                                  <ng-container *ngIf="job?.SkypeId!=null&&job?.SkypeId!=''">
+                                    :{{job?.SkypeId}}
+                                  </ng-container>
+
+                                  <ng-container *ngIf="job?.AccessId!=null&&job?.AccessId!=''">
+                                    ,{{job?.AccessId}}
+                                  </ng-container>
+                                
                                 </a>
-                              </h4>
-                            </ng-container>
-                            <ng-container *ngIf="job?.InterviewTypeId == 4">
-                              <h4 class="mt-0">
+                              </h4>                   
+                              <!-- <h4 class="mt-0">
                                 <a href="javascript:void(0)">
-                                  <!-- <img src="../../../../../assets/images/skype.svg" /> -->
-                                  :{{job?.BridgeUrl|| N/A }},{{job?.AccessId || N/A}}
+                                  <img src="../../../../../assets/images/skype.svg" /> 
+                                  :{{job?.BridgeUrl }},
                                 </a>
-                              </h4>
+                              </h4> -->
                             </ng-container>
                             <!-- <div class="dropdown d-inline">
                               <a *ngIf="job?.InterviewTypeId != 1" class="dropdown-toggle interview-dropdown pointer" type="button" id="dropdownMenu1"
