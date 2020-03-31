@@ -1174,6 +1174,9 @@ h1.title img {
 .meta.a .h-19 .location {
     margin-right: 0px !important;
 }
+.meta .d-block{
+    font-size: 13.16px;
+}
 
 .meta.a .info-icon{
     margin-left: 2px;
@@ -1209,7 +1212,8 @@ h1.title img {
 }
 .l_bl-1:nth-last-child(1) {
     padding-right: 7px;
-    border-left: 1px solid #E0E3EC;
+    border-left: 1px solid #c6c7ca;
+    border-width: medium;
 } 
 .l_bl-1:first-child{
     padding-right: 0px;
@@ -1263,4 +1267,19 @@ height: 25.4px;
 .video-scroll  video{
     height: 135px;
     width: 100%;
-    }
+}
+.d-block span.experience{
+    padding-left: 7px;
+    border-left: 1px solid #c6c7ca;
+    border-width: medium;
+    padding-right: 5px;
+    margin-left: 2px;
+}
+.role-exp-loc h5.location{
+    white-space: nowrap;
+    width: 88px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    text-align: left;
+}

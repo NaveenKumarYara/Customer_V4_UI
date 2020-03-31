@@ -276,10 +276,10 @@
                         <!--Info Icon-->
 
                     </div>
-
-                    <div class="d-block text-center ptb-5">
+                    <!--Candidate experience placeholder is in below div -->
+                    <div class="d-block text-center ptb-5 role-exp-loc">
                         <h4 class="d-inline l_bl-1" title="{{profile.ProfileTitle}}">
-                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}}</h4>
+                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}} <span class="experience">5 Yrs</span></h4>
                         <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation!=null;else false">
                             <ng-container>
                                 <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18"
@@ -290,9 +290,10 @@
                                         d="m9.2 10.4c-1.6 0-2.9-1.3-2.9-2.9s1.3-2.9 2.9-2.9 2.8 1.4 2.8 3-1.3 2.8-2.8 2.8zm0-4c-0.6 0-1.2 0.6-1.2 1.2s0.5 1.1 1.1 1.1 1.1-0.5 1.1-1.1-0.4-1.2-1-1.2z" />
                                 </svg>
                             </ng-container>
-                            <h5 class="location mr-0 pl-0 pr-0">{{profile.CurrentLocation}}</h5>
+                            <h5 class="location mr-0 pl-0 pr-0" title="{{profile.CurrentLocation}}">{{profile.CurrentLocation}}</h5>
                         </div>
                     </div>
+                    <!---->
                     <div class="d-block text-center min-h40">
                         <div class="d-block ptb-5">
                             <div
