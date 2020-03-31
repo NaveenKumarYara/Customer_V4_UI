@@ -185,9 +185,7 @@ export class DashboardJobsviewComponent implements OnInit {
         labels: ['Year2019','Year2020']
          
               }],
-              yAxes: [ {
-             
-            }]
+
       }
     };
 
@@ -198,12 +196,7 @@ export class DashboardJobsviewComponent implements OnInit {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         //labels: ['1', '2', '3', '4', '4', '5', '6']
               }],
-              yAxes: [{
-                ticks: {
-                    min: 0,
-                    stepSize: 1
-                }
-            }]
+             
       }
     };
 
@@ -214,12 +207,7 @@ export class DashboardJobsviewComponent implements OnInit {
         //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         labels: ['week1','week2','week3','week4','week5']
               }],
-              yAxes: [{
-                ticks: {
-                  min: 0,
-                    stepSize: 2
-                }
-            }]
+            
       }
     };
 
@@ -229,12 +217,7 @@ export class DashboardJobsviewComponent implements OnInit {
       xAxes: [{
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec']
               }],
-              yAxes: [{
-                ticks: {
-                  min: 0,
-                    stepSize: 5
-                }
-            }]
+             
       }
     };
 
@@ -350,20 +333,21 @@ populateApplicantsStatistics(filter=0) {
                 this.dashboardStatisticsForJobsPosted= result;
               if(result.length>0)
               {
-                this.lineChartLabels.forEach(
-                  (e1)=>
-                  this.dashboardStatisticsForJobsPosted.forEach((e2)=> 
-                  {
-                    if(e1 === e2.PostedValue)
-                    { 
-                      if(e2.JobCount!==null||e2.JobCount!=undefined)
-                      {
-                        this.postedcount.push(e2.JobCount);
-                      }          
-                     
-                    }
-                  }      
-                  ))         
+
+                  this.lineChartLabels.forEach(
+                    (e1)=>
+                    this.dashboardStatisticsForJobsPosted.forEach((e2)=> 
+                    {
+                      if(e1 == e2.PostedValue)
+                      { 
+                        if(e2.JobCount!==null||e2.JobCount!=undefined)
+                        {
+                          this.postedcount.push(e2.JobCount);
+                        }          
+                       
+                      }
+                    }      
+                    ))                                    
               }
             });
             }
@@ -414,16 +398,37 @@ populateApplicantsStatistics(filter=0) {
               if(allresult.length>0)
               {
                 
-                this.lineChartLabelsall.forEach(
-                  (ame1)=>
-                  this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
-                  {
-                    if(ame1 === ame2.PostedValue)
-                    {           
-                      this.allpostedcount.push(ame2.JobCount);
-                    }
-                  }      
-                  ))         
+                if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsPosted.length)
+                {
+                  this.lineChartLabelsall.forEach(
+                    (ame1)=>
+                    this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
+                    {
+                      if(ame1 == ame2.PostedValue)
+                      {           
+                        this.allpostedcount.push(ame2.JobCount);
+                      }
+                    }      
+                    ))   
+                }
+                else
+                {
+                  this.lineChartLabelsall.forEach(
+                    (ame1)=>
+                    this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
+                    {
+                      if(ame1 == ame2.PostedValue)
+                      {           
+                        this.allpostedcount.push(ame2.JobCount);
+                      }
+                      if(ame1 != ame2.PostedValue)
+                      {
+                        this.allpostedcount.push(0);
+                      }
+                    }      
+                    ))   
+                }
+                      
               }
             });
             }     
@@ -516,17 +521,37 @@ populateApplicantsStatistics(filter=0) {
               this.alldashboardStatisticsForJobsFilled= allres1;
               if(allres1.length>0)
               {
-                
-                this.lineChartLabelsall.forEach(
-                  (alfme1)=>
-                  this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
-                  {
-                    if(alfme1 === afme2.PostedValue)
-                    {           
-                      this.allcount.push(afme2.JobCount);
-                    }
-                  }      
-                  ))  
+                if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsFilled.length)
+                {
+                  this.lineChartLabelsall.forEach(
+                    (alfme1)=>
+                    this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
+                    {
+                      if(alfme1 == afme2.PostedValue)
+                      {           
+                        this.allcount.push(afme2.JobCount);
+                      }
+                    }      
+                    ))  
+                }
+                else
+                {
+                  this.lineChartLabelsall.forEach(
+                    (alfme1)=>
+                    this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
+                    {
+                      if(alfme1 == afme2.PostedValue)
+                      {           
+                        this.allcount.push(afme2.JobCount);
+                      }
+                      if(alfme1 != afme2.PostedValue)
+                      {           
+                        this.allcount.push(0);
+                      }
+                    }      
+                    ))  
+                }
+            
         
                         
               }
@@ -612,16 +637,37 @@ populateApplicantsStatistics(filter=0) {
         this.alldashboardStatisticsForJobsCancelled= aresultc2;
         if(aresultc2.length>0)
         {
-          this.lineChartLabelsall.forEach(
-            (ace1)=>
-            this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
-            {
-              if(ace1 === ace2.PostedValue)
-              {      
-                this.allcancelcount.push(ace2.JobCount);
-              }
-            }      
-            ))         
+          if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsCancelled.length)
+          {
+            this.lineChartLabelsall.forEach(
+              (ace1)=>
+              this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
+              {
+                if(ace1 == ace2.PostedValue)
+                {      
+                  this.allcancelcount.push(ace2.JobCount);
+                }
+              }      
+              ))       
+          }
+          else
+          {
+            this.lineChartLabelsall.forEach(
+              (ace1)=>
+              this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
+              {
+                if(ace1 == ace2.PostedValue)
+                {      
+                  this.allcancelcount.push(ace2.JobCount);
+                }
+                if(ace1 != ace2.PostedValue)
+                {      
+                  this.allcancelcount.push(0);
+                }
+              }      
+              ))       
+          }
+       
         }
       
     });
