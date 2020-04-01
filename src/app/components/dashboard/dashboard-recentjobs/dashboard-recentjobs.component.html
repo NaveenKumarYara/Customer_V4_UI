@@ -40,12 +40,12 @@
       </div>
       <div class="stats stats--row">
         <div>
-            <h1 (click)="GetJobsRedirect(4)">{{job?.TotalApplicants}}</h1>
+            <h1 (click)="GetJobsRedirect(4,joblist.CustomerId,job.UserId,job.JobId)">{{job?.TotalApplicants}}</h1>
           <span>Applied</span>
         </div>
         <div class="v-divider"></div>
         <div>
-            <h1>{{job?.SkilledApplicants}}</h1>
+            <h1 (click)="GetJobsRedirect(5,joblist.CustomerId,job.UserId,job.JobId)" >{{job?.SkilledApplicants}}</h1>
           <span>Suggested</span>
         <!-- <app-recentjobscount
         [job]="job"
@@ -53,12 +53,12 @@
       </div>
         <div class="v-divider"></div>
         <div>
-          <h1 (click)="GetJobsRedirect(5)">{{job?.ShortListedCount}}</h1>
+          <h1 (click)="GetJobsRedirect(5,joblist.CustomerId,job.UserId,job.JobId)">{{job?.ShortListedCount}}</h1>
         <span>Shortlisted</span>
       </div>
         <div class="v-divider"></div>
         <div>
-            <h1 (click)="GetJobsRedirect(7)">{{job?.InterviewedCount}}</h1>
+            <h1 (click)="GetJobsRedirect(7,joblist.CustomerId,job.UserId,job.JobId)">{{job?.InterviewedCount}}</h1>
           <span>Interviews</span>
         </div>
       </div>

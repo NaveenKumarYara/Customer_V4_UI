@@ -21,7 +21,7 @@ export class DashboardRecentjobsComponent implements OnInit {
     color = 'primary';
     mode = 'indeterminate';
     value = 50;
-
+    statusId:any
     // progressValue = 60;
     // isDeterminate = true;
 
@@ -33,10 +33,6 @@ export class DashboardRecentjobsComponent implements OnInit {
       this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
      }
-
-
-
-
     ngOnInit() {
       this.jobLoader = true;
       this.populateRecentJoblist(this.customerId, this.userId, 5);
@@ -67,5 +63,21 @@ export class DashboardRecentjobsComponent implements OnInit {
         this.jobLoader = false;
     });
 }
+GetJobsRedirect(val,customerId,userId,jobId)  {
+   if(val>0){
+   this.statusId=val;
+   }
+   else{
+    this.statusId=0;
+  }
+  sessionStorage.setItem('customerId', JSON.stringify(customerId));
+  sessionStorage.setItem('userId', JSON.stringify(userId));
+  sessionStorage.setItem('jobId', JSON.stringify(jobId));
+  sessionStorage.setItem('statusid', JSON.stringify(this.statusId));
+  $("#activeMyjob").addClass('active');
+  let jobactive= true;
+  localStorage.setItem('jobactive', JSON.stringify(jobactive));
+  this.router.navigateByUrl('app-view-jobdetails');
+    }
 
 }

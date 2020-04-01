@@ -394,6 +394,19 @@ export class ViewJobdetailsComponent implements OnInit {
           } else if (this.statusid === 0) {
             this.updateallcandidatesstatus();
           }
+          else if (this.statusid === 5) {
+            $("#Prospect").removeClass('active');
+            $("#Shortlisted").addClass('active');
+            this.updateshortlistedstatus();
+          }
+          else if (this.statusid === 15) {
+            this.updatesuggestedstatus();
+          }
+          else if (this.statusid === 7) {
+            $("#Prospect").removeClass('active');
+            $("#Interview").addClass('active');
+            this.updateinterviewedstatus();
+          }
       }
     });
   }

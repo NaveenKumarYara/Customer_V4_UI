@@ -110,7 +110,7 @@
                             </a>
                         </li>
                          <!--Commenting TBD Feature 07-02-2020-->
-                        <li class="active">
+                        <li class="active" id="Prospect">
                             <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.Applied}}</h1>
@@ -134,7 +134,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li>
+                        <li id="Shortlisted">
                             <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.ShortListed}}</h1>
@@ -142,7 +142,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li>
+                        <li id="Interview">
                             <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.Interviewed}}</h1>
