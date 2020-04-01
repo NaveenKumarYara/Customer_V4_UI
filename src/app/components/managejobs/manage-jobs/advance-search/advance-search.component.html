@@ -1,32 +1,104 @@
 <div class="adv-filters row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
+    <div class="col-md-6">
+        <h4>Filters</h4>
+    </div>
+    <div class="pull-right">
+        <!--Add More Filters Dropdown 01-04-2020-->
+        <div class="dropdown add-more-filters">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <ul class="filters-list">
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="profiletypefilter"> Profile Type
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="skillsfilter"> Skills
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="lastpostedfilter"> Last Posted
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="immigrationstatusfilter"> Immigration Staus
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="designationfilter"> Designation
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="rolesfilter"> Roles
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+                <li role="separator" class="divider"></li>
+                <li class="filter-btns">
+                    <button class="btn btn-small btn-cancel">Cancel</button>
+                    <button class="btn btn-small btn-add">Add</button>
+                </li>
+            </ul>
+        </div>
+        <!---->
+    </div>
     <div class="col-md-12">
+        <div class="clearfix">&nbsp;</div>
         <div class="input-row row ">
             <form action="">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="job-type">Job Type</label>
-                        <select name="view" id="view" (change)="changeJobType($event.target.value)" class="styled-select-box block">
-              <option default value="" disabled="disabled">SELECT</option>
-              <option *ngFor="let emp of employmentList" [value]="emp.EmploymentTypeId">{{emp.EmploymentType}}</option>
-          </select>
+                        <select name="view" id="view" (change)="changeJobType($event.target.value)"
+                            class="styled-select-box block">
+                            <option default value="" disabled="disabled">SELECT</option>
+                            <option *ngFor="let emp of employmentList" [value]="emp.EmploymentTypeId">
+                                {{emp.EmploymentType}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="job-type">Experience</label>
-                        <select name="view" id="view" (change)="changeExperience($event.target.value)" class="styled-select-box block">
-              <option *ngFor="let exp of expYears" [value]="exp">{{exp}}</option>
-          </select>
+                        <select name="view" id="view" (change)="changeExperience($event.target.value)"
+                            class="styled-select-box block">
+                            <option *ngFor="let exp of expYears" [value]="exp">{{exp}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="job-type">Location</label>
                         <form #form="ngForm" class="cls-rel">
-                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText (keyup)="GetCity(searchText.value)">
+                            <input class="form-control loc-search1" autocomplete="off" type="text"
+                                [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText
+                                (keyup)="GetCity(searchText.value)">
                             <div class="searchList" *ngIf="SearchList.length>0">
                                 <ul class="searchList-dropdown">
-                                    <li class="searchList-options" *ngFor="let slist of SearchList" (click)="SetSearch(slist.CityId,slist.CityName.split(',')[0])">{{slist.CityName.split(',')[0]}}</li>
+                                    <li class="searchList-options" *ngFor="let slist of SearchList"
+                                        (click)="SetSearch(slist.CityId,slist.CityName.split(',')[0])">
+                                        {{slist.CityName.split(',')[0]}}</li>
                                 </ul>
                             </div>
                         </form>
@@ -34,31 +106,97 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="job-type">client</label>
+                        <label for="job-type">Client</label>
                         <form #form="ngForm" class="cls-rel">
-                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="clientName" name="clientName" placeholder="Clients" #searchc  (keyup)="GetSearchClients(searchc.value)">
+                            <input class="form-control loc-search1" autocomplete="off" type="text"
+                                [(ngModel)]="clientName" name="clientName" placeholder="Clients" #searchc
+                                (keyup)="GetSearchClients(searchc.value)">
                             <div class="searchList" *ngIf="SearchClients.length>0">
                                 <ul class="searchList-dropdown">
-                                    <li class="searchList-options" *ngFor="let cname of SearchClients" (click)="SetSearchCName(cname.ClientId,cname.ClientName)">{{cname.ClientName}}</li>
+                                    <li class="searchList-options" *ngFor="let cname of SearchClients"
+                                        (click)="SetSearchCName(cname.ClientId,cname.ClientName)">{{cname.ClientName}}
+                                    </li>
                                 </ul>
                             </div>
                         </form>
                     </div>
                 </div>
-             
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="job-type">department</label>
+                        <label for="job-type">Department</label>
                         <form #form="ngForm" class="cls-rel">
-                            <input class="form-control loc-search1" autocomplete="off" type="text" [(ngModel)]="deptName" name="deptName" placeholder="department" #searchd (keyup)="GetSearchDepartments(searchd.value)">
+                            <input class="form-control loc-search1" autocomplete="off" type="text"
+                                [(ngModel)]="deptName" name="deptName" placeholder="Department" #searchd
+                                (keyup)="GetSearchDepartments(searchd.value)">
                             <div class="searchList" *ngIf="SearchDept.length>0">
                                 <ul class="searchList-dropdown">
-                                    <li class="searchList-options" *ngFor="let dname of  SearchDept" (click)="SetSearchDName(dname.DepartmentId,dname.CustomerDepartment)">{{dname.CustomerDepartment}}</li>
+                                    <li class="searchList-options" *ngFor="let dname of  SearchDept"
+                                        (click)="SetSearchDName(dname.DepartmentId,dname.CustomerDepartment)">
+                                        {{dname.CustomerDepartment}}</li>
                                 </ul>
                             </div>
                         </form>
                     </div>
                 </div>
+                <!--Show & Hide Filters 01-04-2020-->
+
+                <!--Profile Type-->
+                <div class="col-md-4" [hidden]="!profiletypefilter">
+                    <div class="form-group">
+                        <label for="addProfilestatusfilter">Profile Status</label>
+                        <input type="text" class="form-control loc-search1" id="addProfilestatusfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+                <!--Skills-->
+                <div class="col-md-4" [hidden]="!skillsfilter">
+                    <div class="form-group">
+                        <label for="addskillfilter">Skills</label>
+                        <input type="text" class="form-control loc-search1" id="addskillfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+                <!--Last Posted-->
+                <div class="col-md-4" [hidden]="!lastpostedfilter">
+                    <div class="form-group">
+                        <label for="addlastpostedfilter">Last Posted</label>
+                        <input type="text" class="form-control loc-search1" id="addlastpostedfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+                <!--Immigration Status-->
+                <div class="col-md-4" [hidden]="!immigrationstatusfilter">
+                    <div class="form-group">
+                        <label for="addimmigrationstatusfilter">Immigration Status</label>
+                        <input type="text" class="form-control loc-search1" id="addimmigrationstatusfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+                <!--Designation-->
+                <div class="col-md-4" [hidden]="!designationfilter">
+                    <div class="form-group">
+                        <label for="adddesignationfilter">Designation</label>
+                        <input type="text" class="form-control loc-search1" id="adddesignationfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+
+                <!--Roles-->
+                <div class="col-md-4" [hidden]="!rolesfilter">
+                    <div class="form-group">
+                        <label for="addrolesfilter">Roles</label>
+                        <input type="text" class="form-control loc-search1" id="addrolesfilter"
+                            placeholder="Type and Search">
+                    </div>
+                </div>
+                <!---->
+
+                <!---->
             </form>
         </div>
         <div class="row">

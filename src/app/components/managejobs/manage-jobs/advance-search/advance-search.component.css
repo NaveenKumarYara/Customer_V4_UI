@@ -53,3 +53,22 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+/*Add More Filters Styles*/
+.add-more-filters ul.filters-list{
+    list-style: none;
+    height: 140px;
+    padding-left: 12px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow: auto;
+}
+.filters-list label{
+    font-size: 12px;
+}
+.filter-btns .btn-cancel{
+    margin-left: 10px;
+}
+.filter-btns .btn-add{
+    background-color: #448AFA;
+    color: #fff;
+}
