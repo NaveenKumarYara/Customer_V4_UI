@@ -42,6 +42,8 @@ ejRoleList: Roles[] = [];
 // ejRole = new Roles();
 // ejRoleId = new  PjRole();
 ejRoleIdList: PjRole[] = [];
+
+ejListRoles=[];
 // ejDomainList: GetDomain[] = [];
 ejDomainIdList: PjDomain[] = [];
 // ejDomainId = new PjDomain();
@@ -268,9 +270,11 @@ editMode: string;
             ejRoleId.RoleId = resp.RoleId;
             this.ejRoleList.push(ejRole);
             this.ejRoleIdList.push(ejRoleId);
+            this.ejListRoles.push(ejRole);
         }
       }
       this.appService.responsibilities = this.ejRoleList;
+      this.appService.ResponseList = this.ejListRoles;
       this.appService.responsibilitesChanged.next(this.appService.responsibilities); // = new Subject<Roles[]>();
       this.appService.addedresponsibilities = this.ejRoleIdList;
       this.appService.addedresponsibilitiesChanged.next(this.appService.addedresponsibilities ); // = new Subject<PjRole[]>();

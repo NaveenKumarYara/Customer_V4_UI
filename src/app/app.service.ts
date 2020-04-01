@@ -24,7 +24,7 @@ import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
-        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting,
+        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting, AddResp,
         PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
@@ -108,6 +108,9 @@ export class AppService {
   // private salaryType: string[] = [
   //   'Hourly', 'Annual'
   // ];
+
+  ResponseList:AddResp[]=[];
+   
 
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
@@ -225,6 +228,8 @@ export class AppService {
 
   responsibilities: Roles[] = [];
   responsibilitesChanged = new Subject<Roles[]>();
+
+
 
   addedresponsibilities: PjRole[] = [];
   addedresponsibilitiesChanged = new Subject<PjRole[]>();
