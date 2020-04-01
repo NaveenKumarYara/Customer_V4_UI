@@ -193,3 +193,8 @@ export class PjDepartments {
       HiringManager:string;
       
   }
+
+  export class AddResp {
+    public RolesandResponsibilities: string;
+    public Index: number;
+  }

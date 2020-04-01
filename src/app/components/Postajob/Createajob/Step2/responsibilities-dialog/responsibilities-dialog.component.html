@@ -55,7 +55,7 @@
                           </div>
                           <div class="tab-inner scrollbar-inner">
                             
-                            <ul class="list--filled"> 
+                            <ul class="list--filled" dragula="responsibilities" [dragulaModel]="responsibilities" (dragulaModelChange)="responsibilities = $event"> 
                               <li class="item" *ngFor="let resp of responsibilities">
                                  <!-- {{resp.Index}} -->
                                   {{resp.RolesandResponsibilities}} 

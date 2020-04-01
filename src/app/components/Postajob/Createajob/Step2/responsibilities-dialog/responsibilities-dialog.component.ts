@@ -26,6 +26,8 @@ export class ResponsibilitiesDialogComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
    }
   ngOnInit() {
+    let values = this.appService.ResponseList;
+    this.responsibilities = values;
   }
   ParseResponsibilities() {
     const x = this.parseRoles;
