@@ -279,7 +279,14 @@
                     <!--Candidate experience placeholder is in below div -->
                     <div class="d-block text-center ptb-5 role-exp-loc">
                         <h4 class="d-inline l_bl-1" title="{{profile.ProfileTitle}}">
-                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}} <span class="experience">5 Yrs</span></h4>
+                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}} 
+                            <ng-container  *ngIf="profile?.TotalExperience!=null">
+                                <span class="experience">{{profile?.TotalExperience | monthsPipe }} Yrs</span>
+                            </ng-container>
+                            <ng-container *ngIf="profile?.TotalExperience==null">
+                                <span class="experience"> 0 Yrs</span>
+                            </ng-container>
+                        </h4>
                         <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation!=null;else false">
                             <ng-container>
                                 <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18"

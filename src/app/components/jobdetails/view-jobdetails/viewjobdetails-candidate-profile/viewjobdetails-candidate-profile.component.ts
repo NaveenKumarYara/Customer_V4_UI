@@ -15,6 +15,7 @@ import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ParentComponentApi } from '../view-jobdetails.component';
+import{UniqueMonthYearPipe} from './../months.pipe';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -337,7 +338,6 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
         this.jobdetailsprofiles = res;
-        debugger
         this.profiles = res;
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
