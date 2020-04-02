@@ -19214,6 +19214,9 @@ margin-top:0px;
     margin: 0;
     margin-right: 15px;
 }
+.page--create-a-job .employment-subtype .options{
+    display: inline;
+}
 
 .page--create-a-job .form-steps .checkbox {
     margin: 0;
