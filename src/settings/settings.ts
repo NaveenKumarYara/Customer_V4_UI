@@ -157,4 +157,5 @@ export class Settings {
   GetCustomerHiredStatistics:string;
   GetJobLocationbyJobId:string;
   ReportingTeam:string;
+  DeleteJobResponsibility:string;
   }

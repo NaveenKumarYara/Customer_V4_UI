@@ -718,6 +718,15 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
   }
 
 
+  DeleteResponsibility(jobId: number)
+  {
+    const url = this.settingsService.settings.DeleteJobResponsibility + '?jobId=' + jobId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
  addResponses(response: XmlJobResponse, val) {
     //  this.xmlResponse = responseList; // ush(personType);
     // this.xmlResponseChanged.next(this.xmlResponse.slice());
