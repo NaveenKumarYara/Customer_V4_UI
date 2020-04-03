@@ -20,6 +20,7 @@ export class Step4Component implements OnInit {z
   jobMinExp: number;
   jobMaxExp: number;
   Template:number;
+  ExpiryDate:Date;
   jobTitle: string;
   TemplateName:string;
   jobDescription: string;
@@ -267,6 +268,9 @@ export class Step4Component implements OnInit {z
   //   this.insertJob.ContractExtended = true;
   //   this.insertJob.ContractDuration = this.contractDuration;
   // } // this.appService.contractDuration.value;
+    let date = new Date();  
+    let val = new Date(date.setDate(date.getDate() + 30 )) ;
+    this.insertJob.ExpiryDate = this.ExpiryDate ? this.ExpiryDate : val;
     this.insertJob.HiringProcessId = this.intwType; // this.appService.interviewType.value.InterviewTypeId;
     this.insertJob.HiringManagerId = this.reporting; // this.appService.reportingManager.value.UserId;
     this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers;
@@ -290,7 +294,6 @@ export class Step4Component implements OnInit {z
       this.JobIds.forEach((value, index, array) => {
       this.insertJob.JobId = value;
       this.insertJob.TemplateSaveTitle = this.TemplateName;
-      debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {        
           // this.insertJob.JobId = data;
@@ -325,6 +328,7 @@ export class Step4Component implements OnInit {z
        if(this.JobIds.length==0 || this.JobIds == undefined)
       {
       this.insertJob.TemplateSaveTitle = this.TemplateName;
+      debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {        
           // this.insertJob.JobId = data;

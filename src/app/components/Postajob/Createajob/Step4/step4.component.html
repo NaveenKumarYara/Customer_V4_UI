@@ -31,6 +31,19 @@
           </div>
          
     </div>
+
+    <div class="col-md-12">
+      <label for="" class="question">Job Due Date</label>
+     </div>
+
+    <div class="col-md-10">
+      <div>
+          <input type="date" class="form-control mt-0" #Edate="ngModel" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*" required>
+          <span class="text-danger"
+          *ngIf="Edate.invalid && Edate.touched">Due Date Required.</span>
+        </div>
+       
+  </div>
   </div>
 <!-- <label>
   <input type="checkbox" [(ngModel)]="flag"  [checked]="flag" (change)="checkValue(flag?'1':'0')" />
