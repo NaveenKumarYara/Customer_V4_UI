@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-12">
             <label for="" class="question">Do you Prefer exact match from the search <small>(Optional)</small></label>
-
         </div>
         <div class="col-md-5">
             <select class="styled-select-box form-control mt-0" id="view" (change)="onChange($event.target.value)">
@@ -20,37 +19,54 @@
             <button class="btn add-btn form-control mt-0" [disabled]="txtPercentage.invalid" type="submit" (click)="addSkill()">+</button>
         </div>
         <div class="col-md-12 mt-10">
-          
             <ul class="data-list">
                 <li class="col-md-6 w-auto no-exp" *ngFor="let skill of SkillDataList; let i = index">
                     <span class="name w-auto p10-20">{{skill.Name}}</span>
                     <span class="experience w-auto p10-20">{{skill.Percentage}}%</span>
                     <span class="close w-auto p10-20" (click)="deleteSkill(i,skill.Name)">×</span>
                 </li>
-                
             </ul>
         </div>
-      
     </div>
-
 </div> -->
-
 
 <div class="form-group position-group">
     <div class="row">
         <div class="col-md-12">
-            <label for="" class="question">What is the Employment Type? <small>(Optional)</small></label>
+            <label for="employmentype" class="question">What is the Employment Type? <small>(Optional)</small></label>
             <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
             <div class="options">
                 <div class="checkbox" *ngFor="let type of employmenttypelist">
                     <!-- <label><input type="radio" (change)="selectEmpType(type.EmploymentTypeId)" name="emptype" value=""><span class="box">{{type.EmploymentType}}</span> </label> -->
-                    <label>
+                    <label id="employmentype">
                         <input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId"
                                (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span class="box">{{type.EmploymentType}}</span>
                     </label>
                 </div>
             </div>
         </div>
+        <!--New Employment type of-->
+        <div class="clearfix">&nbsp;</div>
+        <div class="col-md-12 employment-subtype">
+            <h5 for="employmentTypesub" class="question">Employment Type is of? <small>(Optional)</small></h5>
+         
+            <div class="options">
+                <div class="checkbox">
+                    <label>
+                        <input type="radio" ><span class="box">Part-time</span>
+                    </label>
+                </div>
+            </div>
+            <div class="options">
+                <div class="checkbox">
+                    <label>
+                        <input type="radio" ><span class="box">Remote</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+          <!--New Employment type of-->
+
         <!-- <div class="col-md-6">
            MOVED TO teammembers.component.html
             <label for="" class="question">Video Sizzle <small>(Optional)</small></label>

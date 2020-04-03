@@ -44,3 +44,10 @@ textarea.form-control{
 .responsibilities-step-2 .btn-delete{
     margin-right: 10px;
 }
+
+/*Scroll styles for Roles and Responsbilities*/
+.e-r-r .scrollbar-inner{
+    height: 450px;
+    max-height: 450px;
+    padding-right: 10px;
+}
