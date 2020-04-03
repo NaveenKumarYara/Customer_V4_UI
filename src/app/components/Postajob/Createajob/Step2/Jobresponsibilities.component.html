@@ -38,7 +38,7 @@
             </div>
         </form>
     </div>
-    <ul class="responsibility-list">
+    <ul class="responsibility-list" dragula="responsibilitieslist" [dragulaModel]="responsibilitieslist" (dragulaModelChange)="onChange($event)">
         <li *ngFor="let responsibility of responsibilitieslist; let i = index">
             <label for="{{responsibility.RoleId}}" class="radio">
         <div>

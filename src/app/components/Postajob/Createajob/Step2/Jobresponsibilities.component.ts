@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, NgForm } from '@angular/forms';
+import { Subject, Observable } from 'rxjs';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
 import { RoleModel, Roles } from '../../models/jobPostInfo';
@@ -36,6 +37,32 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!
       });
+  }
+
+  onChange(val)
+  {
+    let job = localStorage.getItem('jobId');
+    this.responsibilitieslist =[];
+    this.roleIdList=[];
+    this.appService.responsibilities=[];
+    this.appService.addedresponsibilities=[];
+    this.deleteJobResponsibilities(job);
+    val.forEach(element => {
+      const role = new Roles();
+      role.Role = element.Role;
+      role.RoleId = element.RoleId;
+      this.appService.addResponsibilities(role);
+    })
+  }
+
+  deleteJobResponsibilities(jobId)
+  {
+    this.appService.DeleteResponsibility(jobId).subscribe(res =>{
+      if(res==0)
+      {
+        console.log();
+      }
+    })
   }
 
   // private addResponsibilities() {
