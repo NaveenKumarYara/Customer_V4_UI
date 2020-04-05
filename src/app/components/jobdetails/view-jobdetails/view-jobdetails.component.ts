@@ -18,11 +18,13 @@ import { AppService } from '../../../app.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {WishlistCount} from '../models/WishlistCount';
+import { ViewCandidateprofileComponent } from '../view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import {FilterViewJobsComponent} from '../view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 // tslint:disable-next-line:max-line-length
 import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
 import {Location} from '@angular/common';
+import { IfObservable } from 'rxjs/observable/IfObservable';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -38,6 +40,7 @@ export class ViewJobdetailsComponent implements OnInit {
 @ViewChild(FilterViewJobsComponent) base: FilterViewJobsComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
+  viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount:any;
@@ -73,6 +76,7 @@ export class ViewJobdetailsComponent implements OnInit {
   // loadMoreStat:number;
   profileLoader = false;
   uploadProfile = 0;
+  ProfileId:any;
   fileUploadForm: FormGroup;
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
@@ -87,6 +91,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    this.ProfileId = localStorage.getItem('rprofileId');
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
     this.toastr.setRootViewContainerRef(_vcr);
    }
@@ -167,6 +172,28 @@ export class ViewJobdetailsComponent implements OnInit {
       console.log('Dialog result: ${result}');
     });
   }
+  }
+
+  OpenCandidateDialog(profileId) {
+    // if (this.jobStatus!='InActive') {
+    const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
+      {
+        width: '750',
+        position: { right: '0px' },
+        height: '750px',
+        data: {
+          ProfileId: profileId,
+          jobId: this.jobid,
+          // status : this.statusid
+        }
+      }
+    );
+    viewCandidatedialogRef.afterClosed().subscribe(result => {
+      // this.jobDetails.populateJobsStaticInfo(this.jobid);
+      // this.myEvent.emit(null);
+      console.log('candidate Dialog result: ${result}');
+    });
+    // }
   }
 
   // toggleChild() {
@@ -480,6 +507,11 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
     this.populateJobsBasicInfo(this.customerId, this.jobid);
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+    if(this.ProfileId!=null||this.ProfileId!=undefined)
+    {
+      this.OpenCandidateDialog(this.ProfileId);
+      localStorage.removeItem('rprofileId');
+    }
     // this.updateappliedstatus();
     this.fileUploadForm = this.fb.group({
       'userId': [5, Validators.required],

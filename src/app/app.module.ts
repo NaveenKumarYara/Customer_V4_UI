@@ -84,7 +84,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmonth.pipe';
 import { DragulaModule } from 'ng2-dragula';
- 
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();

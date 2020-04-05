@@ -12,7 +12,7 @@
                             {{recentapplicants?.FirstName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png">{{recentapplicants?.LastName.charAt(0)}}<img height="16" src="../../../../assets/images/c_name_hide.png"> </h2>
 
                         <ng-template #firstelseBlock>
-                            <h2>{{recentapplicants?.FirstName | slice:0:12}} {{recentapplicants?.LastName | slice:0:12}}</h2>
+                            <h2 (click)="GetRedirect(recentapplicants.JobId,recentapplicants.ProfileId)">{{recentapplicants?.FirstName | slice:0:12}} {{recentapplicants?.LastName | slice:0:12}}</h2>
                         </ng-template>
                         <div class="status">
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checked" alt="Background Checked">

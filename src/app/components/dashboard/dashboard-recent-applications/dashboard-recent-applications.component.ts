@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RecentApplicants } from '../../../../models/recentapplicants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-recent-applications',
@@ -9,7 +10,8 @@ import { RecentApplicants } from '../../../../models/recentapplicants';
 export class DashboardRecentApplicationsComponent implements OnInit {
     @Input() recentapplicantlist: any;
 
-  constructor() { }
+    constructor(private router: Router) {
+     }
   add3Dots(string, limit) {
     const dots = '...';
     if (string.length > limit) {
@@ -17,6 +19,12 @@ export class DashboardRecentApplicationsComponent implements OnInit {
     }
       return string;
   }
+
+  GetRedirect(jobId,profileId)  {
+   sessionStorage.setItem('jobId', JSON.stringify(jobId));
+   localStorage.setItem('rprofileId', JSON.stringify(profileId));;
+   this.router.navigateByUrl('app-view-jobdetails');
+     }
 
   ngOnInit() {
   }
