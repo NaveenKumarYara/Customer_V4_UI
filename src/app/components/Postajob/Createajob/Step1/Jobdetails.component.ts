@@ -37,7 +37,7 @@ customerId: any;
   // maxValue = 400;
   options: Options = {
     floor: 1,
-    ceil: 240,
+    ceil: 480,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
