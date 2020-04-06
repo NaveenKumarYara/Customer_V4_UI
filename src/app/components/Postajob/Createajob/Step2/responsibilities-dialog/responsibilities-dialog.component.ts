@@ -26,8 +26,6 @@ export class ResponsibilitiesDialogComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
    }
   ngOnInit() {
-    this.responsibilities = this.appService.ResponseList;
-
   }
   ParseResponsibilities() {
     const x = this.parseRoles;
@@ -99,7 +97,7 @@ editResponsibilities(resp) {
   }
 
   SaveBulkResponsibilities() {
-    this.deleteJobResponsibilities(this.data.JobId);
+    //this.deleteJobResponsibilities(this.data.JobId);
     // const x = this.parseRoles;
     // // const result = x.match(/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)(\s|[A-Z].*)/g);
     // //  const result = x.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.;)(?<=\.|\?)(\s|[A-Z].;*)');
