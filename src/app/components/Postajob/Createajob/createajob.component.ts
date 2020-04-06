@@ -206,7 +206,7 @@ editMode: string;
       this.ejInterviewType.InterviewType = this.jobdetailscustomer.JobInfo.InterviewType;
       this.ejInterviewType.InterviewTypeId = this.jobdetailscustomer.JobInfo.HiringProcessId;
       this.appService.interviewType.next(this.ejInterviewType);
-      this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager;
+      this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager?this.jobdetailscustomer.JobInfo.ReportingManager:this.customer.FirstName;
       this.ejHiringManager.UserId = this.jobdetailscustomer.JobInfo.HiringManagerId;
       this.appService.reportingManager.next(this.ejHiringManager);
       this.ejHiringManagerList.push(this.ejHiringManager);
