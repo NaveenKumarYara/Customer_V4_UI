@@ -436,8 +436,7 @@ populateApplicantsStatistics(filter=0) {
 
   JobFilledStats(filter)
   {
-    
-            if(filter=0)
+            if(filter==0)
             {
             return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(result1 => {
               this.dashboardStatisticsForJobsFilled= result1;
@@ -459,7 +458,7 @@ populateApplicantsStatistics(filter=0) {
             }
 
             
-            if(filter=1)
+            if(filter==1)
             {
             return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(res1 => {
               this.mdashboardStatisticsForJobsFilled= res1;
@@ -487,7 +486,7 @@ populateApplicantsStatistics(filter=0) {
               });
             }
 
-            if(filter=2)
+            if(filter==2)
             {
             return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(wres1 => {
               this.mwdashboardStatisticsForJobsFilled= wres1;
@@ -515,12 +514,12 @@ populateApplicantsStatistics(filter=0) {
               });
             }
 
-            if(filter=3)
+            if(filter==3)
             {
             return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(allres1 => {
               this.alldashboardStatisticsForJobsFilled= allres1;
               if(allres1.length>0)
-              {
+              {              
                 if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsFilled.length)
                 {
                   this.lineChartLabelsall.forEach(
