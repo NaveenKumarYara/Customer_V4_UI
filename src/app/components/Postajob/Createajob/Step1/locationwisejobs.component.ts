@@ -75,14 +75,14 @@ this.noOfOpenings = val;
 this.appService.updateOpenings(this.noOfOpenings);
   }
 
+
+
   populateLocationwiseJobs() {
-    this.appService.getLocationwisejobs(this.customerId).subscribe(res => { // , this.userId
       this.locationwisejobs = this.appService.JobLocations;
       this.multilocationwisejobs=this.appService.JobLocationsMulti;
       this.locationwithpostions;
       this.showMyContainer=this.appService.locationselect;
      this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
-      debugger
     //   const check = this.locationExists(this.prfLoc, this.locationwisejobs);
     // if (!check && this.prfLoc.CityId > 0 ) {
     //   this.selectedCityName = new Cities();
@@ -90,7 +90,7 @@ this.appService.updateOpenings(this.noOfOpenings);
     //   this.selectedCityName.CityName = this.prfLoc.location;
     //   this.locationwisejobs.push(this.selectedCityName);
     // }
-    });
+
   }
 
   // populateCities() {
@@ -218,6 +218,12 @@ this.appService.updateOpenings(this.noOfOpenings);
     this.populateCities();
     this.populatemultiCities();
     this.populateopenings();
+    this.appService.JobLocationsChanged
+    .subscribe(
+    (cities: Cities[]) => {
+      this.locationwisejobs= cities;
+      }
+    );
     this.cities.subscribe(city => {
       this.convertObservable = city as Cities[];
     });

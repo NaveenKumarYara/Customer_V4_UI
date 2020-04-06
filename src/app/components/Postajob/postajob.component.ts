@@ -7,7 +7,7 @@ import {EmploymentType} from '../../../models/employmenttype.model';
 import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam,Cities, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 declare var $: any;
 @Component({
@@ -62,6 +62,7 @@ export class PostajobComponent implements OnInit {
   this.appService.OpeningsList=[];
   this.appService.locationselect=false;
   this.appService.JobLocationsMulti=[];
+  this.appService.JobLocationsChanged=  new Subject<Cities[]>();
   this.appService.jobcategory.next(new CategoryList());
   // this.appService.minExperience.next(1);
   // this.appService.maxExperience.next(1);

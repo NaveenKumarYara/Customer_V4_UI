@@ -212,6 +212,9 @@ editMode: string;
       this.ejHiringManagerList.push(this.ejHiringManager);
       this.appService.reportingList = this.ejHiringManagerList;
 
+      this.appService.JobLocations = this.jobdetailscustomer.JobLocation;
+      this.appService.JobLocationsChanged.next(this.appService.JobLocations);
+
       //if (this.jobdetailscustomer.JobLocation.length > 0) {
         // this.jobdetailscustomer.JobLocation.forEach(element => {
         //   this.ejLocations.PreferredLocationId = element.PreferredLocationId;
@@ -224,9 +227,8 @@ editMode: string;
         //   //this.ejLocationsList.push(this.ejLocations);
         // }
      // }
-      this.ejLocationsList =this.jobdetailscustomer.JobLocation;
       //this.appService.location=this.ejLocationsList;
-      this.appService.JobLocations=this.ejLocationsList;
+      //this.appService.JobLocations=this.jobdetailscustomer.JobLocation;
       //this.appService.JobLocationsMulti=this.ejLocationsList;
       if (this.jobdetailscustomer.TechnicalTeam.length > 0) {
         // this.jobdetailscustomer.TechnicalTeam.forEach(element => {

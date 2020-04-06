@@ -198,3 +198,11 @@ export class PjDepartments {
     public RolesandResponsibilities: string;
     public Index: number;
   }
+
+
+  export class JobLocationsDetails
+  {
+    CityId: number;
+    CityName: string; 
+  }
+  

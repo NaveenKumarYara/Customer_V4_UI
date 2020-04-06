@@ -23,7 +23,7 @@ import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
 import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,
-        PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,
+        PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,JobLocationsDetails,
         ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting, AddResp,
         PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
@@ -211,6 +211,7 @@ export class AppService {
 
   JobIds:MultipleJobIds[]=[];
   JobLocations:Cities[]=[];
+  JobLocationsChanged = new Subject<Cities[]>();
   JobLocationsMulti:Cities[]=[];
 
   OpeningsList=[];
@@ -1192,6 +1193,15 @@ this.skillPostData.push(skill);
         this.handleError
       );
   }
+
+  GetJobLocationbyJobId(jobId: number): Observable<JobLocationsDetails[]> {
+    const url = this.settingsService.settings.GetJobLocationbyJobId + 'jobId=' + jobId;
+    return this.http.get<JobLocationsDetails[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   SignUpEmail(body) {
     return this.http.post(this.settingsService.settings.EmailInvite, body)
     .map((res: Response) => res)

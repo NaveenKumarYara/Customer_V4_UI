@@ -148,7 +148,7 @@
   "GetCustomerShortListedStatistics":"${Identity_URL}/api/GetCustomerShortListedStatistics",
   "GetCustomerInterviewStatistics":"${Identity_URL}/api/GetCustomerInterviewStatistics",
   "GetCustomerHiredStatistics":"${Identity_URL}/api/GetCustomerHiredStatistics",
-  "GetJobLocationbyJobId":"${Jobs_URL}/api/GetCustomerHiredStatistics",
+  "GetJobLocationbyJobId":"${Jobs_URL}/api/GetJobLocation?",
   "ReportingTeam":"${Identity_URL}/api/ReportingTeammembers",
   "DeleteJobResponsibility":"${Identity_URL}api/DeleteJobResponsibility"
 }
