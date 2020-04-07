@@ -72,3 +72,9 @@
     background-color: #448AFA;
     color: #fff;
 }
+.adv-filters{
+overflow: inherit;
+}
+.adv-filters .btn-close{
+    padding: 15px 30px;
+}

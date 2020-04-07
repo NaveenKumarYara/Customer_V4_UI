@@ -1,78 +1,78 @@
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography adv-filters">
     <div class="modal-header">
-      <button mat-button mat-dialog-close class="close">×</button>
-    </div>
-
-<div class="adv-filters row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
-    <div class="col-md-6">
-        <h4>Filters</h4>
-    </div>
-    <div class="pull-right">
-        <!--Add More Filters Dropdown 01-04-2020-->
-        <div class="dropdown add-more-filters">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="true">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <ul class="filters-list">
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="profiletypefilter"> Profile Type
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="skillsfilter"> Skills
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="lastpostedfilter"> Last Posted
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="immigrationstatusfilter"> Immigration Staus
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="designationfilter"> Designation
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" [(ngModel)]="rolesfilter"> Roles
-                            </label>
-                        </div>
+        <div class="col-md-6">
+            <h4>Advanced Filters</h4>
+        </div>
+        <div class="pull-right">
+            <!--Add More Filters Dropdown 01-04-2020-->
+            <div class="dropdown add-more-filters">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <ul class="filters-list">
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="profiletypefilter"> Profile Type
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="skillsfilter"> Skills
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="lastpostedfilter"> Last Posted
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="immigrationstatusfilter"> Immigration Staus
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="designationfilter"> Designation
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="rolesfilter"> Roles
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <li role="separator" class="divider"></li>
+                    <li class="filter-btns">
+                        <button class="btn btn-small btn-cancel">Cancel</button>
+                        <button class="btn btn-small btn-add">Add</button>
                     </li>
                 </ul>
-                <li role="separator" class="divider"></li>
-                <li class="filter-btns">
-                    <button class="btn btn-small btn-cancel">Cancel</button>
-                    <button class="btn btn-small btn-add">Add</button>
-                </li>
-            </ul>
+            </div>
+            <!---->
         </div>
-        <!---->
+        <!-- <button mat-button mat-dialog-close class="close">×</button> -->
     </div>
+
+<div class="row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
+   
     <div class="col-md-12">
-        <div class="clearfix">&nbsp;</div>
         <div class="input-row row ">
             <form action="">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Job Type</label>
                         <select name="view" id="view" (change)="changeJobType($event.target.value)"
@@ -83,7 +83,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Experience</label>
                         <select name="view" id="view" (change)="changeExperience($event.target.value)"
@@ -92,7 +92,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Location</label>
                         <form #form="ngForm" class="cls-rel">
@@ -109,7 +109,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Client</label>
                         <form #form="ngForm" class="cls-rel">
@@ -126,7 +126,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Department</label>
                         <form #form="ngForm" class="cls-rel">
@@ -146,7 +146,7 @@
                 <!--Show & Hide Filters 01-04-2020-->
 
                 <!--Profile Type-->
-                <div class="col-md-4" [hidden]="!profiletypefilter">
+                <div class="col-md-6" [hidden]="!profiletypefilter">
                     <div class="form-group">
                         <label for="addProfilestatusfilter">Profile Status</label>
                         <input type="text" class="form-control loc-search1" id="addProfilestatusfilter"
@@ -155,7 +155,7 @@
                 </div>
                 <!---->
                 <!--Skills-->
-                <div class="col-md-4" [hidden]="!skillsfilter">
+                <div class="col-md-6" [hidden]="!skillsfilter">
                     <div class="form-group">
                         <label for="addskillfilter">Skills</label>
                         <input type="text" class="form-control loc-search1" id="addskillfilter"
@@ -164,7 +164,7 @@
                 </div>
                 <!---->
                 <!--Last Posted-->
-                <div class="col-md-4" [hidden]="!lastpostedfilter">
+                <div class="col-md-6" [hidden]="!lastpostedfilter">
                     <div class="form-group">
                         <label for="addlastpostedfilter">Last Posted</label>
                         <input type="text" class="form-control loc-search1" id="addlastpostedfilter"
@@ -173,7 +173,7 @@
                 </div>
                 <!---->
                 <!--Immigration Status-->
-                <div class="col-md-4" [hidden]="!immigrationstatusfilter">
+                <div class="col-md-6" [hidden]="!immigrationstatusfilter">
                     <div class="form-group">
                         <label for="addimmigrationstatusfilter">Immigration Status</label>
                         <input type="text" class="form-control loc-search1" id="addimmigrationstatusfilter"
@@ -182,7 +182,7 @@
                 </div>
                 <!---->
                 <!--Designation-->
-                <div class="col-md-4" [hidden]="!designationfilter">
+                <div class="col-md-6" [hidden]="!designationfilter">
                     <div class="form-group">
                         <label for="adddesignationfilter">Designation</label>
                         <input type="text" class="form-control loc-search1" id="adddesignationfilter"
@@ -192,7 +192,7 @@
                 <!---->
 
                 <!--Roles-->
-                <div class="col-md-4" [hidden]="!rolesfilter">
+                <div class="col-md-6" [hidden]="!rolesfilter">
                     <div class="form-group">
                         <label for="addrolesfilter">Roles</label>
                         <input type="text" class="form-control loc-search1" id="addrolesfilter"
@@ -207,7 +207,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="pull-right">
-                    <button class="btn btn-border" (click)="advancesearch=!advancesearch" mat-button mat-dialog-close class="close">Cancel</button>
+                    <button class="btn btn-border btn-close" mat-button mat-dialog-close (click)="advancesearch=!advancesearch">Cancel</button>
                     <button class="btn btn-filled" (click)="apply()">Apply</button>
                 </div>
             </div>

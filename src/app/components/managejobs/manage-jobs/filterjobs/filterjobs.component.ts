@@ -25,7 +25,7 @@ export class FilterjobsComponent implements OnInit {
   OpenFiltersDialog() {
       const filtersdialogRef = this.dialog.open(AdvanceSearchComponent,
         {
-          width: '750',
+          width: '600px',
           position: { right: '0px' },
           height: '750px',
           data: {

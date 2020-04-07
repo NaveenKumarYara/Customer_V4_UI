@@ -1,3 +1,11 @@
-ul.btn-group{
-    display: inline-flex;
-  }
+ul.btn-group {
+  display: inline-flex;
+}
+
+.new-filter-btn svg {
+  display: inline-block
+}
+
+.new-filter-btn {
+  padding: 12px 15px;
+}

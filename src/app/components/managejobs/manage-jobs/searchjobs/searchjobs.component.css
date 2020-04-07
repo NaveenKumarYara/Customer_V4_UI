@@ -197,10 +197,3 @@ input::-webkit-input-placeholder {
     z-index: 999;
     height: 50vh;
 }
-.new-filter-btn svg{
-    display: inline-block
-}
-.new-filter-btn
-{
-    padding: 11px 15px;
-}
