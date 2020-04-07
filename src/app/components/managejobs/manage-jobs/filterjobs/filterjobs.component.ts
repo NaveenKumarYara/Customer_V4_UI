@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input   } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import{AdvanceSearchComponent} from '../advance-search/advance-search.component';
 import { Subject, Observable } from 'rxjs';
 
 
@@ -10,12 +12,33 @@ import { Subject, Observable } from 'rxjs';
   styleUrls: ['./filterjobs.component.css']
 })
 export class FilterjobsComponent implements OnInit {
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private dialog: MatDialog,
     private router: Router, private managejobservice: ManageJobService) {
   }
+  viewfiltersDialgoref: MatDialogRef<AdvanceSearchComponent>;
   gridlayoutClicked = true;
   tablelayoutClicked = false;
   activeClassBool = true;
+
+
+  
+  OpenFiltersDialog() {
+      const filtersdialogRef = this.dialog.open(AdvanceSearchComponent,
+        {
+          width: '750',
+          position: { right: '0px' },
+          height: '750px',
+          data: {
+            animal: 'panda'
+          }
+        }
+      );
+      filtersdialogRef.afterClosed().subscribe(result => {
+        console.log('Chatbox Dialog result: ${result}');
+      });
+    
+  }
+
 
 
   toggleGridLayout() {
