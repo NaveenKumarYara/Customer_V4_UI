@@ -211,6 +211,7 @@ editMode: string;
       this.appService.reportingManager.next(this.ejHiringManager);
       this.ejHiringManagerList.push(this.ejHiringManager);
       this.appService.reportingList = this.ejHiringManagerList;
+      this.appService.locationselect=false;
 
       this.appService.JobLocations = this.jobdetailscustomer.JobLocation;
       this.appService.JobLocationsChanged.next(this.appService.JobLocations);
