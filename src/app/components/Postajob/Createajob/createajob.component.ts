@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input, HostListener ,AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
-import { GetJobDetailCustomer } from '../../../../models/GetJobDetailCustomer';
+import { GetJobDetailCustomer, ReportingTeam } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
 import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
@@ -10,6 +10,7 @@ import { PjRole } from './Step2/Jobresponsibilities.component';
 import { Jobskills } from '../../../../models/jobskills.model';
 import { Qualifications } from '../../../../models/qualifications.model';
 import { WorkAuthorization } from '../../../../models/workAuthorization';
+import { user } from '../../../login/user';
 
 @Component({
   selector: 'app-createajob',
@@ -29,6 +30,7 @@ ejSalaryType = new Salary(1, 'Hourly');
 ejInterviewType = new InterviewType();
 ejHiringManager = new CustomerUsers();
 ejHiringManagerList : CustomerUsers[]=[];
+Reporting : ReportingTeam[]=[];
 ejLocations = new PrefLocation();
 ejLocationsList = [];
 ejTechnicalTeamList: CustomerUsers[] = [];
@@ -206,11 +208,12 @@ editMode: string;
       this.ejInterviewType.InterviewType = this.jobdetailscustomer.JobInfo.InterviewType;
       this.ejInterviewType.InterviewTypeId = this.jobdetailscustomer.JobInfo.HiringProcessId;
       this.appService.interviewType.next(this.ejInterviewType);
-      this.ejHiringManager.FirstName = this.jobdetailscustomer.JobInfo.ReportingManager?this.jobdetailscustomer.JobInfo.ReportingManager:this.customer.FirstName;
       this.ejHiringManager.UserId = this.jobdetailscustomer.JobInfo.HiringManagerId;
       this.appService.reportingManager.next(this.ejHiringManager);
       this.ejHiringManagerList.push(this.ejHiringManager);
-      this.appService.reportingList = this.ejHiringManagerList;
+      this.Reporting=this.jobdetailscustomer.JobInfo.ReportingManager;
+      this.appService.reportingList =this.Reporting;
+      this.appService.reportingListChanged.next(this.appService.reportingList);
       this.appService.locationselect=false;
 
       this.appService.JobLocations = this.jobdetailscustomer.JobLocation;

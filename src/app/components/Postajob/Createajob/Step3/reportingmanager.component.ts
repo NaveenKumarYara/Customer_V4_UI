@@ -13,6 +13,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { PjTechnicalTeam, CustomerUsers,JobReporting } from '../../models/jobPostInfo';
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
+import { ReportingTeam } from '../../../../../models/GetJobDetailCustomer';
 declare var $: any;
 
 @Component({
@@ -40,7 +41,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   isSuggsted: any;
   selectedInput = new Subject<string> ();
   usersload: boolean;
-  suggestedManagers: CustomerUsers[] = [];
+  suggestedManagers: ReportingTeam[] = [];
   slist=[];
   JobIds=[];
 
@@ -124,6 +125,13 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       'EmailId': ['', Validators.compose([Validators.required])],  
     });
     this.suggestedManager();
+
+    this.appService.reportingListChanged
+    .subscribe(
+    (list: ReportingTeam[]) => {
+      this.suggestedManagers= list;
+      }
+    );
 
   //    this.getcustomerusers();
   //  //  if (localStorage.getItem('jobId') != null) {

@@ -41,6 +41,7 @@ import { GetBillingCardDetails } from '../models/GetBillingCardDetails';
 import {CustomerSubscription} from '../models/CustomerSubscription';
 import {GetSubscriptionDetails} from '../models/GetSubscriptionDetails';
 import { GetBillingAddressCustomer } from '../models/GetBillingAddressCustomer';
+import { ReportingTeam } from '../models/GetJobDetailCustomer';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -193,7 +194,8 @@ export class AppService {
   reportingManager = new BehaviorSubject(this.myreportingManager);
   currentcustomerUsers = this.reportingManager.asObservable();
   
-  reportingList:CustomerUsers[]=[];
+  reportingList:ReportingTeam[]=[];
+  reportingListChanged = new Subject<ReportingTeam[]>();
 
   myjobcategory = new CategoryList();
   jobcategory = new BehaviorSubject(this.myjobcategory);

@@ -27,6 +27,12 @@ export class GetJobDetailCustomer {
 //     EducationDetails: Qualifications [];
 //     TechnicalTeam: any ;
 // }
+
+export class ReportingTeam
+{
+    FirstName:string;
+    UserId:number;
+}
 export class JobInfo {
     JobInfoId: number;
     JobId: number;
@@ -59,7 +65,7 @@ export class JobInfo {
     InterviewType: string;
     HiringProcessId: number;
     HiringManagerId: number;
-    ReportingManager: string;
+    ReportingManager: ReportingTeam[];
     IsActive: boolean;
     StatusId: number;
     FirstName: string;
