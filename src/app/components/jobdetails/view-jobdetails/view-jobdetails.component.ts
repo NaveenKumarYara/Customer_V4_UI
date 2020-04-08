@@ -415,8 +415,13 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.Counts = this.child.TotalCount;
+
         if (onload === 1) {
           if (this.statusid === 4) {
+            debugger
+            $("#Prospect").addClass('active');
+            $("#Shortlisted").removeClass('active');
+            $("#Interview").removeClass('active');
         this.updateappliedstatus();
           } else if (this.statusid === 0) {
             this.updateallcandidatesstatus();
@@ -435,6 +440,7 @@ export class ViewJobdetailsComponent implements OnInit {
             this.updateinterviewedstatus();
           }
       }
+      sessionStorage.removeItem('statusid');
     });
   }
   // PopulateJobdetailProfiles() {
