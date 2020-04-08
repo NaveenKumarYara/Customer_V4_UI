@@ -29,7 +29,7 @@
                 name="annual">
     </ng5-slider>
     </div>
-    <div *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
+    <div *ngIf="salaryTypeSelected?.SalaryTypeId === 1 && !show" >
       <ng5-slider [(value)]="minHourRate"
                  [(highValue)]="maxHourRate"
                  [options]="hourly"
@@ -38,19 +38,23 @@
                  (userChangeEnd)="maxHourlyChangeEnd($event)"
                  name="hourly">
      </ng5-slider>
-     </div> 
-OR 
-     <div>
-      <input type="text" class="form-control" #Minname="ngModel" name="MinSal" [(ngModel)]="minsal" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)">
+     </div>
+     
+  <a  href="Javascript:void(0)" (click)="show=!show">Other</a>
+
+<ng-container *ngIf="salaryTypeSelected?.SalaryTypeId === 1 && show">
+ 
+    <div>
+      <input type="text" class="form-control" #Minname="ngModel" name="MinSal" [(ngModel)]="minHourRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)">
       <span class="text-danger"
       *ngIf="Minname.invalid && Minname.touched">Required.</span>
-    </div>
-
-    <div>
-      <input type="text" class="form-control" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxsal" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)">
-      <span class="text-danger"
-      *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
-    </div>
+    </div> 
+  <div>
+    <input type="text" class="form-control" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxHourRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)">
+    <span class="text-danger"
+    *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
+  </div>
+</ng-container>   
 
 
 

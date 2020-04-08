@@ -14,6 +14,7 @@ export class SalarysliderComponent implements OnInit {
   maxAnnualRate = 10000;
   minHourRate = 20;
   maxHourRate = 100;
+  show:boolean;
   minsal:any;
   maxsal:any;
   // salaryTypeSelected: any;
@@ -56,18 +57,27 @@ export class SalarysliderComponent implements OnInit {
       this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x);
       this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
       this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+      if(this.maxHourRate>200)
+      {
+        this.show=true;      
+      }
+      else
+      {
+        this.show=false;
+      }
   }
 
   onMinChange(value)
   {
-    debugger
-    this.minsal= value;
+    this.minHourRate=value;
+    this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate,  this.salaryTypeSelected.SalaryTypeId);
   }
+
 
   onMaxChange(value)
   {
-    this.maxsal= value;
-    this.appService.updateSalaryRange(this.minsal, this.maxsal,  this.salaryTypeSelected.SalaryTypeId);
+    this.maxHourRate=value;
+    this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate,  this.salaryTypeSelected.SalaryTypeId);
   }
 
   populateSalaryTypes() {
