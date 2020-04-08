@@ -10,3 +10,60 @@
 header h2 img {
     max-height: 17px;
 }
+/*styles 08-04-2020*/
+.applications .domains{
+    padding-left: 30px;
+}
+.applications .domains label{
+    font-size: 10px;
+    color: #93A2BB;
+}
+.applications .domains span{
+    font-size: 10px;
+    padding-right: 4px;
+    padding-left: 4px;
+    color: #93A2BB;
+}
+.candidate-info .skills-section{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.candidate-info h5{
+    font-size: 10px;
+}
+.candidate-info .progress{
+    height: 8px;
+    margin-bottom: 0px;
+}
+.candidate-info .v-divider{
+    margin: 0 8px;
+    border-right: 0.1rem solid #E0E3EF;
+}
+.applications .card .header .ui-pic{
+    left: 30px;
+}
+.applications .card .left{
+    flex-basis: 60%;
+}
+.applications .card .header{
+    padding-right: 5px;
+    padding-left: 25px;
+}
+.applications .candidate-info{
+    padding-right: 5px;
+}
+.applications .card .meta span{
+    font-size: 0.8rem;
+}
+
+.applications .card .right{
+    flex-basis: 40%;
+    padding: 0 5px;
+}
+.right h6.text-right{
+    margin: 0 5px 5px 0px;
+    color: #93A2BB;
+}
+.right h6 span{
+    color: #6A7E9C;
+}

@@ -16638,10 +16638,11 @@ margin-top: 0px;
 
 .page--dashboard .jobs .card .meta .job-title, .page--dashboard .applications .card .meta .job-title {
     color: #6A7E9C;
+    font-weight: 500;
 }
 
 .page--dashboard .jobs .card .v-divider, .page--dashboard .applications .card .v-divider {
-    border-right: 1.5px solid #E0E3EF;
+    border-right: 2px solid #E0E3EF;
 }
 
 .page--dashboard .jobs .stats h1, .page--dashboard .applications .stats h1 {
@@ -16765,9 +16766,9 @@ margin-top: 0px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-align: inherit;
+    -ms-flex-align: inherit;
+    align-items: inherit;
 }
 
 .page--dashboard .applications .candidate-info .ui-badge:not(:last-child) {
