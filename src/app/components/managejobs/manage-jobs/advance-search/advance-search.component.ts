@@ -5,6 +5,12 @@ import { AppService } from '../../../../app.service';
 import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { Subscription } from 'rxjs/Subscription';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { Subject, Observable } from 'rxjs';
+import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import { concat } from 'rxjs/observable/concat';
 declare var $: any;
 
 @Component({
@@ -22,11 +28,18 @@ export class AdvanceSearchComponent implements OnInit {
   departmentId:any;
   clientId:any;
   advancesearch:any;
+  skilllist: Observable<string[]>;
+  skilltitleloading = false;
+  selectedskillinput = new Subject<string>();
   cn = new client();
   dn = new dept();
   showadvancesearch = false;
   empolymentId:any;
   clientName: any;
+  convertObservable: Cities[];
+  cities: Observable<Cities[]>;
+selectedCityInput = new Subject<string>();
+cityloading = false;
   deptName:any;
   searchString:any;
   SearchDept:any =[];
@@ -61,11 +74,11 @@ export class AdvanceSearchComponent implements OnInit {
          });
   }
 
-  SetSearch(val,str)
+  SetSearch(val)
   {
-    this.searchString = str;
-    this.SearchList = [];
-    this.location = val;
+    this.location = val.join(',').toString();
+    debugger
+    this.parentApi.callSearchMethod(this.location); 
   }
 
   SetSearchCName(val,str)
@@ -87,13 +100,27 @@ export class AdvanceSearchComponent implements OnInit {
     this.parentApi.callFilterMethod(0,0,0,0,0);
   }
 
+   populateCities() {
+    this.cities = concat(
+      of([]), // default items
+      this.selectedCityInput.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap(() => this.cityloading = true),
+        switchMap(term => this.appService.getCities(term).pipe(
+          catchError(() => of([])), // empty list on error
+          tap(() => this.cityloading = false)
+        ))
+      )
+    );
+  }
+
   apply()
   {
     if(this.empolymentId>0||this.exp>0||this.location>0||this.clientId>0||this.departmentId>0)
     {
+      debugger
       this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
-      this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
-      this.advancesearch = !this.advancesearch;
     }
     else
     {
@@ -131,6 +158,21 @@ export class AdvanceSearchComponent implements OnInit {
           this.SearchClients  = [];
          });
   
+  }
+
+  getSkills() {
+    this.skilllist = concat(
+      of([]), // default items
+      this.selectedskillinput.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap(() => this.skilltitleloading = true),
+        switchMap(term => this.appService.getSkills(term).pipe(
+          catchError(() => of([])), // empty list on error
+          tap(() => this.skilltitleloading = false)
+        ))
+      )
+    );
   }
 
   GetSearchDepartments(dname)
@@ -184,6 +226,8 @@ export class AdvanceSearchComponent implements OnInit {
     $('#searchStr').val('');
     this.GetEmployementType();
     this.getExpYears();
+    this.populateCities();
+    this.getSkills();
   }
 
 }
@@ -199,3 +243,15 @@ export class client
   ClientName: string;
   IsSuggested: boolean;
 }
+
+export class Cities {
+  public CityId: number;
+  public CityName: string;
+  }
+
+  export class Jobskills {
+    public SkillName: string;
+    public SkillType: boolean;
+    public MinimumExp: number;
+    public MaximumExp: number;
+  }

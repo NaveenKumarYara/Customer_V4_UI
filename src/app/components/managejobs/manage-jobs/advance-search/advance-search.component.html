@@ -83,7 +83,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+
+                
+                <!-- <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Experience</label>
                         <select name="view" id="view" (change)="changeExperience($event.target.value)"
@@ -91,11 +93,17 @@
                             <option *ngFor="let exp of expYears" [value]="exp">{{exp}}</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="job-type">Location</label>
-                        <form #form="ngForm" class="cls-rel">
+                        <ng-select class="custom-style"  [multiple]="true"   [items]="cities | async"
+                        placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
+                        (ngModelChange)="SetSearch($event)" [typeahead]="selectedCityInput"
+                        [hideSelected]="true" [loading]="cityloading" [(ngModel)]="selectedCity" [virtualScroll]="true"
+                        required #city="ngModel" name="cities">
+                    </ng-select>
+                        <!-- <form #form="ngForm" class="cls-rel">
                             <input class="form-control loc-search1" autocomplete="off" type="text"
                                 [(ngModel)]="searchString" name="searchString" placeholder="Search" #searchText
                                 (keyup)="GetCity(searchText.value)">
@@ -106,7 +114,7 @@
                                         {{slist.CityName.split(',')[0]}}</li>
                                 </ul>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -158,8 +166,10 @@
                 <div class="col-md-6" [hidden]="!skillsfilter">
                     <div class="form-group">
                         <label for="addskillfilter">Skills</label>
-                        <input type="text" class="form-control loc-search1" id="addskillfilter"
-                            placeholder="Type and Search">
+                        <ng-select class="custom-style" [multiple]="true" [items]="skilllist | async" placeholder="Search here..." bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1"
+                        name="selectedSkillName" #skill="ngModel"  addTagText="Add Skill" [virtualScroll]="true" required>
+                    </ng-select>
+                            
                     </div>
                 </div>
                 <!---->
