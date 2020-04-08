@@ -183,6 +183,7 @@ export class Step1Component implements OnInit {
   this.insertJob.HiringManagerId=this.userId;
   this.insertJob.SaveAsTemplate = 0;
 this.insertJob.StepNumber = step;
+this.insertJob.RemoteWorkId=this.appService.RemoteWork;
 if (this.appService.stepNumber.value <= step) {
 this.appService.updateStepNumber(step);
 }

@@ -59,6 +59,7 @@ export class AppService {
   }
 
   locationselect:boolean;
+  RemoteWork:boolean=false;
 
   domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();

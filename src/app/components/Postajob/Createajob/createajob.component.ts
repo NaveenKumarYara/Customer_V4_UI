@@ -215,6 +215,7 @@ editMode: string;
       this.appService.reportingList =this.Reporting;
       this.appService.reportingListChanged.next(this.appService.reportingList);
       this.appService.locationselect=false;
+      this.appService.RemoteWork=Boolean(this.jobdetailscustomer.JobInfo.RemoteWorkId);
 
       this.appService.JobLocations = this.jobdetailscustomer.JobLocation;
       this.appService.JobLocationsChanged.next(this.appService.JobLocations);

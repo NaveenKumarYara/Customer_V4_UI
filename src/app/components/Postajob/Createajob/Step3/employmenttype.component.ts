@@ -24,6 +24,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     employmenttypelist: any;
     employmentTypeId: number;
     employmentType: EmploymentType;
+    Remotework:boolean;
 
     selectedskillinput = new Subject<string>();
     selectedData: SkillData;
@@ -109,6 +110,19 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         // else
         // this.salaryType = val.EmploymentTypeId;
     }
+
+    selectType()
+    {
+        if(this.Remotework!=null)
+        {
+            this.appService.RemoteWork=true;
+        }
+        else{
+            this.appService.RemoteWork=false;
+        }
+       
+    }
+
     OpenScheduleInterviewDialog() {
         // var candidateUserId = $("#candidateUserId").val();
         // var candidateId = +candidateUserId;
@@ -186,6 +200,8 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     // }
     ngOnInit() {
         this.domain = this.appService.domain;
+        this.Remotework=this.appService.RemoteWork;
+        debugger
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()

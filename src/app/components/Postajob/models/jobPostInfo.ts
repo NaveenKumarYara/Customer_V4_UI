@@ -42,6 +42,7 @@ export class InsertJob {
     public ClientId: number;
     public XmlDepartment: PjDepartments[] = [];
     public Draft: boolean;
+    public RemoteWorkId: boolean;
     public Email: string;
     public MatchingCrieterias : SkillPostData[]=[];
   }

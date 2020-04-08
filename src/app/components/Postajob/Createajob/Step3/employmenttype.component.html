@@ -60,7 +60,8 @@
             <div class="options">
                 <div class="checkbox">
                     <label>
-                        <input type="radio" ><span class="box">Remote</span>
+                        <input  type="checkbox"  [(ngModel)]="Remotework"
+                        [checked]="Remotework" (change)="selectType()"><span class="box">Remote</span>
                     </label>
                 </div>
             </div>
