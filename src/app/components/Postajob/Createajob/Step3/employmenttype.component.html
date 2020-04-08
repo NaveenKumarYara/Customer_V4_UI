@@ -38,7 +38,7 @@
             <div class="options">
                 <div class="checkbox" *ngFor="let type of employmenttypelist">
                     <!-- <label><input type="radio" (change)="selectEmpType(type.EmploymentTypeId)" name="emptype" value=""><span class="box">{{type.EmploymentType}}</span> </label> -->
-                    <label id="employmentype">
+                    <label id="employmentype" *ngIf="type?.EmploymentTypeId!=4">
                         <input type="radio" [ngModel]="employmentType && employmentType?.EmploymentTypeId"
                                (change)="selectEmpType(type)" name="emptype" [value]="type.EmploymentTypeId"><span class="box">{{type.EmploymentType}}</span>
                     </label>
@@ -50,13 +50,13 @@
         <div class="col-md-12 employment-subtype">
             <h5 for="employmentTypesub" class="question">Employment Type is of? <small>(Optional)</small></h5>
          
-            <div class="options">
+            <!-- <div class="options">
                 <div class="checkbox">
                     <label>
                         <input type="radio" ><span class="box">Part-time</span>
                     </label>
                 </div>
-            </div>
+            </div> -->
             <div class="options">
                 <div class="checkbox">
                     <label>
