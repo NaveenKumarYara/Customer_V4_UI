@@ -30,6 +30,14 @@ header h2 img {
 }
 .candidate-info h5{
     font-size: 10px;
+    color: #41536E;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.candidate-info h6{
+    color:#41536E;
 }
 .candidate-info .progress{
     height: 8px;
@@ -66,4 +74,13 @@ header h2 img {
 }
 .right h6 span{
     color: #6A7E9C;
+}
+.right .disc-placeholder{
+    border-right: 2px solid #E0E3EF;
+}
+.right .applied-for{
+    margin-bottom: 12%;
+}
+.applications .card .meta span.current-location{
+    vertical-align: sub;
 }
