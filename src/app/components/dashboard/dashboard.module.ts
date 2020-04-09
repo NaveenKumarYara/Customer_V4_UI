@@ -14,12 +14,13 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 import {SharedModule} from '../../shared/shared.module';
+import{MonthToYearPipe} from './dashboard-recent-applications/Exp.pipe';
 
 @NgModule({
   imports: [
     ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule
     ],
     providers: [DashboardService],
-  declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent]
+  declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent,MonthToYearPipe]
 })
 export class DashboardModule { }

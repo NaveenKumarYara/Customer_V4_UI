@@ -26,18 +26,20 @@
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checked"
                                 alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="Verified" alt="Verified">
-                            <img   src="../../../../assets/images/certificate.svg" width="25" alt="certified">
+                            <ng-container *ngIf="recentapplicants?.IsCertified==true">
+                                <img   src="../../../../assets/images/certificate.svg" width="25" alt="certified">
+                            </ng-container>
                         </div>
                         <!-- .status -->
                         <div class="meta">
                             <span class="job-title"
-                                title="{{recentapplicants?.JobTitle}}">{{recentapplicants?.JobTitle | slice:0:20}}</span>
+                                title="{{recentapplicants?.ProfileTitle}}">{{recentapplicants?.ProfileTitle | slice:0:20}}</span>
                             <span class="v-divider"></span>
                             <!--New Enhancements 08-04-2020-->
-                            <span>Exp: 6 Years</span>
+                            <span>Exp: {{recentapplicants?.TotalExperience| MonthYear }} Years</span>
 
                             <br />
-                            <span>
+                            <span *ngIf="recentapplicants?.CurrentLocation!=null" >
                                 <svg x="0px" y="0px" width="16px" height="19.1px" viewBox="0 0 16 19.1"
                                     xml:space="preserve" style="fill:#9EABC0;">
                                     <path
@@ -47,7 +49,7 @@
                                     <path d="M8,11.3c-1.8,0-3.3-1.5-3.3-3.3S6.2,4.7,8,4.7s3.3,1.5,3.3,3.3S9.8,11.3,8,11.3z M8,6.7C7.3,6.7,6.7,7.3,6.7,8
                               S7.3,9.3,8,9.3c0.7,0,1.3-0.6,1.3-1.3S8.7,6.7,8,6.7z"></path>
                                 </svg>
-                                {{recentapplicants?.JobLocations}}
+                                {{recentapplicants?.CurrentLocation}}
                             </span>
                         </div>
                         <!-- .meta -->
@@ -55,12 +57,12 @@
                 </div>
                 <!-- .header -->
                 <!--New Domain Placeholder-->
-                <div class="domains">
+                <div class="domains" *ngIf="recentapplicants?.DomainName!=null" >
                     <label>Domains :</label>
-                    <span>Information Technology</span>
+                    <span>{{recentapplicants?.DomainName}}</span>
                 </div>
                 <!---->
-                <div class="candidate-info">
+                <div class="candidate-info"  >
                     <div class="skills-section col-md-3">
                         <h5>Team Lead</h5>
                         <h6>5 years</h6>
@@ -118,7 +120,7 @@
             <div class="right">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="text-right">Applied For: <span>Team Lead</span></h6>
+                        <h6 class="text-right">Applied For: <span>{{recentapplicants?.JobTitle}}</span></h6>
                     </div>
                     <div class="col-md-6">
                         <img width="110" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
