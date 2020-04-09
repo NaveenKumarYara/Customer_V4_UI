@@ -63,35 +63,22 @@
                 </div>
                 <!---->
                 <div class="candidate-info"  >
-                    <div class="skills-section col-md-3">
-                        <h5>Team Lead</h5>
-                        <h6>5 years</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="v-divider"></div>
-                    <div class="skills-section col-md-3">
-                        <h5>QA </h5>
-                        <h6>5 years</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="v-divider"></div>
-                    <div class="skills-section col-md-3">
-                        <h5>Scrum</h5>
-                        <h6>5 years</h6>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                            </div>
-                        </div>
-                    </div>
+                    <ng-container *ngFor="let sk of recentapplicants?.TopSkills;let i=index">
+                        <div class="skills-section col-md-3" *ngIf="i<3">
+                            <h5>{{sk.split('|')[0]}}</h5>
+                            <h6>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Years</h6>
+                            <!-- <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                </div>
+                            </div> -->
+                                <progress-bar   [progress]="sk.split('|')[3] | slice:0:1" [color]="'#488aff'">
+                                </progress-bar>  
+                            
+                    
+                    </ng-container>
+                   
+                
                     <!-- <div class="ui-badge ui-badge--domain" *ngIf="recentapplicants.CertificationName!=null;else nocertification" title="{{recentapplicants.CertificationName}}">{{add3Dots(recentapplicants.CertificationName.split('|')[0],10)}}</div>
                     <ng-template #nocertification>
                         <div class="ui-badge ui-badge--domain no-certification"><img src="../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
@@ -122,14 +109,26 @@
                     <div class="col-md-12">
                         <h6 class="text-right">Applied For: <span>{{recentapplicants?.JobTitle}}</span></h6>
                     </div>
+          
                     <div class="col-md-6">
                         <img width="110" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
                             title="DISC Feature Coming Soon!!!">
                     </div>
                     <div class="v-divider"></div>
-                    <div class="col-md-6">
-                        <img width="110" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
-                            title="DISC Feature Coming Soon!!!">
+                    <div class="col-md-6" style="height:100%;width:100%;">
+                        <circle-progress
+                        [percent]="recentapplicants.MatchingPercentage"
+                        [radius]="80"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#6262ff'"
+                        [innerStrokeColor]="'#c0c0c0'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                      ></circle-progress>
+
+                        <!-- <img width="110" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
+                            title="DISC Feature Coming Soon!!!"> -->
                     </div>
                 </div>
             </div>
