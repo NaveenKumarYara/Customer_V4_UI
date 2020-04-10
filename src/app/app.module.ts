@@ -84,6 +84,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmonth.pipe';
 import { DragulaModule } from 'ng2-dragula';
+import { RatingModule } from 'ng-starrating';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -152,6 +153,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     NgSelectModule,
     HttpClientModule,
     ManagejobsModule,
+    RatingModule,
     JobdetailsModule,
     DragulaModule.forRoot(),
     SharedModule,

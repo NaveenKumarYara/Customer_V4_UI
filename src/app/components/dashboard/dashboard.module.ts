@@ -17,10 +17,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {SharedModule} from '../../shared/shared.module';
 import{MonthToYearPipe} from './dashboard-recent-applications/Exp.pipe';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   imports: [
-    ChartsModule, CommonModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule, ProgressBarModule,   NgCircleProgressModule
+    ChartsModule, CommonModule,RatingModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule, ProgressBarModule,   NgCircleProgressModule
     ],
     providers: [DashboardService],
   declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent,MonthToYearPipe]
