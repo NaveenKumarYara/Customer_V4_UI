@@ -74,6 +74,10 @@ header h2 img {
 .right h6.text-right{
     margin: 0 0px 5px 0px;
     color: #93A2BB;
+    white-space: nowrap;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .right h6 span{
     color: #6A7E9C;
