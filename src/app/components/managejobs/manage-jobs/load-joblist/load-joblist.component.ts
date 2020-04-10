@@ -63,7 +63,7 @@ export class LoadJoblistComponent implements OnInit {
       }
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
-    this.populateJoblist(this.customerId, this.userId, this.searchString);
+    this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy);
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
     // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     localStorage.removeItem('sortBy');
@@ -78,7 +78,7 @@ export class LoadJoblistComponent implements OnInit {
     else
     {
     this.defaultValue = this.sortBy;
-    }
+    } 
   }
 
   private data: Observable<any>;
