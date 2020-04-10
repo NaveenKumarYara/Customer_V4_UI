@@ -27,7 +27,7 @@
                                 alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="Verified" alt="Verified">
                             <ng-container *ngIf="recentapplicants?.IsCertified==true">
-                                <img   src="../../../../assets/images/certificate.svg" width="25" alt="certified">
+                                <img src="../../../../assets/images/certificate.svg" width="25" alt="certified">
                             </ng-container>
                         </div>
                         <!-- .status -->
@@ -39,7 +39,7 @@
                             <span>Exp: {{recentapplicants?.TotalExperience| MonthYear }} Years</span>
 
                             <br />
-                            <span class="current-location" *ngIf="recentapplicants?.CurrentLocation!=null" >
+                            <span class="current-location" *ngIf="recentapplicants?.CurrentLocation!=null">
                                 <svg x="0px" y="0px" width="16px" height="19.1px" viewBox="0 0 16 19.1"
                                     xml:space="preserve" style="fill:#9EABC0;">
                                     <path
@@ -57,12 +57,12 @@
                 </div>
                 <!-- .header -->
                 <!--New Domain Placeholder-->
-                <div class="domains" *ngIf="recentapplicants?.DomainName!=null" >
+                <div class="domains" *ngIf="recentapplicants?.DomainName!=null">
                     <label>Domains :</label>
                     <span title="{{recentapplicants?.DomainName}}">{{recentapplicants?.DomainName}}</span>
                 </div>
                 <!---->
-                <div class="candidate-info"  >
+                <div class="candidate-info">
                     <ng-container *ngFor="let sk of recentapplicants?.TopSkills;let i=index">
                         <div class="skills-section col-md-3" *ngIf="i<3">
                             <h5 title="{{sk.split('|')[0]}}">{{sk.split('|')[0]}}</h5>
@@ -73,14 +73,15 @@
                                 </div>
                             </div> -->
                             <div>
-                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="blue" uncheckedcolor="lightgrey" size="24px" readonly="true"></star-rating>
-                              </div>
-                                <!-- <progress-bar   [progress]="sk.split('|')[3] | slice:0:1" [color]="'#488aff'">
+                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="#fff"
+                                    uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                            </div>
+                            <!-- <progress-bar   [progress]="sk.split('|')[3] | slice:0:1" [color]="'#488aff'">
                                 </progress-bar>   -->
                         </div>
                     </ng-container>
-                   
-                
+
+
                     <!-- <div class="ui-badge ui-badge--domain" *ngIf="recentapplicants.CertificationName!=null;else nocertification" title="{{recentapplicants.CertificationName}}">{{add3Dots(recentapplicants.CertificationName.split('|')[0],10)}}</div>
                     <ng-template #nocertification>
                         <div class="ui-badge ui-badge--domain no-certification"><img src="../../../../assets/images/certificate.svg" width="30" height="25"> Yet to Gain!</div>
@@ -109,25 +110,19 @@
             <div class="right">
                 <div class="row">
                     <div class="col-md-12 applied-for">
-                        <h6 class="text-right">Applied For: <span>{{recentapplicants?.JobTitle}}</span></h6>
+                        <h6 class="text-right" title="{{recentapplicants?.JobTitle}}">Applied For : <span>{{recentapplicants?.JobTitle}}</span></h6>
+                        <h6 class="text-right">Status : <span>{{recentapplicants?.ReferralStatus}}</span></h6>
                     </div>
-          
                     <div class="col-md-6 disc-placeholder">
                         <img width="90" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
                             title="DISC Feature Coming Soon!!!">
                     </div>
-                   
+
                     <div class="col-md-6">
-                        <circle-progress
-                        [percent]="recentapplicants.MatchingPercentage"
-                        [radius]="40"
-                        [outerStrokeWidth]="8"
-                        [innerStrokeWidth]="3"
-                        [outerStrokeColor]="'#6262ff'"
-                        [innerStrokeColor]="'#c0c0c0'"
-                        [animation]="true"
-                        [animationDuration]="300"
-                      ></circle-progress>
+                        <circle-progress [percent]="recentapplicants.MatchingPercentage" [radius]="40"
+                            [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
+                            [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300" [showSubtitle] = "false" >
+                        </circle-progress>
 
                         <!-- <img width="110" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
                             title="DISC Feature Coming Soon!!!"> -->
