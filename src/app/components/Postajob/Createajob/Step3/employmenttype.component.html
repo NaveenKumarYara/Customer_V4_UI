@@ -48,7 +48,7 @@
         <!--New Employment type of-->
         <div class="clearfix">&nbsp;</div>
         <div class="col-md-12 employment-subtype">
-            <h5 for="employmentTypesub" class="question">Employment Type is of? <small>(Optional)</small></h5>
+            <h5 for="employmentTypesub" class="question">Employment Type is of Remote? <small>(Optional)</small></h5>
          
             <!-- <div class="options">
                 <div class="checkbox">
@@ -60,8 +60,13 @@
             <div class="options">
                 <div class="checkbox">
                     <label>
-                        <input  type="checkbox"  [(ngModel)]="Remotework"
-                        [checked]="Remotework" (change)="selectType()"><span class="box">Remote</span>
+                        <input  type="radio"  [(ngModel)]="Remotework" [value]="true"
+                        (change)="selectType(Remotework)"><span class="box">Yes</span>
+                       
+                    </label>
+                    <label>           
+                        <input  type="radio"  [(ngModel)]="Remotework" [value]="false"
+                         (change)="selectType(Remotework)"><span class="box">No</span>
                     </label>
                 </div>
             </div>

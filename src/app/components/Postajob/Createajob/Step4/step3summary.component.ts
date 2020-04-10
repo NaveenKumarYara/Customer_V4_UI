@@ -12,6 +12,7 @@ employmentType: any;
 employmentTypeId: any;
 contractDuration: string;
 contractExtension: string;
+Remotework:boolean;
 interviewTypeId: number;
 interviewType: string;
 reportinManagerId: number;
@@ -45,6 +46,8 @@ matchingPersentage=[];
         this.interviewTypeId = data.InterviewTypeId; // And he have data here too!
         this.interviewType = data.InterviewType;
       });
+
+      this.Remotework= this.appService.RemoteWork;
       // this.appService.currentcustomerUsers.subscribe((data) => {
       //   this.reportinManagerId = data.UserId; // And he have data here too!
       //   this.reportinManager = data.FirstName;

@@ -111,15 +111,10 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
         // this.salaryType = val.EmploymentTypeId;
     }
 
-    selectType()
+    selectType(val)
     {
-        if(this.Remotework!=null)
-        {
-            this.appService.RemoteWork=true;
-        }
-        else{
-            this.appService.RemoteWork=false;
-        }
+
+            this.appService.RemoteWork=val;
        
     }
 

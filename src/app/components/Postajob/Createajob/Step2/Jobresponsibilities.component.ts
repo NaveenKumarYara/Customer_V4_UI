@@ -46,24 +46,24 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     this.roleIdList=[];
     this.appService.responsibilities=[];
     this.appService.addedresponsibilities=[];
-    this.deleteJobResponsibilities(job);
-    val.forEach(element => {
-      const role = new Roles();
-      role.Role = element.Role;
-      role.RoleId = element.RoleId;
-      this.appService.addResponsibilities(role);
-    })
+    let jobId = parseInt(job)
+    this.appService.DeleteResponsibility(jobId).subscribe(res =>{
+      debugger
+      if(res == 0)
+      {
+        val.forEach(element => {
+          const role = new Roles();
+          role.Role = element.Role;
+          role.RoleId = element.RoleId;
+          this.appService.addResponsibilities(role);
+        })
+      }
+
+      
+    });
   }
 
-  deleteJobResponsibilities(jobId)
-  {
-    this.appService.DeleteResponsibility(jobId).subscribe(res =>{
-      if(res==0)
-      {
-        console.log();
-      }
-    })
-  }
+
 
   // private addResponsibilities() {
   //   this.appService.addResponsibilities(this.responsibilities);
@@ -131,6 +131,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       // }
       this.appService.saveRoles(this.roleModel)
         .subscribe(
+
           data => {
             this.roleModel.RoleId = data;
             // this.roleList.push(this.roleModel);

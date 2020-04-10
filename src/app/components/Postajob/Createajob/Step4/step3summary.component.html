@@ -45,6 +45,23 @@
         </h5> 
         <!-- <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5> -->
       </div>
+      <div>
+        <h3 class="question">
+          Employment Type of Remote?</h3>
+   
+         <div class="checkbox">
+           <label>
+               <input  type="radio"  [(ngModel)]="Remotework" [value]="true"
+              ><span class="box">Yes</span>
+              
+           </label>
+           <label>           
+               <input  type="radio"  [(ngModel)]="Remotework" [value]="false"
+               ><span class="box">No</span>
+           </label>
+       </div>
+      </div>
+  
   </div>
   <div class="form-data-group" *ngIf="employmentType!='Full-Time' && employmentTypeId==2">
     <h3 class="question">
