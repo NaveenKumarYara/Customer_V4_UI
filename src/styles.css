@@ -25522,3 +25522,27 @@ table .table-prl-0 td {
     padding: 0px 1px;
     height: 15px;
 }
+/*Dragula styles*/
+.dragula ul li{
+    cursor: move;
+}
+.dragula ul li .gu-unselectable, .gu-mirror{
+    border: 1px solid #E0E3EF;
+    border-radius: 3px;
+    background-color: #F8F9FC;
+    color: #6A7E9C;
+    padding: 13px 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}

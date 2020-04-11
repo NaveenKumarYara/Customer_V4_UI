@@ -54,8 +54,7 @@
                     </button>
                   </span>
                 </div>
-                <div class="tab-inner scrollbar-inner">
-
+                <div class="tab-inner scrollbar-inner dragula">
                   <ul class="list--filled" dragula="responsibilities" [dragulaModel]="responsibilities"
                     (dragulaModelChange)="responsibilities = $event">
                     <li class="item" *ngFor="let resp of responsibilities">
@@ -90,9 +89,7 @@
                         </button>
                       </div>
                     </li>
-
                   </ul>
-
                 </div>
               </div>
             </div>
