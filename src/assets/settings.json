@@ -150,5 +150,9 @@
   "GetCustomerHiredStatistics":"https://identityapi-dev.arytic.com/api/GetCustomerHiredStatistics",
   "GetJobLocationbyJobId":"https://jobsapi-dev.arytic.com/api/GetJobLocation?",
   "ReportingTeam":"https://identityapi-dev.arytic.com/api/ReportingTeammembers",
-  "DeleteJobResponsibility":"https://identityapi-dev.arytic.com/api/DeleteJobResponsibility"
+  "DeleteJobResponsibility":"https://identityapi-dev.arytic.com/api/DeleteJobResponsibility",
+  "GetjobImps":"https://identityapi-dev.arytic.com/api/GetJobPriority",
+  "GetDueDateList":"https://identityapi-dev.arytic.com/api/GetJobDueIn",
+  "GetImmigrationList":"https://identityapi-dev.arytic.com/api/GetImmigrationStatus",
+  "SaveJobImmigration":"https://identityapi-dev.arytic.com/api/SaveJobImmigrations"
 }

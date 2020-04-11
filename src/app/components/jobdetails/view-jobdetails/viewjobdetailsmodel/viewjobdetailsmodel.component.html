@@ -130,8 +130,49 @@
                                     <p>
                                        ${{jobdetailscustomer?.JobInfo?.MinimumSalary}}  to  ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}
                                     </p>
+
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
+                                    On W2
+                                     </p>
+
+                                     <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
+                                       Contract By Length
+                                         </p>
                                 </div>
                             </div>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="group">
+                                    <h4 >Due Date</h4>
+                                    <p>
+                                       {{jobdetailscustomer?.JobInfo?.ExpiryDate | date:'mediumDate'}}
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.DueIn!=null && jobdetailscustomer?.JobInfo?.DueIn!=''">
+                                       Expiries On {{jobdetailscustomer?.JobInfo?.DueIn}}
+                                     </p>
+                                </div>
+                            </div>
+                        
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="group">
+                                        <h4 >ImmigrationStatus</h4>
+                                        <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                        <p>
+                                             {{imi?.ImmigrationStatus}}
+                                        </p>
+                                    </ng-container>
+                                    </div>
+                                </div>
+                            
+
+                            <div class="col-md-4 col-xs-6">
+                                <div class="group">
+                                    <h4 >Job Priority</h4>
+                                    <p>
+                                         {{jobdetailscustomer?.JobInfo?.JobPriority}}
+                                    </p>
+                                </div>
+                            </div>
+                        
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Education Criteria</h4>
@@ -181,8 +222,14 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Reporting Manager</h4>
-                                    <p>
-                                       {{jobdetailscustomer?.JobInfo?.ReportingManager}}
+
+                                    <p *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
+                                        <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
+                                                {{rpt?.FirstName}} {{rpt?.LastName}}
+                                        </ng-container>
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length==0">
+                                        N/A
                                     </p>
                                 </div>
                             </div>

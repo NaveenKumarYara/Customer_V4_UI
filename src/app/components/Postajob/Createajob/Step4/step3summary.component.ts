@@ -2,6 +2,7 @@ import { Component, OnInit, Inject ,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SalarysliderComponent } from '../Step3/salaryslider.component';
 import { AppService } from '../../../../app.service';
+import { jobImmigrationData } from '../../models/jobPostInfo';
 
 @Component({
   selector: 'app-steps-step4-step3summary',
@@ -29,6 +30,7 @@ maxHourRate = 100;
 minRate: number;
 maxRate: number;
 videoProfile: any;
+immigrationsList:jobImmigrationData[]=[];
 matchingPersentage=[];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService ) {
@@ -98,6 +100,7 @@ matchingPersentage=[];
     // this.reportinManagerId = this.appService.reportingManager.value.UserId;
     // this.reportinManager = this.appService.reportingManager.value.FirstName;
     this.reportinManager = this.appService.reportingList;
+    this.immigrationsList = this.appService.ImmigrationforJobs;
    this.teamMembers = this.appService.teammembers;
   }
 

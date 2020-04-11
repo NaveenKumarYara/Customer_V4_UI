@@ -20,7 +20,10 @@ noOfopening=[];
 hasDescription: boolean;
 completeDescription: string;
 jobPositionId: string;
+jobPriority:number;
+PriorityName:string;
 departments: any;
+ExpiryDate:Date;
 roles = [];
 client: any;
   constructor(private route: ActivatedRoute,
@@ -45,6 +48,29 @@ client: any;
       this.appService.currentmaxExp.subscribe((data) => {
         this.maxExp = data; // And he have data here too!
       });
+
+      this.appService.currentjobImp.subscribe((data)=>
+      {
+        this.jobPriority=data;
+        if(data==1)
+        {
+         this.PriorityName = 'High';   
+        }
+        else if(data==2)
+        {
+         this.PriorityName = 'Medium';   
+        }
+        else if(data==3)
+        {
+         this.PriorityName = 'Low';   
+        }
+        })
+
+      this.appService.currentjobDueDate.subscribe(
+        (data)=>
+        
+        {this.ExpiryDate=data}
+        );
       // this.appService.addedresponsibilitiesChanged.subscribe((data) => {
       //   this.roles = data; // And he have data here too!
       // });

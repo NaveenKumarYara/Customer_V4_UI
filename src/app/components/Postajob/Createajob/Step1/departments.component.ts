@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 import { AddDepartment} from '../../../../../models/jobskills.model';
 import { AppService } from '../../../../app.service';
 import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
-import { ClientModel, DepartmentModel, PjDepartments } from '../../models/jobPostInfo';
+import { ClientModel, DepartmentModel, PjDepartments, jobDues } from '../../models/jobPostInfo';
 import { NgForm } from '@angular/forms';
 declare var $: any;
 @Component({
@@ -26,6 +26,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   selectDepartment: string;
   selectedDepartment: DepartmentModel;
   customerId: any;
+  showDate:boolean=false;
   selectCustDept: any;
   saveDepartment = new GetCustomerDepartments();
   suggestDepartments: DepartmentModel[];
@@ -35,6 +36,9 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private subscriptions: Subscription;
   addedDepartmentList: PjDepartments[] = [];
+  Expiry:number=3;
+  ExpiryDate:Date;
+  jobDuelist:jobDues[]=[];
 
   constructor(private appService: AppService, private router: Router) {
     // this.getDepartment = new DepartmentModel();
@@ -48,6 +52,58 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
     localStorage.setItem('departmentName', val);
     return {name: department.CustomerDepartment};
 
+  }
+
+  updateJobDue() {
+    if(this.Expiry == 5)
+    {
+      this.showDate=true;
+    }
+    else 
+    {
+      this.showDate=false;
+    }
+
+    if(this.Expiry==1)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 7 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==2)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 14 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==3)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 30 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==4)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 60 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==5)
+    {
+      this.showDate=true;
+    }
+    this.appService.updateJobDueDate(this.ExpiryDate);    
+    this.appService.updateJobDue(this.Expiry);
+  }
+
+  GetJobDueIn() {
+     this.appService.GetJobDueIn().subscribe(res => {
+      this.jobDuelist = res;
+  });
   }
 
  updateDepartment(val) {
@@ -122,8 +178,18 @@ suggestedDepartment() {
   });
 }
 ngOnInit() {
+  $(function(){
+		$("#datepicker").datepicker({
+			autoclose: true,
+			todayHighlight: true,
+			dateFormat: 'mm/dd/yyyy'
+		}).datepicker('update', new Date());
+	});
   this.searchDepartment();
+  this.GetJobDueIn();
   this.departmentsList = this.appService.getDepartment();
+  this.appService.currentjobDue.subscribe(x=>this.Expiry=x);
+  this.appService.currentjobDueDate.subscribe(y=>this.ExpiryDate=y);
   // if (this.departmentsList.length === 0) {
   // this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
   //   x => {this.departmentsList = x;

@@ -44,6 +44,8 @@ export class InsertJob {
     public Draft: boolean;
     public RemoteWorkId: boolean;
     public Email: string;
+    public JobPriority:number;
+    public JobDue:number;
     public MatchingCrieterias : SkillPostData[]=[];
   }
   export class PjSkill {
@@ -195,6 +197,26 @@ export class PjDepartments {
       
   }
 
+  export class JobImmigrationSave
+  {
+   
+    UserId:number;
+    JobId:number;
+    Immigration:string;
+    
+  }
+
+  export class JobImmigrationGet
+  {
+   
+    JobId:number;
+    ImmigrationStatusId:number;
+    ImmigrationStatus: string;
+    Id: number;
+    JobPriority: string;
+    
+  }
+
   export class AddResp {
     public RolesandResponsibilities: string;
     public Index: number;
@@ -205,5 +227,31 @@ export class PjDepartments {
   {
     CityId: number;
     CityName: string; 
+  }
+
+  export class jobDues
+  {
+    Id: number;
+    DueIn: string;
+  }
+
+  export class jobImps
+  {
+    Id: number;
+    JobPriority: string;
+  }
+
+  
+  export class jobImmigration
+  {
+    ImmigrationStatusId: number;
+    ImmigrationStatus: string;
+  }
+
+  export class jobImmigrationData
+  {
+    JobId: number;
+    ImmigrationStatusId: number;
+    ImmigrationStatus: string;
   }
   

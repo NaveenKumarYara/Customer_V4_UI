@@ -150,5 +150,9 @@
   "GetCustomerHiredStatistics":"${Identity_URL}/api/GetCustomerHiredStatistics",
   "GetJobLocationbyJobId":"${Jobs_URL}/api/GetJobLocation?",
   "ReportingTeam":"${Identity_URL}/api/ReportingTeammembers",
-  "DeleteJobResponsibility":"${Identity_URL}api/DeleteJobResponsibility"
+  "DeleteJobResponsibility":"${Identity_URL}/api/DeleteJobResponsibility",
+  "GetjobImps":"${Identity_URL}/api/GetJobPriority",
+  "GetDueDateList":"${Identity_URL}/api/GetJobDueIn",
+  "GetImmigrationList":"${Identity_URL}/api/GetImmigrationStatus",
+  "SaveJobImmigration":"${Identity_URL}/api/SaveJobImmigrations"
 }

@@ -3,7 +3,7 @@ import {JobRequiredDomain} from './JobRequiredDomain';
 import {JobRequiredSkills} from './JobRequiredSkills';
 import {JobResponsibility} from './JobResponsibility';
 import { Qualifications } from './qualifications.model';
-import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel } from '../app/components/Postajob/models/jobPostInfo';
+import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel,JobImmigrationGet } from '../app/components/Postajob/models/jobPostInfo';
 import { Jobskills } from './jobskills.model';
 import { SkillPostData } from './skill.model';
 
@@ -66,6 +66,7 @@ export class JobInfo {
     HiringProcessId: number;
     HiringManagerId: number;
     ReportingManager: ReportingTeam[];
+    ImmigrationForJob:JobImmigrationGet[];
     IsActive: boolean;
     StatusId: number;
     FirstName: string;
@@ -94,6 +95,10 @@ export class JobInfo {
     JobStatus: string;
     StepNumber: string;
     IsDrafted: boolean;
+    Id:number;
+    JobDueDateId: number;
+    JobPriority: string;
+    DueIn: string;
     VideoSizzleId: number;
     VideoURL: string;
     VideoFormat: string;

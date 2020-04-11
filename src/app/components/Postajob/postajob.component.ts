@@ -7,7 +7,7 @@ import {EmploymentType} from '../../../models/employmenttype.model';
 import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam,Cities, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam,Cities,jobImmigrationData, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 declare var $: any;
 @Component({
@@ -58,6 +58,11 @@ export class PostajobComponent implements OnInit {
   this.appService.reportingList=[];
   this.appService.JobLocationsMulti=[];
   this.appService.jobtitle.next('');
+  this.appService.JobDue.next(3);
+  this.appService.JobImp.next(3);
+  this.appService.JobDueDate.next(new Date());
+  this.appService.ImmigrationforJobs=[];
+  this.appService.ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
   this.appService.stepNumber.next('1');
   this.appService.OpeningsList=[];
   this.appService.locationselect=false;

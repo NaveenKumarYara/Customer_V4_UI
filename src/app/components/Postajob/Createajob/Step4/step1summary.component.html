@@ -13,6 +13,17 @@
   </div>
   <div class="form-data-group">
     <h3 class="question">
+      Job Priority
+    </h3>
+    <h5 class="data" *ngIf="PriorityName!=''">
+      {{PriorityName}}
+    </h5>
+    <h6 class="data" *ngIf="PriorityName==''"  >
+     N/A
+    </h6 >
+  </div>
+  <div class="form-data-group">
+    <h3 class="question">
       Do you have a complete description of the Job profile?
     </h3>
     <h6 class="data" *ngIf="hasDescription==true">
@@ -79,7 +90,16 @@
         </h4>
       </ng-container>
   </div>
+  <div class="form-data-group">
+    <h3 class="question">
+     Due Date 
+    </h3>
+      <h4 class="data" *ngIf="ExpiryDate">
+        {{ExpiryDate | date:'mediumDate'}} 
+      </h4>
+  </div>
   <div class="form-data-group skill-set-group">
+
     <h3 class="question">
       What departments does the job includes?
     </h3>

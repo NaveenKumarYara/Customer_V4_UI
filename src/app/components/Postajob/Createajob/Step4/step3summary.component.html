@@ -42,6 +42,14 @@
           <ng-container *ngIf="salaryTypeId=='1'">
             <span class="big">$ {{minHourRate}} - {{maxHourRate}}</span>
           </ng-container>
+
+          <ng-container *ngIf="employmentType=='Employee'">
+            On W2
+             </ng-container>
+
+             <ng-container *ngIf="employmentType=='Contractor'">
+               Contract By Length
+                 </ng-container>
         </h5> 
         <!-- <h5 class="data">Part Time :  <span class="big">$ 5K - 10K</span></h5> -->
       </div>
@@ -88,6 +96,15 @@
       Reporting Manager</h3>
       <ng-container *ngFor="let rs of reportinManager">
         <h6 class="data">{{rs?.FirstName}}</h6>
+      </ng-container>
+   
+  </div>
+
+  <div class="form-data-group">
+    <h3 class="question">
+      ImmigrationStatus Details</h3>
+      <ng-container *ngFor="let ims of immigrationsList">
+        <h6 class="data">{{ims?.ImmigrationStatus}}</h6>
       </ng-container>
    
   </div>

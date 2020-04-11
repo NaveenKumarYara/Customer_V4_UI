@@ -22,9 +22,9 @@ import {GetEmailValidate} from '../models/GetEmailValidate';
 import {GetCustomerDepartments} from '../models/GetCustomerDepartments';
 import { PlanFeature } from "../models/PlanFeature";
 import { GetCustomerClients } from '../models/GetCustomerClients';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,
+import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,jobImps,jobImmigration,jobDues,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,JobLocationsDetails,
-        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting, AddResp,
+        ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting, AddResp,jobImmigrationData,
         PjDepartments } from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
@@ -132,6 +132,25 @@ export class AppService {
   jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
+ 
+
+  jobImp: number;
+  JobImp = new BehaviorSubject(this.jobImp);
+  currentjobImp = this.JobImp.asObservable();
+
+  PriorityName: String;
+  JobPriorityName = new BehaviorSubject(this.PriorityName);
+  CurrentPriorityName = this.JobPriorityName.asObservable();
+
+
+  jobDue: number;
+  JobDue = new BehaviorSubject(this.jobDue);
+  currentjobDue = this.JobDue.asObservable();
+
+  jobDueDate: Date;
+  JobDueDate = new BehaviorSubject(this.jobDueDate);
+  currentjobDueDate = this.JobDueDate.asObservable();
+
   videoProfile = new BehaviorSubject('');
   currentVideo = this.videoProfile.asObservable();
 
@@ -197,6 +216,13 @@ export class AppService {
   
   reportingList:ReportingTeam[]=[];
   reportingListChanged = new Subject<ReportingTeam[]>();
+
+  immigrations:jobImmigration[]=[];
+  immigrationsChanged = new Subject<jobImmigration[]>();
+
+  ImmigrationforJobs:jobImmigrationData[]=[];
+  ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
+
 
   myjobcategory = new CategoryList();
   jobcategory = new BehaviorSubject(this.myjobcategory);
@@ -292,6 +318,23 @@ export class AppService {
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
   }
+
+  updateJobImp(jobImp: number) {
+    this.JobImp.next(jobImp);
+  }
+
+  updateJobPrority(jobPri: string) {
+    this.JobPriorityName.next(jobPri);
+  }
+
+  updateJobDue(jobDue: number) {
+    this.JobDue.next(jobDue);
+  }
+
+  updateJobDueDate(jobDueDate: Date) {
+    this.JobDueDate.next(jobDueDate);
+  }
+
   updateVideoProfile(videoUrl: string) {
     this.videoProfile.next(videoUrl);
   }
@@ -387,6 +430,30 @@ getPricingPlans(): Observable<PlanFeature[]> {
   );
 }
 
+GetJobPriority(): Observable<jobImps[]> {
+  const url = this.settingsService.settings.GetjobImps;
+  return this.http.get<jobImps[]>(url)
+  .catch(
+    this.handleError
+  );
+}
+
+GetImmigrationStatus(): Observable<jobImmigration[]> {
+  const url = this.settingsService.settings.GetImmigrationList;
+  return this.http.get<jobImmigration[]>(url)
+  .catch(
+    this.handleError
+  );
+}
+
+GetJobDueIn(): Observable<jobDues[]> {
+  const url = this.settingsService.settings.GetDueDateList;
+  return this.http.get<jobDues[]>(url)
+  .catch(
+    this.handleError
+  );
+}
+
 
 getBillEstimates(UserId:number): Observable<billEstimates> {
   const url = this.settingsService.settings.GetPlanDuration+ '?UserId='+UserId ;
@@ -464,6 +531,15 @@ GetBillingAddressforCustomer(customerId:number):Observable<GetBillingAddressCust
 
  AddPlanDetails(body) :any {
     return this.http.post(this.settingsService.settings.AddPlan, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
+ SaveJobImmigration(body) :any {
+    return this.http.post(this.settingsService.settings.SaveJobImmigration, body)
       .map((res: Response) => res)
       .catch((error: any) => {
         return Observable.throw(error.json());
@@ -961,7 +1037,6 @@ this.skillPostData.push(skill);
   }
 
   ReportingTeam(body) {
-    debugger
     return this.http.post(this.settingsService.settings.ReportingTeam, body)
     .map((res: Response) => res)
     .catch((error: any) => {

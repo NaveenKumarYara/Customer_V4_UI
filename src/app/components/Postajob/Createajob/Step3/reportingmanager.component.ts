@@ -10,7 +10,7 @@ import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
-import { PjTechnicalTeam, CustomerUsers,JobReporting } from '../../models/jobPostInfo';
+import { PjTechnicalTeam, CustomerUsers,JobReporting, jobImmigration,JobImmigrationSave,jobImmigrationData } from '../../models/jobPostInfo';
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { ReportingTeam } from '../../../../../models/GetJobDetailCustomer';
@@ -24,6 +24,7 @@ declare var $: any;
 export class ReportingManagerComponent implements OnInit, OnDestroy {
 
   selectedManager: CustomerUsers;
+  selectedIms: jobImmigration;
   selectManager: string;
   flag:any=false;
   reportingmanagersList: Observable<CustomerUsers[]>;
@@ -31,6 +32,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   customer: any;
   customerId: any;
   report =new JobReporting();
+  immi = new JobImmigrationSave();
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
@@ -40,10 +42,14 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   userId: any;
   isSuggsted: any;
   selectedInput = new Subject<string> ();
+  selectStatus:string;
   usersload: boolean;
   suggestedManagers: ReportingTeam[] = [];
   slist=[];
+  imsList=[];
   JobIds=[];
+  ImmigrationList:jobImmigration[]=[];
+  ImmigrationListData:jobImmigrationData[]=[];
 
   // managersAdd: PjTechnicalTeam[] = [];
   // selectedItem: any;
@@ -57,25 +63,34 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       this.userId = this.customer.UserId;
       
   }
-  updateManager(val) {
+  updateStatus(val) {
    // this.appService.updateManager(this.selectedItem.toString());
-     this.selectManager = val.FirstName;
-     let selected = new CustomerUsers();
-     selected.FirstName  = val.FirstName;
-     selected.UserId  = val.UserId;
-     this.selectedManager=selected;
-
-     if(val.FirstName=="others")
-     {
-      this.flag = true;
-     }
-     else if(val.FirstName!="others")
-     {
-       this.flag = false;
-     }
-     
-   
+     this.selectStatus = val.FirstName;
+     let selected = new jobImmigration();
+     selected.ImmigrationStatus  = val.ImmigrationStatus;
+     selected.ImmigrationStatusId  = val.ImmigrationStatusId;
+     this.selectedIms=selected;  
   }
+
+  updateManager(val) {
+    // this.appService.updateManager(this.selectedItem.toString());
+      this.selectManager = val.FirstName;
+      let selected = new CustomerUsers();
+      selected.FirstName  = val.FirstName;
+      selected.UserId  = val.UserId;
+      this.selectedManager=selected;
+ 
+      if(val.FirstName=="others")
+      {
+       this.flag = true;
+      }
+      else if(val.FirstName!="others")
+      {
+        this.flag = false;
+      }
+      
+    
+   }
 
   // getjobaccessto1000042
   //   getcustomerusers() {
@@ -98,6 +113,22 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     this.slist.splice(index,1);
   }
 
+  deleteIms(index)
+  {
+    this.imsList.splice(index,1);
+  }
+
+  GetImmigrationStatus() {
+    this.appService.GetImmigrationStatus().subscribe(res => {
+     this.ImmigrationList = res;
+ });
+ }
+
+ GetImmigrationList()
+ {
+   this.ImmigrationListData = this.appService.ImmigrationforJobs;
+ }
+
   suggestedManager() {
     return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
@@ -109,6 +140,8 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     this.show = false;
     this.flag=false;
     this.JobIds = this.appService.JobIds;
+    this.GetImmigrationStatus();
+    this.GetImmigrationList();
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -125,12 +158,18 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       'EmailId': ['', Validators.compose([Validators.required])],  
     });
     this.suggestedManager();
-
+     this.GetImmigrationStatus();
     this.appService.reportingListChanged
     .subscribe(
     (list: ReportingTeam[]) => {
       this.suggestedManagers= list;
       }
+    );
+
+    this.appService.ImmigrationforJobChanged.subscribe(
+      (listd: jobImmigrationData[]) => {
+        this.ImmigrationListData= listd;
+        }
     );
 
   //    this.getcustomerusers();
@@ -183,6 +222,57 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
                 console.log("added");
               }
             });  
+        }
+     
+      
+
+        
+      
+
+      
+     
+    }
+
+    AddStatus()
+    {
+          
+        this.imsList.push(this.selectedIms);
+        //this.slist.push(this.selectedManager);
+        this.ImmigrationListData=this.imsList;
+        this.selectStatus=null;
+        this.appService.immigrations=this.ImmigrationListData;
+        
+        if(this.JobIds&&this.JobIds.length>0)
+        {
+          this.JobIds.forEach((e)=>
+          {
+            
+            this.immi.UserId=this.userId;
+            this.immi.JobId=Number(e);
+            this.immi.Immigration=this.ImmigrationListData.map(x=>x.ImmigrationStatusId).toString();
+            this.appService.SaveJobImmigration(this.immi).subscribe(
+              data => {
+                if(data=0)
+                {
+                  console.log("added");
+                }
+              });
+          }
+          )
+        }
+        else
+        {
+          const res = localStorage.getItem('jobId');
+          this.immi.JobId=parseInt(res, 10);
+          this.immi.UserId=this.userId;
+          this.immi.Immigration=this.ImmigrationListData.map(x=>x.ImmigrationStatusId).toString();
+          this.appService.SaveJobImmigration(this.immi).subscribe(
+            data => {
+              if(data=0)
+              {
+                console.log("added");
+              }
+            });
         }
      
       

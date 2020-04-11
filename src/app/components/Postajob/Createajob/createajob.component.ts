@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer, ReportingTeam } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation,jobImmigrationData, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData, jobImmigration } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step2/Jobresponsibilities.component';
@@ -31,9 +31,11 @@ ejInterviewType = new InterviewType();
 ejHiringManager = new CustomerUsers();
 ejHiringManagerList : CustomerUsers[]=[];
 Reporting : ReportingTeam[]=[];
+Immigration = [];
 ejLocations = new PrefLocation();
 ejLocationsList = [];
 ejTechnicalTeamList: CustomerUsers[] = [];
+ejImmigrationList:jobImmigrationData[]=[];
 // ejTechnicalTeam = new CustomerUsers();
 ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
 eJclient = new ClientModel();
@@ -132,6 +134,7 @@ editMode: string;
     const workAuthorization = new WorkAuthorization();
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
+      debugger
       // Departments
       if (this.jobdetailscustomer.JobDepartments.length > 0) {
         for (const dept of this.jobdetailscustomer.JobDepartments) {
@@ -254,6 +257,12 @@ editMode: string;
 
         }
       }
+
+      this.appService.updateJobImp(this.jobdetailscustomer.JobInfo.Id);
+      this.appService.updateJobDue(this.jobdetailscustomer.JobInfo.JobDueDateId);
+      this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
+      debugger
+      this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);
       this.appService.teammembers = this.jobdetailscustomer.TechnicalTeam;
       this.appService.teammembersChanged.next(this.appService.teammembers);
       this.appService.addedteammembers = this.ejTechnicalTeamIdList;
@@ -361,7 +370,7 @@ editMode: string;
         this.appService.qualificationsChanged.next(this.appService.qualifications);
         this.appService.addqualifications = this.ejQualificationIdList;
         this.appService.addqualificationsChanged.next(this.appService.addqualifications);
-
+        this.appService.updateJobDueDate(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
         this.jobdetailsservice.getPersonType(jobId).subscribe(pType => {
           this.personType = pType;
           this.appService.getDisc().subscribe(pTypes => {

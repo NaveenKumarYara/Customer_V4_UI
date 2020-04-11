@@ -102,4 +102,23 @@
       </div>
     </div>
 
+
+    <div class="form-group">
+      <label for="jobPri" class="jobid">Job Due On <small>*</small></label>
+      <ng-select class="custom-style" [items]="jobDuelist"  placeholder="Select Jobdue" bindLabel="DueIn" bindValue="Id"  [(ngModel)]="Expiry"  required #JobDue="ngModel"
+      name="JobDue" (change)="updateJobDue()">
+    </ng-select>
+    <span class="text-danger"
+    *ngIf="JobDue.invalid && JobDue.touched">Due Date Required.</span>
+
+  </div>
+
+  <div class="form-group">   
+  <ng-container *ngIf="showDate">
+    <label for="jobPri" class="jobid">Custom Date </label>
+    <input type="date" class="form-control"  #Edate="ngModel" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*"  id="datepicker" required>
+  </ng-container>
+</div>
+  
+
     

@@ -130,10 +130,12 @@ export class Step1Component implements OnInit {
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
     this.insertJob.JobPositionId = this.jobProfile.jobPositionId;
+    this.appService.currentjobImp.subscribe(x=>this.insertJob.JobPriority=x);
+    this.appService.currentjobDue.subscribe(x=>this.insertJob.JobDue=x);
     // moved to step1
     // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
-
+    this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
@@ -268,9 +270,9 @@ if (this.appService.isDrafted.value != null) {
   }
   if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
   {
-    debugger
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
+    debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -405,7 +407,7 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.HiringProcessId = 1;
     this.insertJob.HiringManagerId = 5;
     this.insertJob.IsPrivate = true;
-    this.insertJob.ExpiryDate = new Date();
+    //this.insertJob.ExpiryDate = new Date();
     this.insertJob.SaveAsTemplate = true;
     this.insertJob.StepNumber = 4;
     this.insertJob.IsDrafted = false;

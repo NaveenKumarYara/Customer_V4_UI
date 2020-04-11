@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
+import { jobImps } from '../../models/jobPostInfo';
+
 declare var  $: any ;
 @Component({
   selector: 'app-steps-step1-jobprofile',
@@ -14,6 +16,8 @@ hasCompleteDescription: boolean;
 jobDescription: string;
 hasCompleteDescriptionList: any;
 jobPositionId:string;
+jobPriority:number=3;
+jobimplist:jobImps[]=[];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
 
@@ -29,10 +33,24 @@ jobPositionId:string;
     //   $('#completeDescription').prop('disable', false);
     // }
   }
+
+  updateJobImp() {
+    this.appService.updateJobImp(this.jobPriority);
+  }
+
+  GetJobPriority() {
+     this.appService.GetJobPriority().subscribe(res => {
+      this.jobimplist = res;
+  });
+  }
+
+
   ngOnInit() {
+    this.GetJobPriority();
     this.populatedescriptioncheck();
    // if (localStorage.getItem('jobId') != null) {
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
+    this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
     // if (this.hasCompleteDescription === undefined) {
     //   this.hasCompleteDescription = false;
     // }

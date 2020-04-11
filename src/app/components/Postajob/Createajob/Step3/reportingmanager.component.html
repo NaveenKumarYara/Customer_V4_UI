@@ -56,6 +56,34 @@
 </div>
 
 
+<div class="form-group job-title-group reporting-manager-group">
+  <label for="" class="question">Immigration Details <small>(Optional)</small></label>
+  <div class="form-row row">
+    <div class="col-md-9">
+      <ng-select class="custom-style" [items]="ImmigrationList" placeholder="Select Immigration"
+        bindLabel="ImmigrationStatus" bindValue="ImmigrationStatusId" (change)="updateStatus($event)"
+        [hideSelected]="true"  [(ngModel)]="selectStatus" [virtualScroll]="true"
+        #Imsstatus="ngModel" name="Imsstatus">
+      </ng-select>
+    </div>
+    <div class="col-md-1">
+      <button class="btn add-btn form-control mt-0"  type="button" data-toggle="modal" (click)="AddStatus()">+</button>
+    </div>   
+  </div>
+  <!---->
+
+  <!-- <ul class="data-list">
+    <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
+  </ul> -->
+</div>
+<div class="job-title-suggestions">
+  <div class="checkbox" *ngFor="let  ims of ImmigrationListData; let i = index">
+    <label><span class="box" (click)="deleteIms(i)">{{ims?.ImmigrationStatus}}  x </span>  </label>
+  </div>
+
+</div>
+
+
 <!--Manage Reporting manager Dialog 17-03-2020-->
   <div class="modal fade managereportingmanager" id="othersdialog" role="dialog">
     <div class="modal-dialog modal-sm">

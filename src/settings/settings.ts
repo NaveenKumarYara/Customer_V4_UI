@@ -158,4 +158,8 @@ export class Settings {
   GetJobLocationbyJobId:string;
   ReportingTeam:string;
   DeleteJobResponsibility:string;
+  GetjobImps:string;
+  GetDueDateList:string;
+  GetImmigrationList:string;
+  SaveJobImmigration:string;
   }

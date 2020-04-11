@@ -268,9 +268,9 @@ export class Step4Component implements OnInit {z
   //   this.insertJob.ContractExtended = true;
   //   this.insertJob.ContractDuration = this.contractDuration;
   // } // this.appService.contractDuration.value;
-    let date = new Date();  
-    let val = new Date(date.setDate(date.getDate() + 30 )) ;
-    this.insertJob.ExpiryDate = this.ExpiryDate ? this.ExpiryDate : val;
+    // let date = new Date();  
+    // let val = new Date(date.setDate(date.getDate() + 30 )) ;
+    // this.insertJob.ExpiryDate = this.ExpiryDate ? this.ExpiryDate : val;
     this.insertJob.HiringProcessId = this.intwType; // this.appService.interviewType.value.InterviewTypeId;
     this.insertJob.HiringManagerId = this.reporting; // this.appService.reportingManager.value.UserId;
     this.insertJob.XmlTechnicalTeam = this.appService.addedteammembers;
