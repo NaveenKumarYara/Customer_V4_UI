@@ -18,12 +18,13 @@ import {ProgressBarModule} from 'angular-progress-bar';
 import {SharedModule} from '../../shared/shared.module';
 import{MonthToYearPipe} from './dashboard-recent-applications/Exp.pipe';
 import { RatingModule } from 'ng-starrating';
+import {RemovePipe} from './dashboard-recent-applications/removeduplicates.pipe'
 
 @NgModule({
   imports: [
     ChartsModule, CommonModule,RatingModule, NgxSpinnerModule, MatCardModule, SharedModule,MatProgressSpinnerModule, ProgressBarModule,   NgCircleProgressModule
     ],
     providers: [DashboardService],
-  declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent,MonthToYearPipe]
+  declarations: [DashboardviewComponent, DashboardJobsviewComponent,InviteFriendContentComponent, DashboardActivejobsComponent, DashboardScheduledInterviewComponent, DashboardContentComponent,DashboardRecentjobsComponent, DashboardRecentApplicationsComponent,RecentjobsCountComponent,MonthToYearPipe,RemovePipe]
 })
 export class DashboardModule { }

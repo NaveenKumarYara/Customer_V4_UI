@@ -146,9 +146,6 @@
                                     <p>
                                        {{jobdetailscustomer?.JobInfo?.ExpiryDate | date:'mediumDate'}}
                                     </p>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.DueIn!=null && jobdetailscustomer?.JobInfo?.DueIn!=''">
-                                       Expiries On {{jobdetailscustomer?.JobInfo?.DueIn}}
-                                     </p>
                                 </div>
                             </div>
                         
@@ -160,6 +157,25 @@
                                              {{imi?.ImmigrationStatus}}
                                         </p>
                                     </ng-container>
+                                    <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob.length==0">
+                                        <p>
+                                            N/A
+                                        </p>
+                                    </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="group">
+                                        <h4 >Remote</h4>
+                                      
+                                        <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId==0">
+                                             No
+                                        </p>
+                                        <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId==1">
+                                           Yes
+                                       </p>
+                                    
                                     </div>
                                 </div>
                             
@@ -233,7 +249,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-6">
+                            <!-- <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Matching Criteria</h4>
                                     <p *ngFor="let match of jobdetailscustomer?.MatchingCrieterias" >
@@ -256,7 +272,7 @@
                                        N/A
                                     </P>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Technical Team for Screening</h4>
@@ -432,11 +448,6 @@
                                     <li class="col-md-12 col-xs-12 no-exp ng-star-inserted"  *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills; let i=index">
                                         <span class="name">{{skill?.SkillName}} </span>
                                         <span class="experience"> {{skill?.MinimumExp|monthsPipe}}-{{skill?.MaximumExp|monthsPipe}} Yrs</span>
-                                    </li>
-                                    <li class="col-md-12 col-xs-12 no-exp ng-star-inserted">
-                                        <!--Implement below div when splitting of Secondary Skill and display the same-->
-                                        <span class="name"> MS Office <i>(Secondary Skill)</i></span>
-                                        <span class="experience"> 3.0-6.0 Yrs</span>
                                     </li>
                                 </ul>
                             </div>

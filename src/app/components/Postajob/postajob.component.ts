@@ -60,7 +60,7 @@ export class PostajobComponent implements OnInit {
   this.appService.jobtitle.next('');
   this.appService.JobDue.next(3);
   this.appService.JobImp.next(3);
-  this.appService.JobDueDate.next(new Date());
+  //this.appService.JobDueDate.next(new Date());
   this.appService.ImmigrationforJobs=[];
   this.appService.ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
   this.appService.stepNumber.next('1');
@@ -98,6 +98,9 @@ export class PostajobComponent implements OnInit {
   this.appService.addedteammembers = [];
   this.appService.addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
   this.appService.teammembers = [];
+  let date = new Date();  
+  let val = new Date(date.setDate(date.getDate() + 30 )) ;
+  this.appService.JobDueDate.next(val);
   this.appService.teammembersChanged = new Subject<CustomerUsers[]>();
   // this.appService.currentcustomerUsers = new Observable();
   // this.appService.selectedskilltypechanges = new Observable();
