@@ -14202,8 +14202,12 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     padding: 1.75rem 3.25rem;
 }
 
+
+.page--job-details #selectedJobDetails .col-md-4 {
+   height: 130px;
+}
 .page--job-details #selectedJobDetails .group {
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .page--job-details #selectedJobDetails .group h4 {
