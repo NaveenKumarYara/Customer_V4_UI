@@ -82,7 +82,6 @@ this.appService.updateOpenings(this.noOfOpenings);
       this.multilocationwisejobs=this.appService.JobLocationsMulti;
       this.locationwithpostions;
       this.showMyContainer=this.appService.locationselect;
-      debugger
      this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
     //   const check = this.locationExists(this.prfLoc, this.locationwisejobs);
     // if (!check && this.prfLoc.CityId > 0 ) {
@@ -162,7 +161,7 @@ this.appService.updateOpenings(this.noOfOpenings);
     }
     this.values.CityId=this.selectedCity.CityId;
     this.values.CityName=this.selectedCity.CityName;
-   
+    this.locationwisejobs.length=0;
     this.locationwisejobs=[];
     this.appService.locationselect = true;
    }
@@ -181,6 +180,8 @@ this.appService.updateOpenings(this.noOfOpenings);
     this.ngSelect.handleClearClick();
     this.appService.JobLocations = this.locationwisejobs;
     this.multilocationwisejobs=[];
+    this.locationwithpostions.length=0;
+    this.locationwithpostions=[];
     this.appService.locationselect = false;
     //this.deletemLocation(1);
    }
