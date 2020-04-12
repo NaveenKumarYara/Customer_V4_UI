@@ -58,7 +58,7 @@ export class AppService {
   constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
-  locationselect:boolean;
+  locationselect:boolean=false;
   RemoteWork:boolean=false;
 
   domain: GetDomain[] = [];

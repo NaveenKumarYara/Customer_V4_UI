@@ -82,6 +82,7 @@ this.appService.updateOpenings(this.noOfOpenings);
       this.multilocationwisejobs=this.appService.JobLocationsMulti;
       this.locationwithpostions;
       this.showMyContainer=this.appService.locationselect;
+      debugger
      this.appService.currentOpenings.subscribe(x => this.noOfOpenings = x);
     //   const check = this.locationExists(this.prfLoc, this.locationwisejobs);
     // if (!check && this.prfLoc.CityId > 0 ) {

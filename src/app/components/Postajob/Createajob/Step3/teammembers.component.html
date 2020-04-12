@@ -12,11 +12,11 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <button class="btn add-btn form-control mt-0"  [disabled]="!teamForm.valid" type="submit">+</button>
+                <button class="btn add-btn form-control mt-0"   type="submit">+</button>
             </div>
         </form>
             <div class="col-md-1">
-                <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialogs"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
               </div>
         </div>
    
@@ -36,7 +36,7 @@
 
 
 
-<div class="modal fade managereportingmanager" id="othersdialog" role="dialog">
+<div class="modal fade managereportingmanager" id="othersdialogs" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">

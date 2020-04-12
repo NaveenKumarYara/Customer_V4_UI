@@ -126,10 +126,10 @@ export class TeammembersComponent implements OnInit, OnDestroy {
            setTimeout(() => { 
             this.Addform.reset();  
             this.selectedUserName=null;  
-            this.flag=false;       
+            //this.flag=false;       
             this.toastr.dismissToast;                   
             this.getcustomerusers();
-            $("#othersdialog").modal('hide');
+            $("#othersdialogs").modal('hide');
             this.ngOnInit();
           }, 1000);
                

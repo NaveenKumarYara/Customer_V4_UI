@@ -303,6 +303,7 @@ export class Step4Component implements OnInit {z
           localStorage.removeItem('hide');
           localStorage.removeItem('SalaryTypeId');
           this.TemplateName= null;
+          this.appService.locationselect=false;
           // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
