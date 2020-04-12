@@ -92,13 +92,24 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
       let val = new Date(date.setDate(date.getDate() + 60 )) ;
       this.ExpiryDate = val;
     }
-    else if(this.Expiry==5)
-    {
-      this.showDate=true;
+      else if(this.Expiry==5)
+      {
+        this.showDate=true;
+        let date = new Date();  
+        let val = new Date(date.setDate(date.getDate() + 30 )) ;
+        this.ExpiryDate = val;
+        debugger
+      }
+      this.appService.updateJobDueDate(this.ExpiryDate);    
+      this.appService.updateJobDue(this.Expiry);
     }
-    this.appService.updateJobDueDate(this.ExpiryDate);    
-    this.appService.updateJobDue(this.Expiry);
-  }
+  
+    changeMethod(val)
+    {
+      if(val!=null)
+      this.ExpiryDate=val;
+      this.appService.updateJobDueDate(this.ExpiryDate);   
+    }
 
   GetJobDueIn() {
      this.appService.GetJobDueIn().subscribe(res => {
@@ -178,13 +189,6 @@ suggestedDepartment() {
   });
 }
 ngOnInit() {
-  $(function(){
-		$("#datepicker").datepicker({
-			autoclose: true,
-			todayHighlight: true,
-			dateFormat: 'mm/dd/yyyy'
-		}).datepicker('update', new Date());
-	});
   this.searchDepartment();
   this.GetJobDueIn();
   this.departmentsList = this.appService.getDepartment();

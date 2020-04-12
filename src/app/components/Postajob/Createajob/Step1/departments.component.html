@@ -116,7 +116,7 @@
   <div class="form-group">   
   <ng-container *ngIf="showDate">
     <label for="jobPri" class="jobid">Custom Date </label>
-    <input type="date" class="form-control"  #Edate="ngModel" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*"  id="datepicker" required>
+    <input type="date" class="form-control"  #Edate="ngModel" (ngModelChange)="changeMethod($event)" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*"  id="datepicker" required>
   </ng-container>
 </div>
   

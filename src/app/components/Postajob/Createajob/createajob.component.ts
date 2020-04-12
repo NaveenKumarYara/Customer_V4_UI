@@ -260,8 +260,9 @@ editMode: string;
 
       this.appService.updateJobImp(this.jobdetailscustomer.JobInfo.Id);
       this.appService.updateJobDue(this.jobdetailscustomer.JobInfo.JobDueDateId);
+      this.appService.JobDueDate.next(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
+      this.appService.updateJobDueDate(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
       this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
-      debugger
       this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);
       this.appService.teammembers = this.jobdetailscustomer.TechnicalTeam;
       this.appService.teammembersChanged.next(this.appService.teammembers);

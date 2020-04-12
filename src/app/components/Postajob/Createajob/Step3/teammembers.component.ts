@@ -54,8 +54,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   public addTeammembers() {
     // const newDomain = new CustomerUsers();
     // newDomain.FirstName = this.selectedUserName;
-   
-    if(this.getTeammember.FirstName!='others')
+    if(this.getTeammember.FirstName!=undefined)
     {
       this.appService.addTeammember(this.getTeammember);
       //this.slist.push(this.selectedManager);
@@ -125,7 +124,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
            this.toastr.success('Please check your email to reset the password','Success');
            setTimeout(() => { 
             this.Addform.reset();  
-            this.selectedUserName=null;  
+            this.selectedUserName=undefined;  
             //this.flag=false;       
             this.toastr.dismissToast;                   
             this.getcustomerusers();

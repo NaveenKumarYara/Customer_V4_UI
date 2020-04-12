@@ -64,12 +64,14 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       
   }
   updateStatus(val) {
+
+      this.selectStatus =  val.ImmigrationStatusId;
+      let selected = new jobImmigration();
+      selected.ImmigrationStatus  = val.ImmigrationStatus;
+      selected.ImmigrationStatusId  = val.ImmigrationStatusId;
+      this.selectedIms=selected;  
    // this.appService.updateManager(this.selectedItem.toString());
-     this.selectStatus = val.FirstName;
-     let selected = new jobImmigration();
-     selected.ImmigrationStatus  = val.ImmigrationStatus;
-     selected.ImmigrationStatusId  = val.ImmigrationStatusId;
-     this.selectedIms=selected;  
+
   }
 
   updateManager(val) {
@@ -182,6 +184,8 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     Add()
     {
             this.flag=false;
+            if(this.selectedManager!=undefined)
+            {
         this.slist.push(this.selectedManager);
         //this.slist.push(this.selectedManager);
         this.suggestedManagers=this.slist;
@@ -223,19 +227,13 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
               }
             });  
         }
-     
-      
-
-        
-      
-
-      
-     
+      }        
     }
 
     AddStatus()
     {
-          
+        if(this.selectedIms!=undefined)
+        {
         this.imsList.push(this.selectedIms);
         //this.slist.push(this.selectedManager);
         this.ImmigrationListData=this.imsList;
@@ -274,14 +272,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
               }
             });
         }
-     
-      
-
-        
-      
-
-      
-     
+      }    
     }
 
     PopulateRoles(val)
