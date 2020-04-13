@@ -3142,3 +3142,13 @@ position: relative;
     width: 250px;
     height: 250px;
   }
+  /*Download Resume button styles*/
+  .download-resume .btn-download-resume{
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  .download-resume i.fa{
+    font-size: 15px;
+    padding-right: 5px;
+  }
+  
