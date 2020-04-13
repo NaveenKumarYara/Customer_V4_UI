@@ -12379,6 +12379,10 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-color: #A4D975;
 }
 
+.page--manage-jobs .status.Freezed{
+    background-color: #FBD57C;
+}
+
 .page--manage-jobs .status.withdrawn {
     background-color: rgb(197, 14, 14);
 }
