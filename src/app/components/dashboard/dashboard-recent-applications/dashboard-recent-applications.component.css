@@ -12,7 +12,7 @@ header h2 img {
 }
 /*styles 08-04-2020*/
 .applications .domains{
-    padding-left: 30px;
+    padding-left: 15px;
 }
 .applications .domains label{
     font-size: 10px;
@@ -51,7 +51,7 @@ header h2 img {
     padding: 20px;
 }
 .applications .card .header .ui-pic{
-    left: 30px;
+    left: 10px;
 }
 .applications .card .left{
     flex-basis: 60%;
@@ -61,7 +61,7 @@ header h2 img {
     padding-left: 25px;
 }
 .applications .candidate-info{
-    padding-right: 5px;
+    padding: 0px 13px 0px;
 }
 .applications .card .meta span{
     font-size: 0.8rem;
@@ -84,6 +84,7 @@ header h2 img {
 }
 .right .disc-placeholder{
     border-right: 2px solid #E0E3EF;
+    padding-top: 4%;
 }
 .right .applied-for{
     margin-bottom: 12%;

@@ -16719,7 +16719,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-size: 1.5rem;
     line-height: 1.5em;
 }
-
+.page--dashboard .jobs .stats .jobs-redirect{
+    cursor:pointer;
+}
 .page--dashboard .applications .card {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -16867,14 +16869,20 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     .page--dashboard .applications .card .left, .page--dashboard .jobs .card .left {
         -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
+        flex-grow: 2;
+    }
+    .page--dashboard .applications .card .left .circle-progress{
+        position: absolute;
+        right: 0;
+        top: 35%;
     }
     .page--dashboard .applications .card .left>img, .page--dashboard .jobs .card .left>img {
         cursor: pointer;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         position: absolute;
         top: 20px;
-        right: 20px;
+        right: 14px;
     }
     .page--dashboard .applications .card>.v-divider, .page--dashboard .jobs .card>.v-divider {
         display: none;
