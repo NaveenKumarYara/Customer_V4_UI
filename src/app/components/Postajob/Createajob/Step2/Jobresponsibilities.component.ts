@@ -63,13 +63,11 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     values.UserId =this.customer.UserId;
     values.JobId =jobId;
     values.ResponsebilityId= val.map((e)=>e.RoleId).toString();
-    debugger
     this.appService.SaveJobRoleResponse(values).subscribe(res=>
       {
         if(res == 0)
         {
           this.appService.getJobResponsibilities(jobId).subscribe(x => {
-           debugger
             this.loadResponsibilities = x; // need to check condition
           // this.appService.this.responsibilities
           const roles: Roles[] = [] as Roles[];
