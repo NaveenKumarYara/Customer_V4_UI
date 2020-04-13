@@ -95,10 +95,6 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
       else if(this.Expiry==5)
       {
         this.showDate=true;
-        let date = new Date();  
-        let val = new Date(date.setDate(date.getDate() + 30 )) ;
-        this.ExpiryDate = val;
-        debugger
       }
       this.appService.updateJobDueDate(this.ExpiryDate);    
       this.appService.updateJobDue(this.Expiry);

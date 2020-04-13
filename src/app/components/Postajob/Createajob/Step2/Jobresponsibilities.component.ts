@@ -47,20 +47,21 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
     this.appService.responsibilities=[];
     this.appService.addedresponsibilities=[];
     let jobId = parseInt(job)
-    this.appService.DeleteResponsibility(jobId).subscribe(res =>{
+    val.forEach(element => {
+      const role = new Roles();
+      role.Role = element.Role;
+      role.RoleId = element.RoleId;
+      this.appService.addResponsibilities(role);
+    })
+    //this.appService.DeleteResponsibility(jobId).subscribe(res =>{
       debugger
-      if(res == 0)
-      {
-        val.forEach(element => {
-          const role = new Roles();
-          role.Role = element.Role;
-          role.RoleId = element.RoleId;
-          this.appService.addResponsibilities(role);
-        })
-      }
+      // if(res == 0)
+      // {
+       
+      // }
 
       
-    });
+    //});
   }
 
 
