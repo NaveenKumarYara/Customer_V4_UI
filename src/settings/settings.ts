@@ -162,4 +162,5 @@ export class Settings {
   GetDueDateList:string;
   GetImmigrationList:string;
   SaveJobImmigration:string;
+  SaveJobResponseRoles:string;
   }

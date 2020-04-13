@@ -4,9 +4,10 @@ import { FormControl, NgForm } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
 import { AppService } from '../../../../app.service';
 import { Subscription } from 'rxjs/Subscription';
-import { RoleModel, Roles } from '../../models/jobPostInfo';
+import { RoleModel, Roles ,RolesSave} from '../../models/jobPostInfo';
 import { MatDialog } from '@angular/material';
 import { ResponsibilitiesDialogComponent } from './responsibilities-dialog/responsibilities-dialog.component';
+import { element } from 'protractor';
 // import { JobdetailsComponent } from './Jobdetails.component';
 // tslint:disable-next-line:no-unused-expression
 declare var $: any;
@@ -22,9 +23,13 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
  @ViewChild('rolesForm') rolesForm: NgForm;
   private subscription: Subscription;
   responsibilities: '';
+  loading = false;
   responsibilitieslist: Roles[];
+  loadResponsibilities: LoadResponsibilities[] = [];
   roleModel: RoleModel;
+  customer: any;
   roles: Roles;
+  listNew=[];
   roleList: any = [];
   roleIdList: PjRole[] = [];
   roleId = new PjRole();
@@ -34,6 +39,7 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService, private dialog: MatDialog) {
       this.roleModel = new RoleModel(0, null, null);
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.appService.currentjobtitle.subscribe((data) => {
         this.jobTitle = data; // And he have data here too!
       });
@@ -53,17 +59,41 @@ export class JobResponsibilitiesComponent implements OnInit, OnDestroy {
       role.RoleId = element.RoleId;
       this.appService.addResponsibilities(role);
     })
-    //this.appService.DeleteResponsibility(jobId).subscribe(res =>{
-      debugger
-      // if(res == 0)
-      // {
-       
-      // }
-
-      
-    //});
+    let values = new RolesSave();
+    values.UserId =this.customer.UserId;
+    values.JobId =jobId;
+    values.ResponsebilityId= val.map((e)=>e.RoleId).toString();
+    debugger
+    this.appService.SaveJobRoleResponse(values).subscribe(res=>
+      {
+        if(res == 0)
+        {
+          this.appService.getJobResponsibilities(jobId).subscribe(x => {
+           debugger
+            this.loadResponsibilities = x; // need to check condition
+          // this.appService.this.responsibilities
+          const roles: Roles[] = [] as Roles[];
+          // [] as Car[];
+          this.clearExistingResponsibilities();
+          this.loadResponsibilities.forEach(element => {
+            const role = new Roles();
+            role.Role = element.RolesAndResponsibilities;
+            role.RoleId = element.RoleId;
+            this.appService.addResponsibilities(role);
+           
+          })
+        });
+        }
+      });
   }
 
+
+  clearExistingResponsibilities() {
+    this.appService.responsibilities = [];
+        // this.appService.responsibilitesChanged = new Subject<Roles[]>();
+        this.appService.addedresponsibilities = [];
+        // this.appService.addedresponsibilitiesChanged = new Subject<PjRole[]>();
+  }
 
 
   // private addResponsibilities() {
@@ -229,3 +259,16 @@ export class PjRole {
   public RoleId: number;
 }
 
+
+
+
+export class LoadResponsibilities {
+  public JobResponsibilityId: number;
+  public JobId: number;
+  public RoleId: number;
+  public RolesAndResponsibilities: string;
+}
+export class AddResp {
+  public RolesandResponsibilities: string;
+  public Index: number;
+}

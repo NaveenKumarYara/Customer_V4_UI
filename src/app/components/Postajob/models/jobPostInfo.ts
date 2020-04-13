@@ -71,6 +71,12 @@ export class InsertJob {
     public RoleId: number;
     public Role: string;
     }
+
+    export class RolesSave {
+      UserId:number;
+      JobId:number;
+      ResponsebilityId:string;
+      }
     // For edit Roles
     export class EditRoles {
       public RoleId: number;

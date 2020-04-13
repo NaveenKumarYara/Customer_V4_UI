@@ -154,5 +154,6 @@
   "GetjobImps":"${Identity_URL}/api/GetJobPriority",
   "GetDueDateList":"${Identity_URL}/api/GetJobDueIn",
   "GetImmigrationList":"${Identity_URL}/api/GetImmigrationStatus",
-  "SaveJobImmigration":"${Identity_URL}/api/SaveJobImmigrations"
+  "SaveJobImmigration":"${Identity_URL}/api/SaveJobImmigrations",
+  "SaveJobResponseRoles":"${Identity_URL}/api/SaveJobResponsibilites"
 }

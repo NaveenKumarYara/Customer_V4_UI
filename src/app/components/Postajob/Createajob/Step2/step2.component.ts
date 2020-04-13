@@ -187,6 +187,7 @@ export class Step2Component implements OnInit {
     // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
     this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
+    debugger
     // end moved to step2
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
@@ -277,6 +278,7 @@ export class Step2Component implements OnInit {
       }
        if(this.JobIds.length==0 || this.JobIds == undefined)
       {
+        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             // this.insertJob.JobId = data;

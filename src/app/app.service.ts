@@ -546,6 +546,14 @@ GetBillingAddressforCustomer(customerId:number):Observable<GetBillingAddressCust
       });
   }
 
+  SaveJobRoleResponse(body) :any {
+    return this.http.post(this.settingsService.settings.SaveJobResponseRoles, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   UpdatePlanDetails(body) :any {
     return this.http.post(this.settingsService.settings.PlanUpdate, body)
       .map((res: Response) => res)

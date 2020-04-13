@@ -38,14 +38,14 @@
             </div>
         </form>
     </div>
-    <ul class="responsibility-list" dragula="responsibilitieslist" [dragulaModel]="responsibilitieslist" (dragulaModelChange)="onChange($event)">
+    <ul class="responsibility-list" dragula="responsibilitieslist" [dragulaModel]="responsibilitieslist"  (dragulaModelChange)="onChange($event)">
         <li *ngFor="let responsibility of responsibilitieslist; let i = index">
             <label for="{{responsibility.RoleId}}" class="radio">
         <div>
           <input type="checkbox" (change)="changeRoles($event)" [ngModel]="responsibility.RoleId" class="radio-input" />
           <span class="radio-btn"></span>
         </div>
-        <span>{{responsibility.Role}}</span>
+        <span [class.spinner]="loading">{{responsibility.Role}}</span>
         <span class="close" (click)="deleteResponsibility(i)">&times;</span>
       </label>
         </li>
