@@ -1,5 +1,4 @@
-<div class="form-group position-group multiple-locations">
-    <form>
+<div class="form-group position-group multiple-locations">  
         <label for="" class="question">At which location the job is available?</label>
             <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
                 post the job for 
@@ -76,6 +75,7 @@
   [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
 </ng-select> -->
         <ng-container *ngIf="!showMyContainer">
+            <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
             <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
                 placeholder="Select Cities" bindLabel="CityName" bindValue="CityId"
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
@@ -92,6 +92,7 @@
                     </label>
                 </div>
             </div>
+        </form>
             <div class="form-group position-group">
                 <label for="" class="question">How many open positions do you currently have for this Job Title?</label>
                 <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
@@ -125,5 +126,4 @@
 
         <!-- <span class="help-block radio-error1">Location is required.</span> -->
         <!-- </div> -->
-    </form>
 </div>
