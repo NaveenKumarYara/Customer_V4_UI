@@ -60,6 +60,7 @@ matchingPersentage=[];
       this.appService.currentVideo.subscribe((data) => {
         this.videoProfile = data; // And he have data here too!
       });
+
       // this.appService.addedteammembersChanged.subscribe((data) => {
       //   this.teamMembers = data; // And he have data here too!
       // });
@@ -94,14 +95,15 @@ matchingPersentage=[];
       this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
       this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
     }
+    this.reportinManager = this.appService.reportingList;
+    this.immigrationsList = this.appService.ImmigrationforJobs;
+    this.teamMembers = this.appService.teammembers;
     // this.contractDuration = this.appService.contractDuration.value;
     // this.interviewTypeId = this.appService.interviewType.value.InterviewTypeId;
     // this.interviewType = this.appService.interviewType.value.InterviewType;
     // this.reportinManagerId = this.appService.reportingManager.value.UserId;
     // this.reportinManager = this.appService.reportingManager.value.FirstName;
-    this.reportinManager = this.appService.reportingList;
-    this.immigrationsList = this.appService.ImmigrationforJobs;
-   this.teamMembers = this.appService.teammembers;
+   
   }
 
 

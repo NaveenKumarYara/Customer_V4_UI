@@ -239,7 +239,8 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         this.ImmigrationListData=this.imsList;
         this.selectStatus=null;
         this.appService.immigrations=this.ImmigrationListData;
-        
+        this.appService.ImmigrationforJobs=this.ImmigrationListData;
+        this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);
         if(this.JobIds&&this.JobIds.length>0)
         {
           this.JobIds.forEach((e)=>
