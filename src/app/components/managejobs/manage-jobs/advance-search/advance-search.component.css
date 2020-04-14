@@ -27,9 +27,23 @@
 }
 
 .adv-filters .form-group .form-control.loc-search1 {
-    height: 50px !important;
+    height: 45px !important;   
+    /* changes by Aniket-- 50px to 45 */
     border: 1px solid #E0E3EF;
 }
+    /* changes by Aniket-- Start -----------------------*/
+    .styled-select-box{
+        height: 45px !important;
+    }
+    mat-expansion-panel-header{
+        height:80px !important;
+    }
+    /* mat-expansion-panel
+    {
+         background-color: #F5F6FA; 
+    } */
+
+    /* changes by Aniket--END------------------------------ */
 
 .adv-filters .form-group .control:focus {
     border-color: #b4bcd8;
