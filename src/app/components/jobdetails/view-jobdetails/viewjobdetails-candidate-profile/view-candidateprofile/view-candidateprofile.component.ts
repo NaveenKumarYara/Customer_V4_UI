@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,9 @@ import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 import { HttpParams } from '@angular/common/http';
 import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
+import * as FileSaver from 'file-saver';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { saveAs } from 'file-saver';
 import { mappingdetails } from './mappingdetails';
 declare var $: any;
 
@@ -27,6 +30,8 @@ export class ViewCandidateprofileComponent implements OnInit {
   email: any;
   profileview: any;
   profileId: any;
+  fileType = new Resume();
+  fileExt: any;
   details: mappingdetails;
   list: any;
   noTest: boolean = false;
@@ -61,12 +66,54 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
     this.noTest = false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
   }
+
+  DownloadResume(val): void {
+      this._service.GetService('ProfileAPI/api/GetResume?profileId=', this.data.ProfileId)
+       .subscribe(fileData => { 
+          this.fileType = fileData;
+          let exp = this.fileType.Url.split('.').pop();
+          this.fileExt = exp;
+        this.toastr.success('Downloading!', 'Success!');
+        setTimeout(() => {
+          this.toastr.dismissToast;
+        }, 3000);   
+         debugger 
+         
+          if(this.fileExt == 'pdf')
+          {
+          let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+          let blob = new Blob([byteArr], { type: 'application/pdf' });
+          FileSaver.saveAs(blob,val);
+          }
+          else if(this.fileExt == 'doc' ||  this.fileExt == 'docx')
+          {
+            var extension = '.doc';
+            let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+            let blob = new Blob([byteArr], { type: 'application/pdf' });
+            FileSaver.saveAs(blob,val+extension);
+          }
+        });
+    
+
+    
+  }
+
+  base64ToArrayBuffer(base64) {
+    const binary_string = window.atob(base64);
+    const len = binary_string.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
   /*dashboard graph*/
   // public lineChartData: Array<any> = [
   //   {data: [1, 2, 2, 3, 3, 4, 5], label: 'ANGULAR'},
@@ -271,4 +318,11 @@ export class LegendList {
   GroupPer: string;
   groupName: any;
   response: any;
+}
+
+export class Resume {
+  ResumeId: number;
+  ProfileId: number;
+  Url: string;
+  ResumeFile: string;
 }
