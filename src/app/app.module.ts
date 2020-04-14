@@ -85,6 +85,7 @@ import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular
 import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmonth.pipe';
 import { DragulaModule } from 'ng2-dragula';
 import { RatingModule } from 'ng-starrating';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -156,6 +157,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     RatingModule,
     JobdetailsModule,
     DragulaModule.forRoot(),
+    AngularDateTimePickerModule,
     SharedModule,
     CompanyProfileModule,
     DashboardModule,

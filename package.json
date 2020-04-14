@@ -32,6 +32,7 @@
     "angular-progress-bar": "^1.0.9",
     "angular-tag-cloud-module": "^2.6.0",
     "angular2-cookie": "^1.2.6",
+    "angular2-datetimepicker": "^1.1.1",
     "angularcli-star-rating": "^0.2.5",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",

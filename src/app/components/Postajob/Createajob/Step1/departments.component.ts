@@ -9,6 +9,7 @@ import { AppService } from '../../../../app.service';
 import {GetCustomerDepartments} from '../../../../../models/GetCustomerDepartments';
 import { ClientModel, DepartmentModel, PjDepartments, jobDues } from '../../models/jobPostInfo';
 import { NgForm } from '@angular/forms';
+import { IfObservable } from 'rxjs/observable/IfObservable';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-departments',
@@ -37,7 +38,14 @@ export class DepartmentsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
   addedDepartmentList: PjDepartments[] = [];
   Expiry:number=3;
-  ExpiryDate:Date;
+  //ExpiryDate:Date;
+  ExpiryDate: Date;
+    settings = {
+        bigBanner: true,
+        timePicker: false,
+        format: 'dd-MM-yyyy',
+        defaultOpen: false
+    }
   jobDuelist:jobDues[]=[];
 
   constructor(private appService: AppService, private router: Router) {
@@ -188,8 +196,23 @@ ngOnInit() {
   this.searchDepartment();
   this.GetJobDueIn();
   this.departmentsList = this.appService.getDepartment();
-  this.appService.currentjobDue.subscribe(x=>this.Expiry=x);
+  this.appService.currentjobDue.subscribe(
+    (data)=>
+    {
+      this.Expiry=data;
+      if(data==5)
+      {
+        this.showDate=true;
+      }
+      else
+      {
+        this.showDate=false;
+      }
+    }
+  
+    );
   this.appService.currentjobDueDate.subscribe(y=>this.ExpiryDate=y);
+ 
   // if (this.departmentsList.length === 0) {
   // this.appService.GetJobDepartments(parseInt(localStorage.getItem('jobId'), 10)).subscribe(
   //   x => {this.departmentsList = x;
