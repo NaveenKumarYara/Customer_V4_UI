@@ -26,9 +26,17 @@
                             <img src="../../../../assets/images/bg-check.svg" title="Background Checke"
                                 alt="Background Checked">
                             <img src="../../../../assets/images/verified.svg" title="References" alt="References">
-                            <ng-container *ngIf="recentapplicants?.IsCertified==true">
+                            <ng-container  *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseCert" >
+                               <ng-container *ngIf="recentapplicants?.IsCertified==true">
                                 <img src="../../../../assets/images/certificate.svg" width="25" alt="certified" title="Certified">
                             </ng-container>
+                            </ng-container>
+                           <ng-template #firstelseCert >
+                            <ng-container *ngIf="recentapplicants?.IsCertified==true">
+                                <img src="../../../../assets/images/certificate.svg" width="25" alt="certified" (click)="GetRedirect(recentapplicants.JobId,recentapplicants.ProfileId)" title="Certified">
+                            </ng-container>
+                           </ng-template>
+                          
                         </div>
                         <!-- .status -->
                         <div class="meta">
@@ -65,7 +73,12 @@
                 <div class="candidate-info">
                     <ng-container *ngFor="let sk of recentapplicants?.TopSkills| removeduplicates ;let i=index">
                         <div class="skills-section col-md-3" *ngIf="i<3">
+                            <ng-container  *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseSkill">
                             <h5 title="{{sk.split('|')[0]}}">{{sk.split('|')[0] | slice:0:10}}</h5>
+                            </ng-container>
+                            <ng-template #firstelseSkill>
+                                <h5  (click)="GetRedirect(recentapplicants.JobId,recentapplicants.ProfileId)"  title="{{sk.split('|')[0]}}">{{sk.split('|')[0] | slice:0:10}}</h5>
+                            </ng-template>
                             <h6>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Years</h6>
                             <!-- <div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
