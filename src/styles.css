@@ -25562,3 +25562,36 @@ table .table-prl-0 td {
     -ms-flex-align: center;
     align-items: center;
 }
+/*Filters styles*/
+
+.adv-filters .mat-expansion-panel-body div{
+    display: inline-block;
+    padding: 3px 6px;
+    background-color: #356bc2;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 12px;
+    margin-right:5px;
+    margin-bottom: 5px;
+}
+.adv-filters .mat-select-arrow{
+    color: transparent;
+}
+.adv-filters mat-expansion-panel{
+border-radius: 5px;
+}
+.adv-filters .mat-form-field-underline{
+    height: 0.5px;
+}
+.mat-select-search-panel{
+    border-radius: 5px;
+}
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate{
+    background: #356bc2;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: #356bc2;
+}
+.mat-expansion-panel-active{
+    box-shadow: 0 3px 1px -2px rgba(53, 107, 194, 1), 0 2px 2px 0 rgba(53, 107, 194, 1), 0 1px 5px 0 rgba(53, 107, 194, 1)
+}

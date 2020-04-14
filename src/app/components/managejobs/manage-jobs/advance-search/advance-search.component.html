@@ -123,97 +123,105 @@
         <!-- <button mat-button mat-dialog-close class="close">×</button> -->
     </div>
 
-<div class="row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
-   
-    <div class="col-md-12">
-        
-        <div class="input-row row ">
-            <form action="">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="job-type">Job Type</label>
+    <div class="row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
 
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                                 
-                                <mat-form-field>
-                                    <mat-select [formControl]="emp" placeholder="Employment Type" [multiple]="true" #multiSelect>
-                                      <ngx-mat-select-search [formControl]="empFilter"></ngx-mat-select-search>
-                                      <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                       [value]="empl">
-                                        {{empl.EmploymentType}}
-                                      </mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-                                </mat-panel-description>
-                            </mat-expansion-panel-header>
-             
-                            <div *ngFor="let emp of selectedJobType">
-                                {{emp.EmploymentType}}
-                            </div>
-                        </mat-expansion-panel>
+        <div class="col-md-12">
+
+            <div class="input-row row ">
+                <form action="">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="job-type">Job Type</label>
+
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+
+                                        <mat-form-field>
+                                            <mat-select [formControl]="emp" placeholder="Employment Type"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="empFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <div *ngFor="let emp of selectedJobType">
+                                    {{emp.EmploymentType}}
+                                </div>
+                            </mat-expansion-panel>
+                        </div>
+
                     </div>
 
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="job-type">Location</label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="job-type">Location</label>
 
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                                    <mat-form-field>
-                                        <mat-select [formControl]="bankMultiCtrl" placeholder="Locations" [multiple]="true" #multiSelect>
-                                          <ngx-mat-select-search [formControl]="bankMultiFilterCtrl"></ngx-mat-select-search>
-                                          <!-- (click)="saveLocations(bank$event.target.value)" -->
-                                          <mat-option *ngFor="let bank of filteredBanksMulti | async"  
-                                          [value]="bank">
-                                            {{bank.CityName}}
-                                          </mat-option>
-                                        </mat-select>
-                                      </mat-form-field>
-        
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
- 
-                    <ul *ngFor="let bank of cities?.value">
-                        <li>{{bank.name}}</li>
-                      </ul>
-                  
-                </mat-expansion-panel>
-                
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="bankMultiCtrl" placeholder="Locations"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="bankMultiFilterCtrl">
+                                                </ngx-mat-select-search>
+                                                <!-- (click)="saveLocations(bank$event.target.value)" -->
+                                                <mat-option *ngFor="let bank of filteredBanksMulti | async"
+                                                    [value]="bank">
+                                                    {{bank.CityName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <ul *ngFor="let bank of cities?.value">
+                                    <li>{{bank.name}}</li>
+                                </ul>
+
+                            </mat-expansion-panel>
+
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="job-type">Client</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <mat-form-field>
-                            <mat-select [formControl]="Client" placeholder="Client" [multiple]="true" #multiSelect>
-                              <ngx-mat-select-search [formControl]="ClientFilter"></ngx-mat-select-search>
-                              <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                               [value]="empl">
-                                {{empl.EmploymentType}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
-            </mat-expansion-panel>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="job-type">Client</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Client" placeholder="Client" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search [formControl]="ClientFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="job-type">Department</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <form #form="ngForm" class="cls-rel">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="job-type">Department</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <form #form="ngForm" class="cls-rel">
                             <input class="form-control loc-search1" autocomplete="off" type="text"
                                 [(ngModel)]="deptName" name="deptName" placeholder="Department" #searchd
                                 (keyup)="GetSearchDepartments(searchd.value)">
@@ -225,379 +233,425 @@
                                 </ul>
                             </div>
                         </form> -->
-                        <mat-form-field>
-                            <mat-select [formControl]="Department" placeholder="Department" [multiple]="true" #multiSelect>
-                              <ngx-mat-select-search [formControl]="DepartmentFilter"></ngx-mat-select-search>
-                              <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                               [value]="empl">
-                                {{empl.EmploymentType}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
-            </mat-expansion-panel>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Department" placeholder="Department"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="DepartmentFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
                     </div>
-                </div>
-                <!--Show & Hide Filters 01-04-2020-->
+                    <!--Show & Hide Filters 01-04-2020-->
 
-                <!--Profile Type-->
-                <div class="col-md-6" [hidden]="!profiletypefilter">
-                    <div class="form-group">
-                        <label for="addProfilestatusfilter">Profile Status</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <input type="text" class="form-control loc-search1" id="addProfilestatusfilter"
+                    <!--Profile Type-->
+                    <div class="col-md-6" [hidden]="!profiletypefilter">
+                        <div class="form-group">
+                            <label for="addProfilestatusfilter">Profile Status</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addProfilestatusfilter"
                             placeholder="Type and Search"> -->
-                            <mat-form-field>
-                                <mat-select [formControl]="profiletype" placeholder="Employment Type" [multiple]="true" #multiSelect>
-                                  <ngx-mat-select-search [formControl]="profiletypefilter"></ngx-mat-select-search>
-                                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                   [value]="empl">
-                                    {{empl.EmploymentType}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>This is the primary content of the panel.</p>
-                </mat-expansion-panel>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="profiletype" placeholder="Employment Type"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="profiletypefilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
                     </div>
-                </div>
-                <!---->
-                <!--Skills-->
-                <div class="col-md-6" [hidden]="!skillsfilter">
-                    <div class="form-group">
-                        <label for="addskillfilter">Skills</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <ng-select class="custom-style" [multiple]="true" [items]="skilllist | async" placeholder="Search here..." bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1"
+                    <!---->
+                    <!--Skills-->
+                    <div class="col-md-6" [hidden]="!skillsfilter">
+                        <div class="form-group">
+                            <label for="addskillfilter">Skills</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <ng-select class="custom-style" [multiple]="true" [items]="skilllist | async" placeholder="Search here..." bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1"
                         name="selectedSkillName" #skill="ngModel"  addTagText="Add Skill" [virtualScroll]="true" required>
                     </ng-select> -->
-                    <mat-form-field>
-                        <mat-select [formControl]="Skills" placeholder="Skills" [multiple]="true" #multiSelect>
-                          <ngx-mat-select-search [formControl]="SkillsFilter"></ngx-mat-select-search>
-                          <mat-option *ngFor="let empl of SkillsList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                           [value]="empl">
-                            {{empl.EmploymentType}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-                            
-                    </div>
-                </div>
-                <!---->
-                <!--Last Posted-->
-                <div class="col-md-6" [hidden]="!lastpostedfilter">
-                    <div class="form-group">
-                        <label for="addlastpostedfilter">Last Posted</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <input type="text" class="form-control loc-search1" id="addlastpostedfilter"
-                            placeholder="Type and Search"> -->
-                            <mat-form-field>
-                                <mat-select [formControl]="LastPosted" placeholder="Last Postede" [multiple]="true" #multiSelect>
-                                  <ngx-mat-select-search [formControl]="LastPostedFilter"></ngx-mat-select-search>
-                                  <mat-option *ngFor="let empl of lastpostedList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                   [value]="empl">
-                                    {{empl.EmploymentType}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>This is the primary content of the panel.</p>
-                </mat-expansion-panel>
-                    </div>
-                </div>
-                <!---->
-                <!--Immigration Status-->
-                <div class="col-md-6" [hidden]="!immigrationstatusfilter">
-                    <div class="form-group">
-                        <label for="addimmigrationstatusfilter">Immigration Status</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <input type="text" class="form-control loc-search1" id="addimmigrationstatusfilter"
-                            placeholder="Type and Search"> -->
-                            <mat-form-field>
-                                <mat-select [formControl]="immigrationstatus" placeholder="Employment Type" [multiple]="true" #multiSelect>
-                                  <ngx-mat-select-search [formControl]="immigrationstatusFilter"></ngx-mat-select-search>
-                                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                   [value]="empl">
-                                    {{empl.EmploymentType}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>This is the primary content of the panel.</p>
-                </mat-expansion-panel>
-                    </div>
-                </div>
-                <!---->
-                <!--Designation-->
-                <div class="col-md-6" [hidden]="!designationfilter">
-                    <div class="form-group">
-                        <label for="adddesignationfilter">Designation</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <input type="text" class="form-control loc-search1" id="adddesignationfilter"
-                            placeholder="Type and Search"> -->
-                            <mat-form-field>
-                                <mat-select [formControl]="emp" placeholder="Employment Type" [multiple]="true" #multiSelect>
-                                  <ngx-mat-select-search [formControl]="empFilter"></ngx-mat-select-search>
-                                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                   [value]="empl">
-                                    {{empl.EmploymentType}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>This is the primary content of the panel.</p>
-                </mat-expansion-panel>
-                    </div>
-                </div>
-                <!---->
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Skills" placeholder="Skills" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search [formControl]="SkillsFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of SkillsList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
 
-                <!--Roles-->
-                <div class="col-md-6" [hidden]="!rolesfilter">
-                    <div class="form-group">
-                        <label for="addrolesfilter">Roles</label>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-description>
-                        <!-- <input type="text" class="form-control loc-search1" id="addrolesfilter"
-                            placeholder="Type and Search"> -->
-                            <mat-form-field>
-                                <mat-select [formControl]="emp" placeholder="Employment Type" [multiple]="true" #multiSelect>
-                                  <ngx-mat-select-search [formControl]="empFilter"></ngx-mat-select-search>
-                                  <mat-option *ngFor="let empl of filteredRolesList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                   [value]="empl">
-                                    {{empl.EmploymentType}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>This is the primary content of the panel.</p>
-                </mat-expansion-panel>
+                        </div>
                     </div>
-                </div>
-                <!---->
-<!--Experience-->
-<div class="col-md-6" [hidden]="!Experience">
-    <div class="form-group">
-        <label for="addExperience">Experience</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addExperience"
+                    <!---->
+                    <!--Last Posted-->
+                    <div class="col-md-6" [hidden]="!lastpostedfilter">
+                        <div class="form-group">
+                            <label for="addlastpostedfilter">Last Posted</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addlastpostedfilter"
+                            placeholder="Type and Search"> -->
+                                        <mat-form-field>
+                                            <mat-select [formControl]="LastPosted" placeholder="Last Posted"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="LastPostedFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of lastpostedList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--Immigration Status-->
+                    <div class="col-md-6" [hidden]="!immigrationstatusfilter">
+                        <div class="form-group">
+                            <label for="addimmigrationstatusfilter">Immigration Status</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addimmigrationstatusfilter"
+                            placeholder="Type and Search"> -->
+                                        <mat-form-field>
+                                            <mat-select [formControl]="immigrationstatus" placeholder="Immigration Status"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="immigrationstatusFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--Designation-->
+                    <div class="col-md-6" [hidden]="!designationfilter">
+                        <div class="form-group">
+                            <label for="adddesignationfilter">Designation</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="adddesignationfilter"
+                            placeholder="Type and Search"> -->
+                                        <mat-form-field>
+                                            <mat-select [formControl]="emp" placeholder="Employment Type"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="empFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!---->
+
+                    <!--Roles-->
+                    <div class="col-md-6" [hidden]="!rolesfilter">
+                        <div class="form-group">
+                            <label for="addrolesfilter">Roles</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addrolesfilter"
+                            placeholder="Type and Search"> -->
+                                        <mat-form-field>
+                                            <mat-select [formControl]="emp" placeholder="Employment Type"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="empFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of filteredRolesList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--Experience-->
+                    <div class="col-md-6" [hidden]="!Experience">
+                        <div class="form-group">
+                            <label for="addExperience">Experience</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addExperience"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Experience" placeholder="Experience" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="ExperienceFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Job title-->
-<div class="col-md-6" [hidden]="!Jobtitle">
-    <div class="form-group">
-        <label for="addJobtitle">Job Title</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addJobtitle"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Experience" placeholder="Experience"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="ExperienceFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Job title-->
+                    <div class="col-md-6" [hidden]="!Jobtitle">
+                        <div class="form-group">
+                            <label for="addJobtitle">Job Title</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addJobtitle"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Jobtitle" placeholder="Job Title" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="JobtitleFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Salaryrange-->
-<div class="col-md-6" [hidden]="!Salaryrange">
-    <div class="form-group">
-        <label for="addSalaryrange">Salary Range</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addSalaryrange"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Job Title"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Salaryrange-->
+                    <div class="col-md-6" [hidden]="!Salaryrange">
+                        <div class="form-group">
+                            <label for="addSalaryrange">Salary Range</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addSalaryrange"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Jobtitle" placeholder="Salary Range" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="JobtitleFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Category-->
-<div class="col-md-6" [hidden]="!Category">
-    <div class="form-group">
-        <label for="addCategory">Category</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addCategory"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Salary Range"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Category-->
+                    <div class="col-md-6" [hidden]="!Category">
+                        <div class="form-group">
+                            <label for="addCategory">Category</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addCategory"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Category" placeholder="Category" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="CategoryFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of filteredCategoryList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Domain-->
-<div class="col-md-6" [hidden]="!Domain">
-    <div class="form-group">
-        <label for="addDomain">Domain</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addDomain"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Category" placeholder="Category"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="CategoryFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of filteredCategoryList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Domain-->
+                    <div class="col-md-6" [hidden]="!Domain">
+                        <div class="form-group">
+                            <label for="addDomain">Domain</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addDomain"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Domain" placeholder="Domain" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="DomainFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Education-->
-<div class="col-md-6" [hidden]="!Education">
-    <div class="form-group">
-        <label for="addEducation">Education</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addEducation"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Domain" placeholder="Domain" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search [formControl]="DomainFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Education-->
+                    <div class="col-md-6" [hidden]="!Education">
+                        <div class="form-group">
+                            <label for="addEducation">Education</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addEducation"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Jobtitle" placeholder="Education" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="JobtitleFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--Status-->
-<div class="col-md-6" [hidden]="!Status">
-    <div class="form-group">
-        <label for="addStatus">Status</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addStatus"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Education"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--Status-->
+                    <div class="col-md-6" [hidden]="!Status">
+                        <div class="form-group">
+                            <label for="addStatus">Status</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addStatus"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Jobtitle" placeholder="Status" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="JobtitleFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of employmentList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-<!--users-->
-<div class="col-md-6" [hidden]="!users">
-    <div class="form-group">
-        <label for="addusers">Users</label>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-        <!-- <input type="text" class="form-control loc-search1" id="addusers"
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Status" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!--users-->
+                    <div class="col-md-6" [hidden]="!users">
+                        <div class="form-group">
+                            <label for="addusers">Users</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <!-- <input type="text" class="form-control loc-search1" id="addusers"
             placeholder="Type and Search"> -->
-            <mat-form-field>
-                <mat-select [formControl]="Jobtitle" placeholder="Users" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="JobtitleFilter"></ngx-mat-select-search>
-                  <mat-option *ngFor="let empl of filteredUsersList | async" (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                   [value]="empl">
-                    {{empl.EmploymentType}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-    </div>
-</div>
-                <!---->
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="pull-right">
-                    <button class="btn btn-border btn-close" mat-button mat-dialog-close (click)="advancesearch=!advancesearch">Cancel</button>
-                    <button class="btn btn-filled" (click)="apply()">Apply</button>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Users" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of filteredUsersList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                    <!---->
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-border btn-close" mat-button mat-dialog-close
+                            (click)="advancesearch=!advancesearch">Cancel</button>
+                        <button class="btn btn-filled" (click)="apply()">Apply</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </mat-dialog-content>
