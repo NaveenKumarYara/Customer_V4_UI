@@ -15,7 +15,7 @@
   "SuggestJobTitleEndPoint" : "https://jobsapi-dev.arytic.com/api/SuggestedJobTitles?",
   "SuggestJobCategoryEndPoint" : "https://jobsapi-dev.arytic.com/api/SuggestedJobCategory?",
   "draftCategory": "https://jobsapi-dev.arytic.com/api/GetDraftCategory",
-  "educationcriteriaendpoint": "https://jobsapi-dev.arytic.comapi/GetQualification",
+  "educationcriteriaendpoint": "https://jobsapi-dev.arytic.com/api/GetQualification",
   "addneweducationEndpoint": "https://profileapi-dev.arytic.com/api/SaveQualification",
   "employmentTypeendpoint": "https://jobsapi-dev.arytic.com/api/GetEmploymentType",
   "salaryTypeendpoint": "https://jobsapi-dev.arytic.com/api/GetSalaryType",
