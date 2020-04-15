@@ -20,6 +20,7 @@ import { MatDialogModule,
   MatProgressSpinnerModule,
   MatExpansionModule,
   MatSelectModule,
+  MatInputModule,
   MatAutocompleteModule} from '@angular/material';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ValueArrayPipe} from './manage-jobs/ValueArrayPipe.pipe';
@@ -47,7 +48,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatExpansionModule,
     MatSelectModule,
     MatAutocompleteModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatInputModule
   ],
   providers: [ManageJobService],
   declarations: [ManageJobsComponent,ValueArrayPipe,UpdateInterviewComponent,InterviewListComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent, AdvanceSearchComponent, LoadJoblistComponent],
