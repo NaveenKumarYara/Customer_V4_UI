@@ -35,6 +35,7 @@ export class FilterjobsComponent implements OnInit {
       );
       filtersdialogRef.afterClosed().subscribe(result => {
         console.log('Chatbox Dialog result: ${result}');
+        console.log('result.data',result.data);
       });
     
   }

@@ -163,4 +163,5 @@ export class Settings {
   GetImmigrationList:string;
   SaveJobImmigration:string;
   SaveJobResponseRoles:string;
+  listofFilteredJobs : string;
   }

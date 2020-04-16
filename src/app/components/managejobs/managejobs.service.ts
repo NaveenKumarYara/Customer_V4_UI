@@ -47,7 +47,7 @@ export class ManageJobService {
   private listcount = new BehaviorSubject(6);
   currentlistcount = this.listcount.asObservable();
 
-
+  
 
   getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
     const url = this.settingsService.settings.listofJobsEndpoint +
@@ -58,7 +58,16 @@ export class ManageJobService {
         this.handleError
     );
   }
-
+  
+  getFilteredJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
+    const url = this.settingsService.settings.listofFilteredJobs +
+    'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
+    return this.http.get<JobDetails>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
   GetInterViewAcceptance(userId:number,jobId:number): Observable<JobCount> {
     const url = this.settingsService.settings.GetInterviewAccept + 'userId=' + userId +
     '&jobId=' + jobId;

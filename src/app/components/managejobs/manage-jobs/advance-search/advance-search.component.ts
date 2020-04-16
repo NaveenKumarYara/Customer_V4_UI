@@ -12,7 +12,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError, startWi
 import { of } from 'rxjs/observable/of';
 import { concat } from 'rxjs/observable/concat';
 import { FormControl } from '@angular/forms';
-import { MatSelect } from '@angular/material';
+import { MatSelect, MatDialogRef } from '@angular/material';
 import { Cities } from '../../../Postajob/models/jobPostInfo';
 declare var $: any;
 
@@ -72,7 +72,7 @@ cityloading = false;
   // emp = new FormControl();
 
   toppingList: string[] = ['PUNE', 'MUMBAI', 'DELHI', 'AHMEDNAGAR', 'KOTA', 'SHIRDI'];
-  @Input() parentApi: ParentComponentApi;
+  @Input() parentApi: ParentComponentApi; 
   @Output() OutputtoParent =  new EventEmitter<any[]>();
 
 
@@ -206,9 +206,10 @@ cityloading = false;
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
+  
 
   
-  constructor(private route: ActivatedRoute, private toastr:ToastsManager,private _vcr: ViewContainerRef,
+  constructor( public dialogRef: MatDialogRef<AdvanceSearchComponent>,private route: ActivatedRoute, private toastr:ToastsManager,private _vcr: ViewContainerRef,
     private router: Router, private managejobservice: ManageJobService,private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -283,8 +284,11 @@ cityloading = false;
     {
 
       debugger
-      this.OutputtoParent.emit(this.empolymentId);
-      this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
+      // this.filter.getFilterCall();
+
+      // this.OutputtoParent.emit(this.empolymentId);
+      // this.dialogRef.close({ data:this.selectedJobType});
+       this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     }
     else
     {

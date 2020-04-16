@@ -155,5 +155,6 @@
   "GetDueDateList":"https://identityapi-dev.arytic.com/api/GetJobDueIn",
   "GetImmigrationList":"https://identityapi-dev.arytic.com/api/GetImmigrationStatus",
   "SaveJobImmigration":"https://identityapi-dev.arytic.com/api/SaveJobImmigrations",
-  "SaveJobResponseRoles":"https://identityapi-dev.arytic.com/api/SaveJobResponsibilites"
+  "SaveJobResponseRoles":"https://identityapi-dev.arytic.com/api/SaveJobResponsibilites",
+  "listofFilteredJobs": "https://jobsapi-dev.arytic.com/api/GetCustomerFilteredJobs?"
 }
