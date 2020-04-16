@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input   } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
 import{AdvanceSearchComponent} from '../advance-search/advance-search.component';
 import { Subject, Observable } from 'rxjs';
 
@@ -15,6 +16,7 @@ export class FilterjobsComponent implements OnInit {
   constructor(private route: ActivatedRoute,private dialog: MatDialog,
     private router: Router, private managejobservice: ManageJobService) {
   }
+  @Input() parentApi: ParentComponentApi; 
   viewfiltersDialgoref: MatDialogRef<AdvanceSearchComponent>;
   gridlayoutClicked = true;
   tablelayoutClicked = false;
@@ -35,6 +37,8 @@ export class FilterjobsComponent implements OnInit {
       );
       filtersdialogRef.afterClosed().subscribe(result => {
         console.log('Chatbox Dialog result: ${result}');
+        debugger
+        this.parentApi.callFilterMethod(result,1,0,0,0);
         // console.log('result.data',result.data);
       });
     

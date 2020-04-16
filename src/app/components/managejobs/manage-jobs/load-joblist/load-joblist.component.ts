@@ -193,6 +193,7 @@ export class LoadJoblistComponent implements OnInit {
       this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy);
       },
       callFilterMethod : (employmentTypeId, experience, cityId, clientId, departmentId) => {
+        debugger
         if (employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId > 0 || departmentId > 0) {
           this.searchString = '';
           //this.sortBy = 0;

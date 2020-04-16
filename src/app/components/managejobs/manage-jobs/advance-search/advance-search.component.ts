@@ -287,8 +287,8 @@ cityloading = false;
       // this.filter.getFilterCall();
 
       // this.OutputtoParent.emit(this.empolymentId);
-      // this.dialogRef.close({ data:this.selectedJobType});
-       this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
+      this.dialogRef.close({ data:this.empolymentId});
+       //this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     }
     else
     {
