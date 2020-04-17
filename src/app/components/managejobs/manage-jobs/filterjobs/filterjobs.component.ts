@@ -38,7 +38,8 @@ export class FilterjobsComponent implements OnInit {
       filtersdialogRef.afterClosed().subscribe(result => {
         console.log('Chatbox Dialog result: ${result}');
         debugger
-        this.parentApi.callFilterMethod(result,1,0,0,0);
+        // locations,minExp, MaxExp,minSal,maxSal
+        this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients);
         // console.log('result.data',result.data);
       });
     

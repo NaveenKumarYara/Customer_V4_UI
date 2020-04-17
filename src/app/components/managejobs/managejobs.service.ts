@@ -58,10 +58,9 @@ export class ManageJobService {
         this.handleError
     );
   }
-  
-  getFilteredJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
-    const url = this.settingsService.settings.listofFilteredJobs +
-    'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
+  // http://localhost:8982/api/GetCustomerFilteredJobs?customerId=122&userId=775&sortBy=0&searchString=&status=0&pageNumber=1&numberOfRows=6&minSal=0&maxSal=200&minExp=0&maxExp=60&jobStatus=1&locations=13,23,4,55,119,254,1,6,140&skills=1,1640,1875,17509,2544,75&clients=12,17,229,222&departments=&titles=28,10
+  getFilteredJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number,minSal: number, maxSal: number,minExp: number,maxExp: number,jobStatus: number,locations:string,skills:string,clients:string,departments:string,titles:string): Observable<JobDetails> {
+    const url = this.settingsService.settings.listofFilteredJobs +'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count+'&minSal=' +0+'&maxSal='+200+'&minExp='+0+'&maxExp='+60+'&jobStatus='+1+'&locations='+locations+'&skills='+skills+'&clients='+clients+'&departments='+ departments+'&titles='+titles ;
     return this.http.get<JobDetails>(url)
       .debounceTime(1000)
       .catch(

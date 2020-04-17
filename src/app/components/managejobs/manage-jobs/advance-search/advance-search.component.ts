@@ -45,10 +45,10 @@ selectedCityInput = new Subject<string>();
 cityloading = false;
   deptName:any;
   searchString:any;
-  minSal:any;
-  maxSal:any;
-  minExp:any;
-  maxExp:any;
+  minSal:any = 0;
+  maxSal:any = 200;
+  minExp:any = 0;
+  maxExp:any = 60;
   SearchDept:any =[];
   SearchClients:any = [];
   SearchList: any = [];
@@ -280,14 +280,38 @@ cityloading = false;
 
   apply()
   {
-    if(this.empolymentId>0||this.exp>0||this.location>0||this.clientId>0||this.departmentId>0)
+    if(1)
     {
 
       debugger
-      // this.filter.getFilterCall();
-
+      // this.filter.getFilterCall();this
+var selectedlocations = '';
+      this.SelectedCityList.forEach(element => {
+        if(selectedlocations.length == 0){
+          selectedlocations = element.CityId.toString();
+        }else
+          selectedlocations = selectedlocations.toString()+',' + element.CityId.toString();
+      });
+var clients = ''
+this.SelectedClientList.forEach(element => {
+  if(clients.length == 0){
+    clients = element.ClientId.toString();
+  }else
+  clients = clients.toString()+',' + element.ClientId.toString();
+});
+      // Var data=[loc = selec]
+      var data  = 
+        {
+          locList  :selectedlocations,
+          minExp: this.minExp,
+          maxExp: this.maxExp,
+          minSal: this.minSal,
+          maxSal: this.maxSal,
+          clients : clients
+        }
       // this.OutputtoParent.emit(this.empolymentId);
-      this.dialogRef.close({ data:this.empolymentId});
+      this.dialogRef.close({ data:data});
+      
        //this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     }
     else
