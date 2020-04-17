@@ -72,7 +72,7 @@
                 <!---->
                 <div class="candidate-info">
                     <ng-container *ngFor="let sk of recentapplicants?.TopSkills| removeduplicates ;let i=index">
-                        <div class="skills-section col-md-3" *ngIf="i<3">
+                        <div class="skills-section col-md-4 col-xs-4" *ngIf="i<3">
                             <ng-container  *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null; else firstelseSkill">
                             <h5 title="{{sk.split('|')[0]}}">{{sk.split('|')[0] | slice:0:10}}</h5>
                             </ng-container>
@@ -92,6 +92,7 @@
                             <!-- <progress-bar   [progress]="sk.split('|')[3] | slice:0:1" [color]="'#488aff'">
                                 </progress-bar>   -->
                         </div>
+                        <div class="v-divider"  *ngIf="i<3"></div>
                     </ng-container>
 
 
