@@ -32,7 +32,7 @@ header h2 img {
     font-size: 10px;
     color: #41536E;
     white-space: nowrap;
-    width: 90%;
+    width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -91,4 +91,10 @@ header h2 img {
 }
 .applications .card .meta span.current-location{
     vertical-align: sub;
+}
+.candidate-info .v-divider{
+    margin-right: 8px;
+}
+.candidate-info .v-divider:last-child{
+display: none;
 }

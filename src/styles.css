@@ -4513,6 +4513,9 @@ tbody.collapse.in {
     .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-nav .open .dropdown-menu>li>a:focus {
         background-image: none;
     }
+    .candidate-info .v-divider {
+        margin-right: 2px!important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -25530,13 +25533,13 @@ table .table-prl-0 td {
 .star.on {
     background-color: #5f92e3;
     border-radius: 2px;
-    padding: 0px 1px;
+    padding: 0px 2px;
 }
 .star {
+    display: inline!important;
     background-color: #93A2BB;
     border-radius: 2px;
-    padding: 0px 1px;
-    height: 15px;
+    padding: 0px 2px;
 }
 /*Dragula styles*/
 .dragula ul li{
