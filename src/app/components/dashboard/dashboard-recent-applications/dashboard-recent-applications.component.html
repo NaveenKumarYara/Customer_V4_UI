@@ -65,9 +65,15 @@
                 </div>
                 <!-- .header -->
                 <!--New Domain Placeholder-->
-                <div class="domains" *ngIf="recentapplicants?.DomainName!=null">
+                <div class="domains">
                     <label>Domains :</label>
-                    <span title="{{recentapplicants?.DomainName}}">{{recentapplicants?.DomainName}}</span>
+                    <ng-container *ngIf="recentapplicants?.DomainName!=null" >
+                        <span title="{{recentapplicants?.DomainName}}">{{recentapplicants?.DomainName}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="recentapplicants?.DomainName==null" >
+                        <span >Not Mentioned</span>
+                    </ng-container>
+                    
                 </div>
                 <!---->
                 <div class="candidate-info">
