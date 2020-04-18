@@ -156,4 +156,7 @@
   "GetImmigrationList":"${Identity_URL}/api/GetImmigrationStatus",
   "SaveJobImmigration":"${Identity_URL}/api/SaveJobImmigrations",
   "SaveJobResponseRoles":"${Identity_URL}/api/SaveJobResponsibilites"
+  "listofFilteredJobs": "${Jobs_URL}/api/GetCustomerFilteredJobs?",
+  "listofAllSkills": "${Profile_URL}/api/GetSkillDetails",
+  "listofAllTitles": "${Jobs_URL}/api/GetAllJobTitles"
 }
