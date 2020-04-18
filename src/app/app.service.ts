@@ -372,6 +372,13 @@ export class AppService {
         this.handleError
       );
   }
+  getJobTitle(term: string = null): Observable<any[]> {
+    const url = this.settingsService.settings.listofAllTitles + '?jobtitle=' + term;
+    return this.http.get<any[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   // searchClient(term: string = null): Observable<string[]> {
   //   const url = this.settingsService.settings.searchclientsendpoint + '?clientName=' + term;
   //   return this.http.get<string[]>(url)
@@ -1124,6 +1131,13 @@ this.skillPostData.push(skill);
   getSkills(skill: string = null): Observable<string[]> {
     const url = this.settingsService.settings.getskillsEndpoint + '?skillName=' + skill;
     return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+  getAllSkills(skill: string = null): Observable<any[]> {
+    const url = this.settingsService.settings.listofAllSkills + '?skillName=' + skill;
+    return this.http.get<any[]>(url)
       .catch(
         this.handleError
       );

@@ -560,7 +560,7 @@ changeDomain(DomainId){
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.skilltitleloading = true),
-        switchMap(term => this.appService.getSkills(term).pipe(
+        switchMap(term => this.appService.getAllSkills(term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.skilltitleloading = false)
         ))
@@ -895,7 +895,7 @@ protected filterDomain(){
        
 }
   getAllSkills(){
-    this.appService.getSkills("a")
+    this.appService.getAllSkills("a")
     .subscribe(data => {         
             this.SkillList = data;    
             console.log(this.SkillList ,"skillllllllllllll")
@@ -952,10 +952,10 @@ protected filterDomain(){
          });
  }
   getAllJobTitle(){ 
-      this.appService.searchJobTitle("a")
+      this.appService.getJobTitle("a")
       .subscribe(data => {         
               this.JobtitleList = data;    
-              console.log(this.JobtitleList ,"searchJobTitle")
+              console.log(this.JobtitleList ,"getJobTitle")
                // set initial selection
           this.Skills.setValue([this.JobtitleList[0]]);
   

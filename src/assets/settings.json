@@ -157,6 +157,6 @@
   "SaveJobImmigration":"https://identityapi-dev.arytic.com/api/SaveJobImmigrations",
   "SaveJobResponseRoles":"https://identityapi-dev.arytic.com/api/SaveJobResponsibilites",
   "listofFilteredJobs": "http://jobsapi-dev.arytic.com/api/GetCustomerFilteredJobs?",
-  "listofAllSkills": "http://profileapi-dev.arytic.com/api/GetSkillDetails?",
-  "listofAllTitles": "http://jobsapi-dev.arytic.com/api/GetAllJobTitles?"
+  "listofAllSkills": "http://profileapi-dev.arytic.com/api/GetSkillDetails",
+  "listofAllTitles": "http://jobsapi-dev.arytic.com/api/GetAllJobTitles"
 }
