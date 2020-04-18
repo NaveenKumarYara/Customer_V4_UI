@@ -164,4 +164,6 @@ export class Settings {
   SaveJobImmigration:string;
   SaveJobResponseRoles:string;
   listofFilteredJobs : string;
+  listofAllSkills : string;
+  listofAllTitles : string;
   }

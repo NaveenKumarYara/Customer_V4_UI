@@ -201,19 +201,15 @@ export class LoadJoblistComponent implements OnInit {
         }
          this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     },
-    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients) => {
+    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles) => {
       debugger
       if (1) {
         this.searchString = '';
         //this.sortBy = 0;
         //this.defaultValue = '0';
       }
-      var skills = " 1,1640,1875,17509,2544,75";
-        //  var    clients = "12,17,229,222";
-          var departments = "2,8,122";
-           var titles = "28,10";
-           var jobStatus= 1
-      this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,jobStatus,locations,skills,clients,departments,titles).subscribe(res => {
+      this.spinner.show();
+      this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,jobStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType).subscribe(res => {
         this.loaddata = true;
         this.joblist = res;
         this.jobLoader = false;
@@ -232,5 +228,5 @@ export class LoadJoblistComponent implements OnInit {
 export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
-  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients) => void;
+  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles) => void;
 }

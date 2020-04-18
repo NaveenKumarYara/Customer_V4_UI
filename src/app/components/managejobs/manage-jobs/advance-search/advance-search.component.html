@@ -40,20 +40,20 @@
                                 </label>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="designationfilter"> Designation
                                 </label>
                             </div>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="rolesfilter"> Roles
                                 </label>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="checkbox">
                                 <label>
@@ -103,13 +103,13 @@
                                 </label>
                             </div>
                         </li> -->
-                        <li>
+                        <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="users"> Users
                                 </label>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <li role="separator" class="divider"></li>
                     <li class="filter-btns">
@@ -263,8 +263,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addProfilestatusfilter"
-                            placeholder="Type and Search"> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="profiletype" placeholder="Employment Type"
                                                 [multiple]="true" #multiSelect>
@@ -291,9 +289,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <ng-select class="custom-style" [multiple]="true" [items]="skilllist | async" placeholder="Search here..." bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1"
-                        name="selectedSkillName" #skill="ngModel"  addTagText="Add Skill" [virtualScroll]="true" required>
-                    </ng-select> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="Skills" placeholder="Skills" [multiple]="true"
                                                 #multiSelect>
@@ -328,10 +323,10 @@
                                                 [multiple]="true" #multiSelect>
                                                 <ngx-mat-select-search [formControl]="LastPostedFilter">
                                                 </ngx-mat-select-search>
-                                                <mat-option *ngFor="let empl of lastpostedList | async"
-                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                <mat-option *ngFor="let empl of filteredLastPostedList | async"
+                                                    (click)="postedDate(empl.Id)"
                                                     [value]="empl">
-                                                    {{empl.EmploymentType}}
+                                                    {{empl.Name}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -373,14 +368,12 @@
                     </div>
                     <!---->
                     <!--Designation-->
-                    <div class="col-md-6" [hidden]="!designationfilter">
+                    <!-- <div class="col-md-6" [hidden]="!designationfilter">
                         <div class="form-group">
                             <label for="adddesignationfilter">Designation</label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
-                                    <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="adddesignationfilter"
-                            placeholder="Type and Search"> -->
+                                    <mat-panel-description> 
                                         <mat-form-field>
                                             <mat-select [formControl]="emp" placeholder="Employment Type"
                                                 [multiple]="true" #multiSelect>
@@ -398,7 +391,7 @@
                                 <p>This is the primary content of the panel.</p>
                             </mat-expansion-panel>
                         </div>
-                    </div>
+                    </div> -->
                     <!---->
 
                     <!--Roles-->
@@ -453,17 +446,17 @@
                                             <input matInput placeholder="Max. Exp"  > -->
                                             <mat-form-field style="width: 30%;">
                                                 <mat-label>Min. Exp</mat-label>
-                                                <input matInput placeholder="Min. Exp" [(ngModel)]="minExp" >
+                                                <input matInput placeholder="Min. Exp" name="minexp" [(ngModel)]="minExp" >
                                               </mat-form-field>
                                              &nbsp;
                                               <mat-form-field style="width: 30%;">
                                                 <mat-label>Max. Exp</mat-label>
-                                                <input matInput placeholder="Max. Exp" [(ngModel)]="maxExp" >
+                                                <input matInput placeholder="Max. Exp" name="maxexp" [(ngModel)]="maxExp" >
                                               </mat-form-field>
                                         <!-- </mat-form-field> -->
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <p>This is the primary content of the panel.</p>
+                                <!-- <p>This is the primary content of the panel.</p> -->
                             </mat-expansion-panel>
                         </div>
                     </div>
@@ -474,8 +467,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addJobtitle"
-            placeholder="Type and Search"> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="Jobtitle" placeholder="Job Title"
                                                 [multiple]="true" #multiSelect>
@@ -501,32 +492,18 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addSalaryrange"
-            placeholder="Type and Search"> -->
-                                        <!-- <mat-form-field>
-                                            <mat-select [formControl]="Jobtitle" placeholder="Salary Range"
-                                                [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
-                                                </ngx-mat-select-search>
-                                                <mat-option *ngFor="let empl of employmentList | async"
-                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                                    [value]="empl">
-                                                    {{empl.EmploymentType}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field> -->
                                         <mat-form-field style="width: 30%;">
                                             <mat-label>Min. Salary</mat-label>
-                                            <input matInput placeholder="Min. Salary" [(ngModel)]="minSal" >
+                                            <input matInput placeholder="Min. Salary" name="minsal" [(ngModel)]="minSal" >
                                           </mat-form-field>
                                           &nbsp;
                                           <mat-form-field style="width: 30%;">
                                             <mat-label>Max. Salary</mat-label>
-                                            <input matInput placeholder="Max. Salary" [(ngModel)]="maxSal" >
+                                            <input matInput placeholder="Max. Salary" name="maxsal" [(ngModel)]="maxSal" >
                                           </mat-form-field>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <p>This is the primary content of the panel.</p>
+                                <!-- <p>This is the primary content of the panel.</p> -->
                             </mat-expansion-panel>
                         </div>
                     </div>
@@ -537,8 +514,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addCategory"
-            placeholder="Type and Search"> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="Category" placeholder="Category"
                                                 [multiple]="true" #multiSelect>
@@ -566,8 +541,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addDomain"
-            placeholder="Type and Search"> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="Domain" placeholder="Domain" [multiple]="true"
                                                 #multiSelect>
@@ -597,8 +570,6 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addEducation"
-            placeholder="Type and Search"> -->
                                         <mat-form-field>
                                             <mat-select [formControl]="Education" placeholder="Education"
                                                 [multiple]="true" #multiSelect>
@@ -620,14 +591,12 @@
                         </div>
                     </div>
                     <!--Status-->
-                    <div class="col-md-6" [hidden]="!Status">
+                    <!-- <div class="col-md-6" [hidden]="!Status">
                         <div class="form-group">
                             <label for="addStatus">Status</label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
-                                    <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addStatus"
-            placeholder="Type and Search"> -->
+                                    <mat-panel-description> 
                                         <mat-form-field>
                                             <mat-select [formControl]="Jobtitle" placeholder="Status" [multiple]="true"
                                                 #multiSelect>
@@ -645,16 +614,14 @@
                                 <p>This is the primary content of the panel.</p>
                             </mat-expansion-panel>
                         </div>
-                    </div>
+                    </div> -->
                     <!--users-->
-                    <div class="col-md-6" [hidden]="!users">
+                    <!-- <div class="col-md-6" [hidden]="!users">
                         <div class="form-group">
                             <label for="addusers">Users</label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
-                                    <mat-panel-description>
-                                        <!-- <input type="text" class="form-control loc-search1" id="addusers"
-            placeholder="Type and Search"> -->
+                                    <mat-panel-description> 
                                         <mat-form-field>
                                             <mat-select [formControl]="Jobtitle" placeholder="Users" [multiple]="true"
                                                 #multiSelect>
@@ -672,7 +639,7 @@
                                 <p>This is the primary content of the panel.</p>
                             </mat-expansion-panel>
                         </div>
-                    </div>
+                    </div> -->
                     <!---->
                 </form>
             </div>

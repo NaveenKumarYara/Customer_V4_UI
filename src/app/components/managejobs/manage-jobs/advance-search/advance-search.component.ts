@@ -29,6 +29,7 @@ export class AdvanceSearchComponent implements OnInit {
   location:any;
   exp:any;
   departmentId:any;
+  jobStatus : number = null;
   clientId:any;
   advancesearch:any;
   skilllist: Observable<string[]>;
@@ -45,10 +46,10 @@ selectedCityInput = new Subject<string>();
 cityloading = false;
   deptName:any;
   searchString:any;
-  minSal:any = 0;
-  maxSal:any = 200;
-  minExp:any = 0;
-  maxExp:any = 60;
+  minSal:any  = 0;
+  maxSal:any  = 500;
+  minExp:any  = 0;
+  maxExp:any = 500;
   SearchDept:any =[];
   SearchClients:any = [];
   SearchList: any = [];
@@ -80,9 +81,36 @@ cityloading = false;
   JobtitleList: any = [];
   DepartmentList: any = [];
   DomainList: any = [];
-  ProfileStatusList: any = [];
+  ProfileStatusList: any  = [
+    {Id:1,
+    Name: 'Active Jobs'},
+    {Id:2,
+      Name: 'InActive Jobs'},
+      {Id:3,
+        Name: 'Interviewing'},
+        {Id:4,
+          Name: 'Freezed Jobs'},
+          {Id:5,
+            Name: 'Closed Jobs'} 
+    
+  ];
   SkillList: any = [];
-  LastPostedList: any = [];
+  LastPostedList: any = [
+    {Id:1,
+    Name: 'Today'},
+    {Id:2,
+      Name: 'Last Week'},
+      {Id:3,
+        Name: 'Last 2 Week'},
+        {Id:4,
+          Name: 'Last 30 Days'},
+          {Id:5,
+            Name: 'Last 90 Days'},
+            {Id:6,
+              Name: 'Last Year'}
+
+    
+  ];
   DesignationList: any = [];
   RolesList: any = [];
   CategoryList: any = [];
@@ -206,6 +234,7 @@ cityloading = false;
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
+  postedtype: number;
   
 
   
@@ -223,7 +252,10 @@ cityloading = false;
       }
       return this.expYears;
   }
-
+  postedDate(num){
+    this.postedtype = num;
+    // alert(this.postedtype);
+  }
   GetEmployementType()
   {
     // this.employmentMainList = this.employmentList;
@@ -299,15 +331,85 @@ this.SelectedClientList.forEach(element => {
   }else
   clients = clients.toString()+',' + element.ClientId.toString();
 });
+
+var domain = ''
+this.SelectedDomainList.forEach(element => {
+  if(domain.length == 0){
+    domain = element.DomainId.toString();
+  }else
+  domain = domain.toString()+',' + element.DomainId.toString();
+});
+
+var immigrations = ''
+this.SelectedimmigrationstatusList.forEach(element => {
+  if(immigrations.length == 0){
+    immigrations = element.ImmigrationStatusId.toString();
+  }else
+  immigrations = immigrations.toString()+',' + element.ImmigrationStatusId.toString();
+});
+// lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType
+
+var lastWeek = '';
+var lastTwoWeek = '';
+var last30days = '';
+var last90days = '';
+var lastyear = '';
+var today = '';
+//  jobStatus :number;
+var category='';
+var skills='';
+var departments = '';
+var titles='';
+if(this.postedtype == 1)
+  today = '1';
+else if(this.postedtype == 2)
+  lastWeek = '1';
+else if(this.postedtype == 3)
+  lastTwoWeek = '1';
+else if(this.postedtype == 4)
+  last30days = '1';
+else if(this.postedtype == 5)
+  last90days = '1';
+else if(this.postedtype == 6)
+  lastyear = '1';
+
+this.SelectedCategoryList.forEach(element => {
+  if(category.length == 0){
+    category = element.JobCategoryId.toString();
+  }else
+  category = category.toString()+',' + element.JobCategoryId.toString();
+});
+
+var empType='';
+this.selectedJobType.forEach(element => {
+  if(empType.length == 0){
+    empType = element.EmploymentTypeId.toString();
+  }else
+  empType = empType.toString()+',' + element.EmploymentTypeId.toString();
+});
       // Var data=[loc = selec]
       var data  = 
         {
           locList  :selectedlocations,
-          minExp: this.minExp,
-          maxExp: this.maxExp,
-          minSal: this.minSal,
-          maxSal: this.maxSal,
-          clients : clients
+          minExp: 0 ,
+          maxExp: 500 ,
+          minSal: 0,
+          maxSal: 500,
+          clients : clients,
+          domain : domain,
+          immigrations :immigrations,
+          lastWeek :lastWeek,
+          lastTwoWeek: lastTwoWeek,
+          last30days :last30days,
+          last90days :last90days,
+          lastyear :lastyear,
+          today :today,
+          category :category,
+          empType :empType,
+          jobStatus : this.jobStatus,
+          skills:skills,
+          departments:departments,
+          titles:titles
         }
       // this.OutputtoParent.emit(this.empolymentId);
       this.dialogRef.close({ data:data});
@@ -419,17 +521,17 @@ changeDomain(DomainId){
  }
 }
 
-ChnageLocations(DomainId){
-  if(this.SelectedDomainList.length==0)
-    this.SelectedDomainList.push(this.DomainMainList.find(a=>a.DomainId == DomainId));
-  else if(this.SelectedDomainList.find(a=>a.DomainId == DomainId) == null)
-    this.SelectedDomainList.push(this.DomainMainList.find(a=>a.DomainId == DomainId));
-  else
- {
-    var index = this.SelectedDomainList.indexOf(this.DomainMainList.find(a=>a.DomainId == DomainId));
-    this.SelectedDomainList.splice(index,1);
- }
-}
+// ChnageLocations(DomainId){
+//   if(this.SelectedDomainList.length==0)
+//     this.SelectedDomainList.push(this.DomainMainList.find(a=>a.DomainId == DomainId));
+//   else if(this.SelectedDomainList.find(a=>a.DomainId == DomainId) == null)
+//     this.SelectedDomainList.push(this.DomainMainList.find(a=>a.DomainId == DomainId));
+//   else
+//  {
+//     var index = this.SelectedDomainList.indexOf(this.DomainMainList.find(a=>a.DomainId == DomainId));
+//     this.SelectedDomainList.splice(index,1);
+//  }
+// }
   GetSearchClients(cname)
   {
     this.cn.ClientName = cname;
@@ -946,7 +1048,9 @@ protected filterDomain(){
         error => {        
          });
   }
-  ngOnInit() {
+  ngOnInit() { 
+    this.filteredLastPostedList.next(this.LastPostedList.slice());
+    this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
     this.getQualificationDetails();
     this.getAllJobTitle();
     this.getAllClients();
