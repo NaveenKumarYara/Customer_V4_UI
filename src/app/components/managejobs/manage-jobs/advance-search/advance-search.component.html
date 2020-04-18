@@ -10,33 +10,43 @@
                     aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
                 </button>
+                <button>
+                    Close All
+                </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <ul class="filters-list">
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="profiletypefilter"> Profile Type
+                                    <input type="checkbox" [(ngModel)]="showClient"> Client
+                                </label>
+                            </div>
+                        </li> 
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" [(ngModel)]="showDepartment"> Department
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="skillsfilter"> Skills
+                                    <input type="checkbox" [(ngModel)]="showskillsfilter"> Skills
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="lastpostedfilter"> Last Posted
+                                    <input type="checkbox" [(ngModel)]="showlastpostedfilter"> Last Posted
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="immigrationstatusfilter"> Immigration Staus
+                                    <input type="checkbox" [(ngModel)]="showimmigrationstatusfilter"> Immigration Staus
                                 </label>
                             </div>
                         </li>
@@ -57,42 +67,42 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="Experience"> Experience
+                                    <input type="checkbox" [(ngModel)]="showExperience"> Experience
                                 </label>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="Jobtitle"> Jobtitle
                                 </label>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="Salaryrange"> Salary Range
+                                    <input type="checkbox" [(ngModel)]="showSalaryrange"> Salary Range
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="Category"> Category
+                                    <input type="checkbox" [(ngModel)]="showCategory"> Category
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="Domain"> Domain
+                                    <input type="checkbox" [(ngModel)]="showDomain"> Domain
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="Education"> Education
+                                    <input type="checkbox" [(ngModel)]="showEducation"> Education
                                 </label>
                             </div>
                         </li>
@@ -131,8 +141,11 @@
                 <form action="">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="job-type">Job Type</label>
-
+                            <label for="job-type">Job Type
+                            <label style="float: right;">
+                               x
+                            </label>
+                        </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -162,8 +175,10 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="job-type">Location</label>
-
+                            <label for="job-type">Location<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -190,9 +205,70 @@
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                      <!--Job title-->
+                      <div class="col-md-6" >
+                        <!-- [hidden]="!Jobtitle" -->
                         <div class="form-group">
-                            <label for="job-type">Client</label>
+                            <label for="addJobtitle">Job Title<label style="float: right;">
+                                x
+                             </label>
+                         </label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Job Title"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of employmentList | async"
+                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    [value]="empl">
+                                                    {{empl.EmploymentType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                        <!--Profile Type-->
+                        <div class="col-md-6">
+                            <!-- [hidden]="!profiletypefilter" -->
+                            <div class="form-group">
+                                <label for="addProfilestatusfilter">Profile Status<label style="float: right;">
+                                    x
+                                 </label>
+                             </label>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-description>
+                                            <mat-form-field>
+                                                <mat-select [formControl]="profiletype" placeholder="Employment Type"
+                                                    [multiple]="true" #multiSelect>
+                                                    <ngx-mat-select-search [formControl]="profiletypefilter">
+                                                    </ngx-mat-select-search>
+                                                    <mat-option *ngFor="let empl of employmentList | async"
+                                                        (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                        [value]="empl">
+                                                        {{empl.EmploymentType}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <p>This is the primary content of the panel.</p>
+                                </mat-expansion-panel>
+                            </div>
+                        </div>
+                    <div class="col-md-6" [hidden]="!showClient">
+                        <div class="form-group">
+                            <label for="job-type">Client<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -217,8 +293,11 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="job-type">Department</label>
+                        <div class="form-group" [hidden]="!showDepartment">
+                            <label for="job-type">Department<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -256,36 +335,15 @@
                     </div>
                     <!--Show & Hide Filters 01-04-2020-->
 
-                    <!--Profile Type-->
-                    <div class="col-md-6" [hidden]="!profiletypefilter">
-                        <div class="form-group">
-                            <label for="addProfilestatusfilter">Profile Status</label>
-                            <mat-expansion-panel>
-                                <mat-expansion-panel-header>
-                                    <mat-panel-description>
-                                        <mat-form-field>
-                                            <mat-select [formControl]="profiletype" placeholder="Employment Type"
-                                                [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search [formControl]="profiletypefilter">
-                                                </ngx-mat-select-search>
-                                                <mat-option *ngFor="let empl of employmentList | async"
-                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                                    [value]="empl">
-                                                    {{empl.EmploymentType}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <p>This is the primary content of the panel.</p>
-                            </mat-expansion-panel>
-                        </div>
-                    </div>
+                
                     <!---->
                     <!--Skills-->
-                    <div class="col-md-6" [hidden]="!skillsfilter">
+                    <div class="col-md-6" [hidden]="!showskillsfilter">
                         <div class="form-group">
-                            <label for="addskillfilter">Skills</label>
+                            <label for="addskillfilter">Skills<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -310,9 +368,12 @@
                     </div>
                     <!---->
                     <!--Last Posted-->
-                    <div class="col-md-6" [hidden]="!lastpostedfilter">
+                    <div class="col-md-6" [hidden]="!showlastpostedfilter">
                         <div class="form-group">
-                            <label for="addlastpostedfilter">Last Posted</label>
+                            <label for="addlastpostedfilter">Last Posted<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -338,9 +399,12 @@
                     </div>
                     <!---->
                     <!--Immigration Status-->
-                    <div class="col-md-6" [hidden]="!immigrationstatusfilter">
+                    <div class="col-md-6" [hidden]="!showimmigrationstatusfilter">
                         <div class="form-group">
-                            <label for="addimmigrationstatusfilter">Immigration Status</label>
+                            <label for="addimmigrationstatusfilter">Immigration Status<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -421,9 +485,13 @@
                     </div> -->
                     <!---->
                     <!--Experience-->
-                    <div class="col-md-6" [hidden]="!Experience">
+                    <div class="col-md-6" [hidden]="!showExperience">
                         <div class="form-group">
-                            <label for="addExperience">Experience</label>
+                            <label for="addExperience">Experience
+                                <label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -460,35 +528,14 @@
                             </mat-expansion-panel>
                         </div>
                     </div>
-                    <!--Job title-->
-                    <div class="col-md-6" [hidden]="!Jobtitle">
-                        <div class="form-group">
-                            <label for="addJobtitle">Job Title</label>
-                            <mat-expansion-panel>
-                                <mat-expansion-panel-header>
-                                    <mat-panel-description>
-                                        <mat-form-field>
-                                            <mat-select [formControl]="Jobtitle" placeholder="Job Title"
-                                                [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search [formControl]="JobtitleFilter">
-                                                </ngx-mat-select-search>
-                                                <mat-option *ngFor="let empl of employmentList | async"
-                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
-                                                    [value]="empl">
-                                                    {{empl.EmploymentType}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <p>This is the primary content of the panel.</p>
-                            </mat-expansion-panel>
-                        </div>
-                    </div>
+                  
                     <!--Salaryrange-->
-                    <div class="col-md-6" [hidden]="!Salaryrange">
+                    <div class="col-md-6" [hidden]="!showSalaryrange">
                         <div class="form-group">
-                            <label for="addSalaryrange">Salary Range</label>
+                            <label for="addSalaryrange">Salary Range<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -508,9 +555,12 @@
                         </div>
                     </div>
                     <!--Category-->
-                    <div class="col-md-6" [hidden]="!Category">
+                    <div class="col-md-6" [hidden]="!showCategory">
                         <div class="form-group">
-                            <label for="addCategory">Category</label>
+                            <label for="addCategory">Category<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -535,9 +585,12 @@
                         </div>
                     </div>
                     <!--Domain-->
-                    <div class="col-md-6" [hidden]="!Domain">
+                    <div class="col-md-6" [hidden]="!showDomain">
                         <div class="form-group">
-                            <label for="addDomain">Domain</label>
+                            <label for="addDomain">Domain<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -564,9 +617,12 @@
                         </div>
                     </div>
                     <!--Education-->
-                    <div class="col-md-6" [hidden]="!Education">
+                    <div class="col-md-6" [hidden]="!showEducation">
                         <div class="form-group">
-                            <label for="addEducation">Education</label>
+                            <label for="addEducation">Education<label style="float: right;">
+                                x
+                             </label>
+                         </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>

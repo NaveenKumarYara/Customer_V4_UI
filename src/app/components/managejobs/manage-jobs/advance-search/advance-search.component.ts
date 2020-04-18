@@ -23,6 +23,17 @@ declare var $: any;
   providers: [AppService]
 })
 export class AdvanceSearchComponent implements OnInit {
+  showskillsfilter :any=false;
+  showlastpostedfilter :any=false;
+  showimmigrationstatusfilter :any=false;
+  showExperience :any=false;
+  showSalaryrange :any=false;
+  showCategory :any=false;
+  showDomain :any=false;
+  showEducation :any=false;
+  showClient :any=false;
+  showDepartment :any=false;
+
   customerId: any;
   customer: any;
   userId: any;
