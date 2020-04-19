@@ -57,10 +57,11 @@ selectedCityInput = new Subject<string>();
 cityloading = false;
   deptName:any;
   searchString:any;
-  minSal:any  = 0;
-  maxSal:any  = 500;
-  minExp:any  = 0;
-  maxExp:any = 500;
+  minSal:any  ;
+  maxSal:any ;
+  minExp:any ;
+  temp:any ;
+  maxExp:any ;
   SearchDept:any =[];
   SearchClients:any = [];
   SearchList: any = [];
@@ -245,7 +246,7 @@ cityloading = false;
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
-  postedtype: number;
+  postedtype: any;
   
 
   
@@ -264,7 +265,16 @@ cityloading = false;
       return this.expYears;
   }
   postedDate(num){
-    this.postedtype = num;
+    // this.postedtype = num;
+    if(this.SelectedLastPostedList.length==0)
+    this.SelectedLastPostedList.push(this.LastPostedMainList.find(a=>a.Id == num));
+  else if(this.SelectedLastPostedList.find(a=>a.Id == num) == null)
+    this.SelectedLastPostedList.push(this.LastPostedMainList.find(a=>a.Id == num));
+  else
+ {
+    var index = this.SelectedLastPostedList.indexOf(this.LastPostedMainList.find(a=>a.Id == num));
+    this.SelectedLastPostedList.splice(index,1);
+ }
     // alert(this.postedtype);
   }
   GetEmployementType()
@@ -279,6 +289,7 @@ cityloading = false;
          });
 
   }
+
 
   SetSearch(val)
   {
@@ -336,41 +347,104 @@ var selectedlocations = '';
           selectedlocations = selectedlocations.toString()+',' + element.CityId.toString();
       });
 var clients = ''
-this.SelectedClientList.forEach(element => {
-  if(clients.length == 0){
-    clients = element.ClientId.toString();
-  }else
-  clients = clients.toString()+',' + element.ClientId.toString();
-});
+      this.SelectedClientList.forEach(element => {
+        if(clients.length == 0){
+          clients = element.ClientId.toString();
+        }else
+        clients = clients.toString()+',' + element.ClientId.toString();
+      });
 
 var domain = ''
-this.SelectedDomainList.forEach(element => {
-  if(domain.length == 0){
-    domain = element.DomainId.toString();
-  }else
-  domain = domain.toString()+',' + element.DomainId.toString();
-});
+      this.SelectedDomainList.forEach(element => {
+        if(domain.length == 0){
+          domain = element.DomainId.toString();
+        }else
+        domain = domain.toString()+',' + element.DomainId.toString();
+      });
 
 var immigrations = ''
-this.SelectedimmigrationstatusList.forEach(element => {
-  if(immigrations.length == 0){
-    immigrations = element.ImmigrationStatusId.toString();
-  }else
-  immigrations = immigrations.toString()+',' + element.ImmigrationStatusId.toString();
-});
+        this.SelectedimmigrationstatusList.forEach(element => {
+          if(immigrations.length == 0){
+            immigrations = element.ImmigrationStatusId.toString();
+          }else
+          immigrations = immigrations.toString()+',' + element.ImmigrationStatusId.toString();
+        });
 // lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType
-
-var lastWeek = '';
-var lastTwoWeek = '';
-var last30days = '';
-var last90days = '';
-var lastyear = '';
-var today = '';
-//  jobStatus :number;
 var category='';
+        this.SelectedCategoryList.forEach(element => {
+          if(category.length == 0){
+            category = element.JobCategoryId.toString();
+          }else
+          category = category.toString()+',' + element.JobCategoryId.toString();
+        });
+
+var empType='';
+    this.selectedJobType.forEach(element => {
+      if(empType.length == 0){
+        empType = element.EmploymentTypeId.toString();
+      }else
+      empType = empType.toString()+',' + element.EmploymentTypeId.toString();
+    });
+
+//  jobStatus :number;
 var skills='';
+      this.SelectedSkillList.forEach(element => {
+        if(skills.length == 0){
+          skills = element.Id.toString();
+        }else
+        skills = skills.toString()+',' + element.Id.toString();
+      });
 var departments = '';
+      this.SelectedDepartmentList.forEach(element => {
+        if(departments.length == 0){
+          departments = element.DepartmentId.toString();
+        }else
+        departments = departments.toString()+',' + element.DepartmentId.toString();
+      });
 var titles='';
+    this.SelectedJobtitleList.forEach(element => {
+      if(titles.length == 0){
+        titles = element.JobTitleId.toString();
+      }else
+      titles = titles.toString()+',' + element.JobTitleId.toString();
+    });
+var education ='';
+    this.SelectedEducationList.forEach(element => {
+      if(education.length == 0){
+        education = element.QualificationId.toString();
+      }else
+      education = education.toString()+',' + element.QualificationId.toString();
+    });
+this.postedtype='';
+    this.SelectedLastPostedList.forEach(element => {
+      if(this.postedtype.length == 0){
+        this.postedtype = element.Id;
+      }else
+     if(this.postedtype < element.Id){
+      this.postedtype = element.Id;
+
+     }
+      // titles = titles.toString()+',' + element.JobTitleId.toString();
+    });
+var profileStatus='';
+      this.SelectedProfileStatusList.forEach(element => {
+        if(profileStatus.length == 0){
+          if(element.Id == 1){
+          this.jobStatus =1;
+        }
+          profileStatus = element.Id.toString();
+        }else
+          profileStatus = profileStatus.toString()+',' + element.Id.toString();
+      });
+      // titles = titles.toString()+',' + element.JobTitleId.toString();
+     
+     
+    var lastWeek = '';
+    var lastTwoWeek = '';
+    var last30days = '';
+    var last90days = '';
+    var lastyear = '';
+    var today = '';
 if(this.postedtype == 1)
   today = '1';
 else if(this.postedtype == 2)
@@ -384,28 +458,48 @@ else if(this.postedtype == 5)
 else if(this.postedtype == 6)
   lastyear = '1';
 
-this.SelectedCategoryList.forEach(element => {
-  if(category.length == 0){
-    category = element.JobCategoryId.toString();
-  }else
-  category = category.toString()+',' + element.JobCategoryId.toString();
-});
-
-var empType='';
-this.selectedJobType.forEach(element => {
-  if(empType.length == 0){
-    empType = element.EmploymentTypeId.toString();
-  }else
-  empType = empType.toString()+',' + element.EmploymentTypeId.toString();
-});
+  var minExp ;
+  if(this.minExp >= 0)
+    minExp =Number(this.minExp * 12);
+  else{
+    this.minExp = '';
+    minExp =this.minExp.toString();
+  } 
+    
+  var maxExp ;
+  if(this.maxExp >= 0)
+    maxExp =(this.maxExp * 12);
+  else{
+    this.maxExp = '';
+    maxExp =this.maxExp.toString();
+  } 
+    
+  var minSal ;
+  if(this.minSal >= 0)
+    minSal =Number(this.minSal);
+  else
+  {
+    this.minSal = '';
+    minSal =this.minSal.toString();
+  } 
+    
+  var maxSal ;
+  if(this.maxSal >= 0)
+    maxSal =Number(this.maxSal);
+  else
+  {
+    this.maxSal = '';
+    maxSal =this.maxSal.toString();
+  } 
+  
       // Var data=[loc = selec]
       var data  = 
         {
           locList  :selectedlocations,
-          minExp: 0 ,
-          maxExp: 500 ,
-          minSal: 0,
-          maxSal: 500,
+          minExp: minExp ,
+          maxExp: maxExp ,
+          minSal: minSal,
+          maxSal: maxSal,
           clients : clients,
           domain : domain,
           immigrations :immigrations,
@@ -420,10 +514,12 @@ this.selectedJobType.forEach(element => {
           jobStatus : this.jobStatus,
           skills:skills,
           departments:departments,
-          titles:titles
+          titles:titles,
+          profileStatus:profileStatus,
+          education:education
         }
       // this.OutputtoParent.emit(this.empolymentId);
-      this.dialogRef.close({ data:data});
+       this.dialogRef.close({ data:data});
       
        //this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     }
@@ -453,6 +549,18 @@ this.selectedJobType.forEach(element => {
    }
       
   }
+  changeJobTitle(JobTitleId,value) {  
+    if(this.SelectedJobtitleList.length==0)
+      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
+    else if(this.SelectedJobtitleList.find(a=>a.JobTitleId == JobTitleId) == null)
+      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
+    else
+   {
+      var index = this.SelectedJobtitleList.indexOf(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
+      this.SelectedJobtitleList.splice(index,1);
+   }
+      
+  }
 changeCategory(JobCategoryId){
   if(this.SelectedCategoryList.length==0)
     this.SelectedCategoryList.push(this.CategoryMainList.find(a=>a.JobCategoryId == JobCategoryId));
@@ -463,6 +571,28 @@ changeCategory(JobCategoryId){
     var index = this.SelectedCategoryList.indexOf(this.CategoryMainList.find(a=>a.JobCategoryId == JobCategoryId));
     this.SelectedCategoryList.splice(index,1);
  }
+}
+changeskills(Id){
+  if(this.SelectedSkillList.length==0)
+    this.SelectedSkillList.push(this.SkillMainList.find(a=>a.Id == Id));
+  else if(this.SelectedSkillList.find(a=>a.Id == Id) == null)
+    this.SelectedSkillList.push(this.SkillMainList.find(a=>a.Id == Id));
+  else
+ {
+    var index = this.SelectedSkillList.indexOf(this.SkillMainList.find(a=>a.Id == Id));
+    this.SelectedSkillList.splice(index,1);
+ }
+}
+changeprofilestatus(Id){
+  if(this.SelectedProfileStatusList.length==0)
+  this.SelectedProfileStatusList.push(this.ProfileStatusMainList.find(a=>a.Id == Id));
+else if(this.SelectedProfileStatusList.find(a=>a.Id == Id) == null)
+  this.SelectedProfileStatusList.push(this.ProfileStatusMainList.find(a=>a.Id == Id));
+else
+{
+  var index = this.SelectedProfileStatusList.indexOf(this.ProfileStatusMainList.find(a=>a.Id == Id));
+  this.SelectedProfileStatusList.splice(index,1);
+}
 }
 changeEducation(QualificationId){
   if(this.SelectedEducationList.length==0)
@@ -784,6 +914,7 @@ filterEmpType(){
     .subscribe(data => {         
             // this.Category =data;   
             this.Categories =data;   
+            this.CategoryMainList =data;   
             if (!search) {
               this.filteredCategoryList.next(this.Categories.slice());
               return;
@@ -793,6 +924,60 @@ filterEmpType(){
             // filter the banks
             this.filteredCategoryList.next(
               this.Categories.filter(Categories => Categories.Category.toLowerCase().indexOf(search) > -1)
+            );
+          });  
+  }
+   protected filterJobTitle() {
+    if (!this.Jobtitles) {
+      return;
+    }
+    // get the search keyword
+    let search = this.JobtitleFilter.value;
+    if(search == ""){
+      search ="a";
+    }
+    this.appService.getJobTitle(search)
+    // this.appService.searchJobCategory(search)
+    .subscribe(data => {         
+            // this.Category =data;   
+            this.Jobtitles =data;   
+            this.JobtitleMainList =data;   
+            if (!search) {
+              this.filteredJobtitle.next(this.Jobtitles.slice());
+              return;
+            } else {
+              search = search.toLowerCase();
+            }
+            // filter the banks
+            this.filteredJobtitle.next(
+              this.Jobtitles.filter(Jobtitles => Jobtitles.JobTitle.toLowerCase().indexOf(search) > -1)
+            );
+          });  
+  }
+  protected filterskills() {
+    if (!this.Skill) {
+      return;
+    }
+    // get the search keyword
+    let search = this.SkillsFilter.value;
+    if(search == ""){
+      search ="a";
+    }
+    this.appService.getAllSkills(search)
+    // this.appService.searchJobCategory(search)
+    .subscribe(data => {         
+            // this.Category =data;   
+            this.Skill =data;   
+            this.SkillMainList =data;   
+            if (!search) {
+              this.filteredSkillList.next(this.Skill.slice());
+              return;
+            } else {
+              search = search.toLowerCase();
+            }
+            // filter the banks
+            this.filteredSkillList.next(
+              this.Skill.filter(Skill => Skill.Code.toLowerCase().indexOf(search) > -1)
             );
           });  
   }
@@ -823,7 +1008,8 @@ filterEmpType(){
             this.Clients.filter(Clients => Clients.ClientName.toLowerCase().indexOf(search) > -1)
           );
         });  
-} protected filterimmigrationstatus(){
+} 
+protected filterimmigrationstatus(){
   // if (!this.Category) {
   //   return;
   // }
@@ -844,7 +1030,6 @@ filterEmpType(){
             this.immigrations.filter(immigrations => immigrations.ImmigrationStatus.toLowerCase().indexOf(search) > -1)
           ); 
 }
-
 protected filterDepartment(){ 
   let search = this.DepartmentFilter.value;
   if(search == ""){
@@ -909,6 +1094,7 @@ protected filterDomain(){
     this.appService.getAllSkills("a")
     .subscribe(data => {         
             this.SkillList = data;    
+            this.SkillMainList = data;    
             console.log(this.SkillList ,"skillllllllllllll")
              // set initial selection
         // this.Skills.setValue([this.SkillList[0]]);
@@ -920,7 +1106,7 @@ protected filterDomain(){
         this.SkillsFilter.valueChanges
           .pipe(takeUntil(this._onDestroy))
           .subscribe(() => {
-            this.filterBanksMulti();
+            this.filterskills();
           });
 
           },     
@@ -966,6 +1152,7 @@ protected filterDomain(){
       this.appService.getJobTitle("a")
       .subscribe(data => {         
               this.JobtitleList = data;    
+              this.JobtitleMainList =data;
               console.log(this.JobtitleList ,"getJobTitle")
                // set initial selection
           this.Skills.setValue([this.JobtitleList[0]]);
@@ -977,7 +1164,7 @@ protected filterDomain(){
           this.JobtitleFilter.valueChanges
             .pipe(takeUntil(this._onDestroy))
             .subscribe(() => {
-              this.filterBanksMulti();
+              this.filterJobTitle();
             });
   
             },     
@@ -1059,9 +1246,170 @@ protected filterDomain(){
         error => {        
          });
   }
+  ClearALlFilter(){
+    
+
+  
+
+
+  
+
+    this.SelectedDesignationList = [];
+    // this.SelectedRolesList = [];
+
+    // this.SelectedUsersList = []; 
+    
+
+    
+    this.SelectedprofiletypeList = []; 
+    
+    this.emp =new FormControl();
+    this.selectedJobType = [];
+    this.employmentList.next( this.employmentMainList);
+
+    this.bankMultiCtrl = new FormControl();
+    this.SelectedCityList = []; 
+    this.filteredBanksMulti.next(this.cities.slice());
+
+    this.Client = new FormControl();
+    this.SelectedClientList = [];
+    this.filteredClientList.next(this.ClientList.slice()); 
+
+    this.Department = new FormControl();
+    this.SelectedDepartmentList = [];
+    this.filteredDepartmentList.next(this.DepartmentList.slice()); 
+
+    this.Domain = new FormControl();
+    this.SelectedDomainList = [];
+    this.filteredDomainList.next(this.DomainList.slice()); 
+
+    this.ProfileStatus = new FormControl();
+    this.SelectedProfileStatusList = [];
+    this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
+
+    this.LastPosted = new FormControl();
+    this.SelectedLastPostedList = [];
+    this.filteredLastPostedList.next(this.LastPostedList.slice());
+
+    // this.Designation = new FormControl();
+    // this.Roles = new FormControl();
+    // this.Users  = new FormControl();
+
+    this.Category  = new FormControl();
+    this.SelectedCategoryList  = [];
+    this.filteredCategoryList.next(this.CategoryList.slice());
+    
+    this.profiletype  = new FormControl();
+
+
+    this.Skills  = new FormControl();
+    this.SelectedSkillList = [];
+    this.filteredSkillList.next(this.SkillList.slice());
+
+    this.bankMultiCtrl  = new FormControl();
+
+    this.immigrationstatus  = new FormControl();
+    this.SelectedimmigrationstatusList  = []; 
+    this.filteredimmigrationstatus.next(this.immigrationstatusList.slice()); 
+
+    this.Experience  = new FormControl();
+    this.minExp = new Number();
+    this.maxExp = new Number();
+
+    this.Jobtitle  = new FormControl();
+    this.SelectedJobtitleList = [];
+    this.filteredJobtitle.next(this.JobtitleList.slice()); 
+
+    // this.Education  = new FormControl(); 
+    this.SelectedEducationList = []; 
+    this.filteredEducation.next(this.EducationList.slice()); 
+
+    // this.salary  = new FormControl();
+    this.minSal = new Number();
+    this.maxSal = new Number();
+    
+  
+    }
+
+    RemoveComponent(componentNo){
+      
+      if(componentNo == 1){
+      this.emp =new FormControl();
+      this.selectedJobType = [];
+      this.employmentList.next( this.employmentMainList);
+    }else if(componentNo == 2){
+      this.bankMultiCtrl = new FormControl();
+        this.SelectedCityList = []; 
+        this.filteredBanksMulti.next(this.cities.slice());
+    }else if(componentNo == 3){
+      this.Jobtitle  = new FormControl();
+        this.SelectedJobtitleList = [];
+        this.filteredJobtitle.next(this.JobtitleList.slice());
+    }else if(componentNo == 4){
+      
+      this.ProfileStatus = new FormControl();
+      this.SelectedProfileStatusList = [];
+      this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
+    }else if(componentNo == 5){
+      this.showClient  =false;
+      this.Client = new FormControl();
+      this.SelectedClientList = [];
+      this.filteredClientList.next(this.ClientList.slice()); 
+    }else if(componentNo == 6){
+      this.showDepartment  =false;
+      this.Department = new FormControl();
+      this.SelectedDepartmentList = [];
+      this.filteredDepartmentList.next(this.DepartmentList.slice()); 
+    }else if(componentNo == 7){
+      this.showskillsfilter  =false;
+      this.Skills  = new FormControl();
+      this.SelectedSkillList = [];
+      this.filteredSkillList.next(this.SkillList.slice());
+    }else if(componentNo == 8){
+      this.showlastpostedfilter  =false;
+      this.LastPosted = new FormControl();
+      this.SelectedLastPostedList = [];
+      this.filteredLastPostedList.next(this.LastPostedList.slice());
+    }else if(componentNo == 9){
+      
+      this.showimmigrationstatusfilter  =false;
+      this.immigrationstatus  = new FormControl();
+      this.SelectedimmigrationstatusList  = []; 
+      this.filteredimmigrationstatus.next(this.immigrationstatusList.slice()); 
+    }else if(componentNo == 10){
+      this.showExperience  =false;
+      this.minExp ='';
+      this.minExp =  this.minExp.toString();
+      this.maxExp =  this.minExp.toString();
+    }else if(componentNo == 11){
+      
+      this.showSalaryrange  =false;
+      this.minSal ='';
+      this.minSal =  this.minSal.toString();
+      this.maxSal = this.minSal.toString();
+    }else if(componentNo == 12){
+      this.showCategory  =false;
+      this.Category  = new FormControl();
+        this.SelectedCategoryList  = [];
+        this.filteredCategoryList.next(this.CategoryList.slice());
+    }else if(componentNo == 13){
+      this.showDomain  =false;
+      this.Domain = new FormControl();
+      this.SelectedDomainList = [];
+      this.filteredDomainList.next(this.DomainList.slice()); 
+    }else if(componentNo == 14){
+      this.showEducation  =false;
+      this.Education  = new FormControl(); 
+      this.SelectedEducationList = []; 
+      this.filteredEducation.next(this.EducationList.slice());
+}
+
+    }
   ngOnInit() { 
     this.filteredLastPostedList.next(this.LastPostedList.slice());
+    this.LastPostedMainList= this.LastPostedList;
     this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
+    this.ProfileStatusMainList = this.ProfileStatusList;
     this.getQualificationDetails();
     this.getAllJobTitle();
     this.getAllClients();
@@ -1105,7 +1453,7 @@ protected filterDomain(){
     this.GetEmployementType();
     this.getExpYears();
     this.populateCities();
-    this.getSkills();
+    // this.getSkills();
   }
 
 }

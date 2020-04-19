@@ -201,7 +201,7 @@ export class LoadJoblistComponent implements OnInit {
         }
          this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     },
-    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles) => {
+    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education) => {
       debugger
       if (1) {
         this.searchString = '';
@@ -209,7 +209,7 @@ export class LoadJoblistComponent implements OnInit {
         //this.defaultValue = '0';
       }
       this.spinner.show();
-      this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,jobStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType).subscribe(res => {
+      this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,jobStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,education).subscribe(res => {
         this.loaddata = true;
         this.joblist = res;
         this.jobLoader = false;
@@ -228,5 +228,5 @@ export class LoadJoblistComponent implements OnInit {
 export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
-  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles) => void;
+  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education) => void;
 }
