@@ -438,7 +438,20 @@ var profileStatus='';
       });
       // titles = titles.toString()+',' + element.JobTitleId.toString();
      
-     
+    //  if(this.jobStatus == null){
+    //   this.jobStatus =this.temp.toString();
+
+    //  }
+
+     var jobStatus ;
+     if(this.jobStatus != null)
+     jobStatus =this.jobStatus;
+     else{
+      jobStatus ='';
+
+     } 
+
+
     var lastWeek = '';
     var lastTwoWeek = '';
     var last30days = '';
@@ -491,7 +504,24 @@ else if(this.postedtype == 6)
     this.maxSal = '';
     maxSal =this.maxSal.toString();
   } 
-  
+
+  var isfiltered ;
+  if( selectedlocations.length > 0||  minExp >= 0 && maxExp >=0 || minSal>=0 &&  maxSal >=0 ||
+clients.length > 0 ||
+     domain.length  > 0 ||
+    immigrations.length > 0 ||
+     lastWeek.length > 0||
+     lastTwoWeek.length > 0 ||
+     last30days.length > 0 ||
+     last90days.length > 0||
+     lastyear.length > 0||
+    today.length > 0||
+    category.length  > 0||
+    empType.length  > 0||
+    this.jobStatus > 0||skills.length  > 0 ||
+    departments.length  > 0 || titles.length  > 0 || profileStatus.length  > 0||
+    education.length  > 0){
+  isfiltered = 1;
       // Var data=[loc = selec]
       var data  = 
         {
@@ -511,16 +541,20 @@ else if(this.postedtype == 6)
           today :today,
           category :category,
           empType :empType,
-          jobStatus : this.jobStatus,
+          jobStatus : jobStatus,
           skills:skills,
           departments:departments,
           titles:titles,
           profileStatus:profileStatus,
-          education:education
+          education:education,
+          isfiltered:isfiltered
         }
       // this.OutputtoParent.emit(this.empolymentId);
        this.dialogRef.close({ data:data});
-      
+      }else{
+       this.dialogRef.close({});
+
+      }
        //this.parentApi.callFilterMethod(this.empolymentId,this.exp,this.location,this.clientId,this.departmentId);
     }
     else

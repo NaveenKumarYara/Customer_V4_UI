@@ -40,7 +40,7 @@ export class FilterjobsComponent implements OnInit {
         debugger
         if(result != undefined){
         // locations,minExp, MaxExp,minSal,maxSal
-        this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.jobStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education);
+        this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.jobStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education,result.data.isfiltered);
       }
         // console.log('result.data',result.data);
       });

@@ -41,7 +41,14 @@ export class LoadJoblistComponent implements OnInit {
    color = 'primary';
    mode = 'indeterminate';
    value = 50;
-
+   locations:any;  minExp:any; 
+   MaxExp:any;minSal:any;maxSal:any;
+   clients:any;domain:any;immigrations:any;
+   lastWeek:any;lastTwoWeek:any;last30days:any;
+   last90days:any;lastyear:any;today:any;category:any;
+   empType:any;jobStatus:any;skills:any;departments:any;titles:any;
+   education:any;
+   isfiltered :any;
 
   processed = false;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
@@ -142,15 +149,24 @@ export class LoadJoblistComponent implements OnInit {
     this.joblistcount += 6;
     this.managejobservice.updateJobListCount(this.joblistcount);
     this.jobLoader = true;
-    if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0 || this.clientId>0 || this.departmentId>0)
-    {
-      this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,this.clientId,this.departmentId);
-    }
-    else
-    {
-      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy);
-    }
-   
+    if(this.isfiltered==1){
+      this.spinner.show();
+      this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,this.minExp, this.MaxExp,this.minSal,this.maxSal,this.jobStatus,this.locations,this.skills,this.clients,this.departments,this.titles,this.domain,this.immigrations,this.lastWeek,this.lastTwoWeek,this.last30days,this.last90days,this.lastyear,this.today,this.category,this.empType,this.education).subscribe(res => {
+        this.loaddata = true;
+        this.joblist = res;
+        this.jobLoader = false;
+        this.spinner.hide();
+      }); 
+    }else{
+        if(this.employmentTypeId>0 || this.experience>0 || this.cityId>0 || this.clientId>0 || this.departmentId>0)
+        {
+          this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.viewBy,this.clientId,this.departmentId);
+        }
+        else
+        {
+          this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy);
+        }
+  }
   }
 
 
@@ -201,13 +217,25 @@ export class LoadJoblistComponent implements OnInit {
         }
          this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     },
-    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education) => {
+    Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education,isfiltered) => {
       debugger
       if (1) {
         this.searchString = '';
         //this.sortBy = 0;
         //this.defaultValue = '0';
       }
+      this.locations =locations;this.minExp=minExp;this.MaxExp= MaxExp;
+      this.minSal=minSal;
+      this.maxSal=maxSal;this.clients=clients;
+      this.domain=domain;this.immigrations=immigrations;
+      this.lastWeek=lastWeek;this.lastTwoWeek=lastTwoWeek;
+      this.last30days=last30days;this.last90days=last90days;
+      this.lastyear=lastyear;
+      this.today =today;
+      this.category=category;
+      this.empType=empType;
+      this.jobStatus=jobStatus;this.skills=skills;this.departments=departments;this.titles=titles;this.education=education;
+      this.isfiltered=isfiltered;
       this.spinner.show();
       this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,jobStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,education).subscribe(res => {
         this.loaddata = true;
@@ -228,5 +256,5 @@ export class LoadJoblistComponent implements OnInit {
 export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callFilterMethod: (employmentTypeId, experience, cityId, clientId, departmentId) => void;
-  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education) => void;
+  Filterjobs: (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,jobStatus,skills,departments,titles,education,isfiltered) => void;
 }
