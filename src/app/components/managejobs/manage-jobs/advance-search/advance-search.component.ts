@@ -472,7 +472,7 @@ else if(this.postedtype == 6)
   lastyear = '1';
 
   var minExp ;
-  if(this.minExp >= 0)
+  if(this.minExp >= 0 && this.minExp != '')
     minExp =Number(this.minExp * 12);
   else{
     this.minExp = '';
@@ -480,7 +480,7 @@ else if(this.postedtype == 6)
   } 
     
   var maxExp ;
-  if(this.maxExp >= 0)
+  if(this.maxExp >= 0 && this.maxExp != '')
     maxExp =(this.maxExp * 12);
   else{
     this.maxExp = '';
@@ -488,7 +488,7 @@ else if(this.postedtype == 6)
   } 
     
   var minSal ;
-  if(this.minSal >= 0)
+  if(this.minSal >= 0 && this.minSal != '')
     minSal =Number(this.minSal);
   else
   {
@@ -497,7 +497,7 @@ else if(this.postedtype == 6)
   } 
     
   var maxSal ;
-  if(this.maxSal >= 0)
+  if(this.maxSal >= 0 && this.maxSal != '')
     maxSal =Number(this.maxSal);
   else
   {
@@ -506,7 +506,7 @@ else if(this.postedtype == 6)
   } 
 
   var isfiltered ;
-  if( selectedlocations.length > 0||  minExp >= 0 && maxExp >=0 || minSal>=0 &&  maxSal >=0 ||
+  if( selectedlocations.length > 0|| (minExp >= 0 && maxExp >=0 && maxExp != '' && minExp != '') || (minSal>=0 &&  maxSal >=0 && maxSal != '' && minSal != '') ||
 clients.length > 0 ||
      domain.length  > 0 ||
     immigrations.length > 0 ||
@@ -1433,6 +1433,70 @@ protected filterDomain(){
       this.filteredDomainList.next(this.DomainList.slice()); 
     }else if(componentNo == 14){
       this.showEducation  =false;
+      this.Education  = new FormControl(); 
+      this.SelectedEducationList = []; 
+      this.filteredEducation.next(this.EducationList.slice());
+}
+
+    }
+    ClearComponent(componentNo){
+      
+      if(componentNo == 1){
+      this.emp =new FormControl();
+      this.selectedJobType = [];
+      this.employmentList.next( this.employmentMainList);
+    }else if(componentNo == 2){
+      this.bankMultiCtrl = new FormControl();
+        this.SelectedCityList = []; 
+        this.filteredBanksMulti.next(this.cities.slice());
+    }else if(componentNo == 3){
+      this.Jobtitle  = new FormControl();
+        this.SelectedJobtitleList = [];
+        this.filteredJobtitle.next(this.JobtitleList.slice());
+    }else if(componentNo == 4){
+      
+      this.ProfileStatus = new FormControl();
+      this.SelectedProfileStatusList = [];
+      this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
+    }else if(componentNo == 5){ 
+      this.Client = new FormControl();
+      this.SelectedClientList = [];
+      this.filteredClientList.next(this.ClientList.slice()); 
+    }else if(componentNo == 6){ 
+      this.Department = new FormControl();
+      this.SelectedDepartmentList = [];
+      this.filteredDepartmentList.next(this.DepartmentList.slice()); 
+    }else if(componentNo == 7){ 
+      this.Skills  = new FormControl();
+      this.SelectedSkillList = [];
+      this.filteredSkillList.next(this.SkillList.slice());
+    }else if(componentNo == 8){ 
+      this.LastPosted = new FormControl();
+      this.SelectedLastPostedList = [];
+      this.filteredLastPostedList.next(this.LastPostedList.slice());
+    }else if(componentNo == 9){
+       
+      this.immigrationstatus  = new FormControl();
+      this.SelectedimmigrationstatusList  = []; 
+      this.filteredimmigrationstatus.next(this.immigrationstatusList.slice()); 
+    }else if(componentNo == 10){ 
+      this.minExp ='';
+      this.minExp =  this.minExp.toString();
+      this.maxExp =  this.minExp.toString();
+    }else if(componentNo == 11){
+       
+      this.minSal ='';
+      this.minSal =  this.minSal.toString();
+      this.maxSal = this.minSal.toString();
+    }else if(componentNo == 12){ 
+      this.Category  = new FormControl();
+        this.SelectedCategoryList  = [];
+        this.filteredCategoryList.next(this.CategoryList.slice());
+    }else if(componentNo == 13){ 
+      this.Domain = new FormControl();
+      this.SelectedDomainList = [];
+      this.filteredDomainList.next(this.DomainList.slice()); 
+    }else if(componentNo == 14){ 
       this.Education  = new FormControl(); 
       this.SelectedEducationList = []; 
       this.filteredEducation.next(this.EducationList.slice());
