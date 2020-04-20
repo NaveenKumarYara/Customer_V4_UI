@@ -107,12 +107,11 @@ mat-expansion-panel-header {
 .c-d-f span.c-f-default {
     float: right;
     font-size: 10px;
-    text-decoration: underline;
     cursor: pointer;
 }
 
 .c-d-f span i.fa {
     float: right;
     cursor: pointer;
-    padding: 0.2rem 0 0 0.4rem;
+    padding: 0.2rem 0 0 0.7rem;
 }
