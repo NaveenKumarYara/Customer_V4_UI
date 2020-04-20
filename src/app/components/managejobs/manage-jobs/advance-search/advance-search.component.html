@@ -10,10 +10,10 @@
                     aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
                 </button>
-                <button (click)="ClearALlFilter()"> 
-                    Close All
+                <button class="btn btn-default" (click)="ClearALlFilter()">
+                    Clear Filters
                 </button>
-                
+
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <ul class="filters-list">
                         <li>
@@ -22,7 +22,7 @@
                                     <input type="checkbox" [(ngModel)]="showClient"> Client
                                 </label>
                             </div>
-                        </li> 
+                        </li>
                         <li>
                             <div class="checkbox">
                                 <label>
@@ -125,7 +125,7 @@
                     <li role="separator" class="divider"></li>
                     <li class="filter-btns">
                         <button class="btn btn-small btn-cancel">Cancel</button>
-                        <button class="btn btn-small btn-add">Add</button>
+                        <!-- <button class="btn btn-small btn-add">Add</button> -->
                     </li>
                 </ul>
             </div>
@@ -134,29 +134,27 @@
         <!-- <button mat-button mat-dialog-close class="close">×</button> -->
     </div>
 
-    <div class="row mrll0-tb2" *ngIf="!advancesearch" style="display: block;">
-
+    <div class="row mrll0-tb2 c-d-f" *ngIf="!advancesearch" style="display: block;">
         <div class="col-md-12">
-
             <div class="input-row row ">
                 <form action="">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="job-type">Job Type
-                            <label style="float: right;" (click)="RemoveComponent(1)">
-                               x
+                                <span class="c-f-default" (click)="RemoveComponent(1)">
+                                    Clear Filter
+                                </span>
                             </label>
-                        </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
-
                                         <mat-form-field>
                                             <mat-select [formControl]="emp" placeholder="Employment Type"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search [formControl]="empFilter" placeholderLabel="Search Employment Type"
-                                                noEntriesFoundLabel="'no matching found'">
-                                                     
+                                                <ngx-mat-select-search [formControl]="empFilter"
+                                                    placeholderLabel="Search Employment Type"
+                                                    noEntriesFoundLabel="'no matching found'">
+
                                                 </ngx-mat-select-search>
                                                 <!-- <ngx-mat-select-search>
                                                  </ngx-mat-select-search> -->
@@ -175,27 +173,28 @@
                                 </div>
                             </mat-expansion-panel>
                         </div>
-
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="job-type">Location<label style="float: right;" (click)="RemoveComponent(2)">
-                                x
-                             </label>
-                         </label>
+                            <label for="job-type">Location
+                                <span class="c-f-default" (click)="RemoveComponent(2)">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="bankMultiCtrl" placeholder="Locations"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Locations" noEntriesFoundLabel="'no matching found'" [formControl]="bankMultiFilterCtrl">
+                                                <ngx-mat-select-search placeholderLabel="Search Locations"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="bankMultiFilterCtrl">
                                                 </ngx-mat-select-search>
                                                 <!-- (click)="ChnageLocations(bank$event.target.value)"  -->
-                                                <mat-option *ngFor="let bank of filteredBanksMulti | async" 
-                                                (click)="changeLocation(bank.CityId)"
-                                                    [value]="bank">
+                                                <mat-option *ngFor="let bank of filteredBanksMulti | async"
+                                                    (click)="changeLocation(bank.CityId)" [value]="bank">
                                                     {{bank.CityName}}
                                                 </mat-option>
                                             </mat-select>
@@ -207,28 +206,27 @@
                                     {{bank.CityName}}
                                 </div>
                             </mat-expansion-panel>
-
                         </div>
                     </div>
-                      <!--Job title-->
-                      <div class="col-md-6" >
+                    <!--Job title-->
+                    <div class="col-md-6">
                         <!-- [hidden]="!Jobtitle" -->
                         <div class="form-group">
-                            <label for="addJobtitle">Job Title<label style="float: right;" (click)="RemoveComponent(3)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addJobtitle">Job Title
+                                <span class="c-f-default" (click)="RemoveComponent(3)">Clear Filter</span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Jobtitle" placeholder="Job Title"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Job Title" noEntriesFoundLabel="'no matching found'" [formControl]="JobtitleFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Job Title"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="JobtitleFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredJobtitle | async"
-                                                    (click)="changeJobTitle(empl.JobTitleId,emp.value)"
-                                                    [value]="empl">
+                                                    (click)="changeJobTitle(empl.JobTitleId,emp.value)" [value]="empl">
                                                     {{empl.JobTitle}}
                                                 </mat-option>
                                             </mat-select>
@@ -241,54 +239,60 @@
                             </mat-expansion-panel>
                         </div>
                     </div>
-                        <!--Profile Type-->
-                        <div class="col-md-6">
-                            <!-- [hidden]="!profiletypefilter" -->
-                            <div class="form-group">
-                                <label for="addProfilestatusfilter">Profile Status<label style="float: right;" (click)="RemoveComponent(4)">
-                                    x
-                                 </label>
-                             </label>
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-description>
-                                            <mat-form-field>
-                                                <mat-select [formControl]="ProfileStatus" placeholder="Profile Status"
-                                                    [multiple]="true" #multiSelect>
-                                                    <ngx-mat-select-search placeholderLabel="Search Profile Status" noEntriesFoundLabel="'no matching found'" [formControl]="profiletypefilter">
-                                                    </ngx-mat-select-search>
-                                                    <mat-option *ngFor="let empl of filteredProfileStatusList | async"
-                                                        (click)="changeprofilestatus(empl.Id,emp.value)"
-                                                        [value]="empl">
-                                                        {{empl.Name}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </mat-panel-description>
-                                    </mat-expansion-panel-header>
-                                    <div *ngFor="let bank of SelectedProfileStatusList">
-                                        {{bank.Name}}
-                                    </div>
-                                </mat-expansion-panel>
-                            </div>
+                    <!--Profile Type-->
+                    <div class="col-md-6">
+                        <!-- [hidden]="!profiletypefilter" -->
+                        <div class="form-group">
+                            <label for="addProfilestatusfilter">Profile Status
+                                <span class="c-f-default" (click)="RemoveComponent(4)">Clear Filter</span>
+                            </label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description>
+                                        <mat-form-field>
+                                            <mat-select [formControl]="ProfileStatus" placeholder="Profile Status"
+                                                [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search placeholderLabel="Search Profile Status"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="profiletypefilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of filteredProfileStatusList | async"
+                                                    (click)="changeprofilestatus(empl.Id,emp.value)" [value]="empl">
+                                                    {{empl.Name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div *ngFor="let bank of SelectedProfileStatusList">
+                                    {{bank.Name}}
+                                </div>
+                            </mat-expansion-panel>
                         </div>
+                    </div>
                     <div class="col-md-6" [hidden]="!showClient">
                         <div class="form-group">
-                            <label for="job-type">Client<label style="float: right;" (click)="RemoveComponent(5)">
-                                x
-                             </label>
-                         </label>
+                            <label for="job-type">Client
+                                <span (click)="RemoveComponent(5)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Client" placeholder="Client" [multiple]="true"
                                                 #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Client" noEntriesFoundLabel="'no matching found'" [formControl]="ClientFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Client"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="ClientFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredClientList | async"
-                                                    (click)="changeClient(empl.ClientId)"
-                                                    [value]="empl">
+                                                    (click)="changeClient(empl.ClientId)" [value]="empl">
                                                     {{empl.ClientName}}
                                                 </mat-option>
                                             </mat-select>
@@ -303,10 +307,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" [hidden]="!showDepartment">
-                            <label for="job-type">Department<label style="float: right;" (click)="RemoveComponent(6)">
-                                x
-                             </label>
-                         </label>
+                            <label for="job-type">Department
+                               
+                                <span (click)="RemoveComponent(6)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -325,11 +334,12 @@
                                         <mat-form-field>
                                             <mat-select [formControl]="Department" placeholder="Department"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Department" noEntriesFoundLabel="'no matching found'" [formControl]="DepartmentFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Department"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="DepartmentFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredDepartmentList | async"
-                                                    (click)="changeDepartment(empl.DepartmentId)"
-                                                    [value]="empl">
+                                                    (click)="changeDepartment(empl.DepartmentId)" [value]="empl">
                                                     {{empl.CustomerDepartment}}
                                                 </mat-option>
                                             </mat-select>
@@ -344,26 +354,31 @@
                     </div>
                     <!--Show & Hide Filters 01-04-2020-->
 
-                
+
                     <!---->
                     <!--Skills-->
                     <div class="col-md-6" [hidden]="!showskillsfilter">
                         <div class="form-group">
-                            <label for="addskillfilter">Skills<label style="float: right;" (click)="RemoveComponent(7)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addskillfilter">Skills
+                                <span (click)="RemoveComponent(7)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Skills" placeholder="Skills" [multiple]="true"
                                                 #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Skills" noEntriesFoundLabel="'no matching found'" [formControl]="SkillsFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Skills"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="SkillsFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredSkillList | async"
-                                                    (click)="changeskills(empl.Id)"
-                                                    [value]="empl">
+                                                    (click)="changeskills(empl.Id)" [value]="empl">
                                                     {{empl.Code}}
                                                 </mat-option>
                                             </mat-select>
@@ -381,10 +396,14 @@
                     <!--Last Posted-->
                     <div class="col-md-6" [hidden]="!showlastpostedfilter">
                         <div class="form-group">
-                            <label for="addlastpostedfilter">Last Posted<label style="float: right;" (click)="RemoveComponent(8)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addlastpostedfilter">Last Posted
+                                <span (click)="RemoveComponent(8)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
@@ -393,11 +412,12 @@
                                         <mat-form-field>
                                             <mat-select [formControl]="LastPosted" placeholder="Last Posted"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Last Posted" noEntriesFoundLabel="'no matching found'" [formControl]="LastPostedFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Last Posted"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="LastPostedFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredLastPostedList | async"
-                                                    (click)="postedDate(empl.Id)"
-                                                    [value]="empl">
+                                                    (click)="postedDate(empl.Id)" [value]="empl">
                                                     {{empl.Name}}
                                                 </mat-option>
                                             </mat-select>
@@ -414,19 +434,26 @@
                     <!--Immigration Status-->
                     <div class="col-md-6" [hidden]="!showimmigrationstatusfilter">
                         <div class="form-group">
-                            <label for="addimmigrationstatusfilter">Immigration Status<label style="float: right;" (click)="RemoveComponent(9)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addimmigrationstatusfilter">Immigration Status
+                                <span (click)="RemoveComponent(9)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <!-- <input type="text" class="form-control loc-search1" id="addimmigrationstatusfilter"
                             placeholder="Type and Search"> -->
                                         <mat-form-field>
-                                            <mat-select [formControl]="immigrationstatus" placeholder="Immigration Status"
-                                                [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Immigration Status" noEntriesFoundLabel="'no matching found'" [formControl]="immigrationstatusFilter">
+                                            <mat-select [formControl]="immigrationstatus"
+                                                placeholder="Immigration Status" [multiple]="true" #multiSelect>
+                                                <ngx-mat-select-search placeholderLabel="Search Immigration Status"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="immigrationstatusFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredimmigrationstatus | async"
                                                     (click)="changeImmigration(empl.ImmigrationStatusId)"
@@ -501,17 +528,20 @@
                     <div class="col-md-6" [hidden]="!showExperience">
                         <div class="form-group">
                             <label for="addExperience">Experience
-                                <label style="float: right;" (click)="RemoveComponent(10)">
-                                x
-                             </label>
-                         </label>
+                                <span (click)="RemoveComponent(10)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <!-- <input type="text" class="form-control loc-search1" id="addExperience"
             placeholder="Type and Search"> -->
                                         <!-- <mat-form-field> -->
-                                            <!-- <mat-select [formControl]="Experience" placeholder="Experience"
+                                        <!-- <mat-select [formControl]="Experience" placeholder="Experience"
                                                 [multiple]="true" #multiSelect>
                                                 <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="'no matching found'" [formControl]="ExperienceFilter">
                                                 </ngx-mat-select-search>
@@ -521,19 +551,19 @@
                                                     {{empl.EmploymentType}}
                                                 </mat-option>
                                             </mat-select> -->
-                                            <!-- <mat-label>Leave a comment</mat-label>
+                                        <!-- <mat-label>Leave a comment</mat-label>
                                             <input matInput placeholder="Min. Exp"  >
                                             <mat-label>Leave a comment</mat-label>
                                             <input matInput placeholder="Max. Exp"  > -->
-                                            <mat-form-field style="width: 25%;">
-                                                <mat-label>Min. Exp</mat-label>
-                                                <input matInput placeholder="Min. Exp" name="minexp" [(ngModel)]="minExp" >
-                                              </mat-form-field>
-                                             &nbsp;
-                                              <mat-form-field style="width: 25%;">
-                                                <mat-label>Max. Exp</mat-label>
-                                                <input matInput placeholder="Max. Exp" name="maxexp" [(ngModel)]="maxExp" >
-                                              </mat-form-field>
+                                        <mat-form-field style="width: 25%;">
+                                            <mat-label>Min. Exp</mat-label>
+                                            <input matInput placeholder="Min. Exp" name="minexp" [(ngModel)]="minExp">
+                                        </mat-form-field>
+                                        &nbsp;
+                                        <mat-form-field style="width: 25%;">
+                                            <mat-label>Max. Exp</mat-label>
+                                            <input matInput placeholder="Max. Exp" name="maxexp" [(ngModel)]="maxExp">
+                                        </mat-form-field>
                                         <!-- </mat-form-field> -->
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
@@ -541,26 +571,32 @@
                             </mat-expansion-panel>
                         </div>
                     </div>
-                  
+
                     <!--Salaryrange-->
                     <div class="col-md-6" [hidden]="!showSalaryrange">
                         <div class="form-group">
-                            <label for="addSalaryrange">Salary Range<label style="float: right;" (click)="RemoveComponent(11)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addSalaryrange">Salary Range
+                                <span (click)="RemoveComponent(11)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field style="width: 25%;">
                                             <mat-label>Min. Salary</mat-label>
-                                            <input matInput placeholder="Min. Salary" name="minsal" [(ngModel)]="minSal" >
-                                          </mat-form-field>
-                                          &nbsp;
-                                          <mat-form-field style="width: 25%;">
+                                            <input matInput placeholder="Min. Salary" name="minsal"
+                                                [(ngModel)]="minSal">
+                                        </mat-form-field>
+                                        &nbsp;
+                                        <mat-form-field style="width: 25%;">
                                             <mat-label>Max. Salary</mat-label>
-                                            <input matInput placeholder="Max. Salary" name="maxsal" [(ngModel)]="maxSal" >
-                                          </mat-form-field>
+                                            <input matInput placeholder="Max. Salary" name="maxsal"
+                                                [(ngModel)]="maxSal">
+                                        </mat-form-field>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <!-- <p>This is the primary content of the panel.</p> -->
@@ -570,21 +606,27 @@
                     <!--Category-->
                     <div class="col-md-6" [hidden]="!showCategory">
                         <div class="form-group">
-                            <label for="addCategory">Category<label style="float: right;" (click)="RemoveComponent(12)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addCategory">Category
+                            
+                                <span (click)="RemoveComponent(12)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Category" placeholder="Category"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Category" noEntriesFoundLabel="'no matching found'" [formControl]="CategoryFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Category"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="CategoryFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredCategoryList | async"
-                                                 (click)="changeCategory(empl.JobCategoryId )" 
-                                                    [value]="empl">
+                                                    (click)="changeCategory(empl.JobCategoryId )" [value]="empl">
                                                     {{empl.Category}}
                                                 </mat-option>
                                             </mat-select>
@@ -600,25 +642,30 @@
                     <!--Domain-->
                     <div class="col-md-6" [hidden]="!showDomain">
                         <div class="form-group">
-                            <label for="addDomain">Domain<label style="float: right;" (click)="RemoveComponent(13)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addDomain">Domain
+                                <span (click)="RemoveComponent(13)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Domain" placeholder="Domain" [multiple]="true"
                                                 #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Domain" noEntriesFoundLabel="'no matching found'" [formControl]="DomainFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Domain"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="DomainFilter">
                                                 </ngx-mat-select-search>
                                                 <div *ngFor="let empl of filteredDomainList | async">
-                                                <mat-option *ngIf="empl.DomainId != 0" 
-                                                    (click)="changeDomain(empl.DomainId)"
-                                                    [value]="empl">
-                                                    {{empl.DomainName}}
-                                                </mat-option>
-                                            </div>
+                                                    <mat-option *ngIf="empl.DomainId != 0"
+                                                        (click)="changeDomain(empl.DomainId)" [value]="empl">
+                                                        {{empl.DomainName}}
+                                                    </mat-option>
+                                                </div>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-panel-description>
@@ -632,21 +679,27 @@
                     <!--Education-->
                     <div class="col-md-6" [hidden]="!showEducation">
                         <div class="form-group">
-                            <label for="addEducation">Education<label style="float: right;" (click)="RemoveComponent(14)">
-                                x
-                             </label>
-                         </label>
+                            <label for="addEducation">Education
+                                <span (click)="RemoveComponent(14)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                                <span class="c-f-default">
+                                    Clear Filter
+                                </span>
+                       
+                            </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
                                             <mat-select [formControl]="Education" placeholder="Education"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Education" noEntriesFoundLabel="'no matching found'" [formControl]="EducationFilter">
+                                                <ngx-mat-select-search placeholderLabel="Search Education"
+                                                    noEntriesFoundLabel="'no matching found'"
+                                                    [formControl]="EducationFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredEducation | async"
-                                                    (click)="changeEducation(empl.QualificationId)"
-                                                    [value]="empl">
+                                                    (click)="changeEducation(empl.QualificationId)" [value]="empl">
                                                     {{empl.QualificationName}}
                                                 </mat-option>
                                             </mat-select>
