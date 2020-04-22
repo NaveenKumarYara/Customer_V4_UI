@@ -114,13 +114,13 @@
                                 </label>
                             </div>
                         </li> -->
-                        <!-- <li>
+                        <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="users"> Users
                                 </label>
                             </div>
-                        </li> -->
+                        </li>
                     </ul>
                     <li role="separator" class="divider"></li>
                     <li class="filter-btns">
@@ -738,7 +738,7 @@
                         </div>
                     </div> -->
                     <!--users-->
-                    <!-- <div class="col-md-6" [hidden]="!users">
+                    <div class="col-md-6" [hidden]="!users">
                         <div class="form-group">
                             <label for="addusers">Users</label>
                             <mat-expansion-panel>
@@ -750,18 +750,20 @@
                                                 <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="'no matching found'" [formControl]="JobtitleFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredUsersList | async"
-                                                    (click)="changeJobType(empl.EmploymentTypeId,emp.value)"
+                                                    (click)="changeUser(empl.UserId)"
                                                     [value]="empl">
-                                                    {{empl.EmploymentType}}
+                                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <p>This is the primary content of the panel.</p>
+                                <div *ngFor="let empl of SelectedUsersList">
+                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
+                                </div>
                             </mat-expansion-panel>
                         </div>
-                    </div> -->
+                    </div>
                     <!---->
                 </form>
             </div>
