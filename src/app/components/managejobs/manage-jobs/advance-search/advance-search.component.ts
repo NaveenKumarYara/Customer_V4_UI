@@ -33,6 +33,7 @@ export class AdvanceSearchComponent implements OnInit {
   showEducation :any=false;
   showClient :any=false;
   showDepartment :any=false;
+  showusers :any=false;
 
   customerId: any;
   customer: any;
@@ -1419,6 +1420,9 @@ protected filterDomain(){
     this.minSal = new Number();
     this.maxSal = new Number();
     
+      this.Users  = new FormControl(); 
+      this.SelectedUsersList = []; 
+      this.filteredUsersList.next(this.UsersList.slice());
   
     }
 
@@ -1493,6 +1497,11 @@ protected filterDomain(){
       this.Education  = new FormControl(); 
       this.SelectedEducationList = []; 
       this.filteredEducation.next(this.EducationList.slice());
+}else if(componentNo == 15){
+  this.showusers  =false;
+  this.Users  = new FormControl(); 
+  this.SelectedUsersList = []; 
+  this.filteredUsersList.next(this.UsersList.slice());
 }
 
     }
@@ -1557,6 +1566,10 @@ protected filterDomain(){
       this.Education  = new FormControl(); 
       this.SelectedEducationList = []; 
       this.filteredEducation.next(this.EducationList.slice());
+}else if(componentNo == 15){ 
+  this.Users  = new FormControl(); 
+  this.SelectedUsersList = []; 
+  this.filteredUsersList.next(this.UsersList.slice());
 }
 
     }

@@ -117,7 +117,7 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="users"> Users
+                                    <input type="checkbox" [(ngModel)]="showusers"> Users
                                 </label>
                             </div>
                         </li>
@@ -738,7 +738,7 @@
                         </div>
                     </div> -->
                     <!--users-->
-                    <div class="col-md-6" [hidden]="!users">
+                    <div class="col-md-6" [hidden]="!showusers">
                         <div class="form-group">
                             <label for="addusers">Users</label>
                             <mat-expansion-panel>
