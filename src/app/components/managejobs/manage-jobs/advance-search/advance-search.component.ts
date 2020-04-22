@@ -104,8 +104,10 @@ cityloading = false;
         {Id:4,
           Name: 'Freezed Jobs'},
           {Id:5,
-            Name: 'Closed Jobs'} 
-    
+            Name: 'Closed Jobs'},
+            {Id:6,
+            Name: 'ShortListing'} 
+            
   ];
   SkillList: any = [];
   LastPostedList: any = [
@@ -438,9 +440,9 @@ this.postedtype='';
 var profileStatus='';
       this.SelectedProfileStatusList.forEach(element => {
         if(profileStatus.length == 0){
-          if(element.Id == 1){
-          this.jobStatus =1;
-        }
+        //   if(element.Id == 1){
+        //   this.jobStatus =1;
+        // }
           profileStatus = element.Id.toString();
         }else
           profileStatus = profileStatus.toString()+',' + element.Id.toString();
