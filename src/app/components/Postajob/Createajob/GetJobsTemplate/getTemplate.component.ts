@@ -20,6 +20,7 @@ export class JobTemplateComponent {
   counter: number;
   userId: any;
   draft: any;
+  show:boolean=false;
   joblist = new RecentJobs();
   defaultjoblist = new RecentJobs();
   // draftItem:true;
@@ -31,6 +32,20 @@ export class JobTemplateComponent {
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.counter = 0;
+  }
+
+  Populate(value)
+  {
+    if(value==0)
+    {
+      this.show=false;
+      this.GetJobTemplates();
+    }
+    else if(value == 1)
+    {
+      this.show=true;
+      this.GetJobDeafultTemplates();
+    }
   }
 
   editJob(jobId, active) {
@@ -82,7 +97,7 @@ export class JobTemplateComponent {
   }
 
   GetJobDeafultTemplates() {
-    return this.appService.GetJobDeafultTemplates(this.customerId).subscribe(res => {
+    return this.appService.GetJobDeafultTemplates(10275).subscribe(res => {
       this.defaultjoblist = res;
       this.draft = this.defaultjoblist.Jobs.slice(0, 6);
       this.spinner.hide();
@@ -90,6 +105,8 @@ export class JobTemplateComponent {
   }
 
   ngOnInit() {
+  this.Populate(0);
+  this.show=false;
   this.spinner.show();
   this.GetJobTemplates();
   this.GetJobDeafultTemplates();

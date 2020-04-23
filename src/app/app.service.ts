@@ -1030,7 +1030,7 @@ this.skillPostData.push(skill);
   }
 
   GetJobDeafultTemplates(customerId: number) {
-    const url = this.settingsService.settings.GetDeafultTemplates + 'customerId=' + customerId;
+    const url = this.settingsService.settings.GetDeafultTemplates + '?customerId=' + customerId;
     return this.http.get<RecentJobs[]>(url)
         .catch(
             this.handleError

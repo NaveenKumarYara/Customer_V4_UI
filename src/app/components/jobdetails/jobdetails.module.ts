@@ -35,6 +35,7 @@ import { InviteProfiledialogComponent } from './view-jobdetails/filter-view-jobs
 import {ProgressBarModule} from 'angular-progress-bar';
 import {ShareJobComponent} from './view-jobdetails/share-job/sharejob.component';
 import {UniqueMonthYearPipe} from './view-jobdetails/months.pipe';
+import {ViewCandidateprofileDetailComponent} from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/view-candidateprofile-detail.component'
 import {ConverttoMonthPipe} from './convertmonths.pipe';
 import {RemovePipe} from './view-jobdetails/viewjobdetails-candidate-profile/RemovePipe.pipe';
 import { TagCloudModule } from 'angular-tag-cloud-module';
@@ -64,7 +65,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     // ModalDialogModule.forRoot()
   ],
   providers: [JobdetailsService],
-  declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
+  declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,
                   UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent],

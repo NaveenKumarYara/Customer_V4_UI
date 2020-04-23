@@ -95,6 +95,7 @@ import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemp
 import { DepartmentsComponent } from './components/Postajob/Createajob/Step1/departments.component';
 import { ClientsComponent } from './components/Postajob/Createajob/Step1/clients.component';
 import {GetCandidateprofileComponent} from './components/GetProfileDetails/GetProfile.component';
+import {ViewCandidateprofileDetailComponent} from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/view-candidateprofile-detail.component';
 import { ViewCandidateprofileComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { InviteProfiledialogComponent } from '../app/components/jobdetails/view-jobdetails/filter-view-jobs/invite-profiledialog/invite-profiledialog.component';
 import { SendEmailComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
@@ -199,7 +200,7 @@ const appRoutes: Routes =
     { path: 'app-viewjobdetailsmodel', component: ViewjobdetailsmodelComponent },
       { path: 'app-UploadProfiles', component: UploadProfilesComponent },
     { path: 'app-viewjobdetails-candidate-profile', component: ViewjobdetailsCandidateProfileComponent },
-
+    { path: 'app-view-candidateprofile-detail', component: ViewCandidateprofileDetailComponent },
     // dialog
     { path: 'app-chatboxdialog', component: ChatboxdialogComponent },
     { path: 'app-sharedialog', component: SharedialogComponent },
