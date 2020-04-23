@@ -21,6 +21,7 @@ export class JobTemplateComponent {
   userId: any;
   draft: any;
   joblist = new RecentJobs();
+  defaultjoblist = new RecentJobs();
   // draftItem:true;
   isFullDisplayed: any = false;
 
@@ -80,9 +81,18 @@ export class JobTemplateComponent {
     });
   }
 
+  GetJobDeafultTemplates() {
+    return this.appService.GetJobDeafultTemplates(this.customerId).subscribe(res => {
+      this.defaultjoblist = res;
+      this.draft = this.defaultjoblist.Jobs.slice(0, 6);
+      this.spinner.hide();
+    });
+  }
+
   ngOnInit() {
   this.spinner.show();
   this.GetJobTemplates();
+  this.GetJobDeafultTemplates();
   }
 }
 

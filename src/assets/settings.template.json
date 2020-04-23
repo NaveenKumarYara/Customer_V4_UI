@@ -42,7 +42,7 @@
   "StartConversation": "${Email_URL}/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "${Profile_URL}/api/UpdateProfileStatus",
   "signUp": "${Identity_URL}/api/CustomerRegistration",
-  "postjob" : "${Jobs_URL}/api/CreateJob",
+  "postjob" : "${Jobs_URL}/api/CreateJobTemplate",
   "addRoles": "${Profile_URL}/api/SaveRoles",
   "getRoles": "${Profile_URL}/api/GetRolesAndResponsibility",
   "bulkResponsibilities" : "${Jobs_URL}/api/SaveJobRoles",
@@ -158,5 +158,6 @@
   "SaveJobResponseRoles":"${Identity_URL}/api/SaveJobResponsibilites",
   "listofFilteredJobs": "${Jobs_URL}/api/GetCustomerFilteredJobs?",
   "listofAllSkills": "${Profile_URL}/api/GetSkillDetails",
-  "listofAllTitles": "${Jobs_URL}/api/GetAllJobTitles"
+  "listofAllTitles": "${Jobs_URL}/api/GetAllJobTitles",
+  "GetDeafultTemplates": "${Identity_URL}/api/GetDefaultTemplates"
 }

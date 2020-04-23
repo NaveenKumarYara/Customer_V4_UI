@@ -166,4 +166,5 @@ export class Settings {
   listofFilteredJobs : string;
   listofAllSkills : string;
   listofAllTitles : string;
+  GetDeafultTemplates:string;
   }
