@@ -42,7 +42,7 @@
   "StartConversation": "https://emailapi-dev.arytic.com/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "https://profileapi-dev.arytic.com/api/UpdateProfileStatus",
   "signUp": "https://identityapi-dev.arytic.com/api/CustomerRegistration",
-  "postjob" : "https://jobsapi-dev.arytic.com/api/CreateJobTemplate",
+  "postjob" : "https://jobsapi-dev.arytic.com/api/CreateJob",
   "addRoles": "https://profileapi-dev.arytic.com/api/SaveRoles",
   "getRoles": "https://profileapi-dev.arytic.com/api/GetRolesAndResponsibility",
   "bulkResponsibilities" : "https://jobsapi-dev.arytic.com/api/SaveJobRoles",
