@@ -33,6 +33,7 @@ export class AdvanceSearchComponent implements OnInit {
   showEducation :any=false;
   showClient :any=false;
   showDepartment :any=false;
+  showusers :any=false;
 
   customerId: any;
   customer: any;
@@ -103,8 +104,10 @@ cityloading = false;
         {Id:4,
           Name: 'Freezed Jobs'},
           {Id:5,
-            Name: 'Closed Jobs'} 
-    
+            Name: 'Closed Jobs'},
+            {Id:6,
+            Name: 'ShortListing'} 
+            
   ];
   SkillList: any = [];
   LastPostedList: any = [
@@ -415,6 +418,14 @@ var education ='';
       }else
       education = education.toString()+',' + element.QualificationId.toString();
     });
+
+    var Users ='';
+    this.SelectedUsersList.forEach(element => {
+      if(Users.length == 0){
+        Users = element.UserId.toString();
+      }else
+      Users = Users.toString()+',' + element.UserId.toString();
+    });
 this.postedtype='';
     this.SelectedLastPostedList.forEach(element => {
       if(this.postedtype.length == 0){
@@ -429,9 +440,9 @@ this.postedtype='';
 var profileStatus='';
       this.SelectedProfileStatusList.forEach(element => {
         if(profileStatus.length == 0){
-          if(element.Id == 1){
-          this.jobStatus =1;
-        }
+        //   if(element.Id == 1){
+        //   this.jobStatus =1;
+        // }
           profileStatus = element.Id.toString();
         }else
           profileStatus = profileStatus.toString()+',' + element.Id.toString();
@@ -520,7 +531,8 @@ clients.length > 0 ||
     empType.length  > 0||
     this.jobStatus > 0||skills.length  > 0 ||
     departments.length  > 0 || titles.length  > 0 || profileStatus.length  > 0||
-    education.length  > 0){
+    education.length  > 0||
+    Users.length > 0){
   isfiltered = 1;
       // Var data=[loc = selec]
       var data  = 
@@ -547,7 +559,8 @@ clients.length > 0 ||
           titles:titles,
           profileStatus:profileStatus,
           education:education,
-          isfiltered:isfiltered
+          isfiltered:isfiltered,
+          Users:Users
         }
       // this.OutputtoParent.emit(this.empolymentId);
        this.dialogRef.close({ data:data});
@@ -637,6 +650,17 @@ changeEducation(QualificationId){
  {
     var index = this.SelectedEducationList.indexOf(this.EducationMainList.find(a=>a.QualificationId == QualificationId));
     this.SelectedEducationList.splice(index,1);
+ }
+}
+changeUser(UserId){
+  if(this.SelectedUsersList.length==0)
+    this.SelectedUsersList.push(this.UsersMainList.find(a=>a.UserId == UserId));
+  else if(this.SelectedUsersList.find(a=>a.UserId == UserId) == null)
+    this.SelectedUsersList.push(this.UsersMainList.find(a=>a.UserId == UserId));
+  else
+ {
+    var index = this.SelectedUsersList.indexOf(this.UsersMainList.find(a=>a.UserId == UserId));
+    this.SelectedUsersList.splice(index,1);
  }
 }
 changeImmigration(ImmigrationStatusId){
@@ -1105,6 +1129,24 @@ protected filterEducation(){
           );
         // });  
 }
+protected filterUsers(){ 
+  let search = this.UsersFilter.value;
+  if(search == ""){
+    // search ="a";
+    this.getQualificationDetails();
+  }  
+          this.User =this.UsersMainList;   
+          if (!search) {
+            this.filteredUsersList.next(this.Educations.slice());
+            return;
+          } else {
+            search = search.toLowerCase();
+          } 
+          this.filteredUsersList.next(
+            this.User.filter(User => User.FirstName.toLowerCase().indexOf(search) > -1)
+          );
+        // });  
+}
 protected filterDomain(){ 
   let search = this.DomainFilter.value;
   if(search == ""){
@@ -1217,6 +1259,24 @@ protected filterDomain(){
           .pipe(takeUntil(this._onDestroy))
           .subscribe(() => {
             this.filterEducation();
+          });
+
+          },     
+        error => {        
+         });
+  }
+  getAllUsers(){
+    this.appService.getCustomerContacts(this.customerId)
+    .subscribe(data => {         
+            this.UsersList = data;    
+            this.UsersMainList = data;
+            console.log(this.UsersList ,"UsersList")
+        // this.Education.setValue([this.EducationList[0]]);
+        this.filteredUsersList.next(this.UsersList.slice()); 
+        this.UsersFilter.valueChanges
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterUsers();
           });
 
           },     
@@ -1362,6 +1422,9 @@ protected filterDomain(){
     this.minSal = new Number();
     this.maxSal = new Number();
     
+      this.Users  = new FormControl(); 
+      this.SelectedUsersList = []; 
+      this.filteredUsersList.next(this.UsersList.slice());
   
     }
 
@@ -1436,6 +1499,11 @@ protected filterDomain(){
       this.Education  = new FormControl(); 
       this.SelectedEducationList = []; 
       this.filteredEducation.next(this.EducationList.slice());
+}else if(componentNo == 15){
+  this.showusers  =false;
+  this.Users  = new FormControl(); 
+  this.SelectedUsersList = []; 
+  this.filteredUsersList.next(this.UsersList.slice());
 }
 
     }
@@ -1500,14 +1568,21 @@ protected filterDomain(){
       this.Education  = new FormControl(); 
       this.SelectedEducationList = []; 
       this.filteredEducation.next(this.EducationList.slice());
+}else if(componentNo == 15){ 
+  this.Users  = new FormControl(); 
+  this.SelectedUsersList = []; 
+  this.filteredUsersList.next(this.UsersList.slice());
 }
 
     }
+
+    
   ngOnInit() { 
     this.filteredLastPostedList.next(this.LastPostedList.slice());
     this.LastPostedMainList= this.LastPostedList;
     this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
     this.ProfileStatusMainList = this.ProfileStatusList;
+    this.getAllUsers();
     this.getQualificationDetails();
     this.getAllJobTitle();
     this.getAllClients();
