@@ -1029,8 +1029,8 @@ this.skillPostData.push(skill);
         );
   }
 
-  GetJobDeafultTemplates(customerId: number) {
-    const url = this.settingsService.settings.GetDeafultTemplates + '?customerId=' + customerId;
+  GetJobDeafultTemplates() {
+    const url = this.settingsService.settings.GetDeafultTemplates;
     return this.http.get<RecentJobs[]>(url)
         .catch(
             this.handleError
