@@ -26,8 +26,8 @@
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">
-                  <span class="fname">{{details?.profileVal?.FirstName}}</span>
+                <h4 class="media-heading" (click)="OpenCandidate(details?.ProfileId,details?.profileVal?.UserId)">
+                  <span class="fname" >{{details?.profileVal?.FirstName}}</span>
                   <span class="lname">{{details?.profileVal?.LastName}}</span>
                 </h4>
                 <span class="job-title">{{details?.profileVal?.ProfileTitle}} @

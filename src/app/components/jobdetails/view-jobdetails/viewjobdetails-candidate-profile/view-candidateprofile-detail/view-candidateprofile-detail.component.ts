@@ -36,7 +36,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	start: number;
 	pagination: number;
 	suggestedSkill: any = [];
-	skillLimit: any = [];
+    skillLimit: any = [];
+    videoUrl: videoUrl;
 	/*rouded progress bar*/
 	semicircle: boolean = false;
 	rounded: boolean = false;
@@ -96,8 +97,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.skillLimit = 5;
     this.start = 0;
     this.pagination = 5;
-    this.profileId=localStorage.getItem('cprofileId')
-    this.jobId=localStorage.getItem('cjobid');
+    this.profileId=localStorage.getItem('cprofileId');
     this.cuserId =localStorage.getItem('cuserId');
   }
 
@@ -188,6 +188,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
+    this.GetVideo();
     this.GetCandidateProfileStatistics();
     if (sessionStorage.getItem('redirect') != null) {
         // $('.nav-liSV').removeClass('active');
@@ -220,6 +221,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
+    this.GetVideo();
     this.GetCandidateProfileStatistics();
     this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.profileId).subscribe(
       data => {
@@ -250,6 +252,15 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         'font-size': this.radius / 3.5 + 'px'
     };
 }
+  GetVideo() {
+    this._service.GetService('ProfileAPI/api/GetCandidateVideo?userId=', this.cuserId)
+      .subscribe(
+        data => {
+          this.videoUrl = data[0];
+        });
+  }
+
+
   GetProfileDetails() {
     this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.profileId).subscribe(
       data => {
@@ -371,7 +382,6 @@ GetProfileRating() {
   GetUserProfileInfo() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
-            debugger
           this.profileview = datas;
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
@@ -475,4 +485,9 @@ export class profileRating {
     Education: boolean;
     Certification: boolean;
     SkillCount: string;
+  }
+
+  export class videoUrl
+  {
+    VideoURL:string;
   }

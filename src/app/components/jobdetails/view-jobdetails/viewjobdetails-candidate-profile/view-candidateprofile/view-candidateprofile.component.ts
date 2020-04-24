@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
@@ -11,6 +11,7 @@ import * as FileSaver from 'file-saver';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
 import { mappingdetails } from './mappingdetails';
+import { SettingsService } from '../../../../../../settings/settings.service';
 declare var $: any;
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
@@ -66,8 +67,8 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,
-    private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
+  constructor(private dialogRef: MatDialogRef<ViewCandidateprofileComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+   private settingsService: SettingsService, private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
     this.noTest = false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
@@ -103,6 +104,17 @@ export class ViewCandidateprofileComponent implements OnInit {
 
     
   }
+
+OpenCandidate(profileId,userId)
+{
+this.dialogRef.close();
+localStorage.setItem('cprofileId',profileId)
+localStorage.setItem('cuserId',userId);
+this.router.navigateByUrl('/app-view-candidateprofile-detail');
+//const url ='https://customer-dev.arytic.com/app-view-candidateprofile-detail';
+//const url1 ='http://localhost:4200/app-view-candidateprofile-detail';
+//window.open(url1, '_blank');
+}
 
   base64ToArrayBuffer(base64) {
     const binary_string = window.atob(base64);
@@ -195,6 +207,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   GetProfileDetails() {
     this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.data.ProfileId).subscribe(
       data => {
+        debugger
         this.details = data;
       })
   }

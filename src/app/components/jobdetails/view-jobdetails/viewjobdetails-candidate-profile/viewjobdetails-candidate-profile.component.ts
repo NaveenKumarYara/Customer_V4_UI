@@ -308,15 +308,7 @@ NoRecords() {
   this.jobdetailsprofiles = new JobdetailsProfile();
 }
 
-OpenCandidate(profileId,userId)
-{
-debugger
-localStorage.setItem('cprofileId',profileId)
-localStorage.setItem('cuserId',userId);
-let jobid = this.jobid;
-localStorage.setItem('cjobid',JSON.stringify(jobid));
-this.router.navigateByUrl('/app-view-candidateprofile-detail');
-}
+
 
 PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0,arytic=0, noofRows = 6) {
   this.alertService.clear();
@@ -350,7 +342,6 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
       .subscribe(res => {
         this.jobdetailsprofiles = res;
         this.profiles = res;
-        debugger
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
         this.jobdetailsprofiles.Profile.forEach((a,index)=>{

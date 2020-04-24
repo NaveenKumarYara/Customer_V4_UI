@@ -67,7 +67,7 @@
                                 src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img
                                 src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
-                            <a href="javascript:void(0)" (click)="OpenCandidate(profile.ProfileId,profile.UserId)">
+                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
                                 <!-- GetCandidateProfile(profile.ProfileId) -->
                                 {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
                             </a>
@@ -156,7 +156,7 @@
                                 src="../../../../../assets/images/c_name_hide.png">{{profile.LastName.charAt(0)}}<img
                                 src="../../../../../assets/images/c_name_hide.png"> </div>
                         <ng-template #firstelseBlock>
-                            <a href="javascript:void(0)" (click)="OpenCandidate(profile.ProfileId,profile.UserId)">
+                            <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
                                 <!-- GetCandidateProfile(profile.ProfileId) -->
                                 {{profile.FirstName| slice:0:12}} {{profile.LastName | slice:0:12}}
                             </a>

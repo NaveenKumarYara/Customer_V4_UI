@@ -15,6 +15,7 @@ export class details
     FirstName: string;
     LastName: string;
     Email: string;
+    ProfileTitle:string;
     MobilePhone: string;
     Address1: string;
     Address2: string;
@@ -23,6 +24,7 @@ export class details
     StateId: number;
     StateName: string;
     ZipCode: string;
+    ProfilePic:string;
     VideoProfileId: string;
     SkypeId:string;
     AboutMe:string;
