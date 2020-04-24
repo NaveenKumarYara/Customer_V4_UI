@@ -20,6 +20,7 @@ export class JobTemplateComponent {
   counter: number;
   userId: any;
   draft: any;
+  drafts: any;
   show:boolean=false;
   joblist = new RecentJobs();
   defaultjoblist = new RecentJobs();
@@ -99,7 +100,8 @@ export class JobTemplateComponent {
   GetJobDeafultTemplates() {
     return this.appService.GetJobDeafultTemplates().subscribe(res => {
       this.defaultjoblist = res;
-      this.draft = this.defaultjoblist.Jobs.slice(0, 6);
+      debugger
+      //this.drafts = this.defaultjoblist.slice(0, 6);
       this.spinner.hide();
     });
   }
