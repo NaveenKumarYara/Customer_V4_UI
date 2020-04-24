@@ -159,5 +159,5 @@
   "listofFilteredJobs": "${Jobs_URL}/api/GetCustomerFilteredJobs?",
   "listofAllSkills": "${Profile_URL}/api/GetSkillDetails",
   "listofAllTitles": "${Jobs_URL}/api/GetAllJobTitles",
-  "GetDeafultTemplates": "${Identity_URL}/api/GetAllJobTitles"
+  "GetDeafultTemplates": "${Identity_URL}/api/GetDefaultTemplates"
 }
