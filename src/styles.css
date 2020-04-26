@@ -7574,21 +7574,20 @@ button.close {
 
 .ui-badge {
     display: inline-block;
-    border: 1px solid;
+    border: transparent;
     border-radius: 3px;
-    padding: 10px 28px;
     text-align: center;
     font-size: 11px;
     font-weight: 500;
 }
 
 .ui-badge--domain {
-    border-color: #AC9AF9;
+    border-color: transparent;
     color: #AC9AF9;
 }
 
 .ui-badge--industry {
-    border-color: #75A6F5;
+    border-color: transparent;
     color: #75A6F5;
 }
 
@@ -12848,7 +12847,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     text-transform: capitalize;
     cursor: pointer;
 }
-
+.page--job-details .title a{
+    color: #41536E;
+}
+.page--job-details .title a:hover{
+    cursor: pointer;
+    color:#337ab7;
+}
 .page--job-details .title .tooltip1 {
     text-transform: lowercase;
 }
@@ -12950,7 +12955,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--job-details .ui-badge {
-    padding: 4px 10px;
     max-width: 140px;
 }
 
@@ -13102,11 +13106,14 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--job-details .card {
     background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
     position: relative;
     margin-bottom: 27px;
     overflow: hidden;
+    -webkit-box-shadow: 4px 4px 5px -1px rgba(158,171,192,0.45);
+    -moz-box-shadow: 4px 4px 5px -1px rgba(158,171,192,0.45);
+    box-shadow: 4px 4px 5px -1px rgba(158,171,192,0.45);
 }
 
 .page--job-details .card .flex.va {
@@ -13125,6 +13132,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+.page--job-details .candidate header{
+    padding: 10px 27px 0;
 }
 
 .page--job-details .card header .candidate-badges {
@@ -13290,8 +13300,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--job-details .card .actions>li {
-    -ms-flex-preferred-size: 25%;
-    flex-basis: 25%;
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
     text-align: center;
     border-bottom: 0;
 }
