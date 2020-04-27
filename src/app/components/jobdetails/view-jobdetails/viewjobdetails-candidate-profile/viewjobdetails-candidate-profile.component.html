@@ -24,23 +24,27 @@
                   </div> -->
                 <div class="ui-badge ui-badge--domain cursor_text"
                     *ngIf="profile.CertificationName!=null&&profile.CertificationName!='';else nocertification"><img
-                        src="../../../../../assets/images/certificate.svg" title="Certifications" width="25"
-                        height="20"><a class="cursor_text" href="javascript:void(0)"
-                        title="{{profile.CertificationName}}"> {{profile.CertificationName}}</a></div>
+                        src="../../../../../assets/images/Certifications/certification.png" title="Certifications"
+                        width="25"><a class="cursor_text" href="javascript:void(0)"
+                        title="{{profile.CertificationName}}"> Certified <span class="badge badge-light">1</span></a>
+                </div>
 
                 <ng-template #nocertification>
-                    <div class="ui-badge ui-badge--domain cursor_text"><img
-                            src="../../../../../assets/images/certificate.svg" title="Certifications" width="25"
-                            height="20"> <a class="cursor_text" href="javascript:void(0)" title="Yet to Gain!">Yet to
-                            Gain!</a></div>
+                    <div class="ui-badge ui-badge--domain cursor_text">
+                        <img src="../../../../../assets/images/Certifications/certification.png" title="Certifications"
+                            width="25">
+                        <a class="cursor_text" href="javascript:void(0)" title="Not Certified!">Not
+                            Certified</a></div>
                 </ng-template>
-                <div class="ui-badge ui-badge--industry cursor_text" *ngIf="profile.DomainName!=null;else nodomain"><a
-                        class="cursor_text" href="javascript:void(0)"
-                        title="{{profile.DomainName}}">{{profile.DomainName}}</a></div>
+                <div class="ui-badge ui-badge--industry cursor_text" *ngIf="profile.DomainName!=null;else nodomain">
+                    <img src="../../../../../assets/images/Certifications/domain.png" title="Domain" width="25">
+                    <a class="cursor_text" href="javascript:void(0)" title="{{profile.DomainName}}">Domains <span
+                            class="badge badge-light">3</span></a></div>
                 <ng-template #nodomain>
-                    <div class="ui-badge ui-badge--industry cursor_text"><a class="cursor_text"
-                            href="javascript:void(0)" title="Explore Profile For Domain!">Explore Profile For
-                            Domain!</a></div>
+                    <div class="ui-badge ui-badge--industry cursor_text">
+                        <img src="../../../../../assets/images/Certifications/domain.png" title="Domain" width="25">
+                        <a class="cursor_text" href="javascript:void(0)" title="Domains Not Mentioned">Domains Not
+                            Mentioned</a></div>
                 </ng-template>
             </div>
             <div class="candidate-info">
@@ -49,6 +53,10 @@
                     <img *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;"
                         src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}" width="66"
                         height="66">
+                    <a href="javascript:void(0)">
+                        <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png"
+                            title="video-sizzle" width="25">
+                    </a>
                 </ng-container>
                 <ng-template #Block>
                     <img src={{profile.ProfilePic}} alt="" width="66" height="66">
@@ -279,8 +287,8 @@
                     <!--Candidate experience placeholder is in below div -->
                     <div class="d-block text-center ptb-5 role-exp-loc">
                         <h4 class="d-inline l_bl-1" title="{{profile.ProfileTitle}}">
-                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,40) : 'N/A'}} 
-                            <ng-container  *ngIf="profile?.TotalExperience!=null">
+                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,30) : 'N/A'}}
+                            <ng-container *ngIf="profile?.TotalExperience!=null">
                                 <span class="experience">{{profile?.TotalExperience | monthsPipe }} Yrs</span>
                             </ng-container>
                             <ng-container *ngIf="profile?.TotalExperience==null">
@@ -297,7 +305,8 @@
                                         d="m9.2 10.4c-1.6 0-2.9-1.3-2.9-2.9s1.3-2.9 2.9-2.9 2.8 1.4 2.8 3-1.3 2.8-2.8 2.8zm0-4c-0.6 0-1.2 0.6-1.2 1.2s0.5 1.1 1.1 1.1 1.1-0.5 1.1-1.1-0.4-1.2-1-1.2z" />
                                 </svg>
                             </ng-container>
-                            <h5 class="location mr-0 pl-0 pr-0" title="{{profile.CurrentLocation}}">{{profile.CurrentLocation}}</h5>
+                            <h5 class="location mr-0 pl-0 pr-0" title="{{profile.CurrentLocation}}">
+                                {{profile.CurrentLocation}}</h5>
                         </div>
                     </div>
                     <!---->
@@ -378,15 +387,26 @@
             <div class="card-body">
                 <div class="type">
                     <div>
+                        <h5>DISC Result</h5>
                         <img src="../../../../../assets/images/D-Disc.svg" alt="DISC Feature Coming Soon!!!"
                             title="DISC Feature Coming Soon!!!">
                     </div>
                     <div>
-                        <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
+
+                        <h5>Profile Matching</h5>
+                        <!--Circle progress trial-->
+                        <circle-progress data-toggle="matching-details" (click)="callSkills(profile.ProfileId)"
+                            [percent]="profile?.MatchingPercentage" [radius]="40" [outerStrokeWidth]="8"
+                            [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'"
+                            [animation]="false" [showSubtitle]="false">
+                        </circle-progress>
+                        <!--[animationDuration]="300"-->
+                        <!---->
+                        <!-- <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
                             (click)="callSkills(profile.ProfileId)">
                             <h1>{{profile?.MatchingPercentage | number}}%</h1>
                             <h5>Matching</h5>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 <!-- <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
@@ -606,59 +626,65 @@
                 <div id="skills-carousel-Changed" class="skills-carousel-Changed">
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
-                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)"> < </a>
-                            <div class="col-md-4"
-                                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
-                                <div id="i-{{profile.ProfileId}}">
-                                    <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
-                                        <div class="skill">
-                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                            <div>
-                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                <h5>{{ sk.split('|')[3] }}</h5>
+                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
+                                < </a>
+                                    <div class="col-md-4"
+                                        *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
+                                        <div id="i-{{profile.ProfileId}}">
+                                            <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
+                                                <div class="skill">
+                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                                    </h4>
+                                                    <div>
+                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                        <h5>{{ sk.split('|')[3] }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
-                                        <div class="skill">
-                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                            <div>
-                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
+                                                <div class="skill">
+                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                                    </h4>
+                                                    <div>
+                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                        <h5>{{ sk.split('|')[3] }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
-                                        <div class="skill">
-                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                            <div>
-                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
+                                                <div class="skill">
+                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                                    </h4>
+                                                    <div>
+                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                        <h5>{{ sk.split('|')[3] }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
-                                        <div class="skill">
-                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}</h4>
-                                            <div>
-                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                <h5>{{ sk.split('|')[3] }}</h5>
+                                            <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
+                                                <div class="skill">
+                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                                    </h4>
+                                                    <div>
+                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                        <h5>{{ sk.split('|')[3] }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
+                                    <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> >
+                                    </a>
 
-                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> > </a>
-
-                            <!-- https://www.npmjs.com/package/ngx-flickity
+                                    <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove
 
                                    https://www.npmjs.com/package/angular-flickity
                                    https://codepen.io/collection/nNzQxk/ -->
-                            <!-- working demo -->
-                            <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
+                                    <!-- working demo -->
+                                    <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
                                     <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
                                       <div class="item">
                                         <div class="skill">
@@ -673,8 +699,8 @@
                                   </div> -->
 
 
-                            <!-- // -->
-                            <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                                    <!-- // -->
+                                    <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
                             <div class="item">
                             <div class="skill" *ngIf="">
                                 <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
@@ -724,8 +750,10 @@
             <div class="footer">
                 <ul class="actions">
                     <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
-                    <li *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock">
-                        <a href="javascript:void(0)" (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
+                    <li
+                        *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;else elseBlock">
+                        <a href="javascript:void(0)"
+                            (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                             data-toggle="modal" data-target="#inbox">
                             <!--(click)="OpenChatboxDialog()"-->
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -757,7 +785,8 @@
                     <ng-template #elseBlock>
                         <ng-container *ngIf="profile.Email.substring(0,7) == 'esolvit'">
                             <li>
-                                <a href="javascript:void(0)"  (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
+                                <a href="javascript:void(0)"
+                                    (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
                                     data-toggle="modal" data-target="#inbox">
                                     <!--(click)="OpenChatboxDialog()"-->
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -863,6 +892,23 @@
                             </a>
                         </li>
                     </ng-template>
+                    <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
+                    <li>
+                        <!--Word doc-->
+                        <a href="javascript:void(0)">
+                            <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                                title="Download Resume">
+                        </a>
+                        <!--Show if Candidate Resume is in PDF-->
+                        <!-- <a href="javascript:void(0)">
+                            <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"
+                            title="Download Resume" >
+                        </a>
+                      -->
+
+                    </li>
+
+                    <!---->
                     <li class="dropup">
                         <a href="javascript:void(0)" data-toggle="dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
@@ -870,7 +916,8 @@
                                     d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
                             </svg>
                         </a>
-                        <ul role="menu" class="dropdown-menu dropdown-menu-right" *ngIf="jobStatus!='Closed' &&  jobStatus!='InActive'">
+                        <ul role="menu" class="dropdown-menu dropdown-menu-right"
+                            *ngIf="jobStatus!='Closed' &&  jobStatus!='InActive'">
                             <!-- applied -->
                             <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
                             <div
@@ -1059,9 +1106,9 @@
             </ng-container>
         </div>
 
+        <!--Profile percentage view-->
         <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
-
             <div class="header">
                 <h2>Matching Criteria</h2>
                 <div *ngIf="ProfileId == profile.ProfileId">
@@ -1119,6 +1166,261 @@
             <!-- #old data -->
 
         </div>
+
+        <!--Certifications Overlay-->
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/Certifications/certification.png" width="60"
+                    alt="certifications">
+                <h2>Certifications</h2>
+                <!--List of certifications-->
+                <ul class="certifications-list">
+                    <li class="c-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                                alt="certifications">
+                        </div>
+                        <div class="col-md-5">
+                            <h6>Certificate Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                            alt="certifications">
+                        </div>
+                        <div class="col-md-5">
+                            <h6>Certificate Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2015</h6>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                            alt="certifications">
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Certificate Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2010</h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+
+        <!--Manage References-->
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/reference-icon.svg" width="60"
+                    alt="References">
+                <h2>Manage References</h2>
+                <!--List of certifications-->
+                <ul class="references-list">
+                    <li class="references-details">
+                        <div class="col-md-4">
+                            <h6>Manager 1</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company 1</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-filled">Send Request</button>
+                        </div>
+                    </li>
+                    <li class="references-details">
+                        <div class="col-md-4">
+                            <h6>Manager 2</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company 2</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-warning">Waiting for Response</h6>
+                        </div>
+                    </li>
+                    <li class="references-details">
+                        <div class="col-md-4">
+                            <h6>Manager 3</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company 3</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-success">Received Response</h6>
+                            <small><a href="javascript:void(0)">View</a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+
+        <!--Manage Skills-->
+        <div class="matching-details bg-fff" >
+            <a href="javascript:void(0)"  class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/Certifications/skills.png" width="60"
+                    alt="References">
+                <h2>Manage Skills</h2>
+                <!--List of skills-->
+                <ul class="skills-list">
+                    <li class="skill-details">
+                        <div class="col-md-6 text-left">
+                            <h6>Skill 1</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-filled">Initiate Skill Verification</button>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-6 text-left">
+                            <h6>Skill 2</h6>
+                        </div>
+                       
+                        <div class="col-md-6">
+                            <h6 class="text-warning">Waiting for Response</h6>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-6 text-left">
+                            <h6>Skill 3</h6>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h6 class="text-success">Received Result</h6>
+                            <small><a href="javascript:void(0)">View</a></small>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-6 text-left">
+                            <h6>Skill 3</h6>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h6 class="text-danger">Request Rejected</h6>
+                            <small><a href="javascript:void(0)">Resend</a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+
+        <!--Bg Verification-->
+        <div class="matching-details bg-fff" >
+            <a href="javascript:void(0)"  class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/Certifications/bg-v.png" width="60"
+                    alt="References">
+                <h2>Background Verification</h2>
+                <!--List of skills-->
+                <ul class="bg-list">
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details 1</h6>
+                        </div>
+                        <div class="col-md-7">
+                            <button class="btn btn-filled">Initiate Background Verification</button>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details  2</h6>
+                        </div>
+                       
+                        <div class="col-md-7">
+                            <h6 class="text-warning">Waiting for Response</h6>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details  3</h6>
+                        </div>
+                
+                        <div class="col-md-7">
+                            <h6 class="text-success">Received Result</h6>
+                            <small><a href="javascript:void(0)">View</a></small>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details  4</h6>
+                        </div>
+                
+                        <div class="col-md-7">
+                            <h6 class="text-danger">Request Rejected</h6>
+                            <small><a href="javascript:void(0)">Resend</a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+        <!--Domains-->
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/Certifications/domain.png" width="60"
+                    alt="certifications">
+                <h2>Domains</h2>
+                <!--List of domains-->
+                <ul class="domains-list">
+                    <li class="d-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                                alt="certifications">
+                        </div>
+                        <div class="col-md-5">
+                            <h6>Domain Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Project/Company</h6>
+                        </div>
+                    </li>
+                    <li class="d-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                            alt="certifications">
+                        </div>
+                        <div class="col-md-5">
+                            <h6>Domain Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Project/Company</h6>
+                        </div>
+                    </li>
+                    <li class="d-details">
+                        <div class="col-md-3">
+                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                            alt="certifications">
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Domain Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Project/Company</h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+
+        <!--Achievements-->
+        <!---->
+        <!--Recommendations-->
+        <!---->
+
     </div>
 
     <!-- .card.candidate -->
