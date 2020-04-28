@@ -1272,15 +1272,20 @@ height: 25.4px;
 .matching-details ul.skills-list, 
 .matching-details ul.references-list,
 .matching-details ul.bg-list,
-.matching-details ul.domains-list
+.matching-details ul.domains-list,
+.matching-details ul.achievements-list,
+.matching-details ul.recommendations-list
 {
     list-style-type: none;
+    padding-left: 0px;
 }
 .matching-details ul.certifications-list .c-details,
 .matching-details ul.skills-list .skill-details,
 .matching-details ul.references-list .references-details,
 .matching-details ul.bg-list .bg-details,
-.matching-details ul.domains-list .d-details
+.matching-details ul.domains-list .d-details,
+.matching-details ul.achievements-list .a-details,
+.matching-details ul.recommendations-list .r-details
 {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1293,11 +1298,17 @@ height: 25.4px;
     justify-content: space-between;
     padding: 10px 0;
 }
+.matching-details ul.recommendations-list .r-details p{
+    font-size: 0.7rem;
+    word-break: break-word;
+}
 .matching-details ul.certifications-list .c-details:not(:last-of-type),
 .matching-details ul.skills-list .skill-details:not(:last-of-type),
 .matching-details ul.references-list .references-details:not(:last-of-type),
 .matching-details ul.bg-list .bg-details:not(:last-of-type),
-.matching-details ul.domains-list .d-details:not(:last-of-type)
+.matching-details ul.domains-list .d-details:not(:last-of-type),
+.matching-details ul.achievements-list .a-details:not(:last-of-type),
+.matching-details ul.recommendations-list .r-details:not(:last-of-type)
 {
     border-bottom: 1px solid #E0E3EF;
 }

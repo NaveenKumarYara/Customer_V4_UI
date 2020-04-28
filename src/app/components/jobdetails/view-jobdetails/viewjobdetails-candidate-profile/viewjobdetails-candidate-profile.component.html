@@ -371,8 +371,16 @@
                     </ng-template>
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px"
                         alt="References" title="References" style="margin-right: 15px;">
+    
                     <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px"
                         alt="Verified Profile" title="Verified Profile">
+                  <!--Achievement Icon-->
+                        <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50px" height="50px"
+                        alt="achievement-badge" title="Achievements">
+                 <!--Recommendations Icon-->
+                 <img src="../../../../../assets/images/card-icons/recommendations.png" width="50px" height="50px"
+                 alt="recommendations-badge" title="Recommendations">
+
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
                         <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
                     </ng-container>
@@ -1107,7 +1115,7 @@
         </div>
 
         <!--Profile percentage view-->
-        <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}">
+        <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}" >
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header">
                 <h2>Matching Criteria</h2>
@@ -1417,8 +1425,96 @@
         <!---->
 
         <!--Achievements-->
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="60"
+                    alt="certifications">
+                <h2>Achievements</h2>
+                <!--List of Achievements-->
+                <ul class="achievements-list">
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6>Best Employee</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6> Award</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6> Award</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <!---->
         <!--Recommendations-->
+        <div class="matching-details bg-fff" >
+            <a href="javascript:void(0)"  class="close">&times;</a>
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/card-icons/recommendations.png" width="60"
+                    alt="certifications">
+                <h2>Recommendations</h2>
+                <!--List of Recommendations-->
+                <ul class="recommendations-list">
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6>James Barret</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Good at commuication skills</p>
+                        </div>
+                    </li>
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6> Employee Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Recommendations</p>
+                        </div>
+                    </li>
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6> Employee Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Recommendations</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <!---->
 
     </div>
