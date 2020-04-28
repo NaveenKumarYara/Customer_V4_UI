@@ -49,6 +49,7 @@ export class LoadJoblistComponent implements OnInit {
    empType:any;jobStatus:any;skills:any;departments:any;titles:any;
    education:any;
    isfiltered :any;
+   status:any=3;
 
   processed = false;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
@@ -70,10 +71,21 @@ export class LoadJoblistComponent implements OnInit {
       }
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
-    this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy);
+    this.status = localStorage.getItem('orderDate');
+    if(this.status!=null||this.status!=undefined)
+    {
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,this.status);
+    }
+    else 
+    {
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,3);
+    }
+    
+   
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
     // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     localStorage.removeItem('sortBy');
+    localStorage.removeItem('orderDate');
    // this.spinner.hide();
 
    //----------------------------------------Oninit Data call end-------------------------------
@@ -95,7 +107,8 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist(customerId, userId,searchString='',sortBy=0) { 
+  populateJoblist(customerId, userId,searchString='',sortBy=0,status=3) { 
+    debugger
     if(this.sortBy==undefined)
     {
       this.sortBy=0;
@@ -105,7 +118,7 @@ export class LoadJoblistComponent implements OnInit {
       this.sortBy=sortBy;
     }
     this.searchString= searchString;
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.joblistcount).subscribe(res => {
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,status,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
@@ -164,7 +177,7 @@ export class LoadJoblistComponent implements OnInit {
         }
         else
         {
-          this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy);
+          this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,3);
         }
   }
   }
@@ -180,7 +193,7 @@ export class LoadJoblistComponent implements OnInit {
       }
       else
       {
-        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy);
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,3);
       }
   } 
   clearAll()
@@ -206,7 +219,7 @@ export class LoadJoblistComponent implements OnInit {
         this.employmentTypeId = 0;
         //this.sortBy = 0;
         //this.defaultValue = '0';
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy);
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,3);
       },
       callFilterMethod : (employmentTypeId, experience, cityId, clientId, departmentId) => {
         debugger

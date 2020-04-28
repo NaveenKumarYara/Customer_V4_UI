@@ -49,9 +49,9 @@ export class ManageJobService {
 
   
 
-  getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string, count: number): Observable<JobDetails> {
+  getJobDetails(customerId: number, userId: number, sortBy: number, searchString: string,status:number, count: number): Observable<JobDetails> {
     const url = this.settingsService.settings.listofJobsEndpoint +
-    'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status=0&pageNumber=1' + '&numberOfRows=' + count;
+    'customerId=' + customerId + '&userId=' + userId + '&sortBy=' + sortBy + '&searchString=' + searchString + '&status='+status+ '&pageNumber=1' + '&numberOfRows=' + count;
     return this.http.get<JobDetails>(url)
       .debounceTime(1000)
       .catch(

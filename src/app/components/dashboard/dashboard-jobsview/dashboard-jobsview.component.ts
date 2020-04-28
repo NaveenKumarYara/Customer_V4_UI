@@ -22,12 +22,12 @@ export class DashboardJobsviewComponent implements OnInit {
   jobposted:string;
   userId:any;  
   jobFilter:number=0;
-
+  statsFilter:number=0;
   allpostedcount =[];
   postedcount = [];
   mwpostedcount = [];
   mpostedcount = [];
-
+  filterval:number=0;
 
   allcount = [];
   count = [];
@@ -310,6 +310,7 @@ export class DashboardJobsviewComponent implements OnInit {
   }
 
 populateDashboardallStatistics(filter=0) {
+  this.statsFilter=filter;
     return this.dashboardservice.getDashboardStatistics(this.customerId,this.userId,filter).subscribe(res => {        
       this.dashboardstatistics = res;
     });
@@ -1099,6 +1100,19 @@ populateApplicantsStatistics(filter=0) {
 
 
   Jobs(sortBy) {
+    if(this.statsFilter==1)
+    {
+      this.filterval=0
+    }
+    if(this.statsFilter==2)
+    {
+      this.filterval=1
+    }
+    if(this.statsFilter==3)
+    {
+      this.filterval=2
+    }
+    localStorage.setItem('orderDate',JSON.stringify(this.filterval))
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }
