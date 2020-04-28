@@ -132,6 +132,14 @@ editMode: string;
    localStorage.setItem('EditMode', 'Yes');
 
     const workAuthorization = new WorkAuthorization();
+    if(jobId == 1001705)
+    {
+      this.customerId=10275;
+    }
+    else
+    {
+      this.customerId = this.customer.CustomerId;
+    }
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
       debugger
