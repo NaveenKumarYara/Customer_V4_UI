@@ -258,23 +258,52 @@ input::-webkit-input-placeholder {
     text-align: center;
     display: block;
     padding: 15px 10px;
+    height: 50px;
     background-color: #ffffff;
     border: 1px solid #cccccc;
-    border-radius: 3px;
+    border-radius: 10px;
     font-size: 0.875rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
+/*New Design Styles 28-04-2020*/
 
- .filters .quick-sort .options .checkbox input:checked~.box {
+.filters .quick-sort .options .upload-combo .box {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.filters .quick-sort .options .arytic-combo .box {
+    padding: 0.4rem 1rem;
+}
+.filters .quick-sort .options .upload-combo  a{
+    padding: 0.85rem 0.95rem 1.05rem 1rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: -5px;
+}
+.filters .quick-sort .options .upload-combo a i, .filters .quick-sort .options .checkbox span i{
+    color: #9eabc0;
+    font-size: 25px;
+    vertical-align: middle;
+}
+ .filters .quick-sort .options .checkbox input:checked~.box, .filters .quick-sort .options .checkbox input:checked~.box i {
     background-color: #66DAB5;
     border-color: #66DAB5;
     color: #ffffff;
     font-weight: 500;
 }
-
+.filters .quick-sort .options .wishlist-combo .box{
+    padding: 0.875rem 1rem;
+} 
+.filters .quick-sort .options .wishlist-combo .fa-star, .filters .quick-sort .options .arytic-combo img{
+    padding-left: 0.3rem;
+} 
 /*QuickSort Css*/
 
 /*Upload & Invite Buttons CSS starts*/

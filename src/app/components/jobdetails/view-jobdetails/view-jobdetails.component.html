@@ -100,16 +100,7 @@
                 <alert></alert>
                 <div class="card-footer">
                     <ul class="nav nav-tabs">
-                        <!--Commenting TBD Feature 07-02-2020-->
-                        <li>
-                            <a data-toggle="tab" href="#all-candidates" (click)="updateallcandidatesstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.AllCandidates}}</h1>
-                                    <h4>All Candidates</h4>
-                                </div>
-                            </a>
-                        </li>
-                         <!--Commenting TBD Feature 07-02-2020-->
+                        <!--As per new design modifying the same-->
                         <li class="active" id="Prospect">
                             <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
                                 <div>
@@ -118,7 +109,39 @@
                                 </div>
                             </a>
                         </li>
+                        <li id="aryticbestfit">
+                            <a data-toggle="tab" href="javascript:void(0)">
+                                <div>
+                                    <h1>8</h1>
+                                    <h4>Arytic Best Fit Results</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="inprogressprofiles" >
+                            <a data-toggle="tab" href="javascript:void(0)" (click)="inprogressprofiles = true">
+                                <div>
+                                    <h1>17</h1>
+                                    <h4>In-Progress profiles</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="searchprofiles">
+                            <a data-toggle="tab" href="javascript:void(0)">
+                                <div>
+                                    <h4>Search profiles</h4>
+                                </div>
+                            </a>
+                        </li>
                         <!-- <li>
+                            <a data-toggle="tab" href="#all-candidates" (click)="updateallcandidatesstatus()">
+                                <div>
+                                    <h1>{{jobstatistics?.AllCandidates}}</h1>
+                                    <h4>All Candidates</h4>
+                                </div>
+                            </a>
+                        </li> 
+                  
+                         <li>
                             <a data-toggle="tab" href="#suggested" (click)="updatesuggestedstatus()">
                                 <div>
                                     <h1>{{jobstatistics?.Suggested}}</h1>
@@ -126,48 +149,50 @@
                                 </div>
                             </a>
                         </li> -->
-                        <li>
-                            <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.Screening}}</h1>
-                                    <h4>Screening</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="Shortlisted">
-                            <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.ShortListed}}</h1>
-                                    <h4>Shortlisted</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="Interview">
-                            <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.Interviewed}}</h1>
-                                    <h4>Interview</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.Hired}}</h1>
-                                    <h4>Hired</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
-                                <div>
-                                    <h1>{{jobstatistics?.RejectedORWithdrawn}}</h1>
-                                    <h4>Rejected / Withdrawn</h4>
-                                </div>
-                            </a>
-                        </li>
                     </ul>
                 </div>
+                <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
+                <div class="card-sub-footer" *ngIf="inprogressprofiles == true">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+                            <div>
+                                <h4>Screening (<span>{{jobstatistics?.Screening}}</span>)</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="Shortlisted">
+                        <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+                            <div>
+                              
+                                <h4>Shortlisted (<span>{{jobstatistics?.ShortListed}}</span>)</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li id="Interview">
+                        <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+                            <div>
+                                <h4>Interview (<span>{{jobstatistics?.Interviewed}}</span>)</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+                            <div>
+                                <h4>Hired (<span>{{jobstatistics?.Hired}}</span>)</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+                            <div>
+                                <h4>Rejected / Withdrawn (<span>{{jobstatistics?.RejectedORWithdrawn}}</span>)</h4>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <!---->
                 <!-- .selected .job-card -->
             </div>
             <app-filter-view-jobs [jobid]="jobid" [statusid]="statusid" [closedjob]="closedjob"

@@ -418,7 +418,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
         if (onload === 1) {
           if (this.statusid === 4) {
-            debugger
+            // debugger
             $("#Prospect").addClass('active');
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
@@ -592,7 +592,7 @@ export class ViewJobdetailsComponent implements OnInit {
         });
       },
       CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => {
-        debugger
+        // debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);
