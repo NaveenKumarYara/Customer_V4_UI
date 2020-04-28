@@ -407,9 +407,9 @@ var departments = '';
 var titles='';
     this.SelectedJobtitleList.forEach(element => {
       if(titles.length == 0){
-        titles = element.JobTitleId.toString();
+        titles = element.JobTitle;
       }else
-      titles = titles.toString()+',' + element.JobTitleId.toString();
+      titles = titles + ',' + element.JobTitle;
     });
 var education ='';
     this.SelectedEducationList.forEach(element => {
@@ -597,15 +597,19 @@ clients.length > 0 ||
       
   }
   changeJobTitle(JobTitleId,value) {  
+  
     if(this.SelectedJobtitleList.length==0)
-      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
-    else if(this.SelectedJobtitleList.find(a=>a.JobTitleId == JobTitleId) == null)
-      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
+      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitle == JobTitleId));
+    else if(this.SelectedJobtitleList.find(a=>a.JobTitle == JobTitleId) == null)
+      this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitle == JobTitleId));
     else
    {
-      var index = this.SelectedJobtitleList.indexOf(this.JobtitleMainList.find(a=>a.JobTitleId == JobTitleId));
-      this.SelectedJobtitleList.splice(index,1);
+      // var index = this.SelectedJobtitleList.Push(this.JobtitleMainList.find(a=>a.JobTitle == JobTitleId));
+      // this.SelectedJobtitleList.splice(index,1);
+      this.SelectedJobtitleList.push(JobTitleId);
    }
+debugger
+
       
   }
 changeCategory(JobCategoryId){
@@ -999,7 +1003,8 @@ filterEmpType(){
     .subscribe(data => {         
             // this.Category =data;   
             this.Jobtitles =data;   
-            this.JobtitleMainList =data;   
+            this.JobtitleMainList =data;  
+            debugger 
             if (!search) {
               this.filteredJobtitle.next(this.Jobtitles.slice());
               return;

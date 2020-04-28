@@ -226,7 +226,7 @@
                                                     [formControl]="JobtitleFilter">
                                                 </ngx-mat-select-search>
                                                 <mat-option *ngFor="let empl of filteredJobtitle | async"
-                                                    (click)="changeJobTitle(empl.JobTitleId,emp.value)" [value]="empl">
+                                                    (click)="changeJobTitle(empl.JobTitle,emp.value)" [value]="empl">
                                                     {{empl.JobTitle}}
                                                 </mat-option>
                                             </mat-select>
