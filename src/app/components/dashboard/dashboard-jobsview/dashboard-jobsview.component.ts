@@ -1100,6 +1100,10 @@ populateApplicantsStatistics(filter=0) {
 
 
   Jobs(sortBy) {
+    if(this.statsFilter==0)
+    {
+      this.filterval=3
+    }
     if(this.statsFilter==1)
     {
       this.filterval=0
