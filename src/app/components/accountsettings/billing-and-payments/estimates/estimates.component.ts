@@ -31,7 +31,7 @@ export class EstimatesComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     window['Chargebee'].init({
       site: 'arytic-test',
-      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
+      publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
     });
   }
 

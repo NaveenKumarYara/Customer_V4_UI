@@ -1,6 +1,6 @@
 <div class="row pricing-row" *ngIf="Plans">
   <ng-container *ngFor="let plans of Plans?.plansoffered">
-    <div class="col-md-4" *ngIf="plans.id != 4">
+    <div class="col-md-4" *ngIf="plans.id != 4 && plans.id != 5">
 
       <div class="pricing-card box-shadow" [ngClass]="(plans?.planName==sdetails?.planId)?'active-plan':''">
         <div><span class="type">{{plans?.planName.slice(0, -6)}} </span></div>
