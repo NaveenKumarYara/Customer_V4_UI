@@ -243,16 +243,16 @@
                     <div class="col-md-6">
                         <!-- [hidden]="!profiletypefilter" -->
                         <div class="form-group">
-                            <label for="addProfilestatusfilter">Profile Status
+                            <label for="addProfilestatusfilter">Job Status
                                 <span class="c-f-default" (click)="RemoveComponent(4)">Clear Filter</span>
                             </label>
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-description>
                                         <mat-form-field>
-                                            <mat-select [formControl]="ProfileStatus" placeholder="Profile Status"
+                                            <mat-select [formControl]="ProfileStatus" placeholder="Job Status"
                                                 [multiple]="true" #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search Profile Status"
+                                                <ngx-mat-select-search placeholderLabel="Search Job Status"
                                                     noEntriesFoundLabel="'no matching found'"
                                                     [formControl]="profiletypefilter">
                                                 </ngx-mat-select-search>
