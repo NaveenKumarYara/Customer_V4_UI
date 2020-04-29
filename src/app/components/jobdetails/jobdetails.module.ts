@@ -39,6 +39,7 @@ import {ViewCandidateprofileDetailComponent} from './view-jobdetails/viewjobdeta
 import {ConverttoMonthPipe} from './convertmonths.pipe';
 import {RemovePipe} from './view-jobdetails/viewjobdetails-candidate-profile/RemovePipe.pipe';
 import { TagCloudModule } from 'angular-tag-cloud-module';
+import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 @NgModule({
@@ -51,6 +52,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     routing,
     HttpModule,
     FormsModule,
+    RatingModule,
     ReactiveFormsModule,
     NgSelectModule,
     SharedModule,
