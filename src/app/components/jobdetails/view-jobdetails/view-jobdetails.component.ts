@@ -49,6 +49,7 @@ export class ViewJobdetailsComponent implements OnInit {
   jobstatistics: Jobstatistics;
   Counts : Jobstatistics;
   wishsort: 0;
+  inprogressprofiles:boolean=false;
   statistics: number;
   closedjob: any;
   exp: any;
