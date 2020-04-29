@@ -114,13 +114,13 @@
                                 </label>
                             </div>
                         </li> -->
-                        <li>
+                        <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="showusers"> Users
                                 </label>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <li role="separator" class="divider"></li>
                     <li class="filter-btns">
@@ -266,6 +266,33 @@
                                 </mat-expansion-panel-header>
                                 <div *ngFor="let bank of SelectedProfileStatusList">
                                     {{bank.Name}}
+                                </div>
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="addusers">Users</label>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-description> 
+                                        <mat-form-field>
+                                            <mat-select [formControl]="Jobtitle" placeholder="Users" [multiple]="true"
+                                                #multiSelect>
+                                                <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="'no matching found'" [formControl]="JobtitleFilter">
+                                                </ngx-mat-select-search>
+                                                <mat-option *ngFor="let empl of filteredUsersList | async"
+                                                    (click)="changeUser(empl.UserId)"
+                                                    [value]="empl">
+                                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div *ngFor="let empl of SelectedUsersList">
+                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
                                 </div>
                             </mat-expansion-panel>
                         </div>
@@ -738,32 +765,6 @@
                         </div>
                     </div> -->
                     <!--users-->
-                    <div class="col-md-6" [hidden]="!showusers">
-                        <div class="form-group">
-                            <label for="addusers">Users</label>
-                            <mat-expansion-panel>
-                                <mat-expansion-panel-header>
-                                    <mat-panel-description> 
-                                        <mat-form-field>
-                                            <mat-select [formControl]="Jobtitle" placeholder="Users" [multiple]="true"
-                                                #multiSelect>
-                                                <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="'no matching found'" [formControl]="JobtitleFilter">
-                                                </ngx-mat-select-search>
-                                                <mat-option *ngFor="let empl of filteredUsersList | async"
-                                                    (click)="changeUser(empl.UserId)"
-                                                    [value]="empl">
-                                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <div *ngFor="let empl of SelectedUsersList">
-                                    {{empl.FirstName}}&nbsp;{{empl.LastName}}
-                                </div>
-                            </mat-expansion-panel>
-                        </div>
-                    </div>
                     <!---->
                 </form>
             </div>
