@@ -118,7 +118,7 @@
                             </a>
                         </li>
                         <li id="inprogressprofiles" >
-                            <a data-toggle="tab" href="javascript:void(0)" (click)="inprogressprofiles = true">
+                            <a data-toggle="tab" href="javascript:void(0)" (click)="inprogressprofile==!inprogressprofile">
                                 <div>
                                     <h1>17</h1>
                                     <h4>In-Progress profiles</h4>
@@ -152,7 +152,7 @@
                     </ul>
                 </div>
                 <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
-                <div class="card-sub-footer" *ngIf="inprogressprofiles == true">
+                <div class="card-sub-footer" (click)="inprogressprofile==!inprogressprofile">
                 <ul class="nav nav-tabs">
                     <li>
                         <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
