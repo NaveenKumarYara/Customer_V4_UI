@@ -16577,16 +16577,15 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--dashboard .card.message h1 {
-    margin-top: 0;
+    margin-top: 4.5rem;
     font-weight: 300;
     font-size: 1.5rem;
 }
 
 .page--dashboard .card.message p {
-    margin-bottom: 4.25rem;
     font-weight: 300;
     font-size: 1.125rem;
-    line-height: 1.77778em;
+    line-height: 2.77778em;
 }
 
 .page--dashboard .card.message a {

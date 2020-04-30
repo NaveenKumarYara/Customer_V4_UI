@@ -1,26 +1,26 @@
 @font-face {
     font-family: 'tenendus';
-  src: url("../../../../../../assets/fonts/tenendus-icon/tenendus.eot");
-  src: url("../../../../../../assets/fonts/tenendus-icon/tenendus.eot") format("embedded-opentype"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.ttf") format("truetype"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.woff") format("woff"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
-} 
+    src: url("../../../../../../assets/fonts/tenendus-icon/tenendus.eot");
+    src: url("../../../../../../assets/fonts/tenendus-icon/tenendus.eot") format("embedded-opentype"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.ttf") format("truetype"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.woff") format("woff"), url("../../../../../../assets/fonts/tenendus-icon/tenendus.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-      font-family: 'tenendus' !important;
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
+    font-family: 'tenendus' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
     /* Better Font Rendering =========== */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-  }
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-
-.public-profile .pull-left > .green-btn {
+.public-profile .pull-left>.green-btn {
     padding: 16px 30px;
     display: inline-block;
 }
@@ -40,41 +40,40 @@
     background-color: #2fc495;
 }
 
-
-.public-profile .nav-pills > li a {
+.public-profile .nav-pills>li a {
     border: 1px solid #e0e3ec;
-    padding: 15px 15px;     
+    padding: 15px 15px;
     color: #6a7e9c;
 }
 
-.public-profile .nav-pills > li:first-of-type > a {
+.public-profile .nav-pills>li:first-of-type>a {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.public-profile .nav-pills > li:last-of-type > a {
+.public-profile .nav-pills>li:last-of-type>a {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.public-profile .nav-pills > li.active > a {
+.public-profile .nav-pills>li.active>a {
     background-color: #66dab5;
     color: #ffffff;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav-pills > li.active > a:hover, .public-profile .nav-pills > li.active > a:focus {
+.public-profile .nav-pills>li.active>a:hover, .public-profile .nav-pills>li.active>a:focus {
     background-color: #3dd0a1;
     color: #ffffff;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav > li > a:hover, .public-profile .nav > li > a:focus {
+.public-profile .nav>li>a:hover, .public-profile .nav>li>a:focus {
     background-color: #f8f9fd;
     transition: 0.2s ease all;
 }
 
-.public-profile .nav-pills > li + li {
+.public-profile .nav-pills>li+li {
     margin-left: -1px;
 }
 
@@ -86,7 +85,6 @@
     .nav-pills {
         display: block;
     }
-
     .pull-left {
         float: none !important;
         margin-bottom: 20px;
@@ -126,7 +124,7 @@
     border-bottom: 1px solid #e0e3ec;
 }
 
-.summary-view .contact > h2 {
+.summary-view .contact>h2 {
     margin-top: 10px !important;
 }
 
@@ -149,7 +147,7 @@
     font-weight: 400;
 }
 
-.summary-view .top-tech-skills .skill > div {
+.summary-view .top-tech-skills .skill>div {
     position: relative;
 }
 
@@ -198,7 +196,7 @@
     position: relative;
 }
 
-.summary-view .timeline > li {
+.summary-view .timeline>li {
     position: relative;
     padding-top: 20px;
 }
@@ -338,6 +336,7 @@
     color: #ffffff;
     background-color: #ffb503;
 }
+
 .summary-view .personal-skills .skills .text .title, .summary-view .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .summary-view .personal-skills .skills label .title {
     font-size: 22px;
     font-weight: 500;
@@ -357,6 +356,7 @@
     margin-bottom: 25px;
     height: auto;
 }
+
 .cert-card {
     position: relative;
     border: 1px solid #e0e3ec;
@@ -366,37 +366,44 @@
     align-items: center;
     margin-bottom: 20px;
 }
+
 .cert-card .settings-dot {
     position: absolute;
     top: 10px;
     right: 20px;
 }
+
 .cert-card .logo {
     flex: 0.67;
     padding: 20px 10px;
     border: 1px solid #e0e3ec;
     border-radius: 4px;
 }
+
 .cert-card .info {
     flex: none;
     padding-left: 20px;
 }
+
 .cert-card .title {
     font-size: 22px;
     color: #6a7e9c;
     margin-top: 0;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 63%;
 }
+
 .cert-card .year {
     font-size: 20px;
     color: #9eabc0;
 }
+
 .settings-dot span:not(:last-of-type) {
     margin-right: 4px;
 }
+
 .settings-dot span {
     display: inline-block;
     height: 4px;
@@ -404,54 +411,44 @@
     border-radius: 50%;
     background-color: #b6c2d6;
 }
+
 @media all and (max-width: 1279px) {
     .summary-view .left {
         padding: 30px 40px 80px 30px;
     }
-
     .summary-view .left h2 {
         font-size: 24px;
     }
-
     .summary-view .left p {
         font-size: 16px;
     }
-
     .summary-view .left ul {
         line-height: 1.4em;
     }
-
     .summary-view .top-tech-skills {
         margin-bottom: 20px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: block;
     }
-
     .summary-view .top-tech-skills .flex-row .skill {
         margin-right: 20px;
         margin-bottom: 20px;
     }
-
     .summary-view .timeline:before {
         left: 180px;
     }
-
     .summary-view .timeline .badge-circle {
         left: 181px;
     }
-
     .summary-view .timeline .date {
         width: 180px;
         padding-right: 20px;
     }
-
     .summary-view .pic-lg .meta {
         font-size: 18px;
         line-height: 1.5em;
     }
-
     .summary-view .pic-lg h1 {
         font-size: 28px;
     }
@@ -462,7 +459,6 @@
         padding-left: 0;
         padding-top: 30px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: flex;
     }
@@ -472,7 +468,6 @@
     .summary-view .right {
         padding-top: 30px;
     }
-
     .summary-view .top-tech-skills .flex-row {
         display: block;
     }
@@ -482,126 +477,109 @@
     .summary-view .section-title {
         font-size: 22px;
     }
-
     .summary-view .left {
         padding: 20px 30px 60px 20px;
     }
-
     .summary-view .left ul li {
         padding: 12px 0;
         font-size: 14px;
     }
-
     .summary-view .left h2 {
         margin-bottom: 20px;
         font-size: 20px;
     }
-
     .summary-view .left .divider {
         margin-top: 25px;
         margin-bottom: 25px;
     }
-
     .summary-view .left address p {
         margin-bottom: 15px;
         font-size: 14px;
     }
-
     .summary-view .professional-experience {
         margin-bottom: 30px;
     }
-
     .summary-view .top-tech-skills {
         margin-bottom: 0;
     }
-
     .summary-view .top-tech-skills .section-title {
         margin-bottom: 30px;
     }
-
     .summary-view .profile-pic-lg {
         width: 182px;
     }
-
     .summary-view .section-title {
         margin-bottom: 18px;
     }
-
     .summary-view .personal-skills .skills .text p, .summary-view .personal-skills .skills .search-results-pg .results label p, .search-results-pg .results .summary-view .personal-skills .skills label p {
         font-size: 16px;
     }
-
     .summary-view .personal-skills .skills .text .title, .summary-view .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .summary-view .personal-skills .skills label .title {
         font-size: 20px;
         margin-top: 10px;
         margin-bottom: 20px;
     }
-
     .summary-view .timeline:before {
         display: none;
     }
-
     .summary-view .timeline .details {
         padding-left: 0;
     }
-
     .summary-view .timeline .date {
         width: 100%;
         margin-bottom: 10px;
         font-size: 16px;
     }
-
     .summary-view .timeline .badge-circle {
         display: none;
     }
-
     .summary-view .timeline .info .name {
         border-right: 0;
     }
-
     .summary-view .timeline .info .meta {
         display: block;
     }
-
-    .summary-view .timeline > li {
+    .summary-view .timeline>li {
         border-bottom: 1px solid #e0e3ec;
     }
-
-    .summary-view .timeline > li:first-of-type {
+    .summary-view .timeline>li:first-of-type {
         padding-top: 0;
     }
-
     .summary-view .timeline .details .title {
         font-size: 18px;
     }
 }
 
-.summary-view .skills-section .skills .tag.skill{
-border: 1px solid #dae0ee;
-border-radius: 3px;
-line-height: 1;
-text-transform: uppercase;
-background-color: #f8f9fd;
-padding: 10px 15px;
-text-align: center;
-font-size: 12px;
+.summary-view .skills-section .skills .tag.skill {
+    border: 1px solid #dae0ee;
+    border-radius: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    background-color: #f8f9fd;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
 }
-.summary-view .skills-section .skills{
+
+.summary-view .skills-section .skills {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-.summary-view .skills-section .skills .tag{
+
+.summary-view .skills-section .skills .tag {
     letter-spacing: 0.025em;
     display: block;
     float: left;
     margin-bottom: 10px;
 }
-.summary-view .skills-section .skills .tag.skill:hover{
+
+.summary-view .skills-section .skills .tag.skill:hover {
     text-decoration: none;
     border: 1px solid #b7c3de;
 }
-.summary-view .skills-section .skills .tag:not(:last-of-type){
+
+.summary-view .skills-section .skills .tag:not(:last-of-type) {
     margin-right: 10px;
 }
 
@@ -609,8 +587,8 @@ font-size: 12px;
     content: "\e94b";
 }
 
-
 /*Detailed View Styles*/
+
 .profile-pg .profile-info {
     padding: 20px;
     padding-bottom: 30px;
@@ -618,6 +596,7 @@ font-size: 12px;
     background-color: #ffffff;
     margin-bottom: 30px;
 }
+
 .profile-pg .pic .profile-pic {
     width: 126px;
     height: 126px;
@@ -626,6 +605,7 @@ font-size: 12px;
     display: inline-block;
     margin-bottom: 25px;
 }
+
 .profile-pg .pic .green-btn {
     display: inline-block;
 }
@@ -638,8 +618,9 @@ font-size: 12px;
 .profile-pg .info-col .name {
     margin-bottom: 20px;
     margin-top: 0;
-    color: #6a7e9c;
+    color: #447AFA;
     font-size: 28px;
+    text-transform: capitalize;
 }
 
 .profile-pg .info-col .social-media {
@@ -675,7 +656,7 @@ font-size: 12px;
     fill: none;
 }
 
-.profile-pg .info-col > a {
+.profile-pg .info-col>a {
     display: block;
     margin-bottom: 10px;
     line-height: 1.3;
@@ -685,7 +666,7 @@ font-size: 12px;
     padding-bottom: 5px;
 }
 
-.profile-pg .info-col > a .icon {
+.profile-pg .info-col>a .icon {
     position: absolute;
     left: 0;
     top: 2px;
@@ -806,14 +787,14 @@ font-size: 12px;
     text-align: center;
 }
 
-.profile-pg .technical-skills .placeholder > p {
+.profile-pg .technical-skills .placeholder>p {
     line-height: 1;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 0;
 }
 
-.profile-pg .technical-skills .view-toggle > div {
+.profile-pg .technical-skills .view-toggle>div {
     padding: 0 15px;
     display: inline-block;
     cursor: pointer;
@@ -858,7 +839,7 @@ font-size: 12px;
     border: 1px solid #e0e3ec;
 }
 
-.profile-pg .technical-skills .modal-body form > .radio-box {
+.profile-pg .technical-skills .modal-body form>.radio-box {
     padding: 10px 0;
 }
 
@@ -888,11 +869,7 @@ font-size: 12px;
     text-align: center;
 }
 
-.profile-pg .technical-skills .top-skills {
-    padding-top: 30px;
-}
-
-.profile-pg .technical-skills .top-skills > h4 {
+.profile-pg .technical-skills .top-skills>h4 {
     margin-bottom: 15px;
     font-weight: 500;
     font-size: 16px;
@@ -941,7 +918,7 @@ font-size: 12px;
     margin-bottom: 20px;
 }
 
-.profile-pg .technical-skills .other-skills > h4 {
+.profile-pg .technical-skills .other-skills>h4 {
     margin: 20px 0;
     font-weight: 500;
     font-size: 16px;
@@ -962,12 +939,11 @@ font-size: 12px;
     font-weight: 500;
     color: #6a7e9c;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
 }
 
 .profile-pg .summary p {
     font-size: 16px;
-    font-style: italic;
     color: #9eabc0;
     margin-bottom: 0;
 }
@@ -1008,16 +984,16 @@ font-size: 12px;
     height: 85%;
 }
 
-.profile-pg .domain-skills .placeholder > div {
+.profile-pg .domain-skills .placeholder>div {
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.profile-pg .domain-skills .card-content > .row {
+.profile-pg .domain-skills .card-content>.row {
     margin-top: 30px;
 }
 
-.profile-pg .domain-skills .card-content > .row > [class^="col-"]:not(:last-of-type) {
+.profile-pg .domain-skills .card-content>.row>[class^="col-"]:not(:last-of-type) {
     border-right: 1px solid #e0e3ec;
 }
 
@@ -1038,7 +1014,7 @@ font-size: 12px;
     text-align: center;
 }
 
-.profile-pg .education .placeholder > p {
+.profile-pg .education .placeholder>p {
     line-height: 1;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -1067,7 +1043,7 @@ font-size: 12px;
     text-align: center;
 }
 
-.profile-pg .professional-experience .placeholder > p {
+.profile-pg .professional-experience .placeholder>p {
     line-height: 1;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -1080,12 +1056,12 @@ font-size: 12px;
     border-bottom: 1px solid #e0e3ec;
 }
 
-.profile-pg .professional-experience .modal-body form > .row > [class^="col-"] {
+.profile-pg .professional-experience .modal-body form>.row>[class^="col-"] {
     padding-left: 30px;
     padding-right: 30px;
 }
 
-.profile-pg .professional-experience .modal-body form > .row > [class^="col-"]:first-of-type {
+.profile-pg .professional-experience .modal-body form>.row>[class^="col-"]:first-of-type {
     border-right: 1px solid #e0e3ec;
 }
 
@@ -1093,7 +1069,7 @@ font-size: 12px;
     padding-top: 0;
 }
 
-.profile-pg .professional-experience .nav-tabs > li > a {
+.profile-pg .professional-experience .nav-tabs>li>a {
     font-size: 16px;
     padding: 0;
     padding-bottom: 30px;
@@ -1101,20 +1077,21 @@ font-size: 12px;
     color: #9eabc0;
     border: 1px solid transparent;
 }
-.profile-pg .professional-experience .nav-tabs > li > a:hover, .profile-pg .professional-experience .nav-tabs > li > a:focus{
+
+.profile-pg .professional-experience .nav-tabs>li>a:hover, .profile-pg .professional-experience .nav-tabs>li>a:focus {
     background-color: transparent;
 }
 
-.profile-pg .professional-experience .nav-tabs > li {
+.profile-pg .professional-experience .nav-tabs>li {
     margin-right: 20px;
 }
 
-.profile-pg .professional-experience .nav-tabs > li.active {
+.profile-pg .professional-experience .nav-tabs>li.active {
     /* border-bottom: 0; */
     margin-bottom: 0;
 }
 
-.profile-pg .professional-experience .nav-tabs > li.active a {
+.profile-pg .professional-experience .nav-tabs>li.active a {
     color: #6a7e9c;
 }
 
@@ -1199,7 +1176,7 @@ font-size: 12px;
 .profile-pg .professional-experience .job-row .tab-content p {
     line-height: 1.6125em;
     /* height: calc(100% - 80px); */
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -1212,7 +1189,7 @@ font-size: 12px;
     padding-left: 30px;
 }
 
-.profile-pg .professional-experience .job-row .list > [class*="col-"]:first-of-type {
+.profile-pg .professional-experience .job-row .list>[class*="col-"]:first-of-type {
     border-right: 1px solid #e0e3ec;
 }
 
@@ -1243,7 +1220,7 @@ font-size: 12px;
     height: 85%;
 }
 
-.profile-pg .certifications .placeholder > div {
+.profile-pg .certifications .placeholder>div {
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -1279,7 +1256,7 @@ font-size: 12px;
     color: #6a7e9c;
 }
 
-.profile-pg .card > .wrap {
+.profile-pg .card>.wrap {
     border-radius: 5px;
     height: 100%;
     background-color: #ffffff;
@@ -1317,7 +1294,7 @@ font-size: 12px;
     max-width: 110px;
 }
 
-.profile-pg .card .card-content .placeholder .green-btn > span {
+.profile-pg .card .card-content .placeholder .green-btn>span {
     background-color: #ffffff;
     color: #66dab5;
     border-radius: 100%;
@@ -1464,15 +1441,12 @@ font-size: 12px;
     .profile-pg .card .modal .experience .select-box {
         padding: 20px 12px;
     }
-
     .profile-pg .domain-skills .skill-row h5 {
         font-size: 14px;
     }
-
-    .profile-pg .professional-experience .nav-tabs > li {
+    .profile-pg .professional-experience .nav-tabs>li {
         margin-right: 10px;
     }
-
     .profile-pg .profile-completeness {
         height: 138px;
     }
@@ -1482,68 +1456,52 @@ font-size: 12px;
     .profile-pg .left, .profile-pg .right {
         float: none;
     }
-
     .profile-pg .half, .profile-pg .technical-skills, .profile-pg .personal-skills, .profile-pg .domain-skills, .profile-pg .education {
         width: 100%;
     }
-
-    .profile-pg.edit-mode .pic .wrap-icon > div {
+    .profile-pg.edit-mode .pic .wrap-icon>div {
         border-right: 0;
         padding: 0 7px;
     }
-
     .profile-pg .pic .green-btn {
         padding: 15px 20px;
     }
-
     .profile-pg .info-col {
         padding-right: 15px;
     }
-
     .profile-pg .contact-info-col {
         padding: 30px 15px;
     }
-
     .profile-pg .contact-info-col .v-divider {
         height: calc(100% + 70px);
     }
-
     .profile-pg.edit-mode .contact-info-col .v-divider {
         height: calc(100% + 55px);
     }
-
     .profile-pg .video-col {
         padding: 30px 15px;
     }
-
-    .profile-pg .video-col > div {
+    .profile-pg .video-col>div {
         padding: 56px 0;
     }
-
-    .profile-pg .info-col > a .icon {
+    .profile-pg .info-col>a .icon {
         top: 3px;
     }
-
     .profile-pg .profile-completeness .progress-wrap h4 {
         font-size: 24px;
     }
-
     .profile-pg .card .modal input.form-control {
         font-size: 14px;
     }
-
-    .profile-pg .professional-experience .modal-body form > .row > [class^="col-"]:first-of-type {
+    .profile-pg .professional-experience .modal-body form>.row>[class^="col-"]:first-of-type {
         border-right: 0;
     }
-
     .profile-pg .contact-info-col .border-btn, .profile-pg .contact-info-col .green-btn {
         padding: 15px 20px;
     }
-
-    .profile-pg .summary > div {
+    .profile-pg .summary>div {
         flex: 4;
     }
-
     .profile-pg .summary a {
         flex: 1;
         text-align: right;
@@ -1554,13 +1512,11 @@ font-size: 12px;
     .profile-pg .select-box {
         padding: 20px;
     }
-
     .profile-pg .pic {
         padding-left: 30px;
         padding-right: 30px;
         padding-bottom: 45px;
     }
-
     .profile-pg .info-col {
         border: 0;
         padding-left: 30px;
@@ -1568,100 +1524,79 @@ font-size: 12px;
         padding-bottom: 45px;
         text-align: center;
     }
-
     .profile-pg .info-col .min-link {
         display: inline-block;
     }
-
     .profile-pg .info-col .min-link:not(:last-of-type) {
         margin-right: 30px;
     }
-
     .profile-pg .info-col .social-media {
         margin-bottom: 30px;
     }
-
     .profile-pg .education .scrollbar-inner, .profile-pg .domain-skills .scrollbar-inner, .profile-pg .professional-experience .scrollbar-inner, .profile-pg .certifications .scrollbar-inner, .profile-pg .technical-skills .scrollbar-inner {
         max-height: initial !important;
         height: auto !important;
     }
-
     .profile-pg .education .card-content, .profile-pg .domain-skills .card-content, .profile-pg .professional-experience .card-content, .profile-pg .certifications .card-content, .profile-pg .technical-skills .card-content {
         max-height: initial !important;
         height: auto !important;
     }
-
     .profile-pg .professional-experience .job-row .v-divider {
         display: none;
     }
-
     .profile-pg .professional-experience .job-row .col-md-4 {
         margin-bottom: 20px;
     }
-
     .profile-pg .professional-experience .job-row .col-md-8 {
         padding-left: 15px;
     }
-
     .profile-pg .contact-info-col {
         border: 0;
         padding: 0 30px;
     }
-
     .profile-pg .contact-info-col p {
         padding-top: 0;
     }
-
     .profile-pg .upload-resume {
         margin-bottom: 30px;
     }
-
     .profile-pg .upload-resume .col-lg-9 {
         border-right: 0;
     }
-
     .profile-pg .upload-resume .col-lg-3 {
         text-align: left;
     }
-
     .profile-pg .profile-completeness {
         margin-left: -15px;
     }
-
     .profile-pg .profile-completeness .progress-wrap .progress {
         width: 85%;
         max-width: initial;
         margin-right: 0;
     }
-
     .profile-pg .profile-completeness .progress-wrap h4 {
         width: 14%;
     }
-
     .profile-pg.edit-mode .info-col {
         padding-bottom: 0px;
         padding-top: 0;
     }
-
     .profile-pg.edit-mode .info-col .label-caps, .profile-pg.edit-mode .info-col .technical-skills .top-skills table th, .profile-pg.edit-mode .technical-skills .top-skills table .info-col th {
         text-align: left;
     }
-
-    .profile-pg.edit-mode .pic .wrap-icon > div:first-of-type {
+    .profile-pg.edit-mode .pic .wrap-icon>div:first-of-type {
         border-right: 1px solid #e0e3ec;
     }
-
     .profile-pg .summary a {
         flex: 2;
     }
 }
 
 @media all and (max-width: 767px) {
-    .profile-pg .professional-experience .nav-tabs > li {
+    .profile-pg .professional-experience .nav-tabs>li {
         margin-right: 8px;
     }
-
-    .profile-pg .professional-experience .nav-tabs > li > a {
+    .profile-pg .professional-experience .nav-tabs>li>a {
         font-size: 14px;
     }
 }
@@ -1670,330 +1605,253 @@ font-size: 12px;
     .profile-pg .modal-content {
         padding: 15px;
     }
-
     .profile-pg .card .modal .experience .select-box {
         padding: 12px;
     }
-
     .profile-pg .contact-info-col {
         position: initial;
     }
-
-    .profile-pg .contact-info-col > a {
+    .profile-pg .contact-info-col>a {
         top: 30px;
     }
-
     .profile-pg .contact-info-col .divider:first-of-type {
         margin-bottom: 30px;
     }
-
     .profile-pg .pic {
         padding-bottom: 20px;
     }
-
     .profile-pg .info-col {
         padding-bottom: 0px;
     }
-
     .profile-pg.edit-mode .job-row .col-md-8, .profile-pg.edit-mode .education-row .col-md-8 {
         padding-top: 40px;
     }
-
     .profile-pg.edit-mode .job-row .icons, .profile-pg.edit-mode .education-row .icons {
         top: -55px;
     }
-
     .profile-pg.edit-mode .education-row {
         position: relative;
     }
-
     .profile-pg.edit-mode .education-row .icons {
         top: 20px;
     }
-
     .profile-pg .profile-info {
         position: relative;
     }
-
     .profile-pg .select-box {
         padding: 12px 10px;
     }
-
     .profile-pg .radio-box.inline {
         padding: 8px 0;
     }
-
     .profile-pg .profile-completeness {
         height: auto;
     }
-
-    .profile-pg .domain-skills .placeholder > div, .profile-pg .certifications .placeholder > div {
+    .profile-pg .domain-skills .placeholder>div, .profile-pg .certifications .placeholder>div {
         padding: 0;
     }
-
     .profile-pg .card .card-content p {
         font-size: 14px;
     }
-
     .profile-pg .personal-skills {
         height: auto;
     }
-
     .profile-pg .personal-skills .skills {
         padding-top: 0;
     }
-
     .profile-pg .personal-skills .skills .text .title, .profile-pg .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .profile-pg .personal-skills .skills label .title {
         font-size: 16px;
     }
-
-    .profile-pg .add-btn > span {
+    .profile-pg .add-btn>span {
         margin-right: 0;
     }
-
     .profile-pg .add-btn p {
         display: none;
     }
-
     .profile-pg .card .modal .job-alert {
         padding: 15px;
     }
-
     .profile-pg .upload-resume {
         padding: 15px 0;
     }
-
     .profile-pg .info-col .social-media form .form-control {
         height: 40px;
     }
-
     .profile-pg .info-col .social-media form .input-group-addon {
         height: 40px;
     }
-
-    .profile-pg .summary > div {
+    .profile-pg .summary>div {
         flex: 16;
     }
-
     .profile-pg .summary a {
         flex: 2;
     }
-
     .profile-pg .contact-info-col [class^=icon-] {
         margin-right: 10px;
     }
-
     .profile-pg .contact-info-col form .form-control {
         height: 40px;
     }
-
     .profile-pg .contact-info-col form .input-group-addon {
         height: 40px;
     }
-
     .profile-pg .contact-info-col .border-btn {
         min-width: 120px;
     }
-
     .profile-pg .profile-completeness {
         padding: 15px;
     }
-
     .profile-pg .profile-completeness .progress-wrap .progress {
         width: 75%;
         margin-right: 10px;
     }
-
     .profile-pg .summary {
         padding: 20px;
     }
-
     .profile-pg .summary h2 {
         font-size: 16px;
     }
-
     .profile-pg .summary p {
         font-size: 14px;
         padding-right: 20px;
     }
-
     .profile-pg .domain-skills .placeholder {
         text-align: center;
     }
-
     .profile-pg .education .scrollbar-inner, .profile-pg .domain-skills .scrollbar-inner, .profile-pg .professional-experience .scrollbar-inner, .profile-pg .certifications .scrollbar-inner, .profile-pg .technical-skills .scrollbar-inner {
         max-height: initial;
         height: auto;
     }
-
     .profile-pg .education .card-content, .profile-pg .domain-skills .card-content, .profile-pg .professional-experience .card-content, .profile-pg .certifications .card-content, .profile-pg .technical-skills .card-content {
         max-height: initial;
         height: auto;
     }
-
     .profile-pg .education .placeholder, .profile-pg .domain-skills .placeholder, .profile-pg .professional-experience .placeholder, .profile-pg .certifications .placeholder, .profile-pg .technical-skills .placeholder {
         padding: 20px 0;
     }
-
     .profile-pg .education .placeholder img, .profile-pg .domain-skills .placeholder img, .profile-pg .professional-experience .placeholder img, .profile-pg .certifications .placeholder img, .profile-pg .technical-skills .placeholder img {
         margin-top: 0px !important;
     }
-
     .profile-pg .education .scroll-content, .profile-pg .domain-skills .scroll-content, .profile-pg .professional-experience .scroll-content, .profile-pg .certifications .scroll-content, .profile-pg .technical-skills .scroll-content {
         width: 100% !important;
     }
-
     .profile-pg .education .placeholder, .profile-pg .domain-skills .placeholder, .profile-pg .professional-experience .placeholder, .profile-pg .certifications .placeholder, .profile-pg .technical-skills .placeholder {
         display: block;
     }
-
     .profile-pg .card .modal .select-box, .profile-pg .card .modal input.form-control {
         height: 40px;
     }
-
     .profile-pg .meta {
         margin-bottom: 20px;
         padding-left: 0;
         display: block;
     }
-
     .profile-pg .technical-skills .card-header .add-btn {
         float: right;
     }
-
     .profile-pg .technical-skills .card-header .card-title {
         border-right: 0;
     }
-
     .profile-pg .technical-skills .top-skills {
         padding-top: 20px;
     }
-
     .profile-pg .education .education-row {
         padding-top: 20px;
     }
-
-    .profile-pg .domain-skills .card-content > .row {
+    .profile-pg .domain-skills .card-content>.row {
         margin-top: 0;
     }
-
-    .profile-pg .domain-skills .card-content > .row > [class^="col-"]:not(:last-of-type) {
+    .profile-pg .domain-skills .card-content>.row>[class^="col-"]:not(:last-of-type) {
         border-right: 0;
     }
-
     .profile-pg .professional-experience .job-row {
         padding: 20px 0;
     }
-
     .profile-pg .professional-experience .job-row .col-md-8 {
         padding-left: 15px;
     }
-
     .profile-pg .professional-experience .job-row .duration {
         border-right: 0;
     }
-
     .profile-pg .professional-experience .job-row .tab-content .scrollbar-inner {
         height: auto;
         max-height: initial;
     }
-
-    .profile-pg .professional-experience .modal-body form > .row > [class^="col-"] {
+    .profile-pg .professional-experience .modal-body form>.row>[class^="col-"] {
         padding-left: 15px;
         padding-right: 15px;
     }
-
     .profile-pg .professional-experience .radio-box.inline span {
         font-size: 14px;
     }
-
-    .profile-pg .professional-experience .nav-tabs > li {
+    .profile-pg .professional-experience .nav-tabs>li {
         width: 30%;
     }
-
-    .profile-pg .professional-experience .nav-tabs > li > a {
+    .profile-pg .professional-experience .nav-tabs>li>a {
         font-size: 13px;
         text-overflow: ellipsis;
         overflow: hidden;
         padding-bottom: 15px;
     }
-
     .profile-pg .technical-skills .rating .radio-box span {
         font-size: 12px;
         font-weight: 400;
     }
-
     .profile-pg .upload-resume .title {
         font-size: 18px;
     }
-
     .profile-pg .upload-resume p {
         font-size: 14px;
     }
-
-    .profile-pg .card > .wrap {
+    .profile-pg .card>.wrap {
         padding: 20px;
     }
-
     .profile-pg .card .card-header {
         padding-bottom: 17px;
         margin-bottom: 12px;
     }
-
     .profile-pg .card .card-content .placeholder img {
         max-width: 80px;
         margin: 20px 0;
     }
-
     .profile-pg .hasModal .modal-dialog {
         width: 100%;
     }
-
     .profile-pg .certifications .cert-row {
         margin-top: 20px;
     }
-
     .profile-pg .certifications .placeholder, .profile-pg .certifications .domain-skills .placeholder {
         flex-direction: column;
         text-align: center;
     }
-
     .profile-pg .professional-experience .input-group-addon button {
         padding: 5px 17px;
         height: 40px;
     }
-
     .profile-pg .professional-experience #responsibilities .input-group-addon button {
         padding: 5px 17px;
         height: 40px;
     }
-
     .profile-pg .professional-experience textarea {
         font-size: 14px;
     }
-
     .profile-pg .personal-skills .card-content img.arrow {
         display: none;
     }
-
     .profile-pg .personal-skills .placeholder p {
         padding-right: 0;
     }
-
     .profile-pg .modal-dialog .btn {
         padding: 8px 16px;
         margin-bottom: 8px;
     }
-
     .profile-pg .modal-dialog .input-group-addon .btn {
         margin-bottom: 0;
     }
-
     .profile-pg .info-col .min-link {
         display: block;
         text-align: left;
     }
-
     .profile-pg .info-col .min-link:not(:last-of-type) {
         margin-right: 0px;
     }
@@ -2009,7 +1867,7 @@ font-size: 12px;
     display: inline-block;
 }
 
-.profile-pg .add-btn > span {
+.profile-pg .add-btn>span {
     background-color: #66dab5;
     color: #ffffff;
     border-radius: 100%;
@@ -2030,7 +1888,7 @@ font-size: 12px;
     transition: ease 0.2s all;
 }
 
-.profile-pg .add-btn:hover > span, .profile-pg .add-btn:focus > span {
+.profile-pg .add-btn:hover>span, .profile-pg .add-btn:focus>span {
     transition: ease 0.2s all;
     color: #ffffff;
     text-decoration: none;
@@ -2044,9 +1902,9 @@ font-size: 12px;
 .profile-pg .meta {
     margin-bottom: 20px;
     font-size: 16px;
-    color: #9eabc0;
-    font-style: italic;
+    color: #6a7e9c;
     font-weight: 300;
+
 }
 
 .profile-pg .close-btn {
@@ -2057,7 +1915,7 @@ font-size: 12px;
     cursor: pointer;
 }
 
-.profile-pg > .modal-backdrop {
+.profile-pg>.modal-backdrop {
     opacity: 0 !important;
     pointer-events: none;
 }
@@ -2080,7 +1938,7 @@ font-size: 12px;
     transform: translate(0, 50px);
 }
 
-.profile-pg > .fade {
+.profile-pg>.fade {
     transition-delay: 0.15s;
 }
 
@@ -2128,13 +1986,13 @@ font-size: 12px;
     text-transform: initial;
 }
 
-.profile-pg .wrap-icon > div {
+.profile-pg .wrap-icon>div {
     display: inline-block;
     padding: 0px 15px;
     margin-top: 30px;
 }
 
-.profile-pg .wrap-icon > div:first-of-type {
+.profile-pg .wrap-icon>div:first-of-type {
     border-right: 1px solid #e0e3ec;
 }
 
@@ -2147,17 +2005,20 @@ font-size: 12px;
     margin: 0;
     color: #6a7e9c;
 }
+
 .skills.card {
     background-color: #f8f9fd;
     padding: 20px;
     border: 1px solid #e0e3ec;
     border-radius: 4px;
 }
+
 .skills .settings-dot {
     position: absolute;
     right: 20px;
     top: 10px;
 }
+
 .settings-dot {
     display: inline-block;
     cursor: pointer;
@@ -2169,23 +2030,29 @@ font-size: 12px;
     font-weight: 400;
     margin-top: 0;
 }
+
 .skills.card h2 {
-    margin-top: 0;
     font-size: 20px;
     margin-top: 12px;
     margin-bottom: 20px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .personal-skills .skills {
     padding-top: 30px;
 }
-.personal-skills .skills .text{
+
+.personal-skills .skills .text {
     display: inline-block;
     vertical-align: middle;
     width: calc(100% - 100px);
     padding-left: 20px;
 }
-.nav-tabs > li.active {
+
+.nav-tabs>li.active {
     border-bottom: 3px solid #66dab5;
 }
 
@@ -2196,19 +2063,22 @@ font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
 }
+
 .education-row .meta, .job-row .meta {
     display: inline-block;
     padding-left: 10px;
-    font-size: 16px ;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
 }
+
 .education-row .title, .job-row .title {
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
 .icon-calendar:before {
     content: "\e94e";
 }
@@ -2219,15 +2089,18 @@ font-size: 12px;
     margin-bottom: 20px;
     display: inline-block;
 }
+
 .profile-pg .v-divider {
     height: 100%;
     border-right: 1px solid #e0e3ec;
     position: absolute;
     display: inline-block;
 }
+
 .education-row:not(:last-of-type), .job-row:not(:last-of-type) {
     border-bottom: 1px solid #e0e3ec;
 }
+
 .education-row, .job-row {
     padding-top: 30px;
     padding-bottom: 20px;
@@ -2237,9 +2110,11 @@ font-size: 12px;
     text-align: center;
     padding: 20px 0px 0px 15px;
 }
+
 .personal-skills .skills .text .title, .personal-skills .skills .search-results-pg .results label .title, .search-results-pg .results .personal-skills .skills label .title {
     font-size: 18px;
 }
+
 .label-caps, .profile-pg .technical-skills .top-skills table th {
     font-size: 14px;
     text-transform: uppercase;
@@ -2248,6 +2123,7 @@ font-size: 12px;
     margin: 0;
     margin-bottom: 10px;
 }
+
 .education-row .study-fields .list .tag.skill, .job-row .study-fields .list .tag.skill, .profile-pg .technical-skills .other-skills .skills .tag.skill, .summary-view .skills-section .skills .tag.skill, .my-jobs .skills .tag.skill, .applied-jobs .skills .tag.skill, .job-timeline .skills .tag.skill, .search-results-pg .results .result-card .tags .tag.skill {
     border: 1px solid #dae0ee;
     border-radius: 3px;
@@ -2258,11 +2134,13 @@ font-size: 12px;
     text-align: center;
     font-size: 12px;
 }
+
 .education-row .study-fields .list, .job-row .study-fields .list, .profile-pg .technical-skills .other-skills .skills, .summary-view .skills-section .skills, .my-jobs .skills, .applied-jobs .skills, .job-timeline .skills, .search-results-pg .results .result-card .tags {
     padding: 0;
     margin: 0;
     list-style: none;
 }
+
 .education-row .study-fields .list .tag, .job-row .study-fields .list .tag, .profile-pg .technical-skills .other-skills .skills .tag, .summary-view .skills-section .skills .tag, .my-jobs .skills .tag, .applied-jobs .skills .tag, .job-timeline .skills .tag, .search-results-pg .results .result-card .tags .tag {
     letter-spacing: 0.025em;
     padding: 10px 15px;
@@ -2270,6 +2148,7 @@ font-size: 12px;
     float: left;
     margin-bottom: 10px;
 }
+
 .education-row .study-fields .list .tag:not(:last-of-type), .job-row .study-fields .list .tag:not(:last-of-type), .profile-pg .technical-skills .other-skills .skills .tag:not(:last-of-type), .summary-view .skills-section .skills .tag:not(:last-of-type), .my-jobs .skills .tag:not(:last-of-type), .applied-jobs .skills .tag:not(:last-of-type), .job-timeline .skills .tag:not(:last-of-type), .search-results-pg .results .result-card .tags .tag:not(:last-of-type) {
     margin-right: 10px;
 }
@@ -2279,22 +2158,110 @@ font-size: 12px;
     color: #6a7e9c;
     padding-bottom: 20px;
 }
+
 .skills-box header {
     position: relative;
     padding: 10px 0;
     border-bottom: 1px solid #e0e3ec;
 }
+
 .skills-box .skill-row {
     padding-top: 13px;
 }
+
 .skills-box .skill-row h6 {
     font-size: 12px;
     color: #9eabc0;
 }
+
 .skills-box .skill-row h5 {
     font-size: 16px;
     text-align: right;
 }
-.profile-pg .domain-skills .card-content > .row > [cfv]:not(:last-of-type) {
+
+.profile-pg .domain-skills .card-content>.row>[cfv]:not(:last-of-type) {
     border-right: 1px solid #e0e3ec;
+}
+
+.matching-section {
+    background-color: #ffffff;
+    width: 15.4%;
+}
+
+.matching-section h5 {
+    color: #6a7e9c;
+}
+
+.sum_tech_img img {
+    margin-bottom: 10px;
+}
+
+.detailed-profile h3 {
+    color: #6a7e9c;
+}
+
+/*Personality test styles*/
+
+.personality-test-results .progress {
+    width: 100%;
+    height: 10px;
+    margin-top: 0.7rem;
+}
+
+.personality-test-results h3 {
+    margin: 0;
+}
+
+.personality-test-results h4 {
+    font-size: 16px;
+}
+
+.personality-test-results h4 i.test-status {
+    font-size: 12px;
+}
+
+.personality-test-results .personality-result-view, .personality-test-results .culture-result-view {
+    border: 1px solid #ebebeb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.personality-test-results .personality-result-view {
+    width: 47%;
+    margin-left: 15px;
+}
+
+.personality-test-results .culture-result-view {
+    width: 47%;
+}
+
+.personality-test-results .btn-success {
+    background-color: #66dab5;
+    border-color: #66dab5;
+}
+
+.disabledLink {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: none !important;
+}
+
+.personality-test-dialog .social-media-share a {
+    display: inline-block;
+    padding: 3px 20px;
+}
+
+.personality-test-dialog .social-media-share a:not(:last-of-type) {
+    border-right: 1px solid #e0e3ec;
+}
+
+.btn-download-resume {
+    padding: 10px 8px;
+    font-size: 12px;
+}
+
+.profile-info h4.profile-title {
+    color: #6a7e9c;
+    font-weight: 500;
 }

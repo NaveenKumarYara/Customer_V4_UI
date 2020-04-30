@@ -356,30 +356,33 @@
                     </div>
                 </div>
                 <div class="candidate-status">
-                    <ng-container
+                    <!-- <ng-container
                         *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
                             <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
                         </a>
-                    </ng-container>
-                    <ng-template #videoTemp>
+                    </ng-container> -->
+                    <!-- <ng-template #videoTemp>
                         <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
                             (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
                             <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px"
                                 alt="Video Profile" title="Video Profile">
                         </a>
-                    </ng-template>
+                    </ng-template> -->
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px"
                         alt="References" title="References" style="margin-right: 15px;">
     
-                    <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px"
-                        alt="Verified Profile" title="Verified Profile">
+                    <!-- <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px"
+                        alt="Verified Profile" title="Verified Profile"> -->
                   <!--Achievement Icon-->
                         <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50px" height="50px"
                         alt="achievement-badge" title="Achievements">
                  <!--Recommendations Icon-->
                  <img src="../../../../../assets/images/card-icons/recommendations.png" width="50px" height="50px"
                  alt="recommendations-badge" title="Recommendations">
+                 <!--Verified Profile-->
+                 <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50px" height="50px"
+                 alt="verfied-badge" title="Verified Profile">
 
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
                         <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
