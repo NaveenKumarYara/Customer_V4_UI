@@ -33,7 +33,7 @@ export class BillingDetailsComponent implements OnInit {
     this.populateCompanyProfile(); 
     this.GetCustomerSubscription();
     window['Chargebee'].init({
-      site: 'arytic-test',
+      site: 'arytic',
       publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
     });
   }
