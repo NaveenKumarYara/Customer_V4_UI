@@ -371,18 +371,18 @@
                     </ng-template> -->
                     <img src="../../../../../assets/images/reference-icon.svg" width="50px" height="50px"
                         alt="References" title="References" style="margin-right: 15px;">
-    
+
                     <!-- <img src="../../../../../assets/images/bg-check.svg" width="50px" height="50px"
                         alt="Verified Profile" title="Verified Profile"> -->
-                  <!--Achievement Icon-->
-                        <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50px" height="50px"
+                    <!--Achievement Icon-->
+                    <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50px" height="50px"
                         alt="achievement-badge" title="Achievements">
-                 <!--Recommendations Icon-->
-                 <img src="../../../../../assets/images/card-icons/recommendations.png" width="50px" height="50px"
-                 alt="recommendations-badge" title="Recommendations">
-                 <!--Verified Profile-->
-                 <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50px" height="50px"
-                 alt="verfied-badge" title="Verified Profile">
+                    <!--Recommendations Icon-->
+                    <img src="../../../../../assets/images/card-icons/recommendations.png" width="50px" height="50px"
+                        alt="recommendations-badge" title="Recommendations">
+                    <!--Verified Profile-->
+                    <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50px" height="50px"
+                        alt="verfied-badge" title="Verified Profile">
 
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
                         <img src="../../../../../assets/images/hand-shake-0.png" width="50px" height="50px" alt="">
@@ -650,10 +650,11 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-                                                   
+
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="#fff"
-                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                    readonly="true"></star-rating>
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
                                                 <div class="skill">
@@ -663,10 +664,11 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-                                                   
+
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="#fff"
-                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                    readonly="true"></star-rating>
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
                                                 <div class="skill">
@@ -676,10 +678,11 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-                                                   
+
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="#fff"
-                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                    readonly="true"></star-rating>
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
                                                 <div class="skill">
@@ -689,10 +692,11 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-                                                
+
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5" checkedcolor="#fff"
-                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                    readonly="true"></star-rating>
                                             </div>
 
                                         </div>
@@ -1130,7 +1134,7 @@
         </div>
 
         <!--Profile percentage view-->
-        <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}" >
+        <div class="matching-details bg-fff" id="matchingDetail-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header">
                 <h2>Matching Criteria</h2>
@@ -1214,7 +1218,7 @@
                     <li class="skill-details">
                         <div class="col-md-3">
                             <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
-                            alt="certifications">
+                                alt="certifications">
                         </div>
                         <div class="col-md-5">
                             <h6>Certificate Name</h6>
@@ -1226,7 +1230,7 @@
                     <li class="skill-details">
                         <div class="col-md-3">
                             <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
-                            alt="certifications">
+                                alt="certifications">
                         </div>
                         <div class="col-md-4">
                             <h6>Certificate Name</h6>
@@ -1244,8 +1248,7 @@
         <div class="matching-details bg-fff">
             <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/reference-icon.svg" width="60"
-                    alt="References">
+                <img src="../../../../../assets/images/reference-icon.svg" width="60" alt="References">
                 <h2>Manage References</h2>
                 <!--List of certifications-->
                 <ul class="references-list">
@@ -1289,11 +1292,10 @@
         <!---->
 
         <!--Manage Skills-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/Certifications/skills.png" width="60"
-                    alt="References">
+                <img src="../../../../../assets/images/Certifications/skills.png" width="60" alt="References">
                 <h2>Manage Skills</h2>
                 <!--List of skills-->
                 <ul class="skills-list">
@@ -1309,7 +1311,7 @@
                         <div class="col-md-6 text-left">
                             <h6>Skill 2</h6>
                         </div>
-                       
+
                         <div class="col-md-6">
                             <h6 class="text-warning">Waiting for Response</h6>
                         </div>
@@ -1318,7 +1320,7 @@
                         <div class="col-md-6 text-left">
                             <h6>Skill 3</h6>
                         </div>
-                
+
                         <div class="col-md-6">
                             <h6 class="text-success">Received Result</h6>
                             <small><a href="javascript:void(0)">View</a></small>
@@ -1328,7 +1330,7 @@
                         <div class="col-md-6 text-left">
                             <h6>Skill 3</h6>
                         </div>
-                
+
                         <div class="col-md-6">
                             <h6 class="text-danger">Request Rejected</h6>
                             <small><a href="javascript:void(0)">Resend</a></small>
@@ -1340,11 +1342,10 @@
         <!---->
 
         <!--Bg Verification-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/Certifications/bg-v.png" width="60"
-                    alt="References">
+                <img src="../../../../../assets/images/Certifications/bg-v.png" width="60" alt="References">
                 <h2>Background Verification</h2>
                 <!--List of skills-->
                 <ul class="bg-list">
@@ -1358,18 +1359,18 @@
                     </li>
                     <li class="bg-details">
                         <div class="col-md-5 text-left">
-                            <h6> Details  2</h6>
+                            <h6> Details 2</h6>
                         </div>
-                       
+
                         <div class="col-md-7">
                             <h6 class="text-warning">Waiting for Response</h6>
                         </div>
                     </li>
                     <li class="bg-details">
                         <div class="col-md-5 text-left">
-                            <h6> Details  3</h6>
+                            <h6> Details 3</h6>
                         </div>
-                
+
                         <div class="col-md-7">
                             <h6 class="text-success">Received Result</h6>
                             <small><a href="javascript:void(0)">View</a></small>
@@ -1377,9 +1378,9 @@
                     </li>
                     <li class="bg-details">
                         <div class="col-md-5 text-left">
-                            <h6> Details  4</h6>
+                            <h6> Details 4</h6>
                         </div>
-                
+
                         <div class="col-md-7">
                             <h6 class="text-danger">Request Rejected</h6>
                             <small><a href="javascript:void(0)">Resend</a></small>
@@ -1393,8 +1394,7 @@
         <div class="matching-details bg-fff">
             <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/Certifications/domain.png" width="60"
-                    alt="certifications">
+                <img src="../../../../../assets/images/Certifications/domain.png" width="60" alt="certifications">
                 <h2>Domains</h2>
                 <!--List of domains-->
                 <ul class="domains-list">
@@ -1413,7 +1413,7 @@
                     <li class="d-details">
                         <div class="col-md-3">
                             <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
-                            alt="certifications">
+                                alt="certifications">
                         </div>
                         <div class="col-md-5">
                             <h6>Domain Name</h6>
@@ -1425,7 +1425,7 @@
                     <li class="d-details">
                         <div class="col-md-3">
                             <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
-                            alt="certifications">
+                                alt="certifications">
                         </div>
                         <div class="col-md-4">
                             <h6>Domain Name</h6>
@@ -1486,11 +1486,10 @@
         </div>
         <!---->
         <!--Recommendations-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/card-icons/recommendations.png" width="60"
-                    alt="certifications">
+                <img src="../../../../../assets/images/card-icons/recommendations.png" width="60" alt="certifications">
                 <h2>Recommendations</h2>
                 <!--List of Recommendations-->
                 <ul class="recommendations-list">
