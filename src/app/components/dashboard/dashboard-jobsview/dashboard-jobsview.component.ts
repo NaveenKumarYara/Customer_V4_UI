@@ -1100,23 +1100,7 @@ populateApplicantsStatistics(filter=0) {
 
 
   Jobs(sortBy) {
-    if(this.statsFilter==0)
-    {
-      this.filterval=3
-    }
-    if(this.statsFilter==1)
-    {
-      this.filterval=0
-    }
-    if(this.statsFilter==2)
-    {
-      this.filterval=1
-    }
-    if(this.statsFilter==3)
-    {
-      this.filterval=2
-    }
-    localStorage.setItem('orderDate',JSON.stringify(this.filterval))
+    localStorage.setItem('orderDate',JSON.stringify(this.statsFilter))
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
     this.router.navigateByUrl('app-manage-jobs');
   }

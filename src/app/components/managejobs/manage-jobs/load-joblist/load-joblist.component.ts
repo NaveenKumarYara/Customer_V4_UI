@@ -49,7 +49,7 @@ export class LoadJoblistComponent implements OnInit {
    empType:any;jobStatus:any;skills:any;departments:any;titles:any;
    education:any;
    isfiltered :any;
-   status:any=3;
+   status:any=0;
 
   processed = false;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
@@ -78,7 +78,7 @@ export class LoadJoblistComponent implements OnInit {
     }
     else 
     {
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,3);
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0);
     }
     
    
@@ -107,8 +107,7 @@ export class LoadJoblistComponent implements OnInit {
 
 
 
-  populateJoblist(customerId, userId,searchString='',sortBy=0,status=3) { 
-    debugger
+  populateJoblist(customerId, userId,searchString='',sortBy=0,status=0) { 
     if(this.sortBy==undefined)
     {
       this.sortBy=0;
@@ -177,7 +176,7 @@ export class LoadJoblistComponent implements OnInit {
         }
         else
         {
-          this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,3);
+          this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0);
         }
   }
   }
@@ -193,7 +192,7 @@ export class LoadJoblistComponent implements OnInit {
       }
       else
       {
-        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,3);
+        this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0);
       }
   } 
   clearAll()
@@ -219,10 +218,9 @@ export class LoadJoblistComponent implements OnInit {
         this.employmentTypeId = 0;
         //this.sortBy = 0;
         //this.defaultValue = '0';
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,3);
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0);
       },
       callFilterMethod : (employmentTypeId, experience, cityId, clientId, departmentId) => {
-        debugger
         if (employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId > 0 || departmentId > 0) {
           this.searchString = '';
           //this.sortBy = 0;
@@ -231,7 +229,6 @@ export class LoadJoblistComponent implements OnInit {
          this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     },
     Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,profileStatus,skills,departments,titles,education,isfiltered,Users) => {
-      debugger
       if (1) {
         this.searchString = '';
         //this.sortBy = 0;

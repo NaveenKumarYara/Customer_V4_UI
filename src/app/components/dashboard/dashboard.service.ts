@@ -36,7 +36,7 @@ export class DashboardService {
 
     getRecentJobs(customerId: number, userId:number,count: number): Observable<RecentJobs> {
         const url = this.settingsService.settings.RecentJobs +
-        'customerId=' +customerId +'&userId='+ userId + '&sortBy=0&&searchString=&status=3&pageNumber=1&numberOfRows=5';
+        'customerId=' +customerId +'&userId='+ userId + '&sortBy=0&searchString=&status=0&pageNumber=1&numberOfRows=5';
         return this.http.get<RecentJobs>(url)
             .debounceTime(1000)
             .catch(

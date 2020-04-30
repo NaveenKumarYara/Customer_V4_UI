@@ -18,11 +18,10 @@
           </label> -->
                 <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue"
                     (change)="PopulateSort($event.target.value)">
-                    <option default value="0">All Jobs</option>
-                    <option value="1">Active Jobs</option>
-                    <option value="2">InActive Jobs</option>
-                    <option value="3">Closed Jobs</option>
-                    <option value="4">Freezed Jobs</option>
+                    <option default value="0">Recent</option>
+                    <option value="1">Older</option>
+                    <option value="2">Most Viewed</option>
+                    <option value="3">Most Applied</option>
                 </select>
             </div>
         </form>

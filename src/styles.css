@@ -16696,6 +16696,10 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-color: #FBD57C;
 }
 
+.page--dashboard .jobs .status.Freezed {
+    background-color: #FBD57C;
+}
+
 .page--dashboard .jobs .status.hired {
     background-color: #ACB0F3;
 }
