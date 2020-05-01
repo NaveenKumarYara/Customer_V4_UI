@@ -24,7 +24,7 @@
   "interviewtypeendpoint": "https://jobsapi-dev.arytic.com/api/GetInterviewType",
   "NotificationEndPoint": "https://identityapi-dev.arytic.com/api/GetNotification?",
   "GetCustomerContacts": "https://profileapi-dev.arytic.com/api/GetCustomerContacts?",
-  "listofJobsEndpoint": "https://jobsapi-dev.arytic.com/api/GetCustomerJobs?",
+  "listofJobsEndpoint": "https://jobsapi-dev.arytic.com/api/GetCustomerJobsUpdate?",
   "activatejobEndpoint": "https://jobsapi-dev.arytic.com/api/ActivateJob?jobId=1000108",
   "deactivatejobEndpoint": "https://jobsapi-dev.arytic.com/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false",
   "JobDetailsofCustomer": "https://jobsapi-dev.arytic.com/api/GetJobDetailCustomer?",

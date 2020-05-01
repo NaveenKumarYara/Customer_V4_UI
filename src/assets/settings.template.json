@@ -24,7 +24,7 @@
   "interviewtypeendpoint": "${Jobs_URL}/api/GetInterviewType",
   "NotificationEndPoint": "${Identity_URL}/api/GetNotification?",
   "GetCustomerContacts": "${Profile_URL}/api/GetCustomerContacts?",
-  "listofJobsEndpoint": "${Jobs_URL}/api/GetCustomerJobs?",
+  "listofJobsEndpoint": "${Jobs_URL}/api/GetCustomerJobsUpdate?",
   "activatejobEndpoint": "${Jobs_URL}/api/ActivateJob?jobId=1000108",
   "deactivatejobEndpoint": "${Jobs_URL}/api/DeactivateJob?jobId=1000108&customerId=1&isActive=false",
   "JobDetailsofCustomer": "${Jobs_URL}/api/GetJobDetailCustomer?",

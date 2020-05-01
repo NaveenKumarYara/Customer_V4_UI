@@ -16,7 +16,7 @@
             </svg>
             
           </label> -->
-                <select name="view" id="view" class="styled-select-box" [(ngModel)]="defaultValue"
+                <select name="view" id="view" class="styled-select-box" 
                     (change)="PopulateSort($event.target.value)">
                     <option default value="0">Recent</option>
                     <option value="1">Older</option>
