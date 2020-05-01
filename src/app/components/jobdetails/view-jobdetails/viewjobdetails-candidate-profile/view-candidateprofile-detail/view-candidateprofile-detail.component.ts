@@ -101,6 +101,14 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.cuserId =localStorage.getItem('cuserId');
   }
 
+
+  Logout() {
+    sessionStorage.removeItem('userData');
+    sessionStorage.clear();
+    this.router.navigateByUrl('/login' , { replaceUrl: true });
+    //window.location.href = environment.customerLogin;
+}
+
   DownloadResume(val): void {
       this._service.GetService('ProfileAPI/api/GetResume?profileId=', this.profileId)
        .subscribe(fileData => { 
