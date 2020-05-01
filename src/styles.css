@@ -13668,6 +13668,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 .page--job-details #applied .candidate-status img {
     margin-right: 5px;
 }
+.page--job-details #applied .candidate-status img.fade-icon {
+opacity: 0.6;
+}
 
 .page--job-details #applied .col-1 {
     display: -webkit-box;
