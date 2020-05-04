@@ -277,10 +277,10 @@ input::-webkit-input-placeholder {
     border-top-right-radius: 0px;
 }
 .filters .quick-sort .options .arytic-combo .box {
-    padding: 0.4rem 1rem;
+    padding: 0.875rem 1rem;
 }
 .filters .quick-sort .options .upload-combo  a{
-    padding: 0.85rem 0.95rem 1.05rem 1rem;
+    padding: 0.85rem 0.95rem 0.95rem 1rem;
     background: #fff;
     border: 1px solid #ccc;
     border-bottom-right-radius: 10px;

@@ -2882,6 +2882,10 @@ input[type="search"] {
     cursor: pointer;
 }
 
+ .checkbox label.bookmark-c {  
+    padding-left: 0px;
+}
+
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
     position: absolute;
     margin-left: -20px;
@@ -19840,6 +19844,9 @@ nav.navbar {
     border: 2px solid #e0e3ec;
     display: table;
     border-radius: 4px;
+}
+.video-col img.video{
+    height:auto;
 }
 
 .video-col .video>div {
