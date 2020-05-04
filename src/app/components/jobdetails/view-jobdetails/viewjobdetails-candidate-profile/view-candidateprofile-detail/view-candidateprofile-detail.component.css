@@ -367,32 +367,19 @@
     margin-bottom: 20px;
 }
 
-.cert-card .settings-dot {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.cert-card .logo {
-    flex: 0.67;
-    padding: 20px 10px;
-    border: 1px solid #e0e3ec;
-    border-radius: 4px;
-}
-
 .cert-card .info {
     flex: none;
     padding-left: 20px;
 }
 
 .cert-card .title {
-    font-size: 22px;
+    font-size: 20px;
     color: #6a7e9c;
-    margin-top: 0;
+    margin-top: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 63%;
+    width: 225px;
 }
 
 .cert-card .year {

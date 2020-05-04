@@ -11,8 +11,8 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-brand">
-          <a routerLink="/app-dashboardview" routerLinkActive="active">
-
+          <!-- <a routerLink="/app-dashboardview" routerLinkActive="active"> -->
+            <a href="Javascript:void(0)">
             <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
           </a>
         </div>
@@ -46,63 +46,9 @@
             </span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li>
+      
 
-            </li>
-            <li>
-              <a href="Javascript:void(0)"  routerLink="/app-accountsettings/app-billing-and-payments" routerLinkActive="active">
-                <div>
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="21.6px"
-                    height="21.7px" viewBox="0 0 21.6 21.7" style="enable-background:new 0 0 21.6 21.7;"
-                    xml:space="preserve" class="icon">
-                    <g>
-                      <defs>
-                        <rect id="SVGID_1_" width="21.6" height="21.7"></rect>
-                      </defs>
-                      <clipPath id="SVGID_2_">
-                        <use xlink:href="#SVGID_1_" style="overflow:visible;"></use>
-                      </clipPath>
-                      <circle class="st0" cx="16.2" cy="13.8" r="1.3"></circle>
-                      <path class="st0"
-                        d="M18.1,5.7h-9H2.9C1.9,5.7,1,6.4,1,7.3V6.5c0-0.9,0.7-1.9,1.7-2.1l5.9-1.6L15.7,1c1-0.3,2,0.5,2,1.5v0.7">
-                      </path>
-                      <path class="st0" d="M20.6,7.3V19c0,0.9-0.9,1.7-1.9,1.7H2.9C1.9,20.7,1,19.9,1,19V7.3c0-0.9,0.9-1.7,1.9-1.7h15.8
-                          C19.8,5.7,20.6,6.4,20.6,7.3z"></path>
-                    </g>
-                  </svg>
-                  Manage Payment
-                </div>
-              </a>
-            </li>
-            <li>
-              <a routerLink="/app-accountsettings" routerLinkActive="active">
-                <div>
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="19.8px"
-                    height="19.7px" viewBox="0 0 19.8 19.7" style="enable-background:new 0 0 19.8 19.7;"
-                    xml:space="preserve" class="icon">
-                    <g>
-                      <defs>
-                        <rect id="SVGID_1_" width="19.8" height="19.7"></rect>
-                      </defs>
-                      <clipPath id="SVGID_2_">
-                        <use xlink:href="#SVGID_1_" style="overflow:visible;"></use>
-                      </clipPath>
-                      <path class="st0"
-                        d="M14.5,18.7H4.8c-0.2,0-0.4-0.2-0.4-0.4V4.6c0-0.2,0.2-0.4,0.4-0.4h13.6c0.2,0,0.4,0.2,0.4,0.4v10.2">
-                      </path>
-                      <path class="st0" d="M1,15.3V1.4C1,1.2,1.2,1,1.4,1h13.6"></path>
-                      <line class="st0" x1="10.7" y1="11" x2="16.2" y2="11"></line>
-                      <line class="st0" x1="8.4" y1="14.4" x2="11.4" y2="14.4"></line>
-                      <line class="st0" x1="8.2" y1="7.7" x2="13.8" y2="7.7"></line>
-                      <line class="st0" x1="14.5" y1="18.7" x2="18.8" y2="14.8"></line>
-                    </g>
-                  </svg>
-                  Manage Account
-                </div>
-              </a>
-            </li>
+ 
             <li>
               <a href="javascript:void(0)" (click)="Logout()">
                 <div>
@@ -901,7 +847,7 @@
                           *ngFor="let certificates of profileview?.Certifications ">
                           <div class="cert-card ">
                             <div class="logo">
-                              <img width="160" [src]="certificates.ImageUrl" alt="certification">
+                              <img width="60" [src]="certificates.ImageUrl" alt="certification">
                             </div>
                             <div class="info ">
                               <h2 class="title" title="{{certificates.CertificationName}}">
