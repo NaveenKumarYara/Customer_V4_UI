@@ -2882,6 +2882,10 @@ input[type="search"] {
     cursor: pointer;
 }
 
+ .checkbox label.bookmark-c {  
+    padding-left: 0px;
+}
+
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
     position: absolute;
     margin-left: -20px;
@@ -19841,6 +19845,9 @@ nav.navbar {
     display: table;
     border-radius: 4px;
 }
+.video-col img.video{
+    height:auto;
+}
 
 .video-col .video>div {
     display: table-cell;
@@ -25569,6 +25576,23 @@ table .table-prl-0 td {
     border-radius: 2px;
     padding: 0px 2px;
 }
+.star-rating{
+    position: absolute;
+    background: #ebebeb;
+    border-radius: 10px;
+    top: 90%;
+    right: 4%;
+}
+.star-rating .star.on {
+    background-color: transparent;
+    padding: 0px 2px;
+}
+.star-rating .star {
+    display: inline!important;
+    background-color: transparent;
+    padding: 0px 2px;
+}
+
 /*Dragula styles*/
 .dragula ul li{
     cursor: move;

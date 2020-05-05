@@ -33,7 +33,9 @@
     display: table;
     border-radius: 4px;
   }
-  
+  .video-col img.video{
+    height:auto;
+}
    .video-col .video > div {
     display: table-cell;
     vertical-align: middle;

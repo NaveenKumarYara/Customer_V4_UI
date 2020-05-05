@@ -371,9 +371,9 @@
                     </ng-template> -->
 
                     <!--Reference Icons-->
-                    <img src="../../../../../assets/images/reference-icon.svg" width="50" height="50"
+                    <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
                         alt="References" title="References">
-                        
+
                     <!--No Reference Icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
                         alt="No-References" title="No References"> -->
@@ -382,18 +382,18 @@
                     <!--Achievement Icon-->
                     <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                         alt="achievement-badge" title="Achievements">
-                    <!--No achievement icon--> 
+                    <!--No achievement icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
                         alt="No-achievement-icon" title="No Achievements"> -->
 
-                    
+
                     <!--Recommendations Icon-->
                     <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
                         alt="recommendations-badge" title="Recommendations">
-                     <!--No recommendations profile icon--> 
+                    <!--No recommendations profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
                         alt="No-recommendations-badge" title="No Recommendations"> -->
-                    
+
                     <!--Verified Profile-->
                     <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
                         alt="verfied-badge" title="Verified Profile">
@@ -402,10 +402,11 @@
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
 
                     <ng-container *ngIf="profile?.IsConfirmed ==true">
-                        <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50" alt="Consent Not Accepted" title="Consent Not Accepted">
+                        <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
+                            width="50" height="50" alt="Consent Not Accepted" title="Consent Not Accepted">
                     </ng-container>
                     <ng-container *ngIf="profile?.IsConfirmed ==false">
-                        <img  src="../../../../../assets/images/card-icons/consent-accepted.png" width="50" height="50"
+                        <img src="../../../../../assets/images/card-icons/consent-accepted.png" width="50" height="50"
                             alt="Consent Accepted" title="Consent Accepted">
                     </ng-container>
                 </div>
@@ -667,11 +668,12 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                <div class="star-rating">
+                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
                                                     readonly="true"></star-rating>
+                                                </div>
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
                                                 <div class="skill">
@@ -681,11 +683,15 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                <!--Star Rating redesign on 05-05-2020-->
+                                                <div class="star-rating">
+                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
                                                     readonly="true"></star-rating>
+                                                </div>
+                                    
+                                                <!---->
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
                                                 <div class="skill">
@@ -695,11 +701,14 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                <!--Star Rating redesign on 05-05-2020-->
+                                                <div class="star-rating">
+                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
                                                     readonly="true"></star-rating>
+                                                </div>
+                                                <!---->
                                             </div>
                                             <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
                                                 <div class="skill">
@@ -709,11 +718,14 @@
                                                         <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
                                                         <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                                     </div>
-
                                                 </div>
-                                                <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                    checkedcolor="#fff" uncheckedcolor="#fff" size="11px"
+                                                <!--Star Rating redesign on 05-05-2020-->
+                                                <div class="star-rating">
+                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                    checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
                                                     readonly="true"></star-rating>
+                                                </div>
+                                                <!---->
                                             </div>
 
                                         </div>
