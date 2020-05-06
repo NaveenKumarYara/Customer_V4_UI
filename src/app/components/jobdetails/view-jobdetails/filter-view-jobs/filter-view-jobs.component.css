@@ -281,18 +281,20 @@ input::-webkit-input-placeholder {
 }
 .filters .quick-sort .options .upload-combo  a{
     padding: 0.85rem 0.95rem 0.95rem 1rem;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #9eabc0;
+    border: 1px solid #9eabc0;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     margin-left: -5px;
 }
-.filters .quick-sort .options .upload-combo a i, .filters .quick-sort .options .checkbox span i{
-    color: #9eabc0;
+.filters .quick-sort .options .upload-combo a i, 
+.filters .quick-sort .options .checkbox span i{
+    color: #ffffff;
     font-size: 25px;
     vertical-align: middle;
 }
- .filters .quick-sort .options .checkbox input:checked~.box, .filters .quick-sort .options .checkbox input:checked~.box i {
+ .filters .quick-sort .options .checkbox input:checked~.box, 
+ .filters .quick-sort .options .checkbox input:checked~.box i {
     background-color: #66DAB5;
     border-color: #66DAB5;
     color: #ffffff;
@@ -301,7 +303,8 @@ input::-webkit-input-placeholder {
 .filters .quick-sort .options .wishlist-combo .box{
     padding: 0.875rem 1rem;
 } 
-.filters .quick-sort .options .wishlist-combo .fa-star, .filters .quick-sort .options .arytic-combo img{
+.filters .quick-sort .options .wishlist-combo .fa-star, 
+.filters .quick-sort .options .arytic-combo img{
     padding-left: 0.3rem;
 } 
 /*QuickSort Css*/

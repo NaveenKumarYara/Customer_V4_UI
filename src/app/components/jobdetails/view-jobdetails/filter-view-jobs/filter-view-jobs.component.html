@@ -98,24 +98,29 @@
                         *ngIf="displayQuick==1"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
                         <!---->
                     </div>
-                    <div class="checkbox sm-m-0 arytic-combo" *ngIf="statusid>0">
+                    <div class="checkbox sm-m-0 upload-combo" *ngIf="statusid>0">
                         <label>
                             <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
                                 <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"
                                     [checked]="AryticFlag" (change)="viewby(5,$event.target.checked,$event.target.value)">
                                 <span class="box sm-w">Arytic
                                     <span class="badge badge-light">{{Count?.AryticProfiles||0}}</span>
-                                    <img src="../../../../../assets/images/arytic-circle-logo.png" alt="arytic-profile" width="40">
+                                   
                                 </span>
                             </ng-container>
                             <ng-container *ngIf="Count?.AryticProfiles==0||closedjob==2">
                                 <input type="checkbox" name="contract-duration" disabled>
                                 <span class="box disabled sm-w">Arytic
                                     <span class="badge badge-light">{{Count?.AryticProfiles||0}}</span>
-                                    <img src="../../../../../assets/images/arytic-circle-logo.png" alt="arytic-profile" width="30">
+                                 
                                 </span>
                             </ng-container>
                         </label>
+                            <!--New Combo design Check-box & Button-->
+                            <a href="javascript:void(0)"  title="Arytic Profile Search">
+                                <img src="../../../../../assets/images/arytic-circle-logo.png" alt="arytic-profile" width="30">
+                            </a>
+                            <!---->
                       
                     </div>
                     <!-- <div class="checkbox sm-m-0">
@@ -136,7 +141,7 @@
                             </ng-container>
                         </label>
                     </div> -->
-                    <div class="checkbox wishlist-combo sm-m-0">
+                    <div class="checkbox upload-combo sm-m-0">
                         <label>
                             <ng-container *ngIf="Count?.Wishlist>0 && closedjob!=2">
                                 <input type="checkbox" name="contract-duration" [(ngModel)]="WishlistFlag"
@@ -144,7 +149,6 @@
                                     (change)="viewby(1, $event.target.checked,$event.target.value)">
                                 <span class="box sm-w">Wishlisted
                                     <span class="badge badge-light">{{Count?.Wishlist||0}}</span>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                           
                             </ng-container>
@@ -152,11 +156,15 @@
                                 <input type="checkbox" name="contract-duration" disabled>
                                 <span class="box disabled sm-w">Wishlisted
                                     <span class="badge badge-light">{{Count?.Wishlist||0}}</span>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </ng-container>
                          
                         </label>
+                          <!--New Combo design Check-box & Button-->
+                          <a href="javascript:void(0)"  title="Manage Wishlisht Profiles">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </a>
+                        <!---->
                        
                     </div>
 
