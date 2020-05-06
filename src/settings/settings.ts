@@ -167,4 +167,7 @@ export class Settings {
   listofAllSkills : string;
   listofAllTitles : string;
   GetDeafultTemplates:string;
+  GetCustomerWeekReport:string;
+  GetCustomerMonthReport:string;
+  GetCustomerYearReport:string;
   }

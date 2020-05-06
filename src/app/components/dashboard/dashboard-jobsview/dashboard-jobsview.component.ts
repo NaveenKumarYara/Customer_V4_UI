@@ -2,7 +2,7 @@ import { Component, OnInit, Input,AfterViewInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { DashboardStatistics } from '../../../../models/dashboardstatistics';
 import {  ApplicantStatistics } from '../../../../models/applicantstatistics';
-import { StatsDasboard } from '../../../../models/StatsDasboard';
+import { StatsDasboard,Stats } from '../../../../models/StatsDasboard';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { DashboardService } from '../dashboard.service';
@@ -59,6 +59,10 @@ export class DashboardJobsviewComponent implements OnInit {
   HiredCount=[];
   mHiredCount=[];
   yHiredCount=[];
+
+  Weekwise:Stats[]=[];
+  Monthwise:Stats[]=[];
+  YearWise:Stats[]=[];
 
  alldashboardStatisticsForJobsPosted: StatsDasboard[]=[];
  dashboardStatisticsForJobsPosted: StatsDasboard[]=[];
@@ -326,72 +330,142 @@ populateApplicantsStatistics(filter=0) {
     }); 
 }
 
+GetJobPostedWeek()
+{
+  return this.dashboardservice.GetDashboardStatisticsWeek(this.customerId,0).subscribe(mresult => {
+    this.Weekwise= mresult;
+    var value = Object.values(this.Weekwise[0]);
+    value.forEach((Posted) => {
+      this.postedcount.push(Posted);
+    }
+    )
+    var values = Object.values(this.Weekwise[1]);
+    values.forEach((filled) => {
+      this.count.push(filled);
+    }
+    )
+    var values = Object.values(this.Weekwise[2]);
+    values.forEach((cancel) => {
+      this.cancelcount.push(cancel);
+    }
+    )
+  })
+
+}
+
+GetJobPostedMonth()
+{
+
+  return this.dashboardservice.GetDashboardStatisticsMonth(this.customerId,0).subscribe(mwresult => {
+    this.Monthwise= mwresult;
+    var value = Object.values(this.Monthwise[0]);
+    value.forEach((Posted) => {
+      this.mwpostedcount.push(Posted);
+    }
+    )
+    var values = Object.values(this.Monthwise[1]);
+    values.forEach((filled) => {
+      this.mwcount.push(filled);
+    }
+    )
+    var values = Object.values(this.Monthwise[2]);
+    values.forEach((cancel) => {
+      this.mwcancelcount.push(cancel);
+    }
+    )
+  })
+}
+
+GetJobPostedYear()
+{
+
+  return this.dashboardservice.GetDashboardStatisticsYear(this.customerId,0).subscribe(yresult  => {
+    this.YearWise= yresult;
+    var value = Object.values(this.YearWise[0]);
+    value.forEach((Posted) => {
+      this.mpostedcount.push(Posted);
+    }
+    )
+    var values = Object.values(this.YearWise[1]);
+    values.forEach((filled) => {
+      this.mcount.push(filled);
+    }
+    )
+    var values = Object.values(this.YearWise[2]);
+    values.forEach((cancel) => {
+      this.mcancelcount.push(cancel);
+    }
+    )
+  })
+
+}
+
   JobPostedStats(filter)
   {
-            if(filter==0)
-            {
-              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(result => {
-                this.dashboardStatisticsForJobsPosted= result;
-              if(result.length>0)
-              {
+            // if(filter==0)
+            // {
+            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(result => {
+            //     this.dashboardStatisticsForJobsPosted= result;
+            //   if(result.length>0)
+            //   {
 
-                  this.lineChartLabels.forEach(
-                    (e1)=>
-                    this.dashboardStatisticsForJobsPosted.forEach((e2)=> 
-                    {
-                      if(e1 == e2.PostedValue)
-                      { 
-                        if(e2.JobCount!==null||e2.JobCount!=undefined)
-                        {
-                          this.postedcount.push(e2.JobCount);
-                        }          
+            //       this.lineChartLabels.forEach(
+            //         (e1)=>
+            //         this.dashboardStatisticsForJobsPosted.forEach((e2)=> 
+            //         {
+            //           if(e1 == e2.PostedValue)
+            //           { 
+            //             if(e2.JobCount!==null||e2.JobCount!=undefined)
+            //             {
+            //               this.postedcount.push(e2.JobCount);
+            //             }          
                        
-                      }
-                    }      
-                    ))                                    
-              }
-            });
-            }
-            if(filter==1)
-            {
-              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mresult => {
-                this.mdashboardStatisticsForJobsPosted= mresult;
-              if(mresult.length>0)
-              {
+            //           }
+            //         }      
+            //         ))                                    
+            //   }
+            // });
+            // }
+            // if(filter==1)
+            // {
+            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mresult => {
+            //     this.mdashboardStatisticsForJobsPosted= mresult;
+            //   if(mresult.length>0)
+            //   {
                 
-                this.lineChartLabelsm.forEach(
-                  (me1)=>
-                  this.mdashboardStatisticsForJobsPosted.forEach((me2)=> 
-                  {
-                    if(me1 === me2.PostedValue)
-                    {           
-                      this.mpostedcount.push(me2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
-            });
-            }
-            if(filter==2)
-            {
-              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mwresult => {
-                this.mwdashboardStatisticsForJobsPosted= mwresult;
-              if(mwresult.length>0)
-              {
+            //     this.lineChartLabelsm.forEach(
+            //       (me1)=>
+            //       this.mdashboardStatisticsForJobsPosted.forEach((me2)=> 
+            //       {
+            //         if(me1 === me2.PostedValue)
+            //         {           
+            //           this.mpostedcount.push(me2.JobCount);
+            //         }
+            //       }      
+            //       ))         
+            //   }
+            // });
+            // }
+            // if(filter==2)
+            // {
+            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mwresult => {
+            //     this.mwdashboardStatisticsForJobsPosted= mwresult;
+            //   if(mwresult.length>0)
+            //   {
                 
-                this.lineChartLabelsmw.forEach(
-                  (mwe1)=>
-                  this.mwdashboardStatisticsForJobsPosted.forEach((mwe2)=> 
-                  {
-                    if(mwe1 === mwe2.PostedValue)
-                    {           
-                      this.mwpostedcount.push(mwe2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
-            });
-            } 
+            //     this.lineChartLabelsmw.forEach(
+            //       (mwe1)=>
+            //       this.mwdashboardStatisticsForJobsPosted.forEach((mwe2)=> 
+            //       {
+            //         if(mwe1 === mwe2.PostedValue)
+            //         {           
+            //           this.mwpostedcount.push(mwe2.JobCount);
+            //         }
+            //       }      
+            //       ))         
+            //   }
+            // });
+            // } 
             if(filter==3)
             {
               return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(allresult => {
@@ -437,83 +511,83 @@ populateApplicantsStatistics(filter=0) {
 
   JobFilledStats(filter)
   {
-            if(filter==0)
-            {
-            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(result1 => {
-              this.dashboardStatisticsForJobsFilled= result1;
-              if(result1.length>0)
-              {
-                this.lineChartLabels.forEach(
-                  (fe1)=>
-                  this.dashboardStatisticsForJobsFilled.forEach((ge2)=> 
-                  {
-                    if(fe1 === ge2.PostedValue)
-                    {           
-                      this.count.push(ge2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
+            // if(filter==0)
+            // {
+            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(result1 => {
+            //   this.dashboardStatisticsForJobsFilled= result1;
+            //   if(result1.length>0)
+            //   {
+            //     this.lineChartLabels.forEach(
+            //       (fe1)=>
+            //       this.dashboardStatisticsForJobsFilled.forEach((ge2)=> 
+            //       {
+            //         if(fe1 === ge2.PostedValue)
+            //         {           
+            //           this.count.push(ge2.JobCount);
+            //         }
+            //       }      
+            //       ))         
+            //   }
       
-              });
-            }
+            //   });
+            // }
 
             
-            if(filter==1)
-            {
-            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(res1 => {
-              this.mdashboardStatisticsForJobsFilled= res1;
-              if(res1.length>0)
-              {
+            // if(filter==1)
+            // {
+            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(res1 => {
+            //   this.mdashboardStatisticsForJobsFilled= res1;
+            //   if(res1.length>0)
+            //   {
                 
-                this.lineChartLabelsm.forEach(
-                  (fme1)=>
-                  this.mdashboardStatisticsForJobsFilled.forEach((fme2)=> 
-                  {
-                    if(fme1 === fme2.PostedValue)
-                    {           
-                      this.mcount.push(fme2.JobCount);
-                    }
-                  }      
-                  ))  
+            //     this.lineChartLabelsm.forEach(
+            //       (fme1)=>
+            //       this.mdashboardStatisticsForJobsFilled.forEach((fme2)=> 
+            //       {
+            //         if(fme1 === fme2.PostedValue)
+            //         {           
+            //           this.mcount.push(fme2.JobCount);
+            //         }
+            //       }      
+            //       ))  
         
                         
-              }
+            //   }
 
 
               
 
       
-              });
-            }
+            //   });
+            // }
 
-            if(filter==2)
-            {
-            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(wres1 => {
-              this.mwdashboardStatisticsForJobsFilled= wres1;
-              if(wres1.length>0)
-              {
+            // if(filter==2)
+            // {
+            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(wres1 => {
+            //   this.mwdashboardStatisticsForJobsFilled= wres1;
+            //   if(wres1.length>0)
+            //   {
                 
-                this.lineChartLabelsmw.forEach(
-                  (fmwe1)=>
-                  this.mwdashboardStatisticsForJobsFilled.forEach((fmwe2)=> 
-                  {
-                    if(fmwe1 === fmwe2.PostedValue)
-                    {           
-                      this.mwcount.push(fmwe2.JobCount);
-                    }
-                  }      
-                  ))  
+            //     this.lineChartLabelsmw.forEach(
+            //       (fmwe1)=>
+            //       this.mwdashboardStatisticsForJobsFilled.forEach((fmwe2)=> 
+            //       {
+            //         if(fmwe1 === fmwe2.PostedValue)
+            //         {           
+            //           this.mwcount.push(fmwe2.JobCount);
+            //         }
+            //       }      
+            //       ))  
         
                         
-              }
+            //   }
 
 
               
 
       
-              });
-            }
+            //   });
+            // }
 
             if(filter==3)
             {
@@ -571,66 +645,66 @@ populateApplicantsStatistics(filter=0) {
 
   JobCancelled(filter)
   {
-    if(filter==0)
-    {
-      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(result2 => {
-        this.dashboardStatisticsForJobsCancelled= result2;
-        if(result2.length>0)
-        {
-          this.lineChartLabels.forEach(
-            (cre1)=>
-            this.dashboardStatisticsForJobsCancelled.forEach((cre2)=> 
-            {
-              if(cre1 === cre2.PostedValue)
-              {           
-                this.cancelcount.push(cre2.JobCount);
-              }
-            }      
-            ))         
-        }
+    // if(filter==0)
+    // {
+    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(result2 => {
+    //     this.dashboardStatisticsForJobsCancelled= result2;
+    //     if(result2.length>0)
+    //     {
+    //       this.lineChartLabels.forEach(
+    //         (cre1)=>
+    //         this.dashboardStatisticsForJobsCancelled.forEach((cre2)=> 
+    //         {
+    //           if(cre1 === cre2.PostedValue)
+    //           {           
+    //             this.cancelcount.push(cre2.JobCount);
+    //           }
+    //         }      
+    //         ))         
+    //     }
       
-    });
-    }
-    if(filter==1)
-    {
-      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(resultc2 => {
-        this.mdashboardStatisticsForJobsCancelled= resultc2;
-        if(resultc2.length>0)
-        {
-          this.lineChartLabelsm.forEach(
-            (ce1)=>
-            this.mdashboardStatisticsForJobsCancelled.forEach((ce2)=> 
-            {
-              if(ce1 === ce2.PostedValue)
-              {        
-                this.mcancelcount.push(ce2.JobCount);
-              }
-            }      
-            ))         
-        }
+    // });
+    // }
+    // if(filter==1)
+    // {
+    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(resultc2 => {
+    //     this.mdashboardStatisticsForJobsCancelled= resultc2;
+    //     if(resultc2.length>0)
+    //     {
+    //       this.lineChartLabelsm.forEach(
+    //         (ce1)=>
+    //         this.mdashboardStatisticsForJobsCancelled.forEach((ce2)=> 
+    //         {
+    //           if(ce1 === ce2.PostedValue)
+    //           {        
+    //             this.mcancelcount.push(ce2.JobCount);
+    //           }
+    //         }      
+    //         ))         
+    //     }
       
-    });
-    }
-    if(filter==2)
-    {
-      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(wresultc2 => {
-        this.mwdashboardStatisticsForJobsCancelled= wresultc2;
-        if(wresultc2.length>0)
-        {
-          this.lineChartLabelsmw.forEach(
-            (wce1)=>
-            this.mwdashboardStatisticsForJobsCancelled.forEach((wce2)=> 
-            {
-              if(wce1 === wce2.PostedValue)
-              {       
-                this.mwcancelcount.push(wce2.JobCount);
-              }
-            }      
-            ))         
-        }
+    // });
+    // }
+    // if(filter==2)
+    // {
+    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(wresultc2 => {
+    //     this.mwdashboardStatisticsForJobsCancelled= wresultc2;
+    //     if(wresultc2.length>0)
+    //     {
+    //       this.lineChartLabelsmw.forEach(
+    //         (wce1)=>
+    //         this.mwdashboardStatisticsForJobsCancelled.forEach((wce2)=> 
+    //         {
+    //           if(wce1 === wce2.PostedValue)
+    //           {       
+    //             this.mwcancelcount.push(wce2.JobCount);
+    //           }
+    //         }      
+    //         ))         
+    //     }
       
-    });
-    }
+    // });
+    // }
     if(filter==3)
     {
       return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(aresultc2 => {
@@ -1040,9 +1114,12 @@ populateApplicantsStatistics(filter=0) {
     this.populateDashboardallStatistics(0);
     this.populateApplicantsStatistics(0);
     this.ChangeFilter(3);
-    this.ChangeFilter(0);
-    this.ChangeFilter(2);
-    this.ChangeFilter(1);
+    //this.ChangeFilter(0);
+    //this.ChangeFilter(2);
+    //this.ChangeFilter(1);
+    this.GetJobPostedWeek();
+    this.GetJobPostedMonth();
+    this.GetJobPostedYear();
 
     setInterval(() => {
       this.lineChartDataall=new Array(

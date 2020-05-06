@@ -14,7 +14,7 @@ import { RecentJobs } from '../../../models/recentjobs';
 import { RecentApplicants } from '../../../models/recentapplicants';
 import { DashboardStatistics } from '../../../models/dashboardstatistics';
 import { ApplicantStatistics } from '../../../models/applicantstatistics';
-import { StatsDasboard} from '../../../models/StatsDasboard';
+import { StatsDasboard,Stats} from '../../../models/StatsDasboard';
 import {JobCount} from '../../components/managejobs/models/JobCount';
 import { SettingsService } from '../../../settings/settings.service';
 
@@ -78,6 +78,36 @@ export class DashboardService {
         const url = this.settingsService.settings.ApplicantStatistics +
         'customerId=' + customerId + '&userId=' + userId + '&filter=' +filter;
         return this.http.get<ApplicantStatistics>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+    GetDashboardStatisticsWeek(userId: number, filter: number): Observable<Stats[]> {
+        const url = this.settingsService.settings.GetCustomerWeekReport+
+        '?userId=' + userId + '&filter='+filter;
+        return this.http.get<Stats[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+    GetDashboardStatisticsMonth(userId: number, filter: number): Observable<Stats[]> {
+        const url = this.settingsService.settings.GetCustomerMonthReport+
+        '?userId=' + userId + '&filter='+filter;
+        return this.http.get<Stats[]>(url)
+            .debounceTime(500)
+            .catch(
+                this.handleError
+            );
+        // return this.dashboardstatistics;
+    }
+    GetDashboardStatisticsYear(userId: number, filter: number): Observable<Stats[]> {
+        const url = this.settingsService.settings.GetCustomerYearReport+
+        '?userId=' + userId + '&filter='+filter;
+        return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
                 this.handleError

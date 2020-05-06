@@ -159,5 +159,8 @@
   "listofFilteredJobs": "https://jobsapi-dev.arytic.com/api/GetCustomerFilteredJobs?",
   "listofAllSkills": "https://profileapi-dev.arytic.com/api/GetSkillDetails",
   "listofAllTitles": "https://jobsapi-dev.arytic.com/api/GetAllJobTitles",
-  "GetDeafultTemplates": "https://identityapi-dev.arytic.com/api/GetDefaultTemplates"
+  "GetDeafultTemplates": "https://identityapi-dev.arytic.com/api/GetDefaultTemplates",
+  "GetCustomerWeekReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphWeek",
+  "GetCustomerMonthReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphMonth",
+  "GetCustomerYearReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphYear"
 }
