@@ -13369,7 +13369,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     border-radius: 50%;
 }
 
-.page--job-details .card-footer .nav-tabs, .page--job-details .card-sub-footer .nav-tabs {
+.page--job-details .card-footer .nav-tabs, 
+.page--job-details .card-sub-footer .nav-tabs {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -13392,14 +13393,14 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     -ms-flex-preferred-size: 20%;
     flex-basis: 20%;
     text-align: center;
-    border-right: 1px solid #E0E3EF;
 }
 
 /* .page--job-details .card-footer .nav-tabs li:not(:last-of-type) div {
     border-right: 1px solid #E0E3EF;
 } */
 
-.page--job-details .card-footer .nav-tabs li a, .page--job-details .card-sub-footer .nav-tabs li a {
+.page--job-details .card-footer .nav-tabs li a, 
+.page--job-details .card-sub-footer .nav-tabs li a {
     color: #93A2BB;
 }
 
@@ -13415,8 +13416,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     font-weight: 400;
     letter-spacing: 0.03rem;
 }
-.page--job-details .card-sub-footer .nav-tabs h4{
-    font-size: 0.875rem;
+.page--job-details .card-sub-footer .nav-tabs h5{
+    font-size: 1.5rem;
     margin-top: 10px;
     font-weight: 400;
     letter-spacing: 0.03rem;
@@ -13431,14 +13432,24 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     padding: 0 10px;
 }
 
-.page--job-details .card-footer .nav-tabs li.active, .page--job-details .card-sub-footer .nav-tabs li.active {
+.page--job-details .card-footer .nav-tabs li.active, 
+.page--job-details .card-sub-footer .nav-tabs li.active {
     margin-bottom: 0;
     border-bottom: 2px solid #448AFA;
 }
 
-.page--job-details .card-footer .nav-tabs li.active a, .page--job-details .card-sub-footer .nav-tabs li.active a {
+.page--job-details .card-footer .nav-tabs li.active a{
     background-color: #F9FAFB;
     color: #41536E;
+}
+
+.page--job-details .card-sub-footer .nav-tabs li a:hover {
+    border-color: transparent;
+}
+.page--job-details .card-sub-footer .nav-tabs li.active a {
+    background-color: #F9FAFB;
+    color: #41536E;
+    border-radius:0;
 }
 
 .page--job-details .candidate.card .meta {
