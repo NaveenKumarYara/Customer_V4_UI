@@ -447,7 +447,7 @@ GetProfileRating() {
 }
 
 GetCandidateProfileStatistics() {
-    this._service.GetService('ProfileAPI/api/GetCandidateProfileStatistics?userId=', this.cuserId)
+    this._service.GetService('IdentityAPI/api/GetProfileStatisticsByProfileId?profileId=', this.profileId)
         .subscribe(
             data => {
                 this.profileStatistics = data;
