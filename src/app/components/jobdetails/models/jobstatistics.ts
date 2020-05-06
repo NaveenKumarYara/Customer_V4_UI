@@ -10,4 +10,6 @@ export class Jobstatistics {
     public Wishlist:number;
     public Uploaded: number;
     public RejectedORWithdrawn: number;
+    public Inprogress:number;
+    public AryticSuggested: number;
 }

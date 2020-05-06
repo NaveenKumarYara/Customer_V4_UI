@@ -118,6 +118,18 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
 
+  inprogressview(val)
+  {
+    if(val===0)
+    {
+      this.inprogressprofile=true;
+    }
+    else
+    {
+      this.inprogressprofile=false;
+    }
+  }
+
   
   OpenDialog() {
     const dialogRef = this.dialog.open(ConversationComponent,
@@ -242,7 +254,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     // this.PopulateJobdetailProfiles();
-    if (this.jobstatistics.Suggested > 0) {
+    if (this.jobstatistics.AryticSuggested > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
     this.loadMore = this.jobstatistics.Suggested > 6 ? true : false;
@@ -408,6 +420,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.jobdetailsbasicinfo = res,
       this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
+      this.inprogressview(1);
         this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
@@ -416,7 +429,7 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.Counts = this.child.TotalCount;
-
+      this.inprogressview(1);
         if (onload === 1) {
           if (this.statusid === 4) {
             // debugger
@@ -636,6 +649,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.statistics = this.jobstatistics.Suggested; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
+      debugger
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited,arytic, this.profilecount);
       }
     };

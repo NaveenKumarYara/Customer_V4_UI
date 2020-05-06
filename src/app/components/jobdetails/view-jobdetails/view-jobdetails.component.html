@@ -102,7 +102,7 @@
                     <ul class="nav nav-tabs">
                         <!--As per new design modifying the same-->
                         <li class="active" id="Prospect">
-                            <a data-toggle="tab" href="#applied" (click)="updateappliedstatus()">
+                            <a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(1)">
                                 <div>
                                     <h1>{{jobstatistics?.Applied}}</h1>
                                     <h4>Prospect profiles</h4>
@@ -110,17 +110,17 @@
                             </a>
                         </li>
                         <li id="aryticbestfit">
-                            <a data-toggle="tab" href="javascript:void(0)">
+                            <a data-toggle="tab" href="javascript:void(0)"  (click)="updatesuggestedstatus();inprogressview(0)">
                                 <div>
-                                    <h1>8</h1>
+                                    <h1>{{jobstatistics?.AryticSuggested}}</h1>
                                     <h4>Arytic Best Fit Results</h4>
                                 </div>
                             </a>
                         </li>
                         <li id="inprogressprofiles" >
-                            <a data-toggle="tab" href="javascript:void(0)" (click)="inprogressprofile==!inprogressprofile">
+                            <a data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(1)">
                                 <div>
-                                    <h1>17</h1>
+                                    <h1>{{jobstatistics?.InProgress}}</h1>
                                     <h4>In-Progress profiles</h4>
                                 </div>
                             </a>
@@ -152,7 +152,7 @@
                     </ul>
                 </div>
                 <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
-                <div class="card-sub-footer" (click)="inprogressprofile==!inprogressprofile">
+                <div class="card-sub-footer" *ngIf="!inprogressprofile">
                 <ul class="nav nav-tabs">
                     <li>
                         <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
@@ -192,6 +192,9 @@
                     </li>
                 </ul>
                 </div>
+                <ng-container *ngIf="inprogressprofile">
+
+                </ng-container>
                 <!---->
                 <!-- .selected .job-card -->
             </div>
