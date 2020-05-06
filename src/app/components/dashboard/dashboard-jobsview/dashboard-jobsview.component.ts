@@ -1114,9 +1114,9 @@ GetJobPostedYear()
     this.populateDashboardallStatistics(0);
     this.populateApplicantsStatistics(0);
     this.ChangeFilter(3);
-    //this.ChangeFilter(0);
-    //this.ChangeFilter(2);
-    //this.ChangeFilter(1);
+    this.ChangeFilter(0);
+    this.ChangeFilter(2);
+    this.ChangeFilter(1);
     this.GetJobPostedWeek();
     this.GetJobPostedMonth();
     this.GetJobPostedYear();
