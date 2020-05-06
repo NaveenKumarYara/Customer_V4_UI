@@ -434,6 +434,7 @@ export class ViewJobdetailsComponent implements OnInit {
           if (this.statusid === 4) {
             // debugger
             $("#Prospect").addClass('active');
+            $("#Screening").addClass('active');  
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
         this.updateappliedstatus();
@@ -442,19 +443,21 @@ export class ViewJobdetailsComponent implements OnInit {
           }
           else if (this.statusid === 5) {
             $("#Prospect").removeClass('active');
-            
+            $("#Screening").removeClass('active');  
             $("#inprogressprofiles").addClass('active');
             $("#Shortlisted").addClass('active');
             this.updateshortlistedstatus();
           }
           else if (this.statusid === 15) {
             $("#Prospect").removeClass('active');
+            $("#Screening").removeClass('active');           
             $("#inprogressprofiles").removeClass('active');
             $("#aryticbestfit").addClass('active');
             this.updatesuggestedstatus();
           }
           else if (this.statusid === 7) {
             $("#Prospect").removeClass('active');
+            $("#Screening").removeClass('active');  
             $("#inprogressprofiles").addClass('active');
             $("#Interview").addClass('active');
             this.updateinterviewedstatus();

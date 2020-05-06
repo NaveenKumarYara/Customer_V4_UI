@@ -154,7 +154,7 @@
                 <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
                 <div class="card-sub-footer" *ngIf="!inprogressprofile">
                 <ul class="nav nav-tabs">
-                    <li class="active">
+                    <li class="active" id="Screening">
                         <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
                             <div>
                                 <h5>{{jobstatistics?.Screening}}</h5>
