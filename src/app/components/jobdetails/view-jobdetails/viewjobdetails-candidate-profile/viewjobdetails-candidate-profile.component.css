@@ -1319,3 +1319,22 @@ height: 25.4px;
     font-size: 0.575rem;
     min-width: 80px;
 }
+/*Send request to candidate mini form*/
+
+.matching-details .send-req-form{
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 3%;
+    -webkit-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+    box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+}
+.matching-details .send-req-form label{
+    color: #6A7E9C;
+    font-weight: 500;
+}
+.matching-details .send-req-form  .btn-filled{
+    padding: 6px 11px;
+}
+  
