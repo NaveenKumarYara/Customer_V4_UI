@@ -321,23 +321,8 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
   }
   if (statistics === 0 && statusid > 4) {
     this.jobdetailsprofiles = new JobdetailsProfile();
-  } else if (this.statusid === 15) {
-    return this.jobdetailsservice.getJobDetailsSuggestedProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,
-      sortBy, searchString, experience, location, domainName, noofRows).subscribe(res => {
-        this.jobdetailsprofiles = res;
-        // alert(this.customerId);
-        // alert(this.userId);
-        this.jobdetailsprofiles.Profile.forEach((a,index)=>{
-          // var num = 0;
-          this.currentNo[index] = 0;
-          
-        });
-
-// console.log(this.currentNo,"Curskfbsdkvnsdkfm");
-        this.spinner.hide();
-        // this.jobdetailsprofiles[0].TotalProfileCount
-      });
-  } else {
+  }
+   else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
         this.jobdetailsprofiles = res;
