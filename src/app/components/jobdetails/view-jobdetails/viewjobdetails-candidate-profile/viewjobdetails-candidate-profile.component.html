@@ -22,11 +22,41 @@
                   </div>
                   <div class="ui-badge ui-badge--domain" data-toggle="tooltip" title={{profile?.ProfileTitle}}>{{profile?.ProfileTitle}}</div>
                   </div> -->
-                <div class="ui-badge ui-badge--domain cursor_text"
+
+                <!--New Design of Icon & Badges-->
+                <div class="media col-md-6"
+                    *ngIf="profile.CertificationName!=null&&profile.CertificationName!='';else nocertification">
+                    <div class="media-left">
+                        <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+                            alt="Certifications" width="40">
+                    </div>
+                    <div class="media-body">
+                        <small title="{{profile.CertificationName}}">{{profile.CertificationName}}</small>
+                        <span class="badge badge-light" title="View More">1 +</span>
+                    </div>
+                </div>
+                <ng-template #nocertification>
+                    <div class="media col-md-6">
+                        <div class="media-left">
+                            <img class="media-object"
+                                src="../../../../../assets/images/Certifications/certification.png" alt="Certifications"
+                                width="40">
+                        </div>
+                        <div class="media-body">
+                            <small title="Not Certified">Not Certified</small>
+                            <span class="badge badge-light" title="Not Certified">0</span>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+
+                <!-- <div class="ui-badge ui-badge--domain cursor_text"
                     *ngIf="profile.CertificationName!=null&&profile.CertificationName!='';else nocertification"><img
                         src="../../../../../assets/images/Certifications/certification.png" title="Certifications"
                         width="25"><a class="cursor_text" href="javascript:void(0)"
-                        title="{{profile.CertificationName}}"> Certified <span class="badge badge-light">1</span></a>
+                        title="{{profile.CertificationName}}"> {{profile.CertificationName}} <span
+                            class="badge badge-light">1</span></a>
                 </div>
 
                 <ng-template #nocertification>
@@ -35,17 +65,44 @@
                             width="25">
                         <a class="cursor_text" href="javascript:void(0)" title="Not Certified!">Not
                             Certified</a></div>
+                </ng-template> -->
+                <!--New Design of Icon & Badges-->
+                <div class="media col-md-6 domain-section" *ngIf="profile.DomainName!=null;else nodomain">
+                    <div class="media-body">
+                        <small title="{{profile.DomainName}}">{{profile.DomainName}}</small>
+                        <span class="badge badge-light" title="View More">1 +</span>
+                    </div>
+                    <div class="media-right">
+                        <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
+                            title="Domain" alt="Domain" width="40">
+                    </div>
+                </div>
+                <ng-template #nodomain>
+                    <div class="media col-md-6 domain-section">
+                        <div class="media-body">
+                            <small title="Domains Not Mentioned">No Domains</small>
+                            <span class="badge badge-light" title="View More">0</span>
+                        </div>
+                        <div class="media-right">
+                            <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
+                                title="Domain" alt="Domain" width="40">
+                        </div>
+                    </div>
                 </ng-template>
-                <div class="ui-badge ui-badge--industry cursor_text" *ngIf="profile.DomainName!=null;else nodomain">
+
+
+                <!-- <div class="ui-badge ui-badge--industry cursor_text" *ngIf="profile.DomainName!=null;else nodomain">
                     <img src="../../../../../assets/images/Certifications/domain.png" title="Domain" width="25">
-                    <a class="cursor_text" href="javascript:void(0)" title="{{profile.DomainName}}">Domains <span
-                            class="badge badge-light">3</span></a></div>
+                    <a class="cursor_text" href="javascript:void(0)"
+                        title="{{profile.DomainName}}">{{profile.DomainName}} <span
+                            class="badge badge-light">3</span></a>
+                </div>
                 <ng-template #nodomain>
                     <div class="ui-badge ui-badge--industry cursor_text">
                         <img src="../../../../../assets/images/Certifications/domain.png" title="Domain" width="25">
                         <a class="cursor_text" href="javascript:void(0)" title="Domains Not Mentioned">Domains Not
                             Mentioned</a></div>
-                </ng-template>
+                </ng-template> -->
             </div>
             <div class="candidate-info">
                 <ng-container
@@ -1274,8 +1331,8 @@
         <!---->
 
         <!--Manage References-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff">
+            <a href="javascript:void(0)" class="close">&times;</a>
             <div class="header scrollbar-inner">
                 <img src="../../../../../assets/images/reference-icon.svg" width="60" alt="References">
                 <h2>Manage References</h2>
@@ -1322,7 +1379,8 @@
                     <form>
                         <div class="form-group text-left">
                             <label for="reqcandidate">Request to Candidate</label>
-                            <input type="text" class="form-control col-md-12" id="reqcandidate" placeholder="Your Request">
+                            <input type="text" class="form-control col-md-12" id="reqcandidate"
+                                placeholder="Your Request">
                         </div>
                         <div class="clearfix">&nbsp;</div>
                         <div class="form-group pull-right">

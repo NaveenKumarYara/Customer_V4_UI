@@ -65,6 +65,37 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
+/*New Badges styles*/
+.candidate-badges .media{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.candidate-badges .media .media-left{
+    padding-right: 0px;
+}
+.candidate-badges .media .media-body{
+    white-space: nowrap;
+    width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    color:#7C899F;
+}
+.candidate-badges .media .media-body .badge{ 
+    display: table-cell;
+    cursor: pointer;
+}
+.candidate-badges .domain-section{
+margin-top: 0px;
+}
+.candidate-badges .domain-section .media-body{
+    text-align: -webkit-right;
+}
+.candidate-badges .domain-section .media-right{
+     padding-left: 0px;
+}
+/*New Badges styles*/
 
 .upgrade-pitch {
     color: transparent;

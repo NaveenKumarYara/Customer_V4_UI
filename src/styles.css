@@ -13138,7 +13138,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     flex-direction: column;
 }
 .page--job-details .candidate header{
-    padding: 10px 27px 0;
+    padding: 10px 23px 0;
 }
 
 .page--job-details .card header .candidate-badges {
