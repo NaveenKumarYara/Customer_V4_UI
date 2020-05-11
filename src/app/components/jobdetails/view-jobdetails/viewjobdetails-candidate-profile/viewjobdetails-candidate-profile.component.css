@@ -1269,6 +1269,9 @@ h1.title img {
 .skills-carousel-Changed .no-skills h5{
 height: 25.4px;
 }
+.skills-carousel-Changed .skill-click{
+    cursor: pointer;
+}
 .video-scroll  video{
     height: 135px;
     width: 100%;
@@ -1299,23 +1302,23 @@ height: 25.4px;
     left: 54%;
 }
 .matching-details ul.certifications-list,
-.matching-details ul.skills-list, 
-.matching-details ul.references-list,
-.matching-details ul.bg-list,
+.manage-s-v-i-d ul.skills-list, 
+.manage-reference-i-d ul.references-list,
+.manage-bgv-i-d ul.bg-list,
 .matching-details ul.domains-list,
-.matching-details ul.achievements-list,
-.matching-details ul.recommendations-list
+.manage-achievements-i-d ul.achievements-list,
+.manage-recommendations-i-d ul.recommendations-list
 {
     list-style-type: none;
     padding-left: 0px;
 }
 .matching-details ul.certifications-list .c-details,
-.matching-details ul.skills-list .skill-details,
-.matching-details ul.references-list .references-details,
-.matching-details ul.bg-list .bg-details,
+.manage-s-v-i-d ul.skills-list .skill-details,
+.manage-reference-i-d ul.references-list .references-details,
+.manage-bgv-i-d ul.bg-list .bg-details,
 .matching-details ul.domains-list .d-details,
-.matching-details ul.achievements-list .a-details,
-.matching-details ul.recommendations-list .r-details
+.manage-achievements-i-d ul.achievements-list .a-details,
+.manage-recommendations-i-d ul.recommendations-list .r-details
 {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1327,24 +1330,25 @@ height: 25.4px;
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 10px 0;
+    color:#41536E;
 }
-.matching-details ul.recommendations-list .r-details p{
+.manage-recommendations-i-d ul.recommendations-list .r-details p{
     font-size: 0.7rem;
     word-break: break-word;
 }
 .matching-details ul.certifications-list .c-details:not(:last-of-type),
-.matching-details ul.skills-list .skill-details:not(:last-of-type),
-.matching-details ul.references-list .references-details:not(:last-of-type),
-.matching-details ul.bg-list .bg-details:not(:last-of-type),
+.manage-s-v-i-d ul.skills-list .skill-details:not(:last-of-type),
+.manage-reference-i-d ul.references-list .references-details:not(:last-of-type),
+.manage-bgv-i-d ul.bg-list .bg-details:not(:last-of-type),
 .matching-details ul.domains-list .d-details:not(:last-of-type),
-.matching-details ul.achievements-list .a-details:not(:last-of-type),
-.matching-details ul.recommendations-list .r-details:not(:last-of-type)
+.manage-achievements-i-d ul.achievements-list .a-details:not(:last-of-type),
+.manage-recommendations-i-d ul.recommendations-list .r-details:not(:last-of-type)
 {
     border-bottom: 1px solid #E0E3EF;
 }
-.matching-details ul.references-list .references-details .btn-filled, 
-.matching-details ul.skills-list .skill-details .btn-filled,
-.matching-details ul.bg-list .bg-details .btn-filled
+.manage-reference-i-d ul.references-list .references-details .btn-filled, 
+.manage-s-v-i-d ul.skills-list .skill-details .btn-filled,
+.manage-bgv-i-d ul.bg-list .bg-details .btn-filled
 {
     padding: 8px 13px;
     font-size: 0.575rem;
@@ -1352,7 +1356,7 @@ height: 25.4px;
 }
 /*Send request to candidate mini form*/
 
-.matching-details .send-req-form{
+.manage-reference-i-d .modal-body .send-req-form{
     border: 1px solid #ebebeb;
     border-radius: 5px;
     padding: 10px;
@@ -1361,11 +1365,11 @@ height: 25.4px;
     -moz-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
     box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
 }
-.matching-details .send-req-form label{
+.manage-reference-i-d .modal-body .send-req-form label{
     color: #6A7E9C;
     font-weight: 500;
 }
-.matching-details .send-req-form  .btn-filled{
+.manage-reference-i-d .modal-body .send-req-form  .btn-filled{
     padding: 6px 11px;
 }
   

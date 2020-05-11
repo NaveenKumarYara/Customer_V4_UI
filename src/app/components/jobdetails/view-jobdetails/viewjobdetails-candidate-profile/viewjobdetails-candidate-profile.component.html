@@ -32,7 +32,7 @@
                     </div>
                     <div class="media-body">
                         <small title="{{profile.CertificationName}}">{{profile.CertificationName}}</small>
-                        <span class="badge badge-light" title="View More">1 +</span>
+                        <span class="badge badge-light" title="View More" >1 +</span>
                     </div>
                 </div>
                 <ng-template #nocertification>
@@ -426,34 +426,44 @@
                                 alt="Video Profile" title="Video Profile">
                         </a>
                     </ng-template> -->
-
+                    
+                    <!--Icons with clicks-->
                     <!--Reference Icons-->
-                    <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
-                        alt="References" title="References">
-
+                    <a href="javascript:void(0)" title="References" data-toggle="modal" data-target=".manage-reference-i-d">
+                        <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+                        alt="References" >
+                    </a>
                     <!--No Reference Icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
                         alt="No-References" title="No References"> -->
 
 
                     <!--Achievement Icon-->
-                    <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
-                        alt="achievement-badge" title="Achievements">
+                    <a href="javascript:void(0)"  title="Achievements" data-toggle="modal" data-target=".manage-achievements-i-d">
+                        <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+                        alt="achievement-badge">
+                    </a>
                     <!--No achievement icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
                         alt="No-achievement-icon" title="No Achievements"> -->
 
 
                     <!--Recommendations Icon-->
-                    <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
-                        alt="recommendations-badge" title="Recommendations">
+                    <a href="javascript:void(0)"  title="Recommendations" data-toggle="modal" data-target=".manage-recommendations-i-d">
+                        <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
+                        alt="recommendations-badge">
+                    </a>
                     <!--No recommendations profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
                         alt="No-recommendations-badge" title="No Recommendations"> -->
 
-                    <!--Verified Profile-->
-                    <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
-                        alt="verfied-badge" title="Verified Profile">
+                    <!--BG Verification Profile-->
+                    <a href="javascript:void(0)"  title="Background Verified Profile" data-toggle="modal" data-target=".manage-bgv-i-d">
+                        <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+                        alt="verfied-badge" >
+                    </a>
+                       
+                
                     <!--Not verified profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
@@ -714,9 +724,9 @@
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
                             <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
                                 < </a>
-                                    <div class="col-md-4"
+                                    <div class="col-md-4 skill-click"
                                         *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
-                                        <div id="i-{{profile.ProfileId}}">
+                                        <div id="i-{{profile.ProfileId}}" data-toggle="modal" data-target=".manage-s-v-i-d">
                                             <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
                                                 <div class="skill">
                                                     <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
@@ -1330,69 +1340,6 @@
         </div>
         <!---->
 
-        <!--Manage References-->
-        <div class="matching-details bg-fff">
-            <a href="javascript:void(0)" class="close">&times;</a>
-            <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/reference-icon.svg" width="60" alt="References">
-                <h2>Manage References</h2>
-                <!--List of certifications-->
-                <ul class="references-list">
-                    <li class="references-details">
-                        <div class="col-md-4">
-                            <h6>Manager 1</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company 1</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="text-warning">Waiting for Response</h6>
-                        </div>
-                    </li>
-                    <li class="references-details">
-                        <div class="col-md-4">
-                            <h6>Manager 2</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company 2</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="text-warning">Waiting for Response</h6>
-                        </div>
-                    </li>
-                    <li class="references-details">
-                        <div class="col-md-4">
-                            <h6>Manager 3</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company 3</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="text-success">Received Response</h6>
-                            <small><a href="javascript:void(0)">View</a></small>
-                        </div>
-                    </li>
-                </ul>
-                <a class="pull-right" href="javascript:void(0)">Request Info</a>
-                <div class="clearfix">&nbsp;</div>
-                <div class="col-md-10 col-md-offset-1 send-req-form">
-                    <form>
-                        <div class="form-group text-left">
-                            <label for="reqcandidate">Request to Candidate</label>
-                            <input type="text" class="form-control col-md-12" id="reqcandidate"
-                                placeholder="Your Request">
-                        </div>
-                        <div class="clearfix">&nbsp;</div>
-                        <div class="form-group pull-right">
-                            <button class="btn btn-default">Cancel</button>
-                            <button class="btn btn-filled">Send Request</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!---->
-
         <!--Manage Skills-->
         <div class="matching-details bg-fff">
             <a href="javascript:void(0)" class="close">&times;</a>
@@ -1674,3 +1621,332 @@
         </div>
     </div>
 </div>
+<!--Icon Modal Dialogs 11-05-2020-->
+
+<!--Manage References-->
+<div class="modal fade manage-reference-i-d" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+     
+        <div class="modal-body text-center">
+                <div class="header scrollbar-inner">
+                    <img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References">
+                    <h4>Manage References</h4>
+                    <!--List of certifications-->
+                    <ul class="references-list">
+                        <li class="references-details">
+                            <div class="col-md-4">
+                                <h6>Manager 1</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company 1</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-warning">Waiting for Response</h6>
+                            </div>
+                        </li>
+                        <li class="references-details">
+                            <div class="col-md-4">
+                                <h6>Manager 2</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company 2</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-warning">Waiting for Response</h6>
+                            </div>
+                        </li>
+                        <li class="references-details">
+                            <div class="col-md-4">
+                                <h6>Manager 3</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company 3</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-success">Received Response</h6>
+                                <small><a href="javascript:void(0)">View</a></small>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="pull-right" href="javascript:void(0)">Request Info</a>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="col-md-10 col-md-offset-1 send-req-form">
+                        <form>
+                            <div class="form-group text-left">
+                                <label for="reqcandidate">Request to Candidate</label>
+                                <input type="text" class="form-control col-md-12" id="reqcandidate"
+                                    placeholder="Your Request">
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-default">Cancel</button>
+                                <button class="btn btn-filled">Send Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!--Manage Achievements-->
+  <div class="modal fade manage-achievements-i-d" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="60"
+                    alt="certifications">
+                <h4>Achievements</h4>
+                <!--List of Achievements-->
+                <ul class="achievements-list">
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6>Best Employee</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6> Award</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                    <li class="a-details">
+                        <div class="col-md-4">
+                            <h6> Award</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>2020</h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!--Manage recommendations-->
+<div class="modal fade manage-recommendations-i-d" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/card-icons/recommendations.png" width="60" alt="certifications">
+                <h4>Recommendations</h4>
+                <!--List of Recommendations-->
+                <ul class="recommendations-list">
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6>James Barret</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Good at commuication skills</p>
+                        </div>
+                    </li>
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6> Employee Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Recommendations</p>
+                        </div>
+                    </li>
+                    <li class="r-details text-left">
+                        <div class="col-md-4">
+                            <h6> Employee Name</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Company</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Recommendations</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!--Manage BG Verified Profile-->
+<div class="modal fade manage-bgv-i-d" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/card-icons/verified-badge.png" width="60" alt="References">
+                <h4>Background Verification</h4>
+                <!--List of skills-->
+                <ul class="bg-list">
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details 1</h6>
+                        </div>
+                        <div class="col-md-7">
+                            <button class="btn btn-filled">Initiate Background Verification</button>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details 2</h6>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h6 class="text-warning">Waiting for Response</h6>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details 3</h6>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h6 class="text-success">Received Result</h6>
+                            <small><a href="javascript:void(0)">View</a></small>
+                        </div>
+                    </li>
+                    <li class="bg-details">
+                        <div class="col-md-5 text-left">
+                            <h6> Details 4</h6>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h6 class="text-danger">Request Rejected</h6>
+                            <small><a href="javascript:void(0)">Resend</a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!--Manage Skill Verifications-->
+<div class="modal fade manage-s-v-i-d" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+            <div class="header scrollbar-inner">
+                <img src="../../../../../assets/images/Certifications/skills.png" width="60" alt="References">
+                <h4>Manage Skills</h4>
+                <!--List of skills-->
+                <ul class="skills-list">
+                    <li class="skill-details">
+                        <div class="col-md-3">
+                          <label>Skill</label>
+                        </div>
+                        <div class="col-md-3 ">
+                            <label>Experience</label>
+                          </div>
+                          <div class="col-md-3 text-left">
+                            <label>Rating/5</label>
+                          </div>
+                        <div class="col-md-3">
+                            <label>Skill Test</label>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3 text-left">
+                            <h6>Skill 1</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>4 Years</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>4</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-filled">Initiate Skill Test</button>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3 text-left">
+                            <h6>Skill 2</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>2 Years</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>3</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-warning">Waiting for Response</h6>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3 text-left">
+                            <h6>Skill 3</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>3 Years</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>4</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-success">Received Result</h6>
+                            <small><a href="javascript:void(0)">View</a></small>
+                        </div>
+                    </li>
+                    <li class="skill-details">
+                        <div class="col-md-3 text-left">
+                            <h6>Skill 4</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>4 Years</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>4</h6>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h6 class="text-danger">Request Rejected</h6>
+                            <small><a href="javascript:void(0)">Resend</a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
