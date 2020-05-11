@@ -95,6 +95,10 @@ margin-top: 0px;
 .candidate-badges .domain-section .media-right{
      padding-left: 0px;
 }
+.domains-list .d-details .fa{
+    font-size: 25px;
+    color: #6A7E9C;
+}
 /*New Badges styles*/
 
 .upgrade-pitch {
