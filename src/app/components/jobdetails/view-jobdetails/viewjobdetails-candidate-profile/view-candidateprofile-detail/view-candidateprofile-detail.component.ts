@@ -379,7 +379,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 //   }
 
 GetProfileRating() {
-    this._service.GetService('IdentityAPI/api/GetCandidateProfileCompletenessHints?userId=', this.cuserId)
+    this._service.GetService('IdentityAPI/api/GetCandidateProfileCompletenessByProfileId?profileId=', this.profileId)
       .subscribe(
         data => {
           this.Rating = data;
@@ -447,7 +447,7 @@ GetProfileRating() {
 }
 
 GetCandidateProfileStatistics() {
-    this._service.GetService('IdentityAPI/api/GetProfileStatisticsByProfileId?profileId=', this.profileId)
+    this._service.GetService('IdentityAPI/api/GetCandidateProfileCounts?profileId=', this.profileId)
         .subscribe(
             data => {
                 this.profileStatistics = data;
