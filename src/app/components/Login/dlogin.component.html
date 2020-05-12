@@ -47,7 +47,7 @@
                      <form [formGroup]="loginform" (ngSubmit)="login()">
                         <div class="form-group spt-2">
                            <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
-                              [formControl]="loginform.controls['UserName']" (keypress)="MissClear()"
+                              [formControl]="loginform.controls['Email']" (keypress)="MissClear()"
                               (keyup)="MissClear()">
 
                         </div>

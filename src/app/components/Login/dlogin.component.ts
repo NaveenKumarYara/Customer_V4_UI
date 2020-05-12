@@ -94,10 +94,11 @@ export class dLoginComponent {
     }
     else
     {
-        this.appService.validateemail(this.loginform.value.UserName)
+        this.appService.validateemail(this.loginform.value.Email)
         .subscribe(
         data => {         
           this.result = data;
+          debugger
           if(this.result.UserId>0&&this.result.CustomerId>0)
           {
             
@@ -217,7 +218,7 @@ export class dLoginComponent {
     this.CId=sessionStorage.getItem('CId');
     this.JobId = sessionStorage.getItem('JobId');
     this.loginform = this.fb.group({
-      'UserName': ['', Validators.compose([Validators.required])],
+      'Email': ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.required])],
     });
     $(".glyphicon-eye-open").on("click", function () {
