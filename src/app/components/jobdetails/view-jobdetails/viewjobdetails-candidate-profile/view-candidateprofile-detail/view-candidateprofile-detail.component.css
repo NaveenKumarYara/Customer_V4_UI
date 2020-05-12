@@ -2211,6 +2211,9 @@
     padding: 10px;
     border-radius: 5px;
     margin-left: 10px;
+    -webkit-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
+    box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
 }
 
 .personality-test-results .personality-result-view {
@@ -2253,6 +2256,19 @@
 }
 
 /*Personality Test Styles*/
+.viewJobsModal .modal-dialog, .test-dialog .modal-dialog{
+    width: 890px;
+    max-width: 100%;
+    right: 0 !important;
+    position: absolute;
+    margin: 0;
+    height: 100%;
+}
+.test-dialog .modal-content{
+border-radius:0px;
+}
+
+
 .personality-test-dialog .modal-body {
     padding: 1rem;
   }
@@ -2391,7 +2407,14 @@
   .personality-test-results .placeholder {
     text-align: left;
   }
-  
+/*Perosnality/cultural tests are in progress*/
+.personality-test-results .no-result-view{
+    padding: 36px;
+    -webkit-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
+   -moz-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
+   box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
+}
+
   .disabledLink {
     color: gray;
     cursor: not-allowed;

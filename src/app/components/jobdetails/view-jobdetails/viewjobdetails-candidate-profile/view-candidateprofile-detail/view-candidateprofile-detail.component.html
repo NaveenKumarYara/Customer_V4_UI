@@ -12,7 +12,7 @@
         </button>
         <div class="navbar-brand">
           <!-- <a routerLink="/app-dashboardview" routerLinkActive="active"> -->
-            <a href="Javascript:void(0)">
+          <a href="Javascript:void(0)">
             <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
           </a>
         </div>
@@ -46,9 +46,9 @@
             </span>
           </a>
           <ul class="dropdown-menu" role="menu">
-      
 
- 
+
+
             <li>
               <a href="javascript:void(0)" (click)="Logout()">
                 <div>
@@ -180,7 +180,7 @@
                       </a>
                       <div>
                         <p class="meta">
-              
+
                           <span>
                             <img src="../../../../assets/images/email-icon.svg" alt="Email">
                           </span>
@@ -292,7 +292,7 @@
                         </a>
                       </span>
                       <div class="pull-right">
-                         <h2 class="sum_tech_num">{{profileStatistics?.Certification||0}}</h2>
+                        <h2 class="sum_tech_num">{{profileStatistics?.Certification||0}}</h2>
                         <!-- <h2 class="sum_tech_num">0</h2> -->
                         <p class="sum_tech_infom">Certification </p>
                       </div>
@@ -571,6 +571,16 @@
 
                     <div class="row placeholder">
                       <img alt="icon" src="assets/images/personal-skills.svg">
+                      <!--Personality & Cultural tests are in progress view 12-05-2020-->
+                      <!-- <div class="col-md-5 personality-result-view text-left no-result-view">
+                        <h4 class="text-center">Personality Test </h4>
+                        <h6 class="text-center">Not yet performed </h6>
+                      </div>
+                      <div class="col-md-5 culture-result-view text-left no-result-view"">
+                        <h4 class="text-center"> Culture Test</h4>
+                        <h6 class="text-center">Not yet performed </h6>
+                      </div> -->
+                      <!---->
                       <div class="col-md-5 personality-result-view text-left">
                         <h4>Personality Test </h4>
                         <div class="row">
@@ -614,7 +624,7 @@
                         </div>
                         <!---->
                         <div>
-                          <button class="btn btn-success" data-target="#personality-test" data-toggle="modal">
+                          <button class="btn btn-success" data-target=".test-dialog" data-toggle="modal">
                             View Detailed Report</button>
                         </div>
                         <!---->
@@ -880,3 +890,22 @@
 <!--Vardhini Code-->
 <!--End-->
 
+<!--Test Dialog for-->
+<div class="modal fade test-dialog" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
