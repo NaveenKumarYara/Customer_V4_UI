@@ -6,6 +6,7 @@ import { billEstimates } from '../../../models/billEstimates';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CustomerSubscription } from '../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../models/GetSubscriptionDetails';
+declare var $: any; 
 @Component({
     selector: 'app-Logoheader',
     templateUrl: './logoheader.component.html'   
@@ -55,9 +56,13 @@ GetSubscriptionDetails(sid)
 {
   return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
     this.sdetails = res;
-    if(new Date(this.sdetails.nextBillingAt) < new Date())
-    {
+    debugger
+    let date = new Date();  
+    let val = new Date(date.setDate(date.getDate()));
+    if(new Date(this.sdetails.nextBillingAt) < val)
+    {     
       this.active=true;
+      this.changetheactive(3);
     }
     else 
     {
@@ -81,12 +86,33 @@ GetSubscriptionDetails(sid)
   changetheactive(res)
   {
     if(res == 1)
-    {   
-      this.jobsactive = true;
+    {  
+      if(this.active==false)  
+      {
+        this.jobsactive = true;
+      }
+      else
+      {
+        this.jobsactive = false;
+      } 
+     
     }
     if(res == 2)
-    {   
-      this.postactive = true;
+    { 
+      if(this.active==false)  
+      {
+        this.postactive = true;
+      }
+      else
+      {
+        this.postactive = false;
+      }
+     
+    }
+    if(res==3 && this.active==true)
+    {
+      this.jobsactive = false;
+      this.postactive = false;
     }
     localStorage.removeItem('jobactive');
     localStorage.removeItem('activepostjob');
@@ -105,6 +131,7 @@ GetSubscriptionDetails(sid)
 
 ngOnInit()
 {
+   this.GetCustomerSubscription();
     if(localStorage.getItem('jobactive')!=null&&localStorage.getItem('jobactive')!=undefined)
     {
       this.changetheactive(1);
@@ -113,8 +140,8 @@ ngOnInit()
     {
       this.changetheactive(2);
     }
-    this.GetCustomerSubscription();
-    this.active=false;
+
+    //this.active=false;
     //this.jobsactive=false;
 }
 }

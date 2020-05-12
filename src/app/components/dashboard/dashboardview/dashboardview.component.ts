@@ -67,7 +67,9 @@ export class DashboardviewComponent implements OnInit {
     {
       return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
         this.sdetails = res;
-        if(new Date(this.sdetails.nextBillingAt) < new Date())
+        let date = new Date();  
+        let val = new Date(date.setDate(date.getDate()));
+        if(new Date(this.sdetails.nextBillingAt) < val)
         {
             this.router.navigateByUrl('app-accountsettings/app-billing-and-payments');
         }
