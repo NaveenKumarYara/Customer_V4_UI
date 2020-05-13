@@ -29,9 +29,11 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	startPage: number;
 	paginationLimit: number;
 	stroke: number = 15;
-	radius: number = 125;
+  radius: number = 125;
+  groupId: any = 0;
 	list: any = [];
-	otherSkills: any = [];
+  otherSkills: any = [];
+  show:boolean=false;
 	profileStatistics: any;
 	start: number;
 	pagination: number;
@@ -68,9 +70,13 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   };
   graphData: any[] = [];
   graphLabel: any[] = [];
+  graphDataCult: any[] = [];
+  graphLabelCult: any[] = [];
   graphLabelList: LegendList[] = [];
+  graphLabelList1: LegendList[] = [];
   @ViewChild('testChart') testChart: ElementRef;
   @ViewChild('testChart1') testChart1: ElementRef;
+  @ViewChild('testChart9') testChart9: ElementRef;
   skilllist: any;
 
   chartOptions = {
@@ -191,7 +197,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   /*#dashboard graph*/
 
   ngOnInit() {
-  
+
     //this.GetCandidateSKills();
     this.GetProfileDetails();
     this.GetUserProfileInfo();
@@ -207,8 +213,11 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         sessionStorage.removeItem('redirect');
 
     }
+
     $('.scrollbar-inner').scrollbar();
     this.getOverlayStyle();
+
+
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
@@ -226,20 +235,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
     }
     cloudspan();
-    this.GetProfileDetails();
-    this.GetUserProfileInfo();
-    this.GetProfileRating();
-    this.GetVideo();
-    this.GetCandidateProfileStatistics();
-    this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.profileId).subscribe(
-      data => {
-        var apiData = data;
-        this.noTest = apiData.profileStatus;
-        this.isPublicAvailable = apiData.isPublicAvailable;
-        if (this.noTest) {
-          this.GetCandidatePersonalityResult();
-        }
-      });
+   
+
     
   }
 
@@ -268,11 +265,23 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         });
   }
 
+  Check()
+  {
+    this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.profileId).subscribe(
+      data => {
+        var apiData = data;       
+        this.noTest = apiData.profileStatus;
+        this.isPublicAvailable = apiData.isPublicAvailable;
+        debugger
+      });
+  }
+
 
   GetProfileDetails() {
     this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.profileId).subscribe(
       data => {
         this.details = data;
+        this.Check();
       })
   }
 
@@ -287,10 +296,90 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
       })
   }
 
-  GetCandidatePersonalityResult() {
+  
+
+  GetCultGraph() {
+    this.show=true;
     this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=', this.profileId).subscribe(
       email => {
         this.email = email.UserName;
+    // var mail = this.candidateDetails.mail;
+    this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetCulturalGraphDetails?mail=', this.email)
+    .subscribe(
+      data => {
+        this.graphData = [];
+        var userResponsedata = data;
+
+        var count = 0;
+        this.graphLabelList1 = [];
+
+        if (this.testChart9) {
+
+          var testChart9Canvas = this.testChart9.nativeElement.getContext('2d');
+          this.graphLabelCult = [];
+          this.graphDataCult = [];
+          userResponsedata[0].questionnaireResultList.forEach((b, index) => {
+            var value = (b.response / (3 * 16)) * 100
+            this.graphDataCult.push(value);
+            this.graphLabelCult.push(b.groupName);
+            this.graphLabelList1.push(new LegendList());
+            this.graphLabelList[index].GroupId = (b.questionnaireGroupId);
+            this.graphLabelList1[index].GroupLabel = (b.groupName);
+            this.graphLabelList1[index].GroupPer = (value.toFixed(2));
+          })
+          this.graphLabelList1[0].GroupColor = ('rgba(101,105, 169, 1)');
+          this.graphLabelList1[1].GroupColor = ('rgba(63, 184, 179, 1)');
+          this.graphLabelList1[2].GroupColor = ('rgba(236, 136, 133, 1)');
+          this.graphLabelList1[3].GroupColor = ('rgba(235, 189, 78, 1)');
+          var weekChart = new Chart(testChart9Canvas, {
+            type: 'doughnut',
+            options: {
+              title: {
+                display: true,
+                text: "Cultural Test Chart"
+              },
+              legend: {
+                display: false,
+              },
+            },
+            data: {
+              labels: this.graphLabelCult,// ['Category 1', 'Category 2', 'Category 3', 'Category 4'],
+              render: 'labels',
+              datasets: [{
+                labels: [
+                  'Red',
+                  'Yellow',
+                  'Blue',
+                  'pink',
+                  'black'
+                ],
+                label: '# of Votes',
+                data: this.graphDataCult,
+                backgroundColor: [
+                  'rgba(101,105, 169, 1)',
+                  'rgba(63, 184, 179, 1)',
+                  'rgba(236, 136, 133, 1)',
+                  'rgba(235, 189, 78, 1)',
+                  'rgba(100, 164, 137, 1)'
+                ],
+
+              }
+              ]
+            }
+          });
+        }
+      });
+      })
+    // this.CulturalResponse.forEach(a=>a.)
+    // QuestionnaireAssignment
+  }
+
+  GetCandidatePersonalityResult() {
+    this.show=false;
+    this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=', this.profileId).subscribe(
+      email => {
+        this.email = email.UserName;
+        debugger
         this.jobdetailsservice.getPersonalityTest(this.email).subscribe(
           data => {
             if (data.length > 0) {
@@ -472,6 +561,7 @@ GetCandidateProfileStatistics() {
 }
 
 export class LegendList {
+  GroupId:Number;
   GroupLabel: string;
   GroupColor: string;
   GroupPer: string;
