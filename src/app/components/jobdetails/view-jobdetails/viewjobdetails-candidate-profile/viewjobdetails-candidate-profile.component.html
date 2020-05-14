@@ -31,8 +31,8 @@
                             alt="Certifications" width="40">
                     </div>
                     <div class="media-body">
-                        <small title="{{profile.CertificationName}}">{{profile.CertificationName}}</small>
-                        <span class="badge badge-light" title="View More" >1 +</span>
+                        <small title="{{profile.CertificationName}}" (click)="callSkills(profile.ProfileId,0)">{{profile.CertificationName}}</small>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">1 +</span>
                     </div>
                 </div>
                 <ng-template #nocertification>
@@ -69,8 +69,8 @@
                 <!--New Design of Icon & Badges-->
                 <div class="media col-md-6 domain-section" *ngIf="profile.DomainName!=null;else nodomain">
                     <div class="media-body">
-                        <small title="{{profile.DomainName}}">{{profile.DomainName}}</small>
-                        <span class="badge badge-light" title="View More">1 +</span>
+                        <small title="{{profile.DomainName}}" (click)="callSkills(profile.ProfileId,1)">{{profile.DomainName}}</small>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">1 +</span>
                     </div>
                     <div class="media-right">
                         <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
@@ -1291,27 +1291,27 @@
         </div>
 
         <!--Certifications Overlay-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff"  id="matchingDetailCert-{{profile.ProfileId}}">
+            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header scrollbar-inner">
                 <img src="../../../../../assets/images/Certifications/certification.png" width="60"
                     alt="certifications">
                 <h2>Certifications</h2>
                 <!--List of certifications-->
                 <ul class="certifications-list">
-                    <li class="c-details">
+                    <li class="c-details" *ngFor="let cer of CandidateCertification">
                         <div class="col-md-3">
-                            <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
+                            <img src="{{cer?.ImageUrl}}" width="60"
                                 alt="certifications">
                         </div>
                         <div class="col-md-5">
-                            <h6>Certificate Name</h6>
+                            <h6>{{cer?.CertificationName}}</h6>
                         </div>
                         <div class="col-md-4">
-                            <h6>2020</h6>
+                            <h6>{{cer?.YearOfAchievement| date:'yyyy'}}</h6>
                         </div>
                     </li>
-                    <li class="skill-details">
+                    <!-- <li class="skill-details">
                         <div class="col-md-3">
                             <img src="../../../../../assets/images/Certifications/microsoft.jpg" width="60"
                                 alt="certifications">
@@ -1334,32 +1334,33 @@
                         <div class="col-md-4">
                             <h6>2010</h6>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
         <!---->
 
         <!--Domains-->
-        <div class="matching-details bg-fff" >
-            <a href="javascript:void(0)"  class="close">&times;</a>
+        <div class="matching-details bg-fff" id="matchingDetailDom-{{profile.ProfileId}}">
+            <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header scrollbar-inner">
                 <img src="../../../../../assets/images/Certifications/domain.png" width="60" alt="certifications">
                 <h2>Domains</h2>
                 <!--List of domains-->
                 <ul class="domains-list">
-                    <li class="d-details">
+                    <li class="d-details" *ngFor="let dom of CandidateDomain">
                         <div class="col-md-2">
                             <i class="fa fa-usd" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-5">
-                            <h6>Banking & Finance</h6>
+                            <h6>{{dom?.DomainName}}</h6>
                         </div>
                         <div class="col-md-5">
-                            <h6>Project/Company</h6>
+                            <h6>{{dom?.ExpInYears}}.{{dom?.ExpInMonths}} Years</h6>
+                            <h6>{{dom?.LastUsed}}</h6>
                         </div>
                     </li>
-                    <li class="d-details">
+                    <!-- <li class="d-details">
                         <div class="col-md-2">
                             <i class="fa fa-university" aria-hidden="true"></i>
                         </div>
@@ -1380,7 +1381,7 @@
                         <div class="col-md-5">
                             <h6>Project/Company</h6>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

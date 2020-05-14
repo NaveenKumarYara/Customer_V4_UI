@@ -15,6 +15,7 @@ import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ParentComponentApi } from '../view-jobdetails.component';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 import{UniqueMonthYearPipe} from './../months.pipe';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -26,7 +27,7 @@ declare var jQuery: any;
   selector: 'app-viewjobdetails-candidate-profile',
   templateUrl: './viewjobdetails-candidate-profile.component.html',
   styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
-  providers: [NgxSpinnerService, AlertService]
+  providers: [NgxSpinnerService, AlertService,ApiService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
@@ -41,6 +42,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   userId: any;
   profiles: any;
   customer: any;
+  CandidateCertification:CandidateCertifications;
+  CandidateDomain:CandidateDomains;
   searchString: any;
   domainName: any;
   matchingParameterDetails = new MatchingParameterDetails();
@@ -94,7 +97,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   ProfileId: any;
   currentNo: number[] =[];
   constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
-    , private dialog: MatDialog) {
+    ,private _service: ApiService , private dialog: MatDialog) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -308,6 +311,25 @@ NoRecords() {
   this.jobdetailsprofiles = new JobdetailsProfile();
 }
 
+GetCandidateCertifications(profileId) {
+
+  this._service.GetService('ProfileAPI/api/GetCertification?profileId=', profileId)
+    .subscribe(
+      dat => {
+        this.CandidateCertification = dat;
+      });
+}
+
+GetCandidateDomains(profileId) {
+
+  this._service.GetService('ProfileAPI/api/GetCandidateDomain?profileId=', profileId)
+    .subscribe(
+      datr => {
+        debugger
+        this.CandidateDomain = datr;
+      });
+}
+
 
 
 PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0,arytic=0, noofRows = 6) {
@@ -326,6 +348,7 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
         this.jobdetailsprofiles = res;
+        debugger
         this.profiles = res;
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
@@ -400,13 +423,15 @@ CheckDisplay(val) {
     return 'none';
   }
 }
+
+
 // getMatchingDetails(profileId)
 // {
 //   return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
 //     this.matchingDetails = res;
 //   });
 // }
-callSkills(profileId) {
+callSkills(profileId,Val?) {
   // var $card = $('.page--job-details .tab-content .card');
   //   var $detailsBtn = $card.find('.show-matching-details');
   //   $detailsBtn.on('click', function (e) {
@@ -415,19 +440,36 @@ callSkills(profileId) {
   //     var $selectedCard = $(this).closest('.card');
   //     var $detailsDiv = $selectedCard.find('.matching-details');
   //     var $detailsCloseBtn = $selectedCard.find('.close');
+
   this.ProfileId = profileId;
-  var data = this.GetMatchingPercentage(profileId, this.jobid);
-  console.log("matchingParameterDetails", this.matchingParameterDetails);
-
-  return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe(res => {
-    this.matchingDetails = res;
+  if(Val==0)
+  {
+    this.GetCandidateCertifications(profileId);
     $('.matching-details').removeClass('open');
-    $('#matchingDetail-' + profileId).toggleClass('open');
+    $('#matchingDetailCert-' + profileId).toggleClass('open');
+  }
+  else if(Val==1)
+  {
+    this.GetCandidateDomains(profileId);
+    $('.matching-details').removeClass('open');
+    $('#matchingDetailDom-' + profileId).toggleClass('open');
+  }
+  else
+  {
+    var data = this.GetMatchingPercentage(profileId, this.jobid);
+    console.log("matchingParameterDetails", this.matchingParameterDetails);
+  
+    return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe(res => {
+      this.matchingDetails = res;
+      $('.matching-details').removeClass('open');
+      $('#matchingDetail-' + profileId).toggleClass('open');
+  
+  
+      // $('.matching-details1').removeClass('open');
+      // $('#matchingDetails-' + profileId).toggleClass('open');
+    });
+  }
 
-
-    // $('.matching-details1').removeClass('open');
-    // $('#matchingDetails-' + profileId).toggleClass('open');
-  });
 
   // $detailsCloseBtn.on('click', function (e) {
   //   e.preventDefault();
@@ -438,6 +480,8 @@ callSkills(profileId) {
 closeDetails(profileId, type) {
   if (type === 1) {
     $('#matchingDetail-' + profileId).removeClass('open');
+    $('#matchingDetailCert-' + profileId).removeClass('open');
+    $('#matchingDetailDom-' + profileId).removeClass('open');
   } else {
     $('#sizzleVideo-' + profileId).removeClass('open');
     $('#profileVideo-' + profileId).removeClass('open');
@@ -713,4 +757,38 @@ export class WishList {
   public JobId: number;
   public ProfileId: number;
   public IsSaved: boolean;
+}
+export class CandidateCertifications
+{
+
+CertificationId: number;
+CertificationName: string;
+Certified: boolean;
+CreatedOn: string;
+ImageUrl: string;
+IssuedBy: string;
+LifeTime: string;
+ModifiedOn:string;
+ProfileId: number;
+ProviderId: string;
+YearOfAchievement: string;
+
+}
+
+export class CandidateDomains
+{
+
+CandidateDomainId: number;
+CreatedBy: number;
+CreatedOn: string;
+Description:string;
+DomainId: number;
+DomainName: string;
+ExpInMonths: number;
+ExpInYears: number;
+LastUsed: number;
+ModifiedBy: number;
+ModifiedOn: string;
+ProfileId: number;
+
 }
