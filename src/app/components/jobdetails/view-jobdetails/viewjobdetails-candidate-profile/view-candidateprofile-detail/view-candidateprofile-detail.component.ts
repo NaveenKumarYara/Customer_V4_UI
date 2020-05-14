@@ -41,7 +41,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     skillLimit: any = [];
     videoUrl: videoUrl;
 	/*rouded progress bar*/
-	semicircle: boolean = false;
+  semicircle: boolean = false;
+  isPublicAvailable1: boolean = false;
 	rounded: boolean = false;
 	responsive: boolean = false;
 	clockwise: boolean = true;
@@ -272,7 +273,10 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         var apiData = data;       
         this.noTest = apiData.profileStatus;
         this.isPublicAvailable = apiData.isPublicAvailable;
-        debugger
+        if (this.noTest) {
+          this.GetCandidatePersonalityResult();
+          this.GetCultGraph();
+        }
       });
   }
 
@@ -307,7 +311,14 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetCulturalGraphDetails?mail=', this.email)
     .subscribe(
       data => {
+        if(data.length===0)
+        {       
+          this.isPublicAvailable1 = false;
+        }
+        if (data.length > 0) {
+        this.isPublicAvailable1=true;
         this.graphData = [];
+
         var userResponsedata = data;
 
         var count = 0;
@@ -368,6 +379,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
             }
           });
         }
+      }
       });
       })
     // this.CulturalResponse.forEach(a=>a.)
@@ -379,9 +391,13 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=', this.profileId).subscribe(
       email => {
         this.email = email.UserName;
-        debugger
         this.jobdetailsservice.getPersonalityTest(this.email).subscribe(
           data => {
+            if(data.length===0)
+            {
+              this.noTest = false;
+              this.isPublicAvailable = false;
+            }
             if (data.length > 0) {
               this.graphData = [];
               this.graphLabel = [];

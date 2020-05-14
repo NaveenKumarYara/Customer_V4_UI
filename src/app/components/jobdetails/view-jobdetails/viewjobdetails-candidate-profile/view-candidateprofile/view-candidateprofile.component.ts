@@ -193,7 +193,6 @@ window.open(url, '_blank');
         var apiData = data;
         this.noTest = apiData.profileStatus;
         this.isPublicAvailable = apiData.isPublicAvailable;
-        debugger
         if (this.noTest) {
           this.GetCandidatePersonalityResult();
         }
@@ -230,6 +229,11 @@ window.open(url, '_blank');
         this.email = email.UserName;
         this.jobdetailsservice.getPersonalityTest(this.email).subscribe(
           data => {
+            if(data.length===0)
+            {
+              this.noTest = false;
+              this.isPublicAvailable = false;
+            }
             if (data.length > 0) {
               this.graphData = [];
               this.graphLabel = [];
