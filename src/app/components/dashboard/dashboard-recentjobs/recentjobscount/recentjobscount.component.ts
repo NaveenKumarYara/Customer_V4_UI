@@ -49,14 +49,14 @@ export class RecentjobsCountComponent implements OnInit {
    });
   }
 
-  GetJobsRedirect(val,customerId,userId,jobId)  {
+  GetJobsRedirect(val,userId,jobId)  {
     if(val>0){
     this.statusId=val;
     }
     else{
      this.statusId=0;
    }
-   sessionStorage.setItem('customerId', JSON.stringify(customerId));
+   sessionStorage.setItem('customerId', JSON.stringify(this.customerId));
    sessionStorage.setItem('userId', JSON.stringify(userId));
    sessionStorage.setItem('jobId', JSON.stringify(jobId));
    sessionStorage.setItem('statusid', JSON.stringify(this.statusId));
