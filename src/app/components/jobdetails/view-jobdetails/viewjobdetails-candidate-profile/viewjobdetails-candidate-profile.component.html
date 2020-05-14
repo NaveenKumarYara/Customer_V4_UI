@@ -31,8 +31,10 @@
                             alt="Certifications" width="40">
                     </div>
                     <div class="media-body">
-                        <small title="{{profile.CertificationName}}" (click)="callSkills(profile.ProfileId,0)">{{profile.CertificationName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">1 +</span>
+                        <small title="{{profile.CertificationName}}"
+                            (click)="callSkills(profile.ProfileId,0)">{{profile.CertificationName}}</small>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">1
+                            +</span>
                     </div>
                 </div>
                 <ng-template #nocertification>
@@ -69,8 +71,10 @@
                 <!--New Design of Icon & Badges-->
                 <div class="media col-md-6 domain-section" *ngIf="profile.DomainName!=null;else nodomain">
                     <div class="media-body">
-                        <small title="{{profile.DomainName}}" (click)="callSkills(profile.ProfileId,1)">{{profile.DomainName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">1 +</span>
+                        <small title="{{profile.DomainName}}"
+                            (click)="callSkills(profile.ProfileId,1)">{{profile.DomainName}}</small>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">1
+                            +</span>
                     </div>
                     <div class="media-right">
                         <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
@@ -110,7 +114,7 @@
                     <img *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null;"
                         src="https://ui-avatars.com/api/?name={{profile.FirstName}}+{{profile.LastName}}" width="66"
                         height="66">
-                  
+
                 </ng-container>
                 <ng-template #Block>
                     <img src={{profile.ProfilePic}} alt="" width="66" height="66">
@@ -233,9 +237,10 @@
                 </ng-template>
 
 
-                <a href="javascript:void(0)" (click)="displayVideoProfile(profile.ProfileId,true)" *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
-                    <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png"
-                        title="video-sizzle" width="25">
+                <a href="javascript:void(0)" (click)="displayVideoProfile(profile.ProfileId,true)"
+                    *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
+                    <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
+                        width="25">
                 </a>
 
                 <div class="meta a">
@@ -429,12 +434,13 @@
                                 alt="Video Profile" title="Video Profile">
                         </a>
                     </ng-template> -->
-                    
+
                     <!--Icons with clicks-->
                     <!--Reference Icons-->
-                    <a href="javascript:void(0)" title="References" data-toggle="modal" data-target=".manage-reference-i-d">
+                    <a href="javascript:void(0)" title="References" data-toggle="modal"
+                        data-target=".manage-reference-i-d">
                         <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
-                        alt="References" >
+                            alt="References">
                     </a>
                     <!--No Reference Icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
@@ -442,9 +448,10 @@
 
 
                     <!--Achievement Icon-->
-                    <a href="javascript:void(0)"  title="Achievements" data-toggle="modal" data-target=".manage-achievements-i-d">
+                    <a href="javascript:void(0)" title="Achievements" data-toggle="modal"
+                        data-target=".manage-achievements-i-d">
                         <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
-                        alt="achievement-badge">
+                            alt="achievement-badge">
                     </a>
                     <!--No achievement icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
@@ -452,21 +459,23 @@
 
 
                     <!--Recommendations Icon-->
-                    <a href="javascript:void(0)"  title="Recommendations" data-toggle="modal" data-target=".manage-recommendations-i-d">
+                    <a href="javascript:void(0)" title="Recommendations" data-toggle="modal"
+                        data-target=".manage-recommendations-i-d">
                         <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
-                        alt="recommendations-badge">
+                            alt="recommendations-badge">
                     </a>
                     <!--No recommendations profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
                         alt="No-recommendations-badge" title="No Recommendations"> -->
 
                     <!--BG Verification Profile-->
-                    <a href="javascript:void(0)"  title="Background Verified Profile" data-toggle="modal" data-target=".manage-bgv-i-d">
+                    <a href="javascript:void(0)" title="Background Verified Profile" data-toggle="modal"
+                        data-target=".manage-bgv-i-d">
                         <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
-                        alt="verfied-badge" >
+                            alt="verfied-badge">
                     </a>
-                       
-                
+
+
                     <!--Not verified profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
@@ -726,91 +735,91 @@
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
                             <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
-                                 </a>
-                                    <div class="col-md-4 skill-click"
-                                        *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
-                                        <div id="i-{{profile.ProfileId}}" data-toggle="modal" data-target=".manage-s-v-i-d">
-                                            <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
-                                                <div class="skill">
-                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
-                                                    </h4>
-                                                    <div>
-                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                                                    </div>
-                                                </div>
-                                                <div class="star-rating">
-                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                        checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
-                                                        readonly="true"></star-rating>
-                                                </div>
+                            </a>
+                            <div class="col-md-4 skill-click"
+                                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
+                                <div id="i-{{profile.ProfileId}}" data-toggle="modal" data-target=".manage-s-v-i-d">
+                                    <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                            </h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
                                             </div>
-                                            <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
-                                                <div class="skill">
-                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
-                                                    </h4>
-                                                    <div>
-                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                                                    </div>
-                                                </div>
-                                                <!--Star Rating redesign on 05-05-2020-->
-                                                <div class="star-rating">
-                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                        checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
-                                                        readonly="true"></star-rating>
-                                                </div>
-
-                                                <!---->
-                                            </div>
-                                            <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
-                                                <div class="skill">
-                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
-                                                    </h4>
-                                                    <div>
-                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                                                    </div>
-                                                </div>
-                                                <!--Star Rating redesign on 05-05-2020-->
-                                                <div class="star-rating">
-                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                        checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
-                                                        readonly="true"></star-rating>
-                                                </div>
-                                                <!---->
-                                            </div>
-                                            <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
-                                                <div class="skill">
-                                                    <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
-                                                    </h4>
-                                                    <div>
-                                                        <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
-                                                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                                                    </div>
-                                                </div>
-                                                <!--Star Rating redesign on 05-05-2020-->
-                                                <div class="star-rating">
-                                                    <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
-                                                        checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
-                                                        readonly="true"></star-rating>
-                                                </div>
-                                                <!---->
-                                            </div>
-
+                                        </div>
+                                        <div class="star-rating">
+                                            <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
+                                                readonly="true"></star-rating>
                                         </div>
                                     </div>
+                                    <div class="item" *ngIf="currentNo[i] ==1 && j < 6 && j > 2  ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                            </h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                                            </div>
+                                        </div>
+                                        <!--Star Rating redesign on 05-05-2020-->
+                                        <div class="star-rating">
+                                            <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
+                                                readonly="true"></star-rating>
+                                        </div>
 
-                                    <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> >
-                                    </a>
+                                        <!---->
+                                    </div>
+                                    <div class="item" *ngIf="currentNo[i] ==2 && j < 9  && j > 5 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                            </h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                                            </div>
+                                        </div>
+                                        <!--Star Rating redesign on 05-05-2020-->
+                                        <div class="star-rating">
+                                            <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
+                                                readonly="true"></star-rating>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="item" *ngIf="currentNo[i] ==3 && j > 8 ">
+                                        <div class="skill">
+                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
+                                            </h4>
+                                            <div>
+                                                <h5>{{ sk.split('|')[1] }}.{{ sk.split('|')[2] }} Yrs</h5>
+                                                <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                                            </div>
+                                        </div>
+                                        <!--Star Rating redesign on 05-05-2020-->
+                                        <div class="star-rating">
+                                            <star-rating value="{{sk.split('|')[3] | slice:0:1}}" totalstars="5"
+                                                checkedcolor="#2260C3" uncheckedcolor="#9EABC0" size="16px"
+                                                readonly="true"></star-rating>
+                                        </div>
+                                        <!---->
+                                    </div>
 
-                                    <!-- https://www.npmjs.com/package/ngx-flickity
+                                </div>
+                            </div>
+
+                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> >
+                            </a>
+
+                            <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove
 
                                    https://www.npmjs.com/package/angular-flickity
                                    https://codepen.io/collection/nNzQxk/ -->
-                                    <!-- working demo -->
-                                    <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
+                            <!-- working demo -->
+                            <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
                                     <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
                                       <div class="item">
                                         <div class="skill">
@@ -825,8 +834,8 @@
                                   </div> -->
 
 
-                                    <!-- // -->
-                                    <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                            <!-- // -->
+                            <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
                             <div class="item">
                             <div class="skill" *ngIf="">
                                 <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
@@ -1146,7 +1155,7 @@
                         </ul>
                 </ul>
             </div>
-            
+
         </div>
 
         <div class="matching-details h-a" id="profileVideo-{{profile.ProfileId}}">
@@ -1166,12 +1175,11 @@
                             <img src="../../../assets/images/no-video.png" class="icon" alt=".">
                         </div>
                         <div *ngIf="profileFlipVideo?.VideoProfile != null">
-                            <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile"
-                                type="video/mp4" #videoPlayer></video>
+                            <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4"
+                                #videoPlayer></video>
                         </div>
-                        <div class="status shortlisted pull-right"
-                            *ngIf="profileFlipVideo?.VideoSizzle != null"><a class="show-matching-details"
-                                data-toggle="matching-details"
+                        <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null"><a
+                                class="show-matching-details" data-toggle="matching-details"
                                 (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
                                 href="javascript:void(0)">Sizzle Video</a></div>
                     </div>
@@ -1240,9 +1248,8 @@
                                 <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile"
                                     type="video/mp4" #videoPlayer></video>
                             </div>
-                            <div class="status shortlisted pull-right"
-                                *ngIf="profileFlipVideo?.VideoSizzle != null"><a class="show-matching-details"
-                                    data-toggle="matching-details"
+                            <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null"><a
+                                    class="show-matching-details" data-toggle="matching-details"
                                     (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
                                     href="javascript:void(0)">Sizzle Video</a></div>
                         </div>
@@ -1332,7 +1339,7 @@
         </div>
 
         <!--Certifications Overlay-->
-        <div class="matching-details bg-fff"  id="matchingDetailCert-{{profile.ProfileId}}">
+        <div class="matching-details bg-fff" id="matchingDetailCert-{{profile.ProfileId}}">
             <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)" class="close">&times;</a>
             <div class="header scrollbar-inner">
                 <img src="../../../../../assets/images/Certifications/certification.png" width="60"
@@ -1342,8 +1349,7 @@
                 <ul class="certifications-list">
                     <li class="c-details" *ngFor="let cer of CandidateCertification">
                         <div class="col-md-3">
-                            <img src="{{cer?.ImageUrl}}" width="60"
-                                alt="certifications">
+                            <img src="{{cer?.ImageUrl}}" width="60" alt="certifications">
                         </div>
                         <div class="col-md-5">
                             <h6>{{cer?.CertificationName}}</h6>
@@ -1473,9 +1479,8 @@
 <!--Manage References-->
 <div class="modal fade manage-reference-i-d" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-     
-        <div class="modal-body text-center">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <div class="header scrollbar-inner">
                     <img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References">
                     <h4>Manage References</h4>
@@ -1512,7 +1517,8 @@
                             </div>
                             <div class="col-md-4">
                                 <h6 class="text-success">Received Response</h6>
-                                <small><a href="javascript:void(0)">View</a></small>
+                                <small><a href="javascript:void(0)"><i class="fa fa-file-text" aria-hidden="true"></i>
+                                    </a></small>
                             </div>
                         </li>
                     </ul>
@@ -1533,267 +1539,318 @@
                         </form>
                     </div>
                 </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->
 
 <!--Manage Achievements-->
-  <div class="modal fade manage-achievements-i-d" tabindex="-1" role="dialog">
+<div class="modal fade manage-achievements-i-d" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-            <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="60"
-                    alt="certifications">
-                <h4>Achievements</h4>
-                <!--List of Achievements-->
-                <ul class="achievements-list">
-                    <li class="a-details">
-                        <div class="col-md-4">
-                            <h6>Best Employee</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>2020</h6>
-                        </div>
-                    </li>
-                    <li class="a-details">
-                        <div class="col-md-4">
-                            <h6> Award</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>2020</h6>
-                        </div>
-                    </li>
-                    <li class="a-details">
-                        <div class="col-md-4">
-                            <h6> Award</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>2020</h6>
-                        </div>
-                    </li>
-                </ul>
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="header scrollbar-inner">
+                    <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="60"
+                        alt="certifications">
+                    <h4>Achievements</h4>
+                    <!--List of Achievements-->
+                    <ul class="achievements-list">
+                        <li class="a-details">
+                            <div class="col-md-4">
+                                <h6>Best Employee</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>2020</h6>
+                            </div>
+                        </li>
+                        <li class="a-details">
+                            <div class="col-md-4">
+                                <h6> Award</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>2020</h6>
+                            </div>
+                        </li>
+                        <li class="a-details">
+                            <div class="col-md-4">
+                                <h6> Award</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>2020</h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->
 
 <!--Manage recommendations-->
 <div class="modal fade manage-recommendations-i-d" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-            <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/card-icons/recommendations.png" width="60" alt="certifications">
-                <h4>Recommendations</h4>
-                <!--List of Recommendations-->
-                <ul class="recommendations-list">
-                    <li class="r-details text-left">
-                        <div class="col-md-4">
-                            <h6>James Barret</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <p>Good at commuication skills</p>
-                        </div>
-                    </li>
-                    <li class="r-details text-left">
-                        <div class="col-md-4">
-                            <h6> Employee Name</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <p>Recommendations</p>
-                        </div>
-                    </li>
-                    <li class="r-details text-left">
-                        <div class="col-md-4">
-                            <h6> Employee Name</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>Company</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <p>Recommendations</p>
-                        </div>
-                    </li>
-                </ul>
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="header scrollbar-inner">
+                    <img src="../../../../../assets/images/card-icons/recommendations.png" width="60"
+                        alt="certifications">
+                    <h4>Recommendations</h4>
+                    <!--List of Recommendations-->
+                    <ul class="recommendations-list">
+                        <li class="r-details text-left">
+                            <div class="col-md-4">
+                                <h6>James Barret</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Good at commuication skills</p>
+                            </div>
+                        </li>
+                        <li class="r-details text-left">
+                            <div class="col-md-4">
+                                <h6> Employee Name</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Recommendations</p>
+                            </div>
+                        </li>
+                        <li class="r-details text-left">
+                            <div class="col-md-4">
+                                <h6> Employee Name</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Company</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Recommendations</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->
 
 <!--Manage BG Verified Profile-->
 <div class="modal fade manage-bgv-i-d" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-            <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/card-icons/verified-badge.png" width="60" alt="References">
-                <h4>Background Verification</h4>
-                <!--List of skills-->
-                <ul class="bg-list">
-                    <li class="bg-details">
-                        <div class="col-md-5 text-left">
-                            <h6> Details 1</h6>
-                        </div>
-                        <div class="col-md-7">
-                            <button class="btn btn-filled">Initiate Background Verification</button>
-                        </div>
-                    </li>
-                    <li class="bg-details">
-                        <div class="col-md-5 text-left">
-                            <h6> Details 2</h6>
-                        </div>
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="header scrollbar-inner">
+                    <img src="../../../../../assets/images/card-icons/verified-badge.png" width="60" alt="References">
+                    <h4>Background Verification</h4>
+                    <!--List of skills-->
+                    <ul class="bg-list">
+                        <li class="bg-details">
+                            <div class="col-md-3  text-left">
+                                <label>Details</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>3rd Party</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Feedback</label>
+                            </div>
+                        </li>
+                        <li class="bg-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Medical</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>-</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>-</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-filled">Request Verification</button>
+                            </div>
+                        </li>
+                        <li class="bg-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Criminal</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>ABC services</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>20-02-2020</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-success">No Active Cases</h6>
+                            </div>
+                        </li>
 
-                        <div class="col-md-7">
-                            <h6 class="text-warning">Waiting for Response</h6>
-                        </div>
-                    </li>
-                    <li class="bg-details">
-                        <div class="col-md-5 text-left">
-                            <h6> Details 3</h6>
-                        </div>
-
-                        <div class="col-md-7">
-                            <h6 class="text-success">Received Result</h6>
-                            <small><a href="javascript:void(0)">View</a></small>
-                        </div>
-                    </li>
-                    <li class="bg-details">
-                        <div class="col-md-5 text-left">
-                            <h6> Details 4</h6>
-                        </div>
-
-                        <div class="col-md-7">
-                            <h6 class="text-danger">Request Rejected</h6>
-                            <small><a href="javascript:void(0)">Resend</a></small>
-                        </div>
-                    </li>
-                </ul>
+                        <li class="bg-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Civil & Credit</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>ABC services</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>20-02-2020</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-success">All Clear</h6>
+                            </div>
+                        </li>
+                        <li class="bg-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Drug Screening</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>XYZ services</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>20-02-2020</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-success">All Clear</h6>
+                            </div>
+                        </li>
+                        <li class="bg-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Motor Vehicle</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>XYZ services</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>20-02-2020</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-success">All Clear</h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->
 
 <!--Manage Skill Verifications-->
 <div class="modal fade manage-s-v-i-d" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-            <div class="header scrollbar-inner">
-                <img src="../../../../../assets/images/Certifications/skills.png" width="60" alt="References">
-                <h4>Manage Skills</h4>
-                <!--List of skills-->
-                <ul class="skills-list">
-                    <li class="skill-details">
-                        <div class="col-md-3">
-                          <label>Skill</label>
-                        </div>
-                        <div class="col-md-3 ">
-                            <label>Experience</label>
-                          </div>
-                          <div class="col-md-3 text-left">
-                            <label>Rating/5</label>
-                          </div>
-                        <div class="col-md-3">
-                            <label>Skill Test</label>
-                        </div>
-                    </li>
-                    <li class="skill-details">
-                        <div class="col-md-3 text-left">
-                            <h6>Skill 1</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>4 Years</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>4</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-filled">Initiate Skill Test</button>
-                        </div>
-                    </li>
-                    <li class="skill-details">
-                        <div class="col-md-3 text-left">
-                            <h6>Skill 2</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>2 Years</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>3</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6 class="text-warning">Waiting for Response</h6>
-                        </div>
-                    </li>
-                    <li class="skill-details">
-                        <div class="col-md-3 text-left">
-                            <h6>Skill 3</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>3 Years</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>4</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6 class="text-success">Received Result</h6>
-                            <small><a href="javascript:void(0)">View</a></small>
-                        </div>
-                    </li>
-                    <li class="skill-details">
-                        <div class="col-md-3 text-left">
-                            <h6>Skill 4</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>4 Years</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>4</h6>
-                        </div>
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="header scrollbar-inner">
+                    <img src="../../../../../assets/images/Certifications/skills.png" width="60" alt="References">
+                    <h4>Skills Verification</h4>
+                    <!--List of skills-->
+                    <ul class="skills-list">
+                        <li class="skill-details">
+                            <div class="col-md-3 text-left">
+                                <label>Skill</label>
+                            </div>
+                            <div class="col-md-3 ">
+                                <label>Experience</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Rating/5</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Skill Test</label>
+                            </div>
+                        </li>
+                        <li class="skill-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Skill 1</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>4 Years</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>4</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-warning">Yet to be verified</h6>
+                                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+                            </div>
+                        </li>
+                        <li class="skill-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Skill 2</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>2 Years</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>3</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-warning">Yet to be verified</h6>
+                                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+                            </div>
+                        </li>
+                        <li class="skill-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Skill 3</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>3 Years</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>4</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-success">Skill verified</h6>
+                                <small><a href="javascript:void(0)">View</a></small>
+                            </div>
+                        </li>
+                        <li class="skill-details">
+                            <div class="col-md-3 text-left">
+                                <h6>Skill 4</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>4 Years</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>4</h6>
+                            </div>
 
-                        <div class="col-md-3">
-                            <h6 class="text-danger">Request Rejected</h6>
-                            <small><a href="javascript:void(0)">Resend</a></small>
-                        </div>
-                    </li>
-                </ul>
+                            <div class="col-md-3">
+                                <h6 class="text-warning">Yet to be verified</h6>
+                                <small><a href="javascript:void(0)">Request Skill Verification</a></small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+</div><!-- /.modal -->

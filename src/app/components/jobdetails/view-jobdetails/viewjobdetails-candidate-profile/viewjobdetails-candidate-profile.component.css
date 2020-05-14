@@ -1303,7 +1303,7 @@ height: 25.4px;
 .candidate-info img.video-sizzle{
     position: absolute;
     top: 27%;
-    left: 54%;
+    left: 55.5%;
 }
 .matching-details ul.certifications-list,
 .manage-s-v-i-d ul.skills-list, 
@@ -1315,6 +1315,23 @@ height: 25.4px;
 {
     list-style-type: none;
     padding-left: 0px;
+}
+
+.manage-s-v-i-d h4, 
+.manage-reference-i-d h4,
+.manage-bgv-i-d h4,
+.manage-achievements-i-d h4,
+.manage-recommendations-i-d h4
+{
+    color: #41536E;
+}
+.manage-s-v-i-d label, 
+.manage-reference-i-d label,
+.manage-bgv-i-d label,
+.manage-achievements-i-d label,
+.manage-recommendations-i-d label
+{
+    text-transform: capitalize;
 }
 .matching-details ul.certifications-list .c-details,
 .manage-s-v-i-d ul.skills-list .skill-details,
@@ -1376,4 +1393,10 @@ height: 25.4px;
 .manage-reference-i-d .modal-body .send-req-form  .btn-filled{
     padding: 6px 11px;
 }
-  
+.manage-s-v-i-d ul.skills-list .skill-details small a{
+    font-size: 8px;
+    font-weight: bold;
+}
+.manage-reference-i-d .modal-body li.references-details .fa{
+    font-size: 25px;
+}
