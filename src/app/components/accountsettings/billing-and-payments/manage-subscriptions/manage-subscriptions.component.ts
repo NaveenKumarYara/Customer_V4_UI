@@ -29,8 +29,8 @@ export class ManageSubscriptionsComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));  
     this.toastr.setRootViewContainerRef(_vcr);
     window['Chargebee'].init({
-      site: 'arytic',
-      publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
     });
   }
 
