@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DashboardService } from '../../dashboard.service';
 import { Router } from '@angular/router';
 import { Jobs } from '../../../../../models/jobs';
+declare var $: any;
 @Component({
   selector: 'app-recentjobscount',
   templateUrl: './recentjobscount.component.html',
@@ -16,6 +17,7 @@ export class RecentjobsCountComponent implements OnInit {
    jobLoader = false;
    jobId: any;
    jobS: any;
+   statusId:any;
    customerId: any;
    userId: any;
 
@@ -36,23 +38,35 @@ export class RecentjobsCountComponent implements OnInit {
 
 
     ngOnInit() {
-      //  this.GetProfileCount();
+       this.GetProfileCount();
   }
 
-  // GetProfileCount()
-  // {
-  // this.jobId = this.job.JobId;
-  //   return this.dashboardservice.getJobCount(this.jobId,this.customerId).subscribe(res => {
-  //   this.jobS = res;
-  //  });
-  // }
+  GetProfileCount()
+  {
+  this.jobId = this.job.JobId;
+    return this.dashboardservice.getSuggestedCount(this.jobId).subscribe(res => {
+    this.jobS = res;
+   });
+  }
 
-  GetJobsRedirect(statusId) {
-   sessionStorage.setItem('jobId', JSON.stringify(this.jobId));
-   sessionStorage.setItem('statusid', JSON.stringify(statusId));
+  GetJobsRedirect(val,customerId,userId,jobId)  {
+    if(val>0){
+    this.statusId=val;
+    }
+    else{
+     this.statusId=0;
+   }
+   sessionStorage.setItem('customerId', JSON.stringify(customerId));
+   sessionStorage.setItem('userId', JSON.stringify(userId));
+   sessionStorage.setItem('jobId', JSON.stringify(jobId));
+   sessionStorage.setItem('statusid', JSON.stringify(this.statusId));
+   $("#activeMyjob").addClass('active');
+   let jobactive= true;
+   localStorage.setItem('jobactive', JSON.stringify(jobactive));
    this.router.navigateByUrl('app-view-jobdetails');
-  }
+     }
+ 
+ }
 
 
 
-}

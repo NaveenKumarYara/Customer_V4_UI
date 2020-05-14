@@ -63,6 +63,16 @@ export class DashboardService {
         );
       }
 
+      getSuggestedCount(jobId:number)
+     {
+        const url = this.settingsService.settings.SuggestedCount +
+        'jobId=' + jobId;
+        return this.http.get<string>(url)
+          .debounceTime(1000)
+          .catch(
+            this.handleError
+        );
+     }
     getDashboardStatistics(customerId: number, userId: number,filter:number): Observable<DashboardStatistics> {
         const url = this.settingsService.settings.DashboardStatistics +
         'customerId=' + customerId + '&userId=' + userId + '&filter=' +filter;

@@ -111,6 +111,7 @@ export class Settings {
   CompanyNewsPapers: string;
   GetCompanyBenfits: string;
   JobsProfileCount: string;
+  SuggestedCount:string;
   GetJobDetialCustomerComments: string;
   GetJobTemplates: string;
   // CompanyProfileLocationInfo: 'http://api.tenendus.com:1090/JobsAPI/api/GetCustomerPreferredLocation?',

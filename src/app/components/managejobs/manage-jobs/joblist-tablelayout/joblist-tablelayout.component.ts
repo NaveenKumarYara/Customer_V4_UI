@@ -44,7 +44,7 @@ export class JoblistTablelayoutComponent implements OnInit {
     }
 
   ngOnInit() {
-    // this.GetProfileCount();
+    this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
   }
@@ -132,10 +132,10 @@ editJob(jobId, active) {
     // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
  // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
 }
-  GetProfileCount() {
-    this.jobId = this.job.JobId;
-    return this.managejobservice.getJobCount(this.jobId, this.customerId).subscribe(res => {
-     this.jobData = res;
-   });
-  }
+GetProfileCount() {
+  this.jobId = this.job.JobId;
+  return this.managejobservice.getSuggestedCount(this.jobId).subscribe(res => {
+   this.jobData = res;
+ });
+}
 }

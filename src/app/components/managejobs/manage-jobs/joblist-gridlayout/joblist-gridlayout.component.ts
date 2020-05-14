@@ -47,7 +47,7 @@ export class JoblistGridlayoutComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.GetProfileCount();
+     this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
   }
@@ -105,7 +105,7 @@ export class JoblistGridlayoutComponent implements OnInit {
 
   GetProfileCount() {
     this.jobId = this.job.JobId;
-    return this.managejobservice.getJobCount(this.jobId, this.customerId).subscribe(res => {
+    return this.managejobservice.getSuggestedCount(this.jobId).subscribe(res => {
      this.jobData = res;
    });
   }

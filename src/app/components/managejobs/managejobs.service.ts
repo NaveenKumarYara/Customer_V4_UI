@@ -126,6 +126,17 @@ export class ManageJobService {
     );
   }
 
+  getSuggestedCount(jobId:number)
+  {
+     const url = this.settingsService.settings.SuggestedCount +
+     'jobId=' + jobId;
+     return this.http.get<string>(url)
+       .debounceTime(1000)
+       .catch(
+         this.handleError
+     );
+  }
+
   GetAutoSearch(term: string = null, customerId: number): Observable<string[]> {
     const url = this.settingsService.settings.GetAutoSearch + '?searchText=' + term + '&customerId=' + customerId;
     return this.http.get<string[]>(url)

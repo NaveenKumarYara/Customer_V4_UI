@@ -162,5 +162,6 @@
   "GetDeafultTemplates": "https://identityapi-dev.arytic.com/api/GetDefaultTemplates",
   "GetCustomerWeekReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphWeek",
   "GetCustomerMonthReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphMonth",
-  "GetCustomerYearReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphYear"
+  "GetCustomerYearReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphYear",
+  "SuggestedCount":"https://identityapi-dev.arytic.com/api/GetSuggestedCountbyJobId?"
 }

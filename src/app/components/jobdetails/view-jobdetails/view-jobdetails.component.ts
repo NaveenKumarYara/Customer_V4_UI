@@ -453,7 +453,6 @@ export class ViewJobdetailsComponent implements OnInit {
           if (this.statusid === 4) {
             // debugger
             $("#Prospect").addClass('active');
-            $("#Screening").addClass('active');  
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
         this.updateappliedstatus();

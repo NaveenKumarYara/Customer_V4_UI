@@ -162,5 +162,6 @@
   "GetDeafultTemplates": "${Identity_URL}/api/GetDefaultTemplates",
   "GetCustomerWeekReport":"${Identity_URL}/api/GetCustomerApplicationGraphWeek",
   "GetCustomerMonthReport":"${Identity_URL}/api/GetCustomerApplicationGraphMonth",
-  "GetCustomerYearReport":"${Identity_URL}/api/GetCustomerApplicationGraphYear"
+  "GetCustomerYearReport":"${Identity_URL}/api/GetCustomerApplicationGraphYear",
+  "SuggestedCount":"${Identity_URL}/api/GetSuggestedCountbyJobId?"
 }
