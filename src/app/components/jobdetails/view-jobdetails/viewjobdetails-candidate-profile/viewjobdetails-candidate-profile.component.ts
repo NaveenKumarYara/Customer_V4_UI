@@ -543,7 +543,42 @@ updateWishlist(event, profileId) {
   // });
   this.parentApi.CallwishList(event, profileId, this.jobid);
 }
+
+
+displayVideoProfile(profileId, profileOrSizzle) {
+  // (function ($) {
+  // // TODO: test multiple cards -- open and close function
+  // const $card = $('.page--job-details .tab-content .card');
+  //  const $detailBtn = $card.find('.show-matching-details');
+  //   $detailBtn.on('click', function (e) {
+
+  //     e.preventDefault();
+  //     const $selectedCard = $(this).closest('.card');
+  //     const $detailsDiv = $selectedCard.find('.matching-details');
+  //     const $detailsCloseBtn = $selectedCard.find('.close');
+  //     $detailsDiv.toggleClass('open');
+
+  //     $detailsCloseBtn.on('click', function (e) {
+  //       e.preventDefault();
+  //       $detailsDiv.removeClass('open');
+  //     });
+  //   });
+  // })(jQuery);
+  // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
+  //   this.profileVideo = res[0]; });
+  // profile.VideoSizzle,profile.VideoProfile
+
+  // $('.matching-details').removeClass('open');
+  // $('#matchingDetails-' + profileId).toggleClass('open');
+  if (profileOrSizzle === true) {
+    
+      $('.matching-details').removeClass('open');
+      $('#profileVideo-' + profileId).toggleClass('open');  
+  }
+
+}
 displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle) {
+  this.debugger
   // (function ($) {
   // // TODO: test multiple cards -- open and close function
   // const $card = $('.page--job-details .tab-content .card');
