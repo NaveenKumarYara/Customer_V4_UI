@@ -735,6 +735,7 @@
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
                             <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
+                                <
                             </a>
                             <div class="col-md-4 skill-click"
                                 *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
@@ -1030,7 +1031,7 @@
                     <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
                     <li>
                         <!--Word doc-->
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName,profile?.ProfileId)">
                             <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
                                 title="Download Resume">
                         </a>

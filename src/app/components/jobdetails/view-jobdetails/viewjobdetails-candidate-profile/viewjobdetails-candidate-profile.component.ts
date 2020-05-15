@@ -17,6 +17,8 @@ import { SendEmailComponent } from './send-email/send-email.component';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
 import{UniqueMonthYearPipe} from './../months.pipe';
+import * as FileSaver from 'file-saver';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -50,6 +52,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   matchingParameterData = new MatchingParameterDetails();
   experience: any;
   location: any;
+  fileType = new Resume();
+  fileExt: any;
   skills: any = null;
   loading: boolean;
   schIntw = new ScheduleInterview();
@@ -97,7 +101,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   ProfileId: any;
   currentNo: number[] =[];
   constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
-    ,private _service: ApiService , private dialog: MatDialog) {
+    ,private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -577,6 +581,47 @@ displayVideoProfile(profileId, profileOrSizzle) {
   }
 
 }
+
+base64ToArrayBuffer(base64) {
+  const binary_string = window.atob(base64);
+  const len = binary_string.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binary_string.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+DownloadResume(val,profileId): void {
+  this._service.GetService('ProfileAPI/api/GetResume?profileId=', profileId)
+   .subscribe(fileData => { 
+      this.fileType = fileData;
+      let exp = this.fileType.Url.split('.').pop();
+      this.fileExt = exp;
+    this.toastr.success('Downloading!', 'Success!');
+    setTimeout(() => {
+      this.toastr.dismissToast;
+    }, 3000);   
+     debugger 
+     
+      if(this.fileExt == 'pdf')
+      {
+      let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+      let blob = new Blob([byteArr], { type: 'application/pdf' });
+      FileSaver.saveAs(blob,val);
+      }
+      else if(this.fileExt == 'doc' ||  this.fileExt == 'docx')
+      {
+        var extension = '.doc';
+        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+        let blob = new Blob([byteArr], { type: 'application/pdf' });
+        FileSaver.saveAs(blob,val+extension);
+      }
+    });
+
+
+
+}
 displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle) {
   this.debugger
   // (function ($) {
@@ -826,4 +871,11 @@ ModifiedBy: number;
 ModifiedOn: string;
 ProfileId: number;
 
+}
+
+export class Resume {
+  ResumeId: number;
+  ProfileId: number;
+  Url: string;
+  ResumeFile: string;
 }
