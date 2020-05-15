@@ -2407,13 +2407,6 @@ border-radius:0px;
   .personality-test-results .placeholder {
     text-align: left;
   }
-/*Perosnality/cultural tests are in progress*/
-.personality-test-results .no-result-view{
-    padding: 36px;
-    -webkit-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
-   -moz-box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
-   box-shadow: -2px -1px 7px -4px rgba(0,0,0,0.75);
-}
 
   .disabledLink {
     color: gray;
@@ -2517,6 +2510,10 @@ border-radius:0px;
   .pl-0 {
     padding-left: 0px !important;
   }
-  
  
-  
+  .personality-test-results .personality-result-view p.y-t-p, 
+  .personality-test-results .culture-result-view p.y-t-p{
+    color: #6a7e9c;
+    font-size: 14px;
+    padding: 23px 0px!important;
+}

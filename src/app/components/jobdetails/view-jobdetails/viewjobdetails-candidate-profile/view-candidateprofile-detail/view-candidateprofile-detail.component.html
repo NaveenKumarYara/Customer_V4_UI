@@ -571,27 +571,14 @@
 
                     <div class="row placeholder">
                       <img alt="icon" src="assets/images/personal-skills.svg">
-                      <!--Personality & Cultural tests are in progress view 12-05-2020-->
-                      <!-- <div class="col-md-5 personality-result-view text-left no-result-view">
-                        <h4 class="text-center">Personality Test </h4>
-                        <h6 class="text-center">Not yet performed </h6>
-                      </div>
-                      <div class="col-md-5 culture-result-view text-left no-result-view"">
-                        <h4 class="text-center"> Culture Test</h4>
-                        <h6 class="text-center">Not yet performed </h6>
-                      </div> -->
-                      <!---->
-                 
                       <div class="col-md-5 personality-result-view text-left">
                         <h4>Personality Test </h4>
-        
                         <div class="row">
                           <div class="col-md-8">
                             <div *ngIf="isPublicAvailable == false">
-                              <p class="profile-note">Yet to be Performed</p>
-    
-                            </div>      
-                                   
+                              <p class="y-t-p">Yet to be Performed</p>
+                            </div>
+
                             <div class="progress" *ngIf="isPublicAvailable == true">
                               <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
                                 class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
@@ -606,7 +593,8 @@
                         </div>
                         <!---->
                         <div *ngIf="isPublicAvailable == true">
-                          <button class="btn btn-success" (click)="GetCandidatePersonalityResult()" data-target=".test-dialog" data-toggle="modal">
+                          <button class="btn btn-success" (click)="GetCandidatePersonalityResult()"
+                            data-target=".test-dialog" data-toggle="modal">
                             View Detailed Report</button>
                         </div>
                         <!---->
@@ -617,36 +605,32 @@
                         </h4>
                         <div class="row">
                           <div class="col-md-8">
-                           
-                              <div *ngIf="isPublicAvailable1 == false">
-                                <p class="profile-note">Yet to be Performed</p>
-      
-                              </div>
-                            
-                            
-                           
-                              <div class="progress" *ngIf="isPublicAvailable1 == true">
-                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
-                                  class="progress-bar progress-bar-info  progress-bar-striped active" role="progressbar"
-                                  style="min-width: 100%;">
-                                  <span class="sr-only">100% Complete (success)</span>
-                                </div>
+                            <div *ngIf="isPublicAvailable1 == false">
+                              <p class="y-t-p">Yet to be Performed</p>
+                            </div>
+                            <div class="progress" *ngIf="isPublicAvailable1 == true">
+                              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
+                                class="progress-bar progress-bar-info  progress-bar-striped active" role="progressbar"
+                                style="min-width: 100%;">
+                                <span class="sr-only">100% Complete (success)</span>
                               </div>
                             </div>
-                            <div class="col-md-2" *ngIf="isPublicAvailable1 == true">
-                              <h3>100%</h3>
-                            </div>
                           </div>
-                          <!---->
-                          <div *ngIf="isPublicAvailable1 == true">
-                            <button class="btn btn-success" (click)="GetCultGraph()" data-target=".test-dialog" data-toggle="modal">
-                              View Detailed Report</button>
+                          <div class="col-md-2" *ngIf="isPublicAvailable1 == true">
+                            <h3>100%</h3>
                           </div>
-                         
-                        
+                        </div>
+                        <!---->
+                        <div *ngIf="isPublicAvailable1 == true">
+                          <button class="btn btn-success" (click)="GetCultGraph()" data-target=".test-dialog"
+                            data-toggle="modal">
+                            View Detailed Report</button>
+                        </div>
+
+
                         <!---->
                       </div>
-                         
+
                     </div>
                   </div>
                   <!---->
@@ -917,39 +901,36 @@
             aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-          
+
         <ng-container *ngIf="show===false">
-            <div *ngFor="let label of graphLabelList; let i=index">
-              <a class="d-inline-b">
-                <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
-                </span>
-                {{label.GroupLabel}} - {{label.GroupPer}}%
-              </a>
-              <br>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div style="width:70%;margin:auto;">
-              <canvas #testChart width="400" height="400"></canvas>
-            </div>
+          <div *ngFor="let label of graphLabelList; let i=index">
+            <a class="d-inline-b">
+              <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
+              </span>
+              {{label.GroupLabel}} - {{label.GroupPer}}%
+            </a>
+            <br>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div style="width:70%;margin:auto;">
+            <canvas #testChart width="400" height="400"></canvas>
+          </div>
         </ng-container>
-            <ng-container *ngIf="show===true">
-              <div *ngFor="let label of graphLabelList1; let i=index">
-                <a class="d-inline-b">
-                  <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
-                  </span>
-                  {{label.GroupLabel}} - {{label.GroupPer}}%
-                </a>
-                <br>
-              </div>
-              <div class="clearfix">&nbsp;</div>
-              <div style="width:70%;margin:auto;">
-                <canvas #testChart9 width="400" height="400"></canvas>
-              </div> 
-            </ng-container>
+        <ng-container *ngIf="show===true">
+          <div *ngFor="let label of graphLabelList1; let i=index">
+            <a class="d-inline-b">
+              <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
+              </span>
+              {{label.GroupLabel}} - {{label.GroupPer}}%
+            </a>
+            <br>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div style="width:70%;margin:auto;">
+            <canvas #testChart9 width="400" height="400"></canvas>
+          </div>
+        </ng-container>
 
-     
-
-        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -957,4 +938,3 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
-
