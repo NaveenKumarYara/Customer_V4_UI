@@ -141,6 +141,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="job-type">Job Type
+                                <ng-container *ngIf="isEmpchecked==true">
+                                    <img src="../../../../../assets/images/check-mark.svg"  alt="email">
+                                 </ng-container>
+
                                 <span class="c-f-default" (click)="RemoveComponent(1)">
                                     Clear Filter
                                 </span>
@@ -210,6 +214,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="job-type">Location
+                                <ng-container *ngIf="isLocchecked==true">
+                                    <img src="../../../../../assets/images/check-mark.svg"  alt="email">
+                                 </ng-container>
+
                                 <span class="c-f-default" (click)="RemoveComponent(2)">
                                     Clear Filter
                                 </span>
@@ -272,8 +280,13 @@
                     <!--Job title-->
                     <div class="col-md-6">
                         <!-- [hidden]="!Jobtitle" -->
-                        <div class="form-group">
+                        <div class="form-group ">
+                          
                             <label for="addJobtitle">Job Title
+                                <ng-container *ngIf="isTitlechecked==true">
+                                   <img src="../../../../../assets/images/check-mark.svg"  alt="email">
+                                </ng-container>
+
                                 <span class="c-f-default" (click)="RemoveComponent(3)">Clear Filter</span>
                             </label>
                             <!--QATC-685 Fix-->
@@ -334,6 +347,10 @@
                         <!-- [hidden]="!profiletypefilter" -->
                         <div class="form-group">
                             <label for="addProfilestatusfilter">Job Status
+                                <ng-container *ngIf="isStatchecked==true">
+                                    <img src="../../../../../assets/images/check-mark.svg"  alt="email">
+                                 </ng-container>
+
                                 <span class="c-f-default" (click)="RemoveComponent(4)">Clear Filter</span>
                             </label>
                             <!--QATC-685 Fix-->
@@ -392,6 +409,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="addusers">Users
+                                <ng-container *ngIf="ischecked==true">
+                                    <img src="../../../../../assets/images/check-mark.svg"  alt="email">
+                                 </ng-container>
+
                                 <span class="c-f-default" (click)="RemoveComponent(15)">Clear Filter</span>
                             </label>
                             <!--QATC-685 Fix-->
@@ -400,11 +421,11 @@
                                     <mat-expansion-panel-header>
                                         <mat-panel-description>
                                             <mat-form-field>
-                                                <mat-select [formControl]="Jobtitle" placeholder="Users"
+                                                <mat-select [formControl]="Users" placeholder="Users"
                                                     [multiple]="true" #multiSelect>
                                                     <ngx-mat-select-search placeholderLabel="Search"
                                                         noEntriesFoundLabel="'no matching found'"
-                                                        [formControl]="JobtitleFilter">
+                                                        [formControl]="UsersFilter">
                                                     </ngx-mat-select-search>
                                                     <mat-option *ngFor="let empl of filteredUsersList | async"
                                                         (click)="changeUser(empl.UserId)" [value]="empl">
@@ -424,11 +445,11 @@
                                     <mat-expansion-panel-header>
                                         <mat-panel-description>
                                             <mat-form-field>
-                                                <mat-select [formControl]="Jobtitle" placeholder="Users"
+                                                <mat-select [formControl]="Users" placeholder="Users"
                                                     [multiple]="true" #multiSelect>
                                                     <ngx-mat-select-search placeholderLabel="Search"
                                                         noEntriesFoundLabel="'no matching found'"
-                                                        [formControl]="JobtitleFilter">
+                                                        [formControl]="UsersFilter">
                                                     </ngx-mat-select-search>
                                                     <mat-option *ngFor="let empl of filteredUsersList | async"
                                                         (click)="changeUser(empl.UserId)" [value]="empl">

@@ -64,7 +64,6 @@ export class FilterjobsComponent implements OnInit {
       );
       filtersdialogRef.afterClosed().subscribe(result => {
         console.log('Chatbox Dialog result: ${result}');
-        debugger
         if(result != undefined){     
           this.saveFilter.CustomerId=this.customerId;
           this.saveFilter.UserId=this.userId;
@@ -91,7 +90,6 @@ export class FilterjobsComponent implements OnInit {
           this.saveFilter.empType=result.data.empType;
           this.saveFilter.education=result.data.education;
           this.saveFilter.users=result.data.Users;
-          debugger
           return this.managejobservice.SaveJobFilter(this.saveFilter).subscribe(data => {
             if(data==0)
             {

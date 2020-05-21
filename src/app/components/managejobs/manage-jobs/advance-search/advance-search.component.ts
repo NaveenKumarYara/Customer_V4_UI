@@ -89,7 +89,11 @@ cityloading = false;
   @Input() parentApi: ParentComponentApi; 
   @Output() OutputtoParent =  new EventEmitter<any[]>();
 
-
+  isLocchecked:boolean=false;
+  isTitlechecked:boolean=false;
+  isEmpchecked:boolean=false;
+  isStatchecked:boolean=false;
+  ischecked:boolean=false;
   ClientList: any = [];
   JobtitleList: any = [];
   DepartmentList: any = [];
@@ -297,7 +301,6 @@ cityloading = false;
   SetSearch(val)
   {
     this.location = val.join(',').toString();
-    debugger
     this.parentApi.callSearchMethod(this.location); 
   }
 
@@ -607,10 +610,7 @@ clients.length > 0 ||
       // var index = this.SelectedJobtitleList.Push(this.JobtitleMainList.find(a=>a.JobTitle == JobTitleId));
       // this.SelectedJobtitleList.splice(index,1);
       this.SelectedJobtitleList.push(JobTitleId);
-   }
-debugger
-
-      
+   }     
   }
 changeCategory(JobCategoryId){
   if(this.SelectedCategoryList.length==0)
@@ -790,6 +790,44 @@ changeDomain(DomainId){
           this.SearchDept   = [];
          });
   
+  }
+
+  GetSavedJobFilter()
+  {
+
+
+      return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
+       
+        if(res!=null)
+        {
+          if(res.titles!='')
+          {
+            this.isTitlechecked=true;
+          }
+          if(res.locations!='')
+          {
+            this.isLocchecked=true;
+          }
+          if(res.empType!='')
+          {
+            this.isEmpchecked=true;
+          }
+          if(res.JobStatus!='')
+          {
+            this.isStatchecked=true;
+          }
+          if(res.users!='')
+          {
+            this.ischecked=true;
+          }
+
+        }
+        
+           
+      });  
+ 
+   
+    
   }
 
   ClearAll()
@@ -1587,6 +1625,7 @@ protected filterDomain(){
     this.LastPostedMainList= this.LastPostedList;
     this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
     this.ProfileStatusMainList = this.ProfileStatusList;
+    this.GetSavedJobFilter();
     this.getAllUsers();
     this.getQualificationDetails();
     this.getAllJobTitle();
