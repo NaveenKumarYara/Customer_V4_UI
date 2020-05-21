@@ -306,8 +306,9 @@ export class Step4Component implements OnInit {z
           this.appService.locationselect=false;
           this.appService.JobLocationsMulti=[];
           // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-          this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+          this.router.navigate([localStorage.getItem('EditViewJob') != null ?        
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          localStorage.setItem('post','1');
         }
       });
       if (index === array.length -1) 
@@ -343,6 +344,7 @@ export class Step4Component implements OnInit {z
           // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          localStorage.setItem('post','1');
         }
       });
 

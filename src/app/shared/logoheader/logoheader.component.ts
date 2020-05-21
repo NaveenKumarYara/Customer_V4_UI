@@ -56,7 +56,6 @@ GetSubscriptionDetails(sid)
 {
   return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
     this.sdetails = res;
-    debugger
     let date = new Date();  
     let val = new Date(date.setDate(date.getDate()));
     if(new Date(this.sdetails.nextBillingAt) < val)

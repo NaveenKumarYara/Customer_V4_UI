@@ -171,4 +171,7 @@ export class Settings {
   GetCustomerWeekReport:string;
   GetCustomerMonthReport:string;
   GetCustomerYearReport:string;
+  SaveJobFilter:string;
+  GetSavedJobFilter:string;
+  DeleteJobFilter:string;
   }

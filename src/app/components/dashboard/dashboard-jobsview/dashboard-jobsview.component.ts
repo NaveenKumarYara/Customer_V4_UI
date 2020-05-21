@@ -1179,6 +1179,7 @@ GetJobPostedYear()
   Jobs(sortBy) {
     localStorage.setItem('orderDate',JSON.stringify(this.statsFilter))
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
+    localStorage.setItem('dashboard','1');
     this.router.navigateByUrl('app-manage-jobs');
   }
 

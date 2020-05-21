@@ -34,6 +34,7 @@ export class LoadJoblistComponent implements OnInit {
   joblistcount: number;
   defaultValue:any=0;
   jobs: any;
+  values:any;
   clientId:any;
   departmentId:any;
   loaddata = false;
@@ -52,7 +53,7 @@ export class LoadJoblistComponent implements OnInit {
    isfiltered :any;
    status:any=0;
    newSortBy:any=0;
-
+   post:any;
   processed = false;
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
@@ -75,16 +76,11 @@ export class LoadJoblistComponent implements OnInit {
     this.managejobservice.currentjoblistcount.subscribe(x => this.joblistcount = x);
     this.spinner.show();
     this.status = localStorage.getItem('orderDate')!=null?localStorage.getItem('orderDate'):0;
-    if(this.status!=null||this.status!=undefined)
-    {
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,this.status,0);
-    }
-    else 
-    {
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,0);
-    }
-    
+    this.values = localStorage.getItem('dashboard');
+    this.post = localStorage.getItem('post');
    
+    localStorage.removeItem('post');
+    localStorage.removeItem('dashboard');   
     this.managejobservice.ShowadvanceSearch.subscribe(x => this.showadvancesearch = x);
     // this.populateJoblistByFilter(this.customerId, this.userId,this.employmentTypeId,this.experience,this.cityId,this.sortBy);
     localStorage.removeItem('sortBy');
@@ -123,6 +119,33 @@ this.status=this.status!=null?status:0;
       this.spinner.hide();
     }); 
   }
+
+  GetSavedJobFilter(val)
+  {
+    debugger
+    if(val==0)
+    {
+      return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
+        if(res!=null)
+        {
+          this.sortBy=0;       
+          this.getParentApi().Filterjobs(res.locations,res.MinExp,res.MaxExp,res.MinSal,res.MaxSal,res.clients,res.domain,res.Immigration,res.lastWeek,res.lastTwoWeek,res.last30days,res.last90days,res.lastyear,res.today,res.category,res.empType,res.JobStatus,res.skills,res.departments,res.titles,res.education,1,res.users);
+        }
+        else
+        {
+          this.populateJoblist(this.customerId, this.userId, this.searchString,0,0,0);
+        }
+           
+      });  
+    }
+    else
+    {
+      this.isfiltered=0;
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,this.status,0);
+    }
+    
+  }
+
 
   populateJoblistByFilter(customerId, userId,employmentTypeId=0,experience=0,cityId=0,clientId=0,viewby=0,departmentId=0) { 
     $('#searchStr').val('');
@@ -186,6 +209,7 @@ this.status=this.status!=null?status:0;
   { 
       this.spinner.show();
       this.newSortBy = sort;
+      this.isfiltered=0;
       this.populateJoblist(this.customerId, this.userId,this.searchString,0,0,this.newSortBy);     
   } 
   clearAll()
@@ -242,6 +266,7 @@ this.status=this.status!=null?status:0;
       this.jobStatus=profileStatus;this.skills=skills;this.departments=departments;this.titles=titles;this.education=education;
       this.isfiltered=isfiltered;
       this.spinner.show();
+      debugger
       this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,profileStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,education,Users).subscribe(res => {
         this.loaddata = true;
         this.joblist = res;
@@ -253,7 +278,15 @@ this.status=this.status!=null?status:0;
   };
   }
 
-  ngOnInit() {
+  ngOnInit() {  
+    if((this.status!=null && this.values == '1') || this.post == '1')
+    {
+      this.GetSavedJobFilter(1);
+    }
+    else
+    {
+      this.GetSavedJobFilter(0);
+    }
    this.spinner.show();
   }
 }

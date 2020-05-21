@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
 import{AdvanceSearchComponent} from '../advance-search/advance-search.component';
 import { Subject, Observable } from 'rxjs';
+import { Savefilter } from '../../models/Savefilter';
 
 
 @Component({
@@ -15,12 +16,19 @@ import { Subject, Observable } from 'rxjs';
 export class FilterjobsComponent implements OnInit {
   constructor(private route: ActivatedRoute,private dialog: MatDialog,
     private router: Router, private managejobservice: ManageJobService) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.userId = this.customer.UserId;
   }
   @Input() parentApi: ParentComponentApi; 
+  customer: any;
+  customerId:any;
+  userId: any;
   viewfiltersDialgoref: MatDialogRef<AdvanceSearchComponent>;
   gridlayoutClicked = true;
   tablelayoutClicked = false;
   activeClassBool = true;
+  saveFilter=new Savefilter();
 
 
   
@@ -38,14 +46,49 @@ export class FilterjobsComponent implements OnInit {
       filtersdialogRef.afterClosed().subscribe(result => {
         console.log('Chatbox Dialog result: ${result}');
         debugger
-        if(result != undefined){
+        if(result != undefined){     
+          this.saveFilter.CustomerId=this.customerId;
+          this.saveFilter.UserId=this.userId;
+          this.saveFilter.SortBy=0;       
+          this.saveFilter.MinSal=result.data.minSal;
+          this.saveFilter.MaxSal=result.data.maxSal;
+          this.saveFilter.MinExp=result.data.minExp;
+          this.saveFilter.MaxExp=result.data.maxExp;
+          this.saveFilter.JobStatus=result.data.profileStatus;
+          this.saveFilter.locations=result.data.locList;
+          this.saveFilter.skills=result.data.skills;
+          this.saveFilter.clients=result.data.clients;
+          this.saveFilter.titles=result.data.titles;
+          this.saveFilter.departments=result.data.departments;
+          this.saveFilter.domain=result.data.domain;
+          this.saveFilter.Immigration=result.data.immigrations;
+          this.saveFilter.lastWeek=result.data.lastWeek;
+          this.saveFilter.lastTwoWeek=result.data.lastTwoWeek;
+          this.saveFilter.last30days=result.data.last30days;
+          this.saveFilter.last90days=result.data.last90days;
+          this.saveFilter.lastyear=result.data.lastyear;
+          this.saveFilter.today=result.data.today;
+          this.saveFilter.category=result.data.category;
+          this.saveFilter.empType=result.data.empType;
+          this.saveFilter.education=result.data.education;
+          this.saveFilter.users=result.data.Users;
+          debugger
+          return this.managejobservice.SaveJobFilter(this.saveFilter).subscribe(data => {
+            if(data==0)
+            {
+              this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.profileStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education,result.data.isfiltered,result.data.Users);
+            }
+           
+          });
         // locations,minExp, MaxExp,minSal,maxSal
-        this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.profileStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education,result.data.isfiltered,result.data.Users);
+        //this.parentApi.Filterjobs(result.data.locList,result.data.minExp,result.data.maxExp,result.data.minSal,result.data.maxSal,result.data.clients,result.data.domain,result.data.immigrations,result.data.lastWeek,result.data.lastTwoWeek,result.data.last30days,result.data.last90days,result.data.lastyear,result.data.today,result.data.category,result.data.empType,result.data.profileStatus,result.data.skills,result.data.departments,result.data.titles,result.data.education,result.data.isfiltered,result.data.Users);
       }
         // console.log('result.data',result.data);
       });
     
   }
+
+  
 
 
 

@@ -6,6 +6,7 @@ import { retry } from 'rxjs/operator/retry';
 import { BehaviorSubject } from 'rxjs';
 
 import {JobCount} from './models/JobCount';
+import {Savefilter} from './models/Savefilter';
 import { JobDetails } from './models/jobdetails';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
@@ -124,6 +125,34 @@ export class ManageJobService {
       .catch(
         this.handleError
     );
+  }
+
+  getSavedJobsFilter(customerId: number,userId:number): Observable<Savefilter> {
+    const url = this.settingsService.settings.GetSavedJobFilter +
+    'customerId=' + customerId + '&userId=' + userId;
+    return this.http.get<Savefilter>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
+
+  DeleteSavedJobsFilter(JobFilterId: number) {
+    const url = this.settingsService.settings.DeleteJobFilter +
+    'jobFilterId=' + JobFilterId ;
+    return this.http.delete<string[]>(url)
+    .catch(
+      this.handleError
+    );
+  }
+
+
+  SaveJobFilter(body) {
+    return this.http.post(this.settingsService.settings.SaveJobFilter, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
   }
 
   getSuggestedCount(jobId:number)

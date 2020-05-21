@@ -391,7 +391,9 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="addusers">Users</label>
+                            <label for="addusers">Users
+                                <span class="c-f-default" (click)="RemoveComponent(15)">Clear Filter</span>
+                            </label>
                             <!--QATC-685 Fix-->
                             <ng-container *ngIf="SelectedUsersList.length==0">
                                 <mat-expansion-panel [disabled]="true">
