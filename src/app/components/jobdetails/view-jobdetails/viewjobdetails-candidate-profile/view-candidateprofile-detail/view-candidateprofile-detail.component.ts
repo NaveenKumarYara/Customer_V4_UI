@@ -325,7 +325,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         this.graphLabelList1 = [];
 
         if (this.testChart9) {
-
+           
           var testChart9Canvas = this.testChart9.nativeElement.getContext('2d');
           this.graphLabelCult = [];
           this.graphDataCult = [];
@@ -334,7 +334,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
             this.graphDataCult.push(value);
             this.graphLabelCult.push(b.groupName);
             this.graphLabelList1.push(new LegendList());
-            this.graphLabelList[index].GroupId = (b.questionnaireGroupId);
+            //this.graphLabelList[index].GroupId = (b.questionnaireGroupId);
             this.graphLabelList1[index].GroupLabel = (b.groupName);
             this.graphLabelList1[index].GroupPer = (value.toFixed(2));
           })
