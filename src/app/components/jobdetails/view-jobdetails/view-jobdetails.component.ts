@@ -148,6 +148,7 @@ export class ViewJobdetailsComponent implements OnInit {
   }
 
   backClicked() {
+    localStorage.setItem('post','1');
     this._location.back();
   }
   openCandidate() {

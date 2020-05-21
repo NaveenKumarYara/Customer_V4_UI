@@ -29,8 +29,27 @@ export class FilterjobsComponent implements OnInit {
   tablelayoutClicked = false;
   activeClassBool = true;
   saveFilter=new Savefilter();
+  ischecked:boolean=false;
+
+  GetSavedJobFilter()
+  {
 
 
+      return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
+        if(res!=null)
+        {
+         this.ischecked=true;
+        }
+        else
+        {
+         this.ischecked=false;
+        }
+           
+      });  
+ 
+   
+    
+  }
   
   OpenFiltersDialog() {
       const filtersdialogRef = this.dialog.open(AdvanceSearchComponent,
@@ -124,7 +143,7 @@ export class FilterjobsComponent implements OnInit {
 
 
   ngOnInit() {
-  
+  this.GetSavedJobFilter();
   }
 
  
