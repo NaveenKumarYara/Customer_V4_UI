@@ -117,11 +117,12 @@ export class FilterjobsComponent implements OnInit {
    }
 
   navigateToGridLayout() {
-    this.router.navigate(['app-manage-load-joblist/1'], { relativeTo: this.route });
+    this.router.navigateByUrl('app-manage-jobs/app-manage-load-joblist/1');
   }
 
   navigateToTableLayout() {
-    this.router.navigate(['app-manage-load-joblist/2'], { relativeTo: this.route });
+    debugger
+    this.router.navigateByUrl('app-manage-jobs/app-manage-load-joblist/2');
   }
 
   toggleTableLayout() {
