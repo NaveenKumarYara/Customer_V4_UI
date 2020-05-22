@@ -44,6 +44,7 @@ export class ViewJobdetailsComponent implements OnInit {
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
   totalCount:any;
+  SuggestedCount:any;
   wsList = new WishList();
   wishlistCount: WishlistCount;
   jobstatistics: Jobstatistics;
@@ -255,10 +256,10 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     // this.PopulateJobdetailProfiles();
-    if (this.jobstatistics.AryticSuggested > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AryticSuggested,
+    if (this.SuggestedCount > 0) {
+    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.SuggestedCount,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
-    this.loadMore = this.jobstatistics.AryticSuggested > 6 ? true : false;
+    this.loadMore = this.SuggestedCount > 6 ? true : false;
   } else {
     // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
     //   this.sortBy, 6);
@@ -419,7 +420,7 @@ export class ViewJobdetailsComponent implements OnInit {
      } else if (this.statusid === 6) {
       this.statistics = this.jobstatistics.RejectedORWithdrawn;
     } else if (this.statusid === 15) {
-      this.statistics = this.jobstatistics.AryticSuggested; }
+      this.statistics = this.SuggestedCount; }
       else if (this.statusid === 17) {
         this.statistics = this.jobstatistics.InProgress; }
     this.profileLoader = true;
@@ -449,6 +450,7 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.Counts = this.child.TotalCount;
+      
       this.inprogressview(1);
         if (onload === 1) {
           if (this.statusid === 4) {
@@ -484,6 +486,12 @@ export class ViewJobdetailsComponent implements OnInit {
       }
       sessionStorage.removeItem('statusid');
     });
+  }
+  GetProfileSuggestedCount() {
+    return this.jobdetailsservice.getSuggestedCount(this.jobid).subscribe(res => {
+      debugger
+     this.SuggestedCount = res;
+   });
   }
   // PopulateJobdetailProfiles() {
   //   return this.jobdetailsservice.getJobDetailsProfileInfo(this.jobid, this.statusid).subscribe(res => {
@@ -554,6 +562,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
     this.populateJobsBasicInfo(this.customerId, this.jobid);
+    this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
     if(this.ProfileId!=null||this.ProfileId!=undefined)
     {
@@ -594,7 +603,7 @@ export class ViewJobdetailsComponent implements OnInit {
        } else if (this.statusid === 6) {
         this.statistics = this.jobstatistics.RejectedORWithdrawn;
       }  else if (this.statusid === 15) {
-        this.statistics = this.jobstatistics.AryticSuggested; }
+        this.statistics = this.SuggestedCount; }
         else if (this.statusid === 17) {
           this.statistics = this.jobstatistics.InProgress; }
         this.loadMore = this.statistics > 6 ? true : false;
@@ -617,7 +626,7 @@ export class ViewJobdetailsComponent implements OnInit {
        } else if (this.statusid === 6) {
         this.statistics = this.jobstatistics.RejectedORWithdrawn;
       }  else if (this.statusid === 15) {
-        this.statistics = this.jobstatistics.AryticSuggested; }
+        this.statistics = this.SuggestedCount; }
         else if (this.statusid === 17) {
           this.statistics = this.jobstatistics.InProgress; }
         this.loadMore = this.statistics > 6 ? true : false;
@@ -672,7 +681,7 @@ export class ViewJobdetailsComponent implements OnInit {
        } else if (this.statusid === 6) {
         this.statistics = this.jobstatistics.RejectedORWithdrawn;
       }  else if (this.statusid === 15) {
-        this.statistics = this.jobstatistics.AryticSuggested; }
+        this.statistics = this.SuggestedCount; }
         else if (this.statusid === 17) {
           this.statistics = this.jobstatistics.InProgress; }
         this.loadMore = this.statistics > 6 ? true : false;
