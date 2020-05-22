@@ -47,11 +47,11 @@ export class DashboardRecentjobsComponent implements OnInit {
     //   }, 4000);
   }
   ViewJobdetails(customerId, userId, jobId) {
-    const statusId = 0;
+    this.statusId=4;
     sessionStorage.setItem('customerId', JSON.stringify(customerId));
     sessionStorage.setItem('userId', JSON.stringify(userId));
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
-    sessionStorage.setItem('statusid', JSON.stringify(statusId));
+    sessionStorage.setItem('statusid', JSON.stringify(this.statusId));
     $("#activeMyjob").addClass('active');
     let jobactive= true;
     localStorage.setItem('jobactive', JSON.stringify(jobactive));
@@ -68,7 +68,7 @@ GetJobsRedirect(val,customerId,userId,jobId)  {
    this.statusId=val;
    }
    else{
-    this.statusId=0;
+    this.statusId=4;
   }
   sessionStorage.setItem('customerId', JSON.stringify(customerId));
   sessionStorage.setItem('userId', JSON.stringify(userId));
