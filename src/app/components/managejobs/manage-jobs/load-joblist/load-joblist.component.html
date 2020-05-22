@@ -25,14 +25,16 @@
                 </select>
             </div>
         </form>
+        <!--Reposition of below component on 20-05-2020-->
+        <ng-container *ngIf="joblist?.TotalCount>=5">
+            <h5 class="show-count">Showing  {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+        </ng-container>
+        <ng-container *ngIf="joblist?.TotalCount<5" >
+            <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
+        </ng-container>
     </div>
 
-    <ng-container *ngIf="joblist?.TotalCount>=5">
-        <h5 class="show-count">Showing  {{joblist?.Jobs?.length||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
-    </ng-container>
-    <ng-container *ngIf="joblist?.TotalCount<5" >
-        <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
-    </ng-container>
+
 
 
     <div class="manage-searchjobs">
@@ -84,6 +86,7 @@
     </div>
 </div>
 <div class="" *ngIf="id==2">
+    <div class="clearfix">&nbsp;</div>
     <div class="tab-content">
         <div id="list-view">
             <ul class="job-list">
