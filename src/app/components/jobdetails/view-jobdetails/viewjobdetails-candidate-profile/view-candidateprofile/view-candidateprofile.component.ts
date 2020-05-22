@@ -84,7 +84,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         setTimeout(() => {
           this.toastr.dismissToast;
         }, 3000);   
-         debugger 
+
          
           if(this.fileExt == 'pdf')
           {

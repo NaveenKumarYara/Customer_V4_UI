@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li id="searchprofiles">
-                            <a data-toggle="tab" href="javascript:void(0)">
+                            <a class="isDisabled" data-toggle="tab" href="javascript:void(0)">
                                 <div>
                                     <h4>Search profiles</h4>
                                 </div>
@@ -154,7 +154,7 @@
                 <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
                 <div class="card-sub-footer" *ngIf="!inprogressprofile">
                 <ul class="nav nav-tabs">
-                    <li  id="Screening">
+                    <li   id="Screening">
                         <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
                             <div>
                                 <h5>{{jobstatistics?.Screening}}</h5>
@@ -187,7 +187,7 @@
                         </a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+                        <a  data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
                             <div>
                                 <h5>{{jobstatistics?.RejectedORWithdrawn}}</h5>
                                 <h6>Rejected / Withdrawn</h6>

@@ -552,3 +552,9 @@
 .mr-top{
     margin-top:0px;
 }
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }

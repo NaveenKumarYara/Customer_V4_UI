@@ -31,11 +31,11 @@ export interface DialogData {
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;
-  selectedOption:Options = new Options(1, 'Skype Id' );
+  selectedOption:Options = new Options(1, 'Skype' );
   options = [
-    new Options(1, 'Skype Id' ),
-     new Options(2, 'WebEX Id' ),
-     new Options(3, 'Zoom LinkId'),
+    new Options(1, 'Skype' ),
+     new Options(2, 'WebEX' ),
+     new Options(3, 'Zoom Link'),
       new Options(4, 'Other' )
   ];
   schIntw = new ScheduleInterview();
