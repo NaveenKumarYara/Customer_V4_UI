@@ -111,7 +111,7 @@ this.dialogRef.close();
 localStorage.setItem('cprofileId',profileId)
 localStorage.setItem('cuserId',userId);
 //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-const url ='https://customer-dev.arytic.com/app-view-candidateprofile-detail';
+const url ='https://customer-demo.arytic.com/app-view-candidateprofile-detail';
 //const url ='http://localhost:4200/app-view-candidateprofile-detail';
 window.open(url, '_blank');
 }
