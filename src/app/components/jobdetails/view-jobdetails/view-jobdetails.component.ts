@@ -228,6 +228,14 @@ export class ViewJobdetailsComponent implements OnInit {
     );
 
   }
+  ClearActiveClasses()
+  {
+    $("#Screening").removeClass('active'); 
+    $("#Shortlisted").removeClass('active'); 
+    $("#Interview").removeClass('active'); 
+    $("#hired").removeClass('active'); 
+    $("#rejected").removeClass('active'); 
+  }
   updateallcandidatesstatus() { 
     this.sortBy = 1;
     this.statusid = 0;
@@ -253,6 +261,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.sortBy = 1;
     this.statusid = 15;
     this.ClearallValues();
+    this.ClearActiveClasses();
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     // this.PopulateJobdetailProfiles();
@@ -276,6 +285,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.SuggestedFlag = false;
     this.base.AryticFlag=false;
     this.ClearallValues();
+    this.ClearActiveClasses();
     this.CallList(this.statusid);
    // this.loadMoreStat=this.statusid;
    this.profilecount = 6;
@@ -314,6 +324,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 17;
     this.displayQuick = 0;
     this.ClearallValues();
+    this.ClearActiveClasses();
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
   if (this.jobstatistics.InProgress > 0) {
