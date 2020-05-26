@@ -300,6 +300,7 @@ editMode: string;
       }
       this.appService.responsibilities = this.ejRoleList;
       this.appService.ResponseList = this.ejListRoles;
+      this.appService.Locationswithpositions=[];
       this.appService.responsibilitesChanged.next(this.appService.responsibilities); // = new Subject<Roles[]>();
       this.appService.addedresponsibilities = this.ejRoleIdList;
       this.appService.addedresponsibilitiesChanged.next(this.appService.addedresponsibilities ); // = new Subject<PjRole[]>();

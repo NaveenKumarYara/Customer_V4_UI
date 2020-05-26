@@ -62,33 +62,44 @@
       </h6>
   </div>
   <div class="form-data-group">
-    <h3 class="question">
-      At which location the job is available?
-    </h3>
-    <ng-container *ngFor="let loc of location">
+
+      <h3 class="question" *ngIf="location.length>0">
+        At which location the job is available?
+      </h3>
+
+   
+    <ng-container *ngFor="let loc of location">   
       <h4 class="data">
         {{loc?.CityName}}
       </h4>
     </ng-container>
-    <ng-container *ngFor="let locs of locations">
+
+      <h3 class="question" *ngIf="locations.length>0">
+        At which  locations and how many open positions the job is available?
+      </h3>
+
+  
+    <ng-container  *ngFor="let job of locations;let i = index">  
       <h4 class="data">
-        {{locs?.CityName}}
+        {{job?.CityName}}- {{job?.Positons}}      
       </h4>
     </ng-container>
+   
+
       
   </div>
   <div class="form-data-group">
-    <h3 class="question">
+    <h3 class="question" *ngIf="location.length>0">
       How many open positions do you currently have for this Job Title?
     </h3>
-      <h4 class="data" *ngIf="noOfopening.length==0">
+      <h4 class="data" *ngIf="location.length>0">
         {{noOfopenings}}
       </h4>
-      <ng-container *ngFor="let open of noOfopening">
+      <!-- <ng-container *ngFor="let open of noOfopening">
         <h4 class="data">
           {{open}}
         </h4>
-      </ng-container>
+      </ng-container> -->
   </div>
   <div class="form-data-group">
     <h3 class="question">
