@@ -174,4 +174,9 @@ export class Settings {
   SaveJobFilter:string;
   GetSavedJobFilter:string;
   DeleteJobFilter:string;
+  GetCustomerYearReportAll:string;
+  GetCustomerApplicantYearReportAll:string;
+  GetCustomerApplicantYear:string;
+  GetCustomerApplicantWeek:string;
+  GetCustomerApplicantMonth:string;
   }

@@ -166,5 +166,10 @@
   "GetCustomerWeekReport":"${Identity_URL}/api/GetCustomerApplicationGraphWeek",
   "GetCustomerMonthReport":"${Identity_URL}/api/GetCustomerApplicationGraphMonth",
   "GetCustomerYearReport":"${Identity_URL}/api/GetCustomerApplicationGraphYear",
+  "GetCustomerYearReportAll":"${Identity_URL}/api/GetCustomerApplicationGraphYearForAll",
+"GetCustomerApplicantYearReportAll":"${Identity_URL}/api/GetCustomerApplicantGraphYearForAll",
+"GetCustomerApplicantYear":"${Identity_URL}/api/GetCustomerApplicantGraphYear",
+"GetCustomerApplicantWeek":"${Identity_URL}/api/GetCustomerApplicantGraphWeek",
+"GetCustomerApplicantMonth":"${Identity_URL}/api/GetCustomerApplicantGraphMonth",
   "SuggestedCount":"${Identity_URL}/api/GetSuggestedCountbyJobId?"
 }

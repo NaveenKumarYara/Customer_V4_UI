@@ -35,19 +35,19 @@ export class JobTemplateComponent {
     this.counter = 0;
   }
 
-  Populate(value)
-  {
-    if(value==0)
-    {
-      this.show=false;
-      this.GetJobTemplates();
-    }
-    else if(value == 1)
-    {
-      this.show=true;
-      this.GetJobDeafultTemplates();
-    }
-  }
+  // Populate(value)
+  // {
+  //   if(value==0)
+  //   {
+  //     this.show=false;
+  //     this.GetJobTemplates();
+  //   }
+  //   else if(value == 1)
+  //   {
+  //     this.show=true;
+  //     this.GetJobDeafultTemplates();
+  //   }
+  // }
 
   editJob(jobId, active) {
 
@@ -62,6 +62,21 @@ export class JobTemplateComponent {
       // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
    // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
   }
+
+  editJobTemp(jobId,CustomerId) {
+
+    this.complete = 4;
+    this.counter
+    localStorage.setItem('templateCustomerId',CustomerId);
+    this.router.navigate(['/app-createajob/', {jobId} ]);
+    localStorage.setItem('completed', JSON.stringify(this.complete));
+    localStorage.setItem('draftItem', false.toString());
+    localStorage.setItem('Item', true.toString());
+    localStorage.setItem('newJobId',  JSON.stringify(this.complete));
+    this.router.navigate(['/app-createajob/app-steps-step1/', {jobId}]);    
+    // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
+ // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
+}
 
   getData() {
     if (this.draft.length < this.joblist.Jobs.length) {
@@ -100,15 +115,14 @@ export class JobTemplateComponent {
   GetJobDeafultTemplates() {
     return this.appService.GetJobDeafultTemplates().subscribe(res => {
       this.defaultjoblist = res;
-      debugger
       //this.drafts = this.defaultjoblist.slice(0, 6);
       this.spinner.hide();
     });
   }
 
   ngOnInit() {
-  this.Populate(0);
-  this.show=false;
+  //this.Populate(0);
+  //this.show=false;
   this.spinner.show();
   this.GetJobTemplates();
   this.GetJobDeafultTemplates();

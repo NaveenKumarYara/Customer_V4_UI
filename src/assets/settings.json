@@ -166,5 +166,10 @@
   "GetCustomerWeekReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphWeek",
   "GetCustomerMonthReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphMonth",
   "GetCustomerYearReport":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphYear",
+  "GetCustomerYearReportAll":"https://identityapi-dev.arytic.com/api/GetCustomerApplicationGraphYearForAll",
+"GetCustomerApplicantYearReportAll":"https://identityapi-dev.arytic.com/api/GetCustomerApplicantGraphYearForAll",
+"GetCustomerApplicantYear":"https://identityapi-dev.arytic.com/api/GetCustomerApplicantGraphYear",
+"GetCustomerApplicantWeek":"https://identityapi-dev.arytic.com/api/GetCustomerApplicantGraphWeek",
+"GetCustomerApplicantMonth":"https://identityapi-dev.arytic.com/api/GetCustomerApplicantGraphMonth",
   "SuggestedCount":"https://identityapi-dev.arytic.com/api/GetSuggestedCountbyJobId?"
 }

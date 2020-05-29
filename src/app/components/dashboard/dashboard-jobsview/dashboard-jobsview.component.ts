@@ -63,6 +63,12 @@ export class DashboardJobsviewComponent implements OnInit {
   Weekwise:Stats[]=[];
   Monthwise:Stats[]=[];
   YearWise:Stats[]=[];
+  YearWiseALL:Stats[]=[];
+
+  ApplicantWeekwise:Stats[]=[];
+  ApplicantMonthwise:Stats[]=[];
+  ApplicantYearWise:Stats[]=[];
+  ApplicantYearWiseALL:Stats[]=[];
 
  alldashboardStatisticsForJobsPosted: StatsDasboard[]=[];
  dashboardStatisticsForJobsPosted: StatsDasboard[]=[];
@@ -186,9 +192,15 @@ export class DashboardJobsviewComponent implements OnInit {
       scales: {
       xAxes: [{
         //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        labels: ['Year2019','Year2020']
+        labels: ['2018','2019','2020','2021','2022']
          
               }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 10
+                }
+              }]
 
       }
     };
@@ -200,6 +212,13 @@ export class DashboardJobsviewComponent implements OnInit {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         //labels: ['1', '2', '3', '4', '4', '5', '6']
               }],
+              
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          stepSize: 2
+        }
+      }]
              
       }
     };
@@ -211,6 +230,12 @@ export class DashboardJobsviewComponent implements OnInit {
         //labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         labels: ['week1','week2','week3','week4','week5']
               }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 5
+                }
+              }]
             
       }
     };
@@ -221,6 +246,12 @@ export class DashboardJobsviewComponent implements OnInit {
       xAxes: [{
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec']
               }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 10
+                }
+              }]
              
       }
     };
@@ -304,13 +335,7 @@ export class DashboardJobsviewComponent implements OnInit {
 
   ChangeFilter(filter=3)
   {
-     this.JobPostedStats(filter);
-     this.JobFilledStats(filter);
-     this.JobCancelled(filter);
-     this.ApplicantStats(filter);
-     this.ShortlistStats(filter);
-     this.InterviewStats(filter);
-     this.HiredStats(filter);
+
   }
 
 populateDashboardallStatistics(filter=0) {
@@ -400,726 +425,522 @@ GetJobPostedYear()
 
 }
 
-  JobPostedStats(filter)
-  {
-            // if(filter==0)
-            // {
-            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(result => {
-            //     this.dashboardStatisticsForJobsPosted= result;
-            //   if(result.length>0)
-            //   {
 
-            //       this.lineChartLabels.forEach(
-            //         (e1)=>
-            //         this.dashboardStatisticsForJobsPosted.forEach((e2)=> 
-            //         {
-            //           if(e1 == e2.PostedValue)
-            //           { 
-            //             if(e2.JobCount!==null||e2.JobCount!=undefined)
-            //             {
-            //               this.postedcount.push(e2.JobCount);
-            //             }          
-                       
-            //           }
-            //         }      
-            //         ))                                    
-            //   }
-            // });
-            // }
-            // if(filter==1)
-            // {
-            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mresult => {
-            //     this.mdashboardStatisticsForJobsPosted= mresult;
-            //   if(mresult.length>0)
-            //   {
-                
-            //     this.lineChartLabelsm.forEach(
-            //       (me1)=>
-            //       this.mdashboardStatisticsForJobsPosted.forEach((me2)=> 
-            //       {
-            //         if(me1 === me2.PostedValue)
-            //         {           
-            //           this.mpostedcount.push(me2.JobCount);
-            //         }
-            //       }      
-            //       ))         
-            //   }
-            // });
-            // }
-            // if(filter==2)
-            // {
-            //   return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(mwresult => {
-            //     this.mwdashboardStatisticsForJobsPosted= mwresult;
-            //   if(mwresult.length>0)
-            //   {
-                
-            //     this.lineChartLabelsmw.forEach(
-            //       (mwe1)=>
-            //       this.mwdashboardStatisticsForJobsPosted.forEach((mwe2)=> 
-            //       {
-            //         if(mwe1 === mwe2.PostedValue)
-            //         {           
-            //           this.mwpostedcount.push(mwe2.JobCount);
-            //         }
-            //       }      
-            //       ))         
-            //   }
-            // });
-            // } 
-            if(filter==3)
-            {
-              return this.dashboardservice.GetDashboardStatisticsForJobsPosted(this.customerId,filter).subscribe(allresult => {
-                this.alldashboardStatisticsForJobsPosted= allresult;
-              if(allresult.length>0)
-              {
-                
-                if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsPosted.length)
-                {
-                  this.lineChartLabelsall.forEach(
-                    (ame1)=>
-                    this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
-                    {
-                      if(ame1 == ame2.PostedValue)
-                      {           
-                        this.allpostedcount.push(ame2.JobCount);
-                      }
-                    }      
-                    ))   
-                }
-                else
-                {
-                  this.lineChartLabelsall.forEach(
-                    (ame1)=>
-                    this.alldashboardStatisticsForJobsPosted.forEach((ame2)=> 
-                    {
-                      if(ame1 == ame2.PostedValue)
-                      {           
-                        this.allpostedcount.push(ame2.JobCount);
-                      }
-                      if(ame1 != ame2.PostedValue)
-                      {
-                        this.allpostedcount.push(0);
-                      }
-                    }      
-                    ))   
-                }
-                      
-              }
-            });
-            }     
-  }
+GetJobPostedYearForAll()
+{
 
-  JobFilledStats(filter)
-  {
-            // if(filter==0)
-            // {
-            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(result1 => {
-            //   this.dashboardStatisticsForJobsFilled= result1;
-            //   if(result1.length>0)
-            //   {
-            //     this.lineChartLabels.forEach(
-            //       (fe1)=>
-            //       this.dashboardStatisticsForJobsFilled.forEach((ge2)=> 
-            //       {
-            //         if(fe1 === ge2.PostedValue)
-            //         {           
-            //           this.count.push(ge2.JobCount);
-            //         }
-            //       }      
-            //       ))         
-            //   }
-      
-            //   });
-            // }
-
-            
-            // if(filter==1)
-            // {
-            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(res1 => {
-            //   this.mdashboardStatisticsForJobsFilled= res1;
-            //   if(res1.length>0)
-            //   {
-                
-            //     this.lineChartLabelsm.forEach(
-            //       (fme1)=>
-            //       this.mdashboardStatisticsForJobsFilled.forEach((fme2)=> 
-            //       {
-            //         if(fme1 === fme2.PostedValue)
-            //         {           
-            //           this.mcount.push(fme2.JobCount);
-            //         }
-            //       }      
-            //       ))  
-        
-                        
-            //   }
-
-
-              
-
-      
-            //   });
-            // }
-
-            // if(filter==2)
-            // {
-            // return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(wres1 => {
-            //   this.mwdashboardStatisticsForJobsFilled= wres1;
-            //   if(wres1.length>0)
-            //   {
-                
-            //     this.lineChartLabelsmw.forEach(
-            //       (fmwe1)=>
-            //       this.mwdashboardStatisticsForJobsFilled.forEach((fmwe2)=> 
-            //       {
-            //         if(fmwe1 === fmwe2.PostedValue)
-            //         {           
-            //           this.mwcount.push(fmwe2.JobCount);
-            //         }
-            //       }      
-            //       ))  
-        
-                        
-            //   }
-
-
-              
-
-      
-            //   });
-            // }
-
-            if(filter==3)
-            {
-            return this.dashboardservice.GetDashboardStatisticsForJobsFilled(this.customerId,filter).subscribe(allres1 => {
-              this.alldashboardStatisticsForJobsFilled= allres1;
-              if(allres1.length>0)
-              {              
-                if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsFilled.length)
-                {
-                  this.lineChartLabelsall.forEach(
-                    (alfme1)=>
-                    this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
-                    {
-                      if(alfme1 == afme2.PostedValue)
-                      {           
-                        this.allcount.push(afme2.JobCount);
-                      }
-                    }      
-                    ))  
-                }
-                else
-                {
-                  this.lineChartLabelsall.forEach(
-                    (alfme1)=>
-                    this.alldashboardStatisticsForJobsFilled.forEach((afme2)=> 
-                    {
-                      if(alfme1 == afme2.PostedValue)
-                      {           
-                        this.allcount.push(afme2.JobCount);
-                      }
-                      if(alfme1 != afme2.PostedValue)
-                      {           
-                        this.allcount.push(0);
-                      }
-                    }      
-                    ))  
-                }
-            
-        
-                        
-              }
-
-
-              
-
-      
-              });
-            }
-       
-       
-          
-     
-  }
-
-
-  JobCancelled(filter)
-  {
-    // if(filter==0)
-    // {
-    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(result2 => {
-    //     this.dashboardStatisticsForJobsCancelled= result2;
-    //     if(result2.length>0)
-    //     {
-    //       this.lineChartLabels.forEach(
-    //         (cre1)=>
-    //         this.dashboardStatisticsForJobsCancelled.forEach((cre2)=> 
-    //         {
-    //           if(cre1 === cre2.PostedValue)
-    //           {           
-    //             this.cancelcount.push(cre2.JobCount);
-    //           }
-    //         }      
-    //         ))         
-    //     }
-      
-    // });
-    // }
-    // if(filter==1)
-    // {
-    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(resultc2 => {
-    //     this.mdashboardStatisticsForJobsCancelled= resultc2;
-    //     if(resultc2.length>0)
-    //     {
-    //       this.lineChartLabelsm.forEach(
-    //         (ce1)=>
-    //         this.mdashboardStatisticsForJobsCancelled.forEach((ce2)=> 
-    //         {
-    //           if(ce1 === ce2.PostedValue)
-    //           {        
-    //             this.mcancelcount.push(ce2.JobCount);
-    //           }
-    //         }      
-    //         ))         
-    //     }
-      
-    // });
-    // }
-    // if(filter==2)
-    // {
-    //   return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(wresultc2 => {
-    //     this.mwdashboardStatisticsForJobsCancelled= wresultc2;
-    //     if(wresultc2.length>0)
-    //     {
-    //       this.lineChartLabelsmw.forEach(
-    //         (wce1)=>
-    //         this.mwdashboardStatisticsForJobsCancelled.forEach((wce2)=> 
-    //         {
-    //           if(wce1 === wce2.PostedValue)
-    //           {       
-    //             this.mwcancelcount.push(wce2.JobCount);
-    //           }
-    //         }      
-    //         ))         
-    //     }
-      
-    // });
-    // }
-    if(filter==3)
-    {
-      return this.dashboardservice.GetDashboardStatisticsForJobsCancelled(this.customerId,filter).subscribe(aresultc2 => {
-        this.alldashboardStatisticsForJobsCancelled= aresultc2;
-        if(aresultc2.length>0)
-        {
-          if(this.lineChartLabelsall.length==this.alldashboardStatisticsForJobsCancelled.length)
-          {
-            this.lineChartLabelsall.forEach(
-              (ace1)=>
-              this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
-              {
-                if(ace1 == ace2.PostedValue)
-                {      
-                  this.allcancelcount.push(ace2.JobCount);
-                }
-              }      
-              ))       
-          }
-          else
-          {
-            this.lineChartLabelsall.forEach(
-              (ace1)=>
-              this.alldashboardStatisticsForJobsCancelled.forEach((ace2)=> 
-              {
-                if(ace1 == ace2.PostedValue)
-                {      
-                  this.allcancelcount.push(ace2.JobCount);
-                }
-                if(ace1 != ace2.PostedValue)
-                {      
-                  this.allcancelcount.push(0);
-                }
-              }      
-              ))       
-          }
-       
-        }
-      
-    });
+  return this.dashboardservice.GetDashboardStatisticsYearForAll(this.customerId,0).subscribe(allresult  => {
+    this.YearWiseALL= allresult;
+    var value = Object.values(this.YearWiseALL[0]);
+    value.forEach((Posted) => {
+      this.allpostedcount.push(Posted);
     }
+    )
+    var values = Object.values(this.YearWiseALL[1]);
+    values.forEach((filled) => {
+      this.allcount.push(filled);
+    }
+    )
+    var values = Object.values(this.YearWiseALL[2]);
+    values.forEach((cancel) => {
+      this.allcancelcount.push(cancel);
+    }
+    )
+  })
+
+}
+
+GetApplicantsWeek()
+{
+  return this.dashboardservice.GetDashboardApplicantStatisticsWeek(this.customerId,0).subscribe(amresult => {
+    this.ApplicantWeekwise= amresult;
+    var value = Object.values(this.ApplicantWeekwise[0]);
+    value.forEach((Apply) => {
+      this.applicantCount.push(Apply);
+    }
+    )
+    var values = Object.values(this.ApplicantWeekwise[1]);
+    values.forEach((Short) => {
+      this.ShortListedCount.push(Short);
+    }
+    )
+    var values = Object.values(this.ApplicantWeekwise[2]);
+    values.forEach((Interview) => {
+      this.InterviewCount.push(Interview);
+    }
+    )
+    var val = Object.values(this.ApplicantWeekwise[3]);
+    val.forEach((Hired) => {
+      this.HiredCount.push(Hired);
+    }
+    )
+  })
+
+}
+
+GetApplicantsMonth()
+{
+
+  return this.dashboardservice.GetDashboardApplicantStatisticsMonth(this.customerId,0).subscribe(amwresult => {
+    this.ApplicantMonthwise= amwresult;
+    debugger
+    var value = Object.values(this.ApplicantMonthwise[0]);
+    value.forEach((Apply) => {
+      this.mapplicantCount.push(Apply);
+    }
+    )
+    var values = Object.values(this.ApplicantMonthwise[1]);
+    values.forEach((Short) => {
+      this.mShortListedCount.push(Short);
+    }
+    )
+    var values = Object.values(this.ApplicantMonthwise[2]);
+    values.forEach((Interview) => {
+      this.mInterviewCount.push(Interview);
+    }
+    )
+    var val = Object.values(this.ApplicantMonthwise[3]);
+    val.forEach((Hired) => {
+      this.mHiredCount.push(Hired);
+    }
+    )
+  })
+}
+
+GetApplicantsYear()
+{
+
+  return this.dashboardservice.GetDashboardApplicantStatisticsYear(this.customerId,0).subscribe(ayresult  => {
+    this.ApplicantYearWise= ayresult;
+    var value = Object.values(this.ApplicantYearWise[0]);
+    value.forEach((Apply) => {
+      this.yapplicantCount.push(Apply);
+    }
+    )
+    var values = Object.values(this.ApplicantYearWise[1]);
+    values.forEach((Short) => {
+      this.yShortListedCount.push(Short);
+    }
+    )
+    var values = Object.values(this.ApplicantYearWise[2]);
+    values.forEach((Interview) => {
+      this.yInterviewCount.push(Interview);
+    }
+    )
+    var val = Object.values(this.ApplicantYearWise[3]);
+    val.forEach((Hired) => {
+      this.yHiredCount.push(Hired);
+    }
+    )
+  })
+
+}
+
+
+GetApplicantsYearForAll()
+{
+
+  return this.dashboardservice.GetDashboardApplicantStatisticsYearForAll(this.customerId,0).subscribe(aallresult  => {
+    this.ApplicantYearWiseALL= aallresult;
+    var value = Object.values(this.ApplicantYearWiseALL[0]);
+    value.forEach((Apply) => {
+      this.allapplicantCount.push(Apply);
+    }
+    )
+    var values = Object.values(this.ApplicantYearWiseALL[1]);
+    values.forEach((Short) => {
+      this.allShortListedCount.push(Short);
+    }
+    )
+    var values = Object.values(this.ApplicantYearWiseALL[2]);
+    values.forEach((Interview) => {
+      this.allInterviewCount.push(Interview);
+    }
+    )
+    var val = Object.values(this.ApplicantYearWiseALL[3]);
+    val.forEach((Hired) => {
+      this.allHiredCount.push(Hired);
+    }
+    )
+  })
+
+}
+
+ 
+
   
 
-  }
-
-
-  ApplicantStats(filter=0)
-  {
-            if(filter==0)
-            {
-              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(aplresult => {
-                this.customerApplicantsStatistics= aplresult;
-              if(aplresult.length>0)
-              {
-                this.lineChartLabels.forEach(
-                  (ae)=>
-                  this.customerApplicantsStatistics.forEach((ca)=> 
-                  {
-                    if(ae === ca.PostedValue)
-                    { 
-                      if(ca.JobCount!==null||ca.JobCount!=undefined)
-                      {
-                        this.applicantCount.push(ca.JobCount);
-                      }          
+  // ApplicantStats(filter=0)
+  // {
+  //           if(filter==0)
+  //           {
+  //             return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(aplresult => {
+  //               this.customerApplicantsStatistics= aplresult;
+  //             if(aplresult.length>0)
+  //             {
+  //               this.lineChartLabels.forEach(
+  //                 (ae)=>
+  //                 this.customerApplicantsStatistics.forEach((ca)=> 
+  //                 {
+  //                   if(ae === ca.PostedValue)
+  //                   { 
+  //                     if(ca.JobCount!==null||ca.JobCount!=undefined)
+  //                     {
+  //                       this.applicantCount.push(ca.JobCount);
+  //                     }          
                      
-                    }
-                  }      
-                  ))         
-              }
-            });
-            }
-            if(filter==1)
-            {
-              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(yapres=> {
-                this.ycustomerApplicantsStatistics= yapres;
-              if(yapres.length>0)
-              {
+  //                   }
+  //                 }      
+  //                 ))         
+  //             }
+  //           });
+  //           }
+  //           if(filter==1)
+  //           {
+  //             return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(yapres=> {
+  //               this.ycustomerApplicantsStatistics= yapres;
+  //             if(yapres.length>0)
+  //             {
                 
-                this.lineChartLabelsm.forEach(
-                  (ye1)=>
-                  this.ycustomerApplicantsStatistics.forEach((ye2)=> 
-                  {
-                    if(ye1 === ye2.PostedValue)
-                    {           
-                      this.yapplicantCount.push(ye2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
-            });
-            }   
-            if(filter==2)
-            {
-              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(ymapres=> {
-                this.mcustomerApplicantsStatistics= ymapres;
-              if(ymapres.length>0)
-              {
+  //               this.lineChartLabelsm.forEach(
+  //                 (ye1)=>
+  //                 this.ycustomerApplicantsStatistics.forEach((ye2)=> 
+  //                 {
+  //                   if(ye1 === ye2.PostedValue)
+  //                   {           
+  //                     this.yapplicantCount.push(ye2.JobCount);
+  //                   }
+  //                 }      
+  //                 ))         
+  //             }
+  //           });
+  //           }   
+  //           if(filter==2)
+  //           {
+  //             return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(ymapres=> {
+  //               this.mcustomerApplicantsStatistics= ymapres;
+  //             if(ymapres.length>0)
+  //             {
                 
-                this.lineChartLabelsmw.forEach(
-                  (yme1)=>
-                  this.mcustomerApplicantsStatistics.forEach((yme2)=> 
-                  {
-                    if(yme1 === yme2.PostedValue)
-                    {           
-                      this.mapplicantCount.push(yme2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
-            });
-            }  
-            if(filter==3)
-            {
-              return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(mapres=> {
-                this.allcustomerApplicantsStatistics= mapres;
-              if(mapres.length>0)
-              {
+  //               this.lineChartLabelsmw.forEach(
+  //                 (yme1)=>
+  //                 this.mcustomerApplicantsStatistics.forEach((yme2)=> 
+  //                 {
+  //                   if(yme1 === yme2.PostedValue)
+  //                   {           
+  //                     this.mapplicantCount.push(yme2.JobCount);
+  //                   }
+  //                 }      
+  //                 ))         
+  //             }
+  //           });
+  //           }  
+  //           if(filter==3)
+  //           {
+  //             return this.dashboardservice.GetCustomerApplicantsStatistics(this.customerId,filter).subscribe(mapres=> {
+  //               this.allcustomerApplicantsStatistics= mapres;
+  //             if(mapres.length>0)
+  //             {
                 
-                this.lineChartLabelsall.forEach(
-                  (ymwe1)=>
-                  this.allcustomerApplicantsStatistics.forEach((ywme2)=> 
-                  {
-                    if(ymwe1 === ywme2.PostedValue)
-                    {           
-                      this.allapplicantCount.push(ywme2.JobCount);
-                    }
-                  }      
-                  ))         
-              }
-            });
-            } 
-  }
+  //               this.lineChartLabelsall.forEach(
+  //                 (ymwe1)=>
+  //                 this.allcustomerApplicantsStatistics.forEach((ywme2)=> 
+  //                 {
+  //                   if(ymwe1 === ywme2.PostedValue)
+  //                   {           
+  //                     this.allapplicantCount.push(ywme2.JobCount);
+  //                   }
+  //                 }      
+  //                 ))         
+  //             }
+  //           });
+  //           } 
+  // }
 
-  ShortlistStats(filter=0)
-  {
+  // ShortlistStats(filter=0)
+  // {
 
-    if(filter==0)
-    {
-      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(aplsresult => {
-        this.customerShortListedStatistics= aplsresult;
-      if(aplsresult.length>0)
-      {
-        this.lineChartLabels.forEach(
-          (ae1)=>
-          this.customerShortListedStatistics.forEach((cas)=> 
-          {
-            if(ae1 === cas.PostedValue)
-            { 
-              if(cas.JobCount!==null||cas.JobCount!=undefined)
-              {
-                this.ShortListedCount.push(cas.JobCount);
-              }          
+  //   if(filter==0)
+  //   {
+  //     return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(aplsresult => {
+  //       this.customerShortListedStatistics= aplsresult;
+  //     if(aplsresult.length>0)
+  //     {
+  //       this.lineChartLabels.forEach(
+  //         (ae1)=>
+  //         this.customerShortListedStatistics.forEach((cas)=> 
+  //         {
+  //           if(ae1 === cas.PostedValue)
+  //           { 
+  //             if(cas.JobCount!==null||cas.JobCount!=undefined)
+  //             {
+  //               this.ShortListedCount.push(cas.JobCount);
+  //             }          
              
-            }
-          }      
-          ))         
-      }
-    });
-    }
-    if(filter==1)
-    {
-      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(yapsres=> {
-        this.ycustomerShortListedStatistics= yapsres;
-      if(yapsres.length>0)
-      {
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }
+  //   if(filter==1)
+  //   {
+  //     return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(yapsres=> {
+  //       this.ycustomerShortListedStatistics= yapsres;
+  //     if(yapsres.length>0)
+  //     {
         
-        this.lineChartLabelsm.forEach(
-          (yes1)=>
-          this.ycustomerShortListedStatistics.forEach((yes2)=> 
-          {
-            if(yes1 === yes2.PostedValue)
-            {           
-              this.yShortListedCount.push(yes2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    } 
-    if(filter==2)
-    {
-      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(yampsres=> {
-        this.mcustomerShortListedStatistics= yampsres;
-      if(yampsres.length>0)
-      {
+  //       this.lineChartLabelsm.forEach(
+  //         (yes1)=>
+  //         this.ycustomerShortListedStatistics.forEach((yes2)=> 
+  //         {
+  //           if(yes1 === yes2.PostedValue)
+  //           {           
+  //             this.yShortListedCount.push(yes2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   } 
+  //   if(filter==2)
+  //   {
+  //     return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(yampsres=> {
+  //       this.mcustomerShortListedStatistics= yampsres;
+  //     if(yampsres.length>0)
+  //     {
         
-        this.lineChartLabelsmw.forEach(
-          (yesm1)=>
-          this.mcustomerShortListedStatistics.forEach((yes2)=> 
-          {
-            if(yesm1 === yes2.PostedValue)
-            {           
-              this.mShortListedCount.push(yes2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    }  
-    if(filter==3)
-    {
-      return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(ywapsres=> {
-        this.allcustomerShortListedStatistics= ywapsres;
-      if(ywapsres.length>0)
-      {
+  //       this.lineChartLabelsmw.forEach(
+  //         (yesm1)=>
+  //         this.mcustomerShortListedStatistics.forEach((yes2)=> 
+  //         {
+  //           if(yesm1 === yes2.PostedValue)
+  //           {           
+  //             this.mShortListedCount.push(yes2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }  
+  //   if(filter==3)
+  //   {
+  //     return this.dashboardservice.GetCustomerShortListedStatistics(this.customerId,filter).subscribe(ywapsres=> {
+  //       this.allcustomerShortListedStatistics= ywapsres;
+  //     if(ywapsres.length>0)
+  //     {
         
-        this.lineChartLabelsall.forEach(
-          (yes1)=>
-          this.allcustomerShortListedStatistics.forEach((yes2)=> 
-          {
-            if(yes1 === yes2.PostedValue)
-            {           
-              this.allShortListedCount.push(yes2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    }   
+  //       this.lineChartLabelsall.forEach(
+  //         (yes1)=>
+  //         this.allcustomerShortListedStatistics.forEach((yes2)=> 
+  //         {
+  //           if(yes1 === yes2.PostedValue)
+  //           {           
+  //             this.allShortListedCount.push(yes2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }   
 
-  }
+  // }
 
-  InterviewStats(filter=0)
-  {
+  // InterviewStats(filter=0)
+  // {
 
-    if(filter==0)
-    {
-      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(apliresult => {
-        this.customerInterviewStatistics= apliresult;
-      if(apliresult.length>0)
-      {
-        this.lineChartLabels.forEach(
-          (aei)=>
-          this.customerInterviewStatistics.forEach((cai)=> 
-          {
-            if(aei === cai.PostedValue)
-            { 
-              if(cai.JobCount!==null||cai.JobCount!=undefined)
-              {
-                this.InterviewCount.push(cai.JobCount);
-              }          
+  //   if(filter==0)
+  //   {
+  //     return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(apliresult => {
+  //       this.customerInterviewStatistics= apliresult;
+  //     if(apliresult.length>0)
+  //     {
+  //       this.lineChartLabels.forEach(
+  //         (aei)=>
+  //         this.customerInterviewStatistics.forEach((cai)=> 
+  //         {
+  //           if(aei === cai.PostedValue)
+  //           { 
+  //             if(cai.JobCount!==null||cai.JobCount!=undefined)
+  //             {
+  //               this.InterviewCount.push(cai.JobCount);
+  //             }          
              
-            }
-          }      
-          ))         
-      }
-    });
-    }
-    if(filter==1)
-    {
-      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapires=> {
-        this.ycustomerInterviewStatistics= yapires;
-      if(yapires.length>0)
-      {
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }
+  //   if(filter==1)
+  //   {
+  //     return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapires=> {
+  //       this.ycustomerInterviewStatistics= yapires;
+  //     if(yapires.length>0)
+  //     {
         
-        this.lineChartLabelsm.forEach(
-          (yesi)=>
-          this.ycustomerInterviewStatistics.forEach((yesi2)=> 
-          {
-            if(yesi === yesi2.PostedValue)
-            {           
-              this.yInterviewCount.push(yesi2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    }  
+  //       this.lineChartLabelsm.forEach(
+  //         (yesi)=>
+  //         this.ycustomerInterviewStatistics.forEach((yesi2)=> 
+  //         {
+  //           if(yesi === yesi2.PostedValue)
+  //           {           
+  //             this.yInterviewCount.push(yesi2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }  
 
-    if(filter==2)
-    {
-      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapimres=> {
-        this.mcustomerInterviewStatistics= yapimres;
-      if(yapimres.length>0)
-      {
+  //   if(filter==2)
+  //   {
+  //     return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapimres=> {
+  //       this.mcustomerInterviewStatistics= yapimres;
+  //     if(yapimres.length>0)
+  //     {
         
-        this.lineChartLabelsmw.forEach(
-          (yesim)=>
-          this.mcustomerInterviewStatistics.forEach((yesi2)=> 
-          {
-            if(yesim === yesi2.PostedValue)
-            {           
-              this.mInterviewCount.push(yesi2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    } 
+  //       this.lineChartLabelsmw.forEach(
+  //         (yesim)=>
+  //         this.mcustomerInterviewStatistics.forEach((yesi2)=> 
+  //         {
+  //           if(yesim === yesi2.PostedValue)
+  //           {           
+  //             this.mInterviewCount.push(yesi2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   } 
 
-    if(filter==3)
-    {
-      return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapiares=> {
-        this.allcustomerInterviewStatistics= yapiares;
-      if(yapiares.length>0)
-      {
+  //   if(filter==3)
+  //   {
+  //     return this.dashboardservice.GetCustomerInterviewStatistics(this.customerId,filter).subscribe(yapiares=> {
+  //       this.allcustomerInterviewStatistics= yapiares;
+  //     if(yapiares.length>0)
+  //     {
         
-        this.lineChartLabelsall.forEach(
-          (yesi)=>
-          this.allcustomerInterviewStatistics.forEach((yesi2)=> 
-          {
-            if(yesi === yesi2.PostedValue)
-            {           
-              this.allInterviewCount.push(yesi2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    } 
+  //       this.lineChartLabelsall.forEach(
+  //         (yesi)=>
+  //         this.allcustomerInterviewStatistics.forEach((yesi2)=> 
+  //         {
+  //           if(yesi === yesi2.PostedValue)
+  //           {           
+  //             this.allInterviewCount.push(yesi2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   } 
 
-  }
+  // }
 
-  HiredStats(filter=0)
-  {
+  // HiredStats(filter=0)
+  // {
 
-    if(filter==0)
-    {
-      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(aplshresult => {
-        this.customerHiredStatistics= aplshresult;
-      if(aplshresult.length>0)
-      {
-        this.lineChartLabels.forEach(
-          (ahe1)=>
-          this.customerHiredStatistics.forEach((cash)=> 
-          {
-            if(ahe1 === cash.PostedValue)
-            { 
-              if(cash.JobCount!==null||cash.JobCount!=undefined)
-              {
-                this.HiredCount.push(cash.JobCount);
-              }          
+  //   if(filter==0)
+  //   {
+  //     return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(aplshresult => {
+  //       this.customerHiredStatistics= aplshresult;
+  //     if(aplshresult.length>0)
+  //     {
+  //       this.lineChartLabels.forEach(
+  //         (ahe1)=>
+  //         this.customerHiredStatistics.forEach((cash)=> 
+  //         {
+  //           if(ahe1 === cash.PostedValue)
+  //           { 
+  //             if(cash.JobCount!==null||cash.JobCount!=undefined)
+  //             {
+  //               this.HiredCount.push(cash.JobCount);
+  //             }          
              
-            }
-          }      
-          ))         
-      }
-    });
-    }
-    if(filter==1)
-    {
-      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres=> {
-        this.ycustomerHiredStatistics= yapshres;
-      if(yapshres.length>0)
-      {
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }
+  //   if(filter==1)
+  //   {
+  //     return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres=> {
+  //       this.ycustomerHiredStatistics= yapshres;
+  //     if(yapshres.length>0)
+  //     {
         
-        this.lineChartLabelsm.forEach(
-          (yesh1)=>
-          this.ycustomerShortListedStatistics.forEach((yesh2)=> 
-          {
-            if(yesh1 === yesh2.PostedValue)
-            {           
-              this.yHiredCount.push(yesh2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    } 
+  //       this.lineChartLabelsm.forEach(
+  //         (yesh1)=>
+  //         this.ycustomerShortListedStatistics.forEach((yesh2)=> 
+  //         {
+  //           if(yesh1 === yesh2.PostedValue)
+  //           {           
+  //             this.yHiredCount.push(yesh2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   } 
     
-    if(filter==2)
-    {
-      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres=> {
-        this.mcustomerHiredStatistics= yapshres;
-      if(yapshres.length>0)
-      {
+  //   if(filter==2)
+  //   {
+  //     return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres=> {
+  //       this.mcustomerHiredStatistics= yapshres;
+  //     if(yapshres.length>0)
+  //     {
         
-        this.lineChartLabelsmw.forEach(
-          (myesh1)=>
-          this.mcustomerShortListedStatistics.forEach((yesh2)=> 
-          {
-            if(myesh1 === yesh2.PostedValue)
-            {           
-              this.mHiredCount.push(yesh2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    }
+  //       this.lineChartLabelsmw.forEach(
+  //         (myesh1)=>
+  //         this.mcustomerShortListedStatistics.forEach((yesh2)=> 
+  //         {
+  //           if(myesh1 === yesh2.PostedValue)
+  //           {           
+  //             this.mHiredCount.push(yesh2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }
 
-    if(filter==3)
-    {
-      return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres1=> {
-        this.allcustomerHiredStatistics= yapshres1;
-      if(yapshres1.length>0)
-      {
+  //   if(filter==3)
+  //   {
+  //     return this.dashboardservice.GetCustomerHiredStatistics(this.customerId,filter).subscribe(yapshres1=> {
+  //       this.allcustomerHiredStatistics= yapshres1;
+  //     if(yapshres1.length>0)
+  //     {
         
-        this.lineChartLabelsall.forEach(
-          (yesh1)=>
-          this.allcustomerShortListedStatistics.forEach((ayesh2)=> 
-          {
-            if(yesh1 === ayesh2.PostedValue)
-            {           
-              this.allHiredCount.push(ayesh2.JobCount);
-            }
-          }      
-          ))         
-      }
-    });
-    }
+  //       this.lineChartLabelsall.forEach(
+  //         (yesh1)=>
+  //         this.allcustomerShortListedStatistics.forEach((ayesh2)=> 
+  //         {
+  //           if(yesh1 === ayesh2.PostedValue)
+  //           {           
+  //             this.allHiredCount.push(ayesh2.JobCount);
+  //           }
+  //         }      
+  //         ))         
+  //     }
+  //   });
+  //   }
 
-  }
+  // }
 
 
   ngOnInit() {
     this.populateDashboardallStatistics(0);
     this.populateApplicantsStatistics(0);
-    this.ChangeFilter(3);
-    this.ChangeFilter(0);
-    this.ChangeFilter(2);
-    this.ChangeFilter(1);
+    this.GetJobPostedYearForAll();
     this.GetJobPostedWeek();
     this.GetJobPostedMonth();
     this.GetJobPostedYear();
+    this.GetApplicantsYearForAll();
+    this.GetApplicantsWeek();
+    this.GetApplicantsMonth();
+    this.GetApplicantsYear();
+    
 
     setInterval(() => {
       this.lineChartDataall=new Array(
