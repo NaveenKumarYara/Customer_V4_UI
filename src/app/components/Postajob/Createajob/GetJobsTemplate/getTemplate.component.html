@@ -56,7 +56,7 @@
                                             <div id="arytictemplates" class="tab-pane fade">
                                            
                                                 <div class="tab-inner scrollbar-inner">
-                                                        <ng-container *ngIf="defaultjoblist?.length>0;else Nodrafts">
+                                                        <ng-container *ngIf="defaultjoblist">
                                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let job of defaultjoblist">
                                                                 <div class="card">
                                                                     <!-- <div class="dropdown card-dropdown">
@@ -99,18 +99,18 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            <ng-container *ngIf='draft?.length>5'>
+                                                            <!-- <ng-container *ngIf='draft?.length>5'>
                                                                 <button *ngIf="isFullDisplayed == false" class="load-more btn btn-border btn-block"
                                                                     (click)="getData()">
                                                                     Load More
                                                                 </button>
-                                                            </ng-container>
+                                                            </ng-container> -->
                                                         </ng-container>
-                                                        <ng-template #Nodrafts>
+                                                        <!-- <ng-template #Nodrafts>
                                                             <div style="text-align: center;">
                                                                 <h4>No Arytic Templates!</h4>
                                                             </div>
-                                                        </ng-template>
+                                                        </ng-template> -->
                                                         
                                                 </div>
                                             </div>

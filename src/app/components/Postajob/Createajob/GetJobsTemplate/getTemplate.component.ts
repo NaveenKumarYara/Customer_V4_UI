@@ -113,8 +113,8 @@ export class JobTemplateComponent {
   }
 
   GetJobDeafultTemplates() {
-    return this.appService.GetJobDeafultTemplates().subscribe(res => {
-      this.defaultjoblist = res;
+    return this.appService.GetJobDeafultTemplates().subscribe(result => {
+      this.defaultjoblist = result;
       //this.drafts = this.defaultjoblist.slice(0, 6);
       this.spinner.hide();
     });
