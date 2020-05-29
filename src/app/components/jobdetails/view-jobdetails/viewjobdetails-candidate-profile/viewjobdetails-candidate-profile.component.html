@@ -352,7 +352,7 @@
                     <!--Candidate experience placeholder is in below div -->
                     <div class="d-block text-center ptb-5 role-exp-loc">
                         <h4 class="d-inline l_bl-1" title="{{profile.ProfileTitle}}">
-                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,30) : 'N/A'}}
+                            {{profile.ProfileTitle ? add3Dots(profile.ProfileTitle,20) : 'N/A'}}
                             <ng-container *ngIf="profile?.TotalExperience!=null">
                                 <span class="experience">{{profile?.TotalExperience | monthsPipe }} Yrs</span>
                             </ng-container>
@@ -476,10 +476,11 @@
                         <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
                             alt="recommendations-badge">
                     </a> -->
-                    <a href="javascript:void(0)" title="Recommendations">
+                  <!--Commenting as per received inputs 29-05-2020-->
+                    <!-- <a href="javascript:void(0)" title="Recommendations">
                     <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
                         alt="recommendations-badge">
-                    </a>
+                    </a> -->
                     <!--No recommendations profile icon-->
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
                         alt="No-recommendations-badge" title="No Recommendations"> -->
@@ -491,7 +492,7 @@
                     <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
                         alt="verfied-badge">
                   </a> -->
-                    <a href="javascript:void(0)" title="Background Verified Profile">
+                    <a href="javascript:void(0)" title="Background Verification - Yet to be Started">
                         <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
                             alt="verfied-badge">
                     </a>
