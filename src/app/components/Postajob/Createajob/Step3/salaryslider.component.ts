@@ -36,7 +36,7 @@ export class SalarysliderComponent implements OnInit {
   hourly: Options = {
     floor: 0,
     step: 1,
-    ceil: 200,
+    ceil: 500,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
