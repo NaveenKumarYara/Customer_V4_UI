@@ -1,5 +1,10 @@
-.poj-template .card{
-/* min-height: 500px; */
+.poj-template-inner .card{
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(147,162,187,1);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(147,162,187,1);
+    box-shadow: 0px 3px 6px 0px rgba(147,162,187,1);
+}
+.poj-template-inner .mr-top-10{
+    margin-top:10px;
 }
 
 .poj-template .card-header {
@@ -61,5 +66,9 @@
     background-color: transparent;
 }
 .poj-template .nav-tabs>li>a ,.poj-template .nav-tabs>li>a:hover {
-    border-color: transparent
+    border-color: transparent;
+    border-bottom: 1px hidden #E0E3EF;
+}
+.poj-template-inner .load-more {
+    margin-bottom: 10px;
 }
