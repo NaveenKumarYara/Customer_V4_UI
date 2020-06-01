@@ -500,7 +500,7 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   GetProfileSuggestedCount() {
     return this.jobdetailsservice.getSuggestedCount(this.jobid).subscribe(res => {
-      debugger
+      //debugger
      this.SuggestedCount = res;
    });
   }
@@ -697,7 +697,7 @@ export class ViewJobdetailsComponent implements OnInit {
           this.statistics = this.jobstatistics.InProgress; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      debugger
+      //debugger
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited,arytic, this.profilecount);
       }
     };
