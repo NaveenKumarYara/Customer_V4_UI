@@ -45,10 +45,10 @@ export class RecentjobsCountComponent implements OnInit {
   {
   this.jobId = this.job.JobId;
     return this.dashboardservice.getSuggestedCount(this.jobId).subscribe(res => {
-      setInterval(() => {
-        this.jobS = res;
-      }, 1000);
-    //this.jobS = res;
+      // setInterval(() => {
+      //   this.jobS = res;
+      // }, 1000);
+    this.jobS = res;
    });
   }
 
