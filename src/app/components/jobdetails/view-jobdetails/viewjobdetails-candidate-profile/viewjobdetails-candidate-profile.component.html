@@ -363,7 +363,7 @@
                         <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation!=null;else false">
                             <ng-container>
                                 <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18"
-                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" style="width:18px">
+                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" style="width:16px">
                                     <path class="st0"
                                         d="m9.1 17.4-0.5-0.4c-0.3-0.2-6.5-4.3-6.5-9.4 0-3.8 3.1-6.9 6.9-6.9s6.9 3.1 6.9 6.9c0 5.1-6.1 9.3-6.4 9.4l-0.4 0.4zm0-15c-2.9 0-5.2 2.3-5.2 5.2 0 3.5 3.8 6.7 5.2 7.7 1.4-1 5.2-4.2 5.2-7.7 0-2.9-2.4-5.2-5.2-5.2z" />
                                     <path class="st0"
@@ -516,13 +516,12 @@
         <div class="card-rel">
             <div class="card-body">
                 <div class="type">
-                    <div>
+                    <div class="d-r-section">
                         <h5>DISC Result</h5>
                         <img src="../../../../../assets/images/D-Disc.svg" alt="DISC Feature Coming Soon!!!"
                             title="DISC Feature Coming Soon!!!">
                     </div>
-                    <div>
-
+                    <div class="p-m-section" >
                         <h5>Profile Matching</h5>
                         <!--Circle progress trial-->
                         <circle-progress data-toggle="matching-details" (click)="callSkills(profile.ProfileId)"
@@ -622,220 +621,10 @@
                         </div>
                     </div>
                 </ng-container>
-                <!-- <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
-                  <div class="item" *ngFor="let image of mySlideImages;let i = index">
-                   <div>
-                     <img src={{image}}/>
-                   </div>
-                  </div>
-                 </owl-carousel> -->
-                <!-- <owl-carousel
-             [options]="{items: 3, dots: false, navigation: false}"
-             [items]="images"
-             [carouselClasses]="['owl-theme', 'row', 'sliding']">
-             <div class="item active">
-                <div class="skill">
-                    <h4>{{profile?.PrimarySkills.split('|')[0]}}</h4>
-                    <div>
-                      <h5>5 Yrs</h5>
-                      <h5>4/5</h5>
-                    </div>
-                  </div>
-             </div>
-             <div class="item">
-                <div class="skill">
-                    <h4>Experience Design</h4>
-                    <div>
-                      <h5>5 Yrs</h5>
-                      <h5>4/5</h5>
-                    </div>
-                  </div>
-             </div>
-             <div class="item">
-                <div class="skill">
-                    <h4>Experience Design</h4>
-                    <div>
-                      <h5>5 Yrs</h5>
-                      <h5>4/5</h5>
-                    </div>
-                  </div>
-             </div>
-             <div class="item">
-                <div class="skill">
-                    <h4>Experience Design</h4>
-                    <div>
-                      <h5>5 Yrs</h5>
-                      <h5>4/5</h5>
-                    </div>
-                  </div>
-             </div>
-             <div class="item">
-                <div class="skill">
-                    <h4>Experience Design</h4>
-                    <div>
-                      <h5>5 Yrs</h5>
-                      <h5>4/5</h5>
-                    </div>
-                  </div>
-             </div>
-         </owl-carousel> -->
-                <!-- <ngb-carousel>
-                  <ng-template ngbSlide>
-                      <div class="item active">
-                          <div class="skill">
-                            <h4>Experience Design</h4>
-                            <div>
-                              <h5>5 Yrs</h5>
-                              <h5>4/5</h5>
-                            </div>
-                          </div>
-                      </div>
-
-                  </ng-template>
-                  <ng-template ngbSlide>
-                      <div class="item">
-                          <div class="skill">
-                            <h4>Experience Design</h4>
-                            <div>
-                              <h5>5 Yrs</h5>
-                              <h5>4/5</h5>
-                            </div>
-                          </div>
-                      </div>
-
-                  </ng-template>
-                </ngb-carousel> -->
-                <!-- <ngb-carousel>
-                    <ng-template ngbSlide>
-                        <h4>Experience1232131 Design</h4>
-                        <div>
-                          <h5>5 Yrs</h5>
-                          <h5>4/5</h5>
-                        </div>
-
-                    </ng-template>
-                    <ng-template ngbSlide>
-                        <h4>Experience1232131 Design</h4>
-                        <div>
-                          <h5>5 Yrs</h5>
-                          <h5>4/5</h5>
-                        </div>
-
-                    </ng-template>
-                    <ng-template ngbSlide>
-                        <h4>Experience1232131 Design</h4>
-                        <div>
-                          <h5>5 Yrs</h5>
-                          <h5>4/5</h5>
-                        </div>
-
-                    </ng-template>
-                </ngb-carousel> -->
-                <!-- <div class="owl-carousel owl-theme owl-loaded">
-                    <div class="owl-stage-outer">
-                        <div class="owl-stage">
-                            <div class="owl-item"><h4>Experience1232131 Design</h4>
-                              <div>
-                                <h5>5 Yrs</h5>
-                                <h5>4/5</h5>
-                              </div>
-                               </div>
-                            <div class="owl-item"><h4>Experienc1 Design</h4>
-                              <div>
-                                <h5>5 Yrs</h5>
-                                <h5>4/5</h5>
-                              </div>
-                               </div>
-                            <div class="owl-item"><h4>Experi Design</h4>
-                              <div>
-                                <h5>5 Yrs</h5>
-                                <h5>4/5</h5>
-                              </div>
-                               </div>
-                        </div>
-                    </div>
-                    <div class="owl-nav">
-                        <div class="owl-prev">prev</div>
-                        <div class="owl-next">next</div>
-                    </div>
-                    <div class="owl-dots">
-                        <div class="owl-dot active"><span></span></div>
-                        <div class="owl-dot"><span></span></div>
-                        <div class="owl-dot"><span></span></div>
-                    </div>
-                </div> -->
-                <!-- <div id="Carousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="Carousel" data-slide-to="0" class="active"></li>
-
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[0].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
-                              </div>
-                            </div>
-
-
-                            <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[1].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
-                              </div>
-                            </div>
-
-                            <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[2].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
-                    <span class="left carousel-control" data-target="#Carousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </span>
-                    <span class="right carousel-control" data-target="#Carousel" data-slide="next">
-                       <span class="glyphicon glyphicon-chevron-right"></span>
-                    </span>
-                  </div>
-                     -->
-                <!-- <div id="skills-carousel"class="owl-carousel skills-carousel">
-                        <div class="item">
-                          <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[0].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[0].split('|')[2] }}</h5>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[1].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="skill">
-                              <h4>{{ profile?.PrimarySkills.split(',')[2].split('|')[0] }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
-                              </div>
-                          </div>
-                        </div>
-                    </div> -->
-
-                <!-- // -->
+           
+       
+                
+                
                 <div id="skills-carousel-Changed" class="skills-carousel-Changed">
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
