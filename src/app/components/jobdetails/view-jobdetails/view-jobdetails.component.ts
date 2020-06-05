@@ -469,6 +469,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#Prospect").addClass('active');
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
+            this.inprogressview(0);
         this.updateappliedstatus();
           } else if (this.statusid === 0) {
             this.updateallcandidatesstatus();
@@ -479,6 +480,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").addClass('active');
             $("#Shortlisted").addClass('active');
             this.updateshortlistedstatus();
+            this.inprogressview(1);
           }
           else if (this.statusid === 15) {
             $("#Prospect").removeClass('active');
@@ -486,6 +488,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").removeClass('active');
             $("#aryticbestfit").addClass('active');
             this.updatesuggestedstatus();
+            this.inprogressview(0);
           }
           else if (this.statusid === 7) {
             $("#Prospect").removeClass('active');
@@ -493,6 +496,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").addClass('active');
             $("#Interview").addClass('active');
             this.updateinterviewedstatus();
+            this.inprogressview(1);
           }
       }
       sessionStorage.removeItem('statusid');
