@@ -81,7 +81,7 @@
                       Free Trial Expired, Renew Now!
                     </ng-container>
                     <ng-container *ngIf="active == false">
-                      Free Trial Expires, Upgrade Now!
+                      Free Trial Expires in <strong>{{daysRemaining||'0'}}</strong>  days, Upgrade Now!
                     </ng-container>                  
                   </a>
                   </li>

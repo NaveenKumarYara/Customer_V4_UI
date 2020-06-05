@@ -198,7 +198,7 @@ export class DashboardJobsviewComponent implements OnInit {
               yAxes: [{
                 ticks: {
                   beginAtZero: true,
-                  stepSize: 10
+                  // stepSize: 10
                 }
               }]
 
@@ -249,7 +249,7 @@ export class DashboardJobsviewComponent implements OnInit {
               yAxes: [{
                 ticks: {
                   beginAtZero: true,
-                  stepSize: 10
+                  // stepSize: 10
                 }
               }]
              

@@ -17,6 +17,7 @@ export class LogoHeaderComponent implements OnInit {
   bill:billEstimates; 
   active:boolean=false;
   jobsactive:boolean=false;
+  daysRemaining:any;
   postactive:boolean=false;
   addPricing = new payment();
   subdetails:CustomerSubscription;
@@ -58,6 +59,9 @@ GetSubscriptionDetails(sid)
     this.sdetails = res;
     let date = new Date();  
     let val = new Date(date.setDate(date.getDate()));
+    var diff = Math.abs(new Date(this.sdetails.nextBillingAt) .getTime() - new Date(date.setDate(date.getDate())).getTime());
+    var diffDays = Math.ceil(diff / (1000 * 3600 * 24));  
+    this.daysRemaining = diffDays;
     if(new Date(this.sdetails.nextBillingAt) < val)
     {     
       this.active=true;
