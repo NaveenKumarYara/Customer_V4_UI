@@ -518,6 +518,15 @@ GetCustomerSubscription(userId :number): Observable<CustomerSubscription>
       ); 
 }
 
+GetCustomerInvoices(subcustomerId:number)
+{
+  const url = this.settingsService.settings.GetCustomerInvoices+ '?customerId=' +subcustomerId ;
+  return this.http.get<CustomerSubscription[]>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
 GetSubscriptionDetails(subscriptionId:number):Observable<GetSubscriptionDetails>
 {
   const url = this.settingsService.settings.GetSubscriptionDetails+ '?subscriptionId=' +subscriptionId ;

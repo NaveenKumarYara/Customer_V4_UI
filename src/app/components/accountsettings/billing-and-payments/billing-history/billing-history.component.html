@@ -12,10 +12,12 @@
           </thead>
           
           <tbody>
-                  <tr>
-                    <td>September 2019 </td>
-                    <td>$ 49.00</td>
-                    <td>Paid </td>
+                  <tr *ngFor="let history of InvoicesList">
+                    <td>{{history?.dueDate | date:'medium'}} </td>
+                    <td *ngIf="history?.amountDue>50">{{history?.amountDue/100}}</td>
+                    <td *ngIf="history?.amountDue<=50">{{history?.amountDue}}</td>
+                    <td *ngIf="history?.amountDue==0">Paid</td>
+                    <td *ngIf="history?.amountDue!=0">Pending Due </td>
                     <td>
                         <div class="dropdown notes-dropdown d-inline">
                             <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
@@ -25,7 +27,7 @@
                             </a>
                             <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
                               <div class="p10-20">
-                              Email : lisa@gmail.com
+                              Email : {{contactdetails?.email}}
                               </div>
                             </div>
                           </div>  
@@ -37,56 +39,7 @@
                             </div> 
                     </td>
                   </tr>  
-                  <tr>
-                      <td>September 2019 </td>
-                      <td>$ 49.00</td>
-                      <td>Paid </td>
-                      <td>
-                          <div class="dropdown notes-dropdown d-inline">
-                              <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
-                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
-                                
-                              </a>
-                              <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
-                                <div class="p10-20">
-                                Email : lisa@gmail.com
-                                </div>
-                              </div>
-                            </div>  
-                            <div class="dropdown notes-dropdown d-inline">
-                                <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
-                                  <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
-                                </a>
-                                
-                              </div> 
-                      </td>
-                    </tr>  
-                    <tr>
-                        <td>September 2019 </td>
-                        <td>$ 49.00</td>
-                        <td>Paid </td>
-                        <td>
-                            <div class="dropdown notes-dropdown d-inline">
-                                <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
-                                  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                  <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
-                                  
-                                </a>
-                                <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
-                                  <div class="p10-20">
-                                  Email : lisa@gmail.com
-                                  </div>
-                                </div>
-                              </div>  
-                              <div class="dropdown notes-dropdown d-inline">
-                                  <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
-                                    <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
-                                  </a>
-                                  
-                                </div> 
-                        </td>
-                      </tr>  
+               
           </tbody>
        
         </table>

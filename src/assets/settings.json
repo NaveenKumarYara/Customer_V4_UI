@@ -140,6 +140,8 @@
   "BillingCardDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetBillingCardDetails",
   "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription",
   "GetSubscriptionDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetSubscriptionDetails",
+  "GetCustomerInvoices":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerInvoices",
+  "CustomerAddonCharge":"https://pricingapi-dev.arytic.com/api/BillingHistory/CreateCustomerAddonInvoice",
   "GetBillingAddressCustomer":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerBillingAddress",
   "GetDashboardStatisticsForJobsPosted":"https://identityapi-dev.arytic.com/api/GetDashboardStatisticsForJobsPosted",
   "GetDashboardStatisticsForJobsFilled":"https://identityapi-dev.arytic.com/api/GetDashboardStatisticsForJobsFilled",

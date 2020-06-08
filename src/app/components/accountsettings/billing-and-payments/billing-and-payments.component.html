@@ -36,7 +36,7 @@
                           </div>
                         </ng-container>
                         <ng-container *ngIf="sdetails?.planId=='trial'">
-                          <div class="pb_5">Plan : <span class="pl-_5 plan-type">Trail</span>
+                          <div class="pb_5">Plan : <span class="pl-_5 plan-type">Trial</span>
                           </div>
                         </ng-container>
                        
@@ -233,16 +233,16 @@
           </div>
           <div id="billing-history" class="tab-pane fade">
             <!-- if billing-history -->
-            <div style="display: none;">
+            <div>
               <app-billing-history></app-billing-history>
             </div>
             <!-- #if billing-history -->
             <!-- if no billing-history -->
-            <div class="no-billing-view">
+            <!-- <div class="no-billing-view">
               <img src="./../../../../assets/images/no-billing-image.png">
               <h5>No Billing History</h5>
               <p>Your Billing history snippet will be shown here</p>
-            </div>
+            </div> -->
             <!-- #if no billing-history -->
           </div>
           <div id="subscription" class="tab-pane fade bs-responsive-tabs active in">

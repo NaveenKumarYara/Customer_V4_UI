@@ -81,7 +81,19 @@
                       Free Trial Expired, Renew Now!
                     </ng-container>
                     <ng-container *ngIf="active == false">
-                      Free Trial Expires in <strong>{{daysRemaining||'0'}}</strong>  days, Upgrade Now!
+                      <ng-container *ngIf="sdetails?.planId=='trial'">
+                        Free Trial Expires in <strong>{{daysRemaining}}</strong>  days, Upgrade Now!
+                      </ng-container>
+                      <ng-container *ngIf="sdetails?.planId=='starterdirect'">
+                       Starter Plan is Payment Due in  in <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                      </ng-container>
+                      <ng-container *ngIf="sdetails?.planId=='basicdirect'">
+                        Basic Plan is Payment Due in  in <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                       </ng-container>
+                       <ng-container *ngIf="sdetails?.planId=='growthdirect'">
+                        Basic Plan is Payment Due in  in <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                       </ng-container>
+                     
                     </ng-container>                  
                   </a>
                   </li>

@@ -28,6 +28,7 @@ export class LogoHeaderComponent implements OnInit {
     if (this.customer == null) {
         this.Logout();
     }
+    this.GetCustomerSubscription();
     // sessionStorage.setItem('ProfileThumbnail', this.candidateDetails.UserProfilePictureUrl);
     // else {
     //     let pic = sessionStorage.getItem('ProfileThumbnail');
@@ -134,7 +135,7 @@ GetSubscriptionDetails(sid)
 
 ngOnInit()
 {
-   this.GetCustomerSubscription();
+  
     if(localStorage.getItem('jobactive')!=null&&localStorage.getItem('jobactive')!=undefined)
     {
       this.changetheactive(1);
