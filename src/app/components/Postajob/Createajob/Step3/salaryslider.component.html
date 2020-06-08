@@ -28,6 +28,27 @@
                 (userChangeEnd)="maxAnnualChangeEnd($event)"
                 name="annual">
     </ng5-slider>
+    
+     <!--New Input Fields for Salary 08-06-2020-->
+     <div class="clearfix">&nbsp;</div>
+     <div class="row m-style">
+      <div class="col-md-4">
+        <div class="material-textfield">
+          <input name="smin" placeholder=" " type="text">
+          <label>Min Pay</label>
+        </div>
+      </div>
+      <div class="col-md-1 text-center">
+        <i class="fa fa-minus" aria-hidden="true"></i>
+      </div>
+      <div class="col-md-4">
+        <div class="material-textfield">
+          <input name="smax" placeholder=" " type="text">
+          <label>Max Pay</label>
+        </div>
+      </div>
+    </div>
+    <!---->
     </div>
     <div *ngIf="salaryTypeSelected?.SalaryTypeId === 1 && !show" >
       <ng5-slider [(value)]="minHourRate"
@@ -38,7 +59,28 @@
                  (userChangeEnd)="maxHourlyChangeEnd($event)"
                  name="hourly">
      </ng5-slider>
+          <!--New Input Fields for Salary 08-06-2020-->
+          <div class="clearfix">&nbsp;</div>
+          <div class="row m-style">
+            <div class="col-md-4">
+              <div class="material-textfield">
+                <input name="smin" placeholder=" " type="text">
+                <label>Min Pay</label>
+              </div>
+            </div>
+            <div class="col-md-1 text-center">
+              <i class="fa fa-minus" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-4">
+              <div class="material-textfield">
+                <input name="smax" placeholder=" " type="text">
+                <label>Max Pay</label>
+              </div>
+            </div>
+          </div>
+          <!---->
      </div>
+
      
      <!--Commented on 11-04-2020, as requirement need to be revamped-->
   <!-- <a  href="Javascript:void(0)" (click)="show=!show">Other</a> -->
