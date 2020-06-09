@@ -315,6 +315,15 @@ export class JobdetailsService {
       return Observable.throw(error.json());
     });
   }
+
+  AddonHirefee(body) {
+    return this.http.post(this.settingsService.settings.CustomerAddonCharge, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   StartConversation(body) {
     return this.http.post(this.settingsService.settings.StartConversation, body)
     .map((res: Response) => res)

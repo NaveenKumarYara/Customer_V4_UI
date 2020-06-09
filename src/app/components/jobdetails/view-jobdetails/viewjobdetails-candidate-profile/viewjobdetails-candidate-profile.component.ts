@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails.service';
+import { AppService } from '../../../../app.service';
 import { ChatboxdialogComponent } from './chatboxdialog/chatboxdialog.component';
 import { SharedialogComponent } from './sharedialog/sharedialog.component';
 import { RejectdialogComponent } from './rejectdialog/rejectdialog.component';
@@ -42,6 +43,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
   userId: any;
+  addon = new addon();
   profiles: any;
   customer: any;
   CandidateCertification:CandidateCertifications;
@@ -100,7 +102,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   };
   ProfileId: any;
   currentNo: number[] =[];
-  constructor(private el: ElementRef, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+  constructor(private el: ElementRef,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     ,private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -273,11 +275,37 @@ OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profil
   return false;
   // }
 }
+
+Check(val)
+{
+if(val==1)
+{
+
+  return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+  this.addon.SubscriptionId = res.subscriptionId;
+  this.addon.AddonId = "2";
+  this.addon.AddonUnitPrice = 40;
+  this.addon.AddonQuantity = 1;
+  this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+    // this.jobDetails.populateJobsStaticInfo(this.jobid);
+ 
+    console.log(result);
+  });
+});
+}
+
+}
+
+
 // updateOnDialogClose() {
 //   this.eventStat.emit(null);
 //   this.myEvent.emit(null);
 // }
 shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
+  if(stat==11)
+  {
+    this.Check(1)
+  }
   this.schIntw.UserId = null;
   this.schIntw.JobId = this.jobid;
   this.schIntw.ProfileId = profileId;
@@ -878,4 +906,13 @@ export class Resume {
   ProfileId: number;
   Url: string;
   ResumeFile: string;
+}
+
+
+export class addon
+{
+    SubscriptionId: string;
+    AddonId:string;
+    AddonUnitPrice:number;
+    AddonQuantity:number;
 }

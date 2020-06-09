@@ -1,8 +1,8 @@
 
     
 
-            <ng-container *ngIf="InvoicesList.length>0">
-              <div class="tr-scroll">
+            <ng-container *ngIf="InvoicesList">
+              <div class="tr-scroll" *ngIf="InvoicesList.length>0">
                 <div class="table-responsive" style="width: 100%">
               <table class="table adduser-checkbox">
       
@@ -19,8 +19,8 @@
             <tbody>
               <tr *ngFor="let history of InvoicesList">
                 <td>{{history?.dueDate | date:'medium'}} </td>
-                <td *ngIf="history?.amountDue>50">{{history?.amountDue/100}}</td>
-                <td *ngIf="history?.amountDue<=50">{{history?.amountDue}}</td>
+                <td *ngIf="history?.total>50">{{history?.total/100}}</td>
+                <td *ngIf="history?.total<=50">{{history?.total}}</td>
                 <td *ngIf="history?.amountDue==0">Paid</td>
                 <td *ngIf="history?.amountDue!=0">Pending Due </td>
                 <td>
