@@ -26,6 +26,7 @@ export class BillingHistoryComponent implements OnInit {
   contactdetails:getBillingContactDetails;
   cid:any;
   amount:number;
+  InvoicesPdf:any;
   InvoicesList:any;
   sdetails:GetSubscriptionDetails;
   subdetails:CustomerSubscription;
@@ -70,8 +71,15 @@ export class BillingHistoryComponent implements OnInit {
   GetSubscriptionInvoices(id)
   {
     return this.appService.GetCustomerInvoices(id).subscribe(res1 => {
-      debugger
       this.InvoicesList = res1;
+    });
+  }
+
+  GetInvoicePdfDownLoad(Iid)
+  {
+    return this.appService.GetInvoicePdf(Iid).subscribe(res2 => {
+      this.InvoicesPdf= res2;
+      window.open(res2.downloadUrl, '_blank');
     });
   }
 

@@ -518,6 +518,15 @@ GetCustomerSubscription(userId :number): Observable<CustomerSubscription>
       ); 
 }
 
+GetInvoicePdf(invoiceId:number)
+{
+  const url = this.settingsService.settings.GetInvociePdf+ '?invoiceId=' +invoiceId ;
+  return this.http.get<string>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
 GetCustomerInvoices(subcustomerId:number)
 {
   const url = this.settingsService.settings.GetCustomerInvoices+ '?customerId=' +subcustomerId ;

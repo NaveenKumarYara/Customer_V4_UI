@@ -144,6 +144,7 @@ export class Settings {
   BillingEstimateDetails:string;
   BillingContactDetails:string;
   UnbillingChargeDetails:string;
+  GetInvociePdf:string;
   BillingCardDetails:string;
   GetCustomerSubscription:string;
   GetSubscriptionDetails:string;
