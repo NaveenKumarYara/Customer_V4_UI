@@ -11,6 +11,7 @@ import { Jobskills } from '../../../../models/jobskills.model';
 import { Qualifications } from '../../../../models/qualifications.model';
 import { WorkAuthorization } from '../../../../models/workAuthorization';
 import { user } from '../../../login/user';
+declare var $: any;
 
 @Component({
   selector: 'app-createajob',
@@ -97,6 +98,36 @@ editMode: string;
   //  if (this.jobId != null) {
   //     this.PopulateJobdetail(this.jobId);
   //  }
+//Post a job fixed buttons script09-06-2020
+  
+  $(window).scroll(function(event) {
+    function footer()
+      {
+          var scroll = $(window).scrollTop(); 
+          if(scroll < 800)
+          { 
+              $(".poj-footer").fadeIn("slow").addClass("show");
+          }
+        
+          else
+          {
+              $(".poj-footer").fadeOut("slow").removeClass("show");
+          }
+          
+          clearTimeout($.data(this, 'scrollTimer'));
+          $.data(this, 'scrollTimer', setTimeout(function() {
+              if ($('.poj-footer').is(':hover')) {
+              footer();
+          }
+              else
+              {
+                $(".poj-footer").fadeOut("slow");
+              }
+      }, 2000));
+      }
+      footer();
+  });
+  
 
   }
   ngAfterViewChecked() {
