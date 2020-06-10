@@ -20,21 +20,23 @@
         </div> -->
       </div>
     <div *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-     <ng5-slider [(value)]="minAnnualRate"
+     <!-- <ng5-slider [(value)]="minAnnualRate"
                 [(highValue)]="maxAnnualRate"
                 [options]="annual"
                 (userChangeStart)="minAnnualChangeStart($event)"
                 (userChange)="onAnnualChange($event)"
                 (userChangeEnd)="maxAnnualChangeEnd($event)"
                 name="annual">
-    </ng5-slider>
+    </ng5-slider> -->
     
      <!--New Input Fields for Salary 08-06-2020-->
      <div class="clearfix">&nbsp;</div>
-     <div class="row m-style">
+     <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
       <div class="col-md-4">
         <div class="material-textfield">
-          <input name="smin" placeholder=" " type="text">
+          <input  placeholder=" " #Minname="ngModel" name="MinSal" [(ngModel)]="minAnnualRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)" type="text">
+          <span class="text-danger"
+          *ngIf="Minname.invalid && Minname.touched">Required.</span>
           <label>Min Pay</label>
         </div>
       </div>
@@ -43,28 +45,32 @@
       </div>
       <div class="col-md-4">
         <div class="material-textfield">
-          <input name="smax" placeholder=" " type="text">
+          <input name="smax" placeholder=" " #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxAnnualRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)" type="text">
+          <span class="text-danger"
+          *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
           <label>Max Pay</label>
         </div>
       </div>
     </div>
     <!---->
     </div>
-    <div *ngIf="salaryTypeSelected?.SalaryTypeId === 1 && !show" >
-      <ng5-slider [(value)]="minHourRate"
+    <div>
+      <!-- <ng5-slider [(value)]="minHourRate"
                  [(highValue)]="maxHourRate"
                  [options]="hourly"
                  (userChangeStart)="minHourlyChangeStart($event)"
                  (userChange)="onHourlyChange($event)"
                  (userChangeEnd)="maxHourlyChangeEnd($event)"
                  name="hourly">
-     </ng5-slider>
+     </ng5-slider> -->
           <!--New Input Fields for Salary 08-06-2020-->
           <div class="clearfix">&nbsp;</div>
-          <div class="row m-style">
+          <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
             <div class="col-md-4">
               <div class="material-textfield">
-                <input name="smin" placeholder=" " type="text">
+                <input  placeholder=" " #Minhname="ngModel" name="MinhSal" [(ngModel)]="minHourRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)" type="text">
+                <span class="text-danger"
+                *ngIf="Minhname.invalid && Minhname.touched">Required.</span>
                 <label>Min Pay</label>
               </div>
             </div>
@@ -73,7 +79,9 @@
             </div>
             <div class="col-md-4">
               <div class="material-textfield">
-                <input name="smax" placeholder=" " type="text">
+                <input name="smax" placeholder=" " #Maxhname="ngModel" name="MaxhSal" [(ngModel)]="maxHourRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)" type="text">
+                <span class="text-danger"
+                *ngIf="Maxhname.invalid && Maxhname.touched">Required.</span>
                 <label>Max Pay</label>
               </div>
             </div>
