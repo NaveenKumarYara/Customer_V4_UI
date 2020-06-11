@@ -89,6 +89,7 @@ import { AccountsettingsComponent } from './components/accountsettings/accountse
 import { AccountsettingdetailsComponent } from './components/accountsettings/accountsettingdetails/accountsettingdetails.component';
 import { NavigationcomponentComponent } from './components/accountsettings/navigationcomponent/navigationcomponent.component';
 import { UsersComponent } from './components/accountsettings/users/users.component';
+import {InviteUsersComponent} from './components/accountsettings/InviteUsers/invite.component';
 import { aboutcompany } from './components/company-profile/aboutcompany/aboutcompany';
 import {CertificationComponent} from '../app/components/company-profile/achievementsandawards/CompanyCertification/certification.component';
 import {JobTemplateComponent} from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
@@ -252,7 +253,8 @@ const appRoutes: Routes =
         { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
         { path: 'app-users', component: UsersComponent },
         { path: 'app-billing-and-payments', component: BillingAndPaymentsComponent},
-        { path: 'app-billing-and-payments/:id',  component: BillingAndPaymentsComponent}              
+        { path: 'app-billing-and-payments/:id',  component: BillingAndPaymentsComponent},
+        {path:'app-inviteusers',component:InviteUsersComponent}             
       ]
     },
 
