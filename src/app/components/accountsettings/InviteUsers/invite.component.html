@@ -1,12 +1,12 @@
 <div class="col-lg-9">
     <div class="right">
-      <div class="tab-content">
+      <div class="tab-content i-t-m">
           <h1 (click)="showStep=!showStep">Invite Users</h1>
           <ng-container *ngIf="!showStep">
             <h1>Invite a Team member to use Arytic</h1>
             <div class="row">
               <div class="col-md-8">
-                <p>You can either let your team members access everything in this site, or assign specific
+                <p class="sub-text">You can either let your team members access everything in this site, or assign specific
                   roles to them.</p>
               </div>
               <div class="col-md-4">
@@ -32,197 +32,207 @@
 
         <ng-container *ngIf="showStep">
             <ng-container *ngIf="!showStep2">
+              <div class="col-md-10">
                 <div class="panel panel-default invite-panel">
-                    <div class="panel-body">
-                      <div class="form-group">
-                        <label for="iemailaddress">Email address</label>
-                        <input type="email" class="form-control" id="iemailaddress" placeholder="ex: abc@companydomain.com">
-                      </div>
-                      <div class="u-l-a">
+                  <div class="panel-body">
+                    <div class="form-group">
+                      <label for="iemailaddress">Email address</label>
+                      <input type="email" class="form-control" id="iemailaddress" placeholder="ex: abc@companydomain.com">
+                    </div>
+                    <div class="u-l-a row">
+                      <div class="col-md-12">
                         <h5>User Level Access</h5>
-                        <div class="col-md-4">
-                          <label class="checkbox-inline">
-                            <input type="radio" id="inlineradio1" value="option1"> Full Access
-                          </label>
-                        </div>
-                        <div class="col-md-4">
-                          <label class="checkbox-inline">
-                            <input type="radio" id="inlineradio2" value="option2"> Restricted Access
-                          </label>
-                        </div>
-                        <div class="clearfix">&nbsp;</div>
-                        <div class="col-md-12">
-                          <ul class="list-group">
-                            <li class="list-group-item">
-                              <div class="media">
-                                <div class="media-left">
-                                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading">Recruiter Access</h4>
-                                  <small>An individual who works to fill job openings in businesses or organizations. Recruiters
-                                    will work from resumes or by actively soliciting individuals qualified for positions.</small>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div class="media">
-                                <div class="media-left">
-                                  <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading">Hiring Leader Access</h4>
-                                  <small>Hiring managers work in coordination with their HR team, which supervises the interview
-                                    and hiring processes. Ultimately, a hiring managers' job is to hire the most qualified
-                                    applicant for a given position.</small>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div class="media">
-                                <div class="media-left">
-                                  <input type="radio" name="optionsRadios3" id="optionsRadios3" value="option3">
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading">Lorem Ipsum</h4>
-                                  <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit.</small>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div class="media">
-                                <div class="media-left">
-                                  <input type="radio" name="optionsRadios4" id="optionsRadios4" value="option4">
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading">Lorem Ipsum</h4>
-                                  <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit</small>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div class="media">
-                                <div class="media-left">
-                                  <input type="radio" name="optionsRadios5" id="optionsRadios5" value="option5">
-                                </div>
-                                <div class="media-body">
-                                  <h4 class="media-heading">Lorem Ipsum</h4>
-                                  <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                    velit</small>
-                                </div>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="clearfix">&nbsp;</div>
-          
                       </div>
                       <div class="clearfix">&nbsp;</div>
-                      <div class="pull-right">
-                        <button class="btn btn-border" (click)="showStep=!showStep">Cancel</button>
-                        <button class="btn btn-filled" type="submit" (click)="showStep2=!showStep2">Invite</button>
+                      <div class="col-md-6">
+                        <label class="checkbox-inline">
+                          <input type="radio" id="inlineradio1" value="option1"> Full Access
+                        </label>
                       </div>
+                      <div class="col-md-6">
+                        <label class="checkbox-inline">
+                          <input type="radio" id="inlineradio2" value="option2"> Restricted Access
+                        </label>
+                      </div>
+                      <div class="clearfix">&nbsp;</div>
+                      <div class="col-md-12 ">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">Recruiter Access</h4>
+                                <small>An individual who works to fill job openings in businesses or organizations. Recruiters
+                                  will work from resumes or by actively soliciting individuals qualified for positions.</small>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">Hiring Leader Access</h4>
+                                <small>Hiring managers work in coordination with their HR team, which supervises the interview
+                                  and hiring processes. Ultimately, a hiring managers' job is to hire the most qualified
+                                  applicant for a given position.</small>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="optionsRadios3" id="optionsRadios3" value="option3">
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">Lorem Ipsum</h4>
+                                <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit.</small>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="optionsRadios4" id="optionsRadios4" value="option4">
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">Lorem Ipsum</h4>
+                                <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit</small>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="media">
+                              <div class="media-left">
+                                <input type="radio" name="optionsRadios5" id="optionsRadios5" value="option5">
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">Lorem Ipsum</h4>
+                                <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                  velit</small>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="clearfix">&nbsp;</div>
+        
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="pull-right">
+                      <button class="btn btn-border" (click)="showStep=!showStep">Cancel</button>
+                      <button class="btn btn-filled" type="submit" (click)="showStep2=!showStep2">Invite</button>
                     </div>
                   </div>
+                </div>
+              </div>
+          
+                  <div class="clearfix">&nbsp;</div> 
             </ng-container>
     
           <ng-container *ngIf="showStep2">
-            <h4 (click)="showStep2=!showStep2">Recently Invited</h4>
-            <div class="table-responsive r-i-t">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <h6 class="email">james.barret@gmail.com</h6>
-                    </td>
-                    <td>
-                      <h6 class="role">Invitation Sent</h6>
-                    </td>
-                    <td>
-                      <div class="dropdown card-dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
-                            <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
-                          </svg>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a href="#">Make Ownner</a>
-                          </li>
-                          <li>
-                            <a href="#">Edit Role</a>
-                          </li>
-                          <li>
-                            <a href="#">Remove</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h6 class="email">john.smith@gmail.com</h6>
-                    </td>
-                    <td>
-                      <h6 class="role">Invitation Sent</h6>
-                    </td>
-                    <td>
-                      <div class="dropdown card-dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
-                            <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
-                          </svg>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a href="#">Make Ownner</a>
-                          </li>
-                          <li>
-                            <a href="#">Edit Role</a>
-                          </li>
-                          <li>
-                            <a href="#">Remove</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h6 class="email">will.smith@gmail.com</h6>
-                    </td>
-                    <td>
-                      <h6 class="role">Invitation Sent</h6>
-                    </td>
-                    <td>
-                      <div class="dropdown card-dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
-                            <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
-                          </svg>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a href="#">Make Ownner</a>
-                          </li>
-                          <li>
-                            <a href="#">Edit Role</a>
-                          </li>
-                          <li>
-                            <a href="#">Remove</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="r-i-t">
+              <h4 (click)="showStep2=!showStep2">Recently Invited</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h6 class="email">james.barret@gmail.com</h6>
+                      </td>
+                      <td>
+                        <h6 class="role">Invitation Sent</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">Make Ownner</a>
+                            </li>
+                            <li>
+                              <a href="#">Edit Role</a>
+                            </li>
+                            <li>
+                              <a href="#">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 class="email">john.smith@gmail.com</h6>
+                      </td>
+                      <td>
+                        <h6 class="role">Invitation Sent</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">Make Ownner</a>
+                            </li>
+                            <li>
+                              <a href="#">Edit Role</a>
+                            </li>
+                            <li>
+                              <a href="#">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 class="email">will.smith@gmail.com</h6>
+                      </td>
+                      <td>
+                        <h6 class="role">Invitation Sent</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown card-dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                              <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">Make Ownner</a>
+                            </li>
+                            <li>
+                              <a href="#">Edit Role</a>
+                            </li>
+                            <li>
+                              <a href="#">Remove</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
+         
         </ng-container>
           <!--Step 2 Ends-->
         

@@ -1,0 +1,50 @@
+
+/*Invite Styles 11-06-2020*/
+.i-t-m p.sub-text{
+    color: #93A2BB;
+}
+.invite-icon .fa{
+    color: #6a7e9c;
+    font-size: 70px;
+}
+.u-l-a h5{
+    color: #6a7e9c;
+    font-size: 1rem;
+}
+.u-l-a .media-left{
+    vertical-align: middle;
+}
+.u-l-a .list-group1{
+    margin-top: 15px;
+}
+.u-l-a label{
+    line-height: 20px;
+    width: 100%;
+}
+.u-l-a h4.media-heading{
+    color: #6a7e9c;
+}
+.u-l-a .media-body small{
+    color: #93A2BB;
+}
+.invite-panel{
+    margin-top:10px;
+    border-color: #E0E3EF;
+    -webkit-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+    -moz-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+    box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+}
+.r-i-t h4{
+    color: #6a7e9c;
+}
+.r-i-t .table h6{
+    color: #93A2BB;
+}
+.r-i-t td .dropdown button{
+    background: transparent;
+}
+.r-i-t td .dropdown-menu{
+    top: 10%;
+    right: 107px;
+    left: inherit;
+}
