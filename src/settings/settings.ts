@@ -149,6 +149,7 @@ export class Settings {
   GetCustomerSubscription:string;
   GetSubscriptionDetails:string;
   GetCustomerInvoices:string;
+  GetCustomerInvoicesPending:string;
   CustomerAddonCharge:string;
   GetJobMatchingCriteriaEndPoint: string;
   GetBillingAddressCustomer:string;

@@ -536,6 +536,16 @@ GetCustomerInvoices(subcustomerId:number)
       ); 
 }
 
+
+GetCustomerInvoicesPending(subcustomerId:number)
+{
+  const url = this.settingsService.settings.GetCustomerInvoicesPending+ '?customerId=' +subcustomerId ;
+  return this.http.get<CustomerSubscription[]>(url)
+      .catch(
+          this.handleError
+      ); 
+}
+
 GetSubscriptionDetails(subscriptionId:number):Observable<GetSubscriptionDetails>
 {
   const url = this.settingsService.settings.GetSubscriptionDetails+ '?subscriptionId=' +subscriptionId ;

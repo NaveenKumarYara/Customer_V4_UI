@@ -141,6 +141,7 @@
   "GetCustomerSubscription":"${Pricing_URL}/api/BillingHistory/GetCustomerSubscription",
   "GetSubscriptionDetails":"${Pricing_URL}/api/BillingHistory/GetSubscriptionDetails",
   "GetCustomerInvoices":"${Pricing_URL}/api/BillingHistory/GetCustomerInvoices",
+  "GetCustomerInvoicesPending":"${Pricing_URL}/api/BillingHistory/GetCustomerInvoicesNotPaid",
   "GetInvociePdf":"${Pricing_URL}/api/BillingHistory/GetCustomerInvoiceDownload",
   "CustomerAddonCharge":"${Pricing_URL}/api/BillingHistory/CreateCustomerAddonInvoice",
   "GetBillingAddressCustomer":"${Pricing_URL}/api/BillingHistory/GetCustomerBillingAddress",

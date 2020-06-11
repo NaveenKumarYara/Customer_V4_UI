@@ -141,6 +141,7 @@
   "GetCustomerSubscription":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerSubscription",
   "GetSubscriptionDetails":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetSubscriptionDetails",
   "GetCustomerInvoices":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerInvoices",
+  "GetCustomerInvoicesPending":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerInvoicesNotPaid",
   "CustomerAddonCharge":"https://pricingapi-dev.arytic.com/api/BillingHistory/CreateCustomerAddonInvoice",
   "GetInvociePdf":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerInvoiceDownload",
   "GetBillingAddressCustomer":"https://pricingapi-dev.arytic.com/api/BillingHistory/GetCustomerBillingAddress",

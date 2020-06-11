@@ -24,6 +24,7 @@ export class BillingAndPaymentsComponent implements OnInit {
   bill:billEstimates; 
   cid:any;
   amount:number;
+  InvoicesList:any;
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   invoice:invoiceEstimates[];
@@ -52,6 +53,12 @@ export class BillingAndPaymentsComponent implements OnInit {
    $("#bd").addClass('active');
   }
 
+  removeactiveh()
+  {
+   $("#ov").removeClass('active');
+   $("#bh").addClass('active');
+  }
+
  
   
   GetBillingEstimates()
@@ -67,11 +74,20 @@ export class BillingAndPaymentsComponent implements OnInit {
       this.subdetails = res;
       this.cid=res.customerId;
       this.GetSubscriptionDetails(res.subscriptionId);
+      this.GetSubscriptionInvoices(res.customerId);
       //this.GetInvoiceEstimates();
       this.GetBillingContactDetails();
       //this.GetUnbilledChargeDetails();
       this.GetBilledCardDetails();
   });
+  }
+
+  GetSubscriptionInvoices(id)
+  {
+    return this.appService.GetCustomerInvoices(id).subscribe(res1 => {
+      debugger
+      this.InvoicesList = res1;
+    });
   }
 
   GetSubscriptionDetails(sid)

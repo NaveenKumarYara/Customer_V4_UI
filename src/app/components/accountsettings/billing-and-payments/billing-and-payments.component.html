@@ -7,7 +7,7 @@
           <li class="" id="ov"><a data-toggle="tab" href="#overview" aria-expanded="false">Overview</a></li>
           <li class="" id="be"><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
           <li class="" id="bd"><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
-          <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
+          <li class="" id="bh"><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
           <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a>
           </li>
         </ul>
@@ -152,29 +152,42 @@
                     </div>
                     <div>
                       <!-- If billing -->
-                      <div style="display: none;">
+                      <div>
+                        <ng-container *ngIf="InvoicesList.length>0">
                         <table class="table m-0 td-p-8">
-                          <tr>
-                            <td>Sep 04, 2019 </td>
-                            <td>$ 49.99</td>
-                          </tr>
-                          <tr>
-                            <td>Aug 04, 2019</td>
-                            <td>$ 29.99</td>
-                          </tr>
-                          <tr>
-                            <td>Jul 04, 2019</td>
-                            <td>$ 29.99</td>
-                          </tr>
+                          <thead>
+                            <tr>
+                              <th>Paid On</th>
+                              <th>Amount</th>
+                              <th>Status</th>            
+                            </tr>
+                          </thead>    
+                          <tbody>
+                            <tr *ngFor="let history of InvoicesList">
+                              <td>{{history?.paidAt  | date:'mediumDate'}} </td>
+                              <td>{{history?.total/100}}</td>
+                              <td>Paid</td>
+                            </tr>
+                          </tbody>
+                          </table>
+                          </ng-container>
+                        
+                          <ng-container *ngIf="InvoicesList.length==0">
+                            <div class="no-billing-view">
+                          <img src="./../../../../assets/images/no-billing-image.png">
+                          <h5>No Billing History</h5>
+                          <p>Your Billing history snippet will be shown here</p>
+                        </div> 
+                        </ng-container>
 
-                        </table>
-                        <a data-toggle="tab" href="#billing-history">View More</a>
+                    
+                        <a data-toggle="tab" (click)="removeactiveh()" href="#billing-history">View More</a>
 
                       </div>
 
                       <!-- #If billing -->
                       <!-- If no billing -->
-                      <div class="no-billing">
+                      <!-- <div class="no-billing">
                         <div class="media">
                           <div class="media-left media-middle">
                             <a href="javascript:void(0)">
@@ -187,7 +200,7 @@
                             <p>Your Billing history snippet will be shown here</p>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- #If no billing -->
                     </div>
 
