@@ -470,7 +470,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
             this.inprogressview(0);
-        this.updateappliedstatus();
+            this.updateappliedstatus();
           } else if (this.statusid === 0) {
             this.updateallcandidatesstatus();
           }
