@@ -25747,8 +25747,8 @@ table .table-prl-0 td {
     position: absolute;
     font-size: 1rem;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
+    transform: translateY(-40%);
     background-color: white;
     color: gray;
     padding: 0 0.3rem;
@@ -25765,7 +25765,7 @@ table .table-prl-0 td {
     border: 1px solid #E0E3EF;
     border-radius: 5px;
     padding: 1rem 0.7rem;
-    color: gray;
+    color: #6A7E9C;
     transition: 0.1s ease-out;
 }
 
@@ -25776,12 +25776,12 @@ table .table-prl-0 td {
 .material-textfield input:focus+label {
     color: #448AFA;
     top: 0;
-    transform: translateY(-50%) scale(.9);
+    transform: translateY(-40%) scale(.9);
 }
 
 .material-textfield input:not(:placeholder-shown)+label {
     top: 0;
-    transform: translateY(-50%) scale(.9);
+    transform: translateY(-40%) scale(.9);
 }
 
 .m-style .fa {

@@ -11,7 +11,7 @@
         <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
       </ul>-->
 
-            <small class="text-danger error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small>
+            <small class="error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small>
         </div>
     </div>
     <div class="col-md-6">

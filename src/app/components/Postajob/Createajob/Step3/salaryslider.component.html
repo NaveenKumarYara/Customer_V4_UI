@@ -1,5 +1,5 @@
 <div class="form-group position-group custom-slider">
-    <label for="" class="question">What is the Salary Range? <small>(Optional)</small></label>
+    <label for="" class="question">What is the Salary Range? </label>
       <p class="description">Differentiation is based on employment type selection hourly or annual.</p>
       <div class="options">
         <!-- <div class="checkbox">
@@ -32,10 +32,10 @@
      <!--New Input Fields for Salary 08-06-2020-->
      <div class="clearfix">&nbsp;</div>
      <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-      <div class="col-md-4">
+      <div class="col-md-4 p-rel">
         <div class="material-textfield">
-          <input  placeholder=" " #Minname="ngModel" name="MinSal" [(ngModel)]="minAnnualRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)" type="text">
-          <span class="text-danger"
+          <input  placeholder="" #Minname="ngModel" name="MinSal" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
+          <span class="error1"
           *ngIf="Minname.invalid && Minname.touched">Required.</span>
           <label>Min Pay</label>
         </div>
@@ -43,10 +43,10 @@
       <div class="col-md-1 text-center">
         <i class="fa fa-minus" aria-hidden="true"></i>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 p-rel">
         <div class="material-textfield">
-          <input name="smax" placeholder=" " #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxAnnualRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)" type="text">
-          <span class="text-danger"
+          <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
+          <span class="error1"
           *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
           <label>Max Pay</label>
         </div>
@@ -66,22 +66,22 @@
           <!--New Input Fields for Salary 08-06-2020-->
           <div class="clearfix">&nbsp;</div>
           <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
-            <div class="col-md-4">
+            <div class="col-md-4 p-rel">
               <div class="material-textfield">
-                <input  placeholder=" " #Minhname="ngModel" name="MinhSal" [(ngModel)]="minHourRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)" type="text">
-                <span class="text-danger"
-                *ngIf="Minhname.invalid && Minhname.touched">Required.</span>
+                <input  placeholder="" #Minhname="ngModel" name="MinhSal" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
+                <span class="error1"
+                *ngIf="Minhname.invalid && Minhname.touched">Required</span>
                 <label>Min Pay</label>
               </div>
             </div>
             <div class="col-md-1 text-center">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 p-rel">
               <div class="material-textfield">
-                <input name="smax" placeholder=" " #Maxhname="ngModel" name="MaxhSal" [(ngModel)]="maxHourRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)" type="text">
-                <span class="text-danger"
-                *ngIf="Maxhname.invalid && Maxhname.touched">Required.</span>
+                <input name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
+                <span class="error1"
+                *ngIf="Maxhname.invalid && Maxhname.touched">Required</span>
                 <label>Max Pay</label>
               </div>
             </div>
@@ -96,14 +96,14 @@
 <ng-container *ngIf="salaryTypeSelected?.SalaryTypeId === 1 && show">
  
     <div>
-      <input type="text" class="form-control" #Minname="ngModel" name="MinSal" [(ngModel)]="minHourRate" placeholder="Minimum Salary*" required (input)="onMinChange($event.target.value)">
-      <span class="text-danger"
-      *ngIf="Minname.invalid && Minname.touched">Required.</span>
+      <input type="text" class="form-control" #Minname="ngModel" name="MinSal" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)">
+      <span class="error1"
+      *ngIf="Minname.invalid && Minname.touched">Required</span>
     </div> 
   <div>
-    <input type="text" class="form-control" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxHourRate" placeholder="Maximum Salary*" required (input)="onMaxChange($event.target.value)">
-    <span class="text-danger"
-    *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
+    <input type="text" class="form-control" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxHourRate"  required (input)="onMaxChange($event.target.value)">
+    <span class="error1"
+    *ngIf="Maxname.invalid && Maxname.touched">Required</span>
   </div>
 </ng-container>   
 
