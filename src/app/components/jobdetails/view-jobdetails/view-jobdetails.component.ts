@@ -121,13 +121,14 @@ export class ViewJobdetailsComponent implements OnInit {
 
   inprogressview(val)
   {
-    if(val===0)
-    {
-      this.inprogressprofile=true;
-    }
-    else
+    if(val == 0)
     {
       this.inprogressprofile=false;
+      
+    }
+    if(val == 1)
+    {
+      this.inprogressprofile=true;  
     }
   }
 
@@ -260,6 +261,7 @@ export class ViewJobdetailsComponent implements OnInit {
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others  
     this.sortBy = 1;
     this.statusid = 15;
+    this.inprogressview(0);
     this.ClearallValues();
     this.ClearActiveClasses();
     // this.loadMoreStat=this.statusid;
@@ -284,6 +286,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
     this.base.AryticFlag=false;
+    this.inprogressview(0);
     this.ClearallValues();
     this.ClearActiveClasses();
     this.CallList(this.statusid);
@@ -323,6 +326,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.sortBy = 1;
     this.statusid = 17;
     this.displayQuick = 0;
+    this.inprogressview(1);
     this.ClearallValues();
     this.ClearActiveClasses();
   //  this.loadMoreStat=this.statusid;
@@ -461,17 +465,16 @@ export class ViewJobdetailsComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
       this.Counts = this.child.TotalCount;
-      
-      this.inprogressview(1);
         if (onload === 1) {
           if (this.statusid === 4) {
             // debugger
+            this.inprogressview(0);
             $("#Prospect").addClass('active');
             $("#Shortlisted").removeClass('active');
             $("#Interview").removeClass('active');
-            this.inprogressview(0);
             this.updateappliedstatus();
           } else if (this.statusid === 0) {
+            this.inprogressview(0);
             this.updateallcandidatesstatus();
           }
           else if (this.statusid === 5) {
@@ -480,7 +483,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").addClass('active');
             $("#Shortlisted").addClass('active');
             this.updateshortlistedstatus();
-            this.inprogressview(1);
+          
           }
           else if (this.statusid === 15) {
             $("#Prospect").removeClass('active');
@@ -488,7 +491,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").removeClass('active');
             $("#aryticbestfit").addClass('active');
             this.updatesuggestedstatus();
-            this.inprogressview(0);
+
           }
           else if (this.statusid === 7) {
             $("#Prospect").removeClass('active');
@@ -496,7 +499,7 @@ export class ViewJobdetailsComponent implements OnInit {
             $("#inprogressprofiles").addClass('active');
             $("#Interview").addClass('active');
             this.updateinterviewedstatus();
-            this.inprogressview(1);
+       
           }
       }
       sessionStorage.removeItem('statusid');
