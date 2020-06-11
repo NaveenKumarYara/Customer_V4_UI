@@ -2,7 +2,7 @@
   <div class="right">
     <div class="tab-content">
       <div id="account-settings" class="tab-pane fade active in">
-        <h1>Account Settings</h1>
+       <h1>Account Settings</h1>
         <div class="edit-group email-group">
           <ng-container *ngIf="iseditEmail">
           <form [formGroup]="emailForm"  action="" (ngSubmit)="updateEmail()" class="form-inline">            
@@ -33,8 +33,7 @@
               <label for="email">Email</label>
               <div class="editable-input">
                 <input type="email" value="{{customer?.Email}}" class="form-control" id="updateemail" readonly />
-                <!-- <a (click)="iseditEmail=!iseditEmail" class="edit-btn">Edit email</a> -->
-              </div>
+ <!-- <a (click)="iseditEmail=!iseditEmail" class="edit-btn">Edit email</a> -->         </div>
             </ng-container>
             </div>
           </div>
@@ -109,6 +108,232 @@
             </div>
           </div>
         </div>
+        <!--Invite UI 10-06-2020-->
+        <!-- <h1>Invite a Team member to use Arytic</h1>
+        <div class="row">
+          <div class="col-md-8">
+            <p>You can either let your team members access everything in this site, or assign specific
+              roles to them.</p>
+          </div>
+          <div class="col-md-4">
+            <a href="javascript:void(0)" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
+              Member</a>
+          </div>
+        </div> -->
+    
+        <!-- <div class="clearfix">&nbsp;</div> -->
+        <!--Step 1 starts-->
+        <!--Need to show first time if there are no invites-->
+        <!-- <div class="text-center invite-icon">
+          <div class="clearfix">&nbsp;</div>
+          <div>
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div>
+            <a href="javascript:void(0)" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
+              Member</a>
+          </div>
+        </div> -->
+        <!---->
+        <!--Step 1 ends-->
+        <!--Step 2 Starts-->
+        <!--After Clicking on Invite member need to show below modal box-->
+        <!-- <div class="panel panel-default invite-panel">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="iemailaddress">Email address</label>
+              <input type="email" class="form-control" id="iemailaddress" placeholder="ex: abc@companydomain.com">
+            </div>
+            <div class="u-l-a">
+              <h5>User Level Access</h5>
+              <div class="col-md-4">
+                <label class="checkbox-inline">
+                  <input type="radio" id="inlineradio1" value="option1"> Full Access
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="checkbox-inline">
+                  <input type="radio" id="inlineradio2" value="option2"> Restricted Access
+                </label>
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <div class="col-md-12">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Recruiter Access</h4>
+                        <small>An individual who works to fill job openings in businesses or organizations. Recruiters
+                          will work from resumes or by actively soliciting individuals qualified for positions.</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left">
+                        <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Hiring Leader Access</h4>
+                        <small>Hiring managers work in coordination with their HR team, which supervises the interview
+                          and hiring processes. Ultimately, a hiring managers' job is to hire the most qualified
+                          applicant for a given position.</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left">
+                        <input type="radio" name="optionsRadios3" id="optionsRadios3" value="option3">
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Lorem Ipsum</h4>
+                        <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit.</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left">
+                        <input type="radio" name="optionsRadios4" id="optionsRadios4" value="option4">
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Lorem Ipsum</h4>
+                        <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <div class="media-left">
+                        <input type="radio" name="optionsRadios5" id="optionsRadios5" value="option5">
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Lorem Ipsum</h4>
+                        <small>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                          velit</small>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="clearfix">&nbsp;</div>
+
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div class="pull-right">
+              <button class="btn btn-border">Cancel</button>
+              <button class="btn btn-filled" type="submit">Invite</button>
+            </div>
+          </div>
+        </div> -->
+        <!--Step 2 Ends-->
+
+        <!--Step 3 Starts-->
+        <!-- <h4>Recently Invited</h4>
+        <div class="table-responsive r-i-t">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <h6 class="email">james.barret@gmail.com</h6>
+                </td>
+                <td>
+                  <h6 class="role">Invitation Sent</h6>
+                </td>
+                <td>
+                  <div class="dropdown card-dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                        <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                      </svg>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">Make Ownner</a>
+                      </li>
+                      <li>
+                        <a href="#">Edit Role</a>
+                      </li>
+                      <li>
+                        <a href="#">Remove</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h6 class="email">john.smith@gmail.com</h6>
+                </td>
+                <td>
+                  <h6 class="role">Invitation Sent</h6>
+                </td>
+                <td>
+                  <div class="dropdown card-dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                        <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                      </svg>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">Make Ownner</a>
+                      </li>
+                      <li>
+                        <a href="#">Edit Role</a>
+                      </li>
+                      <li>
+                        <a href="#">Remove</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h6 class="email">will.smith@gmail.com</h6>
+                </td>
+                <td>
+                  <h6 class="role">Invitation Sent</h6>
+                </td>
+                <td>
+                  <div class="dropdown card-dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
+                        <path d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" fill="#448afa"></path>
+                      </svg>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">Make Ownner</a>
+                      </li>
+                      <li>
+                        <a href="#">Edit Role</a>
+                      </li>
+                      <li>
+                        <a href="#">Remove</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> -->
+
+        <!---->
+        <!--Invite-->
+
       </div>
       <div id="users" class="tab-pane fade">
         <header>
@@ -130,8 +355,12 @@
                   <img src="images/ui-face-1.png" alt="">
                   <h3 class="name">John Smith</h3>
                 </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
-                <td><h3 class="role">Hiring Lead</h3></td>
+                <td>
+                  <h3 class="email">john.smith@gmail.com</h3>
+                </td>
+                <td>
+                  <h3 class="role">Hiring Lead</h3>
+                </td>
                 <td><span class="close">×</span></td>
               </tr>
               <tr>
@@ -139,8 +368,12 @@
                   <img src="images/ui-face-1.png" alt="">
                   <h3 class="name">John Smith</h3>
                 </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
-                <td><h3 class="role">Hiring Lead</h3></td>
+                <td>
+                  <h3 class="email">john.smith@gmail.com</h3>
+                </td>
+                <td>
+                  <h3 class="role">Hiring Lead</h3>
+                </td>
                 <td><span class="close">×</span></td>
               </tr>
               <tr>
@@ -148,8 +381,12 @@
                   <img src="images/ui-face-1.png" alt="">
                   <h3 class="name">John Smith</h3>
                 </td>
-                <td><h3 class="email">john.smith@gmail.com</h3></td>
-                <td><h3 class="role">Hiring Lead</h3></td>
+                <td>
+                  <h3 class="email">john.smith@gmail.com</h3>
+                </td>
+                <td>
+                  <h3 class="role">Hiring Lead</h3>
+                </td>
                 <td><span class="close">×</span></td>
               </tr>
             </tbody>
@@ -163,55 +400,63 @@
           <li class=""><a data-toggle="tab" href="#estimates" aria-expanded="false">Billing Estimates</a></li>
           <li class=""><a data-toggle="tab" href="#billing-details" aria-expanded="false">Billing Details</a></li>
           <li class=""><a data-toggle="tab" href="#billing-history" aria-expanded="false">Billing History</a></li>
-          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a></li>
+          <li class="active"><a data-toggle="tab" href="#subscription" aria-expanded="false">Manage Subscription</a>
+          </li>
         </ul>
         <div class="tab-content">
           <div id="overview" class="tab-pane fade">
             <div class="row">
-              
+
               <div class="col-md-6">
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
-                    <div><h1 class="panel-title">Bill Estimate</h1></div>
+                    <div>
+                      <h1 class="panel-title">Bill Estimate</h1>
+                    </div>
                     <div class="p_5">
-                      <div class="pb_5"><h4 class="d-inline">USD 52.49</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees & Taxes)</small>  </div>
+                      <div class="pb_5">
+                        <h4 class="d-inline">USD 52.49</h4><small class="d-inline pl-_5">(Inclusive of Hiring Fees &
+                          Taxes)</small>
+                      </div>
                       <div class="pb_5">Plan: <span class="pl-_5">Basic</span></div>
                       <div class="pb_5">Next Renewal on : <span class="pl-_5">Oct 05, 2019</span> </div>
                       <a href="javascript:void(0)">View More</a>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
-                    <div><h1 class="panel-title">Billing Details</h1></div>
+                    <div>
+                      <h1 class="panel-title">Billing Details</h1>
+                    </div>
                     <div class="p_5pt-0">
-                        <div class="table-row">
-                            <div class="payment-group">
-                              <div class="form-group p-0">
-                             
-                                <div class="edit-group p-0 border-w-0">
-                                  <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
-                                  <div>
-                                    <h4>Paypal</h4>
-                                    <p class="m-0">XXXX XXXX XXXX 3456</p>
-                                  </div>
-                                  <div>
-                                    <h5>Expiry</h5>
-                                    <p class="m-0">3 / 23 / 2019</p>
-                                  </div>
-                                
-                                </div>
-                             
+                      <div class="table-row">
+                        <div class="payment-group">
+                          <div class="form-group p-0">
+
+                            <div class="edit-group p-0 border-w-0">
+                              <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div>
+                              <div>
+                                <h4>Paypal</h4>
+                                <p class="m-0">XXXX XXXX XXXX 3456</p>
                               </div>
+                              <div>
+                                <h5>Expiry</h5>
+                                <p class="m-0">3 / 23 / 2019</p>
+                              </div>
+
                             </div>
+
                           </div>
+                        </div>
+                      </div>
                       <div class="pb_5">Billing Period: <span class="pl-_5">Monthly</span></div>
                       <a href="javascript:void(0)">Manage Billing Details</a>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
@@ -220,50 +465,54 @@
               <div class="col-md-6">
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
-                    <div><h1 class="panel-title">Bill History</h1></div>
+                    <div>
+                      <h1 class="panel-title">Bill History</h1>
+                    </div>
                     <div class="p_5">
-                     <table class="table m-0 td-p-8">
-                       <tr>
-                         <td>Sep 04, 2019 </td>
-                         <td>$ 49.99</td>
-                       </tr>
-                       <tr>
-                        <td>Aug 04, 2019</td>
-                        <td>$ 29.99</td>
-                      </tr>
-                      <tr>
-                        <td>Jul 04, 2019</td>
-                        <td>$ 29.99</td>
-                      </tr>
-                     
-                     </table>
+                      <table class="table m-0 td-p-8">
+                        <tr>
+                          <td>Sep 04, 2019 </td>
+                          <td>$ 49.99</td>
+                        </tr>
+                        <tr>
+                          <td>Aug 04, 2019</td>
+                          <td>$ 29.99</td>
+                        </tr>
+                        <tr>
+                          <td>Jul 04, 2019</td>
+                          <td>$ 29.99</td>
+                        </tr>
+
+                      </table>
                       <a href="javascript:void(0)">View More</a>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="panel panel-default box-shadow">
                   <div class="panel-body">
-                    <div><h1 class="panel-title">Billing Contacts</h1></div>
-                    <div class="ptrl_5-1_3">
-                        <div class="media">
-                            <div class="media-left media-middle">
-                              <a href="#">
-                                <img class="media-object" src="https://ui-avatars.com/api/?name=Emma+Watson" alt="User">
-                              </a>
-                            </div>
-                            <div class="media-body">
-                              <h4 class="media-heading">Emma Watson</h4>
-                              <span>emmawatsaon@abc.com</span>
-                            </div>
-                          </div>
-                      <div class="ptb_5">Send Copy to:  <span class="pl-_5"> accountsteam@abc.com</span> </div>
-                      <a href="javascript:void(0)">Manage Billing Contacts</a>
-                      
+                    <div>
+                      <h1 class="panel-title">Billing Contacts</h1>
                     </div>
-                    
+                    <div class="ptrl_5-1_3">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <a href="#">
+                            <img class="media-object" src="https://ui-avatars.com/api/?name=Emma+Watson" alt="User">
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">Emma Watson</h4>
+                          <span>emmawatsaon@abc.com</span>
+                        </div>
+                      </div>
+                      <div class="ptb_5">Send Copy to: <span class="pl-_5"> accountsteam@abc.com</span> </div>
+                      <a href="javascript:void(0)">Manage Billing Contacts</a>
+
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -273,11 +522,15 @@
             <div class="table-layout">
               <div class="table-row">
                 <h4>Bill Estimate</h4>
-                <div><div class="currency">124.53 <small>(Inclusive of tax)</small></div></div>
+                <div>
+                  <div class="currency">124.53 <small>(Inclusive of tax)</small></div>
+                </div>
               </div>
               <div class="table-row">
                 <h4>Next Charge</h4>
-                <div><div class="date">8th March, 2018</div></div>
+                <div>
+                  <div class="date">8th March, 2018</div>
+                </div>
               </div>
               <div class="table-row">
                 <h4>Estimate Detail</h4>
@@ -299,11 +552,13 @@
                     <div class="amount">163.59</div>
                   </div>
                 </div>
-                
+
               </div>
               <div class="row text-right">
-                  <div class="fc-button-group">
-                      <button type="button" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>                    </div>
+                <div class="fc-button-group">
+                  <button type="button"
+                    class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy
+                    Now</button> </div>
               </div>
             </div>
           </div>
@@ -389,14 +644,20 @@
                     <div class="actions">
                       <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="21.3">
-                          <path d="M16.1 21.3H3c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1s1 .4 1 1v11.3h11.1V8c0-.6.4-1 1-1s1 .4 1 1v12.3c0 .6-.4 1-1 1zm3-17.2c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1s.4 1 1 1h17.1c.6 0 1-.4 1-1zm-5-3.1c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h7.1c.6 0 1-.4 1-1zM8.6 16.4V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1zm4 0V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1z" fill="#93a2bb"></path>
+                          <path
+                            d="M16.1 21.3H3c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1s1 .4 1 1v11.3h11.1V8c0-.6.4-1 1-1s1 .4 1 1v12.3c0 .6-.4 1-1 1zm3-17.2c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1s.4 1 1 1h17.1c.6 0 1-.4 1-1zm-5-3.1c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h7.1c.6 0 1-.4 1-1zM8.6 16.4V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1zm4 0V7.7c0-.6-.4-1-1-1s-1 .4-1 1v8.7c0 .6.4 1 1 1s1-.4 1-1z"
+                            fill="#93a2bb"></path>
                         </svg>
                       </a>
                       <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.9" height="20">
                           <g transform="translate(-1427.7 -604.8)" fill="#93a2bb">
-                            <path d="M1430.5 624.8a2.8 2.8 0 0 1-2.8-2.8v-12.3c0-1.5 1.2-2.8 2.8-2.8h5.5c.6 0 1 .4 1 1s-.4 1-1 1h-5.5c-.4 0-.8.4-.8.8V622c0 .4.4.8.8.8h12.3c.4 0 .8-.4.8-.8v-5.5c0-.6.4-1 1-1s1 .4 1 1v5.5c0 1.5-1.2 2.8-2.8 2.8h-12.3z"></path>
-                            <path d="M1434.4 619a.9.9 0 0 1-.7-.3c-.3-.3-.4-.6-.3-1l.7-2.6c0-.2.1-.3.3-.5l9.7-9.6c.4-.4 1-.4 1.4 0l1.8 1.8c.4.4.4 1 0 1.4l-9.6 9.7c-.1.1-.3.2-.5.3l-2.6.7c0 .1-.1.1-.2.1zm1.6-3.1l-.2.7.7-.2 8.7-8.8-.4-.4-8.8 8.7z"></path>
+                            <path
+                              d="M1430.5 624.8a2.8 2.8 0 0 1-2.8-2.8v-12.3c0-1.5 1.2-2.8 2.8-2.8h5.5c.6 0 1 .4 1 1s-.4 1-1 1h-5.5c-.4 0-.8.4-.8.8V622c0 .4.4.8.8.8h12.3c.4 0 .8-.4.8-.8v-5.5c0-.6.4-1 1-1s1 .4 1 1v5.5c0 1.5-1.2 2.8-2.8 2.8h-12.3z">
+                            </path>
+                            <path
+                              d="M1434.4 619a.9.9 0 0 1-.7-.3c-.3-.3-.4-.6-.3-1l.7-2.6c0-.2.1-.3.3-.5l9.7-9.6c.4-.4 1-.4 1.4 0l1.8 1.8c.4.4.4 1 0 1.4l-9.6 9.7c-.1.1-.3.2-.5.3l-2.6.7c0 .1-.1.1-.2.1zm1.6-3.1l-.2.7.7-.2 8.7-8.8-.4-.4-8.8 8.7z">
+                            </path>
                           </g>
                         </svg>
                       </a>
@@ -411,202 +672,235 @@
           </div>
           <div id="billing-history" class="tab-pane fade">
             <div class="tr-scroll">
-                <div class="table-responsive" style="width: 100%">
-                    <table class="table adduser-checkbox">
-                      <thead>
-                        <tr>
-                          <th>For Period</th>
-                          <th>Amount Paid</th>
-                          <th>Status</th>
-                          <th>Invoice Copy</th>
-                         
-                        </tr>
-                      </thead>
-                      
-                      <tbody>
-                              <tr>
-                                <td>September 2019 </td>
-                                <td>$ 49.00</td>
-                                <td>Paid </td>
-                                <td>
-                                    <div class="dropdown notes-dropdown d-inline">
-                                        <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
-                                          id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
-                                          
-                                        </a>
-                                        <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
-                                          <div class="p10-20">
-                                          Email : lisa@gmail.com
-                                          </div>
-                                        </div>
-                                      </div>  
-                                      <div class="dropdown notes-dropdown d-inline">
-                                          <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
-                                            <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
-                                          </a>
-                                          
-                                        </div> 
-                                </td>
-                              </tr>  
-                              <tr>
-                                  <td>September 2019 </td>
-                                  <td>$ 49.00</td>
-                                  <td>Paid </td>
-                                  <td>
-                                      <div class="dropdown notes-dropdown d-inline">
-                                          <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
-                                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
-                                            
-                                          </a>
-                                          <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
-                                            <div class="p10-20">
-                                            Email : lisa@gmail.com
-                                            </div>
-                                          </div>
-                                        </div>  
-                                        <div class="dropdown notes-dropdown d-inline">
-                                            <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
-                                              <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
-                                            </a>
-                                            
-                                          </div> 
-                                  </td>
-                                </tr>  
-                                <tr>
-                                    <td>September 2019 </td>
-                                    <td>$ 49.00</td>
-                                    <td>Paid </td>
-                                    <td>
-                                        <div class="dropdown notes-dropdown d-inline">
-                                            <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
-                                              id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                              <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
-                                              
-                                            </a>
-                                            <div  class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
-                                              <div class="p10-20">
-                                              Email : lisa@gmail.com
-                                              </div>
-                                            </div>
-                                          </div>  
-                                          <div class="dropdown notes-dropdown d-inline">
-                                              <a  class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
-                                                <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
-                                              </a>
-                                              
-                                            </div> 
-                                    </td>
-                                  </tr>  
-                      </tbody>
-                   
-                    </table>
-                  </div>
+              <div class="table-responsive" style="width: 100%">
+                <table class="table adduser-checkbox">
+                  <thead>
+                    <tr>
+                      <th>For Period</th>
+                      <th>Amount Paid</th>
+                      <th>Status</th>
+                      <th>Invoice Copy</th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>September 2019 </td>
+                      <td>$ 49.00</td>
+                      <td>Paid </td>
+                      <td>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
+                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
+
+                          </a>
+                          <div class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
+                            <div class="p10-20">
+                              Email : lisa@gmail.com
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
+                            <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
+                          </a>
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>September 2019 </td>
+                      <td>$ 49.00</td>
+                      <td>Paid </td>
+                      <td>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
+                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
+
+                          </a>
+                          <div class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
+                            <div class="p10-20">
+                              Email : lisa@gmail.com
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
+                            <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
+                          </a>
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>September 2019 </td>
+                      <td>$ 49.00</td>
+                      <td>Paid </td>
+                      <td>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button"
+                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="../../../../assets/images/email-icon.svg" class="w-24 b_r-0 m-0" />
+
+                          </a>
+                          <div class="dropdown-menu notes-list pull-right" aria-labelledby="dropdownMenu1">
+                            <div class="p10-20">
+                              Email : lisa@gmail.com
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dropdown notes-dropdown d-inline">
+                          <a class="dropdown-toggle interview-dropdown pointer wh-auto b-0 p-rel" type="button">
+                            <img src="../../../../assets/images/pdf.svg" class="w-16 b_r-0 m-0" />
+                          </a>
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
             </div>
-              
+
             <div id="billing-history-calendar" class="fc fc-unthemed fc-ltr" style="display: none">
-              <div class="fc-toolbar fc-header-toolbar"><div class="fc-left">
-                <div class="fc-button-group">
-                  <button type="button" class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Week</button>
-                  <button type="button" class="fc-listMonth-button fc-button fc-state-default fc-corner-right">Month</button>
-                </div></div><div class="fc-right"><div><button type="button" class="fc-prev-button fc-button fc-state-default"><span class="fc-icon fc-icon-left-single-arrow"></span></button><h2>Aug 12 – 18, 2018</h2><button type="button" class="fc-next-button fc-button fc-state-default"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div></div><div class="fc-center"></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-billingWeek-view"><div class="fc-emptyState"><p>Sorry no transactions to show</p></div></div></div>
+              <div class="fc-toolbar fc-header-toolbar">
+                <div class="fc-left">
+                  <div class="fc-button-group">
+                    <button type="button"
+                      class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Week</button>
+                    <button type="button"
+                      class="fc-listMonth-button fc-button fc-state-default fc-corner-right">Month</button>
+                  </div>
+                </div>
+                <div class="fc-right">
+                  <div><button type="button" class="fc-prev-button fc-button fc-state-default"><span
+                        class="fc-icon fc-icon-left-single-arrow"></span></button>
+                    <h2>Aug 12 – 18, 2018</h2><button type="button"
+                      class="fc-next-button fc-button fc-state-default"><span
+                        class="fc-icon fc-icon-right-single-arrow"></span></button>
+                  </div>
+                </div>
+                <div class="fc-center"></div>
+                <div class="fc-clear"></div>
+              </div>
+              <div class="fc-view-container" style="">
+                <div class="fc-view fc-billingWeek-view">
+                  <div class="fc-emptyState">
+                    <p>Sorry no transactions to show</p>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
           <div id="subscription" class="tab-pane fade bs-responsive-tabs active in">
-            
-              <div class="row pricing-row">
-                  <div class="col-md-4">
-                    <div class="pricing-card box-shadow">
-                      <div><span class="type">Starter </span></div>
-                      <div><h4 class="price d-inline">$ 29.99 </h4><small class="d-inline">/ Monthly </small></div>
-                      <div>+</div>
-                      <p>7% on Successful Hire</p>
-                      <div class="p9-0"><button class="btn-primary">Renew</button></div>
-                      <div ><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
-                      <hr>
-                      <ul class="features">
-                        <li>Post / Create A Job <span>(3 Jobs)</span></li>
-                        <li>Candidates Access <span>(25 Profiles/Job)</span></li>
-                        <li>User Management</li>
-                        <li>Candidate Uploads</li>
-                        <li>Job Reviews/Stats
-                            (Likes/Dislikes/Views/Applications)</li>
-                        <li>Hiring Predictor</li>
-                        <li>Video Sizzle</li>
-                        <li>Background Reports
-                            (Employment background)</li>
-                        <li>Background Reports
-                            (Drug Screening)</li>
-                      </ul>
-                    </div>
-                  </div>
 
-                  <div class="col-md-4">
-                    <div class="pricing-card box-shadow">
-                        <div><span class="type">Basic  </span></div>
-                        <div><h4 class="price d-inline">$ 49.99 </h4><small class="d-inline">/ Monthly </small></div>
-                        <div>+</div>
-                        <p>7% on Successful Hire</p>
-                        <div class="p9-0"><button class="btn-primary">Upgrade</button></div>
-                        <div><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
-                      <hr>
-                      <ul class="features">
-                        <li>Includes Starter Plan with 5 Job Posts 
-                            with 25 profiles / Job</li>
-                        <li>Interview Scheduler</li>
-                        <li>Intelligent Matching
-                            (Skill Matching)</li>
-                        <li>Intelligent Matching
-                            (Personality Matching)</li>
-                        <li>Intelligent Matching
-                            (Culture Matching)</li>
-                        <li>SocialReferral Incentive Platform</li>
-                        <li>Virtual Recruiter Assistant</li>
-                      </ul>
-                    </div>
+            <div class="row pricing-row">
+              <div class="col-md-4">
+                <div class="pricing-card box-shadow">
+                  <div><span class="type">Starter </span></div>
+                  <div>
+                    <h4 class="price d-inline">$ 29.99 </h4><small class="d-inline">/ Monthly </small>
                   </div>
-                  <div class="col-md-4">
-                      <div class="pricing-card box-shadow">
-                          <div><span class="type">Growth  </span></div>
-                          <div><h4 class="price d-inline">$ 99.99 </h4><small class="d-inline">/ Monthly </small></div>
-                          <div>+</div>
-                          <p>7% on Successful Hire</p>
-                          <div class="p9-0"><button class="btn-primary">Try Free</button></div>
-                          <div><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
-                        <hr>
-                        <ul class="features">
-                          <li>Includes Basic Plan with 10 Job Posts 
-                              with 25 profiles / Job</li>
-                          <li>Next Gen Interview Platform
-                            </li>
-                          <li>World Class Resume Parsing
-                            </li>
-                          <li>Job Wall</li>
-                        </ul>
-                      </div>
-                    </div>
+                  <div>+</div>
+                  <p>7% on Successful Hire</p>
+                  <div class="p9-0"><button class="btn-primary">Renew</button></div>
+                  <div><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
+                  <hr>
+                  <ul class="features">
+                    <li>Post / Create A Job <span>(3 Jobs)</span></li>
+                    <li>Candidates Access <span>(25 Profiles/Job)</span></li>
+                    <li>User Management</li>
+                    <li>Candidate Uploads</li>
+                    <li>Job Reviews/Stats
+                      (Likes/Dislikes/Views/Applications)</li>
+                    <li>Hiring Predictor</li>
+                    <li>Video Sizzle</li>
+                    <li>Background Reports
+                      (Employment background)</li>
+                    <li>Background Reports
+                      (Drug Screening)</li>
+                  </ul>
                 </div>
-                <div class="custom-plan">
-                    <div class="banner">
-                      <h2>Custom Plan</h2>
-                      <p>For enterprise companies and large publishers who want powerful tools and a direct account manager while integrating and scaling Disqus.</p>
-                      <button class="btn btn-border">
-                        Contact us
-                      </button>
-                    </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="pricing-card box-shadow">
+                  <div><span class="type">Basic </span></div>
+                  <div>
+                    <h4 class="price d-inline">$ 49.99 </h4><small class="d-inline">/ Monthly </small>
                   </div>
-                  <div class="why">
-                    <h3>Why Should we upgrade?</h3>
-                    <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
+                  <div>+</div>
+                  <p>7% on Successful Hire</p>
+                  <div class="p9-0"><button class="btn-primary">Upgrade</button></div>
+                  <div><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
+                  <hr>
+                  <ul class="features">
+                    <li>Includes Starter Plan with 5 Job Posts
+                      with 25 profiles / Job</li>
+                    <li>Interview Scheduler</li>
+                    <li>Intelligent Matching
+                      (Skill Matching)</li>
+                    <li>Intelligent Matching
+                      (Personality Matching)</li>
+                    <li>Intelligent Matching
+                      (Culture Matching)</li>
+                    <li>SocialReferral Incentive Platform</li>
+                    <li>Virtual Recruiter Assistant</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="pricing-card box-shadow">
+                  <div><span class="type">Growth </span></div>
+                  <div>
+                    <h4 class="price d-inline">$ 99.99 </h4><small class="d-inline">/ Monthly </small>
                   </div>
-             
+                  <div>+</div>
+                  <p>7% on Successful Hire</p>
+                  <div class="p9-0"><button class="btn-primary">Try Free</button></div>
+                  <div><a href="javascript:void(0)" class="f-12">Customize this plan</a></div>
+                  <hr>
+                  <ul class="features">
+                    <li>Includes Basic Plan with 10 Job Posts
+                      with 25 profiles / Job</li>
+                    <li>Next Gen Interview Platform
+                    </li>
+                    <li>World Class Resume Parsing
+                    </li>
+                    <li>Job Wall</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="custom-plan">
+              <div class="banner">
+                <h2>Custom Plan</h2>
+                <p>For enterprise companies and large publishers who want powerful tools and a direct account manager
+                  while integrating and scaling Disqus.</p>
+                <button class="btn btn-border">
+                  Contact us
+                </button>
+              </div>
+            </div>
+            <div class="why">
+              <h3>Why Should we upgrade?</h3>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo.
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 </div>
