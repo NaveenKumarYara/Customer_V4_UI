@@ -152,8 +152,9 @@
                     </div>
                     <div>
                       <!-- If billing -->
-                      <div>
-                        <ng-container *ngIf="InvoicesList.length>0">
+                     
+                       <ng-container *ngIf="InvoicesList.length>0">
+                        <div>              
                         <table class="table m-0 td-p-8">
                           <thead>
                             <tr>
@@ -163,27 +164,31 @@
                             </tr>
                           </thead>    
                           <tbody>
-                            <tr *ngFor="let history of InvoicesList">
-                              <td>{{history?.paidAt  | date:'mediumDate'}} </td>
-                              <td>{{history?.total/100}}</td>
-                              <td>Paid</td>
+                            <tr *ngFor="let history of InvoicesList;let i=index">
+                              <ng-container *ngIf="i<2">
+                                <td>{{history?.paidAt  | date:'mediumDate'}} </td>
+                                <td>$ {{history?.total/100}}</td>
+                                <td>Paid</td>
+                              </ng-container>                          
                             </tr>
                           </tbody>
                           </table>
-                          </ng-container>
-                        
+                          <a data-toggle="tab" (click)="removeactiveh()" href="#billing-history">View More</a>                   
+                        </div>
+                      </ng-container>
+                    
                           <ng-container *ngIf="InvoicesList.length==0">
                             <div class="no-billing-view">
                           <img src="./../../../../assets/images/no-billing-image.png">
                           <h5>No Billing History</h5>
                           <p>Your Billing history snippet will be shown here</p>
-                        </div> 
-                        </ng-container>
+                           </div> 
+                           </ng-container>
 
                     
-                        <a data-toggle="tab" (click)="removeactiveh()" href="#billing-history">View More</a>
+                      
 
-                      </div>
+                
 
                       <!-- #If billing -->
                       <!-- If no billing -->

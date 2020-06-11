@@ -14,22 +14,43 @@
       <div class="date">{{sdetails?.nextBillingAt | date}}</div>
     </div>
   </div>
-  <div class="table-row" *ngIf="sdetails">
-    <!-- <h4>Estimate Detail:
-    </h4> -->
+  <div class="table-row">
+    <h4  *ngIf="InvoicesList.length>0">Estimate Detail:
+    </h4>
     <div>
-      <!-- <div class="details-row">
+      <table class="table adduser-checkbox"  *ngIf="InvoicesList.length>0">
+      
+        <thead>
+        <tr>
+          <th>Due Date</th>
+          <th>Amount</th>
+          <th>Charge</th>              
+        </tr>
+      </thead>          
+      <tbody>
+        <tr *ngFor="let history of InvoicesList">
+          <td>{{history?.dueDate | date:'mediumDate'}}</td>
+          <td>$ {{history?.amountDue/100}}</td>
+          <td *ngIf="history?.amountDue>1000">Plan Renew/Change</td>
+          <td *ngIf="history?.amountDue<1000">AddOn</td>
+        </tr>
+        </tbody>
+      </table>
+       <!-- <div class="details-row" *ngFor="let history of InvoicesList">
+
+          <div class="desc">{{history?.dueDate | date:'mediumDate'}}</div>
+          <div class="amount">{{history?.amountDue/100}}</div>
+          <div >Renewal</div>
+          <div  >AddOn</div>
+        </div> -->
+        <!-- <div class="details-row">
           <div class="desc">Feature 1</div>
           <div class="amount">54.53</div>
         </div>
         <div class="details-row">
           <div class="desc">Feature 1</div>
           <div class="amount">54.53</div>
-        </div>
-        <div class="details-row">
-          <div class="desc">Feature 1</div>
-          <div class="amount">54.53</div>
-        </div>-->
+        </div> -->
 
 
 

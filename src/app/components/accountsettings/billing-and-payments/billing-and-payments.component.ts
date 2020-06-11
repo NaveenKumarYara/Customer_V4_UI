@@ -24,7 +24,8 @@ export class BillingAndPaymentsComponent implements OnInit {
   bill:billEstimates; 
   cid:any;
   amount:number;
-  InvoicesList:any;
+  InvoicesList=[];
+  Invoices=[];
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   invoice:invoiceEstimates[];
@@ -75,6 +76,7 @@ export class BillingAndPaymentsComponent implements OnInit {
       this.cid=res.customerId;
       this.GetSubscriptionDetails(res.subscriptionId);
       this.GetSubscriptionInvoices(res.customerId);
+      this.GetSubscriptionInvoicesPending(res.customerId);
       //this.GetInvoiceEstimates();
       this.GetBillingContactDetails();
       //this.GetUnbilledChargeDetails();
@@ -85,7 +87,6 @@ export class BillingAndPaymentsComponent implements OnInit {
   GetSubscriptionInvoices(id)
   {
     return this.appService.GetCustomerInvoices(id).subscribe(res1 => {
-      debugger
       this.InvoicesList = res1;
     });
   }
@@ -94,7 +95,16 @@ export class BillingAndPaymentsComponent implements OnInit {
   {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
       this.sdetails = res;
-      this.amount=this.sdetails.planAmount/100;
+      //this.amount=this.sdetails.planAmount/100;
+    });
+  }
+
+  GetSubscriptionInvoicesPending(id)
+  {
+    return this.appService.GetCustomerInvoicesPending(id).subscribe(res => {
+      this.Invoices = res;
+      const total = this.Invoices.reduce((sum, item) => sum + item.amountDue/100, 0);
+      this.amount = total.toFixed(2);
     });
   }
 

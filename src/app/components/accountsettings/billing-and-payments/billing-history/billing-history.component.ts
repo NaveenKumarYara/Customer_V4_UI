@@ -27,7 +27,7 @@ export class BillingHistoryComponent implements OnInit {
   cid:any;
   amount:number;
   InvoicesPdf:any;
-  InvoicesList:any;
+  InvoicesList=[];
   sdetails:GetSubscriptionDetails;
   subdetails:CustomerSubscription;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 

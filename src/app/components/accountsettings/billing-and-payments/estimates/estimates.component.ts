@@ -24,7 +24,8 @@ export class EstimatesComponent implements OnInit {
   bill:invoiceEstimates[];
   unbilled:GetUnbilledChargeDetails[];
   cid:any;
-  amount:number;
+  InvoicesList=[];
+  amount=[];
   sdetails:GetSubscriptionDetails;
   subdetails:CustomerSubscription;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
@@ -52,16 +53,25 @@ export class EstimatesComponent implements OnInit {
       this.subdetails = res;
       this.cid=res.customerId;
       this.GetSubscriptionDetails(res.subscriptionId);
+      this.GetSubscriptionInvoicesPending(res.customerId);
       // this.GetInvoiceEstimates();
       // this.GetUnbilledChargeDetails();
   });
+  }
+
+  GetSubscriptionInvoicesPending(id)
+  {
+    return this.appService.GetCustomerInvoicesPending(id).subscribe(res1 => {
+      this.InvoicesList = res1;
+      const total = this.InvoicesList.reduce((sum, item) => sum + item.amountDue/100, 0);
+      this.amount = total.toFixed(2);
+    });
   }
 
   GetSubscriptionDetails(sid)
   {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
       this.sdetails = res;
-      this.amount=this.sdetails.planAmount/100;
     });
   }
 
