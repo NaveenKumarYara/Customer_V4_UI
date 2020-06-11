@@ -115,3 +115,34 @@ font-size: 1.9rem !important;
 .f-12{
     font-size: 12px !important;
 }
+/*Invite Styles 11-06-2020*/
+.invite-icon .fa{
+    color: #6a7e9c;
+    font-size: 70px;
+}
+.u-l-a .media-left{
+    vertical-align: middle;
+}
+.u-l-a .list-group1{
+    margin-top: 15px;
+}
+.u-l-a label{
+    line-height: 20px;
+    width: 100%;
+}
+.invite-panel{
+    margin-top:10px;
+    border-color: #E0E3EF;
+    -webkit-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+    -moz-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+    box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+}
+
+.r-i-t .dropdown button{
+    background: transparent;
+}
+.r-i-t .dropdown-menu{
+    top: 10%;
+    right: 107px;
+    left: inherit;
+}
