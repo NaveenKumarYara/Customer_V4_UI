@@ -159,16 +159,16 @@
                           <thead>
                             <tr>
                               <th>Paid On</th>
-                              <th>Amount</th>
-                              <th>Status</th>            
+                              <th>Status</th>  
+                              <th>Amount</th>          
                             </tr>
                           </thead>    
                           <tbody>
                             <tr *ngFor="let history of InvoicesList;let i=index">
                               <ng-container *ngIf="i<2">
-                                <td>{{history?.paidAt  | date:'mediumDate'}} </td>
-                                <td>$ {{history?.total/100}}</td>
+                                <td>{{history?.paidAt  | date:'mediumDate'}} </td>                              
                                 <td>Paid</td>
+                                <td>$ {{history?.total/100}}</td>
                               </ng-container>                          
                             </tr>
                           </tbody>

@@ -8,6 +8,7 @@ import { getBillingContactDetails } from '../../../../../models/getBillingContac
 import { GetBillingCardDetails } from '../../../../../models/GetBillingCardDetails';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetBillingAddressCustomer } from '../../../../../models/GetBillingAddressCustomer';
+import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 declare var jQuery:any;
 declare var $:any;
 declare const Chargebee: any;
@@ -22,6 +23,7 @@ export class BillingDetailsComponent implements OnInit {
   contactdetails:getBillingContactDetails;
   carddetails:GetBillingCardDetails;
   billingaddressDetails:GetBillingAddressCustomer;
+  sdetails:GetSubscriptionDetails;
   cid:any;
   sid:any;
   subdetails:CustomerSubscription;
@@ -49,6 +51,7 @@ export class BillingDetailsComponent implements OnInit {
     return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
       this.subdetails = res;
       this.cid=res.customerId;
+      this.GetSubscriptionDetails(res.subscriptionId);
       //this.sid=res.subscriptionId;
       this.GetBillingContactDetails();
       this.GetBilledCardDetails();
@@ -61,6 +64,14 @@ GetBillingAddress()
   return this.appService.GetBillingAddressforCustomer(this.cid).subscribe(res => {
     this.billingaddressDetails = res;
      });
+}
+
+GetSubscriptionDetails(sid)
+{
+  return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
+    debugger
+    this.sdetails = res;
+  });
 }
 
   GetBillingContactDetails()
