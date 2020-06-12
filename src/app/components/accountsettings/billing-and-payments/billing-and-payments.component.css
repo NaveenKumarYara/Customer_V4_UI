@@ -120,10 +120,10 @@ font-size: 1.9rem !important;
 } */
 .no-billing-view{
     text-align: center;
-    padding-top: 5rem;
 }
 .no-billing-view img{
     margin: auto;
+    width: 52px;
 }
 
 .overview-panels .panel-body{
@@ -142,4 +142,7 @@ font-size: 1.9rem !important;
 }
 .overview-panels span.plan-type{
     text-transform: capitalize;
+}
+.b-h .table th{
+    padding: 8px
 }

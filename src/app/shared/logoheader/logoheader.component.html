@@ -73,14 +73,17 @@
               </ul>
             </div>
             <!--/.nav-collapse -->
+            
             <ul class="nav navbar-nav pull-right navbar-right user-options">
                 <!--Upgrade Now Alert starts-->
                 <li class="text-danger hidden-xs" routerLinkActive="active">
-                  <a href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
+                  <a class="upgrade-now" href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
          
                       <ng-container *ngIf="sdetails?.planId=='trial'">
                         <ng-container *ngIf="daysRemaining>0">
-                          Free Trial Expires in <strong>{{daysRemaining}}</strong>  days, Upgrade Now!
+                          <p class="text-right">
+                            Free Trial Expires in <strong>{{daysRemaining}}</strong>  days, <br>Upgrade Now!
+                          </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
                           Free Trial Expired, Renew Now!
@@ -88,26 +91,39 @@
                       </ng-container>
                       <ng-container *ngIf="sdetails?.planId=='starterdirect'">
                         <ng-container *ngIf="daysRemaining>0">
-                          Starter Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                         <p class="text-right">
+                          Starter Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                         </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
-                          Starter Plan is Payment Due is <strong>Pending</strong>  days, Renew Now!
+                          <p class="text-right">
+                            Starter Plan is Payment Due is <strong>Pending</strong>  days, <br> Renew Now!
+                          </p>
                         </ng-container>             
                       </ng-container>
                       <ng-container *ngIf="sdetails?.planId=='basicdirect'">
                       <ng-container *ngIf="daysRemaining>0">
-                        Basic Plan is Payment Due in   <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                        <p class="text-right">
+                          Basic Plan is Payment Due in   <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                        </p>
+              
                       </ng-container>
                       <ng-container *ngIf="daysRemaining==0">
-                        Basic Plan is Payment Due is <strong>Pending</strong>  days, Renew Now!
+                        <p class="text-right">
+                          Basic Plan is Payment Due is <strong>Pending</strong>  days, <br>Renew Now!
+                        </p>
                       </ng-container>
                        </ng-container>
                        <ng-container *ngIf="sdetails?.planId=='growthdirect'">
                         <ng-container *ngIf="daysRemaining>0">
-                          Growth Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, Renew Now!
+                          <p class="text-right">
+                            Growth Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                          </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
-                          Growth Plan is Payment Due is <strong>Pending</strong>  days, Renew Now!
+                          <p class="text-right">
+                          Growth Plan is Payment Due is <strong>Pending</strong>  days, <br>Renew Now!
+                        </p>
                         </ng-container>
                      
                        </ng-container>

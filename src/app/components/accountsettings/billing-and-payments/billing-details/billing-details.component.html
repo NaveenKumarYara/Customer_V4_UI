@@ -1,6 +1,6 @@
 <div class="table-row">
-    <div class="edit-group address-group">
-      <!-- <form action="" class="edit-form form-inline">
+  <div class="edit-group address-group">
+    <!-- <form action="" class="edit-form form-inline">
         <div class="form-group">
           <label for="address">Mailing Address</label>
           <div class="editable-input">
@@ -21,23 +21,25 @@
         </div>
       </form> -->
 
-      <div class="form-inline data">
-        <div class="form-group">
-          <label for="email">Plan Renewal  </label>
-          <div class="editable-input">
-            <p>
-              Month
-            </p>          
-          </div>
+    <div class="form-inline data">
+      <div class="form-group">
+        <label for="email">Plan Renewal </label>
+        <div class="editable-input">
+          <p>
+            Month
+          </p>
         </div>
       </div>
+    </div>
 
-      <div class="form-inline data">
-        <div class="form-group">
-          <label for="address">Payment Methods</label>
-          <div class="edit-group" *ngIf="carddetails!=null">
+    <div class="form-inline data">
+      <div class="form-group">
+        <label for="address">Payment Methods</label>
+        <div class="edit-group" *ngIf="carddetails!=null">
+          <div class="row">
             <!-- <div><img src="../../../../assets/images/paypal-logo.png" alt="Paypal"></div> -->
-            <div class="col-md-2"><img src="../../../../assets/images/payment/nocreditcard.svg" width="81" alt="nocreditcard"></div>
+            <div class="col-md-2"><img src="../../../../assets/images/payment/nocreditcard.svg" width="81"
+                alt="nocreditcard"></div>
             <div class="col-md-5">
               <h5>Credit/Debit Card</h5>
               <p>{{carddetails?.maskedNumber}}</p>
@@ -46,41 +48,44 @@
               <h5>Expiry</h5>
               <p>{{carddetails?.expiryMonth}}/ {{carddetails?.expiryYear}}</p>
             </div>
-       
-          </div> 
-          
-          <div class="btn-row">
-            <a href="javascript:void(0)" class="edit-btn add-btn" (click)="openPortal()"><span class="add">+</span>Add payment method</a>
           </div>
+
+
+        </div>
+
+        <div class="btn-row">
+          <a href="javascript:void(0)" class="edit-btn add-btn" (click)="openPortal()"><span class="add">+</span>Add
+            payment method</a>
         </div>
       </div>
-
-
-      <div class="form-inline data">
-        <div class="form-group">
-          <label for="email">Mailing Address</label>
-          <div class="editable-input">
-            <p>
-                <ng-container *ngIf="billingaddressDetails?.addressLine1!=null">
-                    {{billingaddressDetails?.addressLine1}},{{billingaddressDetails?.addressCity}}
-                    <br>
-                    {{billingaddressDetails?.addressState}},
-                    {{billingaddressDetails?.addressZip}}.
-              </ng-container>
-              <ng-container *ngIf="billingaddressDetails?.addressLine1 == null">
-               No Billing Address Added.
-          </ng-container>
-            </p>
-            <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit address</a>    
-          </div>
-        </div>
-      </div>
-
-
     </div>
-  </div>
 
-  <!-- <div class="table-row">
+
+    <div class="form-inline data">
+      <div class="form-group">
+        <label for="email">Mailing Address</label>
+        <div class="editable-input">
+          <p>
+            <ng-container *ngIf="billingaddressDetails?.addressLine1!=null">
+              {{billingaddressDetails?.addressLine1}},{{billingaddressDetails?.addressCity}}
+              <br>
+              {{billingaddressDetails?.addressState}},
+              {{billingaddressDetails?.addressZip}}.
+            </ng-container>
+            <ng-container *ngIf="billingaddressDetails?.addressLine1 == null">
+              No Billing Address Added.
+            </ng-container>
+          </p>
+          <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit address</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- <div class="table-row">
     <div class="edit-group payment-group">
       <form action="" class="edit-form form-inline">
         <div class="form-group">
@@ -142,34 +147,32 @@
   </div> -->
 
 
-  <div class="table-row">
-    <div class="edit-group email-group">
-      <form action="" class="edit-form form-inline">
-        <div class="form-group">
-          <label for="address">Send copies of Invoice to</label>
-          <div class="editable-input">
-            <div class="row">
-              <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="Email Address">
-              </div>
+<div class="table-row">
+  <div class="edit-group email-group">
+    <form action="" class="edit-form form-inline">
+      <div class="form-group">
+        <label for="address">Send copies of Invoice to</label>
+        <div class="editable-input">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" placeholder="Email Address">
             </div>
           </div>
         </div>
-        <div class="btn-row">
-          <button class="btn btn-filled">Save</button>
-          <button class="btn btn-border">Cancel</button>
-        </div>
-      </form>
-      <div class="form-inline data">
-        <div class="form-group">
-          <label for="email">Send copies of Invoice to</label>
-          <div class="editable-input">
-            <input type="text" class="form-control" value="{{contactdetails?.email}}" readonly>
-            <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit Email</a>
-          </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-filled">Save</button>
+        <button class="btn btn-border">Cancel</button>
+      </div>
+    </form>
+    <div class="form-inline data">
+      <div class="form-group">
+        <label for="email">Send copies of Invoice to</label>
+        <div class="editable-input">
+          <input type="text" class="form-control" value="{{contactdetails?.email}}" readonly>
+          <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit Email</a>
         </div>
       </div>
     </div>
   </div>
-
-
+</div>
