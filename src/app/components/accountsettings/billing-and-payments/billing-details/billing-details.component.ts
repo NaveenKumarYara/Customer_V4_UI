@@ -27,19 +27,39 @@ export class BillingDetailsComponent implements OnInit {
   cid:any;
   sid:any;
   subdetails:CustomerSubscription;
+  chargebeeInstance:any;
+  cbportal:any;
   constructor( private appService: AppService, private router: Router,private fb: FormBuilder) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.chargebeeInstance = Chargebee.init(
+      {
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we',
+     }
+    )
+    this.cbportal=this.chargebeeInstance.createChargebeePortal();  
   }
+
+
+  openPortal()
+  {
+    this.cbportal.open({
+      close: function() {
+        location.reload();
+      }
+    })
+  }
+  
 
   ngOnInit() {
     this.populateCompanyProfile(); 
     this.GetCustomerSubscription();
-    window['Chargebee'].init({
-      site: 'arytic-test',
-      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
-      //site: 'arytic',
-     // publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
-    });
+    // window['Chargebee'].init({
+    //   site: 'arytic-test',
+    //   publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
+    //   //site: 'arytic',
+    //  // publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
+    // });
   }
 
   ngAfterViewInit(): void {
@@ -69,10 +89,11 @@ GetBillingAddress()
 GetSubscriptionDetails(sid)
 {
   return this.appService.GetSubscriptionDetails(sid).subscribe(res => {
-    debugger
     this.sdetails = res;
   });
 }
+
+
 
   GetBillingContactDetails()
   {

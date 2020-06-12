@@ -50,7 +50,7 @@
           </div> 
           
           <div class="btn-row">
-            <a href="javascript:void(0)" class="edit-btn add-btn" data-cb-type="portal"><span class="add">+</span>Add payment method</a>
+            <a href="javascript:void(0)" class="edit-btn add-btn" (click)="openPortal()"><span class="add">+</span>Add payment method</a>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
                No Billing Address Added.
           </ng-container>
             </p>
-            <a href="javascript:void(0)" class="edit-btn" data-cb-type="portal">Edit address</a>    
+            <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit address</a>    
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@
           <label for="email">Send copies of Invoice to</label>
           <div class="editable-input">
             <input type="text" class="form-control" value="{{contactdetails?.email}}" readonly>
-            <a href="javascript:void(0)" class="edit-btn" data-cb-type="portal">Edit Email</a>
+            <a href="javascript:void(0)" class="edit-btn" (click)="openPortal()">Edit Email</a>
           </div>
         </div>
       </div>

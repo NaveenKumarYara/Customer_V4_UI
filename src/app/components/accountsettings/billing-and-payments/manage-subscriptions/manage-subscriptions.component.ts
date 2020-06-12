@@ -24,16 +24,25 @@ export class ManageSubscriptionsComponent implements OnInit {
   bill:billEstimates;
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
+  chargebeeInstance:any;
+  cbportal:any;
   @ViewChild('divClick') divClick: ElementRef;
   constructor( private appService: AppService, private spinner: NgxSpinnerService,private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));  
     this.toastr.setRootViewContainerRef(_vcr);
-    window['Chargebee'].init({
-            site: 'arytic-test',
-       publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
-      //  site: 'arytic',
-      //  publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
-    });
+    this.chargebeeInstance = Chargebee.init(
+      {
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we',
+     }
+    )
+    this.cbportal=this.chargebeeInstance.createChargebeePortal();  
+    // window['Chargebee'].init({
+    //         site: 'arytic-test',
+    //    publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
+    //   //  site: 'arytic',
+    //   //  publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
+    // });
   }
 
 
@@ -59,8 +68,14 @@ export class ManageSubscriptionsComponent implements OnInit {
 
  buyPlan()
  {
-  this.divClick.nativeElement.click();
+  this.cbportal.open({
+    close: function() {
+      location.reload();
+    }
+  })
  }
+
+
 
 
 

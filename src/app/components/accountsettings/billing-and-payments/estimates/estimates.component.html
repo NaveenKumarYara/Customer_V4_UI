@@ -63,7 +63,11 @@
 
   <div class="row text-center">
     <div class="fc-button-group">
-      <button type="button" data-cb-type="portal"
-        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button> </div>
+      <button type="button" (click)="openPortal()"
+        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button>
+      <!-- <button type="button" data-cb-type="portal" [style.backgroundColor]="makeDifferent"
+        class="fc-billingWeek-button fc-button fc-state-default fc-corner-left fc-state-active">Buy Now</button> -->
+       </div>
   </div>
+  {{text}}
 </div>

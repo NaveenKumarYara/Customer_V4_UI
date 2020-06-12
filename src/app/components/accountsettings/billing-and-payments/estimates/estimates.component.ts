@@ -1,4 +1,5 @@
 import { Component, OnInit ,ViewChild,ViewContainerRef,AfterViewInit} from '@angular/core';
+import {ElementRef, HostListener, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -12,6 +13,7 @@ import { GetUnbilledChargeDetails } from '../../../../../models/GetUnbilledCharg
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 declare const Chargebee: any;
+declare var $: any;
 @Component({
   selector: 'app-estimates',
   templateUrl: './estimates.component.html',
@@ -27,16 +29,35 @@ export class EstimatesComponent implements OnInit {
   InvoicesList=[];
   amount=[];
   sdetails:GetSubscriptionDetails;
+  chargebeeInstance:any;
   subdetails:CustomerSubscription;
-  constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private toastr:ToastsManager, private _vcr: ViewContainerRef) { 
+  cbportal:any;
+  constructor( private eRef: ElementRef,private appService: AppService, private router: Router,private fb: FormBuilder,public toastr:ToastsManager, private _vcr: ViewContainerRef) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    window['Chargebee'].init({
-          site: 'arytic-test',
-       publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we'
-      //  site: 'arytic',
-      //  publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
-    });
+    this.chargebeeInstance = Chargebee.init(
+      {
+      site: 'arytic-test',
+      publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we',
+     }
+    )
+    this.cbportal=this.chargebeeInstance.createChargebeePortal();  
+    this.toastr.setRootViewContainerRef(_vcr);
   }
+
+
+  openPortal()
+  {
+    this.cbportal.open({
+      close: function() {
+        location.reload();
+      }
+    })
+  
+  }
+
+  
+
+ 
 
   ngOnInit() {
     // this.GetPlans();
@@ -46,6 +67,7 @@ export class EstimatesComponent implements OnInit {
 
   ngAfterViewInit(): void {
     Chargebee.registerAgain();
+    
   }
   GetCustomerSubscription()
   {
@@ -74,6 +96,10 @@ export class EstimatesComponent implements OnInit {
       this.sdetails = res;
     });
   }
+
+ 
+
+ 
 
   GetBillExpiryDetails()
   {
