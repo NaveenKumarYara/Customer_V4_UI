@@ -8060,13 +8060,16 @@ video {
 
 .main-nav .user-options {
     margin: 0;
+    padding-top: 10px;
 }
 
 .main-nav .user-options a {
     line-height: 78px;
     padding: 0 15px;
 }
-
+.main-nav .user-options a.upgrade-now {
+    line-height: 15px;
+}
 .main-nav .user-options li.text-danger {
     font-size: 10px;
     font-weight: 500;
@@ -8075,8 +8078,8 @@ video {
 
 .main-nav .user-options li.text-danger a {
     color: #721c24!important;
-    padding: 0 5px;
-    ;
+    padding: 20px 5px 0 5px;
+    font-size: 9px;
 }
 
 .main-nav .dropdown-menu>li>a {
@@ -15362,7 +15365,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-top: 1px solid #E0E3EF;
+    border-top: transparent;
+    /* border-top: 1px solid #E0E3EF; */
     padding: 1.125rem 0;
 }
 
@@ -15388,6 +15392,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--account-settings #estimates .details-row.total .amount {
     font-size: 2rem;
+    text-align: right;
 }
 
 .page--account-settings #billing-details .table-row {
@@ -20051,6 +20056,7 @@ a:hover {
 
 .page--account-settings .right .editable-input {
     position: relative;
+    padding-top: 10px;
 }
 
 .form-group .glyphicon.p-icon {
@@ -24241,6 +24247,7 @@ ul.list-active li.active a {
     width: 100%;
     height: 58vh;
     overflow-y: scroll;
+    overflow: auto;
 }
 
 table .table-prl-0 td {
