@@ -175,5 +175,10 @@
 "GetCustomerApplicantYear":"${Identity_URL}/api/GetCustomerApplicantGraphYear",
 "GetCustomerApplicantWeek":"${Identity_URL}/api/GetCustomerApplicantGraphWeek",
 "GetCustomerApplicantMonth":"${Identity_URL}/api/GetCustomerApplicantGraphMonth",
-  "SuggestedCount":"${Identity_URL}/api/GetSuggestedCountbyJobId?"
+  "SuggestedCount":"${Identity_URL}/api/GetSuggestedCountbyJobId?",
+  "GetCustomerInvitedUsers":"${Identity_URL}/api/GetCustomerInvitedUsers",
+  "GetUserLevelAccess":"${Identity_URL}/api/GetUserLevelAccess",
+  "GetUserRoleAccess":"${Identity_URL}/api/GetUserRolesAccess",
+  "InsertInviteCustomerUsers":"${Identity_URL}/api/InsertInviteCustomerUsers",
+  "DeleteCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerInvitedUsers"
 }

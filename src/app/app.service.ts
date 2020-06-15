@@ -1228,6 +1228,14 @@ this.skillPostData.push(skill);
   }
 
 
+  DeleteInviteUsers(InviteId: number) {
+    const url = this.settingsService.settings.DeleteCustomerInvitedUsers + '?inviteId=' + InviteId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = this.settingsService.settings.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)
@@ -1275,6 +1283,16 @@ this.skillPostData.push(skill);
       .map((res: Response) => res)
       .catch(this.handleError);
       }
+
+      addInviteCustomerUser(body)  {
+        return this.http.post(this.settingsService.settings.InsertInviteCustomerUsers, body)
+        .map((res: Response) => res)
+        .catch(this.handleError);
+        }
+
+
+
+   
 
     suggestJobTitle(customerId: number) {
     const url = this.settingsService.settings.SuggestJobTitleEndPoint + 'customerId=' + customerId;
@@ -1358,6 +1376,36 @@ this.skillPostData.push(skill);
         this.handleError
       );
   }
+
+
+
+  getCustomerInviteUsers(customerId:number)
+  {
+    const url = this.settingsService.settings.GetCustomerInvitedUsers + '?customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getUserRoleAccess()
+   {
+    const url = this.settingsService.settings.GetUserRoleAccess;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getUserLevelAccess()
+  {
+    const url = this.settingsService.settings.GetUserLevelAccess;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getSalaryType(): Observable<Salary[]> {
     const url = this.settingsService.settings.salaryTypeendpoint;
     return this.http.get<string[]>(url)

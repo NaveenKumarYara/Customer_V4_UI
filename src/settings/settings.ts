@@ -183,4 +183,9 @@ export class Settings {
   GetCustomerApplicantYear:string;
   GetCustomerApplicantWeek:string;
   GetCustomerApplicantMonth:string;
+  GetCustomerInvitedUsers:string;
+  GetUserLevelAccess:string;
+  GetUserRoleAccess:string;
+  InsertInviteCustomerUsers:string;
+  DeleteCustomerInvitedUsers:string;
   }

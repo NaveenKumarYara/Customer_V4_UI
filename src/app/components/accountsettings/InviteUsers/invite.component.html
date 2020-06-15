@@ -1,16 +1,15 @@
 <div class="col-lg-9">
     <div class="right">
       <div class="tab-content i-t-m">
-          <h1 (click)="showStep=!showStep">Invite Users</h1>
-          <ng-container *ngIf="!showStep">
-            <h1>Invite a Team member to use Arytic</h1>
+        <h1 (click)="showStep=!showStep">Invite a Team member to use Arytic</h1>
+          <ng-container *ngIf="!showStep">       
             <div class="row">
               <div class="col-md-8">
                 <p class="sub-text">You can either let your team members access everything in this site, or assign specific
                   roles to them.</p>
               </div>
               <div class="col-md-4">
-                <a href="javascript:void(0)" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
+                <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
                   Member</a>
               </div>
             </div>
@@ -34,42 +33,54 @@
             <ng-container *ngIf="!showStep2">
               <div class="col-md-10">
                 <div class="panel panel-default invite-panel">
+                    <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
                   <div class="panel-body">
                     <div class="form-group">
                       <label for="iemailaddress">Email address</label>
-                      <input type="email" class="form-control" id="iemailaddress" placeholder="ex: abc@companydomain.com">
+                      <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="Email" required (keyup)="GetEmailValidate()" id="semail">
+                      <div *ngIf="Addform.controls['Email'].invalid && (Addform.controls['Email'].dirty || Addform.controls['Email'].touched)" class="error1">
+                        <div *ngIf="Addform.controls['Email'].errors.required">
+                            Required.
+                        </div>
+                        <div *ngIf="Addform.controls['Email'].errors.pattern">
+                            Incorrect Email!.
+                        </div>
+                    </div>
+                      <div *ngIf="show" class="error1">
+                    Email already registered.
+                </div>
                     </div>
                     <div class="u-l-a row">
                       <div class="col-md-12">
                         <h5>User Level Access</h5>
                       </div>
                       <div class="clearfix">&nbsp;</div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" *ngFor="let level of userLevels">
                         <label class="checkbox-inline">
-                          <input type="radio" id="inlineradio1" value="option1"> Full Access
+                          <input type="radio" name="inlineradio1" id="inlineradio1" value="{{level?.Id}}"> {{level?.AccessLevel}}
                         </label>
                       </div>
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label class="checkbox-inline">
-                          <input type="radio" id="inlineradio2" value="option2"> Restricted Access
-                        </label>
-                      </div>
+                          <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
+                        </label> 
+                      </div>-->
                       <div class="clearfix">&nbsp;</div>
                       <div class="col-md-12 ">
                         <ul class="list-group">
-                          <li class="list-group-item">
+                          <li class="list-group-item" *ngFor="let roles of userRoles">
                             <div class="media">
                               <div class="media-left">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="{{roles?.Id}}">
                               </div>
                               <div class="media-body">
-                                <h4 class="media-heading">Recruiter Access</h4>
-                                <small>An individual who works to fill job openings in businesses or organizations. Recruiters
-                                  will work from resumes or by actively soliciting individuals qualified for positions.</small>
+                                <h4 class="media-heading">{{roles?.AccessRoles}}</h4>
+                                 <small>{{roles?.AccessRoles}}
+                                  will work from resumes or by actively soliciting individuals qualified for positions.</small> 
                               </div>
                             </div>
                           </li>
-                          <li class="list-group-item">
+                          <!-- <li class="list-group-item">
                             <div class="media">
                               <div class="media-left">
                                 <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
@@ -120,7 +131,7 @@
                                   velit</small>
                               </div>
                             </div>
-                          </li>
+                          </li> -->
                         </ul>
                       </div>
                       <div class="clearfix">&nbsp;</div>
@@ -128,10 +139,13 @@
                     </div>
                     <div class="clearfix">&nbsp;</div>
                     <div class="pull-right">
-                      <button class="btn btn-border" (click)="showStep=!showStep">Cancel</button>
-                      <button class="btn btn-filled" type="submit" (click)="showStep2=!showStep2">Invite</button>
+                      <button class="btn btn-border" (click)="ResetUser()">Cancel</button>
+                      <button class="btn btn-filled" type="submit">Invite</button>
+                      <button class="btn btn-border" (click)="showStep2=!showStep2">ShowInvite</button>
                     </div>
                   </div>
+                  </form>
+
                 </div>
               </div>
           
@@ -144,12 +158,12 @@
               <div class="table-responsive">
                 <table class="table">
                   <tbody>
-                    <tr>
+                    <tr *ngFor="let contact of customercontacts">
                       <td>
-                        <h6 class="email">james.barret@gmail.com</h6>
+                        <h6 class="email">{{contact?.Email}}</h6>
                       </td>
                       <td>
-                        <h6 class="role">Invitation Sent</h6>
+                        <h6 class="role">{{contact?.Status}}</h6>
                       </td>
                       <td>
                         <div class="dropdown card-dropdown">
@@ -160,19 +174,19 @@
                           </button>
                           <ul class="dropdown-menu">
                             <li>
-                              <a href="#">Make Ownner</a>
+                              <a>Make Ownner</a>
                             </li>
                             <li>
-                              <a href="#">Edit Role</a>
+                              <a>Edit Role</a>
                             </li>
                             <li>
-                              <a href="#">Remove</a>
+                              <a>Remove</a>
                             </li>
                           </ul>
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <h6 class="email">john.smith@gmail.com</h6>
                       </td>
@@ -227,7 +241,7 @@
                           </ul>
                         </div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>

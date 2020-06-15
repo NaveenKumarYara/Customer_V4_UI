@@ -17,6 +17,8 @@ export class InviteUsersComponent implements OnInit {
   Addform: FormGroup;
   customerId:any;
   userId:any;
+  userLevels:any;
+  userRoles:any;
   show : any = false;
   showStep:boolean=false;
   showStep2:boolean=false;
@@ -32,14 +34,14 @@ export class InviteUsersComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
     this.userId = this.customer.UserId;
-    this.Value= 4;
+    //this.Value= 4;
     this.toastr.setRootViewContainerRef(_vcr);
   }
 
-  PopulateRoles(val)
-  {
-   this.Value= val;
-  }
+  // PopulateRoles(val)
+  // {
+  //  this.Value= val;
+  // }
 
 
 
@@ -49,13 +51,14 @@ export class InviteUsersComponent implements OnInit {
     this.Addform.reset();            
   }
 
+
+
   SaveUser()
   {
+    debugger
     if(this.Addform.invalid)
     {
-      this.Addform.controls['FirstName'].markAsTouched()
-      this.Addform.controls['LastName'].markAsTouched()
-      this.Addform.controls['ContactEmail'].markAsTouched()
+      this.Addform.controls['Email'].markAsTouched()
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -67,31 +70,35 @@ export class InviteUsersComponent implements OnInit {
     }
     else if(this.result.UserId==0)
     {
-      this.Addform.value.UserId = 0;
+      this.Addform.value.InviteId = 0;
       this.Addform.value.CustomerId = this.customerId;
-      this.Addform.value.Password = 123456;
-      this.Addform.value.UserRoleId = this.Value;
-      this.Addform.value.IsActive = true;
-        this.appService.addCustomerUser(this.Addform.value)
+      this.Addform.value.AccessId=2;
+      this.Addform.value.UserRoleId = 8;
+      this.Addform.value.IsActive = false;
+      debugger
+        this.appService.addInviteCustomerUser(this.Addform.value)
         .subscribe(
-        data => {         
-        if(data>0)
-        {   
-        this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
-        this.appService.ActivateCustomerUser(this.Forgotform.value)
-        .subscribe(
-        data1 => {
-           this.toastr.success('Please check your email to reset the password','Success');
-              setTimeout(() => { 
-                  this.Addform.reset();            
-                  this.toastr.dismissToast; 
-                  this.GetCustomerContacts();  
-                }, 3000);
+        data => {   
+          debugger  
+          this.showStep2=true;
+          this.GetCustomerInviteUsers();  
+        // if(data>0)
+        // {   
+        // this.Forgotform.value.EmailId = this.Addform.value.Email;
+        // this.appService.ActivateCustomerUser(this.Forgotform.value)
+        // .subscribe(
+        // data1 => {
+        //    this.toastr.success('Please check your email','Success');
+        //       setTimeout(() => { 
+        //           this.Addform.reset();            
+        //           this.toastr.dismissToast; 
+        //           this.GetCustomerInviteUsers();  
+        //         }, 3000);
                
-             } 
+        //      } 
                         
-        );
-        }  
+        //);
+        //}  
       });
     }
   }
@@ -99,7 +106,7 @@ export class InviteUsersComponent implements OnInit {
   GetEmailValidate()
   {
     this.show = false;
-    this.appService.validateemail(this.Addform.value.ContactEmail)
+    this.appService.validateemail(this.Addform.value.Email)
     .subscribe(
     data => {
       this.result = data;
@@ -109,62 +116,77 @@ export class InviteUsersComponent implements OnInit {
       }
     })
   }
-  GetCustomerContacts()
+
+
+  GetUserLevels()
   {
-    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+    return this.appService.getUserLevelAccess().subscribe(res => {
+      this.userLevels = res;
+  });
+  }
+
+  GetUserRoles()
+  {
+    return this.appService.getUserRoleAccess().subscribe(res => {
+      this.userRoles = res;
+  });
+  }
+
+  GetCustomerInviteUsers()
+  {
+    debugger
+    return this.appService.getCustomerInviteUsers(this.customerId).subscribe(res => {
       this.customercontacts = res;
   });
   }
 
-  userDeactivate(contact, isChecked: boolean)
-  {
-    if(!isChecked)
-    {
-      this.Flag= false;
-    }
-    else if(isChecked)
-    {
-      this.Flag = true;
-    }
-    this.Addform.value.FirstName = contact.FirstName;
-    this.Addform.value.LastName = contact.LastName;
-    this.Addform.value.ContactEmail = contact.Email;
-    this.Addform.value.UserId= contact.UserId;
-    this.Addform.value.UserRoleId= contact.RoleId;
-    this.Addform.value.Password = 123456;
-    this.Addform.value.CandidateIdentifier ='';
-    this.Addform.value.CustomerId = this.customerId;
-    this.Addform.value.IsActive = this.Flag;
-    this.appService.addCustomerUser(this.Addform.value)
-    .subscribe(
-    res => {         
-    if(res>0)
-       {  
-          this.Addform.reset();            
-          this.GetCustomerContacts();  
-        }              
-  });
-  }
+  // userDeactivate(contact, isChecked: boolean)
+  // {
+  //   if(!isChecked)
+  //   {
+  //     this.Flag= false;
+  //   }
+  //   else if(isChecked)
+  //   {
+  //     this.Flag = true;
+  //   }
+  //   this.Addform.value.FirstName = contact.FirstName;
+  //   this.Addform.value.LastName = contact.LastName;
+  //   this.Addform.value.ContactEmail = contact.Email;
+  //   this.Addform.value.UserId= contact.UserId;
+  //   this.Addform.value.UserRoleId= contact.RoleId;
+  //   this.Addform.value.Password = 123456;
+  //   this.Addform.value.CandidateIdentifier ='';
+  //   this.Addform.value.CustomerId = this.customerId;
+  //   this.Addform.value.IsActive = this.Flag;
+  //   this.appService.addCustomerUser(this.Addform.value)
+  //   .subscribe(
+  //   res => {         
+  //   if(res>0)
+  //      {  
+  //         this.Addform.reset();            
+  //         this.GetCustomerContacts();  
+  //       }              
+  // });
+  // }
 
 
   ngOnInit() {
     this.show = false;
     this.Addform = this.fb.group({
-      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-      'CustomerId': ['', Validators.compose([Validators.nullValidator])],
-      'UserId'  : ['', Validators.compose([Validators.nullValidator])],    
-      'FirstName': ['', Validators.compose([Validators.required])],   
-      'LastName': ['', Validators.compose([Validators.required])],
-      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
-      'ContactEmail'   : ['', Validators.compose([Validators.required])],
-      'Password': ['', Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
+      'InviteId':  [0, Validators.compose([Validators.nullValidator])],
+      'CustomerId': ['', Validators.compose([Validators.nullValidator])],  
+      'Email'   : ['', Validators.compose([Validators.required])],
+      'AccessId': [1, Validators.compose([Validators.nullValidator])],                   
+      'UserRoleId':[8, Validators.compose([Validators.nullValidator])],   
+      'IsActive':[0, Validators.compose([Validators.nullValidator])],    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
     });
-    this.GetCustomerContacts();
+    this.GetCustomerInviteUsers();
+    this.GetUserLevels();
+    this.GetUserRoles();
   }
 
 }
