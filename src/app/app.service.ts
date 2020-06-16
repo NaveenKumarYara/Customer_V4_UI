@@ -1111,6 +1111,14 @@ this.skillPostData.push(skill);
     });
   }
 
+  DeActivateCustomerUser(Id:number) {
+    const url = this.settingsService.settings.DeleteCustomerInvitedUsers + '?userId=' + Id;
+    return this.http.delete<string[]>(url)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   ResetPassword(body) {
     return this.http.post(this.settingsService.settings.ResetPassword, body)
     .map((res: Response) => res)

@@ -167,7 +167,7 @@
                     <div class="clearfix">&nbsp;</div>
                     <div class="col-md-6" *ngFor="let level of userLevels">
                       <label class="checkbox-inline">
-                        <input type="radio" name="inlineradio1" id="inlineradio1" value="{{level?.Id}}"> {{level?.AccessLevel}}
+                        <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId"> {{level?.AccessLevel}}
                       </label>
                     </div>
                     <!-- <div class="col-md-6">
@@ -181,7 +181,7 @@
                         <li class="list-group-item" *ngFor="let roles of userRoles">
                           <div class="media">
                             <div class="media-left">
-                              <input type="radio" name="UserRoleId" [checked]="Addform.get('UserRoleId').value == roles.Id" id="optionsRadios1" formControlName="UserRoleId">
+                              <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId">
                             </div>
                             <div class="media-body">
                               <h4 class="media-heading">{{roles?.AccessRoles}}</h4>

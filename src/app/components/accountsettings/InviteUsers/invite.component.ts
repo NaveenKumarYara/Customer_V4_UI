@@ -48,7 +48,20 @@ export class InviteUsersComponent implements OnInit {
   ResetUser()
   {
     this.show = false;
-    this.Addform.reset();            
+    this.Addform.reset(); 
+    this.Addform = this.fb.group({
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': ['', Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.nullValidator])],    
+      'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+      'LastName': ['', Validators.compose([Validators.nullValidator])],
+      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required])],
+      'Password': ['', Validators.compose([Validators.nullValidator])],                   
+      'UserRoleId':[8, Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])],
+      'AccessId':[2, Validators.compose([Validators.nullValidator])]     
+    });           
   }
 
   RemoveUser()
@@ -69,7 +82,8 @@ EditUser(contact)
     'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
     'UserId'  : [contact.UserId, Validators.compose([Validators.nullValidator])],                  
     'UserRoleId':[contact.RoleId, Validators.compose([Validators.nullValidator])],   
-    'IsActive':[contact.IsActive, Validators.compose([Validators.nullValidator])],    
+    'IsActive':[contact.IsActive, Validators.compose([Validators.nullValidator])],  
+    'AccessId':[contact.AccessId, Validators.compose([Validators.nullValidator])]   
   });
   this.userId=contact.UserId;
 }
@@ -96,7 +110,6 @@ EditUser(contact)
       this.Addform.value.CustomerId = this.customerId;
       this.Addform.value.Password = 123456;
       this.Addform.value.IsActive = true;
-      debugger
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
@@ -201,8 +214,9 @@ EditUser(contact)
       'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
+      'UserRoleId':[8, Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
+      'AccessId':[2, Validators.compose([Validators.nullValidator])]    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
