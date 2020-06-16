@@ -58,9 +58,9 @@ export class InviteUsersComponent implements OnInit {
       'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ '', Validators.compose([Validators.nullValidator])],
-      'AccessId':['', Validators.compose([Validators.nullValidator])]     
+      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
+      'AccessId':['2', Validators.compose([Validators.nullValidator])]        
     });           
   }
 
@@ -214,9 +214,9 @@ EditUser(contact)
       'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
       'ContactEmail'   : ['', Validators.compose([Validators.required])],
       'Password': ['', Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':['', Validators.compose([Validators.nullValidator])],   
+      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
       'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
-      'AccessId':['', Validators.compose([Validators.nullValidator])]    
+      'AccessId':['2', Validators.compose([Validators.nullValidator])]    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
