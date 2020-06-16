@@ -32,11 +32,16 @@
           <ng-container *ngIf="customercontacts.length>0">
             <div class="r-i-t">
               <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-2">
                    <p class="sub-text">Recently Invited</p>
                 </div> 
-                <div class="col-md-4">
-                  <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
+                <div class="col-md-3">
+                  <div class="form-group i-s">
+                    <input type="text" class="form-control" id="searchinvite" placeholder="Search Here..">
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right" data-toggle="modal"> <span class="add">+</span>Invite
                     Member</a>
                 </div>
               </div>
@@ -141,7 +146,7 @@
         <ng-container *ngIf="showStep">
 
          
-            <div class="col-md-10">
+            <div class="col-md-8">
               <div class="panel panel-default invite-panel">
                   <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
                 <div class="panel-body">
@@ -165,10 +170,12 @@
                       <h5>User Level Access</h5>
                     </div>
                     <div class="clearfix">&nbsp;</div>
-                    <div class="col-md-6" *ngFor="let level of userLevels">
-                      <label class="checkbox-inline">
-                        <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
-                      </label>
+                    <div class="row">
+                      <div class="col-md-6" *ngFor="let level of userLevels">
+                        <label class="checkbox-inline">
+                          <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
+                        </label>
+                      </div>
                     </div>
                     <!-- <div class="col-md-6">
                       <label class="checkbox-inline">
@@ -184,7 +191,7 @@
                               <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId" value="{{roles?.Id}}">
                             </div>
                             <div class="media-body">
-                              <h4 class="media-heading">{{roles?.AccessRoles}}</h4>
+                              <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
                                <small>{{roles?.AccessRoles}}
                                 will work from resumes or by actively soliciting individuals qualified for positions.</small> 
                             </div>
