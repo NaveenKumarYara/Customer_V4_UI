@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewContainerRef } from '@angular/core';
+import { Component, OnInit,ViewContainerRef, ContentChild } from '@angular/core';
 import {CustomerContacts} from '../../../../models/customercontacts';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
@@ -28,12 +28,12 @@ export class InviteUsersComponent implements OnInit {
   Flag:boolean;
   Forgotform: any;
   ActiveFlag: any;
-  customercontacts : CustomerContacts[];
+  customercontacts : CustomerContacts[]=[];
   constructor(private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
   { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
-    this.userId = this.customer.UserId;
+    // this.userId = this.customer.UserId;
     //this.Value= 4;
     this.toastr.setRootViewContainerRef(_vcr);
   }
@@ -51,14 +51,35 @@ export class InviteUsersComponent implements OnInit {
     this.Addform.reset();            
   }
 
+  RemoveUser()
+  {
+
+  }
+
+EditUser(contact)
+{
+  this.showStep=true;
+  this.Addform = this.fb.group({
+    'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+    'FirstName': [contact.FirstName, Validators.compose([Validators.nullValidator])],   
+    'LastName': [contact.LastName, Validators.compose([Validators.nullValidator])],
+    'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+    'ContactEmail'   : [contact.Email, Validators.compose([Validators.required])],
+    'Password': ['', Validators.compose([Validators.nullValidator])],                   
+    'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
+    'UserId'  : [contact.UserId, Validators.compose([Validators.nullValidator])],                  
+    'UserRoleId':[contact.RoleId, Validators.compose([Validators.nullValidator])],   
+    'IsActive':[contact.IsActive, Validators.compose([Validators.nullValidator])],    
+  });
+  this.userId=contact.UserId;
+}
 
 
   SaveUser()
   {
-    debugger
     if(this.Addform.invalid)
     {
-      this.Addform.controls['Email'].markAsTouched()
+      this.Addform.controls['ContactEmail'].markAsTouched()
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -68,37 +89,35 @@ export class InviteUsersComponent implements OnInit {
     {  
       this.show = true;    
     }
-    else if(this.result.UserId==0)
+    else if(this.result.UserId==0||this.userId>0)
     {
-      this.Addform.value.InviteId = 0;
+      this.Addform.value.FirstName='Invited';
+      this.Addform.value.LastName='User';
       this.Addform.value.CustomerId = this.customerId;
-      this.Addform.value.AccessId=2;
-      this.Addform.value.UserRoleId = 8;
-      this.Addform.value.IsActive = false;
+      this.Addform.value.Password = 123456;
+      this.Addform.value.IsActive = true;
       debugger
-        this.appService.addInviteCustomerUser(this.Addform.value)
+        this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
-        data => {   
-          debugger  
-          this.showStep2=true;
-          this.GetCustomerInviteUsers();  
-        // if(data>0)
-        // {   
-        // this.Forgotform.value.EmailId = this.Addform.value.Email;
-        // this.appService.ActivateCustomerUser(this.Forgotform.value)
-        // .subscribe(
-        // data1 => {
-        //    this.toastr.success('Please check your email','Success');
-        //       setTimeout(() => { 
-        //           this.Addform.reset();            
-        //           this.toastr.dismissToast; 
-        //           this.GetCustomerInviteUsers();  
-        //         }, 3000);
-               
-        //      } 
-                        
-        //);
-        //}  
+        data => {         
+        if(data>0)
+        { 
+            this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+            this.appService.ActivateCustomerUser(this.Forgotform.value)
+            .subscribe(
+            data1 => {
+               this.toastr.success('Please check your email to reset the password','Success');
+                  setTimeout(() => { 
+                      this.Addform.reset();            
+                      this.toastr.dismissToast; 
+                      this.GetCustomerInviteUsers();  
+                    }, 3000);
+                   
+                 } 
+                            
+            );
+         
+        }  
       });
     }
   }
@@ -106,11 +125,11 @@ export class InviteUsersComponent implements OnInit {
   GetEmailValidate()
   {
     this.show = false;
-    this.appService.validateemail(this.Addform.value.Email)
+    this.appService.validateemail(this.Addform.value.ContactEmail)
     .subscribe(
     data => {
       this.result = data;
-      if(this.result.UserId>0&&this.result.CustomerId>0)
+      if(this.result.UserId>0&&this.result.CustomerId>0||this.userId==undefined)
       {  
         this.show = true;    
       }
@@ -134,8 +153,8 @@ export class InviteUsersComponent implements OnInit {
 
   GetCustomerInviteUsers()
   {
-    debugger
-    return this.appService.getCustomerInviteUsers(this.customerId).subscribe(res => {
+    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+      this.showStep=false;
       this.customercontacts = res;
   });
   }
@@ -174,12 +193,16 @@ export class InviteUsersComponent implements OnInit {
   ngOnInit() {
     this.show = false;
     this.Addform = this.fb.group({
-      'InviteId':  [0, Validators.compose([Validators.nullValidator])],
-      'CustomerId': ['', Validators.compose([Validators.nullValidator])],  
-      'Email'   : ['', Validators.compose([Validators.required])],
-      'AccessId': [1, Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':[8, Validators.compose([Validators.nullValidator])],   
-      'IsActive':[0, Validators.compose([Validators.nullValidator])],    
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': ['', Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.nullValidator])],    
+      'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+      'LastName': ['', Validators.compose([Validators.nullValidator])],
+      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required])],
+      'Password': ['', Validators.compose([Validators.nullValidator])],                   
+      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])],    
     });
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
