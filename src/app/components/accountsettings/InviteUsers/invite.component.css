@@ -51,7 +51,15 @@
     color: #6a7e9c;
 }
 .r-i-t .table td{
-    padding: 0px;
+    padding: 8px;
+}
+.r-i-t .table th{
+    font-weight: 500;
+    color: #41536E;
+    background-color: #EEEFF3;
+    border: 0;
+    padding: 8px;
+    font-size: 13px;
 }
 .r-i-t .table h6{
     color: #93A2BB;
@@ -61,7 +69,7 @@
 }
 .r-i-t td .dropdown-menu{
     top: 10%;
-    right: 107px;
+    right: 50px;
     left: inherit;
 }
 .r-i-t .i-s input{

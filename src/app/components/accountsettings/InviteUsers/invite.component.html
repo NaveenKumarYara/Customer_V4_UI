@@ -4,7 +4,7 @@
 <div class="col-lg-9">
     <div class="right">
       <div class="tab-content i-t-m">
-        <h1>Invite a Team member to use Arytic</h1>
+        <h1>Manage Team Members</h1>
           <ng-container *ngIf="!showStep">    
             <ng-container *ngIf="customercontacts.length==0">   
               <div class="row">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-4">
                   <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span class="add">+</span>Invite
-                    Member</a>
+                    New Member</a>
                 </div>
               </div>
         
@@ -27,7 +27,7 @@
               <div class="clearfix">&nbsp;</div>
               <div>
                 <a href="javascript:void(0)" class="add-btn" (click)="showStep=!showStep" data-toggle="modal"> <span class="add">+</span>Invite
-                  Member</a>
+                  New Member</a>
               </div>
             </div> 
             </ng-container>
@@ -35,17 +35,17 @@
           <ng-container *ngIf="customercontacts.length>0">
             <div class="r-i-t">
               <div class="row">
-              <div class="col-md-2">
+              <!-- <div class="col-md-2">
                    <p class="sub-text">Recently Invited</p>
-                </div> 
+                </div>  -->
                 <div class="col-md-3">
                   <div class="form-group i-s">
                     <input type="text" class="form-control" id="searchinvite" placeholder="Search Here..">
                   </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-9">
                   <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right" data-toggle="modal"> <span class="add">+</span>Invite
-                    Member</a>
+                    New Member</a>
                 </div>
               </div>
           
@@ -53,14 +53,32 @@
               <div class="table-responsive">
                 <table class="table">
                   <tbody>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
                     <tr *ngFor="let contact of customercontacts">
                   
                       <td>
-                        <h6 class="email">{{contact?.Email}}</h6>
+                        <h6>Invitee Name</h6>
                       </td>
                       <td>
+                        <h6 class="email">{{contact?.Email}}</h6>
+                      </td>
+                    
+                      <td>
                         <h6 class="role">{{contact?.RoleName}}</h6>
-                      </td>                   
+                      </td>    
+                      <td>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                          </label>
+                        </div>
+                      </td>               
                       <td>
                         <div class="dropdown card-dropdown">
                           <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
@@ -175,10 +193,12 @@
                     <h5>User Level Access</h5>
                   </div>
                   <div class="clearfix">&nbsp;</div>
-                  <div class="col-md-6" *ngFor="let level of userLevels">
-                    <label class="checkbox-inline">
-                      <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
-                    </label>
+                  <div class="row">
+                    <div class="col-md-6" *ngFor="let level of userLevels">
+                      <label class="checkbox-inline">
+                        <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
+                      </label>
+                    </div>
                   </div>
                   <!-- <div class="col-md-6">
                     <label class="checkbox-inline">
@@ -194,7 +214,7 @@
                             <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId" value="{{roles?.Id}}">
                           </div>
                           <div class="media-body">
-                            <h4 class="media-heading">{{roles?.AccessRoles}}</h4>
+                            <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
                              <small>{{roles?.AccessRoles}}
                               will work from resumes or by actively soliciting individuals qualified for positions.</small> 
                           </div>
@@ -242,10 +262,12 @@
                     <h5>User Level Access</h5>
                   </div>
                   <div class="clearfix">&nbsp;</div>
-                  <div class="col-md-6" *ngFor="let level of userLevels">
-                    <label class="checkbox-inline">
-                      <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
-                    </label>
+                  <div class="row">
+                    <div class="col-md-6" *ngFor="let level of userLevels">
+                      <label class="checkbox-inline">
+                        <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
+                      </label>
+                    </div>
                   </div>
                   <!-- <div class="col-md-6">
                     <label class="checkbox-inline">
@@ -261,7 +283,7 @@
                             <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId" value="{{roles?.Id}}">
                           </div>
                           <div class="media-body">
-                            <h4 class="media-heading">{{roles?.AccessRoles}}</h4>
+                            <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
                              <small>{{roles?.AccessRoles}}
                               will work from resumes or by actively soliciting individuals qualified for positions.</small> 
                           </div>
