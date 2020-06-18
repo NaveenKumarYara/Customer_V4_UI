@@ -120,6 +120,14 @@ EditUser(contact)
       this.Addform.value.CustomerId = this.customerId;
       this.Addform.value.Password = 123456;
       this.Addform.value.IsActive = true;
+      if(this.Addform.value.AccessId == 1)
+      {
+        this.Addform.value.UserRoleId=4
+      }
+      if(this.Addform.value.AccessId == 2)
+      {
+        this.Addform.value.UserRoleId;
+      }
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
@@ -129,7 +137,7 @@ EditUser(contact)
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
             data1 => {
-               this.toastr.success('Email has sent to user','Success');
+               this.toastr.success('Invitation has sent successfully','Success');
                   setTimeout(() => { 
                       this.Addform.reset();            
                       this.toastr.dismissToast; 
@@ -150,7 +158,14 @@ EditUser(contact)
   {
     this.spinner.show();
     this.Addform.value.AccessId=Number(this.Addform.value.AccessId);
-    this.Addform.value.UserRoleId=Number(this.Addform.value.UserRoleId);
+    if(this.Addform.value.AccessId == 1)
+    {
+      this.Addform.value.UserRoleId=4
+    }
+    if(this.Addform.value.AccessId == 2)
+    {
+      this.Addform.value.UserRoleId=Number(this.Addform.value.UserRoleId);
+    }
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {         
@@ -160,7 +175,7 @@ EditUser(contact)
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
             data1 => {
-               this.toastr.success('Email has sent to user','Success');
+               this.toastr.success('Invitation has sent successfully','Success');
                   setTimeout(() => { 
                       this.Addform.reset();            
                       this.toastr.dismissToast; 

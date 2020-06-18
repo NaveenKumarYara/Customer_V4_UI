@@ -186,7 +186,7 @@
                     </label> 
                   </div>-->
                   <div class="clearfix">&nbsp;</div>
-                  <div class="col-md-12 ">
+                  <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
                     <ul class="list-group">
                       <li class="list-group-item" *ngFor="let roles of userRoles">
                         <div class="media">
@@ -253,7 +253,7 @@
                     </label> 
                   </div>-->
                   <div class="clearfix">&nbsp;</div>
-                  <div class="col-md-12 ">
+                  <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
                     <ul class="list-group">
                       <li class="list-group-item" *ngFor="let roles of userRoles">
                         <div class="media">
