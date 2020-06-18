@@ -15,6 +15,7 @@ import { ResetComponent } from '../../ResetPassword/resetpassword.component';
 export class InviteUsersComponent implements OnInit {
   customer:any; 
   Addform: FormGroup;
+  IsEdit:boolean=false;
   customerId:any;
   userId:any;
   userLevels:any;
@@ -48,6 +49,7 @@ export class InviteUsersComponent implements OnInit {
   ResetUser()
   {
     this.show = false;
+    this.IsEdit=false;
     this.Addform.reset(); 
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
@@ -72,6 +74,7 @@ export class InviteUsersComponent implements OnInit {
 EditUser(contact)
 {
   this.showStep=true;
+  this.IsEdit=true;
   this.Addform = this.fb.group({
     'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
     'FirstName': [contact.FirstName, Validators.compose([Validators.nullValidator])],   
@@ -81,9 +84,9 @@ EditUser(contact)
     'Password': ['', Validators.compose([Validators.nullValidator])],                   
     'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
     'UserId'  : [contact.UserId, Validators.compose([Validators.nullValidator])],                  
-    'UserRoleId':[contact.RoleId, Validators.compose([Validators.nullValidator])],   
-    'IsActive':[contact.IsActive, Validators.compose([Validators.nullValidator])],  
-    'AccessId':[contact.AccessId, Validators.compose([Validators.nullValidator])]   
+    'UserRoleId':[contact.RoleId.toString(), Validators.compose([Validators.nullValidator])],  
+    'AccessId':[contact.AccessId.toString(), Validators.compose([Validators.nullValidator])],    
+    'IsActive':[contact.IsActive, Validators.compose([Validators.nullValidator])]  
   });
   this.userId=contact.UserId;
 }
@@ -103,10 +106,10 @@ EditUser(contact)
     {  
       this.show = true;    
     }
-    else if(this.result.UserId==0||this.userId>0)
+    else if(this.result.UserId==0)
     {
-      this.Addform.value.FirstName='Invited';
-      this.Addform.value.LastName='User';
+      this.Addform.value.FirstName= 'Invited';
+      this.Addform.value.LastName= 'User';
       this.Addform.value.CustomerId = this.customerId;
       this.Addform.value.Password = 123456;
       this.Addform.value.IsActive = true;
@@ -119,7 +122,7 @@ EditUser(contact)
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
             data1 => {
-               this.toastr.success('Please check your email to reset the password','Success');
+               this.toastr.success('Please check your email to reset the password and details','Success');
                   setTimeout(() => { 
                       this.Addform.reset();            
                       this.toastr.dismissToast; 
@@ -135,6 +138,36 @@ EditUser(contact)
     }
   }
 
+
+  EditTheUser()
+  {
+    this.Addform.value.AccessId=Number(this.Addform.value.AccessId);
+    this.Addform.value.UserRoleId=Number(this.Addform.value.UserRoleId);
+        this.appService.addCustomerUser(this.Addform.value)
+        .subscribe(
+        data => {         
+        if(data>0)
+        { 
+            this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+            this.appService.ActivateCustomerUser(this.Forgotform.value)
+            .subscribe(
+            data1 => {
+               this.toastr.success('Please check your email to reset the password and details','Success');
+                  setTimeout(() => { 
+                      this.Addform.reset();            
+                      this.toastr.dismissToast; 
+                      this.GetCustomerInviteUsers();  
+                    }, 3000);
+                   
+                 } 
+                            
+            );
+         
+        }  
+      });
+    
+  }
+
   GetEmailValidate()
   {
     this.show = false;
@@ -142,7 +175,7 @@ EditUser(contact)
     .subscribe(
     data => {
       this.result = data;
-      if(this.result.UserId>0&&this.result.CustomerId>0||this.userId==undefined)
+      if(this.result.UserId>0&&this.result.CustomerId>0)
       {  
         this.show = true;    
       }
@@ -168,6 +201,7 @@ EditUser(contact)
   {
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
       this.showStep=false;
+      this.IsEdit=false;
       this.customercontacts = res;
   });
   }
