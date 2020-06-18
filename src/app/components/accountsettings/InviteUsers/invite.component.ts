@@ -2,6 +2,7 @@ import { Component, OnInit,ViewContainerRef, ContentChild } from '@angular/core'
 import {CustomerContacts} from '../../../../models/customercontacts';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 declare var $: any; 
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
@@ -30,7 +31,7 @@ export class InviteUsersComponent implements OnInit {
   Forgotform: any;
   ActiveFlag: any;
   customercontacts : CustomerContacts[]=[];
-  constructor(private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
+  constructor(private toastr:ToastsManager,private spinner: NgxSpinnerService,private _vcr: ViewContainerRef,private route: ActivatedRoute,private fb: FormBuilder, private router: Router,private appService: AppService) 
   { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId =this.customer.CustomerId;
@@ -66,9 +67,14 @@ export class InviteUsersComponent implements OnInit {
     });           
   }
 
-  RemoveUser()
+  RemoveUser(Id)
   {
-
+    return this.appService.DeleteInviteUsers(Id).subscribe(
+      data => 
+      {
+       this.GetCustomerInviteUsers();
+      }
+      )
   }
 
 EditUser(contact)
@@ -94,6 +100,7 @@ EditUser(contact)
 
   SaveUser()
   {
+    this.spinner.show();
     if(this.Addform.invalid)
     {
       this.Addform.controls['ContactEmail'].markAsTouched()
@@ -122,7 +129,7 @@ EditUser(contact)
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
             data1 => {
-               this.toastr.success('Please check your email to reset the password and details','Success');
+               this.toastr.success('Email has sent to user','Success');
                   setTimeout(() => { 
                       this.Addform.reset();            
                       this.toastr.dismissToast; 
@@ -141,6 +148,7 @@ EditUser(contact)
 
   EditTheUser()
   {
+    this.spinner.show();
     this.Addform.value.AccessId=Number(this.Addform.value.AccessId);
     this.Addform.value.UserRoleId=Number(this.Addform.value.UserRoleId);
         this.appService.addCustomerUser(this.Addform.value)
@@ -152,7 +160,7 @@ EditUser(contact)
             this.appService.ActivateCustomerUser(this.Forgotform.value)
             .subscribe(
             data1 => {
-               this.toastr.success('Please check your email to reset the password and details','Success');
+               this.toastr.success('Email has sent to user','Success');
                   setTimeout(() => { 
                       this.Addform.reset();            
                       this.toastr.dismissToast; 
@@ -202,6 +210,7 @@ EditUser(contact)
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
       this.showStep=false;
       this.IsEdit=false;
+      this.spinner.hide();
       this.customercontacts = res;
   });
   }

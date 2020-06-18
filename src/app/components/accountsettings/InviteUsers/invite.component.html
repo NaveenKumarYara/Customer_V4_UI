@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 <div class="col-lg-9">
     <div class="right">
       <div class="tab-content i-t-m">
@@ -51,12 +54,13 @@
                 <table class="table">
                   <tbody>
                     <tr *ngFor="let contact of customercontacts">
+                  
                       <td>
                         <h6 class="email">{{contact?.Email}}</h6>
                       </td>
                       <td>
                         <h6 class="role">{{contact?.RoleName}}</h6>
-                      </td>
+                      </td>                   
                       <td>
                         <div class="dropdown card-dropdown">
                           <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
@@ -72,7 +76,7 @@
                               <a (click)="EditUser(contact)">Edit Role</a>
                             </li>
                             <li>
-                              <a>Remove</a>
+                              <a (click)="RemoveUser(contact?.UserId)">Remove</a>
                             </li>
                           </ul>
                         </div>
@@ -145,7 +149,7 @@
 
         <ng-container *ngIf="showStep">
 
-<<<<<<< HEAD
+
          <ng-container *ngIf="!IsEdit">
           <div class="col-md-10">
             <div class="panel panel-default invite-panel">
@@ -154,27 +158,7 @@
                 <div class="form-group">
                   <label for="iemailaddress">Email address</label>
                   <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
-                  <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
-                  <div *ngIf="Addform.controls['ContactEmail'].errors.required">
-                      Required.
-                  </div>
-                  <div *ngIf="Addform.controls['ContactEmail'].errors.pattern">
-                      Incorrect Email!.
-                  </div>
-              </div>
-              <div *ngIf="show" class="error1">
-                  Email already registered.
-              </div>
-=======
-         
-            <div class="col-md-8">
-              <div class="panel panel-default invite-panel">
-                  <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
-                <div class="panel-body">
-                  <div class="form-group">
-                    <label for="iemailaddress">Email address</label>
-                    <input type="email" [pattern]="emailPattern" class="form-control" placeholder="Work Email *" autocomplete="new-email" formControlName="ContactEmail" required (keyup)="GetEmailValidate()" id="semail">
-                <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
+               <div *ngIf="Addform.controls['ContactEmail'].invalid && (Addform.controls['ContactEmail'].dirty || Addform.controls['ContactEmail'].touched)" class="error1">
                     <div *ngIf="Addform.controls['ContactEmail'].errors.required">
                         Required.
                     </div>
@@ -184,59 +168,17 @@
                 </div>
                 <div *ngIf="show" class="error1">
                     Email already registered.
->>>>>>> eac1dcd3d08b32cd0abfec790c4a5ac86b546864
+                </div>
                 </div>
                 <div class="u-l-a row">
                   <div class="col-md-12">
                     <h5>User Level Access</h5>
                   </div>
-<<<<<<< HEAD
                   <div class="clearfix">&nbsp;</div>
                   <div class="col-md-6" *ngFor="let level of userLevels">
                     <label class="checkbox-inline">
                       <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
                     </label>
-=======
-                  <div class="u-l-a row">
-                    <div class="col-md-12">
-                      <h5>User Level Access</h5>
-                    </div>
-                    <div class="clearfix">&nbsp;</div>
-                    <div class="row">
-                      <div class="col-md-6" *ngFor="let level of userLevels">
-                        <label class="checkbox-inline">
-                          <input type="radio"  name="AccessId" id="inlineradio1" formControlName="AccessId" value="{{level?.Id}}"> {{level?.AccessLevel}}
-                        </label>
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                      <label class="checkbox-inline">
-                        <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
-                      </label> 
-                    </div>-->
-                    <div class="clearfix">&nbsp;</div>
-                    <div class="col-md-12 ">
-                      <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let roles of userRoles">
-                          <div class="media">
-                            <div class="media-left">
-                              <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId" value="{{roles?.Id}}">
-                            </div>
-                            <div class="media-body">
-                              <h6 class="media-heading">{{roles?.AccessRoles}}</h6>
-                               <small>{{roles?.AccessRoles}}
-                                will work from resumes or by actively soliciting individuals qualified for positions.</small> 
-                            </div>
-                          </div>
-                        </li>
-                     
-                      
-             
-                      </ul>
-                    </div>
-                    <div class="clearfix">&nbsp;</div>
-      
->>>>>>> eac1dcd3d08b32cd0abfec790c4a5ac86b546864
                   </div>
                   <!-- <div class="col-md-6">
                     <label class="checkbox-inline">
@@ -275,7 +217,15 @@
               </form>
 
             </div>
-          </div>
+          </div>        
+           
+                  
+                
+  
+                   
+                    
+           
+    
          </ng-container>
          <ng-container *ngIf="IsEdit">
           <div class="col-md-10">
