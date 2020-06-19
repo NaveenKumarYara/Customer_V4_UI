@@ -40,9 +40,11 @@
                           </div>
                         </ng-container>
                        
-                        <div class="pb_5">Next Renewal on : <span
-                            class="pl-_5">{{sdetails?.nextBillingAt | date}}</span> </div>
-                              <a data-toggle="tab" (click)="removeactive()" href="#estimates">View More</a>
+                        <div class="pb_5">Next Renewal on :
+                           <span class="pl-_5" *ngIf="sdetails?.nextBillingAt!=null">{{sdetails?.nextBillingAt | date}}</span>
+                            <span class="pl-_5" *ngIf="sdetails?.nextBillingAt==null">Plan Expired/Cancelled</span>
+                          </div>
+                            <a data-toggle="tab" (click)="removeactive()" href="#estimates">View More</a>
                       
                       </div>
                     </ng-container>

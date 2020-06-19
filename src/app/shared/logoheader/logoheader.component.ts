@@ -63,10 +63,16 @@ GetSubscriptionDetails(sid)
     var diff = Math.abs(new Date(this.sdetails.nextBillingAt) .getTime() - new Date(date.setDate(date.getDate())).getTime());
     var diffDays = Math.ceil(diff / (1000 * 3600 * 24));  
     this.daysRemaining = diffDays;
-    if(new Date(this.sdetails.nextBillingAt) < val)
+    debugger
+    if(new Date(this.sdetails.nextBillingAt) < val && this.sdetails.nextBillingAt!=null)
     {     
       this.active=true;
       this.changetheactive(3);
+    }
+    if(this.sdetails.nextBillingAt==null)
+    {
+      this.active=true;
+      this.daysRemaining=0;
     }
     else 
     {

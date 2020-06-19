@@ -11,7 +11,9 @@
   <div class="table-row">
     <h4>Next Charge</h4>
     <div>
-      <div class="date">{{sdetails?.nextBillingAt | date}}</div>
+      <div class="date" *ngIf="sdetails?.nextBillingAt!=null">{{sdetails?.nextBillingAt | date}}</div>
+      <div class="date" *ngIf="sdetails?.nextBillingAt==null">Plan Expired/Cancelled</div>
+      <!-- <div class="date">{{sdetails?.nextBillingAt | date}}</div> -->
     </div>
   </div>
   <div class="table-row">
