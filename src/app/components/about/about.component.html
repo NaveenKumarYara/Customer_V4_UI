@@ -39,6 +39,9 @@
                                                           
                                                                <a href="javascript:void(0)" (click)="Login()" class="haringf_close"><img src="../../../assets/images/cancel.svg" width="32"></a>
                                                                <div class="step " style="">
+                                                                  <!-- <div class="form-group">
+                                                                   <input class="form-control" readonly> 
+                                                                  </div> -->
                                                                   <div class="form-group">
                                                                      <input class="form-control" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)" id="FirstName" type="text" name="Password" placeholder="First Name" formControlName="FirstName" required>
                                                                                                 <div *ngIf="Resetform.controls['FirstName'].invalid && (Resetform.controls['FirstName'].dirty || Resetform.controls['FirstName'].touched)"
