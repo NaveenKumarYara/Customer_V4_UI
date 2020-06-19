@@ -276,21 +276,27 @@ OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profil
   // }
 }
 
-Check(val)
+Check(val,ProfileId)
 {
 if(val==1)
 {
-
+  this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', ProfileId).subscribe(
+  data => {
+  var IsPublic = data.isPublicAvailable;
+  if(IsPublic==true)
+  {
+   debugger
   return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
   this.addon.SubscriptionId = res.subscriptionId;
   this.addon.AddonId = "2";
-  this.addon.AddonUnitPrice = 40;
+  this.addon.AddonUnitPrice = 400;
   this.addon.AddonQuantity = 1;
   this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
- 
     console.log(result);
   });
+  
+});
+}
 });
 }
 
@@ -304,7 +310,7 @@ if(val==1)
 shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
   if(stat==11)
   {
-    this.Check(1)
+    this.Check(1,profileId)
   }
   this.schIntw.UserId = null;
   this.schIntw.JobId = this.jobid;
