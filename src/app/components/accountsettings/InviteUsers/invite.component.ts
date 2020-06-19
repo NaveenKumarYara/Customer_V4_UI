@@ -19,6 +19,7 @@ export class InviteUsersComponent implements OnInit {
   IsEdit:boolean=false;
   customerId:any;
   userId:any;
+  searchText:string;
   userLevels:any;
   userRoles:any;
   show : any = false;
@@ -232,6 +233,7 @@ EditUser(contact)
       this.showStep=false;
       this.IsEdit=false;
       this.spinner.hide();
+      debugger
       this.customercontacts = res;
   });
   }
@@ -268,6 +270,7 @@ EditUser(contact)
 
 
   ngOnInit() {
+  
     this.show = false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
@@ -288,6 +291,9 @@ EditUser(contact)
     this.GetCustomerInviteUsers();
     this.GetUserLevels();
     this.GetUserRoles();
+    // return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+    //   this.customercontacts = res;
+    // })
   }
 
 }

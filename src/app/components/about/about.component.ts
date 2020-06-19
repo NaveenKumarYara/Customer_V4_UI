@@ -46,6 +46,11 @@ export class AboutComponent {
     this.router.navigateByUrl('home'); 
   } 
   
+
+  SaveUserName()
+  {
+         
+  }
   // ActivatetheUser(id)
   // {
   //   this.appService.ActivateUser(id).subscribe(
@@ -61,7 +66,7 @@ export class AboutComponent {
     Send() {
       if(!this.Resetform.valid)
       {
-        this.toastr.error('Password Mismatched!', 'Oops!');
+        this.toastr.error('Please fill the Fields!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 3000);
@@ -71,7 +76,7 @@ export class AboutComponent {
       this.appService.ResetPassword(this.Resetform.value)
         .subscribe(
         data => {
-          this.toastr.success('Password changed successfully','Success');
+          this.toastr.success('Details changed successfully','Success');
               this.Resetform.reset();
               sessionStorage.removeItem('Pid');
               setTimeout(() => {
@@ -83,22 +88,7 @@ export class AboutComponent {
             }
     }
 
-  userDeactivate(contact)
-  {
-    this.Addform = this.fb.group({
-      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
-      'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
-      'UserId'  : [0, Validators.compose([Validators.nullValidator])],    
-      'FirstName': ['', Validators.compose([Validators.nullValidator])],   
-      'LastName': ['', Validators.compose([Validators.nullValidator])],
-      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
-      'ContactEmail'   : ['', Validators.compose([Validators.required])],
-      'Password': ['', Validators.compose([Validators.nullValidator])],                   
-      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
-      'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
-      'AccessId':['2', Validators.compose([Validators.nullValidator])]    
-    });
-  }
+
 
     GetCustomerInviteUsers()
     {
@@ -110,9 +100,18 @@ export class AboutComponent {
   
     ngOnInit() {
       this.pid =  sessionStorage.getItem('Pid');
+      this.userId = sessionStorage.getItem('Uid');
+      this.Addform = this.fb.group({
+        'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
+        'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+        'LastName': ['', Validators.compose([Validators.nullValidator])] 
+      });
       //this.Id = sessionStorage.getItem('Uid');
       //this.ActivatetheUser(this.Id);
       this.Resetform = this.fb.group({
+        'UserId'  : [this.userId, Validators.compose([Validators.nullValidator])],    
+        'FirstName': ['', Validators.compose([Validators.required])],   
+        'LastName': ['', Validators.compose([Validators.required])],
         'Email': [this.pid, Validators.compose([Validators.nullValidator])],
         'Password': ['', [Validators.required, FormsValidationService.password]],
         'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('Password')]]

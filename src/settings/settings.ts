@@ -100,6 +100,7 @@ export class Settings {
   GetAboutCompany: string;
   GetCompanyLogo: string;
   ActivateCustomerUser: string;
+  UpdateFullName:string;
   InsertCustomerUser: string;
   CompanyTechnologies: string;
   CompanySpecialities: string;

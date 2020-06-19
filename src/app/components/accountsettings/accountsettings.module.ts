@@ -20,6 +20,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 import {InviteUsersComponent} from './InviteUsers/invite.component';
+import { SearchPipe } from './InviteUsers/SearchPipe.pipe';
 
 @NgModule({
   imports: [
@@ -32,6 +33,6 @@ import {InviteUsersComponent} from './InviteUsers/invite.component';
     SharedModule,NgxSpinnerModule,
     ToastModule.forRoot(), BrowserAnimationsModule,ChargebeeJsAngularWrapperModule 
   ],
-  declarations: [AccountsettingsComponent, UsersComponent, BillingAndPaymentsComponent,InviteUsersComponent, EstimatesComponent, BillingDetailsComponent, BillingHistoryComponent, ManageSubscriptionsComponent, NavigationcomponentComponent, AccountsettingdetailsComponent]
+  declarations: [AccountsettingsComponent, UsersComponent, SearchPipe,BillingAndPaymentsComponent,InviteUsersComponent, EstimatesComponent, BillingDetailsComponent, BillingHistoryComponent, ManageSubscriptionsComponent, NavigationcomponentComponent, AccountsettingdetailsComponent]
 })
 export class AccountsettingsModule { }

@@ -1119,6 +1119,14 @@ this.skillPostData.push(skill);
     });
   }
 
+  UpdateFullName(body) {
+    return this.http.post(this.settingsService.settings.ResetPassword, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   ResetPassword(body) {
     return this.http.post(this.settingsService.settings.ResetPassword, body)
     .map((res: Response) => res)
@@ -1236,8 +1244,9 @@ this.skillPostData.push(skill);
   }
 
 
-  DeleteInviteUsers(InviteId: number) {
-    const url = this.settingsService.settings.DeleteCustomerInvitedUsers + '?inviteId=' + InviteId;
+  DeleteInviteUsers(InviteId: string) {
+    debugger
+    const url = this.settingsService.settings.DeleteCustomerInvitedUsers + '?email=' + InviteId;
     return this.http.delete<string[]>(url)
       .catch(
         this.handleError

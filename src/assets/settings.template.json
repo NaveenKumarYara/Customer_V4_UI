@@ -180,5 +180,6 @@
   "GetUserLevelAccess":"${Identity_URL}/api/GetUserLevelAccess",
   "GetUserRoleAccess":"${Identity_URL}/api/GetUserRolesAccess",
   "InsertInviteCustomerUsers":"${Identity_URL}/api/InsertInviteCustomerUsers",
-  "DeleteCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerInvitedUsers"
+  "DeleteCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerUsers",
+  "UpdateFullName":"${Identity_URL}/api/UpdateFullName"
 }
