@@ -73,6 +73,11 @@ export class AboutComponent {
       }
       else
       {
+      this.Addform.value.FirstName = this.Resetform.value.FirstName;
+      this.Addform.value.LastName = this.Resetform.value.LastName;
+      this.appService.UpdateFullName(this.Addform.value)
+      .subscribe(Res=>
+     {
       this.appService.ResetPassword(this.Resetform.value)
         .subscribe(
         data => {
@@ -85,6 +90,7 @@ export class AboutComponent {
                 }, 3000);
              }     
         );
+            });
             }
     }
 

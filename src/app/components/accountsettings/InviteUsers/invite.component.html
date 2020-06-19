@@ -59,9 +59,12 @@
               <div class="col-md-7">
                 <ul class="list-group">
                   <ng-container *ngFor="let contact of customercontacts |  filter : searchText">
-                    <li class="list-group-item">
+                    <li class="list-group-item" *ngIf="contact?.IsRemove==false">
                       <div class="media">
-                        <div class="media-left"> <p data-letters="I"></p></div>
+                        <div class="media-left"> 
+                          <p>
+                          <img src="https://ui-avatars.com/api/?name={{contact?.FirstName}}&rounded=true&length=1" alt="" class="img-cricle">
+                        </p></div>
                         <div class="media-body">
                           <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName}} {{contact?.LastName}}</h5> 
                           <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5> 
