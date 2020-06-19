@@ -1,70 +1,111 @@
-
 /*Invite Styles 11-06-2020*/
-.i-t-m p.sub-text{
+
+.i-t-m p.sub-text {
     color: #93A2BB;
     line-height: 30px;
 }
-.invite-icon .fa{
+
+.invite-icon .fa {
     color: #6a7e9c;
     font-size: 70px;
 }
-.u-l-a h5{
+
+.u-l-a h5 {
     color: #6a7e9c;
     font-size: 1rem;
 }
-.u-l-a .media-left{
+
+.u-l-a .media-left {
     vertical-align: middle;
 }
-.u-l-a .list-group{
+
+.u-l-a .list-group {
     margin-top: 15px;
 }
-.u-l-a  .list-group-item{
+
+.u-l-a .list-group-item {
     border: 1px solid #ccc;
 }
-.u-l-a label{
+
+.u-l-a label {
     line-height: 20px;
     width: 100%;
 }
-.u-l-a label.checkbox-inline{
+
+.u-l-a label.checkbox-inline {
     font-size: 13px;
 }
 
-.u-l-a h6.media-heading{
+.u-l-a h6.media-heading {
     color: #6a7e9c;
 }
-.u-l-a .media-left input{
+
+.u-l-a .media-left input {
     width: 20px;
     height: 20px;
 }
-.u-l-a .media-body small{
+
+.u-l-a .media-body small {
     color: #93A2BB;
     font-size: 11px;
 }
-.invite-panel{
-    margin-top:10px;
+
+.invite-panel {
+    margin-top: 10px;
     border-color: #ccc;
-    -webkit-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
-    -moz-box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
-    box-shadow: 10px 15px 19px -12px rgba(147,162,187,1);
+    -webkit-box-shadow: 10px 15px 19px -12px rgba(147, 162, 187, 1);
+    -moz-box-shadow: 10px 15px 19px -12px rgba(147, 162, 187, 1);
+    box-shadow: 10px 15px 19px -12px rgba(147, 162, 187, 1);
 }
-.r-i-t h4{
+
+.invite-panel label[for="iemailaddress"] {
+    line-height: 35px;
+}
+
+.r-i-t .list-group {
+    -webkit-box-shadow: -6px 11px 15px -7px rgba(106,126,156,1);
+    -moz-box-shadow: -6px 11px 15px -7px rgba(106,126,156,1);
+    box-shadow: -6px 11px 15px -7px rgba(106,126,156,1);
+}
+
+.r-i-t .list-group h5 {
+    color: #41536E;
+}
+
+.r-i-t .list-group small {
     color: #6a7e9c;
 }
-.r-i-t .table td{
-    padding: 0px;
-}
-.r-i-t .table h6{
-    color: #93A2BB;
-}
-.r-i-t td .dropdown button{
+
+.r-i-t .list-group .dropdown button {
     background: transparent;
 }
-.r-i-t td .dropdown-menu{
+
+.r-i-t .list-group .media {
+    overflow: inherit;
+}
+
+.r-i-t .list-group .dropdown-menu {
     top: 10%;
-    right: 107px;
+    right: 25px;
     left: inherit;
 }
-.r-i-t .i-s input{
+
+.r-i-t .i-s input {
     height: 35px;
     font-size: 11px;
+}
+
+[data-letters]:before {
+    content: attr(data-letters);
+    display: inline-block;
+    font-size: 1em;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    border-radius: 50%;
+    background: #75A6F5;
+    vertical-align: middle;
+    margin-right: 1em;
+    color: white;
 }
