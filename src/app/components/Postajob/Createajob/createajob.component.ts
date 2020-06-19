@@ -224,11 +224,11 @@ editMode: string;
       this.appService.jobPosition.next(this.jobdetailscustomer.JobInfo.JobPositionId);
       this.appService.noofOpenings.next(this.jobdetailscustomer.JobInfo.NumberOfVacancies);
       if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 2) {
-      this.appService.minAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
-      this.appService.maxAnnualRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
+      this.appService.minAnnualRate.next(parseFloat(this.jobdetailscustomer.JobInfo.MinimumSalary));
+      this.appService.maxAnnualRate.next(parseFloat(this.jobdetailscustomer.JobInfo.MaximumSalary));
       } else if (this.jobdetailscustomer.JobInfo.SalaryTypeId === 1) {
-      this.appService.minHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MinimumSalary, 10));
-      this.appService.maxHourlyRate.next(parseInt(this.jobdetailscustomer.JobInfo.MaximumSalary, 10));
+      this.appService.minHourlyRate.next(parseFloat(this.jobdetailscustomer.JobInfo.MinimumSalary));
+      this.appService.maxHourlyRate.next(parseFloat(this.jobdetailscustomer.JobInfo.MaximumSalary));
       }
       // this.appService.stepNumber.next(this.jobdetailscustomer.JobInfo.StepNumber);
       this.appService.updateStepNumber(this.jobdetailscustomer.JobInfo.StepNumber);

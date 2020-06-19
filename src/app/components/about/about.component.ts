@@ -6,6 +6,7 @@ import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {FormsValidationService} from '../../shared/validation/validation.service';
+import {CustomerContacts} from '../../../models/customercontacts';
 declare var $: any;
 
 @Component({
@@ -23,6 +24,8 @@ export class AboutComponent {
     userId:any;
     pid:any;
     Id:any;
+    Addform: FormGroup;
+    customercontacts : CustomerContacts[]=[];
     constructor( private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
         private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService) {
           this.route.params.subscribe(params => {
@@ -78,6 +81,30 @@ export class AboutComponent {
              }     
         );
             }
+    }
+
+  userDeactivate(contact)
+  {
+    this.Addform = this.fb.group({
+      'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+      'CustomerId': [this.customerId, Validators.compose([Validators.nullValidator])],
+      'UserId'  : [0, Validators.compose([Validators.nullValidator])],    
+      'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+      'LastName': ['', Validators.compose([Validators.nullValidator])],
+      'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+      'ContactEmail'   : ['', Validators.compose([Validators.required])],
+      'Password': ['', Validators.compose([Validators.nullValidator])],                   
+      'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
+      'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
+      'AccessId':['2', Validators.compose([Validators.nullValidator])]    
+    });
+  }
+
+    GetCustomerInviteUsers()
+    {
+      return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+        this.customercontacts = res;
+    });
     }
   
   

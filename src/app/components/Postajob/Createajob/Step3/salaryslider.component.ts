@@ -57,14 +57,14 @@ export class SalarysliderComponent implements OnInit {
       this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x);
       this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
       this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
-      if(this.maxHourRate>200)
-      {
-        this.show=true;      
-      }
-      else
-      {
-        this.show=false;
-      }
+      // if(this.maxHourRate>200)
+      // {
+      //   this.show=true;      
+      // }
+      // else
+      // {
+      //   this.show=false;
+      // }
   }
 
   onMinChange(value)

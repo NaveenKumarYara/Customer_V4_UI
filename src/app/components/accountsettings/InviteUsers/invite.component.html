@@ -58,12 +58,13 @@
             <div class="row">
               <div class="col-md-7">
                 <ul class="list-group">
-                  <li class="list-group-item">
+                  <li class="list-group-item" *ngFor="let contact of customercontacts">
                     <div class="media">
                       <div class="media-left"> <p data-letters="I"></p></div>
                       <div class="media-body">
-                        <h5 class="media-heading">Invitee Name</h5> 
-                        <small>Lead Recruiter</small>
+                        <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName}} {{contact?.LastName}}</h5> 
+                        <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5> 
+                        <small>{{contact?.RoleName}}</small>
                       </div>
                       <div class="media-left"> 
                         <div class="dropdown card-dropdown">
@@ -87,7 +88,7 @@
                       </div>
                     </div>
                   </li>
-                  <li class="list-group-item">
+                  <!-- <li class="list-group-item">
                     <div class="media">
                       <div class="media-left"> <p data-letters="A"></p></div>
                       <div class="media-body">
@@ -173,7 +174,7 @@
                         </div>
                       </div>
                     </div>
-                  </li>
+                  </li> -->
                  
                 </ul>
               </div>

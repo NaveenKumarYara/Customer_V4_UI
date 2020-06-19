@@ -171,20 +171,26 @@ EditUser(contact)
         data => {         
         if(data>0)
         { 
-            this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
-            this.appService.ActivateCustomerUser(this.Forgotform.value)
-            .subscribe(
-            data1 => {
-               this.toastr.success('Invitation has sent successfully','Success');
-                  setTimeout(() => { 
-                      this.Addform.reset();            
-                      this.toastr.dismissToast; 
-                      this.GetCustomerInviteUsers();  
-                    }, 3000);
+          this.toastr.success('Updated successfully','Success');
+          setTimeout(() => { 
+              this.Addform.reset();            
+              this.toastr.dismissToast; 
+              this.GetCustomerInviteUsers();  
+            }, 3000);
+            // this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+            // this.appService.ActivateCustomerUser(this.Forgotform.value)
+            // .subscribe(
+            // data1 => {
+            //    this.toastr.success('Invitation has sent successfully','Success');
+            //       setTimeout(() => { 
+            //           this.Addform.reset();            
+            //           this.toastr.dismissToast; 
+            //           this.GetCustomerInviteUsers();  
+            //         }, 3000);
                    
-                 } 
+            //      } 
                             
-            );
+            // );
          
         }  
       });
