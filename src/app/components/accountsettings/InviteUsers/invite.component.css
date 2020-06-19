@@ -70,6 +70,7 @@
 
 .r-i-t .list-group h5 {
     color: #41536E;
+    margin-top: 5px;
 }
 
 .r-i-t .list-group small {
@@ -83,17 +84,24 @@
 .r-i-t .list-group .media {
     overflow: inherit;
 }
-
+.r-i-t .list-group .media-left img{
+   height: 30px;
+   width: 30px;
+   margin-top: 10px;
+}
+.r-i-t .list-group .media-right {
+    vertical-align: middle;
+}
 .r-i-t .list-group .dropdown-menu {
     top: 10%;
     right: 25px;
     left: inherit;
 }
-
 .r-i-t .i-s input {
     height: 35px;
     font-size: 11px;
 }
+
 
 [data-letters]:before {
     content: attr(data-letters);

@@ -64,14 +64,16 @@
                         <div class="media-left"> 
                           <p>
                           <img src="https://ui-avatars.com/api/?name={{contact?.FirstName}}&rounded=true&length=1" alt="" class="img-cricle">
-                        </p></div>
+                        </p>
+                      
+                      </div>
                         <div class="media-body">
                           <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName}} {{contact?.LastName}}</h5> 
                           <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5> 
                           <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName}}</small>
                           <small *ngIf="contact?.FirstName=='Invited'">Invitation Sent</small>
                         </div>
-                        <div class="media-left"> 
+                        <div class="media-right"> 
                           <div class="dropdown card-dropdown">
                             <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
                               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
@@ -373,6 +375,7 @@
                         </ul>
                       </div>
                     </div>
+                    <div class="clearfix">&nbsp;</div>
                     <div class="pull-right">
                       <button class="btn btn-border" (click)="ResetUser();showStep=!showStep">Cancel</button>
                       <button class="btn btn-filled" type="submit">Invite</button>
