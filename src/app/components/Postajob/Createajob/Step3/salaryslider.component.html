@@ -34,7 +34,7 @@
      <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
       <div class="col-md-4 p-rel">
         <div class="material-textfield">
-          <input  placeholder="" #Minname="ngModel" name="MinSal" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
+          <input  placeholder="" #Minname="ngModel" name="MinSal"  (keypress)="numberOnly($event)" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
           <span class="error1"
           *ngIf="Minname.invalid && Minname.touched">Required.</span>
           <label>Min Pay</label>
@@ -45,7 +45,7 @@
       </div>
       <div class="col-md-4 p-rel">
         <div class="material-textfield">
-          <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
+          <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" (keypress)="numberOnly($event)" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
           <span class="error1"
           *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
           <label>Max Pay</label>
@@ -68,7 +68,7 @@
           <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
             <div class="col-md-4 p-rel">
               <div class="material-textfield">
-                <input  placeholder="" #Minhname="ngModel" name="MinhSal" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
+                <input  placeholder="" #Minhname="ngModel" name="MinhSal" (keypress)="numberOnly($event)" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
                 <span class="error1"
                 *ngIf="Minhname.invalid && Minhname.touched">Required</span>
                 <label>Min Pay</label>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-4 p-rel">
               <div class="material-textfield">
-                <input name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
+                <input name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" (keypress)="numberOnly($event)" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
                 <span class="error1"
                 *ngIf="Maxhname.invalid && Maxhname.touched">Required</span>
                 <label>Max Pay</label>

@@ -67,6 +67,15 @@ export class SalarysliderComponent implements OnInit {
       // }
   }
 
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
+      return false;
+    }
+    return true;
+
+  }
+
   onMinChange(value)
   {
     this.minHourRate=value;
