@@ -181,5 +181,6 @@
   "GetUserRoleAccess":"https://identityapi-dev.arytic.com/api/GetUserRolesAccess",
   "InsertInviteCustomerUsers":"https://identityapi-dev.arytic.com/api/InsertInviteCustomerUsers",
   "DeleteCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsers",
-  "UpdateFullName":"https://identityapi-dev.arytic.com/api/UpdateFullName"
+  "UpdateFullName":"https://identityapi-dev.arytic.com/api/UpdateFullName",
+  "GetUserDetail":"https://identityapi-dev.arytic.com/api/GetBasicInfo"
 }

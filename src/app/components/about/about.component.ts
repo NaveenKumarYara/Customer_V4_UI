@@ -24,6 +24,7 @@ export class AboutComponent {
     userId:any;
     pid:any;
     Id:any;
+    UserEmail:any;
     Addform: FormGroup;
     customercontacts : CustomerContacts[]=[];
     constructor( private route: ActivatedRoute,private toastr:ToastsManager,private _vcr: ViewContainerRef,
@@ -123,6 +124,9 @@ export class AboutComponent {
         'ConfirmPassword': ['', [Validators.required, FormsValidationService.password, FormsValidationService.matchOtherValidator('Password')]]
       },
         { validator: matchingPasswords('Password', 'ConfirmPassword') });
+        return this.appService.GetUserDetails(this.userId).subscribe(result => {
+          this.UserEmail = result.Email;
+        })
      
     }
   }

@@ -1057,6 +1057,14 @@ this.skillPostData.push(skill);
         );
   }
 
+  GetUserDetails(userId: number) {
+    const url = this.settingsService.settings.GetUserDetail + '?userId=' + userId;
+    return this.http.get<string[]>(url)
+        .catch(
+            this.handleError
+        );
+  }
+
   GetJobDeafultTemplates() {
     const url = this.settingsService.settings.GetDeafultTemplates;
     return this.http.get<RecentJobs[]>(url)
@@ -1120,7 +1128,6 @@ this.skillPostData.push(skill);
   }
 
   UpdateFullName(body) {
-    debugger
     return this.http.post(this.settingsService.settings.UpdateFullName, body)
     .map((res: Response) => res)
     .catch((error: any) => {

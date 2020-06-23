@@ -189,4 +189,5 @@ export class Settings {
   GetUserRoleAccess:string;
   InsertInviteCustomerUsers:string;
   DeleteCustomerInvitedUsers:string;
+  GetUserDetail:string;
   }
