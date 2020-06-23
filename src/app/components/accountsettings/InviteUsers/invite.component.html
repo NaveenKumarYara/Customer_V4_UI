@@ -4,7 +4,17 @@
 <div class="col-lg-9">
   <div class="right">
     <div class="tab-content i-t-m">
-      <h1>Manage Team Members</h1>
+      <div class="row">
+        <div class="col-md-9">
+          <h1>Manage Team Members</h1>
+        </div>
+        <div class="col-md-3 mr-t-3">
+          <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right" data-toggle="modal">
+            <span class="add">+</span>Invite
+            New Member</a>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;</div>
       <ng-container *ngIf="!showStep">
         <ng-container *ngIf="customercontacts.length==0">
           <div class="row">
@@ -43,39 +53,41 @@
                 </div>  -->
               <div class="col-md-3">
                 <div class="form-group i-s">
-                  <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite" placeholder="Search Here..">
+                  <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
+                    placeholder="Search Here..">
                 </div>
               </div>
-              <div class="col-md-9">
+              <!-- <div class="col-md-9">
                 <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right"
                   data-toggle="modal"> <span class="add">+</span>Invite
                   New Member</a>
-              </div>
+              </div> -->
             </div>
 
-            <div class="clearfix">&nbsp;</div>
-
             <div class="row">
-              <div class="col-md-7">
-                <ul class="list-group">
+              <div class="col-md-12 i-u-l scrollbar-inner">
+                <ul class="list-group ">
                   <ng-container *ngFor="let contact of customercontacts |  filter : searchText">
                     <li class="list-group-item" *ngIf="contact?.IsRemove==false">
                       <div class="media">
-                        <div class="media-left"> 
+                        <div class="media-left">
                           <p>
-                          <img src="https://ui-avatars.com/api/?name={{contact?.FirstName}}&rounded=true&length=1" alt="" class="img-cricle">
-                        </p>
-                      
-                      </div>
+                            <img src="https://ui-avatars.com/api/?name={{contact?.FirstName}}&rounded=true&length=1"
+                              alt="" class="img-cricle">
+                          </p>
+
+                        </div>
                         <div class="media-body">
-                          <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName | titlecase}} {{contact?.LastName | titlecase}}</h5> 
-                          <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5> 
-                          <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName | titlecase}}</small>
+                          <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName}}
+                            {{contact?.LastName}}</h5>
+                          <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5>
+                          <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName}}</small>
                           <small *ngIf="contact?.FirstName=='Invited'">Invitation Sent</small>
                         </div>
-                        <div class="media-right"> 
+                        <div class="media-right">
                           <div class="dropdown card-dropdown">
-                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                              aria-expanded="true">
                               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="20.7">
                                 <path
                                   d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
@@ -83,7 +95,7 @@
                               </svg>
                             </button>
                             <ul class="dropdown-menu">
-                             
+
                               <li>
                                 <a (click)="EditUser(contact)">Edit Role</a>
                               </li>
@@ -96,7 +108,7 @@
                       </div>
                     </li>
                   </ng-container>
-                
+
                   <!-- <li class="list-group-item">
                     <div class="media">
                       <div class="media-left"> <p data-letters="A"></p></div>
@@ -184,11 +196,11 @@
                       </div>
                     </div>
                   </li> -->
-                 
+
                 </ul>
               </div>
             </div>
-            
+
 
 
             <!-- <div class="table-responsive">
@@ -254,7 +266,7 @@
       <ng-container *ngIf="showStep">
         <ng-container *ngIf="!IsEdit">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="panel panel-default invite-panel">
                 <form [formGroup]="Addform" (ngSubmit)="SaveUser()">
                   <div class="panel-body">
@@ -294,7 +306,7 @@
                         <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
                       </label> 
                     </div>-->
-                    
+
                       <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
                         <ul class="list-group">
                           <li class="list-group-item" *ngFor="let roles of userRoles">
@@ -311,7 +323,7 @@
                               </div>
                             </div>
                           </li>
-  
+
                         </ul>
                       </div>
                     </div>
@@ -324,11 +336,11 @@
               </div>
             </div>
           </div>
-        
+
         </ng-container>
         <ng-container *ngIf="IsEdit">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="panel panel-default invite-panel">
                 <form [formGroup]="Addform" (ngSubmit)="EditTheUser()">
                   <div class="panel-body">
@@ -341,7 +353,7 @@
                       <div class="col-md-12">
                         <h5>User Level Access</h5>
                       </div>
-  
+
                       <div class="row">
                         <div class="col-md-5" *ngFor="let level of userLevels">
                           <label class="checkbox-inline">
@@ -355,7 +367,7 @@
                         <input type="radio" name="inlineradio1" id="inlineradio1" value="2"> Restricted Access
                       </label> 
                     </div>-->
-              
+
                       <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
                         <ul class="list-group">
                           <li class="list-group-item" *ngFor="let roles of userRoles">
@@ -385,7 +397,7 @@
               </div>
             </div>
           </div>
-    
+
         </ng-container>
         <div class="clearfix">&nbsp;</div>
       </ng-container>
