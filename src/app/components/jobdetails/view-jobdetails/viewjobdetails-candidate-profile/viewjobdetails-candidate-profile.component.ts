@@ -20,6 +20,7 @@ import { ApiService } from '../../../../shared/services/api.service/api.service'
 import{UniqueMonthYearPipe} from './../months.pipe';
 import * as FileSaver from 'file-saver';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import {HiredialogComponent} from './Hiringdialog/hire.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -37,6 +38,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
+  // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
   jobdetailsprofiles = new JobdetailsProfile();
   matchingDetails: MatchingDetails;
   // profileVideo= new  VideoProfile();
@@ -191,6 +193,27 @@ OpenRejectDialog(jobResponseId, profileId) {
       // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.myEvent.emit(null);
       console.log('reject Dialog result: ${result}');
+    });
+  }
+}
+
+OpenHireDialog(jobResponseId, profileId) {
+  if (this.jobStatus !== 'InActive') {
+    const hiredialogRef = this.dialog.open(HiredialogComponent,
+      {
+        position: { right: '0px' },
+        data: {
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          ProfileId: profileId
+          // status : this.statusid
+        }
+      }
+    );
+    hiredialogRef.afterClosed().subscribe(result => {
+      // this.jobDetails.populateJobsStaticInfo(this.jobid);
+      this.myEvent.emit(null);
+      console.log('hire Dialog result: ${result}');
     });
   }
 }

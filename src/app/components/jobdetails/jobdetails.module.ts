@@ -42,6 +42,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -68,7 +69,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
   ],
   providers: [JobdetailsService],
   declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
-                  ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
+                  HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,
                   UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent],
   entryComponents: [
