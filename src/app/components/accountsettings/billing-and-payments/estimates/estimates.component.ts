@@ -40,6 +40,7 @@ export class EstimatesComponent implements OnInit {
       //publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we',
       site: 'arytic',
       publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
+      }
     )
     this.cbportal=this.chargebeeInstance.createChargebeePortal();  
     this.toastr.setRootViewContainerRef(_vcr);
