@@ -240,7 +240,8 @@ export class ViewJobdetailsComponent implements OnInit {
   updateallcandidatesstatus() { 
     this.sortBy = 1;
     this.statusid = 0;
-    this.displayQuick = 1;
+    this.displayQuick = 0;
+    this.inprogressview(0);
     this.profilecount = 6;  
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
@@ -261,6 +262,7 @@ export class ViewJobdetailsComponent implements OnInit {
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others  
     this.sortBy = 1;
     this.statusid = 15;
+    this.displayQuick = 0;
     this.inprogressview(0);
     this.ClearallValues();
     this.ClearActiveClasses();
