@@ -95,6 +95,14 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     this.ProfileId = localStorage.getItem('rprofileId');
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
+    if(this.statusid==4||this.statusid==0||this.statusid==15)
+    {
+       this.inprogressprofile=false;
+    }
+    else
+    {
+      this.inprogressprofile=true;
+    }
     this.toastr.setRootViewContainerRef(_vcr);
    }
   showDetailadvancesearch = false;
