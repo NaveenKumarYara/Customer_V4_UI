@@ -242,6 +242,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 0;
     this.displayQuick = 0;
     this.inprogressview(0);
+    this.inprogressprofile=false;
     this.profilecount = 6;  
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
@@ -264,6 +265,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 15;
     this.displayQuick = 0;
     this.inprogressview(0);
+    this.inprogressprofile=false;
     this.ClearallValues();
     this.ClearActiveClasses();
     // this.loadMoreStat=this.statusid;
@@ -289,6 +291,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.base.SuggestedFlag = false;
     this.base.AryticFlag=false;
     this.inprogressview(0);
+    this.inprogressprofile=false;
     this.ClearallValues();
     this.ClearActiveClasses();
     this.CallList(this.statusid);
@@ -298,6 +301,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.PopulateJobdetailProfiles();
     // console.log(this.jobid);
     if (this.jobstatistics.Applied > 0) {
+      debugger
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
@@ -329,10 +333,12 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 17;
     this.displayQuick = 0;
     this.inprogressview(1);
+    this.inprogressprofile=true;
     this.ClearallValues();
     this.ClearActiveClasses();
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
+  debugger
   if (this.jobstatistics.InProgress > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.InProgress,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
