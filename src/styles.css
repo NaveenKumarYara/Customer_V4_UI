@@ -13934,12 +13934,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     color: #697D9B;
     letter-spacing: 0.03em;
     display: block;
-    text-transform: uppercase;
+    text-transform: capitalize;
     margin-bottom: 10px;
 }
 
 .page--job-details .modal-body .form-control {
-    border: 1px solid #E0E3EF;
+    /* border: 1px solid #E0E3EF; */
+    border: 1px solid #cccccc;
     height: 55px;
 }
 
@@ -14535,24 +14536,20 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     display: inline-block;
 }
 
-.page--job-details #rejectCandidate, .page--job-details #shareCandidate {
+.page--job-details #shareCandidate {
     padding-right: 0 !important;
 }
 
-.page--job-details #rejectCandidate .modal-body, .page--job-details #shareCandidate .modal-body {
-    padding: 3.125rem 2.5rem 0;
+.page--job-details #shareCandidate .modal-body {
+    padding: 1.125rem 1.8rem 0;
 }
 
-.page--job-details #rejectCandidate textarea.form-control, .page--job-details #shareCandidate textarea.form-control {
-    height: 95px;
-}
-
-.page--job-details #rejectCandidate .modal-title, .page--job-details #shareCandidate .modal-title {
+.page--job-details #shareCandidate .modal-title {
     text-align: center;
     margin-bottom: 3.125rem;
 }
 
-.page--job-details #rejectCandidate .modal-footer, .page--job-details #shareCandidate .modal-footer {
+ .page--job-details #shareCandidate .modal-footer {
     padding: 0.625rem 2.5rem 2.5rem;
     border-top: 0;
 }

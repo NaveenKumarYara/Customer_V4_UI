@@ -1,0 +1,19 @@
+.page--job-details #rejectCandidate {
+    padding-right: 0 !important;
+}
+.page--job-details #rejectCandidate .modal-body {
+    padding: 1.125rem 1.5rem 2rem;
+}
+.page--job-details #rejectCandidate .modal-body .form-control{
+    height: 50px;
+    font-size: 13px;
+}
+.page--job-details #rejectCandidate .modal-title {
+    text-align: left;
+}
+.page--job-details #rejectCandidate textarea.form-control {
+padding-top:10px;
+}
+.page--job-details #rejectCandidate .modal-footer{
+    border-top: 0;
+}
