@@ -201,6 +201,7 @@ OpenHireDialog(jobResponseId, profileId) {
   if (this.jobStatus !== 'InActive') {
     const hiredialogRef = this.dialog.open(HiredialogComponent,
       {
+        width: '700px',
         position: { right: '0px' },
         data: {
           jobResponseId: jobResponseId,
