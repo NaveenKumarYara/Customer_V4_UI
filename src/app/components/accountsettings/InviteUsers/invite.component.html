@@ -11,7 +11,7 @@
         <div class="col-md-3 mr-t-3">
           <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn pull-right" data-toggle="modal">
             <span class="add">+</span>Invite
-            New Member</a>
+            Member</a>
         </div>
       </div>
       <div class="clearfix">&nbsp;</div>
@@ -26,7 +26,7 @@
             <div class="col-md-4">
               <a href="javascript:void(0)" (click)="showStep=!showStep" class="add-btn" data-toggle="modal"> <span
                   class="add">+</span>Invite
-                New Member</a>
+               Member</a>
             </div>
           </div>
 
@@ -40,7 +40,7 @@
             <div>
               <a href="javascript:void(0)" class="add-btn" (click)="showStep=!showStep" data-toggle="modal"> <span
                   class="add">+</span>Invite
-                New Member</a>
+               Member</a>
             </div>
           </div>
         </ng-container>
@@ -52,7 +52,7 @@
                    <p class="sub-text">Recently Invited</p>
                 </div>  -->
               <div class="col-md-3">
-                <div class="form-group i-s">
+                <div class="form-group i-s"  *ngIf="customercontacts.length>6">
                   <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
                     placeholder="Search Here..">
                 </div>
@@ -68,7 +68,7 @@
               <div class="col-md-12 i-u-l scrollbar-inner">
                 <ul class="list-group ">
                   <ng-container *ngFor="let contact of customercontacts |  filter : searchText">
-                    <li class="list-group-item" *ngIf="contact?.IsRemove==false">
+                    <li class="list-group-item" [ngClass]="{'disabled': contact?.IsRemove === true}">
                       <div class="media">
                         <div class="media-left">
                           <p>
@@ -77,7 +77,7 @@
                           </p>
 
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" >
                           <h5 class="media-heading" *ngIf="contact?.FirstName!='Invited'">{{contact?.FirstName}}
                             {{contact?.LastName}}</h5>
                           <h5 class="media-heading" *ngIf="contact?.FirstName=='Invited'">{{contact?.Email}}</h5>
@@ -100,7 +100,12 @@
                                 <a (click)="EditUser(contact)">Edit Role</a>
                               </li>
                               <li>
-                                <a (click)="RemoveUser(contact?.Email)">Remove</a>
+                                <ng-container *ngIf="contact?.IsRemove === false">
+                                  <a (click)="RemoveUser(contact?.Email)">Inactive</a>
+                                </ng-container>
+                                <ng-container *ngIf="contact?.IsRemove === true">
+                                  <a (click)="RemoveUser(contact?.Email)">active</a>
+                                </ng-container>
                               </li>
                             </ul>
                           </div>
