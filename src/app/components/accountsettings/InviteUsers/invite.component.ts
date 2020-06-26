@@ -47,6 +47,12 @@ export class InviteUsersComponent implements OnInit {
   // }
 
 
+  Rest()
+  {
+    debugger
+    this.showStep=false;
+  }
+
 
   ResetUser()
   {
@@ -268,6 +274,18 @@ EditUser(contact)
   // });
   // }
 
+  getParentApi(): PaComponentApi {
+    return {
+
+      callRest: () => {
+        this.GetCustomerInviteUsers();
+      }
+
+    };
+
+
+  }
+
 
   ngOnInit() {
   
@@ -296,4 +314,9 @@ EditUser(contact)
     // })
   }
 
+}
+
+
+export interface PaComponentApi {
+  callRest: () => void;
 }
