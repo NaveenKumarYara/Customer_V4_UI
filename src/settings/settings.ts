@@ -190,4 +190,5 @@ export class Settings {
   InsertInviteCustomerUsers:string;
   DeleteCustomerInvitedUsers:string;
   GetUserDetail:string;
+  ActivateCustomerInvitedUsers:string;
   }

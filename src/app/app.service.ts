@@ -1260,6 +1260,14 @@ this.skillPostData.push(skill);
       );
   }
 
+  ActivateInviteUsers(InviteId: string) {
+    const url = this.settingsService.settings.ActivateCustomerInvitedUsers + '?email=' + InviteId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = this.settingsService.settings.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)

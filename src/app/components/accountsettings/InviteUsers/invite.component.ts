@@ -84,6 +84,16 @@ export class InviteUsersComponent implements OnInit {
       )
   }
 
+  ActivateInviteUsers(Id)
+  {
+    return this.appService.ActivateInviteUsers(Id).subscribe(
+      data => 
+      {
+       this.GetCustomerInviteUsers();
+      }
+      )
+  }
+
 EditUser(contact)
 {
   this.showStep=true;

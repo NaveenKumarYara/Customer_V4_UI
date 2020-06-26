@@ -182,5 +182,6 @@
   "InsertInviteCustomerUsers":"${Identity_URL}/api/InsertInviteCustomerUsers",
   "DeleteCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerUsers",
   "UpdateFullName":"${Identity_URL}/api/UpdateFullName",
-  "GetUserDetail":"${Identity_URL}/api/GetBasicInfo"
+  "GetUserDetail":"${Identity_URL}/api/GetBasicInfo",
+  "ActivateCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerUsersToActive"
 }

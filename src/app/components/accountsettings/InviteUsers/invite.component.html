@@ -104,7 +104,7 @@
                                   <a (click)="RemoveUser(contact?.Email)">Inactive</a>
                                 </ng-container>
                                 <ng-container *ngIf="contact?.IsRemove === true">
-                                  <a (click)="RemoveUser(contact?.Email)">active</a>
+                                  <a (click)="ActivateInviteUsers(contact?.Email)">active</a>
                                 </ng-container>
                               </li>
                             </ul>
