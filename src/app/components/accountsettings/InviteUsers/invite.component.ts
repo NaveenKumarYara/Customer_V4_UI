@@ -84,12 +84,45 @@ export class InviteUsersComponent implements OnInit {
       )
   }
 
-  ActivateInviteUsers(Id)
+  ActivateInviteUsers(contact)
   {
-    return this.appService.ActivateInviteUsers(Id).subscribe(
+
+    return this.appService.ActivateInviteUsers(contact.Email).subscribe(
       data => 
       {
-       this.GetCustomerInviteUsers();
+        this.Addform.value.FirstName = contact.FirstName;
+        this.Addform.value.LastName = contact.LastName;
+       this.Addform.value.ContactEmail = contact.Email;
+       this.Addform.value.UserId= contact.UserId;
+       this.Addform.value.UserRoleId= contact.RoleId;
+       this.Addform.value.Password = 123456;
+       this.Addform.value.CandidateIdentifier ='';
+        this.Addform.value.CustomerId = this.customerId;
+        this.Addform.value.IsActive = true;
+        this.Addform.value.AccessId=contact.AccessId;
+       this.Forgotform.value.EmailId = contact.Email;
+       this.appService.addCustomerUser(this.Addform.value)
+        .subscribe(
+        data => {         
+        if(data>0)
+        { 
+            this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
+            this.appService.ActivateCustomerUser(this.Forgotform.value)
+            .subscribe(
+            data1 => {
+               this.toastr.success('Invitation has sent successfully','Success');
+                  setTimeout(() => { 
+                      this.Addform.reset();            
+                      this.toastr.dismissToast; 
+                      this.GetCustomerInviteUsers();  
+                    }, 3000);
+                   
+                 } 
+                            
+            );
+         
+        }  
+      });
       }
       )
   }
@@ -139,7 +172,7 @@ EditUser(contact)
       this.Addform.value.IsActive = true;
       if(this.Addform.value.AccessId == 1)
       {
-        this.Addform.value.UserRoleId=4
+        this.Addform.value.UserRoleId=7
       }
       if(this.Addform.value.AccessId == 2)
       {
@@ -147,7 +180,8 @@ EditUser(contact)
       }
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
-        data => {         
+        data => {    
+          debugger     
         if(data>0)
         { 
             this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
@@ -177,7 +211,7 @@ EditUser(contact)
     this.Addform.value.AccessId=Number(this.Addform.value.AccessId);
     if(this.Addform.value.AccessId == 1)
     {
-      this.Addform.value.UserRoleId=4
+      this.Addform.value.UserRoleId=7
     }
     if(this.Addform.value.AccessId == 2)
     {
