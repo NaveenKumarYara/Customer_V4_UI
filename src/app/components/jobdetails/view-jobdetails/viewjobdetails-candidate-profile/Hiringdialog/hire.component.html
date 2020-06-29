@@ -10,19 +10,20 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hjobtype">Job Type</label>
-                <input type="text" id="hjobtype" placeholder="Job Type" class="form-control">
+                <ng-container *ngIf="salaryDetails?.EmploymentTypeId==1">
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="FullTime" class="form-control" readonly>
+                </ng-container>
+                <ng-container *ngIf="salaryDetails?.EmploymentTypeId==2">
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="Contract" class="form-control" readonly>
+                </ng-container>
+               
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hsalary">Salary</label>
-                <input type="text" id="hsalary" placeholder="Salary" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="hduration">Duration</label>
-                <input type="text" id="hduration" placeholder="Duration" class="form-control">
+                <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal"
+                [ngModelOptions]="{standalone: true}" #value="ngModel" placeholder="Salary" class="form-control">
               </div>
             </div>
             <div class="col-md-6">
@@ -32,6 +33,16 @@
                   (click)="d.toggle()">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <ng-container *ngIf="salaryDetails?.ContractDuration!=null">
+                  <label for="hduration">Duration</label>
+                  <input type="text" id="hduration" placeholder="Duration" class="form-control">
+                </ng-container>
+               
+              </div>
+            </div>
+         
             <div class="col-md-12">
               <div class="form-group">
                 <label for="hcomments">Comments</label>
