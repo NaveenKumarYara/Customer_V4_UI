@@ -85,6 +85,9 @@
                             <small *ngIf="contact?.FirstName!='Invited'">{{contact?.RoleName | titlecase}}</small>
                             <small *ngIf="contact?.FirstName=='Invited'">Invitation Sent</small>
                           </ng-container>
+                          <ng-container *ngIf="contact?.IsRemove === true">                
+                            <small>In Active</small>
+                          </ng-container>
 
                         </div>
                         <div class="media-right">
