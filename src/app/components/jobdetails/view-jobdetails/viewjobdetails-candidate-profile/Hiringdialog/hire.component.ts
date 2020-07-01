@@ -55,7 +55,7 @@ Check()
   return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
   this.addon.SubscriptionId = res.subscriptionId;
   this.addon.AddonId = "2";
-  var value = ((Math.round(this.valueSal)*100)/7).toFixed(0);
+  var value = ((Math.round(this.valueSal)*7)/100).toFixed(0);
   this.addon.AddonUnitPrice = Number(value);
   this.addon.AddonQuantity = 1;
   this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
