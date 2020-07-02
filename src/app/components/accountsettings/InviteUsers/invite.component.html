@@ -52,7 +52,7 @@
                    <p class="sub-text">Recently Invited</p>
                 </div>  -->
               <div class="col-md-3">
-                <div class="form-group i-s"  *ngIf="customercontacts.length>6">
+                <div class="form-group i-s"  *ngIf="customercontacts.length>5">
                   <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
                     placeholder="Search Here..">
                 </div>
@@ -320,7 +320,7 @@
 
                       <div class="col-md-12" *ngIf="Addform.value.AccessId==2">
                         <ul class="list-group">
-                          <li class="list-group-item" *ngFor="let roles of userRoles  | sortBy:'asc':'AccessRoles' ">
+                          <li class="list-group-item" *ngFor="let roles of userRoles">
                             <div class="media">
                               <div class="media-left">
                                 <input type="radio" name="UserRoleId" id="optionsRadios1" formControlName="UserRoleId"
