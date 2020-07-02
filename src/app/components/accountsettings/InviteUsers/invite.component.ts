@@ -250,7 +250,20 @@ EditUser(contact)
         { 
           this.toastr.success('Updated successfully','Success');
           setTimeout(() => { 
-              this.Addform.reset();            
+              this.Addform.reset();  
+              this.Addform = this.fb.group({
+                'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
+                'CustomerId': ['', Validators.compose([Validators.nullValidator])],
+                'UserId'  : [0, Validators.compose([Validators.nullValidator])],    
+                'FirstName': ['', Validators.compose([Validators.nullValidator])],   
+                'LastName': ['', Validators.compose([Validators.nullValidator])],
+                'PhoneNumber': ['',  Validators.compose([Validators.nullValidator])],   
+                'ContactEmail'   : ['', Validators.compose([Validators.required])],
+                'Password': ['', Validators.compose([Validators.nullValidator])],                   
+                'UserRoleId':['8', Validators.compose([Validators.nullValidator])],   
+                'IsActive':[ '', Validators.compose([Validators.nullValidator])], 
+                'AccessId':['2', Validators.compose([Validators.nullValidator])]        
+              });           
               this.toastr.dismissToast; 
               this.GetCustomerInviteUsers();  
             }, 3000);
@@ -360,6 +373,8 @@ EditUser(contact)
   ngOnInit() {
   
     this.show = false;
+    this.spinner.show();
+    //this.showStep=false;
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
