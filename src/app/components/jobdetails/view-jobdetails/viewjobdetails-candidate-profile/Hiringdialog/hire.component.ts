@@ -55,8 +55,16 @@ Check()
   return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
   this.addon.SubscriptionId = res.subscriptionId;
   this.addon.AddonId = "2";
-  var value = ((Math.round(this.valueSal)*7)/100).toFixed(0);
-  this.addon.AddonUnitPrice = Number(value);
+  if (this.salaryDetails.SalaryTypeId == 1)
+  {
+    var val = ((Math.round(this.valueSal)*2000*7)).toFixed(0);
+    this.addon.AddonUnitPrice = Number(val);
+  }
+  else if (this.salaryDetails.SalaryTypeId == 2)
+  {
+    var value = ((Math.round(this.valueSal)*7)).toFixed(0);
+    this.addon.AddonUnitPrice = Number(value);
+  }
   this.addon.AddonQuantity = 1;
    return this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
     console.log(result);
@@ -74,6 +82,7 @@ Check()
     this._service.GetService('ProfileAPI/api/GetJobSalaryDetails?JobId=', this.data.jobId).subscribe(
       data => {
         this.salaryDetails = data;
+        debugger
         this.valueSal=this.salaryDetails.MaximumSalary;
       });
    }

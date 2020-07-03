@@ -23,6 +23,12 @@
                 <label for="hsalary">Salary</label>
                 <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal"
                 [ngModelOptions]="{standalone: true}" #value="ngModel" placeholder="Salary" class="form-control">
+                <span *ngIf="salaryDetails.SalaryTypeId==1">
+                   Per Hour
+                </span>
+                <span *ngIf="salaryDetails.SalaryTypeId==2">
+                  Per Annum*
+               </span>
               </div>
             </div>
             <div class="col-md-6">
