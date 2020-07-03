@@ -2,7 +2,7 @@
     padding-right: 0 !important;
 }
 .page--job-details #rejectCandidate .modal-body {
-    padding: 1.125rem 1.5rem 2rem;
+    padding: 0px;
 }
 .page--job-details #rejectCandidate .modal-body .form-control{
     height: 50px;
@@ -10,6 +10,7 @@
 }
 .page--job-details #rejectCandidate .modal-title {
     text-align: left;
+    font-family: "Poppins", sans-serif !important;
 }
 .page--job-details #rejectCandidate textarea.form-control {
 padding-top:10px;

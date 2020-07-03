@@ -82,47 +82,47 @@
                       <ng-container *ngIf="sdetails?.planId=='trial'">
                         <ng-container *ngIf="daysRemaining>0">
                           <p class="text-right">
-                            Free Trial Expires in <strong>{{daysRemaining}}</strong>  days, <br>Upgrade Now!
+                            Your free trial is going to expire in <strong>{{daysRemaining}}</strong>  days, <br>Upgrade now!
                           </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
-                          Free Trial Expired, Renew Now!
+                          Your Free trial has been expired. Please Renew Now!
                         </ng-container>                      
                       </ng-container>
                       <ng-container *ngIf="sdetails?.planId=='starterdirect'">
                         <ng-container *ngIf="daysRemaining>0">
                          <p class="text-right">
-                          Starter Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                          Your Starter Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
                          </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
                           <p class="text-right">
-                            Starter Plan is Payment Due is <strong>Pending</strong>  days, <br> Renew Now!
+                            Your Starter Plan is Payment Due, Renew Now!
                           </p>
                         </ng-container>             
                       </ng-container>
                       <ng-container *ngIf="sdetails?.planId=='basicdirect'">
                       <ng-container *ngIf="daysRemaining>0">
                         <p class="text-right">
-                          Basic Plan is Payment Due in   <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                          Your Basic Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
                         </p>
               
                       </ng-container>
                       <ng-container *ngIf="daysRemaining==0">
                         <p class="text-right">
-                          Basic Plan is Payment Due is <strong>Pending</strong>  days, <br>Renew Now!
+                          Your Basic Plan is Payment Due, Renew Now!
                         </p>
                       </ng-container>
                        </ng-container>
                        <ng-container *ngIf="sdetails?.planId=='growthdirect'">
                         <ng-container *ngIf="daysRemaining>0">
                           <p class="text-right">
-                            Growth Plan is Payment Due in  <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                            Your Growth Plan is Payment Due in   <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
                           </p>
                         </ng-container>
                         <ng-container *ngIf="daysRemaining==0">
                           <p class="text-right">
-                          Growth Plan is Payment Due is <strong>Pending</strong>  days, <br>Renew Now!
+                            Your Growth Plan is Payment Due, Renew Now!
                         </p>
                         </ng-container>
                      
