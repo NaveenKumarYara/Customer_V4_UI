@@ -58,7 +58,7 @@ Check()
   var value = ((Math.round(this.valueSal)*7)/100).toFixed(0);
   this.addon.AddonUnitPrice = Number(value);
   this.addon.AddonQuantity = 1;
-  this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+   return this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
     console.log(result);
   });
   
