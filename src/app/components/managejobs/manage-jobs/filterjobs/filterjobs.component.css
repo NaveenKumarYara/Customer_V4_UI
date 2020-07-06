@@ -12,10 +12,11 @@ ul.btn-group {
 
 .notification {
   text-decoration: none;
-  padding: 15px 15px;
+  padding: 12px 7px;
   position: relative;
   display: inline-block;
   border-radius: 2px;
+  margin-right: 0px;
 }
 
 
@@ -24,6 +25,7 @@ ul.btn-group {
   position: absolute;
   top: -11px;
   right: -10px;
+  z-index: 99;
   padding: 10px 10px;
   border-radius: 50%;
   background:rgb(236, 231, 231);
