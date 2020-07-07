@@ -26,15 +26,15 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="hsalary">Salary</label>
+                <label for="hsalary">Salary <small *ngIf="salaryDetails?.SalaryTypeId==1">(Per Hour)</small><small *ngIf="salaryDetails?.SalaryTypeId==2">(Per Annum*)</small></label>
                 <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal"
                 [ngModelOptions]="{standalone: true}" #value="ngModel" placeholder="Salary" class="form-control">
-                <span *ngIf="salaryDetails?.SalaryTypeId==1">
+                <!-- <span *ngIf="salaryDetails?.SalaryTypeId==1">
                    Per Hour
                 </span>
                 <span *ngIf="salaryDetails?.SalaryTypeId==2">
                   Per Annum*
-               </span>
+               </span> -->
               </div>
             </div>
             <div class="col-md-6">
