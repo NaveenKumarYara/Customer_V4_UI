@@ -17,11 +17,14 @@ export interface DialogData {
 export class HiredialogComponent {
   customerId: any;
   userId: any;
+  employmenttypelist: any;
+  employmentTypeId: number;
   Comment: string;
   customer: any;
   salaryDetails:any;
   addon = new addon();
   valueSal:number;
+  TypeId:any;
   schIntw = new ScheduleInterview();
  @Input() jobid: number;
  @Input() statusid: number;
@@ -32,6 +35,7 @@ export class HiredialogComponent {
       this.userId = this.customer.UserId;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
       this.GetSalarayDetails();
+      this.populateEmploymentType();
    }
 
    ngOnInit()
@@ -40,8 +44,15 @@ export class HiredialogComponent {
         $('#datePickerCert').trigger('click');
       });
       $('.datepicker').datepicker({ minDate: new Date() });
+     
     
    }
+
+   populateEmploymentType() {
+    this.appService.getEmploymentType().subscribe(res => {
+        this.employmenttypelist = res.filter(x => x.EmploymentType);
+    });
+}
 
 
 Check()
@@ -67,6 +78,7 @@ Check()
   }
   this.addon.AddonQuantity = 1;
    return this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+    this.eventStat.emit(null);
     console.log(result);
   });
   
@@ -77,13 +89,18 @@ Check()
 
 }
 
+gotit(na) {
+  this.TypeId=na;
+  }
+
    GetSalarayDetails()
    {
     this._service.GetService('ProfileAPI/api/GetJobSalaryDetails?JobId=', this.data.jobId).subscribe(
       data => {
         this.salaryDetails = data;
-        debugger
         this.valueSal=this.salaryDetails.MaximumSalary;
+        this.TypeId = this.salaryDetails.EmploymentTypeId;
+        debugger
       });
    }
 

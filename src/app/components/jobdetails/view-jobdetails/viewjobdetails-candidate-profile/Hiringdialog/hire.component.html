@@ -9,12 +9,18 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hjobtype">Job Type</label>
-                <ng-container *ngIf="salaryDetails?.EmploymentTypeId==1">
-                  <input type="text" id="hjobtype" placeholder="Job Type" value="FullTime" class="form-control" readonly>
+              <select class="form-control" (change)="gotit($event.target.value)">
+                <ng-container *ngFor="let type of employmenttypelist">
+                  <option [value]="type.EmploymentTypeId"  [selected]="type.EmploymentTypeId == TypeId" *ngIf="type.EmploymentTypeId!=4">{{type?.EmploymentType}} </option>
+                </ng-container>
+            
+            </select>
+                <!-- <ng-container *ngIf="salaryDetails?.EmploymentTypeId==1">                  
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="FullTime" class="form-control">
                 </ng-container>
                 <ng-container *ngIf="salaryDetails?.EmploymentTypeId==2">
-                  <input type="text" id="hjobtype" placeholder="Job Type" value="Contract" class="form-control" readonly>
-                </ng-container>
+                  <input type="text" id="hjobtype" placeholder="Job Type" value="Contract" class="form-control">
+                </ng-container> -->
                
               </div>
             </div>
@@ -23,10 +29,10 @@
                 <label for="hsalary">Salary</label>
                 <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal"
                 [ngModelOptions]="{standalone: true}" #value="ngModel" placeholder="Salary" class="form-control">
-                <span *ngIf="salaryDetails.SalaryTypeId==1">
+                <span *ngIf="salaryDetails?.SalaryTypeId==1">
                    Per Hour
                 </span>
-                <span *ngIf="salaryDetails.SalaryTypeId==2">
+                <span *ngIf="salaryDetails?.SalaryTypeId==2">
                   Per Annum*
                </span>
               </div>
@@ -34,13 +40,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hjoining">Joining</label>
-                <input class="form-control datepicker" id="hjoining" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker"
+                <input class="form-control datepicker" id="hjoining" placeholder="mm-dd-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker"
                   (click)="d.toggle()">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <ng-container *ngIf="salaryDetails?.ContractDuration!=null">
+                <ng-container *ngIf="salaryDetails?.ContractDuration!=null && TypeId==2">
                   <label for="hduration">Duration</label>
                   <input type="text" id="hduration" value="{{salaryDetails?.ContractDuration}}" placeholder="Duration" class="form-control">
                 </ng-container>
