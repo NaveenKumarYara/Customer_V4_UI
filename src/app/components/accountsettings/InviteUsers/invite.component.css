@@ -123,9 +123,22 @@
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
+.r-i-t .i-s .input-group-addon{
+    background-color: #fff;
+    border: 1px solid #448AFA;
+    border-right: transparent;
+}
+.r-i-t .i-s .input-group-addon .fa{
+    color: #448AFA;
+}
 .r-i-t .i-s input {
     height: 35px;
     font-size: 11px;
+    border: 1px solid #448AFA;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-left: transparent;
+    border-top-left-radius: 0px;
 }
 
 .i-u-l{
@@ -148,4 +161,13 @@ height: 360px;
 
 .i-t-m .mr-t-3{
     margin-top: 3%;
+}
+.i-t-m .i-t-m-header{
+    border-bottom: 1px solid #E0E3EF;
+}
+.r-i-t-header h4, .r-i-t-header h5, .i-t-m-header a{
+    color: #41536E;
+}
+.r-i-t-header h5{
+    border-right: 1.5px solid #41536E;
 }
