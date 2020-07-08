@@ -21,6 +21,7 @@ import{UniqueMonthYearPipe} from './../months.pipe';
 import * as FileSaver from 'file-saver';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {HiredialogComponent} from './Hiringdialog/hire.component';
+import { AchivementdialogComponent } from './Achivements/achivement.component';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -195,6 +196,24 @@ OpenRejectDialog(jobResponseId, profileId) {
       console.log('reject Dialog result: ${result}');
     });
   }
+}
+OpenAchiveDialog(profileId)
+{
+  const AdialogRef = this.dialog.open(AchivementdialogComponent,
+    {
+      width: '700px',
+      position: { right: '0px' },
+      data: {
+        ProfileId: profileId
+        // status : this.statusid
+      }
+    }
+  );
+  AdialogRef.afterClosed().subscribe(result => {
+    // this.jobDetails.populateJobsStaticInfo(this.jobid);
+    this.myEvent.emit(null);
+    console.log('hire Dialog result: ${result}');
+  });
 }
 
 OpenHireDialog(jobResponseId, profileId) {
