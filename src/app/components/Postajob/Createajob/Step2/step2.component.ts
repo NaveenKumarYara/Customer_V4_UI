@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,HostListener, AfterViewChecked,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DomainExpertiseComponent } from './domainexpertise.component';
 import { PersonalityTypeComponent } from './PersonalityType.component';
@@ -16,13 +16,15 @@ import { JobprofileComponent } from '../Step1/Jobprofile.component';
 import { JobResponsibilitiesComponent } from '../Step2/Jobresponsibilities.component';
 import { JobskillsetComponent } from '../Step2/Jobskillset.component';
 import { StepsComponent } from '../steps.component';
+declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-steps-step2',
   templateUrl: './step2.component.html',
   styleUrls: ['./step2.component.css']
 })
-export class Step2Component implements OnInit {
+export class Step2Component implements OnInit,AfterViewChecked {
   // @ViewChild(Step1Component) step1: Step1Component;
   // @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
   // @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
@@ -50,6 +52,9 @@ export class Step2Component implements OnInit {
   userId: any;
   customerId: any;
   JobIds=[];
+  disable1:any;
+disableLoc = false;
+isDrafted: boolean;
   pjDepartments:  PjDepartments[] = [];
   @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   // @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
@@ -58,6 +63,9 @@ export class Step2Component implements OnInit {
   @ViewChild(QualificationsComponent) qualification: QualificationsComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    event.returnValue = false;
+}
   // formData: any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
@@ -130,6 +138,33 @@ export class Step2Component implements OnInit {
   ngOnInit() {
     this.alertService.clear();
     this.JobIds = this.appService.JobIds;
+    $(window).scroll(function(event) {
+      function footer()
+        {
+            var scroll = $(window).scrollTop(); 
+            if(scroll < 800)
+            { 
+                $(".poj-footer").fadeIn("slow").addClass("show");
+            }
+          
+            else
+            {
+                $(".poj-footer").fadeOut("slow").removeClass("show");
+            }
+            
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                if ($('.poj-footer').is(':hover')) {
+                footer();
+            }
+                else
+                {
+                  $(".poj-footer").fadeOut("slow");
+                }
+        }, 2000));
+        }
+        footer();
+    });
   }
 
   postJob(step, exit?) {
@@ -323,7 +358,10 @@ export class Step2Component implements OnInit {
       cb();
     }, 1000);
   }
-
+  ngAfterViewChecked() {
+    this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      
+  }
 
 
 }

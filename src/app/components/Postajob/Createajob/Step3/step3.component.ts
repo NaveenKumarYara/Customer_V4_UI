@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,HostListener, ViewContainerRef ,AfterViewChecked} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ContractDurationComponent } from './contractduration.component';
 import { ContractExtensionComponent } from './contractextension.component';
@@ -25,6 +25,8 @@ import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 import { MatDialog } from '@angular/material';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { SalarysliderComponent } from './salaryslider.component';
+declare var $: any;
+declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
 
 @Component({
@@ -32,7 +34,7 @@ import { SalarysliderComponent } from './salaryslider.component';
   templateUrl: './step3.component.html',
   styleUrls: ['./step3.component.css']
 })
-export class Step3Component implements OnInit {
+export class Step3Component implements OnInit,AfterViewChecked {
 
   // @ViewChild(Step2Component) step2: Step2Component;
   // @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
@@ -40,6 +42,9 @@ export class Step3Component implements OnInit {
   // @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
   // @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   // @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  disable1:any;
+  disableLoc = false;
+  isDrafted: boolean;
   jobCategory: number;
   jobMinExp: number;
   jobMaxExp: number;
@@ -51,6 +56,9 @@ export class Step3Component implements OnInit {
   jobSkillsPrimary: any;
   jobSkillsSecondary: any;
   JobIds=[];
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    event.returnValue = false;
+}
   // @ViewChild(DomainExpertiseComponent) domain: DomainExpertiseComponent;
   // @ViewChild(LocationwiseJobsComponent) locations: LocationwiseJobsComponent;
   // @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
@@ -200,6 +208,33 @@ export class Step3Component implements OnInit {
     // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.changeEmploymentType();
     this.JobIds = this.appService.JobIds;
+    $(window).scroll(function(event) {
+      function footer()
+        {
+            var scroll = $(window).scrollTop(); 
+            if(scroll < 800)
+            { 
+                $(".poj-footer").fadeIn("slow").addClass("show");
+            }
+          
+            else
+            {
+                $(".poj-footer").fadeOut("slow").removeClass("show");
+            }
+            
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                if ($('.poj-footer').is(':hover')) {
+                footer();
+            }
+                else
+                {
+                  $(".poj-footer").fadeOut("slow");
+                }
+        }, 2000));
+        }
+        footer();
+    });
   }
 
   changeEmploymentType() {
@@ -411,6 +446,12 @@ export class Step3Component implements OnInit {
     }
     
   }
+  
+  ngAfterViewChecked() {
+    this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      
+  }
+
   ViewJobdetails(jobId) {
     sessionStorage.setItem('jobId', JSON.stringify(jobId));
     this.router.navigateByUrl('app-view-jobdetails');

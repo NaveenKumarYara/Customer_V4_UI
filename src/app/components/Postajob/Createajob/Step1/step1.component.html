@@ -30,7 +30,16 @@
   <div class="pull-right">
     <a href="javascript:void(0)" (click)="postJob(1,0)" class="btn btn-border btn-prev" *ngIf="jobIdExists>0">Save & Close</a>
     <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
-  </div> 
+  </div>
+  
+  <footer class="poj-footer" *ngIf="disable1==true">
+    <div class="container">
+      <div class="text-center">
+        <a href="javascript:void(0)"  (click)="postJob(1,0)" class="btn btn-border btn-prev">Save & Close</a>
+        <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
+      </div> 
+    </div>
+  </footer>
 
 </div>
 

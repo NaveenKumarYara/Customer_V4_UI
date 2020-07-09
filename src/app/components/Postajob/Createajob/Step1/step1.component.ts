@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild , ViewContainerRef} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild , HostListener,AfterViewChecked, ViewContainerRef} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
@@ -11,6 +11,7 @@ import { JobprofileComponent } from './Jobprofile.component';
 
 declare var $: any;
 declare var jQuery: any;
+
 import {InsertJob, PjSkill, PjRole, PjDisc, PjDomain, PjEducationDetails, PjTechnicalTeam, PjJobAccessTo, PjDepartments} from '../../models/jobPostInfo';
 import { CreateajobComponent } from '../createajob.component';
 import { StepsComponent } from '../steps.component';
@@ -23,7 +24,10 @@ import { NoofopeningsComponent } from './noofopenings.component';
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.css']
 })
-export class Step1Component implements OnInit {
+export class Step1Component implements OnInit, AfterViewChecked {
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    event.returnValue = false;
+}
   @ViewChild(JobcategoryComponent) jobCategory: JobcategoryComponent;
   @ViewChild(JobdetailsComponent) jobDetail: JobdetailsComponent;
   @ViewChild(JobprofileComponent) jobProfile: JobprofileComponent;
@@ -35,7 +39,9 @@ export class Step1Component implements OnInit {
   @ViewChild(DepartmentsComponent) department: DepartmentsComponent;
   // formData: any;
   // joblist = new InsertJob();
-
+  disable1:any;
+  disableLoc = false;
+  isDrafted: boolean;
   customer: any;
   userId: any;
   customerId: any;
@@ -83,6 +89,33 @@ export class Step1Component implements OnInit {
   }
   ngOnInit() {
     this.alertService.clear();
+    $(window).scroll(function(event) {
+      function footer()
+        {
+            var scroll = $(window).scrollTop(); 
+            if(scroll < 800)
+            { 
+                $(".poj-footer").fadeIn("slow").addClass("show");
+            }
+          
+            else
+            {
+                $(".poj-footer").fadeOut("slow").removeClass("show");
+            }
+            
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                if ($('.poj-footer').is(':hover')) {
+                footer();
+            }
+                else
+                {
+                  $(".poj-footer").fadeOut("slow");
+                }
+        }, 2000));
+        }
+        footer();
+    });
   }
 
   postJob(step, exit?) {
@@ -432,6 +465,11 @@ if (this.appService.isDrafted.value != null) {
         // this.GetExperience();
       }); // error => { this._service.DebugMode(error); });
 
+  }
+
+  ngAfterViewChecked() {
+    this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      
   }
 
 
