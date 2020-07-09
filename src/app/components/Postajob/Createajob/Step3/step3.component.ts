@@ -67,6 +67,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
   domain: any;
   locations: any;
   openings: any;
+  scroll:boolean=false;
   personalityType: any;
   qualification: any;
   @ViewChild(ContractDurationComponent) contractDuration: ContractDurationComponent;
@@ -208,33 +209,34 @@ export class Step3Component implements OnInit,AfterViewChecked {
     // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.changeEmploymentType();
     this.JobIds = this.appService.JobIds;
-    $(window).scroll(function(event) {
-      function footer()
-        {
-            var scroll = $(window).scrollTop(); 
-            if(scroll < 800)
-            { 
-                $(".poj-footer").fadeIn("slow").addClass("show");
-            }
+    window.addEventListener('scroll', this.scrolling, true);
+    // $(window).scroll(function(event) {
+    //   function footer()
+    //     {
+    //         var scroll = $(window).scrollTop(); 
+    //         if(scroll < 800)
+    //         { 
+    //             $(".poj-footer").fadeIn("slow").addClass("show");
+    //         }
           
-            else
-            {
-                $(".poj-footer").fadeOut("slow").removeClass("show");
-            }
+    //         else
+    //         {
+    //             $(".poj-footer").fadeOut("slow").removeClass("show");
+    //         }
             
-            clearTimeout($.data(this, 'scrollTimer'));
-            $.data(this, 'scrollTimer', setTimeout(function() {
-                if ($('.poj-footer').is(':hover')) {
-                footer();
-            }
-                else
-                {
-                  $(".poj-footer").fadeOut("slow");
-                }
-        }, 2000));
-        }
-        footer();
-    });
+    //         clearTimeout($.data(this, 'scrollTimer'));
+    //         $.data(this, 'scrollTimer', setTimeout(function() {
+    //             if ($('.poj-footer').is(':hover')) {
+    //             footer();
+    //         }
+    //             else
+    //             {
+    //               $(".poj-footer").fadeOut("slow");
+    //             }
+    //     }, 2000));
+    //     }
+    //     footer();
+    // });
   }
 
   changeEmploymentType() {
@@ -446,7 +448,14 @@ export class Step3Component implements OnInit,AfterViewChecked {
     }
     
   }
-  
+
+  scrolling=(s)=>{
+    let sc = s.target.scrollingElement.scrollTop;
+    console.log();
+    if(sc >=100){this.scroll=true}
+    else{this.scroll=false}
+  }
+
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
     this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      

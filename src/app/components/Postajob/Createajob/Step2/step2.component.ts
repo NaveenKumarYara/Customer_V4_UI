@@ -53,6 +53,7 @@ export class Step2Component implements OnInit,AfterViewChecked {
   customerId: any;
   JobIds=[];
   disable1:any;
+  scroll:boolean=false;
 disableLoc = false;
 isDrafted: boolean;
   pjDepartments:  PjDepartments[] = [];
@@ -138,33 +139,41 @@ isDrafted: boolean;
   ngOnInit() {
     this.alertService.clear();
     this.JobIds = this.appService.JobIds;
-    $(window).scroll(function(event) {
-      function footer()
-        {
-            var scroll = $(window).scrollTop(); 
-            if(scroll < 800)
-            { 
-                $(".poj-footer").fadeIn("slow").addClass("show");
-            }
+    window.addEventListener('scroll', this.scrolling, true);
+    // $(window).scroll(function(event) {
+    //   function footer()
+    //     {
+    //         var scroll = $(window).scrollTop(); 
+    //         if(scroll < 800)
+    //         { 
+    //             $(".poj-footer").fadeIn("slow").addClass("show");
+    //         }
           
-            else
-            {
-                $(".poj-footer").fadeOut("slow").removeClass("show");
-            }
+    //         else
+    //         {
+    //             $(".poj-footer").fadeOut("slow").removeClass("show");
+    //         }
             
-            clearTimeout($.data(this, 'scrollTimer'));
-            $.data(this, 'scrollTimer', setTimeout(function() {
-                if ($('.poj-footer').is(':hover')) {
-                footer();
-            }
-                else
-                {
-                  $(".poj-footer").fadeOut("slow");
-                }
-        }, 2000));
-        }
-        footer();
-    });
+    //         clearTimeout($.data(this, 'scrollTimer'));
+    //         $.data(this, 'scrollTimer', setTimeout(function() {
+    //             if ($('.poj-footer').is(':hover')) {
+    //             footer();
+    //         }
+    //             else
+    //             {
+    //               $(".poj-footer").fadeOut("slow");
+    //             }
+    //     }, 2000));
+    //     }
+    //     footer();
+    // });
+  }
+
+  scrolling=(s)=>{
+    let sc = s.target.scrollingElement.scrollTop;
+    console.log();
+    if(sc >=100){this.scroll=true}
+    else{this.scroll=false}
   }
 
   postJob(step, exit?) {

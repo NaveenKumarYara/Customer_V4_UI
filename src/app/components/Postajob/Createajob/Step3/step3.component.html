@@ -40,7 +40,7 @@
         <!-- routerLink="/app-createajob/app-steps-step4" -->
     </div>
   </div>
-  <footer class="poj-footer" *ngIf="disable1==true">
+  <footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
     <div class="container">
       <div class="text-center">
         <a href="javascript:void(0)" (click)="postJob(3,0)" class="btn btn-border btn-prev">Save & Close</a>
