@@ -25846,3 +25846,115 @@ padding-left: 0px!important;
     right: -2%!important;
 }
 }
+/*Icon click dialog styles 08-07-2020*/
+.mat-h6, .mat-typography h5{
+    font-family: "Poppins", sans-serif !important;
+}
+.cdk-global-scrollblock{
+    overflow-y:auto;
+}
+.manage-achievements-i-d {
+    overflow: hidden!important;
+    max-height: inherit!important; 
+}
+.manage-achievements-i-d .modal-body .ach-scroll {
+    max-height: 45vh;
+}
+.achievements-list small{
+font-size: 0.6rem;
+}
+.matching-details ul.certifications-list,
+.manage-s-v-i-d ul.skills-list, 
+.manage-reference-i-d ul.references-list,
+.manage-bgv-i-d ul.bg-list,
+.matching-details ul.domains-list,
+.manage-achievements-i-d ul.achievements-list,
+.manage-recommendations-i-d ul.recommendations-list
+{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.manage-s-v-i-d h4, 
+.manage-reference-i-d h4,
+.manage-bgv-i-d h4,
+.manage-achievements-i-d h4,
+.manage-recommendations-i-d h4
+{
+    color: #41536E;
+}
+.manage-s-v-i-d label, 
+.manage-reference-i-d label,
+.manage-bgv-i-d label,
+.manage-achievements-i-d label,
+.manage-recommendations-i-d label
+{
+    text-transform: capitalize;
+}
+.matching-details ul.certifications-list .c-details,
+.manage-s-v-i-d ul.skills-list .skill-details,
+.manage-reference-i-d ul.references-list .references-details,
+.manage-bgv-i-d ul.bg-list .bg-details,
+.matching-details ul.domains-list .d-details,
+.manage-achievements-i-d ul.achievements-list .a-details,
+.manage-recommendations-i-d ul.recommendations-list .r-details
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 10px 0;
+    color:#41536E;
+}
+.manage-recommendations-i-d ul.recommendations-list .r-details p{
+    font-size: 0.7rem;
+    word-break: break-word;
+}
+.matching-details ul.certifications-list .c-details:not(:last-of-type),
+.manage-s-v-i-d ul.skills-list .skill-details:not(:last-of-type),
+.manage-reference-i-d ul.references-list .references-details:not(:last-of-type),
+.manage-bgv-i-d ul.bg-list .bg-details:not(:last-of-type),
+.matching-details ul.domains-list .d-details:not(:last-of-type),
+.manage-achievements-i-d ul.achievements-list .a-details:not(:last-of-type),
+.manage-recommendations-i-d ul.recommendations-list .r-details:not(:last-of-type)
+{
+    border-bottom: 1px solid #E0E3EF;
+}
+.manage-reference-i-d ul.references-list .references-details .btn-filled, 
+.manage-s-v-i-d ul.skills-list .skill-details .btn-filled,
+.manage-bgv-i-d ul.bg-list .bg-details .btn-filled
+{
+    padding: 8px 13px;
+    font-size: 0.575rem;
+    min-width: 80px;
+}
+/*Send request to candidate mini form*/
+
+.manage-reference-i-d .modal-body .send-req-form{
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 3%;
+    -webkit-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+    box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+}
+.manage-reference-i-d .modal-body .send-req-form label{
+    color: #6A7E9C;
+    font-weight: 500;
+}
+.manage-reference-i-d .modal-body .send-req-form  .btn-filled{
+    padding: 6px 11px;
+}
+.manage-s-v-i-d ul.skills-list .skill-details small a{
+    font-size: 8px;
+    font-weight: bold;
+}
+.manage-reference-i-d .modal-body li.references-details .fa{
+    font-size: 25px;
+}

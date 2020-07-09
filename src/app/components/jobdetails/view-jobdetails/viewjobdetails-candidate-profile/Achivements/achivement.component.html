@@ -1,34 +1,32 @@
-
-
-<mat-dialog-content class="mat-typography">
-    <div class="modal-header">
-        <img src="../../../../../../assets/images/card-icons/achievement-badge.png" width="60"
-        alt="certifications">
-    <h4>Achievements</h4>
-      <button mat-button mat-dialog-close class="close">×</button>
+<mat-dialog-content class="mat-typography manage-achievements-i-d">
+    <button mat-button mat-dialog-close class="close">×</button>
+    <div class="modal-header text-center">
+        <img src="../../../../../../assets/images/card-icons/achievement-badge.png" width="60" alt="certifications">
+        <h4>Achievements</h4>
     </div>
-    <div class="header scrollbar-inner">
-      
-        <!--List of Achievements-->
-        <ul class="achievements-list">
-            <ng-container *ngIf="alist.length>0">
-                <li class="a-details" *ngFor="let a of alist">
-                    <div class="col-md-4">
-                        <h6>{{a?.AchivementDescription}}</h6>
-                    </div>
-                    <div class="col-md-4 text-left">
-                        <h6>Company</h6>
-                        <small>Project Name</small>
-                    </div>
-                    <div class="col-md-4">
-                        <h6>2020</h6>
-                    </div>
-                </li>
-            </ng-container>
-            <ng-container *ngIf="alist.length==0">
-               <p>No Achivements Added</p>
-            </ng-container>
-          
-        </ul>
+    <div class="modal-body">
+        <div class="ach-scroll scrollbar-inner">
+            <!--List of Achievements-->
+            <ul class="achievements-list">
+                <ng-container *ngIf="alist.length>0">
+                    <li class="a-details" *ngFor="let a of alist">
+                        <div class="col-md-4">
+                            <h5>{{a?.AchivementDescription}}</h5>
+                        </div>
+                        <div class="col-md-4 text-left">
+                            <h5>Company</h5>
+                            <small>Project Name</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>2020</h5>
+                        </div>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="alist.length==0">
+                    <p class="text-center">No Achievements Added</p>
+                </ng-container>
+
+            </ul>
+        </div>
     </div>
-  </mat-dialog-content>
+</mat-dialog-content>

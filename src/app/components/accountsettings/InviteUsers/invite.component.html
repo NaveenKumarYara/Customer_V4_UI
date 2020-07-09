@@ -4,7 +4,7 @@
 <div class="col-lg-9">
   <div class="right">
     <div class="tab-content i-t-m">
-      <div class="row">
+      <div class="row i-t-m-header">
         <div class="col-md-9">
           <h1 ><a href="javascript:void(0)" (click)="Rest()">Manage Team Members </a></h1>
         </div>
@@ -47,14 +47,22 @@
 
         <ng-container *ngIf="customercontacts.length>0">
           <div class="r-i-t">
-            <div class="row">
-              <!-- <div class="col-md-2">
-                   <p class="sub-text">Recently Invited</p>
-                </div>  -->
-              <div class="col-md-3">
-                <div class="form-group i-s"  *ngIf="customercontacts.length>5">
+            <div class="row r-i-t-header">
+              <div class="col-md-7">
+                <h4>Team Members</h4>
+                </div> 
+                <div class="col-md-2 text-center">
+                  <h5>10 Members</h5>
+                </div>
+              <div class="col-md-3 pull-right">
+                <!-- <div class="form-group i-s"  *ngIf="customercontacts.length>5">
                   <input type="text" [(ngModel)]="searchText" class="form-control" id="searchinvite"
                     placeholder="Search Here..">
+                </div> -->
+                <div class="input-group i-s" *ngIf="customercontacts.length>5"> 
+                  <span class="input-group-addon" id="i-s-search"><i class="fa fa-search" aria-hidden="true"></i>
+                  </span> 
+                  <input type="text" class="form-control"  [(ngModel)]="searchText" id="searchinvite" placeholder="" aria-describedby="i-s-search"> 
                 </div>
               </div>
               <!-- <div class="col-md-9">

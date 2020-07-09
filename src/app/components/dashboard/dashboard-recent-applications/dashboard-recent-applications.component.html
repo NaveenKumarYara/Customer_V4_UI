@@ -6,10 +6,10 @@
                 <div class="header">
                     <img *ngIf="recentapplicants?.IsConfirmed != null" src="{{recentapplicants.ProfilePic}}"
                         class="ui-pic" title="{{recentapplicants.FirstName}}{{recentapplicants.LastName}}"
-                        alt="User Pic" width="50" height="50">
+                        alt="User Pic" width="50">
                     <img class="ui-pic" *ngIf="recentapplicants?.IsConfirmed == null"
                         src="https://ui-avatars.com/api/?name={{recentapplicants.FirstName}}+{{recentapplicants.LastName}}"
-                        alt="User Pic" width="50" height="50">
+                        alt="User Pic" width="50">
                     <div>
                         <h2
                             *ngIf="(recentapplicants?.ResponseStatusId <= 4 || recentapplicants?.ResponseStatusId == 8) && recentapplicants?.ResponseStatusId > 0 && recentapplicants?.UserId > 0 && recentapplicants?.IsConfirmed == null   ; else firstelseBlock">
