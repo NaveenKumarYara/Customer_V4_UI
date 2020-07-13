@@ -178,6 +178,15 @@ EditUser(contact)
     }
     else if(this.result.UserId==0)
     {
+      if(this.customer.UserRoleId==6 && this.Addform.value.UserRoleId==7)
+      {
+        this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+      }
+      else
+      {
       this.Addform.value.FirstName= 'Invited';
       this.Addform.value.LastName= 'User';
       this.Addform.value.CustomerId = this.customerId;
@@ -193,8 +202,7 @@ EditUser(contact)
       }
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
-        data => {    
-          debugger     
+        data => {        
         if(data>0)
         { 
             this.Forgotform.value.EmailId = this.Addform.value.ContactEmail;
@@ -227,6 +235,7 @@ EditUser(contact)
          
         }  
       });
+    }
     }
   }
 
