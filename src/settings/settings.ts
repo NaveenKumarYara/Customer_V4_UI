@@ -191,4 +191,5 @@ export class Settings {
   DeleteCustomerInvitedUsers:string;
   GetUserDetail:string;
   ActivateCustomerInvitedUsers:string;
+  CheckAndProvideAccess:string;
   }

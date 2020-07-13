@@ -1268,6 +1268,14 @@ this.skillPostData.push(skill);
       );
   }
 
+  AccessBasedUsers(RoleId: number) {
+    const url = this.settingsService.settings.CheckAndProvideAccess + '?userRoleId=' + RoleId;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getCities(cityName: string): Observable<Cities[]> {
     const url = this.settingsService.settings.getCitiesendpoint + 'cityName=' + cityName;
     return this.http.get<string[]>(url)

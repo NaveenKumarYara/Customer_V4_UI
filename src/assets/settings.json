@@ -183,5 +183,6 @@
   "DeleteCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsers",
   "UpdateFullName":"https://identityapi-dev.arytic.com/api/UpdateFullName",
   "GetUserDetail":"https://identityapi-dev.arytic.com/api/GetBasicInfo",
-  "ActivateCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsersToActive"
+  "ActivateCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsersToActive",
+  "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer"
 }
