@@ -9,11 +9,12 @@ import { InviteUsersComponent} from '../InviteUsers/invite.component';
 })
 export class NavigationcomponentComponent implements OnInit {
 @ViewChild(InviteUsersComponent)invite:InviteUsersComponent;
-
+customer:any; 
   constructor(private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
   }
 
   cl()

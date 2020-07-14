@@ -185,6 +185,34 @@ EditUser(contact)
             this.toastr.dismissToast;
         }, 3000);
       }
+      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==7)
+      {
+        this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+      }
+      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==6)
+      {
+        this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+            this.toastr.dismissToast;
+         setTimeout(() => {
+       }, 3000);
+      }
+      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==4)
+      {
+        this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+            this.toastr.dismissToast;
+         setTimeout(() => {
+       }, 3000);
+      }
+      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==10)
+      {
+        this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+            this.toastr.dismissToast;
+         setTimeout(() => {
+       }, 3000);
+      }
       else
       {
       this.Addform.value.FirstName= 'Invited';

@@ -19,7 +19,7 @@
             </div>
             <div class="navbar-collapse navbar-left page-nav collapse" id="navbar2">
               <ul class="nav navbar-nav">
-                  <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}">
+                  <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}" *ngIf="customer?.AccessDetails.Dashboard==true">
                       <a routerLink="/app-dashboardview">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
                           <g id="nav-icon">
@@ -30,7 +30,7 @@
                         <span>Dashboard</span>
                       </a>
                     </li>
-                <li  role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)" [ngClass]="{'active': postactive === true}">
+                <li  role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)" [ngClass]="{'active': postactive === true}" *ngIf="customer?.AccessDetails.PostAJob==true">
                   <a routerLink="/app-postajob" [ngClass]="{'pointer-events-none': active === true}">
                     <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                       <g id="post-icon">
@@ -44,7 +44,7 @@
                     <span>Post a job</span>
                   </a>
                 </li>
-                <li role="presentation" routerLinkActive="active" id="activeMyjob"   [ngClass]="{'active': jobsactive === true}" (click)="changetheactive(1)" > 
+                <li role="presentation" routerLinkActive="active" id="activeMyjob"   [ngClass]="{'active': jobsactive === true}" (click)="changetheactive(1)"  *ngIf="customer?.AccessDetails.ManageJob==true"> 
                   <a routerLink="/app-manage-jobs" [ngClass]="{'pointer-events-none': active === true}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                       <g id="briefcase-icon">
@@ -57,7 +57,7 @@
                   </a>
                 </li>
              
-                <li role="presentation" routerLinkActive="active">
+                <li role="presentation" routerLinkActive="active" *ngIf="customer?.AccessDetails.CompanyProfile==true">
                   <a routerLink="/app-companyprofile" [ngClass]="{'pointer-events-none': active === true}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                       <g id="briefcase-icon">
@@ -76,7 +76,7 @@
             
             <ul class="nav navbar-nav pull-right navbar-right user-options">
                 <!--Upgrade Now Alert starts-->
-                <li class="text-danger hidden-xs" routerLinkActive="active">
+                <li class="text-danger hidden-xs" routerLinkActive="active" *ngIf="customer?.AccessDetails.Subscription==true">
                   <a class="upgrade-now" href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
          
                       <ng-container *ngIf="sdetails?.planId=='trial'">
@@ -228,7 +228,7 @@
                       </li>
                     </ul> -->
                   </li>
-                  <li>
+                  <li *ngIf="customer?.AccessDetails.Subscription==true">
                     <a href="Javascript:void(0)"  routerLink="/app-accountsettings/app-billing-and-payments" routerLinkActive="active">
                       <div>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -251,7 +251,7 @@
                       </div>
                     </a>
                   </li>
-                  <li>
+                  <li *ngIf="customer?.AccessDetails.AccountSetting==true">
                     <a routerLink="/app-accountsettings" routerLinkActive="active">
                       <div>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
