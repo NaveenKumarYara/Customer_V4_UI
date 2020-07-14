@@ -14,11 +14,11 @@
                             <h5>{{a?.AchivementDescription}}</h5>
                         </div>
                         <div class="col-md-4 text-left">
-                            <h5>Company</h5>
-                            <small>Project Name</small>
+                            <h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
+                            <small *ngIf="a?.ProjectName!=null">{{a?.ProjectName}}</small>
                         </div>
-                        <div class="col-md-4">
-                            <h5>2020</h5>
+                        <div class="col-md-4" *ngIf="a?.ToDate!=null">
+                            <h5>{{a?.ToDate | date:'yyyy'}}</h5>
                         </div>
                     </li>
                 </ng-container>
