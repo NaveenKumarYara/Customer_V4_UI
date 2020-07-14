@@ -107,6 +107,7 @@ import { billEstimates } from '../models/billEstimates';
 import{CultureTestComponent} from './components/company-profile/culturetest/culturetest.component'
 import { HiredialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
+import { ReferencedialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -211,6 +212,7 @@ const appRoutes: Routes =
     { path: 'app-rejectdialog', component: RejectdialogComponent },
     { path: 'app-hiredialog', component: HiredialogComponent },
     { path: 'app-achivementdialog', component:AchivementdialogComponent},
+    { path: 'app-refdialog', component:ReferencedialogComponent},
     { path: 'app-sharejob', component: ShareJobComponent},
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
     { path: 'app-invite-profiledialog', component: InviteProfiledialogComponent },

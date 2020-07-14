@@ -44,6 +44,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
+import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -72,7 +73,7 @@ import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-cand
   declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,AchivementdialogComponent,
-                  UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent],
+                  UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })
