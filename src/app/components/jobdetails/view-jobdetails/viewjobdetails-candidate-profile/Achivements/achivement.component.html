@@ -1,12 +1,22 @@
 <mat-dialog-content class="mat-typography manage-achievements-i-d">
-    <button mat-button mat-dialog-close class="close">×</button>
+    <!-- <button mat-button mat-dialog-close class="close">×</button> -->
     <div class="modal-header text-center">
         <img src="../../../../../../assets/images/card-icons/achievement-badge.png" width="60" alt="certifications">
         <h4>Achievements</h4>
     </div>
     <div class="modal-body">
-        <div class="ach-scroll scrollbar-inner">
-            <!--List of Achievements-->
+        <div class="row ach-list-header">
+            <div class="col-md-4">
+                <h4>Achievement</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Company & Project</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Year</h4>
+            </div>
+        </div> 
+         <div class="ach-scroll scrollbar-inner">
             <ul class="achievements-list">
                 <ng-container *ngIf="alist.length>0">
                     <li class="a-details" *ngFor="let a of alist">
@@ -25,8 +35,10 @@
                 <ng-container *ngIf="alist.length==0">
                     <p class="text-center">No Achievements Added</p>
                 </ng-container>
-
             </ul>
         </div>
+    </div>
+    <div class="modal-footer">
+        <button mat-button mat-dialog-close class="btn btn-default">Close</button>
     </div>
 </mat-dialog-content>
