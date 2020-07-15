@@ -349,7 +349,6 @@ if(val==1)
   var IsPublic = data.isPublicAvailable;
   if(IsPublic==true)
   {
-   debugger
   return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
   this.addon.SubscriptionId = res.subscriptionId;
   this.addon.AddonId = "2";
@@ -358,7 +357,6 @@ if(val==1)
   this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
     console.log(result);
   });
-  
 });
 }
 });
@@ -450,7 +448,6 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
         this.jobdetailsprofiles = res;
-        debugger
         this.profiles = res;
         this.TotalCount = this.jobdetailsprofiles;
         this.spinner.hide();
