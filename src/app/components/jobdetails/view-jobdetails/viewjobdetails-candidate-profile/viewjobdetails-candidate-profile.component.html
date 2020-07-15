@@ -990,7 +990,7 @@
                                         (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId)">
                                         <p class="p6">Shortlist</p>
                                     </a></li>
-                                <ng-container *ngIf="customer?.AccessDetails.UserRoleId!=8&&customer?.AccessDetails.UserRoleId!=9">
+                                <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal"
                                         data-target="#scheduleCandidate"
                                         (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId)">
@@ -1008,7 +1008,7 @@
                             </div>
                             <!-- screening -->
                             <div *ngIf="profile?.ResponseStatusId == 5">
-                                <ng-container *ngIf="customer?.AccessDetails.UserRoleId!=8&&customer?.AccessDetails.UserRoleId!=9">
+                                <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal"
                                         data-target="#scheduleCandidate"
                                         (click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId)">
@@ -1023,7 +1023,7 @@
                             </div>
                             <!-- interviewed -->
                             <div *ngIf="profile?.ResponseStatusId == 7">
-                                <ng-container *ngIf="customer?.AccessDetails.UserRoleId!=4&&customer?.AccessDetails.UserRoleId!=8&&customer?.AccessDetails.UserRoleId!=9">
+                                <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=4&&customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
                                         (click)="OpenHireDialog(profile?.JobResponseId,profile?.ProfileId)">
                                         <p class="p6">Hire</p>

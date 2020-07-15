@@ -1,7 +1,7 @@
 <div class="col-lg-3">
   <div class="left-nav">
     <ul class="nav nav-tabs list-active">
-      <li routerLink="app-accountsettingdetails" routerLinkActive="active" *ngIf="customer?.AccessDetails.AccountSetting==true">
+      <li routerLink="app-accountsettingdetails" routerLinkActive="active" *ngIf="customer?.AccessDetails?.AccountSetting==true">
         <a data-toggle="tab">
           <svg xmlns="http://www.w3.org/2000/svg" width="22.2" height="22" fill="#41536e">
             <g transform="translate(-189 -159)">
@@ -28,7 +28,7 @@
           Team Members
         </a>
       </li>
-      <li routerLink="app-billing-and-payments" routerLinkActive="active" *ngIf="customer?.AccessDetails.Subscription==true">
+      <li routerLink="app-billing-and-payments" routerLinkActive="active" *ngIf="customer?.AccessDetails?.Subscription==true">
         <a data-toggle="tab" href="javascript:void(0)">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22">
             <g transform="translate(-209 -289)">
