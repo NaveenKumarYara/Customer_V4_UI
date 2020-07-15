@@ -997,6 +997,24 @@ bulkApply(body) {
         this.handleError
       );
   }
+
+  getReortingTeam(customerId: number): Observable<CustomerUsers[]> {
+
+    const url = this.settingsService.settings.GetReportingTeamList + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
+  getTechinicalTeam(customerId: number): Observable<CustomerUsers[]> {
+
+    const url = this.settingsService.settings.GetTechinicalTeamList + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
   getaddedQualifications() {
     return this.qualifications.slice();
   }

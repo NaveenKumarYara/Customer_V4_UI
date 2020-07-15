@@ -184,5 +184,7 @@
   "UpdateFullName":"${Identity_URL}/api/UpdateFullName",
   "GetUserDetail":"${Identity_URL}/api/GetBasicInfo",
   "ActivateCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerUsersToActive",
-  "CheckAndProvideAccess":"${Identity_URL}/api/GetRoleBasedAccessForCustomer"
+  "CheckAndProvideAccess":"${Identity_URL}/api/GetRoleBasedAccessForCustomer",
+  "GetReportingTeamList":"${Profile_URL}/api/GetReportingTeamList?",
+  "GetTechinicalTeamList":"${Profile_URL}/api/GetTechinicalTeamList?"
 }

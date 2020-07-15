@@ -132,7 +132,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
  }
 
   suggestedManager() {
-    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
+    return this.appService.getReortingTeam(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
             this.suggestedManagers= this.appService.reportingList;
       // this.discResult.forEach(cc => cc.checked = false);

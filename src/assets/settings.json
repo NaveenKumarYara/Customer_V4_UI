@@ -120,6 +120,8 @@
   "bulkApply" : "https://referalapi-dev.arytic.com/api/ApplyBulk",
   "WishlistCount": "https://profileapi-dev.arytic.com/api/GetWishlistCount?",
   "GetCustomerUsers":"https://profileapi-dev.arytic.com/api/GetCustomerUsers?",
+  "GetReportingTeamList":"https://profileapi-dev.arytic.com/api/GetReportingTeamList?",
+  "GetTechinicalTeamList":"https://profileapi-dev.arytic.com/api/GetTechinicalTeamList?",
   "AddDepartment" :"https://profileapi-dev.arytic.com/api/InsertCustomerDepartments",
   "customerLogin": "https://dev.arytic.com/customerlogin",
   "customerSignUp": "https://dev.arytic.com/customersignup",

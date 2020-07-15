@@ -75,7 +75,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
     this.appService.deleteTeammember(index);
   }
   getcustomerusers() {
-    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
+    return this.appService.getTechinicalTeam(this.customerId).subscribe(res =>{
       this.managersList= res;
     });
   }

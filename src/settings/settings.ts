@@ -192,4 +192,6 @@ export class Settings {
   GetUserDetail:string;
   ActivateCustomerInvitedUsers:string;
   CheckAndProvideAccess:string;
+  GetReportingTeamList:string;
+  GetTechinicalTeamList:string;
   }
