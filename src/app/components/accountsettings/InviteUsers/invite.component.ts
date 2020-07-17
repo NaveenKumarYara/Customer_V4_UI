@@ -178,40 +178,45 @@ EditUser(contact)
     }
     else if(this.result.UserId==0)
     {
-      if(this.customer.UserRoleId==6 && this.Addform.value.UserRoleId==7)
+      if(this.customer.UserRoleId == 6 && this.Addform.value.UserRoleId == 7)
       {
         this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 3000);
+        return false;
       }
-      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==7)
+      if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 7)
       {
         this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 3000);
+        return false;
       }
-      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==6)
+      if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 6)
       {
         this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
             this.toastr.dismissToast;
          setTimeout(() => {
        }, 3000);
+       return false;
       }
-      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==4)
+      if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 4)
       {
         this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
             this.toastr.dismissToast;
          setTimeout(() => {
        }, 3000);
+       return false;
       }
-      if(this.customer.UserRoleId==4 && this.Addform.value.UserRoleId==10)
+      if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 10)
       {
         this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
             this.toastr.dismissToast;
          setTimeout(() => {
        }, 3000);
+       return false;   
       }
       else
       {
@@ -228,6 +233,7 @@ EditUser(contact)
       {
         this.Addform.value.UserRoleId;
       }
+      debugger
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {        
@@ -270,6 +276,48 @@ EditUser(contact)
 
   EditTheUser()
   {
+    if(this.customer.UserRoleId == 6 && this.Addform.value.UserRoleId == 7)
+    {
+      this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+      return false;
+    }
+    if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 7)
+    {
+      this.toastr.error('Please contact admin you dont have access to add admin role!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+      return false;
+    }
+    if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 6)
+    {
+      this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+          this.toastr.dismissToast;
+       setTimeout(() => {
+     }, 3000);
+     return false;
+    }
+    if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 4)
+    {
+      this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+          this.toastr.dismissToast;
+       setTimeout(() => {
+     }, 3000);
+     return false;
+    }
+    if(this.customer.UserRoleId == 4 && this.Addform.value.UserRoleId == 10)
+    {
+      this.toastr.error('Please contact admin you dont have access to add account role!', 'Oops!');
+          this.toastr.dismissToast;
+       setTimeout(() => {
+     }, 3000);
+     return false;   
+    }
+    else 
+    {
     this.spinner.show();
     this.Addform.value.AccessId=Number(this.Addform.value.AccessId);
     if(this.Addform.value.AccessId == 1)
@@ -321,7 +369,7 @@ EditUser(contact)
          
         }  
       });
-    
+    }
   }
 
   GetEmailValidate()
