@@ -18,6 +18,7 @@ interviewTypeId: number;
 interviewType: string;
 reportinManagerId: number;
 reportinManager=[];
+rManager=[];
 teamMembers: any;
 empType: number;
 contractExtended: boolean;
@@ -96,6 +97,7 @@ matchingPersentage=[];
       this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
     }
     this.reportinManager = this.appService.reportingList;
+    this.rManager = this.appService.recrutingList;
     this.immigrationsList = this.appService.ImmigrationforJobs;
     this.teamMembers = this.appService.teammembers;
     // this.contractDuration = this.appService.contractDuration.value;

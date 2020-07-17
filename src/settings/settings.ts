@@ -194,4 +194,6 @@ export class Settings {
   CheckAndProvideAccess:string;
   GetReportingTeamList:string;
   GetTechinicalTeamList:string;
+  GetRecruiterTeamList:string;
+  SaveRecruiterTeamList:string;
   }

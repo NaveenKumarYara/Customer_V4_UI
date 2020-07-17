@@ -186,5 +186,7 @@
   "UpdateFullName":"https://identityapi-dev.arytic.com/api/UpdateFullName",
   "GetUserDetail":"https://identityapi-dev.arytic.com/api/GetBasicInfo",
   "ActivateCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsersToActive",
-  "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer"
+  "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer",
+  "GetRecruiterTeamList":"https://profileapi-dev.arytic.com/api/GetRecruitingTeamList?",
+  "SaveRecruiterTeamList":"https://identityapi-dev.arytic.com/api/SaveRecruitingTeamMember"
 }

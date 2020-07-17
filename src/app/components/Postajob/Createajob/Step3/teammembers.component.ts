@@ -110,7 +110,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
       this.Addform.value.UserId = 0;
       this.Addform.value.CustomerId = this.customerId;
       this.Addform.value.Password = 123456;
-      this.Addform.value.UserRoleId = this.Value?this.Value:"8";
+      this.Addform.value.UserRoleId = "9";
       this.Addform.value.IsActive = true;
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(

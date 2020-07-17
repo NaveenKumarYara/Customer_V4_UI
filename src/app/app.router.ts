@@ -108,6 +108,7 @@ import{CultureTestComponent} from './components/company-profile/culturetest/cult
 import { HiredialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
 import { ReferencedialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
+import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -178,6 +179,7 @@ const appRoutes: Routes =
     { path: 'app-steps-step3-contractextension', component: ContractExtensionComponent },
     { path: 'app-steps-step3-interviewtype', component: InterviewTypeComponent },
     { path: 'app-steps-step3-reportingmanager', component: ReportingManagerComponent },
+    { path: 'app-steps-step3-recriuter', component: recriuterComponent },
     { path: 'app-steps-step3-teammembers', component: TeammembersComponent },
     { path: 'app-steps-step3-uploadvideoprofile', component: UploadvideoprofileComponent },
     { path: 'app-steps-step4-step1summary', component: Step1SummaryComponent },

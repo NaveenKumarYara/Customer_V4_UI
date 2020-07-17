@@ -101,6 +101,15 @@
   </div>
 
   <div class="form-data-group">
+    <h3 class="question">
+      Recruiting Manager</h3>
+    <ng-container *ngFor="let r of rManager">
+      <h6 class="data">{{r?.FirstName}}</h6>
+    </ng-container>
+
+  </div>
+
+  <div class="form-data-group">
     <h3 class="question">What Immigration Status type you are looking for?</h3>
     <ng-container *ngFor="let ims of immigrationsList">
       <h6 class="data">{{ims?.ImmigrationStatus}}</h6>

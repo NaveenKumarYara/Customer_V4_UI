@@ -86,6 +86,7 @@ import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmo
 import { DragulaModule } from 'ng2-dragula';
 import { RatingModule } from 'ng-starrating';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -130,6 +131,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     ContractExtensionComponent,
     InterviewTypeComponent,
     ReportingManagerComponent,
+    recriuterComponent,
     TeammembersComponent,
     Step1SummaryComponent,
     Step2SummaryComponent,

@@ -186,5 +186,7 @@
   "ActivateCustomerInvitedUsers":"${Identity_URL}/api/DeleteCustomerUsersToActive",
   "CheckAndProvideAccess":"${Identity_URL}/api/GetRoleBasedAccessForCustomer",
   "GetReportingTeamList":"${Profile_URL}/api/GetReportingTeamList?",
-  "GetTechinicalTeamList":"${Profile_URL}/api/GetTechinicalTeamList?"
+  "GetTechinicalTeamList":"${Profile_URL}/api/GetTechinicalTeamList?",
+  "GetRecruiterTeamList":"${Profile_URL}/api/GetRecruitingTeamList?",
+  "SaveRecruiterTeamList":"${Identity_URL}/api/SaveRecruitingTeamMember"
 }

@@ -15,6 +15,7 @@ export class GetJobDetailCustomer {
     JobResponsibility: EditRoles [];
     EducationDetails: Qualifications [];
     JobDepartments: DepartmentModel [];
+    RecruitingMember:RecrutingTeam [];
     TechnicalTeam: any ;
     MatchingCrieterias : SkillPostData[];
 }
@@ -29,6 +30,11 @@ export class GetJobDetailCustomer {
 // }
 
 export class ReportingTeam
+{
+    FirstName:string;
+    UserId:number;
+}
+export class RecrutingTeam
 {
     FirstName:string;
     UserId:number;

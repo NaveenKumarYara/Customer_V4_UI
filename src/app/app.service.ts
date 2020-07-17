@@ -41,7 +41,7 @@ import { GetBillingCardDetails } from '../models/GetBillingCardDetails';
 import {CustomerSubscription} from '../models/CustomerSubscription';
 import {GetSubscriptionDetails} from '../models/GetSubscriptionDetails';
 import { GetBillingAddressCustomer } from '../models/GetBillingAddressCustomer';
-import { ReportingTeam } from '../models/GetJobDetailCustomer';
+import { ReportingTeam,RecrutingTeam } from '../models/GetJobDetailCustomer';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -212,10 +212,15 @@ export class AppService {
 
   myreportingManager = new CustomerUsers();
   reportingManager = new BehaviorSubject(this.myreportingManager);
+  myreportManager = new CustomerUsers();
+  reportManager = new BehaviorSubject(this.myreportManager);
   currentcustomerUsers = this.reportingManager.asObservable();
   
   reportingList:ReportingTeam[]=[];
   reportingListChanged = new Subject<ReportingTeam[]>();
+
+  recrutingList:RecrutingTeam[]=[];
+  recrutingListChanged = new Subject<RecrutingTeam[]>();
 
   immigrations:jobImmigration[]=[];
   immigrationsChanged = new Subject<jobImmigration[]>();
@@ -1007,6 +1012,15 @@ bulkApply(body) {
       );
   }
 
+  getRecrutingTeam(customerId: number): Observable<CustomerUsers[]> {
+
+    const url = this.settingsService.settings.GetRecruiterTeamList + 'customerId=' + customerId;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getTechinicalTeam(customerId: number): Observable<CustomerUsers[]> {
 
     const url = this.settingsService.settings.GetTechinicalTeamList + 'customerId=' + customerId;
@@ -1115,6 +1129,14 @@ this.skillPostData.push(skill);
 
   ReportingTeam(body) {
     return this.http.post(this.settingsService.settings.ReportingTeam, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  RecrutingTeam(body) {
+    return this.http.post(this.settingsService.settings.SaveRecruiterTeamList, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
