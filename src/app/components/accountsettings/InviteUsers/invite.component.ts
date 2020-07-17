@@ -163,7 +163,7 @@ EditUser(contact)
 
   SaveUser()
   {
-    this.spinner.show();
+    
     if(this.Addform.invalid)
     {
       this.Addform.controls['ContactEmail'].markAsTouched()
@@ -220,6 +220,7 @@ EditUser(contact)
       }
       else
       {
+      this.spinner.show();
       this.Addform.value.FirstName= 'Invited';
       this.Addform.value.LastName= 'User';
       this.Addform.value.CustomerId = this.customerId;
