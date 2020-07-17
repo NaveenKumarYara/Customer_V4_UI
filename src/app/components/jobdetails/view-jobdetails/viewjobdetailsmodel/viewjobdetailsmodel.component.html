@@ -261,6 +261,20 @@
                                     </p>
                                 </div>
                             </div>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="group">
+                                    <h4>Recruiting Manager</h4>
+
+                                    <p *ngFor="let rp of jobdetailscustomer?.RecruitingMember">
+                                        <ng-container *ngIf="jobdetailscustomer?.RecruitingMember.length!=0">
+                                            {{rp?.FirstName}} {{rp?.LastName}}
+                                        </ng-container>
+                                    </p>
+                                    <p *ngIf="jobdetailscustomer?.RecruitingMember?.length==0">
+                                        N/A
+                                    </p>
+                                </div>
+                            </div>
                             <!-- <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4 >Matching Criteria</h4>
