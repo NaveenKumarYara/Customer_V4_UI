@@ -25854,11 +25854,13 @@ padding-left: 0px!important;
 .cdk-global-scrollblock{
     overflow-y:auto;
 }
-.manage-achievements-i-d {
+.manage-achievements-i-d,
+.manage-reference-i-d {
     overflow: hidden!important;
     max-height: inherit!important; 
 }
-.manage-achievements-i-d .modal-body .ach-scroll {
+.manage-achievements-i-d .modal-body .ach-scroll,
+.manage-reference-i-d .modal-body .ref-scroll {
     max-height: 45vh;
 }
 .achievements-list small{
@@ -25936,7 +25938,7 @@ font-size: 0.6rem;
 }
 /*Send request to candidate mini form*/
 
-.manage-reference-i-d .modal-body .send-req-form{
+.manage-reference-i-d .modal-footer .send-req-form{
     border: 1px solid #ebebeb;
     border-radius: 5px;
     padding: 10px;
@@ -25945,11 +25947,11 @@ font-size: 0.6rem;
     -moz-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
     box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
 }
-.manage-reference-i-d .modal-body .send-req-form label{
+.manage-reference-i-d .modal-footer .send-req-form label{
     color: #6A7E9C;
     font-weight: 500;
 }
-.manage-reference-i-d .modal-body .send-req-form  .btn-filled{
+.manage-reference-i-d .modal-footer .send-req-form  .btn-filled{
     padding: 6px 11px;
 }
 .manage-s-v-i-d ul.skills-list .skill-details small a{
@@ -25958,4 +25960,9 @@ font-size: 0.6rem;
 }
 .manage-reference-i-d .modal-body li.references-details .fa{
     font-size: 25px;
+}
+.manage-reference-i-d .dropdown-menu{
+    bottom: 100%;
+    left: 16px;
+    top: auto;
 }

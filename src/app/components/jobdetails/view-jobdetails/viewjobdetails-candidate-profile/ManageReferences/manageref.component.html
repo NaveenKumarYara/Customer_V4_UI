@@ -1,74 +1,94 @@
-<mat-dialog-content class="mat-typography manage-achievements-i-d">
+<mat-dialog-content class="mat-typography manage-reference-i-d">
     <button mat-button mat-dialog-close class="close">×</button>
     <div class="modal-header text-center">
-        <img src="../../../../../../assets/images/card-icons/achievement-badge.png" width="60" alt="certifications">
-        <h4>  Manage References</h4>
+        <img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References">
+        <h4> Manage References</h4>
     </div>
     <div class="modal-body">
-        <div class="ach-scroll scrollbar-inner">
-            <!--List of Achievements-->
-            <ul class="achievements-list">
-                <div class="modal-body text-center">
-                    <div class="header scrollbar-inner">
-                        <img src="../../../../../assets/images/card-icons/reference-icon.png" width="60" alt="References">
-                        <h4>Manage References</h4>
-                        <!--List of certifications-->
-                        <ul class="references-list">
-                            <li class="references-details">
-                                <div class="col-md-4">
-                                    <h6>Manager 1</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Company 1</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-warning">Waiting for Response</h6>
-                                </div>
-                            </li>
-                            <li class="references-details">
-                                <div class="col-md-4">
-                                    <h6>Manager 2</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Company 2</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-warning">Waiting for Response</h6>
-                                </div>
-                            </li>
-                            <li class="references-details">
-                                <div class="col-md-4">
-                                    <h6>Manager 3</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Company 3</h6>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-success">Received Response</h6>
-                                    <small><a href="javascript:void(0)"><i class="fa fa-file-text" aria-hidden="true"></i>
-                                        </a></small>
-                                </div>
-                            </li>
-                        </ul>
-                        <a class="pull-right" href="javascript:void(0)">Request Info</a>
-                        <div class="clearfix">&nbsp;</div>
-                        <div class="col-md-10 col-md-offset-1 send-req-form">
-                            <form>
-                                <div class="form-group text-left">
-                                    <label for="reqcandidate">Request to Candidate</label>
-                                    <input type="text" class="form-control col-md-12" id="reqcandidate"
-                                        placeholder="Your Request">
-                                </div>
-                                <div class="clearfix">&nbsp;</div>
-                                <div class="form-group pull-right">
-                                    <button class="btn btn-default">Cancel</button>
-                                    <button class="btn btn-filled">Send Request</button>
-                                </div>
-                            </form>
-                        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Company</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Referrer</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Details</h4>
+            </div>
+        </div>
+        <div class="ref-scroll scrollbar-inner">
+            <ul class="references-list">
+                <li class="references-details">
+                    <div class="col-md-4">
+                        <h5>Microsoft Inc.</h5>
                     </div>
-                </div>
+                    <div class="col-md-4">
+                        <h5>Referrer Name</h5>
+                        <small>Role</small>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+                        </h5>
+                    </div>
+                </li>
+                <li class="references-details">
+                    <div class="col-md-4">
+                        <h5>ABC Inc.</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Referrer Name</h5>
+                        <small>Role</small>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+                        </h5>
+                    </div>
+                </li>
+                <li class="references-details">
+                    <div class="col-md-4">
+                        <h5>Google</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Referrer Name</h5>
+                        <small>Role</small>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+                        </h5>
+                    </div>
+                </li>
+                <li class="references-details">
+                    <div class="col-md-4">
+                        <h5>Yahoo</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Referrer Name</h5>
+                        <small>Role</small>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+                        </h5>
+                    </div>
+                </li>
             </ul>
         </div>
+    </div>
+    <div class="modal-footer dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle pull-left" id="drop3" data-toggle="dropdown" role="button"
+            aria-haspopup="true" aria-expanded="false"> Request Info</a>
+        <div class="dropdown-menu col-md-10 col-md-offset-1 send-req-form" aria-labelledby="drop3">
+            <form>
+                <div class="form-group text-left">
+                    <label for="reqcandidate">Request to Candidate</label>
+                    <textarea class="form-control" id="reqcandidate" placeholder="Your Request" rows="2"></textarea>
+                </div>
+                <div class="form-group pull-right">
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-filled">Send</button>
+                </div>
+            </form>
+        </div>
+
+        <button mat-button mat-dialog-close class="btn btn-default pull-right">Close</button>
     </div>
 </mat-dialog-content>
