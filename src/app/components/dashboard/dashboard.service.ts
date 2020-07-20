@@ -94,9 +94,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardStatisticsWeek(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardStatisticsWeek(customerId: number, userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerWeekReport+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId  + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -104,9 +104,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardStatisticsMonth(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardStatisticsMonth(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerMonthReport+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -114,9 +114,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardStatisticsYear(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardStatisticsYear(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerYearReport+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -124,9 +124,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardStatisticsYearForAll(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardStatisticsYearForAll(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerYearReportAll+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -134,9 +134,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardApplicantStatisticsYearForAll(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardApplicantStatisticsYearForAll(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerApplicantYearReportAll+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -144,9 +144,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardApplicantStatisticsYear(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardApplicantStatisticsYear(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerApplicantYear+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -154,9 +154,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardApplicantStatisticsMonth(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardApplicantStatisticsMonth(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerApplicantMonth+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -164,9 +164,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardApplicantStatisticsWeek(customerId: number, filter: number): Observable<Stats[]> {
+    GetDashboardApplicantStatisticsWeek(customerId: number,userId: number, filter: number): Observable<Stats[]> {
         const url = this.settingsService.settings.GetCustomerApplicantWeek+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<Stats[]>(url)
             .debounceTime(500)
             .catch(
@@ -174,9 +174,9 @@ export class DashboardService {
             );
         // return this.dashboardstatistics;
     }
-    GetDashboardStatisticsForJobsPosted(customerId: number, filter: number): Observable<StatsDasboard[]> {
+    GetDashboardStatisticsForJobsPosted(customerId: number,userId: number, filter: number): Observable<StatsDasboard[]> {
         const url = this.settingsService.settings.GetDashboardStatisticsForJobsPosted+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<StatsDasboard[]>(url)
             .debounceTime(500)
             .catch(
@@ -185,9 +185,9 @@ export class DashboardService {
         // return this.dashboardstatistics;
     }
 
-    GetDashboardStatisticsForJobsFilled(customerId: number, filter: number): Observable<StatsDasboard[]> {
+    GetDashboardStatisticsForJobsFilled(customerId: number,userId: number, filter: number): Observable<StatsDasboard[]> {
         const url = this.settingsService.settings.GetDashboardStatisticsForJobsFilled+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<StatsDasboard[]>(url)
             .debounceTime(500)
             .catch(
@@ -196,9 +196,9 @@ export class DashboardService {
         // return this.dashboardstatistics;
     }
 
-    GetDashboardStatisticsForJobsCancelled(customerId: number, filter: number): Observable<StatsDasboard[]> {
+    GetDashboardStatisticsForJobsCancelled(customerId: number,userId: number, filter: number): Observable<StatsDasboard[]> {
         const url = this.settingsService.settings. GetDashboardStatisticsForJobsCancelled+
-        '?customerId=' + customerId + '&filter='+filter;
+        '?customerId=' + customerId + '&userId=' + userId + '&filter='+filter;
         return this.http.get<StatsDasboard[]>(url)
             .debounceTime(500)
             .catch(

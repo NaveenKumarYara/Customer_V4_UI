@@ -381,7 +381,7 @@ populateApplicantsStatistics(filter=0) {
 
 GetJobPostedWeek()
 {
-  return this.dashboardservice.GetDashboardStatisticsWeek(this.customerId,0).subscribe(mresult => {
+  return this.dashboardservice.GetDashboardStatisticsWeek(this.customerId,this.userId,0).subscribe(mresult => {
     this.Weekwise= mresult;
     var value = Object.values(this.Weekwise[0]);
     value.forEach((Posted) => {
@@ -405,7 +405,7 @@ GetJobPostedWeek()
 GetJobPostedMonth()
 {
 
-  return this.dashboardservice.GetDashboardStatisticsMonth(this.customerId,0).subscribe(mwresult => {
+  return this.dashboardservice.GetDashboardStatisticsMonth(this.customerId,this.userId,0).subscribe(mwresult => {
     this.Monthwise= mwresult;
     var value = Object.values(this.Monthwise[0]);
     value.forEach((Posted) => {
@@ -428,7 +428,7 @@ GetJobPostedMonth()
 GetJobPostedYear()
 {
 
-  return this.dashboardservice.GetDashboardStatisticsYear(this.customerId,0).subscribe(yresult  => {
+  return this.dashboardservice.GetDashboardStatisticsYear(this.customerId,this.userId,0).subscribe(yresult  => {
     this.YearWise= yresult;
     var value = Object.values(this.YearWise[0]);
     value.forEach((Posted) => {
@@ -453,7 +453,7 @@ GetJobPostedYear()
 GetJobPostedYearForAll()
 {
 
-  return this.dashboardservice.GetDashboardStatisticsYearForAll(this.customerId,0).subscribe(allresult  => {
+  return this.dashboardservice.GetDashboardStatisticsYearForAll(this.customerId,this.userId,0).subscribe(allresult  => {
     this.YearWiseALL= allresult;
     var value = Object.values(this.YearWiseALL[0]);
     value.forEach((Posted) => {
@@ -476,7 +476,7 @@ GetJobPostedYearForAll()
 
 GetApplicantsWeek()
 {
-  return this.dashboardservice.GetDashboardApplicantStatisticsWeek(this.customerId,0).subscribe(amresult => {
+  return this.dashboardservice.GetDashboardApplicantStatisticsWeek(this.customerId,this.userId,0).subscribe(amresult => {
     this.ApplicantWeekwise= amresult;
     var value = Object.values(this.ApplicantWeekwise[0]);
     value.forEach((Apply) => {
@@ -505,7 +505,7 @@ GetApplicantsWeek()
 GetApplicantsMonth()
 {
 
-  return this.dashboardservice.GetDashboardApplicantStatisticsMonth(this.customerId,0).subscribe(amwresult => {
+  return this.dashboardservice.GetDashboardApplicantStatisticsMonth(this.customerId,this.userId,0).subscribe(amwresult => {
     this.ApplicantMonthwise= amwresult;
     debugger
     var value = Object.values(this.ApplicantMonthwise[0]);
@@ -534,7 +534,7 @@ GetApplicantsMonth()
 GetApplicantsYear()
 {
 
-  return this.dashboardservice.GetDashboardApplicantStatisticsYear(this.customerId,0).subscribe(ayresult  => {
+  return this.dashboardservice.GetDashboardApplicantStatisticsYear(this.customerId,this.userId,0).subscribe(ayresult  => {
     this.ApplicantYearWise= ayresult;
     var value = Object.values(this.ApplicantYearWise[0]);
     value.forEach((Apply) => {
@@ -564,7 +564,7 @@ GetApplicantsYear()
 GetApplicantsYearForAll()
 {
 
-  return this.dashboardservice.GetDashboardApplicantStatisticsYearForAll(this.customerId,0).subscribe(aallresult  => {
+  return this.dashboardservice.GetDashboardApplicantStatisticsYearForAll(this.customerId,this.userId,0).subscribe(aallresult  => {
     this.ApplicantYearWiseALL= aallresult;
     var value = Object.values(this.ApplicantYearWiseALL[0]);
     value.forEach((Apply) => {
