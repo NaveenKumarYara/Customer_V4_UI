@@ -1,7 +1,8 @@
-import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Input, Output, EventEmitter,ViewContainerRef} from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { AppService } from '../../../../../app.service';
 import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
@@ -24,16 +25,18 @@ export class HiredialogComponent {
   salaryDetails:any;
   addon = new addon();
   valueSal:number;
+  IDate:any;
   TypeId:any;
   schIntw = new ScheduleInterview();
  @Input() jobid: number;
  @Input() statusid: number;
  @Output() eventStat = new EventEmitter();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
       this.userId = this.customer.UserId;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+      this.toastr.setRootViewContainerRef(_vcr);
       this.GetSalarayDetails();
       this.populateEmploymentType();
    }
@@ -100,12 +103,25 @@ gotit(na) {
         this.salaryDetails = data;
         this.valueSal=this.salaryDetails.MaximumSalary;
         this.TypeId = this.salaryDetails.EmploymentTypeId;
-        debugger
       });
    }
 
 
   Hire() {
+    let sal = this.valueSal.toString();
+    if((sal==undefined)||(sal==''))
+    {
+    this.toastr.error('Please provide the salary details','Oops');
+    return false;
+    }
+    if((this.IDate==undefined)||(this.IDate==''))
+     {
+     this.toastr.error('Please provide the date details','Oops');
+     return false;
+     }
+     else
+     {
+
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.data.jobId;
     this.schIntw.ProfileId = this.data.ProfileId;
@@ -132,6 +148,7 @@ gotit(na) {
       console.log(res);
       }) ;
     }
+  }
 }
 
 export class addon

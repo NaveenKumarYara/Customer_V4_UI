@@ -27,21 +27,24 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hsalary">Salary <small *ngIf="salaryDetails?.SalaryTypeId==1">(Per Hour)</small><small *ngIf="salaryDetails?.SalaryTypeId==2">(Per Annum*)</small></label>
-                <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal"
-                [ngModelOptions]="{standalone: true}" #value="ngModel" placeholder="Salary" class="form-control">
+                <input type="text" id="hsalary" [(ngModel)]="valueSal"  name="valueSal" required
+                [ngModelOptions]="{standalone: true}" #val="ngModel" placeholder="Salary" class="form-control">
                 <!-- <span *ngIf="salaryDetails?.SalaryTypeId==1">
                    Per Hour
                 </span>
                 <span *ngIf="salaryDetails?.SalaryTypeId==2">
                   Per Annum*
                </span> -->
+               <span *ngIf="val.invalid && val.touched"  class="text-danger">Sal Required.</span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hjoining">Joining</label>
                 <input class="form-control datepicker" id="hjoining" placeholder="mm-dd-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker"
-                  (click)="d.toggle()">
+                [(ngModel)]="IDate" required #dataPicker="ngModel" name="IDate" (click)="d.toggle()">
+                <span *ngIf="dataPicker.invalid && dataPicker.touched"
+                class="text-danger">Date Required.</span>
               </div>
             </div>
             <div class="col-md-6">
@@ -67,7 +70,7 @@
 
     <mat-dialog-actions class="modal-footer pull-right">
         <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="Hire()"
+        <button mat-button  type= "button" cdkFocusInitial (click)="Hire()"
           class="btn btn-filled">Hire</button>
     </mat-dialog-actions>
   </div>
