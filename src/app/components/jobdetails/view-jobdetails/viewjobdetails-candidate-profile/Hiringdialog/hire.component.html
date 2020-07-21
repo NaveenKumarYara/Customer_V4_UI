@@ -49,9 +49,15 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <ng-container *ngIf="TypeId===2">
+                <ng-container *ngIf="TypeId==2">
                   <label for="hduration">Duration</label>
-                  <input type="text" id="hduration" value="{{salaryDetails?.ContractDuration}}" placeholder="Duration" class="form-control">
+                  <select class="form-control" (change)="gott($event.target.value)">
+                    <ng-container *ngFor="let t of contractdurationlist">
+                      <option [value]="t.ContractDuration"  [selected]="t.ContractDuration== contract">{{t?.ContractDuration}} </option>
+                    </ng-container>
+                
+                </select>
+                  <!-- <input type="text" id="hduration" value="{{salaryDetails?.ContractDuration}}" placeholder="Duration" class="form-control"> -->
                 </ng-container>
                
               </div>

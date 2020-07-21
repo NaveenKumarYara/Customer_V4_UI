@@ -21,6 +21,7 @@ export class HiredialogComponent {
   userId: any;
   employmenttypelist: any;
   employmentTypeId: number;
+  contractdurationlist:any;
   Comment: string;
   customer: any;
   salaryDetails:any;
@@ -41,6 +42,7 @@ export class HiredialogComponent {
       this.toastr.setRootViewContainerRef(_vcr);
       this.GetSalarayDetails();
       this.populateEmploymentType();
+      this.populateContractduration();
    }
 
    ngOnInit()
@@ -57,6 +59,12 @@ export class HiredialogComponent {
     this.appService.getEmploymentType().subscribe(res => {
         this.employmenttypelist = res.filter(x => x.EmploymentType);
     });
+}
+
+populateContractduration() {
+  this.appService.getContractduration().subscribe(res => {
+    this.contractdurationlist = res.filter(x => x.ContractDuration);
+  });
 }
 
 
@@ -139,8 +147,13 @@ Check()
 }
 
 gotit(na) {
+  debugger
   this.TypeId=na;
   }
+
+  gott(n) {
+    this.contract=n;
+    }
 
    GetSalarayDetails()
    {
