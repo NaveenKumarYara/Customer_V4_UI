@@ -42,6 +42,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import {backgrounddialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
 import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
@@ -72,7 +73,7 @@ import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candi
   providers: [JobdetailsService],
   declarations: [ViewJobdetailsComponent,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
-                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,AchivementdialogComponent,
+                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,AchivementdialogComponent,backgrounddialogComponent,
                   UploadProfilesComponent, ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent],
   entryComponents: [
     ScheduleInterviewComponent]

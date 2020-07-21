@@ -109,6 +109,7 @@ import { HiredialogComponent } from './components/jobdetails/view-jobdetails/vie
 import { AchivementdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
 import { ReferencedialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
 import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
+import { backgrounddialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -214,6 +215,7 @@ const appRoutes: Routes =
     { path: 'app-rejectdialog', component: RejectdialogComponent },
     { path: 'app-hiredialog', component: HiredialogComponent },
     { path: 'app-achivementdialog', component:AchivementdialogComponent},
+    { path: 'app-bgdialog', component:backgrounddialogComponent},
     { path: 'app-refdialog', component:ReferencedialogComponent},
     { path: 'app-sharejob', component: ShareJobComponent},
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
