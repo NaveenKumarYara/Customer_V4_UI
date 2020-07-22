@@ -70,6 +70,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<ViewCandidateprofileComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastsManager, private _vcr: ViewContainerRef,
    private settingsService: SettingsService, private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
+    this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.noTest = false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
   }
@@ -111,7 +112,7 @@ this.dialogRef.close();
 localStorage.setItem('cprofileId',profileId)
 localStorage.setItem('cuserId',userId);
 //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-const url ='https://customer-dev.arytic.com/app-view-candidateprofile-detail';
+const url =this.customer.Defaulturl.Purl;
 //const url ='http://localhost:4200/app-view-candidateprofile-detail';
 window.open(url, '_blank');
 }

@@ -32,8 +32,8 @@ export class ManageSubscriptionsComponent implements OnInit {
     this.toastr.setRootViewContainerRef(_vcr);
     this.chargebeeInstance = Chargebee.init(
       {
-        site: 'arytic-test',
-        publishableKey: 'test_LA9gcddwXA2XIgAkHzgs2FuQsewoId4we',
+        site: this.customer.Defaulturl.Csite,
+        publishableKey: this.customer.Defaulturl.Ckey,
         //site: 'arytic',
         //publishableKey: 'live_NMr0XTWcusb8hdRcdvF1Du9shtmawgjvyA'
      }
