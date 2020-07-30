@@ -12204,7 +12204,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--manage-jobs .filters {
     color: #6A7E9C;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .page--manage-jobs .filters .styled-select-box {
@@ -18750,8 +18750,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--create-a-job .left {
-    padding: 0;
-    border-right: 1px solid #E0E3EF;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    /* border-right: 1px solid #E0E3EF; */
 }
 
 .page--create-a-job .card__search-result {
@@ -25796,7 +25797,7 @@ table .table-prl-0 td {
 .poj-footer {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 89%;
     height: 70px;
     line-height: 60px;
     background-color: #F5F6FA;
