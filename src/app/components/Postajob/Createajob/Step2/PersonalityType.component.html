@@ -1,7 +1,7 @@
-<div class="form-group personality-group">
+<!-- <div class="form-group personality-group">
     <label for="" class="question">Which type of person you are looking for? <small>(Optional)</small></label>
     <div class="personality-type row">
-        <!-- <checkbox-group [(ngModel)]="selectedItems"> -->
+        <checkbox-group [(ngModel)]="selectedItems">
         <div class="col-md-6 col-sm-12" *ngFor="let disc of discTestResult; let i = index">
             <label for="{{i}}"> 
         <input type="checkbox" id="{{i}}" [(ngModel)]="disc.checked" [value]="disc.DISCTestId" [checked]="disc.checked" (change)="onCheckboxChange(disc,$event)" class="radio-input"  />
@@ -11,7 +11,7 @@
               <img [src]="disc.LogoURL" alt="">
             </div>
             <h1>{{disc.PersonType}}</h1>
-            <!-- <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a> -->
+      <a type="button" data-toggle="modal" data-target="#personality-d-modal">Learn more</a> 
           </header>
           <p class="disc-description">
          {{disc.Description}}
@@ -26,7 +26,7 @@
         </div>
       </label>
         </div>
-        <!-- <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12">
       <label for="personality-i">
         <input type="checkbox" id="personality-i" ([ngModel])="isSelected(2)" (ngModelChange)="personType(2, $event)"  [value]="2" name="personality-type" class="radio-input" />
         <div class="type">
@@ -98,6 +98,6 @@
         </div>
       </label>
     </div> -->
-        <!-- </checkbox-group> -->
+        <!-- </checkbox-group> 
     </div>
-</div>
+</div> -->
