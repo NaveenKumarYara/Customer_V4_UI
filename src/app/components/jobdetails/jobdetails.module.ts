@@ -6,7 +6,6 @@ import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-a
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
  import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
-import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 // import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewjobdetailsScComponent } from './view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
@@ -42,6 +41,13 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { MatDialogModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatExpansionModule,
+  MatSelectModule,
+  MatInputModule,
+  MatAutocompleteModule} from '@angular/material';
 import {backgrounddialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
@@ -64,6 +70,7 @@ import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candi
     NgxSpinnerModule,
     TagCloudModule,
     ChartsModule,
+    MatExpansionModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
     NgCircleProgressModule.forRoot({})

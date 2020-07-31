@@ -20,6 +20,7 @@ export class ReferencedialogComponent {
   employmenttypelist: any;
   employmentTypeId: number;
   Comment: string;
+  panelOpenState: boolean = false;
   customer: any;
   salaryDetails:any;
   addon = new addon();
