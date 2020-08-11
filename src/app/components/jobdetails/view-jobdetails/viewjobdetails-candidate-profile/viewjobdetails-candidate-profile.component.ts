@@ -341,6 +341,7 @@ OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profil
           jobId: this.jobid,
           firstname: firstname,
           lastname: lastname,
+          CustomerId : this.customerId,
           responseStatusId: responseStatusId,
           profileId: profileId,
           jobResponseId: jobResponseId,
