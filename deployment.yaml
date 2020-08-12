@@ -16,7 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: customerlatest
-        image: arytic.azurecr.io/tenendus_scv/customerlatest:#{Build.BuildId}#
+        image: arytic.azurecr.io/customerlatest:#{Build.BuildId}#
         resources:
           limits:
             cpu: "0.05"
