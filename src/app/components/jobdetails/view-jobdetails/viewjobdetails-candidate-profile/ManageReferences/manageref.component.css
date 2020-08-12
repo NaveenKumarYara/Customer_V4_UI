@@ -8,3 +8,12 @@
 .disabled {
     pointer-events: none;
 }
+.sort-labels{
+    padding-left: 2.5rem;
+}
+.sort-labels h5{
+    color: #9EABC0;
+}
+.manage-reference-i-d .radio-btns{
+    padding-left: 2.5rem;
+}

@@ -25967,3 +25967,26 @@ font-size: 0.6rem;
     left: 16px;
     top: auto;
 }
+
+.manage-reference-i-d mat-expansion-panel-header{
+height: 100px!important;
+color: #55536E;
+}
+
+.manage-reference-i-d  .modal-header{
+    padding: 0px;
+    border-bottom: transparent;
+    margin-bottom: 0px;
+}
+
+.manage-reference-i-d  .mat-radio-label-content {
+    font-size: 12px!important;
+    color: #55536E!important;
+    margin-right: 5px!important;
+}
+.manage-reference-i-d .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #157751;
+}
+.manage-reference-i-d .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #157751;
+}

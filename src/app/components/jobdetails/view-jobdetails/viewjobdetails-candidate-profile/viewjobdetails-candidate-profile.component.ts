@@ -223,7 +223,7 @@ OpenReferDialog(profileId)
 {
   const RdialogRef = this.dialog.open(ReferencedialogComponent,
     {
-      width: '700px',
+      width: '888px',
       position: { right: '0px' },
       data: {
         ProfileId: profileId
@@ -242,7 +242,7 @@ OpenBgDialog(profileId)
 {
   const bdialogRef = this.dialog.open(backgrounddialogComponent,
     {
-      width: '700px',
+      width: '888px',
       position: { right: '0px' },
       data: {
         ProfileId: profileId

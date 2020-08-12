@@ -5,43 +5,65 @@
         <h4> Manage References</h4>
     </div>
     <div class="modal-body">
-        <div class="row">
-            <div class="col-md-4">
-                <h4>Company</h4>
-            </div>
-            <div class="col-md-4">
-                <h4>Referrer</h4>
-            </div>
-            <div class="col-md-4">
-                <h4>Details</h4>
+        <div class="row radio-btns">
+            <div class="col-md-12">
+                <mat-radio-group>
+                    <mat-radio-button value="1">Show All</mat-radio-button>
+                    <mat-radio-button value="2">Professional</mat-radio-button>
+                    <mat-radio-button value="3">Personal</mat-radio-button>
+                </mat-radio-group>
             </div>
         </div>
-        <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Personal data
-                </mat-panel-title>
-                <mat-panel-description>
-                  Type your name and age
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Self aware panel
-                </mat-panel-title>
-                <mat-panel-description>
-                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <p>I'm visible because I am open</p>
-            </mat-expansion-panel>
-          </mat-accordion>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
+            <div class="col-md-3 text-center" mat-sort-header="name">
+                <h5>Professional</h5>
+            </div>
+            <div class="col-md-2" mat-sort-header="calories">
+                <h5>Referrer Details</h5>
+            </div>
+            <div class="col-md-2" mat-sort-header="fat">
+                <h5>Status</h5>
+            </div>
+            <div class="col-md-2" mat-sort-header="carbs">
+                <h5>Date</h5>
+            </div>
+            <div class="col-md-3" mat-sort-header="protein">
+                <h5>Details</h5>
+            </div>
+        </div>
+        <!--Sort-->
         <div class="ref-scroll scrollbar-inner">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let dessert of sortedData">
+                    <mat-expansion-panel-header>
+                        <div class="col-md-3 ">
+                            <h3>{{dessert.name}}</h3>
+                            <!-- <small>Request more info</small> -->
+                        </div>
+                        <div class="col-md-2">
+                            <h5>{{dessert.calories}}</h5>
+                            <h6>Referrer Role</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>{{dessert.fat}}</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>{{dessert.carbs}}</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            <small>{{dessert.protein}}</small>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <p>I'm visible because I am open</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+
+        <!---->
+        <!-- <div class="ref-scroll scrollbar-inner">
             <ul class="references-list">
                 <li class="references-details">
                     <div class="col-md-4">
@@ -69,34 +91,10 @@
                         </h5>
                     </div>
                 </li>
-                <li class="references-details">
-                    <div class="col-md-4">
-                        <h5>Google</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Referrer Name</h5>
-                        <small>Role</small>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
-                        </h5>
-                    </div>
-                </li>
-                <li class="references-details">
-                    <div class="col-md-4">
-                        <h5>Yahoo</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Referrer Name</h5>
-                        <small>Role</small>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
-                        </h5>
-                    </div>
-                </li>
+
             </ul>
-        </div>
+        </div> -->
+
     </div>
     <div class="modal-footer dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle pull-left" id="drop3" data-toggle="dropdown" role="button"
@@ -115,5 +113,12 @@
         </div>
 
         <button mat-button mat-dialog-close class="btn btn-default pull-right">Close</button>
+
+        <!--Static Paginator implementation 31-07-2020-->
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent = $event">
+        </mat-paginator>
+
+
     </div>
 </mat-dialog-content>
