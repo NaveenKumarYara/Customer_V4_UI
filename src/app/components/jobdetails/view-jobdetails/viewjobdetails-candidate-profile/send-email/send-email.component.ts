@@ -23,6 +23,8 @@ ToEmailID: string;
 mailbox: any = false;
 isPublicAvailable:any;
 checkvalue:any;
+UserId:any;
+UserRoleId:any;
 body: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService,public dialogRef: MatDialogRef<SendEmailComponent>,private toastr: ToastsManager, private spinner: NgxSpinnerService, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
@@ -35,12 +37,22 @@ body: string;
     this.subject = 'Please submit the consent';
     this.ToEmailID = this.data.EmailId;
     this.Check();
+    this.UserCheck(this.data.ProfileId);
   }
 
   ngOnInit() {
 
   }
 
+
+ UserCheck(ProfileId)
+ {
+  this._service.GetService('IdentityAPI/api/GetCandidateUserRoleByProfileId?profileId=', this.data.profileId).subscribe(
+    res => {     
+      this.UserRoleId = res.UserRoleId;
+      this.UserId = res.UserId;
+    });
+ }
 
   sendEmail() {
 
@@ -50,15 +62,27 @@ body: string;
     this.conversation.Body = this.body;
     // if(){
 
-      if(this.isPublicAvailable == true)
+      if(this.data.profileUpload === false)
       {
-        this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
-        this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
+          if(this.UserRoleId === 5 && this.UserId >0)
+          {
+            this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid ;
+          }
+          else
+          {
+            this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
+          }     
       }
-      else
+      if(this.data.profileUpload === true)
       {
-        this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
-        this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
+        if(this.UserRoleId === 2 && this.UserId >0)
+        {
+          this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid ;
+        }
+        else
+        {
+          this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
+        }        
       }
 
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' :  'Yes I will Join';

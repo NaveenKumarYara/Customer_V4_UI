@@ -328,7 +328,7 @@ OpenCandidateDialog(profileId) {
   });
   // }
 }
-OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId) {
+OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId,Upload) {
   // if (this.jobStatus!='InActive') {
   if (!noEmail) {
     const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
@@ -346,7 +346,8 @@ OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profil
           profileId: profileId,
           jobResponseId: jobResponseId,
           ccpid: ccpid,
-          userId: userId
+          userId: userId,
+          profileUpload :Upload
           // status : this.statusid
         }
       }
@@ -469,6 +470,7 @@ PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortB
    else {
     return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
       .subscribe(res => {
+      debugger
         this.jobdetailsprofiles = res;
         this.profiles = res;
         this.TotalCount = this.jobdetailsprofiles;
