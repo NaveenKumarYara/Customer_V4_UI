@@ -14,6 +14,7 @@ import { concat } from 'rxjs/observable/concat';
 import { FormControl } from '@angular/forms';
 import { MatSelect, MatDialogRef } from '@angular/material';
 import { Cities } from '../../../Postajob/models/jobPostInfo';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 declare var $: any;
 
 @Component({
@@ -23,6 +24,10 @@ declare var $: any;
   providers: [AppService]
 })
 export class AdvanceSearchComponent implements OnInit {
+  declare;
+  itemList = [];
+  selectedItems = [];
+  settings = {};
   showskillsfilter :any=false;
   showlastpostedfilter :any=false;
   showimmigrationstatusfilter :any=false;
@@ -1621,6 +1626,30 @@ protected filterDomain(){
 
     
   ngOnInit() { 
+    /**multy selection */
+    this.itemList = [
+      { "id": 1, "itemName": "India" },
+      { "id": 2, "itemName": "Singapore" },
+      { "id": 3, "itemName": "Australia" },
+      { "id": 4, "itemName": "Canada" },
+      { "id": 5, "itemName": "South Korea" },
+      { "id": 6, "itemName": "Brazil" }
+    ];
+
+    this.selectedItems = [
+      { "id": 1, "itemName": "India" },
+      { "id": 2, "itemName": "Singapore" },
+      { "id": 3, "itemName": "Australia" },
+      { "id": 4, "itemName": "Canada" }];
+    this.settings = {
+      singleSelection: false,
+      text: "Select Countries",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      badgeShowLimit: 3
+    };          
+/**multy selection */
     this.filteredLastPostedList.next(this.LastPostedList.slice());
     this.LastPostedMainList= this.LastPostedList;
     this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
@@ -1672,6 +1701,23 @@ protected filterDomain(){
     this.populateCities();
     // this.getSkills();
   }
+
+    /**multy selection */
+onItemSelect(item: any) {
+  console.log(item);
+  console.log(this.selectedItems);
+}
+OnItemDeSelect(item: any) {
+  console.log(item);
+  console.log(this.selectedItems);
+}
+onSelectAll(items: any) {
+  console.log(items);
+}
+onDeSelectAll(items: any) {
+  console.log(items);
+}
+/*multy selection*/
 
 }
 

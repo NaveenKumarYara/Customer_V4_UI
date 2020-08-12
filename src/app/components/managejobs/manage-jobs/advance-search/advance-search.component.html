@@ -1,9 +1,9 @@
 <mat-dialog-content class="mat-typography adv-filters">
     <div class="modal-header">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h4>Advanced Filters</h4>
         </div>
-        <div class="pull-right">
+        <div class="col-md-7">
             <!--Add More Filters Dropdown 01-04-2020-->
             <div class="dropdown add-more-filters">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -133,8 +133,76 @@
         </div>
         <!-- <button mat-button mat-dialog-close class="close">×</button> -->
     </div>
+    <!--New Filters Look By Bala-->
+    <div class="row mrll0-tb2" style="display: none;">
+        <div class="form-group col-md-12">
+            <label for="jobPri" class="jobid">Job Type</label>
+          <div>
+            <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+            [settings]="settings" 
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="OnItemDeSelect($event)" 
+            (onSelectAll)="onSelectAll($event)" 
+            (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect> 
+          </div>
+          </div>
 
-    <div class="row mrll0-tb2 c-d-f" *ngIf="!advancesearch" style="display: block;">
+          <div class="form-group col-md-12">
+            <label for="jobPri" class="jobid">Location</label>
+          <div>
+            <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+            [settings]="settings" 
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="OnItemDeSelect($event)" 
+            (onSelectAll)="onSelectAll($event)" 
+            (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect> 
+          </div>
+          </div>
+          
+          <div class="form-group col-md-12">
+            <label for="jobPri" class="jobid">Job Title</label>
+          <div>
+            <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+            [settings]="settings" 
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="OnItemDeSelect($event)" 
+            (onSelectAll)="onSelectAll($event)" 
+            (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect> 
+          </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="jobPri" class="jobid">Job Status</label>
+          <div>
+            <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+            [settings]="settings" 
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="OnItemDeSelect($event)" 
+            (onSelectAll)="onSelectAll($event)" 
+            (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect> 
+          </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="jobPri" class="jobid">Users</label>
+          <div>
+            <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+            [settings]="settings" 
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="OnItemDeSelect($event)" 
+            (onSelectAll)="onSelectAll($event)" 
+            (onDeSelectAll)="onDeSelectAll($event)">
+</angular2-multiselect> 
+          </div>
+          </div>
+
+    </div>
+
+    <div class="row mrll0-tb2 c-d-f" *ngIf="!advancesearch" >
         <div class="col-md-12">
             <div class="input-row row ">
                 <form action="">
