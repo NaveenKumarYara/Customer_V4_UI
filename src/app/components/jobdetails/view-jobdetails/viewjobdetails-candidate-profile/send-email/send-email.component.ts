@@ -4,8 +4,8 @@ import { ApiService } from '../../../../../shared/services/api.service/api.servi
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { SettingsService } from '../../../../../../settings/settings.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -21,10 +21,10 @@ emailUpdate = new  EmailUpdateStatus();
 subject: string;
 ToEmailID: string;
 mailbox: any = false;
-checkvalue:any;
 isPublicAvailable:any;
+checkvalue:any;
 body: string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<SendEmailComponent>, private spinner: NgxSpinnerService, private _service: ApiService,private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService,public dialogRef: MatDialogRef<SendEmailComponent>,private toastr: ToastsManager, private spinner: NgxSpinnerService, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
     this.emailUpdate.JobId = data.jobId;
     this.emailUpdate.JobResponseId =  data.jobResponseId;
@@ -41,42 +41,40 @@ body: string;
 
   }
 
-  Check()
-  {
-    this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.data.profileId).subscribe(
-      data => {
-        let apiData = data;       
-        this.isPublicAvailable = apiData.isPublicAvailable;
-      });
-  }
+
   sendEmail() {
+
     this.spinner.show();
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.Body = this.body;
     // if(){
-    if(this.isPublicAvailable == true)
-    {
-      this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
-      this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
-    }
-    else
-    {
-      this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
-      this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
-    }
+
+      if(this.isPublicAvailable == true)
+      {
+        this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
+        this.settingsService.settings.CandidateSignUp + ';sid=' + this.data.ccpid;
+      }
+      else
+      {
+        this.conversation.AppLink = this.data.userId > 0  ? this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid :
+        this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
+      }
 
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' :  'Yes I will Join';
     // }
     this.conversation.ToEmailID = this.ToEmailID;
     this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
+
       if (data === 0) {
           this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
         });
+
         this.spinner.hide();
         this.toastr.success('Mail Sent', 'Success');
         setTimeout(() => {
         this.toastr.dismissToast;
+
         this.dialogRef.close();
     }, 3000);  
         this.conversation.FullName = '';
@@ -88,6 +86,15 @@ body: string;
   });
   
 
+}
+
+Check()
+{
+  this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.data.profileId).subscribe(
+    data => {
+      let apiData = data;       
+      this.isPublicAvailable = apiData.isPublicAvailable;
+    });
 }
 
   EditMail() {
