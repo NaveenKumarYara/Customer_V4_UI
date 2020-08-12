@@ -848,7 +848,7 @@
                         <ng-container *ngIf="profile.Email.substring(0,7) != 'esolvit'">
                             <li>
                                 <a href="javascript:void(0)"
-                                    (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId)"
+                                    (click)="OpenSendEmailDialog(profile?.NoEmail,profile?.Email,profile?.FirstName,profile?.LastName,profile?.JobResponseId,profile?.ProfileId,profile?.ResponseStatusId,profile?.CCPID,profile?.UserId,profile.IsUploaded)"
                                     data-toggle="modal" data-target="#inbox">
                                     <!--(click)="OpenChatboxDialog()"-->
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
