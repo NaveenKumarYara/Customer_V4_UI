@@ -58,16 +58,17 @@ export interface DialogData {
   };
 
   SaveInvite() {
+    var userData =  JSON.parse(sessionStorage.getItem('userData'));
     this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
-    this.inviteinfo.userName =  'Arytic User';
+    this.inviteinfo.userName =   userData.FirstName;
     this.inviteinfo.fullName = 'Arytic User';
     this.inviteinfo.statusId = 0;
     this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
-    this.inviteinfo.CandFullName = 'Arytic User';
-    this.inviteinfo.CustFullName = 'Arytic';
+    this.inviteinfo.CandFullName =  userData.FirstName;
+    this.inviteinfo.CustFullName = userData.FirstName;
     this.inviteinfo.ClientLogo = '';
     this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+JSON.parse(sessionStorage.getItem('jobId'));
     if(this.inviteinfo.ToEmailId == "")
