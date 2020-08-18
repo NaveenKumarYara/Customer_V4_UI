@@ -11,6 +11,7 @@ import { AlertService } from '../../../../shared/alerts/alerts.service';
 import * as Chart from 'chart.js';
 import { MatchingDetails } from '../../models/matchingDetails';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ScheduleInterviewComponent, ScheduleInterview } from './schedule-interview/schedule-interview.component';
 import { VideoSizzle, GetVideoProfile } from '../../models/VideoProfile';
 import { ViewCandidateprofileComponent } from './view-candidateprofile/view-candidateprofile.component';
@@ -108,7 +109,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   };
   ProfileId: any;
   currentNo: number[] =[];
-  constructor(private el: ElementRef,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
+  constructor(private el: ElementRef,private _snackBar: MatSnackBar,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
     ,private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -246,7 +247,11 @@ OpenReferDialog(profileId,userId)
       }
       else
       {
-        this.toastr.info('No References !!','Info');
+        let message = 'Requested Reference!';
+        let action = 'Success';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+        });
       }
     });
  

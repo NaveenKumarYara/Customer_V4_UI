@@ -48,6 +48,7 @@ import { MatDialogModule,
   MatPaginatorModule,
   MatSortModule,
   MatRadioModule,
+  MatSnackBarModule,
   MatSelectModule,
   MatInputModule,
   MatAutocompleteModule} from '@angular/material';
@@ -77,6 +78,7 @@ import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candi
     MatPaginatorModule,
     MatRadioModule,
     MatSortModule,
+    MatSnackBarModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
     NgCircleProgressModule.forRoot({})
