@@ -324,6 +324,14 @@ export class JobdetailsService {
     });
   }
 
+  RequestRefernce(body) {
+    return this.http.post(this.settingsService.settings.CustomerRequestRefernce, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   StartConversation(body) {
     return this.http.post(this.settingsService.settings.StartConversation, body)
     .map((res: Response) => res)

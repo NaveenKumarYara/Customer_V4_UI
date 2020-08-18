@@ -20,6 +20,7 @@ import { ParentComponentApi } from '../view-jobdetails.component';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
 import{UniqueMonthYearPipe} from './../months.pipe';
 import * as FileSaver from 'file-saver';
+import { SettingsService } from '../../../../../settings/settings.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import {HiredialogComponent} from './Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './Achivements/achivement.component';
@@ -44,11 +45,13 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
   jobdetailsprofiles = new JobdetailsProfile();
+  requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
   userId: any;
+  CommentProfile : any;
   addon = new addon();
   profiles: any;
   customer: any;
@@ -109,8 +112,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   };
   ProfileId: any;
   currentNo: number[] =[];
-  constructor(private el: ElementRef,private _snackBar: MatSnackBar,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService
-    ,private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
+  constructor(private el: ElementRef,private _snackBar: MatSnackBar,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService,private settingsService: SettingsService,
+    private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -221,7 +224,7 @@ OpenAchiveDialog(profileId)
   });
 }
 
-OpenReferDialog(profileId,userId)
+OpenReferDialog(profileId,userId,profile)
 {
   this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
   .subscribe(
@@ -234,7 +237,8 @@ OpenReferDialog(profileId,userId)
             position: { right: '0px' },
             data: {
               ProfileId: profileId,
-              UserId:userId
+              UserId:userId,
+              profiledetails:profile
               // status : this.statusid
             }
           }
@@ -247,11 +251,7 @@ OpenReferDialog(profileId,userId)
       }
       else
       {
-        let message = 'Requested Reference!';
-        let action = 'Success';
-        this._snackBar.open(message, action, {
-            duration: 2000,
-        });
+        this.RequestReference(profile);
       }
     });
  
@@ -404,6 +404,30 @@ if(val==1)
 });
 }
 
+}
+
+
+RequestReference(profile)
+{
+
+  this.requestRef.CustomerId= this.customer.CustomerId;
+  this.requestRef.UserId= this.customer.UserId;
+  this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
+  this.requestRef.FromEmail = this.customer.Email;
+  this.requestRef.Comment = this.CommentProfile ! = undefined ? this.CommentProfile : 'Please provide reference';
+  this.requestRef.ProfileId = profile.ProfileId;
+  this.requestRef.ToEmailID = profile.Email;
+  this.requestRef.UserName = profile.FirstName;
+  debugger
+  this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
+    this.CommentProfile = undefined;
+    let message = 'Requested Reference!';
+        let action = 'Success';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            
+        });
+  });
 }
 
 
@@ -1026,4 +1050,17 @@ export class addon
     AddonId:string;
     AddonUnitPrice:number;
     AddonQuantity:number;
+}
+
+export class RequestRefernce
+{
+   public  ToEmailID: string;
+   public  CustomerId:number;
+   public  UserId:number;
+   public  ProfileId:number;
+   public  UserName: string;
+   public  AppLink: string;
+   public  FromEmail: string;
+   public  CompanyName: string;
+   public  Comment: string;
 }

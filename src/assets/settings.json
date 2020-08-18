@@ -188,5 +188,6 @@
   "ActivateCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsersToActive",
   "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer",
   "GetRecruiterTeamList":"https://profileapi-dev.arytic.com/api/GetRecruitingTeamList?",
-  "SaveRecruiterTeamList":"https://identityapi-dev.arytic.com/api/SaveRecruitingTeamMember"
+  "SaveRecruiterTeamList":"https://identityapi-dev.arytic.com/api/SaveRecruitingTeamMember",
+  "CustomerRequestRefernce":"https://emailapi-dev.arytic.com/api/CustomerRequestedRef"
 }

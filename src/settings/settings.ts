@@ -196,4 +196,5 @@ export class Settings {
   GetTechinicalTeamList:string;
   GetRecruiterTeamList:string;
   SaveRecruiterTeamList:string;
+  CustomerRequestRefernce:string;
   }

@@ -39,6 +39,7 @@
   "CustomerAppLogin": "${CuMain_URL}/login",
   "InviteContact": "${Email_URL}/api/EmailInviteContact",
   "ProfileShareInvite": "${Email_URL}/api/ProfileShare",
+  "CustomerRequestRefernce":"${Email_URL}/api/CustomerRequestedRef",
   "StartConversation": "${Email_URL}/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "${Profile_URL}/api/UpdateProfileStatus",
   "signUp": "${Identity_URL}/api/CustomerRegistration",
