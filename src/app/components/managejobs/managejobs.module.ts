@@ -31,6 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from '../../shared/shared.module';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +52,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatSelectModule,
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
-    MatInputModule
+    MatInputModule,
+    AngularMultiSelectModule
   ],
   providers: [ManageJobService],
   declarations: [ManageJobsComponent,ValueArrayPipe,UpdateInterviewComponent,InterviewListComponent, ViewjobsComponent, FilterjobsComponent, JoblistGridlayoutComponent, JoblistTablelayoutComponent, SearchjobsComponent, AdvanceSearchComponent, LoadJoblistComponent],

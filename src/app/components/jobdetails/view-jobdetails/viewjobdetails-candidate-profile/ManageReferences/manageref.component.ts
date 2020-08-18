@@ -30,13 +30,14 @@ export class ReferencedialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    this.sortedData = this.desserts.slice();
+    
+    this.GetQuestionnariePersonsList(0);
   }
   // MatPaginator Inputs
   length = 100;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
-
+  usersList: GetQuestionnarieAssignement[] = [];
   // MatPaginator Output
   pageEvent: PageEvent;
 
@@ -60,7 +61,7 @@ export class ReferencedialogComponent {
   // }
 
   sortData(sort: Sort) {
-    const data = this.desserts.slice();
+    const data = this.usersList.slice();
     if (!sort.active || sort.direction == '') {
       this.sortedData = data;
       return;
@@ -69,11 +70,11 @@ export class ReferencedialogComponent {
     this.sortedData = data.sort((a, b) => {
       let isAsc = sort.direction == 'asc';
       switch (sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'calories': return compare(+a.calories, +b.calories, isAsc);
-        case 'fat': return compare(+a.fat, +b.fat, isAsc);
-        case 'carbs': return compare(+a.carbs, +b.carbs, isAsc);
-        case 'protein': return compare(+a.protein, +b.protein, isAsc);
+        case 'FullName': return compare(a.FullName, b.FullName, isAsc);
+        case 'Referrer Details': return compare(+a.KnownOrWorkedAt, +b.KnownOrWorkedAt, isAsc);
+        // case 'fat': return compare(+a.KnownOrWorkedAt, +b.KnownOrWorkedAt, isAsc);
+        // case 'carbs': return compare(+a.carbs, +b.carbs, isAsc);
+        // case 'protein': return compare(+a.protein, +b.protein, isAsc);
         default: return 0;
       }
     });
@@ -82,6 +83,15 @@ export class ReferencedialogComponent {
 
 
 
+  }
+
+  GetQuestionnariePersonsList(Id) {
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
+      .subscribe(
+        data => {
+            this.usersList = data;
+            this.sortedData = this.usersList.slice();
+        });
   }
 
 
@@ -101,5 +111,56 @@ export class addon {
   AddonId: string;
   AddonUnitPrice: number;
   AddonQuantity: number;
+}
+
+
+export class CandidateReferenceDetails {
+  //constructor(
+  public QuestionId: number;
+  public Answer: string;
+  // ) { }
+}
+export class GetQuestions {
+  constructor(
+      public Id: number,
+      public Question: string,
+      public QuestionTypeId: number,
+      public QuestionType: string,
+      public Answers: string,
+      public ModifiedAnswers: string) { }
+}
+export class InsertReferences {
+  constructor(
+      public CandidateReferenceId: number = 0,
+      public ListCandidateReferenceDetails: CandidateReferenceDetails[] = []
+  ) { }
+}
+export class GetQuestionnarieAssignement {
+  constructor(
+      public QuestionnaireAssignmentId: number,
+      public QuestionnaireId: number,
+      public FullName: string,
+      public KnownOrWorkedAt: string,
+      public InYear: number,
+      public Location: string,
+      public Comments: string,
+      public IsPublish: boolean,
+      public RequestedTo: string,
+      public RequestedById: number,
+      public RequestedBySourceId: number,
+      public StatusId: number,
+      public ReferenceStatus: string,
+      public Code: string) { }
+}
+
+export class GetQuestionnarieResponse {
+  constructor(
+      public QuestionnaireId: number,
+      public QuestionId: number,
+      public ResponseId: number,
+      public Question: string,
+      public Response: string,
+      public ResponseValue: string
+  ) { }
 }
 

@@ -8,18 +8,18 @@
         <div class="row radio-btns">
             <div class="col-md-12">
                 <mat-radio-group>
-                    <mat-radio-button value="1">Show All</mat-radio-button>
-                    <mat-radio-button value="2">Professional</mat-radio-button>
-                    <mat-radio-button value="3">Personal</mat-radio-button>
+                    <mat-radio-button value="0" [checked]="true" (click)="GetQuestionnariePersonsList(0)">Show All</mat-radio-button>
+                    <mat-radio-button value="1" (click)="GetQuestionnariePersonsList(1)">Professional</mat-radio-button>
+                    <mat-radio-button value="2" (click)="GetQuestionnariePersonsList(2)">Personal</mat-radio-button>
                 </mat-radio-group>
             </div>
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
-            <div class="col-md-3 text-center" mat-sort-header="name">
+            <div class="col-md-3 text-center" mat-sort-header="FullName">
                 <h5>Professional</h5>
             </div>
-            <div class="col-md-2" mat-sort-header="calories">
+            <div class="col-md-2" mat-sort-header="Referrer Details">
                 <h5>Referrer Details</h5>
             </div>
             <div class="col-md-2" mat-sort-header="fat">
@@ -35,11 +35,11 @@
         <!--Sort-->
         <div class="ref-scroll scrollbar-inner">
             <mat-accordion>
-                <mat-expansion-panel *ngFor="let dessert of sortedData">
+                <!-- <mat-expansion-panel *ngFor="let dessert of sortedData">
                     <mat-expansion-panel-header>
                         <div class="col-md-3 ">
                             <h3>{{dessert.name}}</h3>
-                            <!-- <small>Request more info</small> -->
+                           <small>Request more info</small>
                         </div>
                         <div class="col-md-2">
                             <h5>{{dessert.calories}}</h5>
@@ -57,7 +57,32 @@
                         </div>
                     </mat-expansion-panel-header>
                     <p>I'm visible because I am open</p>
+                </mat-expansion-panel> -->
+
+                <mat-expansion-panel *ngFor="let user of usersList">
+                    <mat-expansion-panel-header>
+                        <div class="col-md-3 ">
+                            <h3>{{user?.FullName}}</h3>
+                            <!-- <small>Request more info</small> -->
+                        </div>
+                        <div class="col-md-2">
+                            <h5>{{user?.KnownOrWorkedAt}}</h5>
+                            <h6>Referrer Role</h6>
+                        </div>    
+                        <div class="col-md-2">
+                            <h5>{{user?.ReferenceStatus}}</h5>
+                        </div>  
+                        <div class="col-md-2">
+                            <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
+                        </div>   
+                        <div class="col-md-3">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            <small>Download Report</small>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <p>{{user?.Comments}}</p>
                 </mat-expansion-panel>
+              
             </mat-accordion>
         </div>
 
@@ -115,7 +140,7 @@
         <button mat-button mat-dialog-close class="btn btn-default pull-right">Close</button>
 
         <!--Static Paginator implementation 31-07-2020-->
-        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        <mat-paginator [length]="usersList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
             (page)="pageEvent = $event">
         </mat-paginator>
 

@@ -63,6 +63,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   fileExt: any;
   skills: any = null;
   loading: boolean;
+  usersList:any;
   schIntw = new ScheduleInterview();
   wsList = new WishList();
   TotalCount: any;
@@ -219,23 +220,37 @@ OpenAchiveDialog(profileId)
   });
 }
 
-OpenReferDialog(profileId)
+OpenReferDialog(profileId,userId)
 {
-  const RdialogRef = this.dialog.open(ReferencedialogComponent,
-    {
-      width: '888px',
-      position: { right: '0px' },
-      data: {
-        ProfileId: profileId
-        // status : this.statusid
+  this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
+  .subscribe(
+    data => {
+        if(data != 'No records found')
+        {
+        const RdialogRef = this.dialog.open(ReferencedialogComponent,
+          {
+            width: '888px',
+            position: { right: '0px' },
+            data: {
+              ProfileId: profileId,
+              UserId:userId
+              // status : this.statusid
+            }
+          }
+        );
+        RdialogRef.afterClosed().subscribe(result => {
+          // this.jobDetails.populateJobsStaticInfo(this.jobid);
+          //this.myEvent.emit(null);
+          console.log('hire Dialog result: ${result}');
+        });
       }
-    }
-  );
-  RdialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    //this.myEvent.emit(null);
-    console.log('hire Dialog result: ${result}');
-  });
+      else
+      {
+        this.toastr.info('No References !!','Info');
+      }
+    });
+ 
+  
 }
 
 OpenBgDialog(profileId)

@@ -1,25 +1,27 @@
 <app-Logoheader></app-Logoheader>
 <main class="page page--create-a-job">
-    <div class="container">
-      <div class="card row">
-        <div class="col-xl-8 left">
-          <div class="card__form">
-            <header>
-              <a (click)="back()"><img src="/assets/images/right-arrow.svg" class="arrow-left" width="31.9px" height="21.2px" alt=""></a>
-              <h3 *ngIf="editMode === null">Create new Job</h3>
-              <h3 *ngIf="editMode !== null">Post a Job</h3>
-            </header>
-            <div class="form-steps">
-              <app-steps></app-steps>
-            </div>
+  <div class="container">
+    <div class="card row">
+      <div class="col-md-12 left">
+        <div class="card__form">
+          <header>
+            <a (click)="back()"><img src="/assets/images/right-arrow.svg" class="arrow-left" width="31.9px"
+                height="21.2px" alt=""></a>
+            <h3 *ngIf="editMode === null">Create new Job</h3>
+            <h3 *ngIf="editMode !== null">Post a Job</h3>
+          </header>
+          <div class="form-steps">
+            <app-steps></app-steps>
           </div>
         </div>
-        <div class="col-xl-4 visible-xl right">
-         <app-searchresults></app-searchresults>
-          </div>
-          </div>
-        </div>
-        <!-- <footer class="poj-footer">
+      </div>
+      <!--Commenting on 30-07-2020 as per inputs-->
+      <!-- <div class="col-xl-4 visible-xl right">
+        <app-searchresults></app-searchresults>
+      </div> -->
+    </div>
+  </div>
+  <!-- <footer class="poj-footer">
           <div class="container">
             <div class="text-center">
               <a href="javascript:void(0)" class="btn btn-border btn-prev">Save & Close</a>
@@ -28,6 +30,3 @@
           </div>
         </footer> -->
 </main>
-
-
-
