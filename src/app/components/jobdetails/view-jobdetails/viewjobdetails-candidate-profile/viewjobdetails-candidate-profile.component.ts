@@ -238,7 +238,8 @@ OpenReferDialog(profileId,userId,profile)
             data: {
               ProfileId: profileId,
               UserId:userId,
-              profiledetails:profile
+              Email:profile.Email,
+              FirstName:profile.FirstName
               // status : this.statusid
             }
           }
@@ -414,13 +415,13 @@ RequestReference(profile)
   this.requestRef.UserId= this.customer.UserId;
   this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
   this.requestRef.FromEmail = this.customer.Email;
-  this.requestRef.Comment = this.CommentProfile ! = undefined ? this.CommentProfile : 'Please provide reference';
+  this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
   this.requestRef.ProfileId = profile.ProfileId;
   this.requestRef.ToEmailID = profile.Email;
   this.requestRef.UserName = profile.FirstName;
-  debugger
   this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
     this.CommentProfile = undefined;
+    this.requestRef = new RequestRefernce();
     let message = 'Requested Reference!';
         let action = 'Success';
         this._snackBar.open(message, action, {

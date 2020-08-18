@@ -3,6 +3,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { AppService } from '../../../../../app.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SettingsService } from '../../../../../../settings/settings.service';
 import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { PageEvent, Sort } from '@angular/material';
@@ -21,13 +23,14 @@ export class ReferencedialogComponent {
   employmenttypelist: any;
   employmentTypeId: number;
   Comment: string;
+  requestRef = new RequestRefernce();
   panelOpenState: boolean = false;
   customer: any;
   salaryDetails: any;
   addon = new addon();
   valueSal: number;
   TypeId: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     
@@ -36,6 +39,7 @@ export class ReferencedialogComponent {
   // MatPaginator Inputs
   length = 100;
   pageSize = 10;
+  CommentProfile:any;
   pageSizeOptions = [5, 10, 25, 100];
   usersList: GetQuestionnarieAssignement[] = [];
   // MatPaginator Output
@@ -84,6 +88,33 @@ export class ReferencedialogComponent {
 
 
   }
+
+ 
+
+  Request()
+ {
+
+  this.requestRef.CustomerId= this.customer.CustomerId;
+  this.requestRef.UserId= this.customer.UserId;
+  this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
+  this.requestRef.FromEmail = this.customer.Email;
+  this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
+  this.requestRef.ProfileId = this.data.ProfileId;
+  this.requestRef.ToEmailID = this.data.Email;
+  this.requestRef.UserName = this.data.FirstName;
+  this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
+    this.CommentProfile = undefined;
+    this.requestRef = new RequestRefernce();
+    let message = 'Requested Reference!';
+        let action = 'Success';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            
+        });
+  });
+}
+
+
 
   GetQuestionnariePersonsList(Id) {
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
@@ -162,5 +193,18 @@ export class GetQuestionnarieResponse {
       public Response: string,
       public ResponseValue: string
   ) { }
+}
+
+export class RequestRefernce
+{
+   public  ToEmailID: string;
+   public  CustomerId:number;
+   public  UserId:number;
+   public  ProfileId:number;
+   public  UserName: string;
+   public  AppLink: string;
+   public  FromEmail: string;
+   public  CompanyName: string;
+   public  Comment: string;
 }
 

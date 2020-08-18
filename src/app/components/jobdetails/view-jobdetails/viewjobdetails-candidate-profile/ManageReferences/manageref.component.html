@@ -128,11 +128,11 @@
             <form>
                 <div class="form-group text-left">
                     <label for="reqcandidate">Request to Candidate</label>
-                    <textarea class="form-control" id="reqcandidate" placeholder="Your Request" rows="2"></textarea>
+                    <textarea class="form-control" id="reqcandidate" name="CommentProfile" [(ngModel)]="CommentProfile" placeholder="Your Request" rows="2"></textarea>
                 </div>
                 <div class="form-group pull-right">
                     <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-filled">Send</button>
+                    <button class="btn btn-filled" (click)="Request()">Send</button>
                 </div>
             </form>
         </div>
