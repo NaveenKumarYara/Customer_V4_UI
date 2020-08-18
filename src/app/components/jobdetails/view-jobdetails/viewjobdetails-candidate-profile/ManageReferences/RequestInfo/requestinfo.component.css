@@ -1,0 +1,19 @@
+
+.mat-dialog-container {
+    width: 600px;
+    margin: 30px auto;
+    padding: 0 !important;
+}
+
+.disabled {
+    pointer-events: none;
+}
+.sort-labels{
+    padding-left: 2.5rem;
+}
+.sort-labels h5{
+    color: #9EABC0;
+}
+.manage-reference-i-d .radio-btns{
+    padding-left: 2.5rem;
+}

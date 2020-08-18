@@ -28,9 +28,9 @@
             <div class="col-md-2" mat-sort-header="carbs">
                 <h5>Date</h5>
             </div>
-            <div class="col-md-3" mat-sort-header="protein">
+            <!-- <div class="col-md-3" mat-sort-header="protein">
                 <h5>Details</h5>
-            </div>
+            </div> -->
         </div>
         <!--Sort-->
         <div class="ref-scroll scrollbar-inner">
@@ -59,11 +59,12 @@
                     <p>I'm visible because I am open</p>
                 </mat-expansion-panel> -->
 
-                <mat-expansion-panel *ngFor="let user of usersList">
+                <mat-expansion-panel *ngFor="let user of usersList" [disabled]="true"
+                #mep="matExpansionPanel">
                     <mat-expansion-panel-header>
                         <div class="col-md-3 ">
                             <h3>{{user?.FullName}}</h3>
-                            <!-- <small>Request more info</small> -->
+                            <a href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(KnownOrWorkedAt)"> Request Info</a>
                         </div>
                         <div class="col-md-2">
                             <h5>{{user?.KnownOrWorkedAt}}</h5>
@@ -74,11 +75,12 @@
                         </div>  
                         <div class="col-md-2">
                             <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
-                        </div>   
-                        <div class="col-md-3">
+                        </div>
+                        <a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>   
+                        <!-- <div class="col-md-3">
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                             <small>Download Report</small>
-                        </div>
+                        </div> -->
                     </mat-expansion-panel-header>
                     <p>{{user?.Comments}}</p>
                 </mat-expansion-panel>
@@ -122,8 +124,8 @@
 
     </div>
     <div class="modal-footer dropdown">
-        <a href="javascript:void(0)" class="dropdown-toggle pull-left" id="drop3" data-toggle="dropdown" role="button"
-            aria-haspopup="true" aria-expanded="false"> Request Info</a>
+        <!-- <a href="javascript:void(0)" class="dropdown-toggle pull-left" id="drop3" data-toggle="dropdown" role="button"
+            aria-haspopup="true" aria-expanded="false"> Request Info</a> -->
         <div class="dropdown-menu col-md-10 col-md-offset-1 send-req-form" aria-labelledby="drop3">
             <form>
                 <div class="form-group text-left">

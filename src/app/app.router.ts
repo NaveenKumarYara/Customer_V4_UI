@@ -108,6 +108,7 @@ import{CultureTestComponent} from './components/company-profile/culturetest/cult
 import { HiredialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
 import { ReferencedialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component';
+import { RequestdialogComponent} from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/RequestInfo/requestInfo.component';
 import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
 import { backgrounddialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
@@ -217,6 +218,7 @@ const appRoutes: Routes =
     { path: 'app-achivementdialog', component:AchivementdialogComponent},
     { path: 'app-bgdialog', component:backgrounddialogComponent},
     { path: 'app-refdialog', component:ReferencedialogComponent},
+    { path: 'app-requestdialog' ,component:RequestdialogComponent},
     { path: 'app-sharejob', component: ShareJobComponent},
     { path: 'app-view-candidateprofile', component: ViewCandidateprofileComponent },
     { path: 'app-invite-profiledialog', component: InviteProfiledialogComponent },

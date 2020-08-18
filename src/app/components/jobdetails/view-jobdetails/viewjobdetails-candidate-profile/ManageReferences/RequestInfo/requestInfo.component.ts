@@ -1,24 +1,22 @@
 import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
-import { JobdetailsService } from '../../../jobdetails.service';
-import { AppService } from '../../../../../app.service';
+import { MatDialog, MAT_DIALOG_DATA,MatDialogRef } from '@angular/material';
+import { JobdetailsService } from '../../../../jobdetails.service';
+import { AppService } from '../../../../../../app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SettingsService } from '../../../../../../settings/settings.service';
-import { RequestdialogComponent} from './RequestInfo/requestInfo.component';
+import { SettingsService } from '../../../../../../../settings/settings.service';
 import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../../shared/services/api.service/api.service';
 import { PageEvent, Sort } from '@angular/material';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
 @Component({
-  selector: 'app-refdialog',
-  templateUrl: './manageref.component.html',
-  styleUrls: ['./manageref.component.css']
+  selector: 'app-requestdialog',
+  templateUrl: './requestinfo.component.html',
+  styleUrls: ['./requestinfo.component.css']
 })
-export class ReferencedialogComponent {
+export class RequestdialogComponent {
   customerId: any;
   userId: any;
   employmenttypelist: any;
@@ -31,7 +29,7 @@ export class ReferencedialogComponent {
   addon = new addon();
   valueSal: number;
   TypeId: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,  public dialogRef: MatDialogRef<RequestdialogComponent>,private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     
@@ -90,28 +88,6 @@ export class ReferencedialogComponent {
 
   }
 
-  OpenRequestDialog(company)
-{
-  const AdialogRef = this.dialog.open(RequestdialogComponent,
-    {
-      width: '450px',
-      height: '300px',
-      data: {
-        ProfileId: this.data.profileId,
-        CompanyName: company,
-        Email:this.data.Email,
-        FirstName:this.data.FirstName
-        // status : this.statusid
-      }
-    }
-  );
-  AdialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    //this.myEvent.emit(null);
-    console.log('hire Dialog result: ${result}');
-  });
-}
-
  
 
   Request()
@@ -125,9 +101,11 @@ export class ReferencedialogComponent {
   this.requestRef.ProfileId = this.data.ProfileId;
   this.requestRef.ToEmailID = this.data.Email;
   this.requestRef.UserName = this.data.FirstName;
+  this.requestRef.CompanyName = this.data.CompanyName;
   this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
     this.CommentProfile = undefined;
     this.requestRef = new RequestRefernce();
+    this.dialogRef.close();
     let message = 'Requested Reference!';
         let action = 'Success';
         this._snackBar.open(message, action, {
