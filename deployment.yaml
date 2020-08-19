@@ -39,6 +39,8 @@ spec:
           value: "https://#{basehost}#arytic.com"
         - name: CuMain_URL
           value: "https://customer#{host}#arytic.com"
+        - name: CaMain_URL
+          value: "https://candidate#{host}#arytic.com"
         - name: Sharing_URL
           value: "https://socialapi#{host}#arytic.com"
         - name: Question_URL

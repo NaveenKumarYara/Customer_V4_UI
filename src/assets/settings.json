@@ -184,6 +184,7 @@
   "InsertInviteCustomerUsers":"https://identityapi-dev.arytic.com/api/InsertInviteCustomerUsers",
   "DeleteCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsers",
   "UpdateFullName":"https://identityapi-dev.arytic.com/api/UpdateFullName",
+  "CandidateAppLogin":"https://candidate-dev.arytic.com/login",
   "GetUserDetail":"https://identityapi-dev.arytic.com/api/GetBasicInfo",
   "ActivateCustomerInvitedUsers":"https://identityapi-dev.arytic.com/api/DeleteCustomerUsersToActive",
   "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer",

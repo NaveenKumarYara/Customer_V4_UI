@@ -90,7 +90,7 @@ export class ReferencedialogComponent {
 
   }
 
-  OpenRequestDialog(company)
+  OpenRequestDialog(company,Id)
 {
   const AdialogRef = this.dialog.open(RequestdialogComponent,
     {
@@ -100,7 +100,8 @@ export class ReferencedialogComponent {
         ProfileId: this.data.profileId,
         CompanyName: company,
         Email:this.data.Email,
-        FirstName:this.data.FirstName
+        FirstName:this.data.FirstName,
+        Qid:Id
         // status : this.statusid
       }
     }
@@ -143,6 +144,7 @@ export class ReferencedialogComponent {
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {
+          debugger
             this.usersList = data;
             this.sortedData = this.usersList.slice();
         });

@@ -187,6 +187,7 @@ export class Settings {
   GetCustomerInvitedUsers:string;
   GetUserLevelAccess:string;
   GetUserRoleAccess:string;
+  CandidateAppLogin:string;
   InsertInviteCustomerUsers:string;
   DeleteCustomerInvitedUsers:string;
   GetUserDetail:string;

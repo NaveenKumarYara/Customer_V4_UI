@@ -58,6 +58,7 @@
   "jobCategoryEndpoint": "${Jobs_URL}/api/GetJobCategory",
   "profileLink": "${Profile_URL}/api/GetProfileLink?",
   "scheduleInterview" : "${Referral_URL}/api/ScheduleInterview",
+  "CandidateAppLogin":"${CaMain_URL}/login",
   "UpdateScheduleInterview":"${Referral_URL}/api/UpdateCustomerJobInterview",
   "EmailVaild": "${Identity_URL}/api/ValidateEmail?",
   "EmailInvite": "${Email_URL}/api/RegisterCustomer",

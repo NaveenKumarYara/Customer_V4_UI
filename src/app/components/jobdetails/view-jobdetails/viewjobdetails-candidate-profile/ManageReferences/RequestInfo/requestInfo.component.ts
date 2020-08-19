@@ -37,6 +37,7 @@ export class RequestdialogComponent {
   }
   // MatPaginator Inputs
   length = 100;
+  loading : boolean=false;
   pageSize = 10;
   CommentProfile:any;
   pageSizeOptions = [5, 10, 25, 100];
@@ -92,10 +93,10 @@ export class RequestdialogComponent {
 
   Request()
  {
-
+  this.loading=true;
   this.requestRef.CustomerId= this.customer.CustomerId;
   this.requestRef.UserId= this.customer.UserId;
-  this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
+  this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin;';RsId=' + this.data.Qid;
   this.requestRef.FromEmail = this.customer.Email;
   this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
   this.requestRef.ProfileId = this.data.ProfileId;
@@ -103,6 +104,7 @@ export class RequestdialogComponent {
   this.requestRef.UserName = this.data.FirstName;
   this.requestRef.CompanyName = this.data.CompanyName;
   this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
+    this.loading = false;
     this.CommentProfile = undefined;
     this.requestRef = new RequestRefernce();
     this.dialogRef.close();

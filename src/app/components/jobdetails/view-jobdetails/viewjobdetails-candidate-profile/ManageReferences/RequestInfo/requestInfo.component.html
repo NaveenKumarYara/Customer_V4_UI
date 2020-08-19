@@ -6,8 +6,11 @@
                 <textarea matInput class="form-control" id="reqcandidate" name="CommentProfile" [(ngModel)]="CommentProfile" placeholder="Your Request" rows="2"></textarea>
             </div>
             <div class="form-group pull-right">
+              
                 <button class="btn btn-default" mat-button mat-dialog-close>Cancel</button>
-                <button class="btn btn-filled" mat-button (click)="Request()">Send</button>
+                <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
+                <button class="btn btn-filled" mat-button (click)="Request()">             
+                    Send</button>
             </div>
         </form>
     </div>
