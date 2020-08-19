@@ -413,7 +413,7 @@ RequestReference(profile)
 
   this.requestRef.CustomerId= this.customer.CustomerId;
   this.requestRef.UserId= this.customer.UserId;
-  this.requestRef.AppLink = this.settingsService.settings.CandidateLogin;
+  this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin +';RsId=0';
   this.requestRef.FromEmail = this.customer.Email;
   this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
   this.requestRef.ProfileId = profile.ProfileId;
