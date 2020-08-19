@@ -19,6 +19,7 @@ export interface DialogData {
 })
 export class RequestdialogComponent {
   customerId: any;
+  
   userId: any;
   employmenttypelist: any;
   employmentTypeId: number;
