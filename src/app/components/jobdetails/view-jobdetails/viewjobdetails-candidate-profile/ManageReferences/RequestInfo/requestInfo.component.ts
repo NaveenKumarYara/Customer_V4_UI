@@ -13,8 +13,8 @@ export interface DialogData {
 }
 @Component({
   selector: 'app-requestdialog',
-  templateUrl: './requestinfo.component.html',
-  styleUrls: ['./requestinfo.component.css']
+  templateUrl: './requestInfo.component.html',
+  styleUrls: ['./requestInfo.component.css']
 })
 export class RequestdialogComponent {
   customerId: any;
