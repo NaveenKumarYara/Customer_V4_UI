@@ -96,7 +96,7 @@ export class RequestdialogComponent {
   this.loading=true;
   this.requestRef.CustomerId= this.customer.CustomerId;
   this.requestRef.UserId= this.customer.UserId;
-  this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin;';RsId=' + this.data.Qid;
+  this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin +';RsId=' + this.data.Qid;
   this.requestRef.FromEmail = this.customer.Email;
   this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
   this.requestRef.ProfileId = this.data.ProfileId;
