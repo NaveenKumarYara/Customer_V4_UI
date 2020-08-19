@@ -1,16 +1,248 @@
-<mat-dialog-content class="mat-typography manage-achievements-i-d">
-    <!-- <button mat-button mat-dialog-close class="close">×</button> -->
+<mat-dialog-content class="mat-typography manage-achievements-i-d m-r-d">
     <div class="modal-header text-center">
-        <img src="../../../../../../assets/images/card-icons/achievement-badge.png" width="60" alt="certifications">
-        <h4>Background</h4>
+      <img src="../../../../../assets/images/card-icons/verified-badge.png" width="40" alt="Background-Verification">
+      <h4>Background Screening Services </h4>
+      <p>Make timely and informed hiring decisions with Arytic's comprehensive suite of employment screening services</p>
     </div>
     <div class="modal-body">
-
-         <div class="ach-scroll scrollbar-inner">
-
+      <div class="form-group bg-panels">
+        <div class="bg-row row">
+          <!--Civil Verification-->
+          <div class="panel panel-default civil-panel">
+            <div class="panel-body">
+              <div class="col-md-5 c-r-c">
+                <label for="bg-civil">
+                  <input type="checkbox" id="bg-civil" name="bg-civil" class="radio-input" />
+                  <div class="type">
+                    <div class="media">
+                      <div class="media-body">
+                        <h4 class="media-heading">Criminal Record Checks</h4>
+                        <ul class="bg-features">
+                          <li>Social Security Number Trace</li>
+                          <li>Nationwide Criminal Database Search</li>
+                          <li>Sex Offender Registry Search</li>
+                        </ul>
+                      </div>
+                      <div class="media-right">
+                        <h1>$49.99</h1>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div class="col-md-1 text-center civil-icon">
+                <i class="fa fa-gavel" aria-hidden="true"></i>
+                <h3>(OR)</h3>
+              </div>
+              <div class="col-md-5 c-c-c">
+                <label for="bg-civil1">
+                  <input type="checkbox" id="bg-civil1" name="bg-civil1" class="radio-input" />
+                  <div class="type">
+                    <div class="media">
+                      <div class="media-body">
+                        <h4 class="media-heading">Civil Court Checks</h4>
+                        <ul class="bg-features">
+                          <li>Criminal Record Checks</li>
+                          <li>County Criminal Court Search - 7 Years...</li>
+                          <li>Domestic Watch List Search</li>
+                        </ul>
+                      </div>
+                      <div class="media-right">
+                        <h1>$49.99</h1>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--Drug Screening-->
+          <div class=" panel panel-default bg-drug">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <img src="../../../../../assets/images/card-icons/drug.svg" width="35" alt="Background-Verification">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Drug Screening *</h4>
+                  <div class="btn-group drug-s" data-toggle="buttons">
+                    <label class="btn btn-default">
+                      <input type="radio" name="options" id="option1" autocomplete="off"> 4 - Panel Drug Test
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> 5 - Panel Drug Test
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="options" id="option3" autocomplete="off"> 9 - Panel Drug Test
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="options" id="option1" autocomplete="off"> 10 - Panel Drug Test
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="options" id="option2" autocomplete="off">8 - Panel + MQL Drug Test
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
+                    </label>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <h1>$49.99</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>* In Order to get Drug Screening, Criminal History Verification (County Search) need to be included with it.
+          </p>
+          <!--Employment Verification-->
+          <div class="bg-emp col-md-12 col-sm-12">
+            <label for="bg-emp">
+              <input type="checkbox" id="bg-emp" name="bg-emp" class="radio-input" />
+              <div class="type">
+                <div class="media">
+                  <div class="media-left">
+                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Employment Verification</h4>
+                    <ul class="bg-features">
+                      <li>Current or past employment and Job Titles</li>
+                      <li>Current Verification / Single Employer</li>
+                      <li>Additional third-party pass-through fees ...</li>
+                    </ul>
+                  </div>
+                  <div class="media-right">
+                    <h1>$49.99</h1>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <!--Education Verification-->
+          <div class="bg-edu col-md-12 col-sm-12">
+            <label for="bg-edu">
+              <input type="checkbox" id="bg-edu" name="bg-edu" class="radio-input" />
+              <div class="type">
+                <div class="media">
+                  <div class="media-left">
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Education Verification</h4>
+                    <ul class="bg-features">
+                      <li>Attendance dates </li>
+                      <li>Major(s); and degree(s), diploma(s)...</li>
+                      <li>Current Verification / Single Institution</li>
+                    </ul>
+                  </div>
+                  <div class="media-right">
+                    <h1>$39.99</h1>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <!--Certification Verification-->
+          <div class="bg-cer col-md-12 col-sm-12">
+            <label for="bg-cer">
+              <input type="checkbox" id="bg-cer" name="bg-cer" class="radio-input" />
+              <div class="type">
+                <div class="media">
+                  <div class="media-left">
+                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Certification Verification</h4>
+                    <ul class="bg-features">
+                      <li>Certification dates </li>
+                      <li>Certification Provider</li>
+                      <li>Certification Duration</li>
+                    </ul>
+                  </div>
+                  <div class="media-right">
+                    <h1>$69.99</h1>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <!--Reference Check-->
+          <div class="bg-ref col-md-12 col-sm-12">
+            <label for="bg-ref">
+              <input type="checkbox" id="bg-ref" name="bg-ref" class="radio-input" />
+              <div class="type">
+                <div class="media">
+                  <div class="media-left">
+                    <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Reference Check *</h4>
+                    <ul class="bg-features">
+                      <li>Arytic Premium service exclusively FREE Add On </li>
+                    </ul>
+                  </div>
+                  <div class="media-right text-center">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                    <h1>FREE</h1>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <!--Total section-->
+          <div class="col-md-12 total-section">
+            <span class="pull-right">Total(Including Taxes): <strong>$23.59</strong></span>
+          </div>
+          <!--Summary Screen-->
+          <div class="col-md-12">
+            <div class="panel panel-default summary-panel">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title">Summary</h3>
+                <small>Candidate Name: <span>Shelby Wyatt</span></small>
+              </div>
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-body">
+                    <h4 class="media-heading">Employment Verification</h4>
+                    <ul class="bg-features">
+                      <li>Current or past employment and Job Titles</li>
+                      <li>Current Verification / Single Employer</li>
+                      <li>Additional third-party pass-through fees ...</li>
+                    </ul>
+                  </div>
+                  <div class="media-right">
+                    <h1>$19.99</h1>
+                  </div>
+                </div>
+                <div class="media">
+                  <div class="media-body">
+                    <h4 class="media-heading">ABC Taxes</h4>
+                  </div>
+                  <div class="media-right">
+                    <h1>$3.60</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer total-section">
+                <span class="pull-right">Total: <strong>$23.59</strong></span>
+                <div class="clearfix">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+         
         </div>
+      </div>
     </div>
-    <div class="modal-footer">
-        <button mat-button mat-dialog-close class="btn btn-default">Close</button>
+    <div class="modal-footer bg-footer">
+      <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+      <button class="btn btn-default pull-left">Back</button>
+      <button class="btn btn-filled pull-right">Proceed</button>
     </div>
-</mat-dialog-content>
+  </mat-dialog-content>
