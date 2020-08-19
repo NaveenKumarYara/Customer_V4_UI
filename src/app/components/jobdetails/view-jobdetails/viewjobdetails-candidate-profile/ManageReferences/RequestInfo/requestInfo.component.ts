@@ -14,7 +14,8 @@ export interface DialogData {
 @Component({
   selector: 'app-requestdialog',
   templateUrl: './requestInfo.component.html',
-  styleUrls: ['./requestInfo.component.css']
+  styleUrls: ['./requestInfo.component.css'],
+  providers: [ApiService]
 })
 export class RequestdialogComponent {
   customerId: any;
