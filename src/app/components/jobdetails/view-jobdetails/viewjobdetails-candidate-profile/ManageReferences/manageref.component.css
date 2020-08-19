@@ -10,10 +10,36 @@
 }
 .sort-labels{
     padding-left: 2.5rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+.sort-labels .ref-details{
+padding-left:5px;
 }
 .sort-labels h5{
     color: #9EABC0;
 }
 .manage-reference-i-d .radio-btns{
     padding-left: 2.5rem;
+}
+.manage-reference-i-d h3,
+.manage-reference-i-d h5,
+.manage-reference-i-d h6
+{
+color: #55536E;
+}
+.ref-scroll a.req-info{
+    font-size: 10px;
+    text-decoration: underline;
+    color: #55536E;
+}
+.ref-scroll .more-info{
+    line-height: 50px;
+}
+.ref-scroll .more-info a{
+    font-size: 10px;
+    line-height: 50px;
+}
+.modal-footer .close-btn .btn{
+    margin-top: 8%;
+    margin-left: 20%;
 }

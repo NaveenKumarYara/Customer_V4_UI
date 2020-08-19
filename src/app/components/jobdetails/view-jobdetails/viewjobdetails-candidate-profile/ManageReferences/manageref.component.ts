@@ -1,5 +1,5 @@
 import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef,MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { AppService } from '../../../../../app.service';
@@ -96,6 +96,8 @@ export class ReferencedialogComponent {
     {
       width: '450px',
       height: '300px',
+      position: { right: '180px', top: '150px' },
+      
       data: {
         ProfileId: this.data.profileId,
         CompanyName: company,
