@@ -50,6 +50,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
+  Rloading:boolean=false;
   userId: any;
   CommentProfile : any;
   addon = new addon();
@@ -226,9 +227,11 @@ OpenAchiveDialog(profileId)
 
 OpenReferDialog(profileId,userId,profile)
 {
+  this.Rloading = true;
   this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
   .subscribe(
     data => {
+      this.Rloading = false;
         if(data != 'No records found')
         {
         const RdialogRef = this.dialog.open(ReferencedialogComponent,
