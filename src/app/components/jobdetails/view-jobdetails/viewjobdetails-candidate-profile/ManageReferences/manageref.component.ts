@@ -1,4 +1,4 @@
-import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Input, Output, EventEmitter,ViewChild } from '@angular/core';
 import { MatDialogRef,MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
@@ -9,6 +9,7 @@ import { RequestdialogComponent} from './RequestInfo/requestInfo.component';
 import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { PageEvent, Sort } from '@angular/material';
+import { MatPaginator } from '@angular/material';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -19,6 +20,7 @@ export interface DialogData {
   styleUrls: ['./manageref.component.css']
 })
 export class ReferencedialogComponent {
+  @ViewChild('paginator') paginator: MatPaginator;
   customerId: any;
   userId: any;
   employmenttypelist: any;
@@ -40,17 +42,19 @@ export class ReferencedialogComponent {
     this.GetQuestionnariePersonsList(0);
   }
   // MatPaginator Inputs
-  length = 100;
-  pageSize = 10;
+  pageIndex:number = 0;
+  pageSize:number = 10;
+  lowValue:number = 0;
+  highValue:number = 10; 
   CommentProfile:any;
-  pageSizeOptions = [5, 10, 25, 100];
+
   usersList: GetQuestionnarieAssignement[] = [];
   // MatPaginator Output
   pageEvent: PageEvent;
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
+  // setPageSizeOptions(setPageSizeOptionsInput: string) {
+  //   this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  // }
 
   //Sort
   desserts = [
@@ -126,6 +130,20 @@ export class ReferencedialogComponent {
   });
 }
 
+getPaginatorData(event){
+  debugger
+  console.log(event);
+  if(event.pageIndex === this.pageIndex + 1){
+     this.lowValue = this.lowValue + this.pageSize;
+     this.highValue =  this.highValue + this.pageSize;
+    }
+ else if(event.pageIndex === this.pageIndex - 1){
+    this.lowValue = this.lowValue - this.pageSize;
+    this.highValue =  this.highValue - this.pageSize;
+   }   
+    this.pageIndex = event.pageIndex;
+}
+
  
 
   Request()
@@ -157,9 +175,8 @@ export class ReferencedialogComponent {
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {
-          debugger
-            this.usersList = data;
-            this.sortedData = this.usersList.slice();
+            this.usersList = data;    
+            this.paginator.firstPage();
         });
   }
 
