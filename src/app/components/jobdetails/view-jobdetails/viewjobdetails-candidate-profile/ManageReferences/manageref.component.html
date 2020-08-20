@@ -89,8 +89,8 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>More Details:</h5>
-                                <h6>Email: <span>abc@gmail.com</span></h6>
-                                <h6>Phone: <span>(987)-654-3210</span></h6>
+                                <h6>Email: <span>{{user?.RequestedTo || 'N/A'}}</span></h6>
+                                <h6>Phone: <span>{{user?.PhoneNumber || 'N/A'}}</span></h6>
                             </div>
                             <div class="col-md-9">
                                 <h5>Comments:</h5>
