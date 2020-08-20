@@ -16,16 +16,16 @@
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
-            <div class="col-md-3 text-center" mat-sort-header="FullName">
+            <div class="col-md-3 text-center" (click)="sort('user.FullName')" mat-sort-header="FullName">
                 <h5>Professional</h5>
             </div>
-            <div class="col-md-2 ref-details" mat-sort-header="Referrer Details">
+            <div class="col-md-2 ref-details" (click)="sort('user.KnownOrWorkedAt')" mat-sort-header="Referrer Details">
                 <h5>Referrer Details</h5>
             </div>
-            <div class="col-md-2" mat-sort-header="fat">
+            <div class="col-md-2" (click)="sort('user.ReferenceStatus')" mat-sort-header="fat">
                 <h5>Status</h5>
             </div>
-            <div class="col-md-2" mat-sort-header="carbs">
+            <div class="col-md-2" (click)="sort('user.CreatedOn')" mat-sort-header="carbs">
                 <h5>Date</h5>
             </div>
             <!-- <div class="col-md-3" mat-sort-header="protein">
@@ -59,7 +59,7 @@
                     <p>I'm visible because I am open</p>
                 </mat-expansion-panel> -->
 
-                <mat-expansion-panel *ngFor="let user of usersList" [disabled]="true"
+                <mat-expansion-panel *ngFor="let user of usersList  | orderBy:sortingName:isDesc" [disabled]="true"
                 #mep="matExpansionPanel">
                     <mat-expansion-panel-header>
                         <div class="col-md-3">

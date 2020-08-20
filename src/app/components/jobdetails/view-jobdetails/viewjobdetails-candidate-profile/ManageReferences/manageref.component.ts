@@ -31,6 +31,8 @@ export class ReferencedialogComponent {
   addon = new addon();
   valueSal: number;
   TypeId: any;
+  sortingName: string;
+  isDesc: boolean;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
@@ -64,6 +66,15 @@ export class ReferencedialogComponent {
   // constructor() {
   //   this.sortedData = this.desserts.slice();
   // }
+
+  sort(name: string): void {
+    if (name && this.sortingName !== name) {
+      this.isDesc = false;
+    } else {
+      this.isDesc = !this.isDesc;
+    }
+    this.sortingName = name;
+  }
 
   sortData(sort: Sort) {
     const data = this.usersList.slice();
