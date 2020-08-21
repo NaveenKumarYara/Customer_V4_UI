@@ -48,6 +48,8 @@ export class ReferencedialogComponent {
   highValue:number = 10; 
   CommentProfile:any;
 
+  pageSizeOptions:any;
+  
   usersList: GetQuestionnarieAssignement[] = [];
   // MatPaginator Output
   pageEvent: PageEvent;
