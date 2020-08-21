@@ -176,7 +176,7 @@ getPaginatorData(event){
       .subscribe(
         data => {
             this.usersList = data;    
-            this.paginator.firstPage();
+         this.paginator.pageIndex = 0;
         });
   }
 
