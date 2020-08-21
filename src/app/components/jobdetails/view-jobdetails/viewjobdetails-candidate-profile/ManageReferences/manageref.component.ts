@@ -49,7 +49,7 @@ export class ReferencedialogComponent {
   CommentProfile:any;
 
   pageSizeOptions:any;
-  
+
   usersList: GetQuestionnarieAssignement[] = [];
   // MatPaginator Output
   pageEvent: PageEvent;
@@ -73,7 +73,7 @@ export class ReferencedialogComponent {
   //   this.sortedData = this.desserts.slice();
   // }
 
-  sort(name: string): void {
+  sort(name: string){
     if (name && this.sortingName !== name) {
       this.isDesc = false;
     } else {
