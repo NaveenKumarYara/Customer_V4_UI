@@ -161,7 +161,7 @@
         <div class="col-md-10">
        <!--Static Paginator implementation 31-07-2020-->
         <mat-paginator #paginator [length]="usersList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-        (page)="pageEvent = getPaginatorData($event)">
+        (page)="getPaginatorData($event)">
         </mat-paginator>
         </div>
     </div>
