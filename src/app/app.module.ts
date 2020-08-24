@@ -86,6 +86,7 @@ import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmo
 import { DragulaModule } from 'ng2-dragula';
 import { RatingModule } from 'ng-starrating';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { QRCodeModule } from 'angularx-qrcode';
 import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -113,7 +114,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     ForgotComponent,
     ResetComponent,
     JobTemplateComponent,
-    dLoginComponent,
+    dLoginComponent, 
     EditDraftComponent,
     DashboardComponent,
     JobdetailsComponent,
@@ -152,6 +153,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     routing,
     HttpModule,
     FormsModule,
+    QRCodeModule,
     ReactiveFormsModule,
     NgSelectModule,
     HttpClientModule,
