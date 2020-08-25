@@ -2,22 +2,27 @@
     padding: 0px;
     border-bottom: none;
 }
+
 .m-r-d .modal-header h4 {
     color: #415383;
     margin-bottom: 2px;
 }
+
 .m-r-d .modal-header p {
     color: #415383;
     font-style: italic;
     font-size: 11px;
     margin-bottom: 0px;
 }
-.m-r-d .modal-body{
+
+.m-r-d .modal-body {
     padding: 5px 15px 10px 15px;
 }
+
 .m-r-d .modal-body .bg-panels label {
     position: relative;
 }
+
 .m-r-d .modal-body .bg-panels .bg-row label {
     margin-bottom: 0;
     border-radius: 5px;
@@ -25,139 +30,193 @@
     font-size: 14px;
     font-weight: 500;
     color: #6A7E9C;
-    -webkit-box-shadow: 0px 0px 3px 1px rgba(196,199,211,1);
-    -moz-box-shadow: 0px 0px 3px 1px rgba(196,199,211,1);
-    box-shadow: 0px 0px 3px 1px rgba(196,199,211,1);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
 }
+
 .m-r-d .modal-body .bg-panels label .radio-input {
     position: absolute;
     opacity: 0;
 }
+
 .m-r-d .modal-body .bg-panels label .radio-input:checked~.type {
     border: 2px solid #157751;
 }
+
 .m-r-d .modal-body .bg-panels .type {
     cursor: pointer;
     border: 1px solid #D2D5DE;
     border-radius: 3px;
     height: 89px;
 }
-.bg-row .bg-emp, 
-.bg-row .bg-edu,  
-.bg-row .bg-cer{
+
+.bg-row .bg-emp, .bg-row .bg-edu, .bg-row .bg-cer {
     height: 89px;
 }
-.bg-panels h4.media-heading{
+
+.bg-panels h4.media-heading {
     margin-bottom: 1px;
     color: #415383;
 }
-.bg-panels .media-body ul.bg-features{
+
+.bg-panels .media-body ul.bg-features {
     padding-left: 0px;
     list-style: none;
     font-size: 10px;
     color: #415383;
 }
-.bg-panels .bg-emp, 
-.bg-panels .bg-edu,
-.bg-panels .bg-cer,
-.bg-panels .bg-ref{
+
+.bg-panels .bg-emp, .bg-panels .bg-edu, .bg-panels .bg-cer, .bg-panels .bg-ref {
     margin-bottom: 5px;
 }
-.bg-panels .media-left,
-.bg-panels .media-right{
+
+.bg-panels .media-left, .bg-panels .media-right {
     vertical-align: middle;
     padding-right: 5px;
 }
-.bg-panels .media-left .fa{
+
+.bg-panels .media-left .fa {
     color: #415383;
     padding: 1.5rem;
 }
-.bg-panels .media-right h1{
+
+.bg-panels .media-right h1 {
     color: #415383;
     font-weight: 600;
 }
-.bg-emp .media-left .fa{
+
+.bg-emp .media-left .fa {
     font-size: 20px;
 }
-.bg-edu .media-left .fa{
+
+.bg-edu .media-left .fa {
     font-size: 23px;
     padding: 1.15rem;
 }
-.bg-cer .media-left .fa{
+
+.bg-cer .media-left .fa {
     font-size: 25px;
 }
-.bg-ref .media-left .fa{
+
+.bg-ref .media-left .fa {
     font-size: 1.4rem;
     padding: 1.4rem;
 }
-.bg-row .bg-ref{
+
+.bg-row .bg-ref {
     height: 70px;
 }
-.m-r-d .modal-body .bg-ref .type{
+
+.m-r-d .modal-body .bg-ref .type {
     border: 1px solid #D59A1D;
 }
-.bg-ref .media-right .fa{
-    color:#D59A1D;
+
+.bg-ref .media-right .fa {
+    color: #D59A1D;
     font-size: 2rem;
     margin-top: -2px;
 }
+
 .m-r-d .modal-body .bg-ref .type {
     height: 70px;
 }
+
 .m-r-d .bg-ref .media-body {
-vertical-align: middle;
+    vertical-align: middle;
 }
-.bg-panels .civil-panel{
-margin-right: 15px;
-margin-left: 15px;
-}
-.bg-panels .civil-panel{
+
+.bg-panels .civil-panel, .bg-panels .existing-panel {
     margin-right: 15px;
     margin-left: 15px;
     margin-bottom: 5px;
-    }
-.bg-panels .civil-panel .panel-body{
- padding: 5px;
- height: 100px;
 }
-.bg-panels .civil-panel .panel-body .c-r-c{
+
+.bg-panels .existing-panel {
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    height: 70px;
+    color: #415383;
+}
+.bg-panels .existing-panel .panel-body h4{
+    font-weight: 500;
+}
+.bg-panels .existing-panel .panel-body h5.failed{
+    color:#D81C1C;
+}
+.bg-panels .existing-panel .panel-body h5.success{
+    color:#157751;
+}
+.bg-panels .existing-panel .panel-body input[type=checkbox]{
+    vertical-align: sub;
+}
+.bg-panels .existing-panel .panel-body .fa {
+    font-size: 28px;
+    color: #415383;
+    padding: 0.3rem;
+}
+.bg-panels .existing-panel .panel-body .download-report .fa{
+    font-size: 15px;
+}
+.bg-panels .existing-panel .panel-body .download-report a{
+    display: block;
+    font-size: 10px;
+    text-decoration: underline;
+}
+.bg-panels .civil-panel .panel-body {
+    padding: 5px;
+    height: 100px;
+}
+
+.bg-panels .civil-panel .panel-body .c-r-c {
     padding-right: 5px;
     width: 45.5%;
 }
-.bg-panels .civil-panel .panel-body .c-c-c{
+
+.bg-panels .civil-panel .panel-body .c-c-c {
     padding-left: 5px;
     width: 45.5%;
 }
-.bg-panels .civil-panel .media-body{
+
+.bg-panels .civil-panel .media-body {
     padding-left: 5px;
 }
-.civil-panel .fa{
-    color:#415383;
-    font-size:21px;
+
+.civil-panel .fa {
+    color: #415383;
+    font-size: 21px;
 }
-.civil-panel .civil-icon{
+
+.civil-panel .civil-icon {
     line-height: 35px;
 }
+
 .bg-drug {
     margin-right: 15px;
     margin-left: 15px;
     margin-bottom: 5px;
     clear: both;
 }
-.bg-drug .drug-s{
+
+.bg-drug .drug-s {
     padding-left: 2px;
 }
-.bg-drug .panel-body{
- padding: 0;
+
+.bg-drug .panel-body {
+    padding: 0;
 }
-.bg-drug .media-left{
+
+.bg-drug .media-left {
     padding: 1rem;
 }
-.bg-drug .media-body .fa{
-    color:#415383;
-    font-size:21px;
+
+.bg-drug .media-body .fa {
+    color: #415383;
+    font-size: 21px;
 }
-.bg-drug label.btn-default{
+
+.bg-drug label.btn-default {
     font-size: 11px!important;
     width: 30%!important;
     margin-right: 5px!important;
@@ -165,6 +224,7 @@ margin-left: 15px;
     box-shadow: none!important;
     -webkit-box-shadow: none!important;
 }
+
 /* .bg-drug .btn-default i{
     visibility:hidden;
 }
@@ -172,51 +232,68 @@ margin-left: 15px;
     visibility:visible;
 } */
 
-.civil-panel, .bg-drug{
-    -webkit-box-shadow: 0px 0px 3px 1px rgba(196,199,211,1);
-    -moz-box-shadow: 0px 0px 3px 1px rgba(196,199,211,1);
-    box-shadow: 0px 0px 3px 1px rgba(196,199,211,1); 
+.civil-panel, .bg-drug {
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
+    box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
 }
-.civil-panel .c-r-c label, 
-.civil-panel  .c-c-c label{
-box-shadow: none!important;
+
+.civil-panel .c-r-c label, .civil-panel .c-c-c label {
+    box-shadow: none!important;
 }
-.bg-row p{
+
+.bg-row p {
     font-size: 10px;
     border-bottom: 1px solid #C4C7D3;
     margin-left: 15px;
     margin-right: 15px;
     color: #415383;
 }
-.total-section{
-    margin-top:5px;
+
+.total-section {
+    margin-top: 5px;
     color: #415383;
 }
-.total-section span{
+
+.total-section span {
     font-size: 14px;
 }
-.total-section span strong{
+
+.total-section span strong {
     font-size: 20px;
 }
-.bg-footer .btn-filled{
+
+.bg-footer .btn-filled {
     padding: 6px 30px;
     font-size: 12px;
 }
+
 /*Summary Styles*/
-.summary-panel{
--webkit-box-shadow: 5px 5px 10px 0px rgba(229,229,229,1);
--moz-box-shadow: 5px 5px 10px 0px rgba(229,229,229,1);
-box-shadow: 5px 5px 10px 0px rgba(229,229,229,1);
+
+.summary-panel, .availed-panel {
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(229, 229, 229, 1);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(229, 229, 229, 1);
+    box-shadow: 5px 5px 10px 0px rgba(229, 229, 229, 1);
 }
-.summary-panel>.panel-heading,
-.summary-panel>.panel-footer{
+
+.summary-panel>.panel-heading, .summary-panel>.panel-footer, .availed-panel>.panel-heading, .availed-panel>.panel-footer {
     background-color: #fff;
 }
 
-.summary-panel>.panel-heading h3{
+.summary-panel>.panel-heading h3, .availed-panel>.panel-heading h3 {
     font-weight: 500;
 }
-.summary-panel>.panel-heading h3,
-.summary-panel>.panel-heading small{
-color: #415383;
+
+.summary-panel>.panel-heading h3, .summary-panel>.panel-heading small, .availed-panel>.panel-heading h3, .availed-panel>.panel-heading small {
+    color: #415383;
+}
+
+.availed-panel p.cta-text {
+    text-align: right;
+    font-style: italic;
+    border-bottom: none;
+}
+
+.availed-panel .panel-body .media-right {
+    width: 18%;
 }
