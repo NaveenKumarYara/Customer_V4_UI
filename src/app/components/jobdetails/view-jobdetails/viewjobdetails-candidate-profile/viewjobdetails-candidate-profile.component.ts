@@ -262,14 +262,16 @@ OpenReferDialog(profileId,userId,profile)
   
 }
 
-OpenBgDialog(profileId)
+OpenBgDialog(profileId,name)
 {
   const bdialogRef = this.dialog.open(backgrounddialogComponent,
     {
       width: '888px',
       position: { right: '0px' },
       data: {
-        ProfileId: profileId
+        ProfileId: profileId,
+        CuserId : this.customer.UserId,
+        Name:name
         // status : this.statusid
       }
     }
