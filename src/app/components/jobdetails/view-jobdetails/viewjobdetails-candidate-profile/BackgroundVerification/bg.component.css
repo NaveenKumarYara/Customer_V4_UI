@@ -108,11 +108,15 @@
     height: 70px;
 }
 
-.m-r-d .modal-body .bg-ref .type {
+.m-r-d .modal-body .bg-ref .type, .m-r-d .modal-body .bg-emp .type {
     border: 1px solid #D59A1D;
 }
 
-.bg-ref .media-right .fa {
+.bg-emp .media-right {
+    vertical-align: top;
+}
+
+.bg-ref .media-right .fa, .bg-emp .media-right .fa {
     color: #D59A1D;
     font-size: 2rem;
     margin-top: -2px;
@@ -131,6 +135,9 @@
     margin-left: 15px;
     margin-bottom: 5px;
 }
+.bg-panels .existing-heading h4{
+    padding: 1rem;
+}
 
 .bg-panels .existing-panel {
     -webkit-box-shadow: 0px 0px 3px 1px rgba(196, 199, 211, 1);
@@ -139,31 +146,39 @@
     height: 70px;
     color: #415383;
 }
-.bg-panels .existing-panel .panel-body h4{
+
+.bg-panels .existing-panel .panel-body h4 {
     font-weight: 500;
 }
-.bg-panels .existing-panel .panel-body h5.failed{
-    color:#D81C1C;
+
+.bg-panels .existing-panel .panel-body h5.failed {
+    color: #D81C1C;
 }
-.bg-panels .existing-panel .panel-body h5.success{
-    color:#157751;
+
+.bg-panels .existing-panel .panel-body h5.success {
+    color: #157751;
 }
-.bg-panels .existing-panel .panel-body input[type=checkbox]{
+
+.bg-panels .existing-panel .panel-body input[type=checkbox] {
     vertical-align: sub;
 }
+
 .bg-panels .existing-panel .panel-body .fa {
     font-size: 28px;
     color: #415383;
     padding: 0.3rem;
 }
-.bg-panels .existing-panel .panel-body .download-report .fa{
+
+.bg-panels .existing-panel .panel-body .download-report .fa {
     font-size: 15px;
 }
-.bg-panels .existing-panel .panel-body .download-report a{
+
+.bg-panels .existing-panel .panel-body .download-report a {
     display: block;
     font-size: 10px;
     text-decoration: underline;
 }
+
 .bg-panels .civil-panel .panel-body {
     padding: 5px;
     height: 100px;
@@ -203,6 +218,15 @@
     padding-left: 2px;
 }
 
+.bg-drug .drug-s .btn-default input {
+    visibility: hidden;
+}
+
+.bg-drug .drug-s .btn-default:active, .bg-drug .drug-s .btn-default:focus {
+    border: 1px solid #157751;
+    background-color: #fff;
+}
+
 .bg-drug .panel-body {
     padding: 0;
 }
@@ -217,12 +241,14 @@
 }
 
 .bg-drug label.btn-default {
-    font-size: 11px!important;
+    padding: 7px 12px;
+    font-size: 12px!important;
     width: 30%!important;
     margin-right: 5px!important;
     margin-bottom: 5px!important;
     box-shadow: none!important;
     -webkit-box-shadow: none!important;
+    text-align: inherit;
 }
 
 /* .bg-drug .btn-default i{
