@@ -1,5 +1,5 @@
 import { Component, Inject, Input, Output, EventEmitter,ViewContainerRef } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
@@ -30,7 +30,7 @@ export class backgrounddialogComponent {
     val4 = 0;
     name:any;
     subtotal : string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<backgrounddialogComponent>,private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
      this.GetBG();
      this.name = this.data.Name;
      this.toastr.setRootViewContainerRef(_vcr);
@@ -105,21 +105,31 @@ export class backgrounddialogComponent {
       if(data >=0)
       {
       this.toastr.success('Processing Request', 'Success');
+     
       this.appService.GetCustomerSubscription(this.data.CuserId).subscribe(res => {
-      if(res.subscriptionId!=undefined)
+        debugger
+      if(res == null || res.subscriptionId==null)
+        {
+       this.toastr.warning('Access denied contact admin for arytic subscription!!', 'Oops');
+       this.dialogRef.close();
+       this.GetBGTestResult(); 
+        }
+      if(res.subscriptionId!=undefined && res.subscriptionId!=null)
       {
-      this.addon.SubscriptionId = res.subscriptionId;
-      this.addon.AddonId = "2";
-      this.addon.AddonUnitPrice = Number(this.subtotal);
-      this.addon.AddonQuantity = 1;
-      this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+        this.addon.SubscriptionId = res.subscriptionId;
+        this.addon.AddonId = "2";
+        this.addon.AddonUnitPrice = Number(this.subtotal);
+       this.addon.AddonQuantity = 1;
+       this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
         console.log(result);
         this.toastr.success('Mail Sent', 'Success');
         this.GetBGTestResult();
 
-      });
+         });
+       this.dialogRef.close();
+       }
+   
      
-    }
     });
   }
   });
@@ -134,6 +144,7 @@ export class backgrounddialogComponent {
     else
     {
       this.showone = true;
+     
     }
 
   }
