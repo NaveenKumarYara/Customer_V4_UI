@@ -24,7 +24,7 @@
                 <h5 *ngIf="bgverification.CriminalOptionSelected == 1">In-Progress</h5>
               </div>
               <div class="col-md-4">
-                <h5 class="pull-right">Initiate New Screening  <input type="checkbox"></h5>
+                <h5 class="pull-right">Initiate New Screening  <input type="checkbox" (change)="GetValues(1)"></h5>
               </div>
             </div>
           </div>
@@ -631,7 +631,8 @@
     <div class="modal-footer bg-footer">
       <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
       <button class="btn btn-default pull-left" (click)="SaveBg(1)">Back</button>
-      <button class="btn btn-filled pull-right" (click)="SaveBg(2)">Proceed</button>
+      <button class="btn btn-default pull-left" (click)="SaveBg(2)">Next</button>
+      <button class="btn btn-filled pull-right" (click)="SaveBg(3)">Proceed</button>
     </div>
     </ng-container>
 </mat-dialog-content>

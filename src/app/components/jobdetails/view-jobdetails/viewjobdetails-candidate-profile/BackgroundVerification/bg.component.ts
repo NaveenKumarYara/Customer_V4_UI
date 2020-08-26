@@ -111,8 +111,8 @@ export class backgrounddialogComponent {
       if(res == null || res.subscriptionId==null)
         {
        this.toastr.warning('Access denied contact admin for arytic subscription!!', 'Oops');
-       this.dialogRef.close();
-       this.GetBGTestResult(); 
+       //this.dialogRef.close();
+       //this.GetBGTestResult(); 
         }
       if(res.subscriptionId!=undefined && res.subscriptionId!=null)
       {
@@ -126,7 +126,7 @@ export class backgrounddialogComponent {
         this.GetBGTestResult();
 
          });
-       this.dialogRef.close();
+       //this.dialogRef.close();
        }
    
      
@@ -206,6 +206,11 @@ export class backgrounddialogComponent {
    {
      this.showRes = false;
    }
+   if(val == 3)
+   {
+      this.showRes = true; 
+      this.SaveBgVerIfication();
+   }
    else
    {
      if(this.bgverification.DrugTest == null || this.bgverification.DrugOptionSelected==0)
@@ -216,10 +221,7 @@ export class backgrounddialogComponent {
      else
      {
      this.showRes = true; 
-     if(val == 2)
-     {
-       this.SaveBgVerIfication();
-     }
+     
     }
    }
   
