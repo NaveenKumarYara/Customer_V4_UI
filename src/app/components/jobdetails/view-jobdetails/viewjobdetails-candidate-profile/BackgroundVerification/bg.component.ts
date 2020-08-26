@@ -18,9 +18,12 @@ export class backgrounddialogComponent {
     Dlist: any=[];
     addon = new addon();
     loading : boolean=false;
+    usersList:any=[];
     Verification : BackgroundVerification;
     bgverification = new BackgroundVerification();
     showRes : boolean = false;
+    ShowVer : boolean = false;
+    showone : boolean = false;
     val1 = 0;
     val2 = 0;
     val3 = 0;
@@ -32,7 +35,8 @@ export class backgrounddialogComponent {
      this.name = this.data.Name;
      this.toastr.setRootViewContainerRef(_vcr);
      this.GetDrugVerification();
-     this.GetBGTestResult()
+     this.GetBGTestResult();
+     this.GetQuestionnariePersonsList();
    }
 
   GetBG()
@@ -55,6 +59,18 @@ export class backgrounddialogComponent {
   )
   }
 
+  GetValues(val)
+  {
+    if(val == 1)
+    {
+      this.ShowVer = false;
+    }
+    else
+    {
+      this.ShowVer = true;
+    }
+  }
+
   GetBGTestResult()
   {
     this._service.GetService('IdentityAPI/api/GetCandidateBackgroundVerification?profileId=' + this.data.ProfileId, '&customerUserId=' + this.data.CuserId).subscribe(
@@ -62,6 +78,7 @@ export class backgrounddialogComponent {
           this.Verification = data[0];
           if(this.Verification.ProfileId>0)
           {
+            this.ShowVer = true;
             this.bgverification.CriminalOptionSelected = this.Verification.CriminalOptionSelected;
             this.bgverification.DrugOptionSelected = this.Verification.DrugOptionSelected;
             this.bgverification.Education = this.Verification.Education;
@@ -74,6 +91,7 @@ export class backgrounddialogComponent {
           }
           else
           {
+            this.ShowVer = false;
             this.Verification = new BackgroundVerification();
           }
       }
@@ -87,14 +105,14 @@ export class backgrounddialogComponent {
       if(data >=0)
       {
       this.toastr.success('Processing Request', 'Success');
-      return this.appService.GetCustomerSubscription(this.data.CuserId).subscribe(res => {
+      this.appService.GetCustomerSubscription(this.data.CuserId).subscribe(res => {
       if(res.subscriptionId!=undefined)
       {
       this.addon.SubscriptionId = res.subscriptionId;
       this.addon.AddonId = "2";
       this.addon.AddonUnitPrice = Number(this.subtotal);
       this.addon.AddonQuantity = 1;
-      return this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+      this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
         console.log(result);
         this.toastr.success('Mail Sent', 'Success');
         this.GetBGTestResult();
@@ -107,7 +125,26 @@ export class backgrounddialogComponent {
   });
   }
 
+  SaveBgG(val)
+  {
+    if(val == 1)
+    {
+      this.showone = false;
+    }
+    else
+    {
+      this.showone = true;
+    }
 
+  }
+
+  GetQuestionnariePersonsList() {
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=0')
+      .subscribe(
+        data => {
+            this.usersList = data;         
+        });
+  }
 
   SaveBg(val)
   {
