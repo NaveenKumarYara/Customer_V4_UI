@@ -44,8 +44,7 @@ export interface DialogData {
 
   GetInviteList()
   {
-    this.jobId = JSON.parse(sessionStorage.getItem('jobId'));
-    return this.jobdetailsservice.getInviteList(this.customerId,this.jobId).subscribe(res => {
+    return this.jobdetailsservice.getInviteList(this.customerId,this.data.jobId).subscribe(res => {
       this.jobData = res;
     });
   }
@@ -58,19 +57,18 @@ export interface DialogData {
   };
 
   SaveInvite() {
-    var userData =  JSON.parse(sessionStorage.getItem('userData'));
     this.inviteinfo.customerId = this.customerId;
     this.inviteinfo.userId = this.userId;
-    this.inviteinfo.jobId = JSON.parse(sessionStorage.getItem('jobId'));
-    this.inviteinfo.userName =   userData.FirstName;
+    this.inviteinfo.jobId = this.data.jobId;
+    this.inviteinfo.userName =   this.customer.FirstName;
     this.inviteinfo.fullName = 'Arytic User';
     this.inviteinfo.statusId = 0;
     this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
-    this.inviteinfo.CandFullName =  userData.FirstName;
-    this.inviteinfo.CustFullName = userData.FirstName;
+    this.inviteinfo.CandFullName = 'New User';
+    this.inviteinfo.CustFullName = this.customer.FirstName;
     this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+JSON.parse(sessionStorage.getItem('jobId'));
+    this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+ this.data.jobId;
     if(this.inviteinfo.ToEmailId == "")
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
