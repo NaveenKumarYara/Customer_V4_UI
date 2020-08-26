@@ -61,8 +61,7 @@ body: string;
     this.conversation.Subject = this.subject;
     this.conversation.Body = this.body;
     // if(){
-
-      if(this.data.profileUpload === false)
+      if(this.data.profileUpload === false || this.data.profileUpload === undefined)
       {
           if(this.UserRoleId === 5 && this.UserId >0)
           {
