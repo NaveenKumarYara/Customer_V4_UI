@@ -139,12 +139,17 @@ export class backgrounddialogComponent {
   {
     if(val == 1)
     {
+      this.ShowVer = true;
       this.showone = false;
     }
-    else
+    if(val == 2)
     {
       this.showone = true;
-     
+    }
+    if(val == 3)
+    {
+      this.showone = true;
+      this.toastr.info('Your request is In-progress','Thank You');
     }
 
   }
@@ -204,6 +209,7 @@ export class backgrounddialogComponent {
    this.bgverification.CustomerUserId = this.data.CuserId;
    if(val == 1)
    {
+     this.ShowVer = false;
      this.showRes = false;
    }
    if(val == 3)
@@ -211,7 +217,7 @@ export class backgrounddialogComponent {
       this.showRes = true; 
       this.SaveBgVerIfication();
    }
-   else
+   if(val == 2)
    {
      if(this.bgverification.DrugTest == null || this.bgverification.DrugOptionSelected==0)
      {

@@ -622,17 +622,18 @@
   <ng-container *ngIf="ShowVer">
   <div class="modal-footer bg-footer">
     <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
-    <button class="btn btn-default pull-left" (click)="SaveBgG(1)">Back</button>
-    <button class="btn btn-filled pull-right" (click)="SaveBgG(2)">Proceed</button>
+    <button class="btn btn-default pull-left" *ngIf="showone"(click)="SaveBgG(1)">Back</button>
+    <button class="btn btn-filled pull-right"  *ngIf="!showone" (click)="SaveBgG(2)">Next</button>
+    <button class="btn btn-filled pull-right" *ngIf="showone" (click)="SaveBgG(3)">Proceed</button>
   </div>
   </ng-container>
 
   <ng-container *ngIf="!ShowVer">
     <div class="modal-footer bg-footer">
       <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
-      <button class="btn btn-default pull-left" (click)="SaveBg(1)">Back</button>
-      <button class="btn btn-default pull-left" (click)="SaveBg(2)">Next</button>
-      <button class="btn btn-filled pull-right" (click)="SaveBg(3)">Proceed</button>
+      <button class="btn btn-default pull-left" *ngIf="showRes" (click)="SaveBg(1)">Back</button>
+      <button class="btn btn-filled pull-right"  *ngIf="!showRes" (click)="SaveBg(2)">Next</button>
+      <button class="btn btn-filled pull-right"  *ngIf="showRes"  (click)="SaveBg(3)">Proceed</button>
     </div>
     </ng-container>
 </mat-dialog-content>
