@@ -221,6 +221,29 @@
 .bg-drug .drug-s .btn-default input {
     visibility: hidden;
 }
+.bg-drug .panel-body .media-right h1{
+    margin-bottom: 0px;
+}
+.drug-s ul{
+    list-style: none;
+    padding-left:0px;
+    padding-top:5px;
+}
+.drug-s ul li {
+    display: inline-grid;
+}
+.drug-s ul li input {
+    visibility: hidden;
+    position: absolute;
+}
+.drug-s ul li label {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 11px!important;
+}
+.drug-s ul li input:checked + label {
+    border: 2px solid #157751;
+}
 
 .bg-drug .drug-s .btn-default:active, .bg-drug .drug-s .btn-default:focus {
     border: 1px solid #157751;

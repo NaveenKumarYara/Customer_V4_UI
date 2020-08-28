@@ -343,41 +343,34 @@
                     <div class="media-body">
                       <h4 class="media-heading">{{bg.Code}} *</h4>
                       <div class="btn-group drug-s">
-                        <label class="btn btn-default">
-                          <input type="radio" [value]="1" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off"> 4 - Panel
-                          Drug Test
-                          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                          <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" [value]="2" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off"> 5 - Panel
-                          Drug Test
-                          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                          <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" [value]="3" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off"> 9 - Panel
-                          Drug Test
-                          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                          <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" [value]="4" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off"> 10 - Panel
-                          Drug Test
-                          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                          <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" [value]="5" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">8 - Panel +
-                          MQL Drug Test
-                          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
-                          <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
-                        </label>
+                        <ul>
+                          <li>
+                            <input type="radio" [value]="1" name="options" (change)="SaveBg(1)"
+                            [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off">
+                              <label for='option1'>4 - Panel Drug Test</label>
+                          </li>
+                          <li>
+                            <input type="radio" [value]="2" name="options" (change)="SaveBg(1)"
+                            [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">
+                              <label for='option2'>5 - Panel Drug Test</label>
+                          </li>
+                          <li>
+                            <input type="radio" [value]="3" name="options" (change)="SaveBg(1)"
+                            [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off">
+                              <label for='option3'>9 - Panel Drug Test</label>
+                          </li>
+                          <li>
+                            <input type="radio" [value]="4" name="options" (change)="SaveBg(1)"
+                            [(ngModel)]="bgverification.DrugOptionSelected" id="option4" autocomplete="off">
+                            <label for='option4'>10 - Panel Drug Test</label>
+                          </li>
+                          <li>
+                            <input type="radio" [value]="5" name="options" (change)="SaveBg(1)"
+                            [(ngModel)]="bgverification.DrugOptionSelected" id="option5" autocomplete="off">
+                            <label for='option5'> 8 - Panel +  MQL Drug Test</label>
+                          </li>
+                      </ul>
+                  
                       </div>
                     </div>
                     <div class="media-right">
