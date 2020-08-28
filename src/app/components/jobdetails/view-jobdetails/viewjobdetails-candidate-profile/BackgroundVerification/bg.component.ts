@@ -110,6 +110,7 @@ export class backgrounddialogComponent {
     this.bgverification.ToEmailID = this.customer.Email;
     this.bgverification.Admin = this.customer.Email;
     this.bgverification.Candidate = this.data.Name;
+    this.bgverification.CustUserName = this.customer.FirstName;
     this.bgverification.Comment = 'Requested Drug Test and Few Background Verification Process...' ;
     return this._service.PostService(this.bgverification, 'EmailAPI/api/BackGroundVerification')
     .subscribe(data => {
