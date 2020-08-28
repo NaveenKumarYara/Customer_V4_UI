@@ -90,10 +90,10 @@ export class backgrounddialogComponent {
             this.bgverification.Education = this.Verification.Education;
             this.bgverification.Employment = this.Verification.Employment;
             this.subtotal = this.Verification.Price;
-            this.bgverification.Certification = this.bgverification.Certification;
-            this.bgverification.Reference = this.bgverification.Reference;
-            this.bgverification.CriminalOption = this.bgverification.CriminalOption;
-            this.bgverification.DrugTest = this.bgverification.DrugTest;
+            this.bgverification.Certification = this.Verification.Certification;
+            this.bgverification.Reference = this.Verification.Reference;
+            this.bgverification.CriminalOption = this.Verification.CriminalOption;
+            this.bgverification.DrugTest = this.Verification.DrugTest;
           }
           else
           {
