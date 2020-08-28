@@ -488,12 +488,12 @@
 
                     <!--BG Verification Profile-->
                      <!--With dialog-->
-                    <a href="javascript:void(0)"  *ngIf="profile?.BackGroundCheck == false"  title="Background Verified Profile"  (click)="OpenBgDialog(profile?.ProfileId,profile?.FirstName,profile?.UserId)">
+                    <a href="javascript:void(0)"  *ngIf="profile?.BackGroundCheck == false"  title="Background Verified Profile"  (click)="OpenBgDialog(profile?.ProfileId,profile?.FirstName,profile?.UserId,profile?.LastName)">
                     <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
                         alt="verfied-badge">
                   </a>
 
-                  <a href="javascript:void(0)"  *ngIf="profile?.BackGroundCheck == true"  title="Background Verified Profile"  (click)="OpenBgDialog(profile?.ProfileId,profile?.FirstName,profile?.UserId)">
+                  <a href="javascript:void(0)"  *ngIf="profile?.BackGroundCheck == true"  title="Background Verified Profile"  (click)="OpenBgDialog(profile?.ProfileId,profile?.FirstName,profile?.UserId,profile?.LastName)">
                     <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
                         alt="verfied-badge">
                   </a>

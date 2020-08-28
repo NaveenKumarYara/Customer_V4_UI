@@ -33,11 +33,13 @@ export class backgrounddialogComponent {
     val3 = 0;
     val4 = 0;
     name:any;
+    lname:any;
     customer:any;
     subtotal : string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<backgrounddialogComponent>,private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
      this.GetBG();
      this.name = this.data.Name;
+     this.lname = this.data.Lname;
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.toastr.setRootViewContainerRef(_vcr);
      this.GetDrugVerification();

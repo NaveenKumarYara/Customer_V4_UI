@@ -12,7 +12,7 @@
 
           <ng-container *ngIf="!showone">
             <div class="col-md-12 existing-heading">
-              <h4>Existing Reports of : <strong>{{name | titlecase}}</strong></h4>
+              <h4>Existing Reports of : <strong>{{name | titlecase}} {{lname | titlecase}}</strong></h4>
             </div>
 
             <div class="col-md-12">
@@ -154,7 +154,7 @@
               <div class="panel panel-default availed-panel">
                 <div class="panel-heading text-center">
                   <h3 class="panel-title">Availed Services Screen</h3>
-                  <small>Candidate Name: <strong>{{name | titlecase}}</strong></small>
+                  <small>Candidate Name: <strong>{{name | titlecase}} {{lname | titlecase}}</strong></small>
                 </div>
                 <div class="panel-body">
                   <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
@@ -504,7 +504,7 @@
               <div class="panel panel-default summary-panel">
                 <div class="panel-heading text-center">
                   <h3 class="panel-title">Summary</h3>
-                  <small>Candidate Name: <strong>{{name | titlecase}}</strong></small>
+                  <small>Candidate Name: <strong>{{name | titlecase}} {{lname | titlecase}}</strong></small>
                 </div>
                 <div class="panel-body">
                   <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
