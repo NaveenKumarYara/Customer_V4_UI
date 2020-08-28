@@ -1,5 +1,6 @@
-import { Component, Inject, Input, Output, EventEmitter,ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, Output,ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { EventEmitter } from 'events';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
@@ -20,6 +21,8 @@ export class backgrounddialogComponent {
     loading : boolean=false;
     usersList:any=[];
     Verification : BackgroundVerification;
+    @Input() jobid: number;
+    @Input() statusid: number;
     @Output() eventStat = new EventEmitter();
     bgverification = new BackgroundVerification();
     showRes : boolean = false;
@@ -118,7 +121,7 @@ export class backgrounddialogComponent {
       if(res == null || res.subscriptionId==null)
         {
        this.toastr.warning('Access denied contact admin for arytic subscription!!', 'Oops');
-       //this.dialogRef.close();
+        //this.dialogRef.close();
        //this.GetBGTestResult(); 
         }
       if(res.subscriptionId!=undefined && res.subscriptionId!=null)
@@ -135,7 +138,7 @@ export class backgrounddialogComponent {
          });
        //this.dialogRef.close();
        }
-   
+       this.eventStat.emit(null);
      
     });
   }

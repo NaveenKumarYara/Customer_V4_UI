@@ -280,6 +280,7 @@ OpenBgDialog(profileId,name,userId)
   bdialogRef.afterClosed().subscribe(result => {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
     //this.myEvent.emit(null);
+    this.myEvent.emit(null);
     console.log('hire Dialog result: ${result}');
   });
 }
