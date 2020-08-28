@@ -20,6 +20,7 @@ export class backgrounddialogComponent {
     loading : boolean=false;
     usersList:any=[];
     Verification : BackgroundVerification;
+    @Output() eventStat = new EventEmitter();
     bgverification = new BackgroundVerification();
     showRes : boolean = false;
     ShowVer : boolean = false;
@@ -29,10 +30,12 @@ export class backgrounddialogComponent {
     val3 = 0;
     val4 = 0;
     name:any;
+    customer:any;
     subtotal : string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<backgrounddialogComponent>,private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
      this.GetBG();
      this.name = this.data.Name;
+     this.customer = JSON.parse(sessionStorage.getItem('userData'));
      this.toastr.setRootViewContainerRef(_vcr);
      this.GetDrugVerification();
      this.GetBGTestResult();
@@ -100,12 +103,17 @@ export class backgrounddialogComponent {
 
   SaveBgVerIfication()
   {
-    return this._service.PostService(this.bgverification, 'IdentityAPI/api/SaveBackGroundVerification')
+    this.bgverification.FromEmail = this.customer.Email;
+    this.bgverification.ToEmailID = this.customer.Email;
+    this.bgverification.Admin = this.customer.Email;
+    this.bgverification.Candidate = this.data.Name;
+    this.bgverification.Comment = 'Requested Drug Test and Few Background Verification Process...' ;
+    return this._service.PostService(this.bgverification, 'EmailAPI/api/BackGroundVerification')
     .subscribe(data => {
       if(data >=0)
       {
       this.toastr.success('Processing Request', 'Success');
-     
+      this.eventStat.emit(null);
       this.appService.GetCustomerSubscription(this.data.CuserId).subscribe(res => {
       if(res == null || res.subscriptionId==null)
         {
@@ -247,6 +255,13 @@ export class BackgroundVerification
   Certification: boolean;
   Reference: boolean;
   Price: string;
+  ToEmailID: string;
+  FromEmail: string;
+  CustUserName: string;
+  Comment: string;
+  Admin: string;
+  Candidate: string;
+
 }
 
 export class addon
