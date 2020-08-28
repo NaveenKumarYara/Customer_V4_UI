@@ -10,7 +10,7 @@
 
         <ng-container *ngIf="ShowVer">
 
-          <ng-container *ngIf="!showone">
+          <ng-container *ngIf="showone">
             <div class="col-md-12 existing-heading">
               <h4>Existing Reports of : <strong>{{name | titlecase}} {{lname | titlecase}}</strong></h4>
             </div>
@@ -149,7 +149,7 @@
           </ng-container>
           <!-- Existing Reports Ends-->
           <!--Availed Services Screen-->
-          <ng-container *ngIf="showone">
+          <ng-container *ngIf="!showone">
             <div class="col-md-12">
               <div class="panel panel-default availed-panel">
                 <div class="panel-heading text-center">
@@ -255,7 +255,8 @@
                       </ul>
                     </div>
                     <div class="media-right">
-                      <h1>In-Progress</h1>
+                      <h1 *ngIf="bgverification.Reference == true && usersList.length===0">In-Progress</h1>
+                      <h1 class="success" *ngIf="bgverification.Reference == true && usersList.length>0">Available</h1>
                     </div>
                   </div>
 
