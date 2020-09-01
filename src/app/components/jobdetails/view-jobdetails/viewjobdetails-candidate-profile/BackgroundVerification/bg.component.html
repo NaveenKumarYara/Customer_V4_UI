@@ -346,31 +346,31 @@
                         <ul>
                           <li>
                             <input type="radio" [value]="1" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off">
-                              <label for='option1'>4 - Panel Drug Test</label>
+                              [(ngModel)]="bgverification.DrugOptionSelected" id="option1" autocomplete="off">
+                            <label for='option1'>4 - Panel Drug Test</label>
                           </li>
                           <li>
                             <input type="radio" [value]="2" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">
-                              <label for='option2'>5 - Panel Drug Test</label>
+                              [(ngModel)]="bgverification.DrugOptionSelected" id="option2" autocomplete="off">
+                            <label for='option2'>5 - Panel Drug Test</label>
                           </li>
                           <li>
                             <input type="radio" [value]="3" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off">
-                              <label for='option3'>9 - Panel Drug Test</label>
+                              [(ngModel)]="bgverification.DrugOptionSelected" id="option3" autocomplete="off">
+                            <label for='option3'>9 - Panel Drug Test</label>
                           </li>
                           <li>
                             <input type="radio" [value]="4" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option4" autocomplete="off">
+                              [(ngModel)]="bgverification.DrugOptionSelected" id="option4" autocomplete="off">
                             <label for='option4'>10 - Panel Drug Test</label>
                           </li>
                           <li>
                             <input type="radio" [value]="5" name="options" (change)="SaveBg(1)"
-                            [(ngModel)]="bgverification.DrugOptionSelected" id="option5" autocomplete="off">
-                            <label for='option5'> 8 - Panel +  MQL Drug Test</label>
+                              [(ngModel)]="bgverification.DrugOptionSelected" id="option5" autocomplete="off">
+                            <label for='option5'> 8 - Panel + MQL Drug Test</label>
                           </li>
-                      </ul>
-                  
+                        </ul>
+
                       </div>
                     </div>
                     <div class="media-right">
@@ -379,12 +379,33 @@
                   </div>
                 </div>
 
-
               </div>
-              <p *ngIf="bg.Id==2">* In Order to get Drug Screening, Criminal History Verification (County Search) need
-                to
-                be included with it.
-              </p>
+              <!--About Drug test-->
+              <div class="row" *ngIf="bg.Id==2">
+                <div class="col-md-8">
+                  <p>* In Order to get Drug Screening, Criminal History Verification (County Search) need
+                    to
+                    be included with it.
+                  </p>
+                </div>
+                <div class="col-md-4 about-drug-test">
+                  <!-- Single button -->
+                  <div class="btn-group">
+                    <a type="button" class="dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                      About Drug Tests 
+                  </a>
+                    <ul class="dropdown-menu">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <img src="../../../../../assets/images/card-icons/drug-test.png" width="490" alt="Drug-Tests">
+                    </ul>
+                  </div>
+                </div>
+              </div>
+               <!--About Drug test-->
+
               <!--Employment Verification-->
               <div class="bg-emp col-md-12 col-sm-12" *ngIf="bg.Id==3">
                 <label for="bg-emp">
@@ -622,11 +643,11 @@
   </div>
   <ng-container *ngIf="ShowVer">
 
-   <div class="modal-footer bg-footer">
-    <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
-    <button class="btn btn-default pull-left" *ngIf="showone"(click)="SaveBgG(1)">Back</button>
-    <button class="btn btn-filled pull-right"  *ngIf="!showone" (click)="SaveBgG(2)">Next</button>
-    <button class="btn btn-filled pull-right" *ngIf="showone" (click)="SaveBgG(3)">Add More</button>
+    <div class="modal-footer bg-footer">
+      <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+      <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
+      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button>
+      <button class="btn btn-filled pull-right" *ngIf="showone" (click)="SaveBgG(3)">Add More</button>
     </div>
   </ng-container>
 
@@ -634,8 +655,8 @@
     <div class="modal-footer bg-footer">
       <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
       <button class="btn btn-default pull-left" *ngIf="showRes" (click)="SaveBg(1)">Back</button>
-      <button class="btn btn-filled pull-right"  *ngIf="!showRes" (click)="SaveBg(2)">Next</button>
-      <button class="btn btn-filled pull-right"  *ngIf="showRes"  (click)="SaveBg(3)">Proceed</button>
+      <button class="btn btn-filled pull-right" *ngIf="!showRes" (click)="SaveBg(2)">Next</button>
+      <button class="btn btn-filled pull-right" *ngIf="showRes" (click)="SaveBg(3)">Proceed</button>
     </div>
   </ng-container>
 </mat-dialog-content>

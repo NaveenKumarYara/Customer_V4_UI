@@ -346,3 +346,19 @@
 .availed-panel .panel-body .media-right {
     width: 18%;
 }
+.about-drug-test{
+ padding-left:0px
+}
+.about-drug-test a{
+    font-size: 10px;
+    cursor: pointer;
+}
+.about-drug-test .dropdown-menu{
+    width: 520px;
+    right: -171px;
+    left: auto;
+}
+.about-drug-test  .fa{
+    font-size: 15px;
+    vertical-align: middle;
+}
