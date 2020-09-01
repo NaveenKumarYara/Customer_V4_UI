@@ -161,8 +161,7 @@ export class backgrounddialogComponent {
     }
     if(val == 3)
     {
-      this.showone = true;
-      this.toastr.info('Your request is In-progress','Thank You');
+      this.ShowVer = false;
     }
 
   }

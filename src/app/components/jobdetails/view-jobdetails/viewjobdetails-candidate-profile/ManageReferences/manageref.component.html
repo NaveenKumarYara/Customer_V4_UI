@@ -16,13 +16,13 @@
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
-            <div class="col-md-3 text-center" (click)="sort('user.FullName')" mat-sort-header="FullName">
+            <div class="col-md-3 text-center">
                 <h5>Professional</h5>
             </div>
-            <div class="col-md-2 ref-details" (click)="sort('user.KnownOrWorkedAt')" mat-sort-header="Referrer Details">
+            <div class="col-md-2 ref-details">
                 <h5>Referrer Details</h5>
             </div>
-            <div class="col-md-2" (click)="sort('user.ReferenceStatus')" mat-sort-header="fat">
+            <div class="col-md-2">
                 <h5>Status</h5>
             </div>
             <div class="col-md-2" (click)="sort('user.CreatedOn')" mat-sort-header="carbs">
