@@ -336,10 +336,11 @@ export class UploadProfilesComponent implements OnInit {
           var doc = data.DocId.toString();
           if (docid == doc) {
             a.set("SendMail", false.toString());
-            a.set("Upload", true.toString());
-            this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
+            a.set("Upload", true.toString()); 
+            this.spinner.hide();          
+            this.jobdetailsservice.byteStoragePrivate(a, 'ProfileApi/api/ParseResume').subscribe(data => { // 'api/JobDescriptionParse'
               if (data) {
-                this.spinner.hide();
+                //this.spinner.hide();
                 // alert("asdasdasdas");
                 this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
               }

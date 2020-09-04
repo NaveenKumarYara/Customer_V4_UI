@@ -24,6 +24,8 @@ import {ProfileLinks} from './models/ProfileLinks';
 import {ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SortbyInProfiles } from './models/SortbyInProfiles';
+import {Router,ActivatedRoute,NavigationEnd} from "@angular/router";
+import { NgxSpinnerService } from 'ngx-spinner';
 import {WishlistCount,LegendList} from './models/WishlistCount';
 import { SettingsService } from '../../../settings/settings.service';
 
@@ -31,7 +33,7 @@ import { SettingsService } from '../../../settings/settings.service';
 export class JobdetailsService {
   // baseUrll = 'http://api.tenendus.com:1090/';
   baseUrll1 = 'http://localhost:61297/';
-  constructor(private _http: Http, private http: HttpClient, private settingsService: SettingsService) {
+  constructor(private _http: Http, private route: ActivatedRoute, private router: Router,private spinner: NgxSpinnerService,private http: HttpClient, private settingsService: SettingsService) {
   }
 
   private detailsAdvanceSearch = new BehaviorSubject(false);
@@ -260,8 +262,39 @@ export class JobdetailsService {
       );
   }
   
+  reload() {
+    window.location.reload();
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+   }
 
+   this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+         // trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+         // if you need to scroll back to top, here is the right place
+         window.scrollTo(0, 0);
+      }
+  });
+  }
   
+  byteStoragePrivate(body, url: string): Observable<any[]> {
+    const headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('x-access-token', sessionStorage.getItem('token'));
+    return this._http.post(url
+      .replace(
+        new RegExp("ProfileAPI", "gi"),
+        this.settingsService.settings.ProfilebaseUrl
+      ), body, { headers: headers })
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        this.reload();
+        return Observable.throw(error.json());
+      });
+  }
+
   byteStorage(body, url: string): Observable<any[]> {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
