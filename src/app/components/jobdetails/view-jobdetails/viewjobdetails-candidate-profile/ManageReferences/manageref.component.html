@@ -69,7 +69,8 @@
                         </div>
                         <div class="col-md-2">
                             <h5>{{user?.KnownOrWorkedAt}}</h5>
-                            <h6>Referrer Role</h6>
+                            <h6>{{user?.ReferRelation || 'N/A'}}</h6>
+                            <!-- <h6>Referrer Role</h6> -->
                         </div>    
                         <div class="col-md-2">
                             <h5>{{user?.ReferenceStatus}}</h5>
