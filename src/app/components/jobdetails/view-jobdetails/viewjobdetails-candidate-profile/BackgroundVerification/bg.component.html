@@ -10,143 +10,7 @@
 
         <ng-container *ngIf="ShowVer">
 
-          <ng-container *ngIf="showone">
-            <div class="col-md-12 existing-heading">
-              <h4>Existing Reports of : <strong>{{name | titlecase}} {{lname | titlecase}}</strong></h4>
-            </div>
-
-            <div class="col-md-12">
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.CriminalOptionSelected == 1">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i class="fa fa-gavel" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Criminal Record Checks</h4>
-                  </div>
-                  <div class="col-md-3">
-                    <h5 *ngIf="bgverification.CriminalOptionSelected == 1">In-Progress</h5>
-                  </div>
-                  <!-- <div class="col-md-4">
-                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
-                  </div> -->
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.CriminalOptionSelected == 2">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i class="fa fa-gavel" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Civil Court Checks</h4>
-                  </div>
-                  <div class="col-md-3">
-                    <h5 *ngIf="bgverification.CriminalOptionSelected == 2">In-Progress</h5>
-                  </div>
-                  <!-- <div class="col-md-4">
-                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
-                  </div> -->
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.DrugOptionSelected>0">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <img src="../../../../../assets/images/card-icons/drug.svg" width="35"
-                      alt="Background-Verification">
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Drug Screening</h4>
-                  </div>
-                  <div class="col-md-2">
-                    <h5 *ngIf="bgverification.DrugOptionSelected>0">In-Progress</h5>
-                    <!-- <h5 class="failed">Failed</h5> -->
-                  </div>
-                  <div class="col-md-2 text-center download-report">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    <a href="javascript:void(0)"> Download Report</a>
-                  </div>
-                  <!-- <div class="col-md-3">
-                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
-                  </div> -->
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.Employment == true">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i class="fa fa-briefcase" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Prior Employment Verification</h4>
-                  </div>
-                  <div class="col-md-2">
-                    <h5 *ngIf="bgverification.Employment == true">In-Progress</h5>
-                    <!-- <h5 class="success">Success</h5> -->
-                  </div>
-                  <div class="col-md-2 text-center download-report">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    <a href="javascript:void(0)"> Download Report</a>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.Education == true">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i aria-hidden="true" class="fa fa-graduation-cap"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Education Verification</h4>
-                  </div>
-                  <div class="col-md-2">
-                    <h5 *ngIf="bgverification.Education == true">In-Progress</h5>
-                    <!-- <h5 class="success">Success</h5> -->
-                  </div>
-                  <div class="col-md-2 text-center download-report">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    <a href="javascript:void(0)"> Download Report</a>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.Certification == true">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i aria-hidden="true" class="fa fa-certificate"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Certification Verification</h4>
-                  </div>
-                  <div class="col-md-2">
-                    <h5 *ngIf="bgverification.Certification == true">In-Progress</h5>
-                    <!-- <h5 class="failed">Failed</h5> -->
-                  </div>
-                  <div class="col-md-2 text-center download-report">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    <a href="javascript:void(0)"> Download Report</a>
-                  </div>
-                  <!-- <div class="col-md-3">
-                    <h5 class="pull-right">Initiate New Screening <input type="checkbox" (change)="GetValues(1)"></h5>
-                  </div> -->
-                </div>
-              </div>
-              <div class="panel panel-default existing-panel" *ngIf="bgverification.Reference == true">
-                <div class="panel-body row">
-                  <div class="col-md-1">
-                    <i aria-hidden="true" class="fa fa-handshake-o"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <h4>Reference Check</h4>
-                  </div>
-                  <div class="col-md-2">
-                    <h5 *ngIf="bgverification.Reference == true && usersList.length===0">In-Progress</h5>
-                    <h5 class="success" *ngIf="bgverification.Reference == true && usersList.length>0">Available</h5>
-                  </div>
-                  <div class="col-md-2 text-center download-report">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    <a href="javascript:void(0)"> View References</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-container>
+   
           <!-- Existing Reports Ends-->
           <!--Availed Services Screen-->
           <ng-container *ngIf="!showone">
@@ -646,9 +510,9 @@
 
     <div class="modal-footer bg-footer">
       <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
-      <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
-      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button>
-      <button class="btn btn-filled pull-right" *ngIf="showone" (click)="SaveBgG(3)">Add More</button>
+      <!-- <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
+      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button> -->
+      <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(3)">Proceed</button>
     </div>
   </ng-container>
 

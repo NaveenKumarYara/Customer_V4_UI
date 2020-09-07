@@ -150,15 +150,15 @@ export class backgrounddialogComponent {
 
   SaveBgG(val)
   {
-    if(val == 1)
-    {
-      this.ShowVer = true;
-      this.showone = false;
-    }
-    if(val == 2)
-    {
-      this.showone = true;
-    }
+    // if(val == 1)
+    // {
+    //   this.ShowVer = true;
+    //   this.showone = false;
+    // }
+    // if(val == 2)
+    // {
+    //   this.showone = true;
+    // }
     if(val == 3)
     {
       this.ShowVer = false;
