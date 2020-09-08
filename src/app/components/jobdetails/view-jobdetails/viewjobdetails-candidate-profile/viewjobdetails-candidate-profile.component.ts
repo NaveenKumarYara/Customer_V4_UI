@@ -227,13 +227,13 @@ OpenAchiveDialog(profileId)
 
 OpenReferDialog(profileId,userId,profile)
 {
-  this.Rloading = true;
-  this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
-  .subscribe(
-    data => {
-      this.Rloading = false;
-        if(data != 'No records found')
-        {
+  // this.Rloading = true;
+  // this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
+  // .subscribe(
+  //   data => {
+  //     this.Rloading = false;
+        // if(data != 'No records found')
+        // {
         const RdialogRef = this.dialog.open(ReferencedialogComponent,
           {
             width: '888px',
@@ -249,17 +249,22 @@ OpenReferDialog(profileId,userId,profile)
         );
         RdialogRef.afterClosed().subscribe(result => {
           // this.jobDetails.populateJobsStaticInfo(this.jobid);
-          //this.myEvent.emit(null);
+          this.myEvent.emit(null);
           console.log('hire Dialog result: ${result}');
         });
-      }
-      else
-      {
-        this.RequestReference(profile);
-      }
-    });
+     // }
+    //   else
+    //   {
+     //this.RequestReference(profile);
+    //   }
+    // });
  
   
+}
+
+OpenReferDialogCheck(profileId,userId,profile)
+{
+  this.RequestReference(profile);
 }
 
 OpenBgDialog(profileId,name,userId,lName)
