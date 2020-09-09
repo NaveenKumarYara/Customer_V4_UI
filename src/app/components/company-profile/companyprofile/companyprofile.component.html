@@ -39,7 +39,17 @@
       <!--#Culture Test Code-->
       <div class="row">
         <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo"></app-basicinfo>
+       
       </div>
+      <div class="row">
+        <label class="switch">
+          <input type="checkbox" #chkEnable>
+          <span class="slider round"></span>
+        </label>
+        <strong>Would you like to create your custom domain.</strong> 
+        <input type="url" class="roundedCorner" value="https://{{companyprofile?.CompanyName}}.arytic.com" [disabled]="!chkEnable.checked" readonly />
+      </div>
+
       <div class="row">
         <app-otherinfo [companyprofileotherinfo]="companyprofileotherinfo"></app-otherinfo>
       </div>
