@@ -17,7 +17,9 @@
         <div class="clearfix">&nbsp;</div>
         <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
             <div class="col-md-3 text-center">
-                <h5>Professional</h5>
+                <h5 *ngIf="checkId===2">Professional</h5>
+                <h5 *ngIf="checkId===1">Personal</h5>
+                <h5 *ngIf="checkId===0">All</h5>
             </div>
             <div class="col-md-2 ref-details">
                 <h5>Referrer Details</h5>
@@ -72,9 +74,18 @@
                             <h6>{{user?.ReferRelation || 'N/A'}}</h6>
                             <!-- <h6>Referrer Role</h6> -->
                         </div>    
-                        <div class="col-md-2">
-                            <h5>{{user?.ReferenceStatus}}</h5>
-                        </div>  
+                        <div class="col-md-2"
+                        *ngIf="((user?.CreatedOn | date : 'longDate') === (CurrentTime | date : 'longDate')) || user?.ReferenceStatus!=='Requested'">
+                        <h5>{{user?.ReferenceStatus}}</h5>
+                    </div>
+                    <div class="col-md-2"
+                        *ngIf="(user?.CreatedOn | date : 'longDate') < (CurrentTime | date : 'longDate') && (user?.CreatedOn | date : 'longDate') > (dateAgo | date : 'longDate') && user?.ReferenceStatus==='Requested'">
+                        <h5>Pending</h5>
+                    </div>
+                    <div class="col-md-2"
+                        *ngIf="(user?.CreatedOn | date : 'longDate') <= (dateAgo| date : 'longDate') && user?.ReferenceStatus=='Requested'">
+                        <h5>Reference Expired</h5>
+                    </div>
                         <div class="col-md-3">
                             <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
                         </div>

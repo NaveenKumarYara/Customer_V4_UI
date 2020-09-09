@@ -1,4 +1,4 @@
-import { Component, Inject, Input, Output, EventEmitter,ViewChild } from '@angular/core';
+import { Component, Inject, Input, Output, EventEmitter,ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef,MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
@@ -33,10 +33,14 @@ export class ReferencedialogComponent {
   addon = new addon();
   valueSal: number;
   TypeId: any;
+  checkId:any=0;
   sortingName: string;
   isDesc: boolean;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private changeDetector: ChangeDetectorRef, private dialog: MatDialog, private _snackBar: MatSnackBar,private _service: ApiService, private appService: AppService, private jobdetailsservice: JobdetailsService,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.CurrentTime = new Date();
+    this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
+    this.dateAgo = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 3));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     
     this.GetQuestionnariePersonsList(0);
@@ -47,7 +51,9 @@ export class ReferencedialogComponent {
   lowValue:number = 0;
   highValue:number = 10; 
   CommentProfile:any;
-
+  CurrentTime: any;
+  dateAgo: Date = new Date();
+  dateYesterday: Date = new Date();
   pageSizeOptions:any;
 
   usersList: GetQuestionnarieAssignement[] = [];
@@ -133,7 +139,7 @@ export class ReferencedialogComponent {
 }
 
 getPaginatorData(event){
-  debugger
+  this.changeDetector.detectChanges();
   console.log(event);
   if(event.pageIndex === this.pageIndex + 1){
      this.lowValue = this.lowValue + this.pageSize;
@@ -174,10 +180,12 @@ getPaginatorData(event){
 
 
   GetQuestionnariePersonsList(Id) {
+    this.checkId=Id;
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {
-            this.usersList = data;    
+            this.usersList = data; 
+         this.paginator.previousPage();
          this.paginator.pageIndex = 0;
         });
   }
