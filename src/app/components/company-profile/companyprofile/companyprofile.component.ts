@@ -43,6 +43,7 @@ export class CompanyprofileComponent implements OnInit {
     getCustomerDepartments: GetCustomerDepartments[];
     getCustomerClients:GetCustomerClients[];
     companyprofile: CompanyProfile;
+    CustomDetails : GetCustomDomain;
     companyprofileotherinfo: CompanyProfileOtherIno;
     companyprofilelocationinfo: CustomerLocationInfo[];
     getaboutcompany: GetAboutCompany[];
@@ -97,13 +98,14 @@ export class CompanyprofileComponent implements OnInit {
     displayQuestion: any[] = [];
   
     filterquestionList: any[] = [];
-  
+    cdomain = new CustomDomain();
     usersList: GetQuestionnarieAssignement[] = [];
     storequestionResponse: QuestionnaireResponses[] = [];
     questionResponse: QuestionnaireResponses[] = [];
     userResponse: UserResponse;
     PersonalityResponse: UserResponse;
     CulturalResponse: UserResponse;
+    ShowDomain:boolean=false;
     questionRes: QueResponse = new QueResponse();
     listOfScore: number[] = [];
     listOfPercentage: ResponsePer[] = [];
@@ -146,9 +148,11 @@ export class CompanyprofileComponent implements OnInit {
     private _vcr: ViewContainerRef,private route: ActivatedRoute,private _service: ApiService, private appService: AppService, private dialog: MatDialog, 
       private router: Router, private companyprofileservice: CompanyProfileService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        debugger
         this.customerId =this.customer.CustomerId;
         this.userId=this.customer.UserId;
-        this.toastr.setRootViewContainerRef(_vcr);       
+        this.toastr.setRootViewContainerRef(_vcr);  
+
       }
 
     populateCompanyProfile(customerId) {
@@ -232,11 +236,29 @@ export class CompanyprofileComponent implements OnInit {
     this.getCustomerDepartments = res;
    });
    }
+
+   GetCustomDomain()
+   {
+    this._service.GetService('IdentityAPI/api/GetCustomDomainDetails?email=',this.customer.Email).subscribe(data => {
+      if(data!=null)
+      {
+        this.CustomDetails = data;
+        this.ShowDomain = true;
+      }
+      else
+      {
+        this.ShowDomain = false;
+      }
+      
+    })
+   }
+
    getcandidateview()
    {
      this.router.navigateByUrl('app-candidateview')
    }
     ngOnInit() {
+        this.GetCustomDomain();
         this.populateCompanyProfile(this.customerId);
         this.populateCompanyProfileOtherInfo(this.customerId);
         this.populateCompanyProfileLocationInfo(this.customerId);
@@ -347,6 +369,27 @@ export class CompanyprofileComponent implements OnInit {
           }, 3000);
         });
     }
+  }
+
+
+SaveCustomDomain()
+{
+this.cdomain.CustomerId = this.customerId;
+if(this.cdomain.IsDomain === true)
+{
+  this.cdomain.DomainUrl = 'https://' + this.companyprofile.CompanyName + '.arytic.com'
+}
+debugger
+this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDomain')
+.subscribe(data => {
+  if(data==0)
+  {
+  this.GetCustomDomain();
+  }
+},
+
+  error => console.log(error));
+
   }
 
   // getProgressBar Updated Value
@@ -1170,6 +1213,25 @@ export class ResponseData {
   mail: string = '';
   type: string = '';
 
+}
+
+export class CustomDomain
+{
+  
+    public CustomerId: number;
+    public IsDomain: boolean;
+    public DomainUrl: string;
+  
+}
+
+export class GetCustomDomain
+{
+    CompanyName: string;
+    CustomerId: number;
+    ContactEmail: string;
+    CustomDomain: boolean;
+    CustomDomainUrl: string;
+  
 }
 
 export class CulturalQuestionRank {
