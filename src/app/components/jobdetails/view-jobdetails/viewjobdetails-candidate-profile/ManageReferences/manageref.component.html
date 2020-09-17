@@ -64,7 +64,7 @@
                 <mat-expansion-panel *ngFor="let user of usersList | 
                 slice: lowValue : highValue | orderBy:sortingName:isDesc " [disabled]="true"
                 #mep="matExpansionPanel">
-                    <mat-expansion-panel-header>
+                    <mat-expansion-panel-header *ngIf="user?.IsPublish === true">
                         <div class="col-md-3">
                             <h3>{{user?.FullName}}</h3>
                             <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
@@ -98,7 +98,7 @@
                             <small>Download Report</small>
                         </div> -->
                     </mat-expansion-panel-header>
-                    <div class="container">
+                    <div class="container" *ngIf="user?.IsPublish === true">
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>More Details:</h5>
@@ -170,7 +170,7 @@
         <div class="col-md-2 close-btn">
             <button mat-button mat-dialog-close class="btn btn-default pull-left">Close</button>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10" *ngIf="usersList.length>9">
        <!--Static Paginator implementation 31-07-2020-->
         <mat-paginator #paginator [length]="usersList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="getPaginatorData($event)">
