@@ -240,9 +240,9 @@ export class CompanyprofileComponent implements OnInit {
    GetCustomDomain()
    {
     this._service.GetService('IdentityAPI/api/GetCustomDomainDetails?email=',this.customer.Email).subscribe(data => {
-      if(data!=null)
-      {
-        this.CustomDetails = data;
+      this.CustomDetails = data;
+      if(data.CustomDomain === true)
+      {     
         this.ShowDomain = true;
       }
       else
