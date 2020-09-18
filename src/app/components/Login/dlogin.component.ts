@@ -120,7 +120,7 @@ export class dLoginComponent {
                 this.loginform.reset();
               } 
               else {
-              if(this.currentURL.toString() != this.DomainUrl)
+              if(data.CustomDomain != true)
               { 
                        
                 this.password = $("#password").val();
@@ -181,7 +181,7 @@ export class dLoginComponent {
               {
                 if(this.currentURL.toString() === this.DomainUrl)
                 {
-                  if(data.Email.indexOf('Esolvit'))
+                  if(data.Email.indexOf('esolvit'))
                   {
                     debugger
                     this.password = $("#password").val();
