@@ -288,12 +288,12 @@ export class dLoginComponent {
               }
                  
               }
-              
+
               if(data.CustomDomain != true && this.currentURL.includes("esolvit"))
-              { 
-                debugger             
-                this.toastr.error('Invalid Authentication try to login from Arytic!', 'Oops!');
+              {             
+                this.toastr.error('Invalid Authentication please try to login from Arytic!', 'Oops!');
                 setTimeout(() => {
+                  this.loading = false;
                     this.toastr.dismissToast;
                 }, 3000);
                  
