@@ -120,9 +120,121 @@ export class dLoginComponent {
                 this.loginform.reset();
               } 
               else {
-              if(data.CustomDomain != true)
+              if(data.CustomDomain != true && !this.currentURL.includes("esolvit"))
+              {  
+                debugger   
+                this.password = $("#password").val();
+                sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
+                sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
+                sessionStorage.setItem('userData', JSON.stringify(data));
+                this.customerId = data.CustomerId;
+                this.userId =data.UserId; 
+                if(this.preId !=null)
+                {    
+                if(this.cid==this.customerId)
+                { 
+                
+                this.router.navigateByUrl('app-view-jobdetails');
+                const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                  {
+                    width: '750',
+                    position: {right : '0px'},
+                    height : '750px',
+                    data: {
+                      animal: 'panda'
+                    }
+                  }
+                );
+                chatboxdialogRef.afterClosed().subscribe(result => {
+                  console.log('Chatbox Dialog result: ${result}');
+                });
+              }
+              else{
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                //this.router.navigate(['/app-Getcandidateprofile']);
+              }
+              if(this.JobId !=null)
+              {    
+                if(this.CId==this.customerId)
+                { 
+                sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
+                this.router.navigateByUrl('app-view-jobdetails');
+              }
+              else {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                //this.router.navigate(['/app-Getcandidateprofile']);
+              }
+              else if(this.preId ==null || this.preId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+              else if(this.JobId ==null || this.JobId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                 
+              }  
+              if(data.CustomDomain === true && !this.currentURL.includes("esolvit"))
+              {  
+                debugger   
+                this.password = $("#password").val();
+                sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
+                sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
+                sessionStorage.setItem('userData', JSON.stringify(data));
+                this.customerId = data.CustomerId;
+                this.userId =data.UserId; 
+                if(this.preId !=null)
+                {    
+                if(this.cid==this.customerId)
+                { 
+                
+                this.router.navigateByUrl('app-view-jobdetails');
+                const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
+                  {
+                    width: '750',
+                    position: {right : '0px'},
+                    height : '750px',
+                    data: {
+                      animal: 'panda'
+                    }
+                  }
+                );
+                chatboxdialogRef.afterClosed().subscribe(result => {
+                  console.log('Chatbox Dialog result: ${result}');
+                });
+              }
+              else{
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                //this.router.navigate(['/app-Getcandidateprofile']);
+              }
+              if(this.JobId !=null)
+              {    
+                if(this.CId==this.customerId)
+                { 
+                sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
+                this.router.navigateByUrl('app-view-jobdetails');
+              }
+              else {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                //this.router.navigate(['/app-Getcandidateprofile']);
+              }
+              else if(this.preId ==null || this.preId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+              else if(this.JobId ==null || this.JobId == undefined)
+              {
+                this.router.navigateByUrl('app-dashboardview');
+              }
+                 
+              }  
+              if(data.CustomDomain === true && this.currentURL.includes("esolvit"))
               { 
-                       
+                debugger    
                 this.password = $("#password").val();
                 sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
                 sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -176,76 +288,16 @@ export class dLoginComponent {
               }
                  
               }
-
-              else
-              {
-                if(this.currentURL.toString() === this.DomainUrl)
-                {
-                  if(data.Email.indexOf('esolvit'))
-                  {
-                    debugger
-                    this.password = $("#password").val();
-                    sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
-                    sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
-                    sessionStorage.setItem('userData', JSON.stringify(data));
-                    this.customerId = data.CustomerId;
-                    this.userId =data.UserId; 
-                    if(this.preId !=null)
-                    {    
-                    if(this.cid==this.customerId)
-                    { 
-                    
-                    this.router.navigateByUrl('app-view-jobdetails');
-                    const chatboxdialogRef = this.dialog.open(GetCandidateprofileComponent,
-                      {
-                        width: '750',
-                        position: {right : '0px'},
-                        height : '750px',
-                        data: {
-                          animal: 'panda'
-                        }
-                      }
-                    );
-                    chatboxdialogRef.afterClosed().subscribe(result => {
-                      console.log('Chatbox Dialog result: ${result}');
-                    });
-                  }
-                  else{
-                    this.router.navigateByUrl('app-dashboardview');
-                  }
-                    //this.router.navigate(['/app-Getcandidateprofile']);
-                  }
-                  if(this.JobId !=null)
-                  {    
-                    if(this.CId==this.customerId)
-                    { 
-                    sessionStorage.setItem('jobId', JSON.stringify(this.JobId));
-                    this.router.navigateByUrl('app-view-jobdetails');
-                  }
-                  else {
-                    this.router.navigateByUrl('app-dashboardview');
-                  }
-                    //this.router.navigate(['/app-Getcandidateprofile']);
-                  }
-                  else if(this.preId ==null || this.preId == undefined)
-                  {
-                    this.router.navigateByUrl('app-dashboardview');
-                  }
-                  else if(this.JobId ==null || this.JobId == undefined)
-                  {
-                    this.router.navigateByUrl('app-dashboardview');
-                  }
-                  }
-                  else
-                  {
-                    this.toastr.error('Invalid Authentication try to login from Arytic!', 'Oops!');
-                    setTimeout(() => {
-                        this.toastr.dismissToast;
-                    }, 3000);
-                  }
-                  }
-            
+              if(data.CustomDomain != true && this.currentURL.includes("esolvit"))
+              { 
+                debugger             
+                this.toastr.error('Invalid Authentication try to login from Arytic!', 'Oops!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
+                 
               }
+              
             }
                 },
       
