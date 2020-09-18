@@ -12,8 +12,14 @@
     padding-left: 2.5rem;
     border-bottom: 1px solid #e5e5e5;
 }
+.sort-labels .ref-type{
+    width: 22%;
+ }
 .sort-labels .ref-details{
-padding-left:5px;
+width: 22%;
+}
+.sort-labels .ref-status{
+    width: 14.5%;
 }
 .sort-labels h5{
     color: #9EABC0;

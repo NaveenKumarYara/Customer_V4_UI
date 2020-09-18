@@ -16,7 +16,7 @@
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 ref-type">
                 <h5 *ngIf="checkId===2">Professional</h5>
                 <h5 *ngIf="checkId===1">Personal</h5>
                 <h5 *ngIf="checkId===0">All</h5>
@@ -24,7 +24,7 @@
             <div class="col-md-2 ref-details">
                 <h5>Referrer Details</h5>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 ref-status">
                 <h5>Status</h5>
             </div>
             <div class="col-md-2" (click)="sort('user.CreatedOn')" mat-sort-header="carbs">
@@ -69,7 +69,7 @@
                             <h3>{{user?.FullName | titlecase}}</h3>
                             <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <h5>{{user?.KnownOrWorkedAt}}</h5>
                             <h6>{{user?.ReferRelation || 'N/A'}}</h6>
                             <!-- <h6>Referrer Role</h6> -->
