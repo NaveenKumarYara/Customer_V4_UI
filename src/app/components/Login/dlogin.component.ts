@@ -179,10 +179,11 @@ export class dLoginComponent {
 
               else
               {
-                if(this.currentURL.toString() === this.DomainUrl && data.CustomDomain === true)
+                if(this.currentURL.toString() === this.DomainUrl)
                 {
                   if(data.Email.indexOf('Esolvit'))
                   {
+                    debugger
                     this.password = $("#password").val();
                     sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
                     sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
