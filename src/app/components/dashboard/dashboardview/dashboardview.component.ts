@@ -31,6 +31,7 @@ export class DashboardviewComponent implements OnInit {
     dashboardstatistics: DashboardStatistics;
     applicantStatistics: ApplicantStatistics;
     jobLoader : boolean;
+    daysRemaining:any;
     bill:billEstimates; 
     constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -69,7 +70,10 @@ export class DashboardviewComponent implements OnInit {
         this.sdetails = res;
         let date = new Date();  
         let val = new Date(date.setDate(date.getDate()));
-        if(new Date(this.sdetails.nextBillingAt) < val)
+        var diff = Math.abs(new Date(this.sdetails.nextBillingAt) .getTime() - new Date(date.setDate(date.getDate())).getTime());
+        var diffDays = Math.ceil(diff / (1000 * 3600 * 24));  
+        this.daysRemaining = diffDays;
+        if(this.daysRemaining < 0 ||  this.sdetails.nextBillingAt==null)
         {
             this.router.navigateByUrl('app-accountsettings/app-billing-and-payments');
         }

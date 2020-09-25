@@ -82,7 +82,7 @@ export class PostajobComponent implements OnInit {
   this.appService.addeddepartments = [];
   this.appService.addeddepartmentsChanged = new Subject<PjDepartments[]>();
   this.appService.ResponseList=[];
-  this.appService.noofOpenings.next(0);
+  this.appService.noofOpenings.next(2);
   this.appService.minAnnualRate.next(1000);
   this.appService.maxAnnualRate.next(10000);
   this.appService.minHourlyRate.next(20);
