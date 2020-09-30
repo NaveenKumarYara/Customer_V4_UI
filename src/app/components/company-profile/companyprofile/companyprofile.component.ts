@@ -27,6 +27,8 @@ import { GetCompanyCertification } from '../../../../models/GetCompanyCertificat
 import { GetCompanyAchievement } from '../../../../models/GetCompanyAchievement';
 import { CultureTestComponent } from '../culturetest/culturetest.component';
 import { GetQuestionnarieAssignement, GetQuestionnarieResponse } from '../../../../models/SubmitReference';
+import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-companyprofile',
@@ -52,6 +54,7 @@ export class CompanyprofileComponent implements OnInit {
     getcompanytechnology : GetCompanyTechnology[];
     getcompanylogo:GetCompanyLogo;
     getcompanywhitepaper: GetCompanyWhitePaper[];
+
     getcompanynewsinfo: GetCompanyNewsInfo[];
     getcompanypertner:GetCompanyPartner[];
     getcompanycertification: GetCompanyCertification[];
@@ -112,13 +115,21 @@ export class CompanyprofileComponent implements OnInit {
     testType: any;
     groupId: any = 0;
     Radioans = [
-      { value: 1, checked: true },
-      { value: 2, checked: false },
-      { value: 3, checked: false },
-      { value: 4, checked: false },
-      { value: 5, checked: false },
-      { value: 6, checked: false }
-    ]
+      { value: 1, checked: "true" },
+      { value: 2, checked: "true" },
+      { value: 3, checked: "true" },
+      { value: 4, checked: "true" },
+      { value: 5, checked: "true" },
+      { value: 6, checked: "true" },
+      { value: 7, checked: "true" },
+      { value: 8, checked: "true" },
+      { value: 9, checked: "true" },
+      { value: 10, checked: "true" },
+      { value: 11, checked: "true" },
+      { value: 12, checked: "true" }
+    ];
+    RankDataList: CulturalQuestionRankMapping[] = [];
+    subs = new Subscription();
     graphData: any[] = [];
     responseData: ResponseData;
     graphLabel: any[] = [];
@@ -145,8 +156,15 @@ export class CompanyprofileComponent implements OnInit {
 
 
   constructor(private toastr: ToastsManager,
-    private _vcr: ViewContainerRef,private route: ActivatedRoute,private _service: ApiService, private appService: AppService, private dialog: MatDialog, 
+    private _vcr: ViewContainerRef,
+    private route: ActivatedRoute,
+    private dragula: DragulaService,
+    private _service: ApiService, private appService: AppService, private dialog: MatDialog, 
       private router: Router, private companyprofileservice: CompanyProfileService) { 
+        
+    this.dragula.createGroup('Cultural', {});
+    this.dragula.dropModel('Cultural').subscribe((data: any) => console.log('dropModel: ', JSON.stringify(data['targetModel'], null, 2)));
+
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
         debugger
         this.customerId =this.customer.CustomerId;
@@ -184,7 +202,29 @@ export class CompanyprofileComponent implements OnInit {
             this.getcompanybenfit = res;
         });
     }
-
+drop(event: any): void {
+    console.log('drop event: ', event);// JSON.stringify(event, null, 2));
+    console.log('drop event: ', this.Radioans);
+    // this.Radioans[4].checked = "34"
+    var a = this.Radioans[1].checked.split("_");
+    console.log(' a: ', a);
+    for (var i = 0; i < this.filterquestionList.length; i++) {
+      var queId = this.filterquestionList[i].id;
+      for (var j = 0; j < this.Radioans.length; j++) {
+        if (this.Radioans[j].checked != "true") {
+          var a = this.Radioans[j].checked.split("_");
+          if (queId == Number(a[0])) {
+            var temp = this.Radioans[i].checked;
+            this.Radioans[i].checked = a[0] + "_" + a[1] + "_" + a[2];
+            this.Radioans[j].checked = temp;
+          }
+          // var index = this.filterquestionList.findIndex(x => x.id == Number(a[0]));
+          //console.log('index: ', index);
+        }
+      }
+    }
+    console.log('drop event: ', this.Radioans);
+  }
     populateCompanyTechnologies(customerId) {
         return this.companyprofileservice.GetCompanyTechnologies(customerId).subscribe(res => {
             this.getcompanytechnology = res;
@@ -303,7 +343,7 @@ export class CompanyprofileComponent implements OnInit {
     this.testType = type;
     this.questionResponse = [];
     this.storequestionResponse = [];
-    this.Radioans.forEach(a => a.checked = false);
+    this.Radioans.forEach(a => a.checked = "true");
     this.progressbarStatus = 0;
     this.progress = this.progress + 1;
     this.GetQuestionnaireResponse(this.customer.Email, type);
@@ -318,8 +358,35 @@ export class CompanyprofileComponent implements OnInit {
     this.progress = -1;
     this.filterquestionList = [];
   }
+  onChange(elements) {
+    alert("ssss");
+    console.log(elements, "elements");
+
+  }
+
+  AddRank() {
+    for (var j = 0; j < this.Radioans.length; j++) {
+      if (this.Radioans[j].checked != "true") {
+        var RankData = new CulturalQuestionRankMapping();
+        var a = this.Radioans[j].checked.split("_");
+        RankData.CId = this.customerId;
+        RankData.IsCustomer = true;
+        RankData.QuestionId = Number(a[0]);
+        RankData.Rank = j + 1;
+        this.RankDataList.push(RankData);
+        // var index = this.filterquestionList.findIndex(x => x.id == Number(a[0]));
+        //console.log('index: ', index);
+      }
+    }
+    this._service.PostService(this.RankDataList, 'QuestionAPI/api/Question/AddCulturalRank').subscribe(data => {
+      if (data)
+        console.log("Candidate Question Rank is added");
+    });
+  }
+
   saveTestResponse(el: HTMLElement, type) {
     this.calculateResponseval();
+    this.AddRank();
     //Save Personal Test Details
     this.listOfPercentage = [];
     this.queans = 0;
@@ -336,6 +403,7 @@ export class CompanyprofileComponent implements OnInit {
       this.getGraph();
     }
     if (this.questionResponse.length > 0) {
+      console.log(this.questionRes);
       this._service.PostService(this.questionRes, 'QuestionAPI/api/QuestionnaireResponses')
         .subscribe(data => {
 
@@ -962,6 +1030,7 @@ this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDom
               this.graphDataCult.push(value);
               this.graphLabelCult.push(b.groupName);
               this.graphLabelList1.push(new LegendList());
+              this.graphLabelList1[index].GroupId = (b.questionnaireGroupId);
               this.graphLabelList1[index].GroupLabel = (b.groupName);
               this.graphLabelList1[index].GroupPer = (value.toFixed(2));
             })
@@ -1018,7 +1087,7 @@ this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDom
         var ans_no_of_que = (this.CulturalResponse.questionnaireResponses.length);
         progressTileSize = 100 / this.culturalTestquestionList.length;
         if (ans_no_of_que > 0 && progressTileSize > 0) {
-          this.CulturalTestStatus = (ans_no_of_que / 6) * progressTileSize;
+          this.CulturalTestStatus = (ans_no_of_que / 12) * progressTileSize;
           console.log("CulturalTestStatus", this.CulturalTestStatus);
         }
       }
@@ -1098,53 +1167,71 @@ this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDom
           a.responseValue = (4 - value).toString();
         }
       } else {
-        var rank = new CulturalQuestionRank();
-        this.culturalPref.forEach(b => {
-          if (b.questionId == questionId) {
-            rank = b;
-          }
-        }
-        );
-        if (rank.questionId > 0) {
-          var data = 0;
-          if (rank.preferrenceNo <= 3) {
-            a.responseId = a.responseId + 1;
-            data = a.responseId * 4;
+        
+        // var rank = new CulturalQuestionRank();
+        // this.culturalPref.forEach(b => {
+        //   if (b.questionId == questionId) {
+        //     rank = b;
+        //   }
+        // }
+        // );
+        // if (rank.questionId > 0) {
+        //   var data = 0;
+        //   if (rank.preferrenceNo <= 3) {
+        //     a.responseId = a.responseId + 1;
+        //     data = a.responseId * 4;
 
-            a.responseValue = (data).toString();
-          } else if (rank.preferrenceNo >= 3 && rank.preferrenceNo <= 6) {
-            a.responseId = a.responseId + 1;
-            data = a.responseId * 3;
+        //     a.responseValue = (data).toString();
+        //   } else if (rank.preferrenceNo >= 3 && rank.preferrenceNo <= 6) {
+        //     a.responseId = a.responseId + 1;
+        //     data = a.responseId * 3;
 
-            a.responseValue = (data).toString();
-          }
-          else if (rank.preferrenceNo >= 6 && rank.preferrenceNo <= 9) {
-            a.responseId = a.responseId + 1;
-            data = a.responseId * 2;
+        //     a.responseValue = (data).toString();
+        //   }
+        //   else if (rank.preferrenceNo >= 6 && rank.preferrenceNo <= 9) {
+        //     a.responseId = a.responseId + 1;
+        //     data = a.responseId * 2;
 
-            a.responseValue = (data).toString();
-          }
-          else {
-            a.responseId = a.responseId + 1;
-            data = a.responseId * 1;
+        //     a.responseValue = (data).toString();
+        //   }
+        //   else {
+        //     a.responseId = a.responseId + 1;
+        //     data = a.responseId * 1;
 
-            a.responseValue = (data).toString();
-          }
-        }
+        //     a.responseValue = (data).toString();
+        //   }
+        // }
         //  if(rank.PreferrenceNo > 9 && rank.PreferrenceNo < 12){}
-        // a.responseId = a.responseId + 1;
+        a.responseId = a.responseId + 1;
         // a.responseValue = value.toString();
+
+        if (value == 0) {
+          a.responseValue = (9).toString();
+        } else if (value == 1) {
+          a.responseValue = (3).toString();
+        } else if (value == 2) {
+          a.responseValue = (1).toString();
+        } else if (value == 3) {
+          a.responseValue = (0).toString();
+        }
       }
     });
     this.questionResponse = this.storequestionResponse;
   }
 }
 
-
 export class LegendList {
   GroupLabel: string;
   GroupColor: string;
   GroupPer: string;
+  GroupId: number;
+}
+export class CulturalQuestionRankMapping {
+  Id: number;
+  CId: number;
+  QuestionId: number;
+  IsCustomer: boolean;
+  Rank: number;
 }
 
 export class Resume {

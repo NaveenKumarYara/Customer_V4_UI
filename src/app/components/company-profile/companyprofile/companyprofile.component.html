@@ -342,7 +342,7 @@
                     <th *ngFor="let res of response" style="text-align: center;">{{res}}</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody  dragula="Cultural" [(dragulaModel)]="filterquestionList" (dragulaModelChange)="drop($event)">
                   <tr *ngFor="let que of filterquestionList ;let j = index">
                     <th scope="row">
                       <h6>{{que.code}}</h6>
