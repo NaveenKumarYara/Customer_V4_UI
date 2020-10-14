@@ -2,7 +2,9 @@
     <div class="col-md-6">
         <div class="form-group job-title-group">
             <label for="" class="question"> What is the Job Title?</label>
-            <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput" [hideSelected]="true" placeholder="Type and Select" [loading]="jobtitleloading" [(ngModel)]="selectedTitle" [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel"
+            <ng-select class="custom-style" [items]="jobtitlelist | async" [typeahead]="jobtitleinput"
+                [hideSelected]="true" placeholder="Type and Select" [loading]="jobtitleloading"
+                [(ngModel)]="selectedTitle" [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel"
                 name="Title" (change)="updateJobTitle()">
             </ng-select>
             <!-- <ul class="data-list">
@@ -16,11 +18,22 @@
     </div>
     <div class="col-md-6">
         <div class="form-group re-group">
-            <label for="requiredExperience" class="question">Required Experience</label>  <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
-            <div class="row">
+            <label for="requiredExperience" class="question">Required Experience</label>
+            <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
+            <div class="row re-exp">
                 <!-- <div class="styled-select-box block experience-output"></div> -->
-                <div class="col-md-12">
-                    <div class="p-rel"> 
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input class="form-control" name="min-exp" placeholder="Min years" type="text">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input class="form-control" name="max-exp" placeholder="Max years" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-rel">
                         <!-- <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
                             required>
                         </ng-select> 
@@ -28,17 +41,14 @@
                          {{minExperience}} {{ maxExperience}} 
                         <small class="text-danger error1" *ngIf="minExperience > maxExperience">          valdiateExperience(minExperience,maxExperience)  
                             Can't be > Max Exp!
-                        </small> --> 
-                        <ng5-slider [(value)]="minExperience"
-                            [(highValue)]="maxExperience"
-                            [options]="options"
+                        </small> -->
+                        <ng5-slider [(value)]="minExperience" [(highValue)]="maxExperience" [options]="options"
                             (userChangeStart)="minExperienceChangeStart($event)"
-                            (userChange)="onExperienceChange($event)"
-                            (userChangeEnd)="maxExperienceChangeEnd($event)"
+                            (userChange)="onExperienceChange($event)" (userChangeEnd)="maxExperienceChangeEnd($event)"
                             name="hourly">
-                        </ng5-slider> 
+                        </ng5-slider>
                         <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider> -->
-                    </div> 
+                    </div>
                 </div>
                 <!-- <div class="col-md-6">
                     <div class="p-rel">
@@ -60,7 +70,89 @@
 <div class="form-row job-title-suggestions">
     <div class="checkbox" *ngFor="let  title of suggestedTitle; let i = index">
         <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-        <label><input type="radio"   (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span class="box">{{title.JobTitle}}</span> </label>
+        <label><input type="radio" (change)="updateJobTitle(title)" name="jobtite" [value]="title.JobTitle"><span
+                class="box">{{title.JobTitle}}</span> </label>
         <!-- [ngModel]="selectedTitle"  commented because it is not selected in category-->
     </div>
 </div>
+
+<!--Role Match Key Responsibles and job ID priority Job due on
+<div class="form-row row key-resp">
+    <div class="col-md-5">
+        <div class="form-group">
+            <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
+            <small>Key Responsibilities</small>
+            <select class="form-control">
+                <option>Coding</option>
+                <option>Team Management</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2 min-key-exp">
+        <div class="form-group">
+            <small>Relevant Experience</small>
+            <input class="form-control" name="min-key-exp" placeholder="Min years" type="text">
+        </div>
+    </div>
+    <div class="col-md-2 max-key-exp">
+        <div class="form-group">
+            <input class="form-control" name="max-key-exp" placeholder="Max years" type="text">
+        </div>
+    </div>
+    <div class="col-md-3 sal-slider">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45"
+                aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                <span class="sr-only">ng5 slider here</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row row job-id-group">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="keyresp">Do you have a Job ID? <small>(Optional)</small></label>
+            <input class="form-control" name="jobPositionId" placeholder="Job Id" type="text">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Job Priority <small>(Optional)</small></label>
+            <div class="clearfix">
+                <label for="jpl" class="radio">
+                    <input type="radio" id="jpl" name="low" class="radio-input">
+                    <span class="radio-btn"></span>
+                    <span>Low</span>
+                </label>
+
+                <label for="jpm" class="radio">
+                    <input type="radio" id="jpm" name="medium" class="radio-input">
+                    <span class="radio-btn"></span>
+                    <span>Medium</span>
+                </label>
+
+                <label for="jpu" class="radio">
+                    <input type="radio" id="jpu" name="urgent" class="radio-input">
+                    <span class="radio-btn"></span>
+                    <span>Urgent</span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3 j-d">
+        <div class="form-group">
+            <label for="keyresp">Job Due on </label><small class="pull-right till-date">Till : 27-10-2021</small>
+            <select class="form-control">
+                <option>One Month</option>
+                <option>One Week</option>
+                <option>Custom Date</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <small>Need to display the custom date section here</small>
+    </div>
+</div>
+-->
