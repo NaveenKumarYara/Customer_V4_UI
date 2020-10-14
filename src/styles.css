@@ -8066,9 +8066,11 @@ video {
     line-height: 78px;
     padding: 0 15px;
 }
+
 .main-nav .user-options a.upgrade-now {
     line-height: 15px;
 }
+
 .main-nav .user-options li.text-danger {
     font-size: 10px;
     font-weight: 500;
@@ -14549,7 +14551,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     margin-bottom: 3.125rem;
 }
 
- .page--job-details #shareCandidate .modal-footer {
+.page--job-details #shareCandidate .modal-footer {
     padding: 0.625rem 2.5rem 2.5rem;
     border-top: 0;
 }
@@ -18931,10 +18933,21 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-position: center;
 }
 
-.page--create-a-job .form-steps .question, .page--create-a-job .form-steps .jobid {
-    font-size: 1.25rem;
+.page--create-a-job .form-steps .question, 
+.page--create-a-job .form-steps .jobid, 
+.page--create-a-job .form-steps .t-p,
+.key-resp label{
+    font-size: 1.25rem!important;
     color: #6A7E9C;
     font-weight: 500;
+}
+.key-resp small{
+    font-size: 12px;
+    display: block;
+}
+
+.page--create-a-job .type-position .form-control {
+    margin-top: 0px !important;
 }
 
 .page--create-a-job .jobid-section .form-control {
@@ -19184,6 +19197,15 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--create-a-job .form-steps .re-group {
     position: relative;
+}
+
+.page--create-a-job .form-steps .re-group .re-exp .form-group {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.page--create-a-job .form-steps .re-group .re-exp .form-control {
+    margin-top: 0px;
 }
 
 .page--create-a-job .form-steps .job-profile-group .radio {
@@ -25794,6 +25816,7 @@ table .table-prl-0 td {
 }
 
 /*Fixed footer for POJ with buttons*/
+
 .poj-footer {
     position: fixed;
     bottom: 0;
@@ -25803,106 +25826,91 @@ table .table-prl-0 td {
     background-color: #F5F6FA;
     z-index: 999;
 }
-.poj-footer .container{
-    padding-top:5px!important;
-    padding-bottom:5px!important;
+
+.poj-footer .container {
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
 }
+
 /*Microsoft Surface Styles 06-07-2020*/
-@media only screen and (max-width: 1334px) and (orientation : landscape) {
-  
-/*Dashboard*/
-.page--dashboard .card.message h1{
-    margin-top: 0.5rem;
+
+@media only screen and (max-width: 1334px) and (orientation: landscape) {
+    /*Dashboard*/
+    .page--dashboard .card.message h1 {
+        margin-top: 0.5rem;
+    }
+    .applications .card {
+        padding: 10px!important;
+    }
+    .card .circle-progress {
+        padding-left: 0px!important;
+    }
+    /*Manage jobs*/
+    .notification {
+        padding: 12px 8px!important;
+        margin-right: 3px!important;
+    }
+    .page--manage-jobs .filters .nav>li>a {
+        padding: 7px !important;
+    }
+    .search-toggle form>input[type=text]#searchStr {
+        width: 100px;
+    }
+    .sm-w-100 .styled-select-box {
+        min-width: 210px;
+    }
+    .role-exp-loc h5.location {
+        width: 50px!important;
+    }
+    .skills-carousel-Changed .skill-click {
+        padding-left: 5px!important;
+    }
+    .skill-click .skill {
+        width: 95px!important;
+    }
+    .skill-click .star-rating {
+        right: -2%!important;
+    }
 }
-.applications .card{
-    padding: 10px!important;
-}
-.card .circle-progress{
-padding-left: 0px!important;
-}
-/*Manage jobs*/
-.notification{
-    padding: 12px 8px!important;
-    margin-right: 3px!important;
-}
-.page--manage-jobs .filters .nav>li>a{
-    padding: 7px !important;
-}
-.search-toggle form>input[type=text]#searchStr {
-    width: 100px;
-}
-.sm-w-100 .styled-select-box{
-    min-width: 210px;
-}
-.role-exp-loc h5.location{
-    width: 50px!important;
-}
-.skills-carousel-Changed .skill-click{
-    padding-left: 5px!important;
-}
-.skill-click .skill{
-    width: 95px!important;
-}
-.skill-click .star-rating{
-    right: -2%!important;
-}
-}
+
 /*Icon click dialog styles 08-07-2020*/
-.mat-h6, .mat-typography h5{
+
+.mat-h6, .mat-typography h5 {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500!important;
 }
-.cdk-global-scrollblock{
-    overflow-y:auto;
+
+.cdk-global-scrollblock {
+    overflow-y: auto;
 }
-.manage-achievements-i-d,
-.manage-reference-i-d {
+
+.manage-achievements-i-d, .manage-reference-i-d {
     overflow: hidden!important;
-    max-height: inherit!important; 
+    max-height: inherit!important;
 }
-.manage-achievements-i-d .modal-body .ach-scroll,
-.manage-reference-i-d .modal-body .ref-scroll {
+
+.manage-achievements-i-d .modal-body .ach-scroll, .manage-reference-i-d .modal-body .ref-scroll {
     max-height: 45vh;
 }
-.achievements-list small{
-font-size: 0.6rem;
+
+.achievements-list small {
+    font-size: 0.6rem;
 }
-.matching-details ul.certifications-list,
-.manage-s-v-i-d ul.skills-list, 
-.manage-reference-i-d ul.references-list,
-.manage-bgv-i-d ul.bg-list,
-.matching-details ul.domains-list,
-.manage-achievements-i-d ul.achievements-list,
-.manage-recommendations-i-d ul.recommendations-list
-{
+
+.matching-details ul.certifications-list, .manage-s-v-i-d ul.skills-list, .manage-reference-i-d ul.references-list, .manage-bgv-i-d ul.bg-list, .matching-details ul.domains-list, .manage-achievements-i-d ul.achievements-list, .manage-recommendations-i-d ul.recommendations-list {
     list-style-type: none;
     padding-left: 0px;
 }
 
-.manage-s-v-i-d h4, 
-.manage-reference-i-d h4,
-.manage-bgv-i-d h4,
-.manage-achievements-i-d h4,
-.manage-recommendations-i-d h4
-{
+.manage-s-v-i-d h4, .manage-reference-i-d h4, .manage-bgv-i-d h4, .manage-achievements-i-d h4, .manage-recommendations-i-d h4 {
     color: #41536E;
 }
-.manage-s-v-i-d label, 
-.manage-reference-i-d label,
-.manage-bgv-i-d label,
-.manage-achievements-i-d label,
-.manage-recommendations-i-d label
-{
+
+.manage-s-v-i-d label, .manage-reference-i-d label, .manage-bgv-i-d label, .manage-achievements-i-d label, .manage-recommendations-i-d label {
     text-transform: capitalize;
 }
-.matching-details ul.certifications-list .c-details,
-.manage-s-v-i-d ul.skills-list .skill-details,
-.manage-reference-i-d ul.references-list .references-details,
-.manage-bgv-i-d ul.bg-list .bg-details,
-.matching-details ul.domains-list .d-details,
-.manage-achievements-i-d ul.achievements-list .a-details,
-.manage-recommendations-i-d ul.recommendations-list .r-details
-{
+
+.matching-details ul.certifications-list .c-details, .manage-s-v-i-d ul.skills-list .skill-details, .manage-reference-i-d ul.references-list .references-details, .manage-bgv-i-d ul.bg-list .bg-details, .matching-details ul.domains-list .d-details, .manage-achievements-i-d ul.achievements-list .a-details, .manage-recommendations-i-d ul.recommendations-list .r-details {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -25913,96 +25921,100 @@ font-size: 0.6rem;
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 10px 0;
-    color:#41536E;
+    color: #41536E;
 }
-.manage-recommendations-i-d ul.recommendations-list .r-details p{
+
+.manage-recommendations-i-d ul.recommendations-list .r-details p {
     font-size: 0.7rem;
     word-break: break-word;
 }
-.matching-details ul.certifications-list .c-details:not(:last-of-type),
-.manage-s-v-i-d ul.skills-list .skill-details:not(:last-of-type),
-.manage-reference-i-d ul.references-list .references-details:not(:last-of-type),
-.manage-bgv-i-d ul.bg-list .bg-details:not(:last-of-type),
-.matching-details ul.domains-list .d-details:not(:last-of-type),
-.manage-achievements-i-d ul.achievements-list .a-details:not(:last-of-type),
-.manage-recommendations-i-d ul.recommendations-list .r-details:not(:last-of-type)
-{
+
+.matching-details ul.certifications-list .c-details:not(:last-of-type), .manage-s-v-i-d ul.skills-list .skill-details:not(:last-of-type), .manage-reference-i-d ul.references-list .references-details:not(:last-of-type), .manage-bgv-i-d ul.bg-list .bg-details:not(:last-of-type), .matching-details ul.domains-list .d-details:not(:last-of-type), .manage-achievements-i-d ul.achievements-list .a-details:not(:last-of-type), .manage-recommendations-i-d ul.recommendations-list .r-details:not(:last-of-type) {
     border-bottom: 1px solid #E0E3EF;
 }
-.manage-reference-i-d ul.references-list .references-details .btn-filled, 
-.manage-s-v-i-d ul.skills-list .skill-details .btn-filled,
-.manage-bgv-i-d ul.bg-list .bg-details .btn-filled
-{
+
+.manage-reference-i-d ul.references-list .references-details .btn-filled, .manage-s-v-i-d ul.skills-list .skill-details .btn-filled, .manage-bgv-i-d ul.bg-list .bg-details .btn-filled {
     padding: 8px 13px;
     font-size: 0.575rem;
     min-width: 80px;
 }
+
 /*Send request to candidate mini form*/
 
-.manage-reference-i-d .modal-footer .send-req-form{
+.manage-reference-i-d .modal-footer .send-req-form {
     border: 1px solid #ebebeb;
     border-radius: 5px;
     padding: 10px;
     margin-top: 3%;
-    -webkit-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
-    box-shadow: 2px 0px 9px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 0px 9px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 0px 9px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 0px 9px -1px rgba(0, 0, 0, 0.75);
 }
-.manage-reference-i-d .modal-footer .send-req-form label{
+
+.manage-reference-i-d .modal-footer .send-req-form label {
     color: #6A7E9C;
     font-weight: 500;
 }
-.manage-reference-i-d .modal-footer .send-req-form  .btn-filled{
+
+.manage-reference-i-d .modal-footer .send-req-form .btn-filled {
     padding: 6px 11px;
 }
-.manage-s-v-i-d ul.skills-list .skill-details small a{
+
+.manage-s-v-i-d ul.skills-list .skill-details small a {
     font-size: 8px;
     font-weight: bold;
 }
-.manage-reference-i-d .modal-body li.references-details .fa{
+
+.manage-reference-i-d .modal-body li.references-details .fa {
     font-size: 25px;
 }
-.manage-reference-i-d .dropdown-menu{
+
+.manage-reference-i-d .dropdown-menu {
     bottom: 100%;
     left: 16px;
     top: auto;
 }
 
-.manage-reference-i-d mat-expansion-panel-header{
-height: 100px!important;
-color: #55536E;
+.manage-reference-i-d mat-expansion-panel-header {
+    height: 100px!important;
+    color: #55536E;
 }
 
-.manage-reference-i-d  .modal-header{
+.manage-reference-i-d .modal-header {
     padding: 0px;
     border-bottom: transparent;
     margin-bottom: 0px;
 }
 
-.manage-reference-i-d  .mat-radio-label-content {
+.manage-reference-i-d .mat-radio-label-content {
     font-size: 12px!important;
     color: #55536E!important;
     margin-right: 5px!important;
 }
+
 .manage-reference-i-d .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: #157751;
 }
+
 .manage-reference-i-d .mat-radio-button.mat-accent .mat-radio-inner-circle {
     background-color: #157751;
 }
 
-
 /* multy dropdown  */
-.angular2-multiselect .dropdown-list{
+
+.angular2-multiselect .dropdown-list {
     position: relative;
     z-index: inherit;
 }
-.angular2-multiselect .arrow-up,.angular2-multiselect .arrow-2.arrow-up{
- display: none;
+
+.angular2-multiselect .arrow-up, .angular2-multiselect .arrow-2.arrow-up {
+    display: none;
 }
+
 .selected-item {
     background: #e9f4ff;
 }
+
 .pure-checkbox input[type=checkbox]+label {
     position: relative;
     padding-left: 2em;
@@ -26015,9 +26027,11 @@ color: #55536E;
     margin: 0;
     font-weight: 300;
 }
+
 .pure-checkbox input[type=checkbox]:checked+label:before {
     background: #0079fe;
 }
+
 .pure-checkbox input[type=checkbox]+label:before {
     box-sizing: content-box;
     content: '';
@@ -26036,14 +26050,16 @@ color: #55536E;
     color: #0079fe;
     border: 1px solid #0079fe;
 }
+
 .pure-checkbox input[type=checkbox]:checked+label:after {
     content: '';
     transition: -webkit-transform .2s ease-out;
     transition: transform .2s ease-out;
-    transition: transform .2s ease-out,-webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, -webkit-transform .2s ease-out;
     -webkit-transform: rotate(-45deg) scale(1);
     transform: rotate(-45deg) scale(1);
 }
+
 .pure-checkbox input[type=checkbox]+label:after {
     box-sizing: content-box;
     content: '';
@@ -26054,7 +26070,7 @@ color: #55536E;
     transform-origin: 50%;
     transition: -webkit-transform .2s ease-out;
     transition: transform .2s ease-out;
-    transition: transform .2s ease-out,-webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, -webkit-transform .2s ease-out;
     background-color: transparent;
     top: 50%;
     left: 3px;
@@ -26068,6 +26084,7 @@ color: #55536E;
     -webkit-transform: rotate(-45deg) scale(0);
     transform: rotate(-45deg) scale(0);
 }
+
 .pure-checkbox input[type=checkbox]+label:after {
     background-color: #0079fe;
     border-color: #fff;
@@ -26076,20 +26093,43 @@ color: #55536E;
 .selected-list .c-list .c-token {
     background: #0079fe;
 }
-.cuppa-dropdown .selected-list{
+
+.cuppa-dropdown .selected-list {
     border: 1px solid #E0E3EF;
     height: 55px;
     display: flex;
 }
-.cuppa-dropdown .selected-list .c-list .c-token{
+
+.cuppa-dropdown .selected-list .c-list .c-token {
     padding: 9px 25px 7px 8px;
 }
-.cuppa-dropdown .c-label,.cuppa-dropdown .c-btn .c-token .c-label{
-    color:#fff;
+
+.cuppa-dropdown .c-label, .cuppa-dropdown .c-btn .c-token .c-label {
+    color: #fff;
 }
-.cuppa-dropdown .c-btn span{
+
+.cuppa-dropdown .c-btn span {
     font-size: 1rem;
     letter-spacing: 0.03em;
     color: #999;
 }
 /* multy dropdown  */
+/*Role-match styless*/
+.key-resp .min-key-exp{
+    padding-top: 2.3rem!important;
+    margin-bottom:0px;
+}
+.key-resp .max-key-exp{
+    padding-top: 3.3rem!important;
+    margin-bottom:0px;
+}
+.key-resp  .sal-slider{
+    margin-top: 7rem;
+}
+.job-id-group .j-d small.till-date{
+color:#126bf9;
+}
+.job-id-group .radio{
+    margin: 0 20px 0 0;
+    float: left;
+}
