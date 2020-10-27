@@ -88,6 +88,7 @@ export class CompanyProfileService {
             );
     }
 
+
     getCompanySpecialities(customerId: number): Observable<CompanySpecialities[]> {
         const url = this.settingsService.settings.CompanySpecialities + 'customerId=' + customerId + '&companySpecialityId=0';
         return this.http.get<CompanySpecialities[]>(url)

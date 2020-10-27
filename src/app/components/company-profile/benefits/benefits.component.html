@@ -644,17 +644,20 @@
           <div id="industries" class="departments tab-pane fade">
             <form #form="ngForm">
               <div class="input-group">
-                <input name="industryName" type="text" class="form-control" placeholder="Industry Name">
+                <select class="form-control" name="industryName" [(ngModel)]="ind.IndustryId">
+                  <option *ngFor="let c of getIndustryList" [value]="c.IndustryId">{{c.Code}}</option>
+               </select>`
+                <!-- <input name="industryName" [(ngModel)]="ind.IndustryId" type="text" class="form-control" placeholder="Industry Name"> -->
                 <span class="input-group-btn">
-                  <button class="btn">+</button>
+                  <button class="btn" (click)="SaveIndustry()">+</button>
                   <!---->
                 </span>
               </div>
             </form>
             <div class="tab-inner scrollbar-inner">
-              <ul class="list--filled">
-                <li class="item">
-                  Software Industry
+              <ul class="list--filled"  *ngIf="getIndustry.length>0">
+                <li class="item" *ngFor="let i of getIndustry">
+                  {{i?.Code}}
                   <div class="actions">
                     <button class="btn btn-transparent no-padding" (click)="deleteDepart(d?.CustomerDeptId)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="19.1">
@@ -685,7 +688,7 @@
               </ul>
             </div>
             <!--Empty Data Placeholder-->
-            <div class="hint-text text-center">
+            <div class="hint-text text-center"  *ngIf="getIndustry.length==0">
               <i class="fa fa-industry" aria-hidden="true"></i>
 
               <h4>Enter Industry details which your Company deal with. It enhances the Job Postings.</h4>

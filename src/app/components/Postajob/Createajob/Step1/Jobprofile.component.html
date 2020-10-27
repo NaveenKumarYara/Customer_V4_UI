@@ -20,18 +20,18 @@
 
 
 <!--Job ID Div Starts-->
-<div class="form-group jobid-section">
+<!-- <div class="form-group jobid-section">
   <label for="jobPositionId" class="jobid">Do you have Job Id? <small>(Optional)</small></label>
   <input class="form-control"  name="jobPositionId" [(ngModel)]="jobPositionId" onkeypress="return event.keyCode != 35" (ngModelChange)="changeJobPosition($event)" placeholder="Job Id" type="text">
-  <!-- <small class="text-danger radio-error1" *ngIf="jobPositionId.invalid && jobPositionId.touched">JobId is required!</small> -->
-</div>
+ <small class="text-danger radio-error1" *ngIf="jobPositionId.invalid && jobPositionId.touched">JobId is required!</small>
+</div> -->
 
-<div class="form-group">
+ <!-- <div class="form-group">
   <label for="jobPri" class="jobid">Job Priority</label>
   <ng-select class="custom-style" [items]="jobimplist"  bindLabel="JobPriority" bindValue="Id"  [(ngModel)]="jobPriority"   placeholder="Priority *" required #Jobimp="ngModel"
   name="Jobimp" (change)="updateJobImp()">
 </ng-select>
-</div>
+</div> -->
 <!--Job ID Div Ends-->
 
 

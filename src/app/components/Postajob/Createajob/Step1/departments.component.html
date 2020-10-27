@@ -102,7 +102,7 @@
       </div>
     </div>
 
-
+<!-- 
     <div class="form-group">
       <label for="jobPri" class="jobid">Job Due On <small>*</small></label>
       <ng-select class="custom-style" [items]="jobDuelist"  placeholder="Select Jobdue" bindLabel="DueIn" bindValue="Id"  [(ngModel)]="Expiry"  required #JobDue="ngModel"
@@ -117,14 +117,14 @@
   <ng-container *ngIf="showDate">
     <label for="jobPri" class="jobid">Custom Date </label>
    <angular2-date-picker [(ngModel)]="ExpiryDate" (onDateSelect)="changeMethod($event)" [settings]="settings"></angular2-date-picker>  
-     <!-- <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required> -->
+     <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required>
   </ng-container>
   <ng-container *ngIf="!showDate">
     <label for="jobPri" class="jobid">Custom Date </label>
    <angular2-date-picker [(ngModel)]="ExpiryDate" [ngClass]="'pointernone'" [settings]="settings"></angular2-date-picker>  
-     <!-- <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required> -->
+    <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required>
   </ng-container>
-</div> 
+</div>  -->
   
 
     

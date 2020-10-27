@@ -116,20 +116,23 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="keyresp">Do you have a Job ID? <small>(Optional)</small></label>
-            <input class="form-control" name="jobPositionId" placeholder="Job Id" type="text">
+            <input class="form-control" [(ngModel)]="jobPositionId" onkeypress="return event.keyCode != 35" (ngModelChange)="changeJobPosition($event)" name="jobPositionId" placeholder="Job Id" type="text">
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label>Job Priority <small>(Optional)</small></label>
             <div class="clearfix">
-                <label for="jpl" class="radio">
-                    <input type="radio" id="jpl" name="low" class="radio-input">
-                    <span class="radio-btn"></span>
-                    <span>Low</span>
-                </label>
+                <ng-container *ngFor="let type of jobimplist">
+                    <label  class="radio">
+                        <input type="radio" [(ngModel)]="jobPriority" (change)="updateJobImp()" name="low" class="radio-input" [value]="type.Id">
+                        <span class="radio-btn"></span>
+                        <span>{{type.JobPriority}}</span>
+                    </label>
+                </ng-container>
 
-                <label for="jpm" class="radio">
+
+                <!-- <label for="jpm" class="radio">
                     <input type="radio" id="jpm" name="medium" class="radio-input">
                     <span class="radio-btn"></span>
                     <span>Medium</span>
@@ -139,22 +142,29 @@
                     <input type="radio" id="jpu" name="urgent" class="radio-input">
                     <span class="radio-btn"></span>
                     <span>Urgent</span>
-                </label>
+                </label> -->
             </div>
 
         </div>
     </div>
     <div class="col-md-3 j-d">
-        <div class="form-group">
-            <label for="keyresp">Job Due on </label><small class="pull-right till-date">Till : 27-10-2021</small>
-            <select class="form-control">
-                <option>One Month</option>
-                <option>One Week</option>
-                <option>Custom Date</option>
-            </select>
-        </div>
+        <label for="keyresp">Job Due on </label><small class="pull-right till-date">Till : {{ExpiryDate | date:'medium'}}</small>
+        <ng-select class="custom-style" [items]="jobDuelist"  placeholder="Select Jobdue" bindLabel="DueIn" bindValue="Id"  [(ngModel)]="Expiry"  required #JobDue="ngModel"
+        name="JobDue" (change)="updateJobDue()">
+      </ng-select>
+      <span class="text-danger"
+      *ngIf="JobDue.invalid && JobDue.touched">Due Date Required.</span>
     </div>
     <div class="col-md-2">
-        <small>Need to display the custom date section here</small>
+        <ng-container *ngIf="showDate">
+            <label for="jobPri" class="jobid">Custom Date </label>
+           <angular2-date-picker  [(ngModel)]="ExpiryDate" (onDateSelect)="changeMethod($event)" [settings]="settings"></angular2-date-picker>  
+             <!-- <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required> -->
+          </ng-container>
+          <!-- <ng-container *ngIf="!showDate">
+            <label for="jobPri" class="jobid">Custom Date </label>
+           <angular2-date-picker [(ngModel)]="ExpiryDate" [ngClass]="'pointernone'" [settings]="settings"></angular2-date-picker>  
+              <input type="date" class="form-control"  #Edate="ngModel"  [(ngModel)]="ExpiryDate" (ngModelChange)="ExpiryDate=$event" name="ExpiryDate"  placeholder="Due Date*"  id="datepicker" required> 
+          </ng-container> -->
     </div>
 </div>
