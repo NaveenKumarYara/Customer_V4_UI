@@ -46,6 +46,11 @@ export class InsertJob {
     public Email: string;
     public JobPriority:number;
     public JobDue:number;
+    public Industry : string;
+    public  PositionType : string;
+     public  Category: string;
+     public  TitleInfo : string;
+    public XmlKeyResponses :KeyRole[]=[];
     public MatchingCrieterias : SkillPostData[]=[];
   }
   export class PjSkill {
@@ -116,12 +121,25 @@ export class DiscResult {
      public MinimumExperience: number;
      public MaximumExperience: number;
   }
+  export class GetKeyRole
+  {
+    public DCode: string;
+    public CustomerKeyResponsebility: number;
+    public CustomerKeyMinExperienceId: number;
+    public CustomerKeyMaxExperienceId: number;
+  }
   export class PjDomain {
     public ExperienceRequired: boolean;
     public DomainId: number;
     public MinimumExperience: number;
     public MaximumExperience: number;
     public Description: string;
+  }
+
+  export class KeyRole {
+    public CustomerKeyResponsebility: number;
+    public CustomerKeyMinExperienceId: number;
+    public CustomerKeyMaxExperienceId: number;
   }
   export class PjEducationDetails {
     public QualificationId: number;
@@ -185,6 +203,11 @@ export class PjDepartments {
   }
   export class CategoryList {
     public JobCategoryId: number;
+    public Category: string;
+  }
+
+  export class CategoryNewList
+  {
     public Category: string;
   }
 

@@ -1,4 +1,4 @@
-{
+"{
   "ProfilebaseUrl":"${Profile_URL}",
    "IdentitybaseUrl":"${Identity_URL}",
    "RefralbaseUrl":"${Referral_URL}",
@@ -190,5 +190,11 @@
   "GetReportingTeamList":"${Profile_URL}/api/GetReportingTeamList?",
   "GetTechinicalTeamList":"${Profile_URL}/api/GetTechinicalTeamList?",
   "GetRecruiterTeamList":"${Profile_URL}/api/GetRecruitingTeamList?",
-  "SaveRecruiterTeamList":"${Identity_URL}/api/SaveRecruitingTeamMember"
+  "SaveRecruiterTeamList":"${Identity_URL}/api/SaveRecruitingTeamMember",
+  "Indusrties":"${Profile_URL}/api/GetIndustries",
+  "PositionTypes":"${Profile_URL}/api/GetPositionTypes?",
+  "Categories":"${Profile_URL}/api/GetCategories?",
+  "TitleInfo":"${Profile_URL}/api/GetJobTitleRoles?",
+  "KeyResponses":"${Profile_URL}/api/GetJobKeyResponsibilties?",
+  "CustomerIndustries":"${Profile_URL}/api/GetCompanyIndustry?"
 }

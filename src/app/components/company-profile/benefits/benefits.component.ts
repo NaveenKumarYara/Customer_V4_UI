@@ -30,7 +30,10 @@ userId:any;
 companybenfitId:any;
 benefitId:any;
 benefit:any;
+getIndustryList=[];
+getIndustry:any=[];
 benefits = new benefits();
+ind = new industry();
 companyspecialityId:any;
 specialityId:any;
 speciality:any;
@@ -49,6 +52,7 @@ constructor(private _service: ApiService, private appService: AppService, privat
   this.customer = JSON.parse(sessionStorage.getItem('userData'));
   this.customerId =this.customer.CustomerId;
   this.userId = this.customer.UserId;
+
  }
 
 
@@ -57,6 +61,34 @@ constructor(private _service: ApiService, private appService: AppService, privat
     return this.companyprofileservice.getCompanyBenfits(customerId).subscribe(res => {
         this.getcompanybenfit = res;
     });
+}
+
+PopulateCustomerIndustry() {
+  this._service.GetService('ProfileAPI/api/GetCompanyIndustry?customerId=',this.customerId).subscribe(data => {
+    if(data.length>0)
+    {
+      this.getIndustry= data;
+    }
+
+  });
+}
+
+GetIndustry()
+{
+  this._service.GetService('ProfileAPI/api/GetIndustries','').subscribe(data => {
+    this.getIndustryList= data;
+  });
+}
+
+SaveIndustry()
+{
+   this.ind.customerId = this.customerId;
+   this._service.PostService(this.ind, 'ProfileAPI/api/InsertCompanyIndustry')
+   .subscribe(data => {
+     this.ind = new industry();
+     this.PopulateCustomerIndustry();
+   },
+     error => console.log(error));
 }
 saveBenefits()
 {
@@ -296,6 +328,8 @@ return this.appService.DeleteDepartments(deptId).subscribe(res => {
  })
 }
 ngOnInit() {
+  this.PopulateCustomerIndustry();
+  this.GetIndustry();
   (function ($) {
     function navLineResizeHandler() {
       var nav = $('.nav-tabs');
@@ -338,4 +372,11 @@ ngOnInit() {
   })($);
 
 }
+}
+
+
+export class industry
+{
+customerId: number;
+IndustryId: string;
 }

@@ -198,4 +198,10 @@ export class Settings {
   GetRecruiterTeamList:string;
   SaveRecruiterTeamList:string;
   CustomerRequestRefernce:string;
+  Indusrties:string;
+  PositionTypes:string;
+  Categories:string;
+  TitleInfo:string;
+  KeyResponses:string;
+  CustomerIndustries:string;
   }

@@ -5,9 +5,11 @@ import { AppService } from '../../../../app.service';
 // tslint:disable-next-line:import-blacklist
 import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
+import { ClientModel, DepartmentModel, PjDepartments, jobDues } from '../../models/jobPostInfo';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
 import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
+import { jobImps } from '../../models/jobPostInfo';
 declare var $: any;
 declare var jQuery: any;
 
@@ -21,17 +23,31 @@ declare var jQuery: any;
 export class JobdetailsComponent implements OnInit, AfterViewChecked {
   @ViewChild('detailForm') detailForm: any;
   jobtitlelist: Observable<string[]>;
+  showDate:boolean=false;
+  Expiry:number=3;
+  //ExpiryDate:Date;
+  ExpiryDate: Date;
+    settings = {
+        bigBanner: true,
+        timePicker: false,
+        format: 'dd-MM-yyyy',
+        defaultOpen: false
+    }
+  jobDuelist:jobDues[]=[];
   selectedTitle;
   newtitle;
   expYears: any = [];
+  jobPositionId:string;
   jobtitleloading = false;
   jobtitleinput = new Subject<string>();
   minExperience = 36;
   maxExperience = 60;
   minYears: number;
   maxYears: number;
+  jobPriority:number=3;
 suggestedTitle: string[];
 customerId: any;
+jobimplist:jobImps[]=[];
   //
   // minValue = 100;
   // maxValue = 400;
@@ -53,6 +69,8 @@ customerId: any;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
       this.customerId = parseInt(JSON.parse(sessionStorage.getItem('userData')).CustomerId, 10);
+      this.GetJobPriority();
+      this.GetJobDueIn();
   }
 
   private searchJobTitle() {
@@ -70,6 +88,65 @@ customerId: any;
     );
   }
 
+  updateJobDue() {
+    if(this.Expiry == 5)
+    {
+      this.showDate=true;
+    }
+    else 
+    {
+      this.showDate=false;
+    }
+
+    if(this.Expiry==1)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 7 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==2)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 14 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==3)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 30 )) ;
+      this.ExpiryDate = val;
+    }
+    else if(this.Expiry==4)
+    {
+      this.showDate=false;
+      let date = new Date();  
+      let val = new Date(date.setDate(date.getDate() + 60 )) ;
+      this.ExpiryDate = val;
+    }
+      else if(this.Expiry==5)
+      {
+        this.showDate=true;
+      }
+      this.appService.updateJobDueDate(this.ExpiryDate);    
+      this.appService.updateJobDue(this.Expiry);
+    }
+  
+    changeMethod(val)
+    {
+      if(val!=null)
+      this.ExpiryDate=val;
+      this.appService.updateJobDueDate(this.ExpiryDate);   
+    }
+
+  GetJobDueIn() {
+     this.appService.GetJobDueIn().subscribe(res => {
+      this.jobDuelist = res;
+  });
+  }
+
   // updateMinExp() {
   //   this.appService.updateMinExp(this.minExperience);
   // }
@@ -77,6 +154,21 @@ customerId: any;
   // updateMaxExp() {
   //   this.appService.updateMaxExp(this.maxExperience);
   // }
+
+  GetJobPriority() {
+    this.appService.GetJobPriority().subscribe(res => {
+     this.jobimplist = res;
+ });
+ }
+
+  changeJobPosition(val) {
+    this.jobPositionId = val;
+    this.appService.updateJobPosition(this.jobPositionId);
+  }
+
+  updateJobImp() {
+    this.appService.updateJobImp(this.jobPriority);
+  }
 
   updateJobTitle(val?: any) {
     if (val != null) {
@@ -108,6 +200,23 @@ suggestedJobTitle() {
     // this.getExpYears();
     this.searchJobTitle();
     this.suggestedJobTitle();
+    this.appService.currentjobDue.subscribe(
+      (data)=>
+      {
+        this.Expiry=data;
+        if(data==5)
+        {
+          this.showDate=true;
+        }
+        else
+        {
+          this.showDate=false;
+        }
+      }
+    
+      );
+    this.appService.currentjobDueDate.subscribe(y=>this.ExpiryDate=y);
+    this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
     if(this.selectedTitle=='')
     {

@@ -25,7 +25,10 @@ import { GetCustomerClients } from '../models/GetCustomerClients';
 import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,MultipleJobIds,jobImps,jobImmigration,jobDues,
         PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, Cities, Salary,JobLocationsDetails,
         ClientModel, AutoSearchClient, AutoSearchDepartment, DepartmentModel,JobReporting, AddResp,jobImmigrationData,
-        PjDepartments } from './components/Postajob/models/jobPostInfo';
+        PjDepartments, 
+        CategoryNewList,
+        KeyRole,
+        GetKeyRole} from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
@@ -65,6 +68,11 @@ export class AppService {
   domainChanged = new Subject<GetDomain[]>();
   adddomain: PjDomain[] = [];
   adddomainChanged = new Subject<PjDomain[]>();
+
+  keyrole: GetKeyRole[] = [];
+  keyroleChanged = new Subject<GetKeyRole[]>();
+  addkeyrole: KeyRole[] = [];
+  addkeyroleChanged = new Subject<KeyRole[]>();
 
   qualifications: Qualifications[] = [];
   qualificationsChanged = new Subject<Qualifications[]>();
@@ -132,7 +140,14 @@ export class AppService {
   jobtitle = new BehaviorSubject('');
   currentjobtitle = this.jobtitle.asObservable();
 
- 
+  jobtitleId = new BehaviorSubject('');
+  currentjobtitleId = this.jobtitleId.asObservable();
+
+  jobcategorynew = new BehaviorSubject('');
+  currentcategorytitlenew = this.jobcategorynew.asObservable();
+
+  jobtypePosition = new BehaviorSubject('');
+  currentjobtypePosition = this.jobtypePosition.asObservable();
 
   jobImp: number;
   JobImp = new BehaviorSubject(this.jobImp);
@@ -233,6 +248,9 @@ export class AppService {
   jobcategory = new BehaviorSubject(this.myjobcategory);
   currentcategorytitle = this.jobcategory.asObservable();
 
+
+
+
   myClient = new ClientModel();
   clientModel = new BehaviorSubject(this.myClient);
   currentClient = this.clientModel.asObservable();
@@ -247,6 +265,8 @@ export class AppService {
   JobLocations:Cities[]=[];
   JobLocationsChanged = new Subject<Cities[]>();
   JobLocationsMulti:Cities[]=[];
+
+
 
   OpeningsList=[];
 
@@ -311,6 +331,9 @@ export class AppService {
   updateJobPosition(jobpositionId: string) {
     this.jobPosition.next(jobpositionId);
   }
+  updateJobPositionType(positionId: string) {
+    this.jobtypePosition.next(positionId);
+  }
   updatehaddescription(isdescription: boolean) {
     this.hasDescription.next(isdescription);
   }
@@ -322,6 +345,10 @@ export class AppService {
   }
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
+  }
+
+  updateJobtitleId(jobtitleId: string) {
+    this.jobtitleId.next(jobtitleId);
   }
 
   updateJobImp(jobImp: number) {
@@ -569,6 +596,61 @@ GetBillingAddressforCustomer(customerId:number):Observable<GetBillingAddressCust
       ); 
 }
 
+GetIndustries()
+{
+  const url = this.settingsService.settings.Indusrties;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+GetPositionTypes(Id:number)
+{
+  const url = this.settingsService.settings.PositionTypes + 'industryId=' + Id;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+GetCategories(Id:number)
+{
+  const url = this.settingsService.settings.Categories+ 'positionId=' + Id;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+GetJobTitleRoles(Id:number)
+{
+  const url = this.settingsService.settings.TitleInfo+ 'categoryId=' + Id;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+GetJobKeyResponses(Id:number)
+{
+  const url = this.settingsService.settings.KeyResponses+ 'roleId=' + Id;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+GetCustomerIndustries(Id:number)
+{
+  const url = this.settingsService.settings.CustomerIndustries+ 'customerId=' + Id;
+  return this.http.get<string[]>(url)
+     .catch(
+       this.handleError
+     );
+}
+
+
  AddPlanDetails(body) :any {
     return this.http.post(this.settingsService.settings.AddPlan, body)
       .map((res: Response) => res)
@@ -664,6 +746,11 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
 
   //  jobcategory: CategoryList[] = [];
   // currentcategorytitle = new Subject<CategoryList[]>();
+
+  updateJobCategoryNew(category:string) {
+    // this.jobcategory.push(jobcategories);
+    this.jobcategorynew.next(category);
+  }
 
   updateJobCategory(jobcategories: CategoryList) {
     // this.jobcategory.push(jobcategories);
@@ -919,6 +1006,26 @@ bulkApply(body) {
   getAddedDomainlist() {
     return this.adddomain.slice();
   }
+  getAddedKeyRole()
+  {
+    return this.addkeyrole.slice();
+  }
+  getKeyRoleList()
+  {
+    return this.keyrole.slice();
+  }
+  addKeyRole(key:GetKeyRole)
+  {
+    this.keyrole.push(key);
+    this.keyroleChanged.next(this.keyrole.slice());
+    const kVal = new KeyRole;
+    kVal.CustomerKeyResponsebility =  key.CustomerKeyResponsebility;
+    kVal.CustomerKeyMinExperienceId =  key.CustomerKeyMinExperienceId;
+    kVal.CustomerKeyMaxExperienceId =  key.CustomerKeyMaxExperienceId;
+    this.addkeyrole.push(kVal);
+    this.addkeyroleChanged.next(this.addkeyrole.slice());
+    
+  }
   addDomain(domain: GetDomain) {
     this.domain.push(domain);
     this.domainChanged.next(this.domain.slice());
@@ -935,6 +1042,13 @@ bulkApply(body) {
     //   addQlfcn.IsActive = true;
     // this.addqualifications.push(addQlfcn);
     // this.addqualificationsChanged.next(this.addqualifications.slice());
+  }
+
+  deletekeyRole(index: number) {
+    this.keyrole.splice(index, 1);
+    this.keyroleChanged.next(this.keyrole.slice());
+    this.addkeyrole.splice(index, 1);
+    this.addkeyroleChanged.next(this.addkeyrole.slice());
   }
 
   deleteDomain(index: number) {
