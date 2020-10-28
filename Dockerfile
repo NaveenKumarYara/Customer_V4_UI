@@ -14,3 +14,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /usr/src/app/wwwroot/ .
 CMD ["/bin/sh",  "-c",  "envsubst </usr/share/nginx/html/assets/settings.template.json> /usr/share/nginx/html/assets/settings.json && exec nginx -g 'daemon off;'"]
+
