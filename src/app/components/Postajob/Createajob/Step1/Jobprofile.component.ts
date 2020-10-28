@@ -184,9 +184,7 @@ onMinChange()
 
 GetKeyRespones(Id)
 {
-  debugger
   this.appService.GetJobKeyResponses(Id).subscribe(res3 => {
-    debugger
     this.KeyResponses = res3; 
 });
 }
@@ -217,7 +215,6 @@ public addkeyRole() {
 
 updateJobCategory()
 {
-  debugger
   this.GetCustomerTitles(this.selectedCategory[0]);
   this.appService.updateJobCategory(this.selectedCategory[0]);
 }
@@ -225,7 +222,6 @@ updateJobCategory()
 updateJobTitle(val) {
   let id = val.RoleId;
   let title = val.Code;
-  debugger
   this.GetKeyRespones(id);
   this.appService.updateJobtitleId(id);
   this.appService.updateJobtitle(title);
