@@ -167,7 +167,6 @@ jobimplist:jobImps[]=[];
   }
 
   updateJobImp() {
-    debugger
     this.appService.updateJobImp(this.jobPriority);
   }
 

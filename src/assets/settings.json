@@ -42,7 +42,7 @@
   "StartConversation": "https://emailapi-dev.arytic.com/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "https://profileapi-dev.arytic.com/api/UpdateProfileStatus",
   "signUp": "https://identityapi-dev.arytic.com/api/CustomerRegistration",
-  "postjob" : "https://jobsapi-dev.arytic.com/api/CreateJob",
+  "postjob" : "https://jobsapi-dev.arytic.com/api/InsertJobUpdated",
   "addRoles": "https://profileapi-dev.arytic.com/api/SaveRoles",
   "getRoles": "https://profileapi-dev.arytic.com/api/GetRolesAndResponsibility",
   "bulkResponsibilities" : "https://jobsapi-dev.arytic.com/api/SaveJobRoles",
@@ -190,5 +190,11 @@
   "CheckAndProvideAccess":"https://identityapi-dev.arytic.com/api/GetRoleBasedAccessForCustomer",
   "GetRecruiterTeamList":"https://profileapi-dev.arytic.com/api/GetRecruitingTeamList?",
   "SaveRecruiterTeamList":"https://identityapi-dev.arytic.com/api/SaveRecruitingTeamMember",
-  "CustomerRequestRefernce":"https://emailapi-dev.arytic.com/api/CustomerRequestedRef"
+  "CustomerRequestRefernce":"https://emailapi-dev.arytic.com/api/CustomerRequestedRef",
+  "Indusrties":"https://profileapi-dev.arytic.com/api/GetIndustries",
+  "PositionTypes":"https://profileapi-dev.arytic.com/api/GetPositionTypes?",
+  "Categories":"https://profileapi-dev.arytic.com/api/GetCategories?",
+  "TitleInfo":"https://profileapi-dev.arytic.com/api/GetJobTitleRoles?",
+  "KeyResponses":"https://profileapi-dev.arytic.com/api/GetJobKeyResponsibilties?",
+  "CustomerIndustries":"https://profileapi-dev.arytic.com/api/GetCompanyIndustry?"
 }

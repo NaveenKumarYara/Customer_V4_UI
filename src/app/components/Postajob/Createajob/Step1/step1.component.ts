@@ -165,7 +165,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
     //  && this.jobResponsibility.roleIdList.length > 0
-    this.insertJob.JobCategoryId = this.jobCategory.selectedCategory.JobCategoryId;
+    this.insertJob.JobCategoryId = 1;
+    this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
+    this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
+    this.insertJob.Category = this.jobProfile.selectedCategory.toString();
+    this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
+    this.insertJob.Industry = "1";
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
     this.insertJob.MinExperienceId = this.jobDetail.minExperience;
     this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
@@ -180,13 +185,15 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
-    this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    //this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    this.insertJob.ClientId = 0;
+    this.insertJob.ClientName = '';
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
-    this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
-    this.insertJob.XmlDepartment = this.department.addedDepartmentList;
-    if (this.insertJob.XmlDepartment.length > 0) {
-      this.appService.departmentsChanged.next(this.department.departmentsList);
-    }
+    //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    //this.insertJob.XmlDepartment = this.department.addedDepartmentList;
+    //if (this.insertJob.XmlDepartment.length > 0) {
+      //this.appService.departmentsChanged.next(this.department.departmentsList);
+    //}
     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
       this.appService.currentEmploymentType.subscribe((data) => {
         this.insertJob.EmploymentTypeId = data.EmploymentTypeId;
@@ -244,6 +251,7 @@ if (this.appService.isDrafted.value != null) {
       this.locations.locationwithpostions.forEach((value, index, array) => {
         this.insertJob.PreferredLocationId = value.CityId.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
+        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
@@ -314,6 +322,7 @@ if (this.appService.isDrafted.value != null) {
   {
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
+    debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

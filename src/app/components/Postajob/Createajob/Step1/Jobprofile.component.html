@@ -1,22 +1,32 @@
 <!--Role Match changes Step 1-->
 <!--Industry-->
-<div class="form-group type-industry">
+<!-- <div class="form-group type-industry">
   <label class="t-p" for="typeofindustry">Which Type of Industry does the job belongs to? </label>
-  <input class="form-control"  name="typeofindustry"  placeholder=" Type of Indsutry " type="text">
-</div>
-<div class="job-title-suggestions">
+  <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
+  placeholder="Select Cities" bindLabel="CityName" bindValue="CityId"
+  (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
+  [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
+  name="cities">
+</ng-select>
+</div> -->
+<!-- <div class="job-title-suggestions">
   <div class="checkbox">
-     <label><input type="radio"  name="industries" ><span class="box">Software Industry</span> </label>
+     <label><input type="radio"  name="industries" ><span class="box">IT</span> </label>
   </div> 
-  <div class="checkbox">
-    <label><input type="radio"  name="industries" ><span class="box">Pharma</span> </label>
- </div>     
-</div>
+</div> -->
 <!---->
 <div class="form-group type-position">
-  <label class="t-p" for="typeofposition">Which Type of Position (Core competency) does the job belongs to? </label>
-  <input class="form-control"  name="typeofposition"  placeholder=" Type of Position " type="text">
+  <label class="t-p" for="typeofposition">Which Department (Core competency) does the job belongs to? </label>
+  <ng-select class="custom-style" [items]="Postions"
+  bindLabel="Code"
+  bindValue="PositionId"
+  [multiple]="true"
+  placeholder="Select Department"
+  [(ngModel)]="SelectDepartment"  (change)="updatePostionType()">
+</ng-select>
 </div>
+
+
 
 
 <!--Job ID Div Starts-->
@@ -34,6 +44,19 @@
 </div> -->
 <!--Job ID Div Ends-->
 
+
+
+
+<div class="form-group type-position">
+  <label for="" class="t-p">Which Category this job belongs to? <small>(Optional)</small></label>
+  <ng-select class="custom-style" [items]="categories"
+  bindLabel="Code"
+  bindValue="CategoryId"
+  [multiple]="true"
+  placeholder="Select Category"
+  [(ngModel)]="selectedCategory"  (change)="updateJobCategory($event)">
+</ng-select>
+</div>
 
 <div class="form-group job-profile-group">
   <label for="" class="question">Do you have a complete description of the Job profile? <small>(Optional)</small></label>
@@ -60,4 +83,120 @@
      </small>
     </div>
 </div>
+
+
+
+<div class="form-row row">
+  <div class="col-md-6">
+      <div class="form-group job-title-group">
+          <label for="" class="question"> What is the Job Title?</label>
+          <ng-select class="custom-style" [items]="jobtitlelist"
+            bindLabel="Code"  placeholder="JobTitle" [(ngModel)]="selectedTitle"
+            bindValue="RoleId" [virtualScroll]="true" 
+              name="Title" (change)="updateJobTitle($event)">
+          </ng-select>
+          <!-- <ul class="data-list">
+     <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
+          <!-- {{suggestedTitle.JobTitle}} 
+      <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
+    </ul>-->
+
+          <!-- <small class="error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small> -->
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group re-group">
+          <label for="requiredExperience" class="question">Required Experience</label>
+          <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
+          <div class="row re-exp">
+              <!-- <div class="styled-select-box block experience-output"></div> -->
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <input class="form-control"  name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <input class="form-control" name="max-exp"  #Maxname="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="p-rel">
+                      <!-- <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
+                          required>
+                      </ng-select> 
+                        <small class="text-danger error1" *ngIf="totMinExp.invalid && totMinExp.touched">Required.</small>
+                       {{minExperience}} {{ maxExperience}} 
+                      <small class="text-danger error1" *ngIf="minExperience > maxExperience">          valdiateExperience(minExperience,maxExperience)  
+                          Can't be > Max Exp!
+                      </small> -->
+                      <!-- <ng5-slider [(value)]="minExperience" [(highValue)]="maxExperience" [options]="options"
+                          (userChangeStart)="minExperienceChangeStart($event)"
+                          (userChange)="onExperienceChange($event)" (userChangeEnd)="maxExperienceChangeEnd($event)"
+                          name="hourly">
+                      </ng5-slider> -->
+                      <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider> -->
+                  </div>
+              </div>
+              <!-- <div class="col-md-6">
+                  <div class="p-rel">
+                      <ng-select class="custom-style" [items]="expYears" (change)="updateMaxExp()" [hideSelected]="true" placeholder="Max" bindLabel="maxExperience" bindValue="maxExperience" [(ngModel)]="maxExperience" #totMaxExp="ngModel" name="maxiEperience" required>
+                      </ng-select>
+                      <small class="text-danger error1" *ngIf="totMaxExp.invalid && totMaxExp.touched">Required.</small>
+                      
+                      <small class="text-danger error1" *ngIf="minExperience > maxExperience">          
+                           valdiateExperience(minExperience,maxExperience)  
+           Can't be < Min Exp!
+        </small>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="form-row row key-resp">
+    <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
+    <div class="col-md-5">
+  
+      <div class="form-group">
+          <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
+          <small>Key Responsibilities</small>
+          <ng-select class="custom-style" [items]="KeyResponses"
+          (change)="changeValue($event)"  bindLabel="Code"  placeholder="key roles"
+          bindValue="KeyId" [virtualScroll]="true"  [(ngModel)]="SelectKey"
+          name="key" >
+        </ng-select>
+      </div>
+    </div>
+    <div class="col-md-2 min-key-exp">
+      <div class="form-group">
+          <small>Relevant Experience</small>
+          <input class="form-control"  name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+      </div>
+    </div>
+    <div class="col-md-2 max-key-exp">
+      <div class="form-group">
+        <input class="form-control"  name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
+      </div>
+    </div>
+     <div class="col-md-2 add-key-btn">
+      <button  class="btn add-btn form-control" type="submit">+</button>
+    </div>
+    </form>
+</div>
+
+<div class="lists row">
+    <div class="col-md-12" *ngIf="keyslist.length>0">
+      <p class="description">Key Responsibilities</p>
+      <ul class="data-list">
+        <li class="col-md-6 no-exp" *ngFor="let domain of keyslist; let i = index">
+          <span class="name">{{domain.DCode}}</span>
+          <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | number:'1.0-1' | skillmonths}} - {{(domain.CustomerKeyMaxExperienceId) | number:'1.0-1'| skillmonths}} Yrs</span>
+          <span class="close" (click)="deleteDomain(i)">&times;</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 
