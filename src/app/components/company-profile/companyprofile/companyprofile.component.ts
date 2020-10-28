@@ -162,8 +162,8 @@ export class CompanyprofileComponent implements OnInit {
     private _service: ApiService, private appService: AppService, private dialog: MatDialog, 
       private router: Router, private companyprofileservice: CompanyProfileService) { 
         
-    this.dragula.createGroup('Cultural', {});
-    this.dragula.dropModel('Cultural').subscribe((data: any) => console.log('dropModel: ', JSON.stringify(data['targetModel'], null, 2)));
+    // this.dragula.createGroup('Cultural', {});
+    // this.dragula.dropModel('Cultural').subscribe((data: any) => console.log('dropModel: ', JSON.stringify(data['targetModel'], null, 2)));
 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
         debugger
