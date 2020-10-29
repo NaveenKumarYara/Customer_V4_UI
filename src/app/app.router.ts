@@ -111,6 +111,11 @@ import { ReferencedialogComponent } from './components/jobdetails/view-jobdetail
 import { RequestdialogComponent} from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/RequestInfo/requestInfo.component';
 import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
 import { backgrounddialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
+import { StepSalarysliderComponent } from './components/Postajob/Createajob/Step1/salaryslider.component';
+import { StepContractExtensionComponent } from './components/Postajob/Createajob/Step1/contractextension.component';
+import { StepContractDurationComponent } from './components/Postajob/Createajob/Step1/contractduration.component';
+import { StepEmploymentTypeComponent } from './components/Postajob/Createajob/Step1/employment.component';
+import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -167,6 +172,11 @@ const appRoutes: Routes =
     { path: 'app-steps-step1-jobcategory', component: JobcategoryComponent },
     { path: 'app-steps-step1-jobdetails', component: JobdetailsComponent },
     { path: 'app-steps-step1-jobprofile', component: JobprofileComponent },
+    { path: 'app-stepsalaryslider', component:StepSalarysliderComponent},
+    {path: 'app-steps-step1-employmenttype', component:StepEmploymentTypeComponent},
+    {path: 'app-steps-step1-contractextension', component:StepContractExtensionComponent},
+    {path: 'app-steps-step1-contractduration', component:StepContractDurationComponent},
+    {path: 'app-steps-step1-immigrationmanager', component:ImmigrationManagerComponent},
     { path: 'app-steps-step1-clients', component: ClientsComponent },
     { path: 'app-steps-step1-departments', component: DepartmentsComponent },
     { path: 'app-steps-step1-jobskillset', component: JobskillsetComponent },

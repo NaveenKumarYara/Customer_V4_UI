@@ -8,6 +8,30 @@
   </app-steps-step1-jobdetails>
   <!-- <app-steps-step1-clients>
   </app-steps-step1-clients> -->
+
+  <app-steps-step1-employmenttype (myEmploymentType)="changeEmploymentType()">   
+  </app-steps-step1-employmenttype>
+
+  <div class="form-group contract-details-group" *ngIf="show">
+        
+    <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
+  <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  <app-steps-step1-contractduration> 
+  </app-steps-step1-contractduration>
+  
+    <app-steps-step1-contractextension>    
+    </app-steps-step1-contractextension>
+</div> 
+
+
+  <app-stepsalaryslider>  
+  </app-stepsalaryslider>
+
+
+  <app-steps-step1-immigrationmanager>   
+  </app-steps-step1-immigrationmanager>
+
   <app-steps-step2-locationwisejobs>
   </app-steps-step2-locationwisejobs>
   
