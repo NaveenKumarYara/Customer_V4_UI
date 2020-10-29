@@ -1,0 +1,12 @@
+
+
+  <div class="form-group">
+    <label for="">Contract Duration</label>
+    <div class="options">
+      <div class="checkbox" *ngFor="let type of contractdurationlist">
+        <!-- <label><input type="radio" [(ngModel)]="contractDuration" (change)="setDuration(type)" name="duration" [value]="type"><span class="box">{{type}}</span> </label> -->
+        <label><input type="radio" [ngModel]="contractDuration" (change)="setDuration(type)" name="duration" [value]="type.ContractDuration"><span class="box">{{type.ContractDuration}}</span> </label>
+      </div>
+    </div>
+  </div>
+  

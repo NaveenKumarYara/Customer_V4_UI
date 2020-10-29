@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label for="">Contract Extension</label>  
+      <div class="options">
+        <div class="checkbox" *ngFor="let type of contractextensionlist">
+          <!-- <label><input type="radio" [(ngModel)]="contractExtension" (change)="setExtension(type)" name="extension" [value]="type"><span class="box">{{type}}</span> </label> -->
+          <label><input type="radio" [ngModel]="contractExtension && contractExtension?.WorkAuthorizationId" (change)="setExtension(type)" name="workAuthoriztn" [value]="type.WorkAuthorizationId"><span class="box">{{type.WorkAuthorizationType}}</span> </label>
+        </div>
+      </div>
+    </div>
+  
+  

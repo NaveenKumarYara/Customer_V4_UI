@@ -19,6 +19,12 @@ import { ClientsComponent } from './clients.component';
 import { DepartmentsComponent } from './departments.component';
 import { LocationwiseJobsComponent } from './locationwisejobs.component';
 import { NoofopeningsComponent } from './noofopenings.component';
+import { StepEmploymentTypeComponent } from './employment.component';
+import { ImmigrationManagerComponent } from './immigration.component';
+import { StepSalarysliderComponent } from './salaryslider.component';
+import { StepContractExtensionComponent } from './contractextension.component';
+import { StepContractDurationComponent } from './contractduration.component';
+import { EmploymentType } from '../../../../../models/employmenttype.model';
 @Component({
   selector: 'app-steps-step1',
   templateUrl: './step1.component.html',
@@ -37,6 +43,10 @@ export class Step1Component implements OnInit, AfterViewChecked {
   @ViewChild(NoofopeningsComponent) openings: NoofopeningsComponent;
   @ViewChild(ClientsComponent) client: ClientsComponent;
   @ViewChild(DepartmentsComponent) department: DepartmentsComponent;
+  @ViewChild(StepContractDurationComponent) contractDuration: StepContractDurationComponent;
+  @ViewChild(StepContractExtensionComponent) contractExtension: StepContractExtensionComponent;
+  @ViewChild(StepEmploymentTypeComponent) empType: StepEmploymentTypeComponent;
+  @ViewChild(StepSalarysliderComponent) salSlider: StepSalarysliderComponent;
   // formData: any;
   // joblist = new InsertJob();
   disable1:any;
@@ -46,7 +56,9 @@ export class Step1Component implements OnInit, AfterViewChecked {
   userId: any;
   customerId: any;
   jobIdExists: any;
+  show = false;
   insertJob = new InsertJob();
+  employmentType: EmploymentType;
   jobIdVals = [];
   pjSkill: PjSkill;
   pjRole: PjRole;
@@ -127,6 +139,15 @@ export class Step1Component implements OnInit, AfterViewChecked {
     else{this.scroll=false}
   }
 
+    changeEmploymentType() {
+    this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
+    if (this.employmentType.EmploymentTypeId === 2) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
+  }
+
   postJob(step, exit?) {
 
     this.insertJob.CustomerId = this.customerId;
@@ -188,53 +209,71 @@ export class Step1Component implements OnInit, AfterViewChecked {
     //this.insertJob.ClientId = this.client.selectedClient.ClientId;
     this.insertJob.ClientId = 0;
     this.insertJob.ClientName = '';
+    this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
+    this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
+    localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
+    if (this.insertJob.EmploymentTypeId === 2) {
+      this.insertJob.ContractExtended = true;
+      this.insertJob.ContractDuration = this.contractDuration.contractDuration;
+      this.insertJob.WorkAuthorizationId = this.contractExtension.contractExtension.WorkAuthorizationId;
+    }
+    this.insertJob.MatchingCrieterias = this.appService.skillPostData;
+    this.insertJob.RemoteWorkId= this.appService.RemoteWork;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
     //this.insertJob.XmlDepartment = this.department.addedDepartmentList;
     //if (this.insertJob.XmlDepartment.length > 0) {
       //this.appService.departmentsChanged.next(this.department.departmentsList);
     //}
-    if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
-      this.appService.currentEmploymentType.subscribe((data) => {
-        this.insertJob.EmploymentTypeId = data.EmploymentTypeId;
-         // And he have data here too!
-      });
-      this.appService.currentSalaryTYpe.subscribe((data) => {
-        this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
-      });
-      if (this.insertJob.EmploymentTypeId === 2) {
-        this.appService.currentContractExtension.subscribe((data) => {
-          this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
-        });
-        this.appService.currentContractDuration.subscribe((data) => {
-          this.insertJob.ContractDuration = data; // And he have data here too!
-        });
-      }
-    // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
-    if (this.insertJob.SalaryTypeId === 2) {
-      this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
-      this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    } else if (this.insertJob.SalaryTypeId === 1) {
-      // this.insertJob.ContractExtended = true;
-      this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
-      this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
-    }
-    // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
-    // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
-    this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
-   // this.insertJob.StepNumber = 4;
-    } else {
-    this.insertJob.EmploymentTypeId = 1;
-    this.insertJob.SalaryTypeId = 1;
-    this.insertJob.MinimumSalary = '1';
-    this.insertJob.MaximumSalary = '200';
-    this.insertJob.IsDrafted = true;
+  //     if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+  //     this.appService.currentEmploymentType.subscribe((data) => {
+  //       this.insertJob.EmploymentTypeId = data.EmploymentTypeId;
+  //        // And he have data here too!
+  //     });
+  //     this.appService.currentSalaryTYpe.subscribe((data) => {
+  //       this.insertJob.SalaryTypeId = data.SalaryTypeId; // And he have data here too!
+  //     });
+  //     if (this.insertJob.EmploymentTypeId === 2) {
+  //       this.appService.currentContractExtension.subscribe((data) => {
+  //         this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
+  //       });
+  //       this.appService.currentContractDuration.subscribe((data) => {
+  //         this.insertJob.ContractDuration = data; // And he have data here too!
+  //       });
+  //     }
+  //   // this.insertJob.SalaryTypeId = this.insertJob.EmploymentTypeId;
+  //   if (this.insertJob.SalaryTypeId === 2) {
+  //     this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+  //     this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+  //   } else if (this.insertJob.SalaryTypeId === 1) {
+  //     // this.insertJob.ContractExtended = true;
+  //     this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+  //     this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+  //   }
+  //   // this.insertJob.MinimumSalary = this.insertJob.SalaryTypeId==1?this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x) :this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary= x);
+  //   // this.insertJob.MaximumSalary =  this.insertJob.SalaryTypeId==1?this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x):    this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+  //   this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+  //  // this.insertJob.StepNumber = 4;
+  //     } 
+  //     else {
+  //     this.insertJob.EmploymentTypeId = 1;
+  //   this.insertJob.SalaryTypeId = 1;
+  //     this.insertJob.MinimumSalary = '1';
+  //   this.insertJob.MaximumSalary = '200';
+  //   this.insertJob.IsDrafted = true;
 
-  }
+  //     }
+  if (this.insertJob.SalaryTypeId === 2) {
+    this.appService.currentMinRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+    this.appService.currentMaxRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+  } else if (this.insertJob.SalaryTypeId === 1) {
+    this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
+    this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
+}
   this.insertJob.HiringManagerId=this.userId;
   this.insertJob.SaveAsTemplate = 0;
 this.insertJob.StepNumber = step;
-this.insertJob.RemoteWorkId=this.appService.RemoteWork;
+//this.insertJob.RemoteWorkId=this.appService.RemoteWork;
 if (this.appService.stepNumber.value <= step) {
 this.appService.updateStepNumber(step);
 }
