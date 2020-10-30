@@ -215,8 +215,8 @@ public addkeyRole() {
 
 updateJobCategory()
 {
-  this.GetCustomerTitles(this.selectedCategory[0]);
-  this.appService.updateJobCategory(this.selectedCategory[0]);
+  this.GetCustomerTitles(this.selectedCategory);
+  this.appService.updateJobCategory(this.selectedCategory);
 }
 
 updateJobTitle(val) {

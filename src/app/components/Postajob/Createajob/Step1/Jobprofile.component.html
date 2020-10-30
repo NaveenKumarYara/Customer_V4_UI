@@ -20,7 +20,6 @@
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code"
   bindValue="PositionId"
-  [multiple]="true"
   placeholder="Select Department"
   [(ngModel)]="SelectDepartment"  (change)="updatePostionType()">
 </ng-select>
@@ -52,7 +51,6 @@
   <ng-select class="custom-style" [items]="categories"
   bindLabel="Code"
   bindValue="CategoryId"
-  [multiple]="true"
   placeholder="Select Category"
   [(ngModel)]="selectedCategory"  (change)="updateJobCategory()">
 </ng-select>
