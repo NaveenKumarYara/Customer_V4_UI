@@ -44,6 +44,7 @@ constructor (private companyprofileservice: CompanyProfileService,private _servi
   this.fileUploadForm = this.fb.group({ 
     'CompanyWhitePaperId':[0, Validators.nullValidator],
     'CustomerId': ['', Validators.required],
+    'ProfileId': [0, Validators.nullValidator],
     'WhitePaper': [null, Validators.nullValidator],
     'Description': ['', Validators.nullValidator],
     'Title':['', Validators.nullValidator],

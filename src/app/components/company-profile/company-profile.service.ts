@@ -114,7 +114,7 @@ export class CompanyProfileService {
     }
 
     getCompanyWhitePapers(customerId: number): Observable<GetCompanyWhitePaper[]> {
-        const url = this.settingsService.settings.CompanyWhitePapers + 'customerId=' + customerId + '&companyWhitePaperId=0';
+        const url = this.settingsService.settings.CompanyWhitePapers + 'customerId=' + customerId +  '&profileId=0&companyWhitePaperId=0';
         return this.http.get<GetCompanyWhitePaper[]>(url)
             .catch(
                 this.handleError
