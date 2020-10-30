@@ -1,5 +1,5 @@
 # Step 1: Build the app in image 'builder'
-FROM node:10.16-alpine AS builder
+FROM node:12.19-alpine3.10 AS builder
 
 WORKDIR /usr/src/app
 COPY . .
