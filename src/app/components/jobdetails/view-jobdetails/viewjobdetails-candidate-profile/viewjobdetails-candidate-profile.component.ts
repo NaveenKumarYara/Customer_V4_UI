@@ -870,6 +870,7 @@ GetMatchingPercentage(profileId, jobid): any {
     //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
     //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
     // }
+    this.matchingParameterData.Role = this.matchingParameterDetails.Role;
     this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
     this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
@@ -948,19 +949,21 @@ getGraph() {
         },
         data: {
           value: 35,
-          labels: ["Skill Fit", "Job Fit", "Personality-Fit"],
+          labels: ["Skill Fit", "Job Fit","Role Fit", "Personality-Fit"],
           render: 'labels',
           datasets: [{
             labels: [
               'Red',
               'Yellow',
-              'Blue'
+              'Blue',
+              'Green'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
+            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0,this.matchingParameterData.Role > 0 ? this.matchingParameterData.Role : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
               'rgba(63, 184, 179, 1)',
+              'rgb(0, 128, 128)',
               'rgba(236, 136, 133, 1)'
             ],
 
@@ -986,18 +989,20 @@ getGraph() {
         },
         data: {
           value: 35,
-          labels: ["Skill Fit", "Job Fit"],
+          labels: ["Skill Fit", "Job Fit","RoleFit"],
           render: 'labels',
           datasets: [{
             labels: [
               'Red',
-              'Yellow'
+              'Yellow',
+              'Green'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],
+            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0,this.matchingParameterData.Role > 0 ? this.matchingParameterData.Role : 0],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
-              'rgba(63, 184, 179, 1)'
+              'rgba(63, 184, 179, 1)',
+              'rgb(0, 128, 128)'
             ],
 
           }
