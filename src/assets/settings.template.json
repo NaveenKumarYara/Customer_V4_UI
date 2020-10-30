@@ -1,4 +1,4 @@
-"{
+{
   "ProfilebaseUrl":"${Profile_URL}",
    "IdentitybaseUrl":"${Identity_URL}",
    "RefralbaseUrl":"${Referral_URL}",
