@@ -121,7 +121,7 @@
       <span class="text-danger"
       *ngIf="JobDue.invalid && JobDue.touched">Due Date Required.</span>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 custom-date">
         <ng-container *ngIf="showDate">
             <label for="jobPri" class="jobid">Custom Date </label>
            <angular2-date-picker  [(ngModel)]="ExpiryDate" (onDateSelect)="changeMethod($event)" [settings]="settings"></angular2-date-picker>  
