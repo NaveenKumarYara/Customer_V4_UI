@@ -16,7 +16,7 @@
 'disabled' : stepNumber <= 1  }"  
       (click)="step2toggleClass(complete)">
       <ng-container *ngIf="complete >1;else nocompl">
-      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Skills" routerLink="app-steps-step2"><span class="step-check"></span>Step 2</a>
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Skills" routerLink="app-steps-step2"><span class="step-check"></span>Skills</a>
       </ng-container>
       <ng-template #nocompl>
           <a data-toggle="tab" title="Skills" routerLink="app-steps-step2"><span class="step-check"></span>Skills</a>
@@ -26,7 +26,7 @@
   <li [ngClass]="{ 'tab-list':!step3isClicked, 'tab-list active':step3isClicked, 'disabled' : stepNumber < 2  }" 
       (click)="step3toggleClass(complete)">
       <ng-container *ngIf="complete >2;else nocom">
-      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Additional Details" routerLink="app-steps-step3"><span class="step-check"></span>Step 3</a>
+      <a data-toggle="tab" [ngClass]="{'completed':true}" title="Additional Details" routerLink="app-steps-step3"><span class="step-check"></span>Additional Details</a>
       </ng-container>
       <ng-template #nocom>
           <a data-toggle="tab" title="Additional Details" routerLink="app-steps-step3"><span class="step-check"></span>Additional Details       </a>
