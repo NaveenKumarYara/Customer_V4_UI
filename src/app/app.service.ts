@@ -157,17 +157,6 @@ export class AppService {
   JobPriorityName = new BehaviorSubject(this.PriorityName);
   CurrentPriorityName = this.JobPriorityName.asObservable();
 
-
-
-  
-  jobDue: number;
-  JobDue = new BehaviorSubject(this.jobDue);
-  currentjobDue = this.JobDue.asObservable();
-
-  jobDueDate: Date;
-  JobDueDate = new BehaviorSubject(this.jobDueDate);
-  currentjobDueDate = this.JobDueDate.asObservable();
-
   videoProfile = new BehaviorSubject('');
   currentVideo = this.videoProfile.asObservable();
 
@@ -177,6 +166,17 @@ export class AppService {
   myDraft: boolean;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
+
+
+
+  jobDue: number;
+  JobDue = new BehaviorSubject(this.jobDue);
+  currentjobDue = this.JobDue.asObservable();
+
+  jobDueDate: Date;
+  JobDueDate = new BehaviorSubject(this.jobDueDate);
+  currentjobDueDate = this.JobDueDate.asObservable();
+
 
   salType = new Salary(1, 'Hourly');
   salaryType = new BehaviorSubject(this.salType);
@@ -342,6 +342,11 @@ export class AppService {
   updatedescription(isdescription: string) {
     this.description.next(isdescription);
   }
+  
+  updateJobtitleId(jobtitleId: string) {
+    this.jobtitleId.next(jobtitleId);
+  }
+  
   updateLocation(loc: any) {
     this.location = loc;
   }
@@ -349,9 +354,6 @@ export class AppService {
     this.jobtitle.next(jobtitle);
   }
 
-  updateJobtitleId(jobtitleId: string) {
-    this.jobtitleId.next(jobtitleId);
-  }
 
   updateJobImp(jobImp: number) {
     this.JobImp.next(jobImp);
