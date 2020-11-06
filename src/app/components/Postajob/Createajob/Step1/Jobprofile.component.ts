@@ -106,7 +106,7 @@ jobimplist:jobImps[]=[];
     this.appService.deletekeyRole(index);
   }
 
-  
+
   changeValue(val)
   {
     this.getDomain.DCode = val.Code;
@@ -199,8 +199,6 @@ public addkeyRole() {
     this.getDomain.CustomerKeyMaxExperienceId =  Number(this.MaximumExperience*12); //  parseFloat((this.MinimumExperience / 12).toFixed(1)) ;
     this.appService.addKeyRole(this.getDomain);
     this.SelectKey=undefined;
-    // this.getDomain = new GetDomain();
-    // this.selecteddomainname = '';
     this.roleForm.resetForm();
     this.MaximumExperience = 6;
     this.MinimumExperience = 3;

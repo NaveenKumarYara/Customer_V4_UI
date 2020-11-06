@@ -7,7 +7,7 @@ import {EmploymentType} from '../../../models/employmenttype.model';
 import{InterviewType} from '../../../models/interviewtype.model';
 import { Jobskills } from '../../../models/jobskills.model';
 import { Qualifications } from '../../../models/qualifications.model';
-import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam,Cities,jobImmigrationData, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData } from '../../components/Postajob/models/jobPostInfo';
+import { PjDomain, GetDomain, CustomerUsers, KeyRole,PjTechnicalTeam,Cities,jobImmigrationData, CategoryList, PjEducationDetails, PjRole, PjDisc, Roles, DiscResult, PrefLocation, ClientModel, PjDepartments, DepartmentModel, SkillPostData, GetKeyRole } from '../../components/Postajob/models/jobPostInfo';
 import { WorkAuthorization } from '../../../models/workAuthorization';
 declare var $: any;
 @Component({
@@ -81,6 +81,10 @@ export class PostajobComponent implements OnInit {
   this.appService.departmentsChanged = new Subject<DepartmentModel[]>();
   this.appService.addeddepartments = [];
   this.appService.addeddepartmentsChanged = new Subject<PjDepartments[]>();
+  this.appService.keyrole = [];
+  this.appService.keyroleChanged = new Subject<GetKeyRole[]>();
+  this.appService.addkeyrole = [];
+  this.appService.addkeyroleChanged = new Subject<KeyRole[]>();
   this.appService.ResponseList=[];
   this.appService.noofOpenings.next(2);
   this.appService.minAnnualRate.next(1000);
