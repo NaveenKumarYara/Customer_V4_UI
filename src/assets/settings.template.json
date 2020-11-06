@@ -43,7 +43,7 @@
   "StartConversation": "${Email_URL}/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "${Profile_URL}/api/UpdateProfileStatus",
   "signUp": "${Identity_URL}/api/CustomerRegistration",
-  "postjob" : "${Jobs_URL}/api/CreateJob",
+  "postjob" : "${Jobs_URL}/api/InsertJobUpdated",
   "addRoles": "${Profile_URL}/api/SaveRoles",
   "getRoles": "${Profile_URL}/api/GetRolesAndResponsibility",
   "bulkResponsibilities" : "${Jobs_URL}/api/SaveJobRoles",
