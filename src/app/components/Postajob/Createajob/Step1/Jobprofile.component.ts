@@ -51,6 +51,7 @@ jobimplist:jobImps[]=[];
       this.customerId = this.customer.CustomerId;
   }
 
+
   setValue(val) {
     this.hasCompleteDescription = val;
     this.jobDescription = val ? this.jobDescription : '';
@@ -62,17 +63,24 @@ jobimplist:jobImps[]=[];
     // }
   }
 
-  updateJobImp() {
-    this.appService.updateJobImp(this.jobPriority);
-  }
-
   updatePostionType()
   {
     this.appService.updateJobPositionType(this.SelectDepartment);
     this.GetCustomerCategory(this.SelectDepartment);
   }
 
-  
+  updateJobImp() {
+    this.appService.updateJobImp(this.jobPriority);
+  }
+
+ 
+
+  GetCustomerTitles(Id)
+  {
+   this.appService.GetJobTitleRoles(Id).subscribe(res2 => {
+     this.jobtitlelist = res2;
+  });
+  }
 
  GetCustomerIndustry()
  {
@@ -89,12 +97,13 @@ jobimplist:jobImps[]=[];
  });
  }
 
- GetCustomerTitles(Id)
+
+ changeValue(val)
  {
-  this.appService.GetJobTitleRoles(Id).subscribe(res2 => {
-    this.jobtitlelist = res2;
- });
+   this.getDomain.DCode = val.Code;
+   this.getDomain.CustomerKeyResponsebility = val.KeyId;
  }
+
 
   GetJobPriority() {
      this.appService.GetJobPriority().subscribe(res => {
@@ -102,22 +111,26 @@ jobimplist:jobImps[]=[];
   });
   }
 
-  private deleteDomain(index: number) {
+   deleteDomain(index: number) {
     this.appService.deletekeyRole(index);
   }
 
-
-  changeValue(val)
-  {
-    this.getDomain.DCode = val.Code;
-    this.getDomain.CustomerKeyResponsebility = val.KeyId;
-  }
 
 
   ngOnInit() {
     this.GetJobPriority();
     this.GetCustomerIndustry();
     this.populatedescriptioncheck();
+    this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
+    this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
+    this.appService.currentminExp.subscribe(x => {
+      let val = x/12;
+      this.minExperience = Number(val.toFixed(2));
+    });
+   this.appService.currentmaxExp.subscribe(y => {
+      let value = y/12;
+      this.maxExperience = Number(value.toFixed(2));
+   } );
     this.keyslist = this.appService.getKeyRoleList();
     this.subscription = this.appService.keyroleChanged
       .subscribe(
@@ -135,16 +148,7 @@ jobimplist:jobImps[]=[];
         );
 
    // if (localStorage.getItem('jobId') != null) {
-    this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
-    this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
-    this.appService.currentminExp.subscribe(x => {
-      let val = x/12;
-      this.minExperience = Number(val.toFixed(2));
-    });
-   this.appService.currentmaxExp.subscribe(y => {
-      let value = y/12;
-      this.maxExperience = Number(value.toFixed(2));
-   } );
+
     // if (this.hasCompleteDescription === undefined) {
     //   this.hasCompleteDescription = false;
     // }
@@ -152,13 +156,6 @@ jobimplist:jobImps[]=[];
     this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
 
   // }
-}
-
-GetCustomerCategory(Id)
-{
- this.appService.GetCategories(Id).subscribe(res => {
-    this.categories = res; 
-});
 }
 
 numberOnly(event): boolean {
@@ -169,6 +166,15 @@ numberOnly(event): boolean {
   return true;
 
 }
+
+GetCustomerCategory(Id)
+{
+ this.appService.GetCategories(Id).subscribe(res => {
+    this.categories = res; 
+});
+}
+
+
 
 onMaxChange()
 {
@@ -190,6 +196,20 @@ GetKeyRespones(Id)
 });
 }
 
+
+
+  dExists(domain, list) {​
+    return list.some(function(elem) {
+         return elem.Code === domain.Code;
+    });
+ }
+
+updateJobCategory()
+{
+  this.GetCustomerTitles(this.selectedCategory);
+  this.appService.updateJobCategory(this.selectedCategory);
+}
+
 public addkeyRole() {
   if (this.roleForm.valid) {
     if (this.MaximumExperience < this.MinimumExperience) {
@@ -206,27 +226,15 @@ public addkeyRole() {
 }
   }
 
-  dExists(domain, list) {​
-    return list.some(function(elem) {
-         return elem.Code === domain.Code;
-    });
- }
-
-updateJobCategory()
-{
-  this.GetCustomerTitles(this.selectedCategory);
-  this.appService.updateJobCategory(this.selectedCategory);
-}
-
-updateJobTitle(val) {
-  let id = val.RoleId;
-  let title = val.Code;
-  this.GetKeyRespones(id);
-  this.appService.updateJobtitleId(id);
-  this.appService.updateJobtitle(title);
-}
 
 
+  updateJobTitle(val) {
+    let id = val.RoleId;
+    let title = val.Code;
+    this.GetKeyRespones(id);
+    this.appService.updateJobtitleId(id);
+    this.appService.updateJobtitle(title);
+  }
 
 populatedescriptioncheck() {
     this.hasCompleteDescriptionList  = this.appService.getHasDescription();

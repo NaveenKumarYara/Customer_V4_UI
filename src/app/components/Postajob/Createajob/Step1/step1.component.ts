@@ -186,12 +186,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
     //  && this.jobResponsibility.roleIdList.length > 0
-    this.insertJob.Industry = "1";
-    this.insertJob.JobCategoryId = 1;
-    this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
-    this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-    this.insertJob.Category = this.jobProfile.selectedCategory.toString();
-    this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
+   
 
 
     this.insertJob.JobTitle = this.jobDetail.selectedTitle;
@@ -221,6 +216,13 @@ export class Step1Component implements OnInit, AfterViewChecked {
     }
     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     this.insertJob.RemoteWorkId= this.appService.RemoteWork;
+
+    this.insertJob.Industry = "1";
+    this.insertJob.JobCategoryId = 1;
+    this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
+    this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
+    this.insertJob.Category = this.jobProfile.selectedCategory.toString();
+    this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
     //this.insertJob.XmlDepartment = this.department.addedDepartmentList;
