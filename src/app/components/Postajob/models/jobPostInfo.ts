@@ -46,11 +46,11 @@ export class InsertJob {
     public Email: string;
     public JobPriority:number;
     public JobDue:number;
-    public Industry : string;
-    public  PositionType : string;
-    public  Category: string;
-    public  TitleInfo : string;
-    public XmlKeyResponses :KeyRole[]=[];
+    public  Industry : string;
+    public PositionType : string;
+    public Category: string;
+    public   TitleInfo : string;
+    public  XmlKeyResponses :KeyRole[]=[];
     public MatchingCrieterias : SkillPostData[]=[];
   }
   export class PjSkill {

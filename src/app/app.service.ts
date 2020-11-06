@@ -158,6 +158,8 @@ export class AppService {
   CurrentPriorityName = this.JobPriorityName.asObservable();
 
 
+
+  
   jobDue: number;
   JobDue = new BehaviorSubject(this.jobDue);
   currentjobDue = this.JobDue.asObservable();
@@ -1006,6 +1008,7 @@ bulkApply(body) {
   getAddedDomainlist() {
     return this.adddomain.slice();
   }
+
   getAddedKeyRole()
   {
     return this.addkeyrole.slice();
@@ -1014,6 +1017,7 @@ bulkApply(body) {
   {
     return this.keyrole.slice();
   }
+
   addKeyRole(key:GetKeyRole)
   {
     this.keyrole.push(key);
