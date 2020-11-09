@@ -237,12 +237,14 @@
                 </ng-template>
 
 
-                <a href="javascript:void(0)" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
+                <ng-container  *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
+                    <a href="javascript:void(0)" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
                     *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
                     <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
                         width="25">
                 </a>
 
+                </ng-container> 
                 <div class="meta a">
                     <div class="d-block text-center">
                         <!--Email-->
