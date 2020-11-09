@@ -938,10 +938,21 @@
                     <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
                     <li>
                         <!--Word doc-->
-                        <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName,profile?.ProfileId)">
-                            <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
-                                title="Download Resume">
-                        </a>
+                        <ng-container>
+                            <a href="javascript:void(0)" *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null; else fBlock">
+                                <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                                    title="Download Resume">
+                            </a>
+                            <ng-template #fBlock>
+                                <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName,profile?.ProfileId)">
+                                    <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                                        title="Download Resume">
+                                </a>
+                                <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
+    
+                            </ng-template>
+                        </ng-container>
+                      
                         <!--Show if Candidate Resume is in PDF-->
                         <!-- <a href="javascript:void(0)">
                             <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"
