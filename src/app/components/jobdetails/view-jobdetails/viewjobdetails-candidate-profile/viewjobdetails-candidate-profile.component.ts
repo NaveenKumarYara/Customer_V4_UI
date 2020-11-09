@@ -949,21 +949,19 @@ getGraph() {
         },
         data: {
           value: 35,
-          labels: ["Skill Fit", "Job Fit","Role Fit", "Personality-Fit"],
+          labels: ["Skill Fit", "Job Fit", "Personality-Fit"],
           render: 'labels',
           datasets: [{
             labels: [
               'Red',
               'Yellow',
-              'Blue',
-              'Green'
+              'Blue'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0,this.matchingParameterData.Role > 0 ? this.matchingParameterData.Role : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
+            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0 , Math.round(this.matchingParameterData.Personalityfit_Total)],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
               'rgba(63, 184, 179, 1)',
-              'rgb(0, 128, 128)',
               'rgba(236, 136, 133, 1)'
             ],
 
@@ -989,7 +987,7 @@ getGraph() {
         },
         data: {
           value: 35,
-          labels: ["Skill Fit", "Job Fit","RoleFit"],
+          labels: ["Skill Fit", "Job Fit"],
           render: 'labels',
           datasets: [{
             labels: [
@@ -998,11 +996,10 @@ getGraph() {
               'Green'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0,this.matchingParameterData.Role > 0 ? this.matchingParameterData.Role : 0],
+            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
-              'rgba(63, 184, 179, 1)',
-              'rgb(0, 128, 128)'
+              'rgba(63, 184, 179, 1)'
             ],
 
           }
