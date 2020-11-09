@@ -33,8 +33,7 @@
                     <div class="media-body">
                         <small title="{{profile.CertificationName}}"
                             (click)="callSkills(profile.ProfileId,0)">{{profile.CertificationName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">1
-                            +</span>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">{{profile?.countval?.CertificationCount}}</span>
                     </div>
                 </div>
                 <ng-template #nocertification>
@@ -73,8 +72,8 @@
                     <div class="media-body">
                         <small title="{{profile.DomainName}}"
                             (click)="callSkills(profile.ProfileId,1)">{{profile.DomainName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">1
-                            +</span>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">{{profile?.countval?.DomainsCount}}
+                            </span>
                     </div>
                     <div class="media-right">
                         <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
