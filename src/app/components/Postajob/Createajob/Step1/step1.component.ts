@@ -292,14 +292,13 @@ if (this.appService.isDrafted.value != null) {
   {
     var res = new Promise((resolve, reject) => {
       this.locations.locationwithpostions.forEach((value, index, array) => {
-        this.insertJob.Industry = "1";
+        this.insertJob.Industry = this.jobProfile.IndustryId;
         this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
         this.insertJob.Category = this.jobProfile.selectedCategory.toString();
         this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityId.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
-
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
@@ -369,14 +368,14 @@ if (this.appService.isDrafted.value != null) {
   if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
   {
 
-    this.insertJob.Industry = "1";
+    this.insertJob.Industry = this.jobProfile.IndustryId;
     this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
     this.insertJob.Category = this.jobProfile.selectedCategory.toString();
     this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
     this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
-    
+    debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

@@ -43,6 +43,7 @@ maxExperience:number=6;
 MinimumExperience = 3;
 MaximumExperience = 6;
 jobtitlelist:any=[];
+IndustryId:any;
 jobPriority:number=3;
 jobimplist:jobImps[]=[];
   constructor(private route: ActivatedRoute,
@@ -63,10 +64,11 @@ jobimplist:jobImps[]=[];
     // }
   }
 
-  updatePostionType()
+  updatePostionType(val)
   {
+    let PositionId = val.PositionId;
     this.appService.updateJobPositionType(this.SelectDepartment);
-    this.GetCustomerCategory(this.SelectDepartment);
+    this.GetCustomerCategory(PositionId);
   }
 
   updateJobImp() {
@@ -82,11 +84,15 @@ jobimplist:jobImps[]=[];
   });
   }
 
+  updateJobIndustry(val) {
+    this.IndustryId = val.IndustryId;
+    this.GetCustomerPosition(this.IndustryId);
+  }
+
  GetCustomerIndustry()
  {
     this.appService.GetCustomerIndustries(this.customerId).subscribe(res => {
-    this.Industries = res[0];
-    this.GetCustomerPosition(this.Industries.IndustryId);
+    this.Industries = res;
  });
  }
 
@@ -204,9 +210,10 @@ GetKeyRespones(Id)
     });
  }
 
-updateJobCategory()
+updateJobCategory(val)
 {
-  this.GetCustomerTitles(this.selectedCategory);
+  let CategoryId = val.CategoryId;
+  this.GetCustomerTitles(CategoryId);
   this.appService.updateJobCategory(this.selectedCategory);
 }
 

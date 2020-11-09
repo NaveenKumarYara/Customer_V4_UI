@@ -16,12 +16,21 @@
 </div> -->
 <!---->
 <div class="form-group type-position">
+  <label class="t-p" for="typeofindustry">Which Type of Industry does the job belongs to? </label>
+<ng-select class="custom-style" [items]="Industries" placeholder="Select Industry" bindLabel="Code"
+bindValue="IndustryId" name="Indusrty" [(ngModel)]="IndustryId"
+(change)="updateJobIndustry($event)">
+</ng-select>
+</div>
+
+
+<div class="form-group type-position">
   <label class="t-p" for="typeofposition">Which Type of Position does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code"
   bindValue="PositionId"
   placeholder="Select Type of Position"
-  [(ngModel)]="SelectDepartment"  (change)="updatePostionType()">
+  [(ngModel)]="SelectDepartment"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
 
@@ -52,7 +61,7 @@
   bindLabel="Code"
   bindValue="CategoryId"
   placeholder="Select Category"
-  [(ngModel)]="selectedCategory"  (change)="updateJobCategory()">
+  [(ngModel)]="selectedCategory"  (change)="updateJobCategory($event)">
 </ng-select>
 </div>
 
