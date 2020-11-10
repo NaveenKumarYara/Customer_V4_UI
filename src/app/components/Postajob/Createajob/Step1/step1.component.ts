@@ -166,7 +166,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
    }
 
    if (this.jobProfile.IndustryId === '' || null) {
-    this.toastr.error('Please Select Industry!', 'Oops!');
+    this.toastr.error('Please Select Business Domain!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
@@ -175,7 +175,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
    
    if (this.jobProfile.DepartmentId === '' || null) {
-    this.toastr.error('Please Select Department!', 'Oops!');
+    this.toastr.error('Please Select Type of position/Core competancy!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
