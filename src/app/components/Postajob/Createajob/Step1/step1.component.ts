@@ -164,14 +164,49 @@ export class Step1Component implements OnInit, AfterViewChecked {
     // if (res != null) {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
    }
+
+   if (this.jobProfile.IndustryId === '' || null) {
+    this.toastr.error('Please Select Industry!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+     return false;
+   }
+
+   
+   if (this.jobProfile.DepartmentId === '' || null) {
+    this.toastr.error('Please Select Department!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+     return false;
+   }
+
+   if (this.jobProfile.CategoryId === '' || null) {
+    this.toastr.error('Please Select Category!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+     return false;
+   }
+
+   if (this.jobProfile.TitleId === '' || null) {
+    this.toastr.error('Please Select JobTitle!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+     return false;
+   }
+
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
-   if ((this.jobDetail.selectedTitle !== '' || null) // && (this.jobProfile.jobPositionId!== '' || null || undefined)
-   && this.jobDetail.minExperience !== undefined && this.jobDetail.maxExperience !== undefined &&
+   if ( // && (this.jobProfile.jobPositionId!== '' || null || undefined)
+    this.jobProfile.minExperience !== undefined && this.jobProfile.maxExperience !== undefined &&
   //  this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0
       (this.locations.locationwisejobs.length>0)||(this.locations.locationwithpostions.length>0)
-   ) {
+   ) 
+   {
    //  && this.jobResponsibility.roleIdList.length > 0
-   if (this.jobDetail.minExperience > this.jobDetail.maxExperience) {
+   if (this.jobProfile.minExperience > this.jobProfile.maxExperience) {
     this.toastr.error('minimum experience should not be greater than maximum experience!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -185,6 +220,9 @@ export class Step1Component implements OnInit, AfterViewChecked {
     }, 3000);
      return false;
    }
+
+  
+   
     //  && this.jobResponsibility.roleIdList.length > 0
    
 
