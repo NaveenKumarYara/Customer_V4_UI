@@ -158,6 +158,7 @@ export class AppService {
   jobIndustry = new BehaviorSubject('');
   currentjobIndustry= this.jobIndustry.asObservable();
 
+
   IndustryId = new BehaviorSubject('');
   currentjobIndustryId= this.jobIndustry.asObservable();
 
@@ -343,7 +344,7 @@ export class AppService {
     this.noofOpenings.next(openings);
   }
   updateJobIndustry(jobIndustry: string) {
-    this.jobIndustry.next(jobIndustry);
+    this.IndustryId.next(jobIndustry);
   }
   updateJobPosition(jobpositionId: string) {
     this.jobPosition.next(jobpositionId);

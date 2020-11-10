@@ -287,7 +287,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.Industry = this.jobProfile.IndustryId;
   this.insertJob.PositionType = this.jobProfile.DepartmentId;
   this.insertJob.Category = this.jobProfile.CategoryId;
-  this.insertJob.TitleInfo = this.jobProfile.Title;
+  this.insertJob.TitleInfo = this.jobProfile.TitleId;
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
     var res = new Promise((resolve, reject) => {

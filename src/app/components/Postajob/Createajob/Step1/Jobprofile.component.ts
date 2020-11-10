@@ -74,7 +74,7 @@ jobimplist:jobImps[]=[];
 
   updatePostionType(val)
   {
-    this.DepartmentId = val.PositionId;
+    this.DepartmentId = val.PositionId.toString();
     this.Department = val.Code;
     this.appService.updateJobPositionType(this.Department);
     this.GetCustomerCategory(this.DepartmentId);
@@ -94,7 +94,7 @@ jobimplist:jobImps[]=[];
   }
 
   updateJobIndustry(val) {
-    this.IndustryId = val.IndustryId;
+    this.IndustryId = val.IndustryId.toString();
     this.Industry = val.Code;
     this.appService.updateJobIndustry(val.IndustryId);
     this.GetCustomerPosition(this.IndustryId);
@@ -169,14 +169,15 @@ jobimplist:jobImps[]=[];
     //   this.hasCompleteDescription = false;
     // }
     this.appService.currentjobIndustry.subscribe(x=>this.Industry=x);
+    this.appService.currentjobIndustryId.subscribe(x=>this.IndustryId=x);
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
     this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
-    this.appService.currentjobIndustryId.subscribe(x=>this.IndustryId= x);
     this.appService.currentjobtypePosition.subscribe(x=>this.Department=x);
     this.appService.currentjobtypePositionId.subscribe(x=>this.DepartmentId=x);
     this.appService.currentcategorytitlenew.subscribe(x=>this.Category=x);
     this.appService.currentcategorytitlenewId.subscribe(x=>this.CategoryId=x);
     this.appService.currentjobtitle.subscribe(x=>this.Title=x);
+    this.appService.currentjobtitleId.subscribe(x=>this.TitleId=x);
     if(this.Title=='')
     {
       this.Title= this.newtitle;
@@ -248,7 +249,7 @@ GetKeyRespones(Id)
 
 updateJobCategory(val)
 {
-  this.CategoryId = val.CategoryId;
+  this.CategoryId = val.CategoryId.toString();
   this.Category = val.Code;
   this.GetCustomerTitles(this.CategoryId);
   this.appService.updateJobCategoryNew(this.CategoryId);
@@ -273,7 +274,7 @@ public addkeyRole() {
 
 
   updateJobTitle(val) {
-    this.TitleId = val.RoleId;
+    this.TitleId = val.RoleId.toString();
     this.Title = val.Code;
     this.GetKeyRespones(this.TitleId);
     this.appService.updateJobtitleId(this.TitleId);
