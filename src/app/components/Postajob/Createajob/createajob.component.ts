@@ -188,6 +188,15 @@ editMode: string;
             this.ejDepartmentIdList.push(ejDepartmentId);
         }
       }
+      this.appService.jobIndustry.next(this.jobdetailscustomer.CustomerJobIndustries[0].Code);
+      this.appService.IndustryId.next(this.jobdetailscustomer.CustomerJobIndustries[0].CustomerIndustryId.toString());
+      this.appService.jobtypePosition.next(this.jobdetailscustomer.CustomerJobPositionType[0].Code);
+      this.appService.jobtypePositionId.next(this.jobdetailscustomer.CustomerJobPositionType[0].JobPositionTypeId.toString());
+      this.appService.jobcategorynew.next(this.jobdetailscustomer.CustomerJobCategory[0].Code);
+      this.appService.jobcategorynewId.next(this.jobdetailscustomer.CustomerJobCategory[0].CustomerCategoryId.toString());
+      this.appService.jobtitle.next(this.jobdetailscustomer.CustomerJobTitle[0].JobTitle);
+      this.appService.jobtitleId.next(this.jobdetailscustomer.CustomerJobTitle[0].RoleId.toString());
+
       this.appService.departments = this.jobdetailscustomer.JobDepartments;
       this.appService.departmentsChanged.next(this.appService.departments);
       this.appService.addeddepartments = this.ejDepartmentIdList;
@@ -217,7 +226,6 @@ editMode: string;
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
       this.appService.jobcategory.next(this.eJcategory);
-      this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.videoProfile.next(this.jobdetailscustomer.JobInfo.VideoURL);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));

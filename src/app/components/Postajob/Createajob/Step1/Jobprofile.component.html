@@ -18,19 +18,18 @@
 <div class="form-group type-position">
   <label class="t-p" for="typeofindustry">Which Type of Industry does the job belongs to? </label>
 <ng-select class="custom-style" [items]="Industries" placeholder="Select Industry" bindLabel="Code"
-bindValue="IndustryId" name="Indusrty" [(ngModel)]="IndustryId"
+ name="Indusrty" [(ngModel)]="Industry"
 (change)="updateJobIndustry($event)">
 </ng-select>
 </div>
 
 
 <div class="form-group type-position">
-  <label class="t-p" for="typeofposition">Which Type of Position does the job belongs to? </label>
+  <label class="t-p" for="typeofposition">Which Type of Department does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code"
-  bindValue="PositionId"
-  placeholder="Select Type of Position"
-  [(ngModel)]="SelectDepartment"  (change)="updatePostionType($event)">
+  placeholder="Select Type of Department"
+  [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
 
@@ -59,9 +58,8 @@ bindValue="IndustryId" name="Indusrty" [(ngModel)]="IndustryId"
   <label for="" class="t-p">Which Category this job belongs to? </label>
   <ng-select class="custom-style" [items]="categories"
   bindLabel="Code"
-  bindValue="CategoryId"
   placeholder="Select Category"
-  [(ngModel)]="selectedCategory"  (change)="updateJobCategory($event)">
+  [(ngModel)]="Category"  (change)="updateJobCategory($event)">
 </ng-select>
 </div>
 
@@ -98,8 +96,8 @@ bindValue="IndustryId" name="Indusrty" [(ngModel)]="IndustryId"
       <div class="form-group job-title-group">
           <label for="" class="question"> What is the Job Title?</label>
           <ng-select class="custom-style" [items]="jobtitlelist"
-            bindLabel="Code"  placeholder="JobTitle" [(ngModel)]="selectedTitle"
-            bindValue="RoleId" [virtualScroll]="true" 
+            bindLabel="Code"  placeholder="JobTitle" [(ngModel)]="Title"
+         [virtualScroll]="true" 
               name="Title" (change)="updateJobTitle($event)">
           </ng-select>
           <!-- <ul class="data-list">

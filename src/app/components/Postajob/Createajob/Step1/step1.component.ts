@@ -284,18 +284,18 @@ if (this.appService.isDrafted.value != null) {
   // })
 
   this.insertJob.JobCategoryId = 1;
-
-
-
-
+  this.insertJob.Industry = this.jobProfile.IndustryId;
+  this.insertJob.PositionType = this.jobProfile.DepartmentId;
+  this.insertJob.Category = this.jobProfile.CategoryId;
+  this.insertJob.TitleInfo = this.jobProfile.Title;
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
     var res = new Promise((resolve, reject) => {
       this.locations.locationwithpostions.forEach((value, index, array) => {
-        this.insertJob.Industry = this.jobProfile.IndustryId;
-        this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
-        this.insertJob.Category = this.jobProfile.selectedCategory.toString();
-        this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
+     
+      
+
+
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityId.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
@@ -367,11 +367,6 @@ if (this.appService.isDrafted.value != null) {
   }
   if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
   {
-
-    this.insertJob.Industry = this.jobProfile.IndustryId;
-    this.insertJob.PositionType = this.jobProfile.SelectDepartment.toString();
-    this.insertJob.Category = this.jobProfile.selectedCategory.toString();
-    this.insertJob.TitleInfo = this.jobProfile.selectedTitle.toString();
     this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();

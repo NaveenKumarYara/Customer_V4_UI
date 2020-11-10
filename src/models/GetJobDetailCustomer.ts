@@ -17,6 +17,11 @@ export class GetJobDetailCustomer {
     JobDepartments: DepartmentModel [];
     RecruitingMember:RecrutingTeam [];
     TechnicalTeam: any ;
+    CustomerJobIndustries:any=[];
+    CustomerJobPositionType:any=[];
+    CustomerJobCategory:any=[];
+    CustomerJobTitle:any=[];
+    CustomerJobKeyResponses:any=[];
     MatchingCrieterias : SkillPostData[];
 }
 // export class GetJobDetailsCustomer {

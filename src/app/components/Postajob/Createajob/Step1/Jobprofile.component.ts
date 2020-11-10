@@ -32,9 +32,12 @@ addkeyList: KeyRole[];
 jobPositionId:string;
 Postions:any=[];
 SelectKey:any;
-SelectDepartment:string;
-selectedCategory:any;
-selectedTitle:any;
+Department:string;
+DepartmentId:string;
+Category:string;
+CategoryId:string;
+Title:string;
+TitleId:string;
 categories:any=[];
 KeyResponses:any=[];
 Industries:any=[];
@@ -44,6 +47,7 @@ MinimumExperience = 3;
 MaximumExperience = 6;
 jobtitlelist:any=[];
 IndustryId:any;
+Industry:any;
 jobPriority:number=3;
 jobimplist:jobImps[]=[];
   constructor(private route: ActivatedRoute,
@@ -66,9 +70,10 @@ jobimplist:jobImps[]=[];
 
   updatePostionType(val)
   {
-    let PositionId = val.PositionId;
-    this.appService.updateJobPositionType(this.SelectDepartment);
-    this.GetCustomerCategory(PositionId);
+    this.DepartmentId = val.PositionId;
+    this.Department = val.Code;
+    this.appService.updateJobPositionType(this.Department);
+    this.GetCustomerCategory(this.DepartmentId);
   }
 
   updateJobImp() {
@@ -86,6 +91,8 @@ jobimplist:jobImps[]=[];
 
   updateJobIndustry(val) {
     this.IndustryId = val.IndustryId;
+    this.Industry = val.Code;
+    this.appService.updateJobIndustry(val.IndustryId);
     this.GetCustomerPosition(this.IndustryId);
   }
 
@@ -124,8 +131,7 @@ jobimplist:jobImps[]=[];
 
 
   ngOnInit() {
-    this.GetJobPriority();
-    this.GetCustomerIndustry();
+
     this.populatedescriptioncheck();
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
     this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
@@ -158,8 +164,18 @@ jobimplist:jobImps[]=[];
     // if (this.hasCompleteDescription === undefined) {
     //   this.hasCompleteDescription = false;
     // }
+    this.appService.currentjobIndustry.subscribe(x=>this.Industry=x);
     this.appService.currentDescription.subscribe(x => this.jobDescription = x);
     this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
+    this.appService.currentjobIndustryId.subscribe(x=>this.IndustryId= x);
+    this.appService.currentjobtypePosition.subscribe(x=>this.Department=x);
+    this.appService.currentjobtypePositionId.subscribe(x=>this.DepartmentId=x);
+    this.appService.currentcategorytitlenew.subscribe(x=>this.Category=x);
+    this.appService.currentcategorytitlenewId.subscribe(x=>this.CategoryId=x);
+    this.appService.currentjobtitle.subscribe(x=>this.Title=x);
+    this.appService.currentjobtitleId.subscribe(x=>this.TitleId=x);
+    this.GetJobPriority();
+    this.GetCustomerIndustry();
 
   // }
 }
@@ -212,9 +228,10 @@ GetKeyRespones(Id)
 
 updateJobCategory(val)
 {
-  let CategoryId = val.CategoryId;
-  this.GetCustomerTitles(CategoryId);
-  this.appService.updateJobCategory(this.selectedCategory);
+  this.CategoryId = val.CategoryId;
+  this.Category = val.Code;
+  this.GetCustomerTitles(this.CategoryId);
+  this.appService.updateJobCategoryNew(this.CategoryId);
 }
 
 public addkeyRole() {
@@ -236,11 +253,11 @@ public addkeyRole() {
 
 
   updateJobTitle(val) {
-    let id = val.RoleId;
-    let title = val.Code;
-    this.GetKeyRespones(id);
-    this.appService.updateJobtitleId(id);
-    this.appService.updateJobtitle(title);
+    this.TitleId = val.RoleId;
+    this.Title = val.Code;
+    this.GetKeyRespones(this.TitleId);
+    this.appService.updateJobtitleId(this.TitleId);
+    this.appService.updateJobtitle(this.Title);
   }
 
 populatedescriptioncheck() {

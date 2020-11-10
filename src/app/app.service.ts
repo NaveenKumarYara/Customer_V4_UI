@@ -146,12 +146,20 @@ export class AppService {
   jobcategorynew = new BehaviorSubject('');
   currentcategorytitlenew = this.jobcategorynew.asObservable();
 
+  jobcategorynewId = new BehaviorSubject('');
+  currentcategorytitlenewId = this.jobcategorynewId.asObservable();
+
   jobtypePosition = new BehaviorSubject('');
   currentjobtypePosition = this.jobtypePosition.asObservable();
+
+  jobtypePositionId = new BehaviorSubject('');
+  currentjobtypePositionId = this.jobtypePositionId.asObservable();
   
-  Industry:string;
-  jobIndustry = new BehaviorSubject(this.Industry);
+  jobIndustry = new BehaviorSubject('');
   currentjobIndustry= this.jobIndustry.asObservable();
+
+  IndustryId = new BehaviorSubject('');
+  currentjobIndustryId= this.jobIndustry.asObservable();
 
   jobImp: number;
   JobImp = new BehaviorSubject(this.jobImp);
@@ -359,6 +367,11 @@ export class AppService {
   }
   updateJobtitle(jobtitle: string) {
     this.jobtitle.next(jobtitle);
+  }
+
+  updateJobIndustryId(IndustryId:string)
+  {
+    this.IndustryId.next(IndustryId);
   }
 
 
@@ -760,7 +773,7 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
 
   updateJobCategoryNew(category:string) {
     // this.jobcategory.push(jobcategories);
-    this.jobcategorynew.next(category);
+    this.jobcategorynewId.next(category);
   }
 
   updateJobCategory(jobcategories: CategoryList) {
