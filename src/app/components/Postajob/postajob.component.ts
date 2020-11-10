@@ -76,6 +76,13 @@ export class PostajobComponent implements OnInit {
   this.appService.hasDescription.next(false);
   this.appService.description.next('');
   this.appService.jobPosition.next('');
+  this.appService.IndustryId.next('');
+  this.appService.jobcategorynew.next('');
+  this.appService.jobcategorynewId.next('');
+  this.appService.jobtypePosition.next('');
+  this.appService.jobtypePositionId.next('');
+  this.appService.jobtitleId.next('');
+  this.appService.jobIndustry.next('');
   this.appService.clientModel.next(new ClientModel());
   this.appService.departments = [];
   this.appService.departmentsChanged = new Subject<DepartmentModel[]>();

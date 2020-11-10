@@ -38,6 +38,10 @@ Category:string;
 CategoryId:string;
 Title:string;
 TitleId:string;
+newtitle;
+newdepartment;
+newindustry;
+newcategory;
 categories:any=[];
 KeyResponses:any=[];
 Industries:any=[];
@@ -173,6 +177,22 @@ jobimplist:jobImps[]=[];
     this.appService.currentcategorytitlenew.subscribe(x=>this.Category=x);
     this.appService.currentcategorytitlenewId.subscribe(x=>this.CategoryId=x);
     this.appService.currentjobtitle.subscribe(x=>this.Title=x);
+    if(this.Title=='')
+    {
+      this.Title= this.newtitle;
+    }
+    if(this.Department=='')
+    {
+      this.Department = this.newdepartment;
+    }
+    if(this.Category=='')
+    {
+      this.Category = this.newcategory;
+    }
+    if(this.Industry=='')
+    {
+      this.Industry = this.newindustry;
+    }
     this.appService.currentjobtitleId.subscribe(x=>this.TitleId=x);
     this.GetJobPriority();
     this.GetCustomerIndustry();
