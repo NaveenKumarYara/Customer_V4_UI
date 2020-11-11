@@ -199,7 +199,18 @@ jobimplist:jobImps[]=[];
     {
       this.Industry = this.newindustry;
     }
-    this.appService.currentjobtitleId.subscribe(x=>this.TitleId=x);
+    this.appService.currentjobtitleId.subscribe(x=>
+      {
+        this.TitleId=x;
+        if(this.TitleId !=='')
+        {
+          this.GetKeyRespones(this.TitleId);
+        }
+      }
+     
+      );
+
+
     this.GetJobPriority();
     this.GetCustomerIndustry();
 
