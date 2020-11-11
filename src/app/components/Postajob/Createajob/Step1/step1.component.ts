@@ -198,6 +198,22 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
 
+   if (this.jobProfile.minExperience === 0) {
+    this.toastr.error('Minimum experience should  be greater than 0 !', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+        return false;
+   }
+
+   if (this.jobProfile.maxExperience === 0) {
+    this.toastr.error('Maximum experience should  be greater than 0 !', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+        return false;
+   }
+
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
    if ( // && (this.jobProfile.jobPositionId!== '' || null || undefined)
     this.jobProfile.minExperience !== undefined && this.jobProfile.maxExperience !== undefined &&
@@ -213,6 +229,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
         }, 3000);
         return false;
    }
+
    if (this.jobProfile.hasCompleteDescription === true && this.jobProfile.jobDescription === '') {
     this.toastr.error('Please enter description!', 'Oops!');
     setTimeout(() => {
