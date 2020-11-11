@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { GetKeyRole, jobImps, KeyRole } from '../../models/jobPostInfo';
 import { FormControl, NgForm } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
@@ -54,7 +55,7 @@ IndustryId:any;
 Industry:any;
 jobPriority:number=3;
 jobimplist:jobImps[]=[];
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -261,13 +262,40 @@ public addkeyRole() {
       return false;
   }
     this.getDomain.CustomerKeyMinExperienceId =  Number(this.MinimumExperience*12);  // parseFloat((this.MaximumExperience / 12).toFixed(1));
-    this.getDomain.CustomerKeyMaxExperienceId =  Number(this.MaximumExperience*12); //  parseFloat((this.MinimumExperience / 12).toFixed(1)) ;
-    this.appService.addKeyRole(this.getDomain);
-    this.SelectKey=undefined;
-    this.roleForm.resetForm();
-    this.MaximumExperience = 6;
-    this.MinimumExperience = 3;
-    this.getDomain = new GetKeyRole();
+    this.getDomain.CustomerKeyMaxExperienceId =  Number(this.MaximumExperience*12);
+    if(this.getDomain.CustomerKeyMinExperienceId === 0)
+    {
+      this.toastr.error('Minimum experience should be greater than 0!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+       return false;
+    } 
+    if(this.getDomain.CustomerKeyMaxExperienceId === 0)
+    {
+      this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+       return false;
+    }
+    if (this.getDomain.CustomerKeyMinExperienceId > this.getDomain.CustomerKeyMaxExperienceId) {
+      this.toastr.error('Minimum experience should not be greater than Maximum experience!', 'Oops!');
+          setTimeout(() => {
+              this.toastr.dismissToast;
+          }, 3000);
+          return false;
+     }
+    else
+    {
+      this.appService.addKeyRole(this.getDomain);
+      this.SelectKey=undefined;
+      this.roleForm.resetForm();
+      this.MaximumExperience = 6;
+      this.MinimumExperience = 3;
+      this.getDomain = new GetKeyRole();
+    }
+
 }
   }
 
