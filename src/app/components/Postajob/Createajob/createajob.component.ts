@@ -213,7 +213,7 @@ editMode: string;
           ejkey.CustomerKeyMinExperienceId = keyr.CustomerKeyMinExperienceId;
           ejkey.CustomerKeyMaxExperienceId = keyr.CustomerKeyMaxExperienceId;
           ejKeyResponsebility.CustomerKeyResponsebility = keyr.CustomerKeyResponsebility;
-          ejKeyResponsebility.CustomerKeyMinExperienceId = keyr.CustomerKeyMaxExperienceId;
+          ejKeyResponsebility.CustomerKeyMinExperienceId = keyr.CustomerKeyMinExperienceId;
           ejKeyResponsebility.CustomerKeyMaxExperienceId = keyr.CustomerKeyMaxExperienceId;
             this.ejKeyRoles.push(ejkey);
             this.ejKeyRolesId.push(ejKeyResponsebility);
