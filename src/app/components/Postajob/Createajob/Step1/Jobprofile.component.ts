@@ -53,12 +53,16 @@ MaximumExperience = 6;
 jobtitlelist:any=[];
 IndustryId:any;
 Industry:any;
+disable:any;
+disableLoc = false;
+isDrafted: boolean;
 jobPriority:number=3;
 jobimplist:jobImps[]=[];
   constructor(private route: ActivatedRoute,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
+      this.disable =  localStorage.getItem('Item');
   }
 
 
@@ -321,6 +325,19 @@ populatedescriptioncheck() {
   changeJobPosition(val) {
     this.jobPositionId = val;
     this.appService.updateJobPosition(this.jobPositionId);
+  }
+
+  ngAfterViewChecked() {
+    this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    if(this.disable == "true")
+    {
+      this.disableLoc = false;
+    }
+    else 
+    {
+      this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+    }
+   
   }
 
 
