@@ -42,7 +42,7 @@
         <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo"></app-basicinfo>
 
       </div>
-      <div class="row" *ngIf="ShowDomain!=true">
+      <!-- <div class="row" *ngIf="ShowDomain!=true">
         <label class="switch">
           <input type="checkbox" #chkEnable [(ngModel)]="cdomain.IsDomain" name="IsDomain"
             (ngModelChange)="SaveCustomDomain()">
@@ -57,7 +57,7 @@
         <strong>Your custom domain. <a href="{{CustomDetails.CustomDomainUrl}}"
             target="_blank">{{CustomDetails.CustomDomainUrl}}</a></strong>
 
-      </div>
+      </div> -->
 
       <div class="row">
         <app-otherinfo [companyprofileotherinfo]="companyprofileotherinfo"></app-otherinfo>
