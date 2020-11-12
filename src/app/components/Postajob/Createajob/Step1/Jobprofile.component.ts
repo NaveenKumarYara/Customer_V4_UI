@@ -107,7 +107,8 @@ jobimplist:jobImps[]=[];
 
  GetCustomerIndustry()
  {
-    this.appService.GetCustomerIndustries(this.customerId).subscribe(res => {
+    //this.appService.GetCustomerIndustries(this.customerId).subscribe(res => {
+    this.appService.GetIndustries().subscribe(res => {
     this.Industries = res;
  });
  }
