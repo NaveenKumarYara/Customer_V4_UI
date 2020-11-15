@@ -196,5 +196,10 @@
   "Categories":"${Profile_URL}/api/GetCategories?",
   "TitleInfo":"${Profile_URL}/api/GetJobTitleRoles?",
   "KeyResponses":"${Profile_URL}/api/GetJobKeyResponsibilties?",
-  "CustomerIndustries":"${Profile_URL}/api/GetCompanyIndustry?"
+  "CustomerIndustries":"${Profile_URL}/api/GetCompanyIndustry?",
+  "AddIndustry":"${Identity_URL}/api/InsertNewIndustry",
+  "AddPosition":"${Identity_URL}/api/InsertNewPositionType",
+  "AddCategory":"${Identity_URL}/api/InsertNewCategory",
+  "AddJobTitle":"${Identity_URL}/api/InsertNewTitle",
+  "AddKeyResponsibilities":"${Identity_URL}/api/InsertNewKeyRoles"
 }

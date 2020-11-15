@@ -19,12 +19,22 @@ export class JobprofileComponent implements OnInit {
   @ViewChild('roleForm') roleForm: NgForm;
   private subscription: Subscription;
   private subscriptions: Subscription;
+  public addTagIndustry: (name)=>void;
+  public addTagPosition: (name)=>void;
+  public addTagCategory: (name)=>void;
+  public addTagTitle: (name)=>void;
+  public addTagKey: (name)=>void;
 declare;
 hasCompleteDescription: boolean;
 jobDescription: string;
 customerId: number;
 customer: any;
 keyslist:any=[];
+newIndustry = new NewIndustry();
+newPostiton = new saveNewPositionType();
+newCategory = new saveNewCategory();
+newJobTitle = new saveNewTitle();
+newKeyResponse = new saveNewKeyRoles();
 domainlist: GetKeyRole[];
 domains: Observable<GetKeyRole[]>;
 getDomain = new GetKeyRole();
@@ -77,6 +87,136 @@ jobimplist:jobImps[]=[];
     // }
   }
 
+
+
+NewIndustry(val)
+{
+  this.newIndustry.IndustryName = val;
+  this.appService.AddIndustry(this.newIndustry).subscribe(
+    data => {
+      if(data>0)
+      {
+        this.IndustryId = data;
+        this.Industry = val;
+      }
+    })
+}
+
+NewPosition(val)
+{
+  this.newPostiton.Name = val;
+  this.newPostiton.IndustryId = this.IndustryId;
+  this.appService.AddPositionType(this.newPostiton).subscribe(
+    data => {
+      if(data>0)
+      {
+        this.DepartmentId = data;
+        this.Department = val;
+      }
+    })
+}
+
+NewCategory(val)
+{
+  this.newCategory.Name = val;
+  this.newCategory.PositionId = Number(this.DepartmentId);
+  this.appService.AddCategory(this.newCategory).subscribe(
+    data => {
+      if(data>0)
+      {
+        this.CategoryId = data;
+        this.Category = val;
+      }
+    })
+}
+
+NewJobTitle(val)
+{
+  this.newJobTitle.Name = val;
+  this.newJobTitle.CategoryId = Number(this.CategoryId);
+  this.appService.AddJobtitle(this.newJobTitle).subscribe(
+    data => {
+      if(data>0)
+      {
+        this.TitleId = data;
+        this.Title = val;
+      }
+    })
+}
+
+NewKeyResponse(val)
+{
+  this.newKeyResponse.Name = val;
+  this.newKeyResponse.RoleId = Number(this.TitleId);
+  this.appService.AddKeyResponsibilities(this.newKeyResponse).subscribe(
+    data => {
+      if(data>0)
+      {
+        this.getDomain.DCode = val;
+        this.getDomain.CustomerKeyResponsebility = data;
+      }
+    })
+}
+
+  addIndustry(val)
+  {
+    const  Industries = new NewIndustry();
+    Industries.IndustryName = val;
+    if(val!=null)
+    {
+      this.NewIndustry(val);
+    }
+    return { Code: Industries.IndustryName , tag: true};
+  }
+
+
+
+  addPosition(val1)
+  {
+    const position = new saveNewPositionType();
+    position.Name = val1;
+    if(val1!=null)
+    {
+      this.NewPosition(val1);
+    }
+    return { Code: position.Name , tag: true};
+  }
+
+  addCategory(val2)
+  {
+    const category = new saveNewCategory();
+    category.Name = val2;
+    if(val2!=null)
+    {
+      this.NewCategory(val2);
+    }
+    return { Code: category.Name , tag: true};
+  }
+
+  addTitle(val3)
+  {
+    const title = new saveNewTitle();
+    title.Name = val3;
+    if(val3!=null)
+    {
+      this.NewJobTitle(val3);
+    }
+    return { Code: title.Name , tag: true};
+  }
+
+  addKeyRes(val4)
+  {
+    const kres = new saveNewKeyRoles();
+    kres.Name = val4;
+    if(val4!=null)
+    {
+      this.NewKeyResponse(val4);
+    }
+    return { Code: kres.Name , tag: true};
+  }
+  
+
+
   updatePostionType(val)
   {
     this.DepartmentId = val.PositionId.toString();
@@ -93,14 +233,14 @@ jobimplist:jobImps[]=[];
 
   GetCustomerTitles(Id)
   {
-   this.appService.GetJobTitleRoles(Id).subscribe(res2 => {
+     this.appService.GetJobTitleRoles(Id).subscribe(res2 => {
      this.jobtitlelist = res2;
   });
   }
 
-  updateJobIndustry(val) {
-    this.IndustryId = val.IndustryId.toString();
+  updateJobIndustry(val) { 
     this.Industry = val.Code;
+    this.IndustryId = val.IndustryId.toString();
     this.appService.updateJobIndustry(val.IndustryId);
     this.GetCustomerPosition(this.IndustryId);
   }
@@ -141,7 +281,12 @@ jobimplist:jobImps[]=[];
 
 
   ngOnInit() {
-
+    //this.addTagNowRef = this.NewIndustry.bind(this);
+    this.addTagIndustry = (name) => this.addIndustry(name);
+    this.addTagPosition = (name1) => this.addPosition(name1);
+    this.addTagCategory = (name2) => this.addCategory(name2);
+    this.addTagTitle = (name3) => this.addTitle(name3);
+    this.addTagKey = (name4) => this.addKeyRes(name4);
     this.populatedescriptioncheck();
     this.appService.currentDescriptionChecked.subscribe(x => this.hasCompleteDescription = x);
     this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
@@ -353,4 +498,34 @@ populatedescriptioncheck() {
   }
 
 
+}
+
+
+export class NewIndustry
+{  
+    IndustryName: string;  
+}
+
+export class saveNewPositionType
+{
+  IndustryId: number;
+  Name: string;
+}
+
+export class saveNewCategory
+{
+  PositionId: number;
+  Name: string;
+}
+
+export class saveNewTitle
+{
+  CategoryId: number;
+  Name: string;
+}
+
+export class saveNewKeyRoles
+{
+  RoleId: number;
+  Name: string;
 }

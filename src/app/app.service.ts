@@ -865,6 +865,48 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
   }
 
 
+  AddIndustry(body) {
+    return this.http.post(this.settingsService.settings.AddIndustry, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddPositionType(body) {
+    return this.http.post(this.settingsService.settings.AddPosition, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  
+  AddCategory(body) {
+    return this.http.post(this.settingsService.settings.AddCategory, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddJobtitle(body) {
+    return this.http.post(this.settingsService.settings.AddJobTitle, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddKeyResponsibilities(body) {
+    return this.http.post(this.settingsService.settings.AddKeyResponsibilities, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
   deletePrimarySkills(index: number) {
     this.primaryjobskills.splice(index, 1);
     this.jobprimaryskillsChanged.next(this.primaryjobskills.slice());

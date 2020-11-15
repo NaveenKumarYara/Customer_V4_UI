@@ -196,5 +196,10 @@
   "Categories":"https://profileapi-dev.arytic.com/api/GetCategories?",
   "TitleInfo":"https://profileapi-dev.arytic.com/api/GetJobTitleRoles?",
   "KeyResponses":"https://profileapi-dev.arytic.com/api/GetJobKeyResponsibilties?",
-  "CustomerIndustries":"https://profileapi-dev.arytic.com/api/GetCompanyIndustry?"
+  "CustomerIndustries":"https://profileapi-dev.arytic.com/api/GetCompanyIndustry?",
+  "AddIndustry":"https://identityapi-dev.arytic.com/api/InsertNewIndustry",
+  "AddPosition":"https://identityapi-dev.arytic.com/api/InsertNewPositionType",
+  "AddCategory":"https://identityapi-dev.arytic.com/api/InsertNewCategory",
+  "AddJobTitle":"https://identityapi-dev.arytic.com/api/InsertNewTitle",
+  "AddKeyResponsibilities":"https://identityapi-dev.arytic.com/api/InsertNewKeyRoles"
 }
