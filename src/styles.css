@@ -14217,6 +14217,12 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
+.page--job-details #selectedJobDetails .meta h5 {
+    white-space: nowrap;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .page--job-details #selectedJobDetails .meta>div:not(:last-of-type) {
     border-right: 1px solid #E0E3EF;
