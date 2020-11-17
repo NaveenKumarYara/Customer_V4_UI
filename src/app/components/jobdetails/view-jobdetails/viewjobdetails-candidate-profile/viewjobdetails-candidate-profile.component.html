@@ -33,8 +33,7 @@
                     <div class="media-body">
                         <small title="{{profile.CertificationName}}"
                             (click)="callSkills(profile.ProfileId,0)">{{profile.CertificationName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">1
-                            +</span>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,0)">{{profile?.countval?.CertificationCount}}</span>
                     </div>
                 </div>
                 <ng-template #nocertification>
@@ -73,8 +72,8 @@
                     <div class="media-body">
                         <small title="{{profile.DomainName}}"
                             (click)="callSkills(profile.ProfileId,1)">{{profile.DomainName}}</small>
-                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">1
-                            +</span>
+                        <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId,1)">{{profile?.countval?.DomainsCount}}
+                            </span>
                     </div>
                     <div class="media-right">
                         <img class="media-object" src="../../../../../assets/images/Certifications/domain.png"
@@ -237,12 +236,14 @@
                 </ng-template>
 
 
-                <a href="javascript:void(0)" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
+                <ng-container  *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
+                    <a href="javascript:void(0)" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
                     *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
                     <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
                         width="25">
                 </a>
 
+                </ng-container> 
                 <div class="meta a">
                     <div class="d-block text-center">
                         <!--Email-->
@@ -640,7 +641,7 @@
                 <div id="skills-carousel-Changed" class="skills-carousel-Changed">
                     <div class="">
                         <div class="row" *ngIf="profile?.PrimarySkills != null;else noSkillTemplate">
-                            <a class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
+                            <a *ngIf="profile?.countval?.SkillsCount>3" class="col-md-1 left-arrow" (click)="prevSkills(profile?.PrimarySkills,i)">
                                 <
                             </a>
                             <div class="col-md-4 skill-click"
@@ -717,7 +718,7 @@
                                 </div>
                             </div>
 
-                            <a class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> >
+                            <a *ngIf="profile?.countval?.SkillsCount>3"  class="col-md-1 right-arrow" (click)="nextSkills(profile?.PrimarySkills,i)"> >
                             </a>
 
                             <!-- https://www.npmjs.com/package/ngx-flickity
@@ -937,10 +938,21 @@
                     <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
                     <li>
                         <!--Word doc-->
-                        <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName,profile?.ProfileId)">
-                            <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
-                                title="Download Resume">
-                        </a>
+                        <ng-container>
+                            <a href="javascript:void(0)" *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null; else fBlock">
+                                <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                                    title="Download Resume">
+                            </a>
+                            <ng-template #fBlock>
+                                <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName,profile?.ProfileId)">
+                                    <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                                        title="Download Resume">
+                                </a>
+                                <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
+    
+                            </ng-template>
+                        </ng-container>
+                      
                         <!--Show if Candidate Resume is in PDF-->
                         <!-- <a href="javascript:void(0)">
                             <img src="../../../../../assets/images/pdf-icon.svg" width="25" alt="PDF Resume"

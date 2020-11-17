@@ -146,8 +146,21 @@ export class AppService {
   jobcategorynew = new BehaviorSubject('');
   currentcategorytitlenew = this.jobcategorynew.asObservable();
 
+  jobcategorynewId = new BehaviorSubject('');
+  currentcategorytitlenewId = this.jobcategorynewId.asObservable();
+
   jobtypePosition = new BehaviorSubject('');
   currentjobtypePosition = this.jobtypePosition.asObservable();
+
+  jobtypePositionId = new BehaviorSubject('');
+  currentjobtypePositionId = this.jobtypePositionId.asObservable();
+  
+  jobIndustry = new BehaviorSubject('');
+  currentjobIndustry= this.jobIndustry.asObservable();
+
+
+  IndustryId = new BehaviorSubject('');
+  currentjobIndustryId= this.jobIndustry.asObservable();
 
   jobImp: number;
   JobImp = new BehaviorSubject(this.jobImp);
@@ -156,15 +169,6 @@ export class AppService {
   PriorityName: String;
   JobPriorityName = new BehaviorSubject(this.PriorityName);
   CurrentPriorityName = this.JobPriorityName.asObservable();
-
-
-  jobDue: number;
-  JobDue = new BehaviorSubject(this.jobDue);
-  currentjobDue = this.JobDue.asObservable();
-
-  jobDueDate: Date;
-  JobDueDate = new BehaviorSubject(this.jobDueDate);
-  currentjobDueDate = this.JobDueDate.asObservable();
 
   videoProfile = new BehaviorSubject('');
   currentVideo = this.videoProfile.asObservable();
@@ -175,6 +179,17 @@ export class AppService {
   myDraft: boolean;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
+
+
+
+  jobDue: number;
+  JobDue = new BehaviorSubject(this.jobDue);
+  currentjobDue = this.JobDue.asObservable();
+
+  jobDueDate: Date;
+  JobDueDate = new BehaviorSubject(this.jobDueDate);
+  currentjobDueDate = this.JobDueDate.asObservable();
+
 
   salType = new Salary(1, 'Hourly');
   salaryType = new BehaviorSubject(this.salType);
@@ -328,6 +343,9 @@ export class AppService {
   updateOpenings(openings: number) {
     this.noofOpenings.next(openings);
   }
+  updateJobIndustry(jobIndustry: string) {
+    this.IndustryId.next(jobIndustry);
+  }
   updateJobPosition(jobpositionId: string) {
     this.jobPosition.next(jobpositionId);
   }
@@ -340,6 +358,11 @@ export class AppService {
   updatedescription(isdescription: string) {
     this.description.next(isdescription);
   }
+  
+  updateJobtitleId(jobtitleId: string) {
+    this.jobtitleId.next(jobtitleId);
+  }
+  
   updateLocation(loc: any) {
     this.location = loc;
   }
@@ -347,9 +370,11 @@ export class AppService {
     this.jobtitle.next(jobtitle);
   }
 
-  updateJobtitleId(jobtitleId: string) {
-    this.jobtitleId.next(jobtitleId);
+  updateJobIndustryId(IndustryId:string)
+  {
+    this.IndustryId.next(IndustryId);
   }
+
 
   updateJobImp(jobImp: number) {
     this.JobImp.next(jobImp);
@@ -749,7 +774,7 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
 
   updateJobCategoryNew(category:string) {
     // this.jobcategory.push(jobcategories);
-    this.jobcategorynew.next(category);
+    this.jobcategorynewId.next(category);
   }
 
   updateJobCategory(jobcategories: CategoryList) {
@@ -833,6 +858,48 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
 
   AddDepartment(body) {
     return this.http.post(this.settingsService.settings.AddDepartment, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
+  AddIndustry(body) {
+    return this.http.post(this.settingsService.settings.AddIndustry, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddPositionType(body) {
+    return this.http.post(this.settingsService.settings.AddPosition, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  
+  AddCategory(body) {
+    return this.http.post(this.settingsService.settings.AddCategory, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddJobtitle(body) {
+    return this.http.post(this.settingsService.settings.AddJobTitle, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  AddKeyResponsibilities(body) {
+    return this.http.post(this.settingsService.settings.AddKeyResponsibilities, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
@@ -1006,6 +1073,7 @@ bulkApply(body) {
   getAddedDomainlist() {
     return this.adddomain.slice();
   }
+
   getAddedKeyRole()
   {
     return this.addkeyrole.slice();
@@ -1014,6 +1082,7 @@ bulkApply(body) {
   {
     return this.keyrole.slice();
   }
+
   addKeyRole(key:GetKeyRole)
   {
     this.keyrole.push(key);

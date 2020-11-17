@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="modal-actions">
-                    <button mat-button mat-dialog-close
+                    <button mat-button mat-dialog-close *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed'"
                         (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)"
                         class="btn btn-border">Edit</button>
                     <button class="btn btn-filled">Inactive</button>

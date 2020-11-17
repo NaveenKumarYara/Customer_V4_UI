@@ -1,16 +1,77 @@
 <section>
-  <h1>Step 1</h1>
+  <h1>Job Details</h1>
+  <!--Business Domain-->
   <div class="form-data-group">
     <h3 class="question">
-      what is the Job Id?
+      Which Type of Business Domain does the job belongs to?
+    </h3>
+    <h5 class="data">
+      IT
+    </h5>
+  </div>
+
+  <!--Type of position-->
+  <div class="form-data-group">
+    <h3 class="question">
+      Which Type of Type of position/Core competancy does the job belongs to?
+    </h3>
+    <h5 class="data">
+      Application Development
+    </h5>
+  </div>
+
+  <!--Category-->
+  <div class="form-data-group">
+    <h3 class="question">
+      Which Category this job belongs to?
+    </h3>
+    <h5 class="data">
+      Product Development
+    </h5>
+  </div>
+  <!--Job Description-->
+  <div class="form-data-group">
+    <h3 class="question">
+      Do you have a complete description of the Job profile?
+    </h3>
+    <h6 class="data" *ngIf="hasDescription==true">
+      {{completeDescription}}
+    </h6>
+    <h6 class="data" *ngIf="hasDescription==false">
+      N/A
+    </h6>
+  </div>
+
+  <!--Job Title with experience-->
+  <div class="form-data-group">
+    <h3 class="question">
+      What is the Job Title?
+    </h3>
+    <h5 class="data">{{jobTitle}} <span>Exp: 3 to 6 years</span></h5>
+  </div>
+
+  <!--Key Responsibilities with experience-->
+  <div class="form-data-group">
+    <h3 class="question">
+      What are the Key Responsibilities of the role ?
+    </h3>
+    <h5 class="data">Requirement Definition <span>Exp: 3 to 6 years</span></h5>
+  </div>
+
+  <!--Job ID-->
+  <div class="form-data-group">
+    <h3 class="question">
+      Do you have a Job ID?
     </h3>
     <h5 class="data" *ngIf="jobPositionId!=''">
       {{jobPositionId}}
     </h5>
-    <h6 class="data" *ngIf="jobPositionId==''"  >
-     N/A
-    </h6 >
+    <h6 class="data" *ngIf="jobPositionId==''">
+      N/A
+    </h6>
   </div>
+
+  <!--Job Priority-->
   <div class="form-data-group">
     <h3 class="question">
       Job Priority
@@ -18,22 +79,97 @@
     <h5 class="data" *ngIf="PriorityName!=''">
       {{PriorityName}}
     </h5>
-    <h6 class="data" *ngIf="PriorityName==''"  >
-     N/A
-    </h6 >
+    <h6 class="data" *ngIf="PriorityName==''">
+      N/A
+    </h6>
   </div>
+
+  <!--Job due Date-->
   <div class="form-data-group">
     <h3 class="question">
-      Do you have a complete description of the Job profile?
+      Job Due on
     </h3>
-    <h6 class="data" *ngIf="hasDescription==true">
-     {{completeDescription}}
-    </h6>
-    <h6 class="data" *ngIf="hasDescription==false">
-        N/A
-      </h6>
+    <h4 class="data" *ngIf="ExpiryDate">
+      {{ExpiryDate | date:'mediumDate'}}
+    </h4>
   </div>
+
+  <!--Employment Type-->
+  <div class="form-data-group salary-package-group">
+    <h3 class="question">
+      What is the Employment Type?</h3>
+    <div>
+      <h4 class="data">Employment Type: Contract</h4>
+    </div>
+  </div>
+
+  <!--Remote Based-->
   <div class="form-data-group">
+    <h3 class="question">
+      Is the Employment type is of Remote based?</h3>
+    <div>
+      <h4 class="data">Yes</h4>
+    </div>
+  </div>
+  <!--Salary range Based-->
+  <div class="form-data-group">
+    <h3 class="question">
+      What is the Salary Range?</h3>
+      <div>
+        <h4 class="data">Hourly <span>$ 20 - $100</span></h4>
+      </div>
+  </div>
+
+  <!--New Immigration Placeholder-->
+  <div class="form-data-group">
+    <h3 class="question">What Immigration Status type you are looking for?</h3>
+      <h6 class="data">H1B</h6>
+  </div>
+  <!---->
+
+  <!--Job Location-->
+  <div class="form-data-group">
+    <h3 class="question" *ngIf="location.length>0">
+      At which location the job is available?
+    </h3>
+
+    <ng-container *ngFor="let loc of location">
+      <h4 class="data">
+        {{loc?.CityName}}
+      </h4>
+    </ng-container>
+
+    <h3 class="question" *ngIf="locations.length>0">
+      At which locations and how many open positions the job is available?
+    </h3>
+
+
+    <ng-container *ngFor="let job of locations;let i = index">
+      <h4 class="data">
+        {{job?.CityName}}- {{job?.Positons}}
+      </h4>
+    </ng-container>
+
+
+
+  </div>
+
+  <!--Open Positiion-->
+  <div class="form-data-group">
+    <h3 class="question" *ngIf="location.length>0">
+      How many open positions do you currently have for this Job Title?
+    </h3>
+    <h4 class="data" *ngIf="location.length>0">
+      {{noOfopenings}}
+    </h4>
+    <!-- <ng-container *ngFor="let open of noOfopening">
+        <h4 class="data">
+          {{open}}
+        </h4>
+      </ng-container> -->
+  </div>
+
+  <!-- <div class="form-data-group">
     <h3 class="question">
       Which Category this job belongs to?
     </h3>
@@ -43,14 +179,9 @@
     <h6 class="data" *ngIf="jobCategory==null||jobCategory==''">
     N/A
     </h6>
-  </div>
-  <div class="form-data-group">
-    <h3 class="question">
-      What is the Job Title?
-    </h3>
-    <h5 class="data">{{jobTitle}}</h5>
-  </div>
-  <div class="form-data-group">
+  </div> -->
+
+  <!-- <div class="form-data-group">
     <h3 class="question">
       What is the Client Name?
     </h3>
@@ -60,63 +191,15 @@
       <h6 class="data" *ngIf="client==null">
       N/A
       </h6>
-  </div>
-  <div class="form-data-group">
+  </div> -->
 
-      <h3 class="question" *ngIf="location.length>0">
-        At which location the job is available?
-      </h3>
-
-   
-    <ng-container *ngFor="let loc of location">   
-      <h4 class="data">
-        {{loc?.CityName}}
-      </h4>
-    </ng-container>
-
-      <h3 class="question" *ngIf="locations.length>0">
-        At which  locations and how many open positions the job is available?
-      </h3>
-
-  
-    <ng-container  *ngFor="let job of locations;let i = index">  
-      <h4 class="data">
-        {{job?.CityName}}- {{job?.Positons}}      
-      </h4>
-    </ng-container>
-   
-
-      
-  </div>
-  <div class="form-data-group">
-    <h3 class="question" *ngIf="location.length>0">
-      How many open positions do you currently have for this Job Title?
-    </h3>
-      <h4 class="data" *ngIf="location.length>0">
-        {{noOfopenings}}
-      </h4>
-      <!-- <ng-container *ngFor="let open of noOfopening">
-        <h4 class="data">
-          {{open}}
-        </h4>
-      </ng-container> -->
-  </div>
-  <div class="form-data-group">
-    <h3 class="question">
-     Due Date 
-    </h3>
-      <h4 class="data" *ngIf="ExpiryDate">
-        {{ExpiryDate | date:'mediumDate'}} 
-      </h4>
-  </div>
   <div class="form-data-group skill-set-group">
-
-    <h3 class="question">
+    <!-- <h3 class="question">
       What departments does the job includes?
-    </h3>
-    <div class="lists row">
+    </h3> -->
+    <!-- <div class="lists row">
       <div class="col-md-6">
-        <h4 class="light">Departments</h4>  <!-- *ngIf="department.length > 0" -->
+        <h4 class="light">Departments</h4>   *ngIf="department.length > 0" 
         <ul class="data-list">
           <li *ngFor="let department of departments">
               <ng-container *ngIf="department?.DepartmentName != null; else customSummaryDept">
@@ -124,12 +207,12 @@
             <ng-template #customSummaryDept>
             <span class="name">{{department?.CustomerDepartment}}</span></ng-template>
           </li> 
-          <!-- {{department | json}} -->
+         {{department | json}} 
         </ul>
          <h6 class="data" *ngIf="departments.length === 0" >
             N/A
           </h6> 
       </div>
-      </div>
-</div>
+      </div> -->
+  </div>
 </section>

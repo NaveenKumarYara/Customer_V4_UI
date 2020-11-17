@@ -15,14 +15,21 @@
   </div> 
 </div> -->
 <!---->
-<div class="form-group type-position">
-  <label class="t-p" for="typeofposition">Which Department (Core competency) does the job belongs to? </label>
+<div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+  <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to? </label>
+<ng-select class="custom-style" [items]="Industries"  [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select Business Domain" bindLabel="Code"
+ name="Indusrty" [(ngModel)]="Industry"
+(change)="updateJobIndustry($event)">
+</ng-select>
+</div>
+
+
+<div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+  <label class="t-p" for="typeofposition">Which Type of  Type of position/Core competancy does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
-  bindLabel="Code"
-  bindValue="PositionId"
-  [multiple]="true"
-  placeholder="Select Department"
-  [(ngModel)]="SelectDepartment"  (change)="updatePostionType()">
+  bindLabel="Code" [addTag]="addTagPosition" addTagText="Add Core competancy"
+  placeholder="Select Type of Position/Core competancy"
+  [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
 
@@ -47,14 +54,12 @@
 
 
 
-<div class="form-group type-position">
-  <label for="" class="t-p">Which Category this job belongs to? <small>(Optional)</small></label>
+<div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+  <label for="" class="t-p">Which Category this job belongs to? </label>
   <ng-select class="custom-style" [items]="categories"
-  bindLabel="Code"
-  bindValue="CategoryId"
-  [multiple]="true"
+  bindLabel="Code" [addTag]="addTagCategory" addTagText="Add Category"
   placeholder="Select Category"
-  [(ngModel)]="selectedCategory"  (change)="updateJobCategory($event)">
+  [(ngModel)]="Category"  (change)="updateJobCategory($event)">
 </ng-select>
 </div>
 
@@ -88,11 +93,11 @@
 
 <div class="form-row row">
   <div class="col-md-6">
-      <div class="form-group job-title-group">
+      <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?</label>
           <ng-select class="custom-style" [items]="jobtitlelist"
-            bindLabel="Code"  placeholder="JobTitle" [(ngModel)]="selectedTitle"
-            bindValue="RoleId" [virtualScroll]="true" 
+            bindLabel="Code"  [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="JobTitle" [(ngModel)]="Title"
+         [virtualScroll]="true" 
               name="Title" (change)="updateJobTitle($event)">
           </ng-select>
           <!-- <ul class="data-list">
@@ -164,8 +169,8 @@
           <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
           <small>Key Responsibilities</small>
           <ng-select class="custom-style" [items]="KeyResponses"
-          (change)="changeValue($event)"  bindLabel="Code"  placeholder="key roles"
-          bindValue="KeyId" [virtualScroll]="true"  [(ngModel)]="SelectKey"
+          (change)="changeValue($event)"  bindLabel="Code" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="key roles"
+          [virtualScroll]="true"  [(ngModel)]="SelectKey"
           name="key" >
         </ng-select>
       </div>

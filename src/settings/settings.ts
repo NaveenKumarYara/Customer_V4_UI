@@ -204,4 +204,9 @@ export class Settings {
   TitleInfo:string;
   KeyResponses:string;
   CustomerIndustries:string;
+  AddIndustry:string;
+  AddPosition:string;
+  AddCategory:string;
+  AddJobTitle:string;
+  AddKeyResponsibilities:string;
   }

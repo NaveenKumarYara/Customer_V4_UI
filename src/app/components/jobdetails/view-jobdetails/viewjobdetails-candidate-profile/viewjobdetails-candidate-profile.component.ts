@@ -870,6 +870,7 @@ GetMatchingPercentage(profileId, jobid): any {
     //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
     //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
     // }
+    this.matchingParameterData.Role = this.matchingParameterDetails.Role;
     this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
     this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
@@ -957,7 +958,7 @@ getGraph() {
               'Blue'
             ],
             label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
+            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0 , Math.round(this.matchingParameterData.Personalityfit_Total)],
             backgroundColor: [
               'rgba(101,105, 169, 1)',
               'rgba(63, 184, 179, 1)',
@@ -991,7 +992,8 @@ getGraph() {
           datasets: [{
             labels: [
               'Red',
-              'Yellow'
+              'Yellow',
+              'Green'
             ],
             label: '# of Votes',
             data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],

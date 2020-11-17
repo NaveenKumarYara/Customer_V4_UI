@@ -88,6 +88,11 @@ import { RatingModule } from 'ng-starrating';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { QRCodeModule } from 'angularx-qrcode';
 import { recriuterComponent } from './components/Postajob/Createajob/Step3/recriuter.component';
+import { StepContractDurationComponent } from './components/Postajob/Createajob/Step1/contractduration.component';
+import { StepContractExtensionComponent } from './components/Postajob/Createajob/Step1/contractextension.component';
+import { StepEmploymentTypeComponent } from './components/Postajob/Createajob/Step1/employment.component';
+import { StepSalarysliderComponent } from './components/Postajob/Createajob/Step1/salaryslider.component';
+import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -145,7 +150,12 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     DepartmentsComponent,
     ClientsComponent,
     ResponsibilitiesDialogComponent,
-    GetCandidateprofileComponent
+    GetCandidateprofileComponent,
+    StepContractDurationComponent,
+    StepContractExtensionComponent,
+    StepEmploymentTypeComponent,
+    StepSalarysliderComponent,
+    ImmigrationManagerComponent
     // SalarysliderComponent,
   ],
   imports: [

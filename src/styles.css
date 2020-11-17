@@ -18933,15 +18933,13 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-position: center;
 }
 
-.page--create-a-job .form-steps .question, 
-.page--create-a-job .form-steps .jobid, 
-.page--create-a-job .form-steps .t-p,
-.key-resp label{
+.page--create-a-job .form-steps .question, .page--create-a-job .form-steps .t-p, .key-resp label {
     font-size: 1.25rem!important;
     color: #6A7E9C;
     font-weight: 500;
 }
-.key-resp small{
+
+.key-resp small {
     font-size: 12px;
     display: block;
 }
@@ -26113,23 +26111,101 @@ table .table-prl-0 td {
     letter-spacing: 0.03em;
     color: #999;
 }
+
 /* multy dropdown  */
+
 /*Role-match styless*/
-.key-resp .min-key-exp{
-    padding-top: 2.3rem!important;
-    margin-bottom:0px;
+
+.key-resp .min-key-exp {
+    padding-top: 1.4rem!important;
+    margin-bottom: 0px;
 }
-.key-resp .max-key-exp{
-    padding-top: 3.3rem!important;
-    margin-bottom:0px;
+
+.key-resp .max-key-exp {
+    padding-top: 2.5rem!important;
+    margin-bottom: 0px;
 }
-.key-resp  .sal-slider{
+
+.key-resp .sal-slider {
     margin-top: 7rem;
 }
-.job-id-group .j-d small.till-date{
-color:#126bf9;
+
+.key-resp .add-key-btn {
+    margin-top: 5.1%;
 }
-.job-id-group .radio{
-    margin: 0 20px 0 0;
+
+.job-id-group small:not(.till-date) {
+    font-style: italic;
+}
+.job-id-group input.form-control{
+    margin-top: 0px;
+}
+.job-id-group .j-d {
+ margin-top: 2.5%;
+}
+
+.job-id-group .j-d small.till-date {
+    color: #126bf9;
+}
+
+.job-id-group .radio {
+    margin: 13px 20px 0 0;
     float: left;
+}
+
+/*Dragula Styles*/
+
+/* in-flight clone */
+
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+}
+
+/* high-performance display:none; helper */
+
+.gu-hide {
+    left: -9999px !important;
+}
+
+/* added to mirrorContainer (default = body) while dragging */
+
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* added to the source element while its mirror is dragged */
+
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+}
+.custom-date {
+    margin-top:2.5%;
+}
+.custom-date label.jobid{
+    font-size: 13px;
+    font-weight: 500;
+    color: #6A7E9C;
+    margin-bottom: 10px;
+}
+.custom-date .wc-date-container{
+    border: 1px solid #E0E3EF!important;
+    height: 55px!important;
+    padding: 6px 12px!important;
+    line-height: 40px!important;
+    color: #6A7E9C!important;
+}
+.custom-date .wc-date-container i{
+    line-height: 40px!important;
+    color: #6A7E9C!important;
 }

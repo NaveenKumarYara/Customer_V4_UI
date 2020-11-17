@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer, ReportingTeam, RecrutingTeam } from '../../../../models/GetJobDetailCustomer';
 import { AppService } from '../../../app.service';
-import { CategoryList, CustomerUsers, PrefLocation,jobImmigrationData, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData, jobImmigration } from '../models/jobPostInfo';
+import { CategoryList, CustomerUsers, PrefLocation,jobImmigrationData, PjTechnicalTeam, PjJobAccessTo, Roles, GetDomain, PjDomain, PjSkill, DiscResult, PjDisc, PjEducationDetails, Salary, DepartmentModel, PjDepartments, ClientModel, SkillPostData, jobImmigration, GetKeyRole, KeyRole } from '../models/jobPostInfo';
 import { EmploymentType } from '../../../../models/employmenttype.model';
 import { InterviewType } from '../../../../models/interviewtype.model';
 import { PjRole } from './Step2/Jobresponsibilities.component';
@@ -44,6 +44,8 @@ ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
 eJclient = new ClientModel();
 ejDepartmentList: DepartmentModel[] = [];
 ejDepartmentIdList: PjDepartments[] = [];
+ejKeyRoles:GetKeyRole[]=[];
+ejKeyRolesId:KeyRole[]=[];
 // ejTechnicalTeamId = new PjTechnicalTeam();
 ejRoleList: Roles[] = [];
 // ejRole = new Roles();
@@ -192,6 +194,38 @@ editMode: string;
       this.appService.departmentsChanged.next(this.appService.departments);
       this.appService.addeddepartments = this.ejDepartmentIdList;
       this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
+
+      this.appService.jobIndustry.next(this.jobdetailscustomer.CustomerJobIndustries[0].Code);
+      this.appService.IndustryId.next(this.jobdetailscustomer.CustomerJobIndustries[0].CustomerIndustryId.toString());
+      this.appService.jobtypePosition.next(this.jobdetailscustomer.CustomerJobPositionType[0].Code);
+      this.appService.jobtypePositionId.next(this.jobdetailscustomer.CustomerJobPositionType[0].JobPositionTypeId.toString());
+      this.appService.jobcategorynew.next(this.jobdetailscustomer.CustomerJobCategory[0].Code);
+      this.appService.jobcategorynewId.next(this.jobdetailscustomer.CustomerJobCategory[0].CustomerCategoryId.toString());
+      this.appService.jobtitle.next(this.jobdetailscustomer.CustomerJobTitle[0].JobTitle);
+      this.appService.jobtitleId.next(this.jobdetailscustomer.CustomerJobTitle[0].RoleId.toString());
+
+      if (this.jobdetailscustomer.CustomerJobKeyResponses.length > 0) {
+        for (const keyr of this.jobdetailscustomer.CustomerJobKeyResponses) {
+          const ejkey = new GetKeyRole();
+          const ejKeyResponsebility = new KeyRole();
+          ejkey.DCode = keyr.Code;
+          ejkey.CustomerKeyResponsebility = keyr.CustomerKeyResponsebility;
+          ejkey.CustomerKeyMinExperienceId = keyr.CustomerKeyMinExperienceId;
+          ejkey.CustomerKeyMaxExperienceId = keyr.CustomerKeyMaxExperienceId;
+          ejKeyResponsebility.CustomerKeyResponsebility = keyr.CustomerKeyResponsebility;
+          ejKeyResponsebility.CustomerKeyMinExperienceId = keyr.CustomerKeyMinExperienceId;
+          ejKeyResponsebility.CustomerKeyMaxExperienceId = keyr.CustomerKeyMaxExperienceId;
+            this.ejKeyRoles.push(ejkey);
+            this.ejKeyRolesId.push(ejKeyResponsebility);
+        }
+      }
+      
+      this.appService.keyrole = this.ejKeyRoles;
+      this.appService.keyroleChanged.next(this.appService.keyrole);
+      this.appService.addkeyrole = this.ejKeyRolesId;
+      this.appService.addkeyroleChanged.next(this.appService.addkeyrole);
+
+
       // Client model
       this.eJclient.ClientId = this.jobdetailscustomer.JobInfo.ClientId;
       this.eJclient.ClientName = this.jobdetailscustomer.JobInfo.ClientName;
@@ -217,7 +251,6 @@ editMode: string;
       this.eJcategory.Category = this.jobdetailscustomer.JobInfo.JobCategory;
       this.eJcategory.JobCategoryId = this.jobdetailscustomer.JobInfo.JobCategoryId;
       this.appService.jobcategory.next(this.eJcategory);
-      this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.videoProfile.next(this.jobdetailscustomer.JobInfo.VideoURL);
       this.appService.minExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MinExperience, 10));
       this.appService.maxExperience.next(parseInt(this.jobdetailscustomer.JobInfo.MaxExperience, 10));

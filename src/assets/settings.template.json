@@ -1,4 +1,4 @@
-"{
+{
   "ProfilebaseUrl":"${Profile_URL}",
    "IdentitybaseUrl":"${Identity_URL}",
    "RefralbaseUrl":"${Referral_URL}",
@@ -43,7 +43,7 @@
   "StartConversation": "${Email_URL}/api/SendEmailConversation",
   "UpdateStatusOnEmailConversation": "${Profile_URL}/api/UpdateProfileStatus",
   "signUp": "${Identity_URL}/api/CustomerRegistration",
-  "postjob" : "${Jobs_URL}/api/CreateJob",
+  "postjob" : "${Jobs_URL}/api/InsertJobUpdated",
   "addRoles": "${Profile_URL}/api/SaveRoles",
   "getRoles": "${Profile_URL}/api/GetRolesAndResponsibility",
   "bulkResponsibilities" : "${Jobs_URL}/api/SaveJobRoles",
@@ -196,5 +196,10 @@
   "Categories":"${Profile_URL}/api/GetCategories?",
   "TitleInfo":"${Profile_URL}/api/GetJobTitleRoles?",
   "KeyResponses":"${Profile_URL}/api/GetJobKeyResponsibilties?",
-  "CustomerIndustries":"${Profile_URL}/api/GetCompanyIndustry?"
+  "CustomerIndustries":"${Profile_URL}/api/GetCompanyIndustry?",
+  "AddIndustry":"${Identity_URL}/api/InsertNewIndustry",
+  "AddPosition":"${Identity_URL}/api/InsertNewPositionType",
+  "AddCategory":"${Identity_URL}/api/InsertNewCategory",
+  "AddJobTitle":"${Identity_URL}/api/InsertNewTitle",
+  "AddKeyResponsibilities":"${Identity_URL}/api/InsertNewKeyRoles"
 }
