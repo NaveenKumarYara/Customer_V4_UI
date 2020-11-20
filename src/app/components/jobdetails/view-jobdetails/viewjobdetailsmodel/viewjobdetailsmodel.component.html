@@ -12,7 +12,7 @@
                         <div class="bw-0">
                             <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="Avatar" class="ui-pic"
                                 width="50">
-                            <h5>{{jobdetailscustomer?.JobInfo?.CompanyName}}</h5>
+                            <h5 title="{{jobdetailscustomer?.JobInfo?.CompanyName}}">{{jobdetailscustomer?.JobInfo?.CompanyName}}</h5>
                             <!-- <h5>{{data.JobId}}</h5> -->
                             <!-- <h5>{{data.JobId}}</h5> -->
                         </div>
@@ -98,6 +98,22 @@
                                     <h4>Open Positions</h4>
                                     <p>
                                         {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="group">
+                                    <h4>Business Domain</h4>
+                                    <p>
+                                       IT 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="group">
+                                    <h4>Type of Position</h4>
+                                    <p>
+                                       Application Development 
                                     </p>
                                 </div>
                             </div>
@@ -438,6 +454,11 @@
                     </div>
                     <div id="roles" class="tab-pane fade">
                         <div class="row">
+                            <h5>Key Responsibilities</h5>
+                            <ul class="job-details-roles">
+                                <li>Project Management <span>3.0 - 6.0 Yrs</span></li>
+                            </ul>
+                            <h5>Roles & Responsibilities</h5>
                             <ul class="job-details-roles">
                                 <li *ngFor="let response of jobdetailscustomer?.JobResponsibility">
                                     {{response?.RolesAndResponsibilities}}</li>

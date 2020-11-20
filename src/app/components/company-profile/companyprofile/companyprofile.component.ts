@@ -70,7 +70,7 @@ export class CompanyprofileComponent implements OnInit {
     @ViewChild('testChart4') testChart4: ElementRef;
     @ViewChild('testChart5') testChart5: ElementRef;
     @ViewChild('testChart6') testChart6: ElementRef;
-    @ViewChild('testChart9') testChart9: ElementRef;
+    
     fullname: any;
     questionnaireAssignmentDetails: any;
     param: Param = new Param();
@@ -153,6 +153,7 @@ export class CompanyprofileComponent implements OnInit {
     PersonalityTestStatus: number = 0;
     selectedSlice: number = -1;
     graphLabelList: LegendList[] = [];
+  nullGraph: boolean;
 
 
   constructor(private toastr: ToastsManager,
@@ -1007,7 +1008,7 @@ this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDom
   }
 
 
-
+  @ViewChild('testChart9') testChart9: ElementRef;
   getCultGraph(mail) {
     debugger
     //  var mail = "loft@gmail.com";
@@ -1019,7 +1020,13 @@ this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDom
           var userResponsedata = data;
           this.graphLabelList1 = [];
           var count = 0;
-
+          var temp = 0;
+          userResponsedata[0].questionnaireResultList.forEach((b, index) => {
+            temp = temp + (b.response / (3 * 16)) * 100
+          });
+          if(temp == 0){
+            this.nullGraph = true;
+          }
           if (this.testChart9) {
 
             var testChart9Canvas = this.testChart9.nativeElement.getContext('2d');
