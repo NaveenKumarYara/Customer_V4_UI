@@ -19023,7 +19023,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 }
 
 .page--create-a-job .multiple-locations .btn {
-    margin-top: 17%!important;
+    margin-top: 11%!important;
 }
 
 .page--create-a-job .open-positions-list h6 {
@@ -25568,7 +25568,7 @@ table .table-prl-0 td {
     box-sizing: border-box;
     position: absolute;
     opacity: 0.5;
-    bottom: 2.2%;
+    bottom: 1.95%;
     right: 6%;
     width: 20px;
     height: 20px;
