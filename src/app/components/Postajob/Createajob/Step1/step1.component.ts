@@ -459,15 +459,15 @@ if (this.appService.isDrafted.value != null) {
     // if (this.jobProfile.jobPositionId === undefined || this.openings.noOfOpenings === '' || this.openings.noOfOpenings === null ) {
     //   this.toastr.error('Please enter Job Id!', 'Oops!');
     // }
-    if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
-    this.toastr.error('Please enter Job Title!', 'Oops!');
-    }
+    // if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
+    // this.toastr.error('Please enter Job Title!', 'Oops!');
+    // }
     if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
       this.toastr.error('Please Select Location!', 'Oops!');
     }
-    if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
-      this.toastr.error('Please Select Experience!', 'Oops!');
-    }
+    // if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
+    //   this.toastr.error('Please Select Experience!', 'Oops!');
+    // }
         setTimeout(() => {
             this.toastr.dismissToast;
         }, 2500);
