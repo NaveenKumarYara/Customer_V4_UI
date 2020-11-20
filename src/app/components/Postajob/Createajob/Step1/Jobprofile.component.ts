@@ -456,12 +456,15 @@ public addkeyRole() {
      }
     else
     {
+      if(this.getDomain.CustomerKeyResponsebility > 0)
+      {
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();
       this.MaximumExperience = 6;
       this.MinimumExperience = 3;
       this.getDomain = new GetKeyRole();
+      }
     }
 
 }
