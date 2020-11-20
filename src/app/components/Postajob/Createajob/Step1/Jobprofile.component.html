@@ -25,10 +25,10 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofposition">Which Type of  Type of position/Core competancy does the job belongs to? </label>
+  <label class="t-p" for="typeofposition">Which Type of position/Core competancy does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code" [addTag]="addTagPosition" addTagText="Add Core competancy"
-  placeholder="Select Type of Position/Core competancy"
+  placeholder="Select Type of Position/Core competancy/Department"
   [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
