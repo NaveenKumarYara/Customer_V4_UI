@@ -6,7 +6,7 @@
       Which Type of Business Domain does the job belongs to?
     </h3>
     <h5 class="data">
-      IT
+      {{Industry}}
     </h5>
   </div>
 
@@ -16,7 +16,7 @@
       Which Type of Type of position/Core competancy does the job belongs to?
     </h3>
     <h5 class="data">
-      Application Development
+         {{Department}} 
     </h5>
   </div>
 
@@ -26,7 +26,7 @@
       Which Category this job belongs to?
     </h3>
     <h5 class="data">
-      Product Development
+     {{Category}}
     </h5>
   </div>
   <!--Job Description-->
@@ -47,16 +47,16 @@
     <h3 class="question">
       What is the Job Title?
     </h3>
-    <h5 class="data">{{jobTitle}} <span>Exp: 3 to 6 years</span></h5>
+    <h5 class="data">{{jobTitle}} <span>Exp: {{minExperience}} - {{maxExperience}} years</span></h5>
   </div>
 
   <!--Key Responsibilities with experience-->
-  <div class="form-data-group">
+  <!-- <div class="form-data-group">
     <h3 class="question">
       What are the Key Responsibilities of the role ?
     </h3>
     <h5 class="data">Requirement Definition <span>Exp: 3 to 6 years</span></h5>
-  </div>
+  </div> -->
 
   <!--Job ID-->
   <div class="form-data-group">
@@ -95,35 +95,64 @@
   </div>
 
   <!--Employment Type-->
-  <div class="form-data-group salary-package-group">
-    <h3 class="question">
-      What is the Employment Type?</h3>
-    <div>
-      <h4 class="data">Employment Type: Contract</h4>
-    </div>
-  </div>
-
-  <!--Remote Based-->
   <div class="form-data-group">
     <h3 class="question">
       Is the Employment type is of Remote based?</h3>
-    <div>
-      <h4 class="data">Yes</h4>
+
+    <div class="checkbox">
+      <label>
+        <input type="radio" [(ngModel)]="Remotework" [value]="true"><span class="box">Yes</span>
+
+      </label>
+      <label>
+        <input type="radio" [(ngModel)]="Remotework" [value]="false"><span class="box">No</span>
+      </label>
     </div>
+  </div>
+  <div class="form-data-group" *ngIf="employmentType!='Full-Time' && employmentTypeId==2">
+    <h3 class="question">
+      Contract Duration</h3>
+    <h4 class="data">{{contractDuration}}</h4>
+  </div>
+  <div class="form-data-group" *ngIf="employmentType!='Full-Time' && employmentTypeId==2">
+    <h3 class="question">
+      Contract Extension</h3>
+    <h4 class="data">{{contractExtension}}</h4>
   </div>
   <!--Salary range Based-->
   <div class="form-data-group">
     <h3 class="question">
       What is the Salary Range?</h3>
-      <div>
-        <h4 class="data">Hourly <span>$ 20 - $100</span></h4>
-      </div>
+      <ng-container *ngIf="salaryTypeId=='2'">
+        <h4 class="data">Yearly <span>$ {{minAnnualRate}} - {{maxAnnualRate}}</span></h4>
+        <!-- <span class="big">$ {{minAnnualRate}} - {{maxAnnualRate}}</span> -->
+      </ng-container>
+      <ng-container *ngIf="salaryTypeId=='1'">
+        <h4 class="data"> Hourly <span>$ {{minHourRate}} - {{maxHourRate}}</span></h4>
+        <!-- <span class="big">$ {{minHourRate}} - {{maxHourRate}}</span> -->
+      </ng-container>
+
+      <ng-container *ngIf="employmentType=='Employee'">
+        On W2
+      </ng-container>
+
+      <ng-container *ngIf="employmentType=='Contractor'">
+        Contract By Length
+      </ng-container>
   </div>
 
   <!--New Immigration Placeholder-->
   <div class="form-data-group">
     <h3 class="question">What Immigration Status type you are looking for?</h3>
-      <h6 class="data">H1B</h6>
+    <ng-container *ngIf="immigrationsList.length>0">
+      <ng-container *ngFor="let ims of immigrationsList">
+        <h6 class="data">{{ims?.ImmigrationStatus}}</h6>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="immigrationsList.length===0">
+      <h6 class="data">N/A</h6>
+    </ng-container>
+   
   </div>
   <!---->
 

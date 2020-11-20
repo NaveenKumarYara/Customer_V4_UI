@@ -7,7 +7,7 @@
                 [(ngModel)]="selectedTitle" [virtualScroll]="true" [addTag]="true" required #JobTitle="ngModel"
                 name="Title" (change)="updateJobTitle($event)">
             </ng-select>
-            <!-- <ul class="data-list">
+             <ul class="data-list">
        <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
             <!-- {{suggestedTitle.JobTitle}} 
         <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
