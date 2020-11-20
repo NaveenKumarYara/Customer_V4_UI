@@ -105,7 +105,7 @@ NewIndustry(val)
 NewPosition(val)
 {
   this.newPostiton.Name = val;
-  this.newPostiton.IndustryId = this.IndustryId;
+  this.newPostiton.IndustryId = Number(this.IndustryId);
   this.appService.AddPositionType(this.newPostiton).subscribe(
     data => {
       if(data>0)
@@ -241,7 +241,7 @@ NewKeyResponse(val)
   updateJobIndustry(val) { 
     this.Industry = val.Code;
     this.IndustryId = val.IndustryId.toString();
-    this.appService.updateJobIndustry(val.IndustryId);
+    this.appService.updateJobIndustryId(val.IndustryId);
     this.GetCustomerPosition(this.IndustryId);
   }
 

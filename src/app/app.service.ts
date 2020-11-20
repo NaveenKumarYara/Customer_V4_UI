@@ -63,7 +63,7 @@ export class AppService {
 
   locationselect:boolean=false;
   RemoteWork:boolean=false;
-
+  
   domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();
   adddomain: PjDomain[] = [];
@@ -160,7 +160,7 @@ export class AppService {
 
 
   IndustryId = new BehaviorSubject('');
-  currentjobIndustryId= this.jobIndustry.asObservable();
+  currentjobIndustryId= this.IndustryId.asObservable();
 
   jobImp: number;
   JobImp = new BehaviorSubject(this.jobImp);
@@ -344,7 +344,7 @@ export class AppService {
     this.noofOpenings.next(openings);
   }
   updateJobIndustry(jobIndustry: string) {
-    this.IndustryId.next(jobIndustry);
+    this.jobIndustry.next(jobIndustry);
   }
   updateJobPosition(jobpositionId: string) {
     this.jobPosition.next(jobpositionId);
