@@ -104,17 +104,23 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Business Domain</h4>
-                                    <p>
-                                       IT 
-                                    </p>
+                                    <ng-container *ngFor="let i of jobdetailscustomer?.CustomerJobIndustries">
+                                        <p>
+                                            {{i?.Code}}
+                                        </p>
+                                    </ng-container>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Type of Position</h4>
-                                    <p>
-                                       Application Development 
-                                    </p>
+                                    
+                                        <ng-container *ngFor="let i of jobdetailscustomer?.CustomerJobPositionType">
+                                            <p>
+                                                {{i?.Code}}
+                                            </p>
+                                        </ng-container>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6">
@@ -179,13 +185,13 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Immigration Status</h4>
-                                    <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                                        <p>
+                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length>0">
+                                        <p *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
                                             {{imi?.ImmigrationStatus}}
                                         </p>
                                     </ng-container>
                                     <ng-container
-                                        *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob.length==0">
+                                        *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length===0">
                                         <p>
                                             N/A
                                         </p>
@@ -197,10 +203,10 @@
                                 <div class="group">
                                     <h4>Remote</h4>
 
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId==0">
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===0">
                                         No
                                     </p>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId==1">
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===1">
                                         Yes
                                     </p>
 
@@ -220,15 +226,18 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Education Criteria</h4>
-                                    <p *ngIf="jobdetailscustomer?.EducationDetails.length==0">
+                                    <p *ngIf="jobdetailscustomer?.EducationDetails.length===0">
                                         N/A
                                     </p>
-                                    <p *ngFor="let education of jobdetailscustomer?.EducationDetails">
+                                  
                                         <ng-container *ngIf="jobdetailscustomer?.EducationDetails.length>0">
+                                            <p *ngFor="let education of jobdetailscustomer?.EducationDetails">
+
                                             {{education?.QualificationName}}
+                                        </p>
                                         </ng-container>
 
-                                    </p>
+                                  
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6">
@@ -242,37 +251,41 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Category</h4>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory!=''">
-                                        {{jobdetailscustomer?.JobInfo?.JobCategory}}
-                                    </p>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobCategory==''">
-                                        N/A
-                                    </p>
+                                    <ng-container *ngFor="let i of jobdetailscustomer?.CustomerJobCategory">
+                                        <p>
+                                            {{i?.Code}}
+                                        </p>
+                                    </ng-container>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-6">
+                            <!-- <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Department</h4>
-                                    <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
+                                  
                                         <ng-container *ngIf="jobdetailscustomer?.JobDepartments?.length!=0">
+                                            <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
                                             {{dept?.DepartmentName}}
+                                            </p>
                                         </ng-container>
-                                    </p>
+                                    
                                     <p *ngIf="jobdetailscustomer?.JobDepartments?.length==0">
                                         N/A
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Reporting Manager</h4>
 
-                                    <p *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
+                                   
                                         <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
-                                            {{rpt?.FirstName}} {{rpt?.LastName}}
+                                            <p *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
+                                                {{rpt?.FirstName}} {{rpt?.LastName}}
+                                            </p>
+                                         
                                         </ng-container>
-                                    </p>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length==0">
+                                   
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length===0">
                                         N/A
                                     </p>
                                 </div>
@@ -281,11 +294,13 @@
                                 <div class="group">
                                     <h4>Recruiting Manager</h4>
 
-                                    <p *ngFor="let rp of jobdetailscustomer?.RecruitingMember">
+                                  
                                         <ng-container *ngIf="jobdetailscustomer?.RecruitingMember.length!=0">
+                                            <p *ngFor="let rp of jobdetailscustomer?.RecruitingMember">
                                             {{rp?.FirstName}} {{rp?.LastName}}
+                                        </p>
                                         </ng-container>
-                                    </p>
+                                    
                                     <p *ngIf="jobdetailscustomer?.RecruitingMember?.length==0">
                                         N/A
                                     </p>
@@ -318,11 +333,13 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Technical Team for Screening</h4>
-                                    <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
+                                 
                                         <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam.length!=0">
+                                            <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
                                             {{team?.FirstName}} {{team?.LastName}}
+                                        </p>
                                         </ng-container>
-                                    </p>
+                                  
                                     <p *ngIf="jobdetailscustomer?.TechnicalTeam.length==0">
                                         N/A
                                     </p>
@@ -456,12 +473,27 @@
                         <div class="row">
                             <h5>Key Responsibilities</h5>
                             <ul class="job-details-roles">
-                                <li>Project Management <span>3.0 - 6.0 Yrs</span></li>
+                                <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                                    <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">{{r?.Code}} <span>{{r?.CustomerKeyMinExperienceId |monthsPipe}} - {{r?.CustomerKeyMaxExperienceId |monthsPipe}} Yrs</span></li>
+                                </ng-container>
+                                <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length===0">
+                                    <li>
+                                        N/A</li>
+                                </ng-container>
+                             
                             </ul>
                             <h5>Roles & Responsibilities</h5>
                             <ul class="job-details-roles">
-                                <li *ngFor="let response of jobdetailscustomer?.JobResponsibility">
-                                    {{response?.RolesAndResponsibilities}}</li>
+                                <ng-container *ngIf="jobdetailscustomer?.JobResponsibility.length>0">
+                                    <li *ngFor="let response of jobdetailscustomer?.JobResponsibility">
+                                        {{response?.RolesAndResponsibilities}}</li>
+                                </ng-container>
+                                <ng-container *ngIf="jobdetailscustomer?.JobResponsibility.length===0">
+                                    <li>
+                                        N/A</li>
+                                </ng-container>
+                              
+                                  
                                 <!-- <li>Assist and support other team members on multiple projects.</li>
                                 <li>All round development and coding of client-side logic within browser environment
                                 </li>
