@@ -98,6 +98,7 @@ NewIndustry(val)
       {
         this.IndustryId = data;
         this.Industry = val;
+        this.appService.updateJobIndustry(this.Industry);
       }
     })
 }
@@ -112,6 +113,7 @@ NewPosition(val)
       {
         this.DepartmentId = data;
         this.Department = val;
+        this.appService.updateJobPositionType(this.Department);
       }
     })
 }
@@ -126,6 +128,7 @@ NewCategory(val)
       {
         this.CategoryId = data;
         this.Category = val;
+        this.appService.updateJobCategoryNew(this.Category);
       }
     })
 }
@@ -140,6 +143,7 @@ NewJobTitle(val)
       {
         this.TitleId = data;
         this.Title = val;
+        this.appService.updateJobtitle(this.Title);
       }
     })
 }
@@ -222,6 +226,7 @@ NewKeyResponse(val)
     this.DepartmentId = val.PositionId.toString();
     this.Department = val.Code;
     this.appService.updateJobPositionType(this.Department);
+    this.appService.updateJobPositionTypeId(this.DepartmentId);
     this.GetCustomerCategory(this.DepartmentId);
   }
 
@@ -241,7 +246,8 @@ NewKeyResponse(val)
   updateJobIndustry(val) { 
     this.Industry = val.Code;
     this.IndustryId = val.IndustryId.toString();
-    this.appService.updateJobIndustryId(val.IndustryId);
+    this.appService.updateJobIndustry(this.Industry);
+    this.appService.updateJobIndustryId(this.IndustryId);
     this.GetCustomerPosition(this.IndustryId);
   }
 
@@ -414,7 +420,8 @@ updateJobCategory(val)
   this.CategoryId = val.CategoryId.toString();
   this.Category = val.Code;
   this.GetCustomerTitles(this.CategoryId);
-  this.appService.updateJobCategoryNew(this.CategoryId);
+  this.appService.updateJobCategoryNew(this.Category);
+  this.appService.updateJobCategoryNewId(this.CategoryId);
 }
 
 public addkeyRole() {

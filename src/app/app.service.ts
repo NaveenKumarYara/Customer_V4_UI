@@ -343,14 +343,28 @@ export class AppService {
   updateOpenings(openings: number) {
     this.noofOpenings.next(openings);
   }
+  updateJobIndustryId(IndustryId:string)
+  {
+    this.IndustryId.next(IndustryId);
+  }
   updateJobIndustry(jobIndustry: string) {
     this.jobIndustry.next(jobIndustry);
   }
-  updateJobPosition(jobpositionId: string) {
-    this.jobPosition.next(jobpositionId);
-  }
+
   updateJobPositionType(positionId: string) {
     this.jobtypePosition.next(positionId);
+  }
+  updateJobPositionTypeId(positionId: string) {
+    this.jobtypePositionId.next(positionId);
+  }
+
+  updateJobCategoryNewId(categoryId:string) {
+    // this.jobcategory.push(jobcategories);
+    this.jobcategorynewId.next(categoryId);
+  }
+  updateJobCategoryNew(category:string) {
+    // this.jobcategory.push(jobcategories);
+    this.jobcategorynew.next(category);
   }
   updatehaddescription(isdescription: boolean) {
     this.hasDescription.next(isdescription);
@@ -370,10 +384,11 @@ export class AppService {
     this.jobtitle.next(jobtitle);
   }
 
-  updateJobIndustryId(IndustryId:string)
-  {
-    this.IndustryId.next(IndustryId);
+  updateJobPosition(jobpositionId: string) {
+    this.jobPosition.next(jobpositionId);
   }
+
+ 
 
 
   updateJobImp(jobImp: number) {
@@ -772,10 +787,7 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
   //  jobcategory: CategoryList[] = [];
   // currentcategorytitle = new Subject<CategoryList[]>();
 
-  updateJobCategoryNew(category:string) {
-    // this.jobcategory.push(jobcategories);
-    this.jobcategorynewId.next(category);
-  }
+
 
   updateJobCategory(jobcategories: CategoryList) {
     // this.jobcategory.push(jobcategories);
