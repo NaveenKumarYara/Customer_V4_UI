@@ -128,7 +128,7 @@
               </a>
             </li> -->
           <!--Industry-->
-          <li>
+          <!-- <li>
             <a data-toggle="tab" href="#industries">
               <h1 class="title">
                 <i class="fa fa-industry" aria-hidden="true"></i>
@@ -136,8 +136,8 @@
                 <span> Industry</span>
               </h1>
             </a>
-          </li>
-          <!---->
+          </li> -->
+          
           <span class="active-line hidden-xs" style="width: 106.125px; left: 0px;"></span>
         </ul>
 
@@ -641,16 +641,16 @@
           </div>
 
           <!--Industry-->
-          <div id="industries" class="departments tab-pane fade">
+          <!-- <div id="industries" class="departments tab-pane fade">
             <form #form="ngForm">
               <div class="input-group">
                 <select class="form-control" name="industryName" [(ngModel)]="ind.IndustryId">
                   <option *ngFor="let c of getIndustryList" [value]="c.IndustryId">{{c.Code}}</option>
                </select>`
-                <!-- <input name="industryName" [(ngModel)]="ind.IndustryId" type="text" class="form-control" placeholder="Industry Name"> -->
+              <input name="industryName" [(ngModel)]="ind.IndustryId" type="text" class="form-control" placeholder="Industry Name"> 
                 <span class="input-group-btn">
                   <button class="btn" (click)="SaveIndustry()">+</button>
-                  <!---->
+          
                 </span>
               </div>
             </form>
@@ -687,14 +687,14 @@
                 </li>
               </ul>
             </div>
-            <!--Empty Data Placeholder-->
+         
             <div class="hint-text text-center"  *ngIf="getIndustry.length==0">
               <i class="fa fa-industry" aria-hidden="true"></i>
 
               <h4>Enter Industry details which your Company deal with. It enhances the Job Postings.</h4>
             </div>
-            <!--Empty Data Placeholder-->
-          </div>
+            
+          </div> -->
           <!---->
           <!--Merging-->
         </div>
