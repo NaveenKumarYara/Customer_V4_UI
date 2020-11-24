@@ -169,7 +169,7 @@
           <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
           <small>Key Responsibilities</small>
           <ng-select class="custom-style" [items]="KeyResponses"
-          (change)="changeValue($event)"  bindLabel="Code" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="key roles"
+          (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="key roles"
           [virtualScroll]="true"  [(ngModel)]="SelectKey"
           name="key" >
         </ng-select>
@@ -187,7 +187,7 @@
       </div>
     </div>
      <div class="col-md-2 add-key-btn">
-      <button  class="btn add-btn form-control" type="submit">+</button>
+      <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading">+</button>
     </div>
     </form>
 </div>

@@ -30,6 +30,11 @@ jobDescription: string;
 customerId: number;
 customer: any;
 keyslist:any=[];
+ILoading = false;
+PLoading = false;
+CLoading = false;
+TLoading = false;
+keyLoading= false;
 newIndustry = new NewIndustry();
 newPostiton = new saveNewPositionType();
 newCategory = new saveNewCategory();
@@ -96,6 +101,7 @@ NewIndustry(val)
     data => {
       if(data>0)
       {
+        this.ILoading = false;
         this.IndustryId = data;
         this.Industry = val;
         this.appService.updateJobIndustry(this.Industry);
@@ -111,6 +117,7 @@ NewPosition(val)
     data => {
       if(data>0)
       {
+        this.PLoading = false;
         this.DepartmentId = data;
         this.Department = val;
         this.appService.updateJobPositionType(this.Department);
@@ -126,6 +133,7 @@ NewCategory(val)
     data => {
       if(data>0)
       {
+        this.CLoading = false;
         this.CategoryId = data;
         this.Category = val;
         this.appService.updateJobCategoryNew(this.Category);
@@ -141,6 +149,7 @@ NewJobTitle(val)
     data => {
       if(data>0)
       {
+        this.TLoading = false;
         this.TitleId = data;
         this.Title = val;
         this.appService.updateJobtitle(this.Title);
@@ -156,6 +165,7 @@ NewKeyResponse(val)
     data => {
       if(data>0)
       {
+        this.keyLoading = false;
         this.getDomain.DCode = val;
         this.getDomain.CustomerKeyResponsebility = data;
       }
@@ -168,6 +178,7 @@ NewKeyResponse(val)
     Industries.IndustryName = val;
     if(val!=null)
     {
+      this.ILoading = true;
       this.NewIndustry(val);
     }
     return { Code: Industries.IndustryName , tag: true};
@@ -181,6 +192,7 @@ NewKeyResponse(val)
     position.Name = val1;
     if(val1!=null)
     {
+      this.PLoading = true;
       this.NewPosition(val1);
     }
     return { Code: position.Name , tag: true};
@@ -192,6 +204,7 @@ NewKeyResponse(val)
     category.Name = val2;
     if(val2!=null)
     {
+      this.CLoading = true;
       this.NewCategory(val2);
     }
     return { Code: category.Name , tag: true};
@@ -203,6 +216,7 @@ NewKeyResponse(val)
     title.Name = val3;
     if(val3!=null)
     {
+      this.TLoading = true;
       this.NewJobTitle(val3);
     }
     return { Code: title.Name , tag: true};
@@ -214,6 +228,7 @@ NewKeyResponse(val)
     kres.Name = val4;
     if(val4!=null)
     {
+      this.keyLoading = true;
       this.NewKeyResponse(val4);
     }
     return { Code: kres.Name , tag: true};
