@@ -17,7 +17,7 @@
 <!---->
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to? </label>
-<ng-select class="custom-style" [items]="Industries"  [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select Business Domain" bindLabel="Code"
+<ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
 (change)="updateJobIndustry($event)">
 </ng-select>
@@ -27,7 +27,7 @@
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label class="t-p" for="typeofposition">Which Type of position/Core competancy does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
-  bindLabel="Code" [addTag]="addTagPosition" addTagText="Add Core competancy"
+  bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Core competancy"
   placeholder="Select Type of Position/Core competancy/Department"
   [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
@@ -57,7 +57,7 @@
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label for="" class="t-p">Which Category this job belongs to? </label>
   <ng-select class="custom-style" [items]="categories"
-  bindLabel="Code" [addTag]="addTagCategory" addTagText="Add Category"
+  bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
   placeholder="Select Category"
   [(ngModel)]="Category"  (change)="updateJobCategory($event)">
 </ng-select>
@@ -96,7 +96,7 @@
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?</label>
           <ng-select class="custom-style" [items]="jobtitlelist"
-            bindLabel="Code"  [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="JobTitle" [(ngModel)]="Title"
+            bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="JobTitle" [(ngModel)]="Title"
          [virtualScroll]="true" 
               name="Title" (change)="updateJobTitle($event)">
           </ng-select>
