@@ -88,7 +88,7 @@ export interface DialogData {
      this.dialogRef.close();
        }
      }, error => {
-       alert('error ');
+       //alert('error ');
             console.log('error:', JSON.stringify(error));
            });
    }
