@@ -324,6 +324,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.appService.currentMinHourlyRate.subscribe(x => this.insertJob.MinimumSalary = x.toString());
     this.appService.currentMaxHourlyRate.subscribe(x => this.insertJob.MaximumSalary = x.toString());
 }
+if (localStorage.getItem('EditMode') != null && this.insertJob.JobId > 0) {
+  this.appService.currentDraft.subscribe(x => this.insertJob.IsDrafted = x);
+// this.insertJob.StepNumber = 4;
+} else {
+    this.insertJob.IsDrafted = true;
+}
   this.insertJob.HiringManagerId=this.userId;
   this.insertJob.SaveAsTemplate = 0;
 this.insertJob.StepNumber = step;

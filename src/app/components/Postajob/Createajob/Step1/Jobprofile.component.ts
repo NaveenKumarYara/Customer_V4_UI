@@ -35,6 +35,7 @@ PLoading = false;
 CLoading = false;
 TLoading = false;
 keyLoading= false;
+KeyCheck = false;
 newIndustry = new NewIndustry();
 newPostiton = new saveNewPositionType();
 newCategory = new saveNewCategory();
@@ -320,12 +321,22 @@ NewKeyResponse(val)
       this.maxExperience = Number(value.toFixed(2));
    } );
     this.keyslist = this.appService.getKeyRoleList();
+   
     this.subscription = this.appService.keyroleChanged
       .subscribe(
       (domain: GetKeyRole[]) => {
         this.keyslist = domain;
         }
       );
+
+      if(this.keyslist.length>2)
+      {
+        this.KeyCheck = true;
+      }
+      else
+      {
+        this.KeyCheck = false;
+      }
 
       this.addkeyList = this.appService.getAddedKeyRole();
       this.subscriptions = this.appService.addkeyroleChanged
@@ -440,6 +451,14 @@ updateJobCategory(val)
 }
 
 public addkeyRole() {
+  if(this.keyslist.length>2)
+  {
+    this.KeyCheck = true;
+  }
+  else
+  {
+    this.KeyCheck = false;
+  }
   if (this.roleForm.valid) {
     if (this.MaximumExperience < this.MinimumExperience) {
       return false;
