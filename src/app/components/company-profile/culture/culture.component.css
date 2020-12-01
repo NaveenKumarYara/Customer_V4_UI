@@ -13,3 +13,9 @@
     clear: both;
     display: table;
 }
+.cultural-item .img-wrapper h4{
+    white-space: nowrap; 
+    width: 60%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
