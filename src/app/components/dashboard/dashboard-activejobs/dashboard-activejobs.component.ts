@@ -38,6 +38,7 @@ populateDashboardallStatistics() {
       sortBy = 0;
     }
     localStorage.setItem('sortBy', JSON.stringify(sortBy));
+    localStorage.setItem('dashboard','1');
     this.router.navigateByUrl('app-manage-jobs');
   }
 }
