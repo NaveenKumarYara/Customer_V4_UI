@@ -40,7 +40,7 @@ export class SharedialogComponent {
   Name:any = null;
   usersloading: boolean;
   customerUser: number;
-  selectedUserName = '';
+  selectedUserName :number;
   selectedComments:any;
   userId:number;
   private subscription: Subscription;
@@ -124,20 +124,30 @@ onItemDeleted(index){
   this.info = inf;
   }
 
-   getcustomerusers() {
-          this.managersList = concat(
-            of([]), // default items
-            this.selectedUserInput.pipe(
-              debounceTime(200),
-              distinctUntilChanged(),
-              tap(() => this.usersloading = true),
-              switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
-                catchError(() => of([])), // empty list on error
-                tap(() => this.usersloading = false)
-              ))
-            )
-          );
-        }
+  //  getcustomerusers() {
+  //         this.managersList = concat(
+  //           of([]), // default items
+  //           this.selectedUserInput.pipe(
+  //             debounceTime(200),
+  //             distinctUntilChanged(),
+  //             tap(() => this.usersloading = true),
+  //             switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
+  //               catchError(() => of([])), // empty list on error
+  //               tap(() => this.usersloading = false)
+  //             ))
+  //           )
+  //         );
+  //       }
+
+        
+getcustomerusers()
+ {
+   return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+     this.customercontacts = res;
+     this.customercontacts = this.customercontacts.filter(
+       name=> name.FirstName !="Invited");
+ });
+ }
 
 
   changeTeam(val) {
@@ -207,7 +217,7 @@ onItemDeleted(index){
     //this.inviteform.reset();
     this.teammemberslist = [];
     $('#teamMbr').val('');
-    this.selectedUserName = ''
+    //this.selectedUserName = ''
     this.getTeammember = new CustomerUsers();
     this.profileSharing= new ProfileShare();
     this.clearTeamMemebers();

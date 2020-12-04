@@ -1318,6 +1318,10 @@ protected filterDomain(){
     .subscribe(data => {         
             this.UsersList = data;    
             this.UsersMainList = data;
+            this.UsersList = this.UsersList.filter(
+              name=> name.FirstName !="Invited");
+              this.UsersMainList = this.UsersMainList.filter(
+                name=> name.FirstName !="Invited");
             console.log(this.UsersList ,"UsersList")
         // this.Education.setValue([this.EducationList[0]]);
         this.filteredUsersList.next(this.UsersList.slice()); 
