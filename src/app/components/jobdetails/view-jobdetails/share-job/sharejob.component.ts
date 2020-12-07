@@ -42,7 +42,7 @@ export class ShareJobComponent {
   Name:any = null;
   usersloading: boolean;
   customerUser: number;
-  selectedUserName = '';
+  selectedUserName:number;
   selectedComments:any;
   userId:number;
   private subscription: Subscription;
@@ -87,20 +87,29 @@ export class ShareJobComponent {
 
 
 
-   getcustomerusers() {
-          this.managersList = concat(
-            of([]), // default items
-            this.selectedUserInput.pipe(
-              debounceTime(200),
-              distinctUntilChanged(),
-              tap(() => this.usersloading = true),
-              switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
-                catchError(() => of([])), // empty list on error
-                tap(() => this.usersloading = false)
-              ))
-            )
-          );
-        }
+  //  getcustomerusers() {
+  //         this.managersList = concat(
+  //           of([]), // default items
+  //           this.selectedUserInput.pipe(
+  //             debounceTime(200),
+  //             distinctUntilChanged(),
+  //             tap(() => this.usersloading = true),
+  //             switchMap(term => this.appService.getCustomerUsers(this.customerId,  this.customerUser , false, term).pipe(
+  //               catchError(() => of([])), // empty list on error
+  //               tap(() => this.usersloading = false)
+  //             ))
+  //           )
+  //         );
+  //       }
+
+  getcustomerusers()
+ {
+   return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+     this.customercontacts = res;
+     this.customercontacts = this.customercontacts.filter(
+       name=> name.FirstName !="Invited");
+ });
+ }
 
 
   changeTeam(val) {
@@ -136,6 +145,7 @@ export class ShareJobComponent {
     });
  }
  ShareJob() { 
+   debugger
             this.Sharing.ShareId = 0;
             this.Sharing.FromuserId = this.customerUser;
             this.Sharing.CustomerId = this.customerId;
@@ -153,14 +163,14 @@ export class ShareJobComponent {
                     this.toastr.dismissToast;
                 }, 3000);
             }
-            if(this.Sharing.ToEmailID!= "" && this.Sharing.Comments != "")
+            if(this.Sharing.ToEmailID!= "")
             {
             this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
             if (data === 0) {
              //this.inviteform.reset();
              this.teammemberslist = [];
              $('#teamMbr').val('');
-             this.selectedUserName = ''
+             //this.selectedUserName = ''
              this.getTeammember = new CustomerUsers();
              this.Sharing= new JobShare();
              this.clearTeamMemebers();
@@ -169,7 +179,7 @@ export class ShareJobComponent {
              setTimeout(() => {
               this.toastr.dismissToast;
               this.dialogRef.close();
-             }, 3000);      
+             }, 1000);      
               }
             }, error => {
                  console.log('error:', JSON.stringify(error));

@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label for="">Add Team Member</label>
                                     <div class="input-group">
-                                        <ng-select class="custom-style interview-schedule-popup" [items]="managersList  | async" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
+                                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
                                             [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
                                         </ng-select>
 
