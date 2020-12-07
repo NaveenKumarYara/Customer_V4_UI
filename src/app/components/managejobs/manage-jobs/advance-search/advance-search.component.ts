@@ -330,6 +330,26 @@ cityloading = false;
   }
 
    populateCities() {
+    this.appService.getCities("a")
+    .subscribe(data => {         
+            this.cities =data;    
+            this.CityMainList =data;
+             // set initial selection
+        // this.bankMultiCtrl.setValue([this.cities[0]]);
+
+        // load the initial bank list
+        this.filteredBanksMulti.next(this.cities.slice());
+    
+        // listen for search field value changes
+        this.bankMultiFilterCtrl.valueChanges
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterBanksMulti();
+          });
+
+          },     
+        error => {        
+         });
     // this.cities = concat(
     //   of([]), // default items
     //   this.selectedCityInput.pipe(
@@ -810,11 +830,34 @@ changeDomain(DomainId){
           if(res.titles!='')
           {
             this.isTitlechecked=true;
+            const Jobtitle =  res.titles.split(',');
+            Jobtitle.forEach(element =>
+              {
+            this.appService.getJobTitle(element)
+            .subscribe(data => {         
+                    this.JobtitleMainList =data;
+                this.SelectedJobtitleList.push(this.JobtitleMainList.find(a=>a.JobTitle == element))
+                this.Jobtitle.setValue(this.SelectedJobtitleList);
+            })
+          })
           }
           if(res.locations!='')
           {
             this.isLocchecked=true;
-          }
+            const jobstatcity =  res.locations.split(',');
+       
+            this.appService.getCities('a')
+            .subscribe(data => { 
+              jobstatcity.map(element => 
+                {        
+                    this.cities =data;   
+                    this.banks =data;   
+                    this.CityMainList = data;
+                     this.SelectedCityList.push(this.CityMainList.find(a=>a.CityId == +element))
+                    this.bankMultiCtrl.setValue(this.SelectedCityList);
+                 })
+                })
+                }
       
           if(res.JobStatus!='')
           {
@@ -826,12 +869,20 @@ changeDomain(DomainId){
           if(res.users!='')
           {
             this.ischecked=true;
+            const jobstatu =  res.users.split(',');
+            this.appService.getCustomerContacts(this.customerId)
+            .subscribe(data => {         
+                    this.UsersList = data;    
+                    this.UsersMainList = data;
+            jobstatu.map(element => this.SelectedUsersList.push(this.UsersMainList.find(a=>a.UserId  == element)));
+            this.Users.setValue(this.SelectedUsersList);
+            })
           }
           if(res.empType!='')
           {
             this.isEmpchecked=true;
             const empType =  res.empType.split(',');
-            return this.appService.getEmploymentType()
+           this.appService.getEmploymentType()
             .subscribe(data => {         
                     this.employmentMainList =data;          
                     this.employmentList.next(this.employmentMainList);   
@@ -1063,7 +1114,6 @@ filterEmpType(){
             // this.Category =data;   
             this.Jobtitles =data;   
             this.JobtitleMainList =data;  
-            debugger 
             if (!search) {
               this.filteredJobtitle.next(this.Jobtitles.slice());
               return;
@@ -1674,6 +1724,7 @@ protected filterDomain(){
     this.LastPostedMainList= this.LastPostedList;
     this.filteredProfileStatusList.next(this.ProfileStatusList.slice());
     this.ProfileStatusMainList = this.ProfileStatusList;
+   
     this.GetSavedJobFilter();
     this.getAllUsers();
     this.getQualificationDetails();
@@ -1686,26 +1737,7 @@ protected filterDomain(){
     this.getAllSkills();
     // this.getAllCity("a");
 
-    this.appService.getCities("a")
-    .subscribe(data => {         
-            this.cities =data;    
-            this.CityMainList =data;
-             // set initial selection
-        // this.bankMultiCtrl.setValue([this.cities[0]]);
-
-        // load the initial bank list
-        this.filteredBanksMulti.next(this.cities.slice());
-    
-        // listen for search field value changes
-        this.bankMultiFilterCtrl.valueChanges
-          .pipe(takeUntil(this._onDestroy))
-          .subscribe(() => {
-            this.filterBanksMulti();
-          });
-
-          },     
-        error => {        
-         });
+   
 
          this.empFilter.valueChanges
          .pipe(takeUntil(this._onDestroy))
