@@ -49,6 +49,7 @@ export class AdvanceSearchComponent implements OnInit {
   jobStatus : number = null;
   clientId:any;
   advancesearch:any;
+  JobSatusFilter:Observable<string[]>;
   skilllist: Observable<string[]>;
   skilltitleloading = false;
   selectedskillinput = new Subject<string>();
@@ -816,10 +817,14 @@ changeDomain(DomainId){
           if(res.empType!='')
           {
             this.isEmpchecked=true;
+            
           }
           if(res.JobStatus!='')
           {
             this.isStatchecked=true;
+            const jobstat =  res.JobStatus.split(',');
+            jobstat.map(element => this.SelectedProfileStatusList.push(this.ProfileStatusMainList.find(a=>a.Id == element)));
+             this.ProfileStatus.setValue(this.SelectedProfileStatusList);
           }
           if(res.users!='')
           {
