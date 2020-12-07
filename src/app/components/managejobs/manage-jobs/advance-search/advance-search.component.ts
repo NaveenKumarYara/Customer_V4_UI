@@ -593,6 +593,7 @@ clients.length > 0 ||
     this.exp= exp;
   }
   changeJobType(empolyment,value) { 
+    debugger
     this.empolymentId= empolyment;
     if(this.selectedJobType.length==0)
       this.selectedJobType.push(this.employmentMainList.find(a=>a.EmploymentTypeId == empolyment));
@@ -814,11 +815,7 @@ changeDomain(DomainId){
           {
             this.isLocchecked=true;
           }
-          if(res.empType!='')
-          {
-            this.isEmpchecked=true;
-            
-          }
+      
           if(res.JobStatus!='')
           {
             this.isStatchecked=true;
@@ -829,6 +826,20 @@ changeDomain(DomainId){
           if(res.users!='')
           {
             this.ischecked=true;
+          }
+          if(res.empType!='')
+          {
+            this.isEmpchecked=true;
+            const empType =  res.empType.split(',');
+            return this.appService.getEmploymentType()
+            .subscribe(data => {         
+                    this.employmentMainList =data;          
+                    this.employmentList.next(this.employmentMainList);   
+                    empType.map(element =>  this.selectedJobType.push(this.employmentMainList.find(a=>a.EmploymentTypeId == Number(element))));
+                    this.emp.setValue(this.selectedJobType);                 
+                  })
+                
+            
           }
 
         }
@@ -1708,6 +1719,8 @@ protected filterDomain(){
     this.GetEmployementType();
     this.getExpYears();
     this.populateCities();
+    // this.employmentList.next(this.employmentMainList);
+    // this.employmentMainList = this.employmentList;
     // this.getSkills();
   }
 
