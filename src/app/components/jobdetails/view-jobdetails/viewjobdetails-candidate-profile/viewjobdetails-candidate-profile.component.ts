@@ -199,7 +199,6 @@ OpenRejectDialog(jobResponseId, profileId) {
       }
     );
     rejectdialogRef.afterClosed().subscribe(result => {
-      // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.myEvent.emit(null);
       console.log('reject Dialog result: ${result}');
     });

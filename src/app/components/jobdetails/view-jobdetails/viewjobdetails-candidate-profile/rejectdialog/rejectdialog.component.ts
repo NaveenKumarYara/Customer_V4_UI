@@ -49,7 +49,7 @@ export class RejectdialogComponent {
     this.schIntw.InterviewingPerson = null;
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      this.eventStat.emit(null);
+    this.eventStat.emit(null);
       console.log(res);
       }) ;
     }
