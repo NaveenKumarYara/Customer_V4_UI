@@ -31,8 +31,9 @@ import {SharedModule} from '../../shared/shared.module';
 import {CandidateViewComponent} from '../company-profile/candidateview/candidate-view.component';
 import{CultureTestComponent} from '../company-profile/culturetest/culturetest.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { MatDialogModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+import { MatDialogModule, MatCardModule, MatProgressSpinnerModule,MatSnackBarModule} from '@angular/material';
 import { DragulaModule } from 'ng2-dragula';
+
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { DragulaModule } from 'ng2-dragula';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    MatSnackBarModule,
     HttpClientModule,
     SharedModule,
     MatDialogModule,  ChartsModule,

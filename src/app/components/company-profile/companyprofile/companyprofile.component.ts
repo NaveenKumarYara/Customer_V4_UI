@@ -3,6 +3,7 @@ import { ChangeDetectorRef, ViewChild, AfterViewInit, ElementRef } from '@angula
 import * as Chart from 'chart.js'
 import { ChartsModule } from 'ng2-charts';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -159,7 +160,7 @@ export class CompanyprofileComponent implements OnInit {
   constructor(private toastr: ToastsManager,
     private _vcr: ViewContainerRef,
     private route: ActivatedRoute,
-    private dragula: DragulaService,
+    private dragula: DragulaService,private _snackBar: MatSnackBar,
     private _service: ApiService, private appService: AppService, private dialog: MatDialog, 
       private router: Router, private companyprofileservice: CompanyProfileService) { 
         
@@ -443,21 +444,31 @@ drop(event: any): void {
 
 SaveCustomDomain()
 {
-this.cdomain.CustomerId = this.customerId;
-if(this.cdomain.IsDomain === true)
-{
-  this.cdomain.DomainUrl = 'https://' + this.companyprofile.CompanyName + '.arytic.com'
-}
-debugger
-this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDomain')
-.subscribe(data => {
-  if(data==0)
+  if(this.companyprofile.CompanyName == 'Esolvit')
   {
-  this.GetCustomDomain();
+    this.cdomain.CustomerId = this.customerId;
+    if(this.cdomain.IsDomain === true)
+    {
+      this.cdomain.DomainUrl = 'https://' + this.companyprofile.CompanyName + '.arytic.com'
+    }
+    this._service.PostService(this.cdomain, 'IdentityAPI/api/InsertCustomerCustomDomain')
+    .subscribe(data => {
+      if(data==0)
+      {
+      this.GetCustomDomain();
+      }
+    },
+    
+      error => console.log(error));
   }
-},
-
-  error => console.log(error));
+  else
+  {
+    let message = 'Your request sent successfully. Arytic team will get back to you soon!!';
+    let action = 'Info';
+    this._snackBar.open(message, action, {
+        duration: 2000,      
+    });
+  }
 
   }
 
