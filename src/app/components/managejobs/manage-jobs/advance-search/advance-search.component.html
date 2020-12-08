@@ -10,7 +10,7 @@
                     aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
                 </button>
-                <button class="btn btn-default" (click)="ClearALlFilter()">
+                <button class="btn btn-default" (click)="DeleteFilter(FilterId)">
                     Clear Filters
                 </button>
 
@@ -1144,7 +1144,7 @@
                 <div class="col-md-12">
                     <div class="pull-right">
                         <button class="btn btn-border btn-close" mat-button mat-dialog-close
-                            (click)="advancesearch=!advancesearch">Cancel</button>
+                            (click)="close()">Cancel</button>
                         <button class="btn btn-filled" (click)="apply()">Apply</button>
                     </div>
                 </div>

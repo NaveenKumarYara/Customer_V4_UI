@@ -201,5 +201,7 @@
   "AddPosition":"${Identity_URL}/api/InsertNewPositionType",
   "AddCategory":"${Identity_URL}/api/InsertNewCategory",
   "AddJobTitle":"${Identity_URL}/api/InsertNewTitle",
-  "AddKeyResponsibilities":"${Identity_URL}/api/InsertNewKeyRoles"
+  "AddKeyResponsibilities":"${Identity_URL}/api/InsertNewKeyRoles",
+  "GetAllCities":"${Profile_URL}/api/GetAllCities",
+  "DeleteSavedFilter":"${Profile_URL}/api/DeleteJobSavedFilter"
 }

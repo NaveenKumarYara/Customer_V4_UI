@@ -160,7 +160,7 @@ export class ManageJobService {
      const url = this.settingsService.settings.SuggestedCount +
      'jobId=' + jobId;
      return this.http.get<string>(url)
-       .debounceTime(1000)
+       .debounceTime(3000)
        .catch(
          this.handleError
      );

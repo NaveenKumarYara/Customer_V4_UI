@@ -1,5 +1,5 @@
 import { Component, OnInit,  Input, ViewChild,ViewContainerRef, EventEmitter,Output } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { ManageJobService } from '../../managejobs.service';
 import { AppService } from '../../../../app.service';
 import {  ParentComponentApi } from '../load-joblist/load-joblist.component';
@@ -101,6 +101,7 @@ cityloading = false;
   isStatchecked:boolean=false;
   ischecked:boolean=false;
   ClientList: any = [];
+  FilterId:any;
   JobtitleList: any = [];
   DepartmentList: any = [];
   DomainList: any = [];
@@ -609,11 +610,41 @@ clients.length > 0 ||
 
   }
 
+  DeleteFilter(Id)
+  {
+    if(Id>0)
+    {
+      return this.appService.DeleteSaveFilter(Id).subscribe(data=>{
+        if(data==0)
+        {
+          this.ClearALlFilter();
+          this.isTitlechecked=false;
+          this.isLocchecked=false;
+          this.isStatchecked=false;
+          this.ischecked=false;
+          this.isEmpchecked=false;
+          this.GetSavedJobFilter();
+        
+        }
+      })
+    }
+    else
+    {
+      this.ClearALlFilter();
+    }
+
+  }
+
+  close()
+  {
+    this.dialogRef.close();
+    location.reload();
+  }
+
   changeExperience(exp) {
     this.exp= exp;
   }
   changeJobType(empolyment,value) { 
-    debugger
     this.empolymentId= empolyment;
     if(this.selectedJobType.length==0)
       this.selectedJobType.push(this.employmentMainList.find(a=>a.EmploymentTypeId == empolyment));
@@ -824,11 +855,11 @@ changeDomain(DomainId){
 
 
       return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
-       
         if(res!=null)
         {
+          this.FilterId = res.JobFilterId;
           if(res.titles!='')
-          {
+          {           
             this.isTitlechecked=true;
             const Jobtitle =  res.titles.split(',');
             Jobtitle.forEach(element =>
@@ -844,9 +875,8 @@ changeDomain(DomainId){
           if(res.locations!='')
           {
             this.isLocchecked=true;
-            const jobstatcity =  res.locations.split(',');
-       
-            this.appService.getCities('a')
+            const jobstatcity =  res.locations.split(',');     
+            this.appService.GetAllCities()
             .subscribe(data => { 
               jobstatcity.map(element => 
                 {        

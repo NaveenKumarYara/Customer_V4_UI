@@ -1021,6 +1021,15 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
       );
   }
 
+  DeleteSaveFilter(Id: number)
+  {
+    const url = this.settingsService.settings.DeleteSavedFilter + '?Id=' + Id;
+    return this.http.delete<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
  addResponses(response: XmlJobResponse, val) {
     //  this.xmlResponse = responseList; // ush(personType);
     // this.xmlResponseChanged.next(this.xmlResponse.slice());
@@ -1518,6 +1527,15 @@ this.skillPostData.push(skill);
         this.handleError
       );
   }
+
+  GetAllCities(): Observable<Cities[]> {
+    const url = this.settingsService.settings.GetAllCities;
+    return this.http.get<string[]>(url)
+      .catch(
+        this.handleError
+      );
+  }
+
   getContractduration(): Observable<CDuration[]> {
     const url = this.settingsService.settings.contractDurationendpoint;
     return this.http.get<string[]>(url)

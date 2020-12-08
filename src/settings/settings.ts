@@ -209,4 +209,6 @@ export class Settings {
   AddCategory:string;
   AddJobTitle:string;
   AddKeyResponsibilities:string;
+  GetAllCities:string;
+  DeleteSavedFilter:string;
   }

@@ -201,5 +201,7 @@
   "AddPosition":"https://identityapi-dev.arytic.com/api/InsertNewPositionType",
   "AddCategory":"https://identityapi-dev.arytic.com/api/InsertNewCategory",
   "AddJobTitle":"https://identityapi-dev.arytic.com/api/InsertNewTitle",
-  "AddKeyResponsibilities":"https://identityapi-dev.arytic.com/api/InsertNewKeyRoles"
+  "AddKeyResponsibilities":"https://identityapi-dev.arytic.com/api/InsertNewKeyRoles",
+  "GetAllCities":"https://profileapi-dev.arytic.com/api/GetAllCities",
+  "DeleteSavedFilter":"https://profileapi-dev.arytic.com/api/DeleteJobSavedFilter"
 }

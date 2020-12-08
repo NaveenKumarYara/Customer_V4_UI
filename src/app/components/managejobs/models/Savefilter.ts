@@ -27,6 +27,6 @@ export class Savefilter
         public  empType :string;
         public  education :string;
         public  users :string;
-
+        public JobFilterId:string;
 
     }
