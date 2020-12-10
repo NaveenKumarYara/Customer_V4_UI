@@ -18994,7 +18994,14 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 .page--create-a-job .form-steps .domain-exp-group .form-control {
     margin-top: 44px;
 }
-
+.page--create-a-job .form-steps .exp .form-control,
+.page--create-a-job .form-steps .re-exp .form-control {
+    margin-top: 0px;
+}
+.page--create-a-job .form-steps .exp .remaxexp,
+.page--create-a-job .form-steps .skill-re-max .form-control{
+    margin-top: 30.5px;
+}
 .page--create-a-job .form-steps .data-list {
     padding: 0;
     list-style: none;

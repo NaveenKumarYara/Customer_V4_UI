@@ -17,7 +17,7 @@
 <!---->
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to? </label>
-<ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select Business Domain" bindLabel="Code"
+<ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
 (change)="updateJobIndustry($event)">
 </ng-select>
@@ -25,10 +25,10 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofposition">Which Type of position/Core competancy does the job belongs to? </label>
+  <label class="t-p" for="typeofposition">Which Type of position/Department does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
-  bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Core competancy"
-  placeholder="Select Type of Position/Core competancy/Department"
+  bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
+  placeholder="Select (or) Add Type of Position/Department"
   [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
@@ -58,7 +58,7 @@
   <label for="" class="t-p">Which Category this job belongs to? </label>
   <ng-select class="custom-style" [items]="categories"
   bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
-  placeholder="Select Category"
+  placeholder="Select (or) Add Category"
   [(ngModel)]="Category"  (change)="updateJobCategory($event)">
 </ng-select>
 </div>
@@ -96,7 +96,7 @@
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?</label>
           <ng-select class="custom-style" [items]="jobtitlelist"
-            bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="JobTitle" [(ngModel)]="Title"
+            bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="Select (or) Add Job Title" [(ngModel)]="Title"
          [virtualScroll]="true" 
               name="Title" (change)="updateJobTitle($event)">
           </ng-select>
@@ -169,7 +169,7 @@
           <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
           <small>Key Responsibilities</small>
           <ng-select class="custom-style" [items]="KeyResponses"
-          (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="key roles"
+          (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
           [virtualScroll]="true"  [(ngModel)]="SelectKey"
           name="key" >
         </ng-select>
