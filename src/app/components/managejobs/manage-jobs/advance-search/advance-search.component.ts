@@ -646,7 +646,7 @@ clients.length > 0 ||
   close()
   {
     this.dialogRef.close();
-    location.reload();
+    //location.reload();
   }
 
   changeExperience(exp) {

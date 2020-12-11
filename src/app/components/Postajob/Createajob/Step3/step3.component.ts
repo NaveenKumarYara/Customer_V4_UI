@@ -209,7 +209,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
     // this.appService.currentEmploymentType.subscribe(x => this.employmentType = x);
     this.changeEmploymentType();
     this.JobIds = this.appService.JobIds;
-    window.addEventListener('scroll', this.scrolling, true);
+    //window.addEventListener('scroll', this.scrolling, true);
     // $(window).scroll(function(event) {
     //   function footer()
     //     {
