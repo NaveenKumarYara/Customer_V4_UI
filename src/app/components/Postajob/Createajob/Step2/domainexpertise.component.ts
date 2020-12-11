@@ -33,7 +33,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   domaintitleloading = false;
   selecteddomaininput = new Subject<string>();
   selecteddomainname;
-  // expYears: any = [];
+   expYears: any = [];
   options: Options = {
     floor: 0,
     ceil: 40,
@@ -152,9 +152,18 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 //     }
 //     return this.expYears;
 // }
+
+numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
+    return false;
+  }
+  return true;
+
+}
   ngOnInit() {
   this.getDomains();
-  // this.getExpYears() ;
+   //this.getExpYears() ;
     this.domainlist = this.appService.getDomainlist();
     this.subscription = this.appService.domainChanged
       .subscribe(

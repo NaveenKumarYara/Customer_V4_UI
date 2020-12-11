@@ -16,25 +16,27 @@
           (removed)="removed($event)"
           (typed)="typed($event)" -->
       </div>
-      <!-- <div class="form-group exp col-md-2">
+      <div class="form-group exp col-md-2">
         <label for="" class="mr-0">Min Experience</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min"
+        <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min"
           bindLabel="minExperience"  #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
-        </ng-select>
+        </ng-select> -->
+        <input class="form-control"   #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
         <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be greater than Max Experience!
         </small>
       </div>
-      <div class="form-group exp col-md-2 mr-20">
+ <div class="form-group exp col-md-2 mr-20">
         <label for="" class="mr-0">Max Experience</label>
-        <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max"
-          bindLabel="name" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience">
-        </ng-select>
+        <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max"
+    bindLabel="name" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience"> 
+        </ng-select> -->
+        <input class="form-control"  #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience"  (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
         <small class="text-danger" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be less than Min Experience!
         </small>
-      </div> -->
-      <div class="form-group exp col-md-4">
+      </div> 
+      <!-- <div class="form-group exp col-md-4">
           <label for="">Required Experience</label>
       <ng5-slider [(value)]="MinimumExperience"
                             [(highValue)]="MaximumExperience"
@@ -44,7 +46,7 @@
                             (userChangeEnd)="maxExperienceChangeEnd($event)"
                             name="hourly"> 
                         </ng5-slider> 
-      </div>
+      </div> -->
       <!--Input fields instead of slider 10-12-2020-->
       <!-- <div class="form-group exp col-md-2">
         <label for="reexp">Required Experience</label>

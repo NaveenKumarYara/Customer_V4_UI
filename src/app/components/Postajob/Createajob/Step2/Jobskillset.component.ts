@@ -153,13 +153,13 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
          return elem.SkillName === skill.SkillName;
     });
  }
-//   public getExpYears() {
-//     this.expYears = [];
-//     for (let i = 1; i <= 50; i++) {
-//         this.expYears.push(i);
-//     }
-//     return this.expYears;
-// }
+  public getExpYears() {
+    this.expYears = [];
+    for (let i = 1; i <= 50; i++) {
+        this.expYears.push(i);
+    }
+    return this.expYears;
+}
   private deletePrimarySkills(index: number) {
     this.appService.deletePrimarySkills(index);
   }
@@ -194,9 +194,18 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     this.appService.updateSkillType(this.selectedLink);
   }
 
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
+      return false;
+    }
+    return true;
+  
+  }
+
   ngOnInit() {
     this.getSkills();
-    // this.getExpYears();
+     //this.getExpYears();
     this.primaryjobskills = this.appService.getPrimaryAddedJobSkills();
     this.secondaryjobskills = this.appService.getSecondaryAddedJobSkills();
     this.subscription = this.appService.jobprimaryskillsChanged
