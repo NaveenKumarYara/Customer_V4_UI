@@ -541,14 +541,6 @@ updateJobCategory(val)
 }
 
 public addkeyRole() {
-  if(this.keyslist.length>2)
-  {
-    this.KeyCheck = true;
-  }
-  else
-  {
-    this.KeyCheck = false;
-  }
   if (this.roleForm.valid) {
     if (this.MaximumExperience < this.MinimumExperience) {
       return false;
