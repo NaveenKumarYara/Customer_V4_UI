@@ -12,6 +12,12 @@
           <!-- <label><input type="radio" [(ngModel)]="salaryTypeSelected" (change)="selectSalaryType(sal)" name="sal" [value]="sal"><span class="box">{{sal}}</span> </label> -->
           <label><input type="radio" [ngModel]="salaryTypeSelected && salaryTypeSelected?.SalaryTypeId" (change)="selectSalaryType(sal)" name="sal" [value]="sal.SalaryTypeId"><span class="box">{{sal.SalaryType}}</span> </label>
         </div>
+         <!--Salary Open 14-12-2020-->
+        <div class="checkbox sal-open">
+          <label>
+            <input type="checkbox"> Please check if you want Salary range to be Open?
+          </label>
+        </div>
         <!-- <div class="checkbox">
           <label>
             <input type="radio" name="emp-type" (change)="selectSalaryType(type)" [(ngModel)]="salaryType" value="2">
@@ -32,7 +38,7 @@
      <!--New Input Fields for Salary 08-06-2020-->
      <div class="clearfix">&nbsp;</div>
      <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-      <div class="col-md-4 p-rel">
+      <div class="col-md-2 p-rel">
         <div class="material-textfield">
           <input  placeholder="" #Minname="ngModel" name="MinSal"  (keypress)="numberOnly($event)" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
           <span class="error1"
@@ -43,12 +49,20 @@
       <div class="col-md-1 text-center">
         <i class="fa fa-minus" aria-hidden="true"></i>
       </div>
-      <div class="col-md-4 p-rel">
+      <div class="col-md-2 p-rel">
         <div class="material-textfield">
           <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" (keypress)="numberOnly($event)" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
           <span class="error1"
           *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
           <label>Max Pay</label>
+        </div>
+      </div>
+      <!--Salary Open Publish 14-12-2020-->
+      <div class="col-md-4 sal-open-publish"> 
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Publish
+          </label>
         </div>
       </div>
     </div>
@@ -66,7 +80,7 @@
           <!--New Input Fields for Salary 08-06-2020-->
           <div class="clearfix">&nbsp;</div>
           <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
-            <div class="col-md-4 p-rel">
+            <div class="col-md-2 p-rel">
               <div class="material-textfield">
                 <input  placeholder="" #Minhname="ngModel" name="MinhSal" (keypress)="numberOnly($event)" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
                 <span class="error1"
@@ -77,12 +91,20 @@
             <div class="col-md-1 text-center">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-            <div class="col-md-4 p-rel">
+            <div class="col-md-2 p-rel">
               <div class="material-textfield">
                 <input name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" (keypress)="numberOnly($event)" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
                 <span class="error1"
                 *ngIf="Maxhname.invalid && Maxhname.touched">Required</span>
                 <label>Max Pay</label>
+              </div>
+            </div>
+             <!--Salary Open Publish 14-12-2020-->
+            <div class="col-md-4 sal-open-publish"> 
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Publish
+                </label>
               </div>
             </div>
           </div>

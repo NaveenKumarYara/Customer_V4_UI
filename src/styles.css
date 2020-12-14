@@ -26222,3 +26222,22 @@ table .table-prl-0 td {
     line-height: 40px!important;
     color: #6A7E9C!important;
 }
+
+    .sal-open label{
+        padding-left: 35px!important;
+        border-left: 2px solid #6A7E9C;
+      }
+      .sal-open input{
+        opacity: inherit!important;
+      }
+      .sal-open-publish{
+        line-height: 50px;
+      }
+      .sal-open-publish input{
+        opacity: inherit!important;
+        margin-top: 17px;
+      }
+      .sal-open-publish label{
+        padding-left: 35px!important;
+        border-left: 2px solid #6A7E9C;
+      }
