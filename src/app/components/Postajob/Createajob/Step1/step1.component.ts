@@ -245,8 +245,8 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
 
     this.insertJob.JobTitle = this.jobProfile.Title;
-    this.insertJob.MinExperienceId = this.jobDetail.minExperience;
-    this.insertJob.MaxExperienceId = this.jobDetail.maxExperience;
+    this.insertJob.MinExperienceId = Math.round(this.jobProfile.minExperience);
+    this.insertJob.MaxExperienceId = Math.round(this.jobProfile.maxExperience);
     this.insertJob.CompleteDescription = this.jobProfile.hasCompleteDescription;
     this.insertJob.JobDescription = this.jobProfile.jobDescription;
     this.insertJob.JobPositionId = this.jobProfile.jobPositionId;

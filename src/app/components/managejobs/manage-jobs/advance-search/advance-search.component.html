@@ -6,12 +6,16 @@
         <div class="col-md-7">
             <!--Add More Filters Dropdown 01-04-2020-->
             <div class="dropdown add-more-filters">
+           
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add More Filters
+                    <ng-container *ngIf="FilterId>0">
+                        <img src="../../../../../assets/images/check-mark.svg"  alt="email"> 
+                     </ng-container>
                 </button>
-                <!-- <button class="btn btn-default" (click)="DeleteFilter(FilterId)"> -->
-                    <button class="btn btn-default" (click)="ClearALlFilter()">
+            <button class="btn btn-default" (click)="DeleteFilter(FilterId)"> 
+                    <!-- <button class="btn btn-default" (click)="ClearALlFilter()"> -->
                     Clear Filters
                 </button>
 

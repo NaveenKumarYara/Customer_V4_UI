@@ -617,16 +617,13 @@ clients.length > 0 ||
       return this.appService.DeleteSaveFilter(Id).subscribe(data=>{
         if(data==0)
         {
-          this.ClearComponent(1);
-          this.ClearComponent(2);
-          this.ClearComponent(3);
-          this.ClearComponent(4);
-          this.ClearComponent(15);
+         
           this.isTitlechecked=false;
           this.isLocchecked=false;
           this.isStatchecked=false;
           this.ischecked=false;
           this.isEmpchecked=false;
+          this.ClearALlFilter();
           this.GetSavedJobFilter();
           location.reload();
         }
@@ -634,11 +631,7 @@ clients.length > 0 ||
     }
     else
     {
-      this.ClearComponent(1);
-      this.ClearComponent(2);
-      this.ClearComponent(3);
-      this.ClearComponent(4);
-      this.ClearComponent(15);
+     this.ClearALlFilter();
     }
 
   }

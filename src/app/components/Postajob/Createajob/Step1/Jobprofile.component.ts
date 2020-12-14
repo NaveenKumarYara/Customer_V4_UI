@@ -29,10 +29,14 @@ hasCompleteDescription: boolean;
 jobDescription: string;
 customerId: number;
 customer: any;
+domminval:any;
+dommaxval:any;
 keyslist:any=[];
 ILoading = false;
 PLoading = false;
 CLoading = false;
+maxexpval:any;
+minexpval:any;
 TLoading = false;
 keyLoading= false;
 KeyCheck = false;
@@ -395,6 +399,92 @@ NewKeyResponse(val)
   // }
 }
 
+maxexpCalculation(exp)
+{
+  var m=exp.toString();
+  if(m!=null)
+  {
+    var e = m.split('.');
+    if(e.length > 1)
+    {
+     let s = (e[0] * 12) + +e[1];
+     this.maxexpval= s;
+     return s;
+    }
+    else
+    {
+      let s = e[0] * 12
+      this.maxexpval= s;
+      return s;
+    }
+  }
+}
+
+minexpCalculation(exp)
+{
+  var m=exp.toString();
+  if(m!=null)
+  {
+    var e = m.split('.');
+    if(e.length > 1)
+    {
+     let s = (e[0] * 12) + +e[1];
+     this.minexpval= s;
+     return s;
+    }
+    else
+    {
+      let s = e[0] * 12
+      this.minexpval= s;
+      return s;
+    }
+     
+  
+  }
+}
+
+domainmaxCalculation(exp)
+{
+  var m=exp.toString();
+  if(m!=null)
+  {
+    var e = m.split('.');
+     if(e.length > 1)
+     {
+      let s = (e[0] * 12) + +e[1];
+      this.dommaxval= s;
+      return s;
+     }
+     else
+     {
+       let s = e[0] * 12
+       this.dommaxval= s;
+       return s;
+     }
+  }
+}
+
+domainminCalculation(exp)
+{
+  var m=exp.toString();
+  if(m!=null)
+  {
+    var e = m.split('.');
+    if(e.length > 1)
+     {
+      let s = (e[0] * 12) + +e[1];
+      this.domminval= s;
+      return s;
+     }
+     else
+     {
+       let s = e[0] * 12
+       this.domminval= s;
+       return s;
+     }
+  }
+}
+
 numberOnly(event): boolean {
   const charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
@@ -415,13 +505,13 @@ GetCustomerCategory(Id)
 
 onMaxChange()
 {
-  let val=Number(this.maxExperience*12);
-  this.appService.updateMaxExp(val);
+  let val=(this.maxExperience*12).toFixed(1);
+  this.appService.updateMaxExp(+val);
 }
 onMinChange()
 {
-  let val=Number(this.minExperience*12);
-  this.appService.updateMinExp(val);
+  let val=(this.minExperience*12).toFixed(1);
+  this.appService.updateMinExp(+val);
 }
 
 
@@ -463,8 +553,13 @@ public addkeyRole() {
     if (this.MaximumExperience < this.MinimumExperience) {
       return false;
   }
-    this.getDomain.CustomerKeyMinExperienceId =  Number(this.MinimumExperience*12);  // parseFloat((this.MaximumExperience / 12).toFixed(1));
-    this.getDomain.CustomerKeyMaxExperienceId =  Number(this.MaximumExperience*12);
+    this.domainmaxCalculation(this.MaximumExperience);
+    this.MaximumExperience= this.dommaxval;
+    this.domainminCalculation(this.MinimumExperience);
+    this.MinimumExperience = this.domminval;
+    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  // parseFloat((this.MaximumExperience / 12).toFixed(1));
+    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
+
     if(this.getDomain.CustomerKeyMinExperienceId === 0)
     {
       this.toastr.error('Minimum experience should be greater than 0!', 'Oops!');

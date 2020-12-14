@@ -25,10 +25,10 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofposition">Which Type of position/Department does the job belongs to? </label>
+  <label class="t-p" for="typeofposition">Which Department does the job belongs to? </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
-  placeholder="Select (or) Add Type of Position/Department"
+  placeholder="Select (or) Add Department"
   [(ngModel)]="Department"  (change)="updatePostionType($event)">
 </ng-select>
 </div>
@@ -116,15 +116,15 @@
           <div class="row re-exp">
               <!-- <div class="styled-select-box block experience-output"></div> -->
               <div class="col-md-3">
-                  <div class="form-group">
-                      <input class="form-control"  name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="form-group">
-                      <input class="form-control" name="max-exp"  #Maxname="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
-                  </div>
-              </div>
+                <div class="form-group">
+                    <input class="form-control"  name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input class="form-control" name="max-exp"  #Maxname="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
+                </div>
+            </div>
               <div class="col-md-6">
                   <div class="p-rel">
                       <!-- <ng-select class="custom-style" id="requiredExperience" [items]="expYears" (change)="updateMinExp()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" bindValue="minExperience" [(ngModel)]="minExperience" #totMinExp="ngModel" name="miniExperience"
