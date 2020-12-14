@@ -37,6 +37,8 @@ PLoading = false;
 CLoading = false;
 maxexpval:any;
 minexpval:any;
+minYears: number;
+maxYears: number;
 TLoading = false;
 keyLoading= false;
 KeyCheck = false;
@@ -318,11 +320,11 @@ NewKeyResponse(val)
     this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
     this.appService.currentminExp.subscribe(x => {
       let val = x/12;
-      this.minExperience = Number(val.toFixed(2));
+      this.minExperience = Number(val.toFixed(1));
     });
    this.appService.currentmaxExp.subscribe(y => {
       let value = y/12;
-      this.maxExperience = Number(value.toFixed(2));
+      this.maxExperience = Number(value.toFixed(1));
    } );
     this.keyslist = this.appService.getKeyRoleList();
    
@@ -505,13 +507,13 @@ GetCustomerCategory(Id)
 
 onMaxChange()
 {
-  let val=(this.maxExperience*12).toFixed(1);
-  this.appService.updateMaxExp(+val);
+  let val=Number(this.maxExperience*12);
+  this.appService.updateMaxExp(val);
 }
 onMinChange()
 {
-  let val=(this.minExperience*12).toFixed(1);
-  this.appService.updateMinExp(+val);
+  let val= Number(this.minExperience*12);
+  this.appService.updateMinExp(val);
 }
 
 
