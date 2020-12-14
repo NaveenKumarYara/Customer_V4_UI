@@ -15,7 +15,7 @@
          <!--Salary Open 14-12-2020-->
         <div class="checkbox sal-open">
           <label>
-            <input type="checkbox"> Please check if you want Salary range to be Open?
+            <input type="checkbox" [(ngModel)]="flag" name="flag"  [checked]="flag" (change)="checkValue(flag ?true:false)"> Please check if you want Salary range to be Open?
           </label>
         </div>
         <!-- <div class="checkbox">
@@ -38,7 +38,8 @@
      <!--New Input Fields for Salary 08-06-2020-->
      <div class="clearfix">&nbsp;</div>
      <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-      <div class="col-md-2 p-rel">
+
+      <div class="col-md-2 p-rel" *ngIf="flag === false">
         <div class="material-textfield">
           <input  placeholder="" #Minname="ngModel" name="MinSal"  (keypress)="numberOnly($event)" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
           <span class="error1"
@@ -46,10 +47,10 @@
           <label>Min Pay</label>
         </div>
       </div>
-      <div class="col-md-1 text-center">
+      <div class="col-md-1 text-center" *ngIf="flag === false">
         <i class="fa fa-minus" aria-hidden="true"></i>
       </div>
-      <div class="col-md-2 p-rel">
+      <div class="col-md-2 p-rel" *ngIf="flag === false">
         <div class="material-textfield">
           <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" (keypress)="numberOnly($event)" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
           <span class="error1"
@@ -58,10 +59,10 @@
         </div>
       </div>
       <!--Salary Open Publish 14-12-2020-->
-      <div class="col-md-4 sal-open-publish"> 
+      <div class="col-md-4 sal-open-publish" *ngIf="flag === false"> 
         <div class="checkbox">
           <label>
-            <input type="checkbox"> Publish
+            <input type="checkbox" name="flag1"  [(ngModel)]="flag1"  [checked]="flag1" (change)="checkValue1(flag1?true:false)"> Publish
           </label>
         </div>
       </div>
@@ -80,7 +81,7 @@
           <!--New Input Fields for Salary 08-06-2020-->
           <div class="clearfix">&nbsp;</div>
           <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
-            <div class="col-md-2 p-rel">
+            <div class="col-md-2 p-rel" *ngIf="flag === false">
               <div class="material-textfield">
                 <input  placeholder="" #Minhname="ngModel" name="MinhSal" (keypress)="numberOnly($event)" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
                 <span class="error1"
@@ -88,10 +89,10 @@
                 <label>Min Pay</label>
               </div>
             </div>
-            <div class="col-md-1 text-center">
+            <div class="col-md-1 text-center" *ngIf="flag === false">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-            <div class="col-md-2 p-rel">
+            <div class="col-md-2 p-rel" *ngIf="flag === false">
               <div class="material-textfield">
                 <input name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" (keypress)="numberOnly($event)" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
                 <span class="error1"
@@ -100,10 +101,10 @@
               </div>
             </div>
              <!--Salary Open Publish 14-12-2020-->
-            <div class="col-md-4 sal-open-publish"> 
+            <div class="col-md-4 sal-open-publish" *ngIf="flag === false"> 
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> Publish
+                  <input type="checkbox"  [(ngModel)]="flag1"  [checked]="flag1" (change)="checkValue1(flag1?true:false)"> Publish
                 </label>
               </div>
             </div>

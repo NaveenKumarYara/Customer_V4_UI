@@ -15,6 +15,8 @@ export class StepSalarysliderComponent implements OnInit {
   minHourRate = 20;
   maxHourRate = 100;
   show:boolean;
+  flag:boolean = false;
+  flag1:boolean = true;
   minsal:any;
   maxsal:any;
   // salaryTypeSelected: any;
@@ -57,6 +59,8 @@ export class StepSalarysliderComponent implements OnInit {
       this.appService.currentMaxRate.subscribe(x => this.maxAnnualRate = x);
       this.appService.currentMinHourlyRate.subscribe(x => this.minHourRate = x);
       this.appService.currentMaxHourlyRate.subscribe(x => this.maxHourRate = x);
+      this.flag = this.appService.BonusOffered!=null?this.appService.BonusOffered:false;
+      this.flag1 = this.appService.HideSalary !=null?this.appService.HideSalary:true;
       // if(this.maxHourRate>200)
       // {
       //   this.show=true;      
@@ -66,6 +70,18 @@ export class StepSalarysliderComponent implements OnInit {
       //   this.show=false;
       // }
   }
+
+  checkValue(event: any){
+    debugger
+    this.flag = event;
+    this.appService.BonusOffered = event;
+ }
+
+ checkValue1(event: any){
+   debugger
+   this.flag1 = event;
+  this.appService.HideSalary = event;
+}
 
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;

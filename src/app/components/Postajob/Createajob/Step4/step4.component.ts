@@ -168,7 +168,8 @@ export class Step4Component implements OnInit {z
     this.insertJob.CustomerId = this.customerId;
     this.insertJob.UserId = this.userId;
     this.insertJob.JobPositionId = this.jobPositionId;
-
+    this.insertJob.HideSalary = this.appService.HideSalary;
+    this.insertJob.BonusOffered = this.appService.BonusOffered;
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
     this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;

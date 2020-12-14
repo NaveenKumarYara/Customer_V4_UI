@@ -298,7 +298,8 @@ export class Step3Component implements OnInit,AfterViewChecked {
   //   this.insertJob.CompleteDescription = this.appService.hasDescription.value;
   //   this.insertJob.JobDescription = this.appService.description.value;
   //   this.insertJob.XmlSkills = this.appService.primaryjobskills.concat( this.appService.secondaryjobskills);
-
+  this.insertJob.HideSalary = this.appService.HideSalary;
+    this.insertJob.BonusOffered = this.appService.BonusOffered;
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
     this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;

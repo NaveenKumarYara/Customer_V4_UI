@@ -159,18 +159,35 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Salary Range</h4>
-                                    <p>
-                                        ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} to
-                                        ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}
-                                    </p>
+                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
+                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === true">
+                                        <p>
+                                            ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} to
+                                            ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}
+                                        </p>
+                                        <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
+                                            On W2
+                                        </p>
+    
+                                        <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
+                                            Contract By Length
+                                        </p>
+                                    </ng-container>
+                                  
+                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === false">
+                                        <p>
+                                           Not willing to reveal.
+                                        </p>
+                                    </ng-container>
+                                    </ng-container>
 
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
-                                        On W2
-                                    </p>
+                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
+                                        <p>
+                                          Open for Conversation.
+                                        </p>
+                                    </ng-container>
 
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
-                                        Contract By Length
-                                    </p>
+                                   
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6">

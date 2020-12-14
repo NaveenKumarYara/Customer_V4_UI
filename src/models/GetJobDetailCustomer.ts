@@ -67,6 +67,7 @@ export class JobInfo {
     MinimumSalary: string;
     MaximumSalary: string;
     BonusOffered: string;
+    HideSalary: string;
     ContractDuration: string;
     // ContractExtended: boolean;
     WorkAuthorizationId: number;

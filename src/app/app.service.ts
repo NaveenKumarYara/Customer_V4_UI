@@ -63,6 +63,9 @@ export class AppService {
 
   locationselect:boolean=false;
   RemoteWork:boolean=false;
+
+  HideSalary:boolean=false;
+  BonusOffered:boolean=false;
   
   domain: GetDomain[] = [];
   domainChanged = new Subject<GetDomain[]>();

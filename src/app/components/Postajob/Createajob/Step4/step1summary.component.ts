@@ -41,6 +41,8 @@ empType: number;
 contractExtended: boolean;
 salaryType: any;
 salaryTypeId: any;
+open:boolean;
+publish:boolean;
 minAnnualRate = 1000;
 maxAnnualRate = 10000;
 minHourRate = 20;
@@ -108,6 +110,10 @@ maxRate: number;
       });
      
       this.Remotework= this.appService.RemoteWork;
+
+      this.open = this.appService.BonusOffered;
+
+      this.publish = this.appService.HideSalary;
 
       this.appService.currentjobImp.subscribe((data)=>
       {

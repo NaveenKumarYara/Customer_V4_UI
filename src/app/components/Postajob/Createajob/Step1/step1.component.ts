@@ -243,7 +243,8 @@ export class Step1Component implements OnInit, AfterViewChecked {
     //  && this.jobResponsibility.roleIdList.length > 0
    
 
-
+    this.insertJob.HideSalary = this.appService.HideSalary;
+    this.insertJob.BonusOffered = this.appService.BonusOffered;
     this.insertJob.JobTitle = this.jobProfile.Title;
     this.insertJob.MinExperienceId = Math.round(this.jobDetail.minExperience);
     this.insertJob.MaxExperienceId = Math.round(this.jobDetail.maxExperience);
@@ -271,6 +272,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     }
     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     this.insertJob.RemoteWorkId= this.appService.RemoteWork;
+
 
     
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);

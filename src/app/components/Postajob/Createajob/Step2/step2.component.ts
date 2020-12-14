@@ -205,6 +205,8 @@ isDrafted: boolean;
      // if (res != null) {
      this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
     }
+    this.insertJob.HideSalary = this.appService.HideSalary;
+    this.insertJob.BonusOffered = this.appService.BonusOffered;
     this.insertJob.JobCategoryId = this.jobCategory; // this.appService.jobcategory.value.JobCategoryId;
     this.insertJob.JobTitle = this.jobTitle; // this.appService.jobtitle.value;
     this.insertJob.MinExperienceId = Math.round(this.jobMinExp); // this.appService.minExperience.value;
