@@ -26241,3 +26241,13 @@ table .table-prl-0 td {
         padding-left: 35px!important;
         border-left: 2px solid #6A7E9C;
       }
+
+      /*domain exp step 2 styles*/
+      .domain-min-max .error1{
+        color: #fff;
+        height: 40px;
+        width: 150px;
+        top: -16px;
+        left: 8px;
+        line-height: 15px;
+      }
