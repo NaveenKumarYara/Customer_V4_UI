@@ -160,7 +160,7 @@
                                 <div class="group">
                                     <h4>Salary Range</h4>
                                     <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
-                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === true">
+                                    <!-- <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === true"> -->
                                         <p>
                                             ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} to
                                             ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}
@@ -172,13 +172,13 @@
                                         <p *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
                                             Contract By Length
                                         </p>
-                                    </ng-container>
+                                    <!-- </ng-container> -->
                                   
-                                    <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === false">
+                                    <!-- <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.HideSalary === false">
                                         <p>
                                            Not willing to reveal.
                                         </p>
-                                    </ng-container>
+                                    </ng-container> -->
                                     </ng-container>
 
                                     <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
