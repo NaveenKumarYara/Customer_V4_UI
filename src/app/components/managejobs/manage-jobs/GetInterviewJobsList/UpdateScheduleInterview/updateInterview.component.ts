@@ -63,7 +63,7 @@ export class UpdateInterviewComponent implements OnInit {
   customercontacts : CustomerContacts[];
   selectedUserInput = new Subject<string>();
   usersloading: boolean;
-  selectedUserName = '';
+  selectedUserName :number;
   teammembers: '';
   list:boolean=false;
   teammemberslist: CustomerUsers[];
@@ -125,7 +125,7 @@ export class UpdateInterviewComponent implements OnInit {
         this.dailInNumber = this.jobinterviewlist.AccessId;
         this.furtherInterview = this.jobinterviewlist.RequiredFurtherInterview;
         this.travelExpense = this.jobinterviewlist.TravelExpence;
-        this.selectedUserName = this.jobinterviewlist.FirstName;
+        //this.selectedUserName = this.jobinterviewlist.;
       }
     }); 
 
@@ -151,8 +151,10 @@ export class UpdateInterviewComponent implements OnInit {
  GetCustomerContacts()
  {
    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-     debugger
      this.customercontacts = res;
+     this.customercontacts = this.customercontacts.filter(
+      name=> name.FirstName !="Invited");
+      this.selectedUserName= this.customercontacts[0].UserId;
  });
  }
 
@@ -188,12 +190,12 @@ export class UpdateInterviewComponent implements OnInit {
   //   this.seconds = !this.seconds;
   // }
 ScheduleInterview() {
-if(this.schedule.invalid||this.selectedUserName == '')
+if(this.schedule.invalid)
 {
     this.toastr.error('Please provide the valid details','Oops')
 }
 if (this.schedule.valid) {
-this.schIntw.JobInterviewId = this.data.InterviewId;
+this.schIntw.JobInterviewId = this.jobinterviewlist.JobInterviewId;
 this.schIntw.UserId = this.data.userId;
 this.schIntw.JobId = this.data.jobId;
 this.schIntw.ProfileId = this.data.ProfileId;
@@ -336,7 +338,7 @@ GetInterView() {
 
   private deletemember() {
    this.list = true;
-   this.selectedUserName = '';
+   //this.selectedUserName = '';
   }
 
 
@@ -367,5 +369,6 @@ export class ScheduleInterview {
     public TravelExpense: boolean;
     public InterviewingPerson: string;
     public StatusChangedByUserId: number;
-
+    public IsUploaded: boolean;
+    public IsInvited: boolean;
 }

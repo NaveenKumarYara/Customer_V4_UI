@@ -57,7 +57,7 @@
   "jobCategoryEndpoint": "https://jobsapi-dev.arytic.com/api/GetJobCategory",
   "profileLink": "https://profileapi-dev.arytic.com/api/GetProfileLink?",
   "scheduleInterview" : "https://referalapi-dev.arytic.com/api/ScheduleInterview",
-  "UpdateScheduleInterview":"https://referalapi-dev.arytic.comapi/UpdateCustomerJobInterview",
+  "UpdateScheduleInterview":"https://referalapi-dev.arytic.com/api/UpdateCustomerJobInterview",
   "EmailVaild": "https://identityapi-dev.arytic.com/api/ValidateEmail?",
   "EmailInvite": "https://emailapi-dev.arytic.com/api/RegisterCustomer",
   "ActivateUser": "https://identityapi-dev.arytic.com/api/ActivateUser?",
