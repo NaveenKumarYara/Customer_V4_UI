@@ -68,7 +68,8 @@ export interface DialogData {
     this.inviteinfo.CandFullName = 'New User';
     this.inviteinfo.CustFullName = this.customer.FirstName;
     this.inviteinfo.ClientLogo = '';
-    this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+ this.data.jobId;
+    //this.inviteinfo.AppLink = this.settingsService.settings.CandidateSignUp+';JId='+ this.data.jobId;
+    this.inviteinfo.AppLink = 'https://candidate-dev.arytic.com/Ijobdetail/'+ this.data.jobId;
     if(this.inviteinfo.ToEmailId == "")
     {
       this.toastr.error('Please provide the valid details!', 'Oops!');
