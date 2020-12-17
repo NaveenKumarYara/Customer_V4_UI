@@ -184,9 +184,13 @@ getPaginatorData(event){
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {
-            this.usersList = data; 
-         this.paginator.previousPage();
-         this.paginator.pageIndex = 0;
+        this.usersList = data; 
+         if(this.usersList.length>10)
+         {
+          this.paginator.previousPage();
+          this.paginator.pageIndex = 0;
+         }
+         
         });
   }
 

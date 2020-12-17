@@ -65,34 +65,24 @@
                 slice: lowValue : highValue | orderBy:sortingName:isDesc " [disabled]="true"
                 #mep="matExpansionPanel">
                     <mat-expansion-panel-header *ngIf="user?.IsPublish === true">
-                        <div class="col-md-3">
-                            <h3>{{user?.FullName | titlecase}}</h3>
-                            <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
+                            <div class="col-md-3">
+                                <h3>{{user?.FullName | titlecase}}</h3>
+                                <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>{{user?.KnownOrWorkedAt}}</h5>
+                                <h6>{{user?.ReferRelation || 'N/A'}}</h6>
+                                <!-- <h6>Referrer Role</h6> -->
+                            </div>    
+                            <div class="col-md-2">
+                            <h5>{{user?.ReferenceStatus}}</h5>
                         </div>
-                        <div class="col-md-3">
-                            <h5>{{user?.KnownOrWorkedAt}}</h5>
-                            <h6>{{user?.ReferRelation || 'N/A'}}</h6>
-                            <!-- <h6>Referrer Role</h6> -->
-                        </div>    
-                        <div class="col-md-2"
-                        *ngIf="((user?.CreatedOn | date : 'longDate') === (CurrentTime | date : 'longDate')) || user?.ReferenceStatus!=='Requested'">
-                        <h5>{{user?.ReferenceStatus}}</h5>
-                    </div>
-                    <div class="col-md-2"
-                        *ngIf="(user?.CreatedOn | date : 'longDate') < (CurrentTime | date : 'longDate') && (user?.CreatedOn | date : 'longDate') > (dateAgo | date : 'longDate') && user?.ReferenceStatus==='Requested'">
-                        <h5>Pending</h5>
-                    </div>
-                    <div class="col-md-2"
-                        *ngIf="(user?.CreatedOn | date : 'longDate') <= (dateAgo| date : 'longDate') && user?.ReferenceStatus=='Requested'">
-                        <h5>Reference Expired</h5>
-                    </div>
-                        <div class="col-md-3">
-                            <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
-                        </div>
-                        <div class="col-md-2 more-info">
-                            <a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>   
-                        </div>
-                       
+                            <div class="col-md-3">
+                                <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
+                            </div>
+                            <div class="col-md-2 more-info">
+                                <a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>   
+                            </div>                                 
                         <!-- <div class="col-md-3">
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                             <small>Download Report</small>
@@ -111,6 +101,7 @@
                             </div>
                         </div>
                     </div>
+                  
                    
                 </mat-expansion-panel>
               
