@@ -203,5 +203,7 @@
   "AddJobTitle":"${Identity_URL}/api/InsertNewTitle",
   "AddKeyResponsibilities":"${Identity_URL}/api/InsertNewKeyRoles",
   "GetAllCities":"${Profile_URL}/api/GetAllCities",
-  "DeleteSavedFilter":"${Profile_URL}/api/DeleteJobSavedFilter"
+  "DeleteSavedFilter":"${Profile_URL}/api/DeleteJobSavedFilter",
+  "SendJobStatus":"${Email_URL}/api/SendJobStatus",
+  "SendJobInterviewStatus":"${Email_URL}/api/SendJobInterviewStatus"
 }

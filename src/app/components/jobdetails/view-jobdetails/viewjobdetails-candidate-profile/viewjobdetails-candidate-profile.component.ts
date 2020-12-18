@@ -26,6 +26,8 @@ import {HiredialogComponent} from './Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './Achivements/achivement.component';
 import { ReferencedialogComponent } from './ManageReferences/manageref.component';
 import { backgrounddialogComponent } from './BackgroundVerification/bg.component';
+import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
+
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -68,6 +70,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   fileExt: any;
   skills: any = null;
   loading: boolean;
+  jobdetailscustomer = new  GetJobDetailCustomer();
+  status= new JobStatus();
   usersList:any;
   schIntw = new ScheduleInterview();
   wsList = new WishList();
@@ -185,7 +189,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   
 }
 
-OpenRejectDialog(jobResponseId, profileId) {
+OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   if (this.jobStatus !== 'InActive') {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
       {
@@ -193,7 +197,9 @@ OpenRejectDialog(jobResponseId, profileId) {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
-          ProfileId: profileId
+          ProfileId: profileId,
+          Email :Email,
+          FullName :FirstName+LastName
           // status : this.statusid
         }
       }
@@ -290,7 +296,7 @@ OpenBgDialog(profileId,name,userId,lName)
   });
 }
 
-OpenHireDialog(jobResponseId, profileId) {
+OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   if (this.jobStatus !== 'InActive') {
     const hiredialogRef = this.dialog.open(HiredialogComponent,
       {
@@ -299,7 +305,9 @@ OpenHireDialog(jobResponseId, profileId) {
         data: {
           jobResponseId: jobResponseId,
           jobId: this.jobid,
-          ProfileId: profileId
+          ProfileId: profileId,
+          Email :Email,
+          FullName :FirstName+LastName
           // status : this.statusid
         }
       }
@@ -312,7 +320,7 @@ OpenHireDialog(jobResponseId, profileId) {
   }
 }
 
-OpenScheduleInterviewDialog(jobResponseId, userId, profileId) {
+OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,LastName) {
   // var candidateUserId = $("#candidateUserId").val();
   // var candidateId = +candidateUserId;
   const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
@@ -324,7 +332,9 @@ OpenScheduleInterviewDialog(jobResponseId, userId, profileId) {
         jobResponseId: jobResponseId,
         jobId: this.jobid,
         ProfileId: profileId,
-        userId: userId
+        userId: userId,
+        Email :Email,
+        FullName :FirstName+LastName
         // status : this.statusid
       }
     }
@@ -444,11 +454,19 @@ RequestReference(profile)
 }
 
 
+
+PopulateJobdetail () {
+  return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
+    this.jobdetailscustomer = res;
+  });
+
+}
+
 // updateOnDialogClose() {
 //   this.eventStat.emit(null);
 //   this.myEvent.emit(null);
 // }
-shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
+shortlisthiredwithdrawn(stat, jobResponseId, profileId,Email,FirstName,LastName) {
   if(stat==11)
   {
     this.Check(1,profileId)
@@ -474,12 +492,50 @@ shortlisthiredwithdrawn(stat, jobResponseId, profileId) {
   this.schIntw.RequiredFurtherInterview = null;
   this.schIntw.StatusChangedByUserId = this.userId;
   this.schIntw.InterviewingPerson = null;
+  let FullName = FirstName + LastName;
+ 
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
+    this.SendStatusEmail(Email,FullName,stat);
     this.myEvent.emit(null);
     console.log(res);
   });
 }
+
+SendStatusEmail(Email,FullName,stat)
+{
+  this.status.AppLink = this.settingsService.settings.CandidateLogin;
+  if(stat == 8)
+  {
+    this.status.JobStatus = 'Screening';
+  }
+  if(stat == 5)
+  {
+    this.status.JobStatus = 'Shortlisted';
+  }
+  if(stat == 9)
+  {
+    this.status.JobStatus = 'WithDrawn';
+  }
+
+  this.status.FromEmail = this.customer.Email;
+  this.status.ToEmailID = Email;
+  this.status.FullName = FullName;
+  this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
+  this.appService.SendJobStatus(this.status)
+  .subscribe(
+  status => {
+     this.toastr.success('Email Sent','Success');
+        setTimeout(() => {          
+            this.toastr.dismissToast; 
+          }, 3000);
+         
+       } 
+                  
+  );
+}
+
 GetCandidateProfile(profileId) {
   if (this.jobStatus !== 'InActive') {
     sessionStorage.setItem('profileId', JSON.stringify(profileId));
@@ -703,6 +759,7 @@ ngOnInit() {
   })(jQuery);
   // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
   console.log('abc');
+  this.PopulateJobdetail();
 }
 
 // ngAfterViewInit() {
@@ -1078,4 +1135,15 @@ export class RequestRefernce
    public  FromEmail: string;
    public  CompanyName: string;
    public  Comment: string;
+}
+
+export class JobStatus
+{
+    public FullName :string
+    public AppLink :string
+    public JobStatus :string
+    public ToEmailID :string
+    public JobLocation :string
+    public  FromEmail :string
+    public JobTitle :string
 }

@@ -72,6 +72,8 @@ export class Settings {
   GetInterviewDetails:string;
   GetCustomerDepartments: string;
   GetJobDepartment: string;
+  SendJobStatus:string;
+  SendJobInterviewStatus:string;
  // SearchClients: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchClients',
   // SearchDepartments: 'http://api.tenendus.com:1090/ProfileAPI/api/SearchDepartments',
  // postjob : 'http://api.tenendus.com:1090/JobsAPI/api/CreateJob?',

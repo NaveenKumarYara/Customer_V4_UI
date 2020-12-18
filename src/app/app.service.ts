@@ -837,6 +837,25 @@ getCompanyProfile(customerId:number): Observable<CompanyProfile> {
     });
   }
 
+  SendJobStatus(body)
+  {
+    return this.http.post(this.settingsService.settings.SendJobStatus, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+
+  SendJobInterviewStatus(body)
+  {
+    return this.http.post(this.settingsService.settings.SendJobInterviewStatus, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
 
  
 

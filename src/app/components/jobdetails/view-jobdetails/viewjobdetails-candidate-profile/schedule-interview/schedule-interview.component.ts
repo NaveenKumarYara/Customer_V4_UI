@@ -19,6 +19,8 @@ import { JobdetailsService } from '../../../jobdetails.service';
 import { EventEmitter } from 'events';
 import { NgForm } from '@angular/forms';
 import {Options} from '../schedule-interview/options';
+import { SettingsService } from '../../../../../../settings/settings.service';
+import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
 declare var $: any;
 
 export interface DialogData {
@@ -39,7 +41,9 @@ export class ScheduleInterviewComponent implements OnInit {
       new Options(4, 'Other' )
   ];
   schIntw = new ScheduleInterview();
+  status = new JobInterviewStatus();
  @Output() eventStat = new EventEmitter();
+ jobdetailscustomer = new  GetJobDetailCustomer();
   webxRI: boolean;
   skypeId: string;
   Addform: FormGroup;
@@ -81,7 +85,7 @@ export class ScheduleInterviewComponent implements OnInit {
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -164,6 +168,7 @@ export class ScheduleInterviewComponent implements OnInit {
     this.GetInterView();
     this.GetType();
     this.GetCustomerContacts();
+    
     //this.teammemberslist = this.appService.getTeammembers();
     // this.subscription = this.appService.teammembersChanged
     //   .subscribe(
@@ -246,6 +251,7 @@ this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
 this.schIntw.InterviewingPerson = this.selectedUserName.toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+    this.PopulateJobdetail();
       this.eventStat.emit(null);
       this.schIntw = new ScheduleInterview();
       this.dialogRef.close();
@@ -266,6 +272,58 @@ GetId(val)
     this.interviewId = 1;
   }
 
+}
+
+
+PopulateJobdetail () {
+  return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
+    this.jobdetailscustomer = res;
+    this.SendStatusEmail();
+  });
+
+}
+
+SendStatusEmail()
+{
+  this.status.AppLink = this.settingsService.settings.CandidateLogin;
+  this.status.Date = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString() +'@'+ this.time.hour + ':' + this.time.minute;
+  this.status.JobStatus = 'Scheduled Interview';
+  if (this.processSelection === 1) {
+    this.status.InterviewType = "In-Person";
+  
+  } else if (this.processSelection === 2) {
+    this.status.InterviewType = "Phone";
+    this.status.InterviewDetails =  this.phoneNumber;
+  
+  } 
+  else if (this.processSelection === 3) {
+    this.status.InterviewType = "Video-Conference";
+    if(this.skypeId != undefined && this.skypeId != '')
+    {
+      this.status.InterviewDetails =  this.skypeId;
+    }
+    else
+    {
+      this.status.InterviewDetails =  this.dailInNumber + this.bridgeUrl;
+    }
+   
+   } 
+  this.status.FromEmail = this.customer.Email;
+  this.status.ToEmailID = this.data.Email;
+  this.status.FullName = this.data.FullName;
+  this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
+  this.appService.SendJobInterviewStatus(this.status)
+  .subscribe(
+  status => {
+     this.toastr.success('Email Sent','Success');
+        setTimeout(() => {          
+            this.toastr.dismissToast; 
+          }, 3000);
+         
+       } 
+                  
+  );
 }
 
 getcustomerusers() {
@@ -426,4 +484,19 @@ export class ScheduleInterview {
     public InterviewingPerson: string;
     public StatusChangedByUserId: number;
 
+}
+
+
+export class JobInterviewStatus
+{
+    public FullName :string
+    public AppLink :string
+    public JobStatus :string
+    public ToEmailID :string
+    public InterviewType :string
+    public InterviewDetails :string
+    public JobLocation :string
+    public Date :string
+    public  FromEmail :string
+    public JobTitle :string
 }

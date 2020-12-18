@@ -7,6 +7,8 @@ import { AppService } from '../../../../../app.service';
 import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { IfObservable } from 'rxjs/observable/IfObservable';
+import { SettingsService } from '../../../../../../settings/settings.service';
+import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -27,16 +29,18 @@ export class HiredialogComponent {
   salaryDetails:any;
   addon = new addon();
   valueSal:number;
+  status= new JobStatus();
   IDate:any;
+  jobdetailscustomer = new  GetJobDetailCustomer();
   contract:string;
   TypeId:any;
   schIntw = new ScheduleInterview();
  @Input() jobid: number;
  @Input() statusid: number;
  @Output() eventStat = new EventEmitter();
-  constructor(public dialogRef: MatDialogRef<HiredialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor(public dialogRef: MatDialogRef<HiredialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
+    this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
       this.toastr.setRootViewContainerRef(_vcr);
@@ -146,6 +150,14 @@ Check()
 
 }
 
+PopulateJobdetail () {
+  return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
+    this.jobdetailscustomer = res;
+    this.SendStatusEmail();
+  });
+
+}
+
 gotit(na) {
   debugger
   this.TypeId=na;
@@ -165,7 +177,28 @@ gotit(na) {
         this.contract = this.salaryDetails.ContractDuration;
       });
    }
-
+   SendStatusEmail()
+   {
+     this.status.AppLink = this.settingsService.settings.CandidateLogin;
+     this.status.JobStatus = 'Hired';
+     this.status.FromEmail = this.customer.Email;
+     this.status.ToEmailID = this.data.Email;
+     this.status.FullName = this.data.FullName;
+     this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+     this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
+     this.appService.SendJobStatus(this.status)
+     .subscribe(
+     status => {
+        this.toastr.success('Email Sent','Success');
+           setTimeout(() => {          
+               this.toastr.dismissToast; 
+             }, 3000);
+            
+          } 
+                     
+     );
+   }
+   
 
   Hire() {
     let sal = this.valueSal.toString();
@@ -204,6 +237,7 @@ gotit(na) {
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.Check();
+      this.PopulateJobdetail();
       this.eventStat.emit(null);
       this.dialogRef.close();
       console.log(res);
@@ -218,5 +252,16 @@ export class addon
     AddonId:string;
     AddonUnitPrice:number;
     AddonQuantity:number;
+}
+
+export class JobStatus
+{
+    public FullName :string
+    public AppLink :string
+    public JobStatus :string
+    public ToEmailID :string
+    public JobLocation :string
+    public  FromEmail :string
+    public JobTitle :string
 }
 
