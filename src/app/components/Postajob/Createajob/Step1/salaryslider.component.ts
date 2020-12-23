@@ -116,6 +116,18 @@ export class StepSalarysliderComponent implements OnInit {
    // this.appService.updateEmploymentType(val);
      // this.salaryType = val === 'Annual' ? 2 : 1;
      this.salaryTypeSelected = val;
+     if(val.SalaryTypeId === 2 )
+     {
+       this.minAnnualRate = this.minHourRate*2000;
+       this.maxAnnualRate = this.maxHourRate*2000;
+       this.appService.updateSalaryRange(this.minAnnualRate, this.maxAnnualRate,  this.salaryTypeSelected.SalaryTypeId  );
+     }
+     else
+     {
+       this.minAnnualRate=0;
+       this.maxAnnualRate=0;
+       this.appService.updateSalaryRange(this.minHourRate, this.maxHourRate, this.salaryTypeSelected.SalaryTypeId  );
+     }
      this.appService.updatetSalaryType(this.salaryTypeSelected);
   }
   minAnnualChangeStart(changeContext: ChangeContext): void {
