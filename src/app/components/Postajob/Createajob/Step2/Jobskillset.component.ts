@@ -116,7 +116,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
      this.form.reset();
     }
     if (this.form.valid) {
-      if (this.maxexperience < this.minexperience) {
+      if (Number(this.maxexperience) < Number(this.minexperience)) {
         return false;
       }
       this.appService.addSkills(localStorage.getItem('skill'));
