@@ -35,7 +35,7 @@
                 {{job?.JobLocations[0].CityName}}, {{job?.JobLocations[0].StateCode}}
             </span>
           <span class="v-divider"></span>
-          <span>{{job?.PostedOn}}</span>
+          <span>{{job?.PostedOn  | date:'mediumDate'}}</span>
         </div>
       </div>
       <div class="stats stats--row">
