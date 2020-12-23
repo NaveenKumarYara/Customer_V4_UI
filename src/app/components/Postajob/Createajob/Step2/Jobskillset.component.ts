@@ -81,7 +81,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   }
   public addSkills() {
     if ($('#skills').val() === '1') {
-      if (this.maxexperience < this.minexperience) {
+      if (Number(this.maxexperience) < Number(this.minexperience)) {
         return false;
       }
       this.appService.addSkills(localStorage.getItem('skill'));

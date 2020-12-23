@@ -544,7 +544,7 @@ updateJobCategory(val)
 
 public addkeyRole() {
   if (this.roleForm.valid) {
-    if (this.MaximumExperience < this.MinimumExperience) {
+    if (Number(this.MaximumExperience) < Number(this.MinimumExperience)) {
       return false;
   }
     this.domainmaxCalculation(this.MaximumExperience);

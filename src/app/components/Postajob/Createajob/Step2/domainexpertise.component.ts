@@ -102,7 +102,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
 
   public addDomain() {
   if (this.domainForm.valid) {
-    if (this.MaximumExperience < this.MinimumExperience) {
+    if (Number(this.MaximumExperience) < Number(this.MinimumExperience)) {
       return false;
   }
     // const newDomain = new GetDomain();
