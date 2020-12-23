@@ -444,7 +444,7 @@ drop(event: any): void {
 
 SaveCustomDomain()
 {
-  if(this.companyprofile.CompanyName == 'Esolvit')
+  if(this.companyprofile.CompanyName == 'Esolvit Inc' || this.companyprofile.CompanyName == 'Esolvit')
   {
     this.cdomain.CustomerId = this.customerId;
     if(this.cdomain.IsDomain === true)
