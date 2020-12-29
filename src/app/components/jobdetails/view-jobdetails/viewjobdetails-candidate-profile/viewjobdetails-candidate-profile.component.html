@@ -515,13 +515,13 @@
                     <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
 
-                    <ng-container *ngIf="profile?.IsConfirmed ==true">
-                        <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
-                            width="50" height="50" alt="Consent Not Accepted" title="Consent Not Accepted">
+                    <ng-container *ngIf="profile?.IsConfirmed === true">
+                        <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-accepted.png"
+                            width="50" height="50" alt="Consent Not Accepted" title="Consent Accepted">
                     </ng-container>
-                    <ng-container *ngIf="profile?.IsConfirmed ==false">
-                        <img src="../../../../../assets/images/card-icons/consent-accepted.png" width="50" height="50"
-                            alt="Consent Accepted" title="Consent Accepted">
+                    <ng-container *ngIf="profile?.IsConfirmed ===  false">
+                        <img src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50"
+                            alt="Consent Accepted" title="Consent Not Accepted">
                     </ng-container>
                 </div>
             </div>
