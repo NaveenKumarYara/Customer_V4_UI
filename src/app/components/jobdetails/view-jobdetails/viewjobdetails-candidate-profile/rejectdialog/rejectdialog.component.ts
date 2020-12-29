@@ -44,7 +44,7 @@ export class RejectdialogComponent {
    SendStatusEmail()
    {
      this.status.AppLink = this.settingsService.settings.CandidateLogin;
-     this.status.JobStatus = 'Hired';
+     this.status.JobStatus = 'Rejected';
      this.status.FromEmail = this.customer.Email;
      this.status.ToEmailID = this.data.Email;
      this.status.FullName = this.data.FullName;
@@ -85,6 +85,10 @@ export class RejectdialogComponent {
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+      this.toastr.success('Email Sent','Success');
+           setTimeout(() => {          
+               this.toastr.dismissToast; 
+             }, 3000);
       this.PopulateJobdetail();
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
     

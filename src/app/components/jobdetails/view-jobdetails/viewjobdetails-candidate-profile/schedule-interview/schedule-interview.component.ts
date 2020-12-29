@@ -290,6 +290,7 @@ SendStatusEmail()
   this.status.JobStatus = 'Scheduled Interview';
   if (this.processSelection === 1) {
     this.status.InterviewType = "In-Person";
+    this.status.InterviewDetails = "Face2Face";
   
   } else if (this.processSelection === 2) {
     this.status.InterviewType = "Phone";
