@@ -210,6 +210,13 @@ getcustomerusers()
            this.toastr.dismissToast;
        }, 3000);
    }
+   else if(this.profileSharing.Comments == undefined)
+   {
+     this.toastr.error('Please provide Comments!', 'Oops!');
+       setTimeout(() => {
+           this.toastr.dismissToast;
+       }, 3000);
+   }
    if(this.profileSharing.ToEmailId != "" && this.profileSharing.Comments != "")
     {
    this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {

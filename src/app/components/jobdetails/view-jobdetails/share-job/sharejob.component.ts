@@ -163,7 +163,14 @@ export class ShareJobComponent {
                     this.toastr.dismissToast;
                 }, 3000);
             }
-            if(this.Sharing.ToEmailID!= "")
+            else if(this.Sharing.Comments == undefined)
+            {
+              this.toastr.error('Please provide Comments!', 'Oops!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
+            }
+            else if(this.Sharing.ToEmailID!= "" && this.Sharing.Comments != undefined)
             {
             this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
             if (data === 0) {
