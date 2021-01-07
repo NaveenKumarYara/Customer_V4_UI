@@ -163,6 +163,13 @@ export class ShareJobComponent {
                     this.toastr.dismissToast;
                 }, 3000);
             }
+            else if(this.teammemberslist.length === 0 )
+            {
+              this.toastr.error('Please Select and Add Team Member!', 'Oops!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
+            }
             else if(this.Sharing.Comments == undefined)
             {
               this.toastr.error('Please provide Comments!', 'Oops!');
