@@ -45,11 +45,9 @@
         </div>
         <div class="v-divider"></div>
         <div class="jobs-redirect" (click)="GetJobsRedirect(15,joblist.CustomerId,job.UserId,job.JobId)">
-            <!-- <h1>{{jobS}}</h1>
-          <span>Suggested</span> -->
-        <app-recentjobscount
-        [job]="job"
-        [joblist]="joblist"></app-recentjobscount>
+          <h1>{{job?.SkilledApplicants}}</h1>
+          <span>Suggested</span>
+ 
       </div>
         <div class="v-divider"></div>
         <div class="jobs-redirect" (click)="GetJobsRedirect(5,joblist.CustomerId,job.UserId,job.JobId)">

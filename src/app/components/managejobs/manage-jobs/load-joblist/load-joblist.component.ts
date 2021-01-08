@@ -31,7 +31,7 @@ export class LoadJoblistComponent implements OnInit {
   experience:any;
   cityId:any;
   joblist= new JobDetails();
-  joblistcount: number;
+  joblistcount: number=6;
   defaultValue:any=0;
   jobs: any;
   values:any;

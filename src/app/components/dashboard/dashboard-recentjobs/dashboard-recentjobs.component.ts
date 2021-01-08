@@ -59,6 +59,7 @@ export class DashboardRecentjobsComponent implements OnInit {
   }
   populateRecentJoblist(customerId, userId, count: number) {
     return this.dashboardservice.getRecentJobs(customerId, userId, count).subscribe(res => {
+      debugger
         this.joblist = res;
         this.jobLoader = false;
     });

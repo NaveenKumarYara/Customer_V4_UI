@@ -47,7 +47,7 @@ export class JoblistGridlayoutComponent implements OnInit {
    }
 
   ngOnInit() {
-     this.GetProfileCount();
+     //this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
   }

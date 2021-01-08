@@ -480,6 +480,7 @@ export class ViewJobdetailsComponent implements OnInit {
   populateJobsStaticInfo(customerId, jobid, onload?) {
     return this.jobdetailsservice.getJobDetailsStatisticsInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobstatistics = res;
+      this.SuggestedCount = res.AryticSuggested;
       this.Counts = this.child.TotalCount;
         if (onload === 1) {
           if (this.statusid === 4) {
@@ -521,12 +522,12 @@ export class ViewJobdetailsComponent implements OnInit {
       sessionStorage.removeItem('statusid');
     });
   }
-  GetProfileSuggestedCount() {
-    return this.jobdetailsservice.getSuggestedCount(this.jobid).subscribe(res => {
-      //debugger
-     this.SuggestedCount = res;
-   });
-  }
+  // GetProfileSuggestedCount() {
+  //   return this.jobdetailsservice.getSuggestedCount(this.jobid).subscribe(res => {
+  //     //debugger
+  //    this.SuggestedCount = res;
+  //  });
+  // }
   // PopulateJobdetailProfiles() {
   //   return this.jobdetailsservice.getJobDetailsProfileInfo(this.jobid, this.statusid).subscribe(res => {
   //     this.jobdetailsprofiles = res;
@@ -596,7 +597,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
     this.populateJobsBasicInfo(this.customerId, this.jobid);
-    this.GetProfileSuggestedCount();
+    //this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
     if(this.ProfileId!=null||this.ProfileId!=undefined)
     {
