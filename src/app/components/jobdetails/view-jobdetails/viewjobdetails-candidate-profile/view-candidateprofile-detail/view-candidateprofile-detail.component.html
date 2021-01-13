@@ -129,28 +129,37 @@
                       </h4>
 
                       <div class="social-media">
-                        <ng-container>
+                        <ng-container *ngIf="profileview?.Links.length === 0"> 
                           <a href="javascript:void(0)">
                             <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
                           </a>
                           <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/fb-icon.svg" alt="Linkedin">
+                            <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
                           </a>
                           <a href="javascript:void(0)">
                             <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
                           </a>
+                          <a href="javascript:void(0)">
+                            <img src="../../../../assets/images/skype-icon.png" alt="skype">
+                          </a>
                         </ng-container>
-                        <!-- <ng-container *ngFor="let link of profileview?.Links.length>0">
-                                <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter'">
-                                    <a href="{{link.LinkURL}}"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
-                                  </ng-container>
-                                  <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook'">
-                                   <a href="{{link.LinkURL}}" ><img src="../../../../../../assets/images/fb-icon.svg"></a>
-                                  </ng-container>
-                                  <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn'">
-                                    <a href="{{link.LinkURL}}"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
-                                  </ng-container>
-                                </ng-container> -->
+                        <ng-container *ngIf="profileview?.Links.length>0">
+                          <ng-container *ngFor="let link of profileview?.Links">
+                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter'">
+                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
+                              </ng-container>
+                              <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook'">
+                               <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/fb-icon.svg"></a>
+                              </ng-container>
+                              <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn'">
+                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
+                              </ng-container>
+                              <a class="social-media" href="javascript:void(0)">
+                                <img src="assets/images/skype-icon.png" alt="skype" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
+                              </a>
+                            </ng-container>
+                        </ng-container>
+                    
                       </div>
                     </div>
 
