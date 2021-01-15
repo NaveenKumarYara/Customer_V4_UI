@@ -128,6 +128,28 @@
                         {{profileview?.ProfileBasicInfo?.CompanyName}}
                       </h4>
 
+                      <h4 class="meta">
+
+                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.Gender!=null">
+                          <img class="profile-related" src="../../../../../../assets/images/gender.svg" alt="gender" width="22" title="Gender">
+                          {{profileview?.ProfileBasicInfo?.Gender | titlecase}}
+                        </ng-container>
+                      </h4>
+                      <h4 class="meta">
+                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.GenerationName!=null">
+                          <img class="profile-related" src="../../../../../../assets/images/generation.svg" alt="generation" width="22"
+                            title="Generation Belongs To">
+                          {{profileview?.ProfileBasicInfo?.GenerationName | titlecase}}
+                        </ng-container>
+                      </h4>
+                      <h4 class="meta">
+                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.ImmigrationStatus!=null">
+                          <img class="profile-related" src="../../../../../../assets/images/visa.svg" alt="visa" width="22" title="Visa Status">
+                          {{profileview?.ProfileBasicInfo?.ImmigrationStatus}}
+                        </ng-container>
+                       
+                      </h4>
+
                       <div class="social-media">
                         <ng-container *ngIf="profileview?.Links.length === 0"> 
                           <a href="javascript:void(0)">
@@ -145,19 +167,36 @@
                         </ng-container>
                         <ng-container *ngIf="profileview?.Links.length>0">
                           <ng-container *ngFor="let link of profileview?.Links">
-                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter'">
+                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL != '' ">
                                 <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
                               </ng-container>
-                              <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook'">
+                              <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL != ''">
                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/fb-icon.svg"></a>
                               </ng-container>
-                              <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn'">
+                              <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL != ''">
                                 <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
                               </ng-container>
+                            
+                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
+                              <a href="javascript:void(0)">
+                                <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
+                              </a>
+                            </ng-container>
+                            <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
+                              <a href="javascript:void(0)">
+                                <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
+                              </a>
+                            </ng-container>
+                            <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
+                              <a href="javascript:void(0)">
+                                <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
+                              </a>
+                            </ng-container>
+                          </ng-container>
                               <a class="social-media" href="javascript:void(0)">
                                 <img src="assets/images/skype-icon.png" alt="skype" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
                               </a>
-                            </ng-container>
+                         
                         </ng-container>
                     
                       </div>

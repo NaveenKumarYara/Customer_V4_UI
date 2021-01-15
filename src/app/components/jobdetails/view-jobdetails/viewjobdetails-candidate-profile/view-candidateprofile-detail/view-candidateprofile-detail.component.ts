@@ -496,6 +496,7 @@ GetProfileRating() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
           this.profileview = datas;
+          debugger
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
                                 var showChar = 250;  // How many characters are shown by default
