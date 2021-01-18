@@ -598,6 +598,7 @@ if (this.appService.isDrafted.value != null) {
 
   ngAfterViewChecked() {
     this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+    this.changeEmploymentType();
     this.disable1= (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;      
   }
 
