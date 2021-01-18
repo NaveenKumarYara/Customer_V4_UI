@@ -179,11 +179,17 @@
       <div class="form-group">
           <small>Relevant Experience</small>
           <input class="form-control"  name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
-      </div>
+          <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">
+            It can't be greater than Max Experience!
+          </small>
+        </div>
     </div>
     <div class="col-md-2 max-key-exp">
       <div class="form-group">
         <input class="form-control"  name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
+        <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">
+          It can't be less than Min Experience!
+        </small>
       </div>
     </div>
      <div class="col-md-2 add-key-btn">
