@@ -26128,7 +26128,16 @@ table .table-prl-0 td {
 /* multy dropdown  */
 
 /*Role-match styless*/
-
+.key-resp .min-key-exp .error1,
+.key-resp .max-key-exp .error1
+ {
+    height: 39px;
+    color:#fff!important;
+} 
+.key-resp .max-key-exp .error1
+ {
+    right:-54px;
+}
 .key-resp .min-key-exp {
     padding-top: 1.4rem!important;
     margin-bottom: 0px;
