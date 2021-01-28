@@ -93,6 +93,7 @@ import { StepContractExtensionComponent } from './components/Postajob/Createajob
 import { StepEmploymentTypeComponent } from './components/Postajob/Createajob/Step1/employment.component';
 import { StepSalarysliderComponent } from './components/Postajob/Createajob/Step1/salaryslider.component';
 import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
@@ -187,7 +188,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   FlickityModule,
   Ng5SliderModule,
   ProgressBarModule,
-  NgCircleProgressModule.forRoot({})
+  NgCircleProgressModule.forRoot({}),
+  CKEditorModule
   ],
   providers: [SettingsHttpService, SettingsService, HttpClient,
      { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },
