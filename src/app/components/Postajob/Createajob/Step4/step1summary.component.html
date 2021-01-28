@@ -35,7 +35,8 @@
       Do you have a complete description of the Job profile?
     </h3>
     <h6 class="data" *ngIf="hasDescription==true">
-      {{completeDescription}}
+      <!-- {{completeDescription}} -->
+      <ckeditor  [(ngModel)]="completeDescription" readOnly="true"></ckeditor>
     </h6>
     <h6 class="data" *ngIf="hasDescription==false">
       N/A
