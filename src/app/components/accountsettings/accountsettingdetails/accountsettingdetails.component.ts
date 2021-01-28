@@ -6,6 +6,7 @@ import { AppService } from '../../../app.service';
 import {FormsValidationService} from '../../../shared/validation/validation.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
+
 @Component({
   selector: 'app-accountsettingdetails',
   templateUrl: './accountsettingdetails.component.html',
@@ -120,6 +121,7 @@ export class AccountsettingdetailsComponent implements OnInit {
   ngOnInit() {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.password = JSON.parse(sessionStorage.getItem('oldPassword'));
+    $("[data-toggle=tooltip]").tooltip();
   }
 
 }

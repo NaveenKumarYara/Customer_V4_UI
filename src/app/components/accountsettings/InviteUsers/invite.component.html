@@ -117,6 +117,9 @@
                                 <ng-container *ngIf="contact?.IsRemove === false">
                                   <a (click)="RemoveUser(contact?.Email)">Inactive</a>
                                 </ng-container>
+                                <ng-container *ngIf="contact?.IsRemove === false">
+                                  <a (click)="ResendEmail(contact)">Re-Send Email</a>
+                                </ng-container>
                                 <ng-container *ngIf="contact?.IsRemove === true">
                                   <a (click)="ActivateInviteUsers(contact)">Active</a>
                                 </ng-container>
