@@ -282,6 +282,7 @@ OpenBgDialog(profileId,name,userId,lName)
         ProfileId: profileId,
         CuserId : this.customer.UserId,
         UserId : userId,
+        JobId:this.jobid,
         Name:name,
         Lname:lName
         // status : this.statusid

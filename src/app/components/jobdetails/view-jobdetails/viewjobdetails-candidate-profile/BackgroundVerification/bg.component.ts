@@ -81,7 +81,7 @@ export class backgrounddialogComponent {
 
   GetBGTestResult()
   {
-    this._service.GetService('IdentityAPI/api/GetCandidateBackgroundVerification?profileId=' + this.data.ProfileId, '&customerUserId=' + this.data.CuserId).subscribe(
+    this._service.GetService('IdentityAPI/api/GetCandidateBackgroundVerification?profileId=' + this.data.ProfileId, '&jobId=' + this.data.JobId).subscribe(
       data => {
           this.Verification = data[0];
           if(this.Verification.ProfileId>0)
@@ -113,7 +113,9 @@ export class backgrounddialogComponent {
     this.bgverification.Admin = this.customer.Email;
     this.bgverification.Candidate = this.data.Name;
     this.bgverification.CustUserName = this.customer.FirstName;
+    this.bgverification.JobId = this.data.JobId;
     this.bgverification.Comment = 'Requested Drug Test and Few Background Verification Process...' ;
+    debugger
     return this._service.PostService(this.bgverification, 'EmailAPI/api/BackGroundVerification')
     .subscribe(data => {
       if(data >=0)
@@ -218,6 +220,7 @@ export class backgrounddialogComponent {
    this.subtotal = total.toString();
    this.bgverification.Price = this.subtotal;
    this.bgverification.ProfileId = this.data.ProfileId;
+   this.bgverification.JobId = this.data.JobId;
    this.bgverification.CustomerUserId = this.data.CuserId;
    if(val == 1)
    {
@@ -251,6 +254,7 @@ export class BackgroundVerification
 {
   CustomerUserId: number;
   ProfileId: number;
+  JobId:number;
   CriminalOption:boolean; 
   CriminalOptionSelected: number;
   DrugOptionSelected:number;
