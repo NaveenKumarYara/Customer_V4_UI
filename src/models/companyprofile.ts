@@ -22,3 +22,11 @@
     public Address1: string;
     public Address2: string;
 }
+
+
+
+export class companysize
+{
+    CompanySizeId:number;
+    CompanySize:string;
+}

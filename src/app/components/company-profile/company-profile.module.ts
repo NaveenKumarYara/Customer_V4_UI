@@ -33,6 +33,7 @@ import{CultureTestComponent} from '../company-profile/culturetest/culturetest.co
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatDialogModule, MatCardModule, MatProgressSpinnerModule,MatSnackBarModule} from '@angular/material';
 import { DragulaModule } from 'ng2-dragula';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { DragulaModule } from 'ng2-dragula';
     NgSelectModule,
     MatSnackBarModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule, ImageCropperModule,
     MatDialogModule,  ChartsModule,
     MatCardModule, MatProgressSpinnerModule,
     AgmCoreModule.forRoot({

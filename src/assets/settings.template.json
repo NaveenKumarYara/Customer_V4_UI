@@ -205,5 +205,6 @@
   "GetAllCities":"${Profile_URL}/api/GetAllCities",
   "DeleteSavedFilter":"${Profile_URL}/api/DeleteJobSavedFilter",
   "SendJobStatus":"${Email_URL}/api/SendJobStatus",
-  "SendJobInterviewStatus":"${Email_URL}/api/SendJobInterviewStatus"
+  "SendJobInterviewStatus":"${Email_URL}/api/SendJobInterviewStatus",
+  "GetCompanySize":"${Identity_URL}/api/GetCompanySize"
 }

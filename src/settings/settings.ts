@@ -167,6 +167,7 @@ export class Settings {
   ReportingTeam:string;
   DeleteJobResponsibility:string;
   GetjobImps:string;
+  GetCompanySize:string;
   GetDueDateList:string;
   GetImmigrationList:string;
   SaveJobImmigration:string;

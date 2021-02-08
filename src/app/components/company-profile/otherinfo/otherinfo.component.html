@@ -30,7 +30,14 @@
         <div class="row text-center">
           <div class="stats-col col-md-2 col-xs-4">
             <h4 class="title">No. of Employees</h4>
-            <h1 *ngIf="companyprofileotherinfo?.NumberOfEmployees!=null" class="number">{{companyprofileotherinfo?.NumberOfEmployees}}</h1>
+            <h1 *ngIf="companyprofileotherinfo?.NumberOfEmployees!=null" class="number">
+              <ng-container  *ngFor="let list of sizelist" >
+
+                <h1 *ngIf="list?.CompanySizeId==companyprofileotherinfo?.NumberOfEmployees">                 
+                    {{list?.CompanySize.split(' ')[0]}}                                 
+                </h1>
+          </ng-container>
+            </h1>
             <h1  *ngIf="companyprofileotherinfo?.NumberOfEmployees==null"> N/A </h1>
           </div>
           <div class="stats-col col-md-2 col-xs-4">
@@ -89,15 +96,19 @@
       </div> <!-- .header -->
       <form class="card-inner">
         <div class="row text-center">
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
             <label>No. of Employees</label>
-            <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees}}" id="NumberOfEmployees" maxlength = "10">
+            <select class="styled-select-box block" (change)="onchange($event.target.value)">
+              <option *ngFor="let list of sizelist" value="{{list?.CompanySizeId}}" [selected]="companyprofileotherinfo?.NumberOfEmployees==list?.CompanySizeId">
+                  {{list?.CompanySize}}</option>
+          </select>
+            <!-- <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees}}" id="NumberOfEmployees" maxlength = "10"> -->
           </div>
           <div class="form-group col-md-2">
             <label>No of Offices</label>
             <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfOffices}}" id="NumberOfOffices" maxlength = "10">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-2">
             <label>Date of Establishment</label>
             <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn}}" id="EstablishedIn">
           </div>

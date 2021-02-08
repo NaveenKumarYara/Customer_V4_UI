@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { CompanyProfile } from '../../../models/companyprofile';
+import { CompanyProfile,companysize } from '../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../models/companyprofile-otherinfo';
 import { CustomerLocationInfo } from '../../../models/customerlocationinfo';
 import { GetCompanyLogo } from '../../../models/GetCompanyLogo';
@@ -127,6 +127,16 @@ export class CompanyProfileService {
             .catch(
                 this.handleError
             );
+    }
+
+    GetCompanySize(): Observable<companysize[]>
+    {
+      const url = this.settingsService.settings.GetCompanySize;
+      return this.http.get<companysize[]>(url)
+      .catch(
+          this.handleError
+      );
+          
     }
 
     getCompanyAchivements(customerId: number): Observable<GetCompanyAchievement[]> {

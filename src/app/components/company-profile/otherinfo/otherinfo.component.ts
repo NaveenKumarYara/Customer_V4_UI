@@ -4,6 +4,7 @@ import { CompanyProfileService } from '../company-profile.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../shared/services/api.service/api.service';
 import{otherInfo} from './otherInfo';
+import { companysize } from '../../../../models/companyprofile';
 declare var $: any;
 @Component({
   selector: 'app-otherinfo',
@@ -16,7 +17,9 @@ export class OtherinfoComponent implements OnInit {
  customer:any;
  customerId:any;
  userId:any;
+ sizeid:any;
  iseditOther: any = false;
+ sizelist:companysize[]=[];
 companyTypeId:any;
 RevenueInfo:any;
 numberOfOffices:any;
@@ -30,11 +33,12 @@ dateOfEstablishment:any;
      }
 
   ngOnInit() {
+    this.GetCompany();
   }
   saveOtherInfo()
   {
     this.dateOfEstablishment=$("#EstablishedIn").val();
-    this.numberOfEmployees=$("#NumberOfEmployees").val();
+    this.numberOfEmployees=this.sizeid;
     this.numberOfOffices=$("#NumberOfOffices").val();
     this.companyTypeId=$("#company-type").val();
     this.RevenueInfo=$("#revenueinfo").val();
@@ -51,10 +55,27 @@ dateOfEstablishment:any;
     },
       error => console.log(error));
 }
+
+GetCompany()
+{
+  return this.companyprofileservice.GetCompanySize().subscribe(
+    data => {
+      this.sizelist = data;
+    }
+  )
+
+}
+
+onchange(id)
+{
+  this.sizeid = id;
+}
+
   
   populateCompanyProfileOtherInfo(customerId) {
     return this.companyprofileservice.getCompanyProfileOtherInfo(customerId).subscribe(res => {
         this.companyprofileotherinfo = res;
+        this.numberOfEmployees = res.NumberOfEmployees;
     });
 }
 }

@@ -94,7 +94,7 @@ import { StepEmploymentTypeComponent } from './components/Postajob/Createajob/St
 import { StepSalarysliderComponent } from './components/Postajob/Createajob/Step1/salaryslider.component';
 import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
 import { CKEditorModule } from 'ckeditor4-angular';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
 }
@@ -166,6 +166,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     FormsModule,
     QRCodeModule,
     ReactiveFormsModule,
+    ImageCropperModule,
     NgSelectModule,
     HttpClientModule,
     ManagejobsModule,
