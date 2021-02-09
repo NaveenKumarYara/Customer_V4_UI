@@ -14,7 +14,11 @@ import { WorkAuthorization } from '../../../../../models/workAuthorization';
 
 export class StepContractExtensionComponent implements OnInit, OnDestroy {
   contractextensionlist: any; // WorkAuthorization[] = [];
- contractExtension = new WorkAuthorization();
+ contractExtension :any=[];
+ Corp:string;
+ W2:string;
+ Contract:string;
+ last:string;
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -25,11 +29,52 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
   populateContractExtension() {
     this.appService.getContractExtension().subscribe(res => {
       this.contractextensionlist = res.filter(x => x.WorkAuthorizationType);
+      this.appService.WorkauthorizeNames.forEach(
+        e=>
+        {
+          if(e.WorkAuthorizationId == 1)
+          {
+            this.Corp = "1";
+          }
+          else if(e.WorkAuthorizationId == 2)
+          {
+            this.W2 = "2";
+          }
+          else if(e.WorkAuthorizationId == 3)
+          {
+            this.Contract = "3";
+          }
+          else if(e.WorkAuthorizationId == 4)
+          {
+            this.last = "4";
+          }
+          this.contractExtension.push(e.WorkAuthorizationId);
+        }
+      )
     });
   }
   setExtension(val) {
-    this.contractExtension = val;
-    this.appService.updatecExtension(this.contractExtension);
+    debugger
+
+    if(val == "1")
+    {
+      this.Corp = "1";
+    }
+    else if(val == "2")
+    {
+      this.W2 = "2";
+    }
+    else if(val == "3")
+    {
+      this.Contract = "3";
+    }
+    else if(val == "4")
+    {
+      this.last = "4";
+    }
+    this.contractExtension.push(val);
+    this.appService.Workauthorize = this.contractExtension;
+    //this.appService.updatecExtension(this.contractExtension);
   }
 
 
@@ -37,7 +82,7 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.populateContractExtension();
   //  if (localStorage.getItem('jobId') != null) {
-    this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
+    //this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
  //   }
   }
 

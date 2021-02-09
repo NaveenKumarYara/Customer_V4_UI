@@ -44,6 +44,7 @@ ejTechnicalTeamIdList: PjTechnicalTeam[] = [];
 eJclient = new ClientModel();
 ejDepartmentList: DepartmentModel[] = [];
 ejDepartmentIdList: PjDepartments[] = [];
+ejworkList: WorkAuthorization[] = [];
 ejKeyRoles:GetKeyRole[]=[];
 ejKeyRolesId:KeyRole[]=[];
 // ejTechnicalTeamId = new PjTechnicalTeam();
@@ -195,6 +196,20 @@ editMode: string;
       this.appService.addeddepartments = this.ejDepartmentIdList;
       this.appService.addeddepartmentsChanged.next(this.appService.addeddepartments);
 
+
+      if (this.jobdetailscustomer.JobInfo.JobWorkAuthorization.length > 0) {
+        for (const dept of this.jobdetailscustomer.JobInfo.JobWorkAuthorization) {
+          const ejDepart = new WorkAuthorization();
+          ejDepart.WorkAuthorizationId = dept.WorkAuthorizationId;
+          ejDepart.WorkAuthorizationType = dept.WorkAuthorizationType;
+            this.ejworkList.push(ejDepart);
+
+        }
+      }
+      this.appService.WorkauthorizeNames = this.ejworkList;
+      debugger
+      this.appService.WorkauthorizeNameChanged.next(this.appService.WorkauthorizeNames);
+
       this.appService.jobIndustry.next(this.jobdetailscustomer.CustomerJobIndustries[0].Code);
       this.appService.IndustryId.next(this.jobdetailscustomer.CustomerJobIndustries[0].CustomerIndustryId.toString());
       this.appService.jobtypePosition.next(this.jobdetailscustomer.CustomerJobPositionType[0].Code);
@@ -276,12 +291,16 @@ editMode: string;
       this.ejSalaryType.SalaryType = this.jobdetailscustomer.JobInfo.SalaryType;
       this.ejSalaryType.SalaryTypeId = this.jobdetailscustomer.JobInfo.SalaryTypeId;
       this.appService.salaryType.next(this.ejSalaryType);
-
+        debugger
       this.appService.contractDuration.next(this.jobdetailscustomer.JobInfo.ContractDuration);
       // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
-      workAuthorization.WorkAuthorizationId = this.jobdetailscustomer.JobInfo.WorkAuthorizationId;
-      workAuthorization.WorkAuthorizationType = this.jobdetailscustomer.JobInfo.WorkAuthorizationType;
-      this.appService.contractExtension.next(workAuthorization);
+      // workAuthorization.WorkAuthorizationId = this.jobdetailscustomer.JobInfo.WorkAuthorizationId;
+      // workAuthorization.WorkAuthorizationType = this.jobdetailscustomer.JobInfo.WorkAuthorizationType;
+       
+
+     //this.appService.contractExtension.next(this.appService.WorkauthorizeNames[0]);
+    //this.appService.updatecExtension(cat[0]);
+      //this.appService.Workauthorize = this.jobdetailscustomer.JobInfo.JobWorkAuthorization.map(x=>x.WorkAuthorizationId);
       this.ejInterviewType.InterviewType = this.jobdetailscustomer.JobInfo.InterviewType;
       this.ejInterviewType.InterviewTypeId = this.jobdetailscustomer.JobInfo.HiringProcessId;
       this.appService.interviewType.next(this.ejInterviewType);

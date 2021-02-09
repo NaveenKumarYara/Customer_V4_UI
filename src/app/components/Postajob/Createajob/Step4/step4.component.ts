@@ -224,7 +224,7 @@ export class Step4Component implements OnInit {z
       // });
     if (this.insertJob.EmploymentTypeId === 2) {
       this.appService.currentContractExtension.subscribe((data) => {
-        this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
+        this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString(); // And he have data here too!
       });
       this.appService.currentContractDuration.subscribe((data) => {
         this.insertJob.ContractDuration = data; // And he have data here too!

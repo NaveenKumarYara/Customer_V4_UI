@@ -28,7 +28,8 @@ import { PjDomain, GetDomain, CustomerUsers, PjTechnicalTeam, CategoryList,Multi
         PjDepartments, 
         CategoryNewList,
         KeyRole,
-        GetKeyRole} from './components/Postajob/models/jobPostInfo';
+        GetKeyRole,
+        Jobwork} from './components/Postajob/models/jobPostInfo';
 import { CDuration, WorkAuthorization } from '../models/workAuthorization';
 import { Profile } from './components/jobdetails/models/SearchProfileDeatils';
 import { XmlJobResponse } from './components/jobdetails/view-jobdetails/upload-profiles/bulkApply';
@@ -128,7 +129,7 @@ export class AppService {
   contractDuration = new BehaviorSubject('');
   currentContractDuration = this.contractDuration.asObservable();
 
-  workAuthorization: WorkAuthorization;
+  workAuthorization= new WorkAuthorization();
   contractExtension = new BehaviorSubject(this.workAuthorization);
   currentContractExtension = this.contractExtension.asObservable();
 
@@ -248,7 +249,10 @@ export class AppService {
   myreportManager = new CustomerUsers();
   reportManager = new BehaviorSubject(this.myreportManager);
   currentcustomerUsers = this.reportingManager.asObservable();
-  
+
+
+  WorkauthorizeNames:WorkAuthorization[]=[];
+  WorkauthorizeNameChanged = new Subject<WorkAuthorization[]>();
   reportingList:ReportingTeam[]=[];
   reportingListChanged = new Subject<ReportingTeam[]>();
 
@@ -281,6 +285,8 @@ export class AppService {
 
   JobIds:MultipleJobIds[]=[];
   JobLocations:Cities[]=[];
+  Workauthorize:WorkAuthorization[]=[];
+ 
   JobLocationsChanged = new Subject<Cities[]>();
   JobLocationsMulti:Cities[]=[];
 
@@ -326,9 +332,9 @@ export class AppService {
     this.contractDuration.next(cDuration);
   }
 
-  updatecExtension(cExtension: WorkAuthorization) {
-    this.contractExtension.next(cExtension);
-  }
+  // updatecExtension(cExtension: WorkAuthorization) {
+  //   this.contractExtension.next(cExtension);
+  // }
 
   updateInterviewType(iType: InterviewType) {
     this.interviewType.next(iType);

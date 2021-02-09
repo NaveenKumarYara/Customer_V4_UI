@@ -268,12 +268,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
     if (this.insertJob.EmploymentTypeId === 2) {
       this.insertJob.ContractExtended = true;
       this.insertJob.ContractDuration = this.contractDuration.contractDuration;
-      this.insertJob.WorkAuthorizationId = this.contractExtension.contractExtension.WorkAuthorizationId;
+      this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString();
     }
     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     this.insertJob.RemoteWorkId= this.appService.RemoteWork;
 
-
+  debugger
     
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
@@ -557,7 +557,7 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.EmploymentTypeId = 1;
     this.insertJob.ContractDuration = null;
     this.insertJob.ContractExtended = true;
-    this.insertJob.WorkAuthorizationId = 1;
+    this.insertJob.WorkAuthorizationId = '1';
     // this.insertJob.PossibilityOfFullTime = true;
     this.insertJob.AfterWhatDuration = '2 Months';
     this.insertJob.SalaryTypeId = 1;

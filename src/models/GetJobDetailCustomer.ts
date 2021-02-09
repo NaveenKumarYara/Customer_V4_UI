@@ -3,9 +3,10 @@ import {JobRequiredDomain} from './JobRequiredDomain';
 import {JobRequiredSkills} from './JobRequiredSkills';
 import {JobResponsibility} from './JobResponsibility';
 import { Qualifications } from './qualifications.model';
-import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel,JobImmigrationGet } from '../app/components/Postajob/models/jobPostInfo';
+import { CustomerUsers, Roles, GetDomain, EditRoles, DepartmentModel,JobImmigrationGet, Jobwork } from '../app/components/Postajob/models/jobPostInfo';
 import { Jobskills } from './jobskills.model';
 import { SkillPostData } from './skill.model';
+import { WorkAuthorization } from './workAuthorization';
 
 export class GetJobDetailCustomer {
     JobInfo: JobInfo;
@@ -22,6 +23,7 @@ export class GetJobDetailCustomer {
     CustomerJobCategory:any=[];
     CustomerJobTitle:any=[];
     CustomerJobKeyResponses:any=[];
+   
     MatchingCrieterias : SkillPostData[];
 }
 // export class GetJobDetailsCustomer {
@@ -79,6 +81,7 @@ export class JobInfo {
     HiringManagerId: number;
     ReportingManager: ReportingTeam[];
     ImmigrationForJob:JobImmigrationGet[];
+    JobWorkAuthorization:WorkAuthorization[];
     IsActive: boolean;
     StatusId: number;
     FirstName: string;

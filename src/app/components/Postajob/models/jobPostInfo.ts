@@ -20,7 +20,7 @@ export class InsertJob {
     public EmploymentTypeId: number;
     public ContractDuration: string;
     public ContractExtended: boolean;
-    public WorkAuthorizationId: number;
+    public WorkAuthorizationId: string;
     public WorkAuthorizationType: string;
    // public PossibilityOfFullTime: boolean;
      public AfterWhatDuration: string;
@@ -244,6 +244,13 @@ export class PjDepartments {
     Id: number;
     JobPriority: string;
     
+  }
+
+
+  export class Jobwork
+   {
+    WorkAuthorizationId:number;
+    WorkAuthorizationType: string;   
   }
 
   export class AddResp {

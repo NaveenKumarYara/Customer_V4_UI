@@ -1,9 +1,38 @@
 <div class="form-group">
   <label for="">Contract Extension</label>  
     <div class="options">
-      <div class="checkbox" *ngFor="let type of contractextensionlist">
-        <!-- <label><input type="radio" [(ngModel)]="contractExtension" (change)="setExtension(type)" name="extension" [value]="type"><span class="box">{{type}}</span> </label> -->
-        <label><input type="radio" [ngModel]="contractExtension && contractExtension?.WorkAuthorizationId" (change)="setExtension(type)" name="workAuthoriztn" [value]="type.WorkAuthorizationId"><span class="box">{{type.WorkAuthorizationType}}</span> </label>
+      <!-- <div class="checkbox" *ngFor="let type of contractextensionlist;let i = index">
+       <label><input type="radio" [(ngModel)]="contractExtension" (change)="setExtension(type)" name="extension" [value]="type"><span class="box">{{type}}</span> </label>
+        <label><input type="checkbox" [ngModel]="contractExtension && contractExtension?.WorkAuthorizationId" (change)="setExtension(type)" name="{{type.WorkAuthorizationType}}" [value]="type.WorkAuthorizationId"><span class="box">{{type.WorkAuthorizationType}}</span> </label>
+      </div> -->
+
+      <div class="checkbox">
+        <input [(ngModel)]="eFullTimeVal" name="fullTime" [ngModelOptions]="{standalone: true}"
+          (change)="ChangeEmpType()" type="checkbox" id="full_time" class="employee_in" />
+        <label for="full_time">
+          <span>Full Time</span>
+        </label>
+      </div>
+      <div class="checkbox">
+        <input [(ngModel)]="eContractVal" name="contract" [ngModelOptions]="{standalone: true}"
+          (change)="ChangeEmpType()" type="checkbox" id="Contract" class="employee_in" />
+        <label for="Contract">
+          <span>Contract</span>
+        </label>
+      </div>
+      <div class="checkbox">
+        <input [(ngModel)]="ePartTimeVal" name="partTime" [ngModelOptions]="{standalone: true}"
+          (change)="ChangeEmpType()" type="checkbox" id="part_time" class="employee_in" />
+        <label for="part_time">
+          <span>Part Time</span>
+        </label>
+      </div>
+      <div class="checkbox">
+        <input [(ngModel)]="eRemoteVal" name="Remote" [ngModelOptions]="{standalone: true}"
+          (change)="ChangeEmpType()" type="checkbox" id="Remote" class="employee_in" />
+        <label for="Remote">
+          <span>Remote</span>
+        </label>
       </div>
     </div>
   </div>

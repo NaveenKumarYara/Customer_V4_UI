@@ -7,6 +7,7 @@ import { basicinfo } from './basicinfo';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var $: any;
 declare var require: any;
 const RecordRTC = require('recordrtc//RecordRTC.min');
@@ -20,6 +21,9 @@ const RecordRTC = require('recordrtc//RecordRTC.min');
 export class BasicinfoComponent implements AfterViewInit {
     @Input() companyprofile: CompanyProfile;
     @Input() getcompanylogo: GetCompanyLogo;
+    imageChangedEvent: any = '';
+    showimg:boolean=false;
+    croppedImage: any = '';
     private recordRTC: any;
     private stream: MediaStream;
     @ViewChild('video') video;
@@ -1346,6 +1350,7 @@ export class BasicinfoComponent implements AfterViewInit {
   GetCompanyLogo() {
     return this.companyprofileservice.getCompanyLogo(this.customerId).subscribe(res => {
       this.companyLogo = res;
+      this.showimg=false;
   });
   }
 
@@ -1377,8 +1382,17 @@ uploadPhoto() {
 
   });
 }
+
+fileChangeEvent(event: any): void {
+  this.imageChangedEvent = event;
+}
+imageCropped(event: ImageCroppedEvent) {
+  this.croppedImage = event.base64;
+  this.uploadPhoto();
+}
 onFileChange(event) {
   this.alertService.clear();
+  this.showimg=true;
   const reader = new FileReader();
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];
@@ -1393,7 +1407,7 @@ onFileChange(event) {
         reader.readAsDataURL(file);
         reader.onload = () => {
           this.customer.UserProfilePictureUrl = 'data:image/png;base64,' + reader.result.split(',')[1];
-          this.uploadPhoto();
+          //this.uploadPhoto();
         };
       }
     } else {

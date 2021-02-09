@@ -139,7 +139,7 @@ isDrafted: boolean;
   ngOnInit() {
     this.alertService.clear();
     this.JobIds = this.appService.JobIds;
-    window.addEventListener('scroll', this.scrolling, true);
+    //window.addEventListener('scroll', this.scrolling, true);
     // $(window).scroll(function(event) {
     //   function footer()
     //     {
@@ -255,7 +255,7 @@ isDrafted: boolean;
       });
       if (this.insertJob.EmploymentTypeId === 2) {
         this.appService.currentContractExtension.subscribe((data) => {
-          this.insertJob.WorkAuthorizationId = data.WorkAuthorizationId; // And he have data here too!
+          this.insertJob.WorkAuthorizationId = this.appService.Workauthorize.toString(); // And he have data here too!
         });
         this.appService.currentContractDuration.subscribe((data) => {
           this.insertJob.ContractDuration = data; // And he have data here too!

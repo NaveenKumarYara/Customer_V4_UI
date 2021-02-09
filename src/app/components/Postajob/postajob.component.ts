@@ -64,6 +64,9 @@ export class PostajobComponent implements OnInit {
   //this.appService.JobDueDate.next(new Date());
   this.appService.ImmigrationforJobs=[];
   this.appService.ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
+  this.appService.Workauthorize=[];
+  this.appService.WorkauthorizeNames=[];
+  this.appService.WorkauthorizeNameChanged = new Subject<WorkAuthorization[]>();
   this.appService.stepNumber.next('1');
   this.appService.OpeningsList=[];
   this.appService.locationselect=false;
@@ -108,7 +111,7 @@ export class PostajobComponent implements OnInit {
   this.appService.employmentType.next(new EmploymentType());
   this.appService.interviewType.next(new InterviewType());
   this.appService.contractDuration.next('');
-  this.appService.contractExtension.next(new WorkAuthorization());
+  //this.appService.contractExtension.next(new WorkAuthorization());
   this.appService.addedteammembers = [];
   this.appService.addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
   this.appService.teammembers = [];

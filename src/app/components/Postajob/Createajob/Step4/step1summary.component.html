@@ -118,7 +118,13 @@
   <div class="form-data-group" *ngIf="employmentType!='Full-Time' && employmentTypeId==2">
     <h3 class="question">
       Contract Extension</h3>
-    <h4 class="data">{{contractExtension}}</h4>
+      <ng-container *ngFor="let i of contractExtension">
+        <h4 class="data" *ngIf="i===1">Corp-Corp</h4>
+        <h4 class="data" *ngIf="i===2">W2</h4>
+        <h4 class="data" *ngIf="i===3">Contract to Hire</h4>
+        <h4 class="data" *ngIf="i===4">1099</h4>
+      </ng-container>
+ 
   </div>
   <!--Salary range Based-->
   <div class="form-data-group">

@@ -1,10 +1,27 @@
 <div class="form-group">
     <label for="">Contract Extension</label>  
       <div class="options">
-        <div class="checkbox" *ngFor="let type of contractextensionlist">
-          <!-- <label><input type="radio" [(ngModel)]="contractExtension" (change)="setExtension(type)" name="extension" [value]="type"><span class="box">{{type}}</span> </label> -->
+        <!-- <div class="checkbox" *ngFor="let type of contractextensionlist">
+           <label><input type="radio" [(ngModel)]="contractExtension" (change)="setExtension(type)" name="extension" [value]="type"><span class="box">{{type}}</span> </label> 
           <label><input type="radio" [ngModel]="contractExtension && contractExtension?.WorkAuthorizationId" (change)="setExtension(type)" name="workAuthoriztn" [value]="type.WorkAuthorizationId"><span class="box">{{type.WorkAuthorizationType}}</span> </label>
-        </div>
+        </div> -->
+
+
+    <div class="checkbox">
+            
+            <label>
+              <input name="Corp-Corp" [(ngModel)]="Corp"  [checked]="Corp" type="checkbox" [ngModelOptions]="{standalone: true}" [value]="1" (change)="setExtension(1)"><span class="box">Corp-Corp</span> </label>
+          </div>
+          <div class="checkbox">         
+            <label><input name="W2" [(ngModel)]="W2" [checked]="W2" type="checkbox" [ngModelOptions]="{standalone: true}" [value]="2" (change)="setExtension(2)"><span class="box">W2</span> </label>
+          </div>
+          <div class="checkbox">
+            
+            <label><input name="Contract to Hire" [(ngModel)]="Contract"  [checked]="Contract" [ngModelOptions]="{standalone: true}" type="checkbox" [value]="3" (change)="setExtension(3)"><span class="box" >Contract to Hire</span> </label>
+          </div>
+          <div class="checkbox">           
+            <label><input name="last" [(ngModel)]="last"  [checked]="last" type="checkbox" [ngModelOptions]="{standalone: true}" [value]="4" (change)="setExtension(4)"><span class="box">1099</span> </label>
+          </div>
       </div>
     </div>
   

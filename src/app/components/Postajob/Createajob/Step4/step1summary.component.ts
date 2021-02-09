@@ -35,7 +35,7 @@ client: any;
 employmentType: any;
 employmentTypeId: any;
 contractDuration: string;
-contractExtension: string;
+contractExtension: any=[];
 Remotework:boolean;
 empType: number;
 contractExtended: boolean;
@@ -105,10 +105,11 @@ maxRate: number;
       this.appService.currentContractDuration.subscribe((data) => {
         this.contractDuration = data; // And he have data here too!
       });
-      this.appService.currentContractExtension.subscribe((data) => {
-        this.contractExtension = data.WorkAuthorizationType; // And he have data here too!
-      });
+      // this.appService.currentContractExtension.subscribe((data) => {
+      //   this.contractExtension = data.WorkAuthorizationType; // And he have data here too!
+      // });
      
+      debugger
       this.Remotework= this.appService.RemoteWork;
 
       this.open = this.appService.BonusOffered;
@@ -178,6 +179,7 @@ maxRate: number;
       this.departments = this.appService.departments;
         this.location = this.appService.JobLocations;
         this.locations =this.appService.Locationswithpositions;
+        this.contractExtension = this.appService.Workauthorize;
         //this.noOfopening=this.appService.noofOpenings;
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');

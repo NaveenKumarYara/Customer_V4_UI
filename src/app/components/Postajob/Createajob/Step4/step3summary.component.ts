@@ -12,7 +12,7 @@ export class Step3SummaryComponent implements OnInit {
 employmentType: any;
 employmentTypeId: any;
 contractDuration: string;
-contractExtension: string;
+contractExtension:any=[];
 Remotework:boolean;
 interviewTypeId: number;
 interviewType: string;
@@ -42,9 +42,9 @@ matchingPersentage=[];
       this.appService.currentContractDuration.subscribe((data) => {
         this.contractDuration = data; // And he have data here too!
       });
-      this.appService.currentContractExtension.subscribe((data) => {
-        this.contractExtension = data.WorkAuthorizationType; // And he have data here too!
-      });
+      // this.appService.currentContractExtension.subscribe((data) => {
+      //   this.contractExtension = this.appService.WorkauthorizeNames; // And he have data here too!
+      // });
       this.appService.currentInterviewType.subscribe((data) => {
         this.interviewTypeId = data.InterviewTypeId; // And he have data here too!
         this.interviewType = data.InterviewType;

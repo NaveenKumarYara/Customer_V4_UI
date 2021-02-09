@@ -162,9 +162,18 @@
     </div>
     <form class="card-inner">
       <div class="company-logo">
-        <div class="img">
+        <div class="img" *ngIf="!showimg">
           <img class="img-responsive" width="200" title="{{getcompanylogo?.CompanyName}}"
             src="{{companyLogo?.CompanyLogo}}" alt="Company Logo">
+        </div>
+        <div class="img" *ngIf="showimg">
+        <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+></image-cropper>
         </div>
         <div class="actions">
           <!-- <div class="item">

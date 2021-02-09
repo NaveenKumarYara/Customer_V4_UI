@@ -14,7 +14,7 @@ import { WorkAuthorization } from '../../../../../models/workAuthorization';
 
 export class ContractExtensionComponent implements OnInit, OnDestroy {
   contractextensionlist: any; // WorkAuthorization[] = [];
- contractExtension = new WorkAuthorization();
+ contractExtension :any=[];
   constructor(private route: ActivatedRoute,
     private router: Router, private appService: AppService) {
   }
@@ -28,8 +28,10 @@ export class ContractExtensionComponent implements OnInit, OnDestroy {
     });
   }
   setExtension(val) {
-    this.contractExtension = val;
-    this.appService.updatecExtension(this.contractExtension);
+    debugger
+    this.contractExtension.push(val);
+    this.appService.Workauthorize = this.contractExtension.map(x=>x.WorkAuthorizationId).join(",").toString();
+    //this.appService.updatecExtension(this.contractExtension);
   }
 
 
@@ -37,7 +39,7 @@ export class ContractExtensionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.populateContractExtension();
   //  if (localStorage.getItem('jobId') != null) {
-    this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
+    //this.appService.currentContractExtension.subscribe(x => this.contractExtension = x);
  //   }
   }
 
