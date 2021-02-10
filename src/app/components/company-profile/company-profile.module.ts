@@ -34,6 +34,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatDialogModule, MatCardModule, MatProgressSpinnerModule,MatSnackBarModule} from '@angular/material';
 import { DragulaModule } from 'ng2-dragula';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxImgModule } from 'ngx-img';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NgSelectModule,
     MatSnackBarModule,
     HttpClientModule,
-    SharedModule, ImageCropperModule,
+    SharedModule, ImageCropperModule,NgxImgModule,
     MatDialogModule,  ChartsModule,
     MatCardModule, MatProgressSpinnerModule,
     AgmCoreModule.forRoot({

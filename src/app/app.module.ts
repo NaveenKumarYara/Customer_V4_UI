@@ -95,6 +95,7 @@ import { StepSalarysliderComponent } from './components/Postajob/Createajob/Step
 import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxImgModule } from 'ngx-img';
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
 }
@@ -190,7 +191,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   Ng5SliderModule,
   ProgressBarModule,
   NgCircleProgressModule.forRoot({}),
-  CKEditorModule
+  CKEditorModule,
+  NgxImgModule.forRoot()
   ],
   providers: [SettingsHttpService, SettingsService, HttpClient,
      { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },

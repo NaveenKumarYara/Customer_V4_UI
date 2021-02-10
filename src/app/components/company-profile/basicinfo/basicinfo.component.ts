@@ -22,7 +22,9 @@ export class BasicinfoComponent implements AfterViewInit {
     @Input() companyprofile: CompanyProfile;
     @Input() getcompanylogo: GetCompanyLogo;
     imageChangedEvent: any = '';
+    imgSrc: any = [];
     showimg:boolean=false;
+    showP:boolean=false;
     croppedImage: any = '';
     private recordRTC: any;
     private stream: MediaStream;
@@ -59,6 +61,30 @@ export class BasicinfoComponent implements AfterViewInit {
   lastname: any;
   currentVideoUpload: File;
   saveVideo: FormGroup;
+  options = {
+    imgSrc: '', // base64 encoded image for default preview
+    fileSize: 2048, // in Bytes (by default 2048 Bytes = 2 MB)
+    minWidth: 0, // minimum width of image that can be uploaded (by default 0, signifies any width)
+    maxWidth: 0,  // maximum width of image that can be uploaded (by default 0, signifies any width)
+    minHeight: 0,  // minimum height of image that can be uploaded (by default 0, signifies any height)
+    maxHeight: 0,  // maximum height of image that can be uploaded (by default 0, signifies any height)
+    fileType: ['image/gif', 'image/jpeg', 'image/png'], // mime type of files accepted
+    height: 400, // height of cropper
+    quality: 0.8, // quality of image after compression
+    crop: [  // array of objects for mulitple image crop instances (by default null, signifies no cropping)
+      {
+        autoCropArea: 0.8, // A number between 0 and 1. Define the automatic cropping area size (percentage).
+        ratio: 1, // ratio in which image needed to be cropped (by default null, signifies ratio to be free of any restrictions)
+        minWidth: 0, // minimum width of image to be exported (by default 0, signifies any width)
+        maxWidth: 0,  // maximum width of image to be exported (by default 0, signifies any width)
+        minHeight: 0,  // minimum height of image to be exported (by default 0, signifies any height)
+        maxHeight: 0,  // maximum height of image to be exported (by default 0, signifies any height)
+        width: 0,  // width of image to be exported (by default 0, signifies any width)
+        height: 0,  // height of image to be exported (by default 0, signifies any height)
+        output: 'base64',  // Output format. Can be 'base64' or 'blob'. (by default 'base64')
+      }
+    ]
+  };
   constructor(private _service: ApiService, private route: Router, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -1370,8 +1396,8 @@ uploadPhoto() {
   this._service.byteStorage(_formData, 'IdentityAPI/api/UpdateCompanyLogo').subscribe(data => {
     sessionStorage.setItem('ProfileThumbnail', data[0].toString());
     sessionStorage.setItem('companyLogo', data[1].toString());
-    $('#headerProfilePic').attr('src', data[0]);
-    this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
+    //$('#headerProfilePic').attr('src', data[0]);
+    //this.customer.UserProfilePictureUrl = sessionStorage.getItem('companyLogo');
     this.iseditProfile = false;
     this.alertService.success('Photo uploaded successfully');
     setTimeout(() => {
@@ -1383,41 +1409,49 @@ uploadPhoto() {
   });
 }
 
-fileChangeEvent(event: any): void {
-  this.imageChangedEvent = event;
-}
-imageCropped(event: ImageCroppedEvent) {
-  this.croppedImage = event.base64;
-  this.uploadPhoto();
-}
-onFileChange(event) {
-  this.alertService.clear();
-  this.showimg=true;
-  const reader = new FileReader();
-  if (event.target.files && event.target.files.length > 0) {
-    const file = event.target.files[0];
-    const stringToSplit = file.name;
-    const x = stringToSplit.split('.');
-    const ext = x[1];
-    if ((ext === 'png' || ext === 'jpg' || ext === 'jpeg') || (ext === 'PNG' || ext === 'JPG' || ext === 'JPEG')) {
-      if (file.size > 2048576) {
-        this.alertService.error('Too Big Size.. File Not Allowed');
-      } else {
-        this.currentImageUpload = file;
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.customer.UserProfilePictureUrl = 'data:image/png;base64,' + reader.result.split(',')[1];
-          //this.uploadPhoto();
-        };
-      }
-    } else {
-      this.alertService.error('Please upload the files with extension jpg, png or jpeg');
-      setTimeout(() => {
-        this.alertService.clear();
-    }, 3000);
-    }
-
+dataURLtoFile(dataurl) {
+ 
+  var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), 
+      n = bstr.length, 
+      u8arr = new Uint8Array(n);
+      
+  while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
   }
+  
+ let imgfile= new File([u8arr],'img.png', {type:mime});
+ this.check(imgfile);
+}
+
+check(event)
+{
+  const reader = new FileReader();
+
+  const file = event;
+  const stringToSplit = file.name;
+  const x = stringToSplit.split('.');
+  const ext = x[1];
+
+      this.currentImageUpload = file;
+      this.showimg=true;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.customer.UserProfilePictureUrl = 'data:image/png;base64,' + reader.result.split(',')[1];
+        //this.uploadPhoto();
+      };
+    
+
+  
+
+}
+
+onSelect(event) {
+  this.alertService.clear();
+   this.dataURLtoFile(event);
+ 
+  
 
 }
 
