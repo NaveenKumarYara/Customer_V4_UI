@@ -183,7 +183,7 @@
                           <h5 class="meta">Not interested</h5>
                         </ng-container>
                         <ng-container *ngIf="job?.IsCPNewDate == 1">
-                          <h5 class="meta">New proposal ({{job?.CPDate | date}} @ {{job?.CPFromTime}})</h5>
+                          <h5 class="meta">New proposal ({{job?.CPDate | date:'mediumDate'}} @ {{job?.CPFromTime}})</h5>
                         </ng-container>
                       </div>
                       <ng-container *ngIf="job?.IsCPNewDate == 1">

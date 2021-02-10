@@ -137,10 +137,13 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="group">
                                     <h4>Work Authorization</h4>
-                                    <p>
-                                        {{jobdetailscustomer?.JobInfo?.WorkAuthorizationType}}
-                                    </p>
-                                    <p *ngIf="jobdetailscustomer?.JobInfo?.WorkAuthorizationType==null">
+                                    <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
+                                        <p *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                            {{job.WorkAuthorizationType}}
+                                        </p>
+                                    </ng-container>
+                                
+                                    <p *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
                                         N/A
                                     </p>
                                 </div>
