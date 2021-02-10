@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 declare var $: any;
 declare var require: any;
 const RecordRTC = require('recordrtc//RecordRTC.min');
@@ -85,7 +86,7 @@ export class BasicinfoComponent implements AfterViewInit {
       }
     ]
   };
-  constructor(private _service: ApiService, private route: Router, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
+  constructor(private _service: ApiService, private route: Router,private ng2ImgMax: Ng2ImgMaxService, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -1376,6 +1377,7 @@ export class BasicinfoComponent implements AfterViewInit {
   GetCompanyLogo() {
     return this.companyprofileservice.getCompanyLogo(this.customerId).subscribe(res => {
       this.companyLogo = res;
+      this.showP = false;
       this.showimg=false;
   });
   }
@@ -1433,14 +1435,18 @@ check(event)
   const stringToSplit = file.name;
   const x = stringToSplit.split('.');
   const ext = x[1];
-
-      this.currentImageUpload = file;
+  this.ng2ImgMax.resizeImage(file, 400, 300).subscribe(
+    result => {
+      this.currentImageUpload = result;
       this.showimg=true;
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.customer.UserProfilePictureUrl = 'data:image/png;base64,' + reader.result.split(',')[1];
         //this.uploadPhoto();
       };
+    })
+     
+
     
 
   

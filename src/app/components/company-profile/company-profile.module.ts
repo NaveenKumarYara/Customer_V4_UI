@@ -35,6 +35,7 @@ import { MatDialogModule, MatCardModule, MatProgressSpinnerModule,MatSnackBarMod
 import { DragulaModule } from 'ng2-dragula';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { NgxImgModule } from 'ngx-img';
     MatSnackBarModule,
     HttpClientModule,
     SharedModule, ImageCropperModule,NgxImgModule,
-    MatDialogModule,  ChartsModule,
+    MatDialogModule,  ChartsModule,Ng2ImgMaxModule,
     MatCardModule, MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw',
