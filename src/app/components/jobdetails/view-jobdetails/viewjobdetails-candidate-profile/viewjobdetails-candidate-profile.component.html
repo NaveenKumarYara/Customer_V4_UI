@@ -236,9 +236,9 @@
                 </ng-template>
 
 
-                <ng-container  *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
+                <ng-container  *ngIf="profile?.VideoProfile!=null||profileFlipVideo?.VideoSizzle != null">
                     <a href="javascript:void(0)" (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)"
-                    *ngIf="profile?.VideoProfile!=null&&profile?.VideoProfile!=''">
+                    *ngIf="profile?.VideoProfile!=null||profileFlipVideo?.VideoSizzle != null">
                     <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
                         width="25">
                 </a>
