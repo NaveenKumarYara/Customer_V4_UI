@@ -1,4 +1,4 @@
-import { ChatAdapter, IChatGroupAdapter, Group, Message, ChatParticipantStatus, ParticipantResponse, ChatParticipantType, IChatParticipant, MessageType } from 'ng-chat';
+import { ChatAdapter, IChatGroupAdapter, Group, Message, ChatParticipantStatus, ParticipantResponse, ChatParticipantType, IChatParticipant} from 'ng-chat';
 import { Observable} from 'rxjs';
 import {of} from 'rxjs/observable/of';
 import { delay } from "rxjs/operators";

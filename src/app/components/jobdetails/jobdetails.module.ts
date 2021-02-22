@@ -54,7 +54,6 @@ import { MatDialogModule,
   MatAutocompleteModule} from '@angular/material';
   import { QRCodeModule } from 'angularx-qrcode';
   import { NgChatModule } from 'ng-chat';
-  import { DemoAdapter } from './view-jobdetails/viewjobdetails-candidate-profile/demo-adapter';
 import {backgrounddialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
@@ -96,7 +95,7 @@ import { SortByPipe } from './view-jobdetails/viewjobdetails-candidate-profile/M
   declarations: [ViewJobdetailsComponent,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
                   ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,AchivementdialogComponent,backgrounddialogComponent,
-                  UploadProfilesComponent,DemoAdapter,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent],
+                  UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent],
   entryComponents: [
     ScheduleInterviewComponent]
 })
