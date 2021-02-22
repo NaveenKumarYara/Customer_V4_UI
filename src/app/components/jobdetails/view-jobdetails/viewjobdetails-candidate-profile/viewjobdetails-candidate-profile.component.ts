@@ -131,7 +131,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
   }
 
-  public messageSeen(event: any)
+  public onEventTriggered(event: any)
   {
     console.log(event);
   }
