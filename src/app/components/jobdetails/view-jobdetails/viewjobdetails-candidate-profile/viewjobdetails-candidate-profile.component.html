@@ -244,6 +244,7 @@
                 </a>
 
                 </ng-container> 
+               
                 <div class="meta a">
                     <div class="d-block text-center">
                         <!--Email-->
@@ -347,6 +348,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="dropdown info-icon">
+                            <div class="tooltip1">
+                                <ng-container
+                                class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
+                                <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
+                            </ng-container>
+                             
+                             
+                            </div>
+                        </div>
+                        
                         <!--Info Icon-->
 
                     </div>
@@ -1670,3 +1682,18 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<ng-container *ngIf="show">
+    <ng-chat #ngChatInstance
+    [adapter]="adapter"
+    [userId]=2
+    [historyEnabled]="true"
+    [historyPageSize]="4"
+    [hideFriendsList]="true"
+    (onParticipantClicked)="onEventTriggered('ParticipantClicked triggered')"
+    (onParticipantChatOpened)="onEventTriggered('ParticipantChatOpened triggered')"
+    (onParticipantChatClosed)="onEventTriggered('ParticipantChatClosed triggered')"
+    (onMessagesSeen)="onEventTriggered('MessageSeen triggered')">
+    </ng-chat>
+
+</ng-container>
