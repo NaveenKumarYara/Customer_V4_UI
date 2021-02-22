@@ -60,7 +60,7 @@ export class DemoAdapter extends ChatAdapter implements IChatGroupAdapter
 
         mockedHistory = [
             {
-                fromId: MessageType.Text,
+                fromId: 1,
                 toId: 999,
                 message: "Arytic provides interaction with candidate:",
                 dateSent: new Date()
