@@ -81,6 +81,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 import {ConvertMonthPipe} from './components/Postajob/Createajob/convertskillsmonth.pipe';
 import { DragulaModule } from 'ng2-dragula';
