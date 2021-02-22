@@ -97,6 +97,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
+
 export function app_Init(settingsHttpService: SettingsHttpService) {
   return () => settingsHttpService.initializeApp();
 }
