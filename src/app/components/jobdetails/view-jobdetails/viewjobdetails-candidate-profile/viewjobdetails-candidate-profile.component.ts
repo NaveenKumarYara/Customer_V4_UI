@@ -29,7 +29,6 @@ import { backgrounddialogComponent } from './BackgroundVerification/bg.component
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { ChatAdapter,IChatController,ChatParticipantType,ChatParticipantStatus } from 'ng-chat';
 import { DemoAdapter } from './demo-adapter';
-import { DemoAdapterPagedHistory } from './demo-adapter-paged-history';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
