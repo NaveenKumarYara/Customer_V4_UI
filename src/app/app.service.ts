@@ -58,7 +58,8 @@ export class AppService {
 
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
-
+  PriorityName: String;
+  jobImp: number;
   constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
@@ -166,11 +167,11 @@ export class AppService {
   IndustryId = new BehaviorSubject('');
   currentjobIndustryId= this.IndustryId.asObservable();
 
-  jobImp: number;
+ 
   JobImp = new BehaviorSubject(this.jobImp);
   currentjobImp = this.JobImp.asObservable();
 
-  PriorityName: String;
+
   JobPriorityName = new BehaviorSubject(this.PriorityName);
   CurrentPriorityName = this.JobPriorityName.asObservable();
 
@@ -186,11 +187,11 @@ export class AppService {
 
 
 
-  jobDue: number;
+  jobDue: number=1;
   JobDue = new BehaviorSubject(this.jobDue);
   currentjobDue = this.JobDue.asObservable();
 
-  jobDueDate: Date;
+  jobDueDate: Date=new Date();
   JobDueDate = new BehaviorSubject(this.jobDueDate);
   currentjobDueDate = this.JobDueDate.asObservable();
 
@@ -199,15 +200,15 @@ export class AppService {
   salaryType = new BehaviorSubject(this.salType);
   currentSalaryTYpe = this.salaryType.asObservable();
 
-  pMinexp: number;
+  pMinexp: number=1;
   minExperience = new BehaviorSubject(this.pMinexp);
   currentminExp = this.minExperience.asObservable();
 
-  pMaxexp: number;
+  pMaxexp: number=1;
   maxExperience = new BehaviorSubject(this.pMaxexp);
   currentmaxExp = this.maxExperience.asObservable();
 
-  myDescription: boolean;
+  myDescription: boolean=false;
   hasDescription = new BehaviorSubject(this.myDescription);
   currentDescriptionChecked = this.hasDescription.asObservable();
 
@@ -220,7 +221,7 @@ export class AppService {
   // textOPening = new BehaviorSubject('');
   // currenttextOPening = this.textOPening.asObservable();
 
-  myopenings: number;
+  myopenings: number=2;
   noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
