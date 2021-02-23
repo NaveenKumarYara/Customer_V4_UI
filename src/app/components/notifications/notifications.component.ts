@@ -33,7 +33,7 @@ export class NotificationsComponent implements OnInit {
   }
 
 
-  private getNotifications(userId) {
+getNotifications() {
   
     return this.appService.getNotifications(this.userId).subscribe(res => {
       this.notificationList= res;
@@ -44,7 +44,7 @@ export class NotificationsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getNotifications(this.userId);
+    this.getNotifications();
   }
 
  

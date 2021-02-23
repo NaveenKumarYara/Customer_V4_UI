@@ -9,7 +9,7 @@
         </div>
       </div>
       <ul class="date-collection">
-        <ng-container *ngIf="notificationList!=null;else notification">
+        <ng-container *ngIf="notificationList.length>0">
         <li class="date-group" *ngFor="let listview of notificationList; let i=index">
           <div class="date">{{listview.CreatedOn|date}}</div>
           <div class="milestone"><span></span></div>
@@ -24,9 +24,9 @@
           </div>
         </li>
         </ng-container>
-        <ng-template #notification>
-          <p>No Notifications</p>
-        </ng-template>
+        <ng-container *ngIf="notificationList.length===0">
+          No Notifications
+          </ng-container>
         <!-- .date-group -->
       </ul>
       <!-- .date-collection -->
