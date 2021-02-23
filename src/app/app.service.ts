@@ -58,8 +58,7 @@ export class AppService {
 
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
-  PriorityName: String='';
-  jobImp: number=2;
+
   constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
@@ -167,11 +166,11 @@ export class AppService {
   IndustryId = new BehaviorSubject('');
   currentjobIndustryId= this.IndustryId.asObservable();
 
- 
+  jobImp: number;
   JobImp = new BehaviorSubject(this.jobImp);
   currentjobImp = this.JobImp.asObservable();
 
-
+  PriorityName: String;
   JobPriorityName = new BehaviorSubject(this.PriorityName);
   CurrentPriorityName = this.JobPriorityName.asObservable();
 
@@ -181,17 +180,17 @@ export class AppService {
   stepNumber = new BehaviorSubject('');
   currentStepNumber = this.stepNumber.asObservable();
 
-  myDraft: boolean=false;
+  myDraft: boolean;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
 
 
 
-  jobDue: number=1;
+  jobDue: number;
   JobDue = new BehaviorSubject(this.jobDue);
   currentjobDue = this.JobDue.asObservable();
 
-  jobDueDate: Date=new Date();
+  jobDueDate: Date;
   JobDueDate = new BehaviorSubject(this.jobDueDate);
   currentjobDueDate = this.JobDueDate.asObservable();
 
@@ -200,15 +199,15 @@ export class AppService {
   salaryType = new BehaviorSubject(this.salType);
   currentSalaryTYpe = this.salaryType.asObservable();
 
-  pMinexp: number=1;
+  pMinexp: number;
   minExperience = new BehaviorSubject(this.pMinexp);
   currentminExp = this.minExperience.asObservable();
 
-  pMaxexp: number=1;
+  pMaxexp: number;
   maxExperience = new BehaviorSubject(this.pMaxexp);
   currentmaxExp = this.maxExperience.asObservable();
 
-  myDescription: boolean=false;
+  myDescription: boolean;
   hasDescription = new BehaviorSubject(this.myDescription);
   currentDescriptionChecked = this.hasDescription.asObservable();
 
@@ -221,7 +220,7 @@ export class AppService {
   // textOPening = new BehaviorSubject('');
   // currenttextOPening = this.textOPening.asObservable();
 
-  myopenings: number=2;
+  myopenings: number;
   noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 

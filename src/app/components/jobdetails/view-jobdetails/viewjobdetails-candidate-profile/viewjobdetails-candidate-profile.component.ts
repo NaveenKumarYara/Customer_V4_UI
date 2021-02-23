@@ -27,8 +27,7 @@ import { AchivementdialogComponent } from './Achivements/achivement.component';
 import { ReferencedialogComponent } from './ManageReferences/manageref.component';
 import { backgrounddialogComponent } from './BackgroundVerification/bg.component';
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
-import { ChatAdapter,IChatController,ChatParticipantType,ChatParticipantStatus } from 'ng-chat';
-import { DemoAdapter } from './demo-adapter';
+
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -46,7 +45,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
-  public adapter: ChatAdapter = new DemoAdapter();
+
 
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
   jobdetailsprofiles = new JobdetailsProfile();
@@ -77,7 +76,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   jobdetailscustomer = new  GetJobDetailCustomer();
   status= new JobStatus();
   usersList:any;
-  @ViewChild('ngChatInstance') protected ngChatInstance: IChatController;
+
   schIntw = new ScheduleInterview();
   wsList = new WishList();
   TotalCount: any;
@@ -130,10 +129,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
   }
 
-  public onEventTriggered(event: any)
-  {
-    console.log(event);
-  }
+
 
   OpenChatboxDialog() {
     if (this.jobStatus !== 'InActive') {
@@ -153,18 +149,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   }
 
-  openChat(i){
-    this.show=true;
-    let user = {
-    participantType: ChatParticipantType.User,
-    id: 2,
-    displayName: i.FirstName ,
-    avatar: i.ProfilePic,
-    status: ChatParticipantStatus.Online
-    };
-    console.log('openChat clicked');
-    this.ngChatInstance.triggerOpenChatWindow(user);
-    }
+  
 
   OpenShareDialog(title, jobResponseId, profileId) {
     if (this.jobStatus !== 'InActive') {
