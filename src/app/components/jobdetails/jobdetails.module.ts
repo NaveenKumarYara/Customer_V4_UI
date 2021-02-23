@@ -53,7 +53,6 @@ import { MatDialogModule,
   MatInputModule,
   MatAutocompleteModule} from '@angular/material';
   import { QRCodeModule } from 'angularx-qrcode';
-  import { NgChatModule } from 'ng-chat';
 import {backgrounddialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component';
 import { HiredialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component';
@@ -76,7 +75,6 @@ import { SortByPipe } from './view-jobdetails/viewjobdetails-candidate-profile/M
     SharedModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgChatModule,
     QRCodeModule,
     TagCloudModule,
     ChartsModule,
