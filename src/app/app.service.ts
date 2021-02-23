@@ -58,8 +58,8 @@ export class AppService {
 
   private opportunities: Dashboard[] = [];
   private apiUrl = 'api/CustomerPortal';
-  PriorityName: String;
-  jobImp: number;
+  PriorityName: String='';
+  jobImp: number=2;
   constructor(private http: HttpClient, private settingsService: SettingsService) {
   }
 
@@ -181,7 +181,7 @@ export class AppService {
   stepNumber = new BehaviorSubject('');
   currentStepNumber = this.stepNumber.asObservable();
 
-  myDraft: boolean;
+  myDraft: boolean=false;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
 
