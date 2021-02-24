@@ -658,7 +658,7 @@
                             </a>
                             <div class="col-md-4 skill-click"
                                 *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates ; let j = index">
-                                <div id="i-{{profile.ProfileId}}" data-toggle="modal" data-target=".manage-s-v-i-d">
+                                <div id="i-{{profile.ProfileId}}">
                                     <div class="item" *ngIf="currentNo[i] == 0 && j < 3 ">
                                         <div class="skill">
                                             <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],9) }}
