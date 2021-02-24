@@ -116,6 +116,7 @@ import { StepContractExtensionComponent } from './components/Postajob/Createajob
 import { StepContractDurationComponent } from './components/Postajob/Createajob/Step1/contractduration.component';
 import { StepEmploymentTypeComponent } from './components/Postajob/Createajob/Step1/employment.component';
 import { ImmigrationManagerComponent } from './components/Postajob/Createajob/Step1/immigration.component';
+import { screeningdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/screening/screening.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -224,6 +225,7 @@ const appRoutes: Routes =
     { path: 'app-sharedialog', component: SharedialogComponent },
     { path: 'app-conversation', component: ConversationComponent },
     { path: 'app-rejectdialog', component: RejectdialogComponent },
+    {path:'app-screendialog',component:screeningdialogComponent},
     { path: 'app-hiredialog', component: HiredialogComponent },
     { path: 'app-achivementdialog', component:AchivementdialogComponent},
     { path: 'app-bgdialog', component:backgrounddialogComponent},

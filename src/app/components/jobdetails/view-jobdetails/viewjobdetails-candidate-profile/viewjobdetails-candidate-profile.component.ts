@@ -27,6 +27,7 @@ import { AchivementdialogComponent } from './Achivements/achivement.component';
 import { ReferencedialogComponent } from './ManageReferences/manageref.component';
 import { backgrounddialogComponent } from './BackgroundVerification/bg.component';
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
+import { screeningdialogComponent } from './screening/screening.component';
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -195,6 +196,29 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }
   
 }
+
+OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+  if (this.jobStatus !== 'InActive') {
+    const screendialogRef = this.dialog.open(screeningdialogComponent,
+      {
+        position: { right: '0px' },
+        data: {
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          ProfileId: profileId,
+          Email :Email,
+          FullName :FirstName+LastName
+          // status : this.statusid
+        }
+      }
+    );
+    screendialogRef.afterClosed().subscribe(result => {
+      this.myEvent.emit(null);
+      console.log('Screen Dialog result: ${result}');
+    });
+  }
+}
+
 
 OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   if (this.jobStatus !== 'InActive') {

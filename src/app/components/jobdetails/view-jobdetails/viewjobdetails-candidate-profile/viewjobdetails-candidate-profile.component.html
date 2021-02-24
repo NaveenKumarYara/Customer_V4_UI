@@ -992,14 +992,14 @@
                                 <div
                                     *ngIf="(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null); else otherMenu">                            
                                     <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                            (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenScreeningDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                             <p class="p6">Screening</p>
                                         </a></li>
                                 </div>
                                 <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
                                 <ng-template #otherMenu>                              
                                     <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                            (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenScreeningDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                             <p class="p6">Screening</p>
                                         </a></li>
                                     <li role="presentation"><a role="menuitem" href="javascript:void(0)"
@@ -1081,7 +1081,7 @@
                             </div>
                             <div *ngIf="profile?.ResponseStatusId == null">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="shortlisthiredwithdrawn(8,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                    (click)="OpenScreeningDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                         <p class="p6">Screening</p>
                                     </a></li>
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
