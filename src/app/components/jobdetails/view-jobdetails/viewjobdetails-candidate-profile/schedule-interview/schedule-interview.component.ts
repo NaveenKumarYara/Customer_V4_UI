@@ -253,9 +253,7 @@ this.schIntw.Comments = this.Comment;
 this.schIntw.InterviewingPerson = this.selectedUserName.toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
-      this.eventStat.emit(null);
-      this.schIntw = new ScheduleInterview();
-      this.dialogRef.close();
+ 
      }) ;
     } else {
       return false;
@@ -321,6 +319,9 @@ SendStatusEmail()
      this.toastr.success('Email Sent','Success');
         setTimeout(() => {          
             this.toastr.dismissToast; 
+            this.eventStat.emit(null);
+            this.schIntw = new ScheduleInterview();
+            this.dialogRef.close();
           }, 3000);
          
        } 
