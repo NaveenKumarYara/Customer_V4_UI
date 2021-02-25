@@ -29,6 +29,7 @@ import { backgrounddialogComponent } from './BackgroundVerification/bg.component
 import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer';
 import { screeningdialogComponent } from './screening/screening.component';
 import { shortlisteddialogComponent } from './ShortListed/shortlisted.component';
+import { WithDrawndialogComponent } from './Withdrawn/withdrawn.component';
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -223,6 +224,28 @@ OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName) {
 OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   if (this.jobStatus !== 'InActive') {
     const shortdialogRef = this.dialog.open(shortlisteddialogComponent,
+      {
+        position: { right: '0px' },
+        data: {
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          ProfileId: profileId,
+          Email :Email,
+          FullName :FirstName+LastName
+          // status : this.statusid
+        }
+      }
+    );
+    shortdialogRef.afterClosed().subscribe(result => {
+      this.myEvent.emit(null);
+      console.log('Screen Dialog result: ${result}');
+    });
+  }
+}
+
+OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+  if (this.jobStatus !== 'InActive') {
+    const shortdialogRef = this.dialog.open(WithDrawndialogComponent,
       {
         position: { right: '0px' },
         data: {

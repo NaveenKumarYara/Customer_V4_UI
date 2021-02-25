@@ -1075,7 +1075,7 @@
                             <!-- hired -->
                             <div *ngIf="profile?.ResponseStatusId == 11">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="shortlisthiredwithdrawn(9,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenWithdrawnDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                         <p class="p6">WithDrawn</p>
                                     </a></li>
                             </div>

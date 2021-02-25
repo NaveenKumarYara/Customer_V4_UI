@@ -238,6 +238,10 @@ gotit(na) {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.Check();
       this.PopulateJobdetail();
+      this.toastr.success('Email Sent','Success');
+      setTimeout(() => {          
+          this.toastr.dismissToast; 
+        }, 3000);
       this.eventStat.emit(null);
       this.dialogRef.close();
       console.log(res);

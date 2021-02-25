@@ -1,0 +1,35 @@
+<div class="page page--job-details">
+    <div id="rejectCandidate" >
+      <h4 mat-dialog-title class="modal-title">
+      WithDrawn
+      </h4>
+      <mat-dialog-content class="mat-typography">
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <label for="">Select Reason</label>
+              <select name="Reject_Reason" id="reason" class="styled-select-box block">
+                <option value="0">Profile is been withdrawn may i know the reason.</option>
+                <option value="1">Profile not suites for job.</option>
+                <option value="2">Requires more Experience</option>
+                <option value="3">Please reply to email with attachments.</option>
+                <option value="4">Update your profile to get dream job.</option>
+                <option value="5">Others</option>
+              </select>
+              <!--<input type="text" class="form-control">-->
+            </div>
+            <div class="form-group">
+              <label for="">Notes</label>
+              <textarea type="text" class="form-control resize-none" [(ngModel)]="Comment" name="comment" placeholder="Please add your Notes" rows="10"></textarea>
+            </div>
+          </form>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-actions class="modal-footer">
+        <div class="modal-footer pull-right">
+          <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
+          <button mat-button cdkFocusInitial (click)="Reject()" class="btn btn-filled">WithDrawn</button>
+        </div>
+      </mat-dialog-actions>
+    </div>
+  </div>
