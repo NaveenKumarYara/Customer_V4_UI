@@ -17,8 +17,8 @@
             <!--<input type="text" class="form-control">-->
           </div>
           <div class="form-group">
-            <label for="">Comments</label>
-            <textarea type="text" class="form-control resize-none" [(ngModel)]="Comment" name="comment" placeholder="Please add your comments" rows="10"></textarea>
+            <label for="">Notes</label>
+            <textarea type="text" class="form-control resize-none" [(ngModel)]="Comment" name="comment" placeholder="Please add your Notes" rows="10"></textarea>
           </div>
         </form>
       </div>
@@ -26,7 +26,7 @@
     <mat-dialog-actions class="modal-footer">
       <div class="modal-footer pull-right">
         <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="Reject()" class="btn btn-filled">Reject</button>
+        <button mat-button  cdkFocusInitial (click)="Reject()" class="btn btn-filled">Reject</button>
       </div>
     </mat-dialog-actions>
   </div>

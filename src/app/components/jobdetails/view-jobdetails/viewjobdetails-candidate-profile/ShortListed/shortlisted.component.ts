@@ -10,11 +10,10 @@ export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
 @Component({
-  selector: 'app-rejectdialog',
-  templateUrl: './rejectdialog.component.html',
-  styleUrls: ['./rejectdialog.component.css']
+  selector: 'app-shortlisteddialog',
+  templateUrl: './shortlisted.component.html'
 })
-export class RejectdialogComponent {
+export class shortlisteddialogComponent {
   customerId: any;
   userId: any;
   Comment: string;
@@ -25,7 +24,7 @@ export class RejectdialogComponent {
  @Input() jobid: number;
  @Input() statusid: number;
  @Output() eventStat = new EventEmitter();
-  constructor(public dialogRef: MatDialogRef<RejectdialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService,private appService: AppService,private settingsService: SettingsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor(public dialogRef: MatDialogRef<shortlisteddialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService,private appService: AppService,private settingsService: SettingsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -43,14 +42,15 @@ export class RejectdialogComponent {
 
    SendStatusEmail()
    {
+
      this.status.AppLink = this.settingsService.settings.CandidateLogin;
-     this.status.JobStatus = 'Rejected';
+     this.status.JobStatus = 'Shortlist';
      this.status.FromEmail = this.customer.Email;
      this.status.ToEmailID = this.data.Email;
      this.status.FullName = this.data.FullName;
      this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
      this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
-
+     debugger
      this.appService.SendJobStatus(this.status)
      .subscribe(
      status => {
@@ -80,18 +80,16 @@ export class RejectdialogComponent {
     this.schIntw.AccessId = null;
     this.schIntw.SkypeId = null;
     this.schIntw.Comments = this.Comment;
-    this.schIntw.ResponseStatusId = 6; // what stage it is..hired...
+    this.schIntw.ResponseStatusId =5; // what stage it is..hired...
     this.schIntw.IsActive = null;
     this.schIntw.Rating = null;
     this.schIntw.RequiredFurtherInterview = null;
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
+    debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
- 
-      this.PopulateJobdetail();
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    
-    //this.eventStat.emit(null);
+        this.PopulateJobdetail();      
+       
       console.log(res);
       }) ;
     }

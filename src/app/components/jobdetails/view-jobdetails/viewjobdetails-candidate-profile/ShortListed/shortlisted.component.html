@@ -1,7 +1,7 @@
 <div class="page page--job-details">
     <div id="rejectCandidate" >
       <h4 mat-dialog-title class="modal-title">
-        Screening
+       Shortlist
       </h4>
       <mat-dialog-content class="mat-typography">
         <div class="modal-body">
@@ -9,7 +9,7 @@
             <div class="form-group">
               <label for="">Select Reason</label>
               <select name="Reject_Reason" id="reason" class="styled-select-box block">
-                <option value="0">Profile is been screening.</option>
+                <option value="0">Profile is been shortlisted.</option>
                 <option value="1">Profile not suites for job.</option>
                 <option value="2">Requires more Experience</option>
                 <option value="3">Please reply to email with attachments.</option>
@@ -28,7 +28,7 @@
       <mat-dialog-actions class="modal-footer">
         <div class="modal-footer pull-right">
           <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
-          <button mat-button cdkFocusInitial (click)="Reject()" class="btn btn-filled">Screening</button>
+          <button mat-button cdkFocusInitial (click)="Reject()" class="btn btn-filled">Shortlist</button>
         </div>
       </mat-dialog-actions>
     </div>

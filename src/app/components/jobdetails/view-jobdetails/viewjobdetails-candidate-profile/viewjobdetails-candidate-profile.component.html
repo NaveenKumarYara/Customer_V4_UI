@@ -1003,7 +1003,7 @@
                                             <p class="p6">Screening</p>
                                         </a></li>
                                     <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                            (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenShortListedDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                             <p class="p6">Shortlist</p>
                                         </a></li>
                                 </ng-template>
@@ -1024,7 +1024,7 @@
                             <!-- shortlisted -->
                             <div *ngIf="profile?.ResponseStatusId == 8">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                    (click)="OpenShortListedDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                         <p class="p6">Shortlist</p>
                                     </a></li>
                                 <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
@@ -1085,7 +1085,7 @@
                                         <p class="p6">Screening</p>
                                     </a></li>
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="shortlisthiredwithdrawn(5,profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenShortListedDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
                                         <p class="p6">Shortlist</p>
                                     </a></li>
                             </div>

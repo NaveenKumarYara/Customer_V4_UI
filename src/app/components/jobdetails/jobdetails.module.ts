@@ -60,6 +60,7 @@ import { ReferencedialogComponent } from './view-jobdetails/viewjobdetails-candi
 import {RequestdialogComponent} from './view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/RequestInfo/requestInfo.component';
 import { SortByPipe } from './view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/sortby.pipe';
 import { screeningdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/screening/screening.component';
+import { shortlisteddialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/ShortListed/shortlisted.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -93,7 +94,7 @@ import { screeningdialogComponent } from './view-jobdetails/viewjobdetails-candi
   providers: [JobdetailsService],
   declarations: [ViewJobdetailsComponent,RequestdialogComponent,SortByPipe,UniqueMonthYearPipe,ViewCandidateprofileDetailComponent,ConverttoMonthPipe, RemovePipe,  FilterViewJobsComponent, JobdetailsAdvanceSearchComponent,ShareJobComponent,
                   HiredialogComponent,ProfileLinkComponent, ViewjobdetailsmodelComponent, UploadProfilesComponent, ViewjobdetailsScComponent,
-                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
+                  ViewjobdetailsCandidateProfileComponent, ChatboxdialogComponent, SharedialogComponent, RejectdialogComponent,shortlisteddialogComponent,AchivementdialogComponent,backgrounddialogComponent,screeningdialogComponent,
                   UploadProfilesComponent,ScheduleInterviewComponent, ConversationComponent,  ViewCandidateprofileComponent, SendEmailComponent, InviteProfiledialogComponent,ReferencedialogComponent],
   entryComponents: [
     ScheduleInterviewComponent]
