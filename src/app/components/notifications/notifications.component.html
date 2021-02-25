@@ -10,19 +10,22 @@
       </div>
       <ul class="date-collection">
         <ng-container *ngIf="notificationList.length>0">
-        <li class="date-group" *ngFor="let listview of notificationList; let i=index">
-          <div class="date">{{listview.CreatedOn|date}}</div>
-          <div class="milestone"><span></span></div>
-          <div class="all-notifications">
-            <ul class="notification-list">
-              <li>
-                <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
-                <p><b>{{listview.Message | titlecase}} </b> </p>
-                <div class="time">{{listview.CreatedOn|date:'h:mm a'}}</div>
-              </li>            
-            </ul>
-          </div>
-        </li>
+          <ng-container *ngFor="let listview of notificationList; let i=index">
+            <li class="date-group" *ngIf="listview.Message!=null&&listview.Message!=''">
+              <div class="date">{{listview.CreatedOn|date}}</div>
+              <div class="milestone"><span></span></div>
+              <div class="all-notifications">
+                <ul class="notification-list">
+                  <li>
+                    <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
+                    <p><b>{{listview.Message | titlecase}} </b> </p>
+                    <div class="time">{{listview.CreatedOn|date:'h:mm a'}}</div>
+                  </li>            
+                </ul>
+              </div>
+            </li>
+          </ng-container>
+      
         </ng-container>
         <ng-container *ngIf="notificationList.length===0">
           No Notifications
