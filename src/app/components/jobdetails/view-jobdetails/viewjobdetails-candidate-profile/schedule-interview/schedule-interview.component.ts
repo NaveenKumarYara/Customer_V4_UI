@@ -47,6 +47,7 @@ export class ScheduleInterviewComponent implements OnInit {
   webxRI: boolean;
   skypeId: string;
   Addform: FormGroup;
+  Comment: string;
   furtherInterview: boolean;
   travelExpense: boolean;
   phoneNumber: string;
@@ -213,7 +214,6 @@ this.schIntw.InterviewDatevalue =  new Date(this.InterviewDate.month + '/' + thi
   // this.schIntw.BridgeUrl=this.userId;
 // this.schIntw.AccessId=this.userId;
 // this.schIntw.SkypeId=this.userId;
-  this.schIntw.Comments = '';
    this.schIntw.ResponseStatusId = 7;
   //  if (this.processSelection == null || this.processSelection === undefined) {
   //   this.schIntw.InterviewTypeId = this.typeId;
@@ -249,6 +249,7 @@ if (this.processSelection === 1) {
 this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
+this.schIntw.Comments = this.Comment;
 this.schIntw.InterviewingPerson = this.selectedUserName.toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
