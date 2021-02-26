@@ -68,6 +68,12 @@
                             Certified</a></div>
                 </ng-template> -->
                 <!--New Design of Icon & Badges-->
+                <button class="chat__btn__icon">
+                    <img src="../../../../../assets/images/chat__btn__icon.png"/>
+                </button>
+                <button class="note__btn__icon" (click)="OpenSendNotificationDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId)">
+                    <img src="../../../../../assets/images/note__btn__icon.png"/>
+                </button>
                 <div class="media col-md-6 domain-section" *ngIf="profile.DomainName!=null;else nodomain">
                     <div class="media-body">
                         <small title="{{profile.DomainName}}"
@@ -348,7 +354,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown info-icon">
+                        <!-- <div class="dropdown info-icon">
                             <div class="tooltip1">
                                 <ng-container
                                 class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
@@ -357,7 +363,7 @@
                              
                              
                             </div>
-                        </div>
+                        </div> -->
                         
                         <!--Info Icon-->
 

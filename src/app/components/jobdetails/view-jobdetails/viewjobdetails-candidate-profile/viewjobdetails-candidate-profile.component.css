@@ -1400,3 +1400,30 @@ height: 25.4px;
 .manage-reference-i-d .modal-body li.references-details .fa{
     font-size: 25px;
 }
+
+.chat__btn__icon, .note__btn__icon {
+    position:absolute;
+      z-index:10;
+      right:2px;
+      top:60px;
+      padding:0;
+      width:26px;
+      height:26px;
+      border:1px solid #9eabc0;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:3px 2px 4px rgba(143,143,143,0.4);
+  }
+  
+  .note__btn__icon {
+   top:100px;
+  }
+  
+  .note__btn__icon img {
+      position:relative;
+      top:-1px;
+  }
+  
+  .chat__btn__icon:hover, .note__btn__icon:hover {
+      background:#fafafa;
+  }

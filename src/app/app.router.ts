@@ -119,6 +119,7 @@ import { ImmigrationManagerComponent } from './components/Postajob/Createajob/St
 import { screeningdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/screening/screening.component';
 import { shortlisteddialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ShortListed/shortlisted.component';
 import { WithDrawndialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Withdrawn/withdrawn.component';
+import { sendnotificationdialogComponent } from './components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/SendNotification/sendnotification.component';
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 
@@ -230,6 +231,7 @@ const appRoutes: Routes =
     {path:'app-screendialog',component:screeningdialogComponent},
     {path:'app-shortlisteddialog',component:shortlisteddialogComponent},
     {path:'app-WithDrawndialog',component:WithDrawndialogComponent},
+    {path:'app-sendnotification',component:sendnotificationdialogComponent},
     { path: 'app-hiredialog', component: HiredialogComponent },
     { path: 'app-achivementdialog', component:AchivementdialogComponent},
     { path: 'app-bgdialog', component:backgrounddialogComponent},

@@ -30,6 +30,7 @@ import { GetJobDetailCustomer } from '../../../../../models/GetJobDetailCustomer
 import { screeningdialogComponent } from './screening/screening.component';
 import { shortlisteddialogComponent } from './ShortListed/shortlisted.component';
 import { WithDrawndialogComponent } from './Withdrawn/withdrawn.component';
+import { sendnotificationdialogComponent } from './SendNotification/sendnotification.component';
 
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
@@ -260,6 +261,28 @@ OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName) {
     );
     shortdialogRef.afterClosed().subscribe(result => {
       this.myEvent.emit(null);
+      console.log('Screen Dialog result: ${result}');
+    });
+  }
+}
+
+OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,userId) {
+  if (this.jobStatus !== 'InActive') {
+    const senddialogRef = this.dialog.open(sendnotificationdialogComponent,
+      {
+        position: { right: '0px' },
+        data: {
+          jobResponseId: jobResponseId,
+          jobId: this.jobid,
+          ProfileId: profileId,
+          Email :Email,
+          FullName :FirstName+LastName,
+           UserId:userId
+          // status : this.statusid
+        }
+      }
+    );
+    senddialogRef.afterClosed().subscribe(result => {
       console.log('Screen Dialog result: ${result}');
     });
   }
