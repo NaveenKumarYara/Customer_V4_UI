@@ -44,13 +44,12 @@ export class shortlisteddialogComponent {
    {
 
      this.status.AppLink = this.settingsService.settings.CandidateLogin;
-     this.status.JobStatus = 'Shortlist';
+     this.status.JobStatus = 'Shortlisted';
      this.status.FromEmail = this.customer.Email;
      this.status.ToEmailID = this.data.Email;
      this.status.FullName = this.data.FullName;
      this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
      this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
-     debugger
      this.appService.SendJobStatus(this.status)
      .subscribe(
      status => {
@@ -86,7 +85,6 @@ export class shortlisteddialogComponent {
     this.schIntw.RequiredFurtherInterview = null;
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
-    debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
         this.PopulateJobdetail();      
        
