@@ -14679,6 +14679,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--notifications .date-group {
     position: relative;
+    display:flex;
+    align-items:center;
+    margin-bottom:28px;
 }
 
 .page--notifications .date-collection {
@@ -14708,7 +14711,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    left: 13%;
+    left:13%;
+    margin-left:-2px;
     border: 1px solid #93A2BB;
     background-color: #F5F6FA;
 }
@@ -14736,8 +14740,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-color: #ffffff;
     border: 1px solid #E2E2E2;
     border-radius: 3px;
-    padding: 0 2.5rem;
-    margin-bottom: 28px;
+    padding:0.5rem 1.5rem;
+    margin-bottom: 0;
 }
 
 .page--notifications .notification-list li {
