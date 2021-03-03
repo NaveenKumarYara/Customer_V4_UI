@@ -3,35 +3,58 @@
   <!-- Modal -->
   <main>
     <div class="container">
-      <div class="row">
+      <div class="revamp__notification">
+        <div class="revamp__section__title text-center">
+          <h1>Notifications</h1>
+        </div>
+        <div class="revamp__listing">
+          <div class="row">
+            <ng-container *ngIf="notificationList.length>0">
+              <div class="col-sm-12" *ngFor="let listview of notificationList; let i=index">
+                <div class="col__container">
+                  <div class="image__container">
+                    <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
+                  </div>
+                  <div class="content__box">
+                    <h4>{{listview.Message | titlecase}}</h4>
+                    <p class="date__time">{{listview.CreatedOn|date}} | {{listview.CreatedOn|date:'h:mm a'}}</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="notificationList.length===0">
+              No Notifications
+              </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
         <div class="col-md-12 col-md-offset-2">
           <h1>Notifications</h1>
         </div>
-      </div>
-      <ul class="date-collection">
-        <ng-container *ngIf="notificationList.length>0">
-          <ng-container *ngFor="let listview of notificationList; let i=index">
-            <li class="date-group" *ngIf="listview.Message!=null&&listview.Message!=''">
-              <div class="date">{{listview.CreatedOn|date}}</div>
-              <div class="milestone"><span></span></div>
-              <div class="all-notifications">
-                <ul class="notification-list">
-                  <li>
-                    <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
-                    <p><b>{{listview.Message | titlecase}} </b> </p>
-                    <div class="time">{{listview.CreatedOn|date:'h:mm a'}}</div>
-                  </li>            
-                </ul>
-              </div>
-            </li>
-          </ng-container>
-      
-        </ng-container>
-        <ng-container *ngIf="notificationList.length===0">
+      </div> -->
+      <!-- <ul class="date-collection"> -->
+        <!-- <ng-container *ngIf="notificationList.length>0">
+        <li class="date-group" *ngFor="let listview of notificationList; let i=index">
+          <div class="date">{{listview.CreatedOn|date}}</div>
+          <div class="milestone"><span></span></div>
+          <div class="all-notifications">
+            <ul class="notification-list">
+              <li>
+                <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
+                <p><b>{{listview.Message | titlecase}} </b> </p>
+                <div class="time">{{listview.CreatedOn|date:'h:mm a'}}</div>
+              </li>            
+            </ul>
+          </div>
+        </li>
+        </ng-container> -->
+        <!-- <ng-container *ngIf="notificationList.length===0">
           No Notifications
-          </ng-container>
+        </ng-container> -->
         <!-- .date-group -->
-      </ul>
+      <!-- </ul> -->
       <!-- .date-collection -->
     </div>
   </main>
