@@ -10,7 +10,8 @@
         <div class="revamp__listing">
           <div class="row">
             <ng-container *ngIf="notificationList.length>0">
-              <div class="col-sm-12" *ngFor="let listview of notificationList; let i=index">
+            <ng-container *ngFor="let listview of notificationList; let i=index">
+              <div class="col-sm-12" *ngIf="listview.Message!=null&&listview.Message!=''">
                 <div class="col__container">
                   <div class="image__container">
                     <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
@@ -21,6 +22,8 @@
                   </div>
                 </div>
               </div>
+            </ng-container>
+            
             </ng-container>
             <ng-container *ngIf="notificationList.length===0">
               No Notifications
