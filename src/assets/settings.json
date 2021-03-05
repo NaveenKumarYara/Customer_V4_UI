@@ -206,5 +206,7 @@
   "DeleteSavedFilter":"https://profileapi-dev.arytic.com/api/DeleteJobSavedFilter",
   "SendJobStatus":"https://emailapi-dev.arytic.com/api/SendJobStatus",
   "SendJobInterviewStatus":"https://emailapi-dev.arytic.com/api/SendJobInterviewStatus",
-  "GetCompanySize":"https://identityapi-dev.arytic.com/api/GetCompanySize"
+  "GetCompanySize":"https://identityapi-dev.arytic.com/api/GetCompanySize",
+  "InsertProfileNotesCustomer":"https://identityapi-dev.arytic.com/api/InsertProfileNotesCustomer",
+  "GetProfileNotes":"https://profileapi-dev.arytic.com/api/GetProfileNotes"
 }

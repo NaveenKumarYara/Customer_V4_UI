@@ -206,5 +206,8 @@
   "DeleteSavedFilter":"${Profile_URL}/api/DeleteJobSavedFilter",
   "SendJobStatus":"${Email_URL}/api/SendJobStatus",
   "SendJobInterviewStatus":"${Email_URL}/api/SendJobInterviewStatus",
-  "GetCompanySize":"${Identity_URL}/api/GetCompanySize"
+  "GetCompanySize":"${Identity_URL}/api/GetCompanySize",
+
+  "InsertProfileNotesCustomer":"${Identity_URL}/api/InsertProfileNotesCustomer",
+  "GetProfileNotes":"${Profile_URL}/api/GetProfileNotes"
 }

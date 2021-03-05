@@ -214,4 +214,6 @@ export class Settings {
   AddKeyResponsibilities:string;
   GetAllCities:string;
   DeleteSavedFilter:string;
+  InsertProfileNotesCustomer:string;
+  GetProfileNotes:string;
   }

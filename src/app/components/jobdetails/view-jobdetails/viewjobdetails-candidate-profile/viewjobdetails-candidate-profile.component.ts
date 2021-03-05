@@ -63,12 +63,14 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   userId: any;
   CommentProfile : any;
   addon = new addon();
+  CandidateNotes:any=[];
   profiles: any;
   customer: any;
   CandidateCertification:CandidateCertifications;
   CandidateDomain:CandidateDomains;
   searchString: any;
   domainName: any;
+  savenote = new Notes();
   matchingParameterDetails = new MatchingParameterDetails();
   matchingParameterData = new MatchingParameterDetails();
   experience: any;
@@ -200,7 +202,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   
 }
 
-OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   if (this.jobStatus !== 'InActive') {
     const screendialogRef = this.dialog.open(screeningdialogComponent,
       {
@@ -210,7 +212,9 @@ OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName) {
           jobId: this.jobid,
           ProfileId: profileId,
           Email :Email,
-          FullName :FirstName+LastName
+          FullName :FirstName+LastName,
+          CUserId:userId,
+          Matching:Match
           // status : this.statusid
         }
       }
@@ -222,7 +226,7 @@ OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   }
 }
 
-OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   if (this.jobStatus !== 'InActive') {
     const shortdialogRef = this.dialog.open(shortlisteddialogComponent,
       {
@@ -232,7 +236,9 @@ OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName) {
           jobId: this.jobid,
           ProfileId: profileId,
           Email :Email,
-          FullName :FirstName+LastName
+          FullName :FirstName+LastName,
+          CUserId:userId,
+          Matching:Match
           // status : this.statusid
         }
       }
@@ -277,7 +283,8 @@ OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,use
           ProfileId: profileId,
           Email :Email,
           FullName :FirstName+LastName,
-           UserId:userId
+           UserId:userId,
+          
           // status : this.statusid
         }
       }
@@ -662,11 +669,21 @@ GetCandidateDomains(profileId) {
   this._service.GetService('ProfileAPI/api/GetCandidateDomain?profileId=', profileId)
     .subscribe(
       datr => {
-        debugger
         this.CandidateDomain = datr;
       });
 }
 
+
+
+
+GetJobNotes(profileId,jobId)
+{
+  this.jobdetailsservice.GetProfileNotes(profileId,jobId,0)
+    .subscribe(
+      datr7 => {
+        this.CandidateNotes = datr7;
+      });
+}
 
 
 PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0,arytic=0, noofRows = 6) {
@@ -769,6 +786,7 @@ CheckDisplay(val) {
 //   });
 // }
 callSkills(profileId,Val?) {
+  debugger
   // var $card = $('.page--job-details .tab-content .card');
   //   var $detailsBtn = $card.find('.show-matching-details');
   //   $detailsBtn.on('click', function (e) {
@@ -785,13 +803,20 @@ callSkills(profileId,Val?) {
     $('.matching-details').removeClass('open');
     $('#matchingDetailCert-' + profileId).toggleClass('open');
   }
-  else if(Val==1)
+  if(Val==2)
+  {
+    debugger
+    this.GetJobNotes(profileId,this.jobid);
+    $('.matching-details').removeClass('open');
+    $('#matchingDetailNotes-' + profileId).toggleClass('open');
+  }
+ if(Val==1)
   {
     this.GetCandidateDomains(profileId);
     $('.matching-details').removeClass('open');
     $('#matchingDetailDom-' + profileId).toggleClass('open');
   }
-  else
+  if(Val==3)
   {
     var data = this.GetMatchingPercentage(profileId, this.jobid);
     console.log("matchingParameterDetails", this.matchingParameterDetails);
@@ -807,7 +832,7 @@ callSkills(profileId,Val?) {
     });
   }
 
-
+ 
   // $detailsCloseBtn.on('click', function (e) {
   //   e.preventDefault();
   //   $detailsDiv.removeClass('open');
@@ -819,6 +844,7 @@ closeDetails(profileId, type) {
     $('#matchingDetail-' + profileId).removeClass('open');
     $('#matchingDetailCert-' + profileId).removeClass('open');
     $('#matchingDetailDom-' + profileId).removeClass('open');
+    $('#matchingDetailNotes-' + profileId).removeClass('open');
   } else {
     $('#sizzleVideo-' + profileId).removeClass('open');
     $('#profileVideo-' + profileId).removeClass('open');
@@ -1247,4 +1273,14 @@ export class JobStatus
     public JobLocation :string
     public  FromEmail :string
     public JobTitle :string
+}
+
+export class Notes{
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
 }

@@ -125,6 +125,16 @@ export class JobdetailsService {
       );
   }
 
+  GetProfileNotes(profileId: number, jobId: number,cid:number): Observable<string[]> {
+    const url = this.settingsService.settings.GetProfileNotes +
+    '?profileId=' + profileId + '&jobId=' + jobId + '&cid=' + cid;
+    return this.http.get<string[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = this.settingsService.settings.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)
@@ -335,6 +345,14 @@ export class JobdetailsService {
 
   ProfileShareInvite(body) {
     return this.http.post(this.settingsService.settings.ProfileShareInvite, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
+  SaveProfileNote(body) {
+    return this.http.post(this.settingsService.settings.InsertProfileNotesCustomer, body)
     .map((res: Response) => res)
     .catch((error: any) => {
       return Observable.throw(error.json());
