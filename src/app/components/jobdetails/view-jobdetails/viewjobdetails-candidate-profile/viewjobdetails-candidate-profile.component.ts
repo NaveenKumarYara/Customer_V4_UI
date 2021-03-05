@@ -49,7 +49,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewshareddialogueref: MatDialogRef<SharedialogComponent>;
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
-
+  public show_dialog : boolean = false;
 
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
   jobdetailsprofiles = new JobdetailsProfile();
@@ -101,6 +101,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
   mySlideOptions = { items: 1, dots: true, nav: false };
   myCarouselOptions = { items: 3, dots: true, nav: true };
+  hideme=[];
+  
   customOptions: any = {
     loop: true,
     mouseDrag: false,
@@ -135,7 +137,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
   }
 
-
+ toggle() {
+    this.show_dialog = !this.show_dialog;
+}
 
   OpenChatboxDialog() {
     if (this.jobStatus !== 'InActive') {
