@@ -933,7 +933,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li
+                    <!-- <li
                         *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else loc">
                         <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
@@ -942,7 +942,7 @@
                             </svg>
                         </a>
                     </li>
-                    <ng-template #loc>
+                    <ng-template #loc> -->
                         <li>
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
                                 (click)="OpenShareDialog(profile?.FirstName,profile?.JobResponseId,profile?.ProfileId)">
@@ -952,7 +952,7 @@
                                 </svg>
                             </a>
                         </li>
-                    </ng-template>
+                    <!-- </ng-template> -->
                     <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
                     <li>
                         <!--Word doc-->
