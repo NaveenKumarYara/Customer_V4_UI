@@ -43,7 +43,7 @@ export class ReferencedialogComponent {
     this.dateAgo = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 3));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     
-    this.GetQuestionnariePersonsList(0);
+    this.GetQuestionnariePersonsList(5);
   }
   // MatPaginator Inputs
   pageIndex:number = 0;
@@ -181,15 +181,25 @@ getPaginatorData(event){
 
   GetQuestionnariePersonsList(Id) {
     this.checkId=Id;
+    debugger
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {
-        this.usersList = data; 
-         if(this.usersList.length>10)
-         {
-          this.paginator.previousPage();
+        if(data != "No records found")
+        {
+          this.usersList = data; 
+          if(this.usersList.length>10)
+          {
+           this.paginator.previousPage();
+           this.paginator.pageIndex = 0;
+          }
+        }
+        else
+        {
+          this.usersList = []; 
           this.paginator.pageIndex = 0;
-         }
+        }
+  
          
         });
   }

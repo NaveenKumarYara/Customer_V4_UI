@@ -8,9 +8,9 @@
         <div class="row radio-btns">
             <div class="col-md-12">
                 <mat-radio-group>
-                    <mat-radio-button value="0" [checked]="true" (click)="GetQuestionnariePersonsList(0)">Show All</mat-radio-button>
-                    <mat-radio-button value="1" (click)="GetQuestionnariePersonsList(2)">Professional</mat-radio-button>
-                    <mat-radio-button value="2" (click)="GetQuestionnariePersonsList(1)">Personal</mat-radio-button>
+                    <mat-radio-button value="0" [checked]="true" (click)="GetQuestionnariePersonsList(5)">Show All</mat-radio-button>
+                    <mat-radio-button value="1" (click)="GetQuestionnariePersonsList(4)">Professional</mat-radio-button>
+                    <mat-radio-button value="2" (click)="GetQuestionnariePersonsList(3)">Personal</mat-radio-button>
                 </mat-radio-group>
             </div>
         </div>
@@ -61,49 +61,55 @@
                     <p>I'm visible because I am open</p>
                 </mat-expansion-panel> -->
 
-                <mat-expansion-panel *ngFor="let user of usersList | 
-                slice: lowValue : highValue | orderBy:sortingName:isDesc " [disabled]="true"
-                #mep="matExpansionPanel">
-                    <mat-expansion-panel-header *ngIf="user?.IsPublish === true">
-                            <div class="col-md-3">
-                                <h3>{{user?.FullName | titlecase}}</h3>
-                                <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
+                <ng-container *ngIf="usersList.length===0"> 
+                    <span>No References</span>
+                </ng-container>
+                <ng-container *ngIf="usersList.length>0"> 
+                    <mat-expansion-panel *ngFor="let user of usersList | 
+                    slice: lowValue : highValue | orderBy:sortingName:isDesc " [disabled]="true"
+                    #mep="matExpansionPanel">
+                        <mat-expansion-panel-header>
+                                <div class="col-md-3">
+                                    <h3>{{user?.FullName | titlecase}}</h3>
+                                    <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>{{user?.KnownOrWorkedAt}}</h5>
+                                    <h6>{{user?.ReferRelation || 'N/A'}}</h6>
+                                    <!-- <h6>Referrer Role</h6> -->
+                                </div>    
+                                <div class="col-md-2">
+                                <h5>{{user?.ReferenceStatus}}</h5>
                             </div>
-                            <div class="col-md-3">
-                                <h5>{{user?.KnownOrWorkedAt}}</h5>
-                                <h6>{{user?.ReferRelation || 'N/A'}}</h6>
-                                <!-- <h6>Referrer Role</h6> -->
-                            </div>    
-                            <div class="col-md-2">
-                            <h5>{{user?.ReferenceStatus}}</h5>
+                                <div class="col-md-3">
+                                    <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
+                                </div>
+                                <div class="col-md-2 more-info">
+                                    <a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>   
+                                </div>                                 
+                            <!-- <div class="col-md-3">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                <small>Download Report</small>
+                            </div> -->
+                        </mat-expansion-panel-header>
+                        <div class="container" *ngIf="user?.IsPublish === true">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>More Details:</h5>
+                                    <h6>Email: <span>{{user?.RequestedTo || 'N/A'}}</span></h6>
+                                    <h6>Phone: <span>{{user?.PhoneNumber || 'N/A'}}</span></h6>
+                                </div>
+                                <div class="col-md-9">
+                                    <h5>Comments:</h5>
+                                    <h6>{{user?.ResponseValue}}</h6>
+                                </div>
+                            </div>
                         </div>
-                            <div class="col-md-3">
-                                <h5>{{user?.CreatedOn | date : 'longDate'}}</h5>
-                            </div>
-                            <div class="col-md-2 more-info">
-                                <a href="javascript:void(0)" (click)="mep.expanded = !mep.expanded"> More Info</a>   
-                            </div>                                 
-                        <!-- <div class="col-md-3">
-                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                            <small>Download Report</small>
-                        </div> -->
-                    </mat-expansion-panel-header>
-                    <div class="container" *ngIf="user?.IsPublish === true">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>More Details:</h5>
-                                <h6>Email: <span>{{user?.RequestedTo || 'N/A'}}</span></h6>
-                                <h6>Phone: <span>{{user?.PhoneNumber || 'N/A'}}</span></h6>
-                            </div>
-                            <div class="col-md-9">
-                                <h5>Comments:</h5>
-                                <h6>{{user?.ResponseValue}}</h6>
-                            </div>
-                        </div>
-                    </div>
-                  
-                   
-                </mat-expansion-panel>
+                      
+                       
+                    </mat-expansion-panel>
+                </ng-container>
+            
               
             </mat-accordion>
         </div>
