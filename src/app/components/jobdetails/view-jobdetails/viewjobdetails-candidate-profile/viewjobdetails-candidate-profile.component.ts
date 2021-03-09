@@ -280,7 +280,6 @@ OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Mat
 }
 
 OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match,StatusId) {
-  debugger
   if (this.jobStatus !== 'InActive') {
     const senddialogRef = this.dialog.open(sendnotificationdialogComponent,
       {
