@@ -4,6 +4,12 @@
             <h4 mat-dialog-title class="modal-title">
                 Schedule Interview
             </h4>
+            <ng-container *ngIf="matching<=49">
+                <h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.</h6>
+              </ng-container>
+              <ng-container *ngIf="matching>49">
+                <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
+              </ng-container>
             <mat-dialog-content class="mat-typography">
                 <div class="modal-body">
                     <div class="row">
@@ -86,25 +92,85 @@
                                 </div>
                             </div>
                             <div class="form-row row add-new-user">
-                                <div class="form-group col-md-10">
-                                    <label for="team-members">Add Internal Team Members *</label>
-                                    <div class="input-group" style="display: grid;">
-                                        <!-- <input id="team-members" type="text" class="form-control" name="benefits" placeholder="Select"> -->
-                                        <ng-select class="custom-style interview-schedule-popup"
-                                            [items]="customercontacts" name="team" placeholder="Type and Search"
-                                            (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId"
-                                            [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName"
-                                            required name="selectedUserName" [virtualScroll]="true" #TMember="ngModel">
-                                        </ng-select>
-
-                                        <span class="input-group-btn" style="display:none">
-                                            <button type="button" (click)="addTeammembers()"
-                                                class="btn add-btn form-control">+</button>
+                                <div>
+                                    <div class="modal-body">
+                                        <div class="row ">
+                                            <div class="col-md-3 w-auto">
+                                                <label class="radio checkbox">
+                                    <input type="radio" class="radio-input" name="team" (click)="teamchange(false,0)">
+                                    <span class="radio-btn wh-22 ml-0"></span>
+                                    <span>Team Member</span>
+                        
+                                  </label>
+                                            </div>
+                                            <div class="col-md-3 w-auto">
+                                                <label class="radio checkbox">
+                                    <input type="radio" class="radio-input" name="team" [checked]="true"  (click)="teamchange(true,1)">
+                                    <span class="radio-btn wh-22 ml-0"></span>
+                                    <span>Candidate</span>
+                        
+                                  </label>
+                                            </div>
+                                        </div>
+                        
+                        
+                        
+                                       
+                                        <ng-container *ngIf="!AddUser">
+                                            <form action="">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label for="">Add Team Member</label>
+                                                        <div class="input-group">
+                                                            <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
+                                                                [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
+                                                            </ng-select>
+                        
+                                                            <span class="input-group-btn">
+                                          <button class="btn" (click)="addTeammembers()">+</button>
                                         </span>
+                                                            <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                                        </div>
+                                                        <ul class="share_candidate team-members-list">
+                                                            <li *ngFor="let teammember of teammemberslist; let i = index">
+                                                                <div class="w-100">
+                                                                    <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+                                                                    <h4>{{teammember.FirstName}} {{teammember.LastName}} 
+                                                                        <span class="dept">-{{teammember.RoleName}}</span> 
+                                                                    </h4>
+                                                                    <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Notes</label>
+                                                    <textarea type="text" [(ngModel)]="Comment" name="Comments" class="form-control resize-none" placeholder="Please add your Notes *" rows="10"></textarea>
+                                                </div>
+                                            </form>
+                        
+                                        </ng-container>
+                        
+                                        <ng-container *ngIf="AddUser">
+                                            <form action="">
+                                                <div class="form-row">
+                                                    <div class="form-group switch-field">
+                                                 {{checkemail}}
+                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Notes</label>
+                                                    <textarea type="text" [(ngModel)]="Comment" name="Comments" class="form-control resize-none" placeholder="Please add your Notes*" rows="10"></textarea>
+                                                </div>
+                                            </form>
+                        
+                                        </ng-container>
+                        
+                        
                                     </div>
-                                    <span class="text-danger"
-                                        *ngIf="TMember.invalid && TMember.touched">Required.</span>
                                 </div>
                                 <!-- <ul class="team-members-list">
                                     <li *ngFor="let teammember of teammemberslist; let i = index">
@@ -220,239 +286,241 @@
                         </div>
 
 
-                        <div class="col-md-12">
-                            <div class="interview-type">
-                                <!--Condition based Tabs in Comments Starts here-
-                                <ul class="nav nav-tabs">
-                                         /**already commented**/
-                                        <li *ngFor="let type of typeList" > 
-                                                         <a data-toggle="tab" href="javascript:void(0)" > 
-                                                              {{type?.InterviewType}}
-                                                          </a>                                                                                                                         
-                                                  </li> 
-                                                    /**already commented**/
-
-                                                 /**Actual code**/       
-                                         <ng-container *ngFor="let type of typeList">
-                                             <li
-                                                 [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
-                                                 <a data-toggle="tab" href="javascript:void(0)"
-                                                     data-target="{{type?.InterviewType}}">
-                                                    (click)="process(type?.InterviewTypeId,type?.InterviewType)  
-                                                     {{type?.InterviewType}}
-                                                 </a>
-                                                   /**already commented**/
-                                               {{type?.InterviewType}}
-                                                 /**already commented**/
-                                             </li>
-                                         </ng-container>
-                                                 /**Actual code**/  
-     
-                                       /**already commented**/
-                                       <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
-                                         <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li> 
-                                          /**already commented**/
-                                     </ul>
-                                Condition based Tabs in Comments Ends-->
-                                <ul class="nav nav-tabs">
-                                    <!-- <ng-container *ngFor="let type of typeList"> -->
-                                    <!-- <li
-                                            [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
-                                            <a data-toggle="tab" href="javascript:void(0)"
-                                                data-target="{{type?.InterviewType}}"> 
-                                                {{type?.InterviewType}}
-                                            </a>
-                                             
-                                        </li> -->
-                                    <ng-container *ngFor="let type of typeList">
-                                        <li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)"
-                                            [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
-                                            <a data-toggle="tab" href="#{{type?.InterviewType}}"
-                                                (click)="GetId(type?.InterviewTypeId)"
-                                                aria-expanded="true">{{type?.InterviewType}}</a>
-                                        </li>
-                                    </ng-container>
-                                </ul>
-                                <!--Basic Tabs HTML added on 02-04-2019 Starts here-->
-                                <!-- <ul class="nav nav-tabs">
-                                    <li class="active">
-                                        <a data-toggle="tab" href="#In-Person" aria-expanded="true">In Person</a>
-                                    </li>
-                                    <li class="">
-                                        <a data-toggle="tab" href="#Skype" aria-expanded="false">Skype</a>
-                                    </li>
-                                    <li class="">
-                                        <a data-toggle="tab" href="#Webex" aria-expanded="false">Webex</a>
-                                    </li>
-                                    <li class="">
-                                        <a data-toggle="tab" href="#Phone" aria-expanded="false">Phone</a>
-                                    </li>
-                                </ul> -->
-                                <!--Basic Tabs HTML added on 02-04-2019-->
-
-                                <div class="tab-content">
-                                    <!--InPerson-->
-                                    <div id="In-Person" *ngIf="interviewId == 1">
-                                        <!--below functionality is under TODO, so commenting the same 26-03-2020-->
-                                        <!-- <a href="javascript:void(0)" class="tui-tooltip">
-                                            See how much would it cost to you. <span>&#63;</span>
-                                            <div class="tooltip-content">
-                                                <span>54</span>
-                                            </div>
-                                        </a> -->
-                                        <div class="form-group travel-expense-group">
-                                            <label for="" class="question">Do You Provide Travel Expenses for Interview
-                                                ?</label>
-                                            <div class="clearfix">
-                                                <label for="travelExpense-yes" class="radio">
-                                                    <input type="radio" id="travelExpense-yes"
-                                                        [(ngModel)]="travelExpense" name="travelExpense"
-                                                        class="radio-input" value="true">
-                                                    <span class="radio-btn"></span>
-                                                    <span>Yes</span>
-                                                </label>
-                                                <label for="travelExpense-no" class="radio">
-                                                    <input type="radio" id="travelExpense-no"
-                                                        [(ngModel)]="travelExpense" name="travelExpense"
-                                                        class="radio-input" value="false">
-                                                    <span class="radio-btn"></span>
-                                                    <span>No</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Skype-->
-                                    <div id="Skype" *ngIf="interviewId == 3">
-                                        <div class="form-group skype-group">
-                                            <ng-container *ngFor="let option of options">
-                                                <label class="radio">
-                                                    <input class="radio" (click)="getValue(option.id)"
-                                                        [checked]="option.id == selectedOption.id" value={{option.id}}
-                                                        type="radio">
-                                                    <span class="radio-btn"></span>
-                                                    <span class="radio-text">{{option.name}}</span>
-                                                </label>
-                                             
-                                            </ng-container>
-                                            <div class="form-group" *ngIf="selectedOption?.id==1">
-                                                <label for="link">Skype Name</label>
-                                                <input class="form-control" id="link" type="text" [(ngModel)]="skypeId"
-                                                        name="skype">
-                                            </div>
-                                            <div class="row" *ngIf="selectedOption?.id!=1">
-                                                <div class="col-md-6">
-                                                  <label for="">Dial-in number</label>
-                                                  <input type="text" class="form-control" [(ngModel)]="dailInNumber" placeholder="e.g. 852477231">
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <label for="">Meeting ID / Conference Code</label>
-                                                  <input class="form-control" id="link" type="text" placeholder="e.g. 852477231" [(ngModel)]="skypeId"
-                                                        name="skype">
-                                                </div>
-                                              </div>
-                                     
-                                      
-                                        </div>
-                                        <!-- 
-                                        <div class="form-group further-interview-group">
-                                            <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
-                                            <div class="clearfix">
-                                                <div class="radio-btn bordered">
-                                                    <label>
-                            <input type="radio" [(ngModel)]="skypeRI" name="skypeRi1" value="true">
-                            <span class="box">Yes</span>
-                          </label>
-                                                </div>
-                                                <div class="radio-btn bordered">
-                                                    <label>
-                            <input type="radio" [(ngModel)]="skypeRI" name="skypeRi2" value="false">
-                            <span class="box">No</span>
-                          </label>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                    </div>
-                                    <!--WebEx-->
-                                    <div id="WebEX" *ngIf="interviewId == 4">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="">Dial-in number</label>
-                                                <input type="text" [(ngModel)]="dailInNumber" name="PhoneNumber"
-                                                    class="form-control" placeholder="e.g. 852477231">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="">Meeting/Conf. ID</label>
-                                                <input type="text" [(ngModel)]="bridgeUrl" name="bridgeUrl"
-                                                    class="form-control" placeholder="e.g. HGKS2553GV">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-                                        </div>
-                                        <!-- 
-                                        <div class="form-group further-interview-group">
-                                            <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
-                                            <div class="clearfix">
-                                                <div class="radio-btn bordered">
-                                                    <label>
-                            <input type="radio" [(ngModel)]="webxRI" name="webxRI1" value="true">
-                            <span class="box">Yes</span>
-                          </label>
-                                                </div>
-                                                <div class="radio-btn bordered">
-                                                    <label>
-                            <input type="radio" [(ngModel)]="webxRI" name="webxRI2" value="false">
-                            <span class="box">No</span>
-                          </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                         -->
-                                    </div>
-                                    <!--Phone-->
-                                    <div id="Phone" *ngIf="interviewId == 2">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <label for="">Phone Number</label>
-                                                <input type="text" class="form-control" [(ngModel)]="phoneNumber"
-                                                    name="PhoneNumber" placeholder="e.g. 852477231">
-                                            </div>
-                                        </div>
-                                        <div class="clearfix">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="form-group further-interview-group">
-                                    <label for="">Does It Require Further Interview?</label>
-                                    <div class="clearfix">
-                                        <div class="radio-btn bordered">
-                                            <label>
-                                                <input type="radio" [(ngModel)]="furtherInterview"
-                                                    name="furtherInterview" [value]="true">
-                                                <span class="box">Yes</span>
-                                            </label>
-                                        </div>
-                                        <div class="radio-btn bordered">
-                                            <label>
-                                                <input type="radio" [(ngModel)]="furtherInterview"
-                                                    name="furtherInterview" [value]="false">
-                                                <span class="box">No</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="">Notes</label>
-                                <textarea type="text" class="form-control resize-none" [(ngModel)]="Comment" name="comment" placeholder="Please add your Notes" rows="10"></textarea>
-                            </div>
-                        </div>
+                   
 
                       
 
 
                     </div>
+                    <div class="col-md-12">
+                        <div class="interview-type">
+                            <!--Condition based Tabs in Comments Starts here-
+                            <ul class="nav nav-tabs">
+                                     /**already commented**/
+                                    <li *ngFor="let type of typeList" > 
+                                                     <a data-toggle="tab" href="javascript:void(0)" > 
+                                                          {{type?.InterviewType}}
+                                                      </a>                                                                                                                         
+                                              </li> 
+                                                /**already commented**/
+    
+                                             /**Actual code**/       
+                                     <ng-container *ngFor="let type of typeList">
+                                         <li
+                                             [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                             <a data-toggle="tab" href="javascript:void(0)"
+                                                 data-target="{{type?.InterviewType}}">
+                                                (click)="process(type?.InterviewTypeId,type?.InterviewType)  
+                                                 {{type?.InterviewType}}
+                                             </a>
+                                               /**already commented**/
+                                           {{type?.InterviewType}}
+                                             /**already commented**/
+                                         </li>
+                                     </ng-container>
+                                             /**Actual code**/  
+    
+                                   /**already commented**/
+                                   <li><a data-toggle="tab" (click)="process(2)" href="#skype">Skype</a></li>
+                                     <li><a data-toggle="tab" (click)="process(3)" href="#webex">Webex</a></li> 
+                                      /**already commented**/
+                                 </ul>
+                            Condition based Tabs in Comments Ends-->
+                            <ul class="nav nav-tabs">
+                                <!-- <ng-container *ngFor="let type of typeList"> -->
+                                <!-- <li
+                                        [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                        <a data-toggle="tab" href="javascript:void(0)"
+                                            data-target="{{type?.InterviewType}}"> 
+                                            {{type?.InterviewType}}
+                                        </a>
+                                         
+                                    </li> -->
+                                <ng-container *ngFor="let type of typeList">
+                                    <li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)"
+                                        [ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
+                                        <a data-toggle="tab" href="#{{type?.InterviewType}}"
+                                            (click)="GetId(type?.InterviewTypeId)"
+                                            aria-expanded="true">{{type?.InterviewType}}</a>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                            <!--Basic Tabs HTML added on 02-04-2019 Starts here-->
+                            <!-- <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#In-Person" aria-expanded="true">In Person</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#Skype" aria-expanded="false">Skype</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#Webex" aria-expanded="false">Webex</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#Phone" aria-expanded="false">Phone</a>
+                                </li>
+                            </ul> -->
+                            <!--Basic Tabs HTML added on 02-04-2019-->
+    
+                            <div class="tab-content">
+                                <!--InPerson-->
+                                <div id="In-Person" *ngIf="interviewId == 1">
+                                    <!--below functionality is under TODO, so commenting the same 26-03-2020-->
+                                    <!-- <a href="javascript:void(0)" class="tui-tooltip">
+                                        See how much would it cost to you. <span>&#63;</span>
+                                        <div class="tooltip-content">
+                                            <span>54</span>
+                                        </div>
+                                    </a> -->
+                                    <div class="form-group travel-expense-group">
+                                        <label for="" class="question">Do You Provide Travel Expenses for Interview
+                                            ?</label>
+                                        <div class="clearfix">
+                                            <label for="travelExpense-yes" class="radio">
+                                                <input type="radio" id="travelExpense-yes"
+                                                    [(ngModel)]="travelExpense" name="travelExpense"
+                                                    class="radio-input" value="true">
+                                                <span class="radio-btn"></span>
+                                                <span>Yes</span>
+                                            </label>
+                                            <label for="travelExpense-no" class="radio">
+                                                <input type="radio" id="travelExpense-no"
+                                                    [(ngModel)]="travelExpense" name="travelExpense"
+                                                    class="radio-input" value="false">
+                                                <span class="radio-btn"></span>
+                                                <span>No</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Skype-->
+                                <div id="Skype" *ngIf="interviewId == 3">
+                                    <div class="form-group skype-group">
+                                        <ng-container *ngFor="let option of options">
+                                            <label class="radio">
+                                                <input class="radio" (click)="getValue(option.id)"
+                                                    [checked]="option.id == selectedOption.id" value={{option.id}}
+                                                    type="radio">
+                                                <span class="radio-btn"></span>
+                                                <span class="radio-text">{{option.name}}</span>
+                                            </label>
+                                         
+                                        </ng-container>
+                                        <div class="form-group" *ngIf="selectedOption?.id==1">
+                                            <label for="link">Skype Name</label>
+                                            <input class="form-control" id="link" type="text" [(ngModel)]="skypeId"
+                                                    name="skype">
+                                        </div>
+                                        <div class="row" *ngIf="selectedOption?.id!=1">
+                                            <div class="col-md-6">
+                                              <label for="">Dial-in number</label>
+                                              <input type="text" class="form-control" [(ngModel)]="dailInNumber" placeholder="e.g. 852477231">
+                                            </div>
+                                            <div class="col-md-6">
+                                              <label for="">Meeting ID / Conference Code</label>
+                                              <input class="form-control" id="link" type="text" placeholder="e.g. 852477231" [(ngModel)]="skypeId"
+                                                    name="skype">
+                                            </div>
+                                          </div>
+                                 
+                                  
+                                    </div>
+                                    <!-- 
+                                    <div class="form-group further-interview-group">
+                                        <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                                        <div class="clearfix">
+                                            <div class="radio-btn bordered">
+                                                <label>
+                        <input type="radio" [(ngModel)]="skypeRI" name="skypeRi1" value="true">
+                        <span class="box">Yes</span>
+                      </label>
+                                            </div>
+                                            <div class="radio-btn bordered">
+                                                <label>
+                        <input type="radio" [(ngModel)]="skypeRI" name="skypeRi2" value="false">
+                        <span class="box">No</span>
+                      </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+    
+                                </div>
+                                <!--WebEx-->
+                                <div id="WebEX" *ngIf="interviewId == 4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="">Dial-in number</label>
+                                            <input type="text" [(ngModel)]="dailInNumber" name="PhoneNumber"
+                                                class="form-control" placeholder="e.g. 852477231">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="">Meeting/Conf. ID</label>
+                                            <input type="text" [(ngModel)]="bridgeUrl" name="bridgeUrl"
+                                                class="form-control" placeholder="e.g. HGKS2553GV">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+    
+                                    </div>
+                                    <!-- 
+                                    <div class="form-group further-interview-group">
+                                        <label for="">DOES IT REQUIRE FURTHER INTERVIEW?</label>
+                                        <div class="clearfix">
+                                            <div class="radio-btn bordered">
+                                                <label>
+                        <input type="radio" [(ngModel)]="webxRI" name="webxRI1" value="true">
+                        <span class="box">Yes</span>
+                      </label>
+                                            </div>
+                                            <div class="radio-btn bordered">
+                                                <label>
+                        <input type="radio" [(ngModel)]="webxRI" name="webxRI2" value="false">
+                        <span class="box">No</span>
+                      </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     -->
+                                </div>
+                                <!--Phone-->
+                                <div id="Phone" *ngIf="interviewId == 2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="">Phone Number</label>
+                                            <input type="text" class="form-control" [(ngModel)]="phoneNumber"
+                                                name="PhoneNumber" placeholder="e.g. 852477231">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="form-group further-interview-group">
+                                <label for="">Does It Require Further Interview?</label>
+                                <div class="clearfix">
+                                    <div class="radio-btn bordered">
+                                        <label>
+                                            <input type="radio" [(ngModel)]="furtherInterview"
+                                                name="furtherInterview" [value]="true">
+                                            <span class="box">Yes</span>
+                                        </label>
+                                    </div>
+                                    <div class="radio-btn bordered">
+                                        <label>
+                                            <input type="radio" [(ngModel)]="furtherInterview"
+                                                name="furtherInterview" [value]="false">
+                                            <span class="box">No</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
                 </div>
+             
+
+      
+      
             </mat-dialog-content>
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">

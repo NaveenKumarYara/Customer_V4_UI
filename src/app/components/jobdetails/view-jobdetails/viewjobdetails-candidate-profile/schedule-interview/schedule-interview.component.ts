@@ -62,6 +62,8 @@ export class ScheduleInterviewComponent implements OnInit {
   hourStep = 1;
   minuteStep = 1;
   secondStep = 1;
+  checkemail:any;
+  matching:any;
   showadd:boolean=false;
   // typeId: number;
   InterviewDate: any;
@@ -80,7 +82,10 @@ export class ScheduleInterviewComponent implements OnInit {
   teammembers: '';
   teammemberslist: CustomerUsers[];
   typeList: ScheduleType[];
+  savenote = new Notes();
   jobInterview: ScheduleType;
+  AddUser:boolean= true;
+  info:number;
   // addedteammembers: '';
   // addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
@@ -93,6 +98,10 @@ export class ScheduleInterviewComponent implements OnInit {
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
+    this.matching= this.data.Matching;
+    this.AddUser = true;
+    this.info = 1;
+    this.checkemail=this.data.Email;
      // this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     // const current = new Date();
     // config.minDate = { year: current.getFullYear(), month:
@@ -170,13 +179,13 @@ export class ScheduleInterviewComponent implements OnInit {
     this.GetType();
     this.GetCustomerContacts();
     
-    //this.teammemberslist = this.appService.getTeammembers();
-    // this.subscription = this.appService.teammembersChanged
-    //   .subscribe(
-    //   (teammemberlist: CustomerUsers[]) => {
-    //     this.teammemberslist = teammemberlist;
-    //     }
-    //   );
+    this.teammemberslist = this.appService.getTeammembers();
+    this.subscription = this.appService.teammembersChanged
+      .subscribe(
+      (teammemberlist: CustomerUsers[]) => {
+        this.teammemberslist = teammemberlist;
+        }
+      );
 
     $('body').on('change', '#datePickerCert', function () {
       $('#datePickerCert').trigger('click');
@@ -194,16 +203,24 @@ export class ScheduleInterviewComponent implements OnInit {
   // toggleSeconds() {
   //   this.seconds = !this.seconds;
   // }
+
+  
+  teamchange(val,inf)
+  {
+  this.AddUser= val;
+  this.info = inf;
+  }
+
 ScheduleInterview() {
 if(this.schedule.invalid||this.selectedUserName ==0)
 {
     this.toastr.error('Please provide the valid details','Oops')
 }
 if (this.schedule.valid) {
-this.schIntw.UserId = this.data.userId;
+this.schIntw.UserId = null;
 this.schIntw.JobId = this.data.jobId;
 this.schIntw.ProfileId = this.data.ProfileId;
-this.schIntw.JobInterviewId = this.data.userId;
+this.schIntw.JobInterviewId = 0;
 this.schIntw.JobResponseId = this.data.jobResponseId; 
 this.schIntw.InterviewDatevalue =  new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString();// gemerated when sortlisted or applied
 //this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
@@ -253,7 +270,7 @@ this.schIntw.Comments = this.Comment;
 this.schIntw.InterviewingPerson = this.selectedUserName.toString();
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
- 
+    this.SaveNotes(this.Comment);
      }) ;
     } else {
       return false;
@@ -271,6 +288,23 @@ GetId(val)
     this.interviewId = 1;
   }
 
+}
+
+SaveNotes(Comment)
+{
+ this.savenote.ProfileId=this.data.ProfileId;
+ this.savenote.JobId = this.data.jobId;
+ this.savenote.customerUserId = this.userId;
+ this.savenote.isCandidate=true;
+ this.savenote.toUserId=this.data.userId;
+ this.savenote.Comments=Comment;
+ this.savenote.statusId = 7;
+
+ this.jobdetailsservice.SaveProfileNote(this.savenote)
+ .subscribe(
+ status => {
+ }                
+ );
 }
 
 
@@ -502,4 +536,15 @@ export class JobInterviewStatus
     public Date :string
     public  FromEmail :string
     public JobTitle :string
+}
+
+
+export class Notes{
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
 }

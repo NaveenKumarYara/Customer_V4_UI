@@ -223,6 +223,7 @@ SaveNotes(Comment)
     this.schIntw.RequiredFurtherInterview = null;
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
+    debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
         this.PopulateJobdetail();      
         this.SaveNotes(this.selectedComments)

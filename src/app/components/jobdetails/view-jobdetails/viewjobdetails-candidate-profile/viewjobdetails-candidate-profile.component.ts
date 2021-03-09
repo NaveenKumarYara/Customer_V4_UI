@@ -440,7 +440,7 @@ OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   }
 }
 
-OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,LastName) {
+OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,LastName,match) {
   debugger
   // var candidateUserId = $("#candidateUserId").val();
   // var candidateId = +candidateUserId;
@@ -455,7 +455,8 @@ OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,Las
         ProfileId: profileId,
         userId: userId,
         Email :Email,
-        FullName :FirstName+LastName
+        FullName :FirstName+LastName,
+        Matching:match
         // status : this.statusid
       }
     }
