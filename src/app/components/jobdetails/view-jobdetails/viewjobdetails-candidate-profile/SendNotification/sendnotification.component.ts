@@ -99,6 +99,10 @@ export class sendnotificationdialogComponent {
     {
       this.PStatus = 'Uploaded';
     }
+    if(this.data.StatusId===14)
+    {
+      this.PStatus = 'Waiting For Response';
+    }
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
