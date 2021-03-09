@@ -1167,50 +1167,199 @@
         </div>
 
         <!--Notes Overlay-->
-        <div class="matching-details bg-fff" id="matchingDetailNotes-{{profile.ProfileId}}">
-            <a _ngcontent-c21="" class="close" href="javascript:void(0)"  (click)="closeDetails(profile.ProfileId,1)">×</a>
+        
+
+        <div class="matching-details bg-fff  activities__box"  id="matchingDetailNotes-{{profile.ProfileId}}">
+            <a _ngcontent-c21="" class="close" href="javascript:void(0)" (click)="closeDetails(profile.ProfileId,1)">×</a>
             <div class="top__container flex flex-align-center">
                 <h2>Activities & Notes</h2>
-                <button class="btn btn-primary btn-sm pull-right" (click)="OpenSendNotificationDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage,profile?.ResponseStatusId)">Add New</button>
+                <button class="btn btn-primary btn-sm" (click)="OpenSendNotificationDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage,profile?.ResponseStatusId)">Add New</button>
             </div>
-           
-        	<div class="middle__container">
+            <div class="middle__container">
                 <div id="accordion">
                     <ng-container *ngIf="CandidateNotes.length>0">
                         <ng-container *ngFor="let pn of CandidateNotes;let i = index">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0" >
-                                        <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
-                                            <i class="fa fa-send-o"></i>
-                                            <!-- <span class="icon icon-Menu"></span> -->
-                                           
-                                            
-                                            <span>{{customer?.FirstName | titlecase}} {{customer?.LastName| titlecase}} Changed to   {{pn?.ReferralStatus}}</span>
-                                        </button>
-                                        <div class="time">On {{pn.CreatedOn|date:'mediumDate'}}</div>
-                                    </h5>
-                                </div>
-        
-                                <div [hidden]="hideme[i]">
-                                    <div class="card-body">
-                                        <ng-container *ngIf="pn.CustomerComment!=null">
-                                            {{pn?.CustomerComment | titlecase}}-{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
-                                        </ng-container>
-                                        <ng-container *ngIf="pn.CustomerComment===null">
-                                            No Notes added-{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
-                                        </ng-container>
-                                    </div>
-                                </div>
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Menu"></span>
+                                    {{pn?.ReferralStatus}}
+                                    <span> By {{customer?.FirstName | titlecase}} {{customer?.LastName| titlecase}}</span>
+                                </button>
+                                <div class="time">{{pn.CreatedOn|date:'mediumDate'}}</div>
+                            </h5>
+                        </div>
+
+                        <div 
+                        [hidden]="hideme[i]">
+                            <div class="card-body">
+                                <ng-container *ngIf="pn.CustomerComment!=null">
+                                    {{pn?.CustomerComment | titlecase}}-{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
+                                </ng-container>
+                                <ng-container *ngIf="pn.CustomerComment===null">
+                                    Notes Not Added -{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
+                                </ng-container>
                             </div>
-                        </ng-container>
+                        </div>
+                    </div>
+                    <!-- <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Agenda"></span>
+                                    Meet the office team
+                                    <span>you have an upcoming event</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="true" aria-controls="collapseThree">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Mail"></span>
+                                    Investor packet
+                                    <span>you emailed Andrea Creel</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour"
+                                    aria-expanded="true" aria-controls="collapseFour">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Phone2"></span>
+                                    Internal Call
+                                    <span>you logged a call</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFive">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive"
+                                    aria-expanded="true" aria-controls="collapseFive">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Menu icon-dark"></span>
+                                    Invite to coroporate road show
+                                    <span>you have an upcoming task</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingSix">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix"
+                                    aria-expanded="true" aria-controls="collapseSix">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Agenda icon-dark"></span>
+                                    Meet the office team
+                                    <span>you have an upcoming event</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingSeven">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven"
+                                    aria-expanded="true" aria-controls="collapseSeven">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Mail icon-dark"></span>
+                                    Investor packet
+                                    <span>you emailed Andrea Creel</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingEight">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseEight"
+                                    aria-expanded="true" aria-controls="collapseEight">
+                                    <i class="fa fa-chevron-down"></i>
+                                    <span class="icon icon-Phone2 icon-dark"></span>
+                                    Internal Call
+                                    <span>you logged a call</span>
+                                </button>
+                                <div class="time">2h</div>
+                            </h5>
+                        </div>
+
+                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consecte tempor
+                                incididunt ut labore et dolore , quis nostrud.
+                            </div>
+                        </div>
+                    </div> -->
                     </ng-container>
-                    <ng-container *ngIf="CandidateNotes.length===0">
-                        <h5 class="mb-0" >You haven't started any conversation</h5>
                     </ng-container>
-                  
-                 
-                 
                 </div>
             </div>
         </div>
