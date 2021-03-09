@@ -1,7 +1,10 @@
 <div class="page page--job-details">
     <div>
         <h4 mat-dialog-title class="modal-title text-center">
-          Send Notification
+          Send Note <i class="fa fa-send-o"></i>
+          <ng-container>
+           <h5  class="status {{PStatus}}">  {{PStatus}}.</h5>
+          </ng-container>
         </h4>
         <ng-container *ngIf="matching<=49">
             <h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.</h6>
@@ -9,6 +12,7 @@
           <ng-container *ngIf="matching>49">
             <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
           </ng-container>
+        
         <mat-dialog-content class="mat-typography modal-dialog h-auto">
             <div>
                 <div class="modal-body">
@@ -53,7 +57,7 @@
                                         <li *ngFor="let teammember of teammemberslist; let i = index">
                                             <div class="w-100">
                                                 <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                                                <h4>{{teammember.FirstName}} {{teammember.LastName}} 
+                                                <h4 class="card-body">{{teammember.FirstName}} {{teammember.LastName}} 
                                                     <span class="dept">-{{teammember.RoleName}}</span> 
                                                 </h4>
                                                 <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
@@ -73,10 +77,10 @@
                     <ng-container *ngIf="AddUser">
                         <form action="">
                             <div class="form-row">
-                                <div class="form-group switch-field">
+                                <label>
                              {{checkemail}}
 
-                                </div>
+                            </label>
                             </div>
                             <div class="form-group">
                                 <label for="">Notes</label>
@@ -93,7 +97,7 @@
         <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
             <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="ShareProfile()" class="btn btn-filled">Send</button>
+            <button mat-button (click)="SaveNotes()" class="btn btn-filled">Send</button>
 
         </mat-dialog-actions>
     </div>

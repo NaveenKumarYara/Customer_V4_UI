@@ -41,6 +41,7 @@ export class sendnotificationdialogComponent {
   info:number;
   EmailId:any = null;
   Name:any = null;
+  PStatus:any;
   usersloading: boolean;
   customerUser: number;
   selectedUserName :number;
@@ -63,8 +64,41 @@ export class sendnotificationdialogComponent {
     this.AddUser = false;
     this.info = 0;
     this.checkemail=this.data.Email;
+    debugger
     //this.GetInterView();
     //this.GetType();
+    if(this.data.StatusId===4)
+    {
+      this.PStatus = 'Applied';
+    }
+    if(this.data.StatusId===5)
+    {
+      this.PStatus = 'ShortListed';
+    }
+    if(this.data.StatusId==6)
+    {
+      this.PStatus = 'Rejected';
+    }
+    if(this.data.StatusId===7)
+    {
+      this.PStatus = 'Scheduled Interview';
+    }
+    if(this.data.StatusId===8)
+    {
+      this.PStatus = 'Screening';
+    }
+    if(this.data.StatusId===9)
+    {
+      this.PStatus = 'WithDrawn';
+    }
+    if(this.data.StatusId===11)
+    {
+      this.PStatus = 'Hire';
+    }
+    if(this.data.StatusId===13)
+    {
+      this.PStatus = 'Uploaded';
+    }
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
@@ -155,18 +189,31 @@ getcustomerusers()
  });
  }
 
- SaveNotes(Comment)
+ SaveNotes()
 {
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.userId;
  this.savenote.isCandidate=true;
  this.savenote.toUserId=this.data.CUserId;
- this.savenote.Comments=Comment;
+ this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
+  this.teammemberslist = [];
+  $('#teamMbr').val('');
+  //this.selectedUserName = ''
+  this.getTeammember = new CustomerUsers();
+  this.clearTeamMemebers();
+  this.selectedComments = "";
+  this.EmailId = " ";
+  this.toastr.success('Sent successfully', 'Success');
+  setTimeout(() => {
+   this.toastr.dismissToast;
+   //this.SaveNotes(this.selectedComments);
+   this.dialogRef.close();
+  }, 3000);   
  }                
  );
 }
@@ -255,7 +302,7 @@ getcustomerusers()
     this.toastr.success('Sent successfully', 'Success');
     setTimeout(() => {
      this.toastr.dismissToast;
-     this.SaveNotes(this.selectedComments);
+     //this.SaveNotes(this.selectedComments);
      this.dialogRef.close();
     }, 3000);      
      }
