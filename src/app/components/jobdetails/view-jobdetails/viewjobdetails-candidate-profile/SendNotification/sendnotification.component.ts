@@ -101,7 +101,7 @@ export class sendnotificationdialogComponent {
     }
     if(this.data.StatusId===14)
     {
-      this.PStatus = 'Waiting For Response';
+      this.PStatus = 'Waiting for response';
     }
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
