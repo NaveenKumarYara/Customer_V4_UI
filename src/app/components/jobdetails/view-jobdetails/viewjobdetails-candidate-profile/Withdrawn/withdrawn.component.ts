@@ -1,11 +1,18 @@
-import { Component, Inject, Input, Output, EventEmitter,ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, Output, EventEmitter,ViewContainerRef, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { AppService } from '../../../../../app.service';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
+import {CustomerContacts} from '../../../../../../models/customercontacts';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
+declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -13,21 +20,46 @@ export interface DialogData {
   selector: 'app-WithDrawndialog',
   templateUrl: './withdrawn.component.html'
 })
-export class WithDrawndialogComponent {
+export class WithDrawndialogComponent implements OnInit {
   customerId: any;
   userId: any;
   Comment: string;
   customer: any;
+  loading = false;
+  loginstyle(): void {
+    this.loading = true;
+  }
+  checkemail:any;
+  matching:any;
+  managersList: Observable<CustomerUsers[]>;
+  teammembers: '';
+  GetContactsList : contactInfo[];
+  customercontacts : CustomerContacts[];
+   teammemberslist: CustomerUsers[];
+   getTeammember: CustomerUsers;
+   AddUser:boolean= true;
   status= new JobStatus();
+  savenote = new Notes();
   schIntw = new ScheduleInterview();
   jobdetailscustomer = new  GetJobDetailCustomer();
  @Input() jobid: number;
  @Input() statusid: number;
  @Output() eventStat = new EventEmitter();
+ info:number;
+ EmailId:any = null;
+ Name:any = null;
+ usersloading: boolean;
+ customerUser: number;
+ selectedUserName :number;
+ selectedComments:any;
+ private subscription: Subscription;
+ selectedUserInput = new Subject<string>();
   constructor(public dialogRef: MatDialogRef<WithDrawndialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService,private appService: AppService,private settingsService: SettingsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
+      this.checkemail=this.data.Email;
+      this.matching= this.data.Matching;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
       this.toastr.setRootViewContainerRef(_vcr);
    }
@@ -40,9 +72,97 @@ export class WithDrawndialogComponent {
   
   }
 
+  ngOnInit() {
+    this.GetContacts();
+    this.clearTeamMemebers();
+    this.getcustomerusers();
+    this.matching= this.data.Matching;
+    this.AddUser = true;
+    this.info = 1;
+    this.checkemail=this.data.Email;
+    //this.GetInterView();
+    //this.GetType();
+    this.teammemberslist = this.appService.getTeammembers();
+    this.subscription = this.appService.teammembersChanged
+      .subscribe(
+      (teammemberlist: CustomerUsers[]) => {
+        this.teammemberslist = teammemberlist;
+        }
+      );
+  }
+
+onItemDeleted(index){ 
+    this.GetContactsList.splice(index, 1); 
+}
+
+  // DeleteContactInfo(Id)
+  // {
+  //   return this.appService.DeleteShareContactInfo(Id).subscribe(res => {
+  //     if(res == 0)
+  //     {
+  //       this.GetContacts();
+  //     }    
+  //   });
+  // }
+
+  GetContacts()
+  {
+    return this.appService.GetContactInfo(this.customerId,0).subscribe(res => {
+      this.GetContactsList = res;
+    });
+  }
+
+  teamchange(val,inf)
+  {
+  this.AddUser= val;
+  this.info = inf;
+  }
+
+  getcustomerusers()
+ {
+   return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+     this.customercontacts = res;
+     this.customercontacts = this.customercontacts.filter(
+       name=> name.FirstName !="Invited");
+ });
+ }
+
+  
+  changeTeam(val) {
+    this.getTeammember = val;
+  }
+
+  clearTeamMemebers() {
+    for (let i = 0; i <= 10; i++) {
+      const index = i;
+      this.appService.deleteTeammember(index);
+    }
+    this.deleteTeammember(0);
+   }
+  public addTeammembers() {
+    // const newDomain = new CustomerUsers();
+    // newDomain.FirstName = this.selectedUserName;
+    if (this.getTeammember !== undefined) {
+    const check = this.teamExists(this.getTeammember, this.teammemberslist);
+    if (check === false) {
+    this.appService.addTeammember(this.getTeammember);
+    }
+     // this.selectedUserName = '';
+     $('#teamMbr').val('');
+  }
+  }
+  private deleteTeammember(index: number) {
+    this.appService.deleteTeammember(index);
+  }
+  teamExists(team, list)
+   {
+    return list.some(function(elem) {
+         return elem.UserId === team.UserId;
+    });
+ }
+
    SendStatusEmail()
    {
-
      this.status.AppLink = this.settingsService.settings.CandidateLogin;
      this.status.JobStatus = 'WithDrawn';
      this.status.FromEmail = this.customer.Email;
@@ -50,6 +170,7 @@ export class WithDrawndialogComponent {
      this.status.FullName = this.data.FullName;
      this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
      this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
+
      this.appService.SendJobStatus(this.status)
      .subscribe(
      status => {
@@ -65,6 +186,22 @@ export class WithDrawndialogComponent {
      );
    }
 
+SaveNotes(Comment)
+{
+ this.savenote.ProfileId=this.data.ProfileId;
+ this.savenote.JobId = this.data.jobId;
+ this.savenote.customerUserId = this.userId;
+ this.savenote.isCandidate=true;
+ this.savenote.toUserId=this.data.CUserId;
+ this.savenote.Comments=Comment;
+ this.savenote.statusId = 9;
+ this.jobdetailsservice.SaveProfileNote(this.savenote)
+ .subscribe(
+ status => {
+ }                
+ );
+}
+
   Reject() {
     this.schIntw.UserId = null;
     this.schIntw.JobId = this.data.jobId;
@@ -78,7 +215,7 @@ export class WithDrawndialogComponent {
     this.schIntw.BridgeUrl = null;
     this.schIntw.AccessId = null;
     this.schIntw.SkypeId = null;
-    this.schIntw.Comments = this.Comment;
+    this.schIntw.Comments = this.selectedComments;
     this.schIntw.ResponseStatusId =9; // what stage it is..hired...
     this.schIntw.IsActive = null;
     this.schIntw.Rating = null;
@@ -87,7 +224,7 @@ export class WithDrawndialogComponent {
     this.schIntw.InterviewingPerson = null;
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
         this.PopulateJobdetail();      
-       
+        this.SaveNotes(this.selectedComments)
       console.log(res);
       }) ;
     }
@@ -103,4 +240,23 @@ export class JobStatus
     public JobLocation :string
     public  FromEmail :string
     public JobTitle :string
+}
+
+export class Notes{
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
+}
+
+export class contactInfo
+{
+  Infoid :number;
+  CustomerId: number;
+  UserId: number;
+  Fullname: string;
+  EmailId: string;
 }

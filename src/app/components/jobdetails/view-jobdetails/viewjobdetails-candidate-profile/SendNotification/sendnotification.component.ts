@@ -28,6 +28,7 @@ export class sendnotificationdialogComponent {
  GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
+  savenote = new Notes();
   getTeammember: CustomerUsers;
   profileSharing= new ProfileShare();
   customer: any;
@@ -151,6 +152,22 @@ getcustomerusers()
  });
  }
 
+ SaveNotes(Comment)
+{
+ this.savenote.ProfileId=this.data.ProfileId;
+ this.savenote.JobId = this.data.jobId;
+ this.savenote.customerUserId = this.userId;
+ this.savenote.isCandidate=true;
+ this.savenote.toUserId=this.data.CUserId;
+ this.savenote.Comments=Comment;
+ this.savenote.statusId = this.data.StatusId;
+ this.jobdetailsservice.SaveProfileNote(this.savenote)
+ .subscribe(
+ status => {
+ }                
+ );
+}
+
 
   changeTeam(val) {
     this.getTeammember = val;
@@ -199,7 +216,7 @@ getcustomerusers()
    {
     this.profileSharing.InviteFriendId = 0;
     this.profileSharing.FromuserId = this.customerUser;
-    this.profileSharing.ToUserId = this.data.UserId;
+    this.profileSharing.ToUserId = this.data.CUserId;
     this.profileSharing.ToEmailId = this.data.Email;
     this.profileSharing.ApplicationName = 'Arytic';
     this.profileSharing.AppLink = this.settingsService.settings.CandidateAppLogin;
@@ -235,6 +252,7 @@ getcustomerusers()
     this.toastr.success('Sent successfully', 'Success');
     setTimeout(() => {
      this.toastr.dismissToast;
+     this.SaveNotes(this.selectedComments);
      this.dialogRef.close();
     }, 3000);      
      }
@@ -267,4 +285,14 @@ export class contactInfo
   UserId: number;
   Fullname: string;
   EmailId: string;
+}
+
+export class Notes{
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
 }

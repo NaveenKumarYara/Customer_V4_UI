@@ -102,7 +102,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   mySlideOptions = { items: 1, dots: true, nav: false };
   myCarouselOptions = { items: 3, dots: true, nav: true };
   hideme=[];
-  
+
   customOptions: any = {
     loop: true,
     mouseDrag: false,
@@ -254,7 +254,7 @@ OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,M
   }
 }
 
-OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   if (this.jobStatus !== 'InActive') {
     const shortdialogRef = this.dialog.open(WithDrawndialogComponent,
       {
@@ -264,7 +264,9 @@ OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName) {
           jobId: this.jobid,
           ProfileId: profileId,
           Email :Email,
-          FullName :FirstName+LastName
+          FullName :FirstName+LastName,
+          CUserId:userId,
+          Matching:Match
           // status : this.statusid
         }
       }
@@ -276,7 +278,7 @@ OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName) {
   }
 }
 
-OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,userId) {
+OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match,StatusId) {
   if (this.jobStatus !== 'InActive') {
     const senddialogRef = this.dialog.open(sendnotificationdialogComponent,
       {
@@ -287,8 +289,9 @@ OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,use
           ProfileId: profileId,
           Email :Email,
           FullName :FirstName+LastName,
-           UserId:userId,
-          
+           CUserId:userId,
+           Matching:Match,
+           StatusId:StatusId
           // status : this.statusid
         }
       }
@@ -300,7 +303,7 @@ OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,use
 }
 
 
-OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   if (this.jobStatus !== 'InActive') {
     const rejectdialogRef = this.dialog.open(RejectdialogComponent,
       {
@@ -310,7 +313,9 @@ OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName) {
           jobId: this.jobid,
           ProfileId: profileId,
           Email :Email,
-          FullName :FirstName+LastName
+          FullName :FirstName+LastName,
+          CUserId:userId,
+          Matching:Match
           // status : this.statusid
         }
       }

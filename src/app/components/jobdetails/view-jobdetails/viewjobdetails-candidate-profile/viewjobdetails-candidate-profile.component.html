@@ -1042,7 +1042,7 @@
                                 </ng-container>
                                 <!-- <li role="presentation" class="divider"></li> -->
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage)">
                                         <p class="p6">Not Interested</p>
                                     </a></li>
                                 <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
@@ -1060,7 +1060,7 @@
                                 </ng-container>
                                 <!-- <li role="presentation" class="divider"></li> -->
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage)">
                                         <p class="p6">Not Interested</p>
                                     </a></li>
                             </div>
@@ -1074,14 +1074,14 @@
                                     </ng-container>
                                 <!-- <li role="presentation" class="divider"></li> -->
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage)">
                                         <p class="p6">Not Interested</p>
                                     </a></li>
                             </div>
                             <!-- hired -->
                             <div *ngIf="profile?.ResponseStatusId == 11">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="OpenWithdrawnDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenWithdrawnDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage)">
                                         <p class="p6">WithDrawn</p>
                                     </a></li>
                             </div>
@@ -1171,7 +1171,7 @@
             <a _ngcontent-c21="" class="close" href="javascript:void(0)"  (click)="closeDetails(profile.ProfileId,1)">×</a>
             <div class="top__container flex flex-align-center">
                 <h2>Activities & Notes</h2>
-                <button class="btn btn-primary btn-sm pull-right" (click)="OpenSendNotificationDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId)">Add New</button>
+                <button class="btn btn-primary btn-sm pull-right" (click)="OpenSendNotificationDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage,profile?.ResponseStatusId)">Add New</button>
             </div>
            
         	<div class="middle__container">
