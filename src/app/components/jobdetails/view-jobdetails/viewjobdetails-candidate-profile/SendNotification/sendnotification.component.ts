@@ -36,6 +36,7 @@ export class sendnotificationdialogComponent {
   customerId: number;
   UserId:any;
   checkemail:any;
+  matching:any;
   SaveInfo = new contactInfo();
   info:number;
   EmailId:any = null;
@@ -51,6 +52,8 @@ export class sendnotificationdialogComponent {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
+    this.matching= this.data.Matching;
+    this.checkemail=this.data.Email;
   }
  
   ngOnInit() {

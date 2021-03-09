@@ -3,6 +3,12 @@
         <h4 mat-dialog-title class="modal-title text-center">
           Send Notification
         </h4>
+        <ng-container *ngIf="matching<=49">
+            <h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.</h6>
+          </ng-container>
+          <ng-container *ngIf="matching>49">
+            <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
+          </ng-container>
         <mat-dialog-content class="mat-typography modal-dialog h-auto">
             <div>
                 <div class="modal-body">
@@ -47,8 +53,8 @@
                                         <li *ngFor="let teammember of teammemberslist; let i = index">
                                             <div class="w-100">
                                                 <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                                                <h4>{{teammember.FirstName}}
-                                                    <!-- <span class="dept">{{teammember.RoleName}}</span> -->
+                                                <h4>{{teammember.FirstName}} {{teammember.LastName}} 
+                                                    <span class="dept">-{{teammember.RoleName}}</span> 
                                                 </h4>
                                                 <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                             </div>

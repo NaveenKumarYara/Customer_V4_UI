@@ -1068,7 +1068,7 @@
                             <div *ngIf="profile?.ResponseStatusId == 7">
                                 <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=4&&customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
                                 <li role="presentation"><a role="menuitem" href="javascript:void(0)"
-                                        (click)="OpenHireDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName)">
+                                        (click)="OpenHireDialog(profile?.JobResponseId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.UserId,profile?.MatchingPercentage)">
                                         <p class="p6">Hire</p>
                                     </a></li>
                                     </ng-container>

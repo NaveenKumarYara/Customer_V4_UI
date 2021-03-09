@@ -231,6 +231,7 @@ OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Mat
 }
 
 OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
+debugger
   if (this.jobStatus !== 'InActive') {
     const shortdialogRef = this.dialog.open(shortlisteddialogComponent,
       {
@@ -413,7 +414,7 @@ OpenBgDialog(profileId,name,userId,lName)
   });
 }
 
-OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName) {
+OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
   if (this.jobStatus !== 'InActive') {
     const hiredialogRef = this.dialog.open(HiredialogComponent,
       {
@@ -424,7 +425,9 @@ OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName) {
           jobId: this.jobid,
           ProfileId: profileId,
           Email :Email,
-          FullName :FirstName+LastName
+          FullName :FirstName+LastName,
+          CUserId:userId,
+          Matching:Match
           // status : this.statusid
         }
       }
@@ -438,6 +441,7 @@ OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName) {
 }
 
 OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,LastName) {
+  debugger
   // var candidateUserId = $("#candidateUserId").val();
   // var candidateId = +candidateUserId;
   const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,

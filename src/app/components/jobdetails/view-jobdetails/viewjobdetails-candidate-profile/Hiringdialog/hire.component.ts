@@ -9,6 +9,12 @@ import { ApiService } from '../../../../../shared/services/api.service/api.servi
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
+import {CustomerContacts} from '../../../../../../models/customercontacts';
+import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -24,6 +30,7 @@ export class HiredialogComponent {
   employmenttypelist: any;
   employmentTypeId: number;
   contractdurationlist:any;
+  savenote = new Notes();
   Comment: string;
   customer: any;
   salaryDetails:any;
@@ -31,9 +38,21 @@ export class HiredialogComponent {
   valueSal:number;
   status= new JobStatus();
   IDate:any;
+  info:number;
+  managersList: Observable<CustomerUsers[]>;
+  teammembers: '';
+  GetContactsList : contactInfo[];
+  customercontacts : CustomerContacts[];
+   teammemberslist: CustomerUsers[];
+   getTeammember: CustomerUsers;
+   AddUser:boolean= true;
   jobdetailscustomer = new  GetJobDetailCustomer();
   contract:string;
   TypeId:any;
+  checkemail:any;
+  matching:any;
+  selectedUserInput = new Subject<string>();
+  private subscription: Subscription;
   schIntw = new ScheduleInterview();
  @Input() jobid: number;
  @Input() statusid: number;
@@ -47,17 +66,37 @@ export class HiredialogComponent {
       this.GetSalarayDetails();
       this.populateEmploymentType();
       this.populateContractduration();
+      this.GetContacts();
+      this.clearTeamMemebers();
+      this.getcustomerusers();
+      this.matching= this.data.Matching;
+      this.AddUser = true;
+      this.info = 1;
+      this.checkemail=this.data.Email;
    }
 
    ngOnInit()
    {
+
+ 
+    //this.GetInterView();
+    //this.GetType();
+    this.teammemberslist = this.appService.getTeammembers();
+    this.subscription = this.appService.teammembersChanged
+      .subscribe(
+      (teammemberlist: CustomerUsers[]) => {
+        this.teammemberslist = teammemberlist;
+        }
+      );
     $('body').on('change', '#datePickerCert', function () {
         $('#datePickerCert').trigger('click');
       });
       $('.datepicker').datepicker({ minDate: new Date() });
      
-    
+     
    }
+
+   
 
    populateEmploymentType() {
     this.appService.getEmploymentType().subscribe(res => {
@@ -198,6 +237,98 @@ gotit(na) {
                      
      );
    }
+
+   
+   onItemDeleted(index){ 
+    this.GetContactsList.splice(index, 1); 
+}
+
+  // DeleteContactInfo(Id)
+  // {
+  //   return this.appService.DeleteShareContactInfo(Id).subscribe(res => {
+  //     if(res == 0)
+  //     {
+  //       this.GetContacts();
+  //     }    
+  //   });
+  // }
+
+  GetContacts()
+  {
+    return this.appService.GetContactInfo(this.customerId,0).subscribe(res => {
+      this.GetContactsList = res;
+    });
+  }
+
+  teamchange(val,inf)
+  {
+  this.AddUser= val;
+  this.info = inf;
+  }
+
+  getcustomerusers()
+ {
+   return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+     this.customercontacts = res;
+     this.customercontacts = this.customercontacts.filter(
+       name=> name.FirstName !="Invited");
+ });
+ }
+
+  
+  changeTeam(val) {
+    this.getTeammember = val;
+  }
+
+  clearTeamMemebers() {
+    for (let i = 0; i <= 10; i++) {
+      const index = i;
+      this.appService.deleteTeammember(index);
+    }
+    this.deleteTeammember(0);
+   }
+  public addTeammembers() {
+    debugger
+    // const newDomain = new CustomerUsers();
+    // newDomain.FirstName = this.selectedUserName;
+    if (this.getTeammember !== undefined) {
+    const check = this.teamExists(this.getTeammember, this.teammemberslist);
+    if (check === false) {
+    this.appService.addTeammember(this.getTeammember);
+    }
+     // this.selectedUserName = '';
+     $('#teamMbr').val('');
+  }
+  }
+  private deleteTeammember(index: number) {
+    this.appService.deleteTeammember(index);
+  }
+  teamExists(team, list)
+   {
+    return list.some(function(elem) {
+      debugger
+         return elem.UserId === team.UserId;
+    });
+ }
+
+ 
+   
+
+   SaveNotes(Comment)
+{
+ this.savenote.ProfileId=this.data.ProfileId;
+ this.savenote.JobId = this.data.jobId;
+ this.savenote.customerUserId = this.userId;
+ this.savenote.isCandidate=true;
+ this.savenote.toUserId=this.data.CUserId;
+ this.savenote.Comments=Comment;
+ this.savenote.statusId = 11;
+ this.jobdetailsservice.SaveProfileNote(this.savenote)
+ .subscribe(
+ status => {
+ }                
+ );
+}
    
 
   Hire() {
@@ -227,7 +358,7 @@ gotit(na) {
     this.schIntw.BridgeUrl = null;
     this.schIntw.AccessId = null;
     this.schIntw.SkypeId = null;
-    this.schIntw.Comments = null;
+    this.schIntw.Comments = this.Comment;
     this.schIntw.ResponseStatusId = 11; // what stage it is..hired...
     this.schIntw.IsActive = null;
     this.schIntw.Rating = null;
@@ -238,6 +369,7 @@ gotit(na) {
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.Check();
       this.PopulateJobdetail();
+      this.SaveNotes(this.Comment);
       this.toastr.success('Email Sent','Success');
       setTimeout(() => {          
           this.toastr.dismissToast; 
@@ -258,6 +390,16 @@ export class addon
     AddonQuantity:number;
 }
 
+export class Notes{
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
+}
+
 export class JobStatus
 {
     public FullName :string
@@ -268,4 +410,14 @@ export class JobStatus
     public  FromEmail :string
     public JobTitle :string
 }
+
+export class contactInfo
+{
+  Infoid :number;
+  CustomerId: number;
+  UserId: number;
+  Fullname: string;
+  EmailId: string;
+}
+
 
