@@ -525,7 +525,8 @@
             <mat-dialog-actions>
                 <div class="modal-footer pull-right">
                     <button mat-button mat-dialog-close class="btn btn-border" data-dismiss="modal">Cancel</button>
-                    <button mat-button type="submit" (click)="ScheduleInterview()" c000dkFocusInitial
+                    <button mat-button type="submit" (click)="ScheduleInterview()" [class.spinner]="loading"
+                    (click)="loginstyle()" c000dkFocusInitial
                         class="btn btn-filled">
                         <!-- [mat-dialog-close]="true" -->
                         Schedule Interview</button>

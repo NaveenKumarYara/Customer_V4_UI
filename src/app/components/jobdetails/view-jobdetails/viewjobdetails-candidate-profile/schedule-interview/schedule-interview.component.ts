@@ -44,6 +44,10 @@ export class ScheduleInterviewComponent implements OnInit {
   status = new JobInterviewStatus();
  @Output() eventStat = new EventEmitter();
  jobdetailscustomer = new  GetJobDetailCustomer();
+ loading = false;
+ loginstyle(): void {
+   this.loading = true;
+ }
   webxRI: boolean;
   skypeId: string;
   Addform: FormGroup;

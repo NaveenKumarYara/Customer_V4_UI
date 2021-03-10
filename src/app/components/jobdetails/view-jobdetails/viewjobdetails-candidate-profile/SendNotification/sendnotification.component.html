@@ -97,7 +97,8 @@
         <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
             <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="SaveNotes()" class="btn btn-filled">Send</button>
+            <button mat-button (click)="SaveNotes()" [class.spinner]="loading"
+            (click)="loginstyle()"  class="btn btn-filled">Send</button>
 
         </mat-dialog-actions>
     </div>

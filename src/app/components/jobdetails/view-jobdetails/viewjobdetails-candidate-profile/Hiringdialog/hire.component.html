@@ -150,7 +150,8 @@
 
     <mat-dialog-actions class="modal-footer pull-right">
         <button mat-button mat-dialog-close data-dismiss="modal" class="btn btn-border">Close</button>
-        <button mat-button  type= "button" cdkFocusInitial (click)="Hire()"
+        <button mat-button  type= "button" cdkFocusInitial (click)="Hire()" [class.spinner]="loading"
+        (click)="loginstyle()"
           class="btn btn-filled">Hire</button>
     </mat-dialog-actions>
   </div>

@@ -27,6 +27,10 @@ export interface DialogData {
 export class HiredialogComponent {
   customerId: any;
   userId: any;
+  loading = false;
+  loginstyle(): void {
+    this.loading = true;
+  }
   employmenttypelist: any;
   employmentTypeId: number;
   contractdurationlist:any;

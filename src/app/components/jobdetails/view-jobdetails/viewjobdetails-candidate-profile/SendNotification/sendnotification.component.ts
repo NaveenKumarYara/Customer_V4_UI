@@ -25,6 +25,10 @@ export interface DialogData {
 export class sendnotificationdialogComponent {
  managersList: Observable<CustomerUsers[]>;
  teammembers: '';
+ loading = false;
+ loginstyle(): void {
+   this.loading = true;
+ }
  GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
