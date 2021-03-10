@@ -1196,10 +1196,10 @@
                         [hidden]="hideme[i]">
                             <div class="card-body">
                                 <ng-container *ngIf="pn.CustomerComment!=null">
-                                    {{pn?.CustomerComment | titlecase}}-{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
+                                    {{pn?.CustomerComment | titlecase}}
                                 </ng-container>
                                 <ng-container *ngIf="pn.CustomerComment===null">
-                                    Notes Not Added -{{profile?.FirstName | titlecase}}{{profile?.LastName | titlecase}}
+                                    Notes Not Added
                                 </ng-container>
                             </div>
                         </div>

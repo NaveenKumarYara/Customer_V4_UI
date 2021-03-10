@@ -191,11 +191,19 @@ SaveNotes(Comment)
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.userId;
- this.savenote.isCandidate=true;
- this.savenote.toUserId=this.data.CUserId;
+ if(this.info===0)
+ {
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.userId.toString();
+  this.savenote.isCandidate=false;
+ }
+ else
+ {
+  this.savenote.toUserId=this.data.CUserId.toString()+','+this.userId.toString(); 
+  this.savenote.isCandidate=true;
+ }
  this.savenote.Comments=Comment;
  this.savenote.statusId = 5;
- debugger
+
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {

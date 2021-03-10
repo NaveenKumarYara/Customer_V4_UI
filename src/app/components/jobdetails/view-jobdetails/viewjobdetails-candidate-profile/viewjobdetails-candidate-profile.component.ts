@@ -693,7 +693,7 @@ GetCandidateDomains(profileId) {
 
 GetJobNotes(profileId,jobId)
 {
-  this.jobdetailsservice.GetProfileNotes(profileId,jobId,0)
+  this.jobdetailsservice.GetProfileNotes(profileId,jobId,this.customer.UserId)
     .subscribe(
       datr7 => {
         this.CandidateNotes = datr7;
