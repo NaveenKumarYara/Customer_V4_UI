@@ -294,7 +294,7 @@ SaveNotes(Comment)
 {
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
- this.savenote.customerUserId = this.userId;
+ this.savenote.customerUserId = this.customerUser;
  this.savenote.isCandidate=true;
  this.savenote.toUserId=this.data.userId;
  this.savenote.Comments=Comment;

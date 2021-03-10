@@ -305,7 +305,6 @@ gotit(na) {
   teamExists(team, list)
    {
     return list.some(function(elem) {
-      debugger
          return elem.UserId === team.UserId;
     });
  }
