@@ -56,8 +56,7 @@
                                     <li *ngFor="let teammember of teammemberslist; let i = index">
                                         <div class="w-100">
                                             <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                                            <h4>{{teammember.FirstName}} {{teammember.LastName}} 
-                                                <span class="dept">-{{teammember.RoleName}}</span> 
+                                            <h4 class="card-body">{{teammember.FirstName}}
                                             </h4>
                                             <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                         </div>

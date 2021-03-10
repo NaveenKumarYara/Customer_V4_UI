@@ -226,10 +226,16 @@ onItemDeleted(index){
 getcustomerusers()
  {
    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
-     this.customercontacts = res;
-     this.customercontacts = this.customercontacts.filter(
-       name=> name.FirstName !="Invited");
- });
+     //this.customercontacts = res;
+
+       this.customercontacts =  res.filter((i) => { 
+
+          if(i.FirstName !="Invited")
+          {
+            return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+          }                      
+         })
+      });
  }
 
  SaveNotes()
