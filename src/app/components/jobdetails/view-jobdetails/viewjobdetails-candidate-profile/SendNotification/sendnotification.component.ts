@@ -55,6 +55,42 @@ export class sendnotificationdialogComponent {
     this.customerUser = this.customer.UserId;
     this.matching= this.data.Matching;
     this.checkemail=this.data.Email;
+    if(this.data.StatusId===4)
+    {
+      this.PStatus = 'Applied';
+    }
+    if(this.data.StatusId===5)
+    {
+      this.PStatus = 'ShortListed';
+    }
+    if(this.data.StatusId==6)
+    {
+      this.PStatus = 'Rejected';
+    }
+    if(this.data.StatusId===7)
+    {
+      this.PStatus = 'Scheduled Interview';
+    }
+    if(this.data.StatusId===8)
+    {
+      this.PStatus = 'Screening';
+    }
+    if(this.data.StatusId===9)
+    {
+      this.PStatus = 'WithDrawn';
+    }
+    if(this.data.StatusId===11)
+    {
+      this.PStatus = 'Hire';
+    }
+    if(this.data.StatusId===13)
+    {
+      this.PStatus = 'Uploaded';
+    }
+    if(this.data.StatusId===14)
+    {
+      this.PStatus = 'Waiting for response';
+    }
   }
  
   ngOnInit() {
@@ -64,7 +100,6 @@ export class sendnotificationdialogComponent {
     this.AddUser = false;
     this.info = 0;
     this.checkemail=this.data.Email;
-    debugger
     //this.GetInterView();
     //this.GetType();
     if(this.data.StatusId===4)
@@ -198,8 +233,16 @@ getcustomerusers()
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
- this.savenote.isCandidate=true;
- this.savenote.toUserId=this.data.CUserId;
+ if(this.info===0)
+ {
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString();
+  this.savenote.isCandidate=false;
+ }
+ else
+ {
+  this.savenote.toUserId=this.data.CUserId.toString(); 
+  this.savenote.isCandidate=true;
+ }
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
  this.jobdetailsservice.SaveProfileNote(this.savenote)
