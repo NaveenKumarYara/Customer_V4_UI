@@ -235,12 +235,12 @@ getcustomerusers()
  this.savenote.customerUserId = this.customerUser;
  if(this.info===0)
  {
-  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString();
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=false;
  }
  else
  {
-  this.savenote.toUserId=this.data.CUserId.toString(); 
+  this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
  }
  this.savenote.Comments=this.selectedComments;
