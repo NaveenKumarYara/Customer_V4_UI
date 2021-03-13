@@ -152,7 +152,7 @@ export class ScheduleInterviewComponent implements OnInit {
       this.customercontacts = res;
       this.customercontacts =  res.filter((i) => { 
 
-        if(i.FirstName !="Invited")
+        if(i.FirstName !="Invited"  && i.FirstName != this.customer.FirstName)
         {
           return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
         }                      
@@ -220,7 +220,7 @@ export class ScheduleInterviewComponent implements OnInit {
   }
 
 ScheduleInterview() {
-if(this.schedule.invalid||this.selectedUserName ==0)
+if(this.schedule.invalid)
 {
     this.toastr.error('Please provide the valid details','Oops')
 }
@@ -275,7 +275,15 @@ this.schIntw.RequiredFurtherInterview = this.furtherInterview;
 this.schIntw.TravelExpense = this.travelExpense;
 this.schIntw.StatusChangedByUserId = this.customerUser;
 this.schIntw.Comments = this.Comment;
-this.schIntw.InterviewingPerson = this.selectedUserName.toString();
+if(this.selectedUserName === undefined || this.selectedUserName === null)
+{
+  this.selectedUserName=this.customer.UserId;
+  this.schIntw.InterviewingPerson = this.selectedUserName.toString();
+}
+else
+{
+  this.schIntw.InterviewingPerson = this.selectedUserName.toString();
+}
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
     this.SaveNotes(this.Comment);
