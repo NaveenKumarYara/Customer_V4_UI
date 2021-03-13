@@ -318,12 +318,11 @@ SaveNotes(Comment)
  }
  else
  {
-  this.savenote.toUserId=this.data.CUserId.toString()+','+this.customer.UserId.toString(); 
+  this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
   this.savenote.isCandidate=true;
  }
  this.savenote.Comments=Comment;
  this.savenote.statusId = 7;
-
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
