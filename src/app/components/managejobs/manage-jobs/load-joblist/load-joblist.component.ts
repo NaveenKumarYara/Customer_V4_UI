@@ -111,7 +111,7 @@ this.sortBy=this.sortBy!=null?sortBy:0;
 this.status=this.status!=null?status:0;
 
     this.searchString= searchString;
-    debugger
+    //debugger
     return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.status,newSortBy,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
@@ -122,7 +122,7 @@ this.status=this.status!=null?status:0;
 
   GetSavedJobFilter(val)
   {
-    debugger
+    //debugger
     if(val==0)
     {
       return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
@@ -198,7 +198,7 @@ this.status=this.status!=null?status:0;
         }
         else
         {
-          debugger
+          //debugger
           this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,this.newSortBy);
         }
   }
@@ -266,7 +266,7 @@ this.status=this.status!=null?status:0;
       this.jobStatus=profileStatus;this.skills=skills;this.departments=departments;this.titles=titles;this.education=education;
       this.isfiltered=isfiltered;
       this.spinner.show();
-      debugger
+      //debugger
       this.managejobservice.getFilteredJobDetails(this.customerId, this.userId,this.sortBy,this.searchString,this.joblistcount,minExp, MaxExp,minSal,maxSal,profileStatus,locations,skills,clients,departments,titles,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,education,Users).subscribe(res => {
         this.loaddata = true;
         this.joblist = res;

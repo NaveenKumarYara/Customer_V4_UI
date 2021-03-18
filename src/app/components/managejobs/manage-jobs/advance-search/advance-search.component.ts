@@ -370,7 +370,7 @@ cityloading = false;
     if(1)
     {
 
-      debugger
+      //debugger
       // this.filter.getFilterCall();this
 var selectedlocations = '';
       this.SelectedCityList.forEach(element => {

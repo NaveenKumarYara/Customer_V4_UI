@@ -273,7 +273,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     this.insertJob.RemoteWorkId= this.appService.RemoteWork;
 
-  debugger
+  //debugger
     
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
@@ -398,12 +398,12 @@ if (this.appService.isDrafted.value != null) {
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();
     //   this.insertJob.NumberOfVacancies = item.Positons;
-    //   debugger
+    //   //debugger
     //   this.appService.postjob(this.insertJob).subscribe(data => {
     //     if (data) {
     //       this.insertJob.JobId = data;
     //       this.createJobId(data);
-    //       debugger
+    //       //debugger
     //       localStorage.setItem('jobId', this.insertJob.JobId.toString());
     //       localStorage.setItem('JobId', this.insertJob.JobId.toString());
     //       localStorage.setItem('Item', false.toString());
@@ -433,7 +433,7 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityId).join(",").toString();
-    debugger
+    //debugger
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;

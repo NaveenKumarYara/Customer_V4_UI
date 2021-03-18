@@ -309,7 +309,7 @@ export class ViewJobdetailsComponent implements OnInit {
     // this.PopulateJobdetailProfiles();
     // console.log(this.jobid);
     if (this.jobstatistics.Applied > 0) {
-      debugger
+      //debugger
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
       this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
@@ -346,7 +346,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.ClearActiveClasses();
   //  this.loadMoreStat=this.statusid;
   this.profilecount = 6;
-  debugger
+  //debugger
   if (this.jobstatistics.InProgress > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.InProgress,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
@@ -484,7 +484,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.Counts = this.child.TotalCount;
         if (onload === 1) {
           if (this.statusid === 4) {
-            // debugger
+            // //debugger
             this.inprogressview(0);
             $("#Prospect").addClass('active');
             $("#Shortlisted").removeClass('active');
@@ -524,7 +524,7 @@ export class ViewJobdetailsComponent implements OnInit {
   }
   // GetProfileSuggestedCount() {
   //   return this.jobdetailsservice.getSuggestedCount(this.jobid).subscribe(res => {
-  //     //debugger
+  //     ////debugger
   //    this.SuggestedCount = res;
   //  });
   // }
@@ -554,7 +554,7 @@ export class ViewJobdetailsComponent implements OnInit {
     }
   }
   changeJobStatus(job, val) {
-    // debugger
+    // //debugger
     if (val === true) {
      $('#Inactive').replaceWith('#Active');
 
@@ -682,7 +682,7 @@ export class ViewJobdetailsComponent implements OnInit {
         });
       },
       CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => {
-        // debugger
+        // //debugger
         this.searchString = search;
         this.totalCount = count;
         this.base.GetSearchText(null);
@@ -721,7 +721,7 @@ export class ViewJobdetailsComponent implements OnInit {
           this.statistics = this.jobstatistics.InProgress; }
         this.loadMore = this.statistics > 6 ? true : false;
      // this.parentMethod(name);
-      //debugger
+      ////debugger
       this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited,arytic, this.profilecount);
       }
     };

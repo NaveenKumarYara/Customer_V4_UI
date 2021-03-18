@@ -691,7 +691,7 @@
         // responsible for undoing everything in renderEvents
       },
       eventAfterRender: function eventAfterRender(event, element, view) {
-        console.log(view);
+        //console.log(view);
       },
       eventAfterAllRender: function eventAfterAllRender(view) {
         if (view.type === "month") {
@@ -775,7 +775,7 @@
     var $menuList = $placeholderDiv.next('.responsive');
     var $menuListItem = $menuList.find('li');
     var $menuListAnchors = $menuList.find('a');
-    console.log($placeholderDiv);
+    //console.log($placeholderDiv);
     $placeholderDiv.html($menuList.find("li.active a").first().html());
 
     $placeholderDiv.click(function () {
@@ -1002,7 +1002,7 @@ $.widget("ui.spinner", $.ui.spinner, {
 //Form steps (Tabs) on create a job page.
 (function ($) {
 
-  console.log(TUIHelpers);
+  //console.log(TUIHelpers);
 
   $('.btn-next').click(function (e) {
     e.preventDefault();
@@ -1012,7 +1012,7 @@ $.widget("ui.spinner", $.ui.spinner, {
 
   $('.btn-prev').click(function (e) {
     e.preventDefault();
-    console.log($('.form-steps .nav-tabs > .active.tab-list').prevAll('li.tab-list:first'));
+    //console.log($('.form-steps .nav-tabs > .active.tab-list').prevAll('li.tab-list:first'));
     $('.form-steps .nav-tabs > .active.tab-list').prevAll('li.tab-list:first').find('a').trigger('click');
     TUIHelpers.scrollToSection('#steps-tab', 500);
   });
@@ -1238,7 +1238,7 @@ $.widget("ui.spinner", $.ui.spinner, {
       this.emptyMessage = '';
     },
     viewRender: function viewRender(view, element) {
-      console.log(element);
+      //console.log(element);
     },
     setHeight: function setHeight(height, isAuto) {
       // responsible for adjusting the pixel-height of the view. if isAuto is true, the

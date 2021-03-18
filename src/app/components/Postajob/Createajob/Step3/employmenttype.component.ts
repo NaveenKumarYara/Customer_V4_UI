@@ -196,7 +196,7 @@ export class EmploymentTypeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.domain = this.appService.domain;
         this.Remotework=this.appService.RemoteWork;
-        debugger
+        //debugger
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()

@@ -18,11 +18,11 @@ import { ViewCandidateprofileComponent } from './view-candidateprofile/view-cand
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ParentComponentApi } from '../view-jobdetails.component';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
-import{UniqueMonthYearPipe} from './../months.pipe';
+import { UniqueMonthYearPipe } from './../months.pipe';
 import * as FileSaver from 'file-saver';
 import { SettingsService } from '../../../../../settings/settings.service';
-import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import {HiredialogComponent} from './Hiringdialog/hire.component';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { HiredialogComponent } from './Hiringdialog/hire.component';
 import { AchivementdialogComponent } from './Achivements/achivement.component';
 import { ReferencedialogComponent } from './ManageReferences/manageref.component';
 import { backgrounddialogComponent } from './BackgroundVerification/bg.component';
@@ -39,1263 +39,1235 @@ declare var jQuery: any;
 // import $ from 'jquery';
 // import 'owl-carousel';
 @Component({
-  selector: 'app-viewjobdetails-candidate-profile',
-  templateUrl: './viewjobdetails-candidate-profile.component.html',
-  styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
-  providers: [NgxSpinnerService, AlertService,ApiService]
+    selector: 'app-viewjobdetails-candidate-profile',
+    templateUrl: './viewjobdetails-candidate-profile.component.html',
+    styleUrls: ['./viewjobdetails-candidate-profile.component.css'],
+    providers: [NgxSpinnerService, AlertService, ApiService]
 })
 export class ViewjobdetailsCandidateProfileComponent implements OnInit {
-  viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
-  viewshareddialogueref: MatDialogRef<SharedialogComponent>;
-  viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
-  viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
-  public show_dialog : boolean = false;
+    viewchatboxdialogueref: MatDialogRef<ChatboxdialogComponent>;
+    viewshareddialogueref: MatDialogRef<SharedialogComponent>;
+    viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
+    viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
+    public show_dialog: boolean = false;
 
-  // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
-  jobdetailsprofiles = new JobdetailsProfile();
-  requestRef = new RequestRefernce();
-  matchingDetails: MatchingDetails;
-  show:boolean=false;
-  // profileVideo= new  VideoProfile();
-  profileFlipVideo = new GetVideoProfile();
-  customerId: any;
-  Rloading:boolean=false;
-  userId: any;
-  CommentProfile : any;
-  addon = new addon();
-  CandidateNotes:any=[];
-  profiles: any;
-  customer: any;
-  CandidateCertification:CandidateCertifications;
-  CandidateDomain:CandidateDomains;
-  searchString: any;
-  domainName: any;
-  savenote = new Notes();
-  matchingParameterDetails = new MatchingParameterDetails();
-  matchingParameterData = new MatchingParameterDetails();
-  experience: any;
-  location: any;
-  fileType = new Resume();
-  fileExt: any;
-  skills: any = null;
-  loading: boolean;
-  jobdetailscustomer = new  GetJobDetailCustomer();
-  status= new JobStatus();
-  usersList:any;
+    // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
+    jobdetailsprofiles = new JobdetailsProfile();
+    requestRef = new RequestRefernce();
+    matchingDetails: MatchingDetails;
+    show: boolean = false;
+    // profileVideo= new  VideoProfile();
+    profileFlipVideo = new GetVideoProfile();
+    customerId: any;
+    Rloading: boolean = false;
+    userId: any;
+    CommentProfile: any;
+    addon = new addon();
+    CandidateNotes: any = [];
+    profiles: any;
+    customer: any;
+    CandidateCertification: CandidateCertifications;
+    CandidateDomain: CandidateDomains;
+    searchString: any;
+    domainName: any;
+    savenote = new Notes();
+    matchingParameterDetails = new MatchingParameterDetails();
+    matchingParameterData = new MatchingParameterDetails();
+    experience: any;
+    location: any;
+    fileType = new Resume();
+    fileExt: any;
+    skills: any = null;
+    loading: boolean;
+    jobdetailscustomer = new GetJobDetailCustomer();
+    status = new JobStatus();
+    usersList: any;
 
-  schIntw = new ScheduleInterview();
-  wsList = new WishList();
-  TotalCount: any;
-  @Input() jobid: number;
-  @Input() statusid: number;
-  @Output() myEvent = new EventEmitter();
-  @Output() loadMoreEvent = new EventEmitter();
-  @Input() jobStatus: string;
-  debugger
-  @Input() options: object;
-  @Input() parentApi: ParentComponentApi;
-  $owlElement: any;
-  defaultOptions: object = {};
-  images = [1, 2, 3].map(() => 'https://picsum.photos/900/500?random&t=${Math.random()}');
-  mySlideImages = [1, 2, 3].map((i) => 'https://picsum.photos/640/480?image=${i}');
-  myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
-  mySlideOptions = { items: 1, dots: true, nav: false };
-  myCarouselOptions = { items: 3, dots: true, nav: true };
-  hideme=[];
+    schIntw = new ScheduleInterview();
+    wsList = new WishList();
+    TotalCount: any;
+    @Input() jobid: number;
+    @Input() statusid: number;
+    @Output() myEvent = new EventEmitter();
+    @Output() loadMoreEvent = new EventEmitter();
+    @Input() jobStatus: string;
+    //debugger
+    @Input() options: object;
+    @Input() parentApi: ParentComponentApi;
+    $owlElement: any;
+    defaultOptions: object = {};
+    images = [1, 2, 3].map(() => 'https://picsum.photos/900/500?random&t=${Math.random()}');
+    mySlideImages = [1, 2, 3].map((i) => 'https://picsum.photos/640/480?image=${i}');
+    myCarouselImages = [1, 2, 3, 4, 5, 6].map((i) => 'https://picsum.photos/640/480?image=${i}');
+    mySlideOptions = { items: 1, dots: true, nav: false };
+    myCarouselOptions = { items: 3, dots: true, nav: true };
+    hideme = [];
 
-  customOptions: any = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
-    nav: true
-  };
-  ProfileId: any;
-  currentNo: number[] =[];
-  constructor(private el: ElementRef,private _snackBar: MatSnackBar,private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService,private settingsService: SettingsService,
-    private _service: ApiService , private dialog: MatDialog , private toastr: ToastsManager, private _vcr: ViewContainerRef,) {
-    this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    this.customerId = this.customer.CustomerId;
-    this.userId = this.customer.UserId;
-    this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
-  }
-
- toggle() {
-    this.show_dialog = !this.show_dialog;
-}
-
-  OpenChatboxDialog() {
-    if (this.jobStatus !== 'InActive') {
-      const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
-        {
-          width: '750',
-          position: { right: '0px' },
-          height: '750px',
-          data: {
-            animal: 'panda'
-          }
-        }
-      );
-      chatboxdialogRef.afterClosed().subscribe(result => {
-        console.log('Chatbox Dialog result: ${result}');
-      });
+    customOptions: any = {
+        loop: true,
+        mouseDrag: false,
+        touchDrag: false,
+        pullDrag: false,
+        dots: false,
+        navSpeed: 700,
+        navText: ['', ''],
+        responsive: {
+            0: {
+                items: 1
+            },
+            400: {
+                items: 2
+            },
+            740: {
+                items: 3
+            },
+            940: {
+                items: 4
+            }
+        },
+        nav: true
+    };
+    ProfileId: any;
+    currentNo: number[] = [];
+    constructor(private el: ElementRef, private _snackBar: MatSnackBar, private appService: AppService, private spinner: NgxSpinnerService, private router: Router, private jobdetailsservice: JobdetailsService, private alertService: AlertService, private settingsService: SettingsService,
+        private _service: ApiService, private dialog: MatDialog, private toastr: ToastsManager, private _vcr: ViewContainerRef, ) {
+        this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        this.customerId = this.customer.CustomerId;
+        this.userId = this.customer.UserId;
+        this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     }
-  }
 
-  
-
-  OpenShareDialog(title, jobResponseId, profileId) {
-    if (this.jobStatus !== 'InActive') {
-      const shareddialogRef = this.dialog.open(SharedialogComponent,
-        {
-          // width: '1000px',
-          position: { right: '0px' },
-          // height : '750px',
-          data: {
-            animal: 'panda',
-            Title: title,
-            jobResponseId: jobResponseId,
-            jobId: this.jobid,
-            ProfileId: profileId
-          }
-        }
-      );
-      shareddialogRef.afterClosed().subscribe(result => {
-        console.log('share Dialog result: ${result}');
-      });
+    toggle() {
+        this.show_dialog = !this.show_dialog;
     }
-  }
 
-  prevSkills(data,index) {
-    console.log("current number",this.currentNo);
-    if (this.currentNo[index] > 0) {
-
-
-      this.currentNo[index] = this.currentNo[index] - 1;
-    } else {
-      this.currentNo[index] = 0;
+    OpenChatboxDialog() {
+        if (this.jobStatus !== 'InActive') {
+            const chatboxdialogRef = this.dialog.open(ChatboxdialogComponent,
+                {
+                    width: '750',
+                    position: { right: '0px' },
+                    height: '750px',
+                    data: {
+                        animal: 'panda'
+                    }
+                }
+            );
+            chatboxdialogRef.afterClosed().subscribe(result => {
+                console.log('Chatbox Dialog result: ${result}');
+            });
+        }
     }
-    console.log("current number",this.currentNo);
-  }
-  nextSkills(data,index) {
-    var len  = data.split(",",10).length / 3; 
-    if (len -1 > this.currentNo[index]) {
 
 
-      this.currentNo[index] = this.currentNo[index] + 1;
-    } else {
-      this.currentNo[index] =Math.round(len - 1);
+
+    OpenShareDialog(title, jobResponseId, profileId) {
+        if (this.jobStatus !== 'InActive') {
+            const shareddialogRef = this.dialog.open(SharedialogComponent,
+                {
+                    // width: '1000px',
+                    position: { right: '0px' },
+                    // height : '750px',
+                    data: {
+                        animal: 'panda',
+                        Title: title,
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId
+                    }
+                }
+            );
+            shareddialogRef.afterClosed().subscribe(result => {
+                console.log('share Dialog result: ${result}');
+            });
+        }
     }
-  
-}
 
-OpenScreeningDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
-  if (this.jobStatus !== 'InActive') {
-    const screendialogRef = this.dialog.open(screeningdialogComponent,
-      {
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-          CUserId:userId,
-          Matching:Match
-          // status : this.statusid
+    prevSkills(data, index) {
+        console.log("current number", this.currentNo);
+        if (this.currentNo[index] > 0) {
+
+
+            this.currentNo[index] = this.currentNo[index] - 1;
+        } else {
+            this.currentNo[index] = 0;
         }
-      }
-    );
-    screendialogRef.afterClosed().subscribe(result => {
-      this.myEvent.emit(null);
-      console.log('Screen Dialog result: ${result}');
-    });
-  }
-}
-
-OpenShortListedDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
-debugger
-  if (this.jobStatus !== 'InActive') {
-    const shortdialogRef = this.dialog.open(shortlisteddialogComponent,
-      {
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-          CUserId:userId,
-          Matching:Match
-          // status : this.statusid
-        }
-      }
-    );
-    shortdialogRef.afterClosed().subscribe(result => {
-      this.myEvent.emit(null);
-      console.log('Screen Dialog result: ${result}');
-    });
-  }
-}
-
-OpenWithdrawnDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
-  if (this.jobStatus !== 'InActive') {
-    const shortdialogRef = this.dialog.open(WithDrawndialogComponent,
-      {
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-          CUserId:userId,
-          Matching:Match
-          // status : this.statusid
-        }
-      }
-    );
-    shortdialogRef.afterClosed().subscribe(result => {
-      this.myEvent.emit(null);
-      console.log('Screen Dialog result: ${result}');
-    });
-  }
-}
-
-OpenSendNotificationDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match,StatusId) {
-  if (this.jobStatus !== 'InActive') {
-    const senddialogRef = this.dialog.open(sendnotificationdialogComponent,
-      {
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-           CUserId:userId,
-           Matching:Match,
-           StatusId:StatusId
-          // status : this.statusid
-        }
-      }
-    );
-    senddialogRef.afterClosed().subscribe(result => {
-      this.GetJobNotes(profileId,this.jobid);
-      console.log('Screen Dialog result: ${result}');
-    });
-  }
-}
-
-
-OpenRejectDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
-  if (this.jobStatus !== 'InActive') {
-    const rejectdialogRef = this.dialog.open(RejectdialogComponent,
-      {
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-          CUserId:userId,
-          Matching:Match
-          // status : this.statusid
-        }
-      }
-    );
-    rejectdialogRef.afterClosed().subscribe(result => {
-      this.myEvent.emit(null);
-      console.log('reject Dialog result: ${result}');
-    });
-  }
-}
-
-OpenAchiveDialog(profileId)
-{
-  const AdialogRef = this.dialog.open(AchivementdialogComponent,
-    {
-      width: '700px',
-      position: { right: '0px' },
-      data: {
-        ProfileId: profileId
-        // status : this.statusid
-      }
+        console.log("current number", this.currentNo);
     }
-  );
-  AdialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    //this.myEvent.emit(null);
-    console.log('hire Dialog result: ${result}');
-  });
-}
+    nextSkills(data, index) {
+        var len = data.split(",", 10).length / 3;
+        if (len - 1 > this.currentNo[index]) {
 
-OpenReferDialog(profileId,userId,profile)
-{
-  // this.Rloading = true;
-  // this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
-  // .subscribe(
-  //   data => {
-  //     this.Rloading = false;
+
+            this.currentNo[index] = this.currentNo[index] + 1;
+        } else {
+            this.currentNo[index] = Math.round(len - 1);
+        }
+
+    }
+
+    OpenScreeningDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
+        if (this.jobStatus !== 'InActive') {
+            const screendialogRef = this.dialog.open(screeningdialogComponent,
+                {
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match
+                        // status : this.statusid
+                    }
+                }
+            );
+            screendialogRef.afterClosed().subscribe(result => {
+                this.myEvent.emit(null);
+                console.log('Screen Dialog result: ${result}');
+            });
+        }
+    }
+
+    OpenShortListedDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
+        //debugger
+        if (this.jobStatus !== 'InActive') {
+            const shortdialogRef = this.dialog.open(shortlisteddialogComponent,
+                {
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match
+                        // status : this.statusid
+                    }
+                }
+            );
+            shortdialogRef.afterClosed().subscribe(result => {
+                this.myEvent.emit(null);
+                console.log('Screen Dialog result: ${result}');
+            });
+        }
+    }
+
+    OpenWithdrawnDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
+        if (this.jobStatus !== 'InActive') {
+            const shortdialogRef = this.dialog.open(WithDrawndialogComponent,
+                {
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match
+                        // status : this.statusid
+                    }
+                }
+            );
+            shortdialogRef.afterClosed().subscribe(result => {
+                this.myEvent.emit(null);
+                console.log('Screen Dialog result: ${result}');
+            });
+        }
+    }
+
+    OpenSendNotificationDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match, StatusId) {
+        if (this.jobStatus !== 'InActive') {
+            const senddialogRef = this.dialog.open(sendnotificationdialogComponent,
+                {
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match,
+                        StatusId: StatusId
+                        // status : this.statusid
+                    }
+                }
+            );
+            senddialogRef.afterClosed().subscribe(result => {
+                this.GetJobNotes(profileId, this.jobid);
+                console.log('Screen Dialog result: ${result}');
+            });
+        }
+    }
+
+
+    OpenRejectDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
+        if (this.jobStatus !== 'InActive') {
+            const rejectdialogRef = this.dialog.open(RejectdialogComponent,
+                {
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match
+                        // status : this.statusid
+                    }
+                }
+            );
+            rejectdialogRef.afterClosed().subscribe(result => {
+                this.myEvent.emit(null);
+                console.log('reject Dialog result: ${result}');
+            });
+        }
+    }
+
+    OpenAchiveDialog(profileId) {
+        const AdialogRef = this.dialog.open(AchivementdialogComponent,
+            {
+                width: '700px',
+                position: { right: '0px' },
+                data: {
+                    ProfileId: profileId
+                    // status : this.statusid
+                }
+            }
+        );
+        AdialogRef.afterClosed().subscribe(result => {
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            //this.myEvent.emit(null);
+            console.log('hire Dialog result: ${result}');
+        });
+    }
+
+    OpenReferDialog(profileId, userId, profile) {
+        // this.Rloading = true;
+        // this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + userId, '&showId=0')
+        // .subscribe(
+        //   data => {
+        //     this.Rloading = false;
         // if(data != 'No records found')
         // {
         const RdialogRef = this.dialog.open(ReferencedialogComponent,
-          {
-            width: '888px',
-            position: { right: '0px' },
-            data: {
-              ProfileId: profileId,
-              UserId:userId,
-              Email:profile.Email,
-              FirstName:profile.FirstName
-              // status : this.statusid
+            {
+                width: '888px',
+                position: { right: '0px' },
+                data: {
+                    ProfileId: profileId,
+                    UserId: userId,
+                    Email: profile.Email,
+                    FirstName: profile.FirstName
+                    // status : this.statusid
+                }
             }
-          }
         );
         RdialogRef.afterClosed().subscribe(result => {
-          // this.jobDetails.populateJobsStaticInfo(this.jobid);
-          this.myEvent.emit(null);
-          console.log('hire Dialog result: ${result}');
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            this.myEvent.emit(null);
+            console.log('hire Dialog result: ${result}');
         });
-     // }
-    //   else
-    //   {
-     //this.RequestReference(profile);
-    //   }
-    // });
- 
-  
-}
-
-OpenReferDialogCheck(profileId,userId,profile)
-{
-  this.RequestReference(profile);
-}
-
-OpenBgDialog(profileId,name,userId,lName)
-{
-  const bdialogRef = this.dialog.open(backgrounddialogComponent,
-    {
-      width: '888px',
-      position: { right: '0px' },
-      data: {
-        ProfileId: profileId,
-        CuserId : this.customer.UserId,
-        UserId : userId,
-        JobId:this.jobid,
-        Name:name,
-        Lname:lName
-        // status : this.statusid
-      }
-    }
-  );
-  bdialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    //this.myEvent.emit(null);
-    this.myEvent.emit(null);
-    console.log('hire Dialog result: ${result}');
-  });
-}
-
-OpenHireDialog(jobResponseId, profileId,Email,FirstName,LastName,userId,Match) {
-  if (this.jobStatus !== 'InActive') {
-    const hiredialogRef = this.dialog.open(HiredialogComponent,
-      {
-        width: '700px',
-        position: { right: '0px' },
-        data: {
-          jobResponseId: jobResponseId,
-          jobId: this.jobid,
-          ProfileId: profileId,
-          Email :Email,
-          FullName :FirstName+LastName,
-          CUserId:userId,
-          Matching:Match
-          // status : this.statusid
-        }
-      }
-    );
-    hiredialogRef.afterClosed().subscribe(result => {
-      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      this.myEvent.emit(null);
-      console.log('hire Dialog result: ${result}');
-    });
-  }
-}
-
-OpenScheduleInterviewDialog(jobResponseId, userId, profileId,Email,FirstName,LastName,match) {
-  debugger
-  // var candidateUserId = $("#candidateUserId").val();
-  // var candidateId = +candidateUserId;
-  const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
-    {
-      width: '750px',
-      position: { right: '0px' },
-      height: '750px',
-      data: {
-        jobResponseId: jobResponseId,
-        jobId: this.jobid,
-        ProfileId: profileId,
-        userId: userId,
-        Email :Email,
-        FullName :FirstName+LastName,
-        Matching:match
-        // status : this.statusid
-      }
-    }
-  );
-  scheduleIntwdialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    this.myEvent.emit(null);
-    console.log('Chatbox Dialog result: ${result}');
-  });
-}
-
-OpenCandidateDialog(profileId) {
-  // if (this.jobStatus!='InActive') {
-  this.spinner.show();
-  setTimeout(() => {
-    this.spinner.hide();
-  }, 1500);
-  const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
-    {
-      width: '750',
-      position: { right: '0px' },
-      height: '750px',
-      data: {
-        ProfileId: profileId,
-        jobId: this.jobid
-        // status : this.statusid
-      }
-    }
-  );
-  viewCandidatedialogRef.afterClosed().subscribe(result => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    // this.myEvent.emit(null);
-    console.log('candidate Dialog result: ${result}');
-  });
-  // }
-}
-OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId,Upload) {
-  // if (this.jobStatus!='InActive') {
-  if (!noEmail) {
-    const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
-      {
-        width: '750',
-        position: { right: '0px' },
-        height: '750px',
-        data: {
-          EmailId: emailId,
-          jobId: this.jobid,
-          firstname: firstname,
-          lastname: lastname,
-          CustomerId : this.customerId,
-          responseStatusId: responseStatusId,
-          profileId: profileId,
-          jobResponseId: jobResponseId,
-          ccpid: ccpid,
-          userId: userId,
-          profileUpload :Upload
-          // status : this.statusid
-        }
-      }
-    );
-    sendEmaildialogRef.afterClosed().subscribe(result => {
-      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      this.myEvent.emit(null);
-      console.log('candidate Dialog result: ${result}');
-    });
-  }
-  return false;
-  // }
-}
-
-Check(val,ProfileId)
-{
-if(val==1)
-{
-  this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', ProfileId).subscribe(
-  data => {
-  var IsPublic = data.isPublicAvailable;
-  if(IsPublic==true)
-  {
-  return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
-  this.addon.SubscriptionId = res.subscriptionId;
-  this.addon.AddonId = "2";
-  this.addon.AddonUnitPrice = 400;
-  this.addon.AddonQuantity = 1;
-  this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
-    console.log(result);
-  });
-});
-}
-});
-}
-
-}
-
-
-RequestReference(profile)
-{
-
-  this.requestRef.CustomerId= this.customer.CustomerId;
-  this.requestRef.UserId= this.customer.UserId;
-  this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin +';RsId=0';
-  this.requestRef.FromEmail = this.customer.Email;
-  this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
-  this.requestRef.ProfileId = profile.ProfileId;
-  this.requestRef.ToEmailID = profile.Email;
-  this.requestRef.UserName = profile.FirstName;
-  this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
-    this.CommentProfile = undefined;
-    this.requestRef = new RequestRefernce();
-    let message = 'Requested Reference!';
-        let action = 'Success';
-        this._snackBar.open(message, action, {
-            duration: 2000,
-            
-        });
-  });
-}
-
-
-
-PopulateJobdetail () {
-  return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
-    this.jobdetailscustomer = res;
-  });
-
-}
-
-// updateOnDialogClose() {
-//   this.eventStat.emit(null);
-//   this.myEvent.emit(null);
-// }
-shortlisthiredwithdrawn(stat, jobResponseId, profileId,Email,FirstName,LastName) {
-  if(stat==11)
-  {
-    this.Check(1,profileId)
-  }
-  this.schIntw.UserId = null;
-  this.schIntw.JobId = this.jobid;
-  this.schIntw.ProfileId = profileId;
-  this.schIntw.JobInterviewId = 0;
-  this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
-  this.schIntw.InterviewDatevalue = '';
-  // this.schIntw.InterviewDate = null;
-  this.schIntw.StartTime = null;
-  this.schIntw.EndTime = null;
-  this.schIntw.InterviewTypeId = null; // skype or anytype
-  this.schIntw.PhoneNumber = null;
-  this.schIntw.BridgeUrl = null;
-  this.schIntw.AccessId = null;
-  this.schIntw.SkypeId = null;
-  this.schIntw.Comments = '';
-  this.schIntw.ResponseStatusId = stat; // what stage it is..hired...
-  this.schIntw.IsActive = null;
-  this.schIntw.Rating = null;
-  this.schIntw.RequiredFurtherInterview = null;
-  this.schIntw.StatusChangedByUserId = this.userId;
-  this.schIntw.InterviewingPerson = null;
-  let FullName = FirstName + LastName;
- 
-  this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
-    // this.jobDetails.populateJobsStaticInfo(this.jobid);
-    this.SendStatusEmail(Email,FullName,stat);
-    this.myEvent.emit(null);
-    console.log(res);
-  });
-}
-
-SendStatusEmail(Email,FullName,stat)
-{
-  this.status.AppLink = this.settingsService.settings.CandidateLogin;
-  if(stat == 8)
-  {
-    this.status.JobStatus = 'Screening';
-  }
-  if(stat == 5)
-  {
-    this.status.JobStatus = 'Shortlisted';
-  }
-  if(stat == 9)
-  {
-    this.status.JobStatus = 'WithDrawn';
-  }
-
-  this.status.FromEmail = this.customer.Email;
-  this.status.ToEmailID = Email;
-  this.status.FullName = FullName;
-  this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
-  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
-  this.appService.SendJobStatus(this.status)
-  .subscribe(
-  status => {
-     this.toastr.success('Email Sent','Success');
-        setTimeout(() => {          
-            this.toastr.dismissToast; 
-          }, 3000);
-         
-       } 
-                  
-  );
-}
-
-GetCandidateProfile(profileId) {
-  if (this.jobStatus !== 'InActive') {
-    sessionStorage.setItem('profileId', JSON.stringify(profileId));
-    this.router.navigateByUrl('app-cprofile');
-  }
-}
-NoRecords() {
-  this.jobdetailsprofiles = new JobdetailsProfile();
-}
-
-
-GetCandidateCertifications(profileId) {
-
-  this._service.GetService('ProfileAPI/api/GetCertification?profileId=', profileId)
-    .subscribe(
-      dat => {
-        this.CandidateCertification = dat;
-      });
-}
-
-GetCandidateDomains(profileId) {
-
-  this._service.GetService('ProfileAPI/api/GetCandidateDomain?profileId=', profileId)
-    .subscribe(
-      datr => {
-        this.CandidateDomain = datr;
-      });
-}
-
-
-
-
-GetJobNotes(profileId,jobId)
-{
-  this.jobdetailsservice.GetProfileNotes(profileId,jobId,this.customer.UserId)
-    .subscribe(
-      datr7 => {
-        this.CandidateNotes = datr7;
-      });
-}
-
-
-PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0,arytic=0, noofRows = 6) {
-  this.alertService.clear();
-  // $('#searchStr').val('');
-  this.spinner.show();
-  console.log("prolifees");
-  if (jobid != null && statusid != null) {
-    this.jobid = jobid;
-    this.statusid = statusid; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
-  }
-  if (statistics === 0 && statusid > 4) {
-    this.jobdetailsprofiles = new JobdetailsProfile();
-  }
-   else {
-    return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited,arytic, noofRows)
-      .subscribe(res => {
-      debugger
-        this.jobdetailsprofiles = res;
-        this.profiles = res;
-        this.TotalCount = this.jobdetailsprofiles;
-        this.spinner.hide();
-        this.jobdetailsprofiles.Profile.forEach((a,index)=>{
-          // var num = 0;
-          this.currentNo[index] = 0;
-          
-        });
-        // if (this.jobdetailsprofiles.Profile.length > 0) {
-        //   this.jobdetailsprofiles.Profile.forEach(a => {
-        //     // this.GetMatchingPercentage(a.ProfileId, this.jobid);
-        //     // this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
-
-        //     //   this.matchingParameterDetails = res;
-        //     //   this.matchingParameterData  = res;
-        //     //   // if (this.matchingParameterDetails.isPublic) {
-        //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
-        //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
-
-        //     //   //   a.MatchingPercentage = ((
-        //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
-        //     //   //     +
-        //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
-        //     //   //     + 30
-        //     //   //   )).toFixed(2).toString();
-        //     //   // } else {
-        //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
-        //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
-
-        //     //   //   a.MatchingPercentage = ((
-        //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
-        //     //   //     +
-        //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
-        //     //   //   )).toFixed(2).toString();
-
-        //     //   // }
-        //     //   this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
-        //     //   this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
-        //     //     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
-
-        //     // });
-
-        //   });
         // }
-        if (this.profiles === 'No records found') {
-          this.myEvent.emit('min');
-          // this.alertService.warn('No Profiles Matched!!');
+        //   else
+        //   {
+        //this.RequestReference(profile);
+        //   }
+        // });
+
+
+    }
+
+    OpenReferDialogCheck(profileId, userId, profile) {
+        this.RequestReference(profile);
+    }
+
+    OpenBgDialog(profileId, name, userId, lName) {
+        const bdialogRef = this.dialog.open(backgrounddialogComponent,
+            {
+                width: '888px',
+                position: { right: '0px' },
+                data: {
+                    ProfileId: profileId,
+                    CuserId: this.customer.UserId,
+                    UserId: userId,
+                    JobId: this.jobid,
+                    Name: name,
+                    Lname: lName
+                    // status : this.statusid
+                }
+            }
+        );
+        bdialogRef.afterClosed().subscribe(result => {
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            //this.myEvent.emit(null);
+            this.myEvent.emit(null);
+            console.log('hire Dialog result: ${result}');
+        });
+    }
+
+    OpenHireDialog(jobResponseId, profileId, Email, FirstName, LastName, userId, Match) {
+        if (this.jobStatus !== 'InActive') {
+            const hiredialogRef = this.dialog.open(HiredialogComponent,
+                {
+                    width: '700px',
+                    position: { right: '0px' },
+                    data: {
+                        jobResponseId: jobResponseId,
+                        jobId: this.jobid,
+                        ProfileId: profileId,
+                        Email: Email,
+                        FullName: FirstName + LastName,
+                        CUserId: userId,
+                        Matching: Match
+                        // status : this.statusid
+                    }
+                }
+            );
+            hiredialogRef.afterClosed().subscribe(result => {
+                // this.jobDetails.populateJobsStaticInfo(this.jobid);
+                this.myEvent.emit(null);
+                console.log('hire Dialog result: ${result}');
+            });
         }
-        if (((noofRows > 6) && res.TotalProfileCount < noofRows)) {
-          // need to change the res.totalprofile count
-          this.myEvent.emit('max'); // load more hide when max count is reached
-        } else if ((noofRows === 6) && (res.Profile.length < noofRows)) {// need to change the res.totalprofile count
-          this.myEvent.emit('min'); // load more when profiles count is min and low
+    }
+
+    OpenScheduleInterviewDialog(jobResponseId, userId, profileId, Email, FirstName, LastName, match) {
+        //debugger
+        // var candidateUserId = $("#candidateUserId").val();
+        // var candidateId = +candidateUserId;
+        const scheduleIntwdialogRef = this.dialog.open(ScheduleInterviewComponent,
+            {
+                width: '750px',
+                position: { right: '0px' },
+                height: '750px',
+                data: {
+                    jobResponseId: jobResponseId,
+                    jobId: this.jobid,
+                    ProfileId: profileId,
+                    userId: userId,
+                    Email: Email,
+                    FullName: FirstName + LastName,
+                    Matching: match
+                    // status : this.statusid
+                }
+            }
+        );
+        scheduleIntwdialogRef.afterClosed().subscribe(result => {
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            this.myEvent.emit(null);
+            console.log('Chatbox Dialog result: ${result}');
+        });
+    }
+
+    OpenCandidateDialog(profileId) {
+        // if (this.jobStatus!='InActive') {
+        this.spinner.show();
+        setTimeout(() => {
+            this.spinner.hide();
+        }, 1500);
+        const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
+            {
+                width: '750',
+                position: { right: '0px' },
+                height: '750px',
+                data: {
+                    ProfileId: profileId,
+                    jobId: this.jobid
+                    // status : this.statusid
+                }
+            }
+        );
+        viewCandidatedialogRef.afterClosed().subscribe(result => {
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            // this.myEvent.emit(null);
+            console.log('candidate Dialog result: ${result}');
+        });
+        // }
+    }
+    OpenSendEmailDialog(noEmail, emailId, firstname, lastname, jobResponseId, profileId, responseStatusId, ccpid, userId, Upload) {
+        // if (this.jobStatus!='InActive') {
+        if (!noEmail) {
+            const sendEmaildialogRef = this.dialog.open(SendEmailComponent,
+                {
+                    width: '750',
+                    position: { right: '0px' },
+                    height: '750px',
+                    data: {
+                        EmailId: emailId,
+                        jobId: this.jobid,
+                        firstname: firstname,
+                        lastname: lastname,
+                        CustomerId: this.customerId,
+                        responseStatusId: responseStatusId,
+                        profileId: profileId,
+                        jobResponseId: jobResponseId,
+                        ccpid: ccpid,
+                        userId: userId,
+                        profileUpload: Upload
+                        // status : this.statusid
+                    }
+                }
+            );
+            sendEmaildialogRef.afterClosed().subscribe(result => {
+                // this.jobDetails.populateJobsStaticInfo(this.jobid);
+                this.myEvent.emit(null);
+                console.log('candidate Dialog result: ${result}');
+            });
         }
-        //  else {
-        //   this.myEvent.emit(true);
-        //  }
+        return false;
+        // }
+    }
 
-      });
-  }
-}
-add3Dots(string, limit) {
-  const dots = '...';
-  if (string.length > limit) {
-    string = string.substring(0, limit) + dots;
-  }
-  return string;
-}
+    Check(val, ProfileId) {
+        if (val == 1) {
+            this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', ProfileId).subscribe(
+                data => {
+                    var IsPublic = data.isPublicAvailable;
+                    if (IsPublic == true) {
+                        return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+                            this.addon.SubscriptionId = res.subscriptionId;
+                            this.addon.AddonId = "2";
+                            this.addon.AddonUnitPrice = 400;
+                            this.addon.AddonQuantity = 1;
+                            this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
+                                console.log(result);
+                            });
+                        });
+                    }
+                });
+        }
 
-CheckDisplay(val) {
-  if (val === null) {
-    return 'none';
-  }
-}
+    }
 
 
-// getMatchingDetails(profileId)
-// {
-//   return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
-//     this.matchingDetails = res;
-//   });
-// }
-callSkills(profileId,Val?) {
-  debugger
-  // var $card = $('.page--job-details .tab-content .card');
-  //   var $detailsBtn = $card.find('.show-matching-details');
-  //   $detailsBtn.on('click', function (e) {
+    RequestReference(profile) {
 
-  //     e.preventDefault();
-  //     var $selectedCard = $(this).closest('.card');
-  //     var $detailsDiv = $selectedCard.find('.matching-details');
-  //     var $detailsCloseBtn = $selectedCard.find('.close');
+        this.requestRef.CustomerId = this.customer.CustomerId;
+        this.requestRef.UserId = this.customer.UserId;
+        this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ';RsId=0';
+        this.requestRef.FromEmail = this.customer.Email;
+        this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : 'Please provide reference';
+        this.requestRef.ProfileId = profile.ProfileId;
+        this.requestRef.ToEmailID = profile.Email;
+        this.requestRef.UserName = profile.FirstName;
+        this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe(result => {
+            this.CommentProfile = undefined;
+            this.requestRef = new RequestRefernce();
+            let message = 'Requested Reference!';
+            let action = 'Success';
+            this._snackBar.open(message, action, {
+                duration: 2000,
 
-  this.ProfileId = profileId;
-  if(Val==0)
-  {
-    this.GetCandidateCertifications(profileId);
-    $('.matching-details').removeClass('open');
-    $('#matchingDetailCert-' + profileId).toggleClass('open');
-  }
-  if(Val==2)
-  {
-    debugger
-    this.GetJobNotes(profileId,this.jobid);
-    $('.matching-details').removeClass('open');
-    $('#matchingDetailNotes-' + profileId).toggleClass('open');
-  }
- if(Val==1)
-  {
-    this.GetCandidateDomains(profileId);
-    $('.matching-details').removeClass('open');
-    $('#matchingDetailDom-' + profileId).toggleClass('open');
-  }
-  if(Val==3)
-  {
-    var data = this.GetMatchingPercentage(profileId, this.jobid);
-    console.log("matchingParameterDetails", this.matchingParameterDetails);
-  
-    return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe(res => {
-      this.matchingDetails = res;
-      $('.matching-details').removeClass('open');
-      $('#matchingDetail-' + profileId).toggleClass('open');
-  
-  
-      // $('.matching-details1').removeClass('open');
-      // $('#matchingDetails-' + profileId).toggleClass('open');
-    });
-  }
+            });
+        });
+    }
 
- 
-  // $detailsCloseBtn.on('click', function (e) {
-  //   e.preventDefault();
-  //   $detailsDiv.removeClass('open');
-  // });
-  // });
-}
-closeDetails(profileId, type) {
-  if (type === 1) {
-    $('#matchingDetail-' + profileId).removeClass('open');
-    $('#matchingDetailCert-' + profileId).removeClass('open');
-    $('#matchingDetailDom-' + profileId).removeClass('open');
-    $('#matchingDetailNotes-' + profileId).removeClass('open');
-  } else {
-    $('#sizzleVideo-' + profileId).removeClass('open');
-    $('#profileVideo-' + profileId).removeClass('open');
-  }
-}
-ngOnInit() {
-  this.alertService.clear();
-  (function ($) {
-    // TODO: test multiple cards -- open and close function
-    const $card = $('.page--job-details .tab-content .card');
-    const $detailsBtn = $card.find('.show-matching-details');
-    $detailsBtn.on('click', function (e) {
 
-      e.preventDefault();
-      const $selectedCard = $(this).closest('.card');
-      const $detailsDiv = $selectedCard.find('.matching-details');
-      const $detailsCloseBtn = $selectedCard.find('.close');
-      $detailsDiv.toggleClass('open');
 
-      $detailsCloseBtn.on('click', function (e) {
-        e.preventDefault();
-        $detailsDiv.removeClass('open');
-      });
-    });
-    // const $detailBtn = $card.find('.show-matching-details');
-    // $detailBtn.on('click', function (e) {
+    PopulateJobdetail() {
+        return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
+            this.jobdetailscustomer = res;
+        });
 
-    //   e.preventDefault();
-    //   const $selectedCard = $(this).closest('.card');
-    //   const $detailsDiv = $selectedCard.find('.matching-details');
-    //   const $detailsCloseBtn = $selectedCard.find('.close');
-    //   $detailsDiv.toggleClass('open');
+    }
 
-    //   $detailsCloseBtn.on('click', function (e) {
-    //     e.preventDefault();
-    //     $detailsDiv.removeClass('open');
+    // updateOnDialogClose() {
+    //   this.eventStat.emit(null);
+    //   this.myEvent.emit(null);
+    // }
+    shortlisthiredwithdrawn(stat, jobResponseId, profileId, Email, FirstName, LastName) {
+        if (stat == 11) {
+            this.Check(1, profileId)
+        }
+        this.schIntw.UserId = null;
+        this.schIntw.JobId = this.jobid;
+        this.schIntw.ProfileId = profileId;
+        this.schIntw.JobInterviewId = 0;
+        this.schIntw.JobResponseId = jobResponseId; // gemerated when sortlisted or applied
+        this.schIntw.InterviewDatevalue = '';
+        // this.schIntw.InterviewDate = null;
+        this.schIntw.StartTime = null;
+        this.schIntw.EndTime = null;
+        this.schIntw.InterviewTypeId = null; // skype or anytype
+        this.schIntw.PhoneNumber = null;
+        this.schIntw.BridgeUrl = null;
+        this.schIntw.AccessId = null;
+        this.schIntw.SkypeId = null;
+        this.schIntw.Comments = '';
+        this.schIntw.ResponseStatusId = stat; // what stage it is..hired...
+        this.schIntw.IsActive = null;
+        this.schIntw.Rating = null;
+        this.schIntw.RequiredFurtherInterview = null;
+        this.schIntw.StatusChangedByUserId = this.userId;
+        this.schIntw.InterviewingPerson = null;
+        let FullName = FirstName + LastName;
+
+        this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
+            // this.jobDetails.populateJobsStaticInfo(this.jobid);
+            this.SendStatusEmail(Email, FullName, stat);
+            this.myEvent.emit(null);
+            console.log(res);
+        });
+    }
+
+    SendStatusEmail(Email, FullName, stat) {
+        this.status.AppLink = this.settingsService.settings.CandidateLogin;
+        if (stat == 8) {
+            this.status.JobStatus = 'Screening';
+        }
+        if (stat == 5) {
+            this.status.JobStatus = 'Shortlisted';
+        }
+        if (stat == 9) {
+            this.status.JobStatus = 'WithDrawn';
+        }
+
+        this.status.FromEmail = this.customer.Email;
+        this.status.ToEmailID = Email;
+        this.status.FullName = FullName;
+        this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
+        this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ',' + this.jobdetailscustomer.JobLocation[0].StateName;
+        this.appService.SendJobStatus(this.status)
+            .subscribe(
+                status => {
+                    this.toastr.success('Email Sent', 'Success');
+                    setTimeout(() => {
+                        this.toastr.dismissToast;
+                    }, 3000);
+
+                }
+
+            );
+    }
+
+    GetCandidateProfile(profileId) {
+        if (this.jobStatus !== 'InActive') {
+            sessionStorage.setItem('profileId', JSON.stringify(profileId));
+            this.router.navigateByUrl('app-cprofile');
+        }
+    }
+    NoRecords() {
+        this.jobdetailsprofiles = new JobdetailsProfile();
+    }
+
+
+    GetCandidateCertifications(profileId) {
+
+        this._service.GetService('ProfileAPI/api/GetCertification?profileId=', profileId)
+            .subscribe(
+                dat => {
+                    this.CandidateCertification = dat;
+                });
+    }
+
+    GetCandidateDomains(profileId) {
+
+        this._service.GetService('ProfileAPI/api/GetCandidateDomain?profileId=', profileId)
+            .subscribe(
+                datr => {
+                    this.CandidateDomain = datr;
+                });
+    }
+
+
+
+
+    GetJobNotes(profileId, jobId) {
+        this.jobdetailsservice.GetProfileNotes(profileId, jobId, this.customer.UserId)
+            .subscribe(
+                datr7 => {
+                    this.CandidateNotes = datr7;
+                });
+    }
+
+
+    PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0, arytic = 0, noofRows = 6) {
+        this.alertService.clear();
+        // $('#searchStr').val('');
+        this.spinner.show();
+        console.log("prolifees");
+        if (jobid != null && statusid != null) {
+            this.jobid = jobid;
+            this.statusid = statusid; // === 0 ? 4 : statusid; // As all candidate status is 0 and it is enabled so condition for 4 is removed.
+        }
+        if (statistics === 0 && statusid > 4) {
+            this.jobdetailsprofiles = new JobdetailsProfile();
+        }
+        else {
+            return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid, sortBy, searchString, experience, location, domainName, uploaded, suggested, wishlist, invited, arytic, noofRows)
+                .subscribe(res => {
+                    //debugger
+                    this.jobdetailsprofiles = res;
+                    this.profiles = res;
+                    this.TotalCount = this.jobdetailsprofiles;
+                    this.spinner.hide();
+                    this.jobdetailsprofiles.Profile.forEach((a, index) => {
+                        // var num = 0;
+                        this.currentNo[index] = 0;
+
+                    });
+                    // if (this.jobdetailsprofiles.Profile.length > 0) {
+                    //   this.jobdetailsprofiles.Profile.forEach(a => {
+                    //     // this.GetMatchingPercentage(a.ProfileId, this.jobid);
+                    //     // this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Number(a.ProfileId), this.jobid).subscribe(res => {
+
+                    //     //   this.matchingParameterDetails = res;
+                    //     //   this.matchingParameterData  = res;
+                    //     //   // if (this.matchingParameterDetails.isPublic) {
+                    //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
+                    //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
+
+                    //     //   //   a.MatchingPercentage = ((
+                    //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
+                    //     //   //     +
+                    //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
+                    //     //   //     + 30
+                    //     //   //   )).toFixed(2).toString();
+                    //     //   // } else {
+                    //     //   //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
+                    //     //   //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
+
+                    //     //   //   a.MatchingPercentage = ((
+                    //     //   //     ((this.matchingParameterDetails.Jobfit_Total))
+                    //     //   //     +
+                    //     //   //     ((this.matchingParameterDetails.Skillfit_Total))
+                    //     //   //   )).toFixed(2).toString();
+
+                    //     //   // }
+                    //     //   this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+                    //     //   this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
+                    //     //     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+
+                    //     // });
+
+                    //   });
+                    // }
+                    if (this.profiles === 'No records found') {
+                        this.myEvent.emit('min');
+                        // this.alertService.warn('No Profiles Matched!!');
+                    }
+                    if (((noofRows > 6) && res.TotalProfileCount < noofRows)) {
+                        // need to change the res.totalprofile count
+                        this.myEvent.emit('max'); // load more hide when max count is reached
+                    } else if ((noofRows === 6) && (res.Profile.length < noofRows)) {// need to change the res.totalprofile count
+                        this.myEvent.emit('min'); // load more when profiles count is min and low
+                    }
+                    //  else {
+                    //   this.myEvent.emit(true);
+                    //  }
+
+                });
+        }
+    }
+    add3Dots(string, limit) {
+        const dots = '...';
+        if (string.length > limit) {
+            string = string.substring(0, limit) + dots;
+        }
+        return string;
+    }
+
+    CheckDisplay(val) {
+        if (val === null) {
+            return 'none';
+        }
+    }
+
+
+    // getMatchingDetails(profileId)
+    // {
+    //   return this.jobdetailsservice.getMatchingDetails(profileId, this.jobid).subscribe(res => {
+    //     this.matchingDetails = res;
     //   });
-    // });
-  })(jQuery);
-  // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
-  console.log('abc');
-  this.PopulateJobdetail();
-}
-
-// ngAfterViewInit() {
-//   for (const key in this.options) {
-//     this.defaultOptions[key] = this.options[key];
-//   }
-//   this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
-// }
-ngOnChange() {
-  console.log('on change', this.jobid, this.statusid);
-}
-updateWishlist(event, profileId) {
-  // this.wsList.IsSaved = event.target.checked;
-  // this.wsList.ProfileId = profileId;
-  // this.wsList.JobId = this.jobid;
-  // this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
-  //   console.log(res);
-  // });
-  this.parentApi.CallwishList(event, profileId, this.jobid);
-}
-
-
-displayVideoProfile(profileId, profileOrSizzle) {
-  // (function ($) {
-  // // TODO: test multiple cards -- open and close function
-  // const $card = $('.page--job-details .tab-content .card');
-  //  const $detailBtn = $card.find('.show-matching-details');
-  //   $detailBtn.on('click', function (e) {
-
-  //     e.preventDefault();
-  //     const $selectedCard = $(this).closest('.card');
-  //     const $detailsDiv = $selectedCard.find('.matching-details');
-  //     const $detailsCloseBtn = $selectedCard.find('.close');
-  //     $detailsDiv.toggleClass('open');
-
-  //     $detailsCloseBtn.on('click', function (e) {
-  //       e.preventDefault();
-  //       $detailsDiv.removeClass('open');
-  //     });
-  //   });
-  // })(jQuery);
-  // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
-  //   this.profileVideo = res[0]; });
-  // profile.VideoSizzle,profile.VideoProfile
-
-  // $('.matching-details').removeClass('open');
-  // $('#matchingDetails-' + profileId).toggleClass('open');
-  if (profileOrSizzle === true) {
-    
-      $('.matching-details').removeClass('open');
-      $('#profileVideo-' + profileId).toggleClass('open');  
-  }
-
-}
-
-base64ToArrayBuffer(base64) {
-  const binary_string = window.atob(base64);
-  const len = binary_string.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binary_string.charCodeAt(i);
-  }
-  return bytes.buffer;
-}
-
-DownloadResume(val,profileId): void {
-  this._service.GetService('ProfileAPI/api/GetResume?profileId=', profileId)
-   .subscribe(fileData => { 
-      this.fileType = fileData;
-      let exp = this.fileType.Url.split('.').pop();
-      this.fileExt = exp;
-    this.toastr.success('Downloading!', 'Success!');
-    setTimeout(() => {
-      this.toastr.dismissToast;
-    }, 3000);   
-     debugger 
-     
-      if(this.fileExt == 'pdf')
-      {
-      let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
-      let blob = new Blob([byteArr], { type: 'application/pdf' });
-      FileSaver.saveAs(blob,val);
-      }
-      else if(this.fileExt == 'doc' ||  this.fileExt == 'docx')
-      {
-        var extension = '.doc';
-        let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
-        let blob = new Blob([byteArr], { type: 'application/pdf' });
-        FileSaver.saveAs(blob,val+extension);
-      }
-    });
-
-
-
-}
-displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle) {
-  this.debugger
-  // (function ($) {
-  // // TODO: test multiple cards -- open and close function
-  // const $card = $('.page--job-details .tab-content .card');
-  //  const $detailBtn = $card.find('.show-matching-details');
-  //   $detailBtn.on('click', function (e) {
-
-  //     e.preventDefault();
-  //     const $selectedCard = $(this).closest('.card');
-  //     const $detailsDiv = $selectedCard.find('.matching-details');
-  //     const $detailsCloseBtn = $selectedCard.find('.close');
-  //     $detailsDiv.toggleClass('open');
-
-  //     $detailsCloseBtn.on('click', function (e) {
-  //       e.preventDefault();
-  //       $detailsDiv.removeClass('open');
-  //     });
-  //   });
-  // })(jQuery);
-  // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
-  //   this.profileVideo = res[0]; });
-  // profile.VideoSizzle,profile.VideoProfile
-  this.profileFlipVideo.VideoProfile = videoProfile;
-  this.profileFlipVideo.VideoSizzle = videoSizzle;
-  // $('.matching-details').removeClass('open');
-  // $('#matchingDetails-' + profileId).toggleClass('open');
-  if (profileOrSizzle === true) {
-    if (this.profileFlipVideo.VideoSizzle == null && this.profileFlipVideo.VideoProfile != null) {
-      $('.matching-details').removeClass('open');
-      $('#profileVideo-' + profileId).toggleClass('open');
-    } else {
-      $('.matching-details').removeClass('open');
-      $('#sizzleVideo-' + profileId).toggleClass('open');
-    }
-  } else {
-    $('.matching-details').removeClass('open');
-    $('#profileVideo-' + profileId).toggleClass('open');
-  }
-
-}
-// this function is not required as of now as there is split in UI
-splitSkills(skills) {
-  // foreach(skills.)
-  // for (let count = -1, index = -2; index !== -1; count++, index = Skills.indexOf(',', index + 1) ) {
-  // this.skills.push();
-  //  }
-  // let a1 = new Array();
-  if (skills != null) {
-    this.skills = skills.split(',', 3);
-
-    /// display elements  ///
-    // let i = 0;
-    // for (i = 0; i < a1.length; i++) {
-    // // document.write(a1[i] + '<br >');
-    // this.skills=
     // }
-  }
-}
-GetMatchingPercentage(profileId, jobid): any {
-  // var profileId = 10;
-  // var jobid = 10;
-  this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe(res => {
-    this.matchingParameterDetails = res;
-    // if (this.matchingParameterDetails.isPublic) {
-    //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
-    //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
-    // } else {
-    //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
-    //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
-    // }
-    this.matchingParameterData.Role = this.matchingParameterDetails.Role;
-    this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
-    this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
-    this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+    callSkills(profileId, Val?) {
+        //debugger
+        // var $card = $('.page--job-details .tab-content .card');
+        //   var $detailsBtn = $card.find('.show-matching-details');
+        //   $detailsBtn.on('click', function (e) {
 
-    console.log("matchingParameterDetails", this.matchingParameterDetails);
-    this.getGraph();
-  });
-  return this.matchingParameterDetails;
-}
-GetPersonalityTestFit() {
+        //     e.preventDefault();
+        //     var $selectedCard = $(this).closest('.card');
+        //     var $detailsDiv = $selectedCard.find('.matching-details');
+        //     var $detailsCloseBtn = $selectedCard.find('.close');
 
-}
+        this.ProfileId = profileId;
+        if (Val == 0) {
+            this.GetCandidateCertifications(profileId);
+            $('.matching-details').removeClass('open');
+            $('#matchingDetailCert-' + profileId).toggleClass('open');
+        }
+        if (Val == 2) {
+            //debugger
+            this.GetJobNotes(profileId, this.jobid);
+            $('.matching-details').removeClass('open');
+            $('#matchingDetailNotes-' + profileId).toggleClass('open');
+        }
+        if (Val == 1) {
+            this.GetCandidateDomains(profileId);
+            $('.matching-details').removeClass('open');
+            $('#matchingDetailDom-' + profileId).toggleClass('open');
+        }
+        if (Val == 3) {
+            var data = this.GetMatchingPercentage(profileId, this.jobid);
+            console.log("matchingParameterDetails", this.matchingParameterDetails);
 
-// @ViewChild('testChart1') testChart1: ElementRef;
-// getDetails(){
-//     var responseList = [];
-//     var count = 0;
-//       if (this.testChart1) {
-//       var testChartCanvas = this.testChart1.nativeElement.getContext('2d');
-//          var weekChart = new Chart(testChartCanvas, {
-//         type: 'doughnut',
-//         options: {
+            return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe(res => {
+                this.matchingDetails = res;
+                $('.matching-details').removeClass('open');
+                $('#matchingDetail-' + profileId).toggleClass('open');
 
-//           title: {
-//             display: true,
-//           },
-//           circumference: Math.PI,
-//         rotation: 1.0 * Math.PI,
-//         responsive: true,
-//         legend: { position: 'top',},
-//         animation: { animateScale: true, animateRotate: true }
-//         },
-//         data: {
-//           value: 35,
-//           labels: ["Skill Fit","Job Fit","Personality Fit"],
-//           render: 'labels',
-//           datasets: [{
-//             labels: [
-//               'Red',
-//               'Yellow',
-//               'Blue'
-//             ],
-//             label: '# of Votes',
-//             // this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5
-//             data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
-//             backgroundColor: [
-//               'rgba(101,105, 169, 1)',
-//               'rgba(63, 184, 179, 1)',
-//               'rgba(236, 136, 133, 1)'
-//             ],
-//           }
-//           ]
-//         }
-//       });
-//     }
-//   }
-@ViewChild('testChart') testChart: ElementRef;
-getGraph() {
-  var responseList = [];
-  var count = 0;
-  if (this.testChart) {
-    var testChartCanvas = this.testChart.nativeElement.getContext('2d');
-    if (this.matchingParameterDetails.isPublic) {
-      var weekChart = new Chart(testChartCanvas, {
-        type: 'doughnut',
-        options: {
 
-          title: {
-            display: true,
-          },
-          circumference: Math.PI,
-          rotation: 1.0 * Math.PI,
-          responsive: true,
-          legend: { position: 'bottom', },
-          animation: { animateScale: true, animateRotate: true }
-        },
-        data: {
-          value: 35,
-          labels: ["Skill Fit", "Job Fit", "Personality-Fit"],
-          render: 'labels',
-          datasets: [{
-            labels: [
-              'Red',
-              'Yellow',
-              'Blue'
-            ],
-            label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0 , Math.round(this.matchingParameterData.Personalityfit_Total)],
-            backgroundColor: [
-              'rgba(101,105, 169, 1)',
-              'rgba(63, 184, 179, 1)',
-              'rgba(236, 136, 133, 1)'
-            ],
-
-          },
-
-          ]
+                // $('.matching-details1').removeClass('open');
+                // $('#matchingDetails-' + profileId).toggleClass('open');
+            });
         }
 
-      });
-    } else {
-      var weekChart = new Chart(testChartCanvas, {
-        type: 'doughnut',
-        options: {
 
-          title: {
-            display: true,
-          },
-          circumference: Math.PI,
-          rotation: 1.0 * Math.PI,
-          responsive: true,
-          legend: { position: 'bottom', },
-          animation: { animateScale: true, animateRotate: true }
-        },
-        data: {
-          value: 35,
-          labels: ["Skill Fit", "Job Fit"],
-          render: 'labels',
-          datasets: [{
-            labels: [
-              'Red',
-              'Yellow',
-              'Green'
-            ],
-            label: '# of Votes',
-            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],
-            backgroundColor: [
-              'rgba(101,105, 169, 1)',
-              'rgba(63, 184, 179, 1)'
-            ],
+        // $detailsCloseBtn.on('click', function (e) {
+        //   e.preventDefault();
+        //   $detailsDiv.removeClass('open');
+        // });
+        // });
+    }
+    closeDetails(profileId, type) {
+        if (type === 1) {
+            $('#matchingDetail-' + profileId).removeClass('open');
+            $('#matchingDetailCert-' + profileId).removeClass('open');
+            $('#matchingDetailDom-' + profileId).removeClass('open');
+            $('#matchingDetailNotes-' + profileId).removeClass('open');
+        } else {
+            $('#sizzleVideo-' + profileId).removeClass('open');
+            $('#profileVideo-' + profileId).removeClass('open');
+        }
+    }
+    ngOnInit() {
+        this.alertService.clear();
+        (function ($) {
+            // TODO: test multiple cards -- open and close function
+            const $card = $('.page--job-details .tab-content .card');
+            const $detailsBtn = $card.find('.show-matching-details');
+            $detailsBtn.on('click', function (e) {
 
-          }
-          ]
+                e.preventDefault();
+                const $selectedCard = $(this).closest('.card');
+                const $detailsDiv = $selectedCard.find('.matching-details');
+                const $detailsCloseBtn = $selectedCard.find('.close');
+                $detailsDiv.toggleClass('open');
+
+                $detailsCloseBtn.on('click', function (e) {
+                    e.preventDefault();
+                    $detailsDiv.removeClass('open');
+                });
+            });
+            // const $detailBtn = $card.find('.show-matching-details');
+            // $detailBtn.on('click', function (e) {
+
+            //   e.preventDefault();
+            //   const $selectedCard = $(this).closest('.card');
+            //   const $detailsDiv = $selectedCard.find('.matching-details');
+            //   const $detailsCloseBtn = $selectedCard.find('.close');
+            //   $detailsDiv.toggleClass('open');
+
+            //   $detailsCloseBtn.on('click', function (e) {
+            //     e.preventDefault();
+            //     $detailsDiv.removeClass('open');
+            //   });
+            // });
+        })(jQuery);
+        // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
+        console.log('abc');
+        this.PopulateJobdetail();
+    }
+
+    // ngAfterViewInit() {
+    //   for (const key in this.options) {
+    //     this.defaultOptions[key] = this.options[key];
+    //   }
+    //   this.$owlElement = $(this.el.nativeElement).owlCarousel(this.defaultOptions);
+    // }
+    ngOnChange() {
+        console.log('on change', this.jobid, this.statusid);
+    }
+    updateWishlist(event, profileId) {
+        // this.wsList.IsSaved = event.target.checked;
+        // this.wsList.ProfileId = profileId;
+        // this.wsList.JobId = this.jobid;
+        // this.jobdetailsservice.updateWishlist(this.wsList).subscribe(res => {
+        //   console.log(res);
+        // });
+        this.parentApi.CallwishList(event, profileId, this.jobid);
+    }
+
+
+    displayVideoProfile(profileId, profileOrSizzle) {
+        // (function ($) {
+        // // TODO: test multiple cards -- open and close function
+        // const $card = $('.page--job-details .tab-content .card');
+        //  const $detailBtn = $card.find('.show-matching-details');
+        //   $detailBtn.on('click', function (e) {
+
+        //     e.preventDefault();
+        //     const $selectedCard = $(this).closest('.card');
+        //     const $detailsDiv = $selectedCard.find('.matching-details');
+        //     const $detailsCloseBtn = $selectedCard.find('.close');
+        //     $detailsDiv.toggleClass('open');
+
+        //     $detailsCloseBtn.on('click', function (e) {
+        //       e.preventDefault();
+        //       $detailsDiv.removeClass('open');
+        //     });
+        //   });
+        // })(jQuery);
+        // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
+        //   this.profileVideo = res[0]; });
+        // profile.VideoSizzle,profile.VideoProfile
+
+        // $('.matching-details').removeClass('open');
+        // $('#matchingDetails-' + profileId).toggleClass('open');
+        if (profileOrSizzle === true) {
+
+            $('.matching-details').removeClass('open');
+            $('#profileVideo-' + profileId).toggleClass('open');
         }
 
-      });
     }
-  }
 
-}
+    base64ToArrayBuffer(base64) {
+        const binary_string = window.atob(base64);
+        const len = binary_string.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binary_string.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
+    DownloadResume(val, profileId): void {
+        this._service.GetService('ProfileAPI/api/GetResume?profileId=', profileId)
+            .subscribe(fileData => {
+                this.fileType = fileData;
+                let exp = this.fileType.Url.split('.').pop();
+                this.fileExt = exp;
+                this.toastr.success('Downloading!', 'Success!');
+                setTimeout(() => {
+                    this.toastr.dismissToast;
+                }, 3000);
+                //debugger 
+
+                if (this.fileExt == 'pdf') {
+                    let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+                    let blob = new Blob([byteArr], { type: 'application/pdf' });
+                    FileSaver.saveAs(blob, val);
+                }
+                else if (this.fileExt == 'doc' || this.fileExt == 'docx') {
+                    var extension = '.doc';
+                    let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+                    let blob = new Blob([byteArr], { type: 'application/pdf' });
+                    FileSaver.saveAs(blob, val + extension);
+                }
+            });
+    }
+    displayVideo(profileId, videoSizzle, videoProfile, profileOrSizzle) {
+        //this.debugger
+        // (function ($) {
+        // // TODO: test multiple cards -- open and close function
+        // const $card = $('.page--job-details .tab-content .card');
+        //  const $detailBtn = $card.find('.show-matching-details');
+        //   $detailBtn.on('click', function (e) {
+
+        //     e.preventDefault();
+        //     const $selectedCard = $(this).closest('.card');
+        //     const $detailsDiv = $selectedCard.find('.matching-details');
+        //     const $detailsCloseBtn = $selectedCard.find('.close');
+        //     $detailsDiv.toggleClass('open');
+
+        //     $detailsCloseBtn.on('click', function (e) {
+        //       e.preventDefault();
+        //       $detailsDiv.removeClass('open');
+        //     });
+        //   });
+        // })(jQuery);
+        // this.jobdetailsservice.getVideoProfile(1,0 ).subscribe(res => {
+        //   this.profileVideo = res[0]; });
+        // profile.VideoSizzle,profile.VideoProfile
+        this.profileFlipVideo.VideoProfile = videoProfile;
+        this.profileFlipVideo.VideoSizzle = videoSizzle;
+        // $('.matching-details').removeClass('open');
+        // $('#matchingDetails-' + profileId).toggleClass('open');
+        if (profileOrSizzle === true) {
+            if (this.profileFlipVideo.VideoSizzle == null && this.profileFlipVideo.VideoProfile != null) {
+                $('.matching-details').removeClass('open');
+                $('#profileVideo-' + profileId).toggleClass('open');
+            } else {
+                $('.matching-details').removeClass('open');
+                $('#sizzleVideo-' + profileId).toggleClass('open');
+            }
+        } else {
+            $('.matching-details').removeClass('open');
+            $('#profileVideo-' + profileId).toggleClass('open');
+        }
+
+    }
+    // this function is not required as of now as there is split in UI
+    splitSkills(skills) {
+        // foreach(skills.)
+        // for (let count = -1, index = -2; index !== -1; count++, index = Skills.indexOf(',', index + 1) ) {
+        // this.skills.push();
+        //  }
+        // let a1 = new Array();
+        if (skills != null) {
+            this.skills = skills.split(',', 3);
+
+            /// display elements  ///
+            // let i = 0;
+            // for (i = 0; i < a1.length; i++) {
+            // // document.write(a1[i] + '<br >');
+            // this.skills=
+            // }
+        }
+    }
+    GetMatchingPercentage(profileId, jobid): any {
+        // var profileId = 10;
+        // var jobid = 10;
+        this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe(res => {
+            this.matchingParameterDetails = res;
+            // if (this.matchingParameterDetails.isPublic) {
+            //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
+            //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
+            // } else {
+            //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 40 / 100);
+            //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 60 / 100);
+            // }
+            this.matchingParameterData.Role = this.matchingParameterDetails.Role;
+            this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+            this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
+            this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+
+            console.log("matchingParameterDetails", this.matchingParameterDetails);
+            this.getGraph();
+        });
+        return this.matchingParameterDetails;
+    }
+    GetPersonalityTestFit() {
+
+    }
+
+    // @ViewChild('testChart1') testChart1: ElementRef;
+    // getDetails(){
+    //     var responseList = [];
+    //     var count = 0;
+    //       if (this.testChart1) {
+    //       var testChartCanvas = this.testChart1.nativeElement.getContext('2d');
+    //          var weekChart = new Chart(testChartCanvas, {
+    //         type: 'doughnut',
+    //         options: {
+
+    //           title: {
+    //             display: true,
+    //           },
+    //           circumference: Math.PI,
+    //         rotation: 1.0 * Math.PI,
+    //         responsive: true,
+    //         legend: { position: 'top',},
+    //         animation: { animateScale: true, animateRotate: true }
+    //         },
+    //         data: {
+    //           value: 35,
+    //           labels: ["Skill Fit","Job Fit","Personality Fit"],
+    //           render: 'labels',
+    //           datasets: [{
+    //             labels: [
+    //               'Red',
+    //               'Yellow',
+    //               'Blue'
+    //             ],
+    //             label: '# of Votes',
+    //             // this.matchingParameterDetails.Skillfit_Total>0?this.matchingParameterDetails.Skillfit_Total:5
+    //             data: [this.matchingParameterDetails.Skillfit_Total,this.matchingParameterDetails.Jobfit_Total>0?this.matchingParameterDetails.Jobfit_Total:5,30],
+    //             backgroundColor: [
+    //               'rgba(101,105, 169, 1)',
+    //               'rgba(63, 184, 179, 1)',
+    //               'rgba(236, 136, 133, 1)'
+    //             ],
+    //           }
+    //           ]
+    //         }
+    //       });
+    //     }
+    //   }
+    @ViewChild('testChart') testChart: ElementRef;
+    getGraph() {
+        var responseList = [];
+        var count = 0;
+        if (this.testChart) {
+            var testChartCanvas = this.testChart.nativeElement.getContext('2d');
+            if (this.matchingParameterDetails.isPublic) {
+                var weekChart = new Chart(testChartCanvas, {
+                    type: 'doughnut',
+                    options: {
+
+                        title: {
+                            display: true,
+                        },
+                        circumference: Math.PI,
+                        rotation: 1.0 * Math.PI,
+                        responsive: true,
+                        legend: { position: 'bottom', },
+                        animation: { animateScale: true, animateRotate: true }
+                    },
+                    data: {
+                        value: 35,
+                        labels: ["Skill Fit", "Job Fit", "Personality-Fit"],
+                        render: 'labels',
+                        datasets: [{
+                            labels: [
+                                'Red',
+                                'Yellow',
+                                'Blue'
+                            ],
+                            label: '# of Votes',
+                            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0, Math.round(this.matchingParameterData.Personalityfit_Total)],
+                            backgroundColor: [
+                                'rgba(101,105, 169, 1)',
+                                'rgba(63, 184, 179, 1)',
+                                'rgba(236, 136, 133, 1)'
+                            ],
+
+                        },
+
+                        ]
+                    }
+
+                });
+            } else {
+                var weekChart = new Chart(testChartCanvas, {
+                    type: 'doughnut',
+                    options: {
+
+                        title: {
+                            display: true,
+                        },
+                        circumference: Math.PI,
+                        rotation: 1.0 * Math.PI,
+                        responsive: true,
+                        legend: { position: 'bottom', },
+                        animation: { animateScale: true, animateRotate: true }
+                    },
+                    data: {
+                        value: 35,
+                        labels: ["Skill Fit", "Job Fit"],
+                        render: 'labels',
+                        datasets: [{
+                            labels: [
+                                'Red',
+                                'Yellow',
+                                'Green'
+                            ],
+                            label: '# of Votes',
+                            data: [this.matchingParameterData.Skillfit_Total > 0 ? Math.round(this.matchingParameterData.Skillfit_Total) : 0, this.matchingParameterData.Jobfit_Total > 0 ? Math.round(this.matchingParameterData.Jobfit_Total) : 0],
+                            backgroundColor: [
+                                'rgba(101,105, 169, 1)',
+                                'rgba(63, 184, 179, 1)'
+                            ],
+
+                        }
+                        ]
+                    }
+
+                });
+            }
+        }
+
+    }
 }
 export class WishList {
-  public JobId: number;
-  public ProfileId: number;
-  public IsSaved: boolean;
+    public JobId: number;
+    public ProfileId: number;
+    public IsSaved: boolean;
 }
-export class CandidateCertifications
-{
+export class CandidateCertifications {
 
-CertificationId: number;
-CertificationName: string;
-Certified: boolean;
-CreatedOn: string;
-ImageUrl: string;
-IssuedBy: string;
-LifeTime: string;
-ModifiedOn:string;
-ProfileId: number;
-ProviderId: string;
-YearOfAchievement: string;
+    CertificationId: number;
+    CertificationName: string;
+    Certified: boolean;
+    CreatedOn: string;
+    ImageUrl: string;
+    IssuedBy: string;
+    LifeTime: string;
+    ModifiedOn: string;
+    ProfileId: number;
+    ProviderId: string;
+    YearOfAchievement: string;
 
 }
 
-export class CandidateDomains
-{
+export class CandidateDomains {
 
-CandidateDomainId: number;
-CreatedBy: number;
-CreatedOn: string;
-Description:string;
-DomainId: number;
-DomainName: string;
-ExpInMonths: number;
-ExpInYears: number;
-LastUsed: number;
-ModifiedBy: number;
-ModifiedOn: string;
-ProfileId: number;
+    CandidateDomainId: number;
+    CreatedBy: number;
+    CreatedOn: string;
+    Description: string;
+    DomainId: number;
+    DomainName: string;
+    ExpInMonths: number;
+    ExpInYears: number;
+    LastUsed: number;
+    ModifiedBy: number;
+    ModifiedOn: string;
+    ProfileId: number;
 
 }
 
 export class Resume {
-  ResumeId: number;
-  ProfileId: number;
-  Url: string;
-  ResumeFile: string;
+    ResumeId: number;
+    ProfileId: number;
+    Url: string;
+    ResumeFile: string;
 }
 
 
-export class addon
-{
+export class addon {
     SubscriptionId: string;
-    AddonId:string;
-    AddonUnitPrice:number;
-    AddonQuantity:number;
+    AddonId: string;
+    AddonUnitPrice: number;
+    AddonQuantity: number;
 }
 
-export class RequestRefernce
-{
-   public  ToEmailID: string;
-   public  CustomerId:number;
-   public  UserId:number;
-   public  ProfileId:number;
-   public  UserName: string;
-   public  AppLink: string;
-   public  FromEmail: string;
-   public  CompanyName: string;
-   public  Comment: string;
+export class RequestRefernce {
+    public ToEmailID: string;
+    public CustomerId: number;
+    public UserId: number;
+    public ProfileId: number;
+    public UserName: string;
+    public AppLink: string;
+    public FromEmail: string;
+    public CompanyName: string;
+    public Comment: string;
 }
 
-export class JobStatus
-{
-    public FullName :string
-    public AppLink :string
-    public JobStatus :string
-    public ToEmailID :string
-    public JobLocation :string
-    public  FromEmail :string
-    public JobTitle :string
+export class JobStatus {
+    public FullName: string
+    public AppLink: string
+    public JobStatus: string
+    public ToEmailID: string
+    public JobLocation: string
+    public FromEmail: string
+    public JobTitle: string
 }
 
-export class Notes{
-  public ProfileId :Number
-  public JobId :Number
-  public customerUserId:Number
-  public statusId :Number
-  public toUserId :string
-  public isCandidate:boolean
-  public Comments :string
+export class Notes {
+    public ProfileId: Number
+    public JobId: Number
+    public customerUserId: Number
+    public statusId: Number
+    public toUserId: string
+    public isCandidate: boolean
+    public Comments: string
 }

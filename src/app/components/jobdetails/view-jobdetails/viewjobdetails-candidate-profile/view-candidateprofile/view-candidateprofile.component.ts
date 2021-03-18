@@ -208,7 +208,7 @@ window.open(url, '_blank');
   GetProfileDetails() {
     this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.data.ProfileId).subscribe(
       data => {
-        debugger
+        //debugger
         this.details = data;
       })
   }

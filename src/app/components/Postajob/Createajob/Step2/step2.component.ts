@@ -233,7 +233,7 @@ isDrafted: boolean;
     // this.insertJob.PreferredLocationId = this.locations.prfLoc.CityId.toString();
     this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
-    debugger
+    //debugger
     // end moved to step2
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
@@ -324,7 +324,7 @@ isDrafted: boolean;
       }
        if(this.JobIds.length==0 || this.JobIds == undefined)
       {
-        debugger
+        //debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             // this.insertJob.JobId = data;

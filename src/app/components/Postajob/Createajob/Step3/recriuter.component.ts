@@ -114,7 +114,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
 
   suggestedManager1() {
     return this.appService.getRecrutingTeam(this.customerId).subscribe(res =>{
-        debugger
+        //debugger
       this.remanagers=res;
             this.suggestManagers= this.appService.recrutingList;
       // this.discResult.forEach(cc => cc.checked = false);

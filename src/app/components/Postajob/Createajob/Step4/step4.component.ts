@@ -332,7 +332,7 @@ export class Step4Component implements OnInit {z
        if(this.JobIds.length==0 || this.JobIds == undefined)
       {
       this.insertJob.TemplateSaveTitle = this.TemplateName;
-      debugger
+      //debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {        
           // this.insertJob.JobId = data;

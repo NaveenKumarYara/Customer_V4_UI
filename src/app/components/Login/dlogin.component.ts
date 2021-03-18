@@ -122,7 +122,7 @@ export class dLoginComponent {
               else {
               if(data.CustomDomain != true && !this.currentURL.includes("esolvit"))
               {  
-                debugger   
+                //debugger   
                 this.password = $("#password").val();
                 sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
                 sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -178,7 +178,7 @@ export class dLoginComponent {
               }  
               if(data.CustomDomain === true && !this.currentURL.includes("esolvit"))
               {  
-                debugger   
+                //debugger   
                 this.password = $("#password").val();
                 sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
                 sessionStorage.setItem('isLoggedin', JSON.stringify('true'));
@@ -234,7 +234,7 @@ export class dLoginComponent {
               }  
               if(data.CustomDomain === true && this.currentURL.includes("esolvit"))
               { 
-                debugger    
+                //debugger    
                 this.password = $("#password").val();
                 sessionStorage.setItem('oldPassword',JSON.stringify(this.password));
                 sessionStorage.setItem('isLoggedin', JSON.stringify('true'));

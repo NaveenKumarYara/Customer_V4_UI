@@ -54,7 +54,7 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
     });
   }
   setExtension(val) {
-    debugger
+    //debugger
 
     if(val == "1")
     {

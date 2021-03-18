@@ -72,13 +72,13 @@ export class StepSalarysliderComponent implements OnInit {
   }
 
   checkValue(event: any){
-    debugger
+    //debugger
     this.flag = event;
     this.appService.BonusOffered = event;
  }
 
  checkValue1(event: any){
-   debugger
+   //debugger
    this.flag1 = event;
   this.appService.HideSalary = event;
 }

@@ -49,7 +49,7 @@ export class InviteUsersComponent implements OnInit {
 
   Rest()
   {
-    debugger
+    //debugger
     this.showStep=false;
   }
 
@@ -265,7 +265,7 @@ EditUser(contact)
       {
         this.Addform.value.UserRoleId;
       }
-      debugger
+      //debugger
         this.appService.addCustomerUser(this.Addform.value)
         .subscribe(
         data => {        
@@ -439,7 +439,7 @@ EditUser(contact)
       this.showStep=false;
       this.IsEdit=false;
       this.spinner.hide();
-      debugger
+      //debugger
       this.customercontacts = res;
   });
   }

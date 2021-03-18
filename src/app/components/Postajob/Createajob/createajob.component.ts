@@ -178,7 +178,7 @@ editMode: string;
     }
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
       this.jobdetailscustomer = res;
-      debugger
+      //debugger
       // Departments
       if (this.jobdetailscustomer.JobDepartments.length > 0) {
         for (const dept of this.jobdetailscustomer.JobDepartments) {
@@ -207,7 +207,7 @@ editMode: string;
         }
       }
       this.appService.WorkauthorizeNames = this.ejworkList;
-      debugger
+      //debugger
       this.appService.WorkauthorizeNameChanged.next(this.appService.WorkauthorizeNames);
 
       this.appService.jobIndustry.next(this.jobdetailscustomer.CustomerJobIndustries[0].Code);
@@ -291,7 +291,7 @@ editMode: string;
       this.ejSalaryType.SalaryType = this.jobdetailscustomer.JobInfo.SalaryType;
       this.ejSalaryType.SalaryTypeId = this.jobdetailscustomer.JobInfo.SalaryTypeId;
       this.appService.salaryType.next(this.ejSalaryType);
-        debugger
+        //debugger
       this.appService.contractDuration.next(this.jobdetailscustomer.JobInfo.ContractDuration);
       // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
       // workAuthorization.WorkAuthorizationId = this.jobdetailscustomer.JobInfo.WorkAuthorizationId;
