@@ -109,7 +109,7 @@ maxRate: number;
       //   this.contractExtension = data.WorkAuthorizationType; // And he have data here too!
       // });
      
-      debugger
+      //debugger
       this.Remotework= this.appService.RemoteWork;
 
       this.open = this.appService.BonusOffered;

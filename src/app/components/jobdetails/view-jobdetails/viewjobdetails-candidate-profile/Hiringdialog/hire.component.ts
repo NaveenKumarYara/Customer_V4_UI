@@ -202,7 +202,7 @@ PopulateJobdetail () {
 }
 
 gotit(na) {
-  debugger
+  //debugger
   this.TypeId=na;
   }
 

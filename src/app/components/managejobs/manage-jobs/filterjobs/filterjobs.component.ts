@@ -121,7 +121,7 @@ export class FilterjobsComponent implements OnInit {
   }
 
   navigateToTableLayout() {
-    debugger
+    //debugger
     this.router.navigateByUrl('app-manage-jobs/app-manage-load-joblist/2');
   }
 

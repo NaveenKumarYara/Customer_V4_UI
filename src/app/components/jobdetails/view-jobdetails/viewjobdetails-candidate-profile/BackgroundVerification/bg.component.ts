@@ -115,7 +115,7 @@ export class backgrounddialogComponent {
     this.bgverification.CustUserName = this.customer.FirstName;
     this.bgverification.JobId = this.data.JobId;
     this.bgverification.Comment = 'Requested Drug Test and Few Background Verification Process...' ;
-    debugger
+    //debugger
     return this._service.PostService(this.bgverification, 'EmailAPI/api/BackGroundVerification')
     .subscribe(data => {
       if(data >=0)

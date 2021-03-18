@@ -168,7 +168,7 @@ export class CompanyprofileComponent implements OnInit {
     // this.dragula.dropModel('Cultural').subscribe((data: any) => console.log('dropModel: ', JSON.stringify(data['targetModel'], null, 2)));
 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
-        debugger
+        //debugger
         this.customerId =this.customer.CustomerId;
         this.userId=this.customer.UserId;
         this.toastr.setRootViewContainerRef(_vcr);  
@@ -1021,7 +1021,7 @@ SaveCustomDomain()
 
   @ViewChild('testChart9') testChart9: ElementRef;
   getCultGraph(mail) {
-    debugger
+    //debugger
     //  var mail = "loft@gmail.com";
     this._service.GetService('QuestionAPI/api/QuestionnaireResult/GetCulturalGraphDetails?mail=', mail)
       .subscribe(

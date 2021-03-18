@@ -94,7 +94,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       this.minexperience = this.minexpval;
       newskills.MaximumExp = this.maxexperience;
       newskills.MinimumExp = this.minexperience;
-      debugger
+      //debugger
       const check = this.skillExists(newskills, this.primaryjobskills.concat(this.secondaryjobskills));
       if (check === false&&newskills.SkillName!=null) {
           this.appService.addJobSkill(newskills);

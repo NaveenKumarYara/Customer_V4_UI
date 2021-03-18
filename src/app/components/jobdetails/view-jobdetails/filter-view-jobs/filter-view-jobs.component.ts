@@ -116,7 +116,7 @@ export class FilterViewJobsComponent implements OnInit {
 
  viewby(value, isChecked: boolean,sortBy)
  {
-  //  debugger
+  //  //debugger
    if(sortBy>0)
    {
      this.sortBy = sortBy;

@@ -145,7 +145,7 @@ export class ShareJobComponent {
     });
  }
  ShareJob() { 
-   debugger
+   //debugger
             this.Sharing.ShareId = 0;
             this.Sharing.FromuserId = this.customerUser;
             this.Sharing.CustomerId = this.customerId;

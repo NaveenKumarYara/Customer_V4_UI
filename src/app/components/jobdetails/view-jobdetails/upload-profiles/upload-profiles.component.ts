@@ -130,7 +130,7 @@ export class UploadProfilesComponent implements OnInit {
 
   }
   // getData(){
-  //   debugger
+  //   //debugger
   //   if(this.profiles.length < this.searchprofiles.length){
   //     let len = this.profiles.length;
   //     for(let i=len;i<=len+9;i++)
@@ -404,7 +404,7 @@ export class UploadProfilesComponent implements OnInit {
           this.isFullDisplayed = true;
           this.Count = data.TotalProfileCount;
           this.profiles = data.Profile;
-          // debugger;
+          // //debugger;
           this.searchprofilesFrom.reset();
           // this.searchprocess = data.Profile;
           // this.profiles = this.searchprofiles.slice(0,10);

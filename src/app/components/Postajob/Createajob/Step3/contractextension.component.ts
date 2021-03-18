@@ -28,7 +28,7 @@ export class ContractExtensionComponent implements OnInit, OnDestroy {
     });
   }
   setExtension(val) {
-    debugger
+    //debugger
     this.contractExtension.push(val);
     this.appService.Workauthorize = this.contractExtension.map(x=>x.WorkAuthorizationId).join(",").toString();
     //this.appService.updatecExtension(this.contractExtension);

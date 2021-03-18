@@ -181,7 +181,7 @@ getPaginatorData(event){
 
   GetQuestionnariePersonsList(Id) {
     this.checkId=Id;
-    debugger
+    //debugger
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=' + Id)
       .subscribe(
         data => {

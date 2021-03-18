@@ -507,7 +507,6 @@ GetApplicantsMonth()
 
   return this.dashboardservice.GetDashboardApplicantStatisticsMonth(this.customerId,this.userId,0).subscribe(amwresult => {
     this.ApplicantMonthwise= amwresult;
-    debugger
     var value = Object.values(this.ApplicantMonthwise[0]);
     value.forEach((Apply) => {
       this.mapplicantCount.push(Apply);
