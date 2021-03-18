@@ -217,7 +217,9 @@ suggestedJobTitle() {
       );
     this.appService.currentjobDueDate.subscribe(y=>this.ExpiryDate=y);
     this.appService.currentjobPosition.subscribe(x => this.jobPositionId = x);
+    this.appService.currentjobImp.subscribe(k=>this.jobPriority=k);
     this.appService.currentjobtitle.subscribe(x => this.selectedTitle = x);
+    
     if(this.selectedTitle=='')
     {
       this.selectedTitle= this.newtitle;
