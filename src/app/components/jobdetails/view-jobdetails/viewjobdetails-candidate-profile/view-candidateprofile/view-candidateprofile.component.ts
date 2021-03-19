@@ -12,6 +12,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
 import { mappingdetails } from './mappingdetails';
 import { SettingsService } from '../../../../../../settings/settings.service';
+import { DataService } from 'angular2-multiselect-dropdown/lib/multiselect.service';
 declare var $: any;
 
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
@@ -30,14 +31,18 @@ export class ViewCandidateprofileComponent implements OnInit {
   userId: any;
   email: any;
   profileview: any;
+  MatchingPercentage:any;
   profileId: any;
   fileType = new Resume();
   fileExt: any;
+  CandidateNotes:any=[];
+  Match:any;
   details: mappingdetails;
   list: any;
   noTest: boolean = false;
   isPublicAvailable: boolean = false;
   otherSkills: any = [];
+  hideme=[];
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
     width: 0.8,
@@ -74,6 +79,16 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.noTest = false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
   }
+
+
+  GetMatchingPercentage(Pid,JId): any {
+    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Pid, JId).subscribe(res => {
+      debugger
+      this.Match =res;
+        this.MatchingPercentage = res.Total_Match_Per;
+
+    });
+}
 
   DownloadResume(val): void {
       this._service.GetService('ProfileAPI/api/GetResume?profileId=', this.data.ProfileId)
@@ -189,6 +204,8 @@ window.open(url, '_blank');
     this.GetCandidateSKills();
     this.GetProfileDetails();
     this.GetUserProfileInfo();
+    this.GetJobNotes();
+
     this._service.GetService('ProfileAPI/api/GetProfileStatus?profileId=', this.data.ProfileId).subscribe(
       data => {
         var apiData = data;
@@ -208,7 +225,7 @@ window.open(url, '_blank');
   GetProfileDetails() {
     this._service.GetService('JobsAPI/api/GetUserInfoByProfileMapping?profileId=', this.data.ProfileId).subscribe(
       data => {
-        //debugger
+        debugger
         this.details = data;
       })
   }
@@ -219,8 +236,16 @@ window.open(url, '_blank');
      params = params.append('jobId',  this.data.jobId);
      params = params.append('profileId', this.data.ProfileId);
     this._service.GetService('JobsAPI/api/GetCandidatePrimarySkillUpdated?', params).subscribe(
-      data => {
-          this.skilllist = data;     
+      datas => {
+        if(datas!="No records found")
+        {
+          this.skilllist = datas;     
+        }
+        else
+        {
+          this.skilllist = [];     
+        }
+   
       })
   }
 
@@ -304,10 +329,23 @@ window.open(url, '_blank');
       })
   }
 
+  
+GetJobNotes()
+{
+  this.jobdetailsservice.GetProfileNotes(this.data.ProfileId,this.data.jobId,this.customer.UserId)
+    .subscribe(
+      datr7 => {
+        this.CandidateNotes = datr7;
+      });
+}
+
   GetUserProfileInfo() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.data.ProfileId).subscribe(
       datas => {
+        debugger
         this.profileview = datas;
+        this.GetMatchingPercentage(this.data.ProfileId,this.data.jobId);
+
         // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(u => (u.ExpInYears > 0 || u.ExpInMonths > 0)
           && (u.ExpInYears != null && u.ExpInMonths != null));
