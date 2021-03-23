@@ -1,5 +1,5 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, MinLengthValidator } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
@@ -17,7 +17,9 @@ export class AccountsettingdetailsComponent implements OnInit {
   @ViewChild(NgForm) myForm: NgForm;
   customer:any;  
   iseditPwd: any = false;
+  iseditname: any = false;
   emailForm: FormGroup;
+  nameForm: FormGroup;
   passForm: FormGroup;
   password:any;
   oldstatus: boolean = false;
@@ -36,6 +38,13 @@ export class AccountsettingdetailsComponent implements OnInit {
       'UserId': [this.customer.UserId, Validators.compose([Validators.required])],
       'Email': [this.customer.Email, Validators.compose([Validators.required, Validators.email])]
     });
+
+    this.nameForm = this.fb.group({
+      'UserId': [this.customer.UserId, Validators.compose([Validators.required])],
+      'FirstName': [this.customer.FirstName, Validators.compose([Validators.required,Validators.min(3)])],
+      'LastName': [this.customer.LastName, Validators.compose([Validators.required,Validators.min(3)])]
+    });
+
   }
   createPasswordform() {
     this.passForm = this.fb.group({
@@ -58,6 +67,26 @@ export class AccountsettingdetailsComponent implements OnInit {
       this.customer.Email = userStorage.email;
       sessionStorage.setItem('userData', JSON.stringify(userStorage));
       this.iseditEmail= false;
+      this.FillData();
+  },
+    error => console.log(error));
+  }
+
+  updateName()
+  {
+
+    this.appService.UpdateFullName(this.nameForm.value)
+    .subscribe(
+    data => {
+      let userStorage: any = this.customer;
+      userStorage.FirstName = this.nameForm.value.FirstName;
+      userStorage.LastName = this.nameForm.value.LastName;
+      $('#updateFirstName').text(userStorage.FirstName);
+      $('#updateLastName').text(userStorage.LastName);
+      this.customer.FirstName = userStorage.FirstName;
+      this.customer.LastName = userStorage.LastName;
+      sessionStorage.setItem('userData', JSON.stringify(userStorage));
+      this.iseditname= false;
       this.FillData();
   },
     error => console.log(error));

@@ -4,6 +4,69 @@
       <div id="account-settings" class="tab-pane fade active in">
        <h1>Account Settings</h1>
         <div class="edit-group email-group">
+          <ng-container *ngIf="iseditname">
+            <form [formGroup]="nameForm"  action="" (ngSubmit)="updateName()" class="form-inline">            
+              <div class="form-group">
+                <label for="email">First Name</label>
+                <div class="editable-input">
+                  <input minlength="3" maxlength="20" formControlName="FirstName" value="{{customer?.FirstName | titlecase}}" type="text" class="form-control"    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"/>
+                  <div *ngIf="nameForm.controls['FirstName'].invalid && (nameForm.controls['FirstName'].dirty || nameForm.controls['FirstName'].touched)"
+                   class="alert alert-danger error1">
+                   <div *ngIf="nameForm.controls['FirstName'].errors.required">
+                    First Name is required.
+                  </div>
+                  <div *ngIf="nameForm.controls['FirstName'].errors.minlength">
+                    Minimum required 3 Characters.
+              </div> 
+                  
+                  </div>
+                </div>           
+              </div>
+              <div class="form-group">
+                <label for="email">Last Name</label>
+                <div class="editable-input">
+                  <input minlength="3" maxlength="20" formControlName="LastName" value="{{customer?.LastName | titlecase}}" type="text" class="form-control"    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 95 && event.charCode <= 122)"/>
+                  <div *ngIf="nameForm.controls['LastName'].invalid && (nameForm.controls['LastName'].dirty || nameForm.controls['LastName'].touched)"
+                   class="alert alert-danger error1">
+                   <div *ngIf="nameForm.controls['LastName'].errors.required">
+                    Last Name is required.
+                  </div>
+                  <div *ngIf="nameForm.controls['LastName'].errors.minlength">
+                    Minimum required 3 Characters.
+              </div> 
+
+               
+                  </div>
+                </div>           
+              </div> 
+              <div class="btn-row">
+                <button  class="btn btn-filled" [disabled]="nameForm.invalid">Update</button>
+                <button (click)="iseditname=!iseditname" class="btn btn-border">Cancel</button>
+              </div>         
+            </form>
+            </ng-container>
+            <ng-container *ngIf="!iseditname">
+              <form [formGroup]="nameForm"  action="" (ngSubmit)="updateName()" class="form-inline">            
+                <div class="form-group">
+                  <label for="email">First Name</label>
+                  <div class="editable-input">
+                    <input minlength="3" maxlength="20" formControlName="FirstName" value="{{customer?.FirstName | titlecase}}" type="text" class="form-control" readonly/>
+                  
+                    </div>
+                         
+                </div>
+                <div class="form-group">
+                  <label for="email">Last Name</label>
+                  <div class="editable-input">
+                    <input minlength="3" maxlength="20" formControlName="LastName" value="{{customer?.LastName | titlecase}}" type="text" class="form-control" readonly/>
+                    <a (click)="iseditname=!iseditname" class="edit-btn">Edit Name</a>
+                    </div>   
+                        
+                </div>
+             
+                    
+              </form>
+              </ng-container>
           <ng-container *ngIf="iseditEmail">
           <form [formGroup]="emailForm"  action="" (ngSubmit)="updateEmail()" class="form-inline">            
             <div class="form-group">
