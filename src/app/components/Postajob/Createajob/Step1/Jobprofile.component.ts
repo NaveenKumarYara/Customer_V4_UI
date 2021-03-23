@@ -188,6 +188,7 @@ NewKeyResponse(val)
       this.ILoading = true;
       this.NewIndustry(val);
     }
+
     return { Code: Industries.IndustryName , tag: true};
   }
 
@@ -233,12 +234,21 @@ NewKeyResponse(val)
   {
     const kres = new saveNewKeyRoles();
     kres.Name = val4;
-    if(val4!=null)
+    if(val4!=null && parseInt(val4) > 3 && parseInt(val4)<25)
     {
       this.keyLoading = true;
       this.NewKeyResponse(val4);
+      return { Code: kres.Name , tag: true};
     }
-    return { Code: kres.Name , tag: true};
+    else
+    {
+      this.toastr.info('Please add Key Responsibilities between 3 and 25 Limit','Oops')
+      setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+    return false;
+    }
+    
   }
   
 
