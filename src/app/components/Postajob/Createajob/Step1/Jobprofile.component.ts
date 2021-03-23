@@ -490,6 +490,7 @@ domainminCalculation(exp)
 numberOnly(event): boolean {
   const charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
+    debugger
     return false;
   }
   return true;
@@ -579,7 +580,7 @@ public addkeyRole() {
      }
     else
     {
-      if(this.getDomain.CustomerKeyResponsebility > 0)
+      if(this.getDomain.CustomerKeyResponsebility > 0 && this.getDomain.CustomerKeyMinExperienceId != 0)
       {
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;

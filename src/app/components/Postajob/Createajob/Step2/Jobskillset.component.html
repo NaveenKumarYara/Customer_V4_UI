@@ -1,10 +1,10 @@
 <div class="form-group candidate-group gp-0">
-    <label for="" class="question">What is the skill set that you are looking for in the candidate?</label>
+    <label for="" class="question">What is the skill set that you are looking for in the candidate? <span class="red">*</span></label>
     <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
     <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
         <div class="form-row row">
             <div class="form-group skill-name col-md-6 pt-0" [class.has.error]="skill.invalid && skill.touched">
-                <label for="">Skill Name</label>
+                <label for="">Skill Name <span class="red">*</span></label>
                 <ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
                     bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
                     [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
@@ -25,20 +25,20 @@
             </div>
             <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
              <div class="form-group exp col-md-2 pt-0">
-                <label for="">Min Experience</label>
+                <label for="">Min Experience <span class="red">*</span></label>
                 <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                 </ng-select>  -->
-                <input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+                <input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text" required>
                 <small class="text-danger error1 " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
                 <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
                         Can't be > Max Exp!
                 </small>
             </div>
             <div class="form-group exp col-md-2 pt-0">
-                <label for="">Max Experience</label>
+                <label for="">Max Experience <span class="red">*</span></label>
                 <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
                 </ng-select>   -->
-                <input class="form-control"  #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience" (keypress)="numberOnly($event)" required  placeholder="Max years" type="text">
+                <input class="form-control"  #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience" (keypress)="numberOnly($event)" required  placeholder="Max years" type="text" required>
                 <small class="text-danger error1" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
                 <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small>
             </div> 

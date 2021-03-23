@@ -16,21 +16,27 @@
 </div> -->
 <!---->
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to? </label>
+  <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to?  <span class="red">*</span> </label>
 <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
-(change)="updateJobIndustry($event)">
+(change)="updateJobIndustry($event)"  #Indusrty="ngModel" required>
 </ng-select>
+<small class="text-danger error1" *ngIf="Indusrty.invalid && Indusrty.touched">         
+  *Required
+</small>
 </div>
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofposition">Which Department does the job belongs to? </label>
+  <label class="t-p" for="typeofposition">Which Department does the job belongs to?  <span class="red">*</span> </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
   placeholder="Select (or) Add Department"
-  [(ngModel)]="Department"  (change)="updatePostionType($event)">
+  [(ngModel)]="Department"  (change)="updatePostionType($event)"  name="Departmen" #Departmen="ngModel" required>
 </ng-select>
+<small class="text-danger error1" *ngIf="Departmen.invalid && Departmen.touched">         
+  *Required
+</small>
 </div>
 
 
@@ -55,12 +61,15 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label for="" class="t-p">Which Category this job belongs to? </label>
+  <label for="" class="t-p">Which Category this job belongs to?  <span class="red">*</span> </label>
   <ng-select class="custom-style" [items]="categories"
   bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
   placeholder="Select (or) Add Category"
-  [(ngModel)]="Category"  (change)="updateJobCategory($event)">
+  [(ngModel)]="Category"  (change)="updateJobCategory($event)" name="Categor" #Categor="ngModel" required>
 </ng-select>
+<small class="text-danger error1" *ngIf="Categor.invalid && Categor.touched">         
+  *Required
+</small>
 </div>
 
 <div class="form-group job-profile-group">
@@ -97,11 +106,11 @@
 <div class="form-row row">
   <div class="col-md-6">
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-          <label for="" class="question"> What is the Job Title?</label>
+          <label for="" class="question"> What is the Job Title?  <span class="red">*</span></label>
           <ng-select class="custom-style" [items]="jobtitlelist"
             bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="Select (or) Add Job Title" [(ngModel)]="Title"
-         [virtualScroll]="true" 
-              name="Title" (change)="updateJobTitle($event)">
+         [virtualScroll]="true"  #JobTitle="ngModel"
+              name="Title" (change)="updateJobTitle($event)" required>
           </ng-select>
           <!-- <ul class="data-list">
      <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
@@ -109,24 +118,27 @@
       <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
     </ul>-->
 
-          <!-- <small class="error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small> -->
+           <small class="error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small> 
+           <i class="fa fa-info-circle"> Please add Bussiness Domain, Department and  Category. 'Arytic' provides best profiles  <span class="red">*</span></i>
       </div>
   </div>
   <div class="col-md-6">
       <div class="form-group re-group">
-          <label for="requiredExperience" class="question">Required Experience</label>
+          <label for="requiredExperience" class="question">Required Experience  <span class="red">*</span></label>
           <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
           <div class="row re-exp">
               <!-- <div class="styled-select-box block experience-output"></div> -->
               <div class="col-md-3">
                 <div class="form-group">
                     <input class="form-control"  name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                </div>
+                    
+                  </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <input class="form-control" name="max-exp"  #Maxname="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
-                </div>
+                    
+                  </div>
             </div>
               <div class="col-md-6">
                   <div class="p-rel">
@@ -169,19 +181,23 @@
     <div class="col-md-5">
   
       <div class="form-group">
-          <label for="keyresp"> What are the Key Responsibilities of the role ?</label>
-          <small>Key Responsibilities</small>
+          <label for="keyresp"> What are the Key Responsibilities of the role ?  <span class="red">*</span></label>
+          <small>Key Responsibilities  <span class="red">*</span></small> 
           <ng-select class="custom-style" [items]="KeyResponses"
           (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
           [virtualScroll]="true"  [(ngModel)]="SelectKey"
-          name="key" >
+          name="key"  #Key="ngModel" required minlength="3" maxlength="25">
+          <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
+          <small class="error1" *ngIf="Key.minlength">Min 3 Characters required.</small> 
+          <small class="error1" *ngIf="Key.maxlength">Max 25 Characters required.</small> 
         </ng-select>
       </div>
     </div>
     <div class="col-md-2 min-key-exp">
       <div class="form-group">
-          <small>Relevant Experience</small>
+          <small>Relevant Experience  <span class="red">*</span></small>
           <input class="form-control"  name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+          
         </div>
         <div>
           <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">
@@ -192,6 +208,7 @@
     <div class="col-md-2 max-key-exp">
       <div class="form-group">
         <input class="form-control"  name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
+   
       </div>
       <div>
         <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">

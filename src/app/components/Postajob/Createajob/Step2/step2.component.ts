@@ -345,10 +345,11 @@ isDrafted: boolean;
      
  
   } else {
-    this.toastr.error('Please enter Skills!', 'Oops!');
+    this.toastr.error('Please Add/Select Skills!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
+    window.scrollTo(300, 300);
     return false;
   }
   }

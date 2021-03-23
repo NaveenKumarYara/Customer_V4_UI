@@ -170,15 +170,17 @@ export class Step1Component implements OnInit, AfterViewChecked {
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
+    window.scrollTo(100, 100);
      return false;
    }
 
    
    if (this.jobProfile.DepartmentId === '' || null) {
-    this.toastr.error('Please Select Type of position/Core competancy!', 'Oops!');
+    this.toastr.error('Please Select Department!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
+    window.scrollTo(200, 200);
      return false;
    }
 
@@ -187,6 +189,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
+    window.scrollTo(300, 300);
      return false;
    }
 
@@ -195,8 +198,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
     setTimeout(() => {
         this.toastr.dismissToast;
     }, 3000);
+    window.scrollTo(500, 500);
      return false;
    }
+
+
+
 
    if (this.jobProfile.minExperience === 0) {
     this.toastr.error('Minimum experience should  be greater than 0 !', 'Oops!');
@@ -212,6 +219,15 @@ export class Step1Component implements OnInit, AfterViewChecked {
             this.toastr.dismissToast;
         }, 3000);
         return false;
+   }
+
+   if ( this.jobProfile.addkeyList.length === 0) {
+    this.toastr.error('Please Select And Add Key Responsibilities!', 'Oops!');
+    setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
+    window.scrollTo(700, 700);
+     return false;
    }
 
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
@@ -472,6 +488,7 @@ if (this.appService.isDrafted.value != null) {
     // }
     if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
       this.toastr.error('Please Select Location!', 'Oops!');
+      window.scrollTo(0,9999);
     }
     // if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
     //   this.toastr.error('Please Select Experience!', 'Oops!');

@@ -1,6 +1,6 @@
 <div class="form-group position-group multiple-locations">  
     <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
-        <label for="" class="question">At which location the job is available?</label>
+        <label for="" class="question">At which location the job is available? <span class="red">*</span></label>
             <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
                 post the job for 
                 <ng-container *ngIf="!showMyContainer">
@@ -25,10 +25,12 @@
                         (ngModelChange)="getmultiSelectedOptionText($event)" [typeahead]="mselectedCityInput"
                         [hideSelected]="true" [loading]="mcityloading" [(ngModel)]="selectedCity" [virtualScroll]="true"
                         required #mcity="ngModel" name="mcities">
+                       
                     </ng-select>
+                    <small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small> 
                 </div>
                 <div class="col-md-3">
-                    <label class="open-positions">Open Positions </label>
+                    <label class="open-positions">Open Positions <span class="red">*</span></label>
                     <!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
                     <input type="text" class="form-control" #openings="ngModel" required name="openg"
                         [(ngModel)]="noOfOpening" (ngModelChange)="Openings($event)" placeholder="Define here">
@@ -47,7 +49,7 @@
               </div>   
                             -->
             <div class="lists  open-positions-list">
-                <h6 *ngIf="locationwithpostions?.length>0" class="light">Open Positions at City</h6>
+                <h6 *ngIf="locationwithpostions?.length>0" class="light">Open Positions at City </h6>
                 <div class="col-md-6">
                     <ul class="data-list" >
                         <li  *ngFor="let job of locationwithpostions;let i = index">
@@ -82,7 +84,9 @@
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
                 [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
                 name="cities">
+                
             </ng-select>
+            <small class="error1" *ngIf="city.invalid && city.touched">Required.</small> 
             <div class="options" *ngIf="locationwisejobs">
                 <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
                     <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
@@ -95,7 +99,7 @@
             </div>
         </form>
             <div class="form-group position-group">
-                <label for="" class="question">How many open positions do you currently have for this Job Title?</label>
+                <label for="" class="question">How many open positions do you currently have for this Job Title? <span class="red">*</span></label>
                 <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
                 <div class="p-rel">
             

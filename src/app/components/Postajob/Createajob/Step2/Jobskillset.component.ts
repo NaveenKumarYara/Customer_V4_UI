@@ -13,7 +13,8 @@ import { ChangeContext, LabelType, Options } from 'ng5-slider';
 declare var $: any;
 @Component({
   selector: 'app-steps-step1-jobskillset',
-  templateUrl: './Jobskillset.component.html'
+  templateUrl: './Jobskillset.component.html',
+  styleUrls: ['./Jobskillset.component.css']
 })
 export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('f') form: NgForm;

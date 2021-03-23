@@ -12,7 +12,8 @@ import { concat } from 'rxjs/observable/concat';
 
 @Component({
   selector: 'app-steps-step2-locationwisejobs',
-  templateUrl: './locationwisejobs.component.html'
+  templateUrl: './locationwisejobs.component.html',
+  styleUrls: ['./locationwisejobs.component.css']
 })
 
 export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDestroy {

@@ -951,8 +951,8 @@ textarea {
 
 /* =Import Required styles
 ========================================================================================*/
-@import url(normalize.css);
-@import url(https://fonts.googleapis.com/css2?family=Poppins);
+/* @import url(normalize.css);
+@import url(https://fonts.googleapis.com/css2?family=Poppins); */
 
 
 /* =Box Sizing 
