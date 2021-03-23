@@ -554,18 +554,26 @@ updateJobCategory(val)
 }
 
 public addkeyRole() {
+  debugger
   if (this.roleForm.valid) {
     if (Number(this.MaximumExperience) < Number(this.MinimumExperience)) {
       return false;
   }
+   if(Number(this.MinimumExperience) != 0)
+   {
+     debugger
     this.domainmaxCalculation(this.MaximumExperience);
     this.MaximumExperience= this.dommaxval;
     this.domainminCalculation(this.MinimumExperience);
     this.MinimumExperience = this.domminval;
-    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  // parseFloat((this.MaximumExperience / 12).toFixed(1));
-    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
 
-    if(this.getDomain.CustomerKeyMinExperienceId === 0)
+   }
+   this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  
+   this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
+   
+    
+
+    if(this.getDomain.CustomerKeyMinExperienceId === 0 )
     {
       this.toastr.error('Minimum experience should be greater than 0!', 'Oops!');
       setTimeout(() => {
@@ -581,7 +589,7 @@ public addkeyRole() {
       }, 3000);
        return false;
     }
-    if (this.getDomain.CustomerKeyMinExperienceId > this.getDomain.CustomerKeyMaxExperienceId) {
+    if (this.getDomain.CustomerKeyMinExperienceId > this.getDomain.CustomerKeyMaxExperienceId && this.getDomain.CustomerKeyMinExperienceId != 0) {
       this.toastr.error('Minimum experience should not be greater than Maximum experience!', 'Oops!');
           setTimeout(() => {
               this.toastr.dismissToast;
@@ -598,6 +606,14 @@ public addkeyRole() {
       this.MaximumExperience = 6;
       this.MinimumExperience = 3;
       this.getDomain = new GetKeyRole();
+      }
+      if(this.getDomain.CustomerKeyMinExperienceId == 0 || Number(this.MinimumExperience) == 0)
+      {
+      this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+       return false;
       }
     }
 
