@@ -5,10 +5,10 @@
       <div class="pricing-card box-shadow" [ngClass]="(plans?.planName==sdetails?.planId)?'active-plan':''">
         <div><span class="type">{{plans?.planName.slice(0, -6)}} </span></div>
         <div>
-          <h4 class="price d-inline">$ {{plans?.dailyCharges}}</h4><small class="d-inline">/ Monthly </small>
+          <h4 class="price d-inline" ><i *ngIf="plans.id != 3">$</i> {{plans?.dailyCharges}}</h4><small class="d-inline" *ngIf="plans.id != 3" >/ Monthly </small>
         </div>
         <div>+</div>
-        <p>7% on Successful Hire</p>
+       
 
         <ng-container *ngIf="plans?.planName==sdetails?.planId">
 
