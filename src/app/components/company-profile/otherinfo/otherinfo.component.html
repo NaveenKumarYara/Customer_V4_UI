@@ -28,7 +28,7 @@
       </div> <!-- .header -->
       <div class="card-inner">
         <div class="row text-center">
-          <div class="stats-col col-md-2 col-xs-4">
+          <div class="stats-col col-md-3 col-xs-4">
             <h4 class="title">No. of Employees</h4>
             <h1 *ngIf="companyprofileotherinfo?.NumberOfEmployees!=null" class="number">
               <ng-container  *ngFor="let list of sizelist" >
@@ -40,7 +40,7 @@
             </h1>
             <h1  *ngIf="companyprofileotherinfo?.NumberOfEmployees==null"> N/A </h1>
           </div>
-          <div class="stats-col col-md-2 col-xs-4">
+          <div class="stats-col col-md-3 col-xs-4">
             <h4 class="title">No of Offices</h4>
             <h1  *ngIf="companyprofileotherinfo?.NumberOfOffices!=null" class="number">{{companyprofileotherinfo?.NumberOfOffices}}</h1>
             <h1 *ngIf="companyprofileotherinfo?.NumberOfOffices==null">
@@ -104,11 +104,11 @@
           </select>
             <!-- <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfEmployees}}" id="NumberOfEmployees" maxlength = "10"> -->
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
             <label>No of Offices</label>
             <input type="text" class="form-control" value="{{companyprofileotherinfo?.NumberOfOffices}}" id="NumberOfOffices" maxlength = "10">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
             <label>Date of Establishment</label>
             <input type="text" class="form-control" value="{{companyprofileotherinfo?.EstablishedIn}}" id="EstablishedIn">
           </div>
@@ -119,7 +119,7 @@
               <option [value]="1" [selected]="companyprofileotherinfo?.CompanyType == 'Private Limited'">Private Limited</option>
             </select>
           </div> -->
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
             <label>Company Revenue  </label>
             <input type="text" class="form-control" value="{{companyprofileotherinfo?.RevenueInfo}}" id="revenueinfo" maxlength = "10">
           </div>
