@@ -86,6 +86,7 @@ SaveIndustry()
    this._service.PostService(this.ind, 'ProfileAPI/api/InsertCompanyIndustry')
    .subscribe(data => {
      this.ind = new industry();
+     this.getIndustryList[0];
      this.PopulateCustomerIndustry();
    },
      error => console.log(error));
