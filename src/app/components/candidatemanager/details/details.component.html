@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="section__box__container">
-                                <div class="revamp__filter__sidebar__box">
+                                <div class="revamp__filter__sidebar__box" *ngIf="showFilterNavBar">
                                     <div class="scroll-box">
                                         <div class="icon__box">&nbsp;</div>
                                         <ul>
@@ -119,7 +119,6 @@
                                             </li>
                                         </ul>
                                     </div>
-
                                 </div>
                                 <div class="revamp__search__container">
                                     <div class="row flex flex-align-center flex-wrap">
@@ -215,19 +214,17 @@
                                                         <div class="col-sm-6">
                                                             <ul class="thumbs">
                                                                 <li>
-                                                                    <img src="images/location__thumb.png" alt="">
+                                                                    <img src="../../../assets/images/candidatemanager/location__thumb.png" alt="">
                                                                 </li>
                                                                 <li>
-                                                                    <img src="images/location__thumb.png" alt="">
+                                                                    <img src="../../../assets/images/candidatemanager/location__thumb.png" alt="">
                                                                 </li>
                                                                 <li>
-                                                                    <img src="images/location__thumb.png" alt="">
+                                                                    <img src="../../../assets/images/candidatemanager//location__thumb.png" alt="">
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                                 <div class="filter__tags">
                                                     <ul>
@@ -295,20 +292,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-filter">Filter</button>
+                                        <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
                                     </div>
-
                                 </div>
                                 <div class="top__container">
                                     <div class="row flex flex-wrap flex-align-center">
                                         <div class="col-sm-3">
                                             <div class="view-navigation">
                                                 <ul>
-                                                    <li>
-                                                        <button class="btn btn-grid active">Grid</button>
+                                                    <li (click)="changeView('Grid')">
+                                                        <button class="btn btn-grid" [ngClass]="{'active' : currentView == 'Grid'}">Grid</button>
                                                     </li>
-                                                    <li>
-                                                        <button class="btn btn-list">List</button>
+                                                    <li (click)="changeView('List')">
+                                                        <button class="btn btn-list" [ngClass]="{'active' : currentView == 'List'}">List</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -337,7 +333,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="data-grid-view full">
+                                <div class="data-grid-view full" *ngIf="currentView == 'Grid'">
                                     <div class="row">
                                         <div class="col-sm-6 big-col">
                                             <div class="row flex flex-wrap flex-align-equal">
@@ -359,7 +355,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -386,7 +382,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -413,7 +409,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -440,7 +436,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -467,7 +463,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -494,7 +490,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -521,7 +517,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -548,7 +544,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -575,7 +571,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -602,7 +598,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -629,7 +625,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -656,7 +652,7 @@
                                                         </div>
                                                         <div class="info__container">
                                                             <div class="profile__thumb">
-                                                                <img src="images/profile-thumb-big.png" alt="">
+                                                                <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
                                                             </div>
                                                             <h4>Oleksii Novikov</h4>
                                                             <h5>Senior Front End Specialist</h5>
@@ -672,22 +668,19 @@
                                             <div class="data-grid-slick">
                                                 <div class="item">
                                                     <figure>
-                                                        <img src="images/job-card.png">
+                                                        <img src="../../../assets/images/candidatemanager/job-card.png">
                                                     </figure>
                                                 </div>
                                                 <div class="item">
                                                     <figure>
-                                                        <img src="images/job-card.png">
+                                                        <img src="../../../assets/images/candidatemanager/job-card.png">
                                                     </figure>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-                                <div class="data-grid-table">
+                                <div class="data-grid-table" *ngIf="currentView == 'List'">
                                     <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
                                         <div class="grid-col grid-check-col">
                                             <label class="custom-checkbox">
@@ -727,13 +720,12 @@
                                                 </label>
                                             </div>
                                         </div>
-
                                         <div class="grid-col grid-name-col">
                                             <div class="grid-heading">Name</div>
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
@@ -794,7 +786,7 @@
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
@@ -855,7 +847,7 @@
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
@@ -916,7 +908,7 @@
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
@@ -977,7 +969,7 @@
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
@@ -1038,7 +1030,7 @@
                                             <div class="box-table">
                                                 <div class="profile-container">
                                                     <figure>
-                                                        <img src="images/profile-thumb.png" alt="">
+                                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
                                                     </figure>
                                                     <div class="profile-name">
                                                         Oleksii Novikov
