@@ -34,6 +34,45 @@ getIndustryList=[];
 getIndustry:any=[];
 benefits = new benefits();
 ind = new industry();
+getBenfits: any  = [
+  {Id:1,
+  Name: 'Working hours & leave'},
+  {Id:2,
+    Name: 'Skills development'},
+    {Id:3,
+      Name: 'Food & Beverage'},
+      {Id:4,
+        Name: 'Employee clubs, activities & gifts'},
+        {Id:5,
+          Name: 'Healthcare'},
+          {Id:6,
+          Name: 'Pension plans'} ,
+          {Id:7,
+            Name: 'Insurances'} ,
+            {Id:8,
+              Name: 'Personal finance benefits'} 
+          
+];
+
+getSpecailities: any  = [
+  {Id:1,
+  Name: 'Clear Paths to Success'},
+  {Id:2,
+    Name: 'Defined Roles'},
+    {Id:3,
+      Name: 'Employee Benefits'},
+      {Id:4,
+        Name: 'More Resources'},
+        {Id:5,
+          Name: 'Diverse Networking'},
+          {Id:6,
+          Name: 'Better Value Proposition'} ,
+          {Id:7,
+            Name: 'Higher Conversions'} ,
+            {Id:8,
+              Name: 'Higher Perception of Authority'} 
+          
+];
 companyspecialityId:any;
 specialityId:any;
 speciality:any;
@@ -72,6 +111,10 @@ PopulateCustomerIndustry() {
 
   });
 }
+
+
+
+
 
 GetIndustry()
 {

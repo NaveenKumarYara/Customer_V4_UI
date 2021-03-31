@@ -280,8 +280,16 @@
         <div class="tab-content">
           <div id="benefits" class="tab-pane fade in active">
             <div class="input-group">
-              <input id="benefitsVal" [(ngModel)]="benefit" type="text" class="form-control" name="benefits"
-                placeholder="Benefits">
+              <!-- <select class="form-control" name="industryName" [(ngModel)]="benefit">
+                <option *ngFor="let c of getBenfits" [value]="c.Name">{{c.benefit}}</option>
+             </select> -->
+
+             <input type="text" class="form-control"  placeholder="Benefits"  (input)="benefit = $event.target.value"   list="dynmicTitle" />
+             <datalist id="dynmicTitle">
+             <option *ngFor="let item of getBenfits" [value]="item.Name">{{item.Name}}</option>
+            </datalist> 
+              <!-- <input id="benefitsVal" [(ngModel)]="benefit" type="text" class="form-control" name="benefits"
+                placeholder="Benefits"> -->
               <span class="input-group-btn">
                 <ng-container *ngIf="benefit!=undefined;else nben">
                   <ng-container *ngIf="benefit!=''; else noben">
@@ -356,8 +364,12 @@
           <!--Merging-->
           <div id="specialities" class="specialities tab-pane fade">
             <div class="input-group">
-              <input id="specialVal" [(ngModel)]="speciality" type="text" class="form-control" name="specialities"
-                placeholder="Specialities">
+              <input type="text" class="form-control"  placeholder="Specialities"  (input)="speciality = $event.target.value"   list="dynmicTitle1" />
+              <datalist id="dynmicTitle1">
+              <option *ngFor="let item of getSpecailities" [value]="item.Name">{{item.Name}}</option>
+             </datalist> 
+              <!-- <input id="specialVal" [(ngModel)]="speciality" type="text" class="form-control" name="specialities"
+                placeholder="Specialities"> -->
               <span class="input-group-btn">
                 <ng-container *ngIf="speciality!=undefined;else nsep">
                   <ng-container *ngIf="speciality!=''; else nosep">
