@@ -1455,7 +1455,7 @@ export class BasicinfoComponent implements AfterViewInit {
 
   populateCompanyProfile(customerId) {
     return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
-        this.companyprofile = res;
+      this.companyprofile = res;
     });
 }
 uploadPhoto() {
@@ -1543,7 +1543,11 @@ SaveDomain()
 }
 
   saveProfile() {
-    this.SaveDomain();
+    if(this.slist.length>0)
+    {
+      this.SaveDomain();
+    }
+    
     this.locations = $('#searchZipCode').val();
     if (this.locations.length <= 7) {
       this.alertService.error('please select from Google Location');
