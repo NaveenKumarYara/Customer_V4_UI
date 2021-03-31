@@ -26,12 +26,15 @@ export class BasicinfoComponent implements AfterViewInit {
     imgSrc: any = [];
     showimg:boolean=false;
     showP:boolean=false;
+    CustomerIndustries:any=[];
     croppedImage: any = '';
     private recordRTC: any;
     private stream: MediaStream;
     @ViewChild('video') video;
     recorder: any; // globally accessible
     Ccode:any;
+    Industries:any=[];
+
     private selectCountry : any;
     customer: any;
     customerId: any;
@@ -56,10 +59,16 @@ export class BasicinfoComponent implements AfterViewInit {
     homePhone: any;
     address1: any;
     address2: any;
+    slist=[];
+    Id:any;
+    BusinessDomain:any=[];
     iseditProfile: any = false;
     fullname: any;
   firstname: any;
   lastname: any;
+  ILoading = false;
+  newIndustry = new NewIndustry();
+  newCustomerIndustry = new NewCustomerIndustry();
   currentVideoUpload: File;
   saveVideo: FormGroup;
   options = {
@@ -86,6 +95,7 @@ export class BasicinfoComponent implements AfterViewInit {
       }
     ]
   };
+  public addTagIndustry: (name)=>void;
   constructor(private _service: ApiService, private route: Router,private ng2ImgMax: Ng2ImgMaxService, private fb: FormBuilder, private companyprofileservice: CompanyProfileService, private alertService: AlertService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -108,6 +118,8 @@ export class BasicinfoComponent implements AfterViewInit {
       'JobId': [null, Validators.nullValidator],
       'VideoType': [2, Validators.nullValidator]
     });
+
+   
 
     this.selectCountry = [
       {
@@ -1331,6 +1343,9 @@ export class BasicinfoComponent implements AfterViewInit {
   }
   ngOnInit() {
     this.GetCompanyLogo();
+    this.GetCustomerDomain();
+    this.GetCustomerIndustry();
+    this.addTagIndustry = (name) => this.addIndustry(name);
   //   $('#btn-start-recording').onclick = function() {
   //     this.disabled = true;
   //     this.captureCamera(function(camera) {
@@ -1374,6 +1389,25 @@ export class BasicinfoComponent implements AfterViewInit {
           this.videoUrl = data;
         });
   }
+
+  GetCustomerIndustry()
+ {
+  this._service.GetService('ProfileAPI/api/GetBussinessDomainList?','')
+  .subscribe(
+    data => {
+      this.Industries = data;
+    });
+ }
+
+
+  GetCustomerDomain() {
+    this._service.GetService('ProfileAPI/api/GetCustomerBussinessDomainList?CustomerId=', this.customer.CustomerId)
+      .subscribe(
+        data => {
+          this.CustomerIndustries = data;
+          this.Id = data;
+        });
+  }
   GetCompanyLogo() {
     return this.companyprofileservice.getCompanyLogo(this.customerId).subscribe(res => {
       this.companyLogo = res;
@@ -1381,6 +1415,43 @@ export class BasicinfoComponent implements AfterViewInit {
       this.showimg=false;
   });
   }
+
+  addIndustry(val)
+  {
+    const  Industries = new NewIndustry();
+    Industries.BusinessDomain = val;
+    if(val!=null)
+    {
+      this.ILoading = true;
+      this.NewIndustry(val);
+    }
+
+    return { BussinessDomain: Industries.BusinessDomain , tag: true};
+  }
+
+  NewIndustry(val)
+{
+  this.newIndustry.BusinessDomain = val;
+  this._service.PostService(this.newIndustry, 'ProfileAPI/api/InsertNewBussinessDomain')
+        .subscribe(data => {
+      if(data>0)
+      {
+        this.ILoading = false;
+        this.Id = data;
+        this.BusinessDomain = val;
+        this.GetCustomerIndustry();
+      }
+    })
+}
+
+  updateJobIndustry(val) { 
+    val.forEach(element => {
+      this.Id = element.BusinessDomain;
+      this.slist.push(element.Id);
+    });
+    this.BusinessDomain = this.slist.toString();
+  }
+
 
   populateCompanyProfile(customerId) {
     return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
@@ -1460,8 +1531,19 @@ onSelect(event) {
   
 
 }
+SaveDomain()
+{
+  this.newCustomerIndustry.CustomerId = this.customer.CustomerId
+  this.newCustomerIndustry.BusinessDomain = this.BusinessDomain;
+  this._service.PostService(this.newCustomerIndustry, 'ProfileAPI/api/InsertCustomerBussinessDomain')
+        .subscribe(data => {
+        this.GetCustomerDomain();
+      
+    })
+}
 
   saveProfile() {
+    this.SaveDomain();
     this.locations = $('#searchZipCode').val();
     if (this.locations.length <= 7) {
       this.alertService.error('please select from Google Location');
@@ -1496,6 +1578,7 @@ onSelect(event) {
      }
      this._service.PostService(this.basicinfo, 'ProfileAPI/api/UpdateCompanyprofile')
         .subscribe(data => {
+          debugger
           $('#autocompletezip').val('');
           const contents = $('#searchZipCode').val();
           $('#autocompletezip').val(contents);
@@ -1806,3 +1889,14 @@ onSelect(event) {
 
 
   }
+
+export class NewIndustry
+{  
+  BusinessDomain: string;  
+}
+
+export class NewCustomerIndustry
+{
+  CustomerId:number;
+  BusinessDomain: string;
+}

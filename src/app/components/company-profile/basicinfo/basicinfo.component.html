@@ -38,7 +38,13 @@
       </div>
       <div class="company-info">
         <h1>{{companyprofile?.CompanyName}}</h1>
-           <!--<h3>IT Consulting</h3>-->
+        <ng-container *ngIf="CustomerIndustries.length>0">
+          <ng-container *ngFor="let dom of CustomerIndustries">
+            <h3>{{dom?.BussinessDomain}}</h3>
+          </ng-container>
+        </ng-container>
+   
+        
         <div class="social-media">
           <ng-container *ngIf="companyprofile?.TwitterURL!=null && companyprofile?.TwitterURL!=''">
             <a [attr.href]="companyprofile?.TwitterURL" target="_blank">
@@ -235,9 +241,12 @@
             <input type="text" class="form-control" value="{{companyprofile?.CompanyName||'CompanyName'}}"
               id="companyName" readonly>
           </div>
-          <!-- <div class="form-group">
-            <input type="text" class="form-control" value="Design &amp; Animation" placeholder="Domain">
-          </div> -->
+         <div class="form-group">
+          <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
+          name="Indusrty" [(ngModel)]="Id"  [hideSelected]="true"  [multiple]=true [virtualScroll]=true
+         (change)="updateJobIndustry($event)"  #Indusrty="ngModel">
+         </ng-select>
+          </div> 
         </div>
         <div class="form-group meta-info">
           <label for="" class="opacity1">Online</label>
