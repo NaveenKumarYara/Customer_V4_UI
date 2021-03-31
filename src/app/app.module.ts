@@ -99,6 +99,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { CmModule } from './components/candidatemanager/cm.module';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
@@ -175,6 +176,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
         NgSelectModule,
         HttpClientModule,
         ManagejobsModule,
+        FileUploadModule,
         CmModule,
         RatingModule,
         JobdetailsModule,

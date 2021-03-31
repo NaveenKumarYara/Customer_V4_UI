@@ -48,6 +48,7 @@
     "ng-starrating": "^1.0.5",
     "ng2-charts": "^1.6.0",
     "ng2-dragula": "^2.0.4",
+    "ng2-file-upload": "^1.4.0",
     "ng2-img-max": "^2.2.4",
     "ng2-toastr": "^4.1.2",
     "ng5-slider": "^1.1.6",

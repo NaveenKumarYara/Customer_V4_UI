@@ -40,6 +40,7 @@ import {RemovePipe} from './view-jobdetails/viewjobdetails-candidate-profile/Rem
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { FileUploadModule } from 'ng2-file-upload';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatDialogModule,
   MatCardModule,
@@ -86,7 +87,7 @@ import { sendnotificationdialogComponent } from './view-jobdetails/viewjobdetail
     MatPaginatorModule,
     MatRadioModule,
     MatSortModule,
-    MatSnackBarModule,
+    MatSnackBarModule,FileUploadModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
     NgCircleProgressModule.forRoot({})

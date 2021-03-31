@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError} from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject,ViewContainerRef } from '@angular/core';
+import { Component, Inject,ViewContainerRef,EventEmitter,ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -13,6 +13,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
+ 
+
+const URL = 'http://localhost:4300/fileupload/';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -53,7 +57,11 @@ export class sendnotificationdialogComponent {
   userId:number;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
-  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
+
+
+  uploader:FileUploader;
+
+  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,private detector: ChangeDetectorRef,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -95,8 +103,30 @@ export class sendnotificationdialogComponent {
     {
       this.PStatus = 'Waiting for response';
     }
-  }
+
+    this.uploader = new FileUploader({
+      url: URL,
+      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+      formatDataFunctionIsAsync: true,
+      allowedFileType: ['image', 'pdf','doc'],
+      
+      formatDataFunction: async (item) => {
+        return new Promise( (resolve, reject) => {
+          resolve({
+            name: item._file.name,
+            length: item._file.size,
+            contentType: item._file.type,
+            date: new Date()
+          });
+        });
+      }
+    });
+
+   
  
+
+  }
+
   ngOnInit() {
     this.GetContacts();
     this.clearTeamMemebers();
