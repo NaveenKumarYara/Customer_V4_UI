@@ -15,6 +15,7 @@ export class DetailsComponent implements OnInit {
     constructor(private appService: AppService) { }
 
     ngOnInit() {
+        this.getFilterData('JobType');
     }
 
     changeView(type) {
