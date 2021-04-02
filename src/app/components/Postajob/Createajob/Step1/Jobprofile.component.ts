@@ -234,7 +234,7 @@ NewKeyResponse(val)
   {
     const kres = new saveNewKeyRoles();
     kres.Name = val4;
-    if(val4!=null && parseInt(val4) > 3 && parseInt(val4)<25)
+    if(val4!=null && kres.Name.length> 3 && kres.Name.length<25)
     {
       this.keyLoading = true;
       this.NewKeyResponse(val4);
@@ -566,6 +566,7 @@ public addkeyRole() {
     this.MinimumExperience = this.domminval;
 
    }
+   debugger
    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  
    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
    
@@ -598,6 +599,7 @@ public addkeyRole() {
     {
       if(this.getDomain.CustomerKeyResponsebility > 0 && this.getDomain.CustomerKeyMinExperienceId != 0)
       {
+        
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();
