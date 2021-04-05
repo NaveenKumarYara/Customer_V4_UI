@@ -17,6 +17,7 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
  contractExtension :any=[];
  Corp:string;
  W2:string;
+ ejworkList:any=[];
  Contract:string;
  last:string;
   constructor(private route: ActivatedRoute,
@@ -48,10 +49,12 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
           {
             this.last = "4";
           }
-          this.contractExtension.push(e.WorkAuthorizationId);
+          this.contractExtension.push(e.WorkAuthorizationId);          
         }
       )
     });
+    this.appService.WorkauthorizeNameChanged.next(this.appService.WorkauthorizeNames);
+    
   }
   setExtension(val) {
     //debugger
@@ -74,7 +77,18 @@ export class StepContractExtensionComponent implements OnInit, OnDestroy {
     }
     this.contractExtension.push(val);
     this.appService.Workauthorize = this.contractExtension;
+    const ejDepart = new WorkAuthorization();
+    ejDepart.WorkAuthorizationId = val;
+    this.ejworkList.push(ejDepart);
+
+
+    this.appService.WorkauthorizeNames = this.ejworkList;
+    this.appService.WorkauthorizeNameChanged.next(this.appService.WorkauthorizeNames);
+
+
+
     //this.appService.updatecExtension(this.contractExtension);
+   //this.populateContractExtension();
   }
 
 
