@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild, ElementRef,ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
 // tslint:disable-next-line:import-blacklist
@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Jobskills, AddSkill } from '../../../../../models/jobskills.model';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl, NgForm } from '@angular/forms';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { ChangeContext, LabelType, Options } from 'ng5-slider';
 declare var $: any;
 @Component({
@@ -64,7 +65,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     }
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false
   }
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
   }
   addTagNow(val) {
@@ -146,6 +147,10 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       localStorage.removeItem('skill');
      this.form.reset();
     } else {
+      this.toastr.info('Please Add/Select Skill','Oops')
+      setTimeout(() => {
+        this.toastr.dismissToast;
+    }, 3000);
 
 }
   }
