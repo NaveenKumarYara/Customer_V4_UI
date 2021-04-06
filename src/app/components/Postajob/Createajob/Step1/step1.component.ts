@@ -102,7 +102,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   }
   ngOnInit() {
     this.alertService.clear();
-    window.addEventListener('scroll', this.scrolling, true);
+    //window.addEventListener('scroll', this.scrolling, true);
     // $(window).scroll(function(event) {
     //   function footer()
     //     {
