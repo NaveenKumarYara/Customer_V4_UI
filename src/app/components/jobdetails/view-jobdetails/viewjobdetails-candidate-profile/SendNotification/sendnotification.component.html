@@ -1,150 +1,167 @@
 <div class="page page--job-details">
-    <div>
-        <h4 mat-dialog-title class="modal-title text-center">
-          Send Note <i class="fa fa-send-o"></i>
-          <ng-container>
-           <h5  class="status {{PStatus}}">  {{PStatus}}.</h5>
-          </ng-container>
-        </h4>
-        <ng-container *ngIf="matching<=49">
-            <h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.</h6>
-          </ng-container>
-          <ng-container *ngIf="matching>49">
-            <h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
-          </ng-container>
-        
-        <mat-dialog-content class="mat-typography modal-dialog h-auto">
-            <div>
-                <div class="modal-body">
-                    <div class="row ">
-                        <div class="col-md-3 w-auto">
-                            <label class="radio checkbox">
-                <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false,0)">
-                <span class="radio-btn wh-22 ml-0"></span>
-                <span>Team Member</span>
+	<div>
+		<h4 mat-dialog-title class="modal-title text-center">
+			Send Note <i class="fa fa-send-o"></i>
+			<ng-container>
+				<h5 class="status {{PStatus}}"> {{PStatus}}.</h5>
+			</ng-container>
+		</h4>
+		<ng-container *ngIf="matching<=49">
+			<h6> <i class="fa fa-info-circle"></i> Does profile apt to your position as it matches only {{matching}}%.
+			</h6>
+		</ng-container>
+		<ng-container *ngIf="matching>49">
+			<h6><i class="fa fa-info-circle"></i> Profile apt to your position as it matches {{matching}}%.</h6>
+		</ng-container>
 
-              </label>
-                        </div>
-                        <div class="col-md-3 w-auto">
-                            <label class="radio checkbox">
-                <input type="radio" class="radio-input" name="team" (click)="teamchange(true,1)">
-                <span class="radio-btn wh-22 ml-0"></span>
-                <span>Candidate</span>
+		<mat-dialog-content class="mat-typography modal-dialog h-auto">
+			<div>
+				<div class="modal-body">
+					<div class="row ">
+						<div class="col-md-3 w-auto">
+							<label class="radio checkbox">
+								<input type="checkbox" class="radio-input" name="team" [checked]="true" (click)="teamchange(false,0)">
+								<span class="radio-btn wh-22 ml-0"></span>
+								<span>Team Member</span>
 
-              </label>
-                        </div>
-                    </div>
+							</label>
+						</div>
+						<div class="col-md-3 w-auto">
+							<label class="radio checkbox">
+								<input type="checkbox" class="radio-input" name="team" (click)="teamchange(true,1)">
+								<span class="radio-btn wh-22 ml-0"></span>
+								<span>Candidate</span>
+							</label>
+						</div>
+						<div class="col-md-3 w-auto">
+							<label class="radio checkbox">
+								<input type="checkbox" class="radio-input" name="team" (click)="teamchange(true,1)">
+								<span class="radio-btn wh-22 ml-0"></span>
+								<span>Other</span>
+							</label>
+						</div>
+					</div>
 
 
 					<ng-container *ngIf="!AddUser">
-                        <form action="">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="">Add Team Member</label>
-                                    <div class="input-group">
-                                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
-                                        </ng-select>
+						<form action="">
+							<div class="form-row">
+								<div class="form-group">
+									<label for="">Add Team Member</label>
+									<div class="input-group lg-right-padding">
+										<ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team"
+											placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName"
+											bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true" [loading]="usersloading"
+											id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+											#TMemb="ngModel">
+										</ng-select>
 
-                                        <span class="input-group-btn">
-                      <button class="btn" (click)="addTeammembers()">+</button>
-                    </span>
-                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
-                                    </div>
-                                    <ul class="share_candidate team-members-list">
-                                        <li *ngFor="let teammember of teammemberslist; let i = index">
-                                            <div class="w-100">
-                                                <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                                                <h4 class="card-body">{{teammember.FirstName}}
-                                                </h4>
-                                                <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+										<span class="input-group-btn">
+											<button class="btn" (click)="addTeammembers()">+</button>
+										</span>
+										<span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+									</div>
+									<ul class="share_candidate team-members-list share__candidates__tags">
+										<li *ngFor="let teammember of teammemberslist; let i = index">
+											<div class="w-100">
+												<!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
+												<h4 class="card-body">{{teammember.FirstName}}
+												</h4>
+												<span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+											</div>
+										</li>
+									</ul>
+									<div class="inline-radio-tab revamp__inline__radio__tab">
+										<div><input type="radio" name="title"><label>Email/Call</label></div>
+										<div><input type="radio" name="title" checked><label>General</label></div>
+										<div><input type="radio" name="title"><label>Request for information</label></div>
+										<div><input type="radio" name="title"><label>Interview Related</label></div>
+										<div><input type="radio" name="title"><label>Other</label></div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="">Notes</label>
+								<textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
+									placeholder="Please add your Notes *" rows="10"></textarea>
+							</div>
+						</form>
 
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Notes</label>
-                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your Notes *" rows="10"></textarea>
-                            </div>
-                        </form>
+					</ng-container>
+					<ng-container *ngIf="AddUser">
+						<form action="">
+							<div class="form-row">
+								<label>
+									{{checkemail}}
 
-                    </ng-container>
-                    <ng-container *ngIf="AddUser">
-                        <form action="">
-                            <div class="form-row">
-                                <label>
-                             {{checkemail}}
+								</label>
+							</div>
+							<div class="form-group">
+								<label for="">Notes</label>
+								<textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none"
+									placeholder="Please add your Notes*" rows="10"></textarea>
+							</div>
+						</form>
 
-                            </label>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Notes</label>
-                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your Notes*" rows="10"></textarea>
-                            </div>
-                        </form>
-
-                    </ng-container>
+					</ng-container>
 
 					<div class="culture-card text-center pointer pt-1 w-100" (click)="photo.click()">
-						<input class="hidden"  type="file" #photo (click)="photo.value = null"
-						  value="" ng2FileSelect [uploader]="uploader" multiple>
-				
+						<input class="hidden" type="file" #photo (click)="photo.value = null" value="" ng2FileSelect
+							[uploader]="uploader" multiple>
+
 						<button class="file-label btn-sm  pull-left btn-filled"> Add Attachments
-							<br/> <i class="pull-left">* Please add <b>'.png,.pdf,.doc/.docx'</b></i>
+							<br /> <i class="pull-left">* Please add <b>'.png,.pdf,.doc/.docx'</b></i>
 						</button>
-						
-						
-						
-						
-					  </div>
-					<!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
-					<div class="col-md-9 mt-5" *ngIf="uploader.queue.length>0">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Size</th>
-									<th>Status</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let item of uploader.queue;let i=index">
-									<td>
-										{{ item?.file?.name }}
-									</td>
-									<td>
-										{{ item?.file?.size/1024/1024 | number:'.2' }} MB
-									</td>
-									<td *ngIf="uploader.options.isHTML5">
-										<div class="progress" style="margin-bottom: 0;">
-											<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"><span style="color: whitesmoke;">  <i class="fa fa-check-circle-o">Success</i></span></div>
-										</div>
-									</td>
-									<td>
-										<button type="button" class="btn btn-danger btn-xs" (click)="item.remove(i)">
-					 <span class="glyphicon glyphicon-trash"></span> 
-					</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+
+
+
+
 					</div>
-			
+					<!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple  /> -->
+					<div class="file__upload__list__table row">
+						<div class="col-xs-12 mt-5" *ngIf="uploader.queue.length>0">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Size</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of uploader.queue;let i=index">
+										<td>
+											{{ item?.file?.name }}
+										</td>
+										<td>
+											{{ item?.file?.size/1024/1024 | number:'.2' }} MB
+										</td>
+										<td *ngIf="uploader.options.isHTML5">
+											<div class="progress" style="margin-bottom: 0;">
+												<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
+													<span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>&nbsp;Success</span> 
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger btn-xs" (click)="item.remove(i)">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-dialog-content>
+		<mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
-                   
-      
+			<button mat-button mat-dialog-close class="btn btn-border">Close</button>
+			<button mat-button (click)="SaveNotes()" [class.spinner]="loading" (click)="loginstyle()"
+				class="btn btn-filled">Send</button>
 
-                </div>
-            </div>
-        </mat-dialog-content>
-        <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-
-            <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="SaveNotes()" [class.spinner]="loading"
-            (click)="loginstyle()"  class="btn btn-filled">Send</button>
-
-        </mat-dialog-actions>
-    </div>
+		</mat-dialog-actions>
+	</div>
 </div>
