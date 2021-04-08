@@ -1055,6 +1055,13 @@
 							</div>
 							<!-- interviewed -->
 							<div *ngIf="profile?.ResponseStatusId == 7">
+								<ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
+									<li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal"
+											data-target="#scheduleCandidate"
+											(click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.MatchingPercentage)">
+											<p class="p6">Schedule Interview</p>
+										</a></li>
+								</ng-container>
 								<ng-container
 									*ngIf="customer?.AccessDetails?.UserRoleId!=4&&customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
 									<li role="presentation"><a role="menuitem" href="javascript:void(0)"
