@@ -1,5 +1,4 @@
 <div class="grid-table-section">
-
     <div class="revamp__candidate__grid__list">
         <div class="revamp__title__container">
             <div class="row  flex flex-wrap flex-align-center">
@@ -8,7 +7,6 @@
                 </div>
                 <div class="col-sm-8 flex flex-wrap flex-align-center flex-justify-end">
                     <div class="revamp__sorting__status">
-
                         <select class="custom-select">
                             <option value="">Recently Added Asc</option>
                             <option value="">Recently Added desc</option>
@@ -341,8 +339,9 @@
             <div class="data-grid-view full" *ngIf="currentView == 'Grid'">
                 <div class="row flex flex-wrap">
                     <div class="col-sm-6 big-col">
-                        <div class="row flex flex-wrap flex-align-equal">
-                            <div class="col-sm-3 green">
+                        <span *ngIf="candidatesLoading">Loading Candidates...</span>
+                        <div class="row flex flex-wrap flex-align-equal" *ngIf="!candidatesLoading && candidates.length > 0;else noCandidates">
+                            <div class="col-sm-3" [ngClass]="{'green' : i % 4 == 0 , 'blue' : i % 4 == 1, 'light-blue' : i % 4 == 2, 'yellow' : i % 4 == 3}" *ngFor="let candidate of candidates; let i = index" [attr.data-index]="i">
                                 <div class="col__container">
                                     <div class="top__container flex flex-wrap flex-align-center">
                                         <div class="custom-radio">
@@ -351,40 +350,10 @@
                                         </div>
                                         <ul>
                                             <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
+                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="{{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}"></span>
                                             </li>
                                             <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test2" name="radio-group">
-                                            <label for="test2">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
+                                                <span class="revamp-icon revamp-icon-email" data-toggle="tooltip" title="{{candidate.Email != null && candidate.Email != '' ? candidate.Email : 'N/A'}}"></span>
                                             </li>
                                             <li>
                                                 <span class="revamp-icon revamp-icon-note"></span>
@@ -393,316 +362,19 @@
                                     </div>
                                     <div class="info__container">
                                         <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
+                                            <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
                                         </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 light-blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test3" name="radio-group">
-                                            <label for="test3">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 yellow">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test4" name="radio-group">
-                                            <label for="test4">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 green">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test5" name="radio-group">
-                                            <label for="test5">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test6" name="radio-group">
-                                            <label for="test6">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 light-blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test7" name="radio-group">
-                                            <label for="test7">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 yellow">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test8" name="radio-group">
-                                            <label for="test8">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 green">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test9" name="radio-group">
-                                            <label for="test9">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test10" name="radio-group">
-                                            <label for="test10">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 light-blue">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test11" name="radio-group">
-                                            <label for="test11">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 yellow">
-                                <div class="col__container">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
-                                            <input type="radio" id="test12" name="radio-group">
-                                            <label for="test12">Checkbox</label>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="+3  809 698 3822!"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="info__container">
-                                        <div class="profile__thumb">
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb-big.png" alt="">
-                                        </div>
-                                        <h4>Oleksii Novikov</h4>
-                                        <h5>Senior Front End Specialist</h5>
-                                        <div class="location">Lviv, Bogomolsya st.</div>
-                                        <div class="company">Infosys</div>
+                                        <h4>{{candidate.FirstName != null ? candidate.FirstName : ''}} {{candidate.MiddleName != null ? candidate.MiddleName : ''}} {{candidate.LastName != null ? candidate.LastName : ''}}</h4>
+                                        <h5>{{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}</h5>
+                                        <div class="location">{{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}</div>
+                                        <div class="company">{{candidate.CompanyName != null && candidate.CompanyName != '' ? candidate.CompanyName : 'N/A'}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <ng-template #noCandidates>
+                            <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
+                        </ng-template>
                     </div>
                     <div class="col-sm-6">
                         <button class="btn btn-cross">Close</button>
@@ -751,373 +423,72 @@
                         &nbsp;
                     </div>
                 </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
+                <div *ngIf="!candidatesLoading && candidates.length > 0;else noCandidatesList">
+                    <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
+                        <div class="grid-col grid-check-col">
+                            <div class="grid-heading">Select</div>
+                            <div class="box-table">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
+                        <div class="grid-col grid-name-col">
+                            <div class="grid-heading">Name</div>
+                            <div class="box-table">
+                                <div class="profile-container">
+                                    <figure>
+                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
+                                    </figure>
+                                    <div class="profile-name">
+                                        {{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}} {{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}} {{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
+                        <div class="grid-col grid-job-title-col">
+                            <div class="grid-heading">Job Title</div>
+                            <div class="box-table">
+                                {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
+                        <div class="grid-col grid-email-col">
+                            <div class="grid-heading">Email</div>
+                            <div class="box-table">
+                                {{candidateDetails.Email != null && candidateDetails.Email != '' ? candidateDetails.Email : 'N/A'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
+                        <div class="grid-col grid-contact-col">
+                            <div class="grid-heading">Contact Number</div>
+                            <div class="box-table">
+                                {{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ? candidateDetails.ContactNumber : 'N/A'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
+                        <div class="grid-col grid-location-col">
+                            <div class="grid-heading">Current Location</div>
+                            <div class="box-table">
+                                {{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ? candidateDetails.JobLocations : 'N/A'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
+                        <div class="grid-col grid-job-typ-col">
+                            <div class="grid-heading">Job Type</div>
+                            <div class="box-table">
+                                {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
-                                </div>
+                        <div class="grid-col grid-action-col">
+                            <div class="grid-heading">Action</div>
+                            <div class="box-table">
+                                <button class="dots">&nbsp;</button>
                             </div>
                         </div>
                     </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
-                        </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
-                        </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
-                        </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
-                        </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
                 </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
-                        </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
-                        </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
-                        </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
-                        </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
-                        </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
-                        </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
-                        </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
-                        </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
-                        </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
-                        </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
-                        </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
-                        </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <div class="grid-heading">Select</div>
-                        <div class="box-table">
-                            <label class="custom-checkbox">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="grid-col grid-name-col">
-                        <div class="grid-heading">Name</div>
-                        <div class="box-table">
-                            <div class="profile-container">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                </figure>
-                                <div class="profile-name">
-                                    Oleksii Novikov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        <div class="grid-heading">Job Title</div>
-                        <div class="box-table">
-                            Senior Front End Specialist
-                        </div>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        <div class="grid-heading">Email</div>
-                        <div class="box-table">
-                            oleksii@gmail.com
-                        </div>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        <div class="grid-heading">Contact Number</div>
-                        <div class="box-table">
-                            +3 809 698 3822
-                        </div>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        <div class="grid-heading">Current Location</div>
-                        <div class="box-table">
-                            Lviv, Bogomolsya st.
-                        </div>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        <div class="grid-heading">Job Type</div>
-                        <div class="box-table">
-                            Angular Developer
-                        </div>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        <div class="grid-heading">Action</div>
-                        <div class="box-table">
-                            <button class="dots">&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
+                <ng-template #noCandidatesList>
+                    <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
+                </ng-template>
             </div>
-
             <div class="data__table__footer">
                 <ul>
                     <li>
@@ -1140,5 +511,4 @@
             <!--/.data-grid-table-->
         </div>
     </div>
-
 </div>

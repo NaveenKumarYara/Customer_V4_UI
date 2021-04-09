@@ -1772,6 +1772,14 @@ export class AppService {
             );
     }
 
+    getCandidates(cId, uId): Observable<any> {
+        const url = this.settingsService.settings.ProfilebaseUrl + '/api/GetCandidates?cId=' + cId + '&uId=' + uId;
+        return this.http.get<any>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
     private handleError(error: any) {
         const errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
