@@ -82,6 +82,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     jobdetailscustomer = new GetJobDetailCustomer();
     status = new JobStatus();
     usersList: any;
+    iconHide: boolean = false;
 
     schIntw = new ScheduleInterview();
     wsList = new WishList();
@@ -798,6 +799,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         //     var $detailsCloseBtn = $selectedCard.find('.close');
 
         this.ProfileId = profileId;
+        this.iconHide = true;
         if (Val == 0) {
             this.GetCandidateCertifications(profileId);
             $('.matching-details').removeClass('open');
@@ -837,6 +839,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         // });
     }
     closeDetails(profileId, type) {
+        this.iconHide = false;
         if (type === 1) {
             $('#matchingDetail-' + profileId).removeClass('open');
             $('#matchingDetailCert-' + profileId).removeClass('open');

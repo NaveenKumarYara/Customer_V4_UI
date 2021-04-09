@@ -1,12 +1,12 @@
 <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i=index">
-	<button class="chat__btn__icon icon">
+	<button class="chat__btn__icon icon" [ngClass]="iconHide && 'hide'">
 		<i class="fa fa-comment"></i>
 	</button>
-	<button class="chat__btn__icon msg_btn_value">Active</button>
-	<button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId,2)">
+	<button class="chat__btn__icon msg_btn_value" [ngClass]="iconHide && 'hide'">Active</button>
+	<button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId,2)"  [ngClass]="iconHide && 'hide'">
 		<i class="fa fa-clipboard"></i>
 	</button>
-	<button class="note__btn__icon note_btn_value">Active</button>
+	<button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'">Active</button>
 	<div class="card candidate">
 		<header class="p-rel">
 			<div class="ptr">
@@ -1055,7 +1055,7 @@
 							</div>
 							<!-- interviewed -->
 							<div *ngIf="profile?.ResponseStatusId == 7">
-								<ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
+                                <ng-container *ngIf="customer?.AccessDetails?.UserRoleId!=8&&customer?.AccessDetails?.UserRoleId!=9">
 									<li role="presentation"><a role="menuitem" href="javascript:void(0)" data-toggle="modal"
 											data-target="#scheduleCandidate"
 											(click)="OpenScheduleInterviewDialog(profile?.JobResponseId,profile.UserId,profile?.ProfileId,profile?.Email,profile?.FirstName,profile?.LastName,profile?.MatchingPercentage)">
@@ -1203,17 +1203,35 @@
 												{{profile?.LastName| titlecase}}</span>
 										</button>
 										<div class="time">{{pn.CreatedOn|date:'mediumDate'}}</div>
-										<div class="attched"><i class="fa fa-paperclip"></i></div>
+										
 									</h5>
 								</div>
 
 								<div [hidden]="hideme[i]">
 									<div class="card-body">
 										<ng-container *ngIf="pn.CustomerComment!=null">
-											{{pn?.CustomerComment | titlecase}}
+											<div class="card-col">
+												{{pn?.CustomerComment | titlecase}} <div class="attched"><i class="fa fa-paperclip"></i></div>
+											</div>
+                                            <div class="card-col">
+												<a href="javascript:void(0)">sample_resume.pdf <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+											</div>
+                                            <div class="card-col">
+												<a href="javascript:void(0)">sample_resume.docx <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+											</div>
+                                            <div class="card-col">
+												<a href="javascript:void(0)">nhkjhkjkj_test.pdf<div class="attched"><i class="fa fa-paperclip"></i></div></a>
+											</div>
+                                            <div class="card-col">
+												<a href="javascript:void(0)">sample_resume.pdf <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+											</div>
+                                            <div class="card-col">
+												<a href="javascript:void(0)">sample_resume.docx <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+											</div>
 										</ng-container>
 										<ng-container *ngIf="pn.CustomerComment===null && pn.CandidateComment==null">
 											Notes Not Added
+                                           
 										</ng-container>
 										<ng-container *ngIf="pn.CandidateComment!=null">
 											I am Interested in these position.

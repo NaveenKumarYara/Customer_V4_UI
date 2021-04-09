@@ -1,147 +1,232 @@
-
-
-
-
-
-						<main class="main-wrapper">
-							<button aria-label="Close" class="close" data-dismiss="modal" mat-button=""
-								mat-dialog-close="" type="button"><span aria-hidden="true">×</span></button>
-							<div class="tab-content">
-								<div class="tab-pane fade in active summary-view" id="summaryView">
-									<div class="style1">
-										<div class="row h-bg p-2" style="margin:0;">
-											<!---->
-											<div class="col-md-4 ng-star-inserted">
-												<div class="media">
-													<div class="media-left media-middle">
-														<a href="javascript:void(0)">
-															<img alt="..." class="media-object media-img-circle"
-															src="{{details?.profileVal?.ProfilePic}}">
-														</a>
-													</div>
-													<div class="media-body">
-                            <h4 class="media-heading" >
-                              <span class="fname" >{{details?.profileVal?.FirstName}}</span>
-                              <span class="lname">{{details?.profileVal?.LastName}}</span>
-                            </h4>
-                            <span class="job-title">{{details?.profileVal?.ProfileTitle}} @
-                              {{profileview?.ProfileBasicInfo?.CompanyName}}</span>
-													</div>
-												</div>
-										
-
-												 
-												
-												
-											
+<main class="main-wrapper main-wrapper-lg">
+	<button aria-label="Close" class="close" data-dismiss="modal" mat-button="" mat-dialog-close="" type="button"><span
+			aria-hidden="true">×</span></button>
+	<div class="tab-content">
+		<div class="tab-pane fade in active summary-view" id="summaryView">
+			<div class="style1 revamp__style__01">
+				<div class="revmap__profile__top flex flex-wrap flex-align-end">
+					<div class="image__container">
+						<img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}">
+					</div>
+					<div class="profile__info__box">
+						<div class="row flex flex-align-center">
+							<div class="col-sm-7">
+								<div class="top__listing">
+									<ul class="flex flex-wrap flex-align-equal">
+										<li>
+											<h4>{{details?.profileVal?.FirstName}} {{details?.profileVal?.LastName}}</h4>
+											<h5>{{details?.profileVal?.ProfileTitle}} @ {{profileview?.ProfileBasicInfo?.CompanyName}}</h5>
+											<span class="status active">Active</span>
+										</li>
+										<li class="flex second__child">
+											<div class="flex-self-center">
+												<p>Pellentesque habitant morbi tristique senectus et netus et.</p>
 											</div>
-											<div class="col-md-8">
-												<div class="col-md-7">
-													<div class="card-body">
-														<div class="row">
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<div class="stats">
-																	<h1>{{profileview?.ProfileBasicInfo?.TotalExperience ||0}} </h1>
-																	<small>Professional Experience</small>
-																</div>
-															</div>
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<div class="stats">
-																	<h1>{{profileview?.ProfileBasicInfo?.TotalExperience || 0  }}</h1>
-																	<small>Project Experience</small>
-																</div>
-															</div>
-														</div>
-														<div class="row pt-1">
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<div class="stats">
-																	<h1>{{profileview?.ProfileExperience?.length || 0}}</h1>
-																	<small>Prestigious Clients</small>
-																</div>
-															</div>
-															<div class="col-md-6 col-sm-6 col-xs-6">
-																<div class="stats">
-																	<h1> {{profileview?.ProfileAwards || 0}}</h1>
-																	<small>Awards</small>
-																</div>
-															</div>
-
-											
-														</div>
-													</div>
-												</div>
-										
-												<div class="col-md-5">
-													<div class="d-list">
-														<ul class="c-content">
-                              <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'" title=" {{details?.profileVal?.Email}}">
-                                {{details?.profileVal?.Email}}
-                              </li>
-                              <li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) == 'esolvit'">
-                                  Yet to Provide
-                                </li>
-                              <li class="mobile">
-                                {{details?.profileVal?.MobilePhone || "Yet to Provide" }}
-                              </li>
-                              <li class="location">
-            
-                                <ng-container *ngIf="details?.profileVal?.CityName!=null">
-                                  {{details?.profileVal?.CityName}},
-                                </ng-container>
-                                <ng-container *ngIf="details?.profileVal?.StateName!=null">
-                                  {{details?.profileVal?.StateName}}.
-                                </ng-container>
-                               USA
-                              </li>
-														</ul>
-													</div>
-
-													<div class="download-resume pull-right">
-                            <button class="btn btn-filled btn-download-resume" (click)="DownloadResume(details?.profileVal?.FirstName)"><i class="fa fa-file-text" aria-hidden="true"></i> Download Resume</button>
-                            <button class="btn btn-filled btn-detailed-view" (click)="OpenCandidate(details?.ProfileId,details?.profileVal?.UserId)">Detailed View <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-													</div>
-
-											
-												</div>
+										</li>
+										<li class="flex">
+											<div class="flex-self-center">
+												<span>Experience</span>
+												<em>{{profileview?.ProfileBasicInfo?.TotalExperience ||0}}</em>
 											</div>
+										</li>
+										<li class="flex">
+											<div class="flex-self-center">
+												<span>Awards</span>
+												<em>{{profileview?.ProfileAwards || 0}}</em>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-5 buttons__col">
+								<button class="btn btn-filled btn-download-resume"
+									(click)="DownloadResume(details?.profileVal?.FirstName)">Download Resume</button>
+								<button class="btn btn-filled btn-detailed-view"
+									(click)="OpenCandidate(details?.ProfileId,details?.profileVal?.UserId)">Detailed View</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="profile__info__box__bottom">
+					<div class="bottom__listing">
+						<ul class="flex flex-wrap flex-align-center">
+							<li>
+								<button class="btn btn-primary btn-sm btn-who-am-i" (click)="aboutContent()">Who am I?</button>
+							</li>
+							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'"
+								title=" {{details?.profileVal?.Email}}">
+								{{details?.profileVal?.Email}}
+							</li>
+							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) == 'esolvit'">
+								Yet to Provide
+							</li>
+							<li class="mobile">
+								{{details?.profileVal?.MobilePhone || "Yet to Provide" }}
+							</li>
+							<li class="location">
+								<ng-container *ngIf="details?.profileVal?.CityName!=null">
+									{{details?.profileVal?.CityName}},
+								</ng-container>
+								<ng-container *ngIf="details?.profileVal?.StateName!=null">
+									{{details?.profileVal?.StateName}}.
+								</ng-container>
+								USA
+							</li>
+						</ul>
+					</div>
+
+					<div class="bottom__content" [ngClass]="aboutShow ? 'show' : '' ">
+						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+						tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+						semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+						ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+						fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
+						non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
+						egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+						porttitor, facilisis luctus, metus
+					</div>
+
+				</div>
+
+				<!--Old Code-->
+				<div class="row h-bg p-2" style="margin:0; display:none">
+					<!---->
+					<div class="col-md-4 ng-star-inserted">
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="javascript:void(0)">
+									<img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}">
+								</a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">
+									<span class="fname">{{details?.profileVal?.FirstName}}</span>
+									<span class="lname">{{details?.profileVal?.LastName}}</span>
+								</h4>
+								<span class="job-title">{{details?.profileVal?.ProfileTitle}} @
+									{{profileview?.ProfileBasicInfo?.CompanyName}}</span>
+							</div>
+						</div>
+
+
+
+
+
+
+					</div>
+					<div class="col-md-8">
+						<div class="col-md-7">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="stats">
+											<h1>{{profileview?.ProfileBasicInfo?.TotalExperience ||0}} </h1>
+											<small>Professional Experience</small>
 										</div>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="stats">
+											<h1>{{profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</h1>
+											<small>Project Experience</small>
+										</div>
+									</div>
+								</div>
+								<div class="row pt-1">
+									<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="stats">
+											<h1>{{profileview?.ProfileExperience?.length || 0}}</h1>
+											<small>Prestigious Clients</small>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="stats">
+											<h1> {{profileview?.ProfileAwards || 0}}</h1>
+											<small>Awards</small>
+										</div>
+									</div>
 
-										<!--New HTML Start-->
-										<div class="detail__view__container">
-											<div class="row flex flex-wrap flex-align-equal">
-												<div class="col-sm-4">
-													<div class="col__container">
-														<h4>Experience</h4>
-														<div class="jdv-stauts-listing" *ngIf="profileview?.ProfileExperience?.length>0">
-															<ul>
-																<li class="beginner">Junior</li>
-																<li class="good">Mid Level</li>
-																<li class="professional">Senior</li>
-																<li class="master">Expert</li>
-															</ul>
-														</div>
-														<ul class="history__container">
-															<ng-container *ngIf="profileview?.ProfileExperience?.length===0">												
-																<span class="profile-note">Candidate  yet to Provide the Experience Details</span>								
-																</ng-container>
-																<ng-container *ngIf="profileview?.ProfileExperience?.length>0">
-																	<ng-container *ngFor="let exp of profileview?.ProfileExperience; let i=index">
-																		<li class="professional" *ngIf="i<5">
-																			<span class="year"><span>{{exp.EndDate | date:'yyyy'}}</span></span>
-																			<div class="info__box">
-																				<h5>{{exp.JobRole}}</h5>
-																				<p>{{exp.CompanyName}}
-																					<ng-container *ngIf="exp.JobLocation!=null&&exp.JobLocation!=''">
-																						, {{exp.JobLocation}}
-																					</ng-container>
-																				
-																				</p>
-																			</div>
-																		</li>
-																	</ng-container>
-																</ng-container>
-						
-															<!-- <li class="beginner" >
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-5">
+							<div class="d-list">
+								<ul class="c-content">
+									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) != 'esolvit'"
+										title=" {{details?.profileVal?.Email}}">
+										{{details?.profileVal?.Email}}
+									</li>
+									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0,7) == 'esolvit'">
+										Yet to Provide
+									</li>
+									<li class="mobile">
+										{{details?.profileVal?.MobilePhone || "Yet to Provide" }}
+									</li>
+									<li class="location">
+
+										<ng-container *ngIf="details?.profileVal?.CityName!=null">
+											{{details?.profileVal?.CityName}},
+										</ng-container>
+										<ng-container *ngIf="details?.profileVal?.StateName!=null">
+											{{details?.profileVal?.StateName}}.
+										</ng-container>
+										USA
+									</li>
+								</ul>
+							</div>
+
+							<div class="download-resume pull-right">
+								<button class="btn btn-filled btn-download-resume"
+									(click)="DownloadResume(details?.profileVal?.FirstName)"><i class="fa fa-file-text"
+										aria-hidden="true"></i> Download Resume</button>
+								<button class="btn btn-filled btn-detailed-view"
+									(click)="OpenCandidate(details?.ProfileId,details?.profileVal?.UserId)">Detailed View <i
+										class="fa fa-chevron-right" aria-hidden="true"></i></button>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+				<!--Old Code-->
+
+				<!--New HTML Start-->
+				<div class="detail__view__container">
+					<div class="row flex flex-wrap flex-align-equal">
+						<div class="col-sm-4">
+							<div class="col__container">
+								<h4>Experience</h4>
+								<div class="jdv-stauts-listing" *ngIf="profileview?.ProfileExperience?.length>0">
+									<ul>
+										<li class="beginner">Junior</li>
+										<li class="good">Mid Level</li>
+										<li class="professional">Senior</li>
+										<li class="master">Expert</li>
+									</ul>
+								</div>
+								<ul class="history__container">
+									<ng-container *ngIf="profileview?.ProfileExperience?.length===0">
+										<span class="profile-note">Candidate yet to Provide the Experience Details</span>
+									</ng-container>
+									<ng-container *ngIf="profileview?.ProfileExperience?.length>0">
+										<ng-container *ngFor="let exp of profileview?.ProfileExperience; let i=index">
+											<li class="professional" *ngIf="i<5">
+												<span class="year"><span>{{exp.EndDate | date:'yyyy'}}</span></span>
+												<div class="info__box">
+													<h5>{{exp.JobRole}}</h5>
+													<p>{{exp.CompanyName}}
+														<ng-container *ngIf="exp.JobLocation!=null&&exp.JobLocation!=''">
+															, {{exp.JobLocation}}
+														</ng-container>
+
+													</p>
+												</div>
+											</li>
+										</ng-container>
+									</ng-container>
+
+									<!-- <li class="beginner" >
 																<span class="year"><span>2014</span></span>
 																<div class="info__box">
 																	<h5>Lead Ui Designer</h5>
@@ -169,203 +254,206 @@
 																	<p>Big Design Compant New York,  NY, USA</p>
 																</div>
 															</li> -->
-														</ul>
-													</div>
-													<div class="col__container">
-														<h4>Education</h4>
-														<ul class="history__container">
-															<ng-container *ngIf="profileview?.Education.length>0">
-															<li *ngFor="let education of profileview?.Education">
-																<span class="year"><span>{{education.ToYear}}</span></span>
-																<div class="info__box">
-																	<h5>{{education.QualificationName}} - {{education.Specialization}} </h5>
-																	<p>{{education.InstituteORUniversity}}</p>
-																</div>
-															</li>
-															</ng-container>
-															<ng-container *ngIf="profileview?.Education.length==0">
-																<span class="profile-note">Candidate yet to provide the Education details.</span>
-															</ng-container>
-														
-														</ul>
-													</div>
-													<div class="col__container">
-														<h4>Domain</h4>
-														<ul class="history__container">
-															<ng-container *ngIf="profileview?.ProfileDomain.length>0">
-															<li *ngFor="let domain of profileview?.ProfileDomain">
-																<span class="year"><span>{{domain?.LastUsed}}</span></span>
-																
-																<div class="info__box">
-																	<h5>{{domain?.DomainName}}</h5>
-																	<p></p>
-																</div>
-															</li>
-															</ng-container>
-															<ng-container *ngIf="profileview?.ProfileDomain.length===0">
-																<span class="profile-note">Candidate yet to provide the Domain details.</span>
-															</ng-container>
-														
-														</ul>
-													</div>
-												</div>
-												<div class="col-sm-4">
-													<div class="col__container graph__container">
-														<h4>Skills</h4>
-														<figure>
-															<img src="../../../../../../assets/images/revamp__detail__view/revamp__graph.png" alt="" />
-														</figure>
-													</div>
-													<div class="col__container jdv-listing">
-														<div class="jdv-stauts-listing">
-															<ul  *ngIf="skilllist.length>0">
-																<li class="fimiliar">Mandatory</li>
-																<li class="beginner">Optional</li>
-															</ul>
-														</div>
-														<!--/.jdv-status-listing-->
-														<div class="jdv-skills">
-															<h4>Skills</h4>
-															<div class="scrollbar-container">
-                            
-																<div class="row">
-                                  <ng-container *ngIf="skilllist.length===0">
-                                    <span class="profile-note">Candidate yet to provide the Skills.</span>
-                                </ng-container>
-								<ng-container *ngIf="skilllist.length>0">
-									<ng-container *ngFor="let skill of skilllist | removeduplicates ">
-										<div class="col-sm-6 " [ngClass]="{'fimiliar': skill.split('|')[3] === 1, 'beginner':skill.split('|')[3] === 2, 'good':skill.split('|')[3] === 3, 'professional':skill.split('|')[3] === 4, 'master':skill.split('|')[3] === 5 }"
-	  >
-											<div class="col-container">
-												<h5>{{skill.split('|')[0]}} </h5>
-												<h6>Exp : {{skill?.split('|')[1] }}.{{skill?.split('|')[2]}}</h6>
+								</ul>
+							</div>
+							<div class="col__container">
+								<h4>Education</h4>
+								<ul class="history__container">
+									<ng-container *ngIf="profileview?.Education.length>0">
+										<li *ngFor="let education of profileview?.Education">
+											<span class="year"><span>{{education.ToYear}}</span></span>
+											<div class="info__box">
+												<h5>{{education.QualificationName}} - {{education.Specialization}} </h5>
+												<p>{{education.InstituteORUniversity}}</p>
 											</div>
-											<!--/.col-container-->
-										</div>
-	</ng-container>
-								</ng-container>
-                              
-																	<!--/.col-sm-6-->
+										</li>
+									</ng-container>
+									<ng-container *ngIf="profileview?.Education.length==0">
+										<span class="profile-note">Candidate yet to provide the Education details.</span>
+									</ng-container>
 
-																
-																	<!--/.col-sm-6-->
+								</ul>
+							</div>
+							<div class="col__container">
+								<h4>Domain</h4>
+								<ul class="history__container">
+									<ng-container *ngIf="profileview?.ProfileDomain.length>0">
+										<li *ngFor="let domain of profileview?.ProfileDomain">
+											<span class="year"><span>{{domain?.LastUsed}}</span></span>
 
-																
-																	<!--/.col-sm-6-->
-																</div>
-                             
-																<!--/.row-->
-															</div>
+											<div class="info__box">
+												<h5>{{domain?.DomainName}}</h5>
+												<p></p>
+											</div>
+										</li>
+									</ng-container>
+									<ng-container *ngIf="profileview?.ProfileDomain.length===0">
+										<span class="profile-note">Candidate yet to provide the Domain details.</span>
+									</ng-container>
+
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="col__container graph__container">
+								<h4>Skills</h4>
+								<figure>
+									<img src="../../../../../../assets/images/revamp__detail__view/revamp__graph.png" alt="" />
+								</figure>
+							</div>
+							<div class="col__container jdv-listing">
+								<div class="jdv-stauts-listing">
+									<ul *ngIf="skilllist.length>0">
+										<li class="fimiliar">Mandatory</li>
+										<li class="beginner">Optional</li>
+									</ul>
+								</div>
+								<!--/.jdv-status-listing-->
+								<div class="jdv-skills">
+									<h4>Skills</h4>
+									<div class="scrollbar-container">
+										<div class="row flex flex-wrap flex-align-equal">
+											<ng-container *ngIf="skilllist.length===0">
+												<span class="profile-note">Candidate yet to provide the Skills.</span>
+											</ng-container>
+											<ng-container *ngIf="skilllist.length>0">
+												<ng-container *ngFor="let skill of skilllist | removeduplicates ">
+													<div class="col-sm-6 "
+														[ngClass]="{'fimiliar': skill.split('|')[3] === 1, 'beginner':skill.split('|')[3] === 2, 'good':skill.split('|')[3] === 3, 'professional':skill.split('|')[3] === 4, 'master':skill.split('|')[3] === 5 }">
+														<div class="col-container">
+															<h5>{{skill.split('|')[0]}} </h5>
+															<h6>Exp : {{skill?.split('|')[1] }}.{{skill?.split('|')[2]}}</h6>
 														</div>
-														<!--/.jdv-skills-->
-
+														<!--/.col-container-->
 													</div>
-													<div class="col__container jdv-listing">
-														<div class="jdv-stauts-listing">
-															<!-- <ul>
+												</ng-container>
+											</ng-container>
+
+											<!--/.col-sm-6-->
+
+
+											<!--/.col-sm-6-->
+
+
+											<!--/.col-sm-6-->
+										</div>
+
+										<!--/.row-->
+									</div>
+								</div>
+								<!--/.jdv-skills-->
+
+							</div>
+							<div class="col__container jdv-listing">
+								<div class="jdv-stauts-listing">
+									<!-- <ul>
 																<li class="fimiliar">Mandatory</li>
 																<li class="beginner">Optional</li>
 															</ul> -->
-														</div>
-														<!--/.jdv-status-listing-->
-														<div class="jdv-skills">
-															<div class="section__title">
-																<h4>Soft Skills</h4>
-															</div>
-															<!--/.section__title-->
+								</div>
+								<!--/.jdv-status-listing-->
+								<div class="jdv-skills">
+									<div class="section__title">
+										<h4>Soft Skills</h4>
+									</div>
+									<!--/.section__title-->
 
-															<div class="scrollbar-container">
-																<div class="row">
-																	<h5>Coming Soon!!</h5>
-                                  <!-- <div class="col-container">
+									<div class="scrollbar-container">
+										<div class="row">
+											<h5>Coming Soon!!</h5>
+											<!-- <div class="col-container">
                                     
                                   
                                   </div> -->
-																
-																	<!--/.col-sm-6-->
 
-																</div>
-																<!--/.row-->
-															</div>
-														</div>
-														<!--/.jdv-skills-->
+											<!--/.col-sm-6-->
 
-													</div>
-													<div class="col__container">
-														<h4>Certification</h4>
-														<ul class="custom-check-list flex flex-wrap flex-align-equal">
-															<ng-container *ngIf="profileview?.Certifications?.length>0">
-															<li *ngFor="let certificate of profileview?.Certifications ">
-																<div class="box-info"  title={{certificate.CertificationName}}>
-																	{{add3Dots(certificate.CertificationName,20)}}
-																</div>
-															</li>
-														</ng-container>
-															<ng-container *ngIf="profileview?.Certifications?.length===0">
-																<span class="profile-note">Candidate yet to provide the Certification details.</span>
-															  </ng-container>
-														</ul>
-													</div>
-													<div class="col__container">
-														<div class="jdv-key-section">
-															<h4>Achivements</h4>
+										</div>
+										<!--/.row-->
+									</div>
+								</div>
+								<!--/.jdv-skills-->
 
-															<ul class="flex flex-wrap flex-align-equal">
-															
-																	<span class="profile-note">Candidate yet to provide the Achievement details.</span>
-																
-															
-																
-																<!-- <li>Collect required info</li>
+							</div>
+							<div class="col__container">
+								<h4>Certification</h4>
+								<ul class="custom-check-list flex flex-wrap flex-align-equal">
+									<ng-container *ngIf="profileview?.Certifications?.length>0">
+										<li *ngFor="let certificate of profileview?.Certifications ">
+											<div class="box-info" title={{certificate.CertificationName}}>
+												{{add3Dots(certificate.CertificationName,20)}}
+											</div>
+										</li>
+									</ng-container>
+									<ng-container *ngIf="profileview?.Certifications?.length===0">
+										<span class="profile-note">Candidate yet to provide the Certification details.</span>
+									</ng-container>
+								</ul>
+							</div>
+							<div class="col__container">
+								<div class="jdv-key-section">
+									<h4>Achivements</h4>
+
+									<ul class="flex flex-wrap flex-align-equal">
+
+										<span class="profile-note">Candidate yet to provide the Achievement details.</span>
+
+
+
+										<!-- <li>Collect required info</li>
 																<li>Documentation</li>
 																<li>Reporting</li> -->
-															</ul>
-														</div>
+									</ul>
+								</div>
 
-													</div>
-													
-												</div>
-												<div class="col-sm-4">
-											
-													<div class="col__container">
-														<h4>Activity & Notes</h4>
-														<div class="page--job-details">
-															<div class="activities__box">
-                                <div class="middle__container">
-                                  <div id="accordion">
-                                      <ng-container *ngIf="CandidateNotes.length>0">
-                                          <ng-container *ngFor="let pn of CandidateNotes;let i = index">
-                                      <div class="card">
-                                          <div class="card-header" id="headingOne">
-                                              <h5 class="mb-0">
-                                                  <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
-                                                      <i class="fa fa-chevron-down"></i>
-                                                      <span class="icon icon-Help"></span>
-                                                          {{pn?.ReferralStatus}}                                  
-                                                     <span *ngIf="pn.CustomerComment!=null"> By {{pn?.FirstName | titlecase}} {{pn?.LastName| titlecase}}</span>
-                                                      <span *ngIf="pn.CandidateComment!=null"> By {{profile?.FirstName | titlecase}} {{profile?.LastName| titlecase}}</span>
-                                                  </button>
-                                                  <div class="time">{{pn.CreatedOn|date:'mediumDate'}}</div>
-                                              </h5>
-                                          </div>
-                  
-                                          <div 
-                                          [hidden]="hideme[i]">
-                                              <div class="card-body">
-                                                  <ng-container *ngIf="pn.CustomerComment!=null">
-                                                      {{pn?.CustomerComment | titlecase}}
-                                                  </ng-container>
-                                                  <ng-container *ngIf="pn.CustomerComment===null && pn.CandidateComment==null">
-                                                      Notes Not Added
-                                                  </ng-container>
-                                                  <ng-container *ngIf="pn.CandidateComment!=null">
-                                                      I am Interested in these position.
-                                                  </ng-container>
-                                                
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <!-- <div class="card">
+							</div>
+
+						</div>
+						<div class="col-sm-4">
+
+							<div class="col__container">
+								<h4>Activity & Notes</h4>
+								<div class="page--job-details">
+									<div class="activities__box">
+										<div class="middle__container">
+											<div id="accordion">
+												<ng-container *ngIf="CandidateNotes.length>0">
+													<ng-container *ngFor="let pn of CandidateNotes;let i = index">
+														<div class="card">
+															<div class="card-header" id="headingOne">
+																<h5 class="mb-0">
+																	<button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
+																		<i class="fa fa-chevron-down"></i>
+																		<span class="icon icon-notes"></span>
+																		{{pn?.ReferralStatus}}
+																		<span *ngIf="pn.CustomerComment!=null"> By {{pn?.FirstName | titlecase}}
+																			{{pn?.LastName| titlecase}}</span>
+																		<span *ngIf="pn.CandidateComment!=null"> By {{profile?.FirstName | titlecase}}
+																			{{profile?.LastName| titlecase}}</span>
+																	</button>
+																	<div class="time">{{pn.CreatedOn|date:'mediumDate'}}</div>
+																</h5>
+															</div>
+
+															<div [hidden]="hideme[i]">
+																<div class="card-body">
+																	<ng-container *ngIf="pn.CustomerComment!=null">
+																		<div class="card-col">
+																			{{pn?.CustomerComment | titlecase}} <div class="attched"><i class="fa fa-paperclip"></i></div>
+																		</div>
+																		
+																	</ng-container>
+																	<ng-container *ngIf="pn.CustomerComment===null && pn.CandidateComment==null">
+																		Notes Not Added
+																	</ng-container>
+																	<ng-container *ngIf="pn.CandidateComment!=null">
+																		I am Interested in these position.
+																	</ng-container>
+
+																</div>
+															</div>
+														</div>
+														<!-- <div class="card">
                                           <div class="card-header" id="headingTwo">
                                               <h5 class="mb-0">
                                                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
@@ -519,24 +607,24 @@
                                               </div>
                                           </div>
                                       </div> -->
-                                      </ng-container>
-                                      </ng-container>
-									  <ng-container *ngIf="CandidateNotes.length===0">
-										<span class="profile-note">Conversation not yet Started.</span>
-										  </ng-container>
-                                  </div>
-                              </div>
-															</div>
-														</div>
+													</ng-container>
+												</ng-container>
+												<ng-container *ngIf="CandidateNotes.length===0">
+													<span class="profile-note">Conversation not yet Started.</span>
+												</ng-container>
+											</div>
+										</div>
+									</div>
+								</div>
 
-													</div>
-													<div class="col__container">
-														<h4>Messaging</h4>
+							</div>
+							<div class="col__container">
+								<h4>Messaging</h4>
 
-														<h5>Coming Soon!!</h5>
-														<div class="chatbox-container">
-															<ul class="chat__box__container">
-																<!-- <li>
+								<h5>Coming Soon!!</h5>
+								<div class="chatbox-container">
+									<ul class="chat__box__container">
+										<!-- <li>
 																	<div class="image__box">
 																	 <img src="https://identityapi-dev.arytic.com/home/EsolvitImages?id=professional.png" height="50%" width="50%" alt=""> 
 																	</div>
@@ -545,36 +633,33 @@
 																	</div>
 																	 <div class="time__date">SENT 11:20 AM   SEEN 11:25AM</div> 
 																</li> -->
-														
-															</ul>
-														</div>
-														
-													</div>
-													<div class="col__container tag__col__container">
-														<h4>Interest & Hobbies</h4>
-														<h5>Coming Soon!!</h5>
-														<ul>
-															<!-- <li><a href="javascriptvoid(0)">Comming Soon!!</a></li> -->
-															<!-- <li><a href="#">Reading</a></li>
-															<li><a href="#">Writing</a></li>
-															<li><a href="#">Drawing</a></li>
-															<li><a href="#">Singing & Dancing</a></li> -->
-														</ul>
-													</div>
 
-										
-											
-												</div>
-											</div>
-										</div>
-										<!--New HTML Ends-->
-
-									</div>
-
+									</ul>
 								</div>
 
 							</div>
-						</main>
-			
-		
+							<div class="col__container tag__col__container">
+								<h4>Interest & Hobbies</h4>
+								<h5>Coming Soon!!</h5>
+								<ul>
+									<!-- <li><a href="javascriptvoid(0)">Comming Soon!!</a></li> -->
+									<!-- <li><a href="#">Reading</a></li>
+															<li><a href="#">Writing</a></li>
+															<li><a href="#">Drawing</a></li>
+															<li><a href="#">Singing & Dancing</a></li> -->
+								</ul>
+							</div>
 
+
+
+						</div>
+					</div>
+				</div>
+				<!--New HTML Ends-->
+
+			</div>
+
+		</div>
+
+	</div>
+</main>

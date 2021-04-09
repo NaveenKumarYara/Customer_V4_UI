@@ -138,13 +138,14 @@
 										</td>
 										<td *ngIf="uploader.options.isHTML5">
 											<div class="progress" style="margin-bottom: 0;">
+												<!-- <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"> -->
 												<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">
 													<span style="color: whitesmoke;"><i class="fa fa-check-circle-o"></i>&nbsp;Success</span> 
 												</div>
 											</div>
 										</td>
 										<td>
-											<button type="button" class="btn btn-danger btn-xs" (click)="item.remove(i)">
+											<button type="button" class="btn btn-danger btn__delete btn-xs" (click)="item.remove(i)">
 												<span class="glyphicon glyphicon-trash"></span>
 											</button>
 										</td>

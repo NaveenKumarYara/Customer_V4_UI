@@ -1437,7 +1437,7 @@ height: 25.4px;
       background:#fafafa;
   }
 
-.page--job-details .activities__box .card { box-shadow:none; border:0;  padding:0 20px 0 60px; margin:0; }
+/* .page--job-details .activities__box .card { box-shadow:none; border:0;  padding:0 20px 0 60px; margin:0; }
 
 .page--job-details .activities__box .btn-link { white-space:normal; display:block; width:100%; text-align:left; padding:0; color:#52809d; font-size:14px; font-weight:400; }
 .page--job-details .activities__box .btn-link span { display:block; font-size:12px; color:#9eabc0; }
@@ -1454,9 +1454,9 @@ height: 25.4px;
 .page--job-details .activities__box .middle__container .btn .fa { -webkit-transform:rotate(-90deg); transform:rotate(-90deg);  -webkit-transition:all 250ms linear; transition:all 250ms linear; font-size:12px; position:absolute; left:-60px; top:5px; }
 .page--job-details .activities__box .middle__container .icon { font-family: 'Stroke-Gap-Icons'; width:32px; font-size:18px; text-align:center; line-height:32px; height:32px; background:#f1f2f6; border-radius:50%; position:absolute; left:-40px; z-index:11 }
 .page--job-details .activities__box .middle__container .icon.icon-dark { background:#448afa; color:#fff; }
-.page--job-details .activities__box .middle__container .btn.active .fa { -webkit-transform:rotate(0deg);  transform:rotate(0deg);  transform-origin:center center; }
+.page--job-details .activities__box .middle__container .btn.active .fa { -webkit-transform:rotate(0deg);  transform:rotate(0deg);  transform-origin:center center; } */
 
-.activities__box .middle__container { height:200px; }
+
 
 @font-face {
 	font-family: 'Stroke-Gap-Icons';
