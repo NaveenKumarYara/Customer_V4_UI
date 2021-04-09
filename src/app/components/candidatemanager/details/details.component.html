@@ -15,13 +15,13 @@
                         </select>
                     </div>
                     <div class="revamp__sorting">
-                        10000 Candidates
+                        {{totalCandidatesCount}} Candidates
                         <ul>
-                            <li><button class="btn revamp__btn__prev">Previous</button></li>
-                            <li><input type="text" value="1" class="form-control"></li>
-                            <li><button class="btn revamp__btn__next">Previous</button></li>
+                            <li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev" (click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}" [disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
+                            <li><input type="text" value="{{currentPage}}" disabled class="form-control"></li>
+                            <li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next" (click)="onPageChange(1)" [ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}" [disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
                         </ul>
-                        of 1500 pages
+                        of {{totalPageCount}} pages
                     </div>
                 </div>
             </div>

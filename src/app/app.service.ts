@@ -1586,10 +1586,6 @@ export class AppService {
             .catch(this.handleError);
     }
 
-
-
-
-
     suggestJobTitle(customerId: number) {
         const url = this.settingsService.settings.SuggestJobTitleEndPoint + 'customerId=' + customerId;
         return this.http.get<string[]>(url)
@@ -1772,8 +1768,8 @@ export class AppService {
             );
     }
 
-    getCandidates(cId, uId): Observable<any> {
-        const url = this.settingsService.settings.ProfilebaseUrl + '/api/GetCandidates?cId=' + cId + '&uId=' + uId;
+    getCandidates(cId, uId, pNo, rows): Observable<any> {
+        const url = this.settingsService.settings.ProfilebaseUrl + '/api/GetCandidates?cId=' + cId + '&uId=' + uId + '&pNo=' + pNo + '&rows=' + rows;
         return this.http.get<any>(url)
             .catch(
                 this.handleError
