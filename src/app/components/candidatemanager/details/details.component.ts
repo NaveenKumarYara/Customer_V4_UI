@@ -16,6 +16,10 @@ export class DetailsComponent implements OnInit {
     userId: any = null;
     candidates: any[] = [];
     candidatesLoading: boolean = false;
+    currentPage: number = 1;
+    totalCandidatesCount: number = 0;
+    totalPageCount: number = 1;
+    pageCount: number = 20;
 
     constructor(private appService: AppService) { }
 
@@ -47,11 +51,18 @@ export class DetailsComponent implements OnInit {
 
     getCandidates() {
         this.candidatesLoading = true;
-        this.appService.getCandidates(this.customerId, this.userId).subscribe(
+        this.appService.getCandidates(this.customerId, this.userId, this.currentPage, this.pageCount).subscribe(
             (res: any) => {
                 if (res != null) {
-                    if (res.length > 0)
-                        this.candidates = res;
+                    if (res.Candidates.length > 0) {
+                        this.candidates = res.Candidates;
+                        this.totalCandidatesCount = res.TotalRecordsCount;
+                        if (this.totalCandidatesCount % this.pageCount == 0)
+                            this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+                        else {
+                            this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+                        }
+                    }
                     else
                         this.candidates = [];
                 }
@@ -64,5 +75,10 @@ export class DetailsComponent implements OnInit {
                 console.log('Error occurred!');
                 this.candidatesLoading = false;
             });
+    }
+
+    onPageChange(pageValue) {
+        this.currentPage += pageValue;
+        this.getCandidates();
     }
 }
