@@ -27,15 +27,14 @@
             </div>
         </div>
         <div class="section__box__container">
-            <div class="revamp__filter__sidebar__box" [ngClass]="{'show big':showFilterNavBar, 'full': showMenu}">
+            <div class="revamp__filter__sidebar__box" *ngIf="showFilterNavBar">
                 <div class="scroll-box">
                     <div class="icon__box">&nbsp;</div>
-                    <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
-                    <ul  (mouseover)="showNavigation()">
-                        <li  (click)="showSub(0)" class="sub__item ">
-                            <a href="javascript:void(0)">
+                    <ul>
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__jobtype__01"></span>
-                                <em>Job Type</em>
+                                Job Type
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search">
@@ -61,64 +60,64 @@
 
                             </div>
                         </li>
-                        <li  (click)="showSub(1)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__skills__01"></span>
-                                <em>Skills</em>
+                                Skills
                             </a>
                         </li>
-                        <li (click)="showSub(2)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__salary__01"></span>
-                                <em>Salary</em>
+                                Salary
                             </a>
                         </li>
-                        <li (click)="showSub(3)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__location__01"></span>
-                                <em>Location</em>
+                                Location
                             </a>
                         </li>
-                        <li (click)="showSub(4)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__experience__01"></span>
-                                <em>Experience</em>
+                                Experience
                             </a>
                         </li>
-                        <li (click)="showSub(5)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__title__01"></span>
-                                <em>Job Title</em>
+                                Job Title
                             </a>
                         </li>
-                        <li (click)="showSub(6)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__status__01"></span>
-                                <em>Availibilty Status</em>
+                                Availibilty Status
                             </a>
                         </li>
-                        <li (click)="showSub(7)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__domain__01"></span>
-                                <em>Job Domain</em>
+                                Job Domain
                             </a>
                         </li>
-                        <li (click)="showSub(8)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__company__01"></span>
-                                <em>Company Name</em>
+                                Company Name
                             </a>
                         </li>
-                        <li (click)="showSub(9)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__edu__01"></span>
-                                <em>Education</em>
+                                Education
                             </a>
                         </li>
-                        <li (click)="showSub(10)" class="sub__item">
-                            <a href="javascript:void(0)">
+                        <li>
+                            <a href="#">
                                 <span class="icon icon__certified__01"></span>
-                                <em>Certification</em>
+                                Certification
                             </a>
                         </li>
                     </ul>
@@ -296,9 +295,9 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
                 </div>
-            </div> 
+            </div>
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
                     <div class="col-sm-3">
@@ -337,7 +336,7 @@
                     </div>
                 </div>
             </div>
-            <div class="data-grid-view full" *ngIf="currentView == 'Grid'" [ngClass]="showFilterNavBar ? 'open':null" >
+            <div class="data-grid-view full" *ngIf="currentView == 'Grid'">
                 <div class="row flex flex-wrap">
                     <div class="col-sm-6 big-col">
                         <span *ngIf="candidatesLoading">Loading Candidates...</span>
@@ -345,14 +344,10 @@
                             <div class="col-sm-3" [ngClass]="{'green' : i % 4 == 0 , 'blue' : i % 4 == 1, 'light-blue' : i % 4 == 2, 'yellow' : i % 4 == 3}" *ngFor="let candidate of candidates; let i = index" [attr.data-index]="i">
                                 <div class="col__container">
                                     <div class="top__container flex flex-wrap flex-align-center">
-                                        <!-- <div class="custom-radio">
+                                        <div class="custom-radio">
                                             <input type="radio" id="test1" name="radio-group">
                                             <label for="test1">Checkbox</label>
-                                        </div> -->
-                                        <label class="custom-checkbox lg-select">
-                                            <input type="checkbox">
-                                            <span class="checkmark">Enable Keyword</span>
-                                        </label>
+                                        </div>
                                         <ul>
                                             <li>
                                                 <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip" title="{{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}"></span>
@@ -398,7 +393,7 @@
                     </div>
                 </div>
             </div>
-            <div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
+            <div class="data-grid-table" *ngIf="currentView == 'List'">
                 <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
                     <div class="grid-col grid-check-col">
                         <label class="custom-checkbox">
