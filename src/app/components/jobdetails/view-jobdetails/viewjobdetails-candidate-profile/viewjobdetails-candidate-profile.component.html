@@ -1196,7 +1196,13 @@
 										<button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
 											<i class="fa fa-chevron-down"></i>
 											<span class="icon icon-notes"></span>
+										<ng-container *ngIf="pn?.Others!=undefined">
+											{{pn?.Others}}
+										</ng-container>
+										<ng-container *ngIf="pn?.Others==undefined">
 											{{pn?.ReferralStatus}}
+										</ng-container>
+											
 											<span *ngIf="pn.CustomerComment!=null"> By {{pn?.FirstName | titlecase}} {{pn?.LastName|
 												titlecase}}</span>
 											<span *ngIf="pn.CandidateComment!=null"> By {{profile?.FirstName | titlecase}}
@@ -1207,7 +1213,7 @@
 										</div>
 
 									</h5>
-									<span><i class="fa fade-icon" style="color: red;" (click)="deleteNote(pn.NotesId,profile?.ProfileId,pn.JobId)">× delete</i></span>
+									<span style="cursor: hand;"><i class="fa fade-icon" style="color: red;cursor: hand;" (click)="deleteNote(pn.NotesId,profile?.ProfileId,pn.JobId)">× delete</i></span>
 								
 								</div>
 
@@ -1217,21 +1223,13 @@
 											<div class="card-col">
 												{{pn?.CustomerComment | titlecase}} <div class="attched"><i class="fa fa-paperclip"></i></div>
 											</div>
-                                            <div class="card-col">
-												<a href="javascript:void(0)">sample_resume.pdf <div class="attched"><i class="fa fa-paperclip"></i></div></a>
-											</div>
-                                            <div class="card-col">
-												<a href="javascript:void(0)">sample_resume.docx <div class="attched"><i class="fa fa-paperclip"></i></div></a>
-											</div>
-                                            <div class="card-col">
-												<a href="javascript:void(0)">nhkjhkjkj_test.pdf<div class="attched"><i class="fa fa-paperclip"></i></div></a>
-											</div>
-                                            <div class="card-col">
-												<a href="javascript:void(0)">sample_resume.pdf <div class="attched"><i class="fa fa-paperclip"></i></div></a>
-											</div>
-                                            <div class="card-col">
-												<a href="javascript:void(0)">sample_resume.docx <div class="attched"><i class="fa fa-paperclip"></i></div></a>
-											</div>
+											<ng-container *ngIf="pn.attachments.length>0">
+												<div class="card-col" *ngFor="let a of pn.attachments">
+													<a href="javascript:void(0)">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+												</div>
+											</ng-container>
+                                           
+                                        
 										</ng-container>
 										<ng-container *ngIf="pn.CustomerComment===null && pn.CandidateComment==null">
 											Notes Not Added

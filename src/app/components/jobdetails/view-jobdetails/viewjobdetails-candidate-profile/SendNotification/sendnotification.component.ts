@@ -2,7 +2,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError} from 'r
 import { concat } from 'rxjs/observable/concat';
 import { Component, Inject,ViewContainerRef,EventEmitter,ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../../../Postajob/models/jobPostInfo';
 import { AppService } from '../../../../../app.service';
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
+import { ApiService } from '../../../../../shared/services/api.service/api.service';
  
 
 const URL = 'http://localhost:4300/fileupload/';
@@ -24,7 +25,8 @@ export interface DialogData {
 @Component({
   selector: 'app-sendnotification',
   templateUrl: './sendnotification.component.html',
-  styleUrls: ['./sendnotification.component.css']
+  styleUrls: ['./sendnotification.component.css'],
+  providers: [ApiService]
 })
 export class sendnotificationdialogComponent {
  managersList: Observable<CustomerUsers[]>;
@@ -40,6 +42,7 @@ export class sendnotificationdialogComponent {
   getTeammember: CustomerUsers;
   profileSharing= new ProfileShare();
   customer: any;
+  fileUploadForm: FormGroup;
   AddUser:boolean= false;
   customerId: number;
   UserId:any;
@@ -55,13 +58,21 @@ export class sendnotificationdialogComponent {
   selectedUserName :number;
   selectedComments:any;
   userId:number;
+  filedata=new FormData();
+PUpload: File;
+docFile:string;
+edit:any;
+public file_srcs: string[] = [];
+public debug_size_before: string[] = [];
+public debug_size_after: string[] = [];
+selectedFileNames: string[] = [];
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
 
 
   uploader:FileUploader;
 
-  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,private detector: ChangeDetectorRef,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
+  constructor( public dialogRef: MatDialogRef<sendnotificationdialogComponent>,private fb: FormBuilder,private _service: ApiService,private detector: ChangeDetectorRef,@Inject(MAT_DIALOG_DATA) public data: any,private jobdetailsservice: JobdetailsService,private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -122,10 +133,26 @@ export class sendnotificationdialogComponent {
       }
     });
 
-   
+    this.fileUploadForm = this.fb.group({ 
+      'NoteId': [0, Validators.required],
+      'ProfileId': [this.data.ProfileId, Validators.nullValidator],
+      'JobId': [this.data.jobId, Validators.nullValidator],
+      'customerUserId': [this.customerUser, Validators.required],
+      'toUserId': [0, Validators.required],
+      'Title':['', Validators.nullValidator],
+      'Attachment': [null, Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],
+      'DocUrl': ['', Validators.nullValidator]
+    });
  
 
   }
+
+
+   
+
+  
+  
 
   ngOnInit() {
     this.GetContacts();
@@ -285,9 +312,13 @@ getcustomerusers()
  }
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
+ this.savenote.Doc = '';
+ this.savenote.OtherInfo="General";
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
+   if(status>0)
+   {
   this.teammemberslist = [];
   $('#teamMbr').val('');
   //this.selectedUserName = ''
@@ -298,9 +329,21 @@ getcustomerusers()
   this.toastr.success('Sent successfully', 'Success');
   setTimeout(() => {
    this.toastr.dismissToast;
+   if(this.uploader.queue.length>0)
+   {
+    this.fileUploadForm.value.NoteId=status;
+    this.fileUploadForm.value.toUserId = this.savenote.toUserId;
+    this.uploadMultiple();
+   }
+   else
+   {
+     this.dialogRef.close();
+   }
+
    //this.SaveNotes(this.selectedComments);
-   this.dialogRef.close();
+ 
   }, 3000);   
+}
  }                
  );
 }
@@ -338,6 +381,34 @@ getcustomerusers()
          return elem.UserId === team.UserId;
     });
  }
+
+
+
+
+ uploadMultiple() {
+   let request = '';
+   const formData = new FormData();
+   this.uploader.queue.forEach(element => {
+     if (this.fileUploadForm.value !== '') {
+      this.fileUploadForm.value.Title = element._file.name;
+      this.fileUploadForm.value.DocUrl = '';
+      this.fileUploadForm.value.FileExtension =element._file.type;
+       request = JSON.stringify(this.fileUploadForm.value);
+       }     
+      formData.append('Attachment', element._file);
+      formData.append('Model', request);
+      this.filedata= formData;
+      this._service.byteStorage(this.filedata, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+        this.dialogRef.close();   
+        }); 
+      }); 
+   
+     
+      
+    
+ }
+
+
  ShareProfile() {
    if(this.info = 0)
   {
@@ -376,11 +447,12 @@ getcustomerusers()
    if(this.profileSharing.ToEmailId != "" && this.profileSharing.Comments != "")
     {
    this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
-   if (data === 0) {
+   if (data >=0) {
     //this.inviteform.reset();
     this.teammemberslist = [];
     $('#teamMbr').val('');
     //this.selectedUserName = ''
+    
     this.getTeammember = new CustomerUsers();
     this.profileSharing= new ProfileShare();
     this.clearTeamMemebers();
@@ -390,7 +462,7 @@ getcustomerusers()
     setTimeout(() => {
      this.toastr.dismissToast;
      //this.SaveNotes(this.selectedComments);
-     this.dialogRef.close();
+    
     }, 3000);      
      }
    }, error => {
@@ -432,4 +504,6 @@ export class Notes{
   public toUserId :string
   public isCandidate:boolean
   public Comments :string
+  public Doc: string
+  public OtherInfo: string
 }
