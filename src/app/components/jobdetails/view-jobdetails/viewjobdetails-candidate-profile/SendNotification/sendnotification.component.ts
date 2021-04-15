@@ -133,6 +133,8 @@ selectedFileNames: string[] = [];
       }
     });
 
+    this.savenote.OtherInfo="General";
+
     this.fileUploadForm = this.fb.group({ 
       'NoteId': [0, Validators.required],
       'ProfileId': [this.data.ProfileId, Validators.nullValidator],
@@ -304,16 +306,18 @@ getcustomerusers()
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=false;
+  this.savenote.OtherInfo =   this.savenote.OtherInfo;
  }
  else
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = '';
  }
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
  this.savenote.Doc = '';
- this.savenote.OtherInfo="General";
+
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {

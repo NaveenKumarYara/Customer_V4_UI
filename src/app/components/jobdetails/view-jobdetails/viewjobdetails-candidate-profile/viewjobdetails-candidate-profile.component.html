@@ -1196,10 +1196,10 @@
 										<button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
 											<i class="fa fa-chevron-down"></i>
 											<span class="icon icon-notes"></span>
-										<ng-container *ngIf="pn?.Others!=undefined">
+										<ng-container *ngIf="pn?.Others!=undefined&&pn?.Others!=''">
 											{{pn?.Others}}
 										</ng-container>
-										<ng-container *ngIf="pn?.Others==undefined">
+										<ng-container *ngIf="pn?.Others==undefined||pn?.Others==''">
 											{{pn?.ReferralStatus}}
 										</ng-container>
 											
@@ -1225,7 +1225,7 @@
 											</div>
 											<ng-container *ngIf="pn.attachments.length>0">
 												<div class="card-col" *ngFor="let a of pn.attachments">
-													<a href="javascript:void(0)">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+													<a href="javascript:void(0)" (click)="download(a.DocUrl,a.DocName.split('_')[0])">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
 												</div>
 											</ng-container>
                                            

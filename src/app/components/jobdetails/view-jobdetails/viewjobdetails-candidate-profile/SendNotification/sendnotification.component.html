@@ -72,11 +72,11 @@
 										</li>
 									</ul>
 									<div class="inline-radio-tab revamp__inline__radio__tab">
-										<div><input type="radio" name="title"><label>Email/Call</label></div>
-										<div><input type="radio" name="title" checked><label>General</label></div>
-										<div><input type="radio" name="title"><label>Request for information</label></div>
-										<div><input type="radio" name="title"><label>Interview Related</label></div>
-										<div><input type="radio" name="title"><label>Other</label></div>
+										<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Email/Call"><label>Email/Call</label></div>
+										<div><input type="radio" name="title"   [(ngModel)]="savenote.OtherInfo" value="General"><label>General</label></div>
+										<div><input type="radio" name="title"  [(ngModel)]="savenote.OtherInfo" value="Request for information"><label>Request for information</label></div>
+										<div><input type="radio" name="title"  [(ngModel)]="savenote.OtherInfo" value="Interview Related"><label>Interview Related</label></div>
+										<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Other" ><label>Other</label></div>
 									</div>
 								</div>
 							</div>
