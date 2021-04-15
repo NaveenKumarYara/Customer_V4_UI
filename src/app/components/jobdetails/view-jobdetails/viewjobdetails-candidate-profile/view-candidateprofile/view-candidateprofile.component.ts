@@ -31,6 +31,8 @@ export class ViewCandidateprofileComponent implements OnInit {
   userId: any;
   email: any;
   profileview: any;
+  aboutShow:any;
+  aboutContent:any;
   MatchingPercentage:any;
   profileId: any;
   fileType = new Resume();
