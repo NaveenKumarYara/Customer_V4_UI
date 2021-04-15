@@ -680,12 +680,24 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
 
     GetJobNotes(profileId, jobId) {
+        debugger
         this.jobdetailsservice.GetProfileNotes(profileId, jobId, this.customer.UserId)
             .subscribe(
                 datr7 => {
+                    debugger
                     this.CandidateNotes = datr7;
                 });
     }
+
+    deleteNote(id: number,profileId,jobId) {
+        debugger
+        this.jobdetailsservice.DeleteNote(id).subscribe(data=>{
+              if(data>=0)
+              {
+                this.GetJobNotes(profileId, jobId)
+              }
+        });
+      }
 
 
     PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0, arytic = 0, noofRows = 6) {

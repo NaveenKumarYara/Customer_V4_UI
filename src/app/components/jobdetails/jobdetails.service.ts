@@ -76,6 +76,15 @@ export class JobdetailsService {
         );
   }
 
+  DeleteNote(Id: number) {
+    const url = this.settingsService.settings.DeleteNote +
+    'Id=' + Id ;
+    return this.http.delete<string[]>(url)
+    .catch(
+      this.handleError
+    );
+  }
+
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

@@ -208,5 +208,8 @@
   "SendJobInterviewStatus":"https://emailapi-dev.arytic.com/api/SendJobInterviewStatus",
   "GetCompanySize":"https://identityapi-dev.arytic.com/api/GetCompanySize",
   "InsertProfileNotesCustomer":"https://identityapi-dev.arytic.com/api/InsertProfileNotesCustomer",
-  "GetProfileNotes":"https://profileapi-dev.arytic.com/api/GetProfileNotes"
+  "GetProfileNotes":"https://profileapi-dev.arytic.com/api/GetProfileNotes",
+  "Attachments":"https://profileapi-dev.arytic.com/api/InsertProfileAttachments",
+"DeleteNote":"https://profileapi-dev.arytic.com/api/DeleteNotes?",
+"GetgoogleApi":"https://profileapi-dev.arytic.com/api/GetGoogleLocations?"
 }

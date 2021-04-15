@@ -216,4 +216,7 @@ export class Settings {
   DeleteSavedFilter:string;
   InsertProfileNotesCustomer:string;
   GetProfileNotes:string;
+  Attachments:string;
+  DeleteNote:string;
+  GetgoogleApi:string;
   }

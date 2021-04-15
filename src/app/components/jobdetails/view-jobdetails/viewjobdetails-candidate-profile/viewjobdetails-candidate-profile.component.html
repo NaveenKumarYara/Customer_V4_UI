@@ -6,7 +6,7 @@
 	<button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId,2)"  [ngClass]="iconHide && 'hide'">
 		<i class="fa fa-clipboard"></i>
 	</button>
-	<button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'">Active</button>
+	<!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
 	<div class="card candidate">
 		<header class="p-rel">
 			<div class="ptr">
@@ -1202,9 +1202,13 @@
 											<span *ngIf="pn.CandidateComment!=null"> By {{profile?.FirstName | titlecase}}
 												{{profile?.LastName| titlecase}}</span>
 										</button>
-										<div class="time">{{pn.CreatedOn|date:'mediumDate'}}</div>
-										
+										<div class="time">{{pn.CreatedOn|date:'mediumDate'}}
+											
+										</div>
+
 									</h5>
+									<span><i class="fa fade-icon" style="color: red;" (click)="deleteNote(pn.NotesId,profile?.ProfileId,pn.JobId)">× delete</i></span>
+								
 								</div>
 
 								<div [hidden]="hideme[i]">

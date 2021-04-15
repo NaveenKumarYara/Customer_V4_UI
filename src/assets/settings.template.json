@@ -209,5 +209,8 @@
   "GetCompanySize":"${Identity_URL}/api/GetCompanySize",
 
   "InsertProfileNotesCustomer":"${Identity_URL}/api/InsertProfileNotesCustomer",
-  "GetProfileNotes":"${Profile_URL}/api/GetProfileNotes"
+  "GetProfileNotes":"${Profile_URL}/api/GetProfileNotes",
+  "Attachments":"${Profile_URL}/api/InsertProfileAttachments",
+  "DeleteNote":"${Profile_URL}/api/DeleteNotes?",
+  "GetgoogleApi":"${Profile_URL}/api/GetGoogleLocations?"
 }
