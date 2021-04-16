@@ -338,6 +338,9 @@ SaveNotes(Comment)
  }
  this.savenote.Comments=Comment;
  this.savenote.statusId = 11;
+ 
+ this.savenote.OtherInfo = ' ';
+this.savenote.Doc = '';
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
@@ -413,6 +416,8 @@ export class Notes{
   public toUserId :string
   public isCandidate:boolean
   public Comments :string
+  public Doc: string
+  public OtherInfo: string
 }
 
 export class JobStatus

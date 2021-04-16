@@ -340,7 +340,6 @@ getcustomerusers()
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
  this.savenote.Doc = '';
-debugger
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
