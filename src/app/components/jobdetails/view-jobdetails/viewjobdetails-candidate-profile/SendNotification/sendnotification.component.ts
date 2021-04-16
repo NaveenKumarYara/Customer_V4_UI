@@ -15,7 +15,7 @@ import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
- 
+
 
 const URL = 'http://localhost:4300/fileupload/';
 declare var $: any;
@@ -384,29 +384,59 @@ getcustomerusers()
 
 
 
-
- uploadMultiple() {
-   let request = '';
-   const formData = new FormData();
-   this.uploader.queue.forEach(element => {
-     if (this.fileUploadForm.value !== '') {
-      this.fileUploadForm.value.Title = element._file.name;
+ uploadMultiple(){
+  for (let i = 0; i < this.uploader.queue.length; i++) {
+    let fileItem = this.uploader.queue[i]._file;
+    if(fileItem.size > 10000000){
+      this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+      return;
+    }
+  }
+  for (let j = 0; j < this.uploader.queue.length; j++) {
+    let data = new FormData();
+    let request = '';
+    let fileItem = this.uploader.queue[j]._file;
+    if (this.fileUploadForm.value !== '') {
+      this.fileUploadForm.value.Title = fileItem.name;
       this.fileUploadForm.value.DocUrl = '';
-      this.fileUploadForm.value.FileExtension =element._file.type;
+      this.fileUploadForm.value.FileExtension =fileItem.type;
        request = JSON.stringify(this.fileUploadForm.value);
-       }     
-      formData.append('Attachment', element._file);
-      formData.append('Model', request);
-      this.filedata= formData;
-      this._service.byteStorage(this.filedata, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
-        this.dialogRef.close();   
-        }); 
-      }); 
+     }     
+    data.append('Attachment', fileItem);
+    data.append('fileSeq', 'seq'+j);
+    data.append('Model', request);
+    this.uploadFile(data);
+  }
+  this.uploader.clearQueue();
+}
+
+uploadFile(data: FormData){
+this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+  this.dialogRef.close();   
+  }); 
+}
+//  uploadMultiple() {
+//    let request = '';
+//    const formData = new FormData();
+//    this.uploader.queue.forEach(element => {
+//      if (this.fileUploadForm.value !== '') {
+//       this.fileUploadForm.value.Title = element._file.name;
+//       this.fileUploadForm.value.DocUrl = '';
+//       this.fileUploadForm.value.FileExtension =element._file.type;
+//        request = JSON.stringify(this.fileUploadForm.value);
+//        }     
+//       formData.append('Attachment', element._file);
+//       formData.append('Model', request);
+//       this.filedata= formData;
+//       this._service.byteStorage(this.filedata, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+//         this.dialogRef.close();   
+//         }); 
+//       }); 
    
      
       
     
- }
+//  }
 
 
  ShareProfile() {
