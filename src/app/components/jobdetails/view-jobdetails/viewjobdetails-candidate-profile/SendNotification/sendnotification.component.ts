@@ -35,6 +35,9 @@ export class sendnotificationdialogComponent {
  loginstyle(): void {
    this.loading = true;
  }
+ isShown1: boolean = true ;
+ isShown2: boolean = false ;
+ isShown3: boolean = false ;
  GetContactsList : contactInfo[];
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
@@ -133,8 +136,6 @@ selectedFileNames: string[] = [];
       }
     });
 
-    this.savenote.OtherInfo="General";
-
     this.fileUploadForm = this.fb.group({ 
       'NoteId': [0, Validators.required],
       'ProfileId': [this.data.ProfileId, Validators.nullValidator],
@@ -147,11 +148,27 @@ selectedFileNames: string[] = [];
       'DocUrl': ['', Validators.nullValidator]
     });
  
-
+    this.savenote.OtherInfo = "General";
   }
 
 
-   
+  toggleShow1() {
+
+    this.isShown1 = ! this.isShown1;
+    
+    }
+
+    toggleShow2() {
+
+      this.isShown2 = ! this.isShown2;
+      
+      }
+
+      toggleShow3() {
+
+        this.isShown3 = ! this.isShown3;
+        
+        }
 
   
   
@@ -302,22 +319,28 @@ getcustomerusers()
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
- if(this.info===0)
+ if(this.isShown1==true&&this.isShown2==false)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=false;
-  this.savenote.OtherInfo =   this.savenote.OtherInfo;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
  }
- else
+ if(this.isShown2==true&&this.isShown1==false)
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
-  this.savenote.OtherInfo = '';
+  this.savenote.OtherInfo = ' ';
+ }
+ if(this.isShown1==true&&this.isShown2==true)
+ {
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
+  this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
  }
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
  this.savenote.Doc = '';
-
+debugger
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
