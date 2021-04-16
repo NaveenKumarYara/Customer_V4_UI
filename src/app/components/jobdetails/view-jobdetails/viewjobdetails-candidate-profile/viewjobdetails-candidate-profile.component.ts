@@ -20,6 +20,7 @@ import { ParentComponentApi } from '../view-jobdetails.component';
 import { ApiService } from '../../../../shared/services/api.service/api.service';
 import { UniqueMonthYearPipe } from './../months.pipe';
 import * as FileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { SettingsService } from '../../../../../settings/settings.service';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { HiredialogComponent } from './Hiringdialog/hire.component';
@@ -141,6 +142,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     toggle() {
         this.show_dialog = !this.show_dialog;
     }
+
+   download(url,name)
+   {
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.click();
+    link.remove();
+    window.location.href=url;
+   }
 
     OpenChatboxDialog() {
         if (this.jobStatus !== 'InActive') {
