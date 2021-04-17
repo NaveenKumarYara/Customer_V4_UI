@@ -337,13 +337,13 @@
                     </div>
                 </div>
             </div>
-            <div class="data-grid-view full" *ngIf="currentView == 'Grid'" [ngClass]="showFilterNavBar ? 'open':null" >
+            <div class="data-grid-view" *ngIf="currentView == 'Grid'" [ngClass]="{'open':showFilterNavBar, 'full':!showDetail}" >
                 <div class="row flex flex-wrap">
                     <div class="col-sm-6 big-col">
                         <span *ngIf="candidatesLoading">Loading Candidates...</span>
                         <div class="row flex flex-wrap flex-align-equal" *ngIf="!candidatesLoading && candidates.length > 0;else noCandidates">
                             <div class="col-sm-3" [ngClass]="{'green' : i % 4 == 0 , 'blue' : i % 4 == 1, 'light-blue' : i % 4 == 2, 'yellow' : i % 4 == 3}" *ngFor="let candidate of candidates; let i = index" [attr.data-index]="i">
-                                <div class="col__container">
+                                <div class="col__container" (click)="showJobPrview(i)">
                                     <div class="top__container flex flex-wrap flex-align-center">
                                         <!-- <div class="custom-radio">
                                             <input type="radio" id="test1" name="radio-group">
@@ -381,19 +381,17 @@
                             <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
                         </ng-template>
                     </div>
-                    <div class="col-sm-6">
-                        <button class="btn btn-cross">Close</button>
+                    <div class="col-sm-6" *ngIf="showDetail">
+                        <button class="btn btn-cross" (click)="hideJobDetail()">Close</button>
                         <div class="data-grid-slick">
-                            <div class="item">
+                            <button class="btn btn-previous" (click)="previous()">Previous</button>
+                            <div [class]="items[selectedIndex] == item ? 'item active': 'item'" 
+                            *ngFor="let item of items">
                                 <figure>
-                                    <img src="../../../assets/images/candidatemanager/job-card.png">
+                                    <img src= {{item.src}}>
                                 </figure>
                             </div>
-                            <div class="item">
-                                <figure>
-                                    <img src="../../../assets/images/candidatemanager/job-card.png">
-                                </figure>
-                            </div>
+                            <button class="btn btn-next" (click)="next()">next</button>
                         </div>
                     </div>
                 </div>

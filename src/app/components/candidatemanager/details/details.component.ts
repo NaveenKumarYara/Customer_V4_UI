@@ -22,9 +22,38 @@ export class DetailsComponent implements OnInit {
 	totalCandidatesCount: number = 0;
 	totalPageCount: number = 1;
 	pageCount: number = 20;
+	selectedIndex: number;
+	showDetail: boolean = false;
 
-	constructor(private appService: AppService) { }
+	constructor(private appService: AppService) {
+		this.selectedIndex = 0;
+		
+	}
 
+	items = [
+		{ src: '../../../assets/images/candidatemanager/job-card.png' },
+		{ src: '../../../assets/images/candidatemanager/job-card.png' },
+		{ src: '../../../assets/images/candidatemanager/job-card.png' }
+	];
+
+	next() {
+		++this.selectedIndex;
+	}
+
+	previous() {
+		if (this.selectedIndex < 0) {
+			--this.selectedIndex;	
+		}
+	}
+
+	showJobPrview(id) {
+		this.showDetail = true;
+		this.selectedIndex = id;
+	}
+
+	hideJobDetail() {
+		this.showDetail = false;
+	}
 
 	ngOnInit() {
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -33,9 +62,8 @@ export class DetailsComponent implements OnInit {
 		//this.getFilterData('JobType');
 		this.getCandidates();
 
-		$(document).on('click touchend', function(e){
-			if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length==0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length==0)
-  		{
+		$(document).on('click touchend', function (e) {
+			if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
 				$('.revamp__filter__sidebar__box').removeClass('full');
 				$('.revamp__filter__sidebar__box').removeClass('show');
 				$('.revamp__filter__sidebar__box').removeClass('big');
@@ -51,7 +79,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	toggleFilter() {
-	 	this.showFilterNavBar = !this.showFilterNavBar
+		this.showFilterNavBar = !this.showFilterNavBar
 		if (this.showFilterNavBar === false) {
 			this.showMenu = false;
 			let listClass = document.getElementsByClassName('sub__item');
@@ -62,7 +90,7 @@ export class DetailsComponent implements OnInit {
 			}
 			classArray.forEach(function (val) {
 				if (document.getElementsByClassName('active')[0]) {
-					document.getElementsByClassName('sub__item')[val].classList.remove('active')	
+					document.getElementsByClassName('sub__item')[val].classList.remove('active')
 				}
 			});
 		}
@@ -85,7 +113,7 @@ export class DetailsComponent implements OnInit {
 		}
 		classArray.forEach(function (val) {
 			if (document.getElementsByClassName('active')[0]) {
-				document.getElementsByClassName('sub__item')[val].classList.remove('active')	
+				document.getElementsByClassName('sub__item')[val].classList.remove('active')
 			}
 		});
 		document.getElementsByClassName('sub__item')[id].classList.add('active');
