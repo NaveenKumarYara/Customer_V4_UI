@@ -2184,7 +2184,37 @@ a:hover {
   font-size: 0;
   cursor: pointer;
   z-index: 100;
-  display: none;
+}
+
+.data-grid-slick {
+  position:relative;
+}
+
+.data-grid-slick .item {
+  display:none;
+}
+
+.data-grid-slick .active {
+  display:block;
+}
+
+.btn.btn-previous, .btn.btn-next {
+  width: 26px;
+  height: 45px;
+  background: url('/./././assets/images/candidatemanager/candidate-sprites.png') -8px -159px no-repeat;
+  left: 0;
+  z-index: 100;
+  position:absolute;
+  left:0;
+  top:50%;
+  margin-top:-22px;
+  font-size:0;
+}
+
+.btn.btn-next {
+  background-position:-44px -159px;
+  right: 0;
+  left:auto;
 }
 
 .btn.btn-cross:focus {
