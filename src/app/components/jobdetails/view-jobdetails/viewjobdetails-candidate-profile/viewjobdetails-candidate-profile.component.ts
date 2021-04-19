@@ -706,6 +706,43 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         });
       }
 
+      DownloadResumeNote(val,Name): void {
+        this._service.GetService('ProfileAPI/api/GetNoteFilesDownload?url=', val)
+         .subscribe(fileData => { 
+            this.fileType = fileData;
+            debugger
+            let exp = Name.split('.').pop();
+            this.fileExt = exp;
+          this.toastr.success('Downloading!', 'Success!');
+          setTimeout(() => {
+            this.toastr.dismissToast;
+          }, 3000);   
+           
+            if(this.fileExt == 'pdf')
+            {
+            let byteArr = this.base64ToArrayBuffer(fileData);
+            let blob = new Blob([byteArr], { type: 'application/pdf' });
+            FileSaver.saveAs(blob,Name);
+            }
+            if(this.fileExt == 'png' || this.fileExt == 'jpeg')
+            {
+            let byteArr = this.base64ToArrayBuffer(fileData);
+            let blob = new Blob([byteArr], { type: 'application/image' });
+            FileSaver.saveAs(blob,Name);
+            }
+            else if(this.fileExt == 'doc' ||  this.fileExt == 'docx')
+            {
+              var extension = '.doc';
+              let byteArr = this.base64ToArrayBuffer(fileData);
+              let blob = new Blob([byteArr], { type: 'application/pdf' });
+              FileSaver.saveAs(blob,Name);
+            }
+          });
+      
+  
+      
+    }
+
 
     PopulateJobdetailProfiles(customerId, userid, jobid, statusid, statistics, sortBy = 1, searchString = '', experience = 0, location = '', domainName = '', uploaded = 0, suggested = 0, wishlist = 0, invited = 0, arytic = 0, noofRows = 6) {
         this.alertService.clear();

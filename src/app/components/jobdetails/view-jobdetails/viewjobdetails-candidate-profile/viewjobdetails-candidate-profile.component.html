@@ -1225,7 +1225,7 @@
 											</div>
 											<ng-container *ngIf="pn.attachments.length>0">
 												<div class="card-col" *ngFor="let a of pn.attachments">
-													<a href="javascript:void(0)" (click)="download(a.DocUrl,a.DocName.split('_')[0])">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+													<a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl,a.DocName)">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
 												</div>
 											</ng-container>
                                            
