@@ -46,7 +46,9 @@
                                         </div>
                                         <div class="filter__tag">
                                             <ul *ngIf="filterType.result.length > 0;else noResult">
-                                                <li *ngFor="let result of filterType.result"><a href="javascript:void(0)">{{result.value}}</a></li>
+                                                <li *ngFor="let result of filterType.result" (click)="onFilterSelect(filterType.value,result.id)" [ngClass]="{'active' : result.isSelected}">
+                                                    <a href="javascript:void(0)">{{result.value}}</a>
+                                                </li>
                                             </ul>
                                             <ng-template #noResult>
                                                 <span class="text-danger">No filters found!</span>

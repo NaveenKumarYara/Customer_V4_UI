@@ -26,17 +26,17 @@ export class DetailsComponent implements OnInit {
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
 	filterTypes: any[] = [
-		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'selectedValues': [], 'iconClass': 'icon__jobtype__01' },
-		{ 'title': 'Skills', 'value': 'skills', 'url': 'https://profileapi-dev.arytic.com/api/GetAllMasterSkills', 'result': [], 'selectedValues': [], 'iconClass': 'icon__skills__01' },
-		{ 'title': 'Salary', 'value': 'salary', 'url': 'https://jobsapi-dev.arytic.com/api/GetSalaryRange', 'result': [], 'selectedValues': [], 'iconClass': 'icon__salary__01' },
-		{ 'title': 'Location', 'value': 'location', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCities', 'result': [], 'selectedValues': [], 'iconClass': 'icon__location__01' },
-		{ 'title': 'Experience', 'value': 'experience', 'url': 'https://jobsapi-dev.arytic.com/api/GetExperience', 'result': [], 'selectedValues': [], 'iconClass': 'icon__experience__01' },
-		{ 'title': 'JobTitle', 'value': 'jobTitle', 'url': "https://jobsapi-dev.arytic.com/api/GetAllJobTitles", 'result': [], 'selectedValues': [], 'iconClass': 'icon__title__01' },
-		{ 'title': 'Availibilty Status', 'value': 'availibiltyStatus', 'url': '', 'result': [], 'selectedValues': [], 'iconClass': 'icon__status__01' },
-		{ 'title': 'JobDomain', 'value': 'jobDomain', 'url': 'https://profileapi-dev.arytic.com/api/GetDomainName', 'result': [], 'selectedValues': [], 'iconClass': 'icon__domain__01' },
-		{ 'title': 'ComapanyName', 'value': 'comapanyName', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCompanyNames', 'result': [], 'selectedValues': [], 'iconClass': 'icon__company__01' },
-		{ 'title': 'Education', 'value': 'education', 'url': 'https://jobsapi-dev.arytic.com/api/GetQualification', 'result': [], 'selectedValues': [], 'iconClass': 'icon__edu__01' },
-		{ 'title': 'Certification', 'value': 'certification', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCertifications', 'result': [], 'selectedValues': [], 'iconClass': 'icon__certified__01' }
+		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
+		{ 'title': 'Skills', 'value': 'skills', 'url': 'https://profileapi-dev.arytic.com/api/GetAllMasterSkills', 'result': [], 'iconClass': 'icon__skills__01' },
+		{ 'title': 'Salary', 'value': 'salary', 'url': 'https://jobsapi-dev.arytic.com/api/GetSalaryRange', 'result': [], 'iconClass': 'icon__salary__01' },
+		{ 'title': 'Location', 'value': 'location', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCities', 'result': [], 'iconClass': 'icon__location__01' },
+		{ 'title': 'Experience', 'value': 'experience', 'url': 'https://jobsapi-dev.arytic.com/api/GetExperience', 'result': [], 'iconClass': 'icon__experience__01' },
+		{ 'title': 'JobTitle', 'value': 'jobTitle', 'url': "https://jobsapi-dev.arytic.com/api/GetAllJobTitles", 'result': [], 'iconClass': 'icon__title__01' },
+		{ 'title': 'Availibilty Status', 'value': 'availibiltyStatus', 'url': '', 'result': [], 'iconClass': 'icon__status__01' },
+		{ 'title': 'JobDomain', 'value': 'jobDomain', 'url': 'https://profileapi-dev.arytic.com/api/GetDomainName', 'result': [], 'iconClass': 'icon__domain__01' },
+		{ 'title': 'ComapanyName', 'value': 'comapanyName', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCompanyNames', 'result': [], 'iconClass': 'icon__company__01' },
+		{ 'title': 'Education', 'value': 'education', 'url': 'https://jobsapi-dev.arytic.com/api/GetQualification', 'result': [], 'iconClass': 'icon__edu__01' },
+		{ 'title': 'Certification', 'value': 'certification', 'url': 'https://profileapi-dev.arytic.com/api/GetAllCertifications', 'result': [], 'iconClass': 'icon__certified__01' }
 	];
 	items = [
 		{ src: '../../../assets/images/candidatemanager/job-card.png' },
@@ -120,6 +120,10 @@ export class DetailsComponent implements OnInit {
 		this.currentFilterType = '';
 	}
 
+	onFilterSelect(filterType, id) {
+		this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected = !this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected
+	}
+
 	getFilterData(filterType, url) {
 		this.currentFilterType = filterType;
 		if (this.filterTypes.filter(x => x.value == filterType)[0].result.length == 0) {
@@ -133,6 +137,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].EmploymentTypeId;
 								temp['value'] = res[i].EmploymentType;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -141,6 +146,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].id;
 								temp['value'] = res[i].Code;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -149,6 +155,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].SalaryRangeId;
 								temp['value'] = res[i].SalaryRange;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -157,6 +164,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].CityId;
 								temp['value'] = res[i].CityName;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -165,6 +173,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].ExperienceId;
 								temp['value'] = res[i].YearsOfExperience;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -173,6 +182,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].JobTitleId;
 								temp['value'] = res[i].JobTitle;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -181,6 +191,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].EmploymentTypeId;
 								temp['value'] = res[i].EmploymentType;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -189,6 +200,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].DomainId;
 								temp['value'] = res[i].DomainName;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -197,6 +209,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].EmploymentTypeId;
 								temp['value'] = res[i].EmploymentType;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -205,6 +218,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].QualificationId;
 								temp['value'] = res[i].QualificationName;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
@@ -213,6 +227,7 @@ export class DetailsComponent implements OnInit {
 								var temp = {};
 								temp['id'] = res[i].certificationnameid;
 								temp['value'] = res[i].certificationname;
+								temp['isSelected'] = false;
 								obj.push(temp);
 							}
 							break;
