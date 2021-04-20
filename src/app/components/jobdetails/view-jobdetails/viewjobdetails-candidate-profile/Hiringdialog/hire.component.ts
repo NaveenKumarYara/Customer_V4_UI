@@ -7,6 +7,7 @@ import { AppService } from '../../../../../app.service';
 import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../../shared/services/api.service/api.service';
 import { IfObservable } from 'rxjs/observable/IfObservable';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
 import {CustomerContacts} from '../../../../../../models/customercontacts';
@@ -16,6 +17,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 declare var $: any;
+const URL = 'http://localhost:4300/fileupload/';
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -57,11 +60,20 @@ export class HiredialogComponent {
   matching:any;
   selectedUserInput = new Subject<string>();
   private subscription: Subscription;
+  fileUploadForm: FormGroup;
   schIntw = new ScheduleInterview();
+  public file_srcs: string[] = [];
+public debug_size_before: string[] = [];
+public debug_size_after: string[] = [];
+selectedFileNames: string[] = [];
+ isShown1: boolean = true ;
+ isShown2: boolean = false ;
+ isShown3: boolean = false ;
  @Input() jobid: number;
  @Input() statusid: number;
+ uploader:FileUploader;
  @Output() eventStat = new EventEmitter();
-  constructor(public dialogRef: MatDialogRef<HiredialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
+  constructor(public dialogRef: MatDialogRef<HiredialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder,private _service: ApiService,private appService: AppService,private jobdetailsservice: JobdetailsService,private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -77,6 +89,37 @@ export class HiredialogComponent {
       this.AddUser = true;
       this.info = 1;
       this.checkemail=this.data.Email;
+      this.uploader = new FileUploader({
+        url: URL,
+        disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+        formatDataFunctionIsAsync: true,
+        allowedFileType: ['image', 'pdf','doc'],
+        
+        formatDataFunction: async (item) => {
+          return new Promise( (resolve, reject) => {
+            resolve({
+              name: item._file.name,
+              length: item._file.size,
+              contentType: item._file.type,
+              date: new Date()
+            });
+          });
+        }
+      });
+  
+      this.fileUploadForm = this.fb.group({ 
+        'NoteId': [0, Validators.required],
+        'ProfileId': [this.data.ProfileId, Validators.nullValidator],
+        'JobId': [this.data.jobId, Validators.nullValidator],
+        'customerUserId': [this.customer.UserId, Validators.required],
+        'toUserId': [0, Validators.required],
+        'Title':['', Validators.nullValidator],
+        'Attachment': [null, Validators.nullValidator],
+        'FileExtension': ['', Validators.nullValidator],
+        'DocUrl': ['', Validators.nullValidator]
+      });
+   
+      this.savenote.OtherInfo = "General";
    }
 
    ngOnInit()
@@ -97,10 +140,21 @@ export class HiredialogComponent {
       });
       $('.datepicker').datepicker({ minDate: new Date() });
      
+ 
      
    }
 
-   
+   toggleShow1() {
+
+    this.isShown1 = ! this.isShown1;
+    
+    }
+
+    toggleShow2() {
+
+      this.isShown2 = ! this.isShown2;
+      
+      }
 
    populateEmploymentType() {
     this.appService.getEmploymentType().subscribe(res => {
@@ -321,31 +375,97 @@ gotit(na) {
  
    
 
-SaveNotes(Comment)
+ SaveNotes()
 {
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
- this.savenote.customerUserId = this.userId;
- if(this.info===0)
+ this.savenote.customerUserId = this.customer.UserId;
+ if(this.isShown1==true&&this.isShown2==false)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
   this.savenote.isCandidate=false;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
  }
- else
+ if(this.isShown2==true&&this.isShown1==false)
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customer.UserId.toString(); 
   this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = ' ';
  }
- this.savenote.Comments=Comment;
- this.savenote.statusId = 11;
- 
- this.savenote.OtherInfo = ' ';
-this.savenote.Doc = '';
+ if(this.isShown1==true&&this.isShown2==true)
+ {
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customer.UserId.toString();
+  this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
+ }
+ this.savenote.Comments=this.Comment;
+ this.savenote.statusId = this.data.StatusId;
+ this.savenote.Doc = '';
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
+   if(status>0)
+   {
+  this.teammemberslist = [];
+  $('#teamMbr').val('');
+  //this.selectedUserName = ''
+  this.getTeammember = new CustomerUsers();
+  this.clearTeamMemebers();
+  this.Comment = "";
+  //this.EmailId = " ";
+  this.toastr.success('Sent successfully', 'Success');
+  setTimeout(() => {
+   this.toastr.dismissToast;
+   if(this.uploader.queue.length>0)
+   {
+    this.fileUploadForm.value.NoteId=status;
+    this.fileUploadForm.value.toUserId = this.savenote.toUserId;
+    this.uploadMultiple();
+   }
+   else
+   {
+     this.dialogRef.close();
+   }
+
+   //this.SaveNotes(this.selectedComments);
+ 
+  }, 3000);   
+}
  }                
  );
+}
+
+
+ uploadMultiple(){
+  for (let i = 0; i < this.uploader.queue.length; i++) {
+    let fileItem = this.uploader.queue[i]._file;
+    if(fileItem.size > 10000000){
+      this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+      return;
+    }
+  }
+  for (let j = 0; j < this.uploader.queue.length; j++) {
+    let data = new FormData();
+    let request = '';
+    let fileItem = this.uploader.queue[j]._file;
+    if (this.fileUploadForm.value !== '') {
+      this.fileUploadForm.value.Title = fileItem.name;
+      this.fileUploadForm.value.DocUrl = '';
+      this.fileUploadForm.value.FileExtension =fileItem.type;
+       request = JSON.stringify(this.fileUploadForm.value);
+     }     
+    data.append('Attachment', fileItem);
+    data.append('fileSeq', 'seq'+j);
+    data.append('Model', request);
+    this.uploadFile(data);
+  }
+  this.uploader.clearQueue();
+}
+
+uploadFile(data: FormData){
+this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+  this.dialogRef.close();   
+  }); 
 }
    
 
@@ -387,13 +507,13 @@ this.savenote.Doc = '';
     // this.jobDetails.populateJobsStaticInfo(this.jobid);
       this.Check();
       this.PopulateJobdetail();
-      this.SaveNotes(this.Comment);
+      this.SaveNotes();
       this.toastr.success('Email Sent','Success');
       setTimeout(() => {          
           this.toastr.dismissToast; 
         }, 3000);
       this.eventStat.emit(null);
-      this.dialogRef.close();
+      //this.dialogRef.close();
       console.log(res);
       }) ;
     }
