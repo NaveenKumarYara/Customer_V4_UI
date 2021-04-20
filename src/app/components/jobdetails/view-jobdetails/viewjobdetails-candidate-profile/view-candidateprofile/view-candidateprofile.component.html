@@ -20,7 +20,12 @@
 										</li>
 										<li class="flex second__child">
 											<div class="flex-self-center">
-												<p>Pellentesque habitant morbi tristique senectus et netus et.</p>
+												<p [innerHTML] [ngClass]="{'show-less': showShortDesciption}" title="{{profileview?.ProfileBasicInfo?.AboutMe}}">
+													{{profileview?.ProfileBasicInfo?.AboutMe}}
+												  </p>
+												  <!-- <span (click)="alterDescriptionText()">
+													{{ showShortDesciption ? 'SHOW ALL': 'SHOW LESS' }}
+												  </span> -->
 											</div>
 										</li>
 										<li class="flex">

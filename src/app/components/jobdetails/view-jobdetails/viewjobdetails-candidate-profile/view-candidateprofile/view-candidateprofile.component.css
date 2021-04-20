@@ -4302,3 +4302,15 @@ h5.meta.meta-light {
 	width: 155px;
 	transform: rotate(-5deg);
   }
+
+  .show-less {
+    height: 4rem;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.showShortDesciption {
+    height: 7rem;
+    overflow: hidden;
+    padding: 1rem;
+}

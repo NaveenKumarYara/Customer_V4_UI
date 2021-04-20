@@ -30,6 +30,8 @@ export class ViewCandidateprofileComponent implements OnInit {
   customerId: any;
   userId: any;
   email: any;
+  jobStatus:any;
+  showShortDesciption = true
   profileview: any;
   aboutShow:any;
   aboutContent:any;
@@ -80,6 +82,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.noTest = false;
     this.profileId = JSON.parse(sessionStorage.getItem('Preid'));
+    this.jobStatus = this.data.Status;
   }
 
 
@@ -90,6 +93,10 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.MatchingPercentage = res.Total_Match_Per;
 
     });
+}
+
+alterDescriptionText() {
+  this.showShortDesciption = !this.showShortDesciption
 }
 
   DownloadResume(val): void {
