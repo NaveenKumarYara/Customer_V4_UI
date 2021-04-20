@@ -31,95 +31,37 @@
                 <div class="scroll-box">
                     <div class="icon__box">&nbsp;</div>
                     <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
-                    <ul  (mouseover)="showNavigation()">
-                        <li  (click)="showSub(0)" class="sub__item ">
+                    <ul (mouseover)="showNavigation()">
+                        <li (click)="getFilterData(filterType.value,filterType.url)" class="sub__item" [ngClass]="{'active' : filterType.value == currentFilterType}" *ngFor="let filterType of filterTypes">
                             <a href="javascript:void(0)">
-                                <span class="icon icon__jobtype__01"></span>
-                                <em>Job Type</em>
+                                <span [class]="'icon '+(filterType.iconClass)"></span>
+                                <em>{{filterType.title}}</em>
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search">
-                                    <div class="input__box">
-                                        <span class="icon__search__dark"></span>
-                                        <input type="text" class="form-control form-control-light" placeholder="Search">
+                                    <div *ngIf="!isFilterDataLoading;else loadingData">
+                                        <div class="input__box">
+                                            <span class="icon__search__dark"></span>
+                                            <input type="text" class="form-control form-control-light" placeholder="Search">
+                                        </div>
+                                        <div class="filter__tag">
+                                            <ul *ngIf="filterType.result.length > 0;else noResult">
+                                                <li *ngFor="let result of filterType.result"><a href="javascript:void(0)">{{result.value}}</a></li>
+                                            </ul>
+                                            <ng-template #noResult>
+                                                <span class="text-danger">No filters found!</span>
+                                            </ng-template>
+                                        </div>
+                                        <div class="filter__buttons text-right">
+                                            <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="resetFilterType()">Cancel</button>
+                                            <button class="btn  btn-primary btn-sm text-uppercase">Ok</button>
+                                        </div>
                                     </div>
-
-                                    <div class="filter__tag">
-                                        <ul>
-                                            <li><a href="#">Information Technology</a></li>
-                                            <li><a href="#">Data Analyst</a></li>
-                                            <li><a href="#">Data Specailist</a></li>
-                                            <li><a href="#">Data Entry Analyst</a></li>
-                                            <li><a href="#">Information Analyst</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="filter__buttons text-right">
-                                        <button class="btn btn-outline-light dark btn-sm text-uppercase">Cancel</button>
-                                        <button class="btn  btn-primary btn-sm text-uppercase">Ok</button>
-                                    </div>
+                                    <ng-template #loadingData>
+                                        <span>Loading content...</span>
+                                    </ng-template>
                                 </div>
-
                             </div>
-                        </li>
-                        <li  (click)="showSub(1)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__skills__01"></span>
-                                <em>Skills</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(2)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__salary__01"></span>
-                                <em>Salary</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(3)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__location__01"></span>
-                                <em>Location</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(4)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__experience__01"></span>
-                                <em>Experience</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(5)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__title__01"></span>
-                                <em>Job Title</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(6)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__status__01"></span>
-                                <em>Availibilty Status</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(7)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__domain__01"></span>
-                                <em>Job Domain</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(8)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__company__01"></span>
-                                <em>Company Name</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(9)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__edu__01"></span>
-                                <em>Education</em>
-                            </a>
-                        </li>
-                        <li (click)="showSub(10)" class="sub__item">
-                            <a href="javascript:void(0)">
-                                <span class="icon icon__certified__01"></span>
-                                <em>Certification</em>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -296,9 +238,9 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
-            </div> 
+            </div>
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
                     <div class="col-sm-3">
@@ -337,7 +279,7 @@
                     </div>
                 </div>
             </div>
-            <div class="data-grid-view" *ngIf="currentView == 'Grid'" [ngClass]="{'open':showFilterNavBar, 'full':!showDetail}" >
+            <div class="data-grid-view" *ngIf="currentView == 'Grid'" [ngClass]="{'open':showFilterNavBar, 'full':!showDetail}">
                 <div class="row flex flex-wrap">
                     <div class="col-sm-6 big-col">
                         <span *ngIf="candidatesLoading">Loading Candidates...</span>
@@ -385,10 +327,10 @@
                         <button class="btn btn-cross" (click)="hideJobDetail()">Close</button>
                         <div class="data-grid-slick">
                             <button class="btn btn-previous" (click)="previous()">Previous</button>
-                            <div [class]="items[selectedIndex] == item ? 'item active': 'item'" 
-                            *ngFor="let item of items">
+                            <div [class]="items[selectedIndex] == item ? 'item active': 'item'"
+                                 *ngFor="let item of items">
                                 <figure>
-                                    <img src= {{item.src}}>
+                                    <img src={{item.src}}>
                                 </figure>
                             </div>
                             <button class="btn btn-next" (click)="next()">next</button>
