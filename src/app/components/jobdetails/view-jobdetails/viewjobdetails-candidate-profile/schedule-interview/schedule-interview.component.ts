@@ -32,7 +32,8 @@ export interface DialogData {
 @Component({
   selector: 'app-schedule-interview',
   templateUrl: './schedule-interview.component.html',
-  styleUrls: ['./schedule-interview.component.css']
+  styleUrls: ['./schedule-interview.component.css'],
+  providers: [ApiService]
 })
 export class ScheduleInterviewComponent implements OnInit {
   @ViewChild('schedule') schedule: NgForm;

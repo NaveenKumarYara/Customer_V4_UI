@@ -1233,7 +1233,11 @@
 										</ng-container>
 										<ng-container *ngIf="pn.CustomerComment===null && pn.CandidateComment==null">
 											Notes Not Added
-                                           
+											<ng-container *ngIf="pn.attachments.length>0">
+												<div class="card-col" *ngFor="let a of pn.attachments">
+													<a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl,a.DocName)">{{a?.DocName.split('_')[0]}} <div class="attched"><i class="fa fa-paperclip"></i></div></a>
+												</div>
+											</ng-container>
 										</ng-container>
 										<ng-container *ngIf="pn.CandidateComment!=null">
 											I am Interested in these position.

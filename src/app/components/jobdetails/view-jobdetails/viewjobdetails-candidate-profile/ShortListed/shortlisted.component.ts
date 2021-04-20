@@ -12,15 +12,30 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
+import { ApiService } from '../../../../../shared/services/api.service/api.service';
+const URL = 'http://localhost:4300/fileupload/';
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
 @Component({
   selector: 'app-shortlisteddialog',
-  templateUrl: './shortlisted.component.html'
+  templateUrl: './shortlisted.component.html',
+  styleUrls: ['./shortlisted.component.css'],
+  providers: [ApiService]
 })
 export class shortlisteddialogComponent implements OnInit {
+  public file_srcs: string[] = [];
+public debug_size_before: string[] = [];
+public debug_size_after: string[] = [];
+selectedFileNames: string[] = [];
+  fileUploadForm: FormGroup;
+ isShown1: boolean = true ;
+ isShown2: boolean = false ;
+ isShown3: boolean = false ;
+  uploader:FileUploader;
   customerId: any;
   userId: any;
   Comment: string;
@@ -54,7 +69,7 @@ export class shortlisteddialogComponent implements OnInit {
  selectedComments:any;
  private subscription: Subscription;
  selectedUserInput = new Subject<string>();
-  constructor(public dialogRef: MatDialogRef<shortlisteddialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService,private appService: AppService,private settingsService: SettingsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
+  constructor(public dialogRef: MatDialogRef<shortlisteddialogComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder,private _service: ApiService, private jobdetailsservice: JobdetailsService,private appService: AppService,private settingsService: SettingsService,private toastr: ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
       this.userId = this.customer.UserId;
@@ -62,6 +77,37 @@ export class shortlisteddialogComponent implements OnInit {
       this.matching= this.data.Matching;
       this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
       this.toastr.setRootViewContainerRef(_vcr);
+      this.uploader = new FileUploader({
+        url: URL,
+        disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+        formatDataFunctionIsAsync: true,
+        allowedFileType: ['image', 'pdf','doc'],
+        
+        formatDataFunction: async (item) => {
+          return new Promise( (resolve, reject) => {
+            resolve({
+              name: item._file.name,
+              length: item._file.size,
+              contentType: item._file.type,
+              date: new Date()
+            });
+          });
+        }
+      });
+  
+      this.fileUploadForm = this.fb.group({ 
+        'NoteId': [0, Validators.required],
+        'ProfileId': [this.data.ProfileId, Validators.nullValidator],
+        'JobId': [this.data.jobId, Validators.nullValidator],
+        'customerUserId': [this.customerUser, Validators.required],
+        'toUserId': [0, Validators.required],
+        'Title':['', Validators.nullValidator],
+        'Attachment': [null, Validators.nullValidator],
+        'FileExtension': ['', Validators.nullValidator],
+        'DocUrl': ['', Validators.nullValidator]
+      });
+   
+      this.savenote.OtherInfo = "General";
    }
 
    PopulateJobdetail () {
@@ -71,6 +117,18 @@ export class shortlisteddialogComponent implements OnInit {
     });
   
   }
+
+  toggleShow1() {
+
+    this.isShown1 = ! this.isShown1;
+    
+    }
+
+    toggleShow2() {
+
+      this.isShown2 = ! this.isShown2;
+      
+      }
 
   ngOnInit() {
     this.GetContacts();
@@ -191,32 +249,99 @@ onItemDeleted(index){
      );
    }
 
-SaveNotes(Comment)
-{
- this.savenote.ProfileId=this.data.ProfileId;
- this.savenote.JobId = this.data.jobId;
- this.savenote.customerUserId = this.userId;
- if(this.info===0)
- {
-  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.userId.toString();
-  this.savenote.isCandidate=false;
- }
- else
- {
-  this.savenote.toUserId=this.data.CUserId.toString()+','+this.userId.toString(); 
-  this.savenote.isCandidate=true;
- }
- this.savenote.Comments=Comment;
- this.savenote.statusId = 5;
+   SaveNotes()
+   {
+    this.savenote.ProfileId=this.data.ProfileId;
+    this.savenote.JobId = this.data.jobId;
+    this.savenote.customerUserId = this.customer.UserId;
+    if(this.isShown1==true&&this.isShown2==false)
+    {
+     this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
+     this.savenote.isCandidate=false;
+     this.savenote.OtherInfo = this.savenote.OtherInfo;
+    }
+    if(this.isShown2==true&&this.isShown1==false)
+    {
+     this.savenote.toUserId=this.data.CUserId.toString()+','+this.customer.UserId.toString(); 
+     this.savenote.isCandidate=true;
+     this.savenote.OtherInfo = ' ';
+    }
+    if(this.isShown1==true&&this.isShown2==true)
+    {
+     this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customer.UserId.toString();
+     this.savenote.isCandidate=true;
+     this.savenote.OtherInfo = this.savenote.OtherInfo;
+    }
+    this.savenote.Comments=this.selectedComments;
+    this.savenote.statusId = 5;
+    this.savenote.Doc = '';
+    this.jobdetailsservice.SaveProfileNote(this.savenote)
+    .subscribe(
+    status => {
+      if(status>0)
+      {
+     this.teammemberslist = [];
+     $('#teamMbr').val('');
+     //this.selectedUserName = ''
+     this.getTeammember = new CustomerUsers();
+     this.clearTeamMemebers();
+     this.selectedComments = "";
+     this.EmailId = " ";
+     this.toastr.success('Sent successfully', 'Success');
+     setTimeout(() => {
+      this.toastr.dismissToast;
+      if(this.uploader.queue.length>0)
+      {
+       this.fileUploadForm.value.NoteId=status;
+       this.fileUploadForm.value.toUserId = this.savenote.toUserId;
+       this.uploadMultiple();
+      }
+      else
+      {
+        this.dialogRef.close();
+      }
+   
+      //this.SaveNotes(this.selectedComments);
+    
+     }, 3000);   
+   }
+    }                
+    );
+   }
+   
+   
+    uploadMultiple(){
+     for (let i = 0; i < this.uploader.queue.length; i++) {
+       let fileItem = this.uploader.queue[i]._file;
+       if(fileItem.size > 10000000){
+         this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+         return;
+       }
+     }
+     for (let j = 0; j < this.uploader.queue.length; j++) {
+       let data = new FormData();
+       let request = '';
+       let fileItem = this.uploader.queue[j]._file;
+       if (this.fileUploadForm.value !== '') {
+         this.fileUploadForm.value.Title = fileItem.name;
+         this.fileUploadForm.value.DocUrl = '';
+         this.fileUploadForm.value.FileExtension =fileItem.type;
+          request = JSON.stringify(this.fileUploadForm.value);
+        }     
+       data.append('Attachment', fileItem);
+       data.append('fileSeq', 'seq'+j);
+       data.append('Model', request);
+       this.uploadFile(data);
+     }
+     this.uploader.clearQueue();
+   }
+   
+   uploadFile(data: FormData){
+   this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+     this.dialogRef.close();   
+     }); 
+   }
 
- this.savenote.OtherInfo = ' ';
-this.savenote.Doc = '';
- this.jobdetailsservice.SaveProfileNote(this.savenote)
- .subscribe(
- status => {
- }                
- );
-}
 
   Reject() {
     this.schIntw.UserId = null;
@@ -241,7 +366,7 @@ this.savenote.Doc = '';
     //debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
         this.PopulateJobdetail();      
-        this.SaveNotes(this.selectedComments)
+        this.SaveNotes();
       console.log(res);
       }) ;
     }

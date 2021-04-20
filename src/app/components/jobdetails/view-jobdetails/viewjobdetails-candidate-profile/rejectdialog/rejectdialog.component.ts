@@ -23,7 +23,8 @@ export interface DialogData {
 @Component({
   selector: 'app-rejectdialog',
   templateUrl: './rejectdialog.component.html',
-  styleUrls: ['./rejectdialog.component.css']
+  styleUrls: ['./rejectdialog.component.css'],
+  providers: [ApiService]
 })
 export class RejectdialogComponent implements OnInit {
   customerId: any;

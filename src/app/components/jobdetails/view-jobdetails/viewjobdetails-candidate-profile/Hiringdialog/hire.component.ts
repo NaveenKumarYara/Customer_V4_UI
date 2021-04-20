@@ -25,7 +25,8 @@ export interface DialogData {
 @Component({
   selector: 'app-hiredialog',
   templateUrl: './hire.component.html',
-  styleUrls: ['./hire.component.css']
+  styleUrls: ['./hire.component.css'],
+  providers: [ApiService]
 })
 export class HiredialogComponent {
   customerId: any;
