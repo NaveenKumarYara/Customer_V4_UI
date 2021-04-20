@@ -21,7 +21,10 @@ import { NgForm } from '@angular/forms';
 import {Options} from '../schedule-interview/options';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
+import { ApiService } from '../../../../../shared/services/api.service/api.service';
 declare var $: any;
+const URL = 'http://localhost:4300/fileupload/';
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -77,6 +80,7 @@ export class ScheduleInterviewComponent implements OnInit {
   customerId: number;
   interviewId:number;
   processSelection: number;
+  uploader:FileUploader;
   @Input() jobid: number;
   managersList: Observable<CustomerUsers[]>;
   customercontacts : CustomerContacts[];
@@ -89,13 +93,18 @@ export class ScheduleInterviewComponent implements OnInit {
   savenote = new Notes();
   jobInterview: ScheduleType;
   AddUser:boolean= true;
+  fileUploadForm: FormGroup;
   info:number;
+  isShown1: boolean = true ;
+  isShown2: boolean = false ;
+  isShown3: boolean = false ;
+
   // addedteammembers: '';
   // addedteammemberslist: any; // PjTechnicalTeam[];
   getTeammember: CustomerUsers;
   customer: any;
   private subscription: Subscription;
-  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
+  constructor( public dialogRef: MatDialogRef<ScheduleInterviewComponent>,@Inject(MAT_DIALOG_DATA) public data: any , private appService: AppService,private _service: ApiService, private jobdetailsservice: JobdetailsService, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,private settingsService: SettingsService) {
     // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
     // this.customerUser = JSON.parse(sessionStorage.getItem('userId'));
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -164,6 +173,36 @@ export class ScheduleInterviewComponent implements OnInit {
   ngOnInit() {
     this.show = false;
     this.showadd=false;
+    this.savenote.OtherInfo = "General";
+    this.uploader = new FileUploader({
+      url: URL,
+      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+      formatDataFunctionIsAsync: true,
+      allowedFileType: ['image', 'pdf','doc'],
+      
+      formatDataFunction: async (item) => {
+        return new Promise( (resolve, reject) => {
+          resolve({
+            name: item._file.name,
+            length: item._file.size,
+            contentType: item._file.type,
+            date: new Date()
+          });
+        });
+      }
+    });
+
+    this.fileUploadForm = this.fb.group({ 
+      'NoteId': [0, Validators.required],
+      'ProfileId': [this.data.ProfileId, Validators.nullValidator],
+      'JobId': [this.data.jobId, Validators.nullValidator],
+      'customerUserId': [this.customerUser, Validators.required],
+      'toUserId': [0, Validators.required],
+      'Title':['', Validators.nullValidator],
+      'Attachment': [null, Validators.nullValidator],
+      'FileExtension': ['', Validators.nullValidator],
+      'DocUrl': ['', Validators.nullValidator]
+    });
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -286,12 +325,25 @@ else
 }
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
-    this.SaveNotes(this.Comment);
+    this.SaveNotes();
      }) ;
     } else {
       return false;
     }
 }
+
+
+toggleShow1() {
+
+  this.isShown1 = ! this.isShown1;
+  
+  }
+
+  toggleShow2() {
+
+    this.isShown2 = ! this.isShown2;
+    
+    }
 
 GetId(val)
 {
@@ -306,31 +358,96 @@ GetId(val)
 
 }
 
-SaveNotes(Comment)
+SaveNotes()
 {
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
- if(this.info===0)
+ if(this.isShown1==true&&this.isShown2==false)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
   this.savenote.isCandidate=false;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
  }
- else
+ if(this.isShown2==true&&this.isShown1==false)
  {
   this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
   this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = ' ';
  }
- this.savenote.Comments=Comment;
+ if(this.isShown1==true&&this.isShown2==true)
+ {
+  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
+  this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = this.savenote.OtherInfo;
+ }
+ this.savenote.Comments=this.Comment;
  this.savenote.statusId = 7;
- 
- this.savenote.OtherInfo = ' ';
-this.savenote.Doc = '';
+ this.savenote.Doc = '';
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
+   if(status>0)
+   {
+  this.teammemberslist = [];
+  $('#teamMbr').val('');
+  //this.selectedUserName = ''
+  this.getTeammember = new CustomerUsers();
+  this.clearTeamMemebers();
+  this.Comment = "";
+  this.toastr.success('Sent successfully', 'Success');
+  setTimeout(() => {
+   this.toastr.dismissToast;
+   if(this.uploader.queue.length>0)
+   {
+    this.fileUploadForm.value.NoteId=status;
+    this.fileUploadForm.value.toUserId = this.savenote.toUserId;
+    this.uploadMultiple();
+   }
+   else
+   {
+     this.dialogRef.close();
+   }
+
+   //this.SaveNotes(this.selectedComments);
+ 
+  }, 3000);   
+}
  }                
  );
+}
+
+
+uploadMultiple(){
+  for (let i = 0; i < this.uploader.queue.length; i++) {
+    let fileItem = this.uploader.queue[i]._file;
+    if(fileItem.size > 10000000){
+      this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+      return;
+    }
+  }
+  for (let j = 0; j < this.uploader.queue.length; j++) {
+    let data = new FormData();
+    let request = '';
+    let fileItem = this.uploader.queue[j]._file;
+    if (this.fileUploadForm.value !== '') {
+      this.fileUploadForm.value.Title = fileItem.name;
+      this.fileUploadForm.value.DocUrl = '';
+      this.fileUploadForm.value.FileExtension =fileItem.type;
+       request = JSON.stringify(this.fileUploadForm.value);
+     }     
+    data.append('Attachment', fileItem);
+    data.append('fileSeq', 'seq'+j);
+    data.append('Model', request);
+    this.uploadFile(data);
+  }
+  this.uploader.clearQueue();
+}
+
+uploadFile(data: FormData){
+this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
+  this.dialogRef.close();   
+  }); 
 }
 
 
