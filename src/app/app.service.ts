@@ -1703,65 +1703,7 @@ export class AppService {
             );
     }
 
-    getFilterDataInCM(filterType): Observable<any> {
-        var url = '';
-        switch (filterType) {
-            case 'JobType':
-                {
-                    url = this.settingsService.settings.JobbaseUrl + '/api/GetEmploymentType';
-                    break;
-                }
-            case 'Skills':
-                {
-                    url = this.settingsService.settings.ProfilebaseUrl + '/api/GetAllMasterSkills';
-                    break;
-                }
-            case 'Salary':
-                {
-                    url = this.settingsService.settings.JobbaseUrl + '/api/GetSalaryRange';
-                    break;
-                }
-            case 'Location':
-                {
-                    url = this.settingsService.settings.ProfilebaseUrl + '/api/GetAllCities';
-                    break;
-                }
-            case 'Experience':
-                {
-                    url = this.settingsService.settings.JobbaseUrl + '/api/GetExperience';
-                    break;
-                }
-            case 'JobTitle':
-                {
-                    url = this.settingsService.settings.JobbaseUrl + '/api/GetAllJobTitles';
-                    break;
-                }
-            //case 'AvailabilityStatus':
-            //    {
-            //        url = this.settingsService.settings.ProfilebaseUrl;
-            //        break;
-            //    }
-            case 'JobDomain':
-                {
-                    url = this.settingsService.settings.ProfilebaseUrl + '/api/GetDomainName';
-                    break;
-                }
-            case 'ComapanyName':
-                {
-                    url = this.settingsService.settings.ProfilebaseUrl + '/api/GetAllCompanyNames';
-                    break;
-                }
-            case 'Education':
-                {
-                    url = this.settingsService.settings.JobbaseUrl + '/api/GetQualification';
-                    break;
-                }
-            case 'Certification':
-                {
-                    url = this.settingsService.settings.ProfilebaseUrl + '/api/GetAllCertifications';
-                    break;
-                }
-        }
+    getFilterDataInCM(url): Observable<any> {
         return this.http.get<any>(url)
             .catch(
                 this.handleError
