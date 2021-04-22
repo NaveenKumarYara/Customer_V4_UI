@@ -369,22 +369,25 @@ SaveNotes()
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
   this.savenote.isCandidate=false;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
+  this.savenote.Doc = '';
  }
  if(this.isShown2==true&&this.isShown1==false)
  {
   this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = ' ';
+  this.savenote.Doc = this.data.userId.toString()+','+this.customer.UserId.toString(); 
  }
  if(this.isShown1==true&&this.isShown2==true)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
+  this.savenote.Doc = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
  }
  this.savenote.Comments=this.Comment;
  this.savenote.statusId = 7;
- this.savenote.Doc = '';
+
  this.jobdetailsservice.SaveProfileNote(this.savenote)
  .subscribe(
  status => {
