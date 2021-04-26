@@ -539,12 +539,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.notes.OldComment=comment;
     this.notes.CId=Cid;
     this.notes.NewComment = this.newComment;
+    this.notes.ProfileId = Pid;
     if(this.newComment!=null&&this.newComment!=undefined)
     {
     this._service.PostService(this.notes,'ProfileAPI/api/UpdateProfileNoteInfo').subscribe(data => {
         if(data==0)
         {
-            debugger
             this.notes = new EditNotes();
             this.GetJobNotes(Pid,JId)
             this.newComment=undefined;
@@ -1332,4 +1332,5 @@ export class EditNotes {
     public CId: Number;
     public OldComment: string;
     public NewComment: string;
+    public ProfileId:Number;
   }
