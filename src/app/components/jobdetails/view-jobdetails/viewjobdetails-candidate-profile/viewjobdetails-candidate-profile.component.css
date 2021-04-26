@@ -2072,3 +2072,16 @@ height: 25.4px;
 .note_btn_value{font-size: 0;width: 10px;height: 10px;top: 149px;color:#ffffff;background:#F76E64; right:1px;padding: 2px;border: 1px solid #F76E64;  z-index:10; }
 .msg_btn_value{font-size: 0;width: 10px;height: 10px;top:91px;color:#ffffff;background:#F76E64; right: 1px;padding: 2px;border: 1px solid #F76E64; z-index:10; } 
 .msg_btn_value:hover, .note_btn_value:hover { background:#f44336; }
+
+
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}

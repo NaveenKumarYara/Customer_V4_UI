@@ -60,13 +60,16 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
+  notes=new EditNotes();
   Rloading: boolean = false;
   userId: any;
   CommentProfile: any;
   addon = new addon();
   CandidateNotes: any = [];
+  sedit:boolean=false;
   profiles: any;
   customer: any;
+  newComment:any;
   CandidateCertification: CandidateCertifications;
   CandidateDomain: CandidateDomains;
   searchString: any;
@@ -104,7 +107,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   mySlideOptions = { items: 1, dots: true, nav: false };
   myCarouselOptions = { items: 3, dots: true, nav: true };
   hideme = [];
-
+  hidemeed = [];
   customOptions: any = {
     loop: true,
     mouseDrag: false,
@@ -130,6 +133,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     nav: true,
   };
   ProfileId: any;
+  visibleIndex = -1;
   currentNo: number[] = [];
   constructor(
     private el: ElementRef,
@@ -153,6 +157,14 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   toggle() {
     this.show_dialog = !this.show_dialog;
+  }
+
+  showSubItem(ind) {
+    if (this.visibleIndex === ind) {
+      this.visibleIndex = -1;
+    } else {
+      this.visibleIndex = ind;
+    }
   }
 
   download(url, name) {
@@ -518,6 +530,29 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     return false;
     // }
   }
+
+
+
+  saveedit(comment,JId,Cid,Pid)
+  {
+    this.notes.JobId = JId;
+    this.notes.OldComment=comment;
+    this.notes.CId=Cid;
+    this.notes.NewComment = this.newComment;
+    if(this.newComment!=null&&this.newComment!=undefined)
+    {
+    this._service.PostService(this.notes,'ProfileAPI/api/UpdateProfileNoteInfo').subscribe(data => {
+        if(data==0)
+        {
+            debugger
+            this.notes = new EditNotes();
+            this.GetJobNotes(Pid,JId)
+            this.newComment=undefined;
+        }
+        }); 
+    }
+  }
+
 
   Check(val, ProfileId) {
     if (val == 1) {
@@ -1291,3 +1326,10 @@ export class Notes {
   public isCandidate: boolean;
   public Comments: string;
 }
+
+export class EditNotes {
+    public JobId: Number;
+    public CId: Number;
+    public OldComment: string;
+    public NewComment: string;
+  }
