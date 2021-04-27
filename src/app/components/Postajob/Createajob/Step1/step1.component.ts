@@ -369,7 +369,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
-    var res = new Promise((resolve, reject) => {
+    var res = new Promise<void>((resolve, reject) => {
       this.locations.locationwithpostions.forEach((value, index, array) => {
      
       
@@ -378,6 +378,7 @@ if (this.appService.isDrafted.value != null) {
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityName.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
+        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;

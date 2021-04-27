@@ -397,7 +397,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
     if(this.JobIds&&this.JobIds.length>0)
     {
-      var res = new Promise((resolve, reject) => {
+      var res = new Promise<void>((resolve, reject) => {
         this.JobIds.forEach((value, index, array) => {
     //  let requests =  this.JobIds.map((item) => {
           this.insertJob.JobId = value;
@@ -428,7 +428,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
     }
      if(this.JobIds.length==0 || this.JobIds == undefined)
     {
-      //debugger
+      debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;

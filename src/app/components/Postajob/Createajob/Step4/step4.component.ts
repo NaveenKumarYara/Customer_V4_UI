@@ -291,7 +291,7 @@ export class Step4Component implements OnInit {z
     {
       if(this.JobIds&&this.JobIds.length>0)
       {
-      var res = new Promise((resolve, reject) => {
+      var res = new Promise<void>((resolve, reject) => {
       this.JobIds.forEach((value, index, array) => {
       this.insertJob.JobId = value;
       this.insertJob.TemplateSaveTitle = this.TemplateName;
