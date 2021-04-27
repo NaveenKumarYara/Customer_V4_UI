@@ -1531,6 +1531,14 @@ export class AppService {
             );
     }
 
+    getGoogleCities(cityName: string): Observable<Cities[]> {
+        const url = this.settingsService.settings.GetgoogleApi + 'location=' + cityName;
+        return this.http.get<string[]>(url)
+            .catch(
+                this.handleError
+            );
+    }
+
     GetAllCities(): Observable<Cities[]> {
         const url = this.settingsService.settings.GetAllCities;
         return this.http.get<string[]>(url)

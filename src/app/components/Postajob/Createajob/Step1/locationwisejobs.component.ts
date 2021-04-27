@@ -106,7 +106,7 @@ this.appService.updateOpenings(this.noOfOpenings);
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.cityloading = true),
-        switchMap(term => this.appService.getCities(term).pipe(
+        switchMap(term => this.appService.getGoogleCities(term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.cityloading = false)
         ))
@@ -122,7 +122,7 @@ this.appService.updateOpenings(this.noOfOpenings);
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => this.mcityloading = true),
-        switchMap(term => this.appService.getCities(term).pipe(
+        switchMap(term => this.appService.getGoogleCities(term).pipe(
           catchError(() => of([])), // empty list on error
           tap(() => this.mcityloading = false)
         ))
@@ -149,13 +149,13 @@ this.appService.updateOpenings(this.noOfOpenings);
   }
 
 
-  getmultiSelectedOptionText(id: number) {
-    this.selectedCity = this.mconvertObservable.find(s => s.CityId === id);
+  getmultiSelectedOptionText(id: string) {
+    this.selectedCity = this.mconvertObservable.find(s => s.CityName === id);
     if (this.multilocationwisejobs.length > 0) {
-      const check = this.mlocationExists(this.selectedCity, this.multilocationwisejobs);
-      if (!check) {
+      //const check = this.mlocationExists(this.selectedCity, this.multilocationwisejobs);
+      //if (!check) {
         this.multilocationwisejobs.push(this.selectedCity);
-      }
+      //}
     } else {
   
       this.multilocationwisejobs.push(this.selectedCity);
@@ -167,13 +167,13 @@ this.appService.updateOpenings(this.noOfOpenings);
     this.appService.locationselect = true;
    }
 
-  getSelectedOptionText(id: number) {
-    this.selectedCityName = this.convertObservable.find(s => s.CityId === id);
+  getSelectedOptionText(id: string) {
+    this.selectedCityName = this.convertObservable.find(s => s.CityName === id);
     if (this.locationwisejobs.length > 0) {
-    const check = this.locationExists(this.selectedCityName, this.locationwisejobs);
-    if (!check) {
+    // const check = this.locationExists(this.selectedCityName, this.locationwisejobs);
+    // if (!check) {
       this.locationwisejobs.push(this.selectedCityName);
-    }
+    //}
   } else {
 
     this.locationwisejobs.push(this.selectedCityName);
