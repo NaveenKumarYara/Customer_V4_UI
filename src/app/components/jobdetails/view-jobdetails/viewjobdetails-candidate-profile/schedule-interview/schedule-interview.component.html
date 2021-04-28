@@ -193,7 +193,7 @@
 															</li>
 														</ul>
 
-														<label for="">Interview Mode</label>
+														
 														<div class="inline-radio-tab revamp__inline__radio__tab">
 													
 															<div><input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Technical"><label>Technical</label></div>
@@ -446,7 +446,12 @@
 									<li *ngIf="type?.InterviewTypeId!=4" (click)="process(type?.InterviewTypeId)"
 										[ngClass]="jobInterview?.InterviewTypeId==type?.InterviewTypeId ? 'active' : 'ACTIVE' ">
 										<a data-toggle="tab" href="#{{type?.InterviewType}}" (click)="GetId(type?.InterviewTypeId)"
-											aria-expanded="true">{{type?.InterviewType}}</a>
+											aria-expanded="true">
+											<div class="icon icon__inperson" *ngIf="type?.InterviewTypeId==1">Icon</div>
+											<div class="icon icon__phone" *ngIf="type?.InterviewTypeId==2">Icon</div>
+											<div class="icon icon__conforence"  *ngIf="type?.InterviewTypeId==3">Icon</div>
+											{{type?.InterviewType}}
+										</a>
 									</li>
 								</ng-container>
 							</ul>

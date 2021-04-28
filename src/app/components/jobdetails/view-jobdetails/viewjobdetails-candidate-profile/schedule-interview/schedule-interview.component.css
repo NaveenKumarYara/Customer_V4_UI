@@ -46,6 +46,10 @@
 .revamp__postjob__icon__grid .btn.btn-primary:hover .icon.icon__phone { background-position:-675px -326px;  }
 .revamp__postjob__icon__grid.btn.btn-primary:hover .icon.icon__conforence { background-position:-737px -326px;  }
 
+.icon { margin:0 auto 15px;  width:48px; display: block; font-size:0; height:48px; background:url(../../../../../../assets/images/post-a-job-sprites.png) 0 0 no-repeat; }
+ .icon.icon__inperson{ background-position:-616px -326px;  }
+ .icon.icon__phone { background-position:-675px -326px;  }
+.icon.icon__conforence { background-position:-737px -326px;  }
 
 .page--job-details .modal-body .form-group { margin-bottom:15px; }
 .type-search .form-control { border-radius:4px 0 0 4px;  }
