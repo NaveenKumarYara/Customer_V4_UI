@@ -174,7 +174,7 @@ export class ScheduleInterviewComponent implements OnInit {
   ngOnInit() {
     this.show = false;
     this.showadd=false;
-    this.savenote.OtherInfo = "General";
+    this.savenote.OtherInfo = "Technical";
     this.uploader = new FileUploader({
       url: URL,
       disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
@@ -364,26 +364,33 @@ SaveNotes()
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
- if(this.isShown1==true&&this.isShown2==false)
- {
-  this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
-  this.savenote.isCandidate=false;
-  this.savenote.OtherInfo = this.savenote.OtherInfo;
-  this.savenote.Doc = '';
- }
- if(this.isShown2==true&&this.isShown1==false)
- {
-  this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
-  this.savenote.isCandidate=true;
-  this.savenote.OtherInfo = ' ';
-  this.savenote.Doc = this.data.userId.toString()+','+this.customer.UserId.toString(); 
- }
- if(this.isShown1==true&&this.isShown2==true)
+//  if(this.isShown1==true&&this.isShown2==false)
+//  {
+//   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customer.UserId.toString();
+//   this.savenote.isCandidate=false;
+//   this.savenote.OtherInfo = this.savenote.OtherInfo;
+//   this.savenote.Doc = '';
+//  }
+//  if(this.isShown2==true&&this.isShown1==false)
+//  {
+//   this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
+//   this.savenote.isCandidate=true;
+//   this.savenote.OtherInfo = ' ';
+//   this.savenote.Doc = this.data.userId.toString()+','+this.customer.UserId.toString(); 
+//  }
+ if(this.isShown1==true)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
+ }
+ else
+ {
+  this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
+  this.savenote.isCandidate=true;
+  this.savenote.OtherInfo = 'Technical';
+  this.savenote.Doc = this.data.userId.toString()+','+this.customer.UserId.toString(); 
  }
  this.savenote.Comments=this.Comment;
  this.savenote.statusId = 7;
