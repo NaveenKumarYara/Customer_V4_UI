@@ -70,7 +70,7 @@ export class RejectdialogComponent implements OnInit {
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   feedbackOptions: any = ["Selected", "Refer to next round", "Rejected", "Tentative", "Others"];
-  interviewType: any = ["Technical", "HR", "Practical"];
+  interviewType: any = ["Technical", "HR", "Screening","Manager","Other"];
   selectedFeedbackOption: string;
   selectedInterviewType: string;
   feedbackTitle: string;
