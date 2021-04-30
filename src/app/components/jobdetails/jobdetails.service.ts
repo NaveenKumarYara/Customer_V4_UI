@@ -144,6 +144,16 @@ export class JobdetailsService {
       );
   }
 
+  GetProfileFeedback(profileId: number, jobId: number,cid:number): Observable<string[]> {
+    const url = this.settingsService.settings.GetProfileFeedback +
+    '?profileId=' + profileId + '&jobId=' + jobId + '&cid=' + cid;
+    return this.http.get<string[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
   getPersonType(jobId: number): Observable<DiscResult[]> {
     const url = this.settingsService.settings.GetPersonTypeEndPoint + 'jobId=' + jobId;
     return this.http.get<DiscResult[]>(url)

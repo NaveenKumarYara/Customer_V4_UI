@@ -118,7 +118,7 @@
                       placeholder="Select Feedback"
                       [typeahead]="selectedUserInput"
                       [hideSelected]="false"
-                      [(ngModel)]="selectedFeedbackOption"
+                      [(ngModel)]="savenote.FeedbackOption"
                       name="selectedFeedbackOption"
                       [virtualScroll]="true"
                     >
@@ -129,7 +129,7 @@
                       placeholder="Type of Interview"
                       [typeahead]="selectedUserInput"
                       [hideSelected]="false"
-                      [(ngModel)]="selectedInterviewType"
+                      [(ngModel)]="savenote.InterviewMode"
                       name="selectedInterviewType"
                       [virtualScroll]="true"
                     >
@@ -151,7 +151,7 @@
           <div class="form-group">
             <input
               type="text"
-              [(ngModel)]="feedbackTitle"
+              [(ngModel)]="savenote.FeedbackTitle"
               name="feedbackTitle"
               class="form-control resize-none"
               placeholder="Feedback Title"
@@ -160,7 +160,7 @@
           <div class="form-group">
             <textarea
               type="text"
-              [(ngModel)]="feedback"
+              [(ngModel)]="Comment"
               name="feedback"
               class="form-control resize-none"
               placeholder="Enter Feedback"
@@ -227,12 +227,12 @@
         <button
           mat-button
           cdkFocusInitial
-          (click)="Reject()"
+          (click)="SaveNotes()"
           class="btn btn-filled"
           [class.spinner]="loading"
           (click)="loginstyle()"
         >
-          Reject
+         Feedback
         </button>
       </div>
     </mat-dialog-actions>

@@ -1191,7 +1191,13 @@
             </a>
           </li>
           <li *ngIf="profile?.ResponseStatusId === 6" class="disabled">
-            <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId, profile?.ProfileId)">
+            <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
+            profile?.ProfileId,
+            profile?.Email,
+            profile?.FirstName,
+            profile?.LastName,
+            profile?.UserId,
+            profile?.MatchingPercentage)">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                 <path
                   d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z"
@@ -1437,7 +1443,7 @@
                       )
                     "
                   >
-                    <p class="p6">Not Interested</p>
+                    <p class="p6">Feedback</p>
                   </a>
                 </li>
                 <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
@@ -1488,7 +1494,7 @@
                       )
                     "
                   >
-                    <p class="p6">Not Interested</p>
+                    <p class="p6">Feedback</p>
                   </a>
                 </li>
               </div>
@@ -2024,7 +2030,13 @@
         <h2>Feedback</h2>
         <button
           class="btn btn-primary btn-sm tooltip1 revamp__tooltip"
-          (click)="OpenRejectDialog(profile?.JobResponseId, profile?.ProfileId)"
+          (click)="OpenRejectDialog(  profile?.JobResponseId,
+          profile?.ProfileId,
+          profile?.Email,
+          profile?.FirstName,
+          profile?.LastName,
+          profile?.UserId,
+          profile?.MatchingPercentage)"
         >
           <i class="fa fa-plus-circle"></i>
           <div class="bottom1">Add</div>
@@ -2032,45 +2044,47 @@
       </div>
       <div class="middle__container">
         <div id="accordion">
-          <ng-container *ngIf="CandidateNotes.length > 0">
-            <ng-container *ngFor="let pn of CandidateNotes; let i = index">
+          <ng-container *ngIf="CandidateFeedback.length > 0">
+            <ng-container *ngFor="let pn of CandidateFeedback; let i = index">
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
                     <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
                       <i class="fa fa-chevron-down"></i>
                       <span class="icon icon-notes"></span>
-                      <ng-container *ngIf="pn?.Others != undefined && pn?.Others != ''">
-                        {{ pn?.Others }}
+                      <ng-container *ngIf="pn?.FeedbackTitle != undefined && pn?.FeedbackTitle != ''">
+                        {{ pn?.FeedbackTitle }}
                       </ng-container>
-                      <ng-container *ngIf="pn?.Others == undefined || pn?.Others == ''">
+                      <!-- <ng-container *ngIf="pn?.Others == undefined || pn?.Others == ''">
                         {{ pn?.ReferralStatus }}
-                      </ng-container>
+                      </ng-container> -->
 
-                      <span *ngIf="pn.CustomerComment != null">
+                      <span *ngIf="pn.Comment != null">
                         By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span
                       >
-                      <span *ngIf="pn.CandidateComment != null">
-                        By {{ profile?.FirstName | titlecase }} {{ profile?.LastName | titlecase }}</span
+
+                      <span>
+                       {{ pn?.FeedbackOption}}</span
                       >
+                    
                     </button>
-                    <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div>
+                    <!-- <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div> -->
                   </h5>
-                  <span style="cursor: hand"
+                  <!-- <span style="cursor: hand"
                     ><i
                       class="fa fade-icon"
                       style="color: red; cursor: hand"
                       (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)"
                       >× delete</i
                     ></span
-                  >
+                  > -->
                 </div>
 
                 <div [hidden]="hideme[i]">
                   <div class="card-body">
-                    <ng-container *ngIf="pn.CustomerComment != null">
+                    <ng-container *ngIf="pn.Comment != null">
                       <div class="card-col">
-                        {{ pn?.CustomerComment | titlecase }}
+                        {{ pn?.Comment | titlecase }}
                       </div>
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
@@ -2081,7 +2095,7 @@
                         </div>
                       </ng-container>
                     </ng-container>
-                    <ng-container *ngIf="pn.CustomerComment === null && pn.CandidateComment == null">
+                    <ng-container *ngIf="pn.Comment === null">
                       Notes Not Added
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
@@ -2092,9 +2106,9 @@
                         </div>
                       </ng-container>
                     </ng-container>
-                    <ng-container *ngIf="pn.CandidateComment != null">
+                    <!-- <ng-container *ngIf="pn.CandidateComment != null">
                       I am Interested in these position.
-                    </ng-container>
+                    </ng-container> -->
                   </div>
                 </div>
               </div>

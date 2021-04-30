@@ -219,4 +219,5 @@ export class Settings {
   Attachments:string;
   DeleteNote:string;
   GetgoogleApi:string;
+  GetProfileFeedback:string;
   }

@@ -211,5 +211,6 @@
   "GetProfileNotes":"https://profileapi-dev.arytic.com/api/GetProfileNotes",
   "Attachments":"https://profileapi-dev.arytic.com/api/InsertProfileAttachments",
 "DeleteNote":"https://profileapi-dev.arytic.com/api/DeleteNotes?",
-"GetgoogleApi":"https://profileapi-dev.arytic.com/api/GetGoogleLocations?"
+"GetgoogleApi":"https://profileapi-dev.arytic.com/api/GetGoogleLocations?",
+"GetProfileFeedback":"https://profileapi-dev.arytic.com/api/GetProfileFeedback"
 }

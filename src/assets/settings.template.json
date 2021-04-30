@@ -212,5 +212,6 @@
   "GetProfileNotes":"${Profile_URL}/api/GetProfileNotes",
   "Attachments":"${Profile_URL}/api/InsertProfileAttachments",
   "DeleteNote":"${Profile_URL}/api/DeleteNotes?",
-  "GetgoogleApi":"${Profile_URL}/api/GetGoogleLocations?"
+  "GetgoogleApi":"${Profile_URL}/api/GetGoogleLocations?",
+  "GetProfileFeedback":"${Profile_URL}/api/GetProfileFeedback"
 }

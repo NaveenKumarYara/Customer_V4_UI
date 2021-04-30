@@ -264,38 +264,30 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.Doc = this.data.CUserId.toString() + "," + this.customer.UserId.toString();
     }
     if (this.isShown1 == true && this.isShown2 == true) {
-      this.savenote.toUserId =
-        this.teammemberslist.map((x) => x.UserId).toString() +
-        "," +
-        this.data.CUserId.toString() +
-        "," +
-        this.customer.UserId.toString();
+      this.savenote.toUserId = this.teammemberslist.map((x) => x.UserId).toString() +"," + this.data.CUserId.toString() +"," + this.customer.UserId.toString();
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = this.savenote.OtherInfo;
-      this.savenote.Doc =
-        this.teammemberslist.map((x) => x.UserId).toString() +
-        "," +
-        this.data.CUserId.toString() +
-        "," +
-        this.customer.UserId.toString();
+      this.savenote.Doc =this.teammemberslist.map((x) => x.UserId).toString() + "," +this.data.CUserId.toString() +"," +this.customer.UserId.toString();
     }
-    this.savenote.Comments = this.selectedComments;
-    this.savenote.statusId = 6;
-
-    this.jobdetailsservice.SaveProfileNote(this.savenote).subscribe((status) => {
-      if (status > 0) {
+    this.savenote.Comments = this.Comment;
+    //this.savenote.statusId = 6;
+debugger
+    this._service.PostService(this.savenote, "IdentityAPI/api/InsertProfileFeedback").subscribe((status) => {
+      debugger
+      if (status >= 0) {
         this.teammemberslist = [];
         $("#teamMbr").val("");
         //this.selectedUserName = ''
         this.getTeammember = new CustomerUsers();
         this.clearTeamMemebers();
-        this.selectedComments = "";
+        this.Comment = "";
         this.EmailId = " ";
         this.toastr.success("Sent successfully", "Success");
         setTimeout(() => {
           this.toastr.dismissToast;
           if (this.uploader.queue.length > 0) {
             this.fileUploadForm.value.NoteId = status;
+            debugger
             this.fileUploadForm.value.toUserId = this.savenote.toUserId;
             this.uploadMultiple();
           } else {
@@ -336,6 +328,7 @@ export class RejectdialogComponent implements OnInit {
 
   uploadFile(data: FormData) {
     this._service.byteStorage(data, "ProfileAPI/api/InsertProfileAttachments").subscribe((data) => {
+      this.savenote = new Notes();
       this.dialogRef.close();
     });
   }
@@ -353,13 +346,14 @@ export class RejectdialogComponent implements OnInit {
     this.schIntw.BridgeUrl = null;
     this.schIntw.AccessId = null;
     this.schIntw.SkypeId = null;
-    this.schIntw.Comments = this.selectedComments;
+    this.schIntw.Comments = this.Comment;
     this.schIntw.ResponseStatusId = 6; // what stage it is..hired...
     this.schIntw.IsActive = null;
     this.schIntw.Rating = null;
     this.schIntw.RequiredFurtherInterview = null;
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
+    debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe((res) => {
       this.PopulateJobdetail();
       this.SaveNotes();
@@ -382,12 +376,14 @@ export class Notes {
   public ProfileId: Number;
   public JobId: Number;
   public customerUserId: Number;
-  public statusId: Number;
   public toUserId: string;
   public isCandidate: boolean;
   public Comments: string;
   public Doc: string;
   public OtherInfo: string;
+  public FeedbackTitle: string;
+  public FeedbackOption: string;
+  public InterviewMode: string;
 }
 
 export class contactInfo {

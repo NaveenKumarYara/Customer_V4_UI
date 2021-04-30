@@ -66,6 +66,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   CommentProfile: any;
   addon = new addon();
   CandidateNotes: any = [];
+  CandidateFeedback: any = [];
   sedit:boolean=false;
   profiles: any;
   customer: any;
@@ -336,6 +337,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
       rejectdialogRef.afterClosed().subscribe((result) => {
         // this.myEvent.emit(null);
+        this.GetJobFeedback(profileId,this.jobid);
         console.log("reject Dialog result: ${result}");
       });
     }
@@ -692,6 +694,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+  GetJobFeedback(profileId, jobId) {
+    this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
+      this.CandidateFeedback = datr6;
+    });
+  }
+
   deleteNote(id: number, profileId, jobId) {
     this.jobdetailsservice.DeleteNote(id).subscribe((data) => {
       if (data >= 0) {
@@ -882,6 +890,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.GetJobNotes(profileId, this.jobid);
       $(".matching-details").removeClass("open");
       $("#matchingDetailNotes-" + profileId).toggleClass("open");
+    }
+    if (Val == 4) {
+      //debugger
+      this.GetJobFeedback(profileId, this.jobid);
+      $(".matching-details").removeClass("open");
+      $("#matchingDetailFeedback-" + profileId).toggleClass("open");
     }
     if (Val == 1) {
       this.GetCandidateDomains(profileId);
