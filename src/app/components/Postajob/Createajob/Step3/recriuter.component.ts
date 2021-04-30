@@ -104,6 +104,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   delete(index)
   {
     this.sslist.splice(index,1);
+    this.suggestManagers.splice(index,1);
   }
 
 
@@ -165,7 +166,17 @@ export class recriuterComponent implements OnInit, OnDestroy {
             this.flag=false;
             if(this.selectManager!=undefined)
             {
-        this.sslist.push(this.selectedManager);
+              if(this.suggestManagers.length>0)
+              {
+                this.sslist = this.suggestManagers;
+                this.sslist.push(this.selectedManager);
+              }
+             
+              if(this.suggestManagers.length==0)
+              {
+                this.sslist.push(this.selectedManager);
+              }
+        //this.sslist.push(this.selectedManager);
         //this.slist.push(this.selectedManager);
         this.suggestManagers=this.sslist;
         this.selectManager='';

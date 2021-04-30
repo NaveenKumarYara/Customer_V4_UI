@@ -113,6 +113,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   delete(index)
   {
     this.slist.splice(index,1);
+    this.suggestedManagers.splice(index,1);
   }
 
   deleteIms(index)
@@ -135,6 +136,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     return this.appService.getReortingTeam(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
             this.suggestedManagers= this.appService.reportingList;
+            debugger
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
@@ -183,10 +185,20 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
     Add()
     {
+      debugger
             this.flag=false;
             if(this.selectedManager!=undefined)
             {
-        this.slist.push(this.selectedManager);
+        if(this.suggestedManagers.length>0)
+        {
+          this.slist = this.suggestedManagers;
+          this.slist.push(this.selectedManager);
+        }
+       
+        if(this.suggestedManagers.length==0)
+        {
+          this.slist.push(this.selectedManager);
+        }
         //this.slist.push(this.selectedManager);
         this.suggestedManagers=this.slist;
         this.selectManager='';
@@ -202,6 +214,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+            debugger
             this.appService.ReportingTeam(this.report).subscribe(
               data => {
                 if(data=0)
