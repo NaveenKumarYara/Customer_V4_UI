@@ -711,7 +711,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   DownloadResumeNote(val, Name): void {
     this._service.GetService("ProfileAPI/api/GetNoteFilesDownload?url=", val).subscribe((fileData) => {
       this.fileType = fileData;
-      debugger;
       let exp = Name.split(".").pop();
       this.fileExt = exp;
       this.toastr.success("Downloading!", "Success!");
