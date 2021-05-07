@@ -1774,7 +1774,7 @@
                     <ng-container *ngIf="pn.CustomerComment != null">
                       <div class="card-col">
                         {{ pn?.CustomerComment | titlecase }}
-                        <a href="javascript:void(0)" (click)="showSubItem(i)"><i class="fa fa-edit"></i></a>
+                        <a *ngIf="customer.UserId==pn.CustomeruserId" href="javascript:void(0)" (click)="showSubItem(i)"><i class="fa fa-edit"></i></a>
                       </div>
 
                       <div class="card-col"  *ngIf="visibleIndex === i">

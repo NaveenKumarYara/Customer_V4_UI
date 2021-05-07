@@ -19,7 +19,7 @@
                 <span>Team Member</span>
               </label>
             </div>
-            <div class="col-md-3 w-auto">
+            <div class="col-md-3 w-auto" *ngIf="customer.UserRoleId!=9">
               <label class="radio checkbox">
                 <input type="checkbox" class="radio-input" name="team" (click)="toggleShow2()" />
                 <span class="radio-btn wh-22 ml-0"></span>
