@@ -342,39 +342,46 @@ getcustomerusers()
  }
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
- 
- this.jobdetailsservice.SaveProfileNote(this.savenote)
- .subscribe(
- status => {
-   if(status>0)
-   {
-  this.teammemberslist = [];
-  $('#teamMbr').val('');
-  //this.selectedUserName = ''
-  this.getTeammember = new CustomerUsers();
-  this.clearTeamMemebers();
-  this.selectedComments = "";
-  this.EmailId = " ";
-  this.toastr.success('Sent successfully', 'Success');
-  setTimeout(() => {
-   this.toastr.dismissToast;
-   if(this.uploader.queue.length>0)
-   {
-    this.fileUploadForm.value.NoteId=status;
-    this.fileUploadForm.value.toUserId = this.savenote.toUserId;
-    this.uploadMultiple();
-   }
-   else
-   {
-     this.dialogRef.close();
-   }
 
-   //this.SaveNotes(this.selectedComments);
- 
+ let Ids = Array.from(this.savenote.toUserId.split(','));
+ Ids.forEach(element => {
+   this.savenote.toUserId = element;
+   this.jobdetailsservice.SaveProfileNote(this.savenote)
+   .subscribe(
+   status => {
+     if(status>0)
+     {
+    this.teammemberslist = [];
+    $('#teamMbr').val('');
+    //this.selectedUserName = ''
+    this.getTeammember = new CustomerUsers();
+    this.clearTeamMemebers();
+    this.selectedComments = "";
+    this.EmailId = " ";
+   
+     if(this.uploader.queue.length>0)
+     {
+      this.fileUploadForm.value.NoteId=status;
+      this.fileUploadForm.value.toUserId = element;
+      this.uploadMultiple();
+     }
+     else
+     {
+       this.dialogRef.close();
+     }
+  
+     //this.SaveNotes(this.selectedComments);
+   
+    
+  }
+   }                
+   );
+   this.toastr.success('Sent successfully', 'Success');
+   setTimeout(() => {
+    this.toastr.dismissToast;
   }, 3000);   
-}
- }                
- );
+ });
+
 }
 
 
