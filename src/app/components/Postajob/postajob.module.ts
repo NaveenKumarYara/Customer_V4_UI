@@ -43,6 +43,7 @@ import { recriuterComponent } from "./Createajob/Step3/recriuter.component";
 import { TeammembersComponent } from "./Createajob/Step3/teammembers.component";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    NgSelectModule,
     RouterModule.forChild([
       {
         path: "",
