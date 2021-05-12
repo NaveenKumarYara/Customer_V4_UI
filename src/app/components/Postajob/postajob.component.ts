@@ -160,6 +160,7 @@ createJob() {
   let activepostjob= true;
   localStorage.setItem('activepostjob', JSON.stringify(activepostjob));
   this.router.navigateByUrl('/app-createajob');
+  // this.router.navigate(['/app-createajob'])
   // this.location.go('/app-createajob');
   // this.reload();
 }

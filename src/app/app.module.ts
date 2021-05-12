@@ -48,7 +48,6 @@ import { Step1SummaryComponent } from './components/Postajob/Createajob/Step4/st
 import { Step2SummaryComponent } from './components/Postajob/Createajob/Step4/step2summary.component';
 import { Step3SummaryComponent } from './components/Postajob/Createajob/Step4/step3summary.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-import { ManagejobsModule } from './components/managejobs/managejobs.module';
 import { JobdetailsModule } from './components/jobdetails/jobdetails.module';
 import { JobTemplateComponent } from './components/Postajob/Createajob/GetJobsTemplate/getTemplate.component';
 import { CompanyProfileModule } from './components/company-profile/company-profile.module';
@@ -100,6 +99,8 @@ import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { CmModule } from './components/candidatemanager/cm.module';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
+import { PostajobModule } from './components/Postajob/postajob.module';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
@@ -108,7 +109,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     declarations: [
         AppComponent,
         MyFilterPipe,
-        ConvertMonthPipe,
+        // ConvertMonthPipe,
         LayoutComponent,
         AboutComponent,
         SignUpComponent,
@@ -118,51 +119,51 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
         HeaderComponent,
         FooterComponent,
         PostajobComponent,
-        StepsComponent,
-        Step1Component,
-        Step2Component,
-        Step3Component,
-        Step4Component,
+        // StepsComponent,
+        // Step1Component,
+        // Step2Component,
+        // Step3Component,
+        // Step4Component,
         ForgotComponent,
         ResetComponent,
         JobTemplateComponent,
         dLoginComponent,
         EditDraftComponent,
         DashboardComponent,
-        JobdetailsComponent,
-        JobcategoryComponent,
-        JobprofileComponent,
-        JobskillsetComponent,
-        CreateajobComponent,
-        JobResponsibilitiesComponent,
-        LocationwiseJobsComponent,
-        QualificationsComponent,
-        DomainExpertiseComponent,
-        PersonalityTypeComponent,
-        EmploymentTypeComponent,
-        ContractDurationComponent,
-        ContractExtensionComponent,
-        InterviewTypeComponent,
-        ReportingManagerComponent,
-        recriuterComponent,
-        TeammembersComponent,
-        Step1SummaryComponent,
-        Step2SummaryComponent,
-        SearchresultsComponent,
-        Step3SummaryComponent,
+        // JobdetailsComponent,
+        // JobcategoryComponent,
+        // JobprofileComponent,
+        // JobskillsetComponent,
+        // CreateajobComponent,
+        // JobResponsibilitiesComponent,
+        // LocationwiseJobsComponent,
+        // QualificationsComponent,
+        // DomainExpertiseComponent,
+        // PersonalityTypeComponent,
+        // EmploymentTypeComponent,
+        // ContractDurationComponent,
+        // ContractExtensionComponent,
+        // InterviewTypeComponent,
+        // ReportingManagerComponent,
+        // recriuterComponent,
+        // TeammembersComponent,
+        // Step1SummaryComponent,
+        // Step2SummaryComponent,
+        // SearchresultsComponent,
+        // Step3SummaryComponent,
         NotificationsComponent,
-        NoofopeningsComponent,
-        UploadvideoprofileComponent,
+        // NoofopeningsComponent,
+        // UploadvideoprofileComponent,
         SalarysliderComponent,
-        DepartmentsComponent,
-        ClientsComponent,
+        // DepartmentsComponent,
+        // ClientsComponent,
         ResponsibilitiesDialogComponent,
         GetCandidateprofileComponent,
-        StepContractDurationComponent,
-        StepContractExtensionComponent,
-        StepEmploymentTypeComponent,
-        StepSalarysliderComponent,
-        ImmigrationManagerComponent
+        // StepContractDurationComponent,
+        // StepContractExtensionComponent,
+        // StepEmploymentTypeComponent,
+        // StepSalarysliderComponent,
+        // ImmigrationManagerComponent
         // SalarysliderComponent,
     ],
     imports: [
@@ -187,6 +188,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
         CompanyProfileModule,
         DashboardModule,
         TagCloudModule,
+        PostajobModule,
         ChargebeeJsAngularWrapperModule,
         NgIdleKeepaliveModule.forRoot(),
         ToastModule.forRoot(), BrowserAnimationsModule,

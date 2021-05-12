@@ -1783,7 +1783,7 @@
                   > -->
                 </div>
 
-                <div [hidden]="hideme[i]">
+                <div [hidden]="!hideme[i]">
                   <div class="card-body">
                     <ng-container *ngIf="pn.CustomerComment != null">
                       <div class="card-col">

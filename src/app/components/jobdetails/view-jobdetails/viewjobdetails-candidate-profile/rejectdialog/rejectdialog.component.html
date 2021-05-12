@@ -48,13 +48,13 @@
             <form action="">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="">Add Team Member</label>
+                  <label for="">Please share the person to share the feedback</label>
                   <div class="input-group lg-right-padding">
                     <ng-select
                       class="custom-style interview-schedule-popup"
                       [items]="customercontacts"
                       name="team"
-                      placeholder="Add Team Members"
+                      placeholder="Please share the person to share the feedback"
                       (change)="changeTeam($event)"
                       bindLabel="FirstName"
                       bindValue="UserId"
@@ -83,7 +83,7 @@
                       </div>
                     </li>
                   </ul>
-                  <div class="inline-radio-tab revamp__inline__radio__tab">
+                  <!-- <div class="inline-radio-tab revamp__inline__radio__tab">
                     <div>
                       <input type="radio" name="title" [(ngModel)]="savenote.OtherInfo" value="Email/Call" /><label
                         ><span><img src="assets/images/check.png" /></span>Email</label
@@ -119,9 +119,54 @@
                         ><span><img src="assets/images/check.png" /></span>Other</label
                       >
                     </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="" style="margin-bottom: 0px">Feedback Result</label>
+                    <div class="inline-radio-tab revamp__inline__radio__tab">
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Email/Call"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Selected</label
+                        >
+                      </div>
+                      <div>
+                        <input type="radio" name="title" [(ngModel)]="savenote.FeedbackOption" value="General" /><label
+                          ><span><img src="assets/images/check.png" /></span>Refer to Next Round</label
+                        >
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Request for information"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Rejected</label
+                        >
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          name="title"
+                          [(ngModel)]="savenote.FeedbackOption"
+                          value="Interview Related"
+                        /><label
+                          ><span><img src="assets/images/check.png" /></span>Tentative</label
+                        >
+                      </div>
+                      <div>
+                        <input type="radio" name="title" [(ngModel)]="savenote.FeedbackOption" value="Other" /><label
+                          ><span><img src="assets/images/check.png" /></span>Others</label
+                        >
+                      </div>
+                    </div>
                   </div>
                   <div class="inline-dropdown">
-                    <ng-select
+                    <!-- <ng-select
                       class="custom-style interview-schedule-popup"
                       [items]="feedbackOptions"
                       placeholder="Select Feedback"
@@ -131,11 +176,11 @@
                       name="selectedFeedbackOption"
                       [virtualScroll]="true"
                     >
-                    </ng-select>
+                    </ng-select> -->
                     <ng-select
                       class="custom-style interview-schedule-popup"
                       [items]="interviewType"
-                      placeholder="Type of Interview"
+                      placeholder="List of Schedule Interview"
                       [typeahead]="selectedUserInput"
                       [hideSelected]="false"
                       [(ngModel)]="savenote.InterviewMode"
@@ -148,7 +193,7 @@
               </div>
             </form>
           </ng-container>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <input
               type="text"
               [(ngModel)]="savenote.FeedbackTitle"
@@ -156,14 +201,14 @@
               class="form-control resize-none"
               placeholder="Feedback Title"
             />
-          </div>
+          </div> -->
           <div class="form-group">
             <textarea
               type="text"
               [(ngModel)]="Comment"
               name="feedback"
               class="form-control resize-none"
-              placeholder="Enter Feedback"
+              placeholder="Summary of Feedback"
               rows="5"
             ></textarea>
           </div>

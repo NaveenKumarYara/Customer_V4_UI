@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand">
-                    <a routerLink="/app-dashboardview" routerLinkActive="active">
+                    <a [routerLink]="['/app-dashboardview']" routerLinkActive="active">
                         <!-- <img src="/assets/images/logo.png" alt="Tenendus" title="Tenendus"> -->
                         <!-- <img src="/assets/images/Tenendus-Logo-1.png" alt="Tenendus" title="Tenendus"> -->
                         <img src="/assets/images/arytic-logo-2019.png" alt="Arytic Logo" title="Arytic Logo">
@@ -20,7 +20,7 @@
             <div class="navbar-collapse navbar-left page-nav collapse" id="navbar2">
                 <ul class="nav navbar-nav">
                     <li role="presentation" routerLinkActive="active" [ngClass]="{'pointer-events-none': active === true}" *ngIf="customer?.AccessDetails?.Dashboard==true">
-                        <a routerLink="/app-dashboardview">
+                        <a [routerLink]="['/app-dashboardview']">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19px" height="19px" viewBox="0 0 21 21">
                                 <g id="nav-icon">
                                     <circle cx="9.5" cy="9.5" r="9.5" transform="translate(1 1)" />
@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)" [ngClass]="{'active': postactive === true}" *ngIf="customer?.AccessDetails?.PostAJob==true">
-                        <a routerLink="/app-postajob" [ngClass]="{'pointer-events-none': active === true}">
+                        <a [routerLink]="['/app-postajob']" [ngClass]="{'pointer-events-none': active === true}">
                             <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                                 <g id="post-icon">
                                     <path transform="translate(6.8 10.1)" d="M0 0h8.8" />
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li role="presentation" routerLinkActive="active" id="activeMyjob" [ngClass]="{'active': jobsactive === true}" (click)="changetheactive(1)" *ngIf="customer?.AccessDetails?.ManageJob==true">
-                        <a routerLink="/app-manage-jobs" [ngClass]="{'pointer-events-none': active === true}">
+                        <a [routerLink]="['/app-manage-jobs']" [ngClass]="{'pointer-events-none': active === true}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                                 <g id="briefcase-icon">
                                     <path d="M19.8 16.3H2.2A1.155 1.155 0 0 1 1 15.1V2.2A1.155 1.155 0 0 1 2.2 1h17.6A1.155 1.155 0 0 1 21 2.2v12.9a1.155 1.155 0 0 1-1.2 1.2z" />
@@ -58,7 +58,7 @@
                     </li>
 
                     <li role="presentation" routerLinkActive="active" *ngIf="customer?.AccessDetails?.CompanyProfile==true">
-                        <a routerLink="/app-companyprofile" [ngClass]="{'pointer-events-none': active === true}">
+                        <a [routerLink]="['/app-companyprofile']" [ngClass]="{'pointer-events-none': active === true}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="15.3px" viewBox="0 0 22 17.3">
                                 <g id="briefcase-icon">
                                     <path d="M19.8 16.3H2.2A1.155 1.155 0 0 1 1 15.1V2.2A1.155 1.155 0 0 1 2.2 1h17.6A1.155 1.155 0 0 1 21 2.2v12.9a1.155 1.155 0 0 1-1.2 1.2z" />
@@ -88,7 +88,7 @@
             <ul class="nav navbar-nav pull-right navbar-right user-options">
                 <!--Upgrade Now Alert starts-->
                 <li class="text-danger hidden-xs" routerLinkActive="active" *ngIf="customer?.AccessDetails?.Subscription==true">
-                    <a class="upgrade-now" href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" title="Upgrade Now">
+                    <a class="upgrade-now" href="Javascript:void(0)" [routerLink]="['/app-accountsettings/app-billing-and-payments']" title="Upgrade Now">
 
                         <ng-container *ngIf="sdetails?.planId=='trial'">
                             <ng-container *ngIf="daysRemaining>0">
@@ -169,7 +169,7 @@
                   </a>
                 </li> -->
                 <li class="user-option">
-                    <a href="Javascript:void(0)" routerLink="/app-notifications" routerLinkActive="active">
+                    <a href="Javascript:void(0)" [routerLink]="['/app-notifications']" routerLinkActive="active">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
                              x="0px" y="0px" width="21.1px" height="24px" viewBox="0 0 21.1 24" style="enable-background:new 0 0 21.1 24;"
                              xml:space="preserve" class="icon">
@@ -240,7 +240,7 @@
                             </ul> -->
                         </li>
                         <li *ngIf="customer?.AccessDetails?.Subscription==true">
-                            <a href="Javascript:void(0)" routerLink="/app-accountsettings/app-billing-and-payments" routerLinkActive="active">
+                            <a href="Javascript:void(0)" [routerLink]="['/app-accountsettings/app-billing-and-payments']" routerLinkActive="active">
                                 <div>
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="21.6px" height="21.7px"
@@ -263,7 +263,7 @@
                             </a>
                         </li>
                         <li *ngIf="customer?.AccessDetails?.AccountSetting==true">
-                            <a routerLink="/app-accountsettings" routerLinkActive="active">
+                            <a [routerLink]="['/app-accountsettings']" routerLinkActive="active">
                                 <div>
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="19.8px" height="19.7px"
