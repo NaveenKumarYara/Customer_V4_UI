@@ -5,7 +5,7 @@
                 <div class="form-group quick-sort" *ngIf="displayQuick==1">
                     <!-- <label for="title">Quick Sort Options</label> -->
                     <div class="options">
-                        <div class="checkbox upload-combo sm-m-0">
+                        <div class="checkbox upload-combo sm-m-2">
                             <label>
                                 <ng-container *ngIf="Count?.Uploaded>0 && closedjob!=2">
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="UploadedFlag"
@@ -28,7 +28,7 @@
                             <!---->
                         </div>
                    
-                        <div class="checkbox upload-combo sm-m-0">
+                        <div class="checkbox upload-combo sm-m-2">
                             <label>
                                 <ng-container *ngIf="Count?.Invited>0 && closedjob!=2">
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="InvitedFlag"
@@ -50,7 +50,7 @@
                             *ngIf="displayQuick==1"><i class="fa fa-user-plus fa-2" aria-hidden="true"></i></a>
                             <!---->
                         </div>
-                        <div class="checkbox sm-m-0 upload-combo" *ngIf="statusid>0">
+                        <div class="checkbox sm-m-2 upload-combo" *ngIf="statusid>0">
                             <label>
                                 <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"
@@ -93,7 +93,7 @@
                                 </ng-container>
                             </label>
                         </div> -->
-                        <div class="checkbox upload-combo sm-m-0">
+                        <div class="checkbox upload-combo sm-m-2">
                             <label>
                                 <ng-container *ngIf="Count?.Wishlist>0 && closedjob!=2">
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="WishlistFlag"
@@ -123,7 +123,7 @@
                     </div>
                 </div>  
             </ng-container>          
-            <div class="pull-right r-s-f">
+            <div class="pull-right r-s-f" style="display: contents;">
                 <div class="sm-f-none flex-container">
                     <!--Upload & Invite PlaceHolder buttons Starts-->
                     <!-- <div class="adv-filters-btn btn flex-item" (click)="updatestatus()" title="Upload Profiles"

@@ -17651,6 +17651,10 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     margin-bottom: 20px;
 }
 
+.page--company-profile .card--basic-info .card-inner .company-info div {
+    margin-bottom: 12px;
+}
+
 .page--company-profile .card--basic-info .card-inner .company-info .meta {
     margin-bottom: 12px;
 }
@@ -19816,6 +19820,50 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     background-color: #fff;
     background-image: none;
     width: 100%;
+}
+.ng-select.custom-multi-select .ng-select-container {
+    display: flex;
+}
+.ng-select.custom-multi-select .ng-has-value{
+    display: contents;
+}
+.ng-select.custom-multi-select .ng-placeholder{
+    margin-right: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.ng-select.custom-multi-select>.ng.select.container{
+    border: 1px solid #E0E3EF;
+    color: #9EABC0;
+    height: 55px!important;
+    margin-top: 15px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    display: flex;
+    padding: 6px 12px;
+    line-height: 1.42857;
+    background-color: #fff;
+    background-image: none;
+    width: 100%;
+}
+
+.ng-select.custom-style-benefits>.ng-select-container{
+    height: 55px!important;
+}
+.ng-select.custom-style-benefits .ng-value-container{
+    margin-top: 25px;
+}
+.ng-select.custom-style-benefits .ng-arrow-wrapper{
+    margin-top: 25px;
+}
+.ng-select.custom-style-benefits .ng-clear-wrapper{
+    margin-top: 25px;
+}
+.ng-select.custom-style-benefits .ng-placeholder{
+    margin: 0px;
 }
 
 /* .ng-select.custom-style > .ng-select-container > .ng-input{
@@ -25245,7 +25293,15 @@ table .table-prl-0 td {
 /*Upgrade Text for mobile view*/
 
 .page--dashboard a.mobile-version-upgrade {
+    /* float: right;
+    padding-bottom: 10px;
+    text-decoration: underline;
+    cursor: pointer; */
+
+    justify-content: flex-end;
     float: right;
+    width: 100%;
+    display: flex;
     padding-bottom: 10px;
     text-decoration: underline;
     cursor: pointer;

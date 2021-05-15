@@ -239,9 +239,11 @@ input::-webkit-input-placeholder {
 }
 
 .filters .quick-sort .options .checkbox {
-    margin: 0 13px 0 0;
+    /* margin: 0 13px 0 0; */
     position: relative;
     cursor: pointer;
+    display: inline-flex;
+    margin-right: 20px;
 }
 
 
@@ -257,8 +259,8 @@ input::-webkit-input-placeholder {
  .filters .quick-sort .options .checkbox .box {
     text-align: center;
     display: block;
-    padding: 15px 10px;
-    height: 50px;
+    padding: 20px 10px;
+    height: 57px;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 10px;

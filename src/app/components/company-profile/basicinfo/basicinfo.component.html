@@ -38,11 +38,11 @@
       </div>
       <div class="company-info">
         <h1>{{companyprofile?.CompanyName}}</h1>
-        <ng-container *ngIf="CustomerIndustries.length>0">
-          <ng-container *ngFor="let dom of CustomerIndustries">
-            <h3>{{dom?.BussinessDomain}}</h3>
+        <div *ngIf="CustomerIndustries.length>0">
+          <ng-container *ngFor="let dom of CustomerIndustries; let isLast=last">
+            {{dom?.BussinessDomain}}{{isLast ? '.' : ', '}}
           </ng-container>
-        </ng-container>
+        </div>
    
         
         <div class="social-media">
@@ -242,7 +242,7 @@
               id="companyName" readonly>
           </div>
          <div class="form-group">
-          <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
+          <ng-select class="custom-multi-select" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
           name="Indusrty" [(ngModel)]="Id"  [hideSelected]="true"  [multiple]=true [virtualScroll]=true
          (change)="updateJobIndustry($event)"  #Indusrty="ngModel">
          </ng-select>
