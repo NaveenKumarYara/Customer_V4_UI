@@ -3,7 +3,9 @@
     <div class="col-md-4" *ngIf="plans.id != 4 && plans.id != 5">
 
       <div class="pricing-card box-shadow" [ngClass]="(plans?.planName==sdetails?.planId)?'active-plan':''">
-        <div><span class="type">{{plans?.planName.slice(0, -6)}} </span></div>
+        <div><span class="type" *ngIf="plans.id != 3">{{plans?.planName.slice(0, -6)}} </span>
+        <span class="type" *ngIf="plans.id === 3">Enterprise </span>
+        </div>
         <div>
           <h4 class="price d-inline" ><b *ngIf="plans.id != 3">$</b> {{plans?.dailyCharges}}</h4><small class="d-inline" *ngIf="plans.id != 3" >/ Monthly </small>
         </div>
