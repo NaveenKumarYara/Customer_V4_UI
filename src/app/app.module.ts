@@ -97,9 +97,9 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
-import { CmModule } from './components/candidatemanager/cm.module';
+// import { CmModule } from './components/candidatemanager/cm.module';
 import { FileUploadModule } from 'ng2-file-upload';
-import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
+// import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
 import { PostajobModule } from './components/Postajob/postajob.module';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -168,7 +168,6 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     ],
     imports: [
         BrowserModule,
-        routing,
         HttpModule,
         FormsModule,
         QRCodeModule,
@@ -176,9 +175,9 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
         ImageCropperModule,
         NgSelectModule,
         HttpClientModule,
-        ManagejobsModule,
+        // ManagejobsModule,
         FileUploadModule,
-        CmModule,
+        // CmModule,
         RatingModule,
         JobdetailsModule,
         DragulaModule.forRoot(),
@@ -202,7 +201,8 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
         ProgressBarModule,
         NgCircleProgressModule.forRoot({}),
         CKEditorModule,
-        NgxImgModule.forRoot()
+        NgxImgModule.forRoot(),
+        routing,
     ],
     providers: [SettingsHttpService, SettingsService, HttpClient,
         { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },

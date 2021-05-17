@@ -144,7 +144,8 @@ const appRoutes: Routes = [
   {
     path: "app-createajob",
     // component: CreateajobComponent,
-    loadChildren: () => import("../app/components/Postajob/postajob.module").then((m) => m.PostajobModule),
+    loadChildren: "./components/Postajob/postajob.module#PostajobModule",
+    // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
     // children: [
     //   { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
     //   // {path: 'app-steps-step1/', component: Step1Component},
@@ -157,7 +158,8 @@ const appRoutes: Routes = [
   {
     path: "app-createajob/:jobId",
     // component: CreateajobComponent,
-    loadChildren: () => import("../app/components/Postajob/postajob.module").then((m) => m.PostajobModule),
+    loadChildren: "./components/Postajob/postajob.module#PostajobModule",
+    // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
     // children: [
     //   { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
     //   // {path: 'app-steps-step1/', component: Step1Component},
@@ -205,8 +207,9 @@ const appRoutes: Routes = [
   // { path: "app-interviewList", component: InterviewListComponent },
   {
     path: "app-manage-jobs",
-    loadChildren: () =>
-      import("../app/components/managejobs/manage-jobs/managejobs.module").then((m) => m.ManagejobsModule),
+    loadChildren: "./components/managejobs/manage-jobs/managejobs.module#ManagejobsModule",
+    // loadChildren: () =>
+    //   import("../app/components/managejobs/manage-jobs/managejobs.module").then((m) => m.ManagejobsModule),
     // component: ManageJobsComponent,
     // children: [
     //   { path: "", redirectTo: "app-manage-load-joblist/1", pathMatch: "full" },
@@ -215,7 +218,8 @@ const appRoutes: Routes = [
   },
   {
     path: "cm",
-    loadChildren: () => import("../app/components/candidatemanager/cm.module").then((m) => CmModule),
+    loadChildren: "./components/candidatemanager/cm.module#CmModule",
+    // loadChildren: () => import("../app/components/candidatemanager/cm.module").then((m) => CmModule),
     // component: CandidatemanagerComponent,
     // children: [
     //   { path: "", redirectTo: "details", pathMatch: "full" },
@@ -270,7 +274,8 @@ const appRoutes: Routes = [
 
   {
     path: "app-dashboardview",
-    loadChildren: () => import("../app/components/dashboard/dashboard.module").then((m) => m.DashboardModule),
+    loadChildren: "./components/dashboard/dashboard.module#DashboardModule",
+    // loadChildren: () => import("./components/dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   { path: "app-invite-friend", component: InviteFriendContentComponent },
 
@@ -281,8 +286,9 @@ const appRoutes: Routes = [
 
   {
     path: "app-accountsettings",
-    loadChildren: () =>
-      import("../app/components/accountsettings/accountsettings.module").then((m) => m.AccountsettingsModule),
+    loadChildren: "./components/accountsettings/accountsettings.module#AccountsettingsModule",
+    // loadChildren: () =>
+    //   import("../app/components/accountsettings/accountsettings.module").then((m) => m.AccountsettingsModule),
     // component: AccountsettingsComponent,
     // children: [
     //   { path: "", redirectTo: "app-accountsettingdetails", pathMatch: "full" },

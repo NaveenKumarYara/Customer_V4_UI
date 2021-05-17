@@ -64,6 +64,7 @@ import { screeningdialogComponent } from './view-jobdetails/viewjobdetails-candi
 import { shortlisteddialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/ShortListed/shortlisted.component';
 import { WithDrawndialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/Withdrawn/withdrawn.component';
 import { sendnotificationdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/SendNotification/sendnotification.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
@@ -71,7 +72,8 @@ import { sendnotificationdialogComponent } from './view-jobdetails/viewjobdetail
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     BrowserModule,
-    routing,
+    // routing,
+    RouterModule,
     HttpModule,
     FormsModule,
     RatingModule,

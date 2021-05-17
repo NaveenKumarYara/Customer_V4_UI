@@ -36,13 +36,15 @@ import { DragulaModule } from "ng2-dragula";
 import { ImageCropperModule } from "ngx-image-cropper";
 import { NgxImgModule } from "ngx-img";
 import { Ng2ImgMaxModule } from "ng2-img-max";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
     DragulaModule,
-    routing,
+    // routing,
+    RouterModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
