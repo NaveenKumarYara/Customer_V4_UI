@@ -25307,6 +25307,12 @@ table .table-prl-0 td {
     cursor: pointer;
 }
 
+@media (max-width: 767px) {                  
+   .page--dashboard a.mobile-version-upgrade {
+    display: none;
+}
+}
+
 .page--dashboard a.mobile-version-upgrade:hover, .page--dashboard a.mobile-version-upgrade:visited, .page--dashboard a.mobile-version-upgrade:active {
     text-decoration: underline;
     cursor: pointer;
