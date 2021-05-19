@@ -271,9 +271,8 @@ export class RejectdialogComponent implements OnInit {
     }
     this.savenote.Comments = this.Comment;
     //this.savenote.statusId = 6;
-debugger
+    this.savenote.FeedbackTitle = "";
     this._service.PostService(this.savenote, "IdentityAPI/api/InsertProfileFeedback").subscribe((status) => {
-      debugger
       if (status >= 0) {
         this.teammemberslist = [];
         $("#teamMbr").val("");

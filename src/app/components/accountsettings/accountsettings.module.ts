@@ -10,12 +10,10 @@ import { ManageSubscriptionsComponent } from "./billing-and-payments/manage-subs
 import { NavigationcomponentComponent } from "./navigationcomponent/navigationcomponent.component";
 import { AccountsettingdetailsComponent } from "./accountsettingdetails/accountsettingdetails.component";
 import { SharedModule } from "../../shared/shared.module";
-import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { routing } from "./../../app.router";
 import { ToastModule } from "ng2-toastr/ng2-toastr";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ChargebeeJsAngularWrapperModule } from "@chargebee/chargebee-js-angular-wrapper";
@@ -27,7 +25,6 @@ import { AccountsettingsRoutingModule } from "./accountsettings-routing.module";
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     // routing,
     FormsModule,
     ReactiveFormsModule,
@@ -36,7 +33,6 @@ import { AccountsettingsRoutingModule } from "./accountsettings-routing.module";
     SharedModule,
     NgxSpinnerModule,
     ToastModule.forRoot(),
-    BrowserAnimationsModule,
     ChargebeeJsAngularWrapperModule,
     AccountsettingsRoutingModule,
   ],

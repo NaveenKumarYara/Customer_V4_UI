@@ -279,10 +279,10 @@ const appRoutes: Routes = [
   },
   { path: "app-invite-friend", component: InviteFriendContentComponent },
 
-  // { path: 'app-accountsettings', component: AccountsettingsComponent },
-  // { path: "app-navigationcomponent", component: NavigationcomponentComponent },
-  // { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
-  // { path: 'app-users', component: UsersComponent },
+  { path: 'app-accountsettings', component: AccountsettingsComponent },
+  { path: "app-navigationcomponent", component: NavigationcomponentComponent },
+  { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
+  { path: 'app-users', component: UsersComponent },
 
   {
     path: "app-accountsettings",

@@ -360,12 +360,15 @@
               <datalist id="dynmicTitle">
                 <option *ngFor="let item of getBenfits" [value]="item.Name">{{ item.Name }}</option>
               </datalist> -->
+
+
                   <ng-select
                     class="custom-style-benefits"
                     [items]="getBenfits"
                     placeholder="Benefits"
                     bindLabel="Name"
                     bindValue="Name"
+                    [(ngModel)]="benefit"
                     [hideSelected]="true"
                   >
                   </ng-select>
