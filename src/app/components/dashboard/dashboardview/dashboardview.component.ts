@@ -35,8 +35,12 @@ export class DashboardviewComponent implements OnInit {
     bill:billEstimates; 
     constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
         this.customer = JSON.parse(sessionStorage.getItem('userData'));
-        this.customerId =this.customer.CustomerId;
-        this.userId=this.customer.UserId;
+        if(this.customer!=null)
+        {
+          this.customerId =this.customer.CustomerId;
+          this.userId=this.customer.UserId;
+        }
+
     }
 
     // populateRecentJoblist(count: number) {

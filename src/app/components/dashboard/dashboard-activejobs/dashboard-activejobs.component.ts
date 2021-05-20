@@ -16,8 +16,11 @@ export class DashboardActivejobsComponent implements OnInit {
   userId:any;
   constructor(private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
-    this.customerId =this.customer.CustomerId;
-    this.userId=this.customer.UserId;
+    if(this.customer!=null)
+        {
+          this.customerId =this.customer.CustomerId;
+          this.userId=this.customer.UserId;
+        }
 }
 ngOnInit() {
   this.populateDashboardallStatistics();

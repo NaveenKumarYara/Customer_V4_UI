@@ -28,7 +28,11 @@ export class LogoHeaderComponent implements OnInit {
     if (this.customer == null) {
         this.Logout();
     }
-    this.GetCustomerSubscription();
+    if(this.customer!=null)
+    {
+      this.GetCustomerSubscription();
+    }
+ 
     // sessionStorage.setItem('ProfileThumbnail', this.candidateDetails.UserProfilePictureUrl);
     // else {
     //     let pic = sessionStorage.getItem('ProfileThumbnail');
