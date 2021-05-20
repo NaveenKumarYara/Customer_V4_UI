@@ -68,7 +68,7 @@ export class ScheduleInterviewComponent implements OnInit {
   bridgeUrl: string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
-  minuteStep = 1;
+  minuteStep = 30;
   secondStep = 1;
   duration: NgbTimeStruct = {hour: 0, minute: 0, second: 0};
   durationHourStep = 1;
