@@ -95,6 +95,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
           this.jobIdExists = params['jobId'];
         } else {
           this.jobIdExists = 0;
+          this.appService.resetJob();
         }
         localStorage.setItem('hide', this.jobIdExists);
       });
@@ -390,6 +391,7 @@ if (this.appService.isDrafted.value != null) {
             if (exit === 0) {
               this.router.navigate([localStorage.getItem('EditViewJob') != null ?
               this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+              this.appService.resetJob();
             }
             else {
             if (this.complete > 0) {
@@ -463,6 +465,7 @@ if (this.appService.isDrafted.value != null) {
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          this.appService.resetJob();
         } else {
        // this.steps.step2isClicked = true;
         if (this.complete > 0) {

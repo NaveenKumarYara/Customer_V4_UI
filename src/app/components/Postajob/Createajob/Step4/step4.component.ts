@@ -323,6 +323,7 @@ export class Step4Component implements OnInit {z
    res.then(() => {
     setTimeout(function() { 
       this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+      this.appService.resetJob();
       }, 3000); 
  
    });
@@ -345,6 +346,7 @@ export class Step4Component implements OnInit {z
           // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+          this.appService.resetJob();
           localStorage.setItem('post','1');
         }
       });

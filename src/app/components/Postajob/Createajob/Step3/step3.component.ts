@@ -407,6 +407,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
           if (exit === 0) {
             this.router.navigate([localStorage.getItem('EditViewJob') != null ?
             this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            this.appService.resetJob();
           } else {
           if (this.complete > 0) {
             this.steps.step4toggleClass(this.complete);
@@ -428,13 +429,13 @@ export class Step3Component implements OnInit,AfterViewChecked {
     }
      if(this.JobIds.length==0 || this.JobIds == undefined)
     {
-      debugger
       this.appService.postjob(this.insertJob).subscribe(data => {
         if (data) {
           // this.insertJob.JobId = data;
           if (exit === 0) {
             this.router.navigate([localStorage.getItem('EditViewJob') != null ?
             this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            this.appService.resetJob();
           } else {
           if (this.complete > 0) {
             this.steps.step4toggleClass(this.complete);
