@@ -42,6 +42,7 @@ export class sendnotificationdialogComponent {
  customercontacts : CustomerContacts[];
   teammemberslist: CustomerUsers[];
   savenote = new Notes();
+  NId : any=[];
   getTeammember: CustomerUsers;
   profileSharing= new ProfileShare();
   customer: any;
@@ -343,9 +344,12 @@ getcustomerusers()
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
 
+     
  let Ids = Array.from(this.savenote.toUserId.split(','));
- Ids.forEach(element => {
-   this.savenote.toUserId = element;
+ var res = new Promise<void>((resolve, reject) => { 
+ Ids.forEach((value, index, array)=>
+ {
+    this.savenote.toUserId = value;
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -353,35 +357,68 @@ getcustomerusers()
      {
     this.teammemberslist = [];
     $('#teamMbr').val('');
-    //this.selectedUserName = ''
     this.getTeammember = new CustomerUsers();
     this.clearTeamMemebers();
     this.selectedComments = "";
     this.EmailId = " ";
-   
-     if(this.uploader.queue.length>0)
-     {
-      this.fileUploadForm.value.NoteId=status;
-      this.fileUploadForm.value.toUserId = element;
-      this.uploadMultiple();
-     }
-     else
-     {
-       this.dialogRef.close();
-     }
+    this.NId.push(status);
+    
   
      //this.SaveNotes(this.selectedComments);
-   
+     if (index === array.length -1)
+     {
+    
+        resolve();
+      }  
     
   }
    }                
    );
+   
+ }) 
+      });
+	  
+res.then(() => {
+
+  this.NId.forEach(element => {
+    if(this.uploader.queue.length>0)
+    {
+      for (let i = 0; i < this.uploader.queue.length; i++) {
+        let fileItem = this.uploader.queue[i]._file;
+        if(fileItem.size > 10000000){
+          this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+          return;
+        }
+      }
+      for (let j = 0; j < this.uploader.queue.length; j++) {
+        let data = new FormData();
+        let request = '';
+        let fileItem = this.uploader.queue[j]._file;
+        if (this.fileUploadForm.value !== '') {
+          this.fileUploadForm.value.Title = fileItem.name;
+          this.fileUploadForm.value.DocUrl = '';
+          this.fileUploadForm.value.toUserId = this.customer.UserId;
+          this.fileUploadForm.value.NoteId=element;
+          this.fileUploadForm.value.FileExtension =fileItem.type;
+           request = JSON.stringify(this.fileUploadForm.value);
+         }     
+        data.append('Attachment', fileItem);
+        data.append('fileSeq', 'seq'+j);
+        data.append('Model', request);
+        this.uploadFile(data);
+      }
+      
+    }
+  });
+  this.uploader.clearQueue();
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
-  }, 3000);   
- });
-
+    this.dialogRef.close();
+  }, 3000);
+  
+ 
+  });
 }
 
 
@@ -420,7 +457,7 @@ getcustomerusers()
 
 
 
- uploadMultiple(){
+ uploadMultiple(status){
   for (let i = 0; i < this.uploader.queue.length; i++) {
     let fileItem = this.uploader.queue[i]._file;
     if(fileItem.size > 10000000){
@@ -435,6 +472,8 @@ getcustomerusers()
     if (this.fileUploadForm.value !== '') {
       this.fileUploadForm.value.Title = fileItem.name;
       this.fileUploadForm.value.DocUrl = '';
+      this.fileUploadForm.value.toUserId = this.customer.UserId;
+      this.fileUploadForm.value.NoteId=status;
       this.fileUploadForm.value.FileExtension =fileItem.type;
        request = JSON.stringify(this.fileUploadForm.value);
      }     
@@ -447,8 +486,9 @@ getcustomerusers()
 }
 
 uploadFile(data: FormData){
+  debugger
 this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
-  this.dialogRef.close();   
+  //this.dialogRef.close();   
   }); 
 }
 //  uploadMultiple() {
