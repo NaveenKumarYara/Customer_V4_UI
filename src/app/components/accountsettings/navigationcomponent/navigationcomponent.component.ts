@@ -20,7 +20,7 @@ customer:any;
   cl()
   {
     this.router.navigateByUrl('/app-accountsettings', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/app-accountsettings/app-inviteusers']);
+      this.router.navigate(['/app-inviteusers']);
   }); 
   }
 
