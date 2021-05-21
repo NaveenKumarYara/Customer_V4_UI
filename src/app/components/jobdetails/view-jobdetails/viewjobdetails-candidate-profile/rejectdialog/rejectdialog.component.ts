@@ -62,6 +62,7 @@ export class RejectdialogComponent implements OnInit {
   info: number;
   EmailId: any = null;
   Name: any = null;
+  NId : any=[];
   usersloading: boolean;
   customerUser: number;
   selectedUserName: number;
@@ -271,34 +272,82 @@ export class RejectdialogComponent implements OnInit {
     }
     this.savenote.Comments = this.Comment;
     //this.savenote.statusId = 6;
-    this.savenote.FeedbackTitle = "";
-    this._service.PostService(this.savenote, "IdentityAPI/api/InsertProfileFeedback").subscribe((status) => {
-      if (status >= 0) {
-        this.teammemberslist = [];
-        $("#teamMbr").val("");
-        //this.selectedUserName = ''
-        this.getTeammember = new CustomerUsers();
-        this.clearTeamMemebers();
-        this.Comment = "";
-        this.EmailId = " ";
-        this.toastr.success("Sent successfully", "Success");
-        setTimeout(() => {
-          this.toastr.dismissToast;
-          if (this.uploader.queue.length > 0) {
-            this.fileUploadForm.value.NoteId = status;
-            debugger
-            this.fileUploadForm.value.toUserId = this.savenote.toUserId;
-            this.uploadMultiple();
-          } else {
-            this.dialogRef.close();
-          }
-
-          //this.SaveNotes(this.selectedComments);
-        }, 3000);
-      }
-    });
-  }
-
+    this.savenote.FeedbackTitle = "Feedback";
+    let Ids = Array.from(this.savenote.toUserId.split(','));
+    var res = new Promise<void>((resolve, reject) => { 
+    Ids.forEach((value, index, array)=>
+    {
+       this.savenote.toUserId = value;
+      this.jobdetailsservice.SaveProfileNote(this.savenote)
+      .subscribe(
+      status => {
+        if(status>0)
+        {
+       this.teammemberslist = [];
+       $('#teamMbr').val('');
+       this.getTeammember = new CustomerUsers();
+       this.clearTeamMemebers();
+       this.selectedComments = "";
+       this.EmailId = " ";
+       this.NId.push(status);
+       
+     
+        //this.SaveNotes(this.selectedComments);
+        if (index === array.length -1)
+        {
+       
+           resolve();
+         }  
+       
+     }
+      }                
+      );
+      
+    }) 
+         });
+       
+   res.then(() => {
+   
+     this.NId.forEach(element => {
+       if(this.uploader.queue.length>0)
+       {
+         for (let i = 0; i < this.uploader.queue.length; i++) {
+           let fileItem = this.uploader.queue[i]._file;
+           if(fileItem.size > 10000000){
+             this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+             return;
+           }
+         }
+         for (let j = 0; j < this.uploader.queue.length; j++) {
+           let data = new FormData();
+           let request = '';
+           let fileItem = this.uploader.queue[j]._file;
+           if (this.fileUploadForm.value !== '') {
+             this.fileUploadForm.value.Title = fileItem.name;
+             this.fileUploadForm.value.DocUrl = '';
+             this.fileUploadForm.value.toUserId = this.customer.UserId;
+             this.fileUploadForm.value.NoteId=element;
+             this.fileUploadForm.value.FileExtension =fileItem.type;
+              request = JSON.stringify(this.fileUploadForm.value);
+            }     
+           data.append('Attachment', fileItem);
+           data.append('fileSeq', 'seq'+j);
+           data.append('Model', request);
+           this.uploadFile(data);
+         }
+         
+       }
+     });
+     this.uploader.clearQueue();
+      this.toastr.success('Sent successfully', 'Success');
+      setTimeout(() => {
+       this.toastr.dismissToast;
+       this.dialogRef.close();
+     }, 3000);
+     
+    
+     });
+   }
   uploadMultiple() {
     for (let i = 0; i < this.uploader.queue.length; i++) {
       let fileItem = this.uploader.queue[i]._file;
