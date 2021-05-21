@@ -332,7 +332,7 @@ onItemDeleted(index){
            if (this.fileUploadForm.value !== '') {
              this.fileUploadForm.value.Title = fileItem.name;
              this.fileUploadForm.value.DocUrl = '';
-             this.fileUploadForm.value.toUserId = this.customer.UserId;
+             this.fileUploadForm.value.toUserId = this.customer.UserId.toString();
              this.fileUploadForm.value.NoteId=element;
              this.fileUploadForm.value.FileExtension =fileItem.type;
               request = JSON.stringify(this.fileUploadForm.value);
