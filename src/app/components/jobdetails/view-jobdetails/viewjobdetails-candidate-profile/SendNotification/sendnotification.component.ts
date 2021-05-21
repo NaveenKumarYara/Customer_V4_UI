@@ -414,6 +414,7 @@ res.then(() => {
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
+    this.savenote = new Notes();
     this.dialogRef.close();
   }, 3000);
   
@@ -486,7 +487,6 @@ res.then(() => {
 }
 
 uploadFile(data: FormData){
-  debugger
 this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
   //this.dialogRef.close();   
   }); 

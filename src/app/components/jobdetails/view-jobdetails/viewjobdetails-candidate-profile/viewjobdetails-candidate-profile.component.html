@@ -1978,6 +1978,9 @@
 								</div> -->
             </ng-container>
           </ng-container>
+          <ng-container *ngIf="CandidateNotes.length === 0">
+           <h6>Notes Yet To Add</h6>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -2066,9 +2069,10 @@
                     <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
                       <i class="fa fa-chevron-down"></i>
                       <span class="icon icon-notes"></span>
-                      <ng-container *ngIf="pn?.FeedbackTitle != undefined && pn?.FeedbackTitle != ''">
+                      {{ pn?.FeedbackOption}}
+                      <!-- <ng-container *ngIf="pn?.FeedbackTitle != undefined && pn?.FeedbackTitle != ''">
                         {{ pn?.FeedbackTitle }}
-                      </ng-container>
+                      </ng-container> -->
                       <!-- <ng-container *ngIf="pn?.Others == undefined || pn?.Others == ''">
                         {{ pn?.ReferralStatus }}
                       </ng-container> -->
@@ -2077,9 +2081,9 @@
                         By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span
                       >
 
-                      <span>
+                      <!-- <span>
                        {{ pn?.FeedbackOption}}</span
-                      >
+                      > -->
                     
                     </button>
                     <!-- <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div> -->
@@ -2127,6 +2131,10 @@
                 </div>
               </div>
             </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="CandidateFeedback.length === 0">
+            <h6>Feedback Yet to Add</h6>
           </ng-container>
         </div>
       </div>

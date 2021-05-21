@@ -94,6 +94,7 @@ export class RejectdialogComponent implements OnInit {
     this.matching = this.data.Matching;
     this.jobid = JSON.parse(sessionStorage.getItem("jobId"));
     this.toastr.setRootViewContainerRef(_vcr);
+    this.savenote.FeedbackOption="Refer to Next Round";
   }
 
   PopulateJobdetail() {
@@ -110,6 +111,7 @@ export class RejectdialogComponent implements OnInit {
     this.matching = this.data.Matching;
     this.AddUser = true;
     this.info = 1;
+    this.savenote.FeedbackOption="Refer to Next Round";
     this.checkemail = this.data.Email;
     //this.GetInterView();
     //this.GetType();
@@ -242,7 +244,8 @@ export class RejectdialogComponent implements OnInit {
       setTimeout(() => {
         this.toastr.dismissToast;
         this.eventStat.emit(null);
-        this.dialogRef.close();
+        this.SaveNotes();
+        //this.dialogRef.close();
       }, 3000);
     });
   }
@@ -278,9 +281,7 @@ export class RejectdialogComponent implements OnInit {
     Ids.forEach((value, index, array)=>
     {
        this.savenote.toUserId = value;
-      this.jobdetailsservice.SaveProfileNote(this.savenote)
-      .subscribe(
-      status => {
+       this._service.PostService(this.savenote, "IdentityAPI/api/InsertProfileFeedback").subscribe((status) => {
         if(status>0)
         {
        this.teammemberslist = [];
@@ -377,7 +378,7 @@ export class RejectdialogComponent implements OnInit {
   uploadFile(data: FormData) {
     this._service.byteStorage(data, "ProfileAPI/api/InsertProfileAttachments").subscribe((data) => {
       this.savenote = new Notes();
-      this.dialogRef.close();
+      //this.dialogRef.close();
     });
   }
 
@@ -401,10 +402,9 @@ export class RejectdialogComponent implements OnInit {
     this.schIntw.RequiredFurtherInterview = null;
     this.schIntw.StatusChangedByUserId = this.userId;
     this.schIntw.InterviewingPerson = null;
-    debugger
     this.jobdetailsservice.interviewProcess(this.schIntw).subscribe((res) => {
       this.PopulateJobdetail();
-      this.SaveNotes();
+      //this.SaveNotes();
       console.log(res);
     });
   }
