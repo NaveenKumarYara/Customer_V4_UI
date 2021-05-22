@@ -2078,10 +2078,10 @@ textarea {
     font-size: .8rem;
     letter-spacing: 1px;
 }
-textarea {
+/* textarea {
     padding: 10px;
     line-height: 1.5;
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
-}
+} */

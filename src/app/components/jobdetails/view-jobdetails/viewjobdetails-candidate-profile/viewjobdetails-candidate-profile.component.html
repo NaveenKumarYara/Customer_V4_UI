@@ -1788,13 +1788,13 @@
                     <ng-container *ngIf="pn.CustomerComment != null">
                       <div class="card-col">
                         {{ pn?.CustomerComment | titlecase }}
-                        <a *ngIf="customer.UserId==pn.CustomeruserId" href="javascript:void(0)" (click)="showSubItem(i)"><i class="fa fa-edit"></i></a>
+                        <a *ngIf="customer.UserId==pn.CustomeruserId" class="edit__btn" href="javascript:void(0)" (click)="showSubItem(i)"><i class="fa fa-pencil"></i></a>
                       </div>
 
-                      <div class="card-col"  *ngIf="visibleIndex === i">
+                      <div class="card-col xs-padding"  *ngIf="visibleIndex === i">
                         <textarea type="text" name="Comments" (input)="newComment= $event.target.value"
-                        placeholder="Please add your Notes *" rows="10" value="{{pn?.CustomerComment}}"></textarea>
-                        <a href="javascript:void(0)"  (click)="showSubItem(i);saveedit(pn?.CustomerComment,pn.JobId, pn.CustomeruserId,profile?.ProfileId)"><i class="fa fa-check-circle-o"> save</i></a>
+                        placeholder="Please add your Notes *" rows="5" class="form-control" value="{{pn?.CustomerComment}}"></textarea>
+                        <a href="javascript:void(0)"  (click)="showSubItem(i);saveedit(pn?.CustomerComment,pn.JobId, pn.CustomeruserId,profile?.ProfileId)" class="btn btn-filled ">Save</a>
                       </div>
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
@@ -1976,6 +1976,7 @@
 												</div>
 										</div>
 								</div> -->
+                
             </ng-container>
           </ng-container>
           <ng-container *ngIf="CandidateNotes.length === 0">
