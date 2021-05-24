@@ -201,7 +201,7 @@ const appRoutes: Routes = [
   // { path: "app-manage-viewjobs", component: ViewjobsComponent },
   // { path: "app-manage-searchjobs", component: SearchjobsComponent },
   // { path: "app-manage-filterjobs", component: FilterjobsComponent },
-  // { path: "app-manage-advance-search", component: AdvanceSearchComponent },
+  { path: "app-manage-advance-search", component: AdvanceSearchComponent },
   // { path: "app-manage-joblist-gridlayout", component: JoblistGridlayoutComponent },
   // { path: "app-manage-joblist-tablelayout", component: JoblistTablelayoutComponent },
   // { path: "app-interviewList", component: InterviewListComponent },
@@ -299,7 +299,6 @@ const appRoutes: Routes = [
     //   { path: "app-inviteusers", component: InviteUsersComponent },
     // ],
   },
-
   { path: "", redirectTo: "/home", pathMatch: "full", canActivate: [AuthGuard] },
   { path: "**", component: HomeComponent },
 ];
