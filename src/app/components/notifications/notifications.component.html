@@ -8,7 +8,7 @@
           <h1>Notifications</h1>
         </div>
         <div class="revamp__listing">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-sm-12">
               <div class="col__container">
                 <div class="image__container">
@@ -54,7 +54,7 @@
           </div>
           <br/>
           <br/>
-          <br/>
+          <br/> -->
           <div class="row">
             <ng-container *ngIf="notificationList.length>0">
             <ng-container *ngFor="let listview of notificationList; let i=index">
@@ -64,7 +64,7 @@
                     <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
                   </div>
                   <div class="content__box">
-                    <h4>{{listview.Message | titlecase}}</h4>
+                    <h4>{{listview.Message.split('-')[0]}} <span>{{listview.Message.split('-')[1]}}</span> <em>{{listview.Message.split('-')[2]}}</em> <span>{{listview.Message.split('-')[3]}}</span></h4>
                     <p class="date__time">{{listview.CreatedOn|date}} | {{listview.CreatedOn|date:'h:mm a'}}</p>
                   </div>
                 </div>
