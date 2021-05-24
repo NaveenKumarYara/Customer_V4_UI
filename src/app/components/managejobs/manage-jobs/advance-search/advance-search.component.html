@@ -38,21 +38,21 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showskillsfilter"> Skills
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showskillsfilter')" [(ngModel)]="filters.showskillsfilter"> Skills
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showlastpostedfilter"> Last Posted
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showlastpostedfilter')" [(ngModel)]="filters.showlastpostedfilter"> Last Posted
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showimmigrationstatusfilter"> Immigration Status
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showimmigrationstatusfilter')" [(ngModel)]="filters.showimmigrationstatusfilter"> Immigration Status
                                 </label>
                             </div>
                         </li>
@@ -73,7 +73,7 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showExperience"> Experience
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showExperience')" [(ngModel)]="filters.showExperience"> Experience
                                 </label>
                             </div>
                         </li>
@@ -87,7 +87,7 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showSalaryrange"> Salary Range
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showSalaryrange')" [(ngModel)]="filters.showSalaryrange"> Salary Range
                                 </label>
                             </div>
                         </li>
@@ -101,14 +101,14 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showDomain"> Domain
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showDomain')" [(ngModel)]="filters.showDomain"> Domain
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showEducation"> Education
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showEducation')" [(ngModel)]="filters.showEducation"> Education
                                 </label>
                             </div>
                         </li>
@@ -539,7 +539,7 @@
                             </ng-container>
                         </div>
                     </div>
-                    <div class="col-md-6" [hidden]="!showClient">
+                    <div class="col-md-6" [hidden]="!filters.showClient">
                         <div class="form-group">
                             <label for="job-type">Client
                                 <span (click)="RemoveComponent(5)">
@@ -601,7 +601,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group" [hidden]="!showDepartment">
+                        <div class="form-group" [hidden]="!filters.showDepartment">
                             <label for="job-type">Department
                                 <span (click)="RemoveComponent(6)">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -676,7 +676,7 @@
                     <!--Show & Hide Filters 01-04-2020-->
 
                     <!--Skills-->
-                    <div class="col-md-6" [hidden]="!showskillsfilter">
+                    <div class="col-md-6" [hidden]="!filters.showskillsfilter">
                         <div class="form-group">
                             <label for="addskillfilter">Skills
                                 <span (click)="RemoveComponent(7)">
@@ -740,7 +740,7 @@
                     </div>
                     <!---->
                     <!--Last Posted-->
-                    <div class="col-md-6" [hidden]="!showlastpostedfilter">
+                    <div class="col-md-6" [hidden]="!filters.showlastpostedfilter">
                         <div class="form-group">
                             <label for="addlastpostedfilter">Last Posted
                                 <span (click)="RemoveComponent(8)">
@@ -807,7 +807,7 @@
                     </div>
                     <!---->
                     <!--Immigration Status-->
-                    <div class="col-md-6" [hidden]="!showimmigrationstatusfilter">
+                    <div class="col-md-6" [hidden]="!filters.showimmigrationstatusfilter">
                         <div class="form-group">
                             <label for="addimmigrationstatusfilter">Immigration Status
                                 <span (click)="RemoveComponent(9)">
@@ -929,7 +929,7 @@
                     </div> -->
                     <!---->
                     <!--Experience-->
-                    <div class="col-md-6" [hidden]="!showExperience">
+                    <div class="col-md-6" [hidden]="!filters.showExperience">
                         <div class="form-group">
                             <label for="addExperience">Experience
                                 <span (click)="RemoveComponent(10)">
@@ -977,7 +977,7 @@
                     </div>
 
                     <!--Salaryrange-->
-                    <div class="col-md-6" [hidden]="!showSalaryrange">
+                    <div class="col-md-6" [hidden]="!filters.showSalaryrange">
                         <div class="form-group">
                             <label for="addSalaryrange">Salary Range
                                 <span (click)="RemoveComponent(11)">
@@ -1008,7 +1008,7 @@
                         </div>
                     </div>
                     <!--Category-->
-                    <div class="col-md-6" [hidden]="!showCategory">
+                    <div class="col-md-6" [hidden]="!filters.showCategory">
                         <div class="form-group">
                             <label for="addCategory">Category
 
@@ -1044,7 +1044,7 @@
                         </div>
                     </div>
                     <!--Domain-->
-                    <div class="col-md-6" [hidden]="!showDomain">
+                    <div class="col-md-6" [hidden]="!filters.showDomain">
                         <div class="form-group">
                             <label for="addDomain">Domain
                                 <span (click)="RemoveComponent(13)">
@@ -1081,7 +1081,7 @@
                         </div>
                     </div>
                     <!--Education-->
-                    <div class="col-md-6" [hidden]="!showEducation">
+                    <div class="col-md-6" [hidden]="!filters.showEducation">
                         <div class="form-group">
                             <label for="addEducation">Education
                                 <span (click)="RemoveComponent(14)">

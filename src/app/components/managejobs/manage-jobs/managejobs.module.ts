@@ -74,7 +74,7 @@ import { LoadJoblistComponent } from "./load-joblist/load-joblist.component";
     JoblistGridlayoutComponent,
     JoblistTablelayoutComponent,
     SearchjobsComponent,
-    AdvanceSearchComponent,
+    // AdvanceSearchComponent,
     LoadJoblistComponent,
   ],
   exports: [

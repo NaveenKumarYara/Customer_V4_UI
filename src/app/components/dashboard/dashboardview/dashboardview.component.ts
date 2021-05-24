@@ -14,6 +14,7 @@ import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
+import { AuthService } from '../../../shared/guard/auth.service';
 
 @Component({
   selector: 'app-dashboardview',
@@ -33,8 +34,11 @@ export class DashboardviewComponent implements OnInit {
     jobLoader : boolean;
     daysRemaining:any;
     bill:billEstimates; 
-    constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService) { 
-        this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    constructor(private appService: AppService,private route: ActivatedRoute,private router: Router, private dashboardservice: DashboardService, private authService: AuthService) { 
+      if (!sessionStorage.getItem('isLoggedin')) {
+        this.router.navigate(["/login"]);
+      }
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
         this.customerId =this.customer.CustomerId;
         this.userId=this.customer.UserId;
     }
