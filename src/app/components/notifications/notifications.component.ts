@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
 import { Notification } from '../../../models/notifications';
+declare var $: any;
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
@@ -41,7 +42,13 @@ getNotifications() {
     });
   }
 
-
+  ViewJobdetails(jobId) {
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
+    sessionStorage.setItem('jobId', JSON.stringify(jobId));
+    this.router.navigateByUrl('app-view-jobdetails');
+  }
 
   ngOnInit() {
     this.getNotifications();
