@@ -291,7 +291,6 @@ isDrafted: boolean;
       }
       if(this.JobIds&&this.JobIds.length>0)
       {
-        debugger
         var res = new Promise<void>((resolve, reject) => {
           this.JobIds.forEach((value, index, array) => {
       //  let requests =  this.JobIds.map((item) => {
@@ -302,6 +301,7 @@ isDrafted: boolean;
             if (exit === 0) {
               this.router.navigate([localStorage.getItem('EditViewJob') != null ?
               this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+              this.appService.resetJob();
             } else {
             if (this.complete > 0) {
               this.steps.step3toggleClass(this.complete);
@@ -325,13 +325,13 @@ isDrafted: boolean;
       }
        if(this.JobIds.length==0 || this.JobIds == undefined)
       {
-        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             // this.insertJob.JobId = data;
             if (exit === 0) {
               this.router.navigate([localStorage.getItem('EditViewJob') != null ?
               this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+              this.appService.resetJob();
             } else {
             if (this.complete > 0) {
               this.steps.step3toggleClass(this.complete);

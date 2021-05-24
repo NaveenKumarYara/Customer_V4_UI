@@ -320,7 +320,9 @@ export class Step4Component implements OnInit {
         res.then(() => {
           setTimeout(function () {
             this.router.navigate(["/app-manage-jobs/app-manage-load-joblist/1"]);
+            this.appService.resetJob();
           }, 3000);
+          
         });
       }
       if (this.JobIds.length == 0 || this.JobIds == undefined) {
@@ -342,17 +344,7 @@ export class Step4Component implements OnInit {
                 : "/app-manage-jobs/app-manage-load-joblist/1",
             ]);
             localStorage.setItem("post", "1");
-            this.appService.updateJobIndustry(" ");
-            this.appService.updateJobIndustryId(" ");
-            this.appService.updatedescription(" ");
-            this.appService.updateJobPosition(" ");
-            this.appService.updateJobPositionType(" ");
-            this.appService.updateJobPositionTypeId(" ");
-            this.appService.updateJobCategoryNew(" ");
-            this.appService.updateJobCategoryNewId(" ");
-            this.appService.updateJobtitle(" ");
-            this.appService.updateJobtitleId(" ");
-            this.appService.updateOpenings(0);
+            this.appService.resetJob();
           }
         });
       }

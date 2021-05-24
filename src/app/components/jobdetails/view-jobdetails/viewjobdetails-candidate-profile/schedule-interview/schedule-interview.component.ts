@@ -56,6 +56,7 @@ export class ScheduleInterviewComponent implements OnInit {
   skypeId: string;
   Addform: FormGroup;
   Comment: string;
+  NId : any=[];
   furtherInterview: boolean;
   travelExpense: boolean;
   phoneNumber: string;
@@ -68,7 +69,7 @@ export class ScheduleInterviewComponent implements OnInit {
   bridgeUrl: string;
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
-  minuteStep = 1;
+  minuteStep = 30;
   secondStep = 1;
   duration: NgbTimeStruct = {hour: 0, minute: 0, second: 0};
   durationHourStep = 1;
@@ -330,7 +331,7 @@ else
 }
   this.jobdetailsservice.interviewProcess(this.schIntw).subscribe(res => {
     this.PopulateJobdetail();
-    this.SaveNotes();
+   
      }) ;
     } else {
       return false;
@@ -399,37 +400,82 @@ SaveNotes()
  this.savenote.Comments=this.Comment;
  this.savenote.statusId = 7;
 
- this.jobdetailsservice.SaveProfileNote(this.savenote)
- .subscribe(
- status => {
-   if(status>0)
-   {
-  this.teammemberslist = [];
-  $('#teamMbr').val('');
-  //this.selectedUserName = ''
-  this.getTeammember = new CustomerUsers();
-  this.clearTeamMemebers();
-  this.Comment = "";
-  this.toastr.success('Sent successfully', 'Success');
-  setTimeout(() => {
-   this.toastr.dismissToast;
-   if(this.uploader.queue.length>0)
-   {
-    this.fileUploadForm.value.NoteId=status;
-    this.fileUploadForm.value.toUserId = this.savenote.toUserId;
-    this.uploadMultiple();
-   }
-   else
-   {
-     this.dialogRef.close();
-   }
+     
+ let Ids = Array.from(this.savenote.toUserId.split(','));
+ var res = new Promise<void>((resolve, reject) => { 
+ Ids.forEach((value, index, array)=>
+ {
+    this.savenote.toUserId = value;
+   this.jobdetailsservice.SaveProfileNote(this.savenote)
+   .subscribe(
+   status => {
+     if(status>0)
+     {
+    this.teammemberslist = [];
+    $('#teamMbr').val('');
+    this.getTeammember = new CustomerUsers();
+    this.clearTeamMemebers();
+    this.Comment = "";
+    //this.EmailId = " ";
+    this.NId.push(status);
+    
+  
+     //this.SaveNotes(this.selectedComments);
+     if (index === array.length -1)
+     {
+    
+        resolve();
+      }  
+    
+  }
+   }                
+   );
+   
+ }) 
+      });
+	  
+res.then(() => {
 
-   //this.SaveNotes(this.selectedComments);
+  this.NId.forEach(element => {
+    if(this.uploader.queue.length>0)
+    {
+      for (let i = 0; i < this.uploader.queue.length; i++) {
+        let fileItem = this.uploader.queue[i]._file;
+        if(fileItem.size > 10000000){
+          this.toastr.error("Each File should be less than 10 MB of size.","!Oh no");
+          return;
+        }
+      }
+      for (let j = 0; j < this.uploader.queue.length; j++) {
+        let data = new FormData();
+        let request = '';
+        let fileItem = this.uploader.queue[j]._file;
+        if (this.fileUploadForm.value !== '') {
+          this.fileUploadForm.value.Title = fileItem.name;
+          this.fileUploadForm.value.DocUrl = '';
+          this.fileUploadForm.value.toUserId = this.customer.UserId.toString();
+          this.fileUploadForm.value.NoteId=element;
+          this.fileUploadForm.value.FileExtension =fileItem.type;
+           request = JSON.stringify(this.fileUploadForm.value);
+         }     
+        data.append('Attachment', fileItem);
+        data.append('fileSeq', 'seq'+j);
+        data.append('Model', request);
+        this.uploadFile(data);
+      }
+      
+    }
+  });
+  this.uploader.clearQueue();
+   this.toastr.success('Sent successfully', 'Success');
+   setTimeout(() => {
+    this.toastr.dismissToast;
+    this.savenote = new Notes();
+    this.dialogRef.close();
+  }, 3000);
+  
  
-  }, 3000);   
-}
- }                
- );
+  });
 }
 
 
@@ -461,7 +507,8 @@ uploadMultiple(){
 
 uploadFile(data: FormData){
 this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
-  this.dialogRef.close();   
+  //this.dialogRef.close();
+  this.savenote = new Notes();   
   }); 
 }
 
@@ -513,7 +560,8 @@ SendStatusEmail()
             this.toastr.dismissToast; 
             this.eventStat.emit(null);
             this.schIntw = new ScheduleInterview();
-            this.dialogRef.close();
+            this.SaveNotes();
+            //this.dialogRef.close();
           }, 3000);
          
        } 

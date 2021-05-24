@@ -180,11 +180,11 @@ export class AppService {
   IndustryId = new BehaviorSubject("");
   currentjobIndustryId = this.IndustryId.asObservable();
 
-  jobImp: number;
-  JobImp = new BehaviorSubject(this.jobImp);
-  currentjobImp = this.JobImp.asObservable();
+  jobImp: number=3;
+    JobImp = new BehaviorSubject(this.jobImp);
+    currentjobImp = this.JobImp.asObservable();
 
-  PriorityName: String;
+  PriorityName: String='';
   JobPriorityName = new BehaviorSubject(this.PriorityName);
   CurrentPriorityName = this.JobPriorityName.asObservable();
 
@@ -194,15 +194,16 @@ export class AppService {
   stepNumber = new BehaviorSubject("");
   currentStepNumber = this.stepNumber.asObservable();
 
-  myDraft: boolean;
+  myDraft: boolean=false;
   isDrafted = new BehaviorSubject(this.myDraft);
   currentDraft = this.isDrafted.asObservable();
 
-  jobDue: number;
+  jobDue: number=5;
   JobDue = new BehaviorSubject(this.jobDue);
   currentjobDue = this.JobDue.asObservable();
 
-  jobDueDate: Date;
+  check:any = new Date();  
+    jobDueDate: Date=new Date(this.check.setDate(this.check.getDate() + 30 ));
   JobDueDate = new BehaviorSubject(this.jobDueDate);
   currentjobDueDate = this.JobDueDate.asObservable();
 
@@ -210,17 +211,18 @@ export class AppService {
   salaryType = new BehaviorSubject(this.salType);
   currentSalaryTYpe = this.salaryType.asObservable();
 
-  pMinexp: number;
-  minExperience = new BehaviorSubject(this.pMinexp);
-  currentminExp = this.minExperience.asObservable();
+  pMinexp: number=36;
+    minExperience = new BehaviorSubject(this.pMinexp);
+    currentminExp = this.minExperience.asObservable();
 
-  pMaxexp: number;
-  maxExperience = new BehaviorSubject(this.pMaxexp);
-  currentmaxExp = this.maxExperience.asObservable();
+    pMaxexp: number=60;
+    maxExperience = new BehaviorSubject(this.pMaxexp);
+    currentmaxExp = this.maxExperience.asObservable();
 
-  myDescription: boolean;
-  hasDescription = new BehaviorSubject(this.myDescription);
-  currentDescriptionChecked = this.hasDescription.asObservable();
+    myDescription: boolean=false;
+    hasDescription = new BehaviorSubject(this.myDescription);
+    currentDescriptionChecked = this.hasDescription.asObservable();
+
 
   description = new BehaviorSubject("");
   currentDescription = this.description.asObservable();
@@ -491,6 +493,112 @@ export class AppService {
   }
   getDepartment() {
     return this.departments.slice();
+  }
+
+  resetJob()
+  {
+     localStorage.removeItem('completed');
+     localStorage.removeItem('jobId');
+     localStorage.removeItem('JobId');
+     localStorage.removeItem('EditMode');
+     localStorage.removeItem('hide');
+     localStorage.removeItem('EditViewJob');
+     localStorage.removeItem('draftItem');
+     localStorage.removeItem('Item');
+     sessionStorage.removeItem('jobId');
+     this.personTypes = [];
+     this.Locationswithpositions=[];
+     this.personTypeChanged = new Subject<DiscResult[]>();
+     this.customerUsers = [];
+     this.customerUserChanged = new Subject<PjTechnicalTeam[]>();
+     this.skillDataList = [];
+     this.skillDataListChanged = new Subject<SkillPostData[]>();
+     this.skillPostData = [];
+     this.skillPostDataChanged = new Subject<SkillPostData[]>();
+     this.addedresponsibilities = [];
+     this.addedresponsibilitiesChanged = new Subject<PjRole[]>();
+     this.domain = [];
+     this.domainChanged = new Subject<GetDomain[]>();
+     this.personTypeSingle = [];
+     this.personTypeSingleChanged = new Subject<PjDisc[]>();
+     this.adddomain = [];
+     this.adddomainChanged = new Subject<PjDomain[]>();
+     this.JobIds=[];
+     this.JobLocations=[];
+     this.reportingList=[];
+     this.recrutingList=[];
+     this.JobLocationsMulti=[];
+     this.jobtitle.next('');
+     this.JobDue.next(5);
+     this.JobImp.next(3);
+     //this.JobDueDate.next(new Date());
+     this.ImmigrationforJobs=[];
+     this.ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
+     this.Workauthorize=[];
+     this.WorkauthorizeNames=[];
+     this.WorkauthorizeNameChanged = new Subject<WorkAuthorization[]>();
+     this.stepNumber.next('1');
+     this.OpeningsList=[];
+     this.locationselect=false;
+     this.JobLocationsMulti=[];
+     this.RemoteWork= false;
+     this.HideSalary = true;
+     this.BonusOffered = false;
+     this.JobLocationsChanged=  new Subject<Cities[]>();
+     this.jobcategory.next(new CategoryList());
+     // this.minExperience.next(1);
+     // this.maxExperience.next(1);
+     this.hasDescription.next(false);
+     this.description.next('');
+     this.jobPosition.next('');
+     this.IndustryId.next('');
+     this.jobcategorynew.next('');
+     this.jobcategorynewId.next('');
+     this.jobtypePosition.next('');
+     this.jobtypePositionId.next('');
+     this.jobtitleId.next('');
+     this.jobIndustry.next('');
+     this.clientModel.next(new ClientModel());
+     this.departments = [];
+     this.departmentsChanged = new Subject<DepartmentModel[]>();
+     this.addeddepartments = [];
+     this.addeddepartmentsChanged = new Subject<PjDepartments[]>();
+     this.keyrole = [];
+     this.keyroleChanged = new Subject<GetKeyRole[]>();
+     this.addkeyrole = [];
+     this.addkeyroleChanged = new Subject<KeyRole[]>();
+     this.ResponseList=[];
+     this.noofOpenings.next(2);
+     this.minAnnualRate.next(1000);
+     this.maxAnnualRate.next(10000);
+     this.minHourlyRate.next(20);
+     this.maxHourlyRate.next(100);
+     this.minExperience.next(36);
+     this.maxExperience.next(60);
+     this.location=[];
+     this.reportingManager.next(new CustomerUsers());
+     this.selectedskilltype.next('');
+     this.employmentType.next(new EmploymentType());
+     this.interviewType.next(new InterviewType());
+     this.contractDuration.next('');
+     //this.contractExtension.next(new WorkAuthorization());
+     this.addedteammembers = [];
+     this.addedteammembersChanged = new Subject<PjTechnicalTeam[]>();
+     this.teammembers = [];
+     let date = new Date();  
+     let val = new Date(date.setDate(date.getDate() + 30 )) ;
+     this.JobDueDate.next(val);
+     this.teammembersChanged = new Subject<CustomerUsers[]>();
+     this.responsibilities = [];
+     this.responsibilitesChanged = new Subject<Roles[]>();
+     this.qualifications = [];
+     this.qualificationsChanged = new Subject<Qualifications[]>();
+     this.primaryjobskills = [];
+     this.secondaryjobskills = [];
+     this.jobsecondaryskillsChanged = new Subject<Jobskills[]>(); // .closed();
+     this.jobprimaryskillsChanged = new Subject<Jobskills[]>();
+     this.videoProfile.next('');
+     
   }
 
   getSkillDetails(): Observable<SkillDetails[]> {

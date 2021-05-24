@@ -112,8 +112,11 @@ export class DashboardJobsviewComponent implements OnInit {
 
     constructor(private route: ActivatedRoute, private dashboardservice: DashboardService, private router: Router) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
-      this.customerId =this.customer.CustomerId;
-      this.userId=this.customer.UserId;
+      if(this.customer!=null)
+      {
+        this.customerId =this.customer.CustomerId;
+        this.userId=this.customer.UserId;
+      }
     }
 
 

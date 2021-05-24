@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   userId:any;
   constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService, private settingsService: SettingsService) {
-        
+        debugger
         this.route.params.subscribe(params => {
           if (params['tk']!=null) {
             if (params["pId"] != null) {
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
           }        
           else
           {
-            this.router.navigateByUrl('login');
+            this.router.navigateByUrl('/login' , { replaceUrl: true });
           }
         });
         this.spinner.show();
@@ -83,6 +83,8 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    debugger
+    this.router.navigateByUrl('/login' , { replaceUrl: true });
     this.spinner.show();
   }
 }

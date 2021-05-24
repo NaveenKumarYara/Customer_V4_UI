@@ -42,6 +42,13 @@
 						</div> -->
 					</div>
 
+					<ng-container *ngIf="isShown2">
+							<div class="form-row">
+								<label>
+									Candidate Email : {{checkemail}}
+								</label>
+							</div>						
+					</ng-container>
 
 					<ng-container *ngIf="isShown1">
 						<form action="">
@@ -81,17 +88,6 @@
 								</div>
 							</div>
 							
-						</form>
-
-					</ng-container>
-					<ng-container *ngIf="isShown2">
-						<form action="">
-							<div class="form-row">
-								<label>
-									{{checkemail}}
-
-								</label>
-							</div>						
 						</form>
 
 					</ng-container>

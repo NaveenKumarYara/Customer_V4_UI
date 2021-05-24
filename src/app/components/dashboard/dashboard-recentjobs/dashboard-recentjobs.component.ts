@@ -30,8 +30,11 @@ export class DashboardRecentjobsComponent implements OnInit {
     // }
     constructor(private spinner: NgxSpinnerService, private dashboardservice: DashboardService, private router: Router) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
-      this.customerId = this.customer.CustomerId;
-      this.userId = this.customer.UserId;
+      if(this.customer!=null)
+      {
+        this.customerId =this.customer.CustomerId;
+        this.userId=this.customer.UserId;
+      }
      }
     ngOnInit() {
       this.jobLoader = true;

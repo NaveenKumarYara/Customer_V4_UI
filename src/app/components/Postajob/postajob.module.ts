@@ -44,6 +44,7 @@ import { TeammembersComponent } from "./Createajob/Step3/teammembers.component";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    AngularDateTimePickerModule,
     NgSelectModule,
     RouterModule.forChild([
       {
