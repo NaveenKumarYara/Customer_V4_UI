@@ -64,7 +64,7 @@
                     <img src="{{listview.ProfilePic}}" alt="Avatar" class="ui-pic" width="40" height="40">
                   </div>
                   <div class="content__box">
-                    <h4  (click)="ViewJobdetails(listview?.JobId)">{{listview.Message.split('-')[0]}} <span>{{listview.Message.split('-')[1]}}</span> <em>{{listview.Message.split('-')[2]}}</em> <span><a href="javascript:void(0)">{{listview.Message.split('-')[3]}}</a></span></h4>
+                    <h4  ><a href="javascript:void(0)" (click)="ViewJobdetails(listview?.JobId)">{{listview.Message.split('-')[0]}} <span>{{listview.Message.split('-')[1]}}</span> <em>{{listview.Message.split('-')[2]}}</em> <span>{{listview.Message.split('-')[3]}}</span> </a></h4>
                     <p class="date__time">{{listview.CreatedOn|date}} | {{listview.CreatedOn|date:'h:mm a'}}</p>
                   </div>
                 </div>
