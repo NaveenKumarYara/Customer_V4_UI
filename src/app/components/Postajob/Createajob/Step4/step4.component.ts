@@ -351,6 +351,7 @@ export class Step4Component implements OnInit {
     }
   }
   ViewJobdetails(jobId) {
+    this.appService.resetJob();
     sessionStorage.setItem("jobId", JSON.stringify(jobId));
     this.router.navigateByUrl("app-view-jobdetails");
   }
