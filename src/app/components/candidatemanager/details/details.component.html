@@ -329,6 +329,25 @@
                         <button class="btn btn-cross" (click)="hideJobDetail()">Close</button>
                         <div class="data-grid-slick">
                             <button class="btn btn-previous" (click)="previous()">Previous</button>
+                            <div>
+                                <div>
+                                    <span>Domain</span><br />
+                                    <span>{{selectedCandidate.JobTitle}}</span>
+                                </div>
+                                <div>
+                                    <span>Departments</span><br />
+                                    <span>{{selectedCandidate.JobType}}</span>
+                                </div>
+                                <hr />
+                                <div>
+                                    <img [src]="selectedCandidate.ProfilePic" *ngIf="selectedCandidate.ProfilePic != null" />
+                                    <span>{{selectedCandidate.CompanyName != null ? selectedCandidate.CompanyName : 'N/A'}}</span><br />
+                                    <span>{{selectedCandidate.JobTitle}}</span>
+                                </div>
+                                <div>
+                                    <span>{{selectedCandidate.JobLocations}}</span>
+                                </div>
+                            </div>
                             <div [class]="items[selectedIndex] == item ? 'item active': 'item'"
                                  *ngFor="let item of items">
                                 <figure>
