@@ -261,18 +261,21 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.OtherInfo = this.savenote.OtherInfo;
       this.savenote.Doc = "";
     }
+
     if (this.isShown2 == true && this.isShown1 == false) {
       this.savenote.toUserId = this.data.CUserId.toString() + "," + this.customer.UserId.toString();
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = " ";
       this.savenote.Doc = this.data.CUserId.toString() + "," + this.customer.UserId.toString();
     }
+
     if (this.isShown1 == true && this.isShown2 == true) {
       this.savenote.toUserId = this.teammemberslist.map((x) => x.UserId).toString() +"," + this.data.CUserId.toString() +"," + this.customer.UserId.toString();
       this.savenote.isCandidate = true;
       this.savenote.OtherInfo = this.savenote.OtherInfo;
       this.savenote.Doc =this.teammemberslist.map((x) => x.UserId).toString() + "," +this.data.CUserId.toString() +"," +this.customer.UserId.toString();
     }
+
     this.savenote.Comments = this.Comment;
     //this.savenote.statusId = 6;
     this.savenote.FeedbackTitle = "Feedback";
@@ -343,6 +346,7 @@ export class RejectdialogComponent implements OnInit {
       this.toastr.success('Sent successfully', 'Success');
       setTimeout(() => {
        this.toastr.dismissToast;
+       this.eventStat.emit(null);
        this.dialogRef.close();
      }, 3000);
      

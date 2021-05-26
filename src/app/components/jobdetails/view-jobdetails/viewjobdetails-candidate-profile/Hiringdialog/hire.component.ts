@@ -475,6 +475,7 @@ res.then(() => {
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
+    this.eventStat.emit(null);
     this.dialogRef.close();
   }, 3000);
   

@@ -390,6 +390,7 @@ SaveNotes()
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.userId.toString() +','+this.customer.UserId.toString();
  }
+
  else
  {
   this.savenote.toUserId=this.data.userId.toString()+','+this.customer.UserId.toString(); 
@@ -397,15 +398,17 @@ SaveNotes()
   this.savenote.OtherInfo = 'Technical';
   this.savenote.Doc = this.data.userId.toString()+','+this.customer.UserId.toString(); 
  }
+
  this.savenote.Comments=this.Comment;
  this.savenote.statusId = 7;
 
-     
+
  let Ids = Array.from(this.savenote.toUserId.split(','));
  var res = new Promise<void>((resolve, reject) => { 
  Ids.forEach((value, index, array)=>
  {
     this.savenote.toUserId = value;
+    debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -437,6 +440,7 @@ SaveNotes()
 res.then(() => {
 
   this.NId.forEach(element => {
+    debugger
     if(this.uploader.queue.length>0)
     {
       for (let i = 0; i < this.uploader.queue.length; i++) {
@@ -470,7 +474,8 @@ res.then(() => {
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
-    this.savenote = new Notes();
+    //this.savenote = new Notes();
+    this.eventStat.emit(null);
     this.dialogRef.close();
   }, 3000);
   
@@ -558,7 +563,7 @@ SendStatusEmail()
      this.toastr.success('Email Sent','Success');
         setTimeout(() => {          
             this.toastr.dismissToast; 
-            this.eventStat.emit(null);
+           
             this.schIntw = new ScheduleInterview();
             this.SaveNotes();
             //this.dialogRef.close();
