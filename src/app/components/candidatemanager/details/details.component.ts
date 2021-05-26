@@ -21,6 +21,7 @@ export class DetailsComponent implements OnInit {
 	totalCandidatesCount: number = 0;
 	totalPageCount: number = 1;
 	pageCount: number = 20;
+	selectedCandidate: any = null;
 	selectedIndex: number;
 	showDetail: boolean = false;
 	currentFilterType: string = '';
@@ -76,9 +77,10 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-	showJobPrview(id) {
+	showJobPrview(index) {
 		this.showDetail = true;
-		this.selectedIndex = id;
+		this.selectedCandidate = this.candidates[index];
+		this.selectedIndex = index;
 	}
 
 	hideJobDetail() {
