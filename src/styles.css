@@ -26416,4 +26416,16 @@ table .table-prl-0 td {
 .page--job-details .card-body {    height: auto;}
         }
 
+/* Notification Count */
+.notification-count {
+  font-size: 8px !important;
+  position: relative;
+  top: -15px;
+  background: #448AFA;
+  padding: 4px 5px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  left: 35px;
+}
 
