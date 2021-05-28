@@ -164,7 +164,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     // ClientsComponent,
     ResponsibilitiesDialogComponent,
     GetCandidateprofileComponent,
-    AdvanceSearchComponent,
+    //AdvanceSearchComponent,
     // StepContractDurationComponent,
     // StepContractExtensionComponent,
     // StepEmploymentTypeComponent,

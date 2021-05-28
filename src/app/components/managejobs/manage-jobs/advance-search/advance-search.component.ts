@@ -30,8 +30,7 @@ declare var $: any;
 @Component({
   selector: "app-manage-advance-search",
   templateUrl: "./advance-search.component.html",
-  styleUrls: ["./advance-search.component.css"],
-  providers: [AppService],
+  styleUrls: ["./advance-search.component.css"]
 })
 export class AdvanceSearchComponent implements OnInit {
   declare;
@@ -1653,6 +1652,7 @@ export class AdvanceSearchComponent implements OnInit {
     this.getDomainDetails();
     this.GetImmigrationStatus();
     this.getAllSkills();
+  
     // this.getAllCity("a");
 
     this.empFilter.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(() => {
@@ -1670,6 +1670,7 @@ export class AdvanceSearchComponent implements OnInit {
     // this.getSkills();
 
     console.log("immigration status list", this.SelectedimmigrationstatusList);
+    this.ClearALlFilter();
   }
 
   /**multy selection */
