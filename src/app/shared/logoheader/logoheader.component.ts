@@ -6,6 +6,7 @@ import { billEstimates } from '../../../models/billEstimates';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CustomerSubscription } from '../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../models/GetSubscriptionDetails';
+import { ApiService } from '../../shared/services/api.service/api.service';
 declare var $: any; 
 @Component({
     selector: 'app-Logoheader',
@@ -15,6 +16,7 @@ export class LogoHeaderComponent implements OnInit {
   customer:any;
   companyLogo:any;
   bill:billEstimates; 
+  notificationsCount: any;
   active:boolean=false;
   jobsactive:boolean=false;
   daysRemaining:any;
@@ -22,7 +24,7 @@ export class LogoHeaderComponent implements OnInit {
   addPricing = new payment();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
-  constructor( private appService: AppService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef) {
+  constructor( private appService: AppService,  private _service: ApiService,private router: Router,private toastr:ToastsManager, private _vcr: ViewContainerRef) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.toastr.setRootViewContainerRef(_vcr);
     if (this.customer == null) {
@@ -139,7 +141,19 @@ GetSubscriptionDetails(sid)
 
 
 
-  
+  ChangeCount() {
+    this.notificationsCount = 0;
+    this.router.navigateByUrl('/app-notifications');
+  }
+
+  GetNotificationCount() {
+    this._service.GetService('IdentityAPI/api/GetNotificationCount?userId=',  this.customer.UserId)
+      .subscribe(
+        data2 => {
+
+          this.notificationsCount = data2;
+        });
+  }
 
   Logout() {
     sessionStorage.removeItem('userData');
