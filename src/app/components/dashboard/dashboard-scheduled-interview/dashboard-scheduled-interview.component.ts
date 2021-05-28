@@ -47,6 +47,6 @@ export class DashboardScheduledInterviewComponent implements OnInit {
   }
   Schedule()
   {
-    this.router.navigateByUrl('app-interviewList');
+    this.router.navigateByUrl('app-manage-jobs/app-interviewList');
   }
 }
