@@ -320,6 +320,7 @@ getcustomerusers()
  this.savenote.ProfileId=this.data.ProfileId;
  this.savenote.JobId = this.data.jobId;
  this.savenote.customerUserId = this.customerUser;
+
  if(this.isShown1==true&&this.isShown2==false)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString() +','+this.customerUser.toString();
@@ -327,6 +328,7 @@ getcustomerusers()
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc = '';
  }
+
  if(this.isShown2==true&&this.isShown1==false)
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
@@ -334,6 +336,7 @@ getcustomerusers()
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
   this.savenote.OtherInfo = ' ';
  }
+
  if(this.isShown1==true&&this.isShown2==true)
  {
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
@@ -341,6 +344,7 @@ getcustomerusers()
   this.savenote.OtherInfo = this.savenote.OtherInfo;
   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
  }
+
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
 
@@ -350,6 +354,7 @@ getcustomerusers()
  Ids.forEach((value, index, array)=>
  {
     this.savenote.toUserId = value;
+    debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -405,16 +410,19 @@ res.then(() => {
         data.append('Attachment', fileItem);
         data.append('fileSeq', 'seq'+j);
         data.append('Model', request);
+        debugger
         this.uploadFile(data);
       }
       
     }
   });
+
+
   this.uploader.clearQueue();
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
-    this.savenote = new Notes();
+    //this.savenote = new Notes();
     this.dialogRef.close();
   }, 3000);
   
@@ -487,6 +495,7 @@ res.then(() => {
 }
 
 uploadFile(data: FormData){
+  debugger
 this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
   //this.dialogRef.close();   
   }); 

@@ -159,7 +159,7 @@ ngOnInit()
     {
       this.changetheactive(2);
     }
-
+   //this.appService.resetJob();
     //this.active=false;
     //this.jobsactive=false;
 }

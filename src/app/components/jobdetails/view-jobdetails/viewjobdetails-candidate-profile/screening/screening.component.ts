@@ -241,7 +241,7 @@ onItemDeleted(index){
         this.toastr.success('Email Sent','Success');
            setTimeout(() => {          
                this.toastr.dismissToast; 
-               this.eventStat.emit(null);
+               //this.eventStat.emit(null);
                this.SaveNotes();
                //this.dialogRef.close();   
              }, 3000);
@@ -263,6 +263,7 @@ onItemDeleted(index){
      this.savenote.OtherInfo = this.savenote.OtherInfo;
      this.savenote.Doc = '';
     }
+    
     if(this.isShown2==true&&this.isShown1==false)
     {
      this.savenote.toUserId=this.data.CUserId.toString()+','+this.customer.UserId.toString(); 
@@ -270,6 +271,7 @@ onItemDeleted(index){
      this.savenote.OtherInfo = ' ';
      this.savenote.Doc = this.data.CUserId.toString()+','+this.customer.UserId.toString(); 
     }
+
     if(this.isShown1==true&&this.isShown2==true)
     {
      this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customer.UserId.toString();
@@ -277,6 +279,7 @@ onItemDeleted(index){
      this.savenote.OtherInfo = this.savenote.OtherInfo;
      this.savenote.Doc = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customer.UserId.toString();
     }
+
     this.savenote.Comments=this.selectedComments;
     this.savenote.statusId = 8;
     //this.savenote.Doc = '';
@@ -349,7 +352,8 @@ onItemDeleted(index){
       this.toastr.success('Sent successfully', 'Success');
       setTimeout(() => {
        this.toastr.dismissToast;
-       this.savenote = new Notes();
+       //this.savenote = new Notes();
+       this.eventStat.emit(null);
        this.dialogRef.close();
      }, 3000);
      
