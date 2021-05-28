@@ -7,7 +7,7 @@
                     fill="#448afa" />
             </svg>
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu"  *ngIf="customer.UserRoleId!=9">
             <li  *ngIf="job.JobStatus != 'Closed'"><a (click)="editJob(job.JobId,job.IsActive)">Edit</a></li>
             <ng-container *ngIf="job.JobStatus != 'Closed'">
                 <li *ngIf="job.IsActive;else isactive" id="Inactive"><a
