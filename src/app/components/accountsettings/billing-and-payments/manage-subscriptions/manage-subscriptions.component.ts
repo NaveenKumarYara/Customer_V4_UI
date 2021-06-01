@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewContainerRef,AfterViewInit,ViewChild,ElementRef} from '@angular/core';
+import { Component, OnInit,ViewContainerRef,AfterViewInit,ViewChild,ElementRef, OnDestroy} from '@angular/core';
 import { AppService } from '../../../../app.service';
 import { PlanFeature } from "../../../../../models/PlanFeature";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ declare const Chargebee: any;
   styleUrls: ['./manage-subscriptions.component.css'],
   providers: [ NgxSpinnerService,AppService]
 })
-export class ManageSubscriptionsComponent implements OnInit {
+export class ManageSubscriptionsComponent implements OnInit,OnDestroy {
   Plans:PlanFeature[]=[];
   customer:any; 
   addPricing = new payment();
@@ -142,6 +142,10 @@ GetPlans()
   });
 }
 
+
+ngOnDestroy() {
+  this.chargebeeInstance.closeAll()
+}
 
 }
 
