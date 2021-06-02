@@ -4,45 +4,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { SignUpComponent } from "./components/signup/signup.component";
 import { AboutComponent } from "./components/about/about.component";
 import { FeaturesComponent } from "./components/features/features.component";
-import { LayoutComponent } from "./components/layout/layout.component";
 import { PostajobComponent } from "./components/Postajob/postajob.component";
-import { StepsComponent } from "./components/Postajob/Createajob/steps.component";
-import { CreateajobComponent } from "./components/Postajob/Createajob/createajob.component";
-import { Step1Component } from "./components/Postajob/Createajob/Step1/step1.component";
-import { Step2Component } from "./components/Postajob/Createajob//Step2/step2.component";
-import { Step3Component } from "./components/Postajob/Createajob/Step3/step3.component";
-import { Step4Component } from "./components/Postajob/Createajob/Step4/step4.component";
-import { JobcategoryComponent } from "./components/Postajob/Createajob/Step1/Jobcategory.component";
-import { JobdetailsComponent } from "./components/Postajob/Createajob/Step1/Jobdetails.component";
-import { JobprofileComponent } from "./components/Postajob/Createajob/Step1/Jobprofile.component";
-import { JobskillsetComponent } from "./components/Postajob/Createajob/Step2/Jobskillset.component";
-import { JobResponsibilitiesComponent } from "./components/Postajob/Createajob/Step2/Jobresponsibilities.component";
-import { LocationwiseJobsComponent } from "./components/Postajob/Createajob/Step1/locationwisejobs.component";
-import { QualificationsComponent } from "./components/Postajob/Createajob/Step2/qualifications.component";
-import { DomainExpertiseComponent } from "./components/Postajob/Createajob/Step2/domainexpertise.component";
-import { PersonalityTypeComponent } from "./components/Postajob/Createajob/Step2/PersonalityType.component";
-import { EmploymentTypeComponent } from "./components/Postajob/Createajob/Step3/employmenttype.component";
-import { ContractDurationComponent } from "./components/Postajob/Createajob/Step3/contractduration.component";
-import { ContractExtensionComponent } from "./components/Postajob/Createajob/Step3/contractextension.component";
-import { InterviewTypeComponent } from "./components/Postajob/Createajob/Step3/interviewtype.component";
-import { ReportingManagerComponent } from "./components/Postajob/Createajob/Step3/reportingmanager.component";
-import { UploadvideoprofileComponent } from "./components/Postajob/Createajob/Step3/uploadvideoprofile.component";
-import { TeammembersComponent } from "./components/Postajob/Createajob/Step3/teammembers.component";
-import { Step1SummaryComponent } from "./components/Postajob/Createajob/Step4/step1summary.component";
-import { Step2SummaryComponent } from "./components/Postajob/Createajob/Step4/step2summary.component";
-import { Step3SummaryComponent } from "./components/Postajob/Createajob/Step4/step3summary.component";
-import { SearchresultsComponent } from "./components/Postajob/Createajob/searchresults.component";
-import { NoofopeningsComponent } from "./components/Postajob/Createajob/Step1/noofopenings.component";
-import { ManageJobsComponent } from "./components/managejobs/manage-jobs/manage-jobs.component";
-import { ViewjobsComponent } from "./components/managejobs/manage-jobs/viewjobs/viewjobs.component";
-import { SearchjobsComponent } from "./components/managejobs/manage-jobs/searchjobs/searchjobs.component";
-import { FilterjobsComponent } from "./components/managejobs/manage-jobs/filterjobs/filterjobs.component";
-import { InterviewListComponent } from "./components/managejobs/manage-jobs/GetInterviewJobsList/interviewList.component";
-import { JoblistGridlayoutComponent } from "./components/managejobs/manage-jobs/joblist-gridlayout/joblist-gridlayout.component";
-import { JoblistTablelayoutComponent } from "./components/managejobs/manage-jobs/joblist-tablelayout/joblist-tablelayout.component";
-import { LoadJoblistComponent } from "./components/managejobs/manage-jobs/load-joblist/load-joblist.component";
-import { AdvanceSearchComponent } from "./components/managejobs/manage-jobs/advance-search/advance-search.component";
-import { BillingAndPaymentsComponent } from "./components/accountsettings/billing-and-payments/billing-and-payments.component";
 import { ViewJobdetailsComponent } from "./components/jobdetails/view-jobdetails/view-jobdetails.component";
 import { FilterViewJobsComponent } from "./components/jobdetails/view-jobdetails/filter-view-jobs/filter-view-jobs.component";
 
@@ -51,7 +13,6 @@ import { JobdetailsAdvanceSearchComponent } from "../app/components/jobdetails/v
 import { ViewjobdetailsmodelComponent } from "../app/components/jobdetails/view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component";
 import { UploadProfilesComponent } from "../app/components/jobdetails/view-jobdetails/upload-profiles/upload-profiles.component";
 import { dLoginComponent } from "../app/components/Login/dlogin.component";
-import { ViewjobdetailsScComponent } from "../app/components/jobdetails/view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component";
 import { ViewjobdetailsCandidateProfileComponent } from "../app/components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component";
 import { GuestComponent } from "./components/GuestSignUp/guest.component";
 import { ShareJobComponent } from "../app/components/jobdetails/view-jobdetails/share-job/sharejob.component";
@@ -75,13 +36,6 @@ import { SpecialitiesComponent } from "../app/components/company-profile/special
 import { WhitepaperComponent } from "../app/components/company-profile/whitepaper/whitepaper.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { EditCandidateProfileComponent } from "../app/components/company-profile/editcandidateprofile/editcandidateprofile.component";
-import { DashboardviewComponent } from "./components/dashboard/dashboardview/dashboardview.component";
-import { DashboardActivejobsComponent } from "./components/dashboard/dashboard-activejobs/dashboard-activejobs.component";
-import { DashboardScheduledInterviewComponent } from "./components/dashboard/dashboard-scheduled-interview/dashboard-scheduled-interview.component";
-import { DashboardJobsviewComponent } from "./components/dashboard/dashboard-jobsview/dashboard-jobsview.component";
-import { DashboardContentComponent } from "./components/dashboard/dashboard-content/dashboard-content.component";
-import { DashboardRecentApplicationsComponent } from "./components/dashboard/dashboard-recent-applications/dashboard-recent-applications.component";
-import { DashboardRecentjobsComponent } from "./components/dashboard/dashboard-recentjobs/dashboard-recentjobs.component";
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { EditDraftComponent } from "./components/Postajob/Createajob/EditDraft/draft.component";
 import { ForgotComponent } from "./components/ForgotPassword/forgotpassword.component";
@@ -89,12 +43,8 @@ import { AccountsettingsComponent } from "./components/accountsettings/accountse
 import { AccountsettingdetailsComponent } from "./components/accountsettings/accountsettingdetails/accountsettingdetails.component";
 import { NavigationcomponentComponent } from "./components/accountsettings/navigationcomponent/navigationcomponent.component";
 import { UsersComponent } from "./components/accountsettings/users/users.component";
-import { InviteUsersComponent } from "./components/accountsettings/InviteUsers/invite.component";
-import { aboutcompany } from "./components/company-profile/aboutcompany/aboutcompany";
 import { CertificationComponent } from "../app/components/company-profile/achievementsandawards/CompanyCertification/certification.component";
 import { JobTemplateComponent } from "./components/Postajob/Createajob/GetJobsTemplate/getTemplate.component";
-import { DepartmentsComponent } from "./components/Postajob/Createajob/Step1/departments.component";
-import { ClientsComponent } from "./components/Postajob/Createajob/Step1/clients.component";
 import { GetCandidateprofileComponent } from "./components/GetProfileDetails/GetProfile.component";
 import { ViewCandidateprofileDetailComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/view-candidateprofile-detail.component";
 import { ViewCandidateprofileComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component";
@@ -103,26 +53,23 @@ import { SendEmailComponent } from "./components/jobdetails/view-jobdetails/view
 import { ResponsibilitiesDialogComponent } from "./components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component";
 import { InviteFriendContentComponent } from "./components/dashboard/invite-friend/invite.component";
 import { CandidateViewComponent } from "./components/company-profile/candidateview/candidate-view.component";
-import { billEstimates } from "../models/billEstimates";
 import { CultureTestComponent } from "./components/company-profile/culturetest/culturetest.component";
 import { HiredialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Hiringdialog/hire.component";
 import { AchivementdialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Achivements/achivement.component";
 import { ReferencedialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/manageref.component";
 import { RequestdialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ManageReferences/RequestInfo/requestInfo.component";
-import { recriuterComponent } from "./components/Postajob/Createajob/Step3/recriuter.component";
 import { backgrounddialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/BackgroundVerification/bg.component";
-import { StepSalarysliderComponent } from "./components/Postajob/Createajob/Step1/salaryslider.component";
-import { StepContractExtensionComponent } from "./components/Postajob/Createajob/Step1/contractextension.component";
-import { StepContractDurationComponent } from "./components/Postajob/Createajob/Step1/contractduration.component";
-import { StepEmploymentTypeComponent } from "./components/Postajob/Createajob/Step1/employment.component";
-import { ImmigrationManagerComponent } from "./components/Postajob/Createajob/Step1/immigration.component";
 import { screeningdialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/screening/screening.component";
 import { shortlisteddialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/ShortListed/shortlisted.component";
 import { WithDrawndialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/Withdrawn/withdrawn.component";
 import { sendnotificationdialogComponent } from "./components/jobdetails/view-jobdetails/viewjobdetails-candidate-profile/SendNotification/sendnotification.component";
-import { CandidatemanagerComponent } from "./components/candidatemanager/candidatemanager.component";
-import { DetailsComponent } from "./components/candidatemanager/details/details.component";
-import { CmModule } from "../app/components/candidatemanager/cm.module";
+import { JobPostingComponent } from "./components/job-posting/job-posting.component";
+import { Step1Component } from "./components/job-posting/create-job/step1/step1.component";
+import { Step2Component } from "./components/job-posting/create-job/step2/step2.component";
+import { Step3Component } from "./components/job-posting/create-job/step3/step3.component";
+import { Step4Component } from "./components/job-posting/create-job/step4/step4.component";
+import { Step5Component } from "./components/job-posting/create-job/step5/step5.component";
+import { Step6Component } from "./components/job-posting/create-job/step6/step6.component";
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 const appRoutes: Routes = [
@@ -141,34 +88,57 @@ const appRoutes: Routes = [
   { path: "app-Getcandidateprofile", component: GetCandidateprofileComponent },
   { path: "app-candidateview", component: CandidateViewComponent },
 
+  // {
+  //   path: "app-createajob",
+  //   component: CreateajobComponent,
+  //   //loadChildren: "./components/Postajob/postajob.module#PostajobModule",
+  //   // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
+  //   children: [
+  //     { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
+  //     // {path: 'app-steps-step1/', component: Step1Component},
+  //     { path: "app-steps-step1", component: Step1Component },
+  //     { path: "app-steps-step2", component: Step2Component },
+  //     { path: "app-steps-step3", component: Step3Component },
+  //     { path: "app-steps-step4", component: Step4Component },
+  //   ],
+  // },
+  // {
+  //   path: "app-job-posting",
+  //   component: JobPostingComponent,
+  //   //loadChildren: "./components/Postajob/postajob.module#PostajobModule",
+  //   // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
+  //   children: [
+  //     { path: "", redirectTo: "app-step1", pathMatch: "full" },
+  //     { path: "app-step1", component: Step1Component },
+  //     { path: "app-step2", component: Step2Component },
+  //     { path: "app-step3", component: Step3Component },
+  //     { path: "app-step4", component: Step4Component },
+  //     { path: "app-step5", component: Step5Component },
+  //     { path: "app-step6", component: Step6Component },
+  //   ],
+  // },
   {
-    path: "app-createajob",
-    component: CreateajobComponent,
-    //loadChildren: "./components/Postajob/postajob.module#PostajobModule",
-    // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
+    path: 'app-job-posting', component: JobPostingComponent,
     children: [
-      { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
-      // {path: 'app-steps-step1/', component: Step1Component},
-      { path: "app-steps-step1", component: Step1Component },
-      { path: "app-steps-step2", component: Step2Component },
-      { path: "app-steps-step3", component: Step3Component },
-      { path: "app-steps-step4", component: Step4Component },
-    ],
+      //{ path: '', redirectTo: 'app-step1', pathMatch: 'full' },
+      { path: 'app-step1', component: Step1Component },
+      { path: 'app-step2', component: Step2Component }
+    ]
   },
-  {
-    path: "app-createajob/:jobId",
-     component: CreateajobComponent,
-    //loadChildren: "./components/Postajob/postajob.module#PostajobModule",
-    // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
-    children: [
-      { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
-      // {path: 'app-steps-step1/', component: Step1Component},
-      { path: "app-steps-step1", component: Step1Component },
-      { path: "app-steps-step2", component: Step2Component },
-      { path: "app-steps-step3", component: Step3Component },
-      { path: "app-steps-step4", component: Step4Component },
-    ],
-  },
+  // {
+  //   path: "app-createajob/:jobId",
+  //   component: CreateajobComponent,
+  //   //loadChildren: "./components/Postajob/postajob.module#PostajobModule",
+  //   // loadChildren: () => import("./components/Postajob/postajob.module").then((m) => m.PostajobModule),
+  //   children: [
+  //     { path: "", redirectTo: "app-steps-step1", pathMatch: "full" },
+  //     // {path: 'app-steps-step1/', component: Step1Component},
+  //     { path: "app-steps-step1", component: Step1Component },
+  //     { path: "app-steps-step2", component: Step2Component },
+  //     { path: "app-steps-step3", component: Step3Component },
+  //     { path: "app-steps-step4", component: Step4Component },
+  //   ],
+  // },
   // { path: "app-searchresults", component: SearchresultsComponent },
   // { path: "app-steps-step1-jobcategory", component: JobcategoryComponent },
   // { path: "app-steps-step1-jobdetails", component: JobdetailsComponent },
