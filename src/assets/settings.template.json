@@ -125,6 +125,7 @@
   "customerSignUp": "${Main_URL}/customersignup",
   "ForgotPasswordurl": "${Main_URL}/ForgotPassword",
   "CandidateSignUp": "${Main_URL}/candidatesignup",
+  "NewCandidateSignUp":"${Main_URL}/candidatesignuppublic",
   "CandidateLogin": "${Main_URL}/candidatelogin",
   "GetInviteList":"${Profile_URL}/api/GetCustomerInvitedProfiles?",
   "JobMatchingParameter": "${Jobs_URL}/api/JobSearchMatchingParameters",

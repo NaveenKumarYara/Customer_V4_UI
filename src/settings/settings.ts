@@ -135,6 +135,7 @@ export class Settings {
   customerSignUp: string;
   ForgotPasswordurl: string;
   CandidateSignUp: string;
+  NewCandidateSignUp:string;
   CandidateLogin: string;
   JobMatchingParameter: string;
   Arytic: string;

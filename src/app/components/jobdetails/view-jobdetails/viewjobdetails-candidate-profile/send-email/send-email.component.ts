@@ -6,6 +6,9 @@ import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AppService } from '../../../../../app.service';
+import { CustomerSubscription } from '../../../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../../../models/GetSubscriptionDetails';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -20,14 +23,18 @@ conversation = new  StartConversation();
 emailUpdate = new  EmailUpdateStatus();
 subject: string;
 ToEmailID: string;
+customerName = null;
 mailbox: any = false;
+subdetails:CustomerSubscription;
+sdetails:GetSubscriptionDetails;
 isPublicAvailable:any;
 checkvalue:any;
 UserId:any;
 UserRoleId:any;
 body: string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _service: ApiService,public dialogRef: MatDialogRef<SendEmailComponent>,private toastr: ToastsManager, private spinner: NgxSpinnerService, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private appService: AppService, private _service: ApiService,public dialogRef: MatDialogRef<SendEmailComponent>,private toastr: ToastsManager, private spinner: NgxSpinnerService, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
+    this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.emailUpdate.JobId = data.jobId;
     this.emailUpdate.JobResponseId =  data.jobResponseId;
     this.emailUpdate.ProfileId = data.profileId;
@@ -38,12 +45,40 @@ body: string;
     this.ToEmailID = this.data.EmailId;
     this.Check();
     this.UserCheck(this.data.ProfileId);
+    this.GetCustomerSubscription();
   }
 
   ngOnInit() {
 
   }
 
+  GetCustomerSubscription()
+{
+  return this.appService.GetCustomerSubscription(this.customerName.UserId).subscribe(res => {
+    if(res!=null)
+    {
+      this.subdetails = res;
+      this.GetSubscriptionDetails(res.subscriptionId);
+      // this.GetInvoiceEstimates();
+      // this.GetUnbilledChargeDetails();
+    }
+
+});
+}
+
+GetSubscriptionDetails(sid)
+{
+  return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
+    if(res1!=null)
+    {
+      this.sdetails = res1;
+    }
+    else
+    {
+      this.sdetails.planId='0';
+    }
+  });
+}
 
  UserCheck(ProfileId)
  {
@@ -80,7 +115,22 @@ body: string;
         }
         else
         {
+          if(this.sdetails.planId === '3' && this.UserId===undefined)
+          {
           this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
+          }
+          else
+          {
+            if(this.UserId>0)
+            {
+              this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid ;
+            }
+            else
+            {
+                this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid + ';pId=' + this.data.profileId + ';jId=' + this.data.jobId;
+            }
+            
+          }
         }        
       }
 

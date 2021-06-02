@@ -11,6 +11,8 @@ import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { BulkApply, XmlJobResponse } from './bulkApply';
 import { AppService } from '../../../../app.service';
 import { SettingsService } from '../../../../../settings/settings.service';
+import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -34,6 +36,8 @@ export class UploadProfilesComponent implements OnInit {
   fileCount: number = 0;
   successCount: number = 0;
   issueCount: number = 0;
+  subdetails:CustomerSubscription;
+  sdetails:GetSubscriptionDetails;
   profiles: Profile[];
   searchprocess: any;
   Count: any;
@@ -89,6 +93,7 @@ export class UploadProfilesComponent implements OnInit {
     });
     this.SearchProfiles();
     this.alertService.clear();
+    this.GetCustomerSubscription();
     /** */
     $(function () {
       $('[name="list1"]').change(function () {
@@ -102,6 +107,34 @@ export class UploadProfilesComponent implements OnInit {
     /** */
 
   }
+
+  GetCustomerSubscription()
+{
+  return this.appService.GetCustomerSubscription(this.customerName.UserId).subscribe(res => {
+    if(res!=null)
+    {
+      this.subdetails = res;
+      this.GetSubscriptionDetails(res.subscriptionId);
+      // this.GetInvoiceEstimates();
+      // this.GetUnbilledChargeDetails();
+    }
+
+});
+}
+
+GetSubscriptionDetails(sid)
+{
+  return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
+    if(res1!=null)
+    {
+      this.sdetails = res1;
+    }
+    else
+    {
+      this.sdetails.planId='0';
+    }
+  });
+}
 
 
   SetSearch(val) {
@@ -208,76 +241,153 @@ export class UploadProfilesComponent implements OnInit {
     }
   }
   uploadMultiple(formData, DocId) {
-    this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
-      if (data) {
-        this.uploadResponse = data;
-        if (this.uploadResponse[0].ResumeStatus != null) {
-          // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
-          this.fileCount = this.fileCount + 1;
-          // alert(this.fileCount);
-          // setTimeout(() => {
-          for (var i = 0; i < this.totalFile; i++) {
-            if (data[0].DocId != this.profileStatus[i].id)
-              this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
-            else
-              this.profileStatus[i].percentage = 100;
-            if (this.tempuploadResponse[i].DocId == data[0].DocId)
-              this.tempuploadResponse[i] = data[0];
-          }
-
-          if (data[0].ResumeStatus == 'Successful') {
-            this.successCount = this.successCount + 1;
-            // this.toastr.success('Uploaded successfully', 'Success');
+    if(this.sdetails.planId === '3')
+    {
+      this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
+        if (data) {
+          this.uploadResponse = data;
+          if (this.uploadResponse[0].ResumeStatus != null) {
+            // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
+            this.fileCount = this.fileCount + 1;
+            // alert(this.fileCount);
+            // setTimeout(() => {
+            for (var i = 0; i < this.totalFile; i++) {
+              if (data[0].DocId != this.profileStatus[i].id)
+                this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+              else
+                this.profileStatus[i].percentage = 100;
+              if (this.tempuploadResponse[i].DocId == data[0].DocId)
+                this.tempuploadResponse[i] = data[0];
+            }
+  
+            if (data[0].ResumeStatus == 'Successful') {
+              this.successCount = this.successCount + 1;
+              // this.toastr.success('Uploaded successfully', 'Success');
+            } else {
+              this.issueCount = this.issueCount + 1;
+              // this.toastr.info('Partially Uploaded', 'Success');
+            }
           } else {
-            this.issueCount = this.issueCount + 1;
-            // this.toastr.info('Partially Uploaded', 'Success');
+            for (var i = 0; i < this.totalFile; i++) {
+              if (data[0].DocId != this.profileStatus[i].id)
+                this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+              else
+                this.profileStatus[i].percentage = 100;
+              if (this.tempuploadResponse[i].DocId == data[0].DocId)
+                this.tempuploadResponse[i].ResumeStatus = "Error";
+              // this.tempuploadResponse[i].ResumeStatus="Error";
+              // error in uploading profiles!
+            }
+  
           }
-        } else {
-          for (var i = 0; i < this.totalFile; i++) {
-            if (data[0].DocId != this.profileStatus[i].id)
-              this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
-            else
-              this.profileStatus[i].percentage = 100;
-            if (this.tempuploadResponse[i].DocId == data[0].DocId)
-              this.tempuploadResponse[i].ResumeStatus = "Error";
-            // this.tempuploadResponse[i].ResumeStatus="Error";
-            // error in uploading profiles!
-          }
-
+  
+          // setTimeout(() => {
+          //   this.toastr.dismissToast;
+          // }, 3000);
         }
-
+        //   else if(data === null){
+        //     this.toastr.warning('Email Not Exists', 'Oops!');
+        //     this.spinner.hide();
+        //     setTimeout(() => {
+        //      this.toastr.dismissToast;
+        //  }, 3000);
+        // //  return false;
+        //   }
+      }, (error: any) => {
+  
+        for (var i = 0; i < this.totalFile; i++) {
+          if (DocId != this.profileStatus[i].id)
+            this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+          else
+            this.profileStatus[i].percentage = 100;
+          if (this.tempuploadResponse[i].DocId == DocId)
+            this.tempuploadResponse[i].ResumeStatus = "Error";
+          // this.tempuploadResponse[i].ResumeStatus="Error";
+          // error in uploading profiles!
+        }
+        // this.toastr.error('error in uploading profiles!', 'Oops!');
         // setTimeout(() => {
         //   this.toastr.dismissToast;
         // }, 3000);
-      }
-      //   else if(data === null){
-      //     this.toastr.warning('Email Not Exists', 'Oops!');
-      //     this.spinner.hide();
-      //     setTimeout(() => {
-      //      this.toastr.dismissToast;
-      //  }, 3000);
-      // //  return false;
-      //   }
-    }, (error: any) => {
+        // this.spinner.hide();
+        // console.log('download error:', error);
+        // console.log('download i:', i);
+      });
+    }
+    else
+    {
+      this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResumeMakePublic').subscribe(data => {  // 'api/JobDescriptionParse'
+        if (data) {
+          this.uploadResponse = data;
+          if (this.uploadResponse[0].ResumeStatus != null) {
+            // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
+            this.fileCount = this.fileCount + 1;
+            // alert(this.fileCount);
+            // setTimeout(() => {
+            for (var i = 0; i < this.totalFile; i++) {
+              if (data[0].DocId != this.profileStatus[i].id)
+                this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+              else
+                this.profileStatus[i].percentage = 100;
+              if (this.tempuploadResponse[i].DocId == data[0].DocId)
+                this.tempuploadResponse[i] = data[0];
+            }
+  
+            if (data[0].ResumeStatus == 'Successful') {
+              this.successCount = this.successCount + 1;
+              // this.toastr.success('Uploaded successfully', 'Success');
+            } else {
+              this.issueCount = this.issueCount + 1;
+              // this.toastr.info('Partially Uploaded', 'Success');
+            }
+          } else {
+            for (var i = 0; i < this.totalFile; i++) {
+              if (data[0].DocId != this.profileStatus[i].id)
+                this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+              else
+                this.profileStatus[i].percentage = 100;
+              if (this.tempuploadResponse[i].DocId == data[0].DocId)
+                this.tempuploadResponse[i].ResumeStatus = "Error";
+              // this.tempuploadResponse[i].ResumeStatus="Error";
+              // error in uploading profiles!
+            }
+  
+          }
+  
+          // setTimeout(() => {
+          //   this.toastr.dismissToast;
+          // }, 3000);
+        }
+        //   else if(data === null){
+        //     this.toastr.warning('Email Not Exists', 'Oops!');
+        //     this.spinner.hide();
+        //     setTimeout(() => {
+        //      this.toastr.dismissToast;
+        //  }, 3000);
+        // //  return false;
+        //   }
+      }, (error: any) => {
+  
+        for (var i = 0; i < this.totalFile; i++) {
+          if (DocId != this.profileStatus[i].id)
+            this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
+          else
+            this.profileStatus[i].percentage = 100;
+          if (this.tempuploadResponse[i].DocId == DocId)
+            this.tempuploadResponse[i].ResumeStatus = "Error";
+          // this.tempuploadResponse[i].ResumeStatus="Error";
+          // error in uploading profiles!
+        }
+        // this.toastr.error('error in uploading profiles!', 'Oops!');
+        // setTimeout(() => {
+        //   this.toastr.dismissToast;
+        // }, 3000);
+        // this.spinner.hide();
+        // console.log('download error:', error);
+        // console.log('download i:', i);
+      });
+    }
 
-      for (var i = 0; i < this.totalFile; i++) {
-        if (DocId != this.profileStatus[i].id)
-          this.profileStatus[i].percentage = this.profileStatus[i].percentage + 5;
-        else
-          this.profileStatus[i].percentage = 100;
-        if (this.tempuploadResponse[i].DocId == DocId)
-          this.tempuploadResponse[i].ResumeStatus = "Error";
-        // this.tempuploadResponse[i].ResumeStatus="Error";
-        // error in uploading profiles!
-      }
-      // this.toastr.error('error in uploading profiles!', 'Oops!');
-      // setTimeout(() => {
-      //   this.toastr.dismissToast;
-      // }, 3000);
-      // this.spinner.hide();
-      // console.log('download error:', error);
-      // console.log('download i:', i);
-    });
   }
 
   Clear() {
