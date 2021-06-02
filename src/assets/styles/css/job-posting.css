@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Gotham';
-    src: url('../../../assets/fonts//post-job/GothamBook.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../../../assets/fonts//post-job/GothamBook.woff') format('woff');
+    src: url('../../fonts/post-job/GothamBook.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/post-jobGothamBook.woff') format('woff');
     /* Pretty Modern Browsers */
     /* Legacy iOS */
     font-weight: 300;
@@ -11,8 +11,8 @@
 
 @font-face {
     font-family: 'Gotham';
-    src: url('../../../assets/fonts//post-job/GothamBold.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../../../assets/fonts//post-job/GothamBold.woff') format('woff');
+    src: url('../../fonts/post-jobGothamBold.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/post-jobGothamBold.woff') format('woff');
     /* Pretty Modern Browsers */
     /* Legacy iOS */
     font-weight: bold;
@@ -22,20 +22,13 @@
 
 @font-face {
     font-family: 'Gotham';
-    src: url('../../../assets/fonts//post-job/Gotham-Medium.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../../../assets/fonts//post-job/Gotham-Medium.woff') format('woff');
+    src: url('../../fonts/post-jobGotham-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/post-jobGotham-Medium.woff') format('woff');
     /* Pretty Modern Browsers */
     /* Legacy iOS */
     font-weight: 500;
     font-style: normal;
     unicode-range: U+00-FFFF;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-body {
-    background: #f5f6fa;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-weight: 300;
 }
 
 .allanim, .revamp__postjob__icon__grid .btn.btn-primary, .revamp__postjob__container .icon, .revamp__postjob__container .step, .revamp__postjob__container .step.step__collapse .job-leftcard {
@@ -263,7 +256,7 @@ body {
 }
 
 .revamp__postjob__container .icon {
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) 0 0 no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) 0 0 no-repeat;
     margin: 0 auto 15px;
     font-size: 0;
 }
@@ -367,7 +360,7 @@ body {
     position: absolute;
     width: 32px;
     height: 32px;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -314px -116px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -314px -116px no-repeat;
 }
 
 .revamp__postjob__container .custom-control-label {
@@ -384,7 +377,7 @@ body {
     content: "";
     width: 20px;
     height: 16px;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -394px -10px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -394px -10px no-repeat;
     position: absolute;
     left: 0;
     top: 2px;
@@ -590,7 +583,7 @@ body {
     position: absolute;
     right: 0;
     top: 0;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -363px -9px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -363px -9px no-repeat;
     width: 24px;
     height: 24px;
 }
@@ -936,7 +929,7 @@ body {
 }
 
 .revamp__postjob__container .custom-select {
-    background: url(../../../assets/images/post-job/arrow.svg) 98% 20px no-repeat;
+    background: url(../../images/post-job/arrow.svg) 98% 20px no-repeat;
     background-size: 16px auto;
     padding: 3px 15px;
     width: 100%;
@@ -970,7 +963,7 @@ body {
     top: 0;
     position: relative;
     z-index: 100;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -314px -61px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -314px -61px no-repeat;
     display: block;
     width: 48px;
     height: 48px;
@@ -1011,7 +1004,7 @@ body {
     top: 0;
     position: relative;
     z-index: 100;
-    background: url(../../../assets/images/post-job/info-icon.png) no-repeat;
+    background: url(../../images/post-job/info-icon.png) no-repeat;
     display: block;
     width: 24px;
     height: 24px;
@@ -1188,7 +1181,7 @@ body {
 .icon-listing li .icon {
     width: 49px;
     height: 51px;
-    background: url(../../../assets/images/post-job/jdv-sprites.png) -84px -10px;
+    background: url(../../images/post-job/jdv-sprites.png) -84px -10px;
     display: block;
 }
 
@@ -1209,7 +1202,7 @@ body {
 }
 
 .jdv-icon {
-    background: url(../../../assets/images/post-job/jdv-sprites.png) 0 0 no-repeat;
+    background: url(../../images/post-job/jdv-sprites.png) 0 0 no-repeat;
     font-size: 0;
     display: block;
 }
@@ -1616,7 +1609,7 @@ body {
     content: "";
     width: 18px;
     height: 18px;
-    background: url(../../../assets/images/post-job/jdv-sprites.png) -10px -80px no-repeat;
+    background: url(../../images/post-job/jdv-sprites.png) -10px -80px no-repeat;
     position: absolute;
     left: 0;
     top: 0;
@@ -1751,7 +1744,7 @@ body {
     content: "";
     width: 10px;
     height: 10px;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -368px -67px;
+    background: url(../../images/post-job/post-a-job-sprites.png) -368px -67px;
     top: 50%;
     margin-top: -6px;
     left: 10px;
@@ -1983,7 +1976,7 @@ body {
     top: 0;
     width: 36px;
     height: 36px;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -368px -85px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -368px -85px no-repeat;
 }
 
 .file__upload input[type="file"] {
@@ -2027,14 +2020,14 @@ body {
     height: 27px;
     font-size: 0;
     padding: 0;
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -369px -127px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -369px -127px no-repeat;
     position: absolute;
     right: 20px;
     top: 20px;
 }
 
 .revamp__postjob__popup .btn__custom__close:hover {
-    background: url(../../../assets/images/post-job/post-a-job-sprites.png) -369px -127px no-repeat;
+    background: url(../../images/post-job/post-a-job-sprites.png) -369px -127px no-repeat;
     opacity: 0.75
 }
 
