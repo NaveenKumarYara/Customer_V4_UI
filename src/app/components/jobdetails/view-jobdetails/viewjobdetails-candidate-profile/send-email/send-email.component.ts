@@ -127,7 +127,7 @@ GetSubscriptionDetails(sid)
             }
             else
             {
-                this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid + ';pId=' + this.data.profileId + ';jId=' + this.data.jobId;
+                this.conversation.AppLink = this.settingsService.settings.NewCandidateSignUp +';sid=' + this.data.ccpid +  ';jId=' + this.data.jobId;
             }
             
           }
