@@ -16,13 +16,22 @@
             </svg>
             
           </label> -->
-                <label class="show-count">Sort By</label>
+                <label class="show-count mt-15">Sort By</label>
                 <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
                     <option default value="0">Recent</option>
                     <option value="1">Older</option>
                     <option value="2">Most Viewed</option>
                     <option value="3">Most Applied</option>
                 </select>
+                <div class="show-jobs pull-right">
+                    <label class="show-count mt-15">Show</label>
+                  <select name="view" id="view" class="styled-select-box">
+                      <option default value="0">Active Jobs</option>
+                      <option value="1">All Jobs</option>
+                      <option value="2">Inactive Jobs</option>
+                      <option value="3">Freezed Jobs</option>
+                  </select>
+              </div>
             </div>
         </form>
     </div>
