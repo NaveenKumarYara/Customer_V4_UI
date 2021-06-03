@@ -109,15 +109,13 @@ GetSubscriptionDetails(sid)
       }
       if(this.data.profileUpload === true)
       {
-        if(this.UserRoleId === 2 && this.UserId >0)
-        {
-          this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid ;
-        }
-        else
-        {
-          if(this.sdetails.planId === '3' && this.UserId===undefined)
+          if(this.sdetails.planId ===  "enterprise" && this.UserId===undefined)
           {
           this.conversation.AppLink = this.settingsService.settings.CandidateSignUp + ';Cid=' + this.data.CustomerId +';sid=' + this.data.ccpid;
+          }
+          if(this.sdetails.planId ===  "enterprise" && this.UserId>0)
+          {
+            this.conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + this.data.ccpid ;
           }
           else
           {
@@ -131,9 +129,8 @@ GetSubscriptionDetails(sid)
             }
             
           }
-        }        
+               
       }
-
     this.conversation.UserCheck = this.data.userId > 0 ? 'Login' :  'Yes I will Join';
     // }
     this.conversation.ToEmailID = this.ToEmailID;
