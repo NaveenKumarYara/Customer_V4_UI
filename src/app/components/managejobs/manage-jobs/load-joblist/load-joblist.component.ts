@@ -210,8 +210,17 @@ this.status=this.status!=null?status:0;
       this.spinner.show();
       this.newSortBy = sort;
       this.isfiltered=0;
-      this.populateJoblist(this.customerId, this.userId,this.searchString,0,0,this.newSortBy);     
-  } 
+      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+  }
+
+  UpdatePopulateSort(filter)
+  { 
+      this.spinner.show();
+      this.sortBy = filter;
+      this.isfiltered=0;
+      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
+  }
+
   clearAll()
   {
     this.sortBy = 0;
