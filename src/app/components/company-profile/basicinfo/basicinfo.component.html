@@ -243,8 +243,7 @@
           </div>
          <div class="form-group">
           <ng-select class="custom-multi-select" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
-          name="Indusrty" [(ngModel)]="Id"  [hideSelected]="true"  [multiple]=true [virtualScroll]=true
-         (change)="updateJobIndustry($event)"  #Indusrty="ngModel">
+          name="Indusrty" [(ngModel)]="Id"  [hideSelected]="true"  [multiple]=true   #Indusrty="ngModel">
          </ng-select>
           </div> 
         </div>
