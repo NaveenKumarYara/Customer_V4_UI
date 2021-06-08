@@ -1288,7 +1288,11 @@
             >
               <!-- applied -->
               <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
-              <div
+              <ng-container   *ngIf="
+              (profile?.ResponseStatusId != 13 &&  profile?.IsConfirmed != false && this.sdetails?.planId !=  'enterprise')||
+              (profile?.ResponseStatusId != 14 &&  profile?.IsConfirmed != false  && this.sdetails?.planId !=  'enterprise')
+            ">
+                <div
                 *ngIf="
                   profile?.ResponseStatusId === 4 ||
                   profile?.ResponseStatusId === 13 ||
@@ -1635,6 +1639,8 @@
                   </a>
                 </li>
               </div>
+              </ng-container>
+         
             </ul>
           </li>
         </ul>

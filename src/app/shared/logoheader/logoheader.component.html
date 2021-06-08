@@ -153,6 +153,19 @@
                             </ng-container>
 
                         </ng-container>
+                        <ng-container *ngIf="this.sdetails?.planId ===  'enterprise'">
+                            <ng-container *ngIf="daysRemaining>0">
+                                <p class="text-right">
+                                    Your Enterprise Plan is Payment Due in   <strong>{{daysRemaining}}</strong>  days, <br>Renew Now!
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="daysRemaining==0">
+                                <p class="text-right">
+                                    Your Enterprise Plan is Payment Due, Renew Now!
+                                </p>
+                            </ng-container>
+
+                        </ng-container>
 
                     </a>
                 </li>

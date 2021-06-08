@@ -241,7 +241,7 @@ GetSubscriptionDetails(sid)
     }
   }
   uploadMultiple(formData, DocId) {
-    if(this.sdetails.planId === '3')
+    if(this.sdetails.planId ===  "enterprise")
     {
       this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
         if (data) {

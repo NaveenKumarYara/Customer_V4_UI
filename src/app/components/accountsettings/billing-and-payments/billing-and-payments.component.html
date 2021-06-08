@@ -32,7 +32,8 @@
 
                         </div>
                         <ng-container *ngIf="sdetails?.planId!='trial'">
-                          <div class="pb_5">Plan : <span class="pl-_5 plan-type">{{sdetails?.planId.slice(0,-6)}} </span>
+                          <div class="pb_5" *ngIf="this.sdetails?.planId !=  'enterprise'">Plan : <span class="pl-_5 plan-type">{{sdetails?.planId.slice(0,-6)}} </span>  </div>
+                            <div class="pb_5" *ngIf="this.sdetails?.planId ===  'enterprise'">Plan : <span class="pl-_5 plan-type">{{sdetails?.planId | titlecase}} </span>
                           </div>
                         </ng-container>
                         <ng-container *ngIf="sdetails?.planId=='trial'">

@@ -32,7 +32,8 @@ import { screeningdialogComponent } from "./screening/screening.component";
 import { shortlisteddialogComponent } from "./ShortListed/shortlisted.component";
 import { WithDrawndialogComponent } from "./Withdrawn/withdrawn.component";
 import { sendnotificationdialogComponent } from "./SendNotification/sendnotification.component";
-
+import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -61,6 +62,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
   notes=new EditNotes();
+  subdetails:CustomerSubscription;
+  sdetails:GetSubscriptionDetails;
   Rloading: boolean = false;
   userId: any;
   CommentProfile: any;
@@ -71,6 +74,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   profiles: any;
   customer: any;
   newComment:any;
+  
   CandidateCertification: CandidateCertifications;
   CandidateDomain: CandidateDomains;
   searchString: any;
@@ -174,6 +178,34 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     link.click();
     link.remove();
     window.location.href = url;
+  }
+
+  GetCustomerSubscription()
+  {
+    return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+      if(res!=null)
+      {
+        this.subdetails = res;
+        this.GetSubscriptionDetails(res.subscriptionId);
+        // this.GetInvoiceEstimates();
+        // this.GetUnbilledChargeDetails();
+      }
+  
+  });
+  }
+  
+  GetSubscriptionDetails(sid)
+  {
+    return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
+      if(res1!=null)
+      {
+        this.sdetails = res1;
+      }
+      else
+      {
+        this.sdetails.planId='0';
+      }
+    });
   }
 
   OpenChatboxDialog() {
@@ -975,6 +1007,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // this.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, 0);
     console.log("abc");
     this.PopulateJobdetail();
+    this.GetCustomerSubscription();
   }
 
   // ngAfterViewInit() {

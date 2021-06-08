@@ -1852,7 +1852,7 @@ pre code {
 .container-fluid {
     margin-right: auto;
     margin-left: auto;
-    padding-left: 15px;
+    padding-left: unset;
     padding-right: 15px;
 }
 
@@ -19866,6 +19866,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     margin: 0px;
 }
 
+.company-info .ng-select .ng-arrow-wrapper{position: absolute!important;  right: 6px;  bottom: 31px;}
+.company-info .ng-select .ng-clear-wrapper{position: absolute!important;  right: -16px;  bottom: 29px;}
+
 /* .ng-select.custom-style > .ng-select-container > .ng-input{
     top: 12px;
     margin : 8px;
@@ -26388,7 +26391,12 @@ table .table-prl-0 td {
 .company-info .ng-select .ng-select-container .ng-value-container .ng-input>input{height: 32px;    border: 1px solid #ddd!important;    margin-left: -4px;    margin-top: -8px;
         width: 240px;    clear: both;    position: relative;    margin-bottom: 20px;}
 .company-info .ng-dropdown-panel .scroll-host{margin-top: -50px;    margin-left: -25px;    background: #fff;    border: 1px solid #ddd;}
-.ng-select.custom-style-benefits>.ng-select-container {  height: 40px!important;    padding: 10px 0px 40px 0px;}
+.ng-select.custom-style-benefits .ng-arrow-wrapper{margin-top: 5px;}
+#benefits .ng-placeholder{    position: absolute;    top: 17px;}
+#benefits .ng-value-label{position: absolute;    top: 17px;}
+#benefits .ng-select-container .ng-value-container .ng-input>input{height: 30px;    width: auto;    float: left;    padding-left: 0px!important;
+    margin-left: -6px;}
+#benefits .ng-select.custom-style-benefits .ng-clear-wrapper {    margin-top: 10px;}
 
 @media only screen and (max-width: 767px) {
     .main-nav .nav>li {display: inline-block; }
