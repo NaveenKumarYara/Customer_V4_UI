@@ -43,3 +43,5 @@ Thumbs.db
 /.vs/tenendusag/v15/.suo
 /.vs/ProjectSettings.json
 /.vs/config/applicationhost.config
+/.vs
+/obj
