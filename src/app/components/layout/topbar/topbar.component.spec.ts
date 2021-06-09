@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Step2Component } from './step2.component';
+import { TopbarComponent } from './topbar.component';
 
-describe('Step2Component', () => {
-  let component: Step2Component;
-  let fixture: ComponentFixture<Step2Component>;
+describe('TopbarComponent', () => {
+  let component: TopbarComponent;
+  let fixture: ComponentFixture<TopbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Step2Component ]
+      declarations: [ TopbarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Step2Component);
+    fixture = TestBed.createComponent(TopbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,18 @@
+
+.visible-xs-12{
+    // display: none;
+    // visibility: collapse;
+    .logo-sm{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .visible-xs-12{
+        .logo-sm{
+            display: inline;
+            visibility: visible;
+        }
+    }
+    
+}

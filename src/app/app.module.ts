@@ -63,13 +63,13 @@ import { PostajobModule } from './components/Postajob/postajob.module';
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { MatAutocompleteModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { JobPostingComponent } from './components/job-posting/job-posting.component';
-import { Step1Component } from './components/job-posting/create-job/step1/step1.component';
-import { Step2Component } from './components/job-posting/create-job/step2/step2.component';
-import { Step3Component } from './components/job-posting/create-job/step3/step3.component';
-import { Step4Component } from './components/job-posting/create-job/step4/step4.component';
-import { Step5Component } from './components/job-posting/create-job/step5/step5.component';
-import { Step6Component } from './components/job-posting/create-job/step6/step6.component';
+// import { JobPostingComponent } from './components/job-posting/job-posting.component';
+// import { Step1Component } from './components/job-posting/create-job/step1/step1.component';
+// import { Step2Component } from './components/job-posting/create-job/step2/step2.component';
+// import { Step3Component } from './components/job-posting/create-job/step3/step3.component';
+// import { Step4Component } from './components/job-posting/create-job/step4/step4.component';
+// import { Step5Component } from './components/job-posting/create-job/step5/step5.component';
+// import { Step6Component } from './components/job-posting/create-job/step6/step6.component';
 
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -98,13 +98,13 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     SalarysliderComponent,
     ResponsibilitiesDialogComponent,
     GetCandidateprofileComponent,
-    JobPostingComponent,
-    Step1Component,
-    Step2Component,
-    Step3Component,
-    Step4Component,
-    Step5Component,
-    Step6Component,
+    // JobPostingComponent,
+    // Step1Component,
+    // Step2Component,
+    // Step3Component,
+    // Step4Component,
+    // Step5Component,
+    // Step6Component,
   ],
   imports: [
     BrowserModule,
