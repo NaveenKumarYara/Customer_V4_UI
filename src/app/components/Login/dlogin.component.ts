@@ -98,11 +98,11 @@ export class dLoginComponent {
     }
     else
     {
-        this.appService.validateemail(this.loginform.value.Email)
+        this.appService.validateCheckemail(this.loginform.value.Email)
         .subscribe(
-        data => {         
-          this.result = data;
-          if(this.result.UserId>0&&this.result.CustomerId>0)
+        data2 => {         
+          this.result = data2;
+          if(data2!=5 && data2!=2)
           {
             
             this.appService.Login(this.loginform.value)
@@ -314,7 +314,16 @@ export class dLoginComponent {
             );       
           
           }  
-          else
+          if(data2===5 || data2===2)
+          {
+            this.loading = false;
+            this.toastr.warning('Email registered as Jobseeker please try to login as Jobseeker!', 'Oh no!');
+            setTimeout(() => {
+                this.toastr.dismissToast;
+            }, 3000);
+            this.loginform.reset
+          }
+         if(data2===0)
           {
             this.loading = false;
             this.toastr.error('Email Not Registered!', 'Oops!');

@@ -221,4 +221,5 @@ export class Settings {
   DeleteNote:string;
   GetgoogleApi:string;
   GetProfileFeedback:string;
+  UserRoleCheck:string;
   }

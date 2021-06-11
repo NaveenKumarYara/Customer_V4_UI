@@ -1386,6 +1386,11 @@ export class AppService {
     const url = this.settingsService.settings.EmailVaild + "email=" + email;
     return this.http.get<GetEmailValidate>(url).debounceTime(1000).catch(this.handleError);
   }
+
+  validateCheckemail(email: string): Observable<any> {
+    const url = this.settingsService.settings.UserRoleCheck + "email=" + email;
+    return this.http.get<any>(url).debounceTime(1000).catch(this.handleError);
+  }
   updateemail(body) {
     return this.http
       .post(this.settingsService.settings.updateemail, body)
