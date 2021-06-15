@@ -122,6 +122,11 @@ export class BasicinfoComponent implements AfterViewInit {
    
 
     this.selectCountry = [
+            {
+      "name": "United States",
+      "dial_code": "+1",
+      "code": "US"
+      },
       {
       "name": "Afghanistan",
       "dial_code": "+93",
@@ -1268,11 +1273,6 @@ export class BasicinfoComponent implements AfterViewInit {
       "code": "GB"
       },
       {
-      "name": "United States",
-      "dial_code": "+1",
-      "code": "US"
-      },
-      {
       "name": "Uruguay",
       "dial_code": "+598",
       "code": "UY"
@@ -1346,6 +1346,7 @@ export class BasicinfoComponent implements AfterViewInit {
     this.GetCustomerDomain();
     this.GetCustomerIndustry();
     this.addTagIndustry = (name) => this.addIndustry(name);
+    this.populateCompanyProfile(this.customer.CustomerId);
   //   $('#btn-start-recording').onclick = function() {
   //     this.disabled = true;
   //     this.captureCamera(function(camera) {
@@ -1456,6 +1457,8 @@ export class BasicinfoComponent implements AfterViewInit {
   populateCompanyProfile(customerId) {
     return this.companyprofileservice.getCompanyProfile(customerId).subscribe(res => {
       this.companyprofile = res;
+      this.companyName = this.companyprofile.CompanyName;
+      this.contactEmail = this.companyprofile.ContactEmail;
     });
 }
 uploadPhoto() {
@@ -1535,9 +1538,11 @@ SaveDomain()
 {
   this.newCustomerIndustry.CustomerId = this.customer.CustomerId
   this.newCustomerIndustry.BusinessDomain = this.BusinessDomain;
+  debugger
   this._service.PostService(this.newCustomerIndustry, 'ProfileAPI/api/InsertCustomerBussinessDomain')
         .subscribe(data => {
         this.GetCustomerDomain();
+        this.populateCompanyProfile(this.customer.CustomerId);
       
     })
 }
@@ -1557,9 +1562,9 @@ SaveDomain()
     } else {
       this.iseditProfile = true;
       this.locations = $('#searchZipCode').val();
-      this.companyName = $('#companyName').val();
+      //this.companyName = $('#companyName').val();
       this.website = $('#webSite').val();
-      this.contactEmail = $('#contactEmail').val();
+      //this.contactEmail = $('#contactEmail').val();
       this.linkedInURL = $('#linkedinUrl').val();
       this.facebookURL = $('#facebookUrl').val();
       this.twitterURL = $('#twitterUrl').val();
@@ -1573,13 +1578,15 @@ SaveDomain()
       this.basicinfo.linkedInURL = this.linkedInURL;
       this.basicinfo.facebookURL =  this.facebookURL;
       this.basicinfo.twitterURL = this.twitterURL;
-      this.basicinfo.countryCode=this.Ccode;
+      this.basicinfo.countryCode=this.Ccode!=undefined?this.Ccode:"+1";
       this.basicinfo.mobilePhone = this.mobilePhone;
       this.basicinfo.homePhone = this.homePhone;
       this.basicinfo.address1 = this.address1;
       this.basicinfo.address2 = this.locations;
 
      }
+     if((this.basicinfo.companyName!=null&&this.basicinfo.contactEmail!=null)||(this.basicinfo.companyName!=''&&this.basicinfo.contactEmail!=''))
+     {
      this._service.PostService(this.basicinfo, 'ProfileAPI/api/UpdateCompanyprofile')
         .subscribe(data => {
           debugger
@@ -1590,6 +1597,7 @@ SaveDomain()
           this.iseditProfile = false;
         },
           error => console.log(error));
+     }
     }
 
     onVideoFileChange(event) {
