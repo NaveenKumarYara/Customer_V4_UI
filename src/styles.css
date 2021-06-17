@@ -26397,6 +26397,8 @@ table .table-prl-0 td {
 #benefits .ng-select-container .ng-value-container .ng-input>input{height: 30px;    width: auto;    float: left;    padding-left: 0px!important;
     margin-left: -6px;}
 #benefits .ng-select.custom-style-benefits .ng-clear-wrapper {    margin-top: 10px;}
+input[name='browsers']{width: 1200px;}
+.company-address .ng-select.ng-select-multiple .ng-input{    min-width: 100%;}
 
 @media only screen and (max-width: 767px) {
     .main-nav .nav>li {display: inline-block; }
