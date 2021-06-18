@@ -453,8 +453,10 @@
           </div> -->
           <!--Merging-->
           <div id="specialities" class="specialities tab-pane fade">
-            <div class="input-group">
-              <input
+            <div class="form-row">
+              <div class="form-group">
+                <div class="input-group">
+              <!-- <input
                 type="text"
                 class="form-control"
                 placeholder="Specialities"
@@ -464,8 +466,19 @@
               <datalist id="dynmicTitle1">
                 <option *ngFor="let item of getSpecailities" [value]="item.Name">{{ item.Name }}</option>
               </datalist>
-              <!-- <input id="specialVal" [(ngModel)]="speciality" type="text" class="form-control" name="specialities"
+              <input id="specialVal" [(ngModel)]="speciality" type="text" class="form-control" name="specialities"
                 placeholder="Specialities"> -->
+
+                <ng-select
+                    class="custom-style-benefits"
+                    [items]="getSpecailities"
+                    placeholder="Specialities"
+                    bindLabel="Name"
+                    bindValue="Name"
+                    [(ngModel)]="speciality"
+                    [hideSelected]="true"
+                  >
+                  </ng-select>
               <span class="input-group-btn">
                 <ng-container *ngIf="speciality != undefined; else nsep">
                   <ng-container *ngIf="speciality != ''; else nosep">
@@ -479,6 +492,8 @@
                   <button class="btn">+</button>
                 </ng-template>
               </span>
+            </div>
+            </div>
             </div>
             <div class="tab-inner scrollbar-inner" *ngIf="companyspecialities.length > 0">
               <ul class="list--filled">
