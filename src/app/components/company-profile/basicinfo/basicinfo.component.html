@@ -337,7 +337,7 @@
             <label for="">Business Domain</label>
                    <div>
           <ng-select  [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
-          name="Indusrty" [(ngModel)]="Id"   [virtualScroll]="true"   [multiple]=true    #Indusrty="ngModel">
+          name="Indusrty" [(ngModel)]="Id"   [virtualScroll]="true"   [multiple]=true   (change)="updateJobIndustry($event)"  #Indusrty="ngModel">
          </ng-select>
           </div>
         </div>

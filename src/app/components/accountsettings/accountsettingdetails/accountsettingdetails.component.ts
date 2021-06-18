@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,ViewContainerRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, MinLengthValidator } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -6,7 +6,7 @@ import { AppService } from '../../../app.service';
 import {FormsValidationService} from '../../../shared/validation/validation.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 declare var $: any;
-
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-accountsettingdetails',
   templateUrl: './accountsettingdetails.component.html',
@@ -28,9 +28,10 @@ export class AccountsettingdetailsComponent implements OnInit {
   missMatchPwd: any = 0;
   iseditEmail: any = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
-  constructor( private appService: AppService, private router: Router,private fb: FormBuilder,private alertService : AlertService) { 
+  constructor( private toastr:ToastsManager,private _vcr: ViewContainerRef,private appService: AppService, private router: Router,private fb: FormBuilder,private alertService : AlertService) { 
     this.FillData(); 
-    this.createPasswordform();  
+    this.createPasswordform();
+    this.toastr.setRootViewContainerRef(_vcr);  
   }
   FillData() {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -68,6 +69,13 @@ export class AccountsettingdetailsComponent implements OnInit {
       sessionStorage.setItem('userData', JSON.stringify(userStorage));
       this.iseditEmail= false;
       this.FillData();
+      this.toastr.success('Email had updated successfully','Success');
+      setTimeout(() => { 
+      this.toastr.dismissToast; 
+      sessionStorage.removeItem('userData');
+      sessionStorage.clear();
+      this.router.navigateByUrl('/login' , { replaceUrl: true });
+    }, 2000);
   },
     error => console.log(error));
   }
