@@ -459,7 +459,7 @@
                 class="form-control"
                 placeholder="Specialities"
                 (input)="speciality = $event.target.value"
-                list="dynmicTitle1"
+                list="dynmicTitle1" name="browsers" 
               />
               <datalist id="dynmicTitle1">
                 <option *ngFor="let item of getSpecailities" [value]="item.Name">{{ item.Name }}</option>
