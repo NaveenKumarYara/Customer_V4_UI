@@ -26439,3 +26439,5 @@ input[name='browsers']{width: 1200px;}
   left: 35px;
 }
 
+.revamp__jd__skills .star-rating .star { padding:0 !important; }
+.revamp__jd__skills .star-rating { background:none; width:60% !important; position: relative !important; top:0 !important; right:0 !important; }
