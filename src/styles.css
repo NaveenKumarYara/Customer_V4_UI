@@ -26400,6 +26400,14 @@ table .table-prl-0 td {
 input[name='browsers']{width: 1200px;}
 .company-address .ng-select.ng-select-multiple .ng-input{    min-width: 100%;}
 
+#specialities .ng-placeholder{    position: absolute;    top: 17px;}
+#specialities .ng-value-label{position: absolute;    top: 17px;}
+#specialities .ng-select-container .ng-value-container .ng-input>input{height: 30px;    width: auto;    float: left;    padding-left: 0px!important;
+    margin-left: -6px;}
+#specialities .ng-select.custom-style-benefits .ng-clear-wrapper {    margin-top: 10px;}
+
+
+
 @media only screen and (max-width: 767px) {
     .main-nav .nav>li {display: inline-block; }
     .main-nav .navbar-brand{width: 130px;}
