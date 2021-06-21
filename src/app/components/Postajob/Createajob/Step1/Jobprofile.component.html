@@ -216,10 +216,10 @@
           
         </div>
         <div>
-          <small class="text-danger error1" *ngIf="Minexp.invalid && Minexp.touched">         
+          <small class="error1" *ngIf="Minexp.invalid && Minexp.touched">         
             *Required
           </small>
-          <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">
+          <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
             It can't be greater than Max Experience!
           </small>
         </div>
@@ -230,10 +230,10 @@
    
       </div>
       <div>
-        <small class="text-danger error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
+        <small class="error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
           *Required
         </small>
-        <small class="text-danger error1" *ngIf="MinimumExperience> MaximumExperience">
+        <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
           It can't be less than Min Experience!
         </small>
       </div>
