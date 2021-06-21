@@ -68,10 +68,10 @@ newcategory;
 categories:any=[];
 KeyResponses:any=[];
 Industries:any=[];
-minExperience:number=3;
-maxExperience:number=6;
-MinimumExperience = 3;
-MaximumExperience = 6;
+minExperience:number;
+maxExperience:number;
+MinimumExperience:number;
+MaximumExperience:number;
 jobtitlelist:any=[];
 IndustryId:any;
 Industry:any;
@@ -500,7 +500,6 @@ domainminCalculation(exp)
 numberOnly(event): boolean {
   const charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
-    debugger
     return false;
   }
   return true;
@@ -566,7 +565,6 @@ public addkeyRole() {
     this.MinimumExperience = this.domminval;
 
    }
-   debugger
    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  
    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
    
@@ -595,6 +593,14 @@ public addkeyRole() {
           }, 3000);
           return false;
      }
+     if(this.getDomain.CustomerKeyMinExperienceId == 0 || Number(this.MinimumExperience) == 0)
+     {
+     this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
+     setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
+      return false;
+     }
     else
     {
       if(this.getDomain.CustomerKeyResponsebility > 0 && this.getDomain.CustomerKeyMinExperienceId != 0)
@@ -603,18 +609,11 @@ public addkeyRole() {
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();
-      this.MaximumExperience = 6;
-      this.MinimumExperience = 3;
+      this.MaximumExperience = 0;
+      this.MinimumExperience = 0;
       this.getDomain = new GetKeyRole();
       }
-      if(this.getDomain.CustomerKeyMinExperienceId == 0 || Number(this.MinimumExperience) == 0)
-      {
-      this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
-      setTimeout(() => {
-          this.toastr.dismissToast;
-      }, 3000);
-       return false;
-      }
+     
     }
 
 }

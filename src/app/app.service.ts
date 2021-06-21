@@ -211,11 +211,11 @@ export class AppService {
   salaryType = new BehaviorSubject(this.salType);
   currentSalaryTYpe = this.salaryType.asObservable();
 
-  pMinexp: number=36;
+  pMinexp: number=0;
     minExperience = new BehaviorSubject(this.pMinexp);
     currentminExp = this.minExperience.asObservable();
 
-    pMaxexp: number=60;
+    pMaxexp: number=0;
     maxExperience = new BehaviorSubject(this.pMaxexp);
     currentmaxExp = this.maxExperience.asObservable();
 
@@ -233,7 +233,7 @@ export class AppService {
   // textOPening = new BehaviorSubject('');
   // currenttextOPening = this.textOPening.asObservable();
 
-  myopenings: number;
+  myopenings: number=2;
   noofOpenings = new BehaviorSubject(this.myopenings);
   currentOpenings = this.noofOpenings.asObservable();
 
@@ -573,8 +573,8 @@ export class AppService {
      this.maxAnnualRate.next(10000);
      this.minHourlyRate.next(20);
      this.maxHourlyRate.next(100);
-     this.minExperience.next(36);
-     this.maxExperience.next(60);
+     this.minExperience.next(0);
+     this.maxExperience.next(0);
      this.location=[];
      this.reportingManager.next(new CustomerUsers());
      this.selectedskilltype.next('');
