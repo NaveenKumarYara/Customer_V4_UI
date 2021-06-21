@@ -21,7 +21,7 @@
  name="Indusrty" [(ngModel)]="Industry"
 (change)="updateJobIndustry($event)"  #Indusrty="ngModel" required>
 </ng-select>
-<small class="text-danger error1" *ngIf="Indusrty.invalid && Indusrty.touched">         
+<small class="error1" *ngIf="Indusrty.invalid && Indusrty.touched">         
   *Required
 </small>
 </div>
@@ -34,7 +34,7 @@
   placeholder="Select (or) Add Department"
   [(ngModel)]="Department"  (change)="updatePostionType($event)"  name="Departmen" #Departmen="ngModel" required>
 </ng-select>
-<small class="text-danger error1" *ngIf="Departmen.invalid && Departmen.touched">         
+<small class="error1" *ngIf="Departmen.invalid && Departmen.touched">         
   *Required
 </small>
 </div>
@@ -67,7 +67,7 @@
   placeholder="Select (or) Add Category"
   [(ngModel)]="Category"  (change)="updateJobCategory($event)" name="Categor" #Categor="ngModel" required>
 </ng-select>
-<small class="text-danger error1" *ngIf="Categor.invalid && Categor.touched">         
+<small class="error1" *ngIf="Categor.invalid && Categor.touched">         
   *Required
 </small>
 </div>
@@ -131,13 +131,29 @@
               <div class="col-md-3">
                 <div class="form-group">
                     <input class="form-control"  #Min="ngModel" name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                    
+                  
+                  </div>
+                  <div>
+                  <small class="error1" *ngIf="Min.invalid && Min.touched">         
+                    *Required
+                  </small>
+                  <small class="error1" *ngIf="minExperience> maxExperience">
+                    It can't be greater than Max Experience!
+                  </small>
                   </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <input class="form-control" name="max-exp"  #Max="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
                     
+                  </div>
+                  <div>
+                  <small class="error1" *ngIf="Max.invalid && Max.touched">         
+                    *Required
+                  </small>
+                  <small class="error1" *ngIf="minExperience> maxExperience">
+                    It can't be less than Min Experience!
+                  </small>
                   </div>
             </div>
               <div class="col-md-6">
