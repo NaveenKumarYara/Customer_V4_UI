@@ -22,8 +22,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience = 0;
-  maxexperience = 0;
+  minexperience:number;
+  maxexperience:number;
    maxexpval:any;
    minexpval:any;
   expYears: any = [];

@@ -330,11 +330,27 @@ NewKeyResponse(val)
     this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
     this.appService.currentminExp.subscribe(x => {
       let val = x/12;
-      this.minExperience = Number(val.toFixed(1));
+      if(val == 0)
+      {
+        this.minExperience = undefined;
+      }
+      if(val > 0)
+      {
+        this.minExperience = Number(val.toFixed(1));
+      }
+
     });
    this.appService.currentmaxExp.subscribe(y => {
       let value = y/12;
-      this.maxExperience = Number(value.toFixed(1));
+      if(value == 0)
+      {
+        this.maxExperience = undefined;
+      }
+      if(value > 0)
+      {
+        this.maxExperience = Number(value.toFixed(1));
+      }
+      
    } );
     this.keyslist = this.appService.getKeyRoleList();
    
@@ -609,8 +625,8 @@ public addkeyRole() {
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();
-      this.MaximumExperience = 0;
-      this.MinimumExperience = 0;
+      this.MaximumExperience = undefined;
+      this.MinimumExperience = undefined;
       this.getDomain = new GetKeyRole();
       }
      

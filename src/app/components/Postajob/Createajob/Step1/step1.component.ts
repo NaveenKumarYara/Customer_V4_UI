@@ -206,7 +206,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
 
 
-   if (this.jobProfile.minExperience === 0) {
+   if (this.jobProfile.minExperience === 0 || this.jobProfile.minExperience === undefined) {
     this.toastr.error('Minimum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -214,7 +214,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
         return false;
    }
 
-   if (this.jobProfile.maxExperience === 0) {
+   if (this.jobProfile.maxExperience === 0 || this.jobProfile.maxExperience === undefined) {
     this.toastr.error('Maximum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
