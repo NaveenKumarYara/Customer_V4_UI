@@ -5,9 +5,9 @@
     <div class="form-row row">
       <div class="col-md-6 form-group skill-name">
         <label for="">Domain Name</label>
-        <ng-select class="custom-style" id="domainquestion" [items]="domains | async" placeholder="e.g. Telecom"
-          (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" [typeahead]="selecteddomaininput"
-          [hideSelected]="true" [loading]="domaintitleloading" [(ngModel)]="selecteddomainname" #DomainName="ngModel"
+        <ng-select class="custom-style" id="domainquestion" [items]="domainsnew" placeholder="Select Domain"
+          (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" 
+          [hideSelected]="true"  [(ngModel)]="selecteddomainname" #DomainName="ngModel"
           name="Domain" required [virtualScroll]="true">
         </ng-select>
         <small class="text-danger error1" *ngIf="DomainName.invalid && DomainName.touched && DomainName.dirty">Required.</small>
