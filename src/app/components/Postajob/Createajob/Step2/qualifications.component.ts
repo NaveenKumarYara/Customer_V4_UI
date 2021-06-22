@@ -21,6 +21,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
   private subscription: Subscription;
   qualificationId: number;
   qualifications: Observable<Qualifications[]>;
+  qualificationsnew : Qualifications[]=[];
   selectedqualificationName: any;
   qualificationtitleloading = false;
   selectedqualificationinput = new Subject<string>();
@@ -45,6 +46,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
   public addQualification() {
     // this.selectedqualificationName = 1;
     if (this.eduForm.valid) {
+      debugger
     // const newqualification = new Qualifications();
     // newqualification.QualificationId = this.selectedQualification.QualificationId;
     // newqualification.QualificationName = this.selectedQualification.QualificationName;
@@ -118,7 +120,7 @@ educationExists(education, list) {​
 //    this.qualifications.subscribe(countries => {
 //     this.qualificationList = countries as Qualifications[];
 //       });
-  this.selectedQualification = this.convertObservable.find(s => s.QualificationId === id);
+  this.selectedQualification = this.qualificationsnew.find(s => s.QualificationId === id);
   this.newQualification = '';
   // const abc = this.qualifications
   //   .map(movies => movies.find(movie => movie.QualificationId === id));
@@ -153,6 +155,13 @@ educationExists(education, list) {​
     );
 
   }
+
+  GetQualificationsnew()
+  {
+    this.appService.getQualificationDetails().subscribe(dat=>{
+      this.qualificationsnew =dat;
+    })
+  }
   SetQualification(val) {
    // $('#responsibilitiesName').val(val.RolesAndResponsibilities);
     this.qualificationId = val;
@@ -162,10 +171,11 @@ educationExists(education, list) {​
 
   ngOnInit() {
     this.getQualifications();
+    this.GetQualificationsnew();
    // if (localStorage.getItem('jobId') != null) {
-    this.qualifications.subscribe(countries => {
-      this.convertObservable = countries as Qualifications[];
-    });
+    // this.qualificationsnew.subscribe(countries => {
+    //   this.convertObservable = countries as Qualifications[];
+    // });
     this.qualificationList = this.appService.getaddedQualifications();
     this.subscription = this.appService.qualificationsChanged
     .subscribe(
