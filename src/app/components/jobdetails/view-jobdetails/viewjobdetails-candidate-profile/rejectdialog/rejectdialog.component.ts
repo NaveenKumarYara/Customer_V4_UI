@@ -275,6 +275,12 @@ export class RejectdialogComponent implements OnInit {
       this.savenote.OtherInfo = this.savenote.OtherInfo;
       this.savenote.Doc =this.teammemberslist.map((x) => x.UserId).toString() + "," +this.data.CUserId.toString() +"," +this.customer.UserId.toString();
     }
+    if(this.isShown1==false&&this.isShown2==false)
+    {
+      this.savenote.toUserId = this.customer.UserId.toString();
+     this.savenote.isCandidate= false;
+     this.savenote.Doc = this.customer.UserId.toString();
+    }
 
     this.savenote.Comments = this.Comment;
     //this.savenote.statusId = 6;
