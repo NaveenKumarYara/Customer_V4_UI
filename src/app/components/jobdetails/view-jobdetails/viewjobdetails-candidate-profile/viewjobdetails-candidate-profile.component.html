@@ -1288,10 +1288,7 @@
             >
               <!-- applied -->
               <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
-              <ng-container   *ngIf="
-              (profile?.ResponseStatusId != 13 &&  profile?.IsConfirmed != false && this.sdetails?.planId !=  'enterprise')||
-              (profile?.ResponseStatusId != 14 &&  profile?.IsConfirmed != false  && this.sdetails?.planId !=  'enterprise')
-            ">
+              <ng-container   *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
                 <div
                 *ngIf="
                   profile?.ResponseStatusId === 4 ||
