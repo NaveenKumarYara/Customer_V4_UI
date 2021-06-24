@@ -5,29 +5,76 @@
         <div class="row flex flex-align-center flex-wrap">
           <div class="col-sm-6 left__col">
             <figure class="logo">
-              <img src="../../../../../assets/images/view-detail-logo-image.png" alt="">
+              <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
             </figure>
             <div class="summary__box">
               <h4>{{jobdetailscustomer?.JobInfo?.JobTitle}}</h4>
               <span class="status {{jobdetailscustomer?.JobInfo?.JobStatus}}">{{jobdetailscustomer?.JobInfo?.JobStatus}}</span>
               <ul class="inline__listing">
-                <li>Kia</li>
-                <li>Ankeny, IA, USA,Texas</li>
+                <li>{{jobdetailscustomer?.JobInfo?.CompanyName}}</li>
+                <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                  <li>{{location?.CityName}}</li>
+                </ng-container>
               </ul>
               <div class="inline__icon__listing">
                 <ul>
-                  <li class="icon__department">IT</li>
-                  <li class="icon__date">May 28, 2021</li>
-                  <li class="icon__position">Number of Positions <span>2</span></li>
+                  <ng-container *ngIf="jobdetailscustomer?.JobDepartments?.length!=0">
+                    <li class="icon__department">
+                    <ng-container *ngFor="let dept of jobdetailscustomer?.JobDepartments">                     
+                        {{dept?.DepartmentName}}                       
+                    </ng-container>
+                  </li>
+                </ng-container>
+            
+               <li class="icon__department" *ngIf="jobdetailscustomer?.JobDepartments?.length==0">
+                N/A
+              </li>              
+                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.ModifiedDate | date:'mediumDate'}}</li>
+                  <li class="icon__position">Number of Positions <span> {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-sm-6 right__col">
             <ul>
-              <li><img src="../../../../../assets/images/icon__01.png"><span>Corp-Corp</span></li>
-              <li><img src="../../../../../assets/images/icon__02.png"><span>$20-$100</span></li>
-              <li><img src="../../../../../assets/images/icon__03.png"><span>US-Citizen</span></li>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
+                <li><img src="../../../../../assets/images/icon__01.png"><span>
+                                     <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                         {{job.WorkAuthorizationType}}
+                   </ng-container>
+                  </span> </li>
+                                 </ng-container>
+                             
+                                 <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
+                                  <img src="../../../../../assets/images/icon__01.png"><span>  N/A</span>
+                                 </li>
+                                 <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">                   
+                                          <li><img src="../../../../../assets/images/icon__02.png"><span>
+                                          ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
+                                          ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
+                                     <!-- <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
+                                          On W2 </span>                      
+                                      <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
+                                          Contract By Length
+                                      </span> -->
+                                  </ng-container>
+
+                                  <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
+                                      <li><img src="../../../../../assets/images/icon__02.png"><span>
+                                        Open for Conversation.
+                                      </span></li>
+                                  </ng-container>
+                                  <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length>0">
+                                    <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                      <li><img src="../../../../../assets/images/icon__03.png"><span>{{imi?.ImmigrationStatus}}</span></li>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container
+                                    *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length===0">
+                                    <li><img src="../../../../../assets/images/icon__03.png"><span>
+                                        N/A
+                                      </span></li>
+                                </ng-container>
             </ul>
           </div>
         </div>
@@ -49,11 +96,24 @@
                     <div class="row d-flex flex-wrap">
                       <div class="col-sm-6">
                         <h6>Domain</h6>
-                        <p>Information Techology</p>
+                        <p *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                          {{domain?.DomainName}}
+                      </p>
+                      <p *ngIf="jobdetailscustomer?.JobRequiredDomain.length == 0">
+                          N/A
+                      </p>
                       </div>
                       <div class="col-sm-6">
                         <h6>Departments</h6>
-                        <p>Application Design</p>
+                        <ng-container *ngIf="jobdetailscustomer?.JobDepartments?.length!=0">
+                          <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
+                          {{dept?.DepartmentName}}
+                          </p>
+                      </ng-container>
+                  
+                  <p *ngIf="jobdetailscustomer?.JobDepartments?.length==0">
+                      N/A
+                  </p>
                       </div>
                     </div><!--/.row-->
                   </div><!--/.top-container-->
@@ -61,19 +121,22 @@
                   <div class="middle-container">
                     <div class="jdv-company-profile flex flex-justify-center flex-align-center">
                       <div class="company-logo flex flex-justify-center flex-align-center">
-                        <img src="../../../../../assets/images/view-detail-logo-image.png" alt="">
+                        <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
                       </div>
                       <div class="company-title">
-                        <h3>Google</h3>
-                        <h2>Web Designer</h2>
+                        <h3>{{jobdetailscustomer?.JobInfo?.CompanyName}}</h3>
+                        <h2>{{jobdetailscustomer?.JobInfo?.JobTitle}}</h2>
                       </div>
                     </div><!--/.jdv-company-profile-->
                     
                     <div class="inline-icon-list">
                       <ul class="flex flex-wrap flex-align-center flex-justify-center">
-                        <li><span class="jdv-icon jdv-icon-map">Icon</span>Texas</li>
-                        <li><span class="jdv-icon jdv-icon-work">Icon</span>7-8 Years</li>
-                        <li><span class="jdv-icon jdv-icon-date">Icon</span>27 Nov, 2020</li>
+                        <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                          <li><span class="jdv-icon jdv-icon-map">Icon</span>{{location?.CityName}}</li>
+                        </ng-container>                      
+                        <li><span class="jdv-icon jdv-icon-work">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience |monthsPipe}} -
+                          {{jobdetailscustomer?.JobInfo?.MaxExperience |monthsPipe  }} Years</li>
+                        <li><span class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate | date:'mediumDate'}}</li>
                       </ul>
                     </div><!--/.inline-icon-list-->
                     
@@ -82,37 +145,88 @@
                       <ul class="flex flex-wrap flex-justify-center">
                         <li>
                           <span class="jdv-icon jdv-icon-status">Icon</span>
-                          <h4>Full Time</h4>
+                          <h4>
+                            <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                              {{job.WorkAuthorizationType}}
+        </ng-container>
+                        </h4>
+                        <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
+                            N/A
+                        </h4>             
                         </li>
                         <li>
-                          <span class="jdv-icon jdv-icon-ribbon"><span class="number">5</span></span>
+                          <span class="jdv-icon jdv-icon-ribbon"><span class="number">{{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></span>
                           <h4>Positions</h4>
                         </li>
-                        <li>
-                          <span class="jdv-icon jdv-icon-auth">Icon</span>
-                          <h4>W2-Auth</h4>
-                        </li>
+                        <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length>0">
+                          <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                            <li> <span class="jdv-icon jdv-icon-auth">Icon</span>
+                              <h4>{{imi?.ImmigrationStatus}}</h4>
+                          </ng-container>
+                      </ng-container>
+                      <ng-container
+                          *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length===0">
+                          <li>
+                            <span class="jdv-icon jdv-icon-auth">Icon</span>
+                            <h4>N/A</h4>
+                          </li>
+                      </ng-container>
                       </ul>
                     </div>
                   
                     <div class="two-grid-icon">
                       <div class="row">
+                        <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
+                          <div class="col-sm-6">
+                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                              <h4>${{jobdetailscustomer?.JobInfo?.MaximumSalary}}/{{jobdetailscustomer?.JobInfo?.SalaryType}}
+                                  <span *ngIf="jobdetailscustomer?.JobInfo?.SalaryType == 'Hourly' ">(167
+                                      hours/month)</span>
+                                  <span *ngIf="jobdetailscustomer?.JobInfo?.SalaryType == 'Annualy' ">(2000
+                                      hours/Yearly)</span>
+                              </h4>
+
+                              <nav class="icon-navigation">
+                                  <ul>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                      </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                              class="jdv-icon jdv-icon-food">Icon</span>
+                                      </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                      </li>
+                                  </ul>
+                              </nav>
+                          </div>
+                      </ng-container>
+                      <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
+                          <div class="col-sm-6">
+                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                              <h4> Open for Conversation.</h4>
+                          </div>
+                      </ng-container><!--/.col-sm-6-->
                         <div class="col-sm-6">
-                          <span class="jdv-icon jdv-icon-dollar">Icon</span>
-                          <h4>$10/hour<span>(280 hours/month)</span></h4>
-                          <nav class="icon-navigation">
-                            <ul>
-                              <li data-toggle="tooltip" data-placement="bottom" title="Health"><span class="jdv-icon jdv-icon-heart">Icon</span></li>
-                              <li data-toggle="tooltip" data-placement="bottom" title="Food"><span class="jdv-icon jdv-icon-food">Icon</span></li>
-                              <li data-toggle="tooltip" data-placement="bottom" title="Travel"><span class="jdv-icon jdv-icon-bus">Icon</span></li>
-                            </ul>
-                          </nav>
-                        </div><!--/.col-sm-6-->
-                        <div class="col-sm-6">
-                          <figure>
-                            <img src="../../../../../assets/images/progress.png" alt="">
-                          </figure>
-                          <h4>Profile Matching</h4>
+                          <h4>Profile Percentage</h4>
+                          <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862"
+                          width="70" height="70" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="circle-chart__background" stroke="#efefef"
+                              stroke-width="2" fill="none" cx="16.91549431"
+                              cy="16.91549431" r="15.91549431"></circle>
+                          <circle class="circle-chart__circle" stroke="#448afa"
+                              stroke-width="2" stroke-dasharray="75,100"
+                              stroke-linecap="round" fill="none" cx="16.91549431"
+                              cy="16.91549431" r="15.91549431"></circle>
+                          <g class="circle-chart__info">
+                              <text class="circle-chart__percent" x="16.91549431" y="18.5"
+                                  alignment-baseline="central" text-anchor="middle"
+                                  font-size="8">0%</text>
+                          </g>
+                      </svg>
+
+                     
+                         
                         </div><!--/.col-sm-6-->
                       </div><!--/.row-->
                     </div><!--/.two-grid-icon-->
@@ -125,69 +239,13 @@
                         
                         <div class="scrollbar-container">
                           <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 master" *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills">
                               <div class="col-container">
-                                <h5>UX Design</h5>
-                                <h6>Exp : 2 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4 beginner">
-                              <div class="col-container">
-                                <h5>Web Design</h5>
-                                <h6>Exp : 1.5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4 good">
-                              <div class="col-container">
-                                <h5>UI</h5>
-                                <h6>Exp: 5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4 professional">
-                              <div class="col-container">
-                                <h5>Css3</h5>
-                                <h6>Exp : 2 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4 master">
-                              <div class="col-container">
-                                <h5>Jquery</h5>
-                                <h6>Exp : 1.5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4">
-                              <div class="col-container">
-                                <h5>Javascript</h5>
-                                <h6>Exp: 5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            
-                            <div class="col-sm-4 professional">
-                              <div class="col-container">
-                                <h5>Css3</h5>
-                                <h6>Exp : 2 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4 master">
-                              <div class="col-container">
-                                <h5>Jquery</h5>
-                                <h6>Exp : 1.5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
-                            
-                            <div class="col-sm-4">
-                              <div class="col-container">
-                                <h5>Javascript</h5>
-                                <h6>Exp: 5 Years</h6>
-                              </div><!--/.col-container-->
-                            </div><!--/.col-sm-4-->
+                                  <h5>{{skill?.SkillName}}</h5>
+                                  <h6>Exp : {{skill?.MaximumExp / 12 | number:'1.0-1'}}
+                                      Years</h6>
+                              </div>
+                          </div>
                           </div><!--/.row-->
                         </div>
                         
@@ -203,15 +261,14 @@
                       </div><!--/.jdv-skills-->
                       
                       <div class="jdv-key-section">
-                        <div class="section__title">
+                        <div class="section__title" *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                           <h4>Key Responsibility</h4>
                         </div>
                         
                         <ul class="flex flex-wrap flex-align-equal">
-                          <li>Buissness Analysis</li>
-                          <li>Collect required info</li>
-                          <li>Documentation</li>
-                          <li>Reporting</li>
+                          <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                            <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses"><span> {{r?.Code}} </span></li>
+                        </ng-container>
                         </ul>
                       </div>
                       
@@ -225,11 +282,11 @@
             <div class="revamp__jd__description">
               <div class="col__container description__container">
                 <div class="title__container"><span>Description</span></div>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
-                  looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-                  letters, as opposed to using 'Content here, content here', making it looklike readable English.</p>
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-                  in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                <p [innerHtml]="jobdetailscustomer?.JobInfo?.JobDescription">
+                </p>
+                <p *ngIf="jobdetailscustomer?.JobInfo?.JobDescription==''">
+                  Description yet to provide.
+                </p>
                 <span class="icon icon__description">Icon</span>
               </div><!-- /.col__container -->
     
@@ -238,15 +295,13 @@
                 <h4>Key Responsibility</h4>
                 <div class="revamp__tag__list">
                   <ul>
-                    <li><a href="#">IT</a></li>
-                    <li><a href="#">Education</a></li>
-                    <li><a href="#">Tele Communication</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Healthcare</a></li>
-                    <li><a href="#">Hardware</a></li>
-                    <li><a href="#">Biotechnology</a></li>
-                    <li><a href="#">Aviation</a></li>
-                    <li><a href="#">Pharma</a></li>
+                    <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
+                      <ng-container *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
+                        <li><a  href="javascript:void(0)" > {{r?.Code}} </a> </li>
+                      </ng-container>
+                      
+                  </ng-container>
+                   
                   </ul>
                 </div>
                 <span class="icon icon__responsiblity">Icon</span>
@@ -260,14 +315,26 @@
                       <div class="box__container">
                         <span class="icon icon__department">Icon</span>
                         <h4>Department</h4>
-                        <p>Tele Communication</p>
+                        <ng-container *ngIf="jobdetailscustomer?.JobDepartments?.length!=0">
+                          <p *ngFor="let dept of jobdetailscustomer?.JobDepartments">
+                          {{dept?.DepartmentName}}
+                          </p>
+                      </ng-container>
+                  
+                  <p *ngIf="jobdetailscustomer?.JobDepartments?.length==0">
+                       Yet to provide.
+                  </p>
                       </div><!-- /.box__container -->
                     </div><!-- /.col-sm-4 -->
                     <div class="col-sm-4">
                       <div class="box__container">
                         <span class="icon icon__department">Icon</span>
                         <h4>Category</h4>
-                        <p>Block Chain</p>
+                        <ng-container *ngFor="let i of jobdetailscustomer?.CustomerJobCategory">
+                          <p>
+                              {{i?.Code}}
+                          </p>
+                      </ng-container>
                       </div><!-- /.box__container -->
                     </div><!-- /.col-sm-4 -->
                   </div><!-- /.row -->
@@ -283,7 +350,15 @@
                       <div class="box__container">
                         <span class="icon icon__technical">Icon</span>
                         <h4>Technical Team For Screening</h4>
-                        <h5>IT</h5>
+                        <ng-container *ngIf="jobdetailscustomer?.TechnicalTeam.length!=0">
+                          <p *ngFor="let team of jobdetailscustomer?.TechnicalTeam">
+                          {{team?.FirstName}} {{team?.LastName}}
+                      </p>
+                      </ng-container>
+                
+                  <p *ngIf="jobdetailscustomer?.TechnicalTeam.length==0">
+                    Not yet Added.
+                  </p>
                       </div><!-- /.box__container -->
                     </div>
     
@@ -291,7 +366,16 @@
                       <div class="box__container">
                         <span class="icon icon__education">Icon</span>
                         <h4>Education Criteria</h4>
-                        <h5>Masters</h5>
+                        <h5 *ngIf="jobdetailscustomer?.EducationDetails.length===0">
+                          N/A
+                      </h5>
+                    
+                          <ng-container *ngIf="jobdetailscustomer?.EducationDetails.length>0">
+                              <h5 *ngFor="let education of jobdetailscustomer?.EducationDetails">
+
+                              {{education?.QualificationName}}
+                          </h5>
+                          </ng-container>
                       </div><!-- /.box__container -->
                     </div>
     
@@ -299,7 +383,7 @@
                       <div class="box__container">
                         <span class="icon icon__person">Icon</span>
                         <h4>Type of Person</h4>
-                        <h5>Dominance</h5>
+                        <h5> Comming Soon!!</h5>
                       </div><!-- /.box__container -->
                     </div>
     
@@ -307,7 +391,16 @@
                       <div class="box__container">
                         <span class="icon icon__manager">Icon</span>
                         <h4>Reporting Manager</h4>
-                        <h5>Ravi Kumar</h5>
+                        <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
+                          <h5 *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
+                              {{rpt?.FirstName}} {{rpt?.LastName}}
+                          </h5>
+                       
+                      </ng-container>
+                 
+                  <h5 *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length===0">
+                   Not yet Added.
+                  </h5>
                       </div><!-- /.box__container -->
                     </div>
                   </div>
@@ -872,7 +965,7 @@
                 </path>
               </svg>
               <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation; let i=index">
-                <h5 class="location">{{location?.CityName}},{{location?.StateName}}</h5>
+                <h5 class="location">{{location?.CityName}}</h5>
               </ng-container>
             </div>
             <div class="h-19">
