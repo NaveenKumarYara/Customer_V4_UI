@@ -334,15 +334,20 @@
 /*New CSS Part Starts
 =====================================================*/
 .mat__revamp { overflow:hidden; max-height:100vh; overflow-y:auto; margin:-24px -24px 0; }
-.revamp__view__job__details .top__section { background: #f9fcfe; margin:0 0 30px; padding:30px; }
+.revamp__view__job__details .top__section { background: #f9fcfe; margin:0 0 30px; padding:30px; position: relative; }
 .revamp__view__job__details .top__section .left__col { padding-left: 124px; width:56%; }
-.revamp__view__job__details .top__section .right__col { width: 44%; text-align: right; }
+.revamp__view__job__details .top__section .left__col .action__icon { position:absolute; right:0; top:0; }
+.revamp__view__job__details .top__section .left__col .action__icon li { display:inline-block; vertical-align: middle; }
+.revamp__view__job__details .top__section .left__col .action__icon li .btn { padding:0; background:none; }
+.revamp__view__job__details .top__section .left__col .action__icon li .btn:focus, .revamp__view__job__details .top__section .right__col .btn__dark:focus { outline: none; border:0; box-shadow: none; }
+.revamp__view__job__details .top__section .right__col { width: 44%; text-align: right; position: static; }
+.revamp__view__job__details .top__section .right__col .btn__dark { background:#6a7e9c; position: absolute; right:30px; top:10px; font-size: 12px; padding: 2px 10px 3px; color:#fff !important; border:0; }
 .revamp__view__job__details .top__section .right__col li { text-align: center; }
 .revamp__view__job__details .top__section .right__col span { display:block }
 .revamp__view__job__details .top__section .logo { width:80px; position:absolute; left:20px; top:0; }
 .revamp__view__job__details .top__section .logo figure { margin:0;  }
 .revamp__view__job__details .top__section .logo img { width:100%; height:auto; background:#fff; box-shadow: 3px 0 5px rgb(0 0 0 / 10%); }
-.revamp__view__job__details .top__section .summary__box h4 { font-size:18px; color:#52809d; margin:0 0 10px; font-weight: 600; }
+.revamp__view__job__details .top__section .summary__box h4 { font-size:18px; color:#52809d; margin:0 0 10px; font-weight: 600; padding-right:20px; }
 .revamp__view__job__details .top__section ul { margin:0; padding: 0; list-style: none; }
 .revamp__view__job__details .top__section .inline__listing li { display:inline-block; font-size:13px; color:#6e819e; position: relative; }
 .revamp__view__job__details .top__section .inline__listing li:not(:first-child) { position: relative; margin-left:10px; padding-left:10px; }
@@ -352,11 +357,11 @@
 .revamp__view__job__details .top__section .inline__icon__listing li.icon__date:before { background-position:-28px -8px; }
 .revamp__view__job__details .top__section .inline__icon__listing li.icon__position:before { background-position:-48px -7px; }
 .revamp__view__job__details .top__section .inline__icon__listing li:not(:first-child) { margin-left: 10px; }
-.revamp__view__job__details .top__section .inline__icon__listing { margin-top:10px; padding-top: 10px; border-top:1px solid #d4d6d8 }
+.revamp__view__job__details .top__section .inline__icon__listing { margin-top:6px;; padding-top: 6px; border-top:1px solid #d4d6d8 }
 .revamp__view__job__details .top__section .inline__icon__listing span { margin-left: 5px; width:24px; height:24px; border-radius: 50%; background: #a4d975; font-size: 12px; text-align: center; vertical-align: middle; line-height: 24px; color:#fff; display: inline-block; }
 .revamp__view__job__details .top__section .right__col li { display: inline-block; font-size: 10px; color:#6e819e; margin-left: 10px; }
 .revamp__view__job__details .top__section .right__col li:first-child { margin:0; }
-.revamp__view__job__details .top__section .left__col .status { position: absolute; right:15px; top:0;  }
+.revamp__view__job__details .top__section .left__col .status { display: inline-block; vertical-align: middle; margin-left:5px;  }
 .revamp__view__job__details  .middle__section .nav-tabs { padding: 5px 3px 5px 5px; width:734px; border:1px solid #e0e3ef; border-radius: 32px; margin:0 auto 30px;  }
 .revamp__view__job__details  .middle__section .nav-tabs>li { width:33.33%; margin:0; text-align: center; }
 .revamp__view__job__details  .middle__section .nav-tabs>li>a { border:0; font-size:16px; font-weight: 600; border-radius: 32px; color:#6e819e; }
@@ -369,22 +374,28 @@
 .revamp__jd__description  .title__container { position: absolute; width:37px; height:190px; background: url(../../../../../assets/images/bg__stripe.png) 0 0 no-repeat; left: -54px; top:0; display:flex; align-items:center; justify-content: center; }
 .revamp__jd__description  .title__container.blue { background:url(../../../../../assets/images/bg__stripe_01.png) 0 0 no-repeat; }
 .revamp__jd__description  .title__container.gray { background:url(../../../../../assets/images/bg__stripe_02.png) 0 0 no-repeat; }
-.revamp__jd__description  .title__container span { display: block; transform: rotate(90deg); font-size: 16px; color:#fff; text-transform: uppercase; font-weight: 600; }
+.revamp__jd__description  .title__container span { display: block; transform: rotate(90deg); font-size: 16px; white-space: nowrap; color:#fff; text-transform: uppercase; font-weight: 600; }
 .revamp__jd__description  .icon { position:absolute; right:0; top:30px; font-size:0; background:url(../../../../../assets/images/view-job-sprites.png) 0 0 no-repeat; }
 .revamp__jd__description  .icon.icon__description { width:58px; height: 64px; background-position:-72px -7px; }
 .revamp__jd__description  .icon.icon__responsiblity { width:64px; height: 64px; background-position:-145px -6px; }
 .revamp__jd__description  .icon.icon__settings { width:60px; height: 65px; background-position:-220px -6px; }
+.revamp__jd__description  .icon.icon__star { width:50px; height: 47px; background-position:-291px -77px; }
+.revamp__jd__description  .icon.icon__comment { width:62px; height: 67px; background-position:-354px -76px; }
 .revamp__jd__description  .icon.icon__skills { width:75px; height: 66px; background-position:-501px -14px; }
-.revamp__jd__description p:last-child { margin:0; }
+
+.revamp__jd__description p { margin:0; }
 .revamp__jd__description h4 { font-size: 16px; color:#6e819e; font-weight: 600; }
-.revamp__jd__description .revamp__tag__list ul { margin:0; padding: 0; list-style: none; }
-.revamp__jd__description .revamp__tag__list li { display: inline-block; margin: 0 1px 8px 1px; }
-.revamp__jd__description .revamp__tag__list li a { background:#f5f6fa; border:1px solid #e0e3ef; border-radius: 3px; color:#9eabc0; font-size:14px; padding: 0 3px; }
+.revamp__jd__description .revamp__tag__list ul { margin:0 -10px; padding: 0; list-style: none; display: flex; align-items: stretch; flex-wrap: wrap; }
+.revamp__jd__description .revamp__tag__list li { float:left; width:33.33%; margin: 0 0 8px; padding:0 4px; }
+.revamp__jd__description .revamp__tag__list li a { background:#f5f6fa; border:1px solid #e0e3ef; border-radius: 3px; color:#9eabc0; font-size:14px; padding: 5px 10px; height:100%; display: block; font-weight: 600; }
+.revamp__jd__description .revamp__tag__list li a span { display:block; font-size:10px; font-weight: 400; }
 .revamp__jd__description .revamp__tag__list li a:hover { background:#447afa; color:#fff; border-color:#447afa; }
 .revamp__jd__description .icon__small__grid__section { width:100%; }
 .revamp__jd__description .icon__small__grid__section .box__container { position:relative; border-radius: 3px; border:1px solid #e0e3ef; padding:20px 20px 20px 52px; height:100%;  }
+.revamp__jd__description .icon__small__grid__section .box__container .experience { font-size: 10px; }
 .revamp__jd__description .icon__small__grid__section h4 { margin:0; }
 .revamp__jd__description .icon__small__grid__section .icon { right:auto; left:20px; width:25px; height:28px; background:url(../../../../../assets/images/view-job-sprites.png) -72px -83px no-repeat; }
+.revamp__jd__description .icon__big__grid__container { width:100%; }
 .revamp__jd__description .icon__big__grid__container .box__container { text-align:center; position:relative; border-radius: 3px; border:1px solid #e0e3ef; padding:20px; height:100%;  }
 .revamp__jd__description .icon__big__grid__container .icon { position: relative; right:auto; top:auto; margin:0 auto 15px; background:url(../../../../../assets/images/view-job-sprites.png) 0 0 no-repeat; display:block; }
 .revamp__jd__description .icon__big__grid__container h4 { margin:0; }
@@ -392,7 +403,10 @@
 .revamp__jd__description .icon__big__grid__container .icon.icon__education{ width:35px; height:50px; background-position:-356px -14px;}
 .revamp__jd__description .icon__big__grid__container .icon.icon__person{ width:51px; height:51px; background-position:-401px -14px;}
 .revamp__jd__description .icon__big__grid__container .icon.icon__manager{ width:37px; height:52px; background-position:-460px -14px;}
-
+.revamp__jd__description .icon__big__grid__container .icon.icon__job { width:26px; height: 22px; background-position:-144px -80px; }
+.revamp__jd__description .icon__big__grid__container .icon.icon__priority { width:26px; height: 26px; background-position:-176px -80px; }
+.revamp__jd__description .icon__big__grid__container .icon.icon__date { width:25px; height: 22px; background-position:-212px -80px; }
+.revamp__jd__description .icon__big__grid__container .icon.icon__duration { width:24px; height: 26px; background-position:-246px -79px; }
 
 .jdv-listing .col-container { box-shadow:4px 4px 20px rgba(158,171,192,0.2); border-radius:12px; background:#fff; border:1px solid #eee; height:100%; overflow:hidden; }
 .jdv-listing .job-leftcard{ width:470px; margin:0 auto; }
@@ -429,7 +443,7 @@
 .job-leftcard .two-grid-icon { padding:40px 0; }
 .job-leftcard .two-grid-icon .row { width:400px; margin:0 auto; }
 .job-leftcard .two-grid-icon .col-sm-6 { text-align:center; }
-.job-leftcard .two-grid-icon .col-sm-6 h4 { font-size:14px; font-weight:700; }
+.job-leftcard .two-grid-icon .col-sm-6 h4 { font-size:14px; font-weight:700; margin:0; }
 .job-leftcard .two-grid-icon .col-sm-6 h4 span { display:block; font-size:10px; font-weight:400; margin:5px 0 0; }
 .job-leftcard .two-grid-icon .jdv-icon-dollar { display:block; margin:0 auto 15px; }
 .jdv-gray-section { background:#f5f6fa; border-top:1px solid #eeeeee; }
@@ -444,16 +458,16 @@
 .jdv-listing .row { margin:0 -7px; }
 
 .jdv-stauts-listing ul { margin:0; padding:0; list-style:none; text-align:center; }
-.jdv-stauts-listing li { margin:0 5px; padding-left:15px; font-size:10px; font-weight:400; display:inline-block; position:relative; }
+.jdv-stauts-listing li { margin:0 5px; padding-left:15px; font-size:10px; font-weight:400; display:inline-block; vertical-align: middle; position:relative; }
 .jdv-stauts-listing li:first-child { margin-left:0; }
-.jdv-stauts-listing li:before { content:""; display:block; width:10px; height:10px; background:#c0c0c0; position:absolute; left:0; top:2px; }
+.jdv-stauts-listing li:before { content:""; display:block; width:10px; height:10px; background:#c0c0c0; position:absolute; left:0; top:5px; }
 .jdv-stauts-listing li.beginner:before { background:#66dab5; }
 .jdv-stauts-listing li.good:before { background:#afc8f1; }
 .jdv-stauts-listing li.professional:before { background:#66a1ff; }
 .jdv-stauts-listing li.master:before { background:#2e7dfb; }
 
 .jdv-listing .col-sm-4 h5 {  font-size: 12px; color: #6e819e; font-weight: 400; margin: 0; }
-.jdv-listing .col-sm-4 h6 { font-size: 10px; color: #9eabc0; font-weight: 300; margin: 0; }
+.jdv-listing .col-sm-4 h6 { font-size: 10px; color: #9eabc0; font-weight: 300; margin: 0; line-height: 1.35; }
 
 
 .jdv-icon-dollar { width: 55px;height: 80px;background-position: -120px -128px; }
@@ -509,12 +523,20 @@
 
 .revamp__jd__skills .row { margin:0 -7px; }
 .revamp__jd__skills .col-sm-3 { padding:0 7px; margin:7px 0;  }
-.revamp__jd__skills .col-sm-3 h5 { font-size:12px; color:#6e819e; font-weight:400; margin:0 0 4px; }
+.revamp__jd__skills .col-sm-3 h5 { font-size:12px; color:#6e819e; font-weight:400; margin:0; }
 .revamp__jd__skills .col-sm-3 h6 { width:40%; font-size:10px; color:#9eabc0; font-weight:300; margin:0; font-family:"Poppins",Arial, Helvetica, sans-serif; }
 
 .revamp__jd__skills .star-rating .star.on { padding:0; }
 .revamp__jd__skills h4 { margin:0 }
 .revamp__jd__skills .skills__row { margin:20px 0 0; }
 
-
+.revamp__jd__description  .review__check__list .row { margin:0 -5px; }
+.revamp__jd__description  .review__check__list .col-sm-4 { margin:10px 0 0; padding:0 5px; }
+.revamp__jd__description  .review__check__list .box__container {  position: relative;  border-radius: 3px; border: 1px solid #e0e3ef; padding: 10px 10px 10px 50px; height: 100%; }
+.revamp__jd__description  .review__check__list .box__container:before { content:""; position: absolute; left:20px; width:13px; height: 10px; background: url(../../../../../assets/images/view-job-sprites.png) -9px -28px no-repeat; top:50%; margin-top:-5px; }
+.revamp__jd__description  .review__check__list .box__container h4 { margin:0; }
 .revamp__jd__description .col__container.xs-padding { padding:30px 24px; }
+
+.revamp__jd__description  .revamp__uneven__grid .box__container { position: relative;  border-radius: 3px; border: 1px solid #e0e3ef; padding: 20px; height: 100%;  text-align: center; display:flex; flex-wrap:wrap; align-items: center; } 
+.revamp__jd__description  .revamp__uneven__grid .box__container .icon {  position:relative; left:0; top:0; width:52px; height: 38px; background:url(../../../../../assets/images/view-job-sprites.png) -9px -44px no-repeat; display: block; margin:0 auto; }
+.revamp__jd__description  .revamp__uneven__grid .box__container h4 { flex:0 0 100%; max-width:100%; text-align: center; margin:0; }
