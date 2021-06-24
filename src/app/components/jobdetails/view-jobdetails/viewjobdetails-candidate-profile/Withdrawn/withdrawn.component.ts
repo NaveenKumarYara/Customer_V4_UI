@@ -281,6 +281,14 @@ onItemDeleted(index){
      this.savenote.Doc = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customer.UserId.toString();
     }
 
+    if(this.isShown1==false&&this.isShown2==false)
+    {
+      this.savenote.toUserId = this.customer.UserId.toString();
+     this.savenote.isCandidate= false;
+     this.savenote.OtherInfo = 'Withdrawn';
+     this.savenote.Doc = this.customer.UserId.toString();
+    }
+
     this.savenote.Comments=this.selectedComments;
     this.savenote.statusId = 9;
    

@@ -116,7 +116,7 @@
                     <label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
                   </div> -->
                         <h4>OR</h4>
-                        <input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here">
+                        <input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2">
                     </div>
                 </div>
                 <small class="text-danger radio-error1" *ngIf="openings.invalid && openings.touched">Number of Positions are required!</small>

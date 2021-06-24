@@ -45,7 +45,7 @@ import { CKEditorModule } from "ckeditor4-angular";
 import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 @NgModule({
   imports: [
     CommonModule,
@@ -55,6 +55,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
     CKEditorModule,
     AngularDateTimePickerModule,
     NgSelectModule,
+    NgDatepickerModule,
     RouterModule.forChild([
       {
         path: "",

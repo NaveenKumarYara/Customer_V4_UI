@@ -105,7 +105,7 @@ import { AdvanceSearchComponent } from './components/managejobs/manage-jobs/adva
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { MatAutocompleteModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
@@ -188,6 +188,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     MatSelectModule,
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
+    NgDatepickerModule,
     MatInputModule,
     // ManagejobsModule,
     FileUploadModule,

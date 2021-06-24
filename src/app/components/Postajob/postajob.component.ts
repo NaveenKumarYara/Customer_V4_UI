@@ -103,8 +103,8 @@ export class PostajobComponent implements OnInit {
   this.appService.maxAnnualRate.next(10000);
   this.appService.minHourlyRate.next(20);
   this.appService.maxHourlyRate.next(100);
-  this.appService.minExperience.next(36);
-  this.appService.maxExperience.next(60);
+  this.appService.minExperience.next(0);
+  this.appService.maxExperience.next(0);
   this.appService.location=[];
   this.appService.reportingManager.next(new CustomerUsers());
   this.appService.selectedskilltype.next('');

@@ -309,7 +309,7 @@
                                                     </ngx-mat-select-search>
                                                     <!-- (click)="ChnageLocations(bank$event.target.value)"  -->
                                                     <mat-option *ngFor="let bank of filteredBanksMulti | async"
-                                                        (click)="changeLocation(bank.CityId)" [value]="bank">
+                                                        (click)="changeLocation(bank.CityName)" [value]="bank">
                                                         {{bank.CityName}}
                                                     </mat-option>
                                                 </mat-select>
@@ -335,7 +335,7 @@
                                                     </ngx-mat-select-search>
                                                     <!-- (click)="ChnageLocations(bank$event.target.value)"  -->
                                                     <mat-option *ngFor="let bank of filteredBanksMulti | async"
-                                                        (click)="changeLocation(bank.CityId)" [value]="bank">
+                                                        (click)="changeLocation(bank.CityName)" [value]="bank">
                                                         {{bank.CityName}}
                                                     </mat-option>
                                                 </mat-select>

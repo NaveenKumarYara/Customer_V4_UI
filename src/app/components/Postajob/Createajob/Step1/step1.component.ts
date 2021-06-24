@@ -166,7 +166,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
    }
 
-   if (this.jobProfile.IndustryId === '' || null) {
+   if (this.jobProfile.IndustryId === '' || this.jobProfile.IndustryId === null) {
     this.toastr.error('Please Select Business Domain!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -176,7 +176,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
    }
 
    
-   if (this.jobProfile.DepartmentId === '' || null) {
+   if (this.jobProfile.DepartmentId === '' || this.jobProfile.DepartmentId === null) {
     this.toastr.error('Please Select Department!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -185,7 +185,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
 
-   if (this.jobProfile.CategoryId === '' || null) {
+   if (this.jobProfile.CategoryId === '' || this.jobProfile.CategoryId ===  null) {
     this.toastr.error('Please Select Category!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -194,7 +194,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
 
-   if (this.jobProfile.TitleId === '' || null) {
+   if (this.jobProfile.TitleId === '' || this.jobProfile.TitleId === null) {
     this.toastr.error('Please Select JobTitle!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -206,7 +206,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
 
 
-   if (this.jobProfile.minExperience === 0) {
+   if (this.jobProfile.minExperience === 0 || this.jobProfile.minExperience === undefined) {
     this.toastr.error('Minimum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -214,7 +214,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
         return false;
    }
 
-   if (this.jobProfile.maxExperience === 0) {
+   if (this.jobProfile.maxExperience === 0 || this.jobProfile.maxExperience === undefined) {
     this.toastr.error('Maximum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
