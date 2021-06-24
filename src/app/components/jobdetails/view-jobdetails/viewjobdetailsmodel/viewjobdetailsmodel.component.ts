@@ -28,15 +28,18 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   customerId: any;
   userId: any;
  jobid: number;
+ customer: any;
  deactivate = new deactivate();
- getcompanybenfit: GetCompanyBenefit[];
+ getcompanybenfit: GetCompanyBenefit[]=[];
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,
         private _vcr: ViewContainerRef, private router: Router,
-     private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
+     private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.jobid = this.data.JobId;
+      debugger
    }
 
 
@@ -60,14 +63,14 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   
 
 
-  PopulateJobdetail (customerId, jobid) {
+  PopulateJobdetail () {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
-      //debugger
+      debugger
       this.jobdetailscustomer = res;
     });
 
 }
-PopulateJobComments (jobid) {
+PopulateJobComments () {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
     this.jobComments = res;
   });
@@ -86,12 +89,12 @@ changeJobStat(job, val) {
     this.appService.deactivateJob(this.deactivate)
     .subscribe(
     data => {
-      this.PopulateJobdetail(this.deactivate.customerId, this.deactivate.jobId);
+      this.PopulateJobdetail();
       // this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
   },
     error => console.log(error));
 }
-populateCompanyBenfits(customerId) {
+populateCompanyBenfits() {
   return this.jobdetailsservice.getCompanyBenfits(this.customerId).subscribe(res => {
       this.getcompanybenfit = res;
   });
@@ -115,9 +118,9 @@ editJob(jobId, active) {
 }
 
 ngOnInit() {
-  this.PopulateJobdetail(this.customerId, this.jobid);
-  this.PopulateJobComments(this.jobid);
-  this.populateCompanyBenfits(this.customerId);
+  this.PopulateJobdetail();
+  this.PopulateJobComments();
+  this.populateCompanyBenfits();
   // console.log('abc');
 
   /*tabs animation*/

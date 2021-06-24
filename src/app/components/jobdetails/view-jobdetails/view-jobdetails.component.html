@@ -15,7 +15,7 @@
                                 </svg>
                             </a>
                             <h3 class="title mr-top"
-                                (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">
+                                (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
                                 {{jobdetailsbasicinfo?.JobTitle}}</h3>
                             <div class="status {{jobdetailsbasicinfo?.JobStatus}}">
                                 {{jobdetailsbasicinfo?.JobStatus}}
@@ -92,7 +92,7 @@
                     <div class="sm-d-inline sm-f-r">
                         <!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
                         <button class="btn btn-filled" mat-button
-                            (click)="ViewJobdetailsModel(jobdetailsbasicinfo.CustomerId,jobdetailsbasicinfo.JobId)">View
+                            (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View
                             Job Detail</button>
                     </div>
 

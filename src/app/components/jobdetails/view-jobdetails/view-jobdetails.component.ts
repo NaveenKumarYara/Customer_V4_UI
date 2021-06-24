@@ -223,16 +223,16 @@ export class ViewJobdetailsComponent implements OnInit {
   // toggleChild() {
   //   this.showVar = !this.showVar;
   //    }
-  ViewJobdetailsModel(customerId, viewJobJobId) {
-    sessionStorage.setItem('customerId', JSON.stringify(customerId));
-    sessionStorage.setItem('viewJobJobId', JSON.stringify(viewJobJobId));
+  ViewJobdetailsModel(viewJobJobId) {
     this.dialog.open(ViewjobdetailsmodelComponent,
       {
         width: '1000px',
         position: {right : '0px'},
         height : '750px',
-        // closeOnNavigation:false,
-        // disableClose:true
+        data: {
+          JobId: viewJobJobId,
+          // status : this.statusid
+        }
       }
     );
 
