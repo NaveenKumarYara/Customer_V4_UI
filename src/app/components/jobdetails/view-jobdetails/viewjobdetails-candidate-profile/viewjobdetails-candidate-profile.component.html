@@ -2,8 +2,8 @@
   <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-comment"></i>
   </button> -->
-  <!-- <button class="chat__btn__icon msg_btn_value" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
-  <button class="note__btn__icon icon" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  (click)="callSkills(profile.ProfileId, 2)" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+  <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
+  <button class="note__btn__icon icon"  (click)="callSkills(profile.ProfileId, 2)" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-clipboard"></i>
   </button>
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
