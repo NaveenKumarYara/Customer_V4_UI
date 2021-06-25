@@ -252,7 +252,10 @@
                         
                         <div class="scrollbar-container">
                           <div class="row">
-                            <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills">
+                            <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills;let i = index">
+                              <ng-container *ngIf="i<6">
+
+                           
                               <div class="col-sm-4 beginner" *ngIf="skill?.SkillType === true">
                                 <div class="col-container">
                                     <h5>{{skill?.SkillName}}</h5>
@@ -269,6 +272,7 @@
                               </div>
                           </div>
                             </ng-container>
+                          </ng-container>
                            <!--/.col-sm-4-->
                           </div><!--/.row-->
                         </div>
@@ -276,7 +280,7 @@
                         <div class="jdv-stauts-listing">
                           <ul>
                             <li class="beginner">Mandatory</li>
-                            <li class="professional">Soft</li>
+                            <!-- <li class="professional">Soft</li> -->
                             <li class="master">Optional</li>
                           </ul>
                         </div><!--/.jdv-status-listing-->
