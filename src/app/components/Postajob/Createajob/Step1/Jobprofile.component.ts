@@ -112,6 +112,7 @@ NewIndustry(val)
         this.IndustryId = data;
         this.Industry = val;
         this.appService.updateJobIndustry(this.Industry);
+        this.appService.updateJobIndustryId(this.IndustryId);
       }
     })
 }
@@ -128,6 +129,7 @@ NewPosition(val)
         this.DepartmentId = data;
         this.Department = val;
         this.appService.updateJobPositionType(this.Department);
+        this.appService.updateJobPositionTypeId(this.DepartmentId);
       }
     })
 }
@@ -144,6 +146,7 @@ NewCategory(val)
         this.CategoryId = data;
         this.Category = val;
         this.appService.updateJobCategoryNew(this.Category);
+        this.appService.updateJobCategoryNewId(this.CategoryId);
       }
     })
 }
@@ -158,7 +161,8 @@ NewJobTitle(val)
       {
         this.TLoading = false;
         this.TitleId = data;
-        this.Title = val;
+        this.Title = val;       
+        this.appService.updateJobtitleId(this.TitleId);
         this.appService.updateJobtitle(this.Title);
       }
     })
