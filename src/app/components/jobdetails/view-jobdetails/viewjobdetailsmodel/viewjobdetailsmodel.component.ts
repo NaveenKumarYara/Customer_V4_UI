@@ -39,7 +39,6 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
       this.jobid = this.data.JobId;
-      debugger
    }
 
 
@@ -90,7 +89,6 @@ changeJobStat(job, val) {
     .subscribe(
     data => {
       this.PopulateJobdetail();
-      // this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
   },
     error => console.log(error));
 }
@@ -107,6 +105,7 @@ editJob(jobId, active) {
   }, 3000);
   } else {
     this.complete = 4;
+    this.dialog.closeAll();
     this.router.navigate(['/app-createajob/', {jobId} ]);
     localStorage.setItem('completed', JSON.stringify(this.complete));
     localStorage.setItem('EditViewJob', 'yes');

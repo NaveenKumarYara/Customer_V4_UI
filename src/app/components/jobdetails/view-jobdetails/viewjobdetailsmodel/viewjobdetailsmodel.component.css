@@ -513,7 +513,7 @@
 
 .revamp__jd__skills .jdv-skills { width:100%; padding:0; }
 
-.revamp__jd__skills .jdv-skills .col-container { height:100%; border-radius:3px; padding:5px 10px; background:#fff; overflow:hidden; box-shadow:4px 4px 20px rgb(158 171 192 / 20%);  position: relative;  }
+.revamp__jd__skills .jdv-skills .col-container { height:100%; border-radius:3px; padding:5px 10px; background:#fff; overflow:hidden; box-shadow:4px 4px 20px rgb(158 171 192 / 20%);  position: relative; }
 .revamp__jd__skills .jdv-skills .beginner .col-container { border-left-color:#66dab5; }
 .revamp__jd__skills.jdv-skills .good .col-container { border-left-color:#afc8f1; }
 .revamp__jd__skills .jdv-skills .professional .col-container { border-left-color:#66a1ff; }

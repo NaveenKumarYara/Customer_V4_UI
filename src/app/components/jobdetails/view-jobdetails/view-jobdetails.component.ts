@@ -224,7 +224,7 @@ export class ViewJobdetailsComponent implements OnInit {
   //   this.showVar = !this.showVar;
   //    }
   ViewJobdetailsModel(viewJobJobId) {
-    this.dialog.open(ViewjobdetailsmodelComponent,
+    const viewdialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
       {
         width: '1000px',
         position: {right : '0px'},
@@ -235,6 +235,10 @@ export class ViewJobdetailsComponent implements OnInit {
         }
       }
     );
+    viewdialogRef.afterClosed().subscribe(result => {
+      this.populateJobsBasicInfo();
+      console.log('Dialog result: ${result}');
+    });
 
   }
   ClearActiveClasses()
@@ -467,7 +471,7 @@ export class ViewJobdetailsComponent implements OnInit {
    updateLoadMore() {
      this.loadMore = false;
    }
-  populateJobsBasicInfo(customerId, jobid) {
+  populateJobsBasicInfo() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
       this.closedjob = this.jobdetailsbasicinfo.IsOpen;
@@ -568,7 +572,7 @@ export class ViewJobdetailsComponent implements OnInit {
       .subscribe(
       data => {
        // alert("success")
-        this.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
+        this.populateJobsBasicInfo();
         this.populateJobsStaticInfo(this.deactivate.jobId, 1);
     },
       error => console.log(error));
@@ -596,7 +600,7 @@ export class ViewJobdetailsComponent implements OnInit {
      // this.loadMoreStat=0;
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
-    this.populateJobsBasicInfo(this.customerId, this.jobid);
+    this.populateJobsBasicInfo();
     //this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
     if(this.ProfileId!=null||this.ProfileId!=undefined)
