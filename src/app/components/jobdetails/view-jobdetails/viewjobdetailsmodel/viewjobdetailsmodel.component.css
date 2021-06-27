@@ -344,9 +344,9 @@
 .revamp__view__job__details .top__section .right__col .btn__dark { background:#6a7e9c; position: absolute; right:30px; top:10px; font-size: 12px; padding: 2px 10px 3px; color:#fff !important; border:0; }
 .revamp__view__job__details .top__section .right__col li { text-align: center; }
 .revamp__view__job__details .top__section .right__col span { display:block }
-.revamp__view__job__details .top__section .logo { width:80px; position:absolute; left:20px; top:0; }
+.revamp__view__job__details .top__section .logo { width:80px; height:80px; background:#fff; box-shadow: 3px 0 5px rgb(0 0 0 / 10%);  display: flex; align-items: center; justify-content: center; position:absolute; left:20px; top:0; }
 .revamp__view__job__details .top__section .logo figure { margin:0;  }
-.revamp__view__job__details .top__section .logo img { width:100%; height:auto; background:#fff; box-shadow: 3px 0 5px rgb(0 0 0 / 10%); }
+.revamp__view__job__details .top__section .logo img { width:60px; height:auto; }
 .revamp__view__job__details .top__section .summary__box h4 { font-size:18px; color:#52809d; margin:0 0 10px; font-weight: 600; padding-right:20px; }
 .revamp__view__job__details .top__section ul { margin:0; padding: 0; list-style: none; }
 .revamp__view__job__details .top__section .inline__listing li { display:inline-block; font-size:13px; color:#6e819e; position: relative; }
@@ -391,10 +391,11 @@
 .revamp__jd__description .revamp__tag__list li a span { display:block; font-size:10px; font-weight: 400; }
 .revamp__jd__description .revamp__tag__list li a:hover { background:#447afa; color:#fff; border-color:#447afa; }
 .revamp__jd__description .icon__small__grid__section { width:100%; }
-.revamp__jd__description .icon__small__grid__section .box__container { position:relative; border-radius: 3px; border:1px solid #e0e3ef; padding:20px 20px 20px 52px; height:100%;  }
+.revamp__jd__description .icon__small__grid__section .box__container { position:relative; border-radius: 3px; border:1px solid #e0e3ef; padding:20px 20px 20px 62px; height:100%;  }
 .revamp__jd__description .icon__small__grid__section .box__container .experience { font-size: 10px; }
 .revamp__jd__description .icon__small__grid__section h4 { margin:0; }
 .revamp__jd__description .icon__small__grid__section .icon { right:auto; left:20px; width:25px; height:28px; background:url(../../../../../assets/images/view-job-sprites.png) -72px -83px no-repeat; }
+.revamp__jd__description .icon__small__grid__section .icon.icon__domain { background-position: -105px -83px; width:29px; height:28px; }
 .revamp__jd__description .icon__big__grid__container { width:100%; }
 .revamp__jd__description .icon__big__grid__container .box__container { text-align:center; position:relative; border-radius: 3px; border:1px solid #e0e3ef; padding:20px; height:100%;  }
 .revamp__jd__description .icon__big__grid__container .icon { position: relative; right:auto; top:auto; margin:0 auto 15px; background:url(../../../../../assets/images/view-job-sprites.png) 0 0 no-repeat; display:block; }
@@ -409,18 +410,23 @@
 .revamp__jd__description .icon__big__grid__container .icon.icon__duration { width:24px; height: 26px; background-position:-246px -79px; }
 
 .jdv-listing .col-container { box-shadow:4px 4px 20px rgba(158,171,192,0.2); border-radius:12px; background:#fff; border:1px solid #eee; height:100%; overflow:hidden; }
-.jdv-listing .job-leftcard{ width:470px; margin:0 auto; }
+.jdv-listing .job-leftcard{ width:500px; margin:0 auto 30px; }
 .jdv-listing .job-leftcard .top-container { border-bottom:1px solid #eee; padding:20px; }
 .jdv-listing .job-leftcard .top-container p { margin:0; font-size:12px; color:#448afb; line-height:1.35; }
 .jdv-listing .job-leftcard .top-container h6 { margin:0 0 5px;  font-size:11px; color:#9eabc0; line-height:1.15; }
+.jdv-listing .job-leftcard .top-container .col-sm-6 { padding-left: 20px; }
 .jdv-listing .job-leftcard .top-container .col-sm-6:last-child { text-align:right; }
-.jdv-listing .jdv-company-profile { padding:20px 0;  }
-.jdv-listing .jdv-company-profile .company-logo { width:80px; height:80px; box-shadow:0 0 5px rgba(0,0,0,0.15); padding:0; }
+.jdv-listing .job-leftcard .top-container .col-sm-6 i { position: absolute; left:0; top:0; color: #9eabc0; }
+.jdv-listing .job-leftcard .top-container .col-sm-6:last-child i { right: 0; }
+.jdv-listing .job-leftcard .top-container .col-sm-6:last-child { padding-left: 15px; padding-right: 20px; }
+.jdv-listing .jdv-company-profile { padding:20px 0; width:360px; margin:0 auto; }
+.jdv-listing .jdv-company-profile .company-logo { width:80px; height:80px; flex:0 0 80px; max-width:80px; display: flex; align-items: center; justify-content: center; box-shadow:0 0 5px rgba(0,0,0,0.15); padding:0; }
+.jdv-listing .jdv-company-profile .company-logo img {  width:60px; height: auto; }
 .jdv-listing .jdv-company-profile .company-title { padding:0 0 0 20px; }
 .jdv-listing .jdv-company-profile .company-title h3 { font-size:16px; color:#9eabc0; margin:0; }
 .jdv-listing .jdv-company-profile .company-title h2 { font-size:28px; color:#6e819e; font-weight:700; } 
 .inline-icon-list ul { margin:0; padding:0 20px; list-style:none; font-size:0; text-align:center; }
-.inline-icon-list li { font-size:14px; color:#9eabc0; font-weight:300; position:relative; display:inline-block; border-left:1px solid #eee; margin:0 0 0 20px; padding:0 0 0 20px; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; display:flex; -webkit-align-items:center; -moz-align-items:center; -ms-align-items:center; -ms-flex-align:center; align-items:center; }
+.inline-icon-list li { font-size:14px; color:#9eabc0; font-weight:300; position:relative; display:inline-block; border-left:1px solid #eee; margin:0 0 0 10px; padding:0 0 0 10px; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; display:flex; -webkit-align-items:center; -moz-align-items:center; -ms-align-items:center; -ms-flex-align:center; align-items:center; }
 .inline-icon-list li:first-child { margin:0; padding:0; border-left:0;  }
 .inline-icon-list .jdv-icon { margin-right:10px; }
 
@@ -441,11 +447,11 @@
 .icon-listing .number  { width:49px; height:49px; display:block; font-size:30px; font-weight:700; color:#6e819e; line-height:52px; }
 
 .job-leftcard .two-grid-icon { padding:40px 0; }
-.job-leftcard .two-grid-icon .row { width:400px; margin:0 auto; }
+.job-leftcard .two-grid-icon .row { width:400px; margin:0 auto; display: flex; }
 .job-leftcard .two-grid-icon .col-sm-6 { text-align:center; }
 .job-leftcard .two-grid-icon .col-sm-6 h4 { font-size:14px; font-weight:700; margin:0; }
-.job-leftcard .two-grid-icon .col-sm-6 h4 span { display:block; font-size:10px; font-weight:400; margin:5px 0 0; }
-.job-leftcard .two-grid-icon .jdv-icon-dollar { display:block; margin:0 auto 15px; }
+.job-leftcard .two-grid-icon .col-sm-6 h4 span { display:block; font-size:10px; font-weight:400; margin:0 0 5px; line-height: 1.25; }
+.job-leftcard .two-grid-icon .jdv-icon-dollar, .job-leftcard .two-grid-icon svg { display:block; margin:0 auto 15px; }
 .jdv-gray-section { background:#f5f6fa; border-top:1px solid #eeeeee; }
 .jdv-listing .jdv-skills .col-container { border-radius:0; padding:5px 10px; overflow:hidden; border-left:10px solid #c0c0c0;  }
 .jdv-listing .jdv-skills .beginner .col-container { border-left-color:#66dab5; }
@@ -453,7 +459,7 @@
 .jdv-listing .jdv-skills .professional .col-container { border-left-color:#66a1ff; }
 .jdv-listing .jdv-skills .master .col-container { border-left-color:#448afa; }
 .jdv-skills { padding:20px; }
-.jdv-skills .scrollbar-container { height:120px; } 
+.jdv-skills .scrollbar-container { height:120px; overflow: hidden; overflow-y: auto; } 
 .jdv-listing .jdv-skills .col-sm-4 { padding: 0 7px; margin: 7px 0; }
 .jdv-listing .row { margin:0 -7px; }
 
@@ -466,9 +472,10 @@
 .jdv-stauts-listing li.professional:before { background:#66a1ff; }
 .jdv-stauts-listing li.master:before { background:#2e7dfb; }
 
-.jdv-listing .col-sm-4 h5 {  font-size: 12px; color: #6e819e; font-weight: 400; margin: 0; }
-.jdv-listing .col-sm-4 h6 { font-size: 10px; color: #9eabc0; font-weight: 300; margin: 0; line-height: 1.35; }
-
+.jdv-listing .col-sm-4 h5, .jdv-key-section span {  font-size: 12px; color: #6e819e; font-weight: 400; margin: 0; }
+.jdv-listing .col-sm-4 h6, .jdv-key-section em { font-size: 10px; color: #9eabc0; font-weight: 300; margin: 0; line-height: 1.35; }
+.jdv-key-section em { display: block; font-style: normal; margin: 0 0 5px; }
+.jdv-key-section span { margin:0 0 5px; font-weight: 600; }
 
 .jdv-icon-dollar { width: 55px;height: 80px;background-position: -120px -128px; }
 .jdv-icon-employee { width:28px; height:22px; background-position:-188px -125px;  }
@@ -505,10 +512,11 @@
 .jdv-key-section { border-top:1px solid #eee; }
 .jdv-key-section .section__title h4 { font-size:14px; }
 .jdv-key-section { padding:20px; }
+.jdv-key-section .col__container { box-shadow:4px 4px 20px rgba(158,171,192,0.2); padding:5px 10px; background: #fff; padding: 5px 10px 5px 40px; }
 
 .jdv-key-section ul { margin:0; padding:0; list-style:none; }
-.jdv-key-section li { font-size:14px; float:left; width:50%; color:#6e819e; padding:0 14px 0 30px; margin:5px 0 0; position:relative; }
-.jdv-key-section li:before { content:""; width:18px; height:18px; background:url(../../../../../assets/images/revamp__detail__view/jdv-sprites.png) -10px -80px no-repeat; position:absolute; left:0; top:0; }
+.jdv-key-section li { font-size:14px; float:left; width:50%; color:#6e819e;  margin:5px 0 0; position:relative; }
+.jdv-key-section li .col__container:before { content:""; width:18px; height:18px; background:url(../../../../../assets/images/revamp__detail__view/jdv-sprites.png) -10px -80px no-repeat; position:absolute; left:10px; top:10px; }
 .jdv-key-section .section__title h4, .jdv-skills .section__title h4 { font-size:14px; color:#6e819e; font-weight:600; margin: 0 0 10px; }
 
 .revamp__jd__skills .jdv-skills { width:100%; padding:0; }
@@ -524,11 +532,11 @@
 .revamp__jd__skills .row { margin:0 -7px; }
 .revamp__jd__skills .col-sm-3 { padding:0 7px; margin:7px 0;  }
 .revamp__jd__skills .col-sm-3 h5 { font-size:12px; color:#6e819e; font-weight:400; margin:0; }
-.revamp__jd__skills .col-sm-3 h6 { width:40%; font-size:10px; color:#9eabc0; font-weight:300; margin:0; font-family:"Poppins",Arial, Helvetica, sans-serif; }
+.revamp__jd__skills .col-sm-3 h6 {  font-size:10px; color:#9eabc0; font-weight:300; margin:0; font-family:"Poppins",Arial, Helvetica, sans-serif; }
 
 .revamp__jd__skills .star-rating .star.on { padding:0; }
 .revamp__jd__skills h4 { margin:0 }
-.revamp__jd__skills .skills__row { margin:20px 0 0; }
+.revamp__jd__skills .skills__row { margin:20px 0 0; flex:0 0 100%; max-width: 100%; }
 
 .revamp__jd__description  .review__check__list .row { margin:0 -5px; }
 .revamp__jd__description  .review__check__list .col-sm-4 { margin:10px 0 0; padding:0 5px; }
@@ -540,3 +548,57 @@
 .revamp__jd__description  .revamp__uneven__grid .box__container { position: relative;  border-radius: 3px; border: 1px solid #e0e3ef; padding: 20px; height: 100%;  text-align: center; display:flex; flex-wrap:wrap; align-items: center; } 
 .revamp__jd__description  .revamp__uneven__grid .box__container .icon {  position:relative; left:0; top:0; width:52px; height: 38px; background:url(../../../../../assets/images/view-job-sprites.png) -9px -44px no-repeat; display: block; margin:0 auto; }
 .revamp__jd__description  .revamp__uneven__grid .box__container h4 { flex:0 0 100%; max-width:100%; text-align: center; margin:0; }
+
+
+
+@media only screen and (max-width:1023px) {
+  .revamp__view__job__details .top__section .left__col, .revamp__view__job__details .top__section .right__col { flex:0 0 100%; max-width:100%; }
+  .revamp__view__job__details .middle__section .nav-tabs { width:90%; }
+  .revamp__view__job__details .top__section .right__col { text-align: center; margin: 20px 0 0; }
+	.revamp__jd__description .revamp__uneven__grid .col-sm-9, .revamp__jd__description .revamp__uneven__grid .col-sm-3  { width:50%; }
+	.revamp__jd__description .revamp__tag__list li { width:100%; }
+	.revamp__jd__description .icon__small__grid__section .row { margin:5px 0 0; }
+	.revamp__jd__description .icon__small__grid__section .col-sm-4, .revamp__jd__description  .review__check__list .col-sm-4, .revamp__jd__description .icon__big__grid__container .col-sm-3 { width: 50%; padding:0 5px; margin:10px 0 0; }
+	.revamp__jd__description .icon__small__grid__section .box__container { padding:15px 15px 15px 52px; }
+	.revamp__jd__description .icon__big__grid__container .row, .revamp__jd__description  .review__check__list .row { margin:0 -5px; }
+	.revamp__jd__skills .col-sm-3, .jdv-listing  .jdv-skills .col-sm-4 { width:50%;  }
+}
+
+@media only screen and (max-width:767px) {
+	.revamp__jd__description .revamp__uneven__grid .col-sm-9, .revamp__jd__description .revamp__uneven__grid .col-sm-3  { width:100%; }
+	.revamp__jd__description .icon__small__grid__section .col-sm-4, .revamp__jd__description  .review__check__list .col-sm-4, .revamp__jd__description .icon__big__grid__container .col-sm-3, .revamp__jd__skills .col-sm-3, .jdv-listing  .jdv-skills .col-sm-4 { width: 100%; }
+	.jdv-listing .job-leftcard { width:90%; }
+	.revamp__view__job__details .top__section .logo { width:60px; left:0; top:0; height:60px; position: relative; margin:0 0 10px; }
+	.revamp__view__job__details .top__section .logo img { width:40px;  }
+	.revamp__view__job__details .top__section .summary__box h4 { font-size:16px;  }
+	.revamp__view__job__details .top__section .left__col { padding-left:15px; }
+	.revamp__view__job__details .top__section .inline__icon__listing li { margin-right:0; margin-left:5px;  }
+	.revamp__view__job__details .top__section .inline__icon__listing li:first-child { margin-right:5px; }
+	.revamp__view__job__details .top__section .right__col li { margin-left:5px; }
+	.revamp__view__job__details .middle__section .nav-tabs > li { width:100%; }
+	.jdv-listing .job-leftcard .top-container .col-sm-6:last-child { text-align: left; margin:10px 0 0; }
+	.jdv-listing .jdv-company-profile { padding:20px; width:90%; }
+	.jdv-listing .jdv-company-profile .company-logo { width:60px; height:60px; max-width:60px; flex:0 0 60px; }
+	.jdv-listing .jdv-company-profile .company-logo img { width:40px; }
+	.jdv-listing .jdv-company-profile .company-title h3 { font-size:14px; }
+	.jdv-listing .jdv-company-profile .company-title h2 { font-size:20px; }
+	.inline-icon-list li {  margin:5px 0 0; padding:0; border-left:0; }
+	.job-leftcard .two-grid-icon { padding:20px 0; }
+	.job-leftcard .two-grid-icon .col-sm-6 { width:100%; border-left:0; }
+	.job-leftcard .two-grid-icon .col-sm-6:last-child { padding-top:10px; border-top:1px solid #eee;	margin-top:10px; }
+	.jdv-listing .jdv-skills .col-sm-4 { width:100%; }
+	.jdv-key-section li { width:100%; }
+	.job-leftcard .two-grid-icon .row { flex-direction: column; width:100%; }
+	.revamp__jd__description .col__container { padding:20px }
+	.revamp__jd__description { padding:0 20px 0 54px; }
+	.revamp__jd__description .icon { display: block; margin:0 auto; position: relative; top:0; }
+	.revamp__jd__description .revamp__tag__list li { padding:0 10px; }
+	.revamp__jd__description .icon__small__grid__section .box__container { text-align: center; padding:15px; }
+	.revamp__jd__description .icon__small__grid__section .icon { left:0; }
+    .icon__hide { display:none !important; }
+    .revamp__view__job__details .top__section .right__col .btn__dark { right:60px; top:30px; }
+    .jdv-listing .job-leftcard .top-container .col-sm-6 { width:100%; }
+    .inline-icon-list ul { flex-direction: column; }
+    .revamp__view__job__details .middle__section .nav-tabs { border-radius: 18px; }
+}
+

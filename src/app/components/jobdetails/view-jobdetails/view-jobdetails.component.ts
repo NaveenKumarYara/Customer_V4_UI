@@ -228,7 +228,8 @@ export class ViewJobdetailsComponent implements OnInit {
       {
         width: '1000px',
         position: {right : '0px'},
-        height : '750px',
+        height: '750px',
+        panelClass:'revamp__view__job__swiper',
         data: {
           JobId: viewJobJobId,
           // status : this.statusid
@@ -467,7 +468,7 @@ export class ViewJobdetailsComponent implements OnInit {
    loader() {
       this.profileLoader = false;
    }
-
+  
    updateLoadMore() {
      this.loadMore = false;
    }

@@ -26449,3 +26449,29 @@ input[name='browsers']{width: 1200px;}
 
 .revamp__jd__skills .star-rating .star { padding:0 !important; }
 .revamp__jd__skills .star-rating { background:none; width:60% !important; position: relative !important; top:0 !important; right:0 !important; }
+
+
+.revamp__view__job__swiper .mat-dialog-container { height: 100vh; }
+.revamp__share__modal  .modal-header  h4{ color:#6e819e; font-weight:600;  }
+.revamp__share__modal  .modal-header  .layout.layout--btn { margin-left: auto; }
+.revamp__share__modal .modal-body .top__container { text-align: center; }
+.revamp__share__modal .modal-body h4, .revamp__share__modal .modal-body h3 { font-size:18px; margin:0 0 20px; color:#6a7e9c }
+.revamp__share__modal .modal-body  p { color:#6a7e9c; font-size:14px; margin:0 0 15px; }
+.revamp__share__modal .modal-body  p.highlight { font-size:12px; color:#8a6d3b; }
+.revamp__share__modal .link__input .btn-filled { position: absolute; right:0; top:0; padding:6px 30px; }
+.revamp__share__modal .top__container .btn { padding:0; width:32px; height:32px; background:none; }
+.revamp__share__modal .top__container .social ul { margin:0; padding:0; list-style:none; }
+.revamp__share__modal .top__container .social li { display: inline-block; }
+.revamp__share__modal .top__container .social li i { font-size:24px; }
+.revamp__share__modal .top__container .social li i.fa { color:#1877f2; }
+.revamp__share__modal .top__container .social li i.fa.fa-twitter { color:#1da1f2; }
+.revamp__share__modal .top__container .social li i.fa.fa-linkedin { color:#405de6; }
+.revamp__share__modal .top__container .social li .btn:focus { outline:none; }
+.revamp__share__modal .or { display:block; position: relative; }
+.revamp__share__modal .or em { font-style: normal; padding: 5px 20px; background:#fff; display: inline-block; position:relative; z-index: 10; }
+.revamp__share__modal .or:before { content:""; position: absolute; left:0; top:50%; width:90%; right:0; margin:0 auto; height:1px; background:#eee; }
+.revamp__share__modal  .btn-filled { padding:5px 12px; min-width: inherit; }
+
+@media only screen and (max-width:767px) {
+    .revamp__view__job__swiper { max-width:90vw !important; }
+}
