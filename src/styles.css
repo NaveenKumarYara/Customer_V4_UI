@@ -26474,4 +26474,8 @@ input[name='browsers']{width: 1200px;}
 
 @media only screen and (max-width:767px) {
     .revamp__view__job__swiper { max-width:90vw !important; }
+    .page--manage-jobs .filters .search-toggle{margin-right: 15px;}
+    .page--manage-jobs .filters .styled-select-box{min-width: 55%;}
+    .page--manage-jobs .filters .pull-right{width: 99%;  float: left!important; margin-left: -15px; margin-top: 15px;}
+    .page--manage-jobs .notification{margin-top: -65px;   margin-right: -32px!important; float: right;}
 }
