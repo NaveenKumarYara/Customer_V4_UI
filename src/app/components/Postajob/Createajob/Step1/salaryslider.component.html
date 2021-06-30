@@ -14,8 +14,9 @@
         </div>
          <!--Salary Open 14-12-2020-->
         <div class="checkbox sal-open">
-          <label>
-            <input type="checkbox" [(ngModel)]="flag" name="flag"  [checked]="flag" (change)="checkValue(flag ?true:false)"> Please check if you want Salary range to be Open?
+          <label class="custom__checkbox lg-select">
+            <input type="checkbox" [(ngModel)]="flag" name="flag"  [checked]="flag" (change)="checkValue(flag ?true:false)"> 
+              <span class="checkmark">Please check if you want Salary range to be Open?</span>
           </label>
         </div>
         <!-- <div class="checkbox">
