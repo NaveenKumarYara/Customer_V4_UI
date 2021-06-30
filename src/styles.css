@@ -26471,6 +26471,12 @@ input[name='browsers']{width: 1200px;}
 .revamp__share__modal .or em { font-style: normal; padding: 5px 20px; background:#fff; display: inline-block; position:relative; z-index: 10; }
 .revamp__share__modal .or:before { content:""; position: absolute; left:0; top:50%; width:90%; right:0; margin:0 auto; height:1px; background:#eee; }
 .revamp__share__modal  .btn-filled { padding:5px 12px; min-width: inherit; }
+.page--job-details .card .meta>div{white-space: nowrap;}
+.interview-time-group .ngb-tp{margin-top: -10px;}
+.interview-time-group .ngb-tp .ng-star-inserted{margin: 0px;  padding: 0px;}
+.interview-time-group .ngb-tp .ng-star-inserted:focus{outline:0px; border:0px;}
+.interview-time-group .ngb-tp .input-group-btn{border-radius: 0px!important;}
+.interview-time-group .ngb-tp .form-control{    height: 35px; margin: 5px;}
 
 @media only screen and (max-width:767px) {
     .revamp__view__job__swiper { max-width:90vw !important; }
