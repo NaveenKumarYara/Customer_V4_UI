@@ -541,7 +541,8 @@
           <a
             href="javascript:void(0)"
             title="References"
-            *ngIf="profile?.DiscResult !== '0'"
+            *ngIf="profile?.DiscResult !== '0' &&
+            profile.CompanyName == null"
             (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)"
           >
             <img
@@ -554,7 +555,8 @@
 
           <a
             href="javascript:void(0)"
-            *ngIf="profile?.DiscResult === '0'"
+            *ngIf="profile?.DiscResult === '0' &&
+            profile.CompanyName == null"
             title="References"
             (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)"
           >
