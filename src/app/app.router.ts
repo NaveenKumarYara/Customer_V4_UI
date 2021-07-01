@@ -194,7 +194,7 @@ const appRoutes: Routes = [
   // { path: "app-steps-step3-reportingmanager", component: ReportingManagerComponent },
   // { path: "app-steps-step3-recriuter", component: recriuterComponent },
   // { path: "app-steps-step3-teammembers", component: TeammembersComponent },
-  // { path: "app-steps-step3-uploadvideoprofile", component: UploadvideoprofileComponent },
+   { path: "app-steps-step3-uploadvideoprofile", component: UploadvideoprofileComponent },
   // { path: "app-steps-step4-step1summary", component: Step1SummaryComponent },
   // { path: "app-steps-step4-step2summary", component: Step2SummaryComponent },
   // { path: "app-steps-step4-step3summary", component: Step3SummaryComponent },
