@@ -59,6 +59,10 @@
                                        account?</a></span></small>
                            </div>
                            <div class="spt-2">
+
+                              <recaptcha
+                              [formControl]="myRecaptcha"
+                            ></recaptcha>
                               <!-- <button type="submit" class="btn2 pull-right">Login </button> -->
                               <!--Button loader style-->
                               <button type="submit" class="btn2 pull-right" [class.spinner]="loading"

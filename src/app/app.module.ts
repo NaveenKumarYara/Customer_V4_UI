@@ -99,6 +99,7 @@ import { NgxImgModule } from 'ngx-img';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 // import { CmModule } from './components/candidatemanager/cm.module';
 import { FileUploadModule } from 'ng2-file-upload';
+import { RecaptchaModule } from 'angular5-google-recaptcha';
 // import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
 import { PostajobModule } from './components/Postajob/postajob.module';
 import { AdvanceSearchComponent } from './components/managejobs/manage-jobs/advance-search/advance-search.component';
@@ -182,6 +183,9 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     NgSelectModule,
     HttpClientModule,
     AngularMultiSelectModule,
+    RecaptchaModule.forRoot({
+      siteKey: '6Ld6CWobAAAAAGUdYvl8v1vRb0g6PGzCuaVp8jWB',
+  }),
     MatExpansionModule,
     MatCardModule,
     MatDialogModule,
