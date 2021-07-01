@@ -577,7 +577,7 @@
 
           <!--Achievement Icon-->
           <!--With dialog-->
-          <a href="javascript:void(0)" title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0"  title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
             <img
               src="../../../../../assets/images/card-icons/achievement-badge.png"
               width="50"
@@ -585,6 +585,15 @@
               alt="achievement-badge"
             />
           </a>
+
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===0"  title="Achievements">
+          <img
+            src="../../../../../assets/images/card-icons/no-achievement.png"
+            width="50"
+            height="50"
+            alt="achievement-badge"
+          />
+        </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
                     <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                         alt="achievement-badge">
