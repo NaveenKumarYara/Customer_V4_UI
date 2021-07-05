@@ -63,8 +63,8 @@
               </li>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
                 <li><img src="../../../../../assets/images/icon__01.png"><span>
-                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
-                      {{job.WorkAuthorizationType}}
+                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
+                        {{job.WorkAuthorizationType}}                  
                     </ng-container>
                   </span> </li>
               </ng-container>
@@ -190,10 +190,12 @@
                           <h4>Positions</h4>
                         </li>
                         <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length > 0">
+                          <li> <span class="jdv-icon jdv-icon-auth">Icon</span>
                           <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                            <li> <span class="jdv-icon jdv-icon-auth">Icon</span>
+                            
                               <h4>{{imi?.ImmigrationStatus}}</h4>
                           </ng-container>
+                          </li>
                         </ng-container>
                         <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length === 0">
                           <li>
