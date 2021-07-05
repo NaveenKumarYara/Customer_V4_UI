@@ -18,7 +18,7 @@ import {  GetCompanyCulture } from '../../../../models/GetCompanyCulture';
 export class CultureComponent implements OnInit {
 
 //@Input() getcompanycluture:GetCompanyCulture;
-getcompanycluture:GetCompanyCulture[];
+getcompanycluture:GetCompanyCulture[]=[];
 customer: any;
 customerId: any;
 imageSrc: string;

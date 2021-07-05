@@ -19,7 +19,7 @@ declare var $: any;
 export class WhitepaperComponent implements OnInit {
 //@Input() getcompanywhitepaper: GetCompanyWhitePaper;
 //@Input() getcompanynewsinfo: GetCompanyNewsInfo;
-getcompanywhitepaper: GetCompanyWhitePaper[];
+getcompanywhitepaper: GetCompanyWhitePaper[]=[];
 fileUploadForm: FormGroup;
 customer: any;
 name:any;

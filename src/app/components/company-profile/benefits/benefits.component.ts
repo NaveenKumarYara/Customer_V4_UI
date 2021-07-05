@@ -19,11 +19,11 @@ declare var $: any;
   styleUrls: ['./benefits.component.css']
 })
 export class BenefitsComponent implements OnInit {
-@Input() getcompanybenfit:GetCompanyBenefit[];
-@Input() companyspecialities : CompanySpecialities[];
-@Input() getcompanytechnology : GetCompanyTechnology[];
-@Input() getCustomerDepartments: GetCustomerDepartments[];
-@Input() getCustomerClients:GetCustomerClients[];
+@Input() getcompanybenfit:GetCompanyBenefit[]=[];
+@Input() companyspecialities : CompanySpecialities[]=[];
+@Input() getcompanytechnology : GetCompanyTechnology[]=[];
+@Input() getCustomerDepartments: GetCustomerDepartments[]=[];
+@Input() getCustomerClients:GetCustomerClients[]=[];
 customer : any;
 customerId:any;
 userId:any;

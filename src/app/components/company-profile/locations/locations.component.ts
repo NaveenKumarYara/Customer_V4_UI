@@ -11,7 +11,7 @@ declare var $: any;
   styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent implements OnInit {
-    @Input() companyprofilelocationinfo: CustomerLocationInfo[];
+    @Input() companyprofilelocationinfo: CustomerLocationInfo[]=[];
     customer : any;
     customerId:any;
     userId:any;

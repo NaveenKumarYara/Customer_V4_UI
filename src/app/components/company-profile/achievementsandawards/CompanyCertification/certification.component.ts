@@ -19,7 +19,7 @@ export class CertificationComponent implements OnInit {
   //@Input() getcompanycertification: GetCompanyCertification;
   //@Input() getcompanyachivements: GetCompanyAchievement;
 
-  getcompanycertification: GetCompanyCertification[];
+  getcompanycertification: GetCompanyCertification[]=[];
   customer: any;
   customerId: any;
   CimageSrc: string;
