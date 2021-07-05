@@ -21,7 +21,8 @@ const RecordRTC = require('recordrtc//RecordRTC.min');
 })
 export class BasicinfoComponent implements AfterViewInit {
     @Input() companyprofile: CompanyProfile;
-    @Input() getcompanylogo: GetCompanyLogo;
+    @Input() getcompanylogo: GetCompanyLogo;   
+    @ViewChild('Indusrty') indusrty;
     imageChangedEvent: any = '';
     imgSrc: any = [];
     showimg:boolean=false;
@@ -1445,12 +1446,13 @@ export class BasicinfoComponent implements AfterViewInit {
     })
 }
 
-  updateJobIndustry(val) { 
-    val.forEach(element => {
-      this.Id = element.BusinessDomain;
+  updateJobIndustry() { 
+    this.Id.forEach(element => {
+      //this.Id = element.BusinessDomain;
       this.slist.push(element.Id);
     });
     this.BusinessDomain = this.slist.toString();
+    this.SaveDomain();
   }
 
 
@@ -1548,11 +1550,11 @@ SaveDomain()
 }
 
   saveProfile() {
-    if(this.slist.length>0)
+    if(this.Id.length>0)
     {
-      this.SaveDomain();
+      this.updateJobIndustry();   
     }
-    
+
     this.locations = $('#searchZipCode').val();
     if (this.locations.length <= 7) {
       this.alertService.error('please select from Google Location');
