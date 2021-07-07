@@ -276,9 +276,9 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
-    //this.insertJob.ClientId = this.client.selectedClient.ClientId;
-    this.insertJob.ClientId = 0;
-    this.insertJob.ClientName = '';
+    this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    //this.insertJob.ClientId = 0;
+    //this.insertJob.ClientName = '';
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
     this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
     localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
