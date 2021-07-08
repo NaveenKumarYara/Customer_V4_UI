@@ -371,7 +371,7 @@ if (this.appService.isDrafted.value != null) {
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
     var res = new Promise<void>((resolve, reject) => {
-      this.locations.locationwithpostions.map((value, index, array) => {         
+      this.locations.locationwithpostions.forEach(async (value, index, array) => {         
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityName.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
@@ -400,14 +400,17 @@ if (this.appService.isDrafted.value != null) {
         });       
           if (index === array.length -1)
           {
+           await setTimeout(() => {
             resolve();
             this.appService.JobIds=this.jobIdVals;
+          }, 2000); 
+           
           }          
       });
   });
   
-  res.then(() => {
-      this.router.navigate(['/app-createajob/app-steps-step2']); 
+  res.then(async () => {
+     await this.router.navigate(['/app-createajob/app-steps-step2']);     
   });
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();
