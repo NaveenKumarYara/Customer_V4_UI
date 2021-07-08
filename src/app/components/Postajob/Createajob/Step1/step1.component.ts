@@ -403,7 +403,7 @@ if (this.appService.isDrafted.value != null) {
            await setTimeout(() => {
             resolve();
             this.appService.JobIds=this.jobIdVals;
-          }, 2000); 
+          }, 3000); 
            
           }          
       });
