@@ -160,12 +160,12 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
 
   getSelectedOptionText(id: string) {
     this.selectedCityName = this.convertObservable.find((s) => s.CityName === id);
-    if (this.locationwisejobs.length > 0) {
+    if (this.locationwisejobs.length === 0 && this.locationwisejobs.length<1) {
       // const check = this.locationExists(this.selectedCityName, this.locationwisejobs);
       // if (!check) {
       this.locationwisejobs.push(this.selectedCityName);
       //}
-    } else {
+    } else if(this.locationwisejobs.length === 0 && this.locationwisejobs.length<1) {
       this.locationwisejobs.push(this.selectedCityName);
     }
     this.ngSelect.handleClearClick();
