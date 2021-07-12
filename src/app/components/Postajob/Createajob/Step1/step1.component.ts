@@ -370,45 +370,47 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
-    var res = new Promise<void>(async (resolve, reject) => {
-     for (const value of this.locations.locationwithpostions) {
-      this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-      this.insertJob.PreferredLocationId = value.CityName.toString();
-      this.insertJob.NumberOfVacancies = Number(value.Positons);
-      this.appService.postjob(this.insertJob).subscribe(data => {
-        if (data) {
-          this.insertJob.JobId = data;
-          this.jobIdVals.push(data);           
-          localStorage.setItem('jobId', this.insertJob.JobId.toString());
-          localStorage.setItem('JobId', this.insertJob.JobId.toString());
-          localStorage.setItem('Item', false.toString());
-  
-          if (exit === 0) {
-            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-            this.appService.resetJob();
+    var res = new Promise<void>((resolve, reject) => {
+      this.locations.locationwithpostions.forEach(async (value, index, array) => {         
+        this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
+        this.insertJob.PreferredLocationId = value.CityName.toString();
+        this.insertJob.NumberOfVacancies = Number(value.Positons);
+        this.appService.postjob(this.insertJob).subscribe(data => {
+          if (data) {
+            this.insertJob.JobId = data;
+            this.jobIdVals.push(data);           
+            localStorage.setItem('jobId', this.insertJob.JobId.toString());
+            localStorage.setItem('JobId', this.insertJob.JobId.toString());
+            localStorage.setItem('Item', false.toString());
+    
+            if (exit === 0) {
+              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+              this.appService.resetJob();
+            }
+            else {
+            if (this.complete > 0) {
+              this.steps.step2toggleClass(this.complete);
+            } else {
+              this.steps.step2toggleClass(1);
+            }
+            //this.router.navigate(['/app-createajob/app-steps-step2']);
           }
-          else {
-          if (this.complete > 0) {
-            this.steps.step2toggleClass(this.complete);
-          } else {
-            this.steps.step2toggleClass(1);
           }
-          //this.router.navigate(['/app-createajob/app-steps-step2']);
-        }
-        }
-        if(this.jobIdVals.length === this.locations.locationwithpostions.length)
-        {
-          resolve();
-          this.appService.JobIds = this.jobIdVals;
-          this.router.navigate(['/app-createajob/app-steps-step2']); 
-        }
-      });       
-     }
+        });       
+          if (index === array.length -1)
+          {
+           await setTimeout(() => {
+            resolve();
+            this.appService.JobIds=this.jobIdVals;
+          }, 3000); 
+           
+          }          
+      });
   });
   
   res.then(async () => {
-        
+     await this.router.navigate(['/app-createajob/app-steps-step2']);     
   });
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();
