@@ -119,7 +119,7 @@ onScriptError() {
     else if(this.myRecaptcha.value === false)
     {
       this.loading = false;
-      this.toastr.error('Please provide google capthca!', 'Oops!');
+      this.toastr.error('Please provide captcha!', 'Oops!');
       setTimeout(() => {
           this.toastr.dismissToast;
       }, 3000);
