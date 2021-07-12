@@ -82,7 +82,7 @@
             <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
                 placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
-                [loading]="cityloading"  [multiple]="false" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
+                [loading]="cityloading"   [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
                 name="cities"> 
                 
             </ng-select>
