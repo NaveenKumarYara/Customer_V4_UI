@@ -478,7 +478,7 @@ export class ViewJobdetailsComponent implements OnInit {
       this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
-        this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
+        //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
 

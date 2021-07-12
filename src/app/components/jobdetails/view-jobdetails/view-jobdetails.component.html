@@ -46,7 +46,9 @@
                                     d="M8.1 11.3c-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 1.8-1.5 3.3-3.3 3.3zm0-4.6c-.7 0-1.3.6-1.3 1.3s.6 1.3 1.3 1.3S9.4 8.7 9.4 8s-.6-1.3-1.3-1.3z" />
                             </svg>
                             <h5 class="location">
-                                {{joblocation}}
+                                <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
+                                    {{location?.CityName}},{{location?.StateCode}}
+                                  </ng-container>
                             </h5>
                             <h5>Posted on: {{ jobdetailsbasicinfo?.PostedOn }}</h5>
                         </div>
