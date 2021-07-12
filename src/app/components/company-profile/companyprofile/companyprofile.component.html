@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-md-9">
                       <h4 class="mt-0">Cultural Fit Report <small><i
-                            *ngIf="CulturalTestStatus<100 && CulturalTestStatus != 0 ">(in-progress)</i></small></h4>
+                            *ngIf="CulturalTestStatusNew>0">(in-progress)</i></small></h4>
                       <div class="col-md-4 w-auto">
                         <h5 class="mr-0">{{CulturalTestStatusNew}}%</h5>
                       </div>
@@ -410,26 +410,26 @@
             <!-- <canvas #TestGrapChart width="400" height="400"></canvas> -->
             <div class="row">
               <div class="col-md-12 text-center">
-                <h4>Cultural Fit Results
+                <h4>Cultural Fit Report
                   <!-- <img title="Download Detailed Test Report"
                     src="../../assets/images/download-graph.png" style="width: 32px;"> -->
                 </h4>
               </div>
             </div>
-            <div class="row p-rel" *ngIf="culturalAvg > 0">
+            <div class="row p-rel" *ngIf="CulturalTestStatusNew > 0">
               <div class="col-md-8 margin-auto text-center">
                 <span *ngFor="let label of graphLabelList1; let i=index">
-                  <a class="d-inline-b">
+                  <!-- <a class="d-inline-b">
                     <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
                     </span>
                     {{label.GroupLabel}} - {{label.GroupPer}}%
-                  </a>
+                  </a> -->
                 </span>
                 <div class="clearfix">&nbsp;</div>
                 <div style="width:70%;margin:auto;">
-                  <canvas #testChart9 width="400" height="400"></canvas>
+                  <!-- <canvas #testChart9 width="400" height="400"></canvas> -->
 
-                  <h4><span>Culture Report</span></h4>
+                  <!-- <h4><span>Culture Fit Report</span></h4> -->
                   <div>
                     ValueMatch: {{cultureresults?.Valuematch}}%
                   </div>

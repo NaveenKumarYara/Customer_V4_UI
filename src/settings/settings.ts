@@ -222,4 +222,5 @@ export class Settings {
   GetgoogleApi:string;
   GetProfileFeedback:string;
   UserRoleCheck:string;
+  NewJobDetailsRedirect:string;
   }

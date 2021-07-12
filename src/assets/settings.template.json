@@ -215,5 +215,6 @@
   "DeleteNote":"${Profile_URL}/api/DeleteNotes?",
   "GetgoogleApi":"${Profile_URL}/api/GetGoogleLocations?",
   "GetProfileFeedback":"${Profile_URL}/api/GetProfileFeedback",
-  "UserRoleCheck":"${Identity_URL}/api/CheckEmailExist?"
+  "UserRoleCheck":"${Identity_URL}/api/CheckEmailExist?",
+  "NewJobDetailsRedirect":"${CaMain_URL}/Ijobdetail/"
 }
