@@ -15,6 +15,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxMaskModule } from 'ngx-mask';
 import { routing } from "./../../app.router";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { CompanyProfileService } from "./company-profile.service";
@@ -52,6 +53,7 @@ import { RouterModule } from "@angular/router";
     MatSnackBarModule,
     HttpClientModule,
     SharedModule,
+    NgxMaskModule.forRoot(),
     ImageCropperModule,
     NgxImgModule,
     MatDialogModule,

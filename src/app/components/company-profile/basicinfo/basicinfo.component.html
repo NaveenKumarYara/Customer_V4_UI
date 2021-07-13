@@ -101,7 +101,13 @@
             <tr>
               <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
               <td *ngIf="companyprofile?.MobilePhone!=null"> {{companyprofile?.HomeAreaCode}}
-                {{companyprofile?.MobilePhone}}</td>
+                <ng-container *ngIf="companyprofile?.HomeAreaCode === '+1'">
+                  {{companyprofile?.MobilePhone | mask: '(000) 000-0000'}}
+                </ng-container>
+                <ng-container *ngIf="companyprofile?.HomeAreaCode != '+1'">
+                  {{companyprofile?.MobilePhone}}
+                </ng-container>
+                </td>
               <td *ngIf="companyprofile?.MobilePhone==null">
                 N/A
               </td>
