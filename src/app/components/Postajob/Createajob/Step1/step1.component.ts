@@ -277,6 +277,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
     //this.insertJob.ClientId = 0;
     //this.insertJob.ClientName = '';
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
@@ -450,8 +451,6 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-    debugger
-
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -459,7 +458,6 @@ if (this.appService.isDrafted.value != null) {
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
         localStorage.setItem('Item', false.toString());
-debugger
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
