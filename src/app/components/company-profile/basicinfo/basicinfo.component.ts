@@ -1449,7 +1449,10 @@ export class BasicinfoComponent implements AfterViewInit {
   updateJobIndustry() { 
     this.Id.forEach(element => {
       //this.Id = element.BusinessDomain;
-      this.slist.push(element.Id);
+      if(element.BusinessDomain != '')
+      {
+        this.slist.push(element.Id);
+      }
     });
     this.BusinessDomain = this.slist.toString();
     this.SaveDomain();
@@ -1540,9 +1543,9 @@ SaveDomain()
 {
   this.newCustomerIndustry.CustomerId = this.customer.CustomerId
   this.newCustomerIndustry.BusinessDomain = this.BusinessDomain;
-  debugger
   this._service.PostService(this.newCustomerIndustry, 'ProfileAPI/api/InsertCustomerBussinessDomain')
         .subscribe(data => {
+        this.newCustomerIndustry = new NewCustomerIndustry();
         this.GetCustomerDomain();
         this.populateCompanyProfile(this.customer.CustomerId);
       
