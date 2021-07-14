@@ -4314,3 +4314,7 @@ h5.meta.meta-light {
     overflow: hidden;
     padding: 1rem;
 }
+
+.not-allowed {
+	cursor: not-allowed !important;
+}

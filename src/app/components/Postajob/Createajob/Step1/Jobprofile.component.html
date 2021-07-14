@@ -18,7 +18,7 @@
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to?  
     <span class="red">*</span> 
-    <a href="#" class="tooltip__link">
+    <!-- <a href="#" class="tooltip__link">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <span class="custom__tooltip">
         <span class="step__title">Steps Information</span>
@@ -26,7 +26,7 @@
         <span class="step__02"><em>02</em>Department : BI</span>
         <span class="step__03"><em>03</em>Category: Intelligence</span>
       </span>
-    </a> 
+    </a>  -->
 </label>
 <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
@@ -118,12 +118,12 @@
   <div class="col-md-6">
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?  <span class="red">*</span> 
-            <a href="#" class="tooltip__link">
+            <!-- <a href="#" class="tooltip__link">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <span class="custom__tooltip">
                 Please add Business Domain, Department and Category. 'Arytic' provides best profiles *
               </span>
-            </a>
+            </a> -->
           </label>
           <ng-select class="custom-style" [items]="jobtitlelist"
             bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="Select (or) Add Job Title" [(ngModel)]="Title"
