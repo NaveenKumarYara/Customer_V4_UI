@@ -237,7 +237,8 @@ export class ViewJobdetailsComponent implements OnInit {
       }
     );
     viewdialogRef.afterClosed().subscribe(result => {
-      this.populateJobsBasicInfo();
+      this.populateJobsBasicInfoChange();
+      //this.inprogressprofile = false;
       console.log('Dialog result: ${result}');
     });
 
@@ -483,6 +484,16 @@ export class ViewJobdetailsComponent implements OnInit {
       this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
+        //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
+    });
+  }
+
+  populateJobsBasicInfoChange() {
+    return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
+      this.jobdetailsbasicinfo = res,
+      this.closedjob = this.jobdetailsbasicinfo.IsOpen;
+      this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
+      this.inprogressview(0);
         //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
