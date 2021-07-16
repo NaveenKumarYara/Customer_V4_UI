@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import './models/jobdetailsbasicinfo';
-import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
+import { JobdetailsBasicInfo,JobCompletenessInfo } from './models/jobdetailsbasicinfo';
 import { Jobstatistics } from './models/jobstatistics';
 import { JobdetailsProfile, MatchingParameterDetails } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
@@ -128,6 +128,15 @@ export class JobdetailsService {
     const url = this.settingsService.settings.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetJobCompleteness(jobId: number): Observable<JobCompletenessInfo> {
+    const url = this.settingsService.settings.GetJobCompleteness + 'jobId=' + jobId;
+    return this.http.get<JobCompletenessInfo>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
