@@ -4512,7 +4512,7 @@ div .status.Invited {
 .col__container .arytic-check .card .number:nth-child(2) {
 	background-color: lightcoral;
 }
-
+.arytic-check .col__container{height:100%;}
 
 /* background verified */
 .m-r-d .modal-header {
