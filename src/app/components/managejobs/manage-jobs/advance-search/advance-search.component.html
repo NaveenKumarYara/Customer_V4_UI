@@ -21,14 +21,14 @@
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <ul class="filters-list">
-                        <!-- <li>
+                       <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" [(ngModel)]="showClient"> Client
+                                    <input type="checkbox" (ngModelChange)="onFilterChange($event, 'showClient')" [(ngModel)]="filters.showClient"> Client
                                 </label>
                             </div>
                         </li>
-                        <li>
+                         <!-- <li>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" [(ngModel)]="showDepartment"> Department
