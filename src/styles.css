@@ -26764,3 +26764,10 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 .revamp__reference__check  .nav-tabs { border-bottom: 0; }
 .revamp__reference__check .tab-pane { padding:0 20px 20px; background:#fff; border:1px solid #ddd; border-radius:6px; }
 .revamp__candidate__modal  .mat-dialog-container { background:#f9fcfe }
+
+@media only screen and (max-width:1200px) {
+    .revamp__view__job__swiper {
+        width:90vw !important;
+        max-width:90vw !important;
+    }
+}
