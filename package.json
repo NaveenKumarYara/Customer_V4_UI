@@ -60,6 +60,7 @@
     "ngx-mask": "^7.3.5",
     "ngx-mat-select-search": "^1.8.0",
     "ngx-spinner": "^1.2.0",
+    "primeng": "^12.0.0",
     "recordrtc": "^5.5.3",
     "rxjs": "^5.5.6",
     "sweetalert2": "^7.29.0",
