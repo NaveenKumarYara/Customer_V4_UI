@@ -120,10 +120,10 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   PersonalityFitLabels = {
-    labels: ["Artistic", "Realistic", "Technology", "Investigative", "Conventional"]
+    labels: []
   }
   PersonalityFit = {
-    labels: ["A", "R", "T", "I", "C"],
+    labels: [],
     datasets: [
       {
         label: "Personality Fit",
@@ -136,7 +136,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60, 50],
+        data: [],
       },
     ],
   };
@@ -200,11 +200,11 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Personality = {
-    labels: ["Realistic", "Investigative", "Social", "Conventional", "Enterprising", "Artistic"],
+    labels: [],
     datasets: [
       {
         label: "Personality Fit",
-        data: [65, 59, 80, 81, 56, 55],
+        data: [],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(255, 159, 64, 0.8)",
@@ -468,75 +468,75 @@ export class ViewCandidateprofileComponent implements OnInit {
     });
   }
 
-  GetCandidatePersonalityResult() {
-    this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
-      this.email = email.UserName;
-      this.jobdetailsservice.getPersonalityTest(this.email).subscribe((data) => {
-        if (data.length === 0) {
-          this.noTest = false;
-          this.isPublicAvailable = false;
-        }
-        if (data.length > 0) {
-          this.graphData = [];
-          this.graphLabel = [];
-          var userResponse = data;
-          this.graphLabelList = [];
+  // GetCandidatePersonalityResult() {
+  //   this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
+  //     this.email = email.UserName;
+  //     this.jobdetailsservice.getPersonalityTest(this.email).subscribe((data) => {
+  //       if (data.length === 0) {
+  //         this.noTest = false;
+  //         this.isPublicAvailable = false;
+  //       }
+  //       if (data.length > 0) {
+  //         this.graphData = [];
+  //         this.graphLabel = [];
+  //         var userResponse = data;
+  //         this.graphLabelList = [];
 
-          var count = 0;
-          if (this.testChart) {
-            var testChartCanvas = this.testChart.nativeElement.getContext("2d");
-            userResponse.forEach((a, index) => {
-              this.graphData.push(a.response.toFixed(2));
-              this.graphLabel.push(a.groupName);
-              this.graphLabelList.push(new LegendList());
-              this.graphLabelList[index].GroupLabel = a.groupName;
-              this.graphLabelList[index].GroupPer = a.response.toFixed(2);
-              this.noTest = true;
-            });
+  //         var count = 0;
+  //         if (this.testChart) {
+  //           var testChartCanvas = this.testChart.nativeElement.getContext("2d");
+  //           userResponse.forEach((a, index) => {
+  //             this.graphData.push(a.response.toFixed(2));
+  //             this.graphLabel.push(a.groupName);
+  //             this.graphLabelList.push(new LegendList());
+  //             this.graphLabelList[index].GroupLabel = a.groupName;
+  //             this.graphLabelList[index].GroupPer = a.response.toFixed(2);
+  //             this.noTest = true;
+  //           });
 
-            this.graphLabelList[0].GroupColor = "rgba(101,105, 169, 1)";
-            this.graphLabelList[1].GroupColor = "rgba(63, 184, 179, 1)";
-            this.graphLabelList[2].GroupColor = "rgba(236, 136, 133, 1)";
-            this.graphLabelList[3].GroupColor = "rgba(235, 189, 78, 1)";
-            this.graphLabelList[4].GroupColor = "rgba(100, 164, 137, 1)";
+  //           this.graphLabelList[0].GroupColor = "rgba(101,105, 169, 1)";
+  //           this.graphLabelList[1].GroupColor = "rgba(63, 184, 179, 1)";
+  //           this.graphLabelList[2].GroupColor = "rgba(236, 136, 133, 1)";
+  //           this.graphLabelList[3].GroupColor = "rgba(235, 189, 78, 1)";
+  //           this.graphLabelList[4].GroupColor = "rgba(100, 164, 137, 1)";
 
-            var weekChart = new Chart(testChartCanvas, {
-              type: "doughnut",
-              options: {
-                title: {
-                  display: true,
-                  text: "Personality Test Chart",
-                },
-                legend: {
-                  display: false,
-                },
-              },
-              data: {
-                labels: this.graphLabel,
-                render: "labels",
-                datasets: [
-                  {
-                    labels: ["Red", "Yellow", "Blue", "pink", "black"],
-                    label: "# of Votes",
-                    data: this.graphData,
-                    backgroundColor: [
-                      "rgba(101,105, 169, 1)",
-                      "rgba(63, 184, 179, 1)",
-                      "rgba(236, 136, 133, 1)",
-                      "rgba(235, 189, 78, 1)",
-                      "rgba(100, 164, 137, 1)",
-                    ],
-                  },
-                ],
-              },
-            });
-          }
-        } else {
-          this.testChart1;
-        }
-      });
-    });
-  }
+  //           var weekChart = new Chart(testChartCanvas, {
+  //             type: "doughnut",
+  //             options: {
+  //               title: {
+  //                 display: true,
+  //                 text: "Personality Test Chart",
+  //               },
+  //               legend: {
+  //                 display: false,
+  //               },
+  //             },
+  //             data: {
+  //               labels: this.graphLabel,
+  //               render: "labels",
+  //               datasets: [
+  //                 {
+  //                   labels: ["Red", "Yellow", "Blue", "pink", "black"],
+  //                   label: "# of Votes",
+  //                   data: this.graphData,
+  //                   backgroundColor: [
+  //                     "rgba(101,105, 169, 1)",
+  //                     "rgba(63, 184, 179, 1)",
+  //                     "rgba(236, 136, 133, 1)",
+  //                     "rgba(235, 189, 78, 1)",
+  //                     "rgba(100, 164, 137, 1)",
+  //                   ],
+  //                 },
+  //               ],
+  //             },
+  //           });
+  //         }
+  //       } else {
+  //         this.testChart1;
+  //       }
+  //     });
+  //   });
+  // }
 
   GetJobNotes() {
     this.jobdetailsservice
@@ -565,6 +565,23 @@ export class ViewCandidateprofileComponent implements OnInit {
         this._service.DebugMode(error);
       }
     );
+  }
+
+  GetCandidatePersonalityResult() {
+    this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
+      this.email = email.UserName;
+      this.jobdetailsservice.getPersonalityTest(this.email).subscribe((data) => {
+        if (data.length > 0) {
+          data.forEach((a)=>
+          {         
+           this.PersonalityFit.labels.push(a.groupName);
+           this.PersonalityFit.datasets[0].data.push(a.response.toFixed(2));
+           this.PersonalityFitLabels.labels.push(a.groupName);
+           this.Personality.datasets[0].data.push(a.response.toFixed(2));
+          })             
+        }
+      });
+    });
   }
   add3Dots(string, limit) {
     const dots = "...";
