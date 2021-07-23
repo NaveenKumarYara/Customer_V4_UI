@@ -37,6 +37,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   showMenu: boolean;
   jobStatus: any;
   showShortDesciption = true;
+  checkPersonality:any=[];
   CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
@@ -573,6 +574,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
       this.email = email.UserName;
       this.jobdetailsservice.getPersonalityTest(this.email).subscribe((data) => {
+        this.checkPersonality=data;
         if (data.length > 0) {
           data.forEach((a)=>
           {         

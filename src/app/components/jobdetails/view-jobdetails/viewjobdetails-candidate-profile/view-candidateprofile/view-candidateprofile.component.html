@@ -972,45 +972,52 @@
 				</div>
   
 				<div class="chart-container " *ngIf="selectedMenuItem == 'Culture Fit'">
-					<circle-progress class="culture-chart"
-								data-toggle="matching-details"
-								[percent]="CulturalTestStatusNew"
-								[radius]="150"
-								[outerStrokeWidth]="30"
-								[innerStrokeWidth]="15"
-								[outerStrokeColor]="'#ffb513'"
-								[innerStrokeColor]="'#c0c0c0'"
-								[animation]="true"
-								[showSubtitle]="false"
-								[responsive]="true"
-								[titleFontSize]=60
-								[unitsFontSize]=30
-							  >
-							  </circle-progress>
-					   
-				  <!-- <app-doughnut-chart [doughnutChartData]="Culture"></app-doughnut-chart> -->
-				  <div class="custom-legend">
-					<ul class="list-group">
-					  <li *ngFor="let item of Culture.labels; let i = index">
-						<p>{{ item }}</p>
-						<div class="percentage__info">
-						  <span
-							class="shadow__01"
-							[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <span
-							class="shadow__02"
-							[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <p [ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">
-							{{ Culture.datasets[0].data[i] }}
-						  </p>
-						</div>
-					  </li>
-					</ul>
-				  </div>
+					<ng-container *ngIf="CulturalTestStatusNew>0">
+						<circle-progress class="culture-chart"
+						data-toggle="matching-details"
+						[percent]="CulturalTestStatusNew"
+						[radius]="150"
+						[outerStrokeWidth]="30"
+						[innerStrokeWidth]="15"
+						[outerStrokeColor]="'#ffb513'"
+						[innerStrokeColor]="'#c0c0c0'"
+						[animation]="true"
+						[showSubtitle]="false"
+						[responsive]="true"
+						[titleFontSize]=60
+						[unitsFontSize]=30
+					  >
+					  </circle-progress>
+			   
+		  <!-- <app-doughnut-chart [doughnutChartData]="Culture"></app-doughnut-chart> -->
+		  <div class="custom-legend">
+			<ul class="list-group">
+			  <li *ngFor="let item of Culture.labels; let i = index">
+				<p>{{ item }}</p>
+				<div class="percentage__info">
+				  <span
+					class="shadow__01"
+					[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
+					>Shadow</span
+				  >
+				  <span
+					class="shadow__02"
+					[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
+					>Shadow</span
+				  >
+				  <p [ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">
+					{{ Culture.datasets[0].data[i] }}
+				  </p>
+				</div>
+			  </li>
+			</ul>
+		  </div>
+					</ng-container>
+					<ng-container *ngIf="CulturalTestStatusNew===0">
+						<div class="no__data__found">
+							<h3>Coming Soon</h3>
+						  </div>
+						</ng-container>
 				</div>
 				<div *ngIf="selectedMenuItem == 'Personality Fit'">
 				  <h4>Who Am I </h4>
@@ -1018,7 +1025,12 @@
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Personality Fit'">
 				  <!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
-				 
+				  <ng-container *ngIf="checkPersonality.length===0">
+					<div class="no__data__found">
+						<h3>Coming Soon</h3>
+					  </div>
+					</ng-container>
+				<ng-container *ngIf="checkPersonality.length>0">
 				  <app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
@@ -1042,6 +1054,7 @@
 					  </li>
 					</ul>
 				  </div>
+				</ng-container>
 				</div>
 				<div *ngIf="selectedMenuItem == 'Reference Check'">
 				  <div class="modal-body">
