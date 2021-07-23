@@ -17,11 +17,10 @@
 					  <li>
 						<h4>Objective</h4>
 						<h5
-						  [innerHTML]
+						  [innerHTML]= "profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150)" 
 						  [ngClass]="{ 'show-less': showShortDesciption }"
 						  title="{{ profileview?.ProfileBasicInfo?.AboutMe }}"
 						>
-						  {{ profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150) + "..." }}
 						</h5>
 						<!-- <h4>{{details?.profileVal?.FirstName}} {{details?.profileVal?.LastName}}</h4> -->
 						<!-- <h5>{{details?.profileVal?.ProfileTitle}} @ {{profileview?.ProfileBasicInfo?.CompanyName}}</h5> -->
@@ -40,7 +39,7 @@
 						  <div class="top__box__info flex flex-align-center flex-wrap">
 							<div>
 							  <h4>{{ details?.profileVal?.FirstName }} {{ details?.profileVal?.LastName }}</h4>
-							  <h5>{{ details?.profileVal?.ProfileTitle }} - 13 Years Exp.</h5>
+							  <h5>{{ details?.profileVal?.ProfileTitle }} - {{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}Exp.</h5>
 							</div>
   
 							<div class="small__progress__bar">
