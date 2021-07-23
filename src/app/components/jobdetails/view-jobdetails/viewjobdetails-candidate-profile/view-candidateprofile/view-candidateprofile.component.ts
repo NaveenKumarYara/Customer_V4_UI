@@ -37,6 +37,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   showMenu: boolean;
   jobStatus: any;
   showShortDesciption = true;
+  CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
   aboutContent: any;
@@ -189,11 +190,11 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Culture = {
-    labels: ["Culture Fit", "Applicant Culture Fit", "Company Culture Fit"],
+    labels: ['Applicant Culture Fit','Company Culture Fit','CultureFit'],
     datasets: [
       {
         label: "Culture Fit",
-        data: [60, 120, 200],
+        data: [],
         backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
         hoverOffset: 4,
       },
@@ -437,6 +438,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.isPublicAvailable = apiData.isPublicAvailable;
       if (this.noTest) {
         this.GetCandidatePersonalityResult();
+        this.GetCandidateCultureResult();
       }
     });
   }
@@ -582,6 +584,21 @@ export class ViewCandidateprofileComponent implements OnInit {
         }
       });
     });
+  }
+
+  GetCandidateCultureResult() {
+    this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
+      this.email = email.UserName;
+      this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
+      .subscribe(
+        data => {
+          this.CulturalTestStatusNew = data.Total; 
+          if (data!=null) {
+             this.Culture.datasets[0].data = [data.Valuematch,data.Rankmatch,data.Total];           
+          }
+        })
+        
+      });
   }
   add3Dots(string, limit) {
     const dots = "...";
