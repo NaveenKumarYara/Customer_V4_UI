@@ -784,7 +784,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     wishlist = 0,
     invited = 0,
     arytic = 0,
-    noofRows = 6
+    noofRows = 6,
+    fstatus=0
   ) {
     this.alertService.clear();
     // $('#searchStr').val('');
@@ -797,6 +798,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     if (statistics === 0 && statusid > 4) {
       this.jobdetailsprofiles = new JobdetailsProfile();
     } else {
+      debugger
       return this.jobdetailsservice
         .getJobDetailsProfileInfo(
           this.customerId,
@@ -813,7 +815,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           wishlist,
           invited,
           arytic,
-          noofRows
+          noofRows,
+          fstatus
         )
         .subscribe((res) => {
           //debugger

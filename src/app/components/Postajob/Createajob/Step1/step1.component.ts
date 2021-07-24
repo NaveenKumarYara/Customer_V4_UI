@@ -276,9 +276,10 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
-    //this.insertJob.ClientId = this.client.selectedClient.ClientId;
-    this.insertJob.ClientId = 0;
-    this.insertJob.ClientName = '';
+    this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    //this.insertJob.ClientId = 0;
+    //this.insertJob.ClientName = '';
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
     this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
     localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
@@ -371,15 +372,10 @@ if (this.appService.isDrafted.value != null) {
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
     var res = new Promise<void>((resolve, reject) => {
-      this.locations.locationwithpostions.forEach((value, index, array) => {
-     
-      
-
-
+      this.locations.locationwithpostions.forEach(async (value, index, array) => {         
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityName.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
-        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
@@ -405,14 +401,17 @@ if (this.appService.isDrafted.value != null) {
         });       
           if (index === array.length -1)
           {
+           await setTimeout(() => {
             resolve();
             this.appService.JobIds=this.jobIdVals;
+          }, 3000); 
+           
           }          
       });
   });
   
-  res.then(() => {
-      this.router.navigate(['/app-createajob/app-steps-step2']); 
+  res.then(async () => {
+     await this.router.navigate(['/app-createajob/app-steps-step2']);     
   });
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();
@@ -452,8 +451,6 @@ if (this.appService.isDrafted.value != null) {
     this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-    debugger
-
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -461,7 +458,6 @@ if (this.appService.isDrafted.value != null) {
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
         localStorage.setItem('Item', false.toString());
-debugger
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);

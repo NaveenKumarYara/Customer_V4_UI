@@ -43,24 +43,26 @@ export class CompanyprofileComponent implements OnInit {
     customerId:any;
     userId:any;
     show:boolean=false;
-    getCustomerDepartments: GetCustomerDepartments[];
-    getCustomerClients:GetCustomerClients[];
+    cultureresults: any;
+    CulturalTestStatusNew: number = 0;
+    getCustomerDepartments: GetCustomerDepartments[]=[];
+    getCustomerClients:GetCustomerClients[]=[];
     companyprofile: CompanyProfile;
     CustomDetails : GetCustomDomain;
     companyprofileotherinfo: CompanyProfileOtherIno;
-    companyprofilelocationinfo: CustomerLocationInfo[];
-    getaboutcompany: GetAboutCompany[];
-    getcompanybenfit: GetCompanyBenefit[];
-    companyspecialities : CompanySpecialities[];
-    getcompanytechnology : GetCompanyTechnology[];
+    companyprofilelocationinfo: CustomerLocationInfo[]=[];
+    getaboutcompany: GetAboutCompany[]=[];
+    getcompanybenfit: GetCompanyBenefit[]=[];
+    companyspecialities : CompanySpecialities[]=[];
+    getcompanytechnology : GetCompanyTechnology[]=[];
     getcompanylogo:GetCompanyLogo;
-    getcompanywhitepaper: GetCompanyWhitePaper[];
+    getcompanywhitepaper: GetCompanyWhitePaper[]=[];
 
-    getcompanynewsinfo: GetCompanyNewsInfo[];
-    getcompanypertner:GetCompanyPartner[];
-    getcompanycertification: GetCompanyCertification[];
-    getcompanycluture:GetCompanyCulture[];
-    getcompanyachivements: GetCompanyAchievement[];
+    getcompanynewsinfo: GetCompanyNewsInfo[]=[];
+    getcompanypertner:GetCompanyPartner[]=[];
+    getcompanycertification: GetCompanyCertification[]=[];
+    getcompanycluture:GetCompanyCulture[]=[];
+    getcompanyachivements: GetCompanyAchievement[]=[];
     graphLabelCult: any[] = [];
     graphDataCult: any[] = [];
     graphLabelList1: LegendList[] = [];
@@ -1004,6 +1006,7 @@ SaveCustomDomain()
 
             // this.GetQuestionList(responseData.type);
             this.calculateCulturalTestStatus();
+            this.GetCultureNewResult();
           }
           var totalresponse = 0;
           if (this.CulturalResponse.questionnaireResponses.length == 12) {
@@ -1014,9 +1017,12 @@ SaveCustomDomain()
             this.culturalAvg = (totalresponse / (this.CulturalResponse.questionnaireResponses.length * 16)) * 100;
             // alert(totalresponse);
             // alert(avg);
+          
           }
         });
   }
+
+
 
 
   @ViewChild('testChart9') testChart9: ElementRef;
@@ -1027,7 +1033,7 @@ SaveCustomDomain()
       .subscribe(
         data => {
           this.graphData = [];
-          
+          this.GetCultureNewResult();
           var userResponsedata = data;
           this.graphLabelList1 = [];
           var count = 0;
@@ -1136,6 +1142,15 @@ SaveCustomDomain()
     //   this.userResponse = this.CulturalResponse;
     //   this.GetQuestionList(type);
     // }
+  }
+
+  GetCultureNewResult() {
+    this._service.GetService('ProfileAPI/api/GetCultureFitReportForCustomer?email=', this.customer.Email+'&customerId='+this.customer.CustomerId)
+      .subscribe(
+        dat => {
+          this.cultureresults = dat;
+          this.CulturalTestStatusNew = dat.Total;
+        })
   }
   getPesonalityTestStatus() {
     return this.PersonalityTestStatus;

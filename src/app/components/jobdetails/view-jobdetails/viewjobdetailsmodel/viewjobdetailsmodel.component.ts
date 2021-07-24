@@ -30,6 +30,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  jobid: number;
  customer: any;
  deactivate = new deactivate();
+ getjobCompleteinfo :JobCompletenessInfo;
  getcompanybenfit: GetCompanyBenefit[]=[];
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
@@ -62,11 +63,17 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   
 
 
-  PopulateJobdetail () {
+  PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
-      debugger
       this.jobdetailscustomer = res;
     });
+
+}
+
+PopulateJobCompleteness() {
+  return this.jobdetailsservice.GetJobCompleteness(this.jobid).subscribe(res => {
+    this.getjobCompleteinfo = res;
+  });
 
 }
 PopulateJobComments () {
@@ -120,6 +127,7 @@ ngOnInit() {
   this.PopulateJobdetail();
   this.PopulateJobComments();
   this.populateCompanyBenfits();
+  this.PopulateJobCompleteness();
   // console.log('abc');
 
   /*tabs animation*/
@@ -167,3 +175,25 @@ ngOnInit() {
 
 }
 }
+
+export class JobCompletenessInfo
+    {
+        JobCompleteness :number
+        Industry :number
+        Title :number
+        Experience :number
+        Keyresponses :number
+        JobDomain :number
+        JobDesc :number
+        JobPriority :number
+        Skill :number
+        OptionalSkill :number
+        SoftSkill :number
+        Employment :number
+        WorkAuthorise :number
+        Qualification :number
+        JobLocation :number
+        JobAssigned :number
+        Video :number
+        Teamfit :number
+    }

@@ -99,16 +99,17 @@
                       <img class="mw-110" alt="icon" src="../../../../assets/images/personal-skills.svg">
                     </div>
                     <div class="col-md-9">
-                      <h4 class="mt-0">Cultural Test <small><i
-                            *ngIf="CulturalTestStatus<100 && CulturalTestStatus != 0 ">(in-progress)</i></small></h4>
+                      <h4 class="mt-0">Cultural Fit Report <small><i
+                            *ngIf="CulturalTestStatusNew>0">(in-progress)</i></small></h4>
                       <div class="col-md-4 w-auto">
-                        <h5 class="mr-0">{{CulturalTestStatus}}%</h5>
+                        <h5 class="mr-0">{{CulturalTestStatusNew}}%</h5>
                       </div>
                       <div class="col-md-8 w-inherit">
-                        <div class="progress" style="height: 8px;">
+                        <small>"Neque porro quisquam est dolorem ipsum"</small>
+                        <div class="progress" style="height: 8px; display: none;">
                           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
                             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'min-width.%' : getCulturalTestStatus()}">
-                            <span class="sr-only">{{CulturalTestStatus}}% Complete</span>
+                            <span class="sr-only">{{CulturalTestStatusNew}}% Complete</span>
                           </div>
                         </div>
                       </div>
@@ -167,19 +168,20 @@
             </div>
           </div> -->
                       <div class="col-md-5 culture-result-view">
-                        <h4>Culture Test <i class="test-status">(In-Progress)</i></h4>
+                        <h4>Culture Fit Report <i class="test-status">(In-Progress)</i></h4>
                         <div class="row">
                           <div class="col-md-8">
+                          
                             <div class="progress">
                               <div class="progress-bar progress-bar-info  progress-bar-striped active"
                                 role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
                                 [ngStyle]="{'min-width.%' : getCulturalTestStatus()}">
-                                <span class="sr-only">{{CulturalTestStatus}}% Complete (success)</span>
+                                <span class="sr-only">{{CulturalTestStatusNew}}% Complete (success)</span>
                               </div>
                             </div>
                           </div>
                           <div class="col-md-2">
-                            <h3>{{CulturalTestStatus}}%</h3>
+                            <h3>{{CulturalTestStatusNew}}%</h3>
                           </div>
                         </div>
                         <div *ngIf="CulturalTestStatus==100">
@@ -408,31 +410,42 @@
             <!-- <canvas #TestGrapChart width="400" height="400"></canvas> -->
             <div class="row">
               <div class="col-md-12 text-center">
-                <h4>Cultural Fit Results
+                <h4>Cultural Fit Report
                   <!-- <img title="Download Detailed Test Report"
                     src="../../assets/images/download-graph.png" style="width: 32px;"> -->
                 </h4>
               </div>
             </div>
-            <div class="row p-rel" *ngIf="culturalAvg > 0">
+            <div class="row p-rel" *ngIf="CulturalTestStatusNew > 0">
               <div class="col-md-8 margin-auto text-center">
                 <span *ngFor="let label of graphLabelList1; let i=index">
-                  <a class="d-inline-b">
+                  <!-- <a class="d-inline-b">
                     <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
                     </span>
                     {{label.GroupLabel}} - {{label.GroupPer}}%
-                  </a>
+                  </a> -->
                 </span>
                 <div class="clearfix">&nbsp;</div>
                 <div style="width:70%;margin:auto;">
-                  <canvas #testChart9 width="400" height="400"></canvas>
+                  <!-- <canvas #testChart9 width="400" height="400"></canvas> -->
+
+                  <!-- <h4><span>Culture Fit Report</span></h4> -->
+                  <div>
+                    ValueMatch: {{cultureresults?.Valuematch}}%
+                  </div>
+                  <div>
+                    RankMatch: {{cultureresults?.Rankmatch}}%
+                  </div>
+                  <div>
+                    CultureFit: {{cultureresults?.Total}}%
+                  </div>
                 </div>
               </div>
             </div>
             <!-- <div ngIf="CulturalResponse.questionnaireResponses.length == 12"> -->
             <!-- Cultural Test Average = {{culturalAvg | number}} % -->
             <!-- </div> -->
-
+        
           </div>
         </div>
         

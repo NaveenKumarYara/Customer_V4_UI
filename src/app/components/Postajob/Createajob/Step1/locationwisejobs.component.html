@@ -82,8 +82,8 @@
             <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
                 placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
-                [loading]="cityloading" [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
-                name="cities">
+                [loading]="cityloading"   [(ngModel)]="selectedCityName" [virtualScroll]="true" required #city="ngModel"
+                name="cities"> 
                 
             </ng-select>
             <small class="error1" *ngIf="city.invalid && city.touched">Required.</small> 

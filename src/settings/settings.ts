@@ -86,6 +86,7 @@ export class Settings {
   MatchingDetailEndPoint: string;
    VideoProfileEndPoint: string;
   GetAutoSearch: string;
+  GetJobCompleteness:string;
   GetInterviewAutoSearch: string;
   GetJobsFilterBy: string;
   GetProfileAutoSearch: string;
@@ -222,4 +223,5 @@ export class Settings {
   GetgoogleApi:string;
   GetProfileFeedback:string;
   UserRoleCheck:string;
+  NewJobDetailsRedirect:string;
   }

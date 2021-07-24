@@ -16,7 +16,18 @@
 </div> -->
 <!---->
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to?  <span class="red">*</span> </label>
+  <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to?  
+    <span class="red">*</span> 
+    <!-- <a href="#" class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__title">Steps Information</span>
+        <span class="step__01"><em>01</em>Business Domain : IT</span>
+        <span class="step__02"><em>02</em>Department : BI</span>
+        <span class="step__03"><em>03</em>Category: Intelligence</span>
+      </span>
+    </a>  -->
+</label>
 <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
 (change)="updateJobIndustry($event)"  #Indusrty="ngModel" required>
@@ -106,20 +117,26 @@
 <div class="form-row row">
   <div class="col-md-6">
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-          <label for="" class="question"> What is the Job Title?  <span class="red">*</span></label>
+          <label for="" class="question"> What is the Job Title?  <span class="red">*</span> 
+            <!-- <a href="#" class="tooltip__link">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              <span class="custom__tooltip">
+                Please add Business Domain, Department and Category. 'Arytic' provides best profiles *
+              </span>
+            </a> -->
+          </label>
           <ng-select class="custom-style" [items]="jobtitlelist"
             bindLabel="Code" [loading]="TLoading" [addTag]="addTagTitle" addTagText="Add Job Title" placeholder="Select (or) Add Job Title" [(ngModel)]="Title"
-         [virtualScroll]="true"  #JobTitle="ngModel"
+            [virtualScroll]="true"  #JobTitle="ngModel"
               name="Title" (change)="updateJobTitle($event)" required>
           </ng-select>
           <!-- <ul class="data-list">
-     <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
-          <!-- {{suggestedTitle.JobTitle}} 
-      <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
-    </ul>-->
-
+          <li *ngIf="selectedTitle && selectedTitle!=undefined &&  selectedTitle.length > 0">{{selectedTitle}}</li> -->
+                <!-- {{suggestedTitle.JobTitle}} 
+            <li  *ngFor="let title of suggestedTitle; let i = index" (change)="updateJobTitle(title)">{{title.JobTitle}}</li>
+          </ul>-->
            <small class="error1" *ngIf="JobTitle.invalid && JobTitle.touched">Required.</small> 
-           <i class="fa fa-info-circle"> Please add Business Domain, Department and  Category. 'Arytic' provides best profiles  <span class="red">*</span></i>
+           <!-- <i class="fa fa-info-circle"> Please add Business Domain, Department and  Category. 'Arytic' provides best profiles  <span class="red">*</span></i> -->
       </div>
   </div>
   <div class="col-md-6">
@@ -192,54 +209,58 @@
 </div>
 
 
-<div class="form-row row key-resp">
-    <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
-    <div class="col-md-5">
-  
-      <div class="form-group">
-          <label for="keyresp"> What are the Key Responsibilities of the role ?  <span class="red">*</span></label>
-          <small>Key Responsibilities  <span class="red">*</span></small> 
-          <ng-select class="custom-style" [items]="KeyResponses"
-          (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
-          [virtualScroll]="true"  [(ngModel)]="SelectKey"
-          name="key"  #Key="ngModel" required minlength="3" maxlength="25">
-          <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
-          <small class="error1" *ngIf="Key.minlength">Min 3 Characters required.</small> 
-          <small class="error1" *ngIf="Key.maxlength">Max 25 Characters required.</small> 
-        </ng-select>
+
+<div class="form-row key-resp">
+  <label for="keyresp" class="no__margin"> What are the Key Responsibilities of the role ?  <span class="red">*</span></label>  
+  <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
+    <div class="row flex flex-wrap flex-align-end">
+      <div class="col-md-5">
+        <div class="form-group xs-padding">
+            <small>Key Responsibilities  <span class="red">*</span></small> 
+            <div class="form__control">
+              <ng-select class="custom-style" [items]="KeyResponses"
+              (change)="changeValue($event)"  bindLabel="Code" [loading]="keyLoading" [addTag]="addTagKey" addTagText="Add Key Responsibilities"  placeholder="Select (or) Add Key Responsibilities"
+              [virtualScroll]="true"  [(ngModel)]="SelectKey"
+              name="key"  #Key="ngModel" required minlength="3" maxlength="25">
+              <small class="error1" *ngIf="Key.invalid && Key.touched">Required.</small> 
+              <small class="error1" *ngIf="Key.minlength">Min 3 Characters required.</small> 
+              <small class="error1" *ngIf="Key.maxlength">Max 25 Characters required.</small> 
+            </ng-select>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-2 min-key-exp">
-      <div class="form-group">
-          <small>Relevant Experience  <span class="red">*</span></small>
-          <input class="form-control"   #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
-          
+      <div class="col-md-2 min-key-exp">
+        <div class="form-group xs-padding">
+            <small>Relevant Experience  <span class="red">*</span></small>
+            <input class="form-control"   #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
+            
+          </div>
+          <div>
+            <small class="error1" *ngIf="Minexp.invalid && Minexp.touched">         
+              *Required
+            </small>
+            <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
+              It can't be greater than Max Experience!
+            </small>
+          </div>
+      </div>
+      <div class="col-md-2 max-key-exp">
+        <div class="form-group xs-padding">
+          <input class="form-control"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
+     
         </div>
         <div>
-          <small class="error1" *ngIf="Minexp.invalid && Minexp.touched">         
+          <small class="error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
             *Required
           </small>
           <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
-            It can't be greater than Max Experience!
+            It can't be less than Min Experience!
           </small>
         </div>
-    </div>
-    <div class="col-md-2 max-key-exp">
-      <div class="form-group">
-        <input class="form-control"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
-   
       </div>
-      <div>
-        <small class="error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
-          *Required
-        </small>
-        <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
-          It can't be less than Min Experience!
-        </small>
+       <div class="col-md-2 add-key-btn add__btn">
+        <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading&&keyslist.length<3">+</button>
       </div>
-    </div>
-     <div class="col-md-2 add-key-btn">
-      <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading&&keyslist.length<3">+</button>
     </div>
     </form>
 </div>

@@ -8,6 +8,15 @@ import { AppService } from "../app.service";
 import { AlertService } from "./alerts/alerts.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { ChartsModule } from "ng2-charts";
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { BarChartComponent } from "./bar-chart/bar-chart.component";
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { PolarChartComponent } from './polar-chart/polar-chart.component';
+import { RadarChartComponent } from './radar-chart/radar-chart.component';
+import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.component';
+import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
 
 @NgModule({
   imports: [
@@ -18,7 +27,29 @@ import { RouterModule } from "@angular/router";
     RouterModule,
   ],
   providers: [AppService, AlertService],
-  declarations: [LogoHeaderComponent, AlertComponent],
-  exports: [LogoHeaderComponent, AlertComponent],
+  declarations: [LogoHeaderComponent,
+    AlertComponent,
+    RadarChartComponent,
+    LineChartComponent,
+    BarChartComponent,
+    PieChartComponent,
+    PolarChartComponent,
+    DoughnutChartComponent,
+    RadarChartLargeComponent,
+    RadarSmartChartComponent
+  ],
+  exports: [
+    LogoHeaderComponent, 
+    AlertComponent,    
+    RadarChartComponent,
+    ChartsModule,
+    LineChartComponent,
+    BarChartComponent,
+    PieChartComponent,
+    PolarChartComponent,
+    DoughnutChartComponent,
+    RadarChartLargeComponent,
+    RadarSmartChartComponent,
+  ],
 })
 export class SharedModule {}

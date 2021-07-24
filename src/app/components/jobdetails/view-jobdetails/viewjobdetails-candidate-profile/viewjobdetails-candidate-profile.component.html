@@ -541,7 +541,8 @@
           <a
             href="javascript:void(0)"
             title="References"
-            *ngIf="profile?.DiscResult !== '0'"
+            *ngIf="profile?.DiscResult !== '0' &&
+            profile.CompanyName == null"
             (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)"
           >
             <img
@@ -554,7 +555,8 @@
 
           <a
             href="javascript:void(0)"
-            *ngIf="profile?.DiscResult === '0'"
+            *ngIf="profile?.DiscResult === '0' &&
+            profile.CompanyName == null"
             title="References"
             (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)"
           >
@@ -575,7 +577,7 @@
 
           <!--Achievement Icon-->
           <!--With dialog-->
-          <a href="javascript:void(0)" title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0"  title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
             <img
               src="../../../../../assets/images/card-icons/achievement-badge.png"
               width="50"
@@ -583,6 +585,15 @@
               alt="achievement-badge"
             />
           </a>
+
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===0"  title="Achievements">
+          <img
+            src="../../../../../assets/images/card-icons/no-achievement.png"
+            width="50"
+            height="50"
+            alt="achievement-badge"
+          />
+        </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
                     <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                         alt="achievement-badge">
@@ -673,11 +684,11 @@
       <div class="card-body">
         <div class="type">
           <div class="d-r-section">
-            <h5>DISC Result</h5>
+            <h5>ARTIC Result</h5>
             <img
-              src="../../../../../assets/images/D-Disc.svg"
-              alt="DISC Feature Coming Soon!!!"
-              title="DISC Feature Coming Soon!!!"
+              src="../../../../../assets/images/Radar-view-coming-soon-sml.png"
+              alt="ARTIC Feature Coming Soon!!!"
+              title="ARTIC Feature Coming Soon!!!"
             />
           </div>
           <div class="p-m-section">
