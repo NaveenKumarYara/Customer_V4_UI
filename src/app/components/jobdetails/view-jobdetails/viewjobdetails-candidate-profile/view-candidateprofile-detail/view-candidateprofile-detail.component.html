@@ -169,8 +169,12 @@
                 </div><!-- /.title__container -->
                 <div class="info__container">
                   Overall 4+years of Hands-on experience as UI Developer with leading organizations. Worked as UI
-                  Developer and developed web-applications using HTML5 , CSS3 , Bootstrap, JQuery, Angular 6 <a
-                    href="#" class="show__more">Show More</a>
+                  <ng-container *ngIf="isMore">
+                    Developer and developed web-applications using HTML5 , CSS3 , Bootstrap, JQuery, Angular 6 
+                  </ng-container>
+                  <a href="javascript:void(0)" (click)="showMore()" class="show__more">
+                    <span *ngIf="isMore">Show Less</span> <span *ngIf="!isMore">Show More</span>
+                  </a>
                 </div>
               </div>
               <div class="col-sm-4 skills__col">
@@ -212,6 +216,7 @@
                   <h4>Job Related Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -235,6 +240,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -258,6 +264,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -281,6 +288,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -304,6 +312,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -327,6 +336,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -350,6 +360,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -373,6 +384,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -401,6 +413,7 @@
                   <h4>Soft Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -424,6 +437,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -447,6 +461,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -470,6 +485,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -493,6 +509,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -516,6 +533,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -539,6 +557,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -562,6 +581,7 @@
                       </div>
                     </div>
                     <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4>Effective Communiction</h4>
@@ -588,79 +608,99 @@
                 </div>
               </div>
               <div class="col-sm-3 right__col col">
-                <h5>Microsoft Azure</h5>
-                <div class="shape__container">
-                  <img src="../../../../../../assets/images/apply-view-details/triangle-shape.png">
-                  <div class="shape__info flex flex-wrap flex-align-center flex-justify-center">
-                    <div>
-                      <h4>Experience</h4>
-                      <p>12</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slider__cols">
-                  <div class="row">
-                    <div class="col-sm-6 col">
-                      <h4>Experience</h4>
-                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                          <div class="item active">
-                            <div class="col-container">
-                              <h5>Infosys</h5>
-                              <p>Oct 2010-Current</p>
+                <div id="carosuleMain" class="carousel slide" data-ride="carousel">
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <h5>Microsoft Azure</h5>
+                      <div class="shape__container">
+                        <img src="../../../../../../assets/images/apply-view-details/triangle-shape.png">
+                        <div class="shape__info flex flex-wrap flex-align-center flex-justify-center">
+                          <div>
+                            <h4>Experience</h4>
+                            <p>12</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slider__cols">
+                        <div class="row">
+                          <div class="col-sm-6 col">
+                            <h4>Experience</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
                             </div>
                           </div>
-                          <div class="item">
-                            <div class="col-container">
-                              <h5>Infosys</h5>
-                              <p>Oct 2010-Current</p>
+                          <div class="col-sm-6 col">
+                            <h4>Certification</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
                             </div>
                           </div>
                         </div>
-                    
-                        <!-- Left and right controls -->
-                        <a class="left-arrow" href="#myCarousel" data-slide="prev">
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right-arrow" href="#myCarousel" data-slide="next">
-                          <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                          <span class="sr-only">Next</span>
-                        </a>
                       </div>
                     </div>
-                    <div class="col-sm-6 col">
-                      <h4>Certification</h4>
-                      <div id="myCertification" class="carousel slide" data-ride="carousel">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                          <div class="item active">
-                            <div class="col-container">
-                              <h5>BBA</h5>
-                              <p>Oct 2010</p>
+                
+                    <div class="item">
+                      <h5>Microsoft Azure</h5>
+                      <div class="shape__container">
+                        <img src="../../../../../../assets/images/apply-view-details/triangle-shape.png">
+                        <div class="shape__info flex flex-wrap flex-align-center flex-justify-center">
+                          <div>
+                            <h4>Experience</h4>
+                            <p>12</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slider__cols">
+                        <div class="row">
+                          <div class="col-sm-6 col">
+                            <h4>Experience</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
                             </div>
                           </div>
-                          <div class="item">
-                            <div class="col-container">
-                              <h5>MCOM</h5>
-                              <p>Oct 2011</p>
+                          <div class="col-sm-6 col">
+                            <h4>Certification</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
                             </div>
                           </div>
                         </div>
-                    
-                        <!-- Left and right controls -->
-                        <a class="left-arrow" href="#myCertification" data-slide="prev">
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right-arrow" href="#myCertification" data-slide="next">
-                          <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                          <span class="sr-only">Next</span>
-                        </a>
                       </div>
                     </div>
                   </div>
+                  <ol class="carousel-indicators">
+                    <li data-target="#carosuleMain" data-slide-to="0" class="active"></li>
+                    <li data-target="#carosuleMain" data-slide-to="1"></li>
+                  </ol>
                 </div>
               </div>
             </div>
@@ -671,8 +711,8 @@
             </div>
             <div class="row flex flex-wrap flex-align-equal">
               <div class="col-sm-4 history__col">
-                <ul class="history__container">
-                  <li class="professional">
+                <ul class="history__container" id="historyNav">
+                  <li class="professional main__history active" data-id="summary__01">
                     <span class="year"><span>Now</span></span>
                     <div class="info__box">
                       <p>Jan 2021 - Sep 2021</p>
@@ -700,138 +740,216 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="professional">
+                  <li class="professional main__history" data-id="summary__02">
                     <span class="year"><span>2020</span></span>
                     <div class="info__box">
                       <p>Jan 2021 - Sep 2021</p>
-                      <h5>Lead Informatica Developer</h5>
+                      <h5>Informatica Developer</h5>
                       <p>Cigna Health Insurance Cgi10</p>
                       <span class="location"><i class="fa fa-map-marker"></i>Lafayette,La</span>
                       <i class="fa fa-briefcase" aria-hidden="true"></i>
                     </div>
-                    
+                  </li>
+                  <li class="sub__history">
+                    <ul>
+                      <li>
+                        <span class="year"><span>Now</span></span>
+                        <div class="info__box">
+                          <h5>Name of The Project</h5>
+                          <p>6 Months</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="year"><span>Now</span></span>
+                        <div class="info__box">
+                          <h5>Name of The Project</h5>
+                          <p>6 Months</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="year"><span>Now</span></span>
+                        <div class="info__box">
+                          <h5>Name of The Project</h5>
+                          <p>6 Months</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="professional main__history" data-id="summary__03">
+                    <span class="year"><span>2016</span></span>
+                    <div class="info__box">
+                      <p>Jan 2021 - Sep 2021</p>
+                      <h5>Web Designer</h5>
+                      <p>Cigna Health Insurance Cgi10</p>
+                      <span class="location"><i class="fa fa-map-marker"></i>Lafayette,La</span>
+                      <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    </div>
                   </li>
                 </ul>
               </div>
               <div class="col-sm-8 experience__detail__col">
-                <div class="container__box">
-                  <h4>Summary</h4>
-                  <div class="info__box">
-                    <p>Worked with product owenrs/business analysts to identify, develop business requirements,
-                      transform it into technical requirements and responsible for deliverablesWorked with product
-                      owenrs/business analysts to identify, develop business requirements, transform it into technical
-                      requirements and responsible for deliverables....</p>
-                    <a href="#" class="show__more">More</a>
-                  </div>
-                </div>
-                <div class="container__box key__container__box">
-                  <div class="row flex flex-wrap flex-align-equal">
-                    <div class="col-sm-9 col key__left__col">
-                      <h4>Key Responsibility</h4>
-                      <ul>
-                        <li>
-                          <div class="card__box">
-                            Ui Design
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="card__box">
-                            HTML
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="card__box">
-                            CSS3
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </div>
-                        </li>
-                      </ul>
+                <div class="experience__slide active" id="summary__01">
+                  <div class="slide__info">
+                    <div class="container__box">
+                      <h4>Summary</h4>
+                      <div class="info__box">
+                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
+                          transform it into technical requirements
+                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
+                          requirements and responsible for deliverables...
+                          </ng-container>
+                        </p>
+                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
+                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                        </a>
+                      </div>
                     </div>
-                    <div class="col-sm-3 col key__right__col">
-                      <h4>Key Achievements</h4>
-                      <ul>
-                        <li>
-                          <div class="card__box">
-                            Ui Design
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </div>
-                        </li>
-                      </ul>
+                    <div class="container__box key__container__box">
+                      <div class="row flex flex-wrap flex-align-equal">
+                        <div class="col-sm-9 col key__left__col">
+                          <h4>Key Responsibility</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                HTML
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                CSS3
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3 col key__right__col">
+                          <h4>Key Achievements</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="container__box">
-                  <div class="row flex-wrap flex flex-align-equal">
-                    <div class="col-sm-9 col skill__left__col">
-                      <div class="skills__container">
-                        <div class="skills__listing">
-                          <h4>Job Related Skills</h4>
-                          <div class="row flex flex-wrap flex-align-equal">
-                            <div class="col-sm-4 col">
-                              <div class="card__container">
-                                <div class="top__section">
-                                  <h4>Effective Communiction</h4>
-                                </div>
-                                <div class="bottom__section">
-                                  <div class="row">
-                                    <div class="col-sm-6 exp__col">
-                                      Exp : 1 Years
+                    <div class="container__box">
+                      <div class="row flex-wrap flex flex-align-equal">
+                        <div class="col-sm-9 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Job Related Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
                                     </div>
-                                    <div class="col-sm-6 star__col">
-                                      <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-sm-4 col">
-                              <div class="card__container">
-                                <div class="top__section">
-                                  <h4>Effective Communiction</h4>
-                                </div>
-                                <div class="bottom__section">
-                                  <div class="row">
-                                    <div class="col-sm-6 exp__col">
-                                      Exp : 1 Years
+                          </div>
+                        </div>
+                        <div class="col-sm-3 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Soft Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-12 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
                                     </div>
-                                    <div class="col-sm-6 star__col">
-                                      <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-4 col">
-                              <div class="card__container">
-                                <div class="top__section">
-                                  <h4>Effective Communiction</h4>
-                                </div>
-                                <div class="bottom__section">
-                                  <div class="row">
-                                    <div class="col-sm-6 exp__col">
-                                      Exp : 1 Years
-                                    </div>
-                                    <div class="col-sm-6 star__col">
-                                      <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -842,28 +960,344 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-3 col skill__left__col">
-                      <div class="skills__container">
-                        <div class="skills__listing">
-                          <h4>Soft Skills</h4>
-                          <div class="row flex flex-wrap flex-align-equal">
-                            <div class="col-sm-12 col">
-                              <div class="card__container">
-                                <div class="top__section">
-                                  <h4>Effective Communiction</h4>
-                                </div>
-                                <div class="bottom__section">
-                                  <div class="row">
-                                    <div class="col-sm-6 exp__col">
-                                      Exp : 1 Years
+                  </div>
+                </div>
+                <div class="experience__slide" id="summary__02">
+                  <div class="slide__info">
+                    <div class="container__box">
+                      <h4>Summary</h4>
+                      <div class="info__box">
+                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
+                          transform it into technical requirements
+                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
+                          requirements and responsible for deliverables...
+                          </ng-container>
+                        </p>
+                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
+                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="container__box key__container__box">
+                      <div class="row flex flex-wrap flex-align-equal">
+                        <div class="col-sm-9 col key__left__col">
+                          <h4>Key Responsibility</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                HTML
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                CSS3
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3 col key__right__col">
+                          <h4>Key Achievements</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container__box">
+                      <div class="row flex-wrap flex flex-align-equal">
+                        <div class="col-sm-9 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Job Related Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
                                     </div>
-                                    <div class="col-sm-6 star__col">
-                                      <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-3 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Soft Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-12 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="experience__slide" id="summary__03">
+                  <div class="slide__info">
+                    <div class="container__box">
+                      <h4>Summary</h4>
+                      <div class="info__box">
+                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
+                          transform it into technical requirements
+                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
+                          requirements and responsible for deliverables...
+                          </ng-container>
+                        </p>
+                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
+                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="container__box key__container__box">
+                      <div class="row flex flex-wrap flex-align-equal">
+                        <div class="col-sm-9 col key__left__col">
+                          <h4>Key Responsibility</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                HTML
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="card__box">
+                                CSS3
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3 col key__right__col">
+                          <h4>Key Achievements</h4>
+                          <ul>
+                            <li>
+                              <div class="card__box">
+                                Ui Design
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container__box">
+                      <div class="row flex-wrap flex flex-align-equal">
+                        <div class="col-sm-9 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Job Related Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-3 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Soft Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-12 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>

@@ -43,6 +43,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	/*rouded progress bar*/
   semicircle: boolean = false;
   isPublicAvailable1: boolean = false;
+  isMore: boolean = false;
+  moreShow: boolean = false;
 	rounded: boolean = false;
 	responsive: boolean = false;
 	clockwise: boolean = true;
@@ -79,6 +81,9 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   @ViewChild('testChart1') testChart1: ElementRef;
   @ViewChild('testChart9') testChart9: ElementRef;
   skilllist: any;
+  currentSlide = 1;
+  maxSlide = 2;
+
 
   chartOptions = {
     responsive: true,
@@ -105,10 +110,28 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.start = 0;
     this.pagination = 5;
     this.profileId=localStorage.getItem('cprofileId');
-    this.cuserId =localStorage.getItem('cuserId');
+    this.cuserId = localStorage.getItem('cuserId');
+    
   }
 
+  showMore() {
+    this.isMore = !this.isMore;
+  }
 
+  moreContent() {
+    this.moreShow = !this.moreShow;
+  }
+
+  // next(i){
+  //   this.currentSlide++;
+  //   if(this.currentSlide > this.maxSlide) this.currentSlide = this.maxSlide;
+  // }
+
+  // previous(){
+  //   this.currentSlide--;
+  //   if(this.currentSlide < 1) this.currentSlide = 1;
+  // }
+  
   Logout() {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
@@ -215,30 +238,34 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
     }
 
-    $('.scrollbar-inner').scrollbar();
+    // $('.scrollbar-inner').scrollbar();
     this.getOverlayStyle();
-
 
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
 
     function cloudAttr() {
-
       $(".word-cloud angular-tag-cloud span").each(function () {
         $(this).addClass("tooltip1")
         // $('<div class="tooltip fade top in">'+$( this ).text()+'</div>').appendTo( this );
         $('<div class="tooltip fade bottom hover-active"><div class="tooltip-arrow"></div><div class="tooltip-inner">' + $(this).text() + '</div></div>').appendTo(this);
       });
-
-
-
-
     }
     cloudspan();
-   
 
-    
+    $(document).ready(function () {
+      $('.history__container .main__history').each(function () {
+        $(this).click(function () {
+          $('.history__container .main__history').removeClass('active');
+          if (!$(this).hasClass('active')) {
+            $(this).addClass('active');
+            $('.experience__slide').removeClass('active');
+            $('#' + $(this).data('id')).addClass('active');
+          }
+        })
+      })
+    })
   }
 
   onChartClick(event) {
