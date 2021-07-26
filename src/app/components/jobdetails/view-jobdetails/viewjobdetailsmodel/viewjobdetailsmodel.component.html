@@ -370,13 +370,13 @@
                           <div class="col-sm-6 col-md-6 col">
                             <div class="col__container">
                               <h4>No. of Views</h4>
-                              <span class="lg__number">4</span>
+                              <span class="lg__number">{{viewJobDetails?.TotalViewCount || '0'}}</span>
                             </div>
                           </div>
                           <div class="col-sm-6 col-md-6 col">
                             <div class="col__container">
                               <h4>No. of Applicants</h4>
-                              <span class="lg__number">5</span>
+                              <span class="lg__number">{{viewJobDetails?.TotalApplicants || '0'}}</span>
                             </div>
                           </div>
                         </div>
@@ -385,7 +385,7 @@
                         <div class="col-sm-4 col-md-4 col">
                           <div class="col__container">
                             <img src="../../../../../assets/images/like-icon-select.png">
-                            <h5>Like(1)</h5>
+                            <h5>Like({{viewJobDetails?.NumberOfLikes || '0' }})</h5>
                           </div>
                         </div>
                         <!-- <div class="col-sm-3 col-md-3 col">
@@ -399,7 +399,7 @@
                         <div class="col-sm-4 col-md-4 col">
                           <div class="col__container">
                             <img src="../../../../../assets/images/like-icon.png">
-                            <h5>DisLike(0)</h5>
+                            <h5>DisLike({{viewJobDetails?.NumberOfDislikes || '0' }})</h5>
                           </div>
                         </div>
                         <div class="col-sm-4 col-md-4 col">
@@ -422,7 +422,7 @@
                                 </g>
                               </svg>
                             </div>
-                            <h5>Comments 0</h5>
+                            <h5>Comments ({{viewJobDetails?.JobCommentsCount || '0'}})</h5>
                           </div>
                         </div>
                       </div>

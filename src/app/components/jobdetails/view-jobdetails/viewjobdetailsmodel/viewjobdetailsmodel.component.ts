@@ -11,6 +11,8 @@ import {ShareJobComponent} from '../share-job/sharejob.component';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
+import { HttpParams } from '@angular/common/http';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -29,13 +31,14 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   userId: any;
  jobid: number;
  customer: any;
+ viewJobDetails:any;
  deactivate = new deactivate();
  getjobCompleteinfo :JobCompletenessInfo;
  getcompanybenfit: GetCompanyBenefit[]=[];
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,
-        private _vcr: ViewContainerRef, private router: Router,
+        private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,
      private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -65,7 +68,16 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
 
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
+      debugger
       this.jobdetailscustomer = res;
+      let params = new HttpParams();
+      params = params.append('jobId', this.jobid.toString());
+      params = params.append('userId', '3');
+      this._service.GetService('JobsAPI/api/GetJobDetailCandidate?', params)
+      .subscribe(      
+        data => {
+          this.viewJobDetails = data;
+        })
     });
 
 }
