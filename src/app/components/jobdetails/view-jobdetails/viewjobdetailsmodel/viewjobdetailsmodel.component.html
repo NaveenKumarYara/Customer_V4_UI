@@ -113,17 +113,8 @@
         <div class="tab-content">
           <div id="job-card" class="tab-pane fade in active">
             <div class="jdv-listing lg__paading">
-              <div class="info__col">
-                <div class="row flex flex-wrap flex-align-equal">
-                  <div class="col-sm-4">
-                    <h4>Follow these tips to <br> make your Job perfect</h4>
-                  </div>
-                  <div class="col-sm-8 text-center">
-                    <p>Keep improving your skills to be preferred pick for top companies.</p>
-                    <button class="btn btn-default btn-goto">Go To Profile</button>
-                  </div>
-                </div>
-              </div>
+         
+              
               <div class="row no__margin">
                 <div class="col-sm-6 col-md-6">
                   <div class="job-leftcard">
@@ -274,7 +265,7 @@
                             </circle-progress>
                               </div>
                               <h4>Job Completeness</h4>
-                              <a href="javascript:void(0)" class="tooltip__link">
+                              <a href="javascript:void(0)" class="tooltip__link"  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span class="custom__tooltip">
                                  Complete your job.
@@ -287,12 +278,16 @@
                         </div>
                         <!--/.two-grid-icon-->
                         
-                        <div class="slidingVertical contain">
-                          <span>Please review and confirm your details to begin your journey with Arytic.<a routerLink="#">Please update your Profile now.</a></span>
-                          <span> There are many jobs matching your profile. But<strong> "you may miss 98% of the jobs" </strong> because of your incomplete profile. <a routerLink="#">Please update your Profile now.</a></span>
-                          <span> There are many jobs matching your profile. But<strong> "you may miss 98% of the jobs" </strong> because of your incomplete profile. <a routerLink="#">Please update your Profile now.</a></span>
-                          <span>Please review and confirm your details to begin your journey with Arytic.<a routerLink="#">Please update your Profile now.</a></span>
-                          <span></span>
+                        <div class="slidingVertical contain" *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
+
+                          <span *ngIf="getjobCompleteinfo.JobDomain===0">Please review and provide  <strong>Domain</strong> arytic will make your job easy to find best.<a href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.JobDesc===0"> Please review and provide  <strong>Job description</strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.OptionalSkill===0"> There are many profiles matching to this position.<strong> "please provide OptionalSkill" </strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.WorkAuthorise===0">Please review and provide <strong> "WorkAuthorise to this position" </strong> arytic will make your job easy to find best.<a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.Qualification===0">Please review and provide <strong> "Qualification to this position".</strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.JobAssigned===0">There are many profiles matching to this position <strong> "please assign job" </strong> one who can do his job with passionately to find best as arytic provided many profiles. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                          <span *ngIf="getjobCompleteinfo.Video===0">There are many profiles matching to this position <strong> "please do add Job details through Video" </strong> Where professionals can have a look  apply for your position. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
+                         
                         </div>
 
                         <div class="jdv-gray-section">
@@ -431,86 +426,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-12 col">
-                        <div class="reviews section">
-                          <h3>Reviews (2)</h3>
-                          <div class="review">
-                            <header>
-                              <img alt="" class="company-logo" src="https://identityapi-dev.arytic.com/home/EsolvitImages?id=professional.png">
-                              <h4>test five</h4>
-                              <div class="flex-row">
-                                <span>Software Engineer</span>
-                                <span class="time">4:49 PM</span>
-                              </div>
-                            </header>
-                            <div class="review-content">
-                              <p>
-                                testing jlkjlk nlknlk
-                              </p>
-                              <div class="settings-dot dropdown" data-toggle="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                </a>
-                                <ul class="dropdown-menu" id="edit_delete_infom" role="menu">
-                                  <li>
-                                    <a href="javascript:void(0)">Edit</a>
-                                  </li>
-                                  <li>
-                                    <a href="javascript:void(0)">Delete</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="review">
-                            <header>
-                              <img alt="" class="company-logo" src="https://identityapi-dev.arytic.com/home/EsolvitImages?id=professional.png">
-                              <h4>test five</h4>
-                              <div class="flex-row">
-                                <span>Software Engineer</span>
-                                <span class="time">1:34 PM</span>
-                              </div>
-                            </header>
-                            <div class="review-content">
-                              <p>
-                                fddfdf asdasd dsad   dsad a
-                              </p>
-                              <div class="settings-dot dropdown" data-toggle="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                </a>
-                                <ul class="dropdown-menu" id="edit_delete_infom" role="menu">
-                                  <li>
-                                    <a href="javascript:void(0)">Edit</a>
-                                  </li>
-                                  <li>
-                                    <a href="javascript:void(0)">Delete</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- <div class="form-group" id="showComment">
-                            <form class="comment_inn1 ng-untouched ng-pristine ng-invalid" novalidate="">
-                              <div class="input-fields p-rel">
-                                <input class="form-control ng-untouched ng-pristine ng-invalid" formcontrolname="CommentText" id="commentsId" maxlength="100" minlength="10" placeholder="Share your Comments" required="" type="text" pattern="[a-zA-Z0-9_]+.*$">
-                              </div>
-                              <button class="comments_in" type="submit" disabled="">
-                                <span class="input-group-addon">
-                                  <svg xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" style="enable-background:new 0 0 45.2 41.9;" version="1.1" viewBox="0 0 45.2 41.9" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
-                                    <polygon class="st0" id="XMLID_68_" points="24.8,19.6 12.9,27.8 0,20.5 45.2,0 33.5,38 23,33 15.8,41.9 15.8,29.3 ">
-                                    </polygon>
-                                  </svg>
-                                </span>
-                              </button>
-                            </form>
-                          </div> -->
-                        </div>
-                      </div>
+                    
                     </div>
                   </div>
                 </div>
