@@ -10,7 +10,7 @@
 			  <img alt="..." class="media-object media-img-circle" src="{{ details?.profileVal?.ProfilePic }}" />
 			</div>
 			<div class="profile__info__box">
-			  <div class="row flex flex-align-equal equal-hundred">
+			  <div class="row flex flex-align-equal flex-wrap equal-hundred">
 				<div class="col-sm-7">
 				  <div class="top__listing">
 					<ul class="flex flex-wrap flex-align-equal">
@@ -837,6 +837,20 @@
 		  <!--New HTML Ends-->
 		  <div *ngIf="radarChart">
 			<div class="radar-chart-container flex" [ngClass]="showMenu ? 'lg-chart-container':''">
+				<div class="mobile__menu">
+					<h4>{{menuHeading}}</h4>
+					<ul>
+						<li 
+					  *ngFor="let item of radarChartMenu"
+					  [ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
+					  (click)="selectedItem(item.label)"
+					  >
+						  <a href="javascript:void(0)">
+							  {{ item.label }}
+						  </a>
+					  </li>
+					</ul>
+				</div>
 			  <div class="side-menu" (mouseover)="showMenu=true" (mouseout)="showMenu=false">
 				  <ul>
 					  <li class="list-group-item">
@@ -938,7 +952,7 @@
 					</ul>
 				  </div>
 				</div>
-				<div class="row" *ngIf="selectedMenuItem == 'Culture Fit'">
+				<div class="row culture-tile-row flex flex-wrap flex-align-equal" *ngIf="selectedMenuItem == 'Culture Fit'">
 				  <div class="col-xs-4">
 					<div class="culture-tile">
 					  <span  class="fa fa-language fa-2x"></span>

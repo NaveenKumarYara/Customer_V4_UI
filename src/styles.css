@@ -26451,7 +26451,8 @@ input[name='browsers']{width: 1200px;}
 .revamp__jd__skills .star-rating { background:none; width:60% !important; position: relative !important; top:0 !important; right:0 !important; }
 
 
-.revamp__view__job__swiper .mat-dialog-container { height: 100vh; }
+.revamp__view__job__swiper .mat-dialog-container, .candiateModalPop  .mat-dialog-container { height: 100vh; }
+.candiateModalPop  .mat-dialog-container { overflow-x:hidden; }
 .revamp__share__modal  .modal-header  h4{ color:#6e819e; font-weight:600;  }
 .revamp__share__modal  .modal-header  .layout.layout--btn { margin-left: auto; }
 .revamp__share__modal .modal-body .top__container { text-align: center; }
@@ -26766,8 +26767,27 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 .revamp__candidate__modal  .mat-dialog-container { background:#f9fcfe }
 
 @media only screen and (max-width:1200px) {
-    .revamp__view__job__swiper {
+    .revamp__view__job__swiper, .candiateModalPop  {
         width:90vw !important;
         max-width:90vw !important;
     }
+}
+
+@media only screen and (max-width:1023px) {
+    body .revamp__radio__grid .col { flex:0 0 100%; max-width:100%; }
+    .candiateModalPop .mat-dialog-container { background:#f9fcfe }
+    body .revamp__radio__grid .col__container .row .col-sm-6:last-child { text-align:right; }
+}
+
+@media only screen and (max-width:767px) {
+    body .revamp__radio__grid .col__container .row .col-sm-6 { width:100% !important; }
+    .candiateModalPop .mat-dialog-container .modal-footer .btn { vertical-align: top; }
+    body .revamp__radio__grid .multiple__radio__row .left__col, body .revamp__radio__grid .multiple__radio__row .right__col { width:100%; }
+    body .revamp__radio__grid .multiple__radio__row .right__col { text-align:left; }
+    body .revamp__radio__grid .icon__col .col__container { padding-top: 60px; }
+}
+
+@media only screen and (max-width:480px) {
+    .radar-chart-container  canvas { height:200px; width:250px; }
+    body .revamp__radio__grid .col__container .row .col-sm-6:last-child, body .revamp__radio__grid .multiple__radio__row .right__col { padding:10px; text-align:center; }
 }

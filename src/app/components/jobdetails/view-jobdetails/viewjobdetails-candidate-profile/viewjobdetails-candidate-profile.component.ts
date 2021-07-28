@@ -509,6 +509,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       width: "750",
       position: { right: "0px" },
       height: "750px",
+      panelClass:'candiateModalPop',
       data: {
         ProfileId: profileId,
         jobId: this.jobid,
