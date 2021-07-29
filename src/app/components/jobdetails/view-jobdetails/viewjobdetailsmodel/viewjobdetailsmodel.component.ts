@@ -90,6 +90,7 @@ PopulateJobCompleteness() {
 }
 PopulateJobComments () {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
+    debugger
     this.jobComments = res;
   });
 

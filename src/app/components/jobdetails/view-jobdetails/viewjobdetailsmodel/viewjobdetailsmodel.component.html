@@ -64,7 +64,7 @@
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
                 <li><img src="../../../../../assets/images/icon__01.png"><span>
                     <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
-                        {{job.WorkAuthorizationType}}                  
+                        {{job.WorkAuthorizationType || 'N/A'}}                  
                     </ng-container>
                   </span> </li>
               </ng-container>
@@ -89,9 +89,12 @@
                   </span></li>
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 0">
+                <li><img src="../../../../../assets/images/icon__03.png">
                 <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                  <li><img src="../../../../../assets/images/icon__03.png"><span>{{imi?.ImmigrationStatus}}</span></li>
+                  
+                 <span>{{imi?.ImmigrationStatus}}</span>
                 </ng-container>
+              </li>
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 0">
                 <li><img src="../../../../../assets/images/icon__03.png"><span>
@@ -425,6 +428,34 @@
                             <h5>Comments ({{viewJobDetails?.JobCommentsCount || '0'}})</h5>
                           </div>
                         </div>
+                        <div class="col-sm-12 col">
+                          <div class="reviews section">
+                            <h3>Reviews ({{viewJobDetails?.JobCommentsCount || '0'}})</h3>
+                            <ng-container *ngIf="jobComments.length>0">
+                              <div class="review" *ngFor="let comments of jobComments">
+                                <header>
+                                  <img alt="" class="company-logo" src="{{comments?.ProfilePic}}">
+                                  <h4> {{comments?.FirstName | titlecase}}  {{comments?.LastName | titlecase}}</h4>
+                                  <div class="flex-row">
+                                    <span> {{comments?.ProfileTitle | titlecase}}</span>
+                                    <span class="time">{{comments?.CommentedDate | date}}</span>
+                                  </div>
+                                </header>
+                                <div class="review-content">
+                                  <p>
+                                    {{comments?.CommentText}}
+                                  </p>                            
+                                </div>
+                              </div>
+                            </ng-container>
+                            <ng-container *ngIf="jobComments.length===0">
+                              <h4>No Reviews</h4>
+                            </ng-container>
+                           
+                            
+                       
+                          </div>
+                        </div>
                       </div>
                     
                     </div>
@@ -620,7 +651,7 @@
                 </div>
                 <span class="icon icon__star icon__hide">Icon</span>
               </div>
-              <div class="col__container">
+              <!-- <div class="col__container">
                 <div class="title__container blue"><span>Reviews</span></div>
                 <div class="review__check__list">
                   <div class="row flex flex-wrap flex-align-equal">
@@ -639,7 +670,7 @@
                   </div>
                 </div>
                 <span class="icon icon__comment icon__hide">Icon</span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div id="skills" class="tab-pane fade">
