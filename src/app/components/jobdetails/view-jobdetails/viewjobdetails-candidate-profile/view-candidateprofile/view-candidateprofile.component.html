@@ -885,6 +885,7 @@
 				 
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Job Fit'">
+				<
 				  <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
@@ -902,33 +903,45 @@
 				  </div>
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Skill Fit'">
-				  <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
-				  <div class="custom-legend">
-					<ul class="list-group">
-					  <li *ngFor="let item of Skill.labels; let i = index">
-						<p>{{ item }}</p>
-						<div class="percentage__info">
-						  <span
-							class="shadow__01"
-							[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <span
-							class="shadow__02"
-							[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <p [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
-							{{ Skill.datasets[0].data[i] }}
-						  </p>
-						</div>
-					  </li>
-					</ul>
-				  </div>
+				<ng-container *ngIf="skillfitcheck.length>0">
+					<app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
+					<div class="custom-legend">
+					  <ul class="list-group">
+						<li *ngFor="let item of Skill.labels; let i = index">
+						  <p>{{ item }}</p>
+						  <div class="percentage__info">
+							<span
+							  class="shadow__01"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<span
+							  class="shadow__02"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<p [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
+							  {{ Skill.datasets[0].data[i] }}
+							</p>
+						  </div>
+						</li>
+					  </ul>
+					</div>
+				</ng-container>
+				<ng-container *ngIf="skillfitcheck.length===0">
+					<div class="no__data__found">
+						<h3>Skills does not match</h3>
+					  </div>
+					</ng-container>
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Team Fit'">
-				  <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
-				  <!-- <app-pie-chart [pieChartData]="Team"></app-pie-chart> -->
+					<ng-container *ngIf="skillfitcheck.length===0">
+						<div class="no__data__found">
+							<h3>TeamFit Comming Soon!!</h3>
+						  </div>
+						</ng-container>
+				  <!-- <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
+				  <app-pie-chart [pieChartData]="Team"></app-pie-chart>
 				  <div class="custom-legend">
 					<ul class="list-group">
 					  <li *ngFor="let item of TeamFitLabels.labels; let i = index">
@@ -950,7 +963,7 @@
 						</div>
 					  </li>
 					</ul>
-				  </div>
+				  </div> -->
 				</div>
 				<div class="row culture-tile-row flex flex-wrap flex-align-equal" *ngIf="selectedMenuItem == 'Culture Fit'">
 				  <div class="col-xs-4">
@@ -1028,7 +1041,7 @@
 					</ng-container>
 					<ng-container *ngIf="CulturalTestStatusNew===0">
 						<div class="no__data__found">
-							<h3>Coming Soon</h3>
+							<h3>Candidate yet to provide</h3>
 						  </div>
 						</ng-container>
 				</div>
@@ -1040,7 +1053,7 @@
 				  <!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
 				  <ng-container *ngIf="checkPersonality.length===0">
 					<div class="no__data__found">
-						<h3>Coming Soon</h3>
+						<h3>Candidate yet to provide</h3>
 					  </div>
 					</ng-container>
 				<ng-container *ngIf="checkPersonality.length>0">

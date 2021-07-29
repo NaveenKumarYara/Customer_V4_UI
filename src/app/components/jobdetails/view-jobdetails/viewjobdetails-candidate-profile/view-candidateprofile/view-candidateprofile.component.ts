@@ -36,12 +36,14 @@ export class ViewCandidateprofileComponent implements OnInit {
   email: any;
   showMenu: boolean;
   jobStatus: any;
+  skillfitcheck:any=[];
   showShortDesciption = true;
   checkPersonality:any=[];
   CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
   aboutContent: any;
+  FitDetails:any;
   MatchingPercentage: any;
   profileId: any;
   fileType = new Resume();
@@ -86,7 +88,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   selectedMenuItem: any;
   menuHeading: any;
   smallRadarChartData = {
-    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    labels: ["Job Fit", "Skill Fit",  "Culture Fit", "Personality Fit" ,"Team Fit"],
     datasets: [
       {
         label: "Arytic Fit",
@@ -117,7 +119,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60],
+        data: [],
       },
     ],
   };
@@ -164,11 +166,12 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Skill = {
-    labels: ["Angular.js", "React.js", "Vue.js", "Node.js", "Next.js"],
+    labels: [],
     datasets: [
       {
         label: "Skill Fit",
-        data: [9, 6, 7, 3, 8],
+        data: [],
+        
         backgroundColor: [
           "rgb(255, 99, 132, 0.7)",
           "rgb(75, 192, 192, 0.7)",
@@ -432,7 +435,8 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetJobNotes();
-
+    this.GetCandidateJobFitResult();
+    this.GetCandidateSkillFitResult();
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
@@ -593,14 +597,54 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.email = email.UserName;
       this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
       .subscribe(
-        data => {
-          this.CulturalTestStatusNew = data.Total; 
-          if (data!=null) {
-             this.Culture.datasets[0].data = [data.Valuematch,data.Rankmatch,data.Total];           
+        data4 => {
+          this.CulturalTestStatusNew = data4.Total; 
+          if (data4!=null) {
+             this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
           }
         })
         
       });
+  }
+
+  GetCandidateJobFitResult() {
+      this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+      .subscribe(
+        data2 => {
+          if (data2!=null) {
+            var exp;
+              if(data2.ExperienceFit == null)
+              {
+               exp  = 0;
+              }
+              else
+              {
+                exp =  data2.ExperienceFit;
+              }
+              debugger
+             this.Job.datasets[0].data = [exp,data2.RoleFit,data2.JobHopping,data2.Education];           
+          }
+          this.FitDetails= data2.JobFit; 
+          debugger
+       
+        })
+  }
+
+  GetCandidateSkillFitResult() {
+      this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+      .subscribe(
+        data3 => {
+          this.skillfitcheck = data3;
+          if (data3.length > 0) {
+            data3.forEach((a)=>
+            {         
+             this.Skill.labels.push(a.SkillName);
+             this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+            //  this.PersonalityFitLabels.labels.push(a.groupName);
+            //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
+            })             
+          }
+        })
   }
   add3Dots(string, limit) {
     const dots = "...";
@@ -616,9 +660,9 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Job Fit" },
         { className: "icon__skill__fit", label: "Skill Fit" },
-        { className: "icon__team__fit", label: "Team Fit" },
         { className: "icon__culture__fit", label: "Culture Fit" },
         { className: "icon__personality__fit", label: "Personality Fit" },
+        { className: "icon__team__fit", label: "Team Fit" }
       ];
       this.selectedMenuItem = "Job Fit";
     } else {
