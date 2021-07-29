@@ -26791,3 +26791,6 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
     .radar-chart-container  canvas { height:200px; width:250px; }
     body .revamp__radio__grid .col__container .row .col-sm-6:last-child, body .revamp__radio__grid .multiple__radio__row .right__col { padding:10px; text-align:center; }
 }
+
+#skillsCheckPop .modal-body h3 { font-size:16px; color:#6a7e9c; text-align:center; }
+#skillsCheckPop .modal-body p { font-size:14px; color:#9eabc0 }

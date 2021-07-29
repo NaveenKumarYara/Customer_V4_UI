@@ -2551,7 +2551,8 @@ border-radius:0px;
 .public__profile__detail .col-container .title__container h6 { font-size:14px; color:#9eabc0; font-weight: 400; }
 .public__profile__detail .col-container .title__container h6 span { font-weight:600; }
 .public__profile__detail .col-container .info__container { padding:20px; border:1px solid #e0e3ef; border-radius: 6px; color:#9eabc0; }
-.public__profile__detail .skills__col .card__container { background:#fafbff; border-radius: 6px; padding:15px 20px; border:1px solid #447afa;  }
+.public__profile__detail .skills__col .card__container { background:#fafbff; cursor: pointer; border-radius: 6px; padding:15px 20px; border:1px solid #447afa; position:relative; }
+.public__profile__detail .skills__col .card__container .fa-arrow-circle-right { position:absolute; right:10px; left:auto; top:10px; }
 .public__profile__detail .skills__col h4 { font-size: 16px; margin:0 0 10px; color:#447afa }
 .public__profile__detail .card__container .image__col img { width:100%; height: auto; }
 .public__profile__detail .card__container  .col-container { padding:15px 15px 15px 30px; position:relative; border-radius: 0; background: #fff; }
@@ -2957,3 +2958,4 @@ border-radius:0px;
   .experience__slide.active { height:auto; visibility: visible; overflow:inherit; }
   .experience__slide .slide__info { transform:translateX(100%); transition: all ease-in 550ms; }
   .experience__slide.active .slide__info { transform:translateX(0); }
+  .link__btn { cursor: pointer; }

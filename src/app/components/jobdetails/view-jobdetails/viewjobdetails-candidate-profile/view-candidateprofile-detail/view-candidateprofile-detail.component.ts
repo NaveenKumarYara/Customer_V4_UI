@@ -83,7 +83,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   skilllist: any;
   currentSlide = 1;
   maxSlide = 2;
-
+  isPersonality: boolean = false;
+  isCulture: boolean = false;
 
   chartOptions = {
     responsive: true,
@@ -120,6 +121,21 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
   moreContent() {
     this.moreShow = !this.moreShow;
+  }
+
+  personalityClick() {
+    this.isPersonality = true;
+    this.isCulture = false;
+  }
+
+  cultureClick() {
+    this.isPersonality = false;
+    this.isCulture = true;
+  }
+
+  closeSkills() {
+    this.isCulture = false;
+    this.isPersonality = false;
   }
 
   // next(i){
@@ -264,7 +280,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
             $('#' + $(this).data('id')).addClass('active');
           }
         })
-      })
+      });
     })
   }
 

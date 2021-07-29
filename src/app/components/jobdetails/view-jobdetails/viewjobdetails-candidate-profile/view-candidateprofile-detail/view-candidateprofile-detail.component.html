@@ -107,7 +107,7 @@
                           <li><span class="icon icon_gender">Icon</span>Female</li>
                           <li><span class="icon icon__group">Icon</span>Generation X(Baby Bust)</li>
                           <li><span class="icon icon__world">Icon</span>H4 EAD</li>
-                          <li><span class="icon icon__video">Icon</span>Video Sizzles</li>
+                          <li class="link__btn" data-toggle="modal" data-target="#videoSizzle"><span class="icon icon__video">Icon</span>Video Sizzles</li>
                         </ul>
                       </div>
                     </div>
@@ -123,13 +123,13 @@
                   <a href="#" title="Facebook">Facebook</a>
                 </li>
                 <li class="tw">
-                  <a href="#" title="Facebook">Facebook</a>
+                  <a href="#" title="Facebook">Twitter</a>
                 </li>
                 <li class="ins">
-                  <a href="#" title="Instagram">Facebook</a>
+                  <a href="#" title="Instagram">Instagram</a>
                 </li>
                 <li class="skype">
-                  <a href="#" title="Skype">Facebook</a>
+                  <a href="#" title="Skype">Skype</a>
                 </li>
               </ul>
             </div>
@@ -187,18 +187,20 @@
                       <img src="../../../../../../assets/images/apply-view-details/skills__icon.png">
                     </div>
                     <div class="col-sm-8 content__col">
-                      <div class="col-container">
+                      <div class="col-container" (click)="personalityClick()" data-toggle="modal" data-target="#skillsCheckPop">
                         <h5><i class="fa fa-file-o"></i>Personality Test</h5>
                         <p>Yet to be performed.</p>
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                       </div>
-                      <div class="col-container">
-                        <h5><i class="fa fa-file-o"></i>Culture Test</h5>
+                      <div class="col-container" (click)="cultureClick()" data-toggle="modal" data-target="#skillsCheckPop">
+                        <h5><i class="fa fa-sticky-note" aria-hidden="true"></i>Culture Test</h5>
                         <div class="progress">
                           <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
                             role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                             <span class="sr-only">20% Complete</span>
                           </div>
                         </div>
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                       </div>
                     </div>
                   </div>
@@ -3151,6 +3153,47 @@
 <!--Vardhini Code-->
 <!--End-->
 
+<div id="videoSizzle" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Video Sizzles</h4>
+      </div>
+      <div class="modal-body">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9xwazD5SyVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="skillsCheckPop" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)="closeSkills()" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Personality Skills</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <li [ngClass]="isPersonality?'active':''"><a data-toggle="tab" href="#personality-test">Personality Tests</a></li>
+          <li [ngClass]="isCulture?'active':''"><a data-toggle="tab" href="#culture-fit">Culture Fit</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="personality-test" [ngClass]="isPersonality?'tab-pane fade in active':'tab-pane fade'">
+            <h3>Personality Test</h3>
+          </div>
+          <div id="culture-fit" [ngClass]="isCulture?'tab-pane fade in active':'tab-pane fade'">
+            <h3>Who Am I</h3>
+            <p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.
+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!--Test Dialog for-->
 <div class="modal fade test-dialog" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
