@@ -101,7 +101,11 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60, 70],
+        data: [this.data.JobFit,
+          this.data.Skillfit,
+          0,
+          this.data.Personalityfit,
+          0]
       },
     ],
   };
@@ -302,10 +306,15 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.showMenu = false;
   }
 
-  GetMatchingPercentage(Pid, JId): any {
-    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Pid, JId).subscribe((res) => {
+  GetMatchingPercentage(){
+    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(this.data.ProfileId, this.data.jobId).subscribe((res) => {
       this.Match = res;
       this.MatchingPercentage = res.Total_Match_Per;
+      setInterval(() => {
+        this.smallRadarChartData.datasets[0].data=[res.Jobfit_Total,res.Skillfit_Total,0,res.Personalityfit_Total,0];
+      },1000)
+    
+     
     });
   }
 
@@ -396,7 +405,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   // public lineChartLegend = true;
   // public lineChartType = 'line';
   /*#dashboard graph*/
-
+ 
   ngOnInit() {
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
@@ -427,6 +436,10 @@ export class ViewCandidateprofileComponent implements OnInit {
     cloudspan();
     this.GetCandidateSKills();
     this.GetProfileDetails();
+    setInterval(() => {
+      this.GetMatchingPercentage();
+    },2000)
+   
     this.GetUserProfileInfo();
     this.GetJobNotes();
     this.GetCandidateJobFitResult();
@@ -441,6 +454,8 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.GetCandidateCultureResult();
       }
     });
+
+    
   }
 
 
@@ -552,7 +567,6 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetUserProfileInfo?profileId=", this.data.ProfileId).subscribe(
       (datas) => {
         this.profileview = datas;
-        this.GetMatchingPercentage(this.data.ProfileId, this.data.jobId);
 
         // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(
