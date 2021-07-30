@@ -172,13 +172,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         label: "Skill Fit",
         data: [],
         
-        backgroundColor: [
-          "rgb(255, 99, 132, 0.7)",
-          "rgb(75, 192, 192, 0.7)",
-          "rgb(255, 205, 86, 0.7)",
-          "rgb(201, 203, 207, 0.7)",
-          "rgb(54, 162, 235, 0.7)",
-        ],
+        backgroundColor: [],
       },
     ],
   };
@@ -636,9 +630,16 @@ export class ViewCandidateprofileComponent implements OnInit {
           this.skillfitcheck = data3;
           if (data3.length > 0) {
             data3.forEach((a)=>
-            {         
+            {        
+              var letters = '0123456789ABCDEF'.split('');
+              var color = '#';
+              for (var i = 0; i < data3.length; i++ ) {
+                  color += letters[Math.floor(Math.random() * 16)];
+              }
+              ; 
              this.Skill.labels.push(a.SkillName);
              this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+             this.Skill.datasets[0].backgroundColor.push(color);
             //  this.PersonalityFitLabels.labels.push(a.groupName);
             //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
             })             
@@ -791,7 +792,6 @@ export class ViewCandidateprofileComponent implements OnInit {
       data => {
       if(data != "No records found")
       {
-        debugger
        this.usersList = data;        
       }
       else
