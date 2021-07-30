@@ -236,11 +236,11 @@
                   <h6>Years of Experience: <span>{{profileview?.ProfileBasicInfo?.TotalExperience}}Years</span></h6>
                 </div><!-- /.title__container -->
                 <div class="info__container">
-                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(0, 100)">
+                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:100">
 
                   </p>
                   <ng-container *ngIf="isMore">
-                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(100, 15000)">
+                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000">
                     
                     </span>
                   </ng-container>
@@ -792,134 +792,130 @@
               <h5>Professional Experience</h5>
             </div>
             <div class="row flex flex-wrap flex-align-equal">
-              <div class="col-sm-4 history__col">
+            
+                <ng-container *ngFor="let exps of profExperience;let i=index ">
+                  <div class="col-sm-4 history__col">
                 <ul class="history__container" id="historyNav">
-                  <li class="professional main__history active" data-id="summary__01">
+                  <li class="professional main__history active" data-id="summary__{{i}}">
                     <span class="year"><span>Now</span></span>
                     <div class="info__box">
-                      <p>Jan 2021 - Sep 2021</p>
-                      <h5>Lead Informatica Developer</h5>
-                      <p>Cigna Health Insurance Cgi10</p>
-                      <span class="location"><i class="fa fa-map-marker"></i>Lafayette,La</span>
+                      <p>{{exps?.StartDate | date:'mediumDate'}} - {{exps?.EndDate | date:'mediumDate'}}</p>
+                      <h5>{{exps?.JobTitle}}</h5>
+                      <p>{{exps?.CompanyName}}</p>
+                      <span class="location"><i class="fa fa-map-marker"></i>{{exps?.JobLocation || 'N/A'}}</span>
                       <i class="fa fa-briefcase" aria-hidden="true"></i>
                     </div>
                   </li>
                   <li class="sub__history">
                     <ul>
-                      <li>
-                        <span class="year"><span>Now</span></span>
-                        <div class="info__box">
-                          <h5>Name of The Project</h5>
-                          <p>6 Months</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="year"><span>Now</span></span>
-                        <div class="info__box">
-                          <h5>Name of The Project</h5>
-                          <p>6 Months</p>
-                        </div>
-                      </li>
+                      <ng-container *ngIf="exps?.ProjectExp.length>0">
+                        <ng-container *ngFor="let pro of exps?.ProjectExp">
+                          <li *ngIf="pro?.ProjectName != 'New Project'">
+                            <span class="year"><span>Now</span></span>
+                            <div class="info__box">
+                              <h5>{{pro?.ProjectName}}</h5>
+                              <p>{{pro?.FromDate | date:'mediumDate'}}-{{pro?.ToDate | date:'mediumDate'}}</p>
+                            </div>
+                          </li>
+                          <li *ngIf="pro?.ProjectName === 'New Project'">
+                            <span class="year"><span>Now</span></span>
+                            <div class="info__box">
+                              <p>Candidate yet to provide </p>
+                            </div>
+                          </li>
+                        </ng-container>
+                      </ng-container>
+
+                      <ng-container *ngIf="exps?.ProjectExp.length===0">
+                        <li>
+                          <span class="year"><span>Now</span></span>
+                          <div class="info__box">
+                            <p>Yet to provide </p>
+                          </div>
+                        </li>
+                          
+                      </ng-container>
+                     
+                 
+                      
                     </ul>
-                  </li>
-                  <li class="professional main__history" data-id="summary__02">
-                    <span class="year"><span>2020</span></span>
-                    <div class="info__box">
-                      <p>Jan 2021 - Sep 2021</p>
-                      <h5>Informatica Developer</h5>
-                      <p>Cigna Health Insurance Cgi10</p>
-                      <span class="location"><i class="fa fa-map-marker"></i>Lafayette,La</span>
-                      <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    </div>
-                  </li>
-                  <li class="sub__history">
-                    <ul>
-                      <li>
-                        <span class="year"><span>Now</span></span>
-                        <div class="info__box">
-                          <h5>Name of The Project</h5>
-                          <p>6 Months</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="year"><span>Now</span></span>
-                        <div class="info__box">
-                          <h5>Name of The Project</h5>
-                          <p>6 Months</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="year"><span>Now</span></span>
-                        <div class="info__box">
-                          <h5>Name of The Project</h5>
-                          <p>6 Months</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="professional main__history" data-id="summary__03">
-                    <span class="year"><span>2016</span></span>
-                    <div class="info__box">
-                      <p>Jan 2021 - Sep 2021</p>
-                      <h5>Web Designer</h5>
-                      <p>Cigna Health Insurance Cgi10</p>
-                      <span class="location"><i class="fa fa-map-marker"></i>Lafayette,La</span>
-                      <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    </div>
-                  </li>
+                  </li>               
                 </ul>
               </div>
+
               <div class="col-sm-8 experience__detail__col">
-                <div class="experience__slide active" id="summary__01">
+                <div class="experience__slide active" id="summary__{{i}}">
                   <div class="slide__info">
                     <div class="container__box">
                       <h4>Summary</h4>
-                      <div class="info__box">
-                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
-                          transform it into technical requirements
-                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
-                          requirements and responsible for deliverables...
-                          </ng-container>
+                      <div class="info__box" *ngIf="exps.Description!=null||exps.Description!=''">
+                        <p  [innerHTML]="exps?.Description | slice:0:100">
+
                         </p>
+                          <ng-container *ngIf="moreShow">  <p [innerHTML]="exps?.Description| slice:100:15000">
+                    
+                          </p>
+                          </ng-container>
                         <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
                           <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
                         </a>
+
                       </div>
+                      <ng-container *ngIf="exps.Description===null||exps.Description===''">
+                        <p> Candidate yet to provide the Description. </p>
+                      </ng-container>
                     </div>
                     <div class="container__box key__container__box">
                       <div class="row flex flex-wrap flex-align-equal">
                         <div class="col-sm-9 col key__left__col">
                           <h4>Key Responsibility</h4>
                           <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                HTML
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                CSS3
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
+                            <ng-container *ngFor="let keys of exps?.ProjectExp">
+                              <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
+                               <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
+                                  <li>
+                                     <div class="card__box">
+                                    {{k?.RoleDescription}}
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                 </li>
+                                </ng-container>
+                               
+                               </ng-container>
+                               <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                 <p>Yet to provide</p>
+                               </ng-container>
+                              </ng-container>
+                              <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                <p>Yet to provide</p>
+                              </ng-container>
                           </ul>
                         </div>
                         <div class="col-sm-3 col key__right__col">
                           <h4>Key Achievements</h4>
                           <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
+                            <ng-container *ngFor="let keys of exps?.ProjectExp">
+                              <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
+                               <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
+                                 <ng-container *ngFor="let ki of k?.CandidateProAchievements">
+                                  <li>
+                                    <div class="card__box">
+                                   {{ki?.AchivementDescription}}
+                                   <i class="fa fa-star" aria-hidden="true"></i>
+                                   </div>
+                                </li>
+                                 </ng-container>
+                         
+                                </ng-container>
+                               
+                               </ng-container>
+                               <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                 <p>Yet to provide</p>
+                               </ng-container>
+                              </ng-container>
+                              <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                <p>Yet to provide</p>
+                              </ng-container>
                           </ul>
                         </div>
                       </div>
@@ -929,85 +925,56 @@
                         <div class="col-sm-9 col skill__left__col">
                           <div class="skills__container">
                             <div class="skills__listing">
-                              <h4>Job Related Skills</h4>
+                              <h4>Skills</h4>
                               <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
+                                <ng-container *ngFor="let skills of exps?.ProjectExp">
+                                   <ng-container *ngIf="skills?.CandidateProSkills.length>0">
+                                    <ng-container *ngFor="let s of skills?.CandidateProSkills">
+                                      <div class="col-sm-4 col">
+                                        <span class="tooltip">{{s?.SkillName | titlecase}}</span>
+                                        <div class="card__container">
+                                          <div class="top__section">
+                                            <h4>{{s?.SkillName | titlecase}}</h4>
+                                          </div>
+                                          <div class="bottom__section">
+                                            <div class="row">
+                                              <div class="col-sm-6 exp__col">
+                                                Exp : {{s?.ExpInYears}}.{{s?.ExpInMonths||'0'}} Years
+                                              </div>
+                                              <div class="col-sm-6 star__col">
+                                                <star-rating value="{{s.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                <!-- <div class="stars">
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star"></span>
+                                                  <span class="fa fa-star"></span>
+                                                </div> -->
+                                              </div>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                     </ng-container>
+                                    
+                                    </ng-container>
+                                    <ng-container *ngIf="skills?.CandidateProSkills.length===0">
+                                      <p>Yet to provide</p>
+                                    </ng-container>
+                                   </ng-container>
+
+                                   <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                    <p>Yet to provide</p>
+                                  </ng-container>
+                                  
+
+                                 
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-3 col skill__left__col">
+                        <!-- <div class="col-sm-3 col skill__left__col">
                           <div class="skills__container">
                             <div class="skills__listing">
                               <h4>Soft Skills</h4>
@@ -1039,360 +1006,14 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="experience__slide" id="summary__02">
-                  <div class="slide__info">
-                    <div class="container__box">
-                      <h4>Summary</h4>
-                      <div class="info__box">
-                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
-                          transform it into technical requirements
-                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
-                          requirements and responsible for deliverables...
-                          </ng-container>
-                        </p>
-                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
-                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="container__box key__container__box">
-                      <div class="row flex flex-wrap flex-align-equal">
-                        <div class="col-sm-9 col key__left__col">
-                          <h4>Key Responsibility</h4>
-                          <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                HTML
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                CSS3
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3 col key__right__col">
-                          <h4>Key Achievements</h4>
-                          <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container__box">
-                      <div class="row flex-wrap flex flex-align-equal">
-                        <div class="col-sm-9 col skill__left__col">
-                          <div class="skills__container">
-                            <div class="skills__listing">
-                              <h4>Job Related Skills</h4>
-                              <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-3 col skill__left__col">
-                          <div class="skills__container">
-                            <div class="skills__listing">
-                              <h4>Soft Skills</h4>
-                              <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-12 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="experience__slide" id="summary__03">
-                  <div class="slide__info">
-                    <div class="container__box">
-                      <h4>Summary</h4>
-                      <div class="info__box">
-                        <p>Worked with product owenrs/business analysts to identify, develop business requirements,
-                          transform it into technical requirements
-                          <ng-container *ngIf="moreShow"> and responsible for deliverablesWorked with product owenrs/business analysts to identify, develop business requirements, transform it into technical
-                          requirements and responsible for deliverables...
-                          </ng-container>
-                        </p>
-                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
-                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="container__box key__container__box">
-                      <div class="row flex flex-wrap flex-align-equal">
-                        <div class="col-sm-9 col key__left__col">
-                          <h4>Key Responsibility</h4>
-                          <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                HTML
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="card__box">
-                                CSS3
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3 col key__right__col">
-                          <h4>Key Achievements</h4>
-                          <ul>
-                            <li>
-                              <div class="card__box">
-                                Ui Design
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container__box">
-                      <div class="row flex-wrap flex flex-align-equal">
-                        <div class="col-sm-9 col skill__left__col">
-                          <div class="skills__container">
-                            <div class="skills__listing">
-                              <h4>Job Related Skills</h4>
-                              <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-3 col skill__left__col">
-                          <div class="skills__container">
-                            <div class="skills__listing">
-                              <h4>Soft Skills</h4>
-                              <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-12 col">
-                                  <span class="tooltip">Effective Communiction</span>
-                                  <div class="card__container">
-                                    <div class="top__section">
-                                      <h4>Effective Communiction</h4>
-                                    </div>
-                                    <div class="bottom__section">
-                                      <div class="row">
-                                        <div class="col-sm-6 exp__col">
-                                          Exp : 1 Years
-                                        </div>
-                                        <div class="col-sm-6 star__col">
-                                          <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+         
               </div>
+            </ng-container>
             </div>
           </div>
           <div class="three__grid__card__container">

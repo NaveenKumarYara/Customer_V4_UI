@@ -49,6 +49,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	rounded: boolean = false;
 	responsive: boolean = false;
 	clockwise: boolean = true;
+  profExperience:any=[];
 	color: string = '#448AFA';
 	background: string = '#eaeaea';
 	duration: number = 800;
@@ -281,6 +282,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetUserProfileInfo();
     this.GetProfileRating();
     this.GetCandidateCultureResult();
+    this.GetExperience();
     this.GetVideo();
     this.GetCandidateProfileStatistics();
     if (sessionStorage.getItem('redirect') != null) {
@@ -346,6 +348,18 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         data => {
           this.videoUrl = data[0];
         });
+  }
+
+
+  
+  GetExperience() {
+      this._service.GetService("ProfileAPI/api/GetExperience?profileId=", this.profileId +"&freeLance=false")
+        .subscribe(
+          (profExp) => {
+            this.profExperience = profExp;         
+          }
+        );
+  
   }
 
   Check()
@@ -578,6 +592,7 @@ GetProfileRating() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
           this.profileview = datas;
+         
           //debugger
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
