@@ -2037,18 +2037,28 @@
       </div>
       <div class="modal-body">
         <ul class="nav nav-tabs">
-          <li [ngClass]="isPersonality?'active':''"><a data-toggle="tab" href="#personality-test">Personality Tests</a></li>
+          <li [ngClass]="isPersonality?'active':''"><a data-toggle="tab" href="#personality-test">Personality Fit</a></li>
           <li [ngClass]="isCulture?'active':''"><a data-toggle="tab" href="#culture-fit">Culture Fit</a></li>
         </ul>
         <div class="tab-content">
           <div id="personality-test" [ngClass]="isPersonality?'tab-pane fade in active':'tab-pane fade'">
-            <h3>Personality Test</h3>
-            <p>Coming Soon</p>
+            <h3>Personality Fit</h3>
+            <div *ngFor="let label of graphLabelList; let i=index">
+              <a class="d-inline-b" (click)="showSubGraph(i,label.GroupId,label.GroupPer)">
+                <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
+                </span>
+                {{label.GroupLabel}} - {{label.GroupPer}}%
+              </a>
+              <br>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div style="width:70%;margin:auto;">
+              <canvas #testChart width="400" height="400"></canvas>
+            </div>
           </div>
           <div id="culture-fit" [ngClass]="isCulture?'tab-pane fade in active':'tab-pane fade'">
-            <h3>Who Am I</h3>
-            <p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.
-</p>
+            <h3>Culture fit</h3>
+
 <div>
   ValueMatch: {{cultureresults?.Valuematch}}%
 </div>

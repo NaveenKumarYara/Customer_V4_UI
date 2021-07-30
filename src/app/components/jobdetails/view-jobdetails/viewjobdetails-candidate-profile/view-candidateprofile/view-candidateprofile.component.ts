@@ -347,8 +347,8 @@ export class ViewCandidateprofileComponent implements OnInit {
     localStorage.setItem("cprofileId", profileId);
     localStorage.setItem("cuserId", userId);
     //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-    const url = this.customer.Defaulturl.Purl;
-    //const url ='http://localhost:4200/app-view-candidateprofile-detail';
+    //const url = this.customer.Defaulturl.Purl;
+    const url ='http://localhost:4200/app-view-candidateprofile-detail';
     window.open(url, "_blank");
   }
 
