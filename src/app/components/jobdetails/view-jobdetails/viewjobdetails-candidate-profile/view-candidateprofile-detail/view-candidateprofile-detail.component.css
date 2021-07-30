@@ -2959,3 +2959,11 @@ border-radius:0px;
   .experience__slide .slide__info { transform:translateX(100%); transition: all ease-in 550ms; }
   .experience__slide.active .slide__info { transform:translateX(0); }
   .link__btn { cursor: pointer; }
+
+
+  .isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}

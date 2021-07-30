@@ -23,6 +23,7 @@ declare var $: any;
 export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   customer: any;
   customerId: any;
+  cultureresults:any=[];
   userId: any;
   email: any;
   Rating: profileRating;
@@ -65,6 +66,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   fileExt: any;
   details: mappingdetails;
   noTest: boolean = false;
+  usersList:any=[];
   isPublicAvailable: boolean = false;
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -159,6 +161,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
       .subscribe(
         data4 => {
           this.CulturalTestStatusNew = data4.Total; 
+          this.cultureresults=data4;
           // if (data4!=null) {
           //    this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
           // }
@@ -482,6 +485,24 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     // QuestionnaireAssignment
   }
 
+  GetQuestionnariePersonsList(Ud) {
+    //debugger
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=0')
+      .subscribe(
+        data => {
+        if(data != "No records found")
+        {
+         this.usersList = data;        
+        }
+        else
+        {
+          this.usersList = [];         
+        }
+  
+         
+        });
+  }
+
   GetCandidatePersonalityResult() {
     this.show=false;
     this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=', this.profileId).subscribe(
@@ -592,8 +613,7 @@ GetProfileRating() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
           this.profileview = datas;
-         
-          //debugger
+          this.GetQuestionnariePersonsList(datas.ProfileBasicInfo.UserId);
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
                                 var showChar = 250;  // How many characters are shown by default
