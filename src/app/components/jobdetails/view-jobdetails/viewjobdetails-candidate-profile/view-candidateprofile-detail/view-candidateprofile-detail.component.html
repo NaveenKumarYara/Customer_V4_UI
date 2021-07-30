@@ -261,21 +261,54 @@
                       <img src="../../../../../../assets/images/apply-view-details/skills__icon.png">
                     </div>
                     <div class="col-sm-8 content__col">
-                      <div class="col-container" (click)="personalityClick()" data-toggle="modal" data-target="#skillsCheckPop">
-                        <h5><i class="fa fa-file-o"></i>Personality Test</h5>
-                        <p>Yet to be performed.</p>
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                      </div>
-                      <div class="col-container" (click)="cultureClick()" data-toggle="modal" data-target="#skillsCheckPop">
-                        <h5><i class="fa fa-sticky-note" aria-hidden="true"></i>Culture Test</h5>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
-                            role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                            <span class="sr-only">20% Complete</span>
+                      <ng-container *ngIf="noTest === true">
+                        <div class="col-container" (click)="personalityClick()" data-toggle="modal" data-target="#skillsCheckPop">
+                          <h5><i class="fa fa-file-o"></i>Personality Fit</h5>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" style="width:100%;"
+                              role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
                           </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                         </div>
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                      </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="noTest === false">
+                        <div class="col-container">
+                          <h5><i class="fa fa-file-o"></i>Personality Fit</h5>
+                          <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
+                          role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">Not yet Done</span>
+                        </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
+                      </ng-container>
+                     
+                      <ng-container *ngIf="CulturalTestStatusNew > 0 ">
+                        <div class="col-container" (click)="cultureClick()" data-toggle="modal" data-target="#skillsCheckPop">
+                          <h5><i class="fa fa-sticky-note" aria-hidden="true"></i>Culture Fit</h5>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" style="width:100%;"
+                              role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
+                          </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="CulturalTestStatusNew === 0 ">
+                        <div class="col-container">
+                          <h5><i class="fa fa-file-o"></i>Culture Fit</h5>
+                          <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
+                          role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">Not yet Done</span>
+                        </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
+                      </ng-container>
+                      
                     </div>
                   </div>
                 </div>

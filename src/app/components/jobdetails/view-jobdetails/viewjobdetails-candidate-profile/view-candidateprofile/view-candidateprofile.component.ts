@@ -621,11 +621,9 @@ export class ViewCandidateprofileComponent implements OnInit {
               {
                 exp =  data2.ExperienceFit;
               }
-              debugger
              this.Job.datasets[0].data = [exp,data2.RoleFit,data2.JobHopping,data2.Education];           
           }
           this.FitDetails= data2.JobFit; 
-          debugger
        
         })
   }
