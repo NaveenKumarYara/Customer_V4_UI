@@ -37,6 +37,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	profileStatistics: any;
 	start: number;
 	pagination: number;
+  CulturalTestStatusNew: number = 0;
 	suggestedSkill: any = [];
     skillLimit: any = [];
     videoUrl: videoUrl;
@@ -147,6 +148,22 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   personalityClick() {
     this.isPersonality = true;
     this.isCulture = false;
+  }
+
+  
+  GetCandidateCultureResult() {
+    this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=",  this.profileId).subscribe((email) => {
+      this.email = email.UserName;
+      this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
+      .subscribe(
+        data4 => {
+          this.CulturalTestStatusNew = data4.Total; 
+          // if (data4!=null) {
+          //    this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
+          // }
+        })
+        
+      });
   }
 
   cultureClick() {
@@ -263,6 +280,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
+    this.GetCandidateCultureResult();
     this.GetVideo();
     this.GetCandidateProfileStatistics();
     if (sessionStorage.getItem('redirect') != null) {

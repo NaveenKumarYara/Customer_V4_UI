@@ -101,12 +101,22 @@
                   <div class="flex-self-center">
                     <div class="top__box__info flex flex-align-center flex-wrap">
                       <div>
-                        <h4>Manu Naren</h4>
-                        <h5>Team Leader-13 Years Exp. | Yurka</h5>
+                        <h4>{{details?.profileVal?.FirstName}}
+                          {{details?.profileVal?.LastName}}</h4>
+                        <h5>{{details?.profileVal?.ProfileTitle}}- {{profileview?.ProfileBasicInfo?.TotalExperience}}Years Exp. </h5>
                         <ul>
-                          <li><span class="icon icon_gender">Icon</span>Female</li>
-                          <li><span class="icon icon__group">Icon</span>Generation X(Baby Bust)</li>
-                          <li><span class="icon icon__world">Icon</span>H4 EAD</li>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.Gender!=null">
+                            <li><span class="icon icon_gender">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.Gender | titlecase}}</li>
+                          </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.GenerationName!=null">
+                            <li><span class="icon icon__group">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.GenerationName | titlecase}}</li>
+                          </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.ImmigrationStatus!=null">
+                            <li><span class="icon icon__world">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.ImmigrationStatus}}</li>
+                          </ng-container>
                           <li class="link__btn" data-toggle="modal" data-target="#videoSizzle"><span class="icon icon__video">Icon</span>Video Sizzles</li>
                         </ul>
                       </div>
@@ -119,18 +129,74 @@
           <div class="col-sm-5">
             <div class="social">
               <ul>
-                <li class="fb">
-                  <a href="#" title="Facebook">Facebook</a>
-                </li>
-                <li class="tw">
-                  <a href="#" title="Facebook">Twitter</a>
-                </li>
-                <li class="ins">
-                  <a href="#" title="Instagram">Instagram</a>
-                </li>
-                <li class="skype">
-                  <a href="#" title="Skype">Skype</a>
-                </li>
+                <ng-container *ngIf="profileview?.Links.length === 0"> 
+                  <li class="ins">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                   <li class="fb">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                     <li class="tw">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                    <li class="skype">
+                               <a href="javascript:void(0)">
+                              
+                               </a>
+                   </li>
+                             </ng-container>
+                             <ng-container *ngIf="profileview?.Links.length>0">
+                               <ng-container *ngFor="let link of profileview?.Links">
+                                 <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL != '' ">
+                     <li class="tw">
+                                     <a href="{{link.LinkURL}}" target="_blank"></a>
+                                   </li>
+                     </ng-container>
+                                   <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL != ''">
+                                     <li class="fb">
+                      <a href="{{link.LinkURL}}" target="_blank"></a>
+                                   </li>
+                     </ng-container>
+                                   <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL != ''">
+                                   <li class="ins">
+                      <a href="{{link.LinkURL}}" target="_blank"></a>
+                                  </li>
+                    </ng-container>
+                                 
+                                 <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
+                    <li class="tw">
+                                   <a href="javascript:void(0)">
+                                   
+                                   </a>
+                     </li>
+                                 </ng-container>
+                                 <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
+                                    <li class="fb">
+                     <a href="javascript:void(0)">
+                                 
+                                   </a>
+                     </li>
+                                 </ng-container>
+                                 <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
+                                   <li class="ins">
+                    <a href="javascript:void(0)">
+                                     
+                                   </a>
+                     </li>
+                                 </ng-container>
+                               </ng-container>
+                    <li class="skype">
+                                   <a class="social-media" href="javascript:void(0)" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
+                        
+                                   </a>
+                              </li>
+                             </ng-container>
               </ul>
             </div>
           </div>
@@ -142,9 +208,11 @@
     <div class="container">
       <div class="bottom__listing">
         <ul class="flex flex-wrap flex-align-center">
-          <li class="mail">jhon@accenture.com</li>
-          <li class="mobile">+1 2345678909</li>
-          <li class="location">USA</li>
+          <li class="mail">{{details?.profileVal?.Email}}</li>
+          <li class="mobile">{{details?.profileVal?.MobilePhone || "Yet to Provide" }}</li>
+          <li class="location"> <ng-container>
+            {{details?.profileVal?.CityName || "Location yet to provide"}}.
+          </ng-container></li>
         </ul>
       </div>
     </div>
@@ -165,12 +233,16 @@
               <div class="col-sm-8">
                 <div class="title__container">
                   <h5>Summary</h5>
-                  <h6>Years of Experience: <span>7.5 Years</span></h6>
+                  <h6>Years of Experience: <span>{{profileview?.ProfileBasicInfo?.TotalExperience}}Years</span></h6>
                 </div><!-- /.title__container -->
                 <div class="info__container">
-                  Overall 4+years of Hands-on experience as UI Developer with leading organizations. Worked as UI
+                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(0, 100)">
+
+                  </p>
                   <ng-container *ngIf="isMore">
-                    Developer and developed web-applications using HTML5 , CSS3 , Bootstrap, JQuery, Angular 6 
+                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(100, 15000)">
+                    
+                    </span>
                   </ng-container>
                   <a href="javascript:void(0)" (click)="showMore()" class="show__more">
                     <span *ngIf="isMore">Show Less</span> <span *ngIf="!isMore">Show More</span>
@@ -215,9 +287,37 @@
                   <h5>Skills</h5>
                 </div>
                 <div class="skills__listing">
-                  <h4>Job Related Skills</h4>
+                  <h4>Mandatory Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
+                    <ng-container *ngFor="let skill of list">
                     <div class="col-sm-3 col">
+                      <span class="tooltip"> {{skill.SkillName}}</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4> {{skill.SkillName}}</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : {{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                <!-- <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </ng-container>
+                    <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
@@ -384,37 +484,41 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-sm-3 col">
-                      <span class="tooltip">Effective Communiction</span>
-                      <div class="card__container">
-                        <div class="top__section">
-                          <h4>Effective Communiction</h4>
-                        </div>
-                        <div class="bottom__section">
-                          <div class="row">
-                            <div class="col-sm-6 exp__col">
-                              Exp : 1 Years
-                            </div>
-                            <div class="col-sm-6 star__col">
-                              <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="skills__listing">
-                  <h4>Soft Skills</h4>
+                  <h4>Optional Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
-                    <div class="col-sm-3 col">
+                    <ng-container *ngFor="let skill of otherSkills">
+                      <div class="col-sm-3 col">
+                        <span class="tooltip"> {{skill.SkillName}}</span>
+                        <div class="card__container">
+                          <div class="top__section">
+                            <h4> {{skill.SkillName}}</h4>
+                          </div>
+                          <div class="bottom__section">
+                            <div class="row">
+                              <div class="col-sm-6 exp__col">
+                                Exp : {{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years
+                              </div>
+                              <div class="col-sm-6 star__col">
+                                <div class="stars">
+                                  <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                  uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                  <!-- <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </ng-container>
+                    <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
                         <div class="top__section">
@@ -581,31 +685,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-sm-3 col">
-                      <span class="tooltip">Effective Communiction</span>
-                      <div class="card__container">
-                        <div class="top__section">
-                          <h4>Effective Communiction</h4>
-                        </div>
-                        <div class="bottom__section">
-                          <div class="row">
-                            <div class="col-sm-6 exp__col">
-                              Exp : 1 Years
-                            </div>
-                            <div class="col-sm-6 star__col">
-                              <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -1327,60 +1407,35 @@
                       <div class="col-sm-3 image__col">
                         <img src="../../../../../../assets/images/apply-view-details/education__icon.png">
                       </div>
+                                       
                       <div class="col-sm-9">
+                        <ng-container  *ngFor="let educations of profileview?.Education">   
                         <div class="card__box">
                           <div class="card__header">
-                            <h4>Degree Name</h4>
-                            <div class="duration">0-2007</div>
+                            <h4>{{educations.QualificationName  || 'N/A'}}</h4>
+                            <div class="duration">{{educations.FromYear  || 'N/A'}}-{{educations.ToYear  || 'N/A'}}</div>
                           </div>
                           <div class="card__body">
                             <h5>Fields of Study</h5>
                             <div class="tags__list">
                               <ul>
-                                <li>MASTER OF TECHNOLOGY</li>
+                                <li>{{educations.Specialization  || 'N/A'}}</li>
                               </ul>
                             </div>
                             <div class="location">
                               <i class="fa fa-map-marker"></i>
-                              Location Name
+                              {{educations.Location || 'N/A'}}
                             </div>
                           </div>
                         </div>
+                      </ng-container>
                       </div>
+              
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4 main-col certification__col">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Certification</h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-sm-3 image__col">
-                        <img src="../../../../../../assets/images/apply-view-details/certification__icon.png">
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="card__box">
-                          <div class="card__body">
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <h4>Angular JS</h4>
-                            <p>2001</p>
-                          </div>
-                        </div>
-                        <div class="card__box">
-                          <div class="card__body">
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <h4>Certification Name</h4>
-                            <p>2001</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
               <div class="col-sm-4 main-col domain__col">
                 <div class="card">
                   <div class="card-header">
@@ -1392,20 +1447,51 @@
                         <img src="../../../../../../assets/images/apply-view-details/domain__icon.png">
                       </div>
                       <div class="col-sm-9">
-                        <div class="card__box">
-                          <div class="card__body">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            <h4>Information Technology</h4>
-                            <p>2001</p>
+                        <ng-container *ngIf="profileview?.ProfileDomain?.length>0">
+                          <ng-container *ngFor="let domains of profileview?.ProfileDomain">
+                            <div class="card__box">
+                              <div class="card__body">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <h4> {{domains.DomainName}}</h4>
+                                <p>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</p>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="profileview?.ProfileDomain?.length===0">
+                          <p>Domain Knowledge not provided</p>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4 main-col certification__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Certification</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/certification__icon.png">
+                      </div>
+                      <div class="col-sm-9">
+                        <ng-container *ngIf="profileview?.Certifications?.length>0">
+                        <ng-container *ngFor="let certificates of profileview?.Certifications ">
+                          <div class="card__box">
+                            <div class="card__body">
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                              <h4> {{certificates.CertificationName}}</h4>
+                              <p>{{certificates.YearOfAchievement| date:'mediumDate'}}</p>
+                            </div>
                           </div>
-                        </div>
-                        <div class="card__box">
-                          <div class="card__body">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            <h4>Information Technology</h4>
-                            <p>2001</p>
-                          </div>
-                        </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="profileview?.Certifications?.length===0">
+                        <p>Candidate yet to provide the Certifications.</p>
+                      </ng-container>
                       </div>
                     </div>
                   </div>
@@ -1418,7 +1504,7 @@
               <div class="col-sm-6 main-col achivements__col">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Achievments</h4>
+                    <h4>Achievements</h4>
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -1427,7 +1513,8 @@
                       </div>
                       <div class="col-sm-9">
                         <div class="row flex flex-wrap flex-align-equal">
-                          <div class="col-sm-6 col">
+                          <p>Candidate yet to Provide the Achievements!!</p>
+                          <!-- <div class="col-sm-6 col">
                             <div class="card__box">
                               <h4>Marketing Mangement</h4>
                               <h5>University Name</h5>
@@ -1436,17 +1523,8 @@
                                 Lorem Ipsum is simply.....
                               </div>
                             </div>
-                          </div>
-                          <div class="col-sm-6 col">
-                            <div class="card__box">
-                              <h4>Marketing Mangement</h4>
-                              <h5>University Name</h5>
-                              <div class="date">15-04-2020</div>
-                              <div class="info">
-                                Lorem Ipsum is simply.....
-                              </div>
-                            </div>
-                          </div>
+                          </div> -->
+                       
                         </div>
                       </div>
                     </div>
@@ -1465,7 +1543,8 @@
                       </div>
                       <div class="col-sm-9">
                         <ul class="flex flex-wrap flex-align-equal">
-                          <li>
+                          <p>Candidate yet to Provide the Hobbies!!</p>
+                          <!-- <li>
                             <div class="box__col">
                               Travelling
                             </div>
@@ -1494,7 +1573,7 @@
                             <div class="box__col">
                               Food
                             </div>
-                          </li>
+                          </li> -->
                         </ul>
                       </div>
                     </div>
@@ -2296,860 +2375,7 @@
 </div>
 
 <!---->
-<div class="profile-pg public-profile">
-  <main class="main-wrapper">
-    <div class="container">
-      <div class="col-lg-8 col-md-8 text-left detailed-profile">
-        <h3>Detailed Profile Kinjal</h3>
-      </div>
 
-      <!--Download Resume-->
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 border-left1 text-right">
-        <input type="hidden" id="wordOrPdf">
-        <div class="upload-options">
-          <button class="btn btn-filled btn-download-resume" (click)="DownloadResume(details?.profileVal?.FirstName)">
-            <i class="fa fa-download" aria-hidden="true"></i></button>
-        </div>
-      </div>
-
-      <!---->
-      <div class="clearfix">&nbsp;</div>
-
-      <div id="detailView" class="tab-pane fade in active">
-        <main class="main-wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="profile-info">
-                  <div class="row">
-                    <div class="pic col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                      <div>
-                        <img class="profile-pic" src="{{details?.profileVal?.ProfilePic}}" alt="">
-                      </div>
-                      <!-- <div>
-                            <a href="#" class="btn green-btn">Public Profile</a>                
-                          </div> -->
-                    </div>
-                    <div class="info-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <h1 class="name">{{details?.profileVal?.FirstName}}
-                        {{details?.profileVal?.LastName}}</h1>
-
-                      <h4 class="meta profile-title">
-                        {{details?.profileVal?.ProfileTitle}}
-                      </h4>
-                      <h4 class="meta">
-                        {{profileview?.ProfileBasicInfo?.CompanyName}}
-                      </h4>
-
-                      <h4 class="meta">
-
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.Gender!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/gender.svg" alt="gender" width="22" title="Gender">
-                          {{profileview?.ProfileBasicInfo?.Gender | titlecase}}
-                        </ng-container>
-                      </h4>
-                      <h4 class="meta">
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.GenerationName!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/generation.svg" alt="generation" width="22"
-                            title="Generation Belongs To">
-                          {{profileview?.ProfileBasicInfo?.GenerationName | titlecase}}
-                        </ng-container>
-                      </h4>
-                      <h4 class="meta">
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.ImmigrationStatus!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/visa.svg" alt="visa" width="22" title="Visa Status">
-                          {{profileview?.ProfileBasicInfo?.ImmigrationStatus}}
-                        </ng-container>
-                       
-                      </h4>
-
-                      <div class="social-media">
-                        <ng-container *ngIf="profileview?.Links.length === 0"> 
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/skype-icon.png" alt="skype">
-                          </a>
-                        </ng-container>
-                        <ng-container *ngIf="profileview?.Links.length>0">
-                          <ng-container *ngFor="let link of profileview?.Links">
-                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL != '' ">
-                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
-                              </ng-container>
-                              <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL != ''">
-                               <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/fb-icon.svg"></a>
-                              </ng-container>
-                              <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL != ''">
-                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
-                              </ng-container>
-                            
-                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-                              </a>
-                            </ng-container>
-                            <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
-                              </a>
-                            </ng-container>
-                            <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
-                              </a>
-                            </ng-container>
-                          </ng-container>
-                              <a class="social-media" href="javascript:void(0)">
-                                <img src="assets/images/skype-icon.png" alt="skype" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
-                              </a>
-                         
-                        </ng-container>
-                    
-                      </div>
-                    </div>
-
-                    <div class="contact-info-col col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <div class="divider"></div>
-                      <a style="visibility:hidden;">
-                        <!-- Edit Icon -->
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="19.8px"
-                          height="20px" viewBox="0 0 19.8 20" style="enable-background:new 0 0 19.8 20;"
-                          xml:space="preserve" class="icon">
-
-                          <defs>
-                          </defs>
-                          <g>
-                            <defs>
-                              <rect id="SVGID_1_" x="0" width="19.8" height="20" />
-                            </defs>
-                            <clipPath id="SVGID_2_">
-                              <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                            </clipPath>
-                            <path class="st0"
-                              d="M16.8,11.7v5.5c0,1-0.8,1.8-1.8,1.8H2.8c-1,0-1.8-0.8-1.8-1.8V5c0-1,0.8-1.8,1.8-1.8h5.5" />
-                            <polygon class="st0" points="17,1 18.8,2.9 9.2,12.5 6.6,13.3 7.3,10.6 	" />
-                          </g>
-                        </svg>
-                      </a>
-                      <div>
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/email-icon.svg" alt="Email">
-                          </span>
-                          {{details?.profileVal?.Email}}
-                        </p>
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
-
-                          </span>
-                          <ng-container>
-                            {{details?.profileVal?.CityName || "Location yet to provide"}}.
-                          </ng-container>
-                          <ng-container *ngIf="details?.profileVal?.StateName!=null">
-                            {{details?.profileVal?.StateName}}.
-                          </ng-container>
-                        </p>
-
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
-                          </span>
-                          {{details?.profileVal?.MobilePhone || "Yet to Provide" }}
-                        </p>
-                        <p class="meta">
-                          {{profileview?.ProfileBasicInfo?.TotalExperience}} Years
-                        </p>
-
-                      </div>
-                      <!-- <div class="v-divider hidden-sm hidden-xs"></div> -->
-                      <div class="divider"></div>
-
-                    </div>
-                    <div class="video-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <ng-container *ngIf="videoUrl?.VideoURL!=null">
-                        <!-- <span _ngcontent-c4="" class="icon-video-profile"></span> -->
-                        <!-- <video [src]="" id="video_display"></video> -->
-                        <video controls class="video-align" [src]="videoUrl?.VideoURL" type="video/mp4" #videoPlayer>
-                          <!-- <source [src]="videoUrl" type="video/mp4" /> Browser not supported -->
-                        </video>
-                        <!-- <h4>Video Profile</h4> -->
-                      </ng-container>
-                      <ng-container *ngIf="videoUrl?.VideoURL==null">
-                        <!-- <span _ngcontent-c4="" class="icon-video-profile"></span> -->
-                        <!-- <video [src]="" id="video_display"></video> -->
-                        <img src="../../../../../../assets/images/no-video.png" class="video" alt="">
-                        <!-- <h4>Video Profile</h4> -->
-                      </ng-container>
-                    </div>
-                  </div>
-                </div>
-                <!-- Profile Info -->
-              </div>
-              <!-- col-lg-12 -->
-            </div>
-
-            <div class="row">
-              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                <div class="summary">
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Skills||0}}</h2>
-                        <p class="sum_tech_infom">Technical Skills </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Domain||0}}</h2>
-                        <p class="sum_tech_infom">Domain Skills </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <div class="col-sm-2 border-right">
-                          <div class="pull-left sum_tech_img">
-                            <a href="javascript:void(0)">
-                              <img src="assets/images/interview-icon.png" alt="icon">
-                            </a>
-                          </div>
-                          <div class="pull-right">
-                            <h2 class="sum_tech_num">23</h2>
-                            <p class="sum_tech_infom">Languages </p>
-                          </div>
-                        </div> -->
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Certification||0}}</h2>
-                        <!-- <h2 class="sum_tech_num">0</h2> -->
-                        <p class="sum_tech_infom">Certification </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Education||0}}</h2>
-                        <p class="sum_tech_infom">Achievements </p>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!--Matching Percentage-->
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center matching-section">
-                <h5>Profile Completeness</h5>
-                <circle-progress [percent]="Rating?.ProfilePercentage" [radius]="40" [outerStrokeWidth]="8"
-                  [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'"
-                  [animation]="true" [animationDuration]="300" [showSubtitle]="false">
-                </circle-progress>
-
-              </div>
-              <!---->
-            </div>
-
-            <!-- row -->
-            <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!-- <div class="upload-resume row">
-                      <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <h2 class="title">Upload Resume</h2>
-                        <p>
-                          Upload your resume and we will automatically parse your data
-                          to your profile.
-                        </p>
-                      </div>
-                 
-                      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <h4><form class="form-inline" action="" enctype="multipart/form-data"><label for="browse">Browse<input id="browse" type="file"></label></form><small>OR</small>Upload</h4>
-                        <div class="upload-options">
-                          <a href="">
-                            <img src="images/g-drive-logo.png" alt="">
-                          </a>
-                          <a href="">
-                            <img src="images/dropbox-logo.png" alt="">                
-                          </a>
-                          <a href="">
-                            <img src="images/cloud-logo.png" alt="">                
-                          </a>
-                        </div>
-                      </div>
-                    </div> -->
-
-                <div class="row">
-                  <div class="certifications card left hasModal">
-                    <div class="wrap">
-                      <header class="card-header">
-                        <h2 class="card-title">Summary</h2>
-
-
-
-                      </header>
-
-                      <div class="summary">
-                        <div>
-                          <span [innerHTML] class="moreDetails">
-                            {{profileview?.ProfileBasicInfo?.AboutMe}}
-                          </span>
-
-
-
-
-
-                          <ng-container
-                            *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
-                            <p>Candidate yet to provide the Summary</p>
-                          </ng-container>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- col-lg-9 Ends -->
-              <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="profile-completeness row">
-                      <h2>Profile Completeness</h2>
-                      <div class="progress-wrap">
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                          aria-valuemin="0" aria-valuemax="100" style="width:75%">
-                          <span class="sr-only">75% Complete</span>
-                          </div>
-                        </div>
-                        <h4>75%</h4> 
-                      </div>
-                    </div>
-                  </div> -->
-              <!-- col-lg-3 -->
-            </div>
-            <!-- <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="summary">
-                      <div>
-                        <h2>Summary</h2>
-                        <p>Adding summary will help employers to know about your personality and background. </p>
-                      </div>
-                      <a href="#" class="add-btn" style="visibility:hidden"><span >+</span><p>Add Summary</p></a>
-                    </div>
-                  </div>
-                </div> -->
-            <div class="row">
-              <div id="technical-skills" class="technical-skills card left hasModal">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Technical Skills</h2>
-
-                    <div class="view-toggle pull-right hidden-xs">
-                      <div>
-                        <a data-toggle="tab" href="#topSkillsListView" aria-expanded="false">
-                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="20px"
-                            height="20px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;"
-                            xml:space="preserve" class="icon">
-                            <g>
-                              <defs>
-                                <rect id="SVGID_1_" width="20" height="20" />
-                              </defs>
-                              <clipPath id="SVGID_2_">
-                                <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                              </clipPath>
-                              <rect x="1" y="1" class="st0" width="18" height="6" />
-                              <rect x="1" y="12.9" class="st0" width="18" height="6" />
-                            </g>
-                          </svg>
-                        </a>
-                      </div>
-                      <div>
-                        <a data-toggle="tab" href="#topSkillsGridView" aria-expanded="true">
-                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="20px"
-                            height="20px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;"
-                            xml:space="preserve" class="icon">
-
-                            <defs>
-                            </defs>
-                            <g>
-                              <defs>
-                                <rect id="SVGID_1_" width="20" height="20" />
-                              </defs>
-                              <clipPath id="SVGID_2_">
-                                <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                              </clipPath>
-                              <rect x="1" y="1" class="st0" width="6" height="6" />
-                              <rect x="12.9" y="1" class="st0" width="6" height="6" />
-                              <rect x="1" y="12.9" class="st0" width="6" height="6" />
-                              <rect x="12.9" y="12.9" class="st0" width="6" height="6" />
-                            </g>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-
-                    <div class="tab-content">
-                      <div id="topSkillsListView" class="top-skills tab-pane fade hidden-xs">
-                        <table>
-                          <tr>
-                            <th>Skills Name</th>
-                            <th>Experience</th>
-                            <th>Last Used</th>
-                            <th>Skill level</th>
-                            <th></th>
-                          </tr>
-                          <tr *ngFor="let skill of list">
-                            <ng-container>
-                              <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
-                              <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
-                              <td>{{skill.Lastused||'N/A'}}</td>
-                              <td>{{skill.SkillRating}}</td>
-                            </ng-container>
-                          </tr>
-
-                        </table>
-                      </div>
-                      <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
-                        <h4 class="label-caps">Top Skills</h4>
-                        <div class="row">
-                          <ng-container *ngFor="let skill of list">
-                            <div class="col-md-6 tech_width">
-                              <div class="skills card">
-
-                                <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
-                                <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>
-                                  {{skill.SkillName}}</h2>
-                                <div class="row">
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Rating</h5>
-                                    <p>{{skill.SkillRating}}</p>
-                                  </div>
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Last used</h5>
-                                    <p>{{skill.Lastused||'N/A'}}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Top Skills End -->
-                    <div class="other-skills ">
-                      <h4 class="label-caps">Other Skills</h4>
-                      <div *ngIf="otherSkills!=null">
-                        <ul class="skills clearfix">
-                          <!-- <ng-container *ngFor="let skill of list"> -->
-                          <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
-                                      (click)="EditSkill(skill)">
-                                      {{skill.SkillName}}
-                                    </li>
-    
-                                    <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
-                                        {{searchResult.name}}
-                                        <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
-                                      </li> -->
-
-                          <!-- <li *ngFor="let skill of otherSkills">
-                                    <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
-                                      {{skill.SkillName}}</a>
-                                    <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
-                                  </li> -->
-
-                          <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">
-                            {{skill.SkillName}}</li>
-                          <!-- <li class="skill more">
-                                  <a href="javascript:void(0)">+5 more</a>
-                                </li> -->
-                        </ul>
-                      </div>
-                    </div>
-
-                    <!-- Other Skills End -->
-                    <div class="alert job-alert">
-
-                    </div>
-
-                  </div>
-
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="personal-skills card right">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Personality Skills</h2>
-                  </header>
-                  <!--Redesign of Personality Result View-->
-                  <div class="card-content scroll-inner personality-test-results">
-
-                    <div class="row placeholder">
-                      <img alt="icon" src="assets/images/personal-skills.svg">
-                      <div class="col-md-5 personality-result-view text-left">
-                        <h4>Personality Test </h4>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <div *ngIf="isPublicAvailable == false">
-                              <p class="y-t-p">Yet to be Performed</p>
-                            </div>
-
-                            <div class="progress" *ngIf="isPublicAvailable == true">
-                              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
-                                class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                                style="min-width: 100%;">
-                                <span class="sr-only">100% Complete (success)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2" *ngIf="isPublicAvailable == true">
-                            <h3>100%</h3>
-                          </div>
-                        </div>
-                        <!---->
-                        <div *ngIf="isPublicAvailable == true">
-                          <button class="btn btn-success" (click)="GetCandidatePersonalityResult()"
-                            data-target=".test-dialog" data-toggle="modal">
-                            View Detailed Report</button>
-                        </div>
-                        <!---->
-                      </div>
-                      <div class="col-md-5 culture-result-view text-left">
-                        <h4>Culture Test
-                          <!---->
-                        </h4>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <div *ngIf="isPublicAvailable1 == false">
-                              <p class="y-t-p">Yet to be Performed</p>
-                            </div>
-                            <div class="progress" *ngIf="isPublicAvailable1 == true">
-                              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
-                                class="progress-bar progress-bar-info  progress-bar-striped active" role="progressbar"
-                                style="min-width: 100%;">
-                                <span class="sr-only">100% Complete (success)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2" *ngIf="isPublicAvailable1 == true">
-                            <h3>100%</h3>
-                          </div>
-                        </div>
-                        <!---->
-                        <div *ngIf="isPublicAvailable1 == true">
-                          <button class="btn btn-success" (click)="GetCultGraph()" data-target=".test-dialog"
-                            data-toggle="modal">
-                            View Detailed Report</button>
-                        </div>
-
-
-                        <!---->
-                      </div>
-
-                    </div>
-                  </div>
-                  <!---->
-                </div>
-              </div>
-              <div class="education card right hasModal ">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Education</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-toggle="modal" data-target="#education"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Education</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="education-row " *ngFor="let educations of profileview?.Education">
-
-                      <div class="institute ">
-                        <img src="assets/images/oxford.png " class="logo" alt="logo">
-                        <h4 class="name ">{{educations.InstituteORUniversity  || 'N/A'}}</h4>
-                        <h5 class="meta meta-dark ">
-                          <span class="icon-location "></span> {{educations.Location || 'N/A'}}</h5>
-                      </div>
-                      <h2 class="title ">{{educations.QualificationName  || 'N/A'}}</h2>
-                      <div class="duration ">
-                        <span class="icon-calendar "></span>
-                        <span class="from ">{{educations.FromYear  || 'N/A'}}</span>
-                        <span> - </span>
-                        <span class="to ">{{educations.ToYear  || 'N/A'}}</span>
-                      </div>
-                      <div class="study-fields ">
-                        <h4 class="label-caps ">Fields of Study</h4>
-                        <ul class="list clearfix ">
-                          <li>
-                            <span class="skill tag " *ngIf="educations.Specialization!='' ;else falTemplate ">
-                              {{educations.Specialization  || 'N/A'}}
-                              <ng-template #falTemplate>
-
-                              </ng-template>
-                            </span>
-
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="domain-skills card left hasModal ">
-
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Domain</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#domain-skills" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Domain</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="row">
-                      <div *ngIf="profileview?.ProfileDomain?.length>0">
-                        <div class="col-md-4 domainRecords" *ngFor="let domains of profileview?.ProfileDomain ">
-                          <div class="skills-box ">
-                            <header>
-                              <h5 class="title "> {{domains.DomainName}}</h5>
-
-                            </header>
-                            <div class="skill-row row ">
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h6>Experience</h6>
-                              </div>
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h5>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</h5>
-                              </div>
-                            </div>
-                            <div class="skill-row row ">
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h6>Last used</h6>
-                              </div>
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h5>{{domains.LastUsed}}</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 " *ngIf="profileview?.ProfileDomain?.length==0">
-                        <p>Domain Knowledge not provided</p>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="professional-experience card left hasModal ">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Professional Experience</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#professional-experience" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Experience</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <ng-container *ngFor="let exps of profileview?.ProfileExperience;let i=index ">
-                      <div class="job-row row ">
-                        <div class="col-md-4 ">
-                          <div class="institute ">
-                            <img src="assets/images/oxford.png " class="logo " alt="logo">
-                            <h4 class="name">{{exps.CompanyName}}</h4>
-                            <h5 class="meta meta-light ">Digital Design</h5>
-                          </div>
-                          <h2 class="title ">{{exps.JobRole}}</h2>
-                          <div class="duration ">
-                            <span class="icon-calendar "></span>
-                            <span class="from "> {{exps.StartDate | date:'mediumDate'}}</span>
-                            <span> - </span>
-                            <span class="to ">{{exps.EndDate | date:'mediumDate'}}</span>
-                          </div>
-                          <h5 class="meta meta-light ">
-                            <span class="icon-location "></span>{{exps.JobLocation || 'N/A'}}</h5>
-                          <div class="radio-box inline ">
-
-                          </div>
-                        </div>
-                        <div class="v-divider "></div>
-                        <div class="col-md-8 col-sm-12 ">
-                          <ul class="nav nav-tabs ">
-                            <li class="active ">
-                              <a data-toggle="tab" href="#description{{i}} ">
-                                Description
-                              </a>
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#achievements{{i}} ">
-                                Achievements
-                              </a>
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#responsibilities{{i}} ">
-                                Roles and Responsibilities
-                              </a>
-                            </li>
-
-
-                          </ul>
-                          <div class="tab-content">
-                            <div id="description{{i}}" class="tab-pane active">
-                              <div class="scrollbar-inner ">
-                                <p class="text ">
-                                  {{exps.Description}}
-                                </p>
-                                <ng-container *ngIf="exps.Description==null||exps.Description==''">
-                                  <p> Candidate yet to provide the Description. </p>
-                                </ng-container>
-                              </div>
-
-                            </div>
-                            <div id="achievements{{i}}" class="tab-pane">
-                              <div class="scrollbar-inner ">
-                                <div class="list">
-                                  <div class=" ">
-                                    <ng-container *ngFor="let i of exps?.Achievements ">
-                                      <p>{{i}}</p>
-                                    </ng-container>
-                                    <ng-container *ngIf="exps?.Achievements==null||exps?.Achievements==''">
-                                      Candidate yet to provide the Achievement details.
-                                    </ng-container>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div id="responsibilities{{i}}" class="tab-pane">
-                              <div class="scrollbar-inner ">
-                                <div class="list">
-                                  <ng-container *ngFor="let r of exps?.Roles ">
-                                    <p>{{r}}</p>
-                                  </ng-container>
-                                  <ng-container *ngIf="exps?.Roles==null|| exps?.Roles==''">
-                                    Candidate Roles yet to Provide
-                                  </ng-container>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </ng-container>
-                    <ng-container *ngIf="profileview?.ProfileExperience.length==0">
-                      <div>
-                        <p>
-                          Candidate yet to provide the Professional Experience.
-                        </p>
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="certifications card left hasModal">
-
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Certifications</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#certifications" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Certification</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="cert-row row ">
-                      <div *ngIf="profileview?.Certifications?.length > 0">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 "
-                          *ngFor="let certificates of profileview?.Certifications ">
-                          <div class="cert-card ">
-                            <div class="logo">
-                              <img width="60" [src]="certificates.ImageUrl" alt="certification">
-                            </div>
-                            <div class="info ">
-                              <h2 class="title" title="{{certificates.CertificationName}}">
-                                {{certificates.CertificationName}}</h2>
-                              <h4 class="year ">{{certificates.YearOfAchievement| date:'mediumDate'}}</h4>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngIf="profileview?.Certifications?.length==0">
-
-                        <p>Candidate yet to provide the Certification details.</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-            </div>
-          </div>
-          <!-- container -->
-        </main>
-      </div>
-    </div>
-    <!-- container -->
-  </main>
-</div>
 <!--Vardhini Code-->
 <!--End-->
 
@@ -3162,7 +2388,14 @@
         <h4 class="modal-title">Video Sizzles</h4>
       </div>
       <div class="modal-body">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/9xwazD5SyVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" [src]="videoUrl?.VideoURL"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <ng-container *ngIf="videoUrl?.VideoURL!=null">
+          <video controls class="video-align" [src]="videoUrl?.VideoURL" type="video/mp4" #videoPlayer>
+          </video>
+        </ng-container>
+        <ng-container *ngIf="videoUrl?.VideoURL==null">
+          <img src="../../../../../../assets/images/no-video.png" class="video" alt="">
+        </ng-container>
       </div>
     </div>
   </div>
