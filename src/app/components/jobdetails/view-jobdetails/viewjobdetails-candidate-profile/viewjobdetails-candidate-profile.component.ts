@@ -499,7 +499,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profileId) {
+  OpenCandidateDialog(profileId,Uid) {
+    debugger
     // if (this.jobStatus!='InActive') {
     this.spinner.show();
     setTimeout(() => {
@@ -513,6 +514,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       data: {
         ProfileId: profileId,
         jobId: this.jobid,
+        UserId:Uid
         // status : this.statusid
       },
     });
@@ -820,7 +822,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           fstatus
         )
         .subscribe((res) => {
-          //debugger
+          debugger
           this.jobdetailsprofiles = res;
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;

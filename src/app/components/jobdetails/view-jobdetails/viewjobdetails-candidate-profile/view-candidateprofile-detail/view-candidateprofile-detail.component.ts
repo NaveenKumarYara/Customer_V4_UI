@@ -486,7 +486,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   }
 
   GetQuestionnariePersonsList(Ud) {
-    //debugger
+    debugger
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=0')
       .subscribe(
         data => {

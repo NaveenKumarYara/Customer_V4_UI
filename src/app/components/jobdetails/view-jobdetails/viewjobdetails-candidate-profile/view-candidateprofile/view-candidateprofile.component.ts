@@ -298,7 +298,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetDrugVerification();
     this.GetBGTestResult();
-    this.GetQuestionnariePersonsList();
+  
 
     this.CurrentTime = new Date();
     this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
@@ -437,6 +437,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetJobNotes();
     this.GetCandidateJobFitResult();
     this.GetCandidateSkillFitResult();
+    this.GetQuestionnariePersonsList();
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
@@ -664,7 +665,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       ];
       this.selectedMenuItem = "Job Fit";
     } else {
-      this.GetQuestionnariePersons(5);
+      
       this.menuHeading = "Arytic Check";
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Reference Check" },
@@ -785,10 +786,20 @@ export class ViewCandidateprofileComponent implements OnInit {
   }
 
   GetQuestionnariePersonsList() {
-    this._service
-      .GetService("ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=" + this.data.UserId, "&showId=0")
-      .subscribe((data) => {
-        this.usersList = data;
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=0')
+    .subscribe(
+      data => {
+      if(data != "No records found")
+      {
+        debugger
+       this.usersList = data;        
+      }
+      else
+      {
+        this.usersList = [];         
+      }
+
+       
       });
   }
 

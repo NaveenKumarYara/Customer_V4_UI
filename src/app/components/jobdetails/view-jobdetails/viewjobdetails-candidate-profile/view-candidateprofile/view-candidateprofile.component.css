@@ -5078,6 +5078,12 @@ font-size: 11px;
 	height: auto;
 }
 
+ .tab__section .revamp__reference__check .nav-tabs { padding:0; border-radius: 0; border: 0; border-bottom: 1px solid #e0e3ef; }
+ .tab__section .revamp__reference__check  .nav-tabs >li { width:auto; }
+ .tab__section .revamp__reference__check .nav-tabs >li>a { border-radius: 4px 4px 0 0; border:1px solid transparent; color:#6a7e9c; }
+.tab__section .revamp__reference__check  .nav-tabs> li.active > a, .public__profile__detail .tab__section .revamp__reference__check  .nav-tabs > li.active > a:hover, .public__profile__detail .tab__section .revamp__reference__check  .nav-tabs > li.active > a:focus { background:none; box-shadow:none; color:#6a7e9c; }
+ .tab__section .revamp__reference__check  .nav-tabs > li.active > a { border-color:#e0e3ef; border-bottom:3px solid rgb(102, 218, 181); }
+
 .reference__grid__container .inline__check__list {  margin-top:20px; }
 .reference__grid__container .inline__check__list .custom-checkbox { display: inline-block; font-weight: 400; font-size:14px }
 .reference__grid__container .inline__check__list .custom-checkbox:first-child { margin-right:5px; }
