@@ -95,6 +95,27 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     },
   };
 
+  TeamFitLabels = {
+    labels: ["Majestic","Artistic", "Unit", "Dev", "Energy"]
+  }
+  TeamFit = {
+    labels: ["M", "A", "U", "D", "E"],
+    datasets: [
+      {
+        label: "Team Fit",
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#4472C4",
+        pointBackgroundColor: "#4472C4",
+        pointBorderColor: "#4472C4",
+        pointHoverBackgroundColor: "#4472C4",
+        borderWidth: 5,
+        pointBorderWidth: 5,
+        pointHoverBorderColor: "rgba(179,181,198,1)",
+        data: [75, 30, 85, 60, 40],
+      },
+    ],
+  };
   chartData = [
     { data: [330, 600, 260, 700, 200], label: 'Account A' },
   ];

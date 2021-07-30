@@ -3183,11 +3183,27 @@
         <div class="tab-content">
           <div id="personality-test" [ngClass]="isPersonality?'tab-pane fade in active':'tab-pane fade'">
             <h3>Personality Test</h3>
+            <p>Coming Soon</p>
           </div>
           <div id="culture-fit" [ngClass]="isCulture?'tab-pane fade in active':'tab-pane fade'">
             <h3>Who Am I</h3>
             <p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.
 </p>
+            <circle-progress class="culture-chart"
+						data-toggle="matching-details"
+						[percent]="CulturalTestStatusNew"
+						[radius]="100"
+						[outerStrokeWidth]="20"
+						[innerStrokeWidth]="10"
+						[outerStrokeColor]="'#ffb513'"
+						[innerStrokeColor]="'#c0c0c0'"
+						[animation]="true"
+						[showSubtitle]="false"
+						[responsive]="true"
+						[titleFontSize]=40
+						[unitsFontSize]=20
+					  >
+					  </circle-progress>
           </div>
         </div>
       </div>

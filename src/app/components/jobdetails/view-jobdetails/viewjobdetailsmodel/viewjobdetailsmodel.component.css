@@ -797,7 +797,6 @@
 
 .icon-save {
 	font-family: 'tenendus' !important;
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
@@ -1014,7 +1013,7 @@ overflow: hidden;
     -webkit-animation-delay: 20.5s;
   }
   
-  @-moz-keyframes topToBottom {
+  @keyframes topToBottom {
     0% {
       opacity: 0;
     }
