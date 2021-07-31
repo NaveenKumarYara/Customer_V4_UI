@@ -69,6 +69,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   @ViewChild("testChart") testChart: ElementRef;
   @ViewChild("testChart1") testChart1: ElementRef;
   skilllist: any = [];
+  aryticFitChartVisible: boolean = false;
 
   chartOptions = {
     responsive: true,
@@ -668,6 +669,10 @@ export class ViewCandidateprofileComponent implements OnInit {
     return string;
   }
 
+  showAryticFitChart () {
+    this.aryticFitChartVisible = true;
+    this.selectedMenuItem = '';
+  }
   showRadarChart(type) {
     if (type == "radar") {
       this.menuHeading = "Arytic Fit";
@@ -694,6 +699,7 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   selectedItem(item) {
     this.selectedMenuItem = item;
+    this.aryticFitChartVisible = false;
   }
 
   getColor(arr, i) {

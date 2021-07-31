@@ -4267,8 +4267,7 @@ h5.meta.meta-light {
 .revmap__profile__top .profile__info__box { flex:0 0 100%; max-width:100%; margin-bottom:10px; height:100%; }
 .equal-hundred { height: 100%; }
 .profile__info__box__bottom .bottom__listing { width: 75%; }
-.profile__info__box__bottom .bottom__listing li { margin:0 0 0 10px; padding:0 10px 0 22px; }
-.profile__info__box__bottom .bottom__listing li:first-child { margin:0; padding:0 10px 0 22px; }
+.profile__info__box__bottom .bottom__listing li { margin:0 10px 10px 0; padding:0 10px 0 22px; }
 .profile__info__box__bottom .bottom__listing li.mail { background: url(../../../../../../assets/images/email__icon.png) left 5px no-repeat; }
 .profile__info__box__bottom .bottom__listing li.mobile { background: url(../../../../../../assets/images/phone__icon.png) left 2px no-repeat; }
 .profile__info__box__bottom .bottom__listing  li.location { background: url(../../../../../../assets/images/pin__icon.png) left 0 no-repeat; }
@@ -4420,6 +4419,7 @@ div .status.Invited {
 .radar-chart-container .list-group-item.active .icon__radar.icon__team__fit { background-position:-143px -81px;}
 .radar-chart-container .list-group-item.active .icon__radar.icon__culture__fit { background-position:-205px -81px;}
 .radar-chart-container .list-group-item.active .icon__radar.icon__personality__fit { background-position:-268px -81px;}
+.radar-chart-container .list-group-item.active.active .icon__radar.icon__radar__check { border-radius:50%; box-shadow: none; border:0; background-color:#448afa; }
 
 
 .radar-chart-container .side-menu-big {background-color: #66dab5; height: 100vh; padding:0; }
