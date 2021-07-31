@@ -38,6 +38,7 @@ import { ImageCropperModule } from "ngx-image-cropper";
 import { NgxImgModule } from "ngx-img";
 import { Ng2ImgMaxModule } from "ng2-img-max";
 import { RouterModule } from "@angular/router";
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { RouterModule } from "@angular/router";
     NgxImgModule,
     MatDialogModule,
     ChartsModule,
+    NgCircleProgressModule,
     Ng2ImgMaxModule,
     MatCardModule,
     MatProgressSpinnerModule,
