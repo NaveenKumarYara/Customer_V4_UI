@@ -113,6 +113,60 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   myCarouselOptions = { items: 3, dots: true, nav: true };
   hideme = [true];
   hidemeed = [];
+  radarChart: boolean = false;
+  radarChartMenu: any = [];
+  backRadarChartData = {
+    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    datasets: [
+      {
+        label: "Arytic Fit",
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#4472C4",
+        pointBackgroundColor: "#4472C4",
+        pointBorderColor: "#4472C4",
+        pointHoverBackgroundColor: "#4472C4",
+        borderWidth: 5,
+        pointBorderWidth: 5,
+        pointHoverBorderColor: "rgba(179,181,198,1)",
+        data: [75, 100, 85, 60, 70],
+      },
+    ],
+  };
+  smartCardRadarChartData = {
+    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    datasets: [
+      {
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#4472C4",
+        pointBackgroundColor: "#4472C4",
+        pointBorderColor: "#4472C4",
+        pointHoverBackgroundColor: "#4472C4",
+        borderWidth: 1,
+        pointBorderWidth: 1,
+        data: [75, 100, 85, 60, 70]        
+      },
+    ],
+   
+  };
+  smallRadarChartData = {
+    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    datasets: [
+      {
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#448afa",
+        pointBackgroundColor: "#448afa",
+        pointBorderColor: "#448afa",
+        pointHoverBackgroundColor: "#448afa",
+        borderWidth: 1,
+        pointBorderWidth: 1,
+        data: [75, 100, 85, 60, 70]        
+      },
+    ],
+   
+  };
   customOptions: any = {
     loop: true,
     mouseDrag: false,
@@ -960,7 +1014,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $(".matching-details").removeClass("open");
       $("#matchingDetailFeedback-" + profileId).toggleClass("open");
     }
-
+    if (Val == 5) {
+      $(".matching-details").removeClass("open");
+      $("#matchingDetailRadar-" + profileId).toggleClass("open");
+    } 
     // $detailsCloseBtn.on('click', function (e) {
     //   e.preventDefault();
     //   $detailsDiv.removeClass('open');
@@ -975,6 +1032,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $("#matchingDetailDom-" + profileId).removeClass("open");
       $("#matchingDetailNotes-" + profileId).removeClass("open");
       $("#matchingDetailFeedback-" + profileId).removeClass("open");
+      $("#matchingDetailRadar-" + profileId).removeClass("open");
     } else {
       $("#sizzleVideo-" + profileId).removeClass("open");
       $("#profileVideo-" + profileId).removeClass("open");
