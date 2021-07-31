@@ -105,7 +105,7 @@
                         <h5 class="mr-0">{{CulturalTestStatusNew}}%</h5>
                       </div>
                       <div class="col-md-8 w-inherit">
-                        <small>"Neque porro quisquam est dolorem ipsum"</small>
+                        <small>"Cultural Fit Report"</small>
                         <div class="progress" style="height: 8px; display: none;">
                           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
                             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'min-width.%' : getCulturalTestStatus()}">
@@ -436,10 +436,26 @@
                   <div>
                     RankMatch: {{cultureresults?.Rankmatch}}%
                   </div>
-                  <div>
+                  <!-- <div>
                     CultureFit: {{cultureresults?.Total}}%
-                  </div>
+                  </div> -->
                 </div>
+
+                <circle-progress class="culture-chart"
+                data-toggle="matching-details"
+                [percent]="cultureresults?.Total"
+                [radius]="100"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="10"
+                [outerStrokeColor]="'#ffb513'"
+                [innerStrokeColor]="'#c0c0c0'"
+                [animation]="true"
+                [showSubtitle]="false"
+                [responsive]="true"
+                [titleFontSize]=40
+                [unitsFontSize]=20
+                >
+                </circle-progress>
               </div>
             </div>
             <!-- <div ngIf="CulturalResponse.questionnaireResponses.length == 12"> -->

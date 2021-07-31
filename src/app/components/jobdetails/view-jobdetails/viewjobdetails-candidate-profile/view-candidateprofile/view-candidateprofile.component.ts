@@ -102,11 +102,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [this.data.JobFit,
-          this.data.Skillfit,
-          0,
-          this.data.Personalityfit,
-          0]
+        data: []
       },
     ],
   };
@@ -437,10 +433,12 @@ export class ViewCandidateprofileComponent implements OnInit {
     cloudspan();
     this.GetCandidateSKills();
     this.GetProfileDetails();
-    setInterval(() => {
       this.GetMatchingPercentage();
-    },2000)
-   
+    this.smallRadarChartData.datasets[0].data=[this.data.JobFit,
+      this.data.Skillfit,
+      0,
+      this.data.Personalityfit,
+      0];
     this.GetUserProfileInfo();
     this.GetJobNotes();
     this.GetCandidateJobFitResult();

@@ -90,7 +90,7 @@
   <div class="revmap__profile__top flex flex-wrap flex-align-end">
     <div class="container">
       <div class="image__container">
-        <img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}} />
+        <img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}" >
       </div>
       <div class="profile__info__box">
         <div class="row flex flex-align-equal equal-hundred flex-wrap">
@@ -324,7 +324,7 @@
                 <div class="skills__listing">
                   <h4>Mandatory Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
-                    <ng-container *ngFor="let skill of list">
+                    <ng-container *ngFor="let skill of list | slice:0:isMoreSkill">
                     <div class="col-sm-3 col">
                       <span class="tooltip"> {{skill.SkillName}}</span>
                       <div class="card__container">
@@ -352,6 +352,9 @@
                       </div>
                     </div>
                     </ng-container>
+                    <a href="javascript:void(0)" *ngIf="list.length>9" (click)="showMoreskill()" class="show__more">
+                      <span>Show More</span>
+                    </a>
                     <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
@@ -525,7 +528,7 @@
                 <div class="skills__listing">
                   <h4>Optional Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
-                    <ng-container *ngFor="let skill of otherSkills">
+                    <ng-container *ngFor="let skill of otherSkills | slice:0:isMoreOption">
                       <div class="col-sm-3 col">
                         <span class="tooltip"> {{skill.SkillName}}</span>
                         <div class="card__container">
@@ -553,6 +556,9 @@
                         </div>
                       </div>
                       </ng-container>
+                      <a href="javascript:void(0)" *ngIf="otherSkills.length>9" (click)="showMoreoptional()" class="show__more">
+                        <span>Show More</span>
+                      </a>
                     <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
@@ -1199,7 +1205,7 @@
                       </div>
                       <div class="col-sm-9">
                         <ul class="flex flex-wrap flex-align-equal">
-                          <p>Candidate yet to Provide the Hobbies!!</p>
+                          <p>Comming Soon!!</p>
                           <!-- <li>
                             <div class="box__col">
                               Travelling
