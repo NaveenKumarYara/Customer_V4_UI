@@ -507,7 +507,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     }, 1500);
 debugger
     const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
-      width: "750",
+      width: "80vw",
       position: { right: "0px" },
       height: "750px",
       panelClass:'candiateModalPop',
