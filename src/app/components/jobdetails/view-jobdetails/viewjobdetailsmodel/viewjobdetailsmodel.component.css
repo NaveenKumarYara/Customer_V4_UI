@@ -538,6 +538,8 @@
 .revamp__jd__skills h4 { margin:0 }
 .revamp__jd__skills .skills__row { margin:20px 0 0; flex:0 0 100%; max-width: 100%; }
 
+.revamp__jd__description .icon__hide{top: 50%;transform: translateY(-20px);}
+.revamp__jd__description  .review__check__list {width: 100%;}
 .revamp__jd__description  .review__check__list .row { margin:0 -5px; }
 .revamp__jd__description  .review__check__list .col-sm-4 { margin:10px 0 0; padding:0 5px; }
 .revamp__jd__description  .review__check__list .box__container {  position: relative;  border-radius: 3px; border: 1px solid #e0e3ef; padding: 10px 10px 10px 50px; height: 100%; }
