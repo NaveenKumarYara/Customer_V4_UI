@@ -61,13 +61,27 @@
               <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===0"><img
                   src="../../../../../assets/images/icon__04.png"><span>N/A</span>
               </li>
-              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
-                <li><img src="../../../../../assets/images/icon__01.png"><span>
+              
+                <li><img src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
+                  <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
+                  <span>
+                  <span class="tooltip-text">Multiple       
+                    <span class="tooltipcontent">  
+                      <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
+                      {{job.WorkAuthorizationType || 'N/A'}}                  
+                      </ng-container>
+                    </span>
+                  </span>
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length==1">
+                  <span>
                     <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
-                        {{job.WorkAuthorizationType || 'N/A'}}                  
+                    {{job.WorkAuthorizationType || 'N/A'}}                  
                     </ng-container>
-                  </span> </li>
+                </span> 
               </ng-container>
+                   </li>
 
               <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
                 <img src="../../../../../assets/images/icon__01.png"><span> N/A</span>
@@ -88,13 +102,23 @@
                     Open for Conversation.
                   </span></li>
               </ng-container>
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length == 1">
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
+                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">                    
+                        {{imi?.ImmigrationStatus}}                 
+                      </ng-container>
+                </li>
+              </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 0">
-                <li><img src="../../../../../assets/images/icon__03.png">
-                <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                  
-                 <span>{{imi?.ImmigrationStatus}}</span>
-                </ng-container>
-              </li>
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
+                  <span class="tooltip-text">Multiple     
+                    <span class="tooltipcontent">  
+                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">                    
+                        {{imi?.ImmigrationStatus}}                 
+                      </ng-container>
+                    </span>
+                  </span>
+                </li>
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 0">
                 <li><img src="../../../../../assets/images/icon__03.png"><span>
@@ -167,10 +191,26 @@
                         <!--/.jdv-company-profile-->
                         <div class="inline-icon-list">
                           <ul class="flex flex-wrap flex-align-center flex-justify-center">
-                            <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
-                              <li><span class="jdv-icon jdv-icon-map">Icon</span>{{location?.CityName}}</li>
+                            <ng-container >
+                              <li *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                                <span class="jdv-icon jdv-icon-map" title="Locations">Icon</span>
+                                <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
+                                  <span *ngFor="let location of jobdetailscustomer?.JobLocation">
+                                  {{location?.CityName}}
+                                  </span>
+                                </ng-container>
+                                <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">
+                                  <span class="tooltip-text">Multiple      
+                                    <span class="tooltipcontent">  
+                                      <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">                    
+                                        {{location?.CityName}}               
+                                      </ng-container>
+                                    </span>
+                                  </span>
+                                  </ng-container>
+                              </li>
                             </ng-container>
-                            <li><span class="jdv-icon jdv-icon-work">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience
+                            <li><span class="jdv-icon jdv-icon-work" title="Experience">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience
                               |monthsPipe}} -
                               {{jobdetailscustomer?.JobInfo?.MaxExperience |monthsPipe }} Years</li>
                             <li><span class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
@@ -181,9 +221,20 @@
                         <div class="icon-listing">
                           <ul class="flex flex-wrap flex-justify-center">
                             <li>
-                              <span class="jdv-icon jdv-icon-status">Icon</span>
-                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>0">
+                              <span class="jdv-icon jdv-icon-status" title="Work Authorization">Icon</span>
+                              
+                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
+                                  <span class="tooltip-text">Multiple       
+                                    <span class="tooltipcontent">  
+                                      <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
+                                      {{job.WorkAuthorizationType}}                  
+                                      </ng-container>
+                                    </span>
+                                  </span>
+                              </h4>
+                              <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length==1">
                                 <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                  
                                   {{job.WorkAuthorizationType}}
                                 </ng-container>
                               </h4>
@@ -196,8 +247,19 @@
                                   class="number">{{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></span>
                               <h4>Positions</h4>
                             </li>
-                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length > 0">
-                              <li> <span class="jdv-icon jdv-icon-auth">Icon</span>
+                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length > 1">
+                              <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
+                                <h4 class="tooltip-text">Multiple       
+                                  <span class="tooltipcontent">  
+                                    <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                                      {{imi?.ImmigrationStatus}}
+                                  </ng-container>
+                                  </span>
+                                </h4>
+                              </li>
+                            </ng-container>
+                            <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length === 1">
+                              <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
                               <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
                                 
                                   <h4>{{imi?.ImmigrationStatus}}</h4>
@@ -206,7 +268,7 @@
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length === 0">
                               <li>
-                                <span class="jdv-icon jdv-icon-auth">Icon</span>
+                                <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
                                 <h4>N/A</h4>
                               </li>
                             </ng-container>

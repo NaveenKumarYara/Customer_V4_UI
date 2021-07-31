@@ -5,24 +5,4 @@ img {
     top: -332px;
     position: relative;
 }
-.tooltip-text {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted #8992ff;
-  }
-  .tooltipcontent { width: 100%;top: -10px;margin-left: 10px;}
-  .tooltip-text .tooltipcontent {
-    visibility: hidden;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
-.tooltip-text:hover .tooltipcontent {
-    visibility: visible;
-  }
+

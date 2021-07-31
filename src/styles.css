@@ -26795,3 +26795,73 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 
 #skillsCheckPop .modal-body h3 { font-size:16px; color:#6a7e9c; text-align:center; }
 #skillsCheckPop .modal-body p { font-size:14px; color:#9eabc0 }
+ /* .tooltip-text {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #8992ff;
+  }
+  .tooltipcontent {top: -10px;margin-left: 10px;}
+  .tooltip-text .tooltipcontent {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+  }
+.tooltip-text:hover .tooltipcontent {
+    visibility: visible;
+  }
+
+  .tooltip-container {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}  */
+
+.tooltip-text {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #8992ff;
+  }
+  .tooltip-text .tooltipcontent {
+    font-size: 1em;
+    line-height: 1.5em;
+    visibility: hidden;
+    max-width: 400px;
+    background-color: #00b4ab;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: .3s;
+    transform: translate3d(0px, 20px, 0px);
+    top: 20px;
+  }
+.tooltip-text:hover .tooltipcontent {
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  .tooltip-text .tooltipcontent::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 20%;
+    transform: rotate(180deg);
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #00b4ab transparent transparent transparent;
+  }
+  .tooltip-container {
+    cursor: pointer;
+   
+} 
