@@ -46,6 +46,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   semicircle: boolean = false;
   isPublicAvailable1: boolean = false;
   isMore: boolean = false;
+  isMoreSkill=10;
+  isMoreOption=10;
   moreShow: boolean = false;
 	rounded: boolean = false;
 	responsive: boolean = false;
@@ -142,6 +144,14 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
   showMore() {
     this.isMore = !this.isMore;
+  }
+
+  showMoreskill() {
+    this.isMoreSkill += 10;
+  }
+
+  showMoreoptional() {
+    this.isMoreOption += 10;
   }
 
   moreContent() {
