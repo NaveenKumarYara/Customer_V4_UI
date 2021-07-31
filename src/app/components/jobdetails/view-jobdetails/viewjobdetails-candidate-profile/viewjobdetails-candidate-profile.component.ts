@@ -505,7 +505,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
     }, 1500);
-debugger
+    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
+    this.matchingParameterDetails = res;
     const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
       width: "80vw",
       position: { right: "0px" },
@@ -526,7 +527,8 @@ debugger
       // this.myEvent.emit(null);
       console.log("candidate Dialog result: ${result}");
     });
-    // }
+     });         
+   // }
   }
   OpenSendEmailDialog(
     noEmail,
