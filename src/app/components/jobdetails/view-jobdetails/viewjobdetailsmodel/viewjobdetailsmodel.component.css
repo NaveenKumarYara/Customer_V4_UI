@@ -746,6 +746,10 @@
 	border-left: 1px solid #eee;
 }
 
+.job__info__grid .icons__col .col-big.col:not(:first-child) {
+	border-left:0;
+}
+
 .job__info__grid .col__container {
 	border-top: 1px solid #eee;
 	text-align: center;
@@ -940,6 +944,10 @@
 		flex: 0 0 50%;
 		max-width: 50%;
  }
+ .job__info__grid .icons__col .col.col-big {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
 	.job__info__grid .icons__col .col:nth-child(3) {
 		border-left: 0;
  }
