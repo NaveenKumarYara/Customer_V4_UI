@@ -36,12 +36,14 @@ export class ViewCandidateprofileComponent implements OnInit {
   email: any;
   showMenu: boolean;
   jobStatus: any;
+  skillfitcheck:any=[];
   showShortDesciption = true;
   checkPersonality:any=[];
   CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
   aboutContent: any;
+  FitDetails:any;
   MatchingPercentage: any;
   profileId: any;
   fileType = new Resume();
@@ -67,6 +69,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   @ViewChild("testChart") testChart: ElementRef;
   @ViewChild("testChart1") testChart1: ElementRef;
   skilllist: any = [];
+  aryticFitChartVisible: boolean = false;
 
   chartOptions = {
     responsive: true,
@@ -86,7 +89,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   selectedMenuItem: any;
   menuHeading: any;
   smallRadarChartData = {
-    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    labels: ["Job Fit", "Skill Fit",  "Culture Fit", "Personality Fit" ,"Team Fit"],
     datasets: [
       {
         label: "Arytic Fit",
@@ -99,7 +102,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60, 70],
+        data: []
       },
     ],
   };
@@ -117,7 +120,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60],
+        data: [],
       },
     ],
   };
@@ -164,18 +167,13 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Skill = {
-    labels: ["Angular.js", "React.js", "Vue.js", "Node.js", "Next.js"],
+    labels: [],
     datasets: [
       {
         label: "Skill Fit",
-        data: [9, 6, 7, 3, 8],
-        backgroundColor: [
-          "rgb(255, 99, 132, 0.7)",
-          "rgb(75, 192, 192, 0.7)",
-          "rgb(255, 205, 86, 0.7)",
-          "rgb(201, 203, 207, 0.7)",
-          "rgb(54, 162, 235, 0.7)",
-        ],
+        data: [],
+        
+        backgroundColor: [],
       },
     ],
   };
@@ -295,7 +293,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetDrugVerification();
     this.GetBGTestResult();
-    this.GetQuestionnariePersonsList();
+  
 
     this.CurrentTime = new Date();
     this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
@@ -305,10 +303,15 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.showMenu = false;
   }
 
-  GetMatchingPercentage(Pid, JId): any {
-    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(Pid, JId).subscribe((res) => {
+  GetMatchingPercentage(){
+    this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(this.data.ProfileId, this.data.jobId).subscribe((res) => {
       this.Match = res;
       this.MatchingPercentage = res.Total_Match_Per;
+      setInterval(() => {
+        this.smallRadarChartData.datasets[0].data=[res.Jobfit_Total,res.Skillfit_Total,0,res.Personalityfit_Total,0];
+      },1000)
+    
+     
     });
   }
 
@@ -399,7 +402,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   // public lineChartLegend = true;
   // public lineChartType = 'line';
   /*#dashboard graph*/
-
+ 
   ngOnInit() {
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
@@ -430,9 +433,17 @@ export class ViewCandidateprofileComponent implements OnInit {
     cloudspan();
     this.GetCandidateSKills();
     this.GetProfileDetails();
+      this.GetMatchingPercentage();
+    this.smallRadarChartData.datasets[0].data=[this.data.JobFit,
+      this.data.Skillfit,
+      0,
+      this.data.Personalityfit,
+      0];
     this.GetUserProfileInfo();
     this.GetJobNotes();
-
+    this.GetCandidateJobFitResult();
+    this.GetCandidateSkillFitResult();
+    this.GetQuestionnariePersonsList();
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
@@ -442,6 +453,8 @@ export class ViewCandidateprofileComponent implements OnInit {
         this.GetCandidateCultureResult();
       }
     });
+
+    
   }
 
 
@@ -553,7 +566,6 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetUserProfileInfo?profileId=", this.data.ProfileId).subscribe(
       (datas) => {
         this.profileview = datas;
-        this.GetMatchingPercentage(this.data.ProfileId, this.data.jobId);
 
         // this.profileview.ProfileBasicInfo.Email = this.profileview.ProfileBasicInfo.Email.contains('Esolvit') ? '' : this.profileview.ProfileBasicInfo.Email;
         this.list = datas.ProfileSkillset.filter(
@@ -593,14 +605,59 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.email = email.UserName;
       this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
       .subscribe(
-        data => {
-          this.CulturalTestStatusNew = data.Total; 
-          if (data!=null) {
-             this.Culture.datasets[0].data = [data.Valuematch,data.Rankmatch,data.Total];           
+        data4 => {
+          this.CulturalTestStatusNew = data4.Total; 
+          if (data4!=null) {
+             this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
           }
         })
         
       });
+  }
+
+  GetCandidateJobFitResult() {
+      this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+      .subscribe(
+        data2 => {
+          if (data2!=null) {
+            var exp;
+              if(data2.ExperienceFit == null)
+              {
+               exp  = 0;
+              }
+              else
+              {
+                exp =  data2.ExperienceFit;
+              }
+             this.Job.datasets[0].data = [exp,data2.RoleFit,data2.JobHopping,data2.Education];           
+          }
+          this.FitDetails= data2.JobFit; 
+       
+        })
+  }
+
+  GetCandidateSkillFitResult() {
+      this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+      .subscribe(
+        data3 => {
+          this.skillfitcheck = data3;
+          if (data3.length > 0) {
+            data3.forEach((a)=>
+            {        
+              var letters = '0123456789ABCDEF'.split('');
+              var color = '#';
+              for (var i = 0; i < data3.length; i++ ) {
+                  color += letters[Math.floor(Math.random() * 16)];
+              }
+              ; 
+             this.Skill.labels.push(a.SkillName);
+             this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+             this.Skill.datasets[0].backgroundColor.push(color);
+            //  this.PersonalityFitLabels.labels.push(a.groupName);
+            //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
+            })             
+          }
+        })
   }
   add3Dots(string, limit) {
     const dots = "...";
@@ -610,19 +667,23 @@ export class ViewCandidateprofileComponent implements OnInit {
     return string;
   }
 
+  showAryticFitChart () {
+    this.aryticFitChartVisible = true;
+    this.selectedMenuItem = '';
+  }
   showRadarChart(type) {
     if (type == "radar") {
       this.menuHeading = "Arytic Fit";
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Job Fit" },
         { className: "icon__skill__fit", label: "Skill Fit" },
-        { className: "icon__team__fit", label: "Team Fit" },
         { className: "icon__culture__fit", label: "Culture Fit" },
         { className: "icon__personality__fit", label: "Personality Fit" },
+        { className: "icon__team__fit", label: "Team Fit" }
       ];
       this.selectedMenuItem = "Job Fit";
     } else {
-      this.GetQuestionnariePersons(5);
+      
       this.menuHeading = "Arytic Check";
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Reference Check" },
@@ -636,6 +697,7 @@ export class ViewCandidateprofileComponent implements OnInit {
 
   selectedItem(item) {
     this.selectedMenuItem = item;
+    this.aryticFitChartVisible = false;
   }
 
   getColor(arr, i) {
@@ -743,10 +805,19 @@ export class ViewCandidateprofileComponent implements OnInit {
   }
 
   GetQuestionnariePersonsList() {
-    this._service
-      .GetService("ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=" + this.data.UserId, "&showId=0")
-      .subscribe((data) => {
-        this.usersList = data;
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=0')
+    .subscribe(
+      data => {
+      if(data != "No records found")
+      {
+       this.usersList = data;        
+      }
+      else
+      {
+        this.usersList = [];         
+      }
+
+       
       });
   }
 

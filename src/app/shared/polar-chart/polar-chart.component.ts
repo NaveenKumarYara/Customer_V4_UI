@@ -29,9 +29,9 @@ export class PolarChartComponent implements OnInit, OnChanges {
         scale: {
           ticks: {
             beginAtZero: true,
-            max: 10,
+            max: 100,
             min: 0,
-            stepSize: 2,
+            stepSize: 10,
           },
         },
         maintainAspectRatio: false,

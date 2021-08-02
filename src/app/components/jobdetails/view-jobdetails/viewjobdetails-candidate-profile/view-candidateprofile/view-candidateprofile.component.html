@@ -10,11 +10,11 @@
 			  <img alt="..." class="media-object media-img-circle" src="{{ details?.profileVal?.ProfilePic }}" />
 			</div>
 			<div class="profile__info__box">
-			  <div class="row flex flex-align-equal equal-hundred">
+			  <div class="row flex flex-align-equal flex-wrap equal-hundred">
 				<div class="col-sm-7">
 				  <div class="top__listing">
 					<ul class="flex flex-wrap flex-align-equal">
-					  <li>
+					  <li class="flex-value">
 						<h4>Objective</h4>
 						<h5
 						  [innerHTML]= "profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150)" 
@@ -110,12 +110,12 @@
 						  <span class="tooltip">Awards</span>
 						</a>
 					  </li>
-					  <li>
+					  <!-- <li>
 						<a href="javascript:void(0)"(click)="showRadarChart('Skills Verified')" title="Background Need to be Verified" data-toggle="tooltip" title="+3  809 698 3822!">
 						  <img src="../../../../../../assets/images/background-check-icon-03.png" alt="">
 						  <span class="tooltip">Skill Verified</span>
 						</a>
-					  </li>
+					  </li> -->
 					  <li>
 						<a href="javascript:void(0)" (click)="showRadarChart('Background Verified')" title="Background Need to be Verified" >
 						  <img src="../../../../../../assets/images/background-check-icon-04.png" alt="">
@@ -188,7 +188,6 @@
 				{{ jobStatus }}
 			  </div>
 			</div>
-  
 			<div class="bottom__content" [ngClass]="aboutShow ? 'show' : ''">
 			  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
 			  tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
@@ -515,7 +514,7 @@
 				  <!-- <figure>
 					<img src="../../../../../../assets/images/revamp__detail__view/revamp__graph.png" alt="" />
 				  </figure> -->
-				  <app-line-chart></app-line-chart>
+				  <!-- <app-line-chart></app-line-chart> -->
 				</div>
 				<div class="col__container">
 				  <h4>Certification</h4>
@@ -534,7 +533,7 @@
 				</div>
 				<div class="col__container">
 				  <div class="jdv-key-section">
-					<h4>Achivements</h4>
+					<h4>Achievements</h4>
   
 					<ul class="flex flex-wrap flex-align-equal">
 					  <span class="profile-note">Candidate yet to provide the Achievement details.</span>
@@ -776,7 +775,10 @@
 				<div class="col__container check__box__section">
 				  <h4>Arytic Check</h4>
 				  <div class="row flex flex-wrap flex-align-equal arytic-check">
-					<div class="col-sm-4" (click)="showRadarChart('Reference Check')">
+					<div class="col-sm-12">
+						<h5>Coming Soon!!</h5>
+					  </div>
+					<!-- <div class="col-sm-4" (click)="showRadarChart('Reference Check')">
 					  <div class="col__container">
 						<div class="icon icon__ref__01">Icon</div>
 						<p>Reference Check</p>
@@ -799,7 +801,7 @@
 						<p class="number">12</p>
 						<span class="out__of">Out of 15</span>
 					  </div>
-					</div>
+					</div> -->
 				  </div>
 				</div>
 				<div class="col__container">
@@ -837,13 +839,27 @@
 		  <!--New HTML Ends-->
 		  <div *ngIf="radarChart">
 			<div class="radar-chart-container flex" [ngClass]="showMenu ? 'lg-chart-container':''">
+				<div class="mobile__menu">
+					<h4>{{menuHeading}}</h4>
+					<ul>
+						<li 
+					  *ngFor="let item of radarChartMenu"
+					  [ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
+					  (click)="selectedItem(item.label)"
+					  >
+						  <a href="javascript:void(0)">
+							  {{ item.label }}
+						  </a>
+					  </li>
+					</ul>
+				</div>
 			  <div class="side-menu" (mouseover)="showMenu=true" (mouseout)="showMenu=false">
 				  <ul>
-					  <li class="list-group-item">
-						<a href="javascript:void(0)">
-						  <span class="icon icon__radar icon__radar__check"></span>
-						  <em>{{menuHeading}}</em>
-						</a>
+					  <li class="list-group-item" (click)="showAryticFitChart()" [ngClass]="aryticFitChartVisible ? 'active': ''">
+							<a href="javascript:void(0)">
+								<span class="icon icon__radar icon__radar__check"></span>
+								<em>{{menuHeading}}</em>
+							</a>
 					  </li>
 					  <li 
 					  *ngFor="let item of radarChartMenu"
@@ -868,7 +884,24 @@
 					  Back
 					</button>
 				  </div>
-				 
+				</div>
+				<div class="chart-container" *ngIf="aryticFitChartVisible">
+					
+				  <app-radar-chart-large [radarChartData]="smallRadarChartData"> </app-radar-chart-large>
+				  <div class="custom-legend">
+					<ul class="list-group">
+					  <li *ngFor="let item of Job.labels; let i = index">
+						<p>{{ item }}</p>
+						<div class="percentage__info">
+						  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <p style="background-color: rgb(54, 162, 235)">
+							{{ Job.datasets[0].data[i] }}
+						  </p>
+						</div>
+					  </li>
+					</ul>
+				  </div>
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Job Fit'">
 				  <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
@@ -888,33 +921,45 @@
 				  </div>
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Skill Fit'">
-				  <app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
-				  <div class="custom-legend">
-					<ul class="list-group">
-					  <li *ngFor="let item of Skill.labels; let i = index">
-						<p>{{ item }}</p>
-						<div class="percentage__info">
-						  <span
-							class="shadow__01"
-							[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <span
-							class="shadow__02"
-							[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
-							>Shadow</span
-						  >
-						  <p [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
-							{{ Skill.datasets[0].data[i] }}
-						  </p>
-						</div>
-					  </li>
-					</ul>
-				  </div>
+				<ng-container *ngIf="skillfitcheck.length>0">
+					<app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
+					<div class="custom-legend">
+					  <ul class="list-group">
+						<li *ngFor="let item of Skill.labels; let i = index">
+						  <p>{{ item }}</p>
+						  <div class="percentage__info">
+							<span
+							  class="shadow__01"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<span
+							  class="shadow__02"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<p [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
+							  {{ Skill.datasets[0].data[i] }}
+							</p>
+						  </div>
+						</li>
+					  </ul>
+					</div>
+				</ng-container>
+				<ng-container *ngIf="skillfitcheck.length===0">
+					<div class="no__data__found">
+						<h3>Skills does not match</h3>
+					  </div>
+					</ng-container>
 				</div>
 				<div class="chart-container" *ngIf="selectedMenuItem == 'Team Fit'">
-				  <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
-				  <!-- <app-pie-chart [pieChartData]="Team"></app-pie-chart> -->
+					<ng-container>
+						<div class="no__data__found">
+							<h3>Team Fit Comming Soon!!</h3>
+						  </div>
+						</ng-container>
+				  <!-- <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
+				  <app-pie-chart [pieChartData]="Team"></app-pie-chart>
 				  <div class="custom-legend">
 					<ul class="list-group">
 					  <li *ngFor="let item of TeamFitLabels.labels; let i = index">
@@ -936,10 +981,10 @@
 						</div>
 					  </li>
 					</ul>
-				  </div>
+				  </div> -->
 				</div>
-				<div class="row" *ngIf="selectedMenuItem == 'Culture Fit'">
-				  <div class="col-xs-4">
+				<div class="row culture-tile-row flex flex-wrap flex-align-equal" *ngIf="selectedMenuItem == 'Culture Fit'">
+				  <!-- <div class="col-xs-4">
 					<div class="culture-tile">
 					  <span  class="fa fa-language fa-2x"></span>
 					  <h4>How many languages</h4>
@@ -967,7 +1012,7 @@
 					  </p>
 					</div>
 					
-				  </div>
+				  </div> -->
 				</div>
   
 				<div class="chart-container " *ngIf="selectedMenuItem == 'Culture Fit'">
@@ -1014,7 +1059,7 @@
 					</ng-container>
 					<ng-container *ngIf="CulturalTestStatusNew===0">
 						<div class="no__data__found">
-							<h3>Coming Soon</h3>
+							<h3>Candidate yet to provide</h3>
 						  </div>
 						</ng-container>
 				</div>
@@ -1026,7 +1071,7 @@
 				  <!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
 				  <ng-container *ngIf="checkPersonality.length===0">
 					<div class="no__data__found">
-						<h3>Coming Soon</h3>
+						<h3>Candidate yet to provide</h3>
 					  </div>
 					</ng-container>
 				<ng-container *ngIf="checkPersonality.length>0">
@@ -1057,17 +1102,11 @@
 				</div>
 				<div *ngIf="selectedMenuItem == 'Reference Check'">
 				  <div class="modal-body">
-					<div class="row radio-btns">
+					<!-- <div class="row radio-btns">
 					  <div class="col-md-12 reference-filter-position text-right">
-						<mat-radio-group>
-						  <mat-radio-button value="0" [checked]="true" (click)="GetQuestionnariePersons(5)"
-							>Show All</mat-radio-button
-						  >
-						  <mat-radio-button value="1" (click)="GetQuestionnariePersons(4)">Professional</mat-radio-button>
-						  <mat-radio-button value="2" (click)="GetQuestionnariePersons(3)">Personal</mat-radio-button>
-						</mat-radio-group>
+						  
 					  </div>
-					</div>
+					</div> -->
 					<!-- <div class="clearfix">&nbsp;</div> -->
 					<!-- <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
 					  <div class="col-md-3 ref-type">
@@ -1087,144 +1126,439 @@
 					</div> -->
 					<!--Sort-->
 					<div class="revamp__reference__check">
-					  <ul class="nav nav-tabs">
-						<li class="active">
-						  <a data-toggle="tab" href="#received">
-							Received
-						  </a> 
-						</li>
-					  </ul>
-					  <div class="tab-content">
-						<div id="received" class="tab-pane fade in active">
-						  <div class="scrollbar-inner">
-							<ng-container *ngIf="referenceUsersList.length === 0">
-							  <span>No References</span>
-							</ng-container>
-							<ng-container *ngIf="referenceUsersList.length > 0">
-							  <div class="reference__grid__container">
-								<div class="row flex flex-wrap flex-align-equal">
-								  <div class="col-sm-4 col"  *ngFor="let user of referenceUsersList | slice: lowValue:highValue | orderBy: sortingName:isDesc">
+						<ul class="nav nav-tabs">
+						  <li class="active">
+							<a data-toggle="tab" href="#received">
+							  Received
+							</a>
+						  </li>
+						  <!-- <li>
+							<a data-toggle="tab" href="#pending">
+							  Pending
+							</a>
+						  </li> -->
+						</ul>
+						<div class="tab-content">
+						  <div id="received" class="tab-pane fade in active">
+							<div class="reference__grid__container">
+							  <div class="row flex flex-wrap flex-align-equal">
+								<ng-container *ngFor="let r of usersList">
+								  <div class="col-sm-4 col">
 									<div class="col__container">
 									  <div class="top__container">
-										<h4>{{ user?.FullName | titlecase }} <span class="reference-card-date">{{ user?.CreatedOn | date: "longDate" }}</span></h4>
-										<h6>{{ user?.ReferRelation || "N/A" }}</h6>
-										
-										<button class="btn btn__information"  (click)="OpenRequestDialog(user.KnownOrWorkedAt, user.QuestionnaireAssignmentId)">
-										  <i class="fa fa-info-circle" aria-hidden="true"></i>
-										</button>
+										<h4>{{r?.FullName | titlecase}} <span class="reference-card-date">{{r?.ModifiedOn |date:'mediumDate'}}</span></h4>
+										<button class="btn btn__information"><i class="fa fa-info-circle"
+											aria-hidden="true"></i></button>
 									  </div>
-									  <div class="middle__container">
+									   <div class="middle__container">
 										<div class="jdv-listing">
-										  <div class="jdv-skills">
+										  <!--<div class="jdv-skills">
 											<div class="row flex flex-wrap flex-align-equal">
-											  <div class="col-sm-6">
+											  <div class="col-sm-6 col">
 												<div class="col-container">
 												  <h5>CSS</h5>
 												  <h6>Exp : 1.6 years</h6>
 												  <div class="star-rating">
-													<star-rating
-													  value="3"
-													  totalstars="5"
-													  checkedcolor="#2260C3"
-													  uncheckedcolor="#9EABC0"
-													  size="16px"
-													  readonly="true"
-													>
-													</star-rating>
+													<div class="stars">
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star"></span>
+													  <span class="fa fa-star"></span>
+													</div>
 												  </div>
 												</div>
 											  </div>
-											  <div class="col-sm-6">
+											  <div class="col-sm-6 col">
 												<div class="col-container">
 												  <h5>CSS</h5>
 												  <h6>Exp : 1.6 years</h6>
 												  <div class="star-rating">
-													<star-rating
-													  value="3"
-													  totalstars="5"
-													  checkedcolor="#2260C3"
-													  uncheckedcolor="#9EABC0"
-													  size="16px"
-													  readonly="true"
-													>
-													</star-rating>
+													<div class="stars">
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star"></span>
+													  <span class="fa fa-star"></span>
+													</div>
 												  </div>
 												</div>
 											  </div>
-											  <div class="col-sm-6">
+											  <div class="col-sm-6 col">
 												<div class="col-container">
 												  <h5>CSS</h5>
 												  <h6>Exp : 1.6 years</h6>
 												  <div class="star-rating">
-													<star-rating
-													  value="3"
-													  totalstars="5"
-													  checkedcolor="#2260C3"
-													  uncheckedcolor="#9EABC0"
-													  size="16px"
-													  readonly="true"
-													>
-													</star-rating>
+													<div class="stars">
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star"></span>
+													  <span class="fa fa-star"></span>
+													</div>
 												  </div>
 												</div>
 											  </div>
-											  <div class="col-sm-6">
+											  <div class="col-sm-6 col">
 												<div class="col-container">
 												  <h5>CSS</h5>
 												  <h6>Exp : 1.6 years</h6>
 												  <div class="star-rating">
-													<star-rating
-													  value="3"
-													  totalstars="5"
-													  checkedcolor="#2260C3"
-													  uncheckedcolor="#9EABC0"
-													  size="16px"
-													  readonly="true"
-													>
-													</star-rating>
+													<div class="stars">
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star checked"></span>
+													  <span class="fa fa-star"></span>
+													  <span class="fa fa-star"></span>
+													</div>
+												  </div>
+												</div>
+											  </div>
+											</div>
+										  </div>
+										</div>-->
+										</div>
+										<div class="information">
+										  <ul>
+											<li class="mail">
+											  {{r?.RequestedTo | titlecase}}
+											</li>
+											<li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
+											 +1 {{r?.PhoneNumber}}
+											</li>
+										  </ul>
+										</div>
+									  </div> 
+									  <div class="bottom__container">
+										<h6>Comments:</h6>
+										{{r?.ResponseValue | titlecase}}
+									  </div>
+									</div>
+								  </div>
+								</ng-container>
+							  
+								<!-- <div class="col-sm-4 col">
+								  <div class="col__container">
+									<div class="top__container">
+									  <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+									  <button class="btn btn__information"><i class="fa fa-info-circle"
+										  aria-hidden="true"></i></button>
+									</div>
+									<div class="middle__container">
+									  <div class="jdv-listing">
+										<div class="jdv-skills">
+										  <div class="row flex flex-wrap flex-align-equal">
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
 												  </div>
 												</div>
 											  </div>
 											</div>
 										  </div>
 										</div>
-										<div class="information">
-										  <ul>
-											<li class="mail">
-											  {{ user?.RequestedTo || "N/A" }}
-											</li>
-											<li class="phone">
-											  {{ user?.PhoneNumber || "N/A" }}
-											</li>
-											<li class="rehire">
-											  <span style="display: inline-block;width:60%;">Eligible to rehire by the Company</span>
-											  <div style="display: inline-block;position: relative;top:-20px;" class="inline__check__list">
-												  <label class="custom-checkbox lg-select">
-													<input type="checkbox" checked>
-													<span class="checkmark">Yes</span>
-												  </label>
-												  <!-- <label class="custom-checkbox lg-select">
-													<input type="checkbox">
-													<span class="checkmark">No</span>
-												  </label> -->
-											  </div>
-											</li>
-										  </ul>
-										</div>
 									  </div>
-									  <div class="bottom__container">
-										<h6>Comments:</h6>
-										{{ user?.ResponseValue }}
+									  <div class="information">
+										<ul>
+										  <li class="mail">
+											ware@yahoo.com
+										  </li>
+										  <li class="phone">
+											9939283892
+										  </li>
+										</ul>
 									  </div>
+									</div>
+									<div class="bottom__container">
+									  <h6>Comments:</h6>
+									  Hard working and Proactive
 									</div>
 								  </div>
 								</div>
+								<div class="col-sm-4 col">
+								  <div class="col__container">
+									<div class="top__container">
+									  <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+									  <button class="btn btn__information"><i class="fa fa-info-circle"
+										  aria-hidden="true"></i></button>
+									</div>
+									<div class="middle__container">
+									  <div class="jdv-listing">
+										<div class="jdv-skills">
+										  <div class="row flex flex-wrap flex-align-equal">
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									  <div class="information">
+										<ul>
+										  <li class="mail">
+											ware@yahoo.com
+										  </li>
+										  <li class="phone">
+											9939283892
+										  </li>
+										</ul>
+									  </div>
+									</div>
+									<div class="bottom__container">
+									  <h6>Comments:</h6>
+									  Hard working and Proactive
+									</div>
+								  </div>
+								</div>
+								<div class="col-sm-4 col">
+								  <div class="col__container">
+									<div class="top__container">
+									  <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+									  <button class="btn btn__information"><i class="fa fa-info-circle"
+										  aria-hidden="true"></i></button>
+									</div>
+									<div class="middle__container">
+									  <div class="jdv-listing">
+										<div class="jdv-skills">
+										  <div class="row flex flex-wrap flex-align-equal">
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+											<div class="col-sm-6 col">
+											  <div class="col-container">
+												<h5>CSS</h5>
+												<h6>Exp : 1.6 years</h6>
+												<div class="star-rating">
+												  <div class="stars">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+												  </div>
+												</div>
+											  </div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									  <div class="information">
+										<ul>
+										  <li class="mail">
+											ware@yahoo.com
+										  </li>
+										  <li class="phone">
+											9939283892
+										  </li>
+										</ul>
+									  </div>
+									</div>
+									<div class="bottom__container">
+									  <h6>Comments:</h6>
+									  Hard working and Proactive
+									</div>
+								  </div>
+								</div> -->
 							  </div>
-							</ng-container>
+							</div>
+						  </div>
+						  <div id="pending" class="tab-pane fade">
+							<div class="data-grid-table" style="display: block;">
+							  <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+								<div class="grid-col grid-name-col">
+								  Name <span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-email-col">
+								  Email<span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-contact-col">
+								  Phone Number<span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-action-col">
+								  &nbsp;
+								</div>
+							  </div>
+							  <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
+								<div class="grid-col grid-name-col">
+								  <div class="grid-heading">Name</div>
+								  <div class="box-table">
+									Oleksii
+								  </div>
+								</div>
+								<div class="grid-col grid-email-col">
+								  <div class="grid-heading">Email</div>
+								  <div class="box-table">
+									oleksii@gmail.com
+								  </div>
+								</div>
+								<div class="grid-col grid-contact-col">
+								  <div class="grid-heading">Contact Number</div>
+								  <div class="box-table">
+									+3 809 698 3822
+								  </div>
+								</div>
+								<div class="grid-col grid-action-col">
+								  <div class="grid-heading">Action</div>
+								  <div class="box-table">
+									<i class="fa fa-info-circle" aria-hidden="true"></i>
+								  </div>
+								</div>
+							  </div>
+							</div>
 						  </div>
 						</div>
 					  </div>
-					</div>
 					<!-- <div class="ref-scroll scrollbar-inner">
 					  <mat-accordion>
 						<ng-container *ngIf="referenceUsersList.length === 0">
