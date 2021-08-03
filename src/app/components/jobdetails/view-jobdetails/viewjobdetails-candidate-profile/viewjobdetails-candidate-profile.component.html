@@ -1669,7 +1669,7 @@
         <h2>Arytic Fit</h2>
       </div>
       <div class="middle__container">
-        <app-radar-chart
+        <app-radar-chart 
                     style="cursor: pointer"
                     (click)="showRadarChart('radar')"
                     [radarChartData]="backRadarChartData"
@@ -1682,7 +1682,7 @@
           <div class="col-sm-4">
             <circle-progress
               data-toggle="matching-details"
-              [percent]="50"
+              [percent]="matchingParameterDetails.JobFit"
               [radius]="40"
               [outerStrokeWidth]="8"
               [innerStrokeWidth]="3"
@@ -1697,7 +1697,7 @@
           <div class="col-sm-4">
             <circle-progress
               data-toggle="matching-details"
-              [percent]="70"
+              [percent]="matchingParameterDetails.SkillFit"
               [radius]="40"
               [outerStrokeWidth]="8"
               [innerStrokeWidth]="3"
@@ -1707,12 +1707,12 @@
               [showSubtitle]="false"
             >
             </circle-progress>
-            <h5>Skills Fit</h5>
+            <h5>Skill Fit</h5>
           </div>
           <div class="col-sm-4">
             <circle-progress
               data-toggle="matching-details"
-              [percent]="75"
+              [percent]="matchingParameterDetails.Personalityfit"
               [radius]="40"
               [outerStrokeWidth]="8"
               [innerStrokeWidth]="3"
@@ -1727,7 +1727,7 @@
           <div class="col-sm-4">
             <circle-progress
               data-toggle="matching-details"
-              [percent]="65"
+              [percent]="matchingParameterDetails.CultureFit"
               [radius]="40"
               [outerStrokeWidth]="8"
               [innerStrokeWidth]="3"
@@ -1742,7 +1742,7 @@
           <div class="col-sm-4">
             <circle-progress
               data-toggle="matching-details"
-              [percent]="33.333"
+              [percent]="0"
               [radius]="40"
               [outerStrokeWidth]="8"
               [innerStrokeWidth]="3"
@@ -1752,7 +1752,7 @@
               [showSubtitle]="false"
             >
             </circle-progress>
-            <h5>Team Fit</h5>
+            <h5>Team Fit(Coming Soon)</h5>
           </div>
         </div>
       </div>

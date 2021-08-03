@@ -16,6 +16,8 @@ export class MatchingParameterDetails{
   public  Jobfit_Total: number;
   public  CultureFit:number;
   public  Personalityfit:number;
+  public  SkillFit:number;
+  public  JobFit:number;
   public isPublic : boolean;
   public Personalityfit_Total : number;
   public Total_Match_Per : number;

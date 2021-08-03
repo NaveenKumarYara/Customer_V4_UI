@@ -17,6 +17,7 @@ export class RadarChartComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges() {
+
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: "radar",
       options: {
@@ -50,5 +51,9 @@ export class RadarChartComponent implements OnInit, OnChanges {
     this.chart.update();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setInterval(() => {
+      this.chart.update();
+  }, 1000);
+  }
 }
