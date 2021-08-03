@@ -890,13 +890,13 @@
 				  <app-radar-chart-large [radarChartData]="smallRadarChartData"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
-					  <li *ngFor="let item of Job.labels; let i = index">
+					  <li *ngFor="let item of smallRadarChartData.labels; let i = index">
 						<p>{{ item }}</p>
 						<div class="percentage__info">
 						  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
 						  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
 						  <p style="background-color: rgb(54, 162, 235)">
-							{{ Job.datasets[0].data[i] }}
+							{{ smallRadarChartData.datasets[0].data[i] }}
 						  </p>
 						</div>
 					  </li>

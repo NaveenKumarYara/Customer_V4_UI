@@ -571,8 +571,9 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         jobId: this.jobid,
         UserId:Uid,
         JobFit:this.matchingParameterDetails.Jobfit_Total,
-        Personalityfit:this.matchingParameterDetails.Personalityfit_Total,
-        Skillfit:this.matchingParameterDetails.Skillfit_Total
+        Personalityfit:this.matchingParameterDetails.Personalityfit,
+        Skillfit:this.matchingParameterDetails.Skillfit_Total,
+        CulutureFit:this.matchingParameterDetails.CultureFit
         // status : this.statusid
       },
     });
@@ -881,6 +882,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;
+          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -1223,6 +1225,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     // var jobid = 10;
     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
       this.matchingParameterDetails = res;
+      debugger
       // if (this.matchingParameterDetails.isPublic) {
       //   this.matchingParameterDetails.Jobfit_Total = ((this.matchingParameterDetails.Jobfit_Total) * 30 / 100);
       //   this.matchingParameterDetails.Skillfit_Total = ((this.matchingParameterDetails.Skillfit_Total) * 50 / 100);
@@ -1234,6 +1237,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
       this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
       this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+      
 
       console.log("matchingParameterDetails", this.matchingParameterDetails);
       this.getGraph();

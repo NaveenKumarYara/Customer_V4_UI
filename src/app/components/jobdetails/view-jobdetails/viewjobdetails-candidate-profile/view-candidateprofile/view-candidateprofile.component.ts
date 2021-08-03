@@ -308,7 +308,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.Match = res;
       this.MatchingPercentage = res.Total_Match_Per;
       setInterval(() => {
-        this.smallRadarChartData.datasets[0].data=[res.Jobfit_Total,res.Skillfit_Total,0,res.Personalityfit_Total,0];
+        this.smallRadarChartData.datasets[0].data=[res.Jobfit_Total,res.Skillfit_Total,res.CultureFit.toFixed(2),res.Personalityfit.toFixed(2),0];
       },1000)
     
      
@@ -436,8 +436,8 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.GetMatchingPercentage();
     this.smallRadarChartData.datasets[0].data=[this.data.JobFit,
       this.data.Skillfit,
-      0,
-      this.data.Personalityfit,
+      this.data.CulutureFit.toFixed(2),
+      this.data.Personalityfit.toFixed(2),
       0];
     this.GetUserProfileInfo();
     this.GetJobNotes();
