@@ -146,7 +146,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         pointHoverBackgroundColor: "#4472C4",
         borderWidth: 1,
         pointBorderWidth: 1,
-        data: [75, 100, 85, 60, 70]        
+        data: []        
       },
     ],
    
@@ -790,6 +790,19 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+
+//   GetMatchingPercentageGraph(profileId, jobid): any {
+//     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, jobid).subscribe((res) => {
+//       this.matchingParameterDetails = res;
+//       debugger
+//       setInterval(() => {
+//         this.smartCardRadarChartData.datasets[0].data.forEach(a=>
+// a[] = this.matchingParameterDetails.JobFit,this.matchingParameterDetails.SkillFit,this.matchingParameterDetails.CultureFit,this.matchingParameterDetails.Personalityfit,0
+//           )
+//     }, 1000);      
+//     });
+//     return this.matchingParameterDetails;
+//   }
   GetJobFeedback(profileId, jobId) {
     this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
       this.CandidateFeedback = datr6;
@@ -895,7 +908,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;
-          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
@@ -903,6 +915,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           this.jobdetailsprofiles.Profile.forEach((a, index) => {
             // var num = 0;
             this.currentNo[index] = 0;
+           
             //this.GetMatchingPercentageGraph(a.ProfileId,this.jobid);
 
             // this.backRadarChartData.datasets.map(x=>
@@ -1271,7 +1284,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
       setInterval(() => {
         this.backRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
-       
+        //this.smartCardRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
     }, 1000);
          
       console.log("matchingParameterDetails", this.matchingParameterDetails);

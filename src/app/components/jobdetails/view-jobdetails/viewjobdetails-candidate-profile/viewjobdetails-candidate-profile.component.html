@@ -688,7 +688,9 @@
             <app-radar-smart-chart
                     style="cursor: pointer"
                     (click)="callSkills(profile.ProfileId, 5)"
-                    [radarChartData]="smartCardRadarChartData"
+                   
+                    [ProfileId]="profile.ProfileId"
+                    [JobId]="jobid"
                     [height]="120"
                     [width]="160"
                   ></app-radar-smart-chart>
@@ -1752,7 +1754,8 @@
               [showSubtitle]="false"
             >
             </circle-progress>
-            <h5>Team Fit(Coming Soon)</h5>
+            <h5>Team Fit</h5>
+            <h6>(Coming Soon)</h6>
           </div>
         </div>
       </div>
