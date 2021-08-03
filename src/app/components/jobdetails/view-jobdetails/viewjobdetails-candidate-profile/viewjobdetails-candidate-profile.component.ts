@@ -82,6 +82,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   savenote = new Notes();
   matchingParameterDetails = new MatchingParameterDetails();
   matchingParameterData = new MatchingParameterDetails();
+  matchingParameter = new MatchingParameterDetails();
   experience: any;
   location: any;
   fileType = new Resume();
@@ -92,7 +93,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   status = new JobStatus();
   usersList: any;
   iconHide: boolean = false;
-
+  @ViewChild('divClick') divClick: ElementRef;
   schIntw = new ScheduleInterview();
   wsList = new WishList();
   TotalCount: any;
@@ -116,7 +117,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   radarChart: boolean = false;
   radarChartMenu: any = [];
   backRadarChartData = {
-    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit" ,"Team Fit"],
     datasets: [
       {
         label: "Arytic Fit",
@@ -129,7 +130,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         borderWidth: 5,
         pointBorderWidth: 5,
         pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [75, 100, 85, 60, 70],
+        data: [],
       },
     ],
   };
@@ -151,7 +152,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
    
   };
   smallRadarChartData = {
-    labels: ["Job Fit", "Skill Fit", "Team Fit", "Culture Fit", "Personality Fit"],
+    labels: ["Job Fit", "Skill Fit",  "Culture Fit", "Personality Fit","Team Fit"],
     datasets: [
       {
         fill: true,
@@ -162,7 +163,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         pointHoverBackgroundColor: "#448afa",
         borderWidth: 1,
         pointBorderWidth: 1,
-        data: [75, 100, 85, 60, 70]        
+        data: []        
       },
     ],
    
@@ -570,9 +571,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         ProfileId: profileId,
         jobId: this.jobid,
         UserId:Uid,
-        JobFit:this.matchingParameterDetails.Jobfit_Total,
-        Personalityfit:this.matchingParameterDetails.Personalityfit_Total,
-        Skillfit:this.matchingParameterDetails.Skillfit_Total
+        JobFit:this.matchingParameterDetails.JobFit,
+        Personalityfit:this.matchingParameterDetails.Personalityfit,
+        Skillfit:this.matchingParameterDetails.SkillFit,
+        CulutureFit:this.matchingParameterDetails.CultureFit
         // status : this.statusid
       },
     });
@@ -830,6 +832,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
+
+  // GetMatchingPercentageGraph(ProfileId,jobid)
+  // {
+  //   this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(ProfileId, jobid).subscribe((res) => {
+  //     this.matchingParameter = res;
+  //     debugger
+  //     this.backRadarChartData.datasets.forEach(a=>{
+  //       a.data=[this.matchingParameter.JobFit,this.matchingParameter.SkillFit,this.matchingParameter.CultureFit,this.matchingParameter.Personalityfit,0]
+  //     })
+     
+  //   })
+  // }
   PopulateJobdetailProfiles(
     customerId,
     userid,
@@ -881,12 +895,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         )
         .subscribe((res) => {
           this.jobdetailsprofiles = res;
+          debugger
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
+          
           this.jobdetailsprofiles.Profile.forEach((a, index) => {
             // var num = 0;
             this.currentNo[index] = 0;
+            //this.GetMatchingPercentageGraph(a.ProfileId,this.jobid);
+
+            // this.backRadarChartData.datasets.map(x=>
+            //   {
+            //     x.data.push(a.JobFit,a.SkillFit,a.CultureFit,a.PersonalFit,a.TeamFit)
+            //   });
+            //this.backRadarChartData.datasets[0].data=[a.JobFit,a.SkillFit,a.CultureFit,a.PersonalFit,a.TeamFit];
           });
           // if (this.jobdetailsprofiles.Profile.length > 0) {
           //   this.jobdetailsprofiles.Profile.forEach(a => {
@@ -1015,8 +1038,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $("#matchingDetailFeedback-" + profileId).toggleClass("open");
     }
     if (Val == 5) {
+      var data = this.GetMatchingPercentage(profileId, this.jobid);
+
+      console.log("matchingParameterDetails", this.matchingParameterDetails);
+
+      return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe((res) => {
+        this.matchingDetails = res;
       $(".matching-details").removeClass("open");
       $("#matchingDetailRadar-" + profileId).toggleClass("open");
+      });
     } 
     // $detailsCloseBtn.on('click', function (e) {
     //   e.preventDefault();
@@ -1056,6 +1086,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           $detailsDiv.removeClass("open");
         });
       });
+
       // const $detailBtn = $card.find('.show-matching-details');
       // $detailBtn.on('click', function (e) {
 
@@ -1234,7 +1265,15 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
       this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
       this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
-
+      this.matchingParameterData.Personalityfit =this.matchingParameterDetails.Personalityfit;
+      this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
+      this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
+      this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
+      setInterval(() => {
+        this.backRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
+       
+    }, 1000);
+         
       console.log("matchingParameterDetails", this.matchingParameterDetails);
       this.getGraph();
     });
