@@ -36,6 +36,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   email: any;
   showMenu: boolean;
   jobStatus: any;
+  selectedSkills:any=[];
   skillfitcheck:any=[];
   showShortDesciption = true;
   checkPersonality:any=[];
@@ -810,7 +811,10 @@ export class ViewCandidateprofileComponent implements OnInit {
       data => {
       if(data != "No records found")
       {
-       this.usersList = data;        
+       this.usersList = data; 
+       this._service.GetService('IdentityAPI/api/GetCandidateTopSkillsList?profileId=' + this.data.ProfileId + '&searchText=', '').subscribe(data => {
+        this.selectedSkills = data;
+    })       
       }
       else
       {
