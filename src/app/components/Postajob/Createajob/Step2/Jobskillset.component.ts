@@ -121,6 +121,14 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       if (Number(this.maxexperience) < Number(this.minexperience)) {
         return false;
       }
+
+      if (Number(this.minexperience) === 0) {
+        return false;
+      }
+
+      if (Number(this.maxexperience) === 0) {
+        return false;
+      }
       this.appService.addSkills(localStorage.getItem('skill'));
       let newskills = new Jobskills();
       newskills.SkillName = localStorage.getItem('skill') === null ? this.selectedSkillName : localStorage.getItem('skill');
