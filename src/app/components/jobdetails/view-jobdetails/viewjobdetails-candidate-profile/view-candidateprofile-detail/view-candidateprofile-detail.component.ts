@@ -128,6 +128,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
+  alist: any=[];
   constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
@@ -297,6 +298,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetCandidateCultureResult();
     this.GetExperience();
     this.GetVideo();
+    this.GetAchivements();
     this.GetCandidateProfileStatistics();
     if (sessionStorage.getItem('redirect') != null) {
         // $('.nav-liSV').removeClass('active');
@@ -495,9 +497,17 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     // QuestionnaireAssignment
   }
 
+  GetAchivements()
+  {
+    this._service.GetService('ProfileAPI/api/GetCandidateAchievementList?profileId=', this.profileId).subscribe(
+        data => {
+            this.alist=data;
+        }
+    )
+  }
+
   GetQuestionnariePersonsList(Ud) {
-    debugger
-    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=0')
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=4')
       .subscribe(
         data => {
         if(data != "No records found")

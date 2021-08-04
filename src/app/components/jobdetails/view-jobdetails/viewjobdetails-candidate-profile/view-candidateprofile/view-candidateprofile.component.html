@@ -104,12 +104,12 @@
 						  <span class="tooltip">Reference Check</span>
 						</a>
 					  </li>
-					  <li>
+					  <!-- <li>
 						<a href="javascript:void(0)" title="Achievements">
 						  <img src="../../../../../../assets/images/background-check-icon-02.png" alt="">
 						  <span class="tooltip">Awards</span>
 						</a>
-					  </li>
+					  </li> -->
 					  <!-- <li>
 						<a href="javascript:void(0)"(click)="showRadarChart('Skills Verified')" title="Background Need to be Verified" data-toggle="tooltip" title="+3  809 698 3822!">
 						  <img src="../../../../../../assets/images/background-check-icon-03.png" alt="">
@@ -535,12 +535,18 @@
 				  <div class="jdv-key-section">
 					<h4>Achievements</h4>
   
-					<ul class="flex flex-wrap flex-align-equal">
-					  <span class="profile-note">Candidate yet to provide the Achievement details.</span>
-  
-					  <!-- <li>Collect required info</li>
-																  <li>Documentation</li>
-																  <li>Reporting</li> -->
+					<ul class="custom-check-list flex flex-wrap flex-align-equal">
+				
+					  <ng-container *ngIf="alist.length>0">
+					  <li *ngFor="let a of alist">
+						<div class="box-info" title="{{a?.AchivementDescription }}">
+							{{ add3Dots(a?.AchivementDescription, 20) }}
+						  </div>
+						</li>
+					  </ng-container>
+					  <ng-container *ngIf="alist.length===0">
+						<span class="profile-note">Candidate yet to provide the Achievement details.</span>
+					</ng-container>										 
 					</ul>
 				  </div>
 				</div>

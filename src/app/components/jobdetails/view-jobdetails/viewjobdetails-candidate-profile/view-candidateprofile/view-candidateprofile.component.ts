@@ -269,6 +269,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   pageEvent: PageEvent;
   sortedData;
   @ViewChild("paginator") paginator: MatPaginator;
+  alist: any=[];
 
   constructor(
     private dialogRef: MatDialogRef<ViewCandidateprofileComponent>,
@@ -435,6 +436,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetCandidateSKills();
     this.GetProfileDetails();
       this.GetMatchingPercentage();
+      this.GetAchivements();
     this.smallRadarChartData.datasets[0].data=[this.data.JobFit.toFixed(2),
       this.data.Skillfit.toFixed(2),
       this.data.CulutureFit.toFixed(2),
@@ -805,8 +807,17 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
   }
 
+  GetAchivements()
+  {
+    this._service.GetService('ProfileAPI/api/GetCandidateAchievementList?profileId=', this.data.ProfileId).subscribe(
+        data => {
+            this.alist=data;
+        }
+    )
+  }
+
   GetQuestionnariePersonsList() {
-    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=0')
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=4')
     .subscribe(
       data => {
       if(data != "No records found")

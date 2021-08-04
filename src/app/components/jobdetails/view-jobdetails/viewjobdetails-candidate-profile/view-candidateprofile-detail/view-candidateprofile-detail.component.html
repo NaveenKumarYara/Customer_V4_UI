@@ -322,7 +322,7 @@
                   <h5>Skills</h5>
                 </div>
                 <div class="skills__listing">
-                  <h4>Mandatory Skills</h4>
+                  <h4>Top Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
                     <ng-container *ngFor="let skill of list | slice:0:isMoreSkill">
                     <div class="col-sm-3 col">
@@ -1175,17 +1175,20 @@
                       </div>
                       <div class="col-sm-9">
                         <div class="row flex flex-wrap flex-align-equal">
-                          <p>Candidate yet to Provide the Achievements!!</p>
-                          <!-- <div class="col-sm-6 col">
+                          <ng-container *ngIf="alist.length==0">
+                            <p>Candidate yet to Provide the Achievements!!</p>
+                        </ng-container>
+                        <ng-container *ngIf="alist.length>0">
+                          <div class="col-sm-6 col"  *ngFor="let a of alist">
                             <div class="card__box">
-                              <h4>Marketing Mangement</h4>
-                              <h5>University Name</h5>
-                              <div class="date">15-04-2020</div>
-                              <div class="info">
-                                Lorem Ipsum is simply.....
-                              </div>
+                              <h4>{{a?.AchivementDescription}}</h4>
+                                <h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
+                                <div class="date" *ngIf="a?.ToDate!=null">{{a?.ToDate | date:'yyyy'}}</div>   
+
                             </div>
-                          </div> -->
+                          </div>
+                        </ng-container>
+                        
                        
                         </div>
                       </div>
