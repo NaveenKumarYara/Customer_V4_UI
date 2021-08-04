@@ -238,11 +238,11 @@
                   <h6>Years of Experience: <span>{{profileview?.ProfileBasicInfo?.TotalExperience}}Years</span></h6>
                 </div><!-- /.title__container -->
                 <div class="info__container">
-                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:100">
+                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:100 | safeHtml">
 
                   </p>
                   <ng-container *ngIf="isMore">
-                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000">
+                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000  | safeHtml">
                     
                     </span>
                   </ng-container>
