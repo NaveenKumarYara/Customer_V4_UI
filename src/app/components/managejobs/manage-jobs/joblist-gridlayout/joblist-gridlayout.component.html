@@ -78,9 +78,9 @@
                           </ng-container>
                     </div>
                     <div *ngIf="job.JobLocations.length > 1">   
-                          <div class="tooltip-text">Multiple Locations
+                          <div class="tooltip-text">{{job.JobLocations[0].CityName}} <span *ngIf="job.JobLocations[0].StateCode !=''">,</span> {{job.JobLocations[0].StateCode}} + 
                             
-                                <span class="tooltipcontent"> <ng-container *ngFor="let location of job?.JobLocations">{{location?.CityName}},{{location?.StateCode}}</ng-container></span>
+                                <span class="tooltipcontent"> <ng-container *ngFor="let location of job?.JobLocations">{{location?.CityName}},{{location?.StateCode}} </ng-container></span>
                            
                           </div>
                     </div>
