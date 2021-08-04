@@ -830,9 +830,10 @@
             </div>
             <div class="row flex flex-wrap flex-align-equal">
             
-              <ng-container *ngFor="let exps of profExperience;let i=index ">
+            
                   <div class="col-sm-4 history__col">
                 <ul class="history__container" id="historyNav">
+                  <ng-container *ngFor="let exps of profExperience;let i=index ">
                   <li class="professional main__history "   [ngClass]="{'active': check===i}" (click)="CheckDesc(i)">
                     <span class="year"><span>Now</span></span>
                     <div class="info__box">
@@ -876,11 +877,13 @@
                  
                       
                     </ul>
-                  </li>               
+                  </li> 
+                 </ng-container>              
                 </ul>
               </div>
 
               <div class="col-sm-8 experience__detail__col"  >
+                <ng-container *ngFor="let exps of profExperience;let i=index ">
                 <div class="experience__slide"  [ngClass]="{'active': check===i}">
                   <div class="slide__info">
                     <div class="container__box">
@@ -1048,9 +1051,9 @@
                     </div>
                   </div>
                 </div>
-         
+              </ng-container>
               </div>
-            </ng-container>
+           
             </div>
           </div>
           <div class="three__grid__card__container">
