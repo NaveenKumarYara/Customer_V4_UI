@@ -83,6 +83,7 @@ export class RadarSmartChartComponent implements OnInit, OnChanges {
      {
       this.matchingParameterData = res;
       this.smallRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0];
+      this.chart.update();
       //this.chart.Data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
     });
   }

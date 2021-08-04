@@ -34,6 +34,7 @@ import { WithDrawndialogComponent } from "./Withdrawn/withdrawn.component";
 import { sendnotificationdialogComponent } from "./SendNotification/sendnotification.component";
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
+import swal from "sweetalert2";
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -52,16 +53,17 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   viewscheduleInterviewDialgoref: MatDialogRef<ScheduleInterviewComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   public show_dialog: boolean = false;
-
   // viewHireDialgoref: MatDialogRef<HiredialogComponent>;
   jobdetailsprofiles = new JobdetailsProfile();
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
+
   show: boolean = false;
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
   notes=new EditNotes();
+  notify = new Notification();
   subdetails:CustomerSubscription;
   sdetails:GetSubscriptionDetails;
   Rloading: boolean = false;
@@ -209,6 +211,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     private toastr: ToastsManager,
     private _vcr: ViewContainerRef
   ) {
+    const swal = require('sweetalert2');
     this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
@@ -681,13 +684,46 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     this.requestRef.ToEmailID = profile.Email;
     this.requestRef.UserName = profile.FirstName;
     this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
+      debugger
       this.CommentProfile = undefined;
       this.requestRef = new RequestRefernce();
-      let message = "Requested Reference!";
-      let action = "Success";
-      this._snackBar.open(message, action, {
-        duration: 2000,
-      });
+      // let message = "Requested Reference!";
+      // let action = "Success";
+      // this._snackBar.open(message, action, {
+      //   duration: 2000,
+      // });
+      swal(
+        {
+          title: 'Requested Reference!',
+          showConfirmButton: false,
+          timer: 1500,
+          type:"success"
+        });
+    });
+  }
+
+ 
+
+  RequestAchivement(profile) {
+    this.notify.CustomerId= this.customer.CustomerId;
+    this.notify.JobId = this.jobid;
+    this.notify.FromUserId = this.customer.UserId;
+    this.notify.NotificationTypeId= 20;
+    this.notify.ToUserId = profile.UserId; 
+    this.notify.Message = this.customer.FirstName +"_Requested Achievements";
+    this._service.PostService(this.notify,'IdentityAPI/api/InsertNotification')
+     .subscribe(
+     status => {
+       if(status>=0)
+       {
+      swal(
+        {
+          title: 'Requested Achievements!',
+          showConfirmButton: false,
+          timer: 1500,
+          type:"success"
+        });
+      }
     });
   }
 
@@ -1083,6 +1119,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.alertService.clear();
+ 
     (function ($) {
       // TODO: test multiple cards -- open and close function
       const $card = $(".page--job-details .tab-content .card");
@@ -1483,15 +1520,25 @@ export class JobStatus {
 }
 
 export class Notes {
-  public ProfileId: Number;
-  public JobId: Number;
-  public customerUserId: Number;
-  public statusId: Number;
-  public toUserId: string;
-  public isCandidate: boolean;
-  public Comments: string;
+  public ProfileId :Number
+  public JobId :Number
+  public customerUserId:Number
+  public statusId :Number
+  public toUserId :string
+  public isCandidate:boolean
+  public Comments :string
+  public Doc: string
+  public OtherInfo: string
 }
 
+export class Notification{
+  FromUserId:  Number;
+  ToUserId : Number;
+  CustomerId: Number;
+  JobId: Number;
+  NotificationTypeId: Number;
+  Message:string
+}
 export class EditNotes {
     public JobId: Number;
     public CId: Number;

@@ -586,7 +586,7 @@
             />
           </a>
 
-          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===0"  title="Achievements">
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===0"  title="Achievements" (click)="RequestAchivement(profile)">
           <img
             src="../../../../../assets/images/card-icons/no-achievement.png"
             width="50"
