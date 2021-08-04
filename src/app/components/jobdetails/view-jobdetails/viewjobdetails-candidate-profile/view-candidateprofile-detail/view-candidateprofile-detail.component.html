@@ -833,7 +833,7 @@
               <ng-container *ngFor="let exps of profExperience;let i=index ">
                   <div class="col-sm-4 history__col">
                 <ul class="history__container" id="historyNav">
-                  <li class="professional main__history active"  (click)="CheckDesc(i)">
+                  <li class="professional main__history "   [ngClass]="{'active': check===i}" (click)="CheckDesc(i)">
                     <span class="year"><span>Now</span></span>
                     <div class="info__box">
                       <p>{{exps?.StartDate | date:'mediumDate'}} - {{exps?.EndDate | date:'mediumDate'}}</p>
@@ -880,8 +880,8 @@
                 </ul>
               </div>
 
-              <div class="col-sm-8 experience__detail__col" *ngIf="check===i" >
-                <div class="experience__slide active" >
+              <div class="col-sm-8 experience__detail__col" >
+                <div class="experience__slide"  [ngClass]="{'active': check===i}">
                   <div class="slide__info">
                     <div class="container__box">
                       <h4>Summary</h4>
