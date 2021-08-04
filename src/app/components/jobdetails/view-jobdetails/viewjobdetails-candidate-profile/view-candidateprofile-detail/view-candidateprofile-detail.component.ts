@@ -163,7 +163,6 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
   CheckDesc(i)
   {
-    debugger
     this.check=i;
   }
 
@@ -179,7 +178,6 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
       this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
       .subscribe(
         data4 => {
-          debugger
           this.CulturalTestStatusNew = data4.Total; 
           this.cultureresults=data4;
           // if (data4!=null) {
