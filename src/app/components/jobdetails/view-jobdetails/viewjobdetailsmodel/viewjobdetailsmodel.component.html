@@ -231,7 +231,7 @@
                               <span class="jdv-icon jdv-icon-status" title="Work Authorization">Icon</span>
                               
                               <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
-                                  <span class="tooltip-text">Multiple       
+                                  <span class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}      
                                     <span class="tooltipcontent">  
                                       <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
                                       {{job.WorkAuthorizationType}}                  
