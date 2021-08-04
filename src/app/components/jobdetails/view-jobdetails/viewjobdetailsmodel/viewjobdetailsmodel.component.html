@@ -92,9 +92,11 @@
                 <img src="../../../../../assets/images/icon__01.png"><span> N/A</span>
               </li>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
-                <li><img src="../../../../../assets/images/icon__02.png"><span>
+                <li><img src="../../../../../assets/images/icon__02.png"><span *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
                     ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
                     ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
+                    <span *ngIf="viewJobDetails?.HideSalary === false">
+                      Not willing to reveal</span>
                   <!-- <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
                       On W2 </span>                      
                   <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
@@ -285,30 +287,51 @@
                         <div class="two-grid-icon">
                           <div class="row">
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
-                              <div class="col-sm-6">
-                                <span class="jdv-icon jdv-icon-dollar">Icon</span>
-                                <h4>
-                                  ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}/{{jobdetailscustomer?.JobInfo?.SalaryType}}
-                                  <span *ngIf="jobdetailscustomer?.JobInfo?.SalaryType == 'Hourly' ">(167
-                                    hours/month)</span>
-                                  <span *ngIf="jobdetailscustomer?.JobInfo?.SalaryType == 'Annualy' ">(2000
-                                    hours/Yearly)</span>
-                                </h4>
-    
-                                <nav class="icon-navigation">
+                              <div class="col-sm-6"
+                              *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
+                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                              <h4>${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
+                                  <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
+                                      hours/month)</span>
+                                  <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
+                                      hours/Yearly)</span>
+                              </h4>
+
+                              <nav class="icon-navigation">
                                   <ul>
-                                    <li data-toggle="tooltip" data-placement="bottom" title="Health">
-                                      <span class="jdv-icon jdv-icon-heart">Icon</span>
-                                    </li>
-                                    <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
-                                        class="jdv-icon jdv-icon-food">Icon</span>
-                                    </li>
-                                    <li data-toggle="tooltip" data-placement="bottom" title="Travel">
-                                      <span class="jdv-icon jdv-icon-bus">Icon</span>
-                                    </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                      </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                              class="jdv-icon jdv-icon-food">Icon</span>
+                                      </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                      </li>
                                   </ul>
-                                </nav>
-                              </div>
+                              </nav>
+                          </div>
+                          <div class="col-sm-6" *ngIf="viewJobDetails?.HideSalary === false">
+                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                              <h4>Not willing to reveal
+                                  <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
+                                      hours/month)</span>
+                                  <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
+                                      hours/Yearly)</span>
+                              </h4>
+                              <nav class="icon-navigation">
+                                  <ul>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                      </li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                              class="jdv-icon jdv-icon-food">Icon</span></li>
+                                      <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                      </li>
+                                  </ul>
+                              </nav>
+                          </div>
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
                               <div class="col-sm-6">
