@@ -350,7 +350,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     localStorage.setItem("cuserId", userId);
     //this.router.navigateByUrl('/app-view-candidateprofile-detail');
     const url = this.customer.Defaulturl.Purl;
-    //const url ='http://localhost:4200/app-view-candidateprofile-detail';
+    //const url ='http://localhost:4400/app-view-candidateprofile-detail';
     window.open(url, "_blank");
   }
 
@@ -450,6 +450,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
+      debugger
       this.isPublicAvailable = apiData.isPublicAvailable;
       if (this.noTest) {
         this.GetCandidatePersonalityResult();

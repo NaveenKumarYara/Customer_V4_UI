@@ -246,7 +246,7 @@
                     
                     </span>
                   </ng-container>
-                  <a href="javascript:void(0)" (click)="showMore()" class="show__more">
+                  <a href="javascript:void(0)" *ngIf="profileview?.ProfileBasicInfo?.AboutMe.length>80" (click)="showMore()" class="show__more">
                     <span *ngIf="isMore">Show Less</span> <span *ngIf="!isMore">Show More</span>
                   </a>
                 </div>
@@ -276,16 +276,13 @@
 
                       <ng-container *ngIf="noTest === false">
                         <div class="col-container">
-                          <h5><i class="fa fa-file-o"></i>Personality Fit</h5>
-                          <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
-                          role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">Not yet Done</span>
-                        </div>
-                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                          <h5><i class="fa fa-file-o"></i>Personality Fit
+                            <span >Not yet Done</span>
+                          </h5>
                         </div>
                       </ng-container>
                      
-                      <ng-container *ngIf="CulturalTestStatusNew > 0 ">
+                      <ng-container *ngIf="CulturalTestStatusNew > 0">
                         <div class="col-container" (click)="cultureClick()" data-toggle="modal" data-target="#skillsCheckPop">
                           <h5><i class="fa fa-sticky-note" aria-hidden="true"></i>Culture Fit</h5>
                           <div class="progress">
@@ -300,12 +297,11 @@
 
                       <ng-container *ngIf="CulturalTestStatusNew === 0 ">
                         <div class="col-container">
-                          <h5><i class="fa fa-file-o"></i>Culture Fit</h5>
-                          <div class="progress-bar progress-bar-info progress-bar-striped" style="width:80%;"
-                          role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">Not yet Done</span>
-                        </div>
-                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                          <h5><i class="fa fa-file-o"></i>Culture Fit
+                            <span >Not yet Done</span>
+                          </h5>
+                         
+                          <!-- <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> -->
                         </div>
                       </ng-container>
                       
@@ -526,7 +522,7 @@
                   </div>
                 </div>
                 <div class="skills__listing">
-                  <h4>Optional Skills</h4>
+                  <h4 *ngIf="otherSkills.length>0">Optional Skills</h4>
                   <div class="row flex flex-wrap flex-align-equal">
                     <ng-container *ngFor="let skill of otherSkills | slice:0:isMoreOption">
                       <div class="col-sm-3 col">
@@ -834,10 +830,10 @@
             </div>
             <div class="row flex flex-wrap flex-align-equal">
             
-                <ng-container *ngFor="let exps of profExperience;let i=index ">
+              <ng-container *ngFor="let exps of profExperience;let i=index ">
                   <div class="col-sm-4 history__col">
                 <ul class="history__container" id="historyNav">
-                  <li class="professional main__history active" data-id="summary__{{i}}">
+                  <li class="professional main__history active"  (click)="CheckDesc(i)">
                     <span class="year"><span>Now</span></span>
                     <div class="info__box">
                       <p>{{exps?.StartDate | date:'mediumDate'}} - {{exps?.EndDate | date:'mediumDate'}}</p>
@@ -884,8 +880,8 @@
                 </ul>
               </div>
 
-              <div class="col-sm-8 experience__detail__col">
-                <div class="experience__slide active" id="summary__{{i}}">
+              <div class="col-sm-8 experience__detail__col" *ngIf="check===i" >
+                <div class="experience__slide active" >
                   <div class="slide__info">
                     <div class="container__box">
                       <h4>Summary</h4>
@@ -897,7 +893,7 @@
                     
                           </p>
                           </ng-container>
-                        <a href="javascript:void(0)" (click)="moreContent()" class="show__more">
+                        <a href="javascript:void(0)" (click)="moreContent(i)" class="show__more">
                           <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
                         </a>
 
@@ -1620,6 +1616,9 @@
               <div id="received" class="tab-pane fade in active">
                 <div class="reference__grid__container">
                   <div class="row flex flex-wrap flex-align-equal">
+                   
+                  <ng-container *ngIf="usersList.length>0">
+
                     <ng-container *ngFor="let r of usersList">
                       <div class="col-sm-4 col">
                         <div class="col__container">
@@ -1714,7 +1713,11 @@
                         </div>
                       </div>
                     </ng-container>
-                  
+                  </ng-container>
+                  <ng-container *ngIf="usersList.length===0">
+                    <p>Yet to Provide</p>
+
+                  </ng-container>
                     <!-- <div class="col-sm-4 col">
                       <div class="col__container">
                         <div class="top__container">

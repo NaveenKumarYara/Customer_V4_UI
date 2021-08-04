@@ -25,6 +25,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   customerId: any;
   cultureresults:any=[];
   userId: any;
+  hideme=[];
+  check=0;
   email: any;
   Rating: profileRating;
 	startPage: number;
@@ -140,7 +142,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.pagination = 5;
     this.profileId=localStorage.getItem('cprofileId');
     this.cuserId = localStorage.getItem('cuserId');
-    
+    this.CheckDesc(0);
   }
 
   showMore() {
@@ -159,6 +161,12 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.moreShow = !this.moreShow;
   }
 
+  CheckDesc(i)
+  {
+    debugger
+    this.check=i;
+  }
+
   personalityClick() {
     this.isPersonality = true;
     this.isCulture = false;
@@ -171,6 +179,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
       this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
       .subscribe(
         data4 => {
+          debugger
           this.CulturalTestStatusNew = data4.Total; 
           this.cultureresults=data4;
           // if (data4!=null) {

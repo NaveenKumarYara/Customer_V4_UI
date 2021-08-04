@@ -1148,100 +1148,107 @@
 						  <div id="received" class="tab-pane fade in active">
 							<div class="reference__grid__container">
 							  <div class="row flex flex-wrap flex-align-equal">
-								<ng-container *ngFor="let r of usersList">
-								  <div class="col-sm-4 col">
-									<div class="col__container">
-									  <div class="top__container">
-										<h4>{{r?.FullName | titlecase}} <span class="reference-card-date">{{r?.ModifiedOn |date:'mediumDate'}}</span></h4>
-										<button class="btn btn__information"><i class="fa fa-info-circle"
-											aria-hidden="true"></i></button>
-									  </div>
-									   <div class="middle__container">
-										<div class="jdv-listing">
-										  <!--<div class="jdv-skills">
-											<div class="row flex flex-wrap flex-align-equal">
-											  <div class="col-sm-6 col">
-												<div class="col-container">
-												  <h5>CSS</h5>
-												  <h6>Exp : 1.6 years</h6>
-												  <div class="star-rating">
-													<div class="stars">
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star"></span>
-													  <span class="fa fa-star"></span>
-													</div>
-												  </div>
-												</div>
-											  </div>
-											  <div class="col-sm-6 col">
-												<div class="col-container">
-												  <h5>CSS</h5>
-												  <h6>Exp : 1.6 years</h6>
-												  <div class="star-rating">
-													<div class="stars">
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star"></span>
-													  <span class="fa fa-star"></span>
-													</div>
-												  </div>
-												</div>
-											  </div>
-											  <div class="col-sm-6 col">
-												<div class="col-container">
-												  <h5>CSS</h5>
-												  <h6>Exp : 1.6 years</h6>
-												  <div class="star-rating">
-													<div class="stars">
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star"></span>
-													  <span class="fa fa-star"></span>
-													</div>
-												  </div>
-												</div>
-											  </div>
-											  <div class="col-sm-6 col">
-												<div class="col-container">
-												  <h5>CSS</h5>
-												  <h6>Exp : 1.6 years</h6>
-												  <div class="star-rating">
-													<div class="stars">
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star checked"></span>
-													  <span class="fa fa-star"></span>
-													  <span class="fa fa-star"></span>
-													</div>
-												  </div>
-												</div>
-											  </div>
-											</div>
+								<ng-container *ngIf="usersList.length>0">
+
+									<ng-container *ngFor="let r of usersList">
+									  <div class="col-sm-4 col">
+										<div class="col__container">
+										  <div class="top__container">
+											<h4>{{r?.FullName | titlecase}} <span class="reference-card-date">{{r?.ModifiedOn |date:'mediumDate'}}</span></h4>
+											<button class="btn btn__information"><i class="fa fa-info-circle"
+												aria-hidden="true"></i></button>
 										  </div>
-										</div>-->
+										   <div class="middle__container">
+											<div class="jdv-listing">
+											  <!--<div class="jdv-skills">
+												<div class="row flex flex-wrap flex-align-equal">
+												  <div class="col-sm-6 col">
+													<div class="col-container">
+													  <h5>CSS</h5>
+													  <h6>Exp : 1.6 years</h6>
+													  <div class="star-rating">
+														<div class="stars">
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star"></span>
+														  <span class="fa fa-star"></span>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												  <div class="col-sm-6 col">
+													<div class="col-container">
+													  <h5>CSS</h5>
+													  <h6>Exp : 1.6 years</h6>
+													  <div class="star-rating">
+														<div class="stars">
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star"></span>
+														  <span class="fa fa-star"></span>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												  <div class="col-sm-6 col">
+													<div class="col-container">
+													  <h5>CSS</h5>
+													  <h6>Exp : 1.6 years</h6>
+													  <div class="star-rating">
+														<div class="stars">
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star"></span>
+														  <span class="fa fa-star"></span>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												  <div class="col-sm-6 col">
+													<div class="col-container">
+													  <h5>CSS</h5>
+													  <h6>Exp : 1.6 years</h6>
+													  <div class="star-rating">
+														<div class="stars">
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star checked"></span>
+														  <span class="fa fa-star"></span>
+														  <span class="fa fa-star"></span>
+														</div>
+													  </div>
+													</div>
+												  </div>
+												</div>
+											  </div>
+											</div>-->
+											</div>
+											<div class="information">
+											  <ul>
+												<li class="mail">
+												  {{r?.RequestedTo | titlecase}}
+												</li>
+												<li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
+												 +1 {{r?.PhoneNumber}}
+												</li>
+											  </ul>
+											</div>
+										  </div> 
+										  <div class="bottom__container">
+											<h6>Comments:</h6>
+											{{r?.ResponseValue | titlecase}}
+										  </div>
 										</div>
-										<div class="information">
-										  <ul>
-											<li class="mail">
-											  {{r?.RequestedTo | titlecase}}
-											</li>
-											<li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
-											 +1 {{r?.PhoneNumber}}
-											</li>
-										  </ul>
-										</div>
-									  </div> 
-									  <div class="bottom__container">
-										<h6>Comments:</h6>
-										{{r?.ResponseValue | titlecase}}
 									  </div>
-									</div>
-								  </div>
-								</ng-container>
+									</ng-container>
+								  </ng-container>
+								  <ng-container *ngIf="usersList.length===0">
+									<p>Yet to Provide</p>
+				
+								  </ng-container>
 							  
 								<!-- <div class="col-sm-4 col">
 								  <div class="col__container">
