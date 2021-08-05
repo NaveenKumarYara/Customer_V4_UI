@@ -11,8 +11,8 @@
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="UploadedFlag"
                                         [checked]="UploadedFlag"
                                         (change)="viewby(2, $event.target.checked,$event.target.value)">
-                                    <span class="box sm-w tooltip__link">Uploaded
-                                        <span class="badge badge-light">{{Count?.Uploaded||0}}
+                                    <span class="box sm-w ">Uploaded
+                                        <span class="badge badge-light tooltip__link">{{Count?.Uploaded||0}}
                                             <span class="custom__tooltip">
                                                 Upload profiles from  database to join prospect profiles 
                                               </span>
@@ -21,8 +21,8 @@
                                 </ng-container>
                                 <ng-container *ngIf="Count?.Uploaded==0||closedjob==2">
                                     <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w tooltip__link">Uploaded
-                                        <span class="badge badge-light">{{Count?.Uploaded||0}}
+                                    <span class="box disabled sm-w">Uploaded
+                                        <span class="badge badge-light tooltip__link">{{Count?.Uploaded||0}}
                                             <span class="custom__tooltip">
                                                 Upload profiles from database to join prospect profiles 
                                               </span>
@@ -42,8 +42,8 @@
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="InvitedFlag"
                                         [checked]="InvitedFlag"
                                         (change)="viewby(4, $event.target.checked,$event.target.value)">
-                                    <span class="box sm-w tooltip__link">Invited
-                                        <span class="badge badge-light">{{Count?.Invited||0}}
+                                    <span class="box sm-w ">Invited
+                                        <span class="badge badge-light tooltip__link">{{Count?.Invited||0}}
                                             <span class="custom__tooltip">
                                                 Invite profiles to apply for the job posting 
                                               </span>
@@ -52,8 +52,8 @@
                                 </ng-container>
                                 <ng-container *ngIf="Count?.Invited==0||closedjob==2">
                                     <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w tooltip__link">Invited
-                                        <span class="badge badge-light">{{Count?.Invited||0}}
+                                    <span class="box disabled sm-w">Invited
+                                        <span class="badge badge-light tooltip__link">{{Count?.Invited||0}}
                                             <span class="custom__tooltip">
                                                 Invite profiles to apply for the job posting 
                                               </span>
@@ -71,8 +71,8 @@
                                 <ng-container *ngIf="Count?.AryticProfiles>0 && closedjob!=2">
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="AryticFlag"
                                         [checked]="AryticFlag" (change)="viewby(5,$event.target.checked,$event.target.value)">
-                                    <span class="box sm-w tooltip__link">Arytic
-                                        <span class="badge badge-light">{{Count?.AryticProfiles||0}}
+                                    <span class="box sm-w">Arytic
+                                        <span class="badge badge-light tooltip__link">{{Count?.AryticProfiles||0}}
                                             <span class="custom__tooltip">
                                                 Applied profiles for the job through  Arytic's Crowdsourcing
                                               </span>
@@ -82,8 +82,8 @@
                                 </ng-container>
                                 <ng-container *ngIf="Count?.AryticProfiles==0||closedjob==2">
                                     <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w tooltip__link">Arytic
-                                        <span class="badge badge-light">{{Count?.AryticProfiles||0}}
+                                    <span class="box disabled sm-w ">Arytic
+                                        <span class="badge badge-light tooltip__link">{{Count?.AryticProfiles||0}}
                                             <span class="custom__tooltip">
                                                 Applied profiles for the job through  Arytic's Crowdsourcing
                                               </span>
@@ -123,9 +123,9 @@
                                     <input type="checkbox" name="contract-duration" [(ngModel)]="WishlistFlag"
                                         [checked]="WishlistFlag"
                                         (change)="viewby(1, $event.target.checked,$event.target.value)">
-                                        <span class="box  sm-w tooltip__link">Wishlisted     
+                                        <span class="box  sm-w ">Wishlisted     
                                        
-                                            <span class="badge badge-light">{{Count?.Wishlist||0}}
+                                            <span class="badge badge-light tooltip__link">{{Count?.Wishlist||0}}
                                            <span class="custom__tooltip">
                                               Labelled/Saved profiles for futue utilisation or contact
                                             </span>
@@ -135,9 +135,9 @@
                                 </ng-container>
                                 <ng-container *ngIf="Count?.Wishlist==0||closedjob==2">
                                     <input type="checkbox" name="contract-duration" disabled>
-                                    <span class="box disabled sm-w tooltip__link">Wishlisted     
+                                    <span class="box disabled sm-w">Wishlisted     
                                        
-                                        <span class="badge badge-light">{{Count?.Wishlist||0}}
+                                        <span class="badge badge-light tooltip__link">{{Count?.Wishlist||0}}
                                        <span class="custom__tooltip">
                                           Labelled/Saved profiles for futue utilisation or contact
                                         </span>
