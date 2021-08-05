@@ -2580,6 +2580,7 @@ border-radius:0px;
 .experience__container .skills__container .card__container .bottom__section .stars  { font-size:10px; }
 .skills__container .card__container h4  { font-size:13px; font-weight:400; color:#6e819e; margin:0; width:70%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .skills__container .star__col { text-align: right; }
+.skills__container .star__col .star  { font-size: 9px !important; }
 .skills__container .row { margin:0 -7px; }
 .skills__container .col { padding:0 7px; margin:14px 0 0; }
 .skills__container .col.left__col { margin:0; padding-right: 20px; }
@@ -2601,7 +2602,7 @@ border-radius:0px;
 .carousel-control.left, .carousel-control.right { background:none; position:relative; }
 .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev { font-size:14px; }
 
-.show__more { color:#447afa; }
+.show__more { color:#447afa; margin:20px auto; width:120px; text-align: center; display: block; }
 
 .history__container { margin:0; padding:0; list-style:none; position:relative }
 .history__container:before { content:""; width:1px; height:100%; background:#cacaca; position:absolute; left:30px; top:0; }
@@ -2849,6 +2850,10 @@ border-radius:0px;
 .shape__info { position:absolute; left:0; top:0; padding:20px 10px; width:100%; height:100%; text-align:center; }
 .shape__info p { margin:0; }
 
+@media only screen and (max-width:1360px) {
+    .skills__container .card__container .bottom__section .exp__col {  font-size: 10px; }
+}
+
 @media only screen and (max-width:1199px) {
   .skills__container .skills__listing .col { width:33.333%; }
   .skills__container .col.left__col { width:70%; }
@@ -2888,6 +2893,7 @@ border-radius:0px;
   .key__container__box .key__right__col li { width:50% }
   .experience__container .history__col, .experience__container .experience__detail__col { width:100%; }
   .experience__container .experience__detail__col { margin:20px 0 0; }
+  
 }
 
 @media only screen and (max-width:767px) {
@@ -2967,3 +2973,41 @@ border-radius:0px;
   opacity: 0.5;
   text-decoration: none;
 }
+
+
+.custom__scrollbar {
+    overflow-y: auto;
+    display: block;
+    position: relative;
+    height:175px;
+}
+
+.custom__scrollbar.lg-padding {
+    padding-right: 10px;
+}
+
+.custom__scrollbar.lg-bar {
+    height:500px;
+}
+
+.custom__scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+.custom__scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+   
+/* Handle */
+.custom__scrollbar::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+/* Handle on hover */
+.custom__scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+ 
+.empty__para { padding:10px; }  
+.flexible__height { height: auto !important; }

@@ -319,7 +319,7 @@
                 </div>
                 <div class="skills__listing">
                   <h4>Top Skills</h4>
-                  <div class="row flex flex-wrap flex-align-equal">
+                  <div class="row custom__scrollbar flex flex-wrap flex-align-equal">
                     <ng-container *ngFor="let skill of list | slice:0:isMoreSkill">
                     <div class="col-sm-3 col">
                       <span class="tooltip"> {{skill.SkillName}}</span>
@@ -335,7 +335,7 @@
                             <div class="col-sm-6 star__col">
                               <div class="stars">
                                 <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
-                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
                                 <!-- <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
@@ -348,9 +348,7 @@
                       </div>
                     </div>
                     </ng-container>
-                    <a href="javascript:void(0)" *ngIf="list.length>9" (click)="showMoreskill()" class="show__more">
-                      <span>Show More</span>
-                    </a>
+                    
                     <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
@@ -520,10 +518,13 @@
                       </div>
                     </div> -->
                   </div>
+                  <a href="javascript:void(0)" *ngIf="list.length>9" (click)="showMoreskill()" class="show__more">
+                    <span>Show More</span>
+                  </a>
                 </div>
                 <div class="skills__listing">
                   <h4 *ngIf="otherSkills.length>0">Optional Skills</h4>
-                  <div class="row flex flex-wrap flex-align-equal">
+                  <div class="row custom__scrollbar flex flex-wrap flex-align-equal">
                     <ng-container *ngFor="let skill of otherSkills | slice:0:isMoreOption">
                       <div class="col-sm-3 col">
                         <span class="tooltip"> {{skill.SkillName}}</span>
@@ -539,7 +540,7 @@
                               <div class="col-sm-6 star__col">
                                 <div class="stars">
                                   <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
-                                  uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                  uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
                                   <!-- <span class="fa fa-star checked"></span>
                                   <span class="fa fa-star checked"></span>
                                   <span class="fa fa-star checked"></span>
@@ -552,9 +553,6 @@
                         </div>
                       </div>
                       </ng-container>
-                      <a href="javascript:void(0)" *ngIf="otherSkills.length>9" (click)="showMoreoptional()" class="show__more">
-                        <span>Show More</span>
-                      </a>
                     <!-- <div class="col-sm-3 col">
                       <span class="tooltip">Effective Communiction</span>
                       <div class="card__container">
@@ -724,6 +722,9 @@
                       </div>
                     </div> -->
                   </div>
+                  <a href="javascript:void(0)" *ngIf="otherSkills.length>9" (click)="showMoreoptional()" class="show__more">
+                    <span>Show More</span>
+                  </a>
                 </div>
               </div>
               <div class="col-sm-3 right__col col">
@@ -832,7 +833,7 @@
             
             
                   <div class="col-sm-4 history__col">
-                <ul class="history__container" id="historyNav">
+                <ul class="history__container custom__scrollbar lg-bar" id="historyNav">
                   <ng-container *ngFor="let exps of profExperience;let i=index ">
                   <li class="professional main__history "   [ngClass]="{'active': check===i}" (click)="CheckDesc(i)">
                     <span class="year"><span>Now</span></span>
@@ -868,7 +869,7 @@
                         <li>
                           <span class="year"><span>Now</span></span>
                           <div class="info__box">
-                            <p>Yet to provide </p>
+                            <p class="empty__para">Yet to provide </p>
                           </div>
                         </li>
                           
@@ -923,11 +924,11 @@
                                
                                </ng-container>
                                <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
-                                 <p>Yet to provide</p>
+                                 <p class="empty__para">Yet to provide</p>
                                </ng-container>
                               </ng-container>
                               <ng-container *ngIf="exps?.ProjectExp.length===0">
-                                <p>Yet to provide</p>
+                                <p class="empty__para">Yet to provide</p>
                               </ng-container>
                           </ul>
                         </div>
@@ -950,11 +951,11 @@
                                
                                </ng-container>
                                <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
-                                 <p>Yet to provide</p>
+                                 <p class="empty__para">Yet to provide</p>
                                </ng-container>
                               </ng-container>
                               <ng-container *ngIf="exps?.ProjectExp.length===0">
-                                <p>Yet to provide</p>
+                                <p class="empty__para">Yet to provide</p>
                               </ng-container>
                           </ul>
                         </div>
@@ -983,7 +984,7 @@
                                               </div>
                                               <div class="col-sm-6 star__col">
                                                 <star-rating value="{{s.SkillRating}}" totalstars="5" checkedcolor="#fff"
-                                                uncheckedcolor="#fff" size="11px" readonly="true"></star-rating>
+                                                uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
                                                 <!-- <div class="stars">
                                                   <span class="fa fa-star checked"></span>
                                                   <span class="fa fa-star checked"></span>
@@ -1000,12 +1001,12 @@
                                     
                                     </ng-container>
                                     <ng-container *ngIf="skills?.CandidateProSkills.length===0">
-                                      <p>Yet to provide</p>
+                                      <p class="empty__para">Yet to provide</p>
                                     </ng-container>
                                    </ng-container>
 
                                    <ng-container *ngIf="exps?.ProjectExp.length===0">
-                                    <p>Yet to provide</p>
+                                    <p class="empty__para">Yet to provide</p>
                                   </ng-container>
                                   
 
@@ -1069,27 +1070,29 @@
                         <img src="../../../../../../assets/images/apply-view-details/education__icon.png">
                       </div>
                                        
-                      <div class="col-sm-9">
-                        <ng-container  *ngFor="let educations of profileview?.Education">   
-                        <div class="card__box">
-                          <div class="card__header">
-                            <h4>{{educations.QualificationName  || 'N/A'}}</h4>
-                            <div class="duration">{{educations.FromYear  || 'N/A'}}-{{educations.ToYear  || 'N/A'}}</div>
-                          </div>
-                          <div class="card__body">
-                            <h5>Fields of Study</h5>
-                            <div class="tags__list">
-                              <ul>
-                                <li>{{educations.Specialization  || 'N/A'}}</li>
-                              </ul>
+                      <div class="col-sm-9 ">
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container  *ngFor="let educations of profileview?.Education">   
+                          <div class="card__box flexible__height">
+                            <div class="card__header">
+                              <h4>{{educations.QualificationName  || 'N/A'}}</h4>
+                              <div class="duration">{{educations.FromYear  || 'N/A'}}-{{educations.ToYear  || 'N/A'}}</div>
                             </div>
-                            <div class="location">
-                              <i class="fa fa-map-marker"></i>
-                              {{educations.Location || 'N/A'}}
+                            <div class="card__body">
+                              <h5>Fields of Study</h5>
+                              <div class="tags__list">
+                                <ul>
+                                  <li>{{educations.Specialization  || 'N/A'}}</li>
+                                </ul>
+                              </div>
+                              <div class="location">
+                                <i class="fa fa-map-marker"></i>
+                                {{educations.Location || 'N/A'}}
+                              </div>
                             </div>
                           </div>
+                        </ng-container>
                         </div>
-                      </ng-container>
                       </div>
               
                     </div>
@@ -1108,20 +1111,22 @@
                         <img src="../../../../../../assets/images/apply-view-details/domain__icon.png">
                       </div>
                       <div class="col-sm-9">
-                        <ng-container *ngIf="profileview?.ProfileDomain?.length>0">
-                          <ng-container *ngFor="let domains of profileview?.ProfileDomain">
-                            <div class="card__box">
-                              <div class="card__body">
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <h4> {{domains.DomainName}}</h4>
-                                <p>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</p>
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="profileview?.ProfileDomain?.length>0">
+                            <ng-container *ngFor="let domains of profileview?.ProfileDomain">
+                              <div class="card__box flexible__height">
+                                <div class="card__body">
+                                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                                  <h4> {{domains.DomainName}}</h4>
+                                  <p>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</p>
+                                </div>
                               </div>
-                            </div>
+                            </ng-container>
                           </ng-container>
-                        </ng-container>
-                        <ng-container *ngIf="profileview?.ProfileDomain?.length===0">
-                          <p>Domain Knowledge not provided</p>
-                        </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileDomain?.length===0">
+                            <p>Domain Knowledge not provided</p>
+                          </ng-container>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1139,20 +1144,22 @@
                         <img src="../../../../../../assets/images/apply-view-details/certification__icon.png">
                       </div>
                       <div class="col-sm-9">
-                        <ng-container *ngIf="profileview?.Certifications?.length>0">
-                        <ng-container *ngFor="let certificates of profileview?.Certifications ">
-                          <div class="card__box">
-                            <div class="card__body">
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                              <h4> {{certificates.CertificationName}}</h4>
-                              <p>{{certificates.YearOfAchievement| date:'mediumDate'}}</p>
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="profileview?.Certifications?.length>0">
+                          <ng-container *ngFor="let certificates of profileview?.Certifications ">
+                            <div class="card__box flexible__height">
+                              <div class="card__body">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <h4> {{certificates.CertificationName}}</h4>
+                                <p>{{certificates.YearOfAchievement| date:'mediumDate'}}</p>
+                              </div>
                             </div>
-                          </div>
+                          </ng-container>
                         </ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="profileview?.Certifications?.length===0">
-                        <p>Candidate yet to provide the Certifications.</p>
-                      </ng-container>
+                        <ng-container *ngIf="profileview?.Certifications?.length===0">
+                          <p>Candidate yet to provide the Certifications.</p>
+                        </ng-container>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1177,16 +1184,18 @@
                           <ng-container *ngIf="alist.length==0">
                             <p>Candidate yet to Provide the Achievements!!</p>
                         </ng-container>
-                        <ng-container *ngIf="alist.length>0">
-                          <div class="col-sm-6 col"  *ngFor="let a of alist">
-                            <div class="card__box">
-                              <h4>{{a?.AchivementDescription}}</h4>
-                                <h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
-                                <div class="date" *ngIf="a?.ToDate!=null">{{a?.ToDate | date:'yyyy'}}</div>   
-
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="alist.length>0">
+                            <div class="col-sm-6 col"  *ngFor="let a of alist">
+                              <div class="card__box flexible__height">
+                                <h4>{{a?.AchivementDescription}}</h4>
+                                  <h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
+                                  <div class="date" *ngIf="a?.ToDate!=null">{{a?.ToDate | date:'yyyy'}}</div>   
+  
+                              </div>
                             </div>
-                          </div>
-                        </ng-container>
+                          </ng-container>
+                        </div>
                         
                        
                         </div>
@@ -1718,7 +1727,7 @@
                     </ng-container>
                   </ng-container>
                   <ng-container *ngIf="usersList.length===0">
-                    <p>Yet to Provide</p>
+                    <p class="empty__para">Yet to Provide</p>
 
                   </ng-container>
                     <!-- <div class="col-sm-4 col">
