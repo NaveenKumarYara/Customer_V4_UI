@@ -322,17 +322,17 @@
                   <div class="row custom__scrollbar flex flex-wrap flex-align-equal">
                     <ng-container *ngFor="let skill of list | slice:0:isMoreSkill">
                     <div class="col-sm-3 col">
-                      <span class="tooltip"> {{skill.SkillName}}</span>
+                      <span class="tooltip right"> {{skill.SkillName}}</span>
                       <div class="card__container">
                         <div class="top__section">
                           <h4> {{skill.SkillName}}</h4>
                         </div>
                         <div class="bottom__section">
-                          <div class="row">
-                            <div class="col-sm-6 exp__col">
+                          <div class="row" style="margin: 0;">
+                            <div class="col-sm-6 exp__col " style="padding: 0 7px;">
                               Exp : {{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years
                             </div>
-                            <div class="col-sm-6 star__col">
+                            <div class="col-sm-6 star__col" style="padding: 0 7px;">
                               <div class="stars">
                                 <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
                                 uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
@@ -972,17 +972,17 @@
                                    <ng-container *ngIf="skills?.CandidateProSkills.length>0">
                                     <ng-container *ngFor="let s of skills?.CandidateProSkills">
                                       <div class="col-sm-4 col">
-                                        <span class="tooltip">{{s?.SkillName | titlecase}}</span>
+                                        <span class="tooltip right">{{s?.SkillName | titlecase}}</span>
                                         <div class="card__container">
                                           <div class="top__section">
                                             <h4>{{s?.SkillName | titlecase}}</h4>
                                           </div>
                                           <div class="bottom__section">
-                                            <div class="row">
-                                              <div class="col-sm-6 exp__col">
+                                            <div class="row" style="margin: 0;">
+                                              <div class="col-sm-6 exp__col"  style="padding: 0 7px;">
                                                 Exp : {{s?.ExpInYears}}.{{s?.ExpInMonths||'0'}} Years
                                               </div>
-                                              <div class="col-sm-6 star__col">
+                                              <div class="col-sm-6 star__col" style="padding: 0 7px;">
                                                 <star-rating value="{{s.SkillRating}}" totalstars="5" checkedcolor="#fff"
                                                 uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
                                                 <!-- <div class="stars">
