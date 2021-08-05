@@ -1,7 +1,19 @@
 <div class="col-xs-12 col-sm-6 col-md-3" style="cursor:pointer;" (click)="Schedule()">
   <div class="card scheduled-interview">
       <h1>{{dashboardstatistics?.ScheduledInterview}}</h1>
-    <span>Scheduled Interview</span>
+      <span>Scheduled Interview 
+        <!-- <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+           View your upcoming interview timeline.
+          </span>
+        </a> -->
+      </span>
+        <div class="tooltip-text"> <i class="fa fa-info-circle" aria-hidden="true"></i>                       
+          <span class="tooltipcontent" style="color: whitesmoke;">   View your upcoming interview timeline.</span>  
+       </div>
+      
+
     <a>
       <svg width="24.6px" height="18.4px" xmlns="http://www.w3.org/2000/svg" viewBox="-993.9 -2825.6 26.6 20.4" style="fill: none; stroke: #448afa; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2px;">
         <g id="right-arrow" transform="translate(-2103 -2975)">
@@ -10,5 +22,6 @@
         </g>
       </svg>
     </a>
+
   </div>
 </div>

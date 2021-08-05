@@ -68,7 +68,6 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
 
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
-      debugger
       this.jobdetailscustomer = res;
       let params = new HttpParams();
       params = params.append('jobId', this.jobid.toString());

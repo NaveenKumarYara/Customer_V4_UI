@@ -18,15 +18,12 @@
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
   <label class="t-p" for="typeofindustry">Which Type of Business Domain does the job belongs to?  
     <span class="red">*</span> 
-    <!-- <a href="#" class="tooltip__link">
+     <a  href="javascript:void(0)" class="tooltip__link">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <span class="custom__tooltip">
-        <span class="step__title">Steps Information</span>
-        <span class="step__01"><em>01</em>Business Domain : IT</span>
-        <span class="step__02"><em>02</em>Department : BI</span>
-        <span class="step__03"><em>03</em>Category: Intelligence</span>
+        <span class="step__01">Specific Industry Sector that the position will be supporting </span>
       </span>
-    </a>  -->
+    </a> 
 </label>
 <ng-select class="custom-style" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="Code"
  name="Indusrty" [(ngModel)]="Industry"
@@ -39,7 +36,13 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label class="t-p" for="typeofposition">Which Department does the job belongs to?  <span class="red">*</span> </label>
+  <label class="t-p" for="typeofposition">Which Department does the job belongs to?  <span class="red">*</span> 
+    <a  href="javascript:void(0)"  class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__01">Refers to separate divisions of an organization. </span>
+      </span>
+    </a> </label>
   <ng-select class="custom-style" [items]="Postions"
   bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
   placeholder="Select (or) Add Department"
@@ -72,7 +75,13 @@
 
 
 <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-  <label for="" class="t-p">Which Category this job belongs to?  <span class="red">*</span> </label>
+  <label for="" class="t-p">Which Category this job belongs to?  <span class="red">*</span> 
+    <a  href="javascript:void(0)"  class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__01">Specific functional area under the Department. </span>
+      </span>
+    </a></label>
   <ng-select class="custom-style" [items]="categories"
   bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
   placeholder="Select (or) Add Category"
@@ -118,6 +127,12 @@
   <div class="col-md-6">
       <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?  <span class="red">*</span> 
+            <a  href="javascript:void(0)"  class="tooltip__link">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              <span class="custom__tooltip">
+                <span class="step__01">Describes the type and level of the position. </span>
+              </span>
+            </a>
             <!-- <a href="#" class="tooltip__link">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <span class="custom__tooltip">
@@ -141,7 +156,13 @@
   </div>
   <div class="col-md-6">
       <div class="form-group re-group">
-          <label for="requiredExperience" class="question">Required Experience  <span class="red">*</span></label>
+          <label for="requiredExperience" class="question">Required Experience  <span class="red">*</span>
+            <!-- <a  href="javascript:void(0)"  class="tooltip__link">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              <span class="custom__tooltip">
+                <span class="step__01">Tag the primary tasks of this position in brief (max 2 words per tag). </span>
+              </span>
+            </a> --></label>
           <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
           <div class="row re-exp">
               <!-- <div class="styled-select-box block experience-output"></div> -->
@@ -211,7 +232,13 @@
 
 
 <div class="form-row key-resp">
-  <label for="keyresp" class="no__margin"> What are the Key Responsibilities of the role ?  <span class="red">*</span></label>  
+  <label for="keyresp" class="no__margin"> What are the Key Responsibilities of the role ?  <span class="red">*</span>
+    <a  href="javascript:void(0)"  class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__01">Tag the primary tasks of this position in brief (max 2 words per tag). </span>
+      </span>
+    </a></label>  
   <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
     <div class="row flex flex-wrap flex-align-end">
       <div class="col-md-5">
