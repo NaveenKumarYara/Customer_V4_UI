@@ -9,7 +9,8 @@ import { InterviewType } from '../../../../../models/interviewtype.model';
 
 @Component({
   selector: 'app-steps-step3-interviewtype',
-  templateUrl: './interviewtype.component.html'
+  templateUrl: './interviewtype.component.html',
+  styleUrls: ["./interviewtype.component.css"]
 })
 
 export class InterviewTypeComponent implements OnInit, OnDestroy {

@@ -354,7 +354,6 @@ getcustomerusers()
  Ids.forEach((value, index, array)=>
  {
     this.savenote.toUserId = value;
-    debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {

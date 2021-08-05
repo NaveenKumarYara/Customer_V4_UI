@@ -101,7 +101,13 @@
             <tr>
               <td><img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone"></td>
               <td *ngIf="companyprofile?.MobilePhone!=null"> {{companyprofile?.HomeAreaCode}}
-                {{companyprofile?.MobilePhone}}</td>
+                <ng-container *ngIf="companyprofile?.HomeAreaCode === '+1'">
+                  {{companyprofile?.MobilePhone | mask: '(000) 000-0000'}}
+                </ng-container>
+                <ng-container *ngIf="companyprofile?.HomeAreaCode != '+1'">
+                  {{companyprofile?.MobilePhone}}
+                </ng-container>
+                </td>
               <td *ngIf="companyprofile?.MobilePhone==null">
                 N/A
               </td>
@@ -129,7 +135,7 @@
         </table>
       </div>
       <div id="company-video" class="video video-profile">
-        <div class="video-ui">
+        <div class="video-ui" *ngIf="videoUrl!='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
           <a href="#" data-toggle="modal" data-target="#videoModal">
             <!-- <img class="video__poster img-responsive" src="../../../../assets/images/video-poster.png" alt="">
               <div class="video__overlay"></div>
@@ -139,6 +145,12 @@
               </div> -->
             <video width="240" controls class="video-align" [src]="videoUrl" type="video/mp4" #videoPlayer></video>
           </a>
+        </div>
+        <div *ngIf="videoUrl==='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
+          <!-- <span _ngcontent-c4="" class="icon-video-profile"></span> -->
+          <!-- <video [src]="" id="video_display"></video> -->
+          <img src="../../../../assets/images/no-video.png" class="video" alt="">
+          <!-- <h4>Video Profile</h4> -->
         </div>
       </div>
     </div>
@@ -238,14 +250,10 @@
       <div class="company-info">
         <div class="form-block">
           <div class="form-group">
-            <input type="text" class="form-control" value="{{companyprofile?.CompanyName||'CompanyName'}}"
-              id="companyName" readonly>
+            <input type="text" class="form-control" 
+              id="companyName" [(ngModel)]="companyName" name="companyName">
           </div>
-         <div class="form-group">
-          <ng-select class="custom-multi-select" [items]="Industries"  [loading]="ILoading" [addTag]="addTagIndustry" addTagText="Add Business Domain" placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
-          name="Indusrty" [(ngModel)]="Id"  [hideSelected]="true"  [multiple]=true   #Indusrty="ngModel">
-         </ng-select>
-          </div> 
+ 
         </div>
         <div class="form-group meta-info">
           <label for="" class="opacity1">Online</label>
@@ -263,8 +271,8 @@
               <span class="input-group-addon">
                 <img src="../../../../assets/images/email-icon.svg" alt="Email">
               </span>
-              <input type="text" class="form-control" value="{{companyprofile?.ContactEmail}}" id="contactEmail"
-                readonly>
+              <input type="text" class="form-control" [(ngModel)]="contactEmail"  id="contactEmail"
+               name="ContactEmail">
             </div>
           </div>
         </div>
@@ -338,6 +346,12 @@
           <div class="form-group">
             <app-googlelocation></app-googlelocation>
           </div>
+            <label for="">Business Domain</label>
+                   <div>
+ <ng-select  [items]="Industries"  [loading]="ILoading"  placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
+          name="Indusrty" [(ngModel)]="Id"   [virtualScroll]="true"  [clearable]="false"   [multiple]=true    #Indusrty="ngModel">
+         </ng-select> 
+          </div>
         </div>
         <div class="v-divider"></div>
       </div>
@@ -379,8 +393,11 @@
       <div class="video-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
         <div>
           <div class="video">
-            <div>
+            <div *ngIf="videoUrl!='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
               <video width="240" controls class="video-align" [src]="videoUrl" type="video/mp4" #videoPlayer></video>
+            </div>
+            <div *ngIf="videoUrl==='https://identityapi-dev.arytic.com/home/EsolvitVideos?id='">
+              <img src="../../../../assets/images/no-video.png" class="video" alt="">
             </div>
           </div>
           <div class="wrap-icon actions">

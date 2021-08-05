@@ -1,3 +1,5 @@
+
+
 <!--Header-->
 <header class="main-nav">
   <nav class="navbar">
@@ -82,864 +84,2065 @@
   </nav>
 </header>
 
-<!---->
-<div class="profile-pg public-profile">
-  <main class="main-wrapper">
-    <div class="container">
-      <div class="col-lg-8 col-md-8 text-left detailed-profile">
-        <h3>Detailed Profile</h3>
-      </div>
 
-      <!--Download Resume-->
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 border-left1 text-right">
-        <input type="hidden" id="wordOrPdf">
-        <div class="upload-options">
-          <button class="btn btn-filled btn-download-resume" (click)="DownloadResume(details?.profileVal?.FirstName)">
-            <i class="fa fa-download" aria-hidden="true"></i></button>
+
+<div class="public__profile__detail">
+  <div class="revmap__profile__top flex flex-wrap flex-align-end">
+    <div class="container">
+      <div class="image__container">
+        <img alt="..." class="media-object media-img-circle" src="{{details?.profileVal?.ProfilePic}}" >
+      </div>
+      <div class="profile__info__box">
+        <div class="row flex flex-align-equal equal-hundred flex-wrap">
+          <div class="col-sm-7">
+            <div class="top__listing">
+              <ul class="flex flex-wrap flex-align-equal">
+                <li class="flex second__child">
+                  <div class="flex-self-center">
+                    <div class="top__box__info flex flex-align-center flex-wrap">
+                      <div>
+                        <h4>{{details?.profileVal?.FirstName}}
+                          {{details?.profileVal?.LastName}}</h4>
+                        <h5>{{details?.profileVal?.ProfileTitle}}- {{profileview?.ProfileBasicInfo?.TotalExperience}}Years Exp. </h5>
+                        <ul>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.Gender!=null">
+                            <li><span class="icon icon_gender">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.Gender | titlecase}}</li>
+                          </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.GenerationName!=null">
+                            <li><span class="icon icon__group">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.GenerationName | titlecase}}</li>
+                          </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileBasicInfo?.ImmigrationStatus!=null">
+                            <li><span class="icon icon__world">Icon</span>
+                            {{profileview?.ProfileBasicInfo?.ImmigrationStatus}}</li>
+                          </ng-container>
+                          <li class="link__btn" data-toggle="modal" data-target="#videoSizzle"><span class="icon icon__video">Icon</span>Video Sizzles</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="social">
+              <ul>
+                <ng-container *ngIf="profileview?.Links.length === 0"> 
+                  <li class="ins">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                   <li class="fb">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                     <li class="tw">
+                               <a href="javascript:void(0)">
+                               
+                               </a>
+                   </li>
+                    <li class="skype">
+                               <a href="javascript:void(0)">
+                              
+                               </a>
+                   </li>
+                             </ng-container>
+                             <ng-container *ngIf="profileview?.Links.length>0">
+                               <ng-container *ngFor="let link of profileview?.Links">
+                                 <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL != '' ">
+                     <li class="tw">
+                                     <a href="{{link.LinkURL}}" target="_blank"></a>
+                                   </li>
+                     </ng-container>
+                                   <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL != ''">
+                                     <li class="fb">
+                      <a href="{{link.LinkURL}}" target="_blank"></a>
+                                   </li>
+                     </ng-container>
+                                   <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL != ''">
+                                   <li class="ins">
+                      <a href="{{link.LinkURL}}" target="_blank"></a>
+                                  </li>
+                    </ng-container>
+                                 
+                                 <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
+                    <li class="tw">
+                                   <a href="javascript:void(0)">
+                                   
+                                   </a>
+                     </li>
+                                 </ng-container>
+                                 <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
+                                    <li class="fb">
+                     <a href="javascript:void(0)">
+                                 
+                                   </a>
+                     </li>
+                                 </ng-container>
+                                 <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
+                                   <li class="ins">
+                    <a href="javascript:void(0)">
+                                     
+                                   </a>
+                     </li>
+                                 </ng-container>
+                               </ng-container>
+                    <li class="skype">
+                                   <a class="social-media" href="javascript:void(0)" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
+                        
+                                   </a>
+                              </li>
+                             </ng-container>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="profile__info__box__bottom">
+    <div class="container">
+      <div class="bottom__listing">
+        <ul class="flex flex-wrap flex-align-center">
+          <li class="mail">{{details?.profileVal?.Email}}</li>
+          <li class="mobile">{{details?.profileVal?.MobilePhone || "Yet to Provide" }}</li>
+          <li class="location"> <ng-container>
+            {{details?.profileVal?.CityName || "Location yet to provide"}}.
+          </ng-container></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-      <!---->
-      <div class="clearfix">&nbsp;</div>
-
-      <div id="detailView" class="tab-pane fade in active">
-        <main class="main-wrapper">
-          <div class="container">
+  <div class="tab__section">
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#candidate-profile">Candidate Profile</a></li>
+        <li><a data-toggle="tab" href="javascript:void(0)" class="
+          isDisabled">Job History</a></li>
+        <li><a data-toggle="tab" href="javascript:void(0)" class="
+          isDisabled">Documentation</a></li>
+        <li><a data-toggle="tab" href="#references">References</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="candidate-profile" class="candidate__profile tab-pane fade in active">
+          <div class="col-container">
             <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="profile-info">
-                  <div class="row">
-                    <div class="pic col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                      <div>
-                        <img class="profile-pic" src="{{details?.profileVal?.ProfilePic}}" alt="">
-                      </div>
-                      <!-- <div>
-                            <a href="#" class="btn green-btn">Public Profile</a>                
-                          </div> -->
-                    </div>
-                    <div class="info-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <h1 class="name">{{details?.profileVal?.FirstName}}
-                        {{details?.profileVal?.LastName}}</h1>
+              <div class="col-sm-8">
+                <div class="title__container">
+                  <h5>Summary</h5>
+                  <h6>Years of Experience: <span>{{profileview?.ProfileBasicInfo?.TotalExperience}}Years</span></h6>
+                </div><!-- /.title__container -->
+                <div class="info__container">
+                  <p  [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:100 | safeHtml">
 
-                      <h4 class="meta profile-title">
-                        {{details?.profileVal?.ProfileTitle}}
-                      </h4>
-                      <h4 class="meta">
-                        {{profileview?.ProfileBasicInfo?.CompanyName}}
-                      </h4>
-
-                      <h4 class="meta">
-
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.Gender!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/gender.svg" alt="gender" width="22" title="Gender">
-                          {{profileview?.ProfileBasicInfo?.Gender | titlecase}}
-                        </ng-container>
-                      </h4>
-                      <h4 class="meta">
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.GenerationName!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/generation.svg" alt="generation" width="22"
-                            title="Generation Belongs To">
-                          {{profileview?.ProfileBasicInfo?.GenerationName | titlecase}}
-                        </ng-container>
-                      </h4>
-                      <h4 class="meta">
-                        <ng-container *ngIf="profileview?.ProfileBasicInfo?.ImmigrationStatus!=null">
-                          <img class="profile-related" src="../../../../../../assets/images/visa.svg" alt="visa" width="22" title="Visa Status">
-                          {{profileview?.ProfileBasicInfo?.ImmigrationStatus}}
-                        </ng-container>
-                       
-                      </h4>
-
-                      <div class="social-media">
-                        <ng-container *ngIf="profileview?.Links.length === 0"> 
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-                          </a>
-                          <a href="javascript:void(0)">
-                            <img src="../../../../assets/images/skype-icon.png" alt="skype">
-                          </a>
-                        </ng-container>
-                        <ng-container *ngIf="profileview?.Links.length>0">
-                          <ng-container *ngFor="let link of profileview?.Links">
-                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL != '' ">
-                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/twitter-icon.svg"></a>
-                              </ng-container>
-                              <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL != ''">
-                               <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/fb-icon.svg"></a>
-                              </ng-container>
-                              <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL != ''">
-                                <a href="{{link.LinkURL}}" target="_blank"><img src="../../../../../../assets/images/linkedin-icon.png"></a>
-                              </ng-container>
-                            
-                            <ng-container *ngIf="link.LinkTypeId==2 && link.LinkType=='Twitter' && link.LinkURL === '' ">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/twitter-icon.svg" alt="Twitter">
-                              </a>
-                            </ng-container>
-                            <ng-container  *ngIf="link.LinkTypeId==3 && link.LinkType=='FaceBook' && link.LinkURL === ''">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/fb-icon.svg" alt="FaceBook">
-                              </a>
-                            </ng-container>
-                            <ng-container   *ngIf="link.LinkTypeId==4 && link.LinkType=='LinkedIn' && link.LinkURL === ''">
-                              <a href="javascript:void(0)">
-                                <img src="../../../../assets/images/linkedin-icon.svg" alt="Linkedin">
-                              </a>
-                            </ng-container>
-                          </ng-container>
-                              <a class="social-media" href="javascript:void(0)">
-                                <img src="assets/images/skype-icon.png" alt="skype" title="{{profileview?.ProfileBasicInfo?.SkypeId}}">
-                              </a>
-                         
-                        </ng-container>
+                  </p>
+                  <ng-container *ngIf="isMore">
+                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000  | safeHtml">
                     
-                      </div>
+                    </span>
+                  </ng-container>
+                  <a href="javascript:void(0)" *ngIf="profileview?.ProfileBasicInfo?.AboutMe.length>80" (click)="showMore()" class="show__more">
+                    <span *ngIf="isMore">Show Less</span> <span *ngIf="!isMore">Show More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-4 skills__col">
+                <div class="card__container">
+                  <div class="title__box">
+                    <h4>Personality Skills</h4>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 image__col">
+                      <img src="../../../../../../assets/images/apply-view-details/skills__icon.png">
                     </div>
-
-                    <div class="contact-info-col col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <div class="divider"></div>
-                      <a style="visibility:hidden;">
-                        <!-- Edit Icon -->
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                          xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="19.8px"
-                          height="20px" viewBox="0 0 19.8 20" style="enable-background:new 0 0 19.8 20;"
-                          xml:space="preserve" class="icon">
-
-                          <defs>
-                          </defs>
-                          <g>
-                            <defs>
-                              <rect id="SVGID_1_" x="0" width="19.8" height="20" />
-                            </defs>
-                            <clipPath id="SVGID_2_">
-                              <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                            </clipPath>
-                            <path class="st0"
-                              d="M16.8,11.7v5.5c0,1-0.8,1.8-1.8,1.8H2.8c-1,0-1.8-0.8-1.8-1.8V5c0-1,0.8-1.8,1.8-1.8h5.5" />
-                            <polygon class="st0" points="17,1 18.8,2.9 9.2,12.5 6.6,13.3 7.3,10.6 	" />
-                          </g>
-                        </svg>
-                      </a>
-                      <div>
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/email-icon.svg" alt="Email">
-                          </span>
-                          {{details?.profileVal?.Email}}
-                        </p>
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/location-icon.svg" class="icon" alt=".">
-
-                          </span>
-                          <ng-container>
-                            {{details?.profileVal?.CityName || "Location yet to provide"}}.
-                          </ng-container>
-                          <ng-container *ngIf="details?.profileVal?.StateName!=null">
-                            {{details?.profileVal?.StateName}}.
-                          </ng-container>
-                        </p>
-
-                        <p class="meta">
-
-                          <span>
-                            <img src="../../../../assets/images/phn-icon.svg" class="icon" alt="Phone">
-                          </span>
-                          {{details?.profileVal?.MobilePhone || "Yet to Provide" }}
-                        </p>
-                        <p class="meta">
-                          {{profileview?.ProfileBasicInfo?.TotalExperience}} Years
-                        </p>
-
-                      </div>
-                      <!-- <div class="v-divider hidden-sm hidden-xs"></div> -->
-                      <div class="divider"></div>
-
-                    </div>
-                    <div class="video-col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <ng-container *ngIf="videoUrl?.VideoURL!=null">
-                        <!-- <span _ngcontent-c4="" class="icon-video-profile"></span> -->
-                        <!-- <video [src]="" id="video_display"></video> -->
-                        <video controls class="video-align" [src]="videoUrl?.VideoURL" type="video/mp4" #videoPlayer>
-                          <!-- <source [src]="videoUrl" type="video/mp4" /> Browser not supported -->
-                        </video>
-                        <!-- <h4>Video Profile</h4> -->
+                    <div class="col-sm-8 content__col">
+                      <ng-container *ngIf="noTest === true">
+                        <div class="col-container" (click)="personalityClick()" data-toggle="modal" data-target="#skillsCheckPop">
+                          <h5><i class="fa fa-file-o"></i>Personality Fit</h5>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" style="width:100%;"
+                              role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
+                          </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
                       </ng-container>
-                      <ng-container *ngIf="videoUrl?.VideoURL==null">
-                        <!-- <span _ngcontent-c4="" class="icon-video-profile"></span> -->
-                        <!-- <video [src]="" id="video_display"></video> -->
-                        <img src="../../../../../../assets/images/no-video.png" class="video" alt="">
-                        <!-- <h4>Video Profile</h4> -->
+
+                      <ng-container *ngIf="noTest === false">
+                        <div class="col-container">
+                          <h5><i class="fa fa-file-o"></i>Personality Fit
+                            <span >Not yet Done</span>
+                          </h5>
+                        </div>
                       </ng-container>
+                     
+                      <ng-container *ngIf="CulturalTestStatusNew > 0">
+                        <div class="col-container" (click)="cultureClick()" data-toggle="modal" data-target="#skillsCheckPop">
+                          <h5><i class="fa fa-sticky-note" aria-hidden="true"></i>Culture Fit</h5>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" style="width:100%;"
+                              role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
+                          </div>
+                          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="CulturalTestStatusNew === 0 ">
+                        <div class="col-container">
+                          <h5><i class="fa fa-file-o"></i>Culture Fit
+                            <span >Not yet Done</span>
+                          </h5>
+                         
+                          <!-- <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> -->
+                        </div>
+                      </ng-container>
+                      
                     </div>
                   </div>
                 </div>
-                <!-- Profile Info -->
-              </div>
-              <!-- col-lg-12 -->
-            </div>
-
-            <div class="row">
-              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                <div class="summary">
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Skills||0}}</h2>
-                        <p class="sum_tech_infom">Technical Skills </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Domain||0}}</h2>
-                        <p class="sum_tech_infom">Domain Skills </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <div class="col-sm-2 border-right">
-                          <div class="pull-left sum_tech_img">
-                            <a href="javascript:void(0)">
-                              <img src="assets/images/interview-icon.png" alt="icon">
-                            </a>
-                          </div>
-                          <div class="pull-right">
-                            <h2 class="sum_tech_num">23</h2>
-                            <p class="sum_tech_infom">Languages </p>
-                          </div>
-                        </div> -->
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 border-right">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Certification||0}}</h2>
-                        <!-- <h2 class="sum_tech_num">0</h2> -->
-                        <p class="sum_tech_infom">Certification </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
-                    <div class="col-sm-8 col-xs-8 text-center">
-                      <span class="sum_tech_img">
-                        <a href="javascript:void(0)">
-                          <img width="30" height="30" src="../../../../../../assets/images/interview-icon.png"
-                            alt="icon">
-                        </a>
-                      </span>
-
-                      <div class="pull-right">
-                        <h2 class="sum_tech_num">{{profileStatistics?.Education||0}}</h2>
-                        <p class="sum_tech_infom">Achievements </p>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!--Matching Percentage-->
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center matching-section">
-                <h5>Profile Completeness</h5>
-                <circle-progress [percent]="Rating?.ProfilePercentage" [radius]="40" [outerStrokeWidth]="8"
-                  [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'"
-                  [animation]="true" [animationDuration]="300" [showSubtitle]="false">
-                </circle-progress>
-
-              </div>
-              <!---->
-            </div>
-
-            <!-- row -->
-            <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!-- <div class="upload-resume row">
-                      <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <h2 class="title">Upload Resume</h2>
-                        <p>
-                          Upload your resume and we will automatically parse your data
-                          to your profile.
-                        </p>
-                      </div>
-                 
-                      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <h4><form class="form-inline" action="" enctype="multipart/form-data"><label for="browse">Browse<input id="browse" type="file"></label></form><small>OR</small>Upload</h4>
-                        <div class="upload-options">
-                          <a href="">
-                            <img src="images/g-drive-logo.png" alt="">
-                          </a>
-                          <a href="">
-                            <img src="images/dropbox-logo.png" alt="">                
-                          </a>
-                          <a href="">
-                            <img src="images/cloud-logo.png" alt="">                
-                          </a>
-                        </div>
-                      </div>
-                    </div> -->
-
-                <div class="row">
-                  <div class="certifications card left hasModal">
-                    <div class="wrap">
-                      <header class="card-header">
-                        <h2 class="card-title">Summary</h2>
-
-
-
-                      </header>
-
-                      <div class="summary">
-                        <div>
-                          <span [innerHTML] class="moreDetails">
-                            {{profileview?.ProfileBasicInfo?.AboutMe}}
-                          </span>
-
-
-
-
-
-                          <ng-container
-                            *ngIf="profileview?.ProfileBasicInfo?.AboutMe==null||profileview?.ProfileBasicInfo?.AboutMe==''">
-                            <p>Candidate yet to provide the Summary</p>
-                          </ng-container>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- col-lg-9 Ends -->
-              <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="profile-completeness row">
-                      <h2>Profile Completeness</h2>
-                      <div class="progress-wrap">
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                          aria-valuemin="0" aria-valuemax="100" style="width:75%">
-                          <span class="sr-only">75% Complete</span>
-                          </div>
-                        </div>
-                        <h4>75%</h4> 
-                      </div>
-                    </div>
-                  </div> -->
-              <!-- col-lg-3 -->
-            </div>
-            <!-- <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="summary">
-                      <div>
-                        <h2>Summary</h2>
-                        <p>Adding summary will help employers to know about your personality and background. </p>
-                      </div>
-                      <a href="#" class="add-btn" style="visibility:hidden"><span >+</span><p>Add Summary</p></a>
-                    </div>
-                  </div>
-                </div> -->
-            <div class="row">
-              <div id="technical-skills" class="technical-skills card left hasModal">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Technical Skills</h2>
-
-                    <div class="view-toggle pull-right hidden-xs">
-                      <div>
-                        <a data-toggle="tab" href="#topSkillsListView" aria-expanded="false">
-                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="20px"
-                            height="20px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;"
-                            xml:space="preserve" class="icon">
-                            <g>
-                              <defs>
-                                <rect id="SVGID_1_" width="20" height="20" />
-                              </defs>
-                              <clipPath id="SVGID_2_">
-                                <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                              </clipPath>
-                              <rect x="1" y="1" class="st0" width="18" height="6" />
-                              <rect x="1" y="12.9" class="st0" width="18" height="6" />
-                            </g>
-                          </svg>
-                        </a>
-                      </div>
-                      <div>
-                        <a data-toggle="tab" href="#topSkillsGridView" aria-expanded="true">
-                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="20px"
-                            height="20px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;"
-                            xml:space="preserve" class="icon">
-
-                            <defs>
-                            </defs>
-                            <g>
-                              <defs>
-                                <rect id="SVGID_1_" width="20" height="20" />
-                              </defs>
-                              <clipPath id="SVGID_2_">
-                                <use xlink:href="#SVGID_1_" style="overflow:visible;" />
-                              </clipPath>
-                              <rect x="1" y="1" class="st0" width="6" height="6" />
-                              <rect x="12.9" y="1" class="st0" width="6" height="6" />
-                              <rect x="1" y="12.9" class="st0" width="6" height="6" />
-                              <rect x="12.9" y="12.9" class="st0" width="6" height="6" />
-                            </g>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-
-                    <div class="tab-content">
-                      <div id="topSkillsListView" class="top-skills tab-pane fade hidden-xs">
-                        <table>
-                          <tr>
-                            <th>Skills Name</th>
-                            <th>Experience</th>
-                            <th>Last Used</th>
-                            <th>Skill level</th>
-                            <th></th>
-                          </tr>
-                          <tr *ngFor="let skill of list">
-                            <ng-container>
-                              <td data-toggle="tooltip" title={{skill.SkillName}}>{{skill.SkillName}}</td>
-                              <td>{{skill.ExpInYears}}.{{skill.ExpInMonths||'0'}} Years</td>
-                              <td>{{skill.Lastused||'N/A'}}</td>
-                              <td>{{skill.SkillRating}}</td>
-                            </ng-container>
-                          </tr>
-
-                        </table>
-                      </div>
-                      <div id="topSkillsGridView" class="top-skills tab-pane fade active in">
-                        <h4 class="label-caps">Top Skills</h4>
-                        <div class="row">
-                          <ng-container *ngFor="let skill of list">
-                            <div class="col-md-6 tech_width">
-                              <div class="skills card">
-
-                                <h3>{{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years</h3>
-                                <h2 href="javascript:void(0)" data-toggle="tooltip" title={{skill.SkillName}}>
-                                  {{skill.SkillName}}</h2>
-                                <div class="row">
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Rating</h5>
-                                    <p>{{skill.SkillRating}}</p>
-                                  </div>
-                                  <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h5 class="label-caps light">Last used</h5>
-                                    <p>{{skill.Lastused||'N/A'}}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Top Skills End -->
-                    <div class="other-skills ">
-                      <h4 class="label-caps">Other Skills</h4>
-                      <div *ngIf="otherSkills!=null">
-                        <ul class="skills clearfix">
-                          <!-- <ng-container *ngFor="let skill of list"> -->
-                          <!-- <li class="skill tag" *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!='' "
-                                      (click)="EditSkill(skill)">
-                                      {{skill.SkillName}}
-                                    </li>
-    
-                                    <li *ngFor="let searchResult of searchResults|slice:0:show let i=index">
-                                        {{searchResult.name}}
-                                        <button  *ngIf="skill.ExpInYears ===0 &&skill.ExpInMonths ===0 &&skill.SkillName!=''||skill.ExpInYears ==null&&skill.ExpInMonths ==null&& skill.SkillName!=''&& i==4 && show == 5" (click)="show = searchResults.length">More</button>
-                                      </li> -->
-
-                          <!-- <li *ngFor="let skill of otherSkills">
-                                    <a href="javascript:void(0)" class="skill tag" (click)="EditSkill(skill)">
-                                      {{skill.SkillName}}</a>
-                                    <div *ngIf="otherSkills.length==4 && showVal == 5" (click)="showVal = otherSkills.length">Show</div>
-                                  </li> -->
-
-                          <li class="skill tag" *ngFor="let skill of otherSkills | slice : start:paginationLimit">
-                            {{skill.SkillName}}</li>
-                          <!-- <li class="skill more">
-                                  <a href="javascript:void(0)">+5 more</a>
-                                </li> -->
-                        </ul>
-                      </div>
-                    </div>
-
-                    <!-- Other Skills End -->
-                    <div class="alert job-alert">
-
-                    </div>
-
-                  </div>
-
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="personal-skills card right">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Personality Skills</h2>
-                  </header>
-                  <!--Redesign of Personality Result View-->
-                  <div class="card-content scroll-inner personality-test-results">
-
-                    <div class="row placeholder">
-                      <img alt="icon" src="assets/images/personal-skills.svg">
-                      <div class="col-md-5 personality-result-view text-left">
-                        <h4>Personality Test </h4>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <div *ngIf="isPublicAvailable == false">
-                              <p class="y-t-p">Yet to be Performed</p>
-                            </div>
-
-                            <div class="progress" *ngIf="isPublicAvailable == true">
-                              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
-                                class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                                style="min-width: 100%;">
-                                <span class="sr-only">100% Complete (success)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2" *ngIf="isPublicAvailable == true">
-                            <h3>100%</h3>
-                          </div>
-                        </div>
-                        <!---->
-                        <div *ngIf="isPublicAvailable == true">
-                          <button class="btn btn-success" (click)="GetCandidatePersonalityResult()"
-                            data-target=".test-dialog" data-toggle="modal">
-                            View Detailed Report</button>
-                        </div>
-                        <!---->
-                      </div>
-                      <div class="col-md-5 culture-result-view text-left">
-                        <h4>Culture Test
-                          <!---->
-                        </h4>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <div *ngIf="isPublicAvailable1 == false">
-                              <p class="y-t-p">Yet to be Performed</p>
-                            </div>
-                            <div class="progress" *ngIf="isPublicAvailable1 == true">
-                              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
-                                class="progress-bar progress-bar-info  progress-bar-striped active" role="progressbar"
-                                style="min-width: 100%;">
-                                <span class="sr-only">100% Complete (success)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2" *ngIf="isPublicAvailable1 == true">
-                            <h3>100%</h3>
-                          </div>
-                        </div>
-                        <!---->
-                        <div *ngIf="isPublicAvailable1 == true">
-                          <button class="btn btn-success" (click)="GetCultGraph()" data-target=".test-dialog"
-                            data-toggle="modal">
-                            View Detailed Report</button>
-                        </div>
-
-
-                        <!---->
-                      </div>
-
-                    </div>
-                  </div>
-                  <!---->
-                </div>
-              </div>
-              <div class="education card right hasModal ">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Education</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-toggle="modal" data-target="#education"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Education</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="education-row " *ngFor="let educations of profileview?.Education">
-
-                      <div class="institute ">
-                        <img src="assets/images/oxford.png " class="logo" alt="logo">
-                        <h4 class="name ">{{educations.InstituteORUniversity  || 'N/A'}}</h4>
-                        <h5 class="meta meta-dark ">
-                          <span class="icon-location "></span> {{educations.Location || 'N/A'}}</h5>
-                      </div>
-                      <h2 class="title ">{{educations.QualificationName  || 'N/A'}}</h2>
-                      <div class="duration ">
-                        <span class="icon-calendar "></span>
-                        <span class="from ">{{educations.FromYear  || 'N/A'}}</span>
-                        <span> - </span>
-                        <span class="to ">{{educations.ToYear  || 'N/A'}}</span>
-                      </div>
-                      <div class="study-fields ">
-                        <h4 class="label-caps ">Fields of Study</h4>
-                        <ul class="list clearfix ">
-                          <li>
-                            <span class="skill tag " *ngIf="educations.Specialization!='' ;else falTemplate ">
-                              {{educations.Specialization  || 'N/A'}}
-                              <ng-template #falTemplate>
-
-                              </ng-template>
-                            </span>
-
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="domain-skills card left hasModal ">
-
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Domain</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#domain-skills" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Domain</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="row">
-                      <div *ngIf="profileview?.ProfileDomain?.length>0">
-                        <div class="col-md-4 domainRecords" *ngFor="let domains of profileview?.ProfileDomain ">
-                          <div class="skills-box ">
-                            <header>
-                              <h5 class="title "> {{domains.DomainName}}</h5>
-
-                            </header>
-                            <div class="skill-row row ">
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h6>Experience</h6>
-                              </div>
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h5>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</h5>
-                              </div>
-                            </div>
-                            <div class="skill-row row ">
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h6>Last used</h6>
-                              </div>
-                              <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <h5>{{domains.LastUsed}}</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 " *ngIf="profileview?.ProfileDomain?.length==0">
-                        <p>Domain Knowledge not provided</p>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="professional-experience card left hasModal ">
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Professional Experience</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#professional-experience" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Experience</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <ng-container *ngFor="let exps of profileview?.ProfileExperience;let i=index ">
-                      <div class="job-row row ">
-                        <div class="col-md-4 ">
-                          <div class="institute ">
-                            <img src="assets/images/oxford.png " class="logo " alt="logo">
-                            <h4 class="name">{{exps.CompanyName}}</h4>
-                            <h5 class="meta meta-light ">Digital Design</h5>
-                          </div>
-                          <h2 class="title ">{{exps.JobRole}}</h2>
-                          <div class="duration ">
-                            <span class="icon-calendar "></span>
-                            <span class="from "> {{exps.StartDate | date:'mediumDate'}}</span>
-                            <span> - </span>
-                            <span class="to ">{{exps.EndDate | date:'mediumDate'}}</span>
-                          </div>
-                          <h5 class="meta meta-light ">
-                            <span class="icon-location "></span>{{exps.JobLocation || 'N/A'}}</h5>
-                          <div class="radio-box inline ">
-
-                          </div>
-                        </div>
-                        <div class="v-divider "></div>
-                        <div class="col-md-8 col-sm-12 ">
-                          <ul class="nav nav-tabs ">
-                            <li class="active ">
-                              <a data-toggle="tab" href="#description{{i}} ">
-                                Description
-                              </a>
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#achievements{{i}} ">
-                                Achievements
-                              </a>
-                            </li>
-                            <li>
-                              <a data-toggle="tab" href="#responsibilities{{i}} ">
-                                Roles and Responsibilities
-                              </a>
-                            </li>
-
-
-                          </ul>
-                          <div class="tab-content">
-                            <div id="description{{i}}" class="tab-pane active">
-                              <div class="scrollbar-inner ">
-                                <p class="text ">
-                                  {{exps.Description}}
-                                </p>
-                                <ng-container *ngIf="exps.Description==null||exps.Description==''">
-                                  <p> Candidate yet to provide the Description. </p>
-                                </ng-container>
-                              </div>
-
-                            </div>
-                            <div id="achievements{{i}}" class="tab-pane">
-                              <div class="scrollbar-inner ">
-                                <div class="list">
-                                  <div class=" ">
-                                    <ng-container *ngFor="let i of exps?.Achievements ">
-                                      <p>{{i}}</p>
-                                    </ng-container>
-                                    <ng-container *ngIf="exps?.Achievements==null||exps?.Achievements==''">
-                                      Candidate yet to provide the Achievement details.
-                                    </ng-container>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div id="responsibilities{{i}}" class="tab-pane">
-                              <div class="scrollbar-inner ">
-                                <div class="list">
-                                  <ng-container *ngFor="let r of exps?.Roles ">
-                                    <p>{{r}}</p>
-                                  </ng-container>
-                                  <ng-container *ngIf="exps?.Roles==null|| exps?.Roles==''">
-                                    Candidate Roles yet to Provide
-                                  </ng-container>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </ng-container>
-                    <ng-container *ngIf="profileview?.ProfileExperience.length==0">
-                      <div>
-                        <p>
-                          Candidate yet to provide the Professional Experience.
-                        </p>
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
-              </div>
-              <div class="certifications card left hasModal">
-
-                <div class="wrap">
-                  <header class="card-header">
-                    <h2 class="card-title">Certifications</h2>
-                    <div class="pull-right">
-                      <a href="#" class="add-btn modalBtn" data-target="#certifications" data-toggle="modal"
-                        style="visibility:hidden"><span>+</span>
-                        <p>Add Certification</p>
-                      </a>
-                    </div>
-                  </header>
-                  <div class="card-content scrollbar-inner">
-                    <div class="cert-row row ">
-                      <div *ngIf="profileview?.Certifications?.length > 0">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 "
-                          *ngFor="let certificates of profileview?.Certifications ">
-                          <div class="cert-card ">
-                            <div class="logo">
-                              <img width="60" [src]="certificates.ImageUrl" alt="certification">
-                            </div>
-                            <div class="info ">
-                              <h2 class="title" title="{{certificates.CertificationName}}">
-                                {{certificates.CertificationName}}</h2>
-                              <h4 class="year ">{{certificates.YearOfAchievement| date:'mediumDate'}}</h4>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " *ngIf="profileview?.Certifications?.length==0">
-
-                        <p>Candidate yet to provide the Certification details.</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="blackLayer modalClose"></div>
               </div>
             </div>
           </div>
-          <!-- container -->
-        </main>
+          <div class="col-container skills__container">
+            <div class="row flex flex-wrap flex-align-equal">
+              <div class="col-sm-9 left__col col">
+                <div class="title__container">
+                  <h5>Skills</h5>
+                </div>
+                <div class="skills__listing">
+                  <h4>Top Skills</h4>
+                  <div class="row custom__scrollbar flex flex-wrap flex-align-equal">
+                    <ng-container *ngFor="let skill of list | slice:0:isMoreSkill">
+                    <div class="col-sm-3 col">
+                      <span class="tooltip right"> {{skill.SkillName}}</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4> {{skill.SkillName}}</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row" style="margin: 0;">
+                            <div class="col-sm-6 exp__col " style="padding: 0 7px;">
+                              Exp : {{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years
+                            </div>
+                            <div class="col-sm-6 star__col" style="padding: 0 7px;">
+                              <div class="stars">
+                                <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
+                                <!-- <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </ng-container>
+                    
+                    <!-- <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <a href="javascript:void(0)" *ngIf="list.length>9" (click)="showMoreskill()" class="show__more">
+                    <span>Show More</span>
+                  </a>
+                </div>
+                <div class="skills__listing">
+                  <h4 *ngIf="otherSkills.length>0">Optional Skills</h4>
+                  <div class="row custom__scrollbar flex flex-wrap flex-align-equal">
+                    <ng-container *ngFor="let skill of otherSkills | slice:0:isMoreOption">
+                      <div class="col-sm-3 col">
+                        <span class="tooltip"> {{skill.SkillName}}</span>
+                        <div class="card__container">
+                          <div class="top__section">
+                            <h4> {{skill.SkillName}}</h4>
+                          </div>
+                          <div class="bottom__section">
+                            <div class="row">
+                              <div class="col-sm-6 exp__col">
+                                Exp : {{skill.ExpInYears}}.{{skill.ExpInMonths || '0'}} Years
+                              </div>
+                              <div class="col-sm-6 star__col">
+                                <div class="stars">
+                                  <star-rating value="{{skill.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                  uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
+                                  <!-- <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </ng-container>
+                    <!-- <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col">
+                      <span class="tooltip">Effective Communiction</span>
+                      <div class="card__container">
+                        <div class="top__section">
+                          <h4>Effective Communiction</h4>
+                        </div>
+                        <div class="bottom__section">
+                          <div class="row">
+                            <div class="col-sm-6 exp__col">
+                              Exp : 1 Years
+                            </div>
+                            <div class="col-sm-6 star__col">
+                              <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <a href="javascript:void(0)" *ngIf="otherSkills.length>9" (click)="showMoreoptional()" class="show__more">
+                    <span>Show More</span>
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-3 right__col col">
+                <!-- <div id="carosuleMain" class="carousel slide" data-ride="carousel">
+                  Wrapper for slides
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <h5>Microsoft Azure</h5>
+                      <div class="shape__container">
+                        <img src="../../../../../../assets/images/apply-view-details/triangle-shape.png">
+                        <div class="shape__info flex flex-wrap flex-align-center flex-justify-center">
+                          <div>
+                            <h4>Experience</h4>
+                            <p>12</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slider__cols">
+                        <div class="row">
+                          <div class="col-sm-6 col">
+                            <h4>Experience</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col">
+                            <h4>Certification</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="item">
+                      <h5>Microsoft Azure</h5>
+                      <div class="shape__container">
+                        <img src="../../../../../../assets/images/apply-view-details/triangle-shape.png">
+                        <div class="shape__info flex flex-wrap flex-align-center flex-justify-center">
+                          <div>
+                            <h4>Experience</h4>
+                            <p>12</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slider__cols">
+                        <div class="row">
+                          <div class="col-sm-6 col">
+                            <h4>Experience</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col">
+                            <h4>Certification</h4>
+                            <div class="sub-carousel">
+                              <div class="sub-item">
+                                <div class="col-container">
+                                  <h5>BBA</h5>
+                                  <p>Oct 2010</p>
+                                </div>
+                              </div>
+                              <button class="btn btn-previous"><i class="arrow left"></i></button>
+                              <button class="btn btn-next"><i class="arrow right"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ol class="carousel-indicators">
+                    <li data-target="#carosuleMain" data-slide-to="0" class="active"></li>
+                    <li data-target="#carosuleMain" data-slide-to="1"></li>
+                  </ol>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-container experience__container">
+            <div class="title__container">
+              <h5>Professional Experience</h5>
+            </div>
+            <div class="row flex flex-wrap flex-align-equal">
+            
+            
+                  <div class="col-sm-4 history__col">
+                <ul class="history__container custom__scrollbar lg-bar" id="historyNav">
+                  <ng-container *ngFor="let exps of profExperience;let i=index ">
+                  <li class="professional main__history "   [ngClass]="{'active': check===i}" (click)="CheckDesc(i)">
+                    <span class="year"><span>Now</span></span>
+                    <div class="info__box">
+                      <p>{{exps?.StartDate | date:'mediumDate'}} - {{exps?.EndDate | date:'mediumDate'}}</p>
+                      <h5>{{exps?.JobTitle}}</h5>
+                      <p>{{exps?.CompanyName}}</p>
+                      <span class="location"><i class="fa fa-map-marker"></i>{{exps?.JobLocation || 'N/A'}}</span>
+                      <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    </div>
+                  </li>
+                  <li class="sub__history">
+                    <ul>
+                      <ng-container *ngIf="exps?.ProjectExp.length>0">
+                        <ng-container *ngFor="let pro of exps?.ProjectExp">
+                          <li *ngIf="pro?.ProjectName != 'New Project'">
+                            <span class="year"><span>Now</span></span>
+                            <div class="info__box">
+                              <h5>{{pro?.ProjectName}}</h5>
+                              <p>{{pro?.FromDate | date:'mediumDate'}}-{{pro?.ToDate | date:'mediumDate'}}</p>
+                            </div>
+                          </li>
+                          <li *ngIf="pro?.ProjectName === 'New Project'">
+                            <span class="year"><span>Now</span></span>
+                            <div class="info__box">
+                              <p>Candidate yet to provide </p>
+                            </div>
+                          </li>
+                        </ng-container>
+                      </ng-container>
+
+                      <ng-container *ngIf="exps?.ProjectExp.length===0">
+                        <li>
+                          <span class="year"><span>Now</span></span>
+                          <div class="info__box">
+                            <p class="empty__para">Yet to provide </p>
+                          </div>
+                        </li>
+                          
+                      </ng-container>
+                     
+                 
+                      
+                    </ul>
+                  </li> 
+                 </ng-container>              
+                </ul>
+              </div>
+
+              <div class="col-sm-8 experience__detail__col"  >
+                <ng-container *ngFor="let exps of profExperience;let i=index ">
+                <div class="experience__slide"  [ngClass]="{'active': check===i}">
+                  <div class="slide__info">
+                    <div class="container__box">
+                      <h4>Summary</h4>
+                      <div class="info__box" *ngIf="exps.Description!=null||exps.Description!=''">
+                        <p  [innerHTML]="exps?.Description | slice:0:100">
+
+                        </p>
+                          <ng-container *ngIf="moreShow">  <p [innerHTML]="exps?.Description| slice:100:15000">
+                    
+                          </p>
+                          </ng-container>
+                        <a href="javascript:void(0)" (click)="moreContent(i)" class="show__more">
+                          <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
+                        </a>
+
+                      </div>
+                      <ng-container *ngIf="exps.Description===null||exps.Description===''">
+                        <p> Candidate yet to provide the Description. </p>
+                      </ng-container>
+                    </div>
+                    <div class="container__box key__container__box">
+                      <div class="row flex flex-wrap flex-align-equal">
+                        <div class="col-sm-9 col key__left__col">
+                          <h4>Key Responsibility</h4>
+                          <ul>
+                            <ng-container *ngFor="let keys of exps?.ProjectExp">
+                              <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
+                               <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
+                                  <li>
+                                     <div class="card__box">
+                                    {{k?.RoleDescription}}
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                 </li>
+                                </ng-container>
+                               
+                               </ng-container>
+                               <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                 <p class="empty__para">Yet to provide</p>
+                               </ng-container>
+                              </ng-container>
+                              <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                <p class="empty__para">Yet to provide</p>
+                              </ng-container>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3 col key__right__col">
+                          <h4>Key Achievements</h4>
+                          <ul>
+                            <ng-container *ngFor="let keys of exps?.ProjectExp">
+                              <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
+                               <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
+                                 <ng-container *ngFor="let ki of k?.CandidateProAchievements">
+                                  <li>
+                                    <div class="card__box">
+                                   {{ki?.AchivementDescription}}
+                                   <i class="fa fa-star" aria-hidden="true"></i>
+                                   </div>
+                                </li>
+                                 </ng-container>
+                         
+                                </ng-container>
+                               
+                               </ng-container>
+                               <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                 <p class="empty__para">Yet to provide</p>
+                               </ng-container>
+                              </ng-container>
+                              <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                <p class="empty__para">Yet to provide</p>
+                              </ng-container>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container__box">
+                      <div class="row flex-wrap flex flex-align-equal">
+                        <div class="col-sm-9 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <ng-container *ngFor="let skills of exps?.ProjectExp">
+                                   <ng-container *ngIf="skills?.CandidateProSkills.length>0">
+                                    <ng-container *ngFor="let s of skills?.CandidateProSkills">
+                                      <div class="col-sm-4 col">
+                                        <span class="tooltip right">{{s?.SkillName | titlecase}}</span>
+                                        <div class="card__container">
+                                          <div class="top__section">
+                                            <h4>{{s?.SkillName | titlecase}}</h4>
+                                          </div>
+                                          <div class="bottom__section">
+                                            <div class="row" style="margin: 0;">
+                                              <div class="col-sm-6 exp__col"  style="padding: 0 7px;">
+                                                Exp : {{s?.ExpInYears}}.{{s?.ExpInMonths||'0'}} Years
+                                              </div>
+                                              <div class="col-sm-6 star__col" style="padding: 0 7px;">
+                                                <star-rating value="{{s.SkillRating}}" totalstars="5" checkedcolor="#fff"
+                                                uncheckedcolor="#fff" size="9px" readonly="true"></star-rating>
+                                                <!-- <div class="stars">
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star checked"></span>
+                                                  <span class="fa fa-star"></span>
+                                                  <span class="fa fa-star"></span>
+                                                </div> -->
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                     </ng-container>
+                                    
+                                    </ng-container>
+                                    <ng-container *ngIf="skills?.CandidateProSkills.length===0">
+                                      <p class="empty__para">Yet to provide</p>
+                                    </ng-container>
+                                   </ng-container>
+
+                                   <ng-container *ngIf="exps?.ProjectExp.length===0">
+                                    <p class="empty__para">Yet to provide</p>
+                                  </ng-container>
+                                  
+
+                                 
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="col-sm-3 col skill__left__col">
+                          <div class="skills__container">
+                            <div class="skills__listing">
+                              <h4>Soft Skills</h4>
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-12 col">
+                                  <span class="tooltip">Effective Communiction</span>
+                                  <div class="card__container">
+                                    <div class="top__section">
+                                      <h4>Effective Communiction</h4>
+                                    </div>
+                                    <div class="bottom__section">
+                                      <div class="row">
+                                        <div class="col-sm-6 exp__col">
+                                          Exp : 1 Years
+                                        </div>
+                                        <div class="col-sm-6 star__col">
+                                          <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              </div>
+           
+            </div>
+          </div>
+          <div class="three__grid__card__container">
+            <div class="row main-row flex-wrap flex flex-align-equal">
+              <div class="col-sm-4 main-col education__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Education</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/education__icon.png">
+                      </div>
+                                       
+                      <div class="col-sm-9 ">
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container  *ngFor="let educations of profileview?.Education">   
+                          <div class="card__box flexible__height">
+                            <div class="card__header">
+                              <h4>{{educations.QualificationName  || 'N/A'}}</h4>
+                              <div class="duration">{{educations.FromYear  || 'N/A'}}-{{educations.ToYear  || 'N/A'}}</div>
+                            </div>
+                            <div class="card__body">
+                              <h5>Fields of Study</h5>
+                              <div class="tags__list">
+                                <ul>
+                                  <li>{{educations.Specialization  || 'N/A'}}</li>
+                                </ul>
+                              </div>
+                              <div class="location">
+                                <i class="fa fa-map-marker"></i>
+                                {{educations.Location || 'N/A'}}
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                        </div>
+                      </div>
+              
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="col-sm-4 main-col domain__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Domain Name</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/domain__icon.png">
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="profileview?.ProfileDomain?.length>0">
+                            <ng-container *ngFor="let domains of profileview?.ProfileDomain">
+                              <div class="card__box flexible__height">
+                                <div class="card__body">
+                                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                                  <h4> {{domains.DomainName}}</h4>
+                                  <p>{{domains.ExpInYears}}.{{domains.ExpInMonths}}</p>
+                                </div>
+                              </div>
+                            </ng-container>
+                          </ng-container>
+                          <ng-container *ngIf="profileview?.ProfileDomain?.length===0">
+                            <p>Domain Knowledge not provided</p>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4 main-col certification__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Certification</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/certification__icon.png">
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="profileview?.Certifications?.length>0">
+                          <ng-container *ngFor="let certificates of profileview?.Certifications ">
+                            <div class="card__box flexible__height">
+                              <div class="card__body">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <h4> {{certificates.CertificationName}}</h4>
+                                <p>{{certificates.YearOfAchievement| date:'mediumDate'}}</p>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="profileview?.Certifications?.length===0">
+                          <p>Candidate yet to provide the Certifications.</p>
+                        </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="two__grid__card__container">
+            <div class="row main-row flex flex-wrap flex-align-equal">
+              <div class="col-sm-6 main-col achivements__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Achievements</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/achievements__icon.png">
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="row flex flex-wrap flex-align-equal">
+                          <ng-container *ngIf="alist.length==0">
+                            <p>Candidate yet to Provide the Achievements!!</p>
+                        </ng-container>
+                        <div class="custom__scrollbar lg-padding">
+                          <ng-container *ngIf="alist.length>0">
+                            <div class="col-sm-6 col"  *ngFor="let a of alist">
+                              <div class="card__box flexible__height">
+                                <h4>{{a?.AchivementDescription}}</h4>
+                                  <h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
+                                  <div class="date" *ngIf="a?.ToDate!=null">{{a?.ToDate | date:'yyyy'}}</div>   
+  
+                              </div>
+                            </div>
+                          </ng-container>
+                        </div>
+                        
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6  main-col hobbies__col">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Hobbies</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3 image__col">
+                        <img src="../../../../../../assets/images/apply-view-details/hobbies__icon.png">
+                      </div>
+                      <div class="col-sm-9">
+                        <ul class="flex flex-wrap flex-align-equal">
+                          <p>Comming Soon!!</p>
+                          <!-- <li>
+                            <div class="box__col">
+                              Travelling
+                            </div>
+                          </li>
+                          <li>
+                            <div class="box__col">
+                              Singing
+                            </div>
+                          </li>
+                          <li>
+                            <div class="box__col">
+                              Food
+                            </div>
+                          </li>
+                          <li>
+                            <div class="box__col">
+                              Travelling
+                            </div>
+                          </li>
+                          <li>
+                            <div class="box__col">
+                              Singing
+                            </div>
+                          </li>
+                          <li>
+                            <div class="box__col">
+                              Food
+                            </div>
+                          </li> -->
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="job-history" class="tab-pane fade">
+          <div class="job__view__grid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="thumbnail main-t">
+                  <div class="header">
+                    <h5><b>Interview's scheduled</b></h5>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b> Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status purple">Interview Scheduled</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Test Seven</p>
+                                <h5 class="title"><b>Frontend Specialist</b></h5>
+                                <div class="p">
+                                  <p class="status orange">Freezed</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="thumbnail main-t">
+                  <div class="header">
+                    <h5><b>In progress Jobs</b></h5>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <div class="p">
+                                  <p class="status green">Active</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 india">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Indiapolis</p>
+                                <h5 class="title"><b>Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status green">Active</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="thumbnail main-t">
+                  <div class="header">
+                    <h5><b>Applied Job</b></h5>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <div class="p">
+                                  <p class="status green">Active</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 india">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Indiapolis</p>
+                                <h5 class="title"><b>Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status blue">Interviewing</p>
+                                </div>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8">
+                <div class="thumbnail main-t">
+                  <div class="header">
+                    <h5><b>Interview History</b></h5>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b> Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status orange">Freezed</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b> Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status purple">Interview Scheduled</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 seven">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Test Seven</p>
+                                <h5 class="title"><b>Frontend Specialist</b></h5>
+                                <div class="p">
+                                  <p class="status orange">Freezed</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Test Seven</p>
+                                <h5 class="title"><b>Frontend Specialist</b></h5>
+                                <div class="p">
+                                  <p class="status orange">Freezed</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="thumbnail main-t">
+                  <div class="header">
+                    <h5><b>Job Matching</b></h5>
+                  </div>
+                  <div class="caption capi">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <div class="p">
+                                  <p class="status green">Active</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Indiapolis</p>
+                                <h5 class="title"><b>Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status blue">Interviewing</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Google</p>
+                                <h5 class="title"><b> Web Designer</b></h5>
+                                <div class="p">
+                                  <p class="status purple">Interview Scheduled</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-4 main-img">
+                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
+                                </div>
+                              </div>
+                              <div class="col-md-8 content">
+                                <p class="company-name">Test Seven</p>
+                                <h5 class="title"><b>Frontend Specialist</b></h5>
+                                <div class="p">
+                                  <p class="status orange">Freezed</p>
+                                </div>
+                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div id="references" class="tab-pane fade">
+          <div class="revamp__reference__check">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a data-toggle="tab" href="#received">
+                  Received
+                </a>
+              </li>
+              <!-- <li>
+                <a data-toggle="tab" href="#pending">
+                  Pending
+                </a>
+              </li> -->
+            </ul>
+            <div class="tab-content">
+              <div id="received" class="tab-pane fade in active">
+                <div class="reference__grid__container">
+                  <div class="row flex flex-wrap flex-align-equal">
+                   
+                  <ng-container *ngIf="usersList.length>0">
+
+                    <ng-container *ngFor="let r of usersList">
+                      <div class="col-sm-4 col">
+                        <div class="col__container">
+                          <div class="top__container">
+                            <h4>{{r?.FullName | titlecase}} <span class="reference-card-date">{{r?.ModifiedOn |date:'mediumDate'}}</span></h4>
+                            <button class="btn btn__information"><i class="fa fa-info-circle"
+                                aria-hidden="true"></i></button>
+                          </div>
+                           <div class="middle__container">
+                            <div class="jdv-listing">
+                              <!--<div class="jdv-skills">
+                                <div class="row flex flex-wrap flex-align-equal">
+                                  <div class="col-sm-6 col">
+                                    <div class="col-container">
+                                      <h5>CSS</h5>
+                                      <h6>Exp : 1.6 years</h6>
+                                      <div class="star-rating">
+                                        <div class="stars">
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6 col">
+                                    <div class="col-container">
+                                      <h5>CSS</h5>
+                                      <h6>Exp : 1.6 years</h6>
+                                      <div class="star-rating">
+                                        <div class="stars">
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6 col">
+                                    <div class="col-container">
+                                      <h5>CSS</h5>
+                                      <h6>Exp : 1.6 years</h6>
+                                      <div class="star-rating">
+                                        <div class="stars">
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6 col">
+                                    <div class="col-container">
+                                      <h5>CSS</h5>
+                                      <h6>Exp : 1.6 years</h6>
+                                      <div class="star-rating">
+                                        <div class="stars">
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star checked"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>-->
+                            </div>
+                            <div class="information">
+                              <ul>
+                                <li class="mail">
+                                  {{r?.RequestedTo | titlecase}}
+                                </li>
+                                <li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
+                                 +1 {{r?.PhoneNumber}}
+                                </li>
+                              </ul>
+                            </div>
+                          </div> 
+                          <div class="bottom__container">
+                            <h6>Comments:</h6>
+                            {{r?.ResponseValue | titlecase}}
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <ng-container *ngIf="usersList.length===0">
+                    <p class="empty__para">Yet to Provide</p>
+
+                  </ng-container>
+                    <!-- <div class="col-sm-4 col">
+                      <div class="col__container">
+                        <div class="top__container">
+                          <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+                          <button class="btn btn__information"><i class="fa fa-info-circle"
+                              aria-hidden="true"></i></button>
+                        </div>
+                        <div class="middle__container">
+                          <div class="jdv-listing">
+                            <div class="jdv-skills">
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="information">
+                            <ul>
+                              <li class="mail">
+                                ware@yahoo.com
+                              </li>
+                              <li class="phone">
+                                9939283892
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="bottom__container">
+                          <h6>Comments:</h6>
+                          Hard working and Proactive
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col">
+                      <div class="col__container">
+                        <div class="top__container">
+                          <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+                          <button class="btn btn__information"><i class="fa fa-info-circle"
+                              aria-hidden="true"></i></button>
+                        </div>
+                        <div class="middle__container">
+                          <div class="jdv-listing">
+                            <div class="jdv-skills">
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="information">
+                            <ul>
+                              <li class="mail">
+                                ware@yahoo.com
+                              </li>
+                              <li class="phone">
+                                9939283892
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="bottom__container">
+                          <h6>Comments:</h6>
+                          Hard working and Proactive
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col">
+                      <div class="col__container">
+                        <div class="top__container">
+                          <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
+                          <button class="btn btn__information"><i class="fa fa-info-circle"
+                              aria-hidden="true"></i></button>
+                        </div>
+                        <div class="middle__container">
+                          <div class="jdv-listing">
+                            <div class="jdv-skills">
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6 col">
+                                  <div class="col-container">
+                                    <h5>CSS</h5>
+                                    <h6>Exp : 1.6 years</h6>
+                                    <div class="star-rating">
+                                      <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="information">
+                            <ul>
+                              <li class="mail">
+                                ware@yahoo.com
+                              </li>
+                              <li class="phone">
+                                9939283892
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="bottom__container">
+                          <h6>Comments:</h6>
+                          Hard working and Proactive
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div id="pending" class="tab-pane fade">
+                <div class="data-grid-table" style="display: block;">
+                  <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+                    <div class="grid-col grid-name-col">
+                      Name <span class="sorting-arrow down"></span>
+                    </div>
+                    <div class="grid-col grid-email-col">
+                      Email<span class="sorting-arrow down"></span>
+                    </div>
+                    <div class="grid-col grid-contact-col">
+                      Phone Number<span class="sorting-arrow down"></span>
+                    </div>
+                    <div class="grid-col grid-action-col">
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
+                    <div class="grid-col grid-name-col">
+                      <div class="grid-heading">Name</div>
+                      <div class="box-table">
+                        Oleksii
+                      </div>
+                    </div>
+                    <div class="grid-col grid-email-col">
+                      <div class="grid-heading">Email</div>
+                      <div class="box-table">
+                        oleksii@gmail.com
+                      </div>
+                    </div>
+                    <div class="grid-col grid-contact-col">
+                      <div class="grid-heading">Contact Number</div>
+                      <div class="box-table">
+                        +3 809 698 3822
+                      </div>
+                    </div>
+                    <div class="grid-col grid-action-col">
+                      <div class="grid-heading">Action</div>
+                      <div class="box-table">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- container -->
-  </main>
+  </div>
 </div>
+
+<!---->
+
 <!--Vardhini Code-->
 <!--End-->
 
+<div id="videoSizzle" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Video Sizzles</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <iframe width="560" height="315" [src]="videoUrl?.VideoURL"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <ng-container *ngIf="videoUrl?.VideoURL!=null">
+          <video controls class="video-align" [src]="videoUrl?.VideoURL" type="video/mp4" #videoPlayer>
+          </video>
+        </ng-container>
+        <ng-container *ngIf="videoUrl?.VideoURL==null">
+          <img src="../../../../../../assets/images/no-video.png" class="video" alt="">
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="skillsCheckPop" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)="closeSkills()" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Personality Skills</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <li [ngClass]="isPersonality?'active':''"><a data-toggle="tab" href="#personality-test">Personality Fit</a></li>
+          <li [ngClass]="isCulture?'active':''"><a data-toggle="tab" href="#culture-fit">Culture Fit</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="personality-test" [ngClass]="isPersonality?'tab-pane fade in active':'tab-pane fade'">
+            <h3>Personality Fit</h3>
+            <div *ngFor="let label of graphLabelList; let i=index">
+              <a class="d-inline-b" (click)="showSubGraph(i,label.GroupId,label.GroupPer)">
+                <span class="chart-label" [ngStyle]="{'background-color': label.GroupColor}">
+                </span>
+                {{label.GroupLabel}} - {{label.GroupPer}}%
+              </a>
+              <br>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <div style="width:70%;margin:auto;">
+              <canvas #testChart width="400" height="400"></canvas>
+            </div>
+          </div>
+          <div id="culture-fit" [ngClass]="isCulture?'tab-pane fade in active':'tab-pane fade'">
+            <h3>Culture fit</h3>
+
+<div>
+  ValueMatch: {{cultureresults?.Valuematch}}%
+</div>
+<div>
+  RankMatch: {{cultureresults?.Rankmatch}}%
+</div>
+            <circle-progress class="culture-chart"
+						data-toggle="matching-details"
+						[percent]="CulturalTestStatusNew"
+						[radius]="100"
+						[outerStrokeWidth]="20"
+						[innerStrokeWidth]="10"
+						[outerStrokeColor]="'#ffb513'"
+						[innerStrokeColor]="'#c0c0c0'"
+						[animation]="true"
+						[showSubtitle]="false"
+						[responsive]="true"
+						[titleFontSize]=40
+						[unitsFontSize]=20
+					  >
+					  </circle-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!--Test Dialog for-->
 <div class="modal fade test-dialog" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

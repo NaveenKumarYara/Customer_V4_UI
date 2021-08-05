@@ -23,7 +23,10 @@ declare var $: any;
 export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   customer: any;
   customerId: any;
+  cultureresults:any=[];
   userId: any;
+  hideme=[];
+  check=0;
   email: any;
   Rating: profileRating;
 	startPage: number;
@@ -37,15 +40,21 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 	profileStatistics: any;
 	start: number;
 	pagination: number;
+  CulturalTestStatusNew: number = 0;
 	suggestedSkill: any = [];
     skillLimit: any = [];
     videoUrl: videoUrl;
 	/*rouded progress bar*/
   semicircle: boolean = false;
   isPublicAvailable1: boolean = false;
+  isMore: boolean = false;
+  isMoreSkill=10;
+  isMoreOption=10;
+  moreShow: boolean = false;
 	rounded: boolean = false;
 	responsive: boolean = false;
 	clockwise: boolean = true;
+  profExperience:any=[];
 	color: string = '#448AFA';
 	background: string = '#eaeaea';
 	duration: number = 800;
@@ -61,6 +70,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   fileExt: any;
   details: mappingdetails;
   noTest: boolean = false;
+  usersList:any=[];
   isPublicAvailable: boolean = false;
   options: CloudOptions = {
     // if width is between 0 and 1 it will be set to the size of the upper element multiplied by the value
@@ -79,6 +89,10 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   @ViewChild('testChart1') testChart1: ElementRef;
   @ViewChild('testChart9') testChart9: ElementRef;
   skilllist: any;
+  currentSlide = 1;
+  maxSlide = 2;
+  isPersonality: boolean = false;
+  isCulture: boolean = false;
 
   chartOptions = {
     responsive: true,
@@ -89,12 +103,34 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     },
   };
 
+  TeamFitLabels = {
+    labels: ["Majestic","Artistic", "Unit", "Dev", "Energy"]
+  }
+  TeamFit = {
+    labels: ["M", "A", "U", "D", "E"],
+    datasets: [
+      {
+        label: "Team Fit",
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#4472C4",
+        pointBackgroundColor: "#4472C4",
+        pointBorderColor: "#4472C4",
+        pointHoverBackgroundColor: "#4472C4",
+        borderWidth: 5,
+        pointBorderWidth: 5,
+        pointHoverBorderColor: "rgba(179,181,198,1)",
+        data: [75, 30, 85, 60, 40],
+      },
+    ],
+  };
   chartData = [
     { data: [330, 600, 260, 700, 200], label: 'Account A' },
   ];
 
   chartLabels = ['Openess to Experience', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'];
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
+  alist: any=[];
   constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
@@ -105,10 +141,73 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.start = 0;
     this.pagination = 5;
     this.profileId=localStorage.getItem('cprofileId');
-    this.cuserId =localStorage.getItem('cuserId');
+    this.cuserId = localStorage.getItem('cuserId');
+    this.CheckDesc(0);
   }
 
+  showMore() {
+    this.isMore = !this.isMore;
+  }
 
+  showMoreskill() {
+    this.isMoreSkill += 10;
+  }
+
+  showMoreoptional() {
+    this.isMoreOption += 10;
+  }
+
+  moreContent() {
+    this.moreShow = !this.moreShow;
+  }
+
+  CheckDesc(i)
+  {
+    this.check=i;
+  }
+
+  personalityClick() {
+    this.isPersonality = true;
+    this.isCulture = false;
+  }
+
+  
+  GetCandidateCultureResult() {
+    this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=",  this.profileId).subscribe((email) => {
+      this.email = email.UserName;
+      this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
+      .subscribe(
+        data4 => {
+          this.CulturalTestStatusNew = data4.Total; 
+          this.cultureresults=data4;
+          // if (data4!=null) {
+          //    this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
+          // }
+        })
+        
+      });
+  }
+
+  cultureClick() {
+    this.isPersonality = false;
+    this.isCulture = true;
+  }
+
+  closeSkills() {
+    this.isCulture = false;
+    this.isPersonality = false;
+  }
+
+  // next(i){
+  //   this.currentSlide++;
+  //   if(this.currentSlide > this.maxSlide) this.currentSlide = this.maxSlide;
+  // }
+
+  // previous(){
+  //   this.currentSlide--;
+  //   if(this.currentSlide < 1) this.currentSlide = 1;
+  // }
+  
   Logout() {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
@@ -203,7 +302,10 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
+    this.GetCandidateCultureResult();
+    this.GetExperience();
     this.GetVideo();
+    this.GetAchivements();
     this.GetCandidateProfileStatistics();
     if (sessionStorage.getItem('redirect') != null) {
         // $('.nav-liSV').removeClass('active');
@@ -215,30 +317,34 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
     }
 
-    $('.scrollbar-inner').scrollbar();
+    // $('.scrollbar-inner').scrollbar();
     this.getOverlayStyle();
-
 
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
 
     function cloudAttr() {
-
       $(".word-cloud angular-tag-cloud span").each(function () {
         $(this).addClass("tooltip1")
         // $('<div class="tooltip fade top in">'+$( this ).text()+'</div>').appendTo( this );
         $('<div class="tooltip fade bottom hover-active"><div class="tooltip-arrow"></div><div class="tooltip-inner">' + $(this).text() + '</div></div>').appendTo(this);
       });
-
-
-
-
     }
     cloudspan();
-   
 
-    
+    $(document).ready(function () {
+      $('.history__container .main__history').each(function () {
+        $(this).click(function () {
+          $('.history__container .main__history').removeClass('active');
+          if (!$(this).hasClass('active')) {
+            $(this).addClass('active');
+            $('.experience__slide').removeClass('active');
+            $('#' + $(this).data('id')).addClass('active');
+          }
+        })
+      });
+    })
   }
 
   onChartClick(event) {
@@ -264,6 +370,18 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
         data => {
           this.videoUrl = data[0];
         });
+  }
+
+
+  
+  GetExperience() {
+      this._service.GetService("ProfileAPI/api/GetExperience?profileId=", this.profileId +"&freeLance=false")
+        .subscribe(
+          (profExp) => {
+            this.profExperience = profExp;         
+          }
+        );
+  
   }
 
   Check()
@@ -386,6 +504,32 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     // QuestionnaireAssignment
   }
 
+  GetAchivements()
+  {
+    this._service.GetService('ProfileAPI/api/GetCandidateAchievementList?profileId=', this.profileId).subscribe(
+        data => {
+            this.alist=data;
+        }
+    )
+  }
+
+  GetQuestionnariePersonsList(Ud) {
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=4')
+      .subscribe(
+        data => {
+        if(data != "No records found")
+        {
+         this.usersList = data;        
+        }
+        else
+        {
+          this.usersList = [];         
+        }
+  
+         
+        });
+  }
+
   GetCandidatePersonalityResult() {
     this.show=false;
     this._service.GetService('ProfileAPI/api/GetProfileEmail?profileId=', this.profileId).subscribe(
@@ -496,7 +640,7 @@ GetProfileRating() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
           this.profileview = datas;
-          //debugger
+          this.GetQuestionnariePersonsList(datas.ProfileBasicInfo.UserId);
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
                                 var showChar = 250;  // How many characters are shown by default

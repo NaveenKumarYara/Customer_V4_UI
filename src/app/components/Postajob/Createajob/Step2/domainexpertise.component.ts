@@ -12,7 +12,8 @@ import { of } from 'rxjs/observable/of';
 import { ChangeContext, LabelType, Options } from 'ng5-slider';
 @Component({
   selector: 'app-steps-step2-domainexpertise',
-  templateUrl: './domainexpertise.component.html'
+  templateUrl: './domainexpertise.component.html',
+  styleUrls: ["./domainexpertise.component.css"]
 })
 
 export class DomainExpertiseComponent implements OnInit, OnDestroy {

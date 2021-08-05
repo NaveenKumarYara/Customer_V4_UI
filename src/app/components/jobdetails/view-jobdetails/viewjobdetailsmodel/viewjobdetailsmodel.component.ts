@@ -11,6 +11,8 @@ import {ShareJobComponent} from '../share-job/sharejob.component';
 import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.component';
 import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
+import { HttpParams } from '@angular/common/http';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -28,15 +30,19 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   customerId: any;
   userId: any;
  jobid: number;
+ customer: any;
+ viewJobDetails:any;
  deactivate = new deactivate();
- getcompanybenfit: GetCompanyBenefit[];
+ getjobCompleteinfo :JobCompletenessInfo;
+ getcompanybenfit: GetCompanyBenefit[]=[];
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,
-        private _vcr: ViewContainerRef, private router: Router,
-     private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-    this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    this.jobid = JSON.parse(sessionStorage.getItem('viewJobJobId'));
+        private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,
+     private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.customer = JSON.parse(sessionStorage.getItem('userData'));
+      this.customerId = this.customer.CustomerId;
+      this.jobid = this.data.JobId;
    }
 
 
@@ -60,15 +66,30 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   
 
 
-  PopulateJobdetail (customerId, jobid) {
+  PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
-      //debugger
       this.jobdetailscustomer = res;
+      let params = new HttpParams();
+      params = params.append('jobId', this.jobid.toString());
+      params = params.append('userId', '3');
+      this._service.GetService('JobsAPI/api/GetJobDetailCandidate?', params)
+      .subscribe(      
+        data => {
+          this.viewJobDetails = data;
+        })
     });
 
 }
-PopulateJobComments (jobid) {
+
+PopulateJobCompleteness() {
+  return this.jobdetailsservice.GetJobCompleteness(this.jobid).subscribe(res => {
+    this.getjobCompleteinfo = res;
+  });
+
+}
+PopulateJobComments () {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
+    debugger
     this.jobComments = res;
   });
 
@@ -86,12 +107,11 @@ changeJobStat(job, val) {
     this.appService.deactivateJob(this.deactivate)
     .subscribe(
     data => {
-      this.PopulateJobdetail(this.deactivate.customerId, this.deactivate.jobId);
-      // this.load.populateJobsBasicInfo(this.deactivate.customerId, this.deactivate.jobId);
+      this.PopulateJobdetail();
   },
     error => console.log(error));
 }
-populateCompanyBenfits(customerId) {
+populateCompanyBenfits() {
   return this.jobdetailsservice.getCompanyBenfits(this.customerId).subscribe(res => {
       this.getcompanybenfit = res;
   });
@@ -104,6 +124,7 @@ editJob(jobId, active) {
   }, 3000);
   } else {
     this.complete = 4;
+    this.dialog.closeAll();
     this.router.navigate(['/app-createajob/', {jobId} ]);
     localStorage.setItem('completed', JSON.stringify(this.complete));
     localStorage.setItem('EditViewJob', 'yes');
@@ -115,9 +136,10 @@ editJob(jobId, active) {
 }
 
 ngOnInit() {
-  this.PopulateJobdetail(this.customerId, this.jobid);
-  this.PopulateJobComments(this.jobid);
-  this.populateCompanyBenfits(this.customerId);
+  this.PopulateJobdetail();
+  this.PopulateJobComments();
+  this.populateCompanyBenfits();
+  this.PopulateJobCompleteness();
   // console.log('abc');
 
   /*tabs animation*/
@@ -165,3 +187,25 @@ ngOnInit() {
 
 }
 }
+
+export class JobCompletenessInfo
+    {
+        JobCompleteness :number
+        Industry :number
+        Title :number
+        Experience :number
+        Keyresponses :number
+        JobDomain :number
+        JobDesc :number
+        JobPriority :number
+        Skill :number
+        OptionalSkill :number
+        SoftSkill :number
+        Employment :number
+        WorkAuthorise :number
+        Qualification :number
+        JobLocation :number
+        JobAssigned :number
+        Video :number
+        Teamfit :number
+    }

@@ -47,6 +47,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   @ViewChild(StepContractExtensionComponent) contractExtension: StepContractExtensionComponent;
   @ViewChild(StepEmploymentTypeComponent) empType: StepEmploymentTypeComponent;
   @ViewChild(StepSalarysliderComponent) salSlider: StepSalarysliderComponent;
+  @ViewChild(ImmigrationManagerComponent) Immi:ImmigrationManagerComponent;
   // formData: any;
   // joblist = new InsertJob();
   disable1:any;
@@ -166,7 +167,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.insertJob.JobId = res != null ? parseInt(res, 10) : 0;
    }
 
-   if (this.jobProfile.IndustryId === '' || null) {
+   if (this.jobProfile.IndustryId === '' || this.jobProfile.IndustryId === null) {
     this.toastr.error('Please Select Business Domain!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -176,7 +177,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
    }
 
    
-   if (this.jobProfile.DepartmentId === '' || null) {
+   if (this.jobProfile.DepartmentId === '' || this.jobProfile.DepartmentId === null) {
     this.toastr.error('Please Select Department!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -185,7 +186,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
 
-   if (this.jobProfile.CategoryId === '' || null) {
+   if (this.jobProfile.CategoryId === '' || this.jobProfile.CategoryId ===  null) {
     this.toastr.error('Please Select Category!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -194,7 +195,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
      return false;
    }
 
-   if (this.jobProfile.TitleId === '' || null) {
+   if (this.jobProfile.TitleId === '' || this.jobProfile.TitleId === null) {
     this.toastr.error('Please Select JobTitle!', 'Oops!');
     setTimeout(() => {
         this.toastr.dismissToast;
@@ -206,7 +207,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
 
 
-   if (this.jobProfile.minExperience === 0) {
+   if (this.jobProfile.minExperience === 0 || this.jobProfile.minExperience === undefined) {
     this.toastr.error('Minimum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -214,7 +215,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
         return false;
    }
 
-   if (this.jobProfile.maxExperience === 0) {
+   if (this.jobProfile.maxExperience === 0 || this.jobProfile.maxExperience === undefined) {
     this.toastr.error('Maximum experience should  be greater than 0 !', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -276,9 +277,10 @@ export class Step1Component implements OnInit, AfterViewChecked {
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
     this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
 // Ending moved to step1
-    //this.insertJob.ClientId = this.client.selectedClient.ClientId;
-    this.insertJob.ClientId = 0;
-    this.insertJob.ClientName = '';
+    this.insertJob.ClientId = this.client.selectedClient.ClientId;
+    this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
+    //this.insertJob.ClientId = 0;
+    //this.insertJob.ClientName = '';
     this.insertJob.EmploymentTypeId = this.empType.employmentType.EmploymentTypeId;
     this.insertJob.SalaryTypeId = this.salSlider.salaryTypeSelected.SalaryTypeId;
     localStorage.setItem('SalaryTypeId', this.salSlider.salaryTypeSelected.SalaryTypeId.toString());
@@ -371,15 +373,10 @@ if (this.appService.isDrafted.value != null) {
   if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
   {
     var res = new Promise<void>((resolve, reject) => {
-      this.locations.locationwithpostions.forEach((value, index, array) => {
-     
-      
-
-
+      this.locations.locationwithpostions.forEach(async (value, index, array) => {         
         this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
         this.insertJob.PreferredLocationId = value.CityName.toString();
         this.insertJob.NumberOfVacancies = Number(value.Positons);
-        debugger
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
@@ -405,14 +402,17 @@ if (this.appService.isDrafted.value != null) {
         });       
           if (index === array.length -1)
           {
+           await setTimeout(() => {
             resolve();
             this.appService.JobIds=this.jobIdVals;
+          }, 3000); 
+           
           }          
       });
   });
   
-  res.then(() => {
-      this.router.navigate(['/app-createajob/app-steps-step2']); 
+  res.then(async () => {
+     await this.router.navigate(['/app-createajob/app-steps-step2']);     
   });
     // let requests =  this.locations.locationwithpostions.map((item) => {
     //   this.insertJob.PreferredLocationId = item.CityId.toString();
@@ -453,15 +453,25 @@ if (this.appService.isDrafted.value != null) {
     //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
     this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
     debugger
-
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
+        if(this.Immi.ImmigrationList.length>0)
+        {
+          this.Immi.immi.UserId=this.userId;
+          this.Immi.immi.JobId=data;
+          this.Immi.immi.Immigration=this.Immi.ImmigrationListData.map(x=>x.ImmigrationStatusId).toString();
+          this.appService.SaveJobImmigration(this.Immi.immi).subscribe(
+            data => {
+            });
+        }
+         
+        
+    
         //this.createJobId(data);
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
         localStorage.setItem('Item', false.toString());
-debugger
         if (exit === 0) {
           this.router.navigate([localStorage.getItem('EditViewJob') != null ?
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);

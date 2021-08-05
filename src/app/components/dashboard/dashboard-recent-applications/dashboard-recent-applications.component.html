@@ -1,6 +1,13 @@
 <div class="col-md-6">
     <section class="applications">
-        <h1>Recent Applications</h1>
+        <h1>Recent Applications
+            <a  href="javascript:void(0)"  class="tooltip__link">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="custom__tooltip">
+                  <span class="step__01">Applicants that sparked interest in your job postings. </span>
+                </span>
+              </a>
+        </h1>
         <div class="card" *ngFor="let recentapplicants of recentapplicantlist; let i=index">
             <div class="left">
                 <div class="header">
@@ -123,12 +130,22 @@
                 </div>
                 <!-- .candidate-info -->
                 <!--Mobile View-->
-                <img src="../../../../assets/images/I-Disc.svg" class="visible-md visible-sm visible-xs"
-                alt="DISC Feature Coming Soon!!!" title="DISC Feature Coming Soon!!!">
-                    <circle-progress class="visible-sm visible-xs circle-progress" [percent]="recentapplicants.MatchingPercentage" [radius]="30"
-                        [outerStrokeWidth]="4" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
-                        [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300" [showSubtitle] = "false" >
-                    </circle-progress>
+                <div   class="visible-md visible-sm visible-xs">
+                       
+                    <app-radar-smart-chart
+            style="cursor: pointer"              
+            [ProfileId]="recentapplicants.ProfileId"
+            [JobId]="recentapplicants.JobId"
+            [height]="80"
+            [width]="80"
+          ></app-radar-smart-chart>
+
+          <circle-progress [percent]="recentapplicants.MatchingPercentage" [radius]="30"
+          [outerStrokeWidth]="4" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
+          [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300" [showSubtitle] = "false" >
+      </circle-progress>
+                </div>
+                  
                 <!--Mobile View-->
 
             </div>
@@ -141,8 +158,14 @@
                         <h6 class="text-right" title="{{recentapplicants?.ReferralStatus}}">Status : <span class="referral-status" title="{{recentapplicants?.ReferralStatus}}">{{recentapplicants?.ReferralStatus}}</span></h6>
                     </div>
                     <div class="col-md-6 disc-placeholder">
-                        <img width="80" src="../../../../assets/images/I-Disc.svg" alt="DISC Feature Coming Soon!!!"
-                            title="DISC Feature Coming Soon!!!">
+                        <h6 style="text-align:center;">Arytic Fit</h6>
+                        <app-radar-smart-chart
+                style="cursor: pointer"              
+                [ProfileId]="recentapplicants.ProfileId"
+                [JobId]="recentapplicants.JobId"
+                [height]="80"
+                [width]="80"
+              ></app-radar-smart-chart>
                     </div>
 
                     <div class="col-md-6 circle-progress">

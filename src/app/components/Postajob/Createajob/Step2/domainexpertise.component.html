@@ -1,5 +1,11 @@
 <div class="form-group domain-exp-group">
-  <label for="domainquestion" class="question">Which domain/(s) is the project into? <small>(Optional)</small></label>
+  <label for="domainquestion" class="question">Which domain/(s) is the project into? <small>(Optional)</small>
+    <a  href="javascript:void(0)"  class="tooltip__link">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <span class="custom__tooltip">
+        <span class="step__01">Specific Industry sector the position refers to. </span>
+      </span>
+    </a></label>
   <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
   <form #domainForm="ngForm" (ngSubmit)="addDomain()">
     <div class="form-row row">

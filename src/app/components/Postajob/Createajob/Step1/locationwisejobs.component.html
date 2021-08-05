@@ -1,6 +1,12 @@
 <div class="form-group position-group multiple-locations">  
     <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
-        <label for="" class="question">At which location the job is available? <span class="red">*</span></label>
+        <label for="" class="question">At which location the job is available? <span class="red">*</span>
+            <a  href="javascript:void(0)"  class="tooltip__link">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="custom__tooltip">
+                  <span class="step__01">Refers to the area in which the Job position is active . </span>
+                </span>
+              </a></label>
             <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
                 post the job for 
                 <ng-container *ngIf="!showMyContainer">
@@ -99,7 +105,13 @@
             </div>
         </form>
             <div class="form-group position-group">
-                <label for="" class="question">How many open positions do you currently have for this Job Title? <span class="red">*</span></label>
+                <label for="" class="question">How many open positions do you currently have for this Job Title? <span class="red">*</span>
+                    <!-- <a  href="javascript:void(0)"  class="tooltip__link">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <span class="custom__tooltip">
+                          <span class="step__01">Refers to the area in which the Job position is active . </span>
+                        </span>
+                      </a>--></label> 
                 <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
                 <div class="p-rel">
             

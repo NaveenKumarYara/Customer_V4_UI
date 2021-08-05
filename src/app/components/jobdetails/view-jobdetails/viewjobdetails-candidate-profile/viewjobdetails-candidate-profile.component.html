@@ -2,8 +2,8 @@
   <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-comment"></i>
   </button> -->
-  <!-- <button class="chat__btn__icon msg_btn_value" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
-  <button class="note__btn__icon icon" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  (click)="callSkills(profile.ProfileId, 2)" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+  <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
+  <button class="note__btn__icon icon"  (click)="callSkills(profile.ProfileId, 2)" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-clipboard"></i>
   </button>
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
@@ -189,7 +189,7 @@
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
-              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
+              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId)">
                 <!-- GetCandidateProfile(profile.ProfileId) -->
                 {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
               </a>
@@ -285,7 +285,7 @@
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
-              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId)">
+              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId)">
                 <!-- GetCandidateProfile(profile.ProfileId) -->
                 {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
               </a>
@@ -541,7 +541,8 @@
           <a
             href="javascript:void(0)"
             title="References"
-            *ngIf="profile?.DiscResult !== '0'"
+            *ngIf="profile?.DiscResult !== '0' &&
+            profile.CompanyName == null"
             (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)"
           >
             <img
@@ -554,7 +555,8 @@
 
           <a
             href="javascript:void(0)"
-            *ngIf="profile?.DiscResult === '0'"
+            *ngIf="profile?.DiscResult === '0' &&
+            profile.CompanyName == null"
             title="References"
             (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)"
           >
@@ -575,7 +577,7 @@
 
           <!--Achievement Icon-->
           <!--With dialog-->
-          <a href="javascript:void(0)" title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0"  title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
             <img
               src="../../../../../assets/images/card-icons/achievement-badge.png"
               width="50"
@@ -583,6 +585,15 @@
               alt="achievement-badge"
             />
           </a>
+
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"  title="Achievements" (click)="RequestAchivement(profile)">
+          <img
+            src="../../../../../assets/images/card-icons/no-achievement.png"
+            width="50"
+            height="50"
+            alt="achievement-badge"
+          />
+        </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
                     <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                         alt="achievement-badge">
@@ -673,12 +684,16 @@
       <div class="card-body">
         <div class="type">
           <div class="d-r-section">
-            <h5>DISC Result</h5>
-            <img
-              src="../../../../../assets/images/D-Disc.svg"
-              alt="DISC Feature Coming Soon!!!"
-              title="DISC Feature Coming Soon!!!"
-            />
+            <h5>Arytic Fit</h5>
+            <app-radar-smart-chart
+                    style="cursor: pointer"
+                    (click)="callSkills(profile.ProfileId, 5)"
+                   
+                    [ProfileId]="profile.ProfileId"
+                    [JobId]="jobid"
+                    [height]="120"
+                    [width]="160"
+                  ></app-radar-smart-chart>
           </div>
           <div class="p-m-section">
             <h5>Profile Matching</h5>
@@ -1288,10 +1303,7 @@
             >
               <!-- applied -->
               <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
-              <ng-container   *ngIf="
-              (profile?.ResponseStatusId != 13 &&  profile?.IsConfirmed != false && this.sdetails?.planId !=  'enterprise')||
-              (profile?.ResponseStatusId != 14 &&  profile?.IsConfirmed != false  && this.sdetails?.planId !=  'enterprise')
-            ">
+              <ng-container   *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
                 <div
                 *ngIf="
                   profile?.ResponseStatusId === 4 ||
@@ -1646,7 +1658,108 @@
         </ul>
       </div>
     </div>
+    <div class="matching-details bg-fff revamp__arytic__fit" id="matchingDetailRadar-{{ profile.ProfileId }}">
+      <a
+        _ngcontent-c21=""
+        class="revamp__close tooltip1"
+        href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)"
+        >×
+      </a>
 
+      <div class="top__container">
+        <h2>Arytic Fit</h2>
+      </div>
+      <div class="middle__container">
+        <app-radar-chart 
+                    style="cursor: pointer"
+                    (click)="showRadarChart('radar')"
+                    [radarChartData]="backRadarChartData"
+                    [height]="260"
+                    [width]="300"
+                  ></app-radar-chart>
+      </div>
+      <div class="bottom__container">
+        <div class="row flex flex-wrap flex-align-equal">
+          <div class="col-sm-4">
+            <circle-progress
+              data-toggle="matching-details"
+              [percent]="matchingParameterDetails.JobFit"
+              [radius]="40"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#4489f9'"
+              [innerStrokeColor]="'#c0c0c0'"
+              [animation]="false"
+              [showSubtitle]="false"
+            >
+            </circle-progress>
+            <h5>Job Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress
+              data-toggle="matching-details"
+              [percent]="matchingParameterDetails.SkillFit"
+              [radius]="40"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#66dab5'"
+              [innerStrokeColor]="'#c0c0c0'"
+              [animation]="false"
+              [showSubtitle]="false"
+            >
+            </circle-progress>
+            <h5>Skill Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress
+              data-toggle="matching-details"
+              [percent]="matchingParameterDetails.Personalityfit"
+              [radius]="40"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#5781c1'"
+              [innerStrokeColor]="'#c0c0c0'"
+              [animation]="false"
+              [showSubtitle]="false"
+            >
+            </circle-progress>
+            <h5>Personality Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress
+              data-toggle="matching-details"
+              [percent]="matchingParameterDetails.CultureFit"
+              [radius]="40"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#f9b016'"
+              [innerStrokeColor]="'#c0c0c0'"
+              [animation]="false"
+              [showSubtitle]="false"
+            >
+            </circle-progress>
+            <h5>Culture Fit</h5>
+          </div>
+          <div class="col-sm-4">
+            <circle-progress
+              data-toggle="matching-details"
+              [percent]="0"
+              [radius]="40"
+              [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#147751'"
+              [innerStrokeColor]="'#c0c0c0'"
+              [animation]="false"
+              [showSubtitle]="false"
+            >
+            </circle-progress>
+            <h5>Team Fit</h5>
+            <h6>(Coming Soon)</h6>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--Profile percentage view-->
     <div class="matching-details bg-fff" id="matchingDetail-{{ profile.ProfileId }}">
       <a href="javascript:void(0)" (click)="closeDetails(profile.ProfileId, 1)" class="close">&times;</a>
