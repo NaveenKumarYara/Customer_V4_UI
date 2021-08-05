@@ -2596,13 +2596,13 @@ border-radius:0px;
 .skills__container  .slider__cols .col-container p { font-size:10px; margin:0; }
 
 .public__profile__detail  .skills__listing .col { position:relative; }
-.public__profile__detail  .skills__listing .col:hover .tooltip { opacity: 1; background: rgba(0,0,0,.75); color: #fff; border-radius: 3px;  padding: 5px 10px; top: -27px; }
-.public__profile__detail  .skills__listing .col:hover .tooltip:before { content:""; position:absolute; border-top:6px solid rgba(0,0,0,.75); border-left:6px solid transparent; border-right:6px solid transparent; bottom:-6px; left:50%; }
+.public__profile__detail  .skills__listing .col:hover .tooltip { opacity: 1; background: rgba(0,0,0,.75); color: #fff; border-radius: 3px;  padding: 5px 10px; bottom: 0px; }
+.public__profile__detail  .skills__listing .col:hover .tooltip:before { content:""; position:absolute; border-bottom:6px solid rgba(0,0,0,.75); border-left:6px solid transparent; border-right:6px solid transparent; top:-6px; left:50%;margin-left: -6px; }
 .carousel-control { color:#447afa; font-size:14px; text-shadow:none; opacity:1; left:0; margin-left:0; top:0; }
 .carousel-control.left, .carousel-control.right { background:none; position:relative; }
 .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev { font-size:14px; }
 
-.show__more { color:#447afa; margin:20px auto; width:120px; text-align: center; display: block; }
+.show__more { color:#447afa; margin:20px auto; text-align: left; display: block; }
 
 .history__container { margin:0; padding:0; list-style:none; position:relative }
 .history__container:before { content:""; width:1px; height:100%; background:#cacaca; position:absolute; left:30px; top:0; }
@@ -2980,10 +2980,11 @@ border-radius:0px;
     display: block;
     position: relative;
     height:175px;
+    padding-bottom: 20px;
 }
 
 .custom__scrollbar.lg-padding {
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 .custom__scrollbar.lg-bar {
@@ -2991,7 +2992,7 @@ border-radius:0px;
 }
 
 .custom__scrollbar::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
   
 /* Track */
@@ -3001,7 +3002,7 @@ border-radius:0px;
    
 /* Handle */
 .custom__scrollbar::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #3dd0a1; 
 }
   
 /* Handle on hover */
