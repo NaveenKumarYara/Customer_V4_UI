@@ -707,10 +707,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   RequestAchivement(profile) {
     this.notify.CustomerId= this.customer.CustomerId;
     this.notify.JobId = this.jobid;
-    this.notify.FromUserId = this.customer.UserId;
+    this.notify.FromUserId = profile.UserId;
     this.notify.NotificationTypeId= 20;
     this.notify.ToUserId = profile.UserId; 
-    this.notify.Message = this.customer.FirstName +"_Requested Achievements";
+    this.notify.Message = this.customer.FirstName + "_Requested Achievements";
     this._service.PostService(this.notify,'IdentityAPI/api/InsertNotification')
      .subscribe(
      status => {
