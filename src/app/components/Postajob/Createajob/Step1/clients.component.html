@@ -38,7 +38,13 @@
      <form #eduForm="ngForm"> 
        <!-- (ngSubmit)="addQualification()" -->
     <div class="col-md-12 col-sm-12">
-        <label for="Clients" class="question">Which Client does this Job belongs to? <small>(Optional)</small></label>
+        <label for="Clients" class="question">Which Client does this Job belongs to? <small>(Optional)</small>
+          <a  href="javascript:void(0)"  class="tooltip__link">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <span class="custom__tooltip">
+              <span class="step__01">The specific company or organiization under which the position is applicable. </span>
+            </span>
+          </a></label>
         <!-- <ng-select class="custom-style" 
          [items]="clientsList | async" 
          bindLabel="ClientName"

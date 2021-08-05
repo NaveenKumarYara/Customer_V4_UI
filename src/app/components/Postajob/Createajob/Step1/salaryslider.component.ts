@@ -4,7 +4,8 @@ import { Salary } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
 @Component({
   selector: 'app-stepsalaryslider',
-  templateUrl: './salaryslider.component.html'
+  templateUrl: './salaryslider.component.html',
+  styleUrls: ["./salaryslider.component.css"]
 })
 export class StepSalarysliderComponent implements OnInit {
   salaryTypelist: any;
