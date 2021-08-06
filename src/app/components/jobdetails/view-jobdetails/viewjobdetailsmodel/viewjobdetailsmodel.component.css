@@ -440,8 +440,7 @@
 
 .icon-listing { padding:0 20px; margin:20px 0; }
 .icon-listing ul { text-align:center; margin:0; padding:0; list-style:none; }
-.icon-listing li { display:inline-block; margin:0 0 0 15px;  }
-.icon-listing li:first-child { margin:0; }
+.icon-listing li { display:inline-block; margin:0 15px;  }
 .icon-listing li .icon { width:49px; height:51px; background:url(../../../../../assets/images/revamp__detail__view/jdv-sprites.png) -84px -10px; display:block;  }
 .icon-listing li h4 { font-size:12px; color:#6e819e; margin:0 0; }
 .icon-listing .number  { width:49px; height:49px; display:block; font-size:30px; font-weight:700; color:#6e819e; line-height:52px; }
