@@ -20,6 +20,7 @@ import { MonthToYearPipe } from "./dashboard-recent-applications/Exp.pipe";
 import { RatingModule } from "ng-starrating";
 import { RemovePipe } from "./dashboard-recent-applications/removeduplicates.pipe";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
+import { TooltipModule } from "ng2-tooltip-directive";
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { DashboardRoutingModule } from "./dashboard-routing.module";
     ProgressBarModule,
     NgCircleProgressModule,
     DashboardRoutingModule,
+    TooltipModule
   ],
   providers: [DashboardService],
   declarations: [

@@ -1007,7 +1007,7 @@
                 profile?.IsConfirmed == null;
               else elseBlock
             "
-          >
+            tooltip="Start email Conversation with candidate." placement="top">
             <a
               href="javascript:void(0)"
               (click)="
@@ -1069,7 +1069,7 @@
           </li>
           <ng-template #elseBlock>
             <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
-              <li>
+              <li tooltip="Email not yet added." placement="left">
                 <a
                   href="javascript:void(0)"
                   (click)="
@@ -1131,7 +1131,7 @@
               </li>
             </ng-container>
             <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'">
-              <li>
+              <li tooltip="Start email Conversation with candidate." placement="left">
                 <a
                   href="javascript:void(0)"
                   (click)="
@@ -1195,7 +1195,7 @@
             </ng-container>
           </ng-template>
 
-          <li *ngIf="profile?.ResponseStatusId != 6">
+          <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Provide valuable feedback to candidate." placement="top">
             <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
             <a href="javascript:void(0)" (click)="callSkills(profile?.ProfileId, 4)">
               <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
@@ -1205,7 +1205,7 @@
               <img width="25" height="21" src="../../../../../assets/images/feedback.svg" />
             </a>
           </li>
-          <li *ngIf="profile?.ResponseStatusId === 6" class="disabled">
+          <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Provide valuable feedback to candidate." placement="left">
             <a href="javascript:void(0)" disable (click)="OpenRejectDialog(profile?.JobResponseId,
             profile?.ProfileId,
             profile?.Email,
@@ -1230,7 +1230,7 @@
                         </a>
                     </li>
                     <ng-template #loc> -->
-          <li>
+          <li tooltip="Share the candidate to team members." placement="top">
             <a
               href="javascript:void(0)"
               data-toggle="modal"
@@ -1246,7 +1246,7 @@
           </li>
           <!-- </ng-template> -->
           <!--Download the Profile Resume in Doc or PDF as per availibility. Show only one icon based on condition-->
-          <li>
+          <li tooltip="Resume can download here." placement="top">
             <!--Word doc-->
             <ng-container>
               <a
@@ -1288,8 +1288,27 @@
           </li>
 
           <!---->
-          <li class="dropup">
-            <a href="javascript:void(0)" data-toggle="dropdown">
+
+          <li class="dropup"  *ngIf="(profile?.ResponseStatusId === 13)||(profile?.ResponseStatusId === 14)">
+            <a href="javascript:void(0)" data-toggle="dropdown"  tooltip="Status cannot be moved when profile is in uploaded and Waiting for response." placement="left">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
+                <path
+                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
+                />
+              </svg>
+            </a>
+            <ul
+              role="menu"
+              class="dropdown-menu dropdown-menu-right"
+              *ngIf="jobStatus != 'Closed' && jobStatus != 'InActive'"
+            >
+              <!-- applied -->
+        
+         
+            </ul>
+          </li>
+          <li class="dropup" *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+            <a href="javascript:void(0)" data-toggle="dropdown" tooltip="Processing profile from one stage to another." placement="left">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
                 <path
                   d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"

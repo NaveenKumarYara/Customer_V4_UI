@@ -66,6 +66,7 @@ import { WithDrawndialogComponent } from './view-jobdetails/viewjobdetails-candi
 import { sendnotificationdialogComponent } from './view-jobdetails/viewjobdetails-candidate-profile/SendNotification/sendnotification.component';
 import { RouterModule } from '@angular/router';
 import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/SafeHtmlPipe.pipe';
+import { TooltipModule } from 'ng2-tooltip-directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -93,7 +94,8 @@ import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile
     MatSnackBarModule,FileUploadModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    TooltipModule
     // ,
     // ModalDialogModule.forRoot()
   ],
