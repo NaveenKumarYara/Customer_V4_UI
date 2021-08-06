@@ -189,7 +189,7 @@ export class FilterViewJobsComponent implements OnInit {
 
  calldata(uploaded,suggested,wishlist,invited,arytic,sortBy)
  {
-  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,6)
+  return this.jobdetailsservice.getJobDetailsProfileInfo(this.customerId, this.userId, this.jobid, this.statusid,0, '',0, '', '', this.uploaded,this.suggested,this.wishlist,this.invited,this.arytic,6,0)
   .subscribe(res => {
     this.jobdetailsprofiles = res;
     this.TotalCount = this.jobdetailsprofiles.TotalProfileCount;

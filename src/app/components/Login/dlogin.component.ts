@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { FormControl } from '@angular/forms';
 import { AppService } from '../../app.service';
 import { AlertService } from '../../shared/alerts/alerts.service';
 import {GetCandidateprofileComponent} from '../GetProfileDetails/GetProfile.component';
@@ -22,9 +22,11 @@ export class dLoginComponent {
   loginstyle(): void {
     this.loading = true;
   }
+  
   currentURL='';
   loginform: any;
   customerId:any;
+  myRecaptcha = new FormControl(false);
   companyLogo:any;
   DomainUrl:any;
   show : any = false;
@@ -37,6 +39,7 @@ export class dLoginComponent {
   cid:any;
   JobId:any;
   CId:any;
+  
   constructor( private dialog: MatDialog, private toastr:ToastsManager,private _vcr: ViewContainerRef,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService,private alertService : AlertService, private settingsService: SettingsService) {
         this.route.params.subscribe(params => {
@@ -71,6 +74,14 @@ export class dLoginComponent {
 //             return user;
 //         });
 // }
+
+onScriptLoad() {
+  console.log('Google reCAPTCHA loaded and is ready for use!')
+}
+
+onScriptError() {
+  console.log('Something went long when loading the Google reCAPTCHA')
+}
   SignUp()
   {
     //this.router.navigateByUrl('signup'); 
@@ -87,7 +98,7 @@ export class dLoginComponent {
   }
 
   login() {
-    if(!this.loginform.valid)
+    if(!this.loginform.valid && this.myRecaptcha.value === false)
     {
       this.loading = false;
       this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -96,13 +107,30 @@ export class dLoginComponent {
       }, 3000);
       this.loginform.reset();
     }
-    else
+    else if(!this.loginform.valid)
     {
-        this.appService.validateemail(this.loginform.value.Email)
+      this.loading = false;
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+      this.loginform.reset();
+    }
+    else if(this.myRecaptcha.value === false)
+    {
+      this.loading = false;
+      this.toastr.error('Please provide captcha!', 'Oops!');
+      setTimeout(() => {
+          this.toastr.dismissToast;
+      }, 3000);
+    }
+    else if(this.myRecaptcha.value === true)
+    {
+        this.appService.validateCheckemail(this.loginform.value.Email)
         .subscribe(
-        data => {         
-          this.result = data;
-          if(this.result.UserId>0&&this.result.CustomerId>0)
+        data2 => {         
+          this.result = data2;
+          if(data2!=5 && data2!=2)
           {
             
             this.appService.Login(this.loginform.value)
@@ -314,7 +342,16 @@ export class dLoginComponent {
             );       
           
           }  
-          else
+          if(data2===5 || data2===2)
+          {
+            this.loading = false;
+            this.toastr.warning('Email registered as Jobseeker please try to login as Jobseeker!', 'Oh no!');
+            setTimeout(() => {
+                this.toastr.dismissToast;
+            }, 3000);
+            this.loginform.reset
+          }
+         if(data2===0)
           {
             this.loading = false;
             this.toastr.error('Email Not Registered!', 'Oops!');
@@ -324,7 +361,7 @@ export class dLoginComponent {
             this.loginform.reset();
           }
           });
-      }      
+    }      
   }
   MissClear() {
     this.show= false;

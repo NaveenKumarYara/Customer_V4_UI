@@ -11,9 +11,9 @@
     <div class="form-row row">
       <div class="col-md-6 form-group skill-name">
         <label for="">Domain Name</label>
-        <ng-select class="custom-style" id="domainquestion" [items]="domains | async" placeholder="e.g. Telecom"
-          (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" [typeahead]="selecteddomaininput"
-          [hideSelected]="true" [loading]="domaintitleloading" [(ngModel)]="selecteddomainname" #DomainName="ngModel"
+        <ng-select class="custom-style" id="domainquestion" [items]="domainsnew" placeholder="Select Domain"
+          (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" 
+          [hideSelected]="true"  [(ngModel)]="selecteddomainname" #DomainName="ngModel"
           name="Domain" required [virtualScroll]="true">
         </ng-select>
         <small class="text-danger error1" *ngIf="DomainName.invalid && DomainName.touched && DomainName.dirty">Required.</small>
@@ -73,7 +73,7 @@
     <ul class="data-list">
       <li class="col-md-6 no-exp" *ngFor="let domain of domainlist; let i = index">
         <span class="name">{{domain.DomainName}}</span>
-        <span class="experience"> {{(domain.MinimumExperience) | number:'1.0-1' | skillmonths}} - {{(domain.MaximumExperience) | number:'1.0-1'| skillmonths}} Yrs</span>
+        <span class="experience"> {{(domain.MinimumExperience) | skillmonths}} - {{(domain.MaximumExperience) | skillmonths}} Yrs</span>
         <span class="close" (click)="deleteDomain(i)">&times;</span>
       </li>
     </ul>

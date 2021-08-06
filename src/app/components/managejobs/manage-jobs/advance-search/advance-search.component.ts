@@ -25,6 +25,7 @@ import { FormControl } from "@angular/forms";
 import { MatSelect, MatDialogRef } from "@angular/material";
 import { Cities } from "../../../Postajob/models/jobPostInfo";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
+import { JobActivity } from "../../models/JobActivity";
 declare var $: any;
 
 @Component({
@@ -335,7 +336,7 @@ export class AdvanceSearchComponent implements OnInit {
   }
 
   populateCities() {
-    this.appService.getCities("a").subscribe(
+    this.appService.getGoogleCities("a").subscribe(
       (data) => {
         this.cities = data;
         this.CityMainList = data;
@@ -373,8 +374,8 @@ export class AdvanceSearchComponent implements OnInit {
       var selectedlocations = "";
       this.SelectedCityList.forEach((element) => {
         if (selectedlocations.length == 0) {
-          selectedlocations = element.CityId.toString();
-        } else selectedlocations = selectedlocations.toString() + "," + element.CityId.toString();
+          selectedlocations = element.CityName;
+        } else selectedlocations = selectedlocations.toString() + "-" + element.CityName;
       });
       var clients = "";
       this.SelectedClientList.forEach((element) => {
@@ -710,12 +711,13 @@ export class AdvanceSearchComponent implements OnInit {
     }
   }
   changeLocation(CityId) {
+    debugger
     if (this.SelectedCityList.length == 0)
-      this.SelectedCityList.push(this.CityMainList.find((a) => a.CityId == CityId));
-    else if (this.SelectedCityList.find((a) => a.CityId == CityId) == null)
-      this.SelectedCityList.push(this.CityMainList.find((a) => a.CityId == CityId));
+      this.SelectedCityList.push(this.CityMainList.find((a) => a.CityName == CityId));
+    else if (this.SelectedCityList.find((a) => a.CityName == CityId) == null)
+      this.SelectedCityList.push(this.CityMainList.find((a) => a.CityName == CityId));
     else {
-      var index = this.SelectedCityList.indexOf(this.CityMainList.find((a) => a.CityId == CityId));
+      var index = this.SelectedCityList.indexOf(this.CityMainList.find((a) => a.CityName== CityId));
       this.SelectedCityList.splice(index, 1);
     }
   }
@@ -822,16 +824,21 @@ export class AdvanceSearchComponent implements OnInit {
         }
         if (res.locations != "") {
           this.isLocchecked = true;
-          const jobstatcity = res.locations.split(",");
-          this.appService.GetAllCities().subscribe((data) => {
-            jobstatcity.map((element) => {
-              this.cities = data;
-              this.banks = data;
-              this.CityMainList = data;
-              this.SelectedCityList.push(this.CityMainList.find((a) => a.CityId == +element));
-              this.bankMultiCtrl.setValue(this.SelectedCityList);
+          const jobstatcity = res.locations.split("-");
+          jobstatcity.forEach((e)=>{
+            this.appService.getGoogleCities(e).subscribe((data) => {
+                this.cities = data;
+                this.banks = data;
+                this.CityMainList = data;
+                if(e != undefined)
+                {
+                  this.SelectedCityList.push(this.CityMainList.find((a) => a.CityName == e));
+                  this.bankMultiCtrl.setValue(this.SelectedCityList);
+                }
+          
+              });
             });
-          });
+        
         }
 
         if (res.JobStatus != "") {
@@ -991,7 +998,7 @@ export class AdvanceSearchComponent implements OnInit {
     if (search == "") {
       search = "a";
     }
-    this.appService.getCities(search).subscribe((data) => {
+    this.appService.getGoogleCities(search).subscribe((data) => {
       this.cities = data;
       this.banks = data;
       this.CityMainList = data;

@@ -22,8 +22,8 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   @ViewChild('skill') skill: ElementRef;
   primaryjobskills: Jobskills[];
   secondaryjobskills: Jobskills[];
-  minexperience = 3;
-  maxexperience = 6;
+  minexperience:number;
+  maxexperience:number;
    maxexpval:any;
    minexpval:any;
   expYears: any = [];
@@ -143,15 +143,15 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
       if (check === false&&newskills.SkillName!=null) {
           this.appService.addJobSkill(newskills);
           this.selectedSkillName=undefined;
-          this.minexperience = 3;
-          this.maxexperience = 6;
+          this.minexperience = 0;
+          this.maxexperience = 0;
           newskills = new Jobskills();
           localStorage.removeItem('skill');
           this.form.reset();
       }
       this.selectedSkillName = '';
-      this.minexperience = 3;
-      this.maxexperience = 6;
+      this.minexperience = 0;
+      this.maxexperience = 0;
       localStorage.removeItem('skill');
      this.form.reset();
     } else {

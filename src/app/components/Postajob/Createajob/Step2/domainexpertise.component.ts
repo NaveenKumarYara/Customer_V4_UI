@@ -24,11 +24,12 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   domainlist: GetDomain[];
   // getDomainList: GetDomain[];
   domains: Observable<GetDomain[]>;
+  domainsnew : GetDomain[]=[];
   getDomain = new GetDomain ();
   domminval:any;
   dommaxval:any;
-  MinimumExperience = 3;
-  MaximumExperience = 6;
+  MinimumExperience :number;
+  MaximumExperience :number;
   addDomainList: PjDomain[];
   domainId: number;
   domaintitleloading = false;
@@ -125,8 +126,8 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
     // this.getDomain = new GetDomain();
     // this.selecteddomainname = '';
     this.domainForm.resetForm();
-    this.MaximumExperience = 6;
-    this.MinimumExperience = 3;
+    this.MaximumExperience = undefined;
+    this.MinimumExperience = undefined;
     this.getDomain = new GetDomain();
 }
   }
@@ -164,6 +165,7 @@ numberOnly(event): boolean {
 }
   ngOnInit() {
   this.getDomains();
+  this.getalldomain();
    //this.getExpYears() ;
     this.domainlist = this.appService.getDomainlist();
     this.subscription = this.appService.domainChanged
@@ -195,6 +197,14 @@ numberOnly(event): boolean {
         ))
       )
     );
+  }
+
+  getalldomain()
+  {
+    this.appService.getDomainDetails().subscribe(data=>
+      {
+        this.domainsnew = data;
+    })
   }
   minExperienceChangeStart(changeContext: ChangeContext): void {
      this.appService.updateMinExp(this.domminval);

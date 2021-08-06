@@ -214,5 +214,8 @@
   "Attachments":"${Profile_URL}/api/InsertProfileAttachments",
   "DeleteNote":"${Profile_URL}/api/DeleteNotes?",
   "GetgoogleApi":"${Profile_URL}/api/GetGoogleLocations?",
-  "GetProfileFeedback":"${Profile_URL}/api/GetProfileFeedback"
+  "GetProfileFeedback":"${Profile_URL}/api/GetProfileFeedback",
+  "UserRoleCheck":"${Identity_URL}/api/CheckEmailExist?",
+  "NewJobDetailsRedirect":"${CaMain_URL}/Ijobdetail/",
+  "GetJobCompleteness":"${Identity_URL}/api/GetJobCompletenessInfo?"
 }

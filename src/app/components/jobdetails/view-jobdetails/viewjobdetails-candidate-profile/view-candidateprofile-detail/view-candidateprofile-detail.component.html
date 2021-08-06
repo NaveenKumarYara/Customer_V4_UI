@@ -890,13 +890,15 @@
                     <div class="container__box">
                       <h4>Summary</h4>
                       <div class="info__box" *ngIf="exps.Description!=null||exps.Description!=''">
-                        <p  [innerHTML]="exps?.Description | slice:0:100">
-
-                        </p>
-                          <ng-container *ngIf="moreShow">  <p [innerHTML]="exps?.Description| slice:100:15000">
-                    
+                        <div class="custom__scrollbar">
+                          <p  [innerHTML]="exps?.Description | slice:0:100">
+  
                           </p>
-                          </ng-container>
+                            <ng-container *ngIf="moreShow">  <p [innerHTML]="exps?.Description| slice:100:15000">
+                      
+                            </p>
+                            </ng-container>
+                        </div>
                         <a href="javascript:void(0)" (click)="moreContent(i)" class="show__more">
                           <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
                         </a>
@@ -915,7 +917,7 @@
                               <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
                                <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
                                   <li>
-                                     <div class="card__box">
+                                     <div class="card__box custom__scrollbar xs-bar">
                                     {{k?.RoleDescription}}
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>

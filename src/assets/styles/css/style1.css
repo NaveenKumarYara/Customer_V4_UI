@@ -1,4 +1,3 @@
-@import url('job-posting.css');
 html, body {
 	height: 100%
 }
@@ -2138,14 +2137,13 @@ a.btn2:hover, .btn2:hover {
 .text-white {
 	color: white;
 }
-
-.p-rel {
+.p-rel{
 	position: relative;
 }
-
-.ptr {
-	top: 2px;
+.ptr{
+	top:2px;
 	right: 10px;
 }
 
 /* #custom css */
+

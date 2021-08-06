@@ -12,7 +12,9 @@ import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 import { jobImps } from '../../models/jobPostInfo';
 declare var $: any;
 declare var jQuery: any;
-
+import { DatepickerOptions } from 'ng2-datepicker';
+import * as frLocale from 'date-fns/locale/fr';
+import { getYear } from 'date-fns';
 @Component({
   selector: 'app-steps-step1-jobdetails',
   templateUrl: './Jobdetails.component.html',
@@ -25,6 +27,10 @@ export class JobdetailsComponent implements OnInit, AfterViewChecked {
   jobtitlelist: Observable<string[]>;
   showDate:boolean=false;
   Expiry:number=3;
+  Options: DatepickerOptions = {
+    minYear: 2021,
+    minDate: new Date(Date.now())
+  };
   //ExpiryDate:Date;
   ExpiryDate: Date;
     settings = {
@@ -136,6 +142,7 @@ jobimplist:jobImps[]=[];
   
     changeMethod(val)
     {
+      debugger
       if(val!=null)
       this.ExpiryDate=val;
       this.appService.updateJobDueDate(this.ExpiryDate);   

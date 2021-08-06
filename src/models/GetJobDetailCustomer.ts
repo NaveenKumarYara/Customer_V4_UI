@@ -10,13 +10,13 @@ import { WorkAuthorization } from './workAuthorization';
 
 export class GetJobDetailCustomer {
     JobInfo: JobInfo;
-    JobLocation: JobLocations[];
-    JobRequiredDomain: GetDomain[];
-    JobRequiredSkills: Jobskills [];
+    JobLocation: JobLocations[]=[];
+    JobRequiredDomain: GetDomain[]=[];
+    JobRequiredSkills: Jobskills []=[];
     JobResponsibility: EditRoles [];
-    EducationDetails: Qualifications [];
-    JobDepartments: DepartmentModel [];
-    RecruitingMember:RecrutingTeam [];
+    EducationDetails: Qualifications []=[];
+    JobDepartments: DepartmentModel []=[];
+    RecruitingMember:RecrutingTeam []=[];
     TechnicalTeam: any ;
     CustomerJobIndustries:any=[];
     CustomerJobPositionType:any=[];
@@ -79,9 +79,9 @@ export class JobInfo {
     InterviewType: string;
     HiringProcessId: number;
     HiringManagerId: number;
-    ReportingManager: ReportingTeam[];
-    ImmigrationForJob:JobImmigrationGet[];
-    JobWorkAuthorization:WorkAuthorization[];
+    ReportingManager: ReportingTeam[]=[];
+    ImmigrationForJob:JobImmigrationGet[]=[];
+    JobWorkAuthorization:WorkAuthorization[]=[];
     IsActive: boolean;
     StatusId: number;
     FirstName: string;

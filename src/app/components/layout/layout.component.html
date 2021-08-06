@@ -1,19 +1,135 @@
-<div id="wrapper">
-
-   <app-topbar (settingsButtonClicked)="onSettingsButtonClicked()"
-   (mobileMenuButtonClicked)="onToggleMobileMenu()"></app-topbar>
-
-   <app-sidebar [isCondensed]="isCondensed"></app-sidebar>
-
-   <div class="content-page">
-       <div class="content">
-           <!-- content -->
-           <router-outlet></router-outlet>
-       </div>
-
-       <!-- footer -->
-       <app-footer></app-footer>
-   </div>
-</div>
-
-<app-rightsidebar></app-rightsidebar>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Arytic</title>
+      <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/images/favicon-32x32.png">
+      <!-- GOOGLE WEB FONT -->
+      <link href="../../../assets/styles/css/style1.css" rel="stylesheet">
+      <link rel="stylesheet" href="../../../assets/styles/css/bootstrap.min.css">
+      <!-- YOUR CUSTOM CSS -->
+   </head>
+   <body class="signpage">
+      <div id="loader_form">
+         <div data-loader="circle-side-2"></div>
+      </div>
+      <!-- /loader_form -->
+      <div class="container-fluid full-height">
+         <div class="row row-height">
+            <!-- /content-right-->
+            <div class="col-lg-6 content-left">
+               <div class="content-left-wrapper">
+                  <!-- <a href="index-2.html" id="logo"><img src="img/logo.png" alt="" width="49" height="35"></a> -->
+                  <!-- Seeking Jobs Signup -->
+                  <div class="jobs_div" style="display:none">
+                     <div id="top-wizard">
+                        <div id="progressbar"></div>
+                     </div>
+                     <!-- /top-wizard -->
+                     <form id="wrapped" method="POST">
+                        <input id="website" name="website" type="text" value="">
+                        <!-- Leave for security protection, read docs for details -->
+                        <div id="Jobs_sign" style="color:#000;">
+                           <div class="logo">
+                              <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                           </div>
+                        
+                        </div>
+                        <!-- login -->
+                        <div id="Jobs_login">
+                           <div class="logo">
+                              <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                           </div>
+                       
+                        </div>
+                        <!-- login -->
+                        <!-- job id _forgot -->
+                       
+                        <!-- job id _forgot -->
+                        <!-- /middle-wizard -->
+                     </form>
+                  </div>
+                  <!-- #Seeking Jobs Signup -->
+                  <!-- Hiring -->
+                  <div class="jobs_hide">
+                     <h2>I'm here for Hiring</h2>
+                     <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="" class="img-fluid"></figure>
+                     <div class="recrit_links">
+                        <a  class="btn_1 rounded"  href="javascript:void(0)" (click)="SignUp()">Sign up as Recruiter</a>
+                        <a href="javascript:void(0)" class="btn_1 rounded mobile_btn">Start Now!</a>
+                        <h6 class="text-white">Already have an account? <a  href="javascript:void(0)" (click)="Login()" class="text-white">Login here</a></h6>
+                     </div>
+                  </div>
+                  <!-- #Hiring -->
+               </div>
+               <!-- /content-left-wrapper -->
+            </div>
+            <!-- Seeking Job -->
+            <div class="col-lg-6 content-right p-0 bg_6cccfd recrit_hide" id="start">
+               <div class="content-left-wrapper">
+                  <div>
+                     <h2>I'm here Seeking Job</h2>
+                     <figure><img src="../../../assets/images/dream-job.svg" width="400" alt="" class="img-fluid"></figure>
+                     <div class="job_links">
+                        <a  class="btn_1 rounded"  href="http://demo.tenendus.com:1070">Sign up as a Job Seeker</a>
+                        <a href="javascript:void(0)" class="btn_1 rounded mobile_btn">Start Now!</a>
+                        <h6 class="text-white">Already have an account? <a   href="http://demo.tenendus.com:1070/login" class="text-white">Login here</a></h6>
+                     </div>
+                  </div>
+               </div>
+               <!-- /content-left-wrapper -->
+            </div>
+            <!-- #Seeking Job -->
+            <!-- Hiring Signup -->
+            <div class="col-lg-6 content-right recrit_div" style="display:none" id="start">
+               <div id="wizard_container">
+                  <div id="top-wizard">
+                     <div id="progressbar"></div>
+                  </div>
+                  <!-- <a href="index-2.html" id="logo"><img src="img/arytic-logo-contrast.png" alt="" width="49" height="35"></a> -->
+                  <!-- /top-wizard -->
+                  <form id="wrapped" method="POST">
+                     <input id="website" name="website" type="text" value="">
+                     <!-- Leave for security protection, read docs for details -->
+                     <div id="hiring_sign">
+                        <div class="logo">
+                           <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                        </div>
+                    
+                     </div>
+                     <!-- login -->
+                     <div id="hiring_login">
+                        <div class="logo">
+                           <a href="javascript:void(0)"><img src="../../../assets/images/arytic-logo-contrast.png" alt="arytic"></a>
+                        </div>
+                  
+                     </div>
+                     <!-- login -->
+                     <!-- hiring id _forgot -->
+                   
+                     <!-- hiring id _forgot -->
+                     <!-- /middle-wizard -->
+                     <!-- /bottom-wizard -->
+                  </form>
+               </div>
+               <!-- /Wizard container -->
+            </div>
+            <!-- #Hiring Signup -->
+            <!-- /content-right-->
+            <!-- /content-left -->
+         </div>
+         <!-- /row-->
+      </div>
+      <!-- /container-fluid -->
+      <div class="sign_logo">
+         <img src="../../../assets/images/arytic-logo-2019.png" alt="arytic" />
+      </div>
+      <!-- <div class="logo"> -->
+      <!-- <a href="#" ><img src="img/arytic-logo-contrast.png" alt="arytic"></a> -->
+      <!-- </div> -->
+      <!-- COMMON SCRIPTS -->
+     
+   </body>
+</html>

@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import './models/jobdetailsbasicinfo';
-import { JobdetailsBasicInfo } from './models/jobdetailsbasicinfo';
+import { JobdetailsBasicInfo,JobCompletenessInfo } from './models/jobdetailsbasicinfo';
 import { Jobstatistics } from './models/jobstatistics';
 import { JobdetailsProfile, MatchingParameterDetails } from './models/jobdetailsprofile';
 import { GetJobDetailCustomer } from '../../../models/GetJobDetailCustomer';
@@ -128,6 +128,15 @@ export class JobdetailsService {
     const url = this.settingsService.settings.JobdetailsBasicInfoEndpoint +
     'customerId=' + customerId + '&jobId=' + jobId;
     return this.http.get<JobdetailsBasicInfo>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetJobCompleteness(jobId: number): Observable<JobCompletenessInfo> {
+    const url = this.settingsService.settings.GetJobCompleteness + 'jobId=' + jobId;
+    return this.http.get<JobCompletenessInfo>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
@@ -261,10 +270,14 @@ export class JobdetailsService {
       );
   }
 
-  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string, uploaded: number, suggested: number, wishlist: number, invited:number,arytic:number,noOfRows: number= 6):
+  getJobDetailsProfileInfo(customerId: number, userId: number, jobid: number, statusid: number, sortBy: number= 1, searchString: string, experience: number, location: string, domainName: string, uploaded: number, suggested: number, wishlist: number, invited:number,arytic:number,noOfRows: number= 6,FStatus:number):
   Observable<JobdetailsProfile> {
    const url = this.settingsService.settings.JobdetailsProfileEndpoint + 'customerId=' + customerId + '&userId=' + userId +
-     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString + '&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&uploaded=' + uploaded  + '&suggested=' + suggested + '&wishlist=' + wishlist +  '&invited=' + invited + '&arytic='+ arytic+ '&pageNumber=1&noOfRows=' + noOfRows;
+     '&jobId=' + jobid + '&statusId=' + statusid + '&sortBy=' + sortBy + '&searchString=' + searchString + '&experience=' + experience + '&location=' + location + '&domainName=' + domainName + '&uploaded=' + uploaded  + '&suggested=' + suggested + '&wishlist=' + wishlist +  '&invited=' + invited + '&arytic='+ arytic+ '&pageNumber=1&noOfRows=' + noOfRows +'&Fstatus='+FStatus
+     
+     
+     
+     ;
      return this.http.get<JobdetailsProfile>(url)
      .debounceTime(1000)
      .catch(
