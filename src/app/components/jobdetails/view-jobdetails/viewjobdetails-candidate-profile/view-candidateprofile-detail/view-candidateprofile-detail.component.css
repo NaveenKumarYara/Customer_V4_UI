@@ -2976,6 +2976,7 @@ border-radius:0px;
 
 
 .custom__scrollbar {
+    overflow-x: hidden;
     overflow-y: auto;
     display: block;
     position: relative;
@@ -2990,6 +2991,12 @@ border-radius:0px;
 .custom__scrollbar.lg-bar {
     height:500px;
 }
+
+.custom__scrollbar.xs-bar {
+    height:90px !important;
+    font-size: 13px;
+}
+
 
 .custom__scrollbar::-webkit-scrollbar {
     width: 5px;
