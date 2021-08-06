@@ -460,6 +460,7 @@
 .jdv-listing .jdv-skills .master .col-container { border-left-color:#448afa; }
 .jdv-skills { padding:20px; }
 .jdv-skills .scrollbar-container { height:120px; overflow: hidden; overflow-y: auto; } 
+.jdv-skills .scrollbar-container-carousel { height:120px; overflow: hidden;}
 .jdv-listing .jdv-skills .col-sm-4 { padding: 0 7px; margin: 7px 0; }
 .jdv-listing .row { margin:0 -7px; }
 
@@ -954,7 +955,7 @@
 }
 .slidingVertical {
 height: 70px;
-top: -30px;
+top: -15px;
 position: relative;
 overflow: hidden;
 }
@@ -1106,4 +1107,16 @@ overflow: hidden;
       opacity: 0;
     }
   }
-  
+  .border-top{border-top: 1px solid #eee;}
+  .carousel-control.right.jdv-carousel-arrow, .carousel-control.left.jdv-carousel-arrow{background: transparent;}
+  .jdv-carousel-arrow .glyphicon.glyphicon-chevron-right{
+    top: 22%;
+    color: darkslategrey;
+    right: 10px;
+  } 
+  .jdv-carousel-arrow .glyphicon.glyphicon-chevron-left{
+    top: 22%;
+    color: darkslategrey;
+    left: 10px;
+  }
+  .margin-top-sml{margin-top: 10px;}
