@@ -434,16 +434,15 @@
 .jdv-icon-map { width:15px; height:18px; background-position:-9px -11px; }
 .jdv-icon-work { width:22px; height:17px; background-position:-33px -11px; }
 .jdv-icon-date { width:17px; height:17px; background-position:-63px -11px; }
-.jdv-icon-ribbon { width:55px; height:55px; background-position:-201px -10px; }
-.jdv-icon-auth { width:55px; height:55px; background-position:-84px -10px; }
-.jdv-icon-status { width:55px; height:55px; background-position:-140px -10px; }
+.jdv-icon-ribbon { width:55px; height:55px; background-position:-201px -10px; margin: 0 auto; }
+.jdv-icon-auth { width:55px; height:55px; background-position:-84px -10px; margin: 0 auto; }
+.jdv-icon-status { width:55px; height:55px; background-position:-140px -10px;margin: 0 auto; }
 
 .icon-listing { padding:0 20px; margin:20px 0; }
 .icon-listing ul { text-align:center; margin:0; padding:0; list-style:none; }
-.icon-listing li { display:inline-block; margin:0 0 0 8px;  }
-.icon-listing li:first-child { margin:0; }
+.icon-listing li { display:inline-block; margin:0 15px;  }
 .icon-listing li .icon { width:49px; height:51px; background:url(../../../../../assets/images/revamp__detail__view/jdv-sprites.png) -84px -10px; display:block;  }
-.icon-listing li h4 { font-size:12px; color:#6e819e; margin:8px 0 0; }
+.icon-listing li h4 { font-size:12px; color:#6e819e; margin:0 0; }
 .icon-listing .number  { width:49px; height:49px; display:block; font-size:30px; font-weight:700; color:#6e819e; line-height:52px; }
 
 .job-leftcard .two-grid-icon { padding:40px 0; }
