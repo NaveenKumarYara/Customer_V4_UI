@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-#{brandedurl}#
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.org/client-max-body-size: "50m"
+spec:
+ tls:
+  - hosts:
+    - #{brandedurl}#
+
+    secretName: default-server-secret
+ rules:
+        
+  - host: #{brandedurl}#
+    http:
+     paths:
+     
+      - backend:
+          serviceName: customer-svc-prod
+          servicePort: 80
