@@ -32,4 +32,9 @@ export class Profile {
   public Location: string;
   public FromYear: number;
   public ToYear: number;
+  public CultureFit: number;
+  public JobFit: number;
+  public PersonalFit: number;
+  public SkillFit: number;
+  public TeamFit: number;
 }

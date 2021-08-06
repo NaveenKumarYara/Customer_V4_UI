@@ -68,10 +68,10 @@ newcategory;
 categories:any=[];
 KeyResponses:any=[];
 Industries:any=[];
-minExperience:number=3;
-maxExperience:number=6;
-MinimumExperience = 3;
-MaximumExperience = 6;
+minExperience:number;
+maxExperience:number;
+MinimumExperience:number;
+MaximumExperience:number;
 jobtitlelist:any=[];
 IndustryId:any;
 Industry:any;
@@ -112,6 +112,7 @@ NewIndustry(val)
         this.IndustryId = data;
         this.Industry = val;
         this.appService.updateJobIndustry(this.Industry);
+        this.appService.updateJobIndustryId(this.IndustryId);
       }
     })
 }
@@ -128,6 +129,7 @@ NewPosition(val)
         this.DepartmentId = data;
         this.Department = val;
         this.appService.updateJobPositionType(this.Department);
+        this.appService.updateJobPositionTypeId(this.DepartmentId);
       }
     })
 }
@@ -144,6 +146,7 @@ NewCategory(val)
         this.CategoryId = data;
         this.Category = val;
         this.appService.updateJobCategoryNew(this.Category);
+        this.appService.updateJobCategoryNewId(this.CategoryId);
       }
     })
 }
@@ -158,7 +161,8 @@ NewJobTitle(val)
       {
         this.TLoading = false;
         this.TitleId = data;
-        this.Title = val;
+        this.Title = val;       
+        this.appService.updateJobtitleId(this.TitleId);
         this.appService.updateJobtitle(this.Title);
       }
     })
@@ -255,11 +259,33 @@ NewKeyResponse(val)
 
   updatePostionType(val)
   {
+    if(val === undefined)
+    {
+      this.Department = undefined;
+      this.DepartmentId = null;
+      this.Category = undefined;
+      this.CategoryId = null;
+      this.Title = undefined;
+      this.TitleId = null;
+      this.keyslist = [];
+      this.SelectKey=undefined;
+      this.roleForm.resetForm();
+      this.minExperience = undefined;
+      this.maxExperience = undefined;
+      this.MaximumExperience = undefined;
+      this.MinimumExperience = undefined;
+      this.getDomain = new GetKeyRole();
+      this.addkeyList = [];
+      this.GetCustomerCategory('0');
+    }
+    else
+    {
     this.DepartmentId = val.PositionId.toString();
     this.Department = val.Code;
     this.appService.updateJobPositionType(this.Department);
     this.appService.updateJobPositionTypeId(this.DepartmentId);
     this.GetCustomerCategory(this.DepartmentId);
+    }
   }
 
   updateJobImp() {
@@ -275,12 +301,38 @@ NewKeyResponse(val)
   });
   }
 
-  updateJobIndustry(val) { 
-    this.Industry = val.Code;
-    this.IndustryId = val.IndustryId.toString();
-    this.appService.updateJobIndustry(this.Industry);
-    this.appService.updateJobIndustryId(this.IndustryId);
-    this.GetCustomerPosition(this.IndustryId);
+  updateJobIndustry(val) {
+    if(val === undefined)
+    {
+      this.Industry = undefined;
+      this.IndustryId = null;
+      this.Department = undefined;
+      this.DepartmentId = null;
+      this.Category = undefined;
+      this.CategoryId = null;
+      this.Title = undefined;
+      this.TitleId = null;
+      this.keyslist = [];
+      this.SelectKey=undefined;
+      this.roleForm.resetForm();
+      this.minExperience = undefined;
+      this.maxExperience = undefined;
+      this.MaximumExperience = undefined;
+      this.MinimumExperience = undefined;
+      this.getDomain = new GetKeyRole();
+      this.addkeyList = [];
+      this.GetCustomerPosition('0');
+    }
+    else
+    {
+      this.Industry = val.Code;
+      this.IndustryId = val.IndustryId.toString();
+      this.appService.updateJobIndustry(this.Industry);
+      this.appService.updateJobIndustryId(this.IndustryId);
+      this.GetCustomerPosition(this.IndustryId);
+    }
+
+
   }
 
  GetCustomerIndustry()
@@ -330,11 +382,27 @@ NewKeyResponse(val)
     this.appService.currentjobImp.subscribe(x=>this.jobPriority=x)
     this.appService.currentminExp.subscribe(x => {
       let val = x/12;
-      this.minExperience = Number(val.toFixed(1));
+      if(val == 0)
+      {
+        this.minExperience = undefined;
+      }
+      if(val > 0)
+      {
+        this.minExperience = Number(val.toFixed(1));
+      }
+
     });
    this.appService.currentmaxExp.subscribe(y => {
       let value = y/12;
-      this.maxExperience = Number(value.toFixed(1));
+      if(value == 0)
+      {
+        this.maxExperience = undefined;
+      }
+      if(value > 0)
+      {
+        this.maxExperience = Number(value.toFixed(1));
+      }
+      
    } );
     this.keyslist = this.appService.getKeyRoleList();
    
@@ -500,7 +568,6 @@ domainminCalculation(exp)
 numberOnly(event): boolean {
   const charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode !=46 ) {
-    debugger
     return false;
   }
   return true;
@@ -546,11 +613,31 @@ GetKeyRespones(Id)
 
 updateJobCategory(val)
 {
+  if(val === undefined)
+  {
+    this.Category = undefined;
+    this.CategoryId = null;
+    this.Title = undefined;
+    this.TitleId = null;
+    this.keyslist = [];
+    this.SelectKey=undefined;
+    this.roleForm.resetForm();
+    this.minExperience = undefined;
+    this.maxExperience = undefined;
+    this.MaximumExperience = undefined;
+    this.MinimumExperience = undefined;
+    this.getDomain = new GetKeyRole();
+    this.addkeyList = [];
+    this.GetCustomerTitles('0');
+  }
+  else
+  {
   this.CategoryId = val.CategoryId.toString();
   this.Category = val.Code;
   this.GetCustomerTitles(this.CategoryId);
   this.appService.updateJobCategoryNew(this.Category);
   this.appService.updateJobCategoryNewId(this.CategoryId);
+  }
 }
 
 public addkeyRole() {
@@ -566,7 +653,6 @@ public addkeyRole() {
     this.MinimumExperience = this.domminval;
 
    }
-   debugger
    this.getDomain.CustomerKeyMinExperienceId =  this.MinimumExperience;  
    this.getDomain.CustomerKeyMaxExperienceId =  this.MaximumExperience;
    
@@ -595,6 +681,14 @@ public addkeyRole() {
           }, 3000);
           return false;
      }
+     if(this.getDomain.CustomerKeyMinExperienceId == 0 || Number(this.MinimumExperience) == 0)
+     {
+     this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
+     setTimeout(() => {
+         this.toastr.dismissToast;
+     }, 3000);
+      return false;
+     }
     else
     {
       if(this.getDomain.CustomerKeyResponsebility > 0 && this.getDomain.CustomerKeyMinExperienceId != 0)
@@ -603,18 +697,11 @@ public addkeyRole() {
       this.appService.addKeyRole(this.getDomain);
       this.SelectKey=undefined;
       this.roleForm.resetForm();
-      this.MaximumExperience = 6;
-      this.MinimumExperience = 3;
+      this.MaximumExperience = undefined;
+      this.MinimumExperience = undefined;
       this.getDomain = new GetKeyRole();
       }
-      if(this.getDomain.CustomerKeyMinExperienceId == 0 || Number(this.MinimumExperience) == 0)
-      {
-      this.toastr.error('Maximum experience should be greater than 0!', 'Oops!');
-      setTimeout(() => {
-          this.toastr.dismissToast;
-      }, 3000);
-       return false;
-      }
+     
     }
 
 }
@@ -623,11 +710,29 @@ public addkeyRole() {
 
 
   updateJobTitle(val) {
+    if(val === undefined)
+    {
+      this.Title = undefined;
+      this.TitleId = null;
+      this.keyslist = [];
+      this.SelectKey=undefined;
+      this.roleForm.resetForm();
+      this.minExperience = undefined;
+      this.maxExperience = undefined;
+      this.MaximumExperience = undefined;
+      this.MinimumExperience = undefined;
+      this.getDomain = new GetKeyRole();
+      this.addkeyList = [];
+      this.GetKeyRespones('0');
+    }
+    else
+    {
     this.TitleId = val.RoleId.toString();
     this.Title = val.Code;
     this.GetKeyRespones(this.TitleId);
     this.appService.updateJobtitleId(this.TitleId);
     this.appService.updateJobtitle(this.Title);
+    }
   }
 
 populatedescriptioncheck() {

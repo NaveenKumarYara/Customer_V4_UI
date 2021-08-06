@@ -19,7 +19,7 @@ export class PartnerComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
   //@Input() getcompanycertification: GetCompanyCertification;
   //@Input() getcompanyachivements: GetCompanyAchievement;
-  getcompanypartner:GetCompanyPartner[];
+  getcompanypartner:GetCompanyPartner[]=[];
   customer: any;
   customerId: any;
   imageSrc: string;

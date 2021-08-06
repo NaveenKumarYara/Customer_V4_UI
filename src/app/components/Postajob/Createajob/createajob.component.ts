@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, HostListener ,AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Inject, Input, HostListener ,AfterViewChecked,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { GetJobDetailCustomer, ReportingTeam, RecrutingTeam } from '../../../../models/GetJobDetailCustomer';
@@ -73,7 +73,7 @@ editMode: string;
 @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
       event.returnValue = false;
 }
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private cdRef : ChangeDetectorRef,
     private router: Router, private jobdetailsservice: JobdetailsService, private appService: AppService) {
      // this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
      this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -98,6 +98,7 @@ editMode: string;
   }
 
   ngOnInit() {
+    this.val = localStorage.getItem('Item') != null ? localStorage.getItem('Item'): "true";
     // localStorage.getItem('jobId');
     // this.jobId=1000163;
   //  if (this.jobId != null) {
@@ -105,45 +106,46 @@ editMode: string;
   //  }
 //Post a job fixed buttons script09-06-2020
   
-  $(window).scroll(function(event) {
-    function footer()
-      {
-          var scroll = $(window).scrollTop(); 
-          if(scroll < 800)
-          { 
-              $(".poj-footer").fadeIn("slow").addClass("show");
-          }
+  // $(window).scroll(function(event) {
+  //   function footer()
+  //     {
+  //         var scroll = $(window).scrollTop(); 
+  //         if(scroll < 800)
+  //         { 
+  //             $(".poj-footer").fadeIn("slow").addClass("show");
+  //         }
         
-          else
-          {
-              $(".poj-footer").fadeOut("slow").removeClass("show");
-          }
+  //         else
+  //         {
+  //             $(".poj-footer").fadeOut("slow").removeClass("show");
+  //         }
           
-          clearTimeout($.data(this, 'scrollTimer'));
-          $.data(this, 'scrollTimer', setTimeout(function() {
-              if ($('.poj-footer').is(':hover')) {
-              footer();
-          }
-              else
-              {
-                $(".poj-footer").fadeOut("slow");
-              }
-      }, 2000));
-      }
-      footer();
-  });
+  //         clearTimeout($.data(this, 'scrollTimer'));
+  //         $.data(this, 'scrollTimer', setTimeout(function() {
+  //             if ($('.poj-footer').is(':hover')) {
+  //             footer();
+  //         }
+  //             else
+  //             {
+  //               $(".poj-footer").fadeOut("slow");
+  //             }
+  //     }, 2000));
+  //     }
+  //     footer();
+  // });
   
 
   }
   ngAfterViewChecked() {
     if(this.val == "true")
     {
-      this.editMode = null;
+     this.editMode = this.val;
     }
     else if (this.val == "false")
     {
-      this.editMode = localStorage.getItem('EditMode');
+      this.editMode =this.val;
     }
+    this.cdRef.detectChanges();
   }
   // populatePersonType(jobid) {
 

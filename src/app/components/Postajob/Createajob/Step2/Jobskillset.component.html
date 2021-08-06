@@ -97,8 +97,8 @@
                     <span title="{{primaryjobskill.SkillName}}"
                         class="name">{{ add3Dots(primaryjobskill.SkillName,25) }}</span>
                     <span class="experience" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
-                        {{(primaryjobskill.MinimumExp) | number:'1.0-1' | skillmonths}} -
-                        {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
+                        {{(primaryjobskill.MinimumExp) | skillmonths}} -
+                        {{(primaryjobskill.MaximumExp)  | skillmonths}} Yrs</span>
                     <ng-template #noPrimaryExperience>
                         <span class="experience"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
                             Yrs</span>

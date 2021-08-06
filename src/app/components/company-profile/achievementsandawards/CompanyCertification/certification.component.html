@@ -4,7 +4,7 @@
     <span class="add add--green rounded">+</span>
     <!-- <span>Add</span> -->
   </a>
-  <span *ngIf="getcompanycertification.length==0">
+  <span *ngIf="getcompanycertification?.length===0">
     Add Company Certifications
   </span>
 </div>
@@ -45,7 +45,7 @@
     </li>
   </ul>
      <!--Empty Data Placeholder-->
- <div class="hint-text text-center" *ngIf="getcompanycertification.length==0">
+ <div class="hint-text text-center" *ngIf="getcompanycertification?.length===0">
   <svg xmlns="http://www.w3.org/2000/svg" width="24.5" height="21.7">
     <g>
       <path class="st0" d="M18.5 16c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"></path>

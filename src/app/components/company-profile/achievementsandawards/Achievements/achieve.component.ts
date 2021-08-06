@@ -17,7 +17,7 @@ export class AchievementsComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
   //@Input() getcompanycertification: GetCompanyCertification;
   //@Input() getcompanyachivements: GetCompanyAchievement;
-  getcompanyachivements:GetCompanyAchievement[];
+  getcompanyachivements:GetCompanyAchievement[]=[];
   customer: any;
   customerId: any;
   imageSrc: string;

@@ -2085,3 +2085,8 @@ textarea {
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
 } */
+.revamp__arytic__fit img { max-width:100%; height:auto;  }
+.revamp__arytic__fit .bottom__container { border-top:1px solid #ebebeb; margin:0 -28px; }
+.revamp__arytic__fit .bottom__container .row { margin:0; padding:14px 20px 0; }
+.revamp__arytic__fit  .col-sm-4 { padding:0; text-align:center;  }
+.revamp__arytic__fit  .col-sm-4 h5 { font-size:13px; padding:0 7px; color:#6e819f; font-weight: 400; margin:0; }

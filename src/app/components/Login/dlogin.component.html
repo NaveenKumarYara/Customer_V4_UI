@@ -34,7 +34,7 @@
                   </div>
                   <div class="step animated slideInRight" style="text-align:left">
                      <h2 class="main_question">
-                        Welcome <span class="sl-text-show hidden">Job Seeker</span>!!! <br
+                        Welcome <span class="sl-text-show hidden">Hiring Leader</span>!!! <br
                            class="sl-text-show hidden" />Login here.
                      </h2>
                      <div *ngIf="show" class="alert alert-danger">
@@ -59,6 +59,10 @@
                                        account?</a></span></small>
                            </div>
                            <div class="spt-2">
+
+                              <recaptcha
+                              [formControl]="myRecaptcha"
+                            ></recaptcha>
                               <!-- <button type="submit" class="btn2 pull-right">Login </button> -->
                               <!--Button loader style-->
                               <button type="submit" class="btn2 pull-right" [class.spinner]="loading"

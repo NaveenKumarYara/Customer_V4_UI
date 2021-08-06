@@ -18,10 +18,10 @@ declare var $: any;
   providers: [AppService]
 })
 export class SpecialitiesComponent implements OnInit {
-   @Input() companyspecialities : CompanySpecialities[];
-   @Input() getcompanytechnology : GetCompanyTechnology[];
-   @Input() getCustomerDepartments: GetCustomerDepartments[];
-   @Input() getCustomerClients:GetCustomerClients[];
+   @Input() companyspecialities : CompanySpecialities[]=[];
+   @Input() getcompanytechnology : GetCompanyTechnology[]=[];
+   @Input() getCustomerDepartments: GetCustomerDepartments[]=[];
+   @Input() getCustomerClients:GetCustomerClients[]=[];
    customer : any;
    customerId:any;
    userId:any;

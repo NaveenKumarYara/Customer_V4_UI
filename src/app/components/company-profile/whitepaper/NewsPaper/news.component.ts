@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit {
   //@Input() getcompanypertner:GetCompanyPartner;
   //@Input() getcompanycertification: GetCompanyCertification;
   //@Input() getcompanyachivements: GetCompanyAchievement;
-  getcompanynewsinfo: GetCompanyNewsInfo[];
+  getcompanynewsinfo: GetCompanyNewsInfo[]=[];
   customer: any;
   customerId: any;
   imageSrc: string;

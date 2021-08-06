@@ -17,3 +17,26 @@ export class JobdetailsBasicInfo {
   public IsOpen: number;
   public JobLocations: JobLocations;
 }
+
+export class JobCompletenessInfo
+    {
+        JobCompleteness :number
+        Industry :number
+        Title :number
+        Experience :number
+        Keyresponses :number
+        JobDomain :number
+        JobDesc :number
+        JobPriority :number
+        Skill :number
+        OptionalSkill :number
+        SoftSkill :number
+        Employment :number
+        WorkAuthorise :number
+        Qualification :number
+        JobLocation :number
+        JobAssigned :number
+        Video :number
+        Teamfit :number
+    }
+
