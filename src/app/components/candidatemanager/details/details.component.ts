@@ -11,11 +11,20 @@ import { error } from 'util';
 export class DetailsComponent implements OnInit {
     currentView: string = 'Grid';
     showFilterNavBar: boolean = false;
+    customer: any = null;
+    customerId: any = null;
+    userId: any = null;
+    candidates: any[] = [];
+    candidatesLoading: boolean = false;
 
     constructor(private appService: AppService) { }
 
     ngOnInit() {
-        this.getFilterData('JobType');
+        this.customer = JSON.parse(sessionStorage.getItem('userData'));
+        this.customerId = this.customer.CustomerId;
+        this.userId = this.customer.UserId;
+        //this.getFilterData('JobType');
+        this.getCandidates();
     }
 
     changeView(type) {
@@ -33,6 +42,27 @@ export class DetailsComponent implements OnInit {
             },
             error => {
                 console.log('Error occurred!');
+            });
+    }
+
+    getCandidates() {
+        this.candidatesLoading = true;
+        this.appService.getCandidates(this.customerId, this.userId).subscribe(
+            (res: any) => {
+                if (res != null) {
+                    if (res.length > 0)
+                        this.candidates = res;
+                    else
+                        this.candidates = [];
+                }
+                else
+                    this.candidates = [];
+                this.candidatesLoading = false;
+                console.log(res);
+            },
+            error => {
+                console.log('Error occurred!');
+                this.candidatesLoading = false;
             });
     }
 }
