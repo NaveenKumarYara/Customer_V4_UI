@@ -43,9 +43,5 @@ Thumbs.db
 /.vs/tenendusag/v15/.suo
 /.vs/ProjectSettings.json
 /.vs/config/applicationhost.config
-<<<<<<< HEAD
 /.vs
 /obj
-=======
-obj/Debug/netcoreapp2.0/.NETCoreApp,Version=v2.0.AssemblyAttributes.cs
->>>>>>> ab7905edeb144feac1ab63fe63a333904ab32421
