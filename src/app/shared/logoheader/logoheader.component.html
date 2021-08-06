@@ -34,7 +34,11 @@
                     </li>
                     <li role="presentation" routerLinkActive="active" id="activepostjob" (click)="changetheactive(2)"
                         [ngClass]="{'active': postactive === true}" *ngIf="customer?.AccessDetails?.PostAJob==true">
+<<<<<<< HEAD
                         <a [routerLink]="['/app-postajob']" [ngClass]="{'pointer-events-none': active === true}">
+=======
+                        <a [routerLink]="['/app-job-posting']" [ngClass]="{'pointer-events-none': active === true}">
+>>>>>>> 84255509 (Post a Job Initial Development.)
                             <svg width="19.92px" height="17.3px" viewBox="0 0 21.925 19.3">
                                 <g id="post-icon">
                                     <path transform="translate(6.8 10.1)" d="M0 0h8.8" />
