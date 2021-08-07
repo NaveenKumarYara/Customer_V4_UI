@@ -675,56 +675,88 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   RequestReference(profile) {
-    this.requestRef.CustomerId = this.customer.CustomerId;
-    this.requestRef.UserId = this.customer.UserId;
-    this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
-    this.requestRef.FromEmail = this.customer.Email;
-    this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
-    this.requestRef.ProfileId = profile.ProfileId;
-    this.requestRef.ToEmailID = profile.Email;
-    this.requestRef.UserName = profile.FirstName;
-    this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
-      debugger
-      this.CommentProfile = undefined;
-      this.requestRef = new RequestRefernce();
-      // let message = "Requested Reference!";
-      // let action = "Success";
-      // this._snackBar.open(message, action, {
-      //   duration: 2000,
-      // });
-      swal(
-        {
-          title: 'Requested Reference!',
-          showConfirmButton: false,
-          timer: 1500,
-          type:"success"
-        });
+    swal(
+      {
+        title: 'Do you want to Request Reference?',
+        showConfirmButton: true,
+        showCancelButton:true,
+        type:"info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.value === true) {
+          this.requestRef.CustomerId = this.customer.CustomerId;
+          this.requestRef.UserId = this.customer.UserId;
+          this.requestRef.AppLink = this.settingsService.settings.CandidateAppLogin + ";RsId=0";
+          this.requestRef.FromEmail = this.customer.Email;
+          this.requestRef.Comment = this.CommentProfile != undefined ? this.CommentProfile : "Please provide reference";
+          this.requestRef.ProfileId = profile.ProfileId;
+          this.requestRef.ToEmailID = profile.Email;
+          this.requestRef.UserName = profile.FirstName;
+          this.jobdetailsservice.RequestRefernce(this.requestRef).subscribe((result) => {
+            this.CommentProfile = undefined;
+            this.requestRef = new RequestRefernce();
+            // let message = "Requested Reference!";
+            // let action = "Success";
+            // this._snackBar.open(message, action, {
+            //   duration: 2000,
+            // });
+            swal(
+              {
+                title: 'Request Sent!',
+                showConfirmButton: true,
+                timer: 3000,
+                type:"success"
+              });
+          })
+        }
+
+
+    
+      
     });
   }
 
  
 
   RequestAchivement(profile) {
-    this.notify.CustomerId= this.customer.CustomerId;
-    this.notify.JobId = this.jobid;
-    this.notify.FromUserId = profile.UserId;
-    this.notify.NotificationTypeId= 20;
-    this.notify.ToUserId = profile.UserId; 
-    this.notify.Message = this.customer.FirstName + this.customer.LastName +','+ "_Requested Achievements" +'@' +this.jobdetailscustomer.JobInfo.JobTitle +' '+ 'Position' ;
-    this._service.PostService(this.notify,'IdentityAPI/api/InsertNotification')
-     .subscribe(
-     status => {
-       if(status>=0)
-       {
-      swal(
-        {
-          title: 'Requested Achievements!',
-          showConfirmButton: false,
-          timer: 1500,
-          type:"success"
-        });
-      }
-    });
+    swal(
+      {
+        title: 'Do you want to Request Achievement?',
+        showConfirmButton: true,
+        showCancelButton:true,
+        type:"info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.value === true)
+         {
+          this.notify.CustomerId= this.customer.CustomerId;
+          this.notify.JobId = this.jobid;
+          this.notify.FromUserId = profile.UserId;
+          this.notify.NotificationTypeId= 20;
+          this.notify.ToUserId = profile.UserId; 
+          this.notify.Message = this.customer.FirstName + this.customer.LastName +','+ "_Requested Achievements" +'@' +this.jobdetailscustomer.JobInfo.JobTitle +' '+ 'Position' ;
+          this._service.PostService(this.notify,'IdentityAPI/api/InsertNotification')
+           .subscribe(
+           status => {
+             if(status>=0)
+             {
+            swal(
+              {
+                title: 'Request Sent!',
+                showConfirmButton: true,
+                timer: 3000,
+                type:"success"
+              });
+            }
+          });
+        }   
+      })
   }
 
   PopulateJobdetail() {
