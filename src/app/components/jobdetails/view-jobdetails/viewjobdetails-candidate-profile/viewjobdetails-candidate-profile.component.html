@@ -3,7 +3,8 @@
     <i class="fa fa-comment"></i>
   </button> -->
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
-  <button class="note__btn__icon icon"  (click)="callSkills(profile.ProfileId, 2)" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+  <button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId, 2)"
+    [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-clipboard"></i>
   </button>
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
@@ -12,12 +13,8 @@
       <div class="ptr">
         <div class="checkbox">
           <label class="bookmark-c" *ngIf="statusid == 0 || statusid == 4">
-            <input
-              type="checkbox"
-              [checked]="profile?.IsSaved"
-              (change)="updateWishlist($event, profile.ProfileId)"
-              class="dnone"
-            />
+            <input type="checkbox" [checked]="profile?.IsSaved" (change)="updateWishlist($event, profile.ProfileId)"
+              class="dnone" />
 
             <i class="unchecked fa fa-bookmark-o"></i>
             <i class="checked fa fa-bookmark"></i>
@@ -34,36 +31,26 @@
                   </div> -->
 
         <!--New Design of Icon & Badges-->
-        <div
-          class="media col-md-6"
-          *ngIf="profile.CertificationName != null && profile.CertificationName != ''; else nocertification"
-        >
+        <div class="media col-md-6"
+          *ngIf="profile.CertificationName != null && profile.CertificationName != ''; else nocertification">
           <div class="media-left">
-            <img
-              class="media-object"
-              src="../../../../../assets/images/Certifications/certification.png"
-              alt="Certifications"
-              width="40"
-            />
+            <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+              alt="Certifications" width="40" />
           </div>
           <div class="media-body">
             <small title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">{{
               profile.CertificationName
-            }}</small>
+              }}</small>
             <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 0)">{{
               profile?.countval?.CertificationCount
-            }}</span>
+              }}</span>
           </div>
         </div>
         <ng-template #nocertification>
           <div class="media col-md-6">
             <div class="media-left">
-              <img
-                class="media-object"
-                src="../../../../../assets/images/Certifications/certification.png"
-                alt="Certifications"
-                width="40"
-              />
+              <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+                alt="Certifications" width="40" />
             </div>
             <div class="media-body">
               <small title="Not Certified">Not Certified</small>
@@ -92,19 +79,14 @@
           <div class="media-body">
             <small title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)">{{
               profile.DomainName
-            }}</small>
-            <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 1)"
-              >{{ profile?.countval?.DomainsCount }}
+              }}</small>
+            <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 1)">{{
+              profile?.countval?.DomainsCount }}
             </span>
           </div>
           <div class="media-right">
-            <img
-              class="media-object"
-              src="../../../../../assets/images/Certifications/domain.png"
-              title="Domain"
-              alt="Domain"
-              width="40"
-            />
+            <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
+              alt="Domain" width="40" />
           </div>
         </div>
         <ng-template #nodomain>
@@ -114,13 +96,8 @@
               <span class="badge badge-light" title="View More">0</span>
             </div>
             <div class="media-right">
-              <img
-                class="media-object"
-                src="../../../../../assets/images/Certifications/domain.png"
-                title="Domain"
-                alt="Domain"
-                width="40"
-              />
+              <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
+                alt="Domain" width="40" />
             </div>
           </div>
         </ng-template>
@@ -139,53 +116,42 @@
                 </ng-template> -->
       </div>
       <div class="candidate-info">
-        <ng-container
-          *ngIf="
+        <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null;
             else Block
-          "
-        >
-          <img
-            *ngIf="
+          ">
+          <img *ngIf="
               (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null
-            "
-            src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"
-            width="66"
-            height="66"
-          />
+            " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}" width="66"
+            height="66" />
         </ng-container>
         <ng-template #Block>
           <img src="{{ profile.ProfilePic }}" alt="" width="66" height="66" />
         </ng-template>
-        <ng-container
-          *ngIf="
+        <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null;
             else firstBlock
-          "
-        >
+          ">
           <h1 class="title">
             <!-- {{profile.FirstName}} {{profile.LastName}} -->
             <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
             <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
 
-            <div
-              class="upgrade-pitch-text"
-              *ngIf="
+            <div class="upgrade-pitch-text" *ngIf="
                 (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                   profile?.ResponseStatusId > 0 &&
                   profile?.UserId > 0 &&
                   profile?.IsConfirmed == null;
                 else firstelseBlock
-              "
-            >
+              ">
               {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" />{{
-                profile.LastName.charAt(0)
+              profile.LastName.charAt(0)
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
@@ -271,17 +237,14 @@
             <!-- {{profile.FirstName}} {{profile.LastName}} -->
             <!-- {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.FirstName.charAt(0)  : profile.FirstName}} {{(profile?.ResponseStatusId <= 5 && profile?.UserId > 0 && profile?.IsConfirmed != false) ? profile.LastName.charAt(0) : profile.LastName}}  -->
             <!-- <input class="hidden" id="candidateUserId" value={{profile.UserId}}> -->
-            <div
-              class="upgrade-pitch-text"
-              *ngIf="
+            <div class="upgrade-pitch-text" *ngIf="
                 (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                   profile?.UserId > 0 &&
                   profile?.IsConfirmed == null;
                 else firstelseBlock
-              "
-            >
+              ">
               {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" />{{
-                profile.LastName.charAt(0)
+              profile.LastName.charAt(0)
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
@@ -299,17 +262,11 @@
         </ng-template>
 
         <ng-container *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
-          <a
-            href="javascript:void(0)"
+          <a href="javascript:void(0)"
             (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
-            *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null"
-          >
-            <img
-              class="video-sizzle"
-              src="../../../../../assets/images/video-sizzle.png"
-              title="video-sizzle"
-              width="25"
-            />
+            *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
+            <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
+              width="25" />
           </a>
         </ng-container>
 
@@ -318,12 +275,8 @@
             <!--Email-->
             <div class="dropdown">
               <div class="tooltip1">
-                <ng-container
-                  *ngIf="profile.Email.substring(0, 7) != 'esolvit'"
-                  class="dropdown-toggle info-dropdown"
-                  type="button"
-                  data-toggle="dropdown"
-                >
+                <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'" class="dropdown-toggle info-dropdown"
+                  type="button" data-toggle="dropdown">
                   <img src="../../../../../assets/images/Yes-Email.svg" height="16" alt="email" />
                 </ng-container>
                 <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
@@ -332,30 +285,19 @@
                 <div class="bottom1">
                   <ul class="custom_dropdown-menu">
                     <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'esolvit'">
-                      <a
-                        class="email-overflow"
-                        href="javascript:void(0)"
-                        title="{{ profile.Email }}"
-                        *ngIf="
+                      <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" *ngIf="
                           (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                             profile?.UserId > 0 &&
                             profile?.IsConfirmed == null;
                           else firstelseBlock
-                        "
-                      >
-                        <img
-                          src="../../../../../assets/images/email-icon.svg"
-                          alt="email"
-                          title="{{ profile?.Email }}"
-                        />
+                        ">
+                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                          title="{{ profile?.Email }}" />
                       </a>
                       <ng-template #firstelseBlock>
                         <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}">
-                          <img
-                            src="../../../../../assets/images/email-icon.svg"
-                            alt="email"
-                            title="{{ profile?.Email }}"
-                          />
+                          <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                            title="{{ profile?.Email }}" />
                           {{ profile?.Email }}
                         </a>
                       </ng-template>
@@ -379,8 +321,7 @@
 
                         <div class="media">
                           <ng-container
-                            *ngIf="profile?.QualificationName != null && profile?.Specialization; else EduTemplate"
-                          >
+                            *ngIf="profile?.QualificationName != null && profile?.Specialization; else EduTemplate">
                             <img class="mr-3" src="../../../../../assets/images/graduate-certificate.svg" alt="" />
                             <div class="media-body">
                               <h5 class="mt-0" title="{{ profile.QualificationName }}">
@@ -416,11 +357,8 @@
                     <li>
                       <ng-container *ngIf="profile?.MobilePhone != null; else false">
                         <a href="javascript:void(0)" title="{{ profile.MobilePhone }}">
-                          <img
-                            src="../../../../../assets/images/phn-icon.svg"
-                            alt="Phone number"
-                            title="{{ profile.MobilePhone }}"
-                          />
+                          <img src="../../../../../assets/images/phn-icon.svg" alt="Phone number"
+                            title="{{ profile.MobilePhone }}" />
                           &nbsp;&nbsp;&nbsp; {{ profile.MobilePhone }}
                         </a>
                       </ng-container>
@@ -458,22 +396,12 @@
             </h4>
             <div class="d-inline l_bl-1" *ngIf="profile?.CurrentLocation != null; else false">
               <ng-container>
-                <svg
-                  enable-background="new 0 0 18 18"
-                  version="1.1"
-                  viewBox="0 0 18 18"
-                  xml:space="preserve"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="width: 16px"
-                >
-                  <path
-                    class="st0"
-                    d="m9.1 17.4-0.5-0.4c-0.3-0.2-6.5-4.3-6.5-9.4 0-3.8 3.1-6.9 6.9-6.9s6.9 3.1 6.9 6.9c0 5.1-6.1 9.3-6.4 9.4l-0.4 0.4zm0-15c-2.9 0-5.2 2.3-5.2 5.2 0 3.5 3.8 6.7 5.2 7.7 1.4-1 5.2-4.2 5.2-7.7 0-2.9-2.4-5.2-5.2-5.2z"
-                  />
-                  <path
-                    class="st0"
-                    d="m9.2 10.4c-1.6 0-2.9-1.3-2.9-2.9s1.3-2.9 2.9-2.9 2.8 1.4 2.8 3-1.3 2.8-2.8 2.8zm0-4c-0.6 0-1.2 0.6-1.2 1.2s0.5 1.1 1.1 1.1 1.1-0.5 1.1-1.1-0.4-1.2-1-1.2z"
-                  />
+                <svg enable-background="new 0 0 18 18" version="1.1" viewBox="0 0 18 18" xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg" style="width: 16px">
+                  <path class="st0"
+                    d="m9.1 17.4-0.5-0.4c-0.3-0.2-6.5-4.3-6.5-9.4 0-3.8 3.1-6.9 6.9-6.9s6.9 3.1 6.9 6.9c0 5.1-6.1 9.3-6.4 9.4l-0.4 0.4zm0-15c-2.9 0-5.2 2.3-5.2 5.2 0 3.5 3.8 6.7 5.2 7.7 1.4-1 5.2-4.2 5.2-7.7 0-2.9-2.4-5.2-5.2-5.2z" />
+                  <path class="st0"
+                    d="m9.2 10.4c-1.6 0-2.9-1.3-2.9-2.9s1.3-2.9 2.9-2.9 2.8 1.4 2.8 3-1.3 2.8-2.8 2.8zm0-4c-0.6 0-1.2 0.6-1.2 1.2s0.5 1.1 1.1 1.1 1.1-0.5 1.1-1.1-0.4-1.2-1-1.2z" />
                 </svg>
               </ng-container>
               <h5 class="location mr-0 pl-0 pr-0" title="{{ profile.CurrentLocation }}">
@@ -484,11 +412,9 @@
           <!---->
           <div class="d-block text-center min-h40">
             <div class="d-block ptb-5">
-              <div
-                class="status {{
+              <div class="status {{
                   profile.JobStatus === 'Waiting for response' ? 'waitingforresponse' : profile.JobStatus
-                }}"
-              >
+                }}">
                 {{ profile?.NoEmail === true ? "Uploaded" : profile.JobStatus }}
               </div>
             </div>
@@ -498,10 +424,8 @@
               By <span>{{ profile.CompanyName }}</span>
             </small>
 
-            <small
-              *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"
-              title="{{ profile.CompanyName }}"
-            >
+            <small *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"
+              title="{{ profile.CompanyName }}">
               <span> Submitted </span>
               By <span>Arytic</span>
             </small>
@@ -538,34 +462,17 @@
           <!--Reference Icons-->
           <!--With dialog-->
 
-          <a
-            href="javascript:void(0)"
-            title="References"
-            *ngIf="profile?.DiscResult !== '0' &&
-            profile.CompanyName == null"
-            (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)"
-          >
-            <img
-              src="../../../../../assets/images/card-icons/reference-icon.png"
-              width="50"
-              height="50"
-              alt="References"
-            />
+          <a href="javascript:void(0)" title="References" *ngIf="profile?.DiscResult !== '0' &&
+            profile.CompanyName == null" (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
+            <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+              alt="References" />
           </a>
 
-          <a
-            href="javascript:void(0)"
-            *ngIf="profile?.DiscResult === '0' &&
-            profile.CompanyName == null"
-            title="References"
-            (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)"
-          >
-            <img
-              src="../../../../../assets/images/card-icons/no-reference.png"
-              width="50"
-              height="50"
-              alt="References"
-            />
+          <a href="javascript:void(0)" *ngIf="profile?.DiscResult === '0' &&
+            profile.CompanyName == null" title="References"
+            (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
+            <img src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
+              alt="References" />
           </a>
           <!-- <a href="javascript:void(0)" title="References">
                     <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
@@ -577,23 +484,17 @@
 
           <!--Achievement Icon-->
           <!--With dialog-->
-          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0"  title="Achievements" (click)="OpenAchiveDialog(profile?.ProfileId)">
-            <img
-              src="../../../../../assets/images/card-icons/achievement-badge.png"
-              width="50"
-              height="50"
-              alt="achievement-badge"
-            />
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0" title="Achievements"
+            (click)="OpenAchiveDialog(profile?.ProfileId)">
+            <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+              alt="achievement-badge" />
           </a>
 
-          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"  title="Achievements" (click)="RequestAchivement(profile)">
-          <img
-            src="../../../../../assets/images/card-icons/no-achievement.png"
-            width="50"
-            height="50"
-            alt="achievement-badge"
-          />
-        </a>
+          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"
+            title="Achievements" (click)="RequestAchivement(profile)">
+            <img src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
+              alt="achievement-badge" />
+          </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
                     <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                         alt="achievement-badge">
@@ -621,33 +522,16 @@
 
           <!--BG Verification Profile-->
           <!--With dialog-->
-          <a
-            href="javascript:void(0)"
-            *ngIf="profile?.BackGroundCheck == false"
-            title="Background Need to be Verified"
-            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)"
-          >
-            <img
-              class="fade-icon"
-              src="../../../../../assets/images/card-icons/not-verified-profile.png"
-              width="50"
-              height="50"
-              alt="verfied-badge"
-            />
+          <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == false" title="Background Need to be Verified"
+            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+            <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+              height="50" alt="verfied-badge" />
           </a>
 
-          <a
-            href="javascript:void(0)"
-            *ngIf="profile?.BackGroundCheck == true"
-            title="Background Verified Profile"
-            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)"
-          >
-            <img
-              src="../../../../../assets/images/card-icons/verified-badge.png"
-              width="50"
-              height="50"
-              alt="verfied-badge"
-            />
+          <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == true" title="Background Verified Profile"
+            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+            <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+              alt="verfied-badge" />
           </a>
           <!-- <a href="javascript:void(0)" title="Background Verification - Yet to be Started">
                         <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
@@ -659,23 +543,12 @@
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
 
           <ng-container *ngIf="profile?.IsConfirmed === true">
-            <img
-              class="fade-icon"
-              src="../../../../../assets/images/card-icons/consent-accepted.png"
-              width="50"
-              height="50"
-              alt="Consent Not Accepted"
-              title="Consent Accepted"
-            />
+            <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-accepted.png" width="50"
+              height="50" alt="Consent Not Accepted" title="Consent Accepted" />
           </ng-container>
           <ng-container *ngIf="profile?.IsConfirmed === false">
-            <img
-              src="../../../../../assets/images/card-icons/consent-not-accepted.png"
-              width="50"
-              height="50"
-              alt="Consent Accepted"
-              title="Consent Not Accepted"
-            />
+            <img src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50"
+              alt="Consent Accepted" title="Consent Not Accepted" />
           </ng-container>
         </div>
       </div>
@@ -685,31 +558,15 @@
         <div class="type">
           <div class="d-r-section">
             <h5>Arytic Fit</h5>
-            <app-radar-smart-chart
-                    style="cursor: pointer"
-                    (click)="callSkills(profile.ProfileId, 5)"
-                   
-                    [ProfileId]="profile.ProfileId"
-                    [JobId]="jobid"
-                    [height]="120"
-                    [width]="160"
-                  ></app-radar-smart-chart>
+            <app-radar-smart-chart style="cursor: pointer" (click)="callSkills(profile.ProfileId, 5)"
+              [ProfileId]="profile.ProfileId" [JobId]="jobid" [height]="120" [width]="160"></app-radar-smart-chart>
           </div>
           <div class="p-m-section">
             <h5>Profile Matching</h5>
             <!--Circle progress trial-->
-            <circle-progress
-              data-toggle="matching-details"
-              (click)="callSkills(profile.ProfileId, 3)"
-              [percent]="profile?.MatchingPercentage"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#6262ff'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" (click)="callSkills(profile.ProfileId, 3)"
+              [percent]="profile?.MatchingPercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+              [outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
             <!--[animationDuration]="300"-->
             <!---->
@@ -736,23 +593,14 @@
                     <img src="../../../assets/images/no-video.png" class="icon" alt="." />
                   </div>
                   <div *ngIf="profileFlipVideo?.VideoSizzle != null">
-                    <video
-                      controls
-                      class="video-align"
-                      [src]="profileFlipVideo?.VideoSizzle"
-                      type="video/mp4"
-                      #videoPlayer
-                    ></video>
+                    <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4"
+                      #videoPlayer></video>
                   </div>
                   <!-- <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4" #videoPlayer></video> -->
                   <div class="status shortlisted pull-right">
-                    <a
-                      class="show-matching-details"
+                    <a class="show-matching-details"
                       (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, false)"
-                      data-toggle="matching-details"
-                      href="javascript:void(0)"
-                      >Candidate Profile</a
-                    >
+                      data-toggle="matching-details" href="javascript:void(0)">Candidate Profile</a>
                   </div>
                 </div>
                 <!--
@@ -780,22 +628,13 @@
                     <img src="../../../assets/images/no-video.png" class="icon" alt="." />
                   </div>
                   <div *ngIf="profileFlipVideo?.VideoProfile != null">
-                    <video
-                      controls
-                      class="video-align"
-                      [src]="profileFlipVideo?.VideoProfile"
-                      type="video/mp4"
-                      #videoPlayer
-                    ></video>
+                    <video controls class="video-align" [src]="profileFlipVideo?.VideoProfile" type="video/mp4"
+                      #videoPlayer></video>
                   </div>
                   <div class="status shortlisted pull-right" *ngIf="profileFlipVideo?.VideoSizzle != null">
-                    <a
-                      class="show-matching-details"
-                      data-toggle="matching-details"
+                    <a class="show-matching-details" data-toggle="matching-details"
                       (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
-                      href="javascript:void(0)"
-                      >Sizzle Video</a
-                    >
+                      href="javascript:void(0)">Sizzle Video</a>
                   </div>
                 </div>
                 <!--
@@ -824,119 +663,86 @@
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
           <div class="">
             <div class="row" *ngIf="profile?.PrimarySkills != null; else noSkillTemplate">
-              <a
-                *ngIf="profile?.countval?.SkillsCount > 3"
-                class="col-md-1 left-arrow"
-                (click)="prevSkills(profile?.PrimarySkills, i)"
-              >
-                <
-              </a>
-              <div
-                class="col-md-4 skill-click"
-                *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates; let j = index"
-              >
-                <div id="i-{{ profile.ProfileId }}">
-                  <div class="item" *ngIf="currentNo[i] == 0 && j < 3">
-                    <div class="skill">
-                      <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
-                      <div>
-                        <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
-                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+              <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 left-arrow"
+                (click)="prevSkills(profile?.PrimarySkills, i)">
+                < </a>
+                  <div class="col-md-4 skill-click"
+                    *ngFor="let sk of profile?.PrimarySkills.split(',', 10) | removeduplicates; let j = index">
+                    <div id="i-{{ profile.ProfileId }}">
+                      <div class="item" *ngIf="currentNo[i] == 0 && j < 3">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <div class="star-rating">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
                       </div>
-                    </div>
-                    <div class="star-rating">
-                      <star-rating
-                        value="{{ sk.split('|')[3] | slice: 0:1 }}"
-                        totalstars="5"
-                        checkedcolor="#2260C3"
-                        uncheckedcolor="#9EABC0"
-                        size="16px"
-                        readonly="true"
-                      ></star-rating>
-                    </div>
-                  </div>
-                  <div class="item" *ngIf="currentNo[i] == 1 && j < 6 && j > 2">
-                    <div class="skill">
-                      <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
-                      <div>
-                        <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
-                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                      </div>
-                    </div>
-                    <!--Star Rating redesign on 05-05-2020-->
-                    <div class="star-rating">
-                      <star-rating
-                        value="{{ sk.split('|')[3] | slice: 0:1 }}"
-                        totalstars="5"
-                        checkedcolor="#2260C3"
-                        uncheckedcolor="#9EABC0"
-                        size="16px"
-                        readonly="true"
-                      ></star-rating>
-                    </div>
+                      <div class="item" *ngIf="currentNo[i] == 1 && j < 6 && j > 2">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
 
-                    <!---->
-                  </div>
-                  <div class="item" *ngIf="currentNo[i] == 2 && j < 9 && j > 5">
-                    <div class="skill">
-                      <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
-                      <div>
-                        <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
-                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                        <!---->
+                      </div>
+                      <div class="item" *ngIf="currentNo[i] == 2 && j < 9 && j > 5">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+                        <!---->
+                      </div>
+                      <div class="item" *ngIf="currentNo[i] == 3 && j > 8">
+                        <div class="skill">
+                          <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
+                          <div>
+                            <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
+                            <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+                          </div>
+                        </div>
+                        <!--Star Rating redesign on 05-05-2020-->
+                        <div class="star-rating">
+                          <star-rating value="{{ sk.split('|')[3] | slice: 0:1 }}" totalstars="5" checkedcolor="#2260C3"
+                            uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+                        </div>
+                        <!---->
                       </div>
                     </div>
-                    <!--Star Rating redesign on 05-05-2020-->
-                    <div class="star-rating">
-                      <star-rating
-                        value="{{ sk.split('|')[3] | slice: 0:1 }}"
-                        totalstars="5"
-                        checkedcolor="#2260C3"
-                        uncheckedcolor="#9EABC0"
-                        size="16px"
-                        readonly="true"
-                      ></star-rating>
-                    </div>
-                    <!---->
                   </div>
-                  <div class="item" *ngIf="currentNo[i] == 3 && j > 8">
-                    <div class="skill">
-                      <h4 title="{{ sk.split('|')[0] }}">{{ add3Dots(sk.split("|")[0], 9) }}</h4>
-                      <div>
-                        <h5>{{ sk.split("|")[1] }}.{{ sk.split("|")[2] }} Yrs</h5>
-                        <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-                      </div>
-                    </div>
-                    <!--Star Rating redesign on 05-05-2020-->
-                    <div class="star-rating">
-                      <star-rating
-                        value="{{ sk.split('|')[3] | slice: 0:1 }}"
-                        totalstars="5"
-                        checkedcolor="#2260C3"
-                        uncheckedcolor="#9EABC0"
-                        size="16px"
-                        readonly="true"
-                      ></star-rating>
-                    </div>
-                    <!---->
-                  </div>
-                </div>
-              </div>
 
-              <a
-                *ngIf="profile?.countval?.SkillsCount > 3"
-                class="col-md-1 right-arrow"
-                (click)="nextSkills(profile?.PrimarySkills, i)"
-              >
-                >
-              </a>
+                  <a *ngIf="profile?.countval?.SkillsCount > 3" class="col-md-1 right-arrow"
+                    (click)="nextSkills(profile?.PrimarySkills, i)">
+                    >
+                  </a>
 
-              <!-- https://www.npmjs.com/package/ngx-flickity
+                  <!-- https://www.npmjs.com/package/ngx-flickity
                                    https://flickity.metafizzy.co/events.html#dragmove
 
                                    https://www.npmjs.com/package/angular-flickity
                                    https://codepen.io/collection/nNzQxk/ -->
-              <!-- working demo -->
-              <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
+                  <!-- working demo -->
+                  <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
                                     <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
                                       <div class="item">
                                         <div class="skill">
@@ -950,8 +756,8 @@
                                     </div>
                                   </div> -->
 
-              <!-- // -->
-              <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+                  <!-- // -->
+                  <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
                             <div class="item">
                             <div class="skill" *ngIf="">
                                 <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
@@ -1000,17 +806,13 @@
       <div class="footer">
         <ul class="actions">
           <!--Enabling the Send Email Feature on 28-02-2020 by Bharath-->
-          <li
-            *ngIf="
+          <li *ngIf="
               (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                 profile?.UserId > 0 &&
                 profile?.IsConfirmed == null;
               else elseBlock
-            "
-          >
-            <a
-              href="javascript:void(0)"
-              (click)="
+            ">
+            <a href="javascript:void(0)" (click)="
                 OpenSendEmailDialog(
                   profile?.NoEmail,
                   profile?.Email,
@@ -1022,44 +824,26 @@
                   profile?.CCPID,
                   profile?.UserId
                 )
-              "
-              data-toggle="modal"
-              data-target="#inbox"
-            >
+              " data-toggle="modal" data-target="#inbox">
               <!--(click)="OpenChatboxDialog()"-->
-              <svg
-                version="1.1"
-                id="Capa_1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="25px"
-                height="21px"
-                viewBox="0 0 25 21"
-                enable-background="new 0 0 25 21"
-                xml:space="preserve"
-              >
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                 <g>
                   <g>
                     <g>
                       <g>
-                        <path
-                          fill="#9EABC0"
+                        <path fill="#9EABC0"
                           d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
                         c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z"
-                        />
+                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
                       </g>
                       <g>
-                        <path
-                          fill="#9EABC0"
-                          d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                        <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
                         c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
                         l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
                         c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z"
-                        />
+                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
                       </g>
                     </g>
                   </g>
@@ -1070,9 +854,7 @@
           <ng-template #elseBlock>
             <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
               <li>
-                <a
-                  href="javascript:void(0)"
-                  (click)="
+                <a href="javascript:void(0)" (click)="
                     OpenSendEmailDialog(
                       profile?.NoEmail,
                       profile?.Email,
@@ -1084,44 +866,26 @@
                       profile?.CCPID,
                       profile?.UserId
                     )
-                  "
-                  data-toggle="modal"
-                  data-target="#inbox"
-                >
+                  " data-toggle="modal" data-target="#inbox">
                   <!--(click)="OpenChatboxDialog()"-->
-                  <svg
-                    version="1.1"
-                    id="Capa_1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px"
-                    y="0px"
-                    width="25px"
-                    height="21px"
-                    viewBox="0 0 25 21"
-                    enable-background="new 0 0 25 21"
-                    xml:space="preserve"
-                  >
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                    viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                     <g>
                       <g>
                         <g>
                           <g>
-                            <path
-                              fill="#9EABC0"
+                            <path fill="#9EABC0"
                               d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
                         c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z"
-                            />
+                        c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
                           </g>
                           <g>
-                            <path
-                              fill="#9EABC0"
-                              d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                            <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
                         c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
                         l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
                         c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z"
-                            />
+                        l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
                           </g>
                         </g>
                       </g>
@@ -1132,9 +896,7 @@
             </ng-container>
             <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'">
               <li>
-                <a
-                  href="javascript:void(0)"
-                  (click)="
+                <a href="javascript:void(0)" (click)="
                     OpenSendEmailDialog(
                       profile?.NoEmail,
                       profile?.Email,
@@ -1147,44 +909,26 @@
                       profile?.UserId,
                       profile.IsUploaded
                     )
-                  "
-                  data-toggle="modal"
-                  data-target="#inbox"
-                >
+                  " data-toggle="modal" data-target="#inbox">
                   <!--(click)="OpenChatboxDialog()"-->
-                  <svg
-                    version="1.1"
-                    id="Capa_1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px"
-                    y="0px"
-                    width="25px"
-                    height="21px"
-                    viewBox="0 0 25 21"
-                    enable-background="new 0 0 25 21"
-                    xml:space="preserve"
-                  >
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
+                    viewBox="0 0 25 21" enable-background="new 0 0 25 21" xml:space="preserve">
                     <g>
                       <g>
                         <g>
                           <g>
-                            <path
-                              fill="#9EABC0"
+                            <path fill="#9EABC0"
                               d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
                     c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-                    c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z"
-                            />
+                    c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z" />
                           </g>
                           <g>
-                            <path
-                              fill="#9EABC0"
-                              d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+                            <path fill="#9EABC0" d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
                     c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
                     l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
                     c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-                    l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z"
-                            />
+                    l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" />
                           </g>
                         </g>
                       </g>
@@ -1215,8 +959,7 @@
             profile?.MatchingPercentage)">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                 <path
-                  d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z"
-                />
+                  d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
               </svg>
             </a>
           </li>
@@ -1231,16 +974,11 @@
                     </li>
                     <ng-template #loc> -->
           <li>
-            <a
-              href="javascript:void(0)"
-              data-toggle="modal"
-              data-target="#shareCandidate"
-              (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)"
-            >
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#shareCandidate"
+              (click)="OpenShareDialog(profile?.FirstName, profile?.JobResponseId, profile?.ProfileId)">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
                 <path
-                  d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z"
-                />
+                  d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z" />
               </svg>
             </a>
           </li>
@@ -1249,31 +987,20 @@
           <li>
             <!--Word doc-->
             <ng-container>
-              <a
-                href="javascript:void(0)"
-                *ngIf="
+              <a href="javascript:void(0)" *ngIf="
                   (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                     profile?.ResponseStatusId > 0 &&
                     profile?.UserId > 0 &&
                     profile?.IsConfirmed == null;
                   else fBlock
-                "
-              >
-                <img
-                  src="../../../../../assets/images/word-icon.png"
-                  width="25"
-                  alt="Resume Document"
-                  title="Download Resume"
-                />
+                ">
+                <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                  title="Download Resume" />
               </a>
               <ng-template #fBlock>
                 <a href="javascript:void(0)" (click)="DownloadResume(profile?.FirstName, profile?.ProfileId)">
-                  <img
-                    src="../../../../../assets/images/word-icon.png"
-                    width="25"
-                    alt="Resume Document"
-                    title="Download Resume"
-                  />
+                  <img src="../../../../../assets/images/word-icon.png" width="25" alt="Resume Document"
+                    title="Download Resume" />
                 </a>
                 <!-- <div *ngIf="profile?.ResponseStatusId <= 5 && " -->
               </ng-template>
@@ -1292,40 +1019,29 @@
             <a href="javascript:void(0)" data-toggle="dropdown">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#448AFA" width="4" height="21">
                 <path
-                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z"
-                />
+                  d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z" />
               </svg>
             </a>
-            <ul
-              role="menu"
-              class="dropdown-menu dropdown-menu-right"
-              *ngIf="jobStatus != 'Closed' && jobStatus != 'InActive'"
-            >
+            <ul role="menu" class="dropdown-menu dropdown-menu-right"
+              *ngIf="jobStatus != 'Closed' && jobStatus != 'InActive'">
               <!-- applied -->
               <!-- {{profile?.ResponseStatusId}} {{profile?.IsConfirmed}} -->
-              <ng-container   *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
-                <div
-                *ngIf="
+              <ng-container *ngIf="(profile?.ResponseStatusId != 13)&&(profile?.ResponseStatusId != 14)">
+                <div *ngIf="
                   profile?.ResponseStatusId === 4 ||
                   profile?.ResponseStatusId === 13 ||
                   profile?.ResponseStatusId === 14
-                "
-              >
-                <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
-                <div
-                  *ngIf="
+                ">
+                  <!-- <div *ngIf="profile?.IsConfirmed != false"> -->
+                  <div *ngIf="
                     profile?.ResponseStatusId <= 4 &&
                       profile?.ResponseStatusId > 0 &&
                       profile?.UserId > 0 &&
                       profile?.IsConfirmed == null;
                     else otherMenu
-                  "
-                >
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      (click)="
+                  ">
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" (click)="
                         OpenScreeningDialog(
                           profile?.JobResponseId,
                           profile?.ProfileId,
@@ -1335,19 +1051,15 @@
                           profile?.UserId,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Screening</p>
-                    </a>
-                  </li>
-                </div>
-                <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
-                <ng-template #otherMenu>
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      (click)="
+                      ">
+                        <p class="p6">Screening</p>
+                      </a>
+                    </li>
+                  </div>
+                  <!-- <div *ngIf="!(profile?.ResponseStatusId <= 4 && profile?.ResponseStatusId > 0 && profile?.UserId > 0 && profile?.IsConfirmed == null)"> -->
+                  <ng-template #otherMenu>
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" (click)="
                         OpenScreeningDialog(
                           profile?.JobResponseId,
                           profile?.ProfileId,
@@ -1357,16 +1069,12 @@
                           profile?.UserId,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Screening</p>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      (click)="
+                      ">
+                        <p class="p6">Screening</p>
+                      </a>
+                    </li>
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" (click)="
                         OpenShortListedDialog(
                           profile?.JobResponseId,
                           profile?.ProfileId,
@@ -1376,33 +1084,29 @@
                           profile?.UserId,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Shortlist</p>
-                    </a>
-                  </li>
-                </ng-template>
-                <!-- </div> -->
-                <!-- </div> -->
-                <!--start commented as it is not required now -->
-                <!-- <div *ngIf="profile?.IsConfirmed === false">
+                      ">
+                        <p class="p6">Shortlist</p>
+                      </a>
+                    </li>
+                  </ng-template>
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!--start commented as it is not required now -->
+                  <!-- <div *ngIf="profile?.IsConfirmed === false">
                                             <li role="presentation" disabled>
                                                 <p role="menuitem" href="javascript:void(0)"> Screening</p>
                                             </li>
                                         </div> -->
-                <!-- end -->
-                <!-- <li role="presentation" class="divider"></li>
+                  <!-- end -->
+                  <!-- <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" href="javascript:void(0)"   (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li> -->
-              </div>
-              <!-- shortlisted -->
-              <div *ngIf="profile?.ResponseStatusId == 8">
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                </div>
+                <!-- shortlisted -->
+                <div *ngIf="profile?.ResponseStatusId == 8">
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenShortListedDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1412,21 +1116,15 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Shortlist</p>
-                  </a>
-                </li>
-                <ng-container
-                  *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9"
-                >
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      data-toggle="modal"
-                      data-target="#scheduleCandidate"
-                      (click)="
+                    ">
+                      <p class="p6">Shortlist</p>
+                    </a>
+                  </li>
+                  <ng-container
+                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                        (click)="
                         OpenScheduleInterviewDialog(
                           profile?.JobResponseId,
                           profile.UserId,
@@ -1436,18 +1134,14 @@
                           profile?.LastName,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Schedule Interview</p>
-                    </a>
-                  </li>
-                </ng-container>
-                <!-- <li role="presentation" class="divider"></li> -->
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                      ">
+                        <p class="p6">Schedule Interview</p>
+                      </a>
+                    </li>
+                  </ng-container>
+                  <!-- <li role="presentation" class="divider"></li> -->
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenRejectDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1457,27 +1151,21 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Feedback</p>
-                  </a>
-                </li>
-                <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
+                    ">
+                      <p class="p6">Feedback</p>
+                    </a>
+                  </li>
+                  <!-- <li role="presentation"><a role="menuitem" href="#" data-toggle="modal" data-target="#scheduleCandidate"   (click)="OpenScheduleInterviewDialog(profile?.JobResponseId)">Schedule Interview</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" href="javascript:void(0)"  (click)="OpenRejectDialog(profile?.JobResponseId)">Reject</a></li>  -->
-              </div>
-              <!-- screening -->
-              <div *ngIf="profile?.ResponseStatusId == 5">
-                <ng-container
-                  *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9"
-                >
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      data-toggle="modal"
-                      data-target="#scheduleCandidate"
-                      (click)="
+                </div>
+                <!-- screening -->
+                <div *ngIf="profile?.ResponseStatusId == 5">
+                  <ng-container
+                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                        (click)="
                         OpenScheduleInterviewDialog(
                           profile?.JobResponseId,
                           profile.UserId,
@@ -1487,18 +1175,14 @@
                           profile?.LastName,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Schedule Interview</p>
-                    </a>
-                  </li>
-                </ng-container>
-                <!-- <li role="presentation" class="divider"></li> -->
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                      ">
+                        <p class="p6">Schedule Interview</p>
+                      </a>
+                    </li>
+                  </ng-container>
+                  <!-- <li role="presentation" class="divider"></li> -->
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenRejectDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1508,24 +1192,18 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Feedback</p>
-                  </a>
-                </li>
-              </div>
-              <!-- interviewed -->
-              <div *ngIf="profile?.ResponseStatusId == 7">
-                <ng-container
-                  *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9"
-                >
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      data-toggle="modal"
-                      data-target="#scheduleCandidate"
-                      (click)="
+                    ">
+                      <p class="p6">Feedback</p>
+                    </a>
+                  </li>
+                </div>
+                <!-- interviewed -->
+                <div *ngIf="profile?.ResponseStatusId == 7">
+                  <ng-container
+                    *ngIf="customer?.AccessDetails?.UserRoleId != 8 && customer?.AccessDetails?.UserRoleId != 9">
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" data-toggle="modal" data-target="#scheduleCandidate"
+                        (click)="
                         OpenScheduleInterviewDialog(
                           profile?.JobResponseId,
                           profile.UserId,
@@ -1535,24 +1213,18 @@
                           profile?.LastName,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Schedule Interview</p>
-                    </a>
-                  </li>
-                </ng-container>
-                <ng-container
-                  *ngIf="
+                      ">
+                        <p class="p6">Schedule Interview</p>
+                      </a>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngIf="
                     customer?.AccessDetails?.UserRoleId != 4 &&
                     customer?.AccessDetails?.UserRoleId != 8 &&
                     customer?.AccessDetails?.UserRoleId != 9
-                  "
-                >
-                  <li role="presentation">
-                    <a
-                      role="menuitem"
-                      href="javascript:void(0)"
-                      (click)="
+                  ">
+                    <li role="presentation">
+                      <a role="menuitem" href="javascript:void(0)" (click)="
                         OpenHireDialog(
                           profile?.JobResponseId,
                           profile?.ProfileId,
@@ -1562,18 +1234,14 @@
                           profile?.UserId,
                           profile?.MatchingPercentage
                         )
-                      "
-                    >
-                      <p class="p6">Hire</p>
-                    </a>
-                  </li>
-                </ng-container>
-                <!-- <li role="presentation" class="divider"></li> -->
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                      ">
+                        <p class="p6">Hire</p>
+                      </a>
+                    </li>
+                  </ng-container>
+                  <!-- <li role="presentation" class="divider"></li> -->
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenRejectDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1583,19 +1251,15 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Not Interested</p>
-                  </a>
-                </li>
-              </div>
-              <!-- hired -->
-              <div *ngIf="profile?.ResponseStatusId == 11">
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                    ">
+                      <p class="p6">Not Interested</p>
+                    </a>
+                  </li>
+                </div>
+                <!-- hired -->
+                <div *ngIf="profile?.ResponseStatusId == 11">
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenWithdrawnDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1605,18 +1269,14 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">WithDrawn</p>
-                  </a>
-                </li>
-              </div>
-              <div *ngIf="profile?.ResponseStatusId == null">
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                    ">
+                      <p class="p6">WithDrawn</p>
+                    </a>
+                  </li>
+                </div>
+                <div *ngIf="profile?.ResponseStatusId == null">
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenScreeningDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1626,16 +1286,12 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Screening</p>
-                  </a>
-                </li>
-                <li role="presentation">
-                  <a
-                    role="menuitem"
-                    href="javascript:void(0)"
-                    (click)="
+                    ">
+                      <p class="p6">Screening</p>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a role="menuitem" href="javascript:void(0)" (click)="
                       OpenShortListedDialog(
                         profile?.JobResponseId,
                         profile?.ProfileId,
@@ -1645,114 +1301,64 @@
                         profile?.UserId,
                         profile?.MatchingPercentage
                       )
-                    "
-                  >
-                    <p class="p6">Shortlist</p>
-                  </a>
-                </li>
-              </div>
+                    ">
+                      <p class="p6">Shortlist</p>
+                    </a>
+                  </li>
+                </div>
               </ng-container>
-         
+
             </ul>
           </li>
         </ul>
       </div>
     </div>
     <div class="matching-details bg-fff revamp__arytic__fit" id="matchingDetailRadar-{{ profile.ProfileId }}">
-      <a
-        _ngcontent-c21=""
-        class="revamp__close tooltip1"
-        href="javascript:void(0)"
-        (click)="closeDetails(profile.ProfileId, 1)"
-        >×
+      <a _ngcontent-c21="" class="revamp__close tooltip1" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
       </a>
 
       <div class="top__container">
         <h2>Arytic Fit</h2>
       </div>
       <div class="middle__container">
-        <app-radar-chart 
-                    style="cursor: pointer"
-                    (click)="showRadarChart('radar')"
-                    [radarChartData]="backRadarChartData"
-                    [height]="260"
-                    [width]="300"
-                  ></app-radar-chart>
+        <app-radar-chart style="cursor: pointer" (click)="showRadarChart('radar')" [radarChartData]="backRadarChartData"
+          [height]="260" [width]="300"></app-radar-chart>
       </div>
       <div class="bottom__container">
         <div class="row flex flex-wrap flex-align-equal">
           <div class="col-sm-4">
-            <circle-progress
-              data-toggle="matching-details"
-              [percent]="matchingParameterDetails.JobFit"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#4489f9'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.JobFit" [radius]="40"
+              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#4489f9'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
             <h5>Job Fit</h5>
           </div>
           <div class="col-sm-4">
-            <circle-progress
-              data-toggle="matching-details"
-              [percent]="matchingParameterDetails.SkillFit"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#66dab5'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.SkillFit" [radius]="40"
+              [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#66dab5'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
             <h5>Skill Fit</h5>
           </div>
           <div class="col-sm-4">
-            <circle-progress
-              data-toggle="matching-details"
-              [percent]="matchingParameterDetails.Personalityfit"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#5781c1'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.Personalityfit"
+              [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#5781c1'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
             <h5>Personality Fit</h5>
           </div>
           <div class="col-sm-4">
-            <circle-progress
-              data-toggle="matching-details"
-              [percent]="matchingParameterDetails.CultureFit"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#f9b016'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" [percent]="matchingParameterDetails.CultureFit"
+              [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#f9b016'"
+              [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
             </circle-progress>
             <h5>Culture Fit</h5>
           </div>
           <div class="col-sm-4">
-            <circle-progress
-              data-toggle="matching-details"
-              [percent]="0"
-              [radius]="40"
-              [outerStrokeWidth]="8"
-              [innerStrokeWidth]="3"
-              [outerStrokeColor]="'#147751'"
-              [innerStrokeColor]="'#c0c0c0'"
-              [animation]="false"
-              [showSubtitle]="false"
-            >
+            <circle-progress data-toggle="matching-details" [percent]="0" [radius]="40" [outerStrokeWidth]="8"
+              [innerStrokeWidth]="3" [outerStrokeColor]="'#147751'" [innerStrokeColor]="'#c0c0c0'" [animation]="false"
+              [showSubtitle]="false">
             </circle-progress>
             <h5>Team Fit</h5>
             <h6>(Coming Soon)</h6>
@@ -1822,20 +1428,14 @@
     <!--Notes Overlay-->
 
     <div class="matching-details bg-fff activities__box" id="matchingDetailNotes-{{ profile.ProfileId }}">
-      <a
-        _ngcontent-c21=""
-        class="revamp__close tooltip1 revamp__tooltip"
-        href="javascript:void(0)"
-        (click)="closeDetails(profile.ProfileId, 1)"
-        >×
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
         <div class="bottom1 bottom1-close">Close</div>
       </a>
 
       <div class="top__container flex flex-align-center">
         <h2>Activities & Notes</h2>
-        <button
-          class="btn btn-primary btn-sm tooltip1 revamp__tooltip"
-          (click)="
+        <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="
             OpenSendNotificationDialog(
               profile?.JobResponseId,
               profile?.ProfileId,
@@ -1846,8 +1446,7 @@
               profile?.MatchingPercentage,
               profile?.ResponseStatusId
             )
-          "
-        >
+          ">
           <i class="fa fa-plus-circle"></i>
           <div class="bottom1">Add</div>
         </button>
@@ -1861,8 +1460,10 @@
                   <h5 class="mb-0">
                     <button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
                       <i class="fa fa-chevron-down"></i>
-                      <span *ngIf="pn?.Others != undefined && pn?.Others != ''" class="icon icon-{{pn?.Others.toLowerCase()}}"></span>
-                      <span *ngIf="pn?.Others == undefined || pn?.Others == ''" class="icon icon-{{pn?.ReferralStatus.toLowerCase()}}"></span>
+                      <span *ngIf="pn?.Others != undefined && pn?.Others != ''"
+                        class="icon icon-{{pn?.Others.toLowerCase()}}"></span>
+                      <span *ngIf="pn?.Others == undefined || pn?.Others == ''"
+                        class="icon icon-{{pn?.ReferralStatus.toLowerCase()}}"></span>
                       <span *ngIf="pn?.Others == ' '" class="icon icon-reject"></span>
                       <div class="d-flex justify-content-between">
                         <ng-container *ngIf="pn?.Others != undefined && pn?.Others != ''">
@@ -1872,20 +1473,15 @@
                           {{ pn?.ReferralStatus }}
                         </ng-container>
                         <span *ngIf="pn?.Others == ' '"></span>
-                        <i
-                        class="fa fade-icon close-icon"
-                        style="color: red; cursor: hand"
-                        (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)"
-                        >×</i>
+                        <i class="fa fade-icon close-icon" style="color: red; cursor: hand"
+                          (click)="deleteNote(pn.NotesId, profile?.ProfileId, pn.JobId)">×</i>
                       </div>
-                      
+
                       <div class="d-flex justify-content-between">
                         <span *ngIf="pn.CustomerComment != null">
-                          By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span
-                        >
+                          By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span>
                         <span *ngIf="pn.CandidateComment != null">
-                          By {{ profile?.FirstName | titlecase }} {{ profile?.LastName | titlecase }}</span
-                        >
+                          By {{ profile?.FirstName | titlecase }} {{ profile?.LastName | titlecase }}</span>
                         <span *ngIf="pn.CandidateComment == null || pn.CustomerComment == null"></span>
                         <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div>
                       </div>
@@ -1907,20 +1503,24 @@
                     <ng-container *ngIf="pn.CustomerComment != null">
                       <div class="card-col">
                         {{ pn?.CustomerComment | titlecase }}
-                        <a *ngIf="customer.UserId==pn.CustomeruserId" class="edit__btn" href="javascript:void(0)" (click)="showSubItem(i)"><i class="fa fa-pencil"></i></a>
+                        <a *ngIf="customer.UserId==pn.CustomeruserId" class="edit__btn" href="javascript:void(0)"
+                          (click)="showSubItem(i)"><i class="fa fa-pencil"></i></a>
                       </div>
 
-                      <div class="card-col xs-padding"  *ngIf="visibleIndex === i">
+                      <div class="card-col xs-padding" *ngIf="visibleIndex === i">
                         <textarea type="text" name="Comments" (input)="newComment= $event.target.value"
-                        placeholder="Please add your Notes *" rows="5" class="form-control" value="{{pn?.CustomerComment}}"></textarea>
-                        <a href="javascript:void(0)"  (click)="showSubItem(i);saveedit(pn?.CustomerComment,pn.JobId, pn.CustomeruserId,profile?.ProfileId)" class="btn btn-filled ">Save</a>
+                          placeholder="Please add your Notes *" rows="5" class="form-control"
+                          value="{{pn?.CustomerComment}}"></textarea>
+                        <a href="javascript:void(0)"
+                          (click)="showSubItem(i);saveedit(pn?.CustomerComment,pn.JobId, pn.CustomeruserId,profile?.ProfileId)"
+                          class="btn btn-filled ">Save</a>
                       </div>
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
-                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)"
-                            >{{ a?.DocName.split("_")[0] }}
-                            <div class="attched"><i class="fa fa-paperclip"></i></div
-                          ></a>
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
                         </div>
                       </ng-container>
                     </ng-container>
@@ -1928,10 +1528,10 @@
                       Notes Not Added
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
-                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)"
-                            >{{ a?.DocName.split("_")[0] }}
-                            <div class="attched"><i class="fa fa-paperclip"></i></div
-                          ></a>
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
                         </div>
                       </ng-container>
                     </ng-container>
@@ -2095,11 +1695,11 @@
 												</div>
 										</div>
 								</div> -->
-                
+
             </ng-container>
           </ng-container>
           <ng-container *ngIf="CandidateNotes.length === 0">
-           <h6>Notes Yet To Add</h6>
+            <h6>Notes Yet To Add</h6>
           </ng-container>
         </div>
       </div>
@@ -2154,27 +1754,20 @@
 
     <!--Feedback-->
     <div class="matching-details bg-fff activities__box" id="matchingDetailFeedback-{{ profile.ProfileId }}">
-      <a
-        _ngcontent-c21=""
-        class="revamp__close tooltip1 revamp__tooltip"
-        href="javascript:void(0)"
-        (click)="closeDetails(profile.ProfileId, 1)"
-        >×
+      <a _ngcontent-c21="" class="revamp__close tooltip1 revamp__tooltip" href="javascript:void(0)"
+        (click)="closeDetails(profile.ProfileId, 1)">×
         <div class="bottom1 bottom1-close">Close</div>
       </a>
 
       <div class="top__container flex flex-align-center">
         <h2>Feedback</h2>
-        <button
-          class="btn btn-primary btn-sm tooltip1 revamp__tooltip"
-          (click)="OpenRejectDialog(  profile?.JobResponseId,
+        <button class="btn btn-primary btn-sm tooltip1 revamp__tooltip" (click)="OpenRejectDialog(  profile?.JobResponseId,
           profile?.ProfileId,
           profile?.Email,
           profile?.FirstName,
           profile?.LastName,
           profile?.UserId,
-          profile?.MatchingPercentage)"
-        >
+          profile?.MatchingPercentage)">
           <i class="fa fa-plus-circle"></i>
           <div class="bottom1">Add</div>
         </button>
@@ -2198,13 +1791,12 @@
                       </ng-container> -->
 
                       <span *ngIf="pn.Comment != null">
-                        By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span
-                      >
+                        By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span>
 
                       <!-- <span>
                        {{ pn?.FeedbackOption}}</span
                       > -->
-                    
+
                     </button>
                     <!-- <div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div> -->
                   </h5>
@@ -2226,10 +1818,10 @@
                       </div>
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
-                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)"
-                            >{{ a?.DocName.split("_")[0] }}
-                            <div class="attched"><i class="fa fa-paperclip"></i></div
-                          ></a>
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
                         </div>
                       </ng-container>
                     </ng-container>
@@ -2237,10 +1829,10 @@
                       Notes Not Added
                       <ng-container *ngIf="pn.attachments.length > 0">
                         <div class="card-col" *ngFor="let a of pn.attachments">
-                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)"
-                            >{{ a?.DocName.split("_")[0] }}
-                            <div class="attched"><i class="fa fa-paperclip"></i></div
-                          ></a>
+                          <a href="javascript:void(0)" (click)="DownloadResumeNote(a.DocUrl, a.DocName)">{{
+                            a?.DocName.split("_")[0] }}
+                            <div class="attched"><i class="fa fa-paperclip"></i></div>
+                          </a>
                         </div>
                       </ng-container>
                     </ng-container>
@@ -2321,15 +1913,8 @@
 
   <!-- .card.candidate -->
 </div>
-<mat-spinner
-  *ngIf="Rloading"
-  style="margin: 0 auto"
-  class=""
-  [color]="color"
-  [mode]="mode"
-  strokeWidth="3"
-  [diameter]="50"
->
+<mat-spinner *ngIf="Rloading" style="margin: 0 auto" class="" [color]="color" [mode]="mode" strokeWidth="3"
+  [diameter]="50">
 </mat-spinner>
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
   <p style="font-size: 20px; color: white">Loading...</p>
@@ -2342,13 +1927,8 @@
 
 <alert></alert>
 
-<div
-  class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  id="matching-criteria"
->
+<div class="modal fade bs-example-modal-lg viewJobsModal personality-test-dialog" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" id="matching-criteria">
   <div class="modal-dialog" role="document">
     <!--Slide 3 Result Draft View-->
     <div class="modal-content vh100 p1">
@@ -2412,9 +1992,7 @@
               </div>
               <div class="col-md-4">
                 <h6 class="text-success">Received Response</h6>
-                <small
-                  ><a href="javascript:void(0)"><i class="fa fa-file-text" aria-hidden="true"></i> </a
-                ></small>
+                <small><a href="javascript:void(0)"><i class="fa fa-file-text" aria-hidden="true"></i> </a></small>
               </div>
             </li>
           </ul>

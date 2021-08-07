@@ -77,10 +77,11 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-	showJobPrview(index) {
+	showJobPrview(profileId) {
+		//alert(profileId);
 		this.showDetail = true;
-		this.selectedCandidate = this.candidates[index];
-		this.selectedIndex = index;
+		this.selectedCandidate = this.candidates.find(x => x.ProfileId == profileId);
+		// this.selectedIndex = index;
 	}
 
 	hideJobDetail() {
