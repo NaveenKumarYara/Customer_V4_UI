@@ -174,7 +174,7 @@ export class ViewCandidateprofileComponent implements OnInit {
         label: "Skill Fit",
         data: [],
         
-        backgroundColor: [],
+        backgroundColor: ["rgb(255, 99, 132)"],
       },
     ],
   };
@@ -190,7 +190,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Culture = {
-    labels: ['Applicant Culture Fit','Company Culture Fit','CultureFit'],
+    labels: ['Value Match','Rank Match','Culture Fit'],
     datasets: [
       {
         label: "Culture Fit",
@@ -450,7 +450,6 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetProfileStatus?profileId=", this.data.ProfileId).subscribe((data) => {
       var apiData = data;
       this.noTest = apiData.profileStatus;
-      debugger
       this.isPublicAvailable = apiData.isPublicAvailable;
       if (this.noTest) {
         this.GetCandidatePersonalityResult();
@@ -645,21 +644,28 @@ export class ViewCandidateprofileComponent implements OnInit {
       .subscribe(
         data3 => {
           this.skillfitcheck = data3;
-          if (data3.length > 0) {
+          if (data3.length > 1) {
             data3.forEach((a)=>
-            {        
+            {     
               var letters = '0123456789ABCDEF'.split('');
               var color = '#';
               for (var i = 0; i < data3.length; i++ ) {
                   color += letters[Math.floor(Math.random() * 16)];
-              }
-              ; 
+              };
              this.Skill.labels.push(a.SkillName);
              this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
              this.Skill.datasets[0].backgroundColor.push(color);
             //  this.PersonalityFitLabels.labels.push(a.groupName);
             //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
             })             
+          }
+          if(data3.length==1)
+          {
+            data3.forEach((a)=>
+            { 
+            this.Skill.labels.push(a.SkillName);
+            this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+            })
           }
         })
   }

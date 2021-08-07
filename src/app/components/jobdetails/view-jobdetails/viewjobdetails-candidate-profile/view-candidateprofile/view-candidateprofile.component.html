@@ -1,66 +1,69 @@
 <main class="main-wrapper main-wrapper-lg">
 	<button aria-label="Close" class="close" data-dismiss="modal" mat-button="" mat-dialog-close="" type="button">
-		<span aria-hidden="true">×</span>
+	  <span aria-hidden="true">×</span>
 	</button>
 	<div class="tab-content">
-		<div class="tab-pane fade in active summary-view" id="summaryView">
-			<div class="style1 revamp__style__01">
-				<div class="revmap__profile__top flex flex-wrap flex-align-end">
-					<div class="image__container">
-						<img alt="..." class="media-object media-img-circle"
-							src="{{ details?.profileVal?.ProfilePic }}" />
-					</div>
-					<div class="profile__info__box">
-						<div class="row flex flex-align-equal flex-wrap equal-hundred">
-							<div class="col-sm-7">
-								<div class="top__listing">
-									<ul class="flex flex-wrap flex-align-equal">
-										<li class="flex-value">
-											<h4>Objective</h4>
-											<h5 [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150)"
-												[ngClass]="{ 'show-less': showShortDesciption }"
-												title="{{ profileview?.ProfileBasicInfo?.AboutMe }}">
-											</h5>
-											<!-- <h4>{{details?.profileVal?.FirstName}} {{details?.profileVal?.LastName}}</h4> -->
-											<!-- <h5>{{details?.profileVal?.ProfileTitle}} @ {{profileview?.ProfileBasicInfo?.CompanyName}}</h5> -->
-											<!-- <span class="status active">Active</span> -->
-										</li>
-										<li class="flex second__child">
-											<div class="flex-self-center">
-												<!-- <p
+	  <div class="tab-pane fade in active summary-view" id="summaryView">
+		<div class="style1 revamp__style__01">
+		  <div class="revmap__profile__top flex flex-wrap flex-align-end">
+			<div class="image__container">
+			  <img alt="..." class="media-object media-img-circle" src="{{ details?.profileVal?.ProfilePic }}" />
+			</div>
+			<div class="profile__info__box">
+			  <div class="row flex flex-align-equal flex-wrap equal-hundred">
+				<div class="col-sm-7">
+				  <div class="top__listing">
+					<ul class="flex flex-wrap flex-align-equal">
+					  <li class="flex-value">
+						<h4>Objective</h4>
+						<h5
+						  [innerHTML]= "profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150)" 
+						  [ngClass]="{ 'show-less': showShortDesciption }"
+						  title="{{ profileview?.ProfileBasicInfo?.AboutMe }}"
+						>
+						</h5>
+						<!-- <h4>{{details?.profileVal?.FirstName}} {{details?.profileVal?.LastName}}</h4> -->
+						<!-- <h5>{{details?.profileVal?.ProfileTitle}} @ {{profileview?.ProfileBasicInfo?.CompanyName}}</h5> -->
+						<!-- <span class="status active">Active</span> -->
+					  </li>
+					  <li class="flex second__child">
+						<div class="flex-self-center">
+						  <!-- <p
 							[innerHTML]
 							[ngClass]="{ 'show-less': showShortDesciption }"
 							title="{{ profileview?.ProfileBasicInfo?.AboutMe }}"
 						  >
 							{{ profileview?.ProfileBasicInfo?.AboutMe }}
 						  </p> -->
-
-												<div class="top__box__info flex flex-align-center flex-wrap">
-													<div>
-														<h4>{{ details?.profileVal?.FirstName }} {{
-															details?.profileVal?.LastName }}</h4>
-														<h5>{{ details?.profileVal?.ProfileTitle }} - {{
-															profileview?.ProfileBasicInfo?.TotalExperience || 0 }}Exp.
-														</h5>
-													</div>
-
-													<div class="small__progress__bar">
-														<circle-progress data-toggle="matching-details"
-															[percent]="MatchingPercentage" [radius]="40"
-															[outerStrokeWidth]="8" [innerStrokeWidth]="3"
-															[outerStrokeColor]="'#6262ff'"
-															[innerStrokeColor]="'#c0c0c0'" [animation]="false"
-															[showSubtitle]="false">
-														</circle-progress>
-													</div>
-												</div>
-
-												<!-- <span (click)="alterDescriptionText()">
+  
+						  <div class="top__box__info flex flex-align-center flex-wrap">
+							<div>
+							  <h4>{{ details?.profileVal?.FirstName }} {{ details?.profileVal?.LastName }}</h4>
+							  <h5>{{ details?.profileVal?.ProfileTitle }} - {{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}Exp.</h5>
+							</div>
+  
+							<div class="small__progress__bar">
+							  <circle-progress
+								data-toggle="matching-details"
+								[percent]="MatchingPercentage"
+								[radius]="40"
+								[outerStrokeWidth]="8"
+								[innerStrokeWidth]="3"
+								[outerStrokeColor]="'#6262ff'"
+								[innerStrokeColor]="'#c0c0c0'"
+								[animation]="false"
+								[showSubtitle]="false"
+							  >
+							  </circle-progress>
+							</div>
+						  </div>
+  
+						  <!-- <span (click)="alterDescriptionText()">
 							{{ showShortDesciption ? "SHOW ALL" : "SHOW LESS" }}
 						  </span> -->
-											</div>
-										</li>
-										<!-- <li class="flex">
+						</div>
+					  </li>
+					  <!-- <li class="flex">
 						<div class="flex-self-center">
 						  <span>Experience</span>
 						  <em>{{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</em>
@@ -72,85 +75,87 @@
 						  <em>{{ profileview?.ProfileAwards || 0 }}</em>
 						</div>
 					  </li> -->
-									</ul>
-								</div>
-							</div>
-							<div class="col-sm-5 buttons__col">
-								<div class="row">
-									<button class="btn btn-filled btn-download-resume"
-										(click)="DownloadResume(details?.profileVal?.FirstName)">
-										Download Resume
-									</button>
-								</div>
-								<div class="row">
-									<button class="btn btn-filled btn-detailed-view"
-										(click)="OpenCandidate(details?.ProfileId, details?.profileVal?.UserId)">
-										Detailed View
-									</button>
-								</div>
-
-								<div class="row">
-									<ul class="icon__ul">
-										<li>
-											<a href="javascript:void(0)" (click)="showRadarChart('Reference Check')"
-												title="References">
-												<img src="../../../../../../assets/images/background-check-icon-01.png"
-													alt="">
-												<span class="tooltip">Reference Check</span>
-											</a>
-										</li>
-										<!-- <li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col-sm-5 buttons__col">
+				  <div class="row">
+					<button
+					  class="btn btn-filled btn-download-resume"
+					  (click)="DownloadResume(details?.profileVal?.FirstName)"
+					>
+					  Download Resume
+					</button>
+				  </div>
+				  <div class="row">
+					<button
+					  class="btn btn-filled btn-detailed-view"
+					  (click)="OpenCandidate(details?.ProfileId, details?.profileVal?.UserId)"
+					>
+					  Detailed View
+					</button>
+				  </div>
+				  
+				  <div class="row">
+					<ul class="icon__ul">
+					  <li>
+						<a href="javascript:void(0)" (click)="showRadarChart('Reference Check')" title="References">
+						  <img src="../../../../../../assets/images/background-check-icon-01.png" alt="">
+						  <span class="tooltip">Reference Check</span>
+						</a>
+					  </li>
+					  <!-- <li>
 						<a href="javascript:void(0)" title="Achievements">
 						  <img src="../../../../../../assets/images/background-check-icon-02.png" alt="">
 						  <span class="tooltip">Awards</span>
 						</a>
 					  </li> -->
-										<!-- <li>
+					  <!-- <li>
 						<a href="javascript:void(0)"(click)="showRadarChart('Skills Verified')" title="Background Need to be Verified" data-toggle="tooltip" title="+3  809 698 3822!">
 						  <img src="../../../../../../assets/images/background-check-icon-03.png" alt="">
 						  <span class="tooltip">Skill Verified</span>
 						</a>
 					  </li> -->
-										<li>
-											<a href="javascript:void(0)" (click)="showRadarChart('Background Verified')"
-												title="Background Need to be Verified">
-												<img src="../../../../../../assets/images/background-check-icon-04.png"
-													alt="">
-												<span class="tooltip">Background Verification</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+					  <li>
+						<a href="javascript:void(0)" (click)="showRadarChart('Background Verified')" title="Background Need to be Verified" >
+						  <img src="../../../../../../assets/images/background-check-icon-04.png" alt="">
+						  <span class="tooltip">Background Verification</span>
+						</a>
+					  </li>
+					</ul>
+				  </div>
 				</div>
-				<div class="profile__info__box__bottom">
-					<div class="bottom__listing">
-						<ul class="flex flex-wrap flex-align-center">
-							<!-- <li>
+			  </div>
+			</div>
+		  </div>
+		  <div class="profile__info__box__bottom">
+			<div class="bottom__listing">
+			  <ul class="flex flex-wrap flex-align-center">
+				<!-- <li>
 				  <button class="btn btn-primary btn-sm btn-who-am-i" (click)="aboutContent()">Who am I?</button>
 				</li> -->
-							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'"
-								title=" {{ details?.profileVal?.Email }}">
-								{{ details?.profileVal?.Email }}
-							</li>
-							<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to
-								Provide</li>
-							<li class="mobile">
-								{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}
-							</li>
-							<li class="location">
-								<ng-container *ngIf="details?.profileVal?.CityName != null">
-									{{ details?.profileVal?.CityName }},
-								</ng-container>
-								<!-- <ng-container *ngIf="details?.profileVal?.StateName != null">
+				<li
+				  class="mail"
+				  *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'"
+				  title=" {{ details?.profileVal?.Email }}"
+				>
+				  {{ details?.profileVal?.Email }}
+				</li>
+				<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to Provide</li>
+				<li class="mobile">
+				  {{ details?.profileVal?.MobilePhone || "Yet to Provide" }}
+				</li>
+				<li class="location">
+				  <ng-container *ngIf="details?.profileVal?.CityName != null">
+					{{ details?.profileVal?.CityName }},
+				  </ng-container>
+				  <!-- <ng-container *ngIf="details?.profileVal?.StateName != null">
 					{{ details?.profileVal?.StateName }}.
 				  </ng-container>
 				  USA -->
-							</li>
-						</ul>
-						<!-- <ul class="reference__navigation">
+				</li>
+			  </ul>
+			  <!-- <ul class="reference__navigation">
 				<li>
 				  <a href="javascript:void(0)" (click)="showRadarChart('Reference Check')">
 					<img src="../../../../../../assets/images/background-check-icon-01.png" alt="">
@@ -176,167 +181,164 @@
 				  </a>
 				</li>
 			  </ul> -->
-					</div>
-					<div class="job-status-badge">
-						<div
-							class="status {{ jobStatus === 'Waiting for response' ? 'waitingforresponse' : jobStatus }}">
-							<!-- {{ profile?.NoEmail === true ? "Uploaded" : jobStatus }} -->
-							{{ jobStatus }}
-						</div>
-					</div>
-					<div class="bottom__content" [ngClass]="aboutShow ? 'show' : ''">
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-						Vestibulum
-						tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-						egestas
-						semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et
-						sapien
-						ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-						wisi. Aenean
-						fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim
-						ac dui. Donec
-						non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus,
-						tortor neque
-						egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
-						quis, accumsan
-						porttitor, facilisis luctus, metus
-					</div>
+			</div>
+			<div class="job-status-badge">
+			  <div class="status {{ jobStatus === 'Waiting for response' ? 'waitingforresponse' : jobStatus }}">
+				<!-- {{ profile?.NoEmail === true ? "Uploaded" : jobStatus }} -->
+				{{ jobStatus }}
+			  </div>
+			</div>
+			<div class="bottom__content" [ngClass]="aboutShow ? 'show' : ''">
+			  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+			  tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+			  semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+			  ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+			  fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
+			  non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
+			  egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+			  porttitor, facilisis luctus, metus
+			</div>
+		  </div>
+  
+		  <!--Old Code-->
+		  <div class="row h-bg p-2" style="margin: 0; display: none">
+			<!---->
+			<div class="col-md-4 ng-star-inserted">
+			  <div class="media">
+				<div class="media-left media-middle">
+				  <a href="javascript:void(0)">
+					<img alt="..." class="media-object media-img-circle" src="{{ details?.profileVal?.ProfilePic }}" />
+				  </a>
 				</div>
-
-				<!--Old Code-->
-				<div class="row h-bg p-2" style="margin: 0; display: none">
-					<!---->
-					<div class="col-md-4 ng-star-inserted">
-						<div class="media">
-							<div class="media-left media-middle">
-								<a href="javascript:void(0)">
-									<img alt="..." class="media-object media-img-circle"
-										src="{{ details?.profileVal?.ProfilePic }}" />
-								</a>
-							</div>
-							<div class="media-body">
-								<h4 class="media-heading">
-									<span class="fname">{{ details?.profileVal?.FirstName }}</span>
-									<span class="lname">{{ details?.profileVal?.LastName }}</span>
-								</h4>
-								<span class="job-title">{{ details?.profileVal?.ProfileTitle }} @ {{
-									profileview?.ProfileBasicInfo?.CompanyName }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="col-md-7">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-6 col-sm-6 col-xs-6">
-										<div class="stats">
-											<h1>{{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</h1>
-											<small>Professional Experience</small>
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6">
-										<div class="stats">
-											<h1>{{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</h1>
-											<small>Project Experience</small>
-										</div>
-									</div>
-								</div>
-								<div class="row pt-1">
-									<div class="col-md-6 col-sm-6 col-xs-6">
-										<div class="stats">
-											<h1>{{ profileview?.ProfileExperience?.length || 0 }}</h1>
-											<small>Prestigious Clients</small>
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6">
-										<div class="stats">
-											<h1>{{ profileview?.ProfileAwards || 0 }}</h1>
-											<small>Awards</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-5">
-							<div class="d-list">
-								<ul class="c-content">
-									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'"
-										title=" {{ details?.profileVal?.Email }}">
-										{{ details?.profileVal?.Email }}
-									</li>
-									<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet
-										to Provide</li>
-									<li class="mobile">
-										{{ details?.profileVal?.MobilePhone || "Yet to Provide" }}
-									</li>
-									<li class="location">
-										<ng-container *ngIf="details?.profileVal?.CityName != null">
-											{{ details?.profileVal?.CityName }},
-										</ng-container>
-										<ng-container *ngIf="details?.profileVal?.StateName != null">
-											{{ details?.profileVal?.StateName }}.
-										</ng-container>
-										USA
-									</li>
-								</ul>
-							</div>
-
-							<div class="download-resume pull-right">
-								<button class="btn btn-filled btn-download-resume"
-									(click)="DownloadResume(details?.profileVal?.FirstName)">
-									<i class="fa fa-file-text" aria-hidden="true"></i> Download Resume
-								</button>
-								<button class="btn btn-filled btn-detailed-view"
-									(click)="OpenCandidate(details?.ProfileId, details?.profileVal?.UserId)">
-									Detailed View <i class="fa fa-chevron-right" aria-hidden="true"></i>
-								</button>
-							</div>
-						</div>
-					</div>
+				<div class="media-body">
+				  <h4 class="media-heading">
+					<span class="fname">{{ details?.profileVal?.FirstName }}</span>
+					<span class="lname">{{ details?.profileVal?.LastName }}</span>
+				  </h4>
+				  <span class="job-title"
+					>{{ details?.profileVal?.ProfileTitle }} @ {{ profileview?.ProfileBasicInfo?.CompanyName }}</span
+				  >
 				</div>
-				<!--Old Code-->
-
-				<!--New HTML Start-->
-				<div class="detail__view__container" *ngIf="!radarChart">
-					<div class="row flex flex-wrap flex-align-equal">
-						<div class="col-sm-4">
-							<div class="col__container">
-								<h4>Experience</h4>
-								<div class="jdv-stauts-listing" *ngIf="profileview?.ProfileExperience?.length > 0">
-									<ul>
-										<li class="beginner">Junior</li>
-										<li class="good">Mid Level</li>
-										<li class="professional">Senior</li>
-										<li class="master">Expert</li>
-									</ul>
-								</div>
-								<ul class="history__container">
-									<ng-container *ngIf="profileview?.ProfileExperience?.length === 0">
-										<span class="profile-note">Candidate yet to Provide the Experience
-											Details</span>
-									</ng-container>
-									<ng-container *ngIf="profileview?.ProfileExperience?.length > 0">
-										<ng-container *ngFor="let exp of profileview?.ProfileExperience; let i = index">
-											<li class="professional" *ngIf="i < 5">
-												<span class="year"><span>{{ exp.EndDate | date: "yyyy" }}</span></span>
-												<div class="info__box">
-													<p>{{ exp.StartDate | date: "MMM y" }} - {{ exp.EndDate | date: "MMM
-														y" }}</p>
-													<h5>{{ exp.JobRole }}</h5>
-													<p>
-														{{ exp.CompanyName }}
-														<ng-container
-															*ngIf="exp.JobLocation != null && exp.JobLocation != ''">
-															, {{ exp.JobLocation }}
-														</ng-container>
-													</p>
-												</div>
-											</li>
-										</ng-container>
-									</ng-container>
-
-									<!-- <li class="beginner">
+			  </div>
+			</div>
+			<div class="col-md-8">
+			  <div class="col-md-7">
+				<div class="card-body">
+				  <div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					  <div class="stats">
+						<h1>{{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</h1>
+						<small>Professional Experience</small>
+					  </div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					  <div class="stats">
+						<h1>{{ profileview?.ProfileBasicInfo?.TotalExperience || 0 }}</h1>
+						<small>Project Experience</small>
+					  </div>
+					</div>
+				  </div>
+				  <div class="row pt-1">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					  <div class="stats">
+						<h1>{{ profileview?.ProfileExperience?.length || 0 }}</h1>
+						<small>Prestigious Clients</small>
+					  </div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					  <div class="stats">
+						<h1>{{ profileview?.ProfileAwards || 0 }}</h1>
+						<small>Awards</small>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+  
+			  <div class="col-md-5">
+				<div class="d-list">
+				  <ul class="c-content">
+					<li
+					  class="mail"
+					  *ngIf="details?.profileVal?.Email.substring(0, 7) != 'esolvit'"
+					  title=" {{ details?.profileVal?.Email }}"
+					>
+					  {{ details?.profileVal?.Email }}
+					</li>
+					<li class="mail" *ngIf="details?.profileVal?.Email.substring(0, 7) == 'esolvit'">Yet to Provide</li>
+					<li class="mobile">
+					  {{ details?.profileVal?.MobilePhone || "Yet to Provide" }}
+					</li>
+					<li class="location">
+					  <ng-container *ngIf="details?.profileVal?.CityName != null">
+						{{ details?.profileVal?.CityName }},
+					  </ng-container>
+					  <ng-container *ngIf="details?.profileVal?.StateName != null">
+						{{ details?.profileVal?.StateName }}.
+					  </ng-container>
+					  USA
+					</li>
+				  </ul>
+				</div>
+  
+				<div class="download-resume pull-right">
+				  <button
+					class="btn btn-filled btn-download-resume"
+					(click)="DownloadResume(details?.profileVal?.FirstName)"
+				  >
+					<i class="fa fa-file-text" aria-hidden="true"></i> Download Resume
+				  </button>
+				  <button
+					class="btn btn-filled btn-detailed-view"
+					(click)="OpenCandidate(details?.ProfileId, details?.profileVal?.UserId)"
+				  >
+					Detailed View <i class="fa fa-chevron-right" aria-hidden="true"></i>
+				  </button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <!--Old Code-->
+  
+		  <!--New HTML Start-->
+		  <div class="detail__view__container" *ngIf="!radarChart">
+			<div class="row flex flex-wrap flex-align-equal">
+			  <div class="col-sm-4">
+				<div class="col__container">
+				  <h4>Experience</h4>
+				  <div class="jdv-stauts-listing" *ngIf="profileview?.ProfileExperience?.length > 0">
+					<ul>
+					  <li class="beginner">Junior</li>
+					  <li class="good">Mid Level</li>
+					  <li class="professional">Senior</li>
+					  <li class="master">Expert</li>
+					</ul>
+				  </div>
+				  <ul class="history__container">
+					<ng-container *ngIf="profileview?.ProfileExperience?.length === 0">
+					  <span class="profile-note">Candidate yet to Provide the Experience Details</span>
+					</ng-container>
+					<ng-container *ngIf="profileview?.ProfileExperience?.length > 0">
+					  <ng-container *ngFor="let exp of profileview?.ProfileExperience; let i = index">
+						<li class="professional" *ngIf="i < 5">
+						  <span class="year"
+							><span>{{ exp.EndDate | date: "yyyy" }}</span></span
+						  >
+						  <div class="info__box">
+							<p>{{ exp.StartDate | date: "MMM y" }} - {{ exp.EndDate | date: "MMM y" }}</p>
+							<h5>{{ exp.JobRole }}</h5>
+							<p>
+							  {{ exp.CompanyName }}
+							  <ng-container *ngIf="exp.JobLocation != null && exp.JobLocation != ''">
+								, {{ exp.JobLocation }}
+							  </ng-container>
+							</p>
+						  </div>
+						</li>
+					  </ng-container>
+					</ng-container>
+  
+					<!-- <li class="beginner">
 					  <span class="year"><span>2014</span></span>
 					  <div class="info__box">
 						<h5>Lead Ui Designer</h5>
@@ -364,28 +366,28 @@
 						<p>Big Design Compant New York, NY, USA</p>
 					  </div>
 					</li> -->
-								</ul>
-							</div>
-							<div class="col__container">
-								<h4>Education</h4>
-								<ul class="history__container">
-									<ng-container *ngIf="profileview?.Education.length > 0">
-										<li *ngFor="let education of profileview?.Education">
-											<span class="year"><span>{{ education.ToYear }}</span></span>
-											<div class="info__box">
-												<h5>{{ education.QualificationName }} - {{ education.Specialization }}
-												</h5>
-												<p>{{ education.InstituteORUniversity }}</p>
-											</div>
-										</li>
-									</ng-container>
-									<ng-container *ngIf="profileview?.Education.length == 0">
-										<span class="profile-note">Candidate yet to provide the Education
-											details.</span>
-									</ng-container>
-								</ul>
-							</div>
-							<!-- <div class="col__container">
+				  </ul>
+				</div>
+				<div class="col__container">
+				  <h4>Education</h4>
+				  <ul class="history__container">
+					<ng-container *ngIf="profileview?.Education.length > 0">
+					  <li *ngFor="let education of profileview?.Education">
+						<span class="year"
+						  ><span>{{ education.ToYear }}</span></span
+						>
+						<div class="info__box">
+						  <h5>{{ education.QualificationName }} - {{ education.Specialization }}</h5>
+						  <p>{{ education.InstituteORUniversity }}</p>
+						</div>
+					  </li>
+					</ng-container>
+					<ng-container *ngIf="profileview?.Education.length == 0">
+					  <span class="profile-note">Candidate yet to provide the Education details.</span>
+					</ng-container>
+				  </ul>
+				</div>
+				<!-- <div class="col__container">
 				  <h4>Domain</h4>
 				  <ul class="history__container">
 					<ng-container *ngIf="profileview?.ProfileDomain.length > 0">
@@ -405,211 +407,214 @@
 					</ng-container>
 				  </ul>
 				</div> -->
-						</div>
-						<div class="col-sm-4">
-							<div class="col__container graph__container">
-								<h4>Skills</h4>
-							</div>
-							<div class="col__container jdv-listing">
-								<!-- <div class="jdv-stauts-listing">
+			  </div>
+			  <div class="col-sm-4">
+				<div class="col__container graph__container">
+				  <h4>Skills</h4>
+				</div>
+				<div class="col__container jdv-listing">
+				  <!-- <div class="jdv-stauts-listing">
 					<ul *ngIf="skilllist.length > 0">
 					  <li class="fimiliar">Mandatory</li>
 					  <li class="beginner">Optional</li>
 					</ul>
 				  </div> -->
-								<!--/.jdv-status-listing-->
-								<div class="jdv-skills">
-									<h4>Mandatory Skills</h4>
-									<div class="scrollbar-container">
-										<div class="row flex flex-wrap flex-align-equal">
-											<ng-container *ngIf="skilllist.length === 0">
-												<span class="profile-note">Candidate yet to provide the Skills.</span>
-											</ng-container>
-											<ng-container *ngIf="skilllist.length > 0">
-												<ng-container *ngFor="let skill of skilllist | removeduplicates">
-													<div class="col-sm-6" [ngClass]="{
+				  <!--/.jdv-status-listing-->
+				  <div class="jdv-skills">
+					<h4>Mandatory Skills</h4>
+					<div class="scrollbar-container">
+					  <div class="row flex flex-wrap flex-align-equal">
+						<ng-container *ngIf="skilllist.length === 0">
+						  <span class="profile-note">Candidate yet to provide the Skills.</span>
+						</ng-container>
+						<ng-container *ngIf="skilllist.length > 0">
+						  <ng-container *ngFor="let skill of skilllist | removeduplicates">
+							<div
+							  class="col-sm-6"
+							  [ngClass]="{
 								fimiliar: skill.split('|')[3] === 1,
 								beginner: skill.split('|')[3] === 2,
 								good: skill.split('|')[3] === 3,
 								professional: skill.split('|')[3] === 4,
 								master: skill.split('|')[3] === 5
-							  }">
-														<div class="col-container">
-															<h5>{{ skill.split("|")[0] }}</h5>
-															<h6>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2]
-																}} years</h6>
-															<div class="star-rating">
-																<star-rating
-																	value="{{ skill.split('|')[3] | slice: 0:1 }}"
-																	totalstars="5" checkedcolor="#2260C3"
-																	uncheckedcolor="#9EABC0" size="16px"
-																	readonly="true">
-																</star-rating>
-															</div>
-														</div>
-														<!--/.col-container-->
-													</div>
-												</ng-container>
-											</ng-container>
-
-											<!--/.col-sm-6-->
-
-											<!--/.col-sm-6-->
-
-											<!--/.col-sm-6-->
-										</div>
-
-										<!--/.row-->
-									</div>
+							  }"
+							>
+							  <div class="col-container">
+								<h5>{{ skill.split("|")[0] }}</h5>
+								<h6>Exp : {{ skill?.split("|")[1] }}.{{ skill?.split("|")[2] }} years</h6>
+								<div class="star-rating">
+								  <star-rating
+									value="{{ skill.split('|')[3] | slice: 0:1 }}"
+									totalstars="5"
+									checkedcolor="#2260C3"
+									uncheckedcolor="#9EABC0"
+									size="16px"
+									readonly="true"
+								  >
+								  </star-rating>
 								</div>
-								<!--/.jdv-skills-->
+							  </div>
+							  <!--/.col-container-->
 							</div>
-							<div class="col__container jdv-listing">
-								<div class="jdv-stauts-listing">
-									<!-- <ul>
+						  </ng-container>
+						</ng-container>
+  
+						<!--/.col-sm-6-->
+  
+						<!--/.col-sm-6-->
+  
+						<!--/.col-sm-6-->
+					  </div>
+  
+					  <!--/.row-->
+					</div>
+				  </div>
+				  <!--/.jdv-skills-->
+				</div>
+				<div class="col__container jdv-listing">
+				  <div class="jdv-stauts-listing">
+					<!-- <ul>
 					  <li class="fimiliar">Mandatory</li>
 					  <li class="beginner">Optional</li>
 					</ul> -->
-								</div>
-								<!--/.jdv-status-listing-->
-								<div class="jdv-skills">
-									<div class="section__title">
-										<h4>All Soft Skills</h4>
-									</div>
-									<!--/.section__title-->
-
-									<div class="scrollbar-container">
-										<div class="row">
-											<div class="col-sm-12">
-												<h5>Coming Soon!!</h5>
-											</div>
-											<!-- <div class="col-container">
+				  </div>
+				  <!--/.jdv-status-listing-->
+				  <div class="jdv-skills">
+					<div class="section__title">
+					  <h4>All Soft Skills</h4>
+					</div>
+					<!--/.section__title-->
+  
+					<div class="scrollbar-container">
+					  <div class="row">
+						<div class="col-sm-12">
+						  <h5>Coming Soon!!</h5>
+						</div>
+						<!-- <div class="col-container">
 						</div> -->
-											<!--/.col-sm-6-->
-										</div>
-										<!--/.row-->
-									</div>
-								</div>
-								<!--/.jdv-skills-->
-							</div>
-							<div class="col__container jdv-listing">
-								<div class="jdv-stauts-listing">
-									<ul *ngIf="skilllist.length > 0">
-										<li class="fimiliar">Familiar</li>
-										<li class="beginner">Beginner</li>
-										<li class="good">Good</li>
-										<li class="professional">Professional</li>
-										<li class="master">master</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col__container graph__container">
-								<!-- <figure>
+						<!--/.col-sm-6-->
+					  </div>
+					  <!--/.row-->
+					</div>
+				  </div>
+				  <!--/.jdv-skills-->
+				</div>
+				<div class="col__container jdv-listing">
+				  <div class="jdv-stauts-listing">
+					<ul *ngIf="skilllist.length > 0">
+					  <li class="fimiliar">Familiar</li>
+					  <li class="beginner">Beginner</li>
+					  <li class="good">Good</li>
+					  <li class="professional">Professional</li>
+					  <li class="master">master</li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col__container graph__container">
+				  <!-- <figure>
 					<img src="../../../../../../assets/images/revamp__detail__view/revamp__graph.png" alt="" />
 				  </figure> -->
-								<!-- <app-line-chart></app-line-chart> -->
-							</div>
-							<div class="col__container">
-								<h4>Certification</h4>
-								<ul class="custom-check-list flex flex-wrap flex-align-equal">
-									<ng-container *ngIf="profileview?.Certifications?.length > 0">
-										<li *ngFor="let certificate of profileview?.Certifications">
-											<div class="box-info" title="{{ certificate.CertificationName }}">
-												{{ add3Dots(certificate.CertificationName, 20) }}
-											</div>
-										</li>
-									</ng-container>
-									<ng-container *ngIf="profileview?.Certifications?.length === 0">
-										<span class="profile-note">Candidate yet to provide the Certification
-											details.</span>
-									</ng-container>
-								</ul>
-							</div>
-							<div class="col__container">
-								<div class="jdv-key-section">
-									<h4>Achievements</h4>
-
-									<ul class="custom-check-list flex flex-wrap flex-align-equal">
-
-										<ng-container *ngIf="alist.length>0">
-											<li *ngFor="let a of alist">
-												<div class="box-info" title="{{a?.AchivementDescription }}">
-													{{ add3Dots(a?.AchivementDescription, 20) }}
-												</div>
-											</li>
-										</ng-container>
-										<ng-container *ngIf="alist.length===0">
-											<span class="profile-note">Candidate yet to provide the Achievement
-												details.</span>
-										</ng-container>
-									</ul>
-								</div>
-							</div>
+				  <!-- <app-line-chart></app-line-chart> -->
+				</div>
+				<div class="col__container">
+				  <h4>Certification</h4>
+				  <ul class="custom-check-list flex flex-wrap flex-align-equal">
+					<ng-container *ngIf="profileview?.Certifications?.length > 0">
+					  <li *ngFor="let certificate of profileview?.Certifications">
+						<div class="box-info" title="{{ certificate.CertificationName }}">
+						  {{ add3Dots(certificate.CertificationName, 20) }}
 						</div>
-						<div class="col-sm-4">
-							<div class="col__container charts-section">
-								<h4>Arytic Fit</h4>
-								<div class="p-m-section col-md-12 flex flex-justify-center">
-									<app-radar-chart style="cursor: pointer" (click)="showRadarChart('radar')"
-										[radarChartData]="smallRadarChartData" [height]="260" [width]="300">
-									</app-radar-chart>
-								</div>
-								<!-- <div class="p-m-section col-md-4 text-center">
+					  </li>
+					</ng-container>
+					<ng-container *ngIf="profileview?.Certifications?.length === 0">
+					  <span class="profile-note">Candidate yet to provide the Certification details.</span>
+					</ng-container>
+				  </ul>
+				</div>
+				<div class="col__container">
+				  <div class="jdv-key-section">
+					<h4>Achievements</h4>
+  
+					<ul class="custom-check-list flex flex-wrap flex-align-equal">
+				
+					  <ng-container *ngIf="alist.length>0">
+					  <li *ngFor="let a of alist">
+						<div class="box-info" title="{{a?.AchivementDescription }}">
+							{{ add3Dots(a?.AchivementDescription, 20) }}
+						  </div>
+						</li>
+					  </ng-container>
+					  <ng-container *ngIf="alist.length===0">
+						<span class="profile-note">Candidate yet to provide the Achievement details.</span>
+					</ng-container>										 
+					</ul>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col-sm-4">
+				<div class="col__container charts-section">
+				  <h4>Arytic Fit</h4>
+				  <div class="p-m-section col-md-12 flex flex-justify-center">
+					<app-radar-chart
+					  style="cursor: pointer"
+					  (click)="showRadarChart('radar')"
+					  [radarChartData]="smallRadarChartData"
+					  [height]="260"
+					  [width]="300"
+					></app-radar-chart>
+				  </div>
+				  <!-- <div class="p-m-section col-md-4 text-center">
 					<h5>Profile Matching</h5>
 					<circle-progress data-toggle="matching-details" [percent]="MatchingPercentage" [radius]="40"
 					  [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
 					  [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
 					</circle-progress>
 				  </div> -->
-							</div>
-							<div class="col__container">
-								<h4>Activity & Notes</h4>
-								<div class="page--job-details">
-									<div class="activities__box">
-										<div class="middle__container">
-											<div id="accordion">
-												<ng-container *ngIf="CandidateNotes.length > 0">
-													<ng-container *ngFor="let pn of CandidateNotes; let i = index">
-														<div class="card">
-															<div class="card-header" id="headingOne">
-																<h5 class="mb-0">
-																	<button class="btn btn-link"
-																		(click)="hideme[i] = !hideme[i]">
-																		<i class="fa fa-chevron-down"></i>
-																		<span class="icon icon-notes"></span>
-																		{{ pn?.ReferralStatus }}
-																		<span *ngIf="pn.CustomerComment != null">
-																			By {{ pn?.FirstName | titlecase }} {{
-																			pn?.LastName | titlecase }}</span>
-																		<span *ngIf="pn.CandidateComment != null">
-																			By {{ profile?.FirstName | titlecase }} {{
-																			profile?.LastName | titlecase }}</span>
-																	</button>
-																	<div class="time">{{ pn.CreatedOn | date:
-																		"mediumDate" }}</div>
-																</h5>
-															</div>
-
-															<div [hidden]="hideme[i]">
-																<div class="card-body">
-																	<ng-container *ngIf="pn.CustomerComment != null">
-																		<div class="card-col">
-																			{{ pn?.CustomerComment | titlecase }}
-																			<div class="attched"><i
-																					class="fa fa-paperclip"></i></div>
-																		</div>
-																	</ng-container>
-																	<ng-container
-																		*ngIf="pn.CustomerComment === null && pn.CandidateComment == null">
-																		Notes Not Added
-																	</ng-container>
-																	<ng-container *ngIf="pn.CandidateComment != null">
-																		I am Interested in these position.
-																	</ng-container>
-																</div>
-															</div>
-														</div>
-														<!-- <div class="card">
+				</div>
+				<div class="col__container">
+				  <h4>Activity & Notes</h4>
+				  <div class="page--job-details">
+					<div class="activities__box">
+					  <div class="middle__container">
+						<div id="accordion">
+						  <ng-container *ngIf="CandidateNotes.length > 0">
+							<ng-container *ngFor="let pn of CandidateNotes; let i = index">
+							  <div class="card">
+								<div class="card-header" id="headingOne">
+								  <h5 class="mb-0">
+									<button class="btn btn-link" (click)="hideme[i] = !hideme[i]">
+									  <i class="fa fa-chevron-down"></i>
+									  <span class="icon icon-notes"></span>
+									  {{ pn?.ReferralStatus }}
+									  <span *ngIf="pn.CustomerComment != null">
+										By {{ pn?.FirstName | titlecase }} {{ pn?.LastName | titlecase }}</span
+									  >
+									  <span *ngIf="pn.CandidateComment != null">
+										By {{ profile?.FirstName | titlecase }} {{ profile?.LastName | titlecase }}</span
+									  >
+									</button>
+									<div class="time">{{ pn.CreatedOn | date: "mediumDate" }}</div>
+								  </h5>
+								</div>
+  
+								<div [hidden]="hideme[i]">
+								  <div class="card-body">
+									<ng-container *ngIf="pn.CustomerComment != null">
+									  <div class="card-col">
+										{{ pn?.CustomerComment | titlecase }}
+										<div class="attched"><i class="fa fa-paperclip"></i></div>
+									  </div>
+									</ng-container>
+									<ng-container *ngIf="pn.CustomerComment === null && pn.CandidateComment == null">
+									  Notes Not Added
+									</ng-container>
+									<ng-container *ngIf="pn.CandidateComment != null">
+									  I am Interested in these position.
+									</ng-container>
+								  </div>
+								</div>
+							  </div>
+							  <!-- <div class="card">
 								  <div class="card-header" id="headingTwo">
 									  <h5 class="mb-0">
 										  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
@@ -763,23 +768,23 @@
 									  </div>
 								  </div>
 							  </div> -->
-													</ng-container>
-												</ng-container>
-												<ng-container *ngIf="CandidateNotes.length === 0">
-													<span class="profile-note">Conversation not yet Started.</span>
-												</ng-container>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col__container check__box__section">
-								<h4>Arytic Check</h4>
-								<div class="row flex flex-wrap flex-align-equal arytic-check">
-									<div class="col-sm-12">
-										<h5>Coming Soon!!</h5>
-									</div>
-									<!-- <div class="col-sm-4" (click)="showRadarChart('Reference Check')">
+							</ng-container>
+						  </ng-container>
+						  <ng-container *ngIf="CandidateNotes.length === 0">
+							<span class="profile-note">Conversation not yet Started.</span>
+						  </ng-container>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="col__container check__box__section">
+				  <h4>Arytic Check</h4>
+				  <div class="row flex flex-wrap flex-align-equal arytic-check">
+					<div class="col-sm-12">
+						<h5>Coming Soon!!</h5>
+					  </div>
+					<!-- <div class="col-sm-4" (click)="showRadarChart('Reference Check')">
 					  <div class="col__container">
 						<div class="icon icon__ref__01">Icon</div>
 						<p>Reference Check</p>
@@ -803,15 +808,15 @@
 						<span class="out__of">Out of 15</span>
 					  </div>
 					</div> -->
-								</div>
-							</div>
-							<div class="col__container">
-								<h4>Messaging</h4>
-
-								<h5>Coming Soon!!</h5>
-								<div class="chatbox-container">
-									<ul class="chat__box__container">
-										<!-- <li>
+				  </div>
+				</div>
+				<div class="col__container">
+				  <h4>Messaging</h4>
+  
+				  <h5>Coming Soon!!</h5>
+				  <div class="chatbox-container">
+					<ul class="chat__box__container">
+					  <!-- <li>
 						<div class="image__box">
 						  <img src="https://identityapi-dev.arytic.com/home/EsolvitImages?id=professional.png" height="50%" width="50%" alt=""> 
 						</div>
@@ -820,142 +825,146 @@
 						</div>
 						  <div class="time__date">SENT 11:20 AM   SEEN 11:25AM</div> 
 					  </li> -->
-									</ul>
-								</div>
-							</div>
-							<div class="col__container tag__col__container">
-								<h4>Interest & Hobbies</h4>
-								<h5>Coming Soon!!</h5>
-								<ul>
-									<!-- <li><a href="javascriptvoid(0)">Comming Soon!!</a></li> -->
-									<!-- <li><a href="#">Reading</a></li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col__container tag__col__container">
+				  <h4>Interest & Hobbies</h4>
+				  <h5>Coming Soon!!</h5>
+				  <ul>
+					<!-- <li><a href="javascriptvoid(0)">Comming Soon!!</a></li> -->
+					<!-- <li><a href="#">Reading</a></li>
 					<li><a href="#">Writing</a></li>
 					<li><a href="#">Drawing</a></li>
 					<li><a href="#">Singing & Dancing</a></li> -->
-								</ul>
-							</div>
-						</div>
-					</div>
+				  </ul>
 				</div>
-				<!--New HTML Ends-->
-				<div *ngIf="radarChart">
-					<div class="radar-chart-container flex" [ngClass]="showMenu ? 'lg-chart-container':''">
-						<div class="mobile__menu">
-							<h4>{{menuHeading}}</h4>
-							<ul>
-								<li *ngFor="let item of radarChartMenu"
-									[ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
-									(click)="selectedItem(item.label)">
-									<a href="javascript:void(0)">
-										{{ item.label }}
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="side-menu" (mouseover)="showMenu=true" (mouseout)="showMenu=false">
-							<ul>
-								<li class="list-group-item" (click)="showAryticFitChart()"
-									[ngClass]="aryticFitChartVisible ? 'active': ''">
-									<a href="javascript:void(0)">
-										<span class="icon icon__radar icon__radar__check"></span>
-										<em>{{menuHeading}}</em>
-									</a>
-								</li>
-								<li *ngFor="let item of radarChartMenu"
-									[ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
-									(click)="selectedItem(item.label)">
-									<a href="javascript:void(0)">
-										<span class="icon icon__radar {{ item.className }}"></span>
-										<em>{{ item.label }}</em>
-									</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="col col__reference">
-							<div class="row">
-								<div class="back-btn">
-									<!-- <img width="25" height="21" src="../../../../../../assets/images/arrow_back.svg" />
+			  </div>
+			</div>
+		  </div>
+		  <!--New HTML Ends-->
+		  <div *ngIf="radarChart">
+			<div class="radar-chart-container flex" [ngClass]="showMenu ? 'lg-chart-container':''">
+				<div class="mobile__menu">
+					<h4>{{menuHeading}}</h4>
+					<ul>
+						<li 
+					  *ngFor="let item of radarChartMenu"
+					  [ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
+					  (click)="selectedItem(item.label)"
+					  >
+						  <a href="javascript:void(0)">
+							  {{ item.label }}
+						  </a>
+					  </li>
+					</ul>
+				</div>
+			  <div class="side-menu" (mouseover)="showMenu=true" (mouseout)="showMenu=false">
+				  <ul>
+					  <li class="list-group-item" (click)="showAryticFitChart()" [ngClass]="aryticFitChartVisible ? 'active': ''">
+							<a href="javascript:void(0)">
+								<span class="icon icon__radar icon__radar__check"></span>
+								<em>{{menuHeading}}</em>
+							</a>
+					  </li>
+					  <li 
+					  *ngFor="let item of radarChartMenu"
+					  [ngClass]="item.label === selectedMenuItem ? 'list-group-item active' : 'list-group-item'"
+					  (click)="selectedItem(item.label)"
+					  >
+						  <a href="javascript:void(0)">
+							  <span class="icon icon__radar {{ item.className }}"></span>
+							  <em>{{ item.label }}</em>
+						  </a>
+					  </li>
+				  </ul>
+			  </div>
+			  
+			  <div class="col col__reference">
+				<div class="row">
+				  <div class="back-btn" >
+					<!-- <img width="25" height="21" src="../../../../../../assets/images/arrow_back.svg" />
 					<h4>Go Back</h4> -->
-									<button class="btn btn-filled" (click)="showRadarChart()">
-										<i class="fa fa-arrow-left" aria-hidden="true"></i>
-										Back
-									</button>
-								</div>
-							</div>
-							<div class="chart-container" *ngIf="aryticFitChartVisible">
-
-								<app-radar-chart-large [radarChartData]="smallRadarChartData"> </app-radar-chart-large>
-								<div class="custom-legend">
-									<ul class="list-group">
-										<li *ngFor="let item of smallRadarChartData.labels; let i = index">
-											<p>{{ item }}</p>
-											<div class="percentage__info">
-												<span class="shadow__01"
-													style="background-color: rgb(54, 162, 235)">Shadow</span>
-												<span class="shadow__02"
-													style="background-color: rgb(54, 162, 235)">Shadow</span>
-												<p style="background-color: rgb(54, 162, 235)">
-													{{ smallRadarChartData.datasets[0].data[i] }}
-												</p>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="chart-container" *ngIf="selectedMenuItem == 'Job Fit'">
-								<app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
-								<div class="custom-legend">
-									<ul class="list-group">
-										<li *ngFor="let item of Job.labels; let i = index">
-											<p>{{ item }}</p>
-											<div class="percentage__info">
-												<span class="shadow__01"
-													style="background-color: rgb(54, 162, 235)">Shadow</span>
-												<span class="shadow__02"
-													style="background-color: rgb(54, 162, 235)">Shadow</span>
-												<p style="background-color: rgb(54, 162, 235)">
-													{{ Job.datasets[0].data[i] }}
-												</p>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="chart-container" *ngIf="selectedMenuItem == 'Skill Fit'">
-								<ng-container *ngIf="skillfitcheck.length>0">
-									<app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
-									<div class="custom-legend">
-										<ul class="list-group">
-											<li *ngFor="let item of Skill.labels; let i = index">
-												<p>{{ item }}</p>
-												<div class="percentage__info">
-													<span class="shadow__01"
-														[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">Shadow</span>
-													<span class="shadow__02"
-														[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">Shadow</span>
-													<p
-														[ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
-														{{ Skill.datasets[0].data[i] }}
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</ng-container>
-								<ng-container *ngIf="skillfitcheck.length===0">
-									<div class="no__data__found">
-										<h3>Skills does not match</h3>
-									</div>
-								</ng-container>
-							</div>
-							<div class="chart-container" *ngIf="selectedMenuItem == 'Team Fit'">
-								<ng-container>
-									<div class="no__data__found">
-										<h3>Team Fit Comming Soon!!</h3>
-									</div>
-								</ng-container>
-								<!-- <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
+					<button class="btn btn-filled"  (click)="showRadarChart()">
+					  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+					  Back
+					</button>
+				  </div>
+				</div>
+				<div class="chart-container" *ngIf="aryticFitChartVisible">
+					
+				  <app-radar-chart-large [radarChartData]="smallRadarChartData"> </app-radar-chart-large>
+				  <div class="custom-legend">
+					<ul class="list-group">
+					  <li *ngFor="let item of smallRadarChartData.labels; let i = index">
+						<p>{{ item }}</p>
+						<div class="percentage__info">
+						  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <p style="background-color: rgb(54, 162, 235)">
+							{{ smallRadarChartData.datasets[0].data[i] }}
+						  </p>
+						</div>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+				<div class="chart-container" *ngIf="selectedMenuItem == 'Job Fit'">
+				  <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
+				  <div class="custom-legend">
+					<ul class="list-group">
+					  <li *ngFor="let item of Job.labels; let i = index">
+						<p>{{ item }}</p>
+						<div class="percentage__info">
+						  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+						  <p style="background-color: rgb(54, 162, 235)">
+							{{ Job.datasets[0].data[i] }}
+						  </p>
+						</div>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+				<div class="chart-container" *ngIf="selectedMenuItem == 'Skill Fit'">
+				<ng-container *ngIf="skillfitcheck.length>0">
+					<app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
+					<div class="custom-legend">
+					  <ul class="list-group">
+						<li *ngFor="let item of Skill.labels; let i = index">
+						  <p>{{ item }}</p>
+						  <div class="percentage__info">
+							<span
+							  class="shadow__01"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<span
+							  class="shadow__02"
+							  [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }"
+							  >Shadow</span
+							>
+							<p [ngStyle]="{ 'background-color': getColor(Skill.datasets[0].backgroundColor, i) }">
+							  {{ Skill.datasets[0].data[i] }}
+							</p>
+						  </div>
+						</li>
+					  </ul>
+					</div>
+				</ng-container>
+				<ng-container *ngIf="skillfitcheck.length===0">
+					<div class="no__data__found">
+						<h3>Skills does not match</h3>
+					  </div>
+					</ng-container>
+				</div>
+				<div class="chart-container" *ngIf="selectedMenuItem == 'Team Fit'">
+					<ng-container>
+						<div class="no__data__found">
+							<h3>Team Fit Coming Soon!!</h3>
+						  </div>
+						</ng-container>
+				  <!-- <app-radar-chart-large [radarChartData]="TeamFit"> </app-radar-chart-large>
 				  <app-pie-chart [pieChartData]="Team"></app-pie-chart>
 				  <div class="custom-legend">
 					<ul class="list-group">
@@ -979,10 +988,9 @@
 					  </li>
 					</ul>
 				  </div> -->
-							</div>
-							<div class="row culture-tile-row flex flex-wrap flex-align-equal"
-								*ngIf="selectedMenuItem == 'Culture Fit'">
-								<!-- <div class="col-xs-4">
+				</div>
+				<div class="row culture-tile-row flex flex-wrap flex-align-equal" *ngIf="selectedMenuItem == 'Culture Fit'">
+				  <!-- <div class="col-xs-4">
 					<div class="culture-tile">
 					  <span  class="fa fa-language fa-2x"></span>
 					  <h4>How many languages</h4>
@@ -1011,84 +1019,102 @@
 					</div>
 					
 				  </div> -->
-							</div>
-
-							<div class="chart-container " *ngIf="selectedMenuItem == 'Culture Fit'">
-								<ng-container *ngIf="CulturalTestStatusNew>0">
-									<circle-progress class="culture-chart" data-toggle="matching-details"
-										[percent]="CulturalTestStatusNew" [radius]="150" [outerStrokeWidth]="30"
-										[innerStrokeWidth]="15" [outerStrokeColor]="'#ffb513'"
-										[innerStrokeColor]="'#c0c0c0'" [animation]="true" [showSubtitle]="false"
-										[responsive]="true" [titleFontSize]=60 [unitsFontSize]=30>
-									</circle-progress>
-
-									<!-- <app-doughnut-chart [doughnutChartData]="Culture"></app-doughnut-chart> -->
-									<div class="custom-legend">
-										<ul class="list-group">
-											<li *ngFor="let item of Culture.labels; let i = index">
-												<p>{{ item }}</p>
-												<div class="percentage__info">
-													<span class="shadow__01"
-														[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">Shadow</span>
-													<span class="shadow__02"
-														[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">Shadow</span>
-													<p
-														[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">
-														{{ Culture.datasets[0].data[i] }}
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</ng-container>
-								<ng-container *ngIf="CulturalTestStatusNew===0">
-									<div class="no__data__found">
-										<h3>Candidate yet to provide</h3>
-									</div>
-								</ng-container>
-							</div>
-							<div *ngIf="selectedMenuItem == 'Personality Fit'">
-								<h4>Who Am I </h4>
-								<p>Perosnal fit will help potential employer like you to understand job seeker and see
-									how person will apt for organisation.</p>
-							</div>
-							<div class="chart-container" *ngIf="selectedMenuItem == 'Personality Fit'">
-								<!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
-								<ng-container *ngIf="checkPersonality.length===0">
-									<div class="no__data__found">
-										<h3>Candidate yet to provide</h3>
-									</div>
-								</ng-container>
-								<ng-container *ngIf="checkPersonality.length>0">
-									<app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
-									<div class="custom-legend">
-										<ul class="list-group">
-											<li *ngFor="let item of PersonalityFitLabels.labels; let i = index">
-												<p>{{ item }}</p>
-												<div class="percentage__info">
-													<span class="shadow__01"
-														[ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }">Shadow</span>
-													<span class="shadow__02"
-														[ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }">Shadow</span>
-													<p
-														[ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }">
-														{{ Personality.datasets[0].data[i] }}
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</ng-container>
-							</div>
-							<div *ngIf="selectedMenuItem == 'Reference Check'">
-								<div class="modal-body">
-									<!-- <div class="row radio-btns">
+				</div>
+  
+				<div class="chart-container " *ngIf="selectedMenuItem == 'Culture Fit'">
+					<ng-container *ngIf="CulturalTestStatusNew>0">
+						<circle-progress class="culture-chart"
+						data-toggle="matching-details"
+						[percent]="CulturalTestStatusNew"
+						[radius]="150"
+						[outerStrokeWidth]="30"
+						[innerStrokeWidth]="15"
+						[outerStrokeColor]="'#ffb513'"
+						[innerStrokeColor]="'#c0c0c0'"
+						[animation]="true"
+						[showSubtitle]="false"
+						[responsive]="true"
+						[titleFontSize]=60
+						[unitsFontSize]=30
+					  >
+					  </circle-progress>
+			   
+		  <!-- <app-doughnut-chart [doughnutChartData]="Culture"></app-doughnut-chart> -->
+		  <div class="custom-legend">
+			<ul class="list-group">
+			  <li *ngFor="let item of Culture.labels; let i = index">
+				<p>{{ item }}</p>
+				<div class="percentage__info">
+				  <span
+					class="shadow__01"
+					[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
+					>Shadow</span
+				  >
+				  <span
+					class="shadow__02"
+					[ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }"
+					>Shadow</span
+				  >
+				  <p [ngStyle]="{ 'background-color': getColor(Culture.datasets[0].backgroundColor, i) }">
+					{{ Culture.datasets[0].data[i] }}
+				  </p>
+				</div>
+			  </li>
+			</ul>
+		  </div>
+					</ng-container>
+					<ng-container *ngIf="CulturalTestStatusNew===0">
+						<div class="no__data__found">
+							<h3>Candidate yet to provide</h3>
+						  </div>
+						</ng-container>
+				</div>
+				<div *ngIf="selectedMenuItem == 'Personality Fit'">
+				  <!-- <h4>Who Am I </h4>
+				  <p>Perosnal fit will help potential employer like you to understand job seeker and see how person will apt for organisation.</p> -->
+				</div>
+				<div class="chart-container" *ngIf="selectedMenuItem == 'Personality Fit'">
+				  <!-- <app-bar-chart [barChartData]="Personality"></app-bar-chart> -->
+				  <ng-container *ngIf="checkPersonality.length===0">
+					<div class="no__data__found">
+						<h3>Candidate yet to provide</h3>
+					  </div>
+					</ng-container>
+				<ng-container *ngIf="checkPersonality.length>0">
+				  <app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
+				  <div class="custom-legend">
+					<ul class="list-group">
+					  <li *ngFor="let item of PersonalityFitLabels.labels; let i = index">
+						<p>{{ item }}</p>
+						<div class="percentage__info">
+						  <span
+							class="shadow__01"
+							[ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }"
+							>Shadow</span
+						  >
+						  <span
+							class="shadow__02"
+							[ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }"
+							>Shadow</span
+						  >
+						  <p [ngStyle]="{ 'background-color': getColor(Personality.datasets[0].backgroundColor, i) }">
+							{{ Personality.datasets[0].data[i] }}
+						  </p>
+						</div>
+					  </li>
+					</ul>
+				  </div>
+				</ng-container>
+				</div>
+				<div *ngIf="selectedMenuItem == 'Reference Check'">
+				  <div class="modal-body">
+					<!-- <div class="row radio-btns">
 					  <div class="col-md-12 reference-filter-position text-right">
 						  
 					  </div>
 					</div> -->
-									<!-- <div class="clearfix">&nbsp;</div> -->
-									<!-- <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
+					<!-- <div class="clearfix">&nbsp;</div> -->
+					<!-- <div class="row sort-labels" matSort (matSortChange)="sortData($event)">
 					  <div class="col-md-3 ref-type">
 						<h5 *ngIf="checkId === 2">Professional</h5>
 						<h5 *ngIf="checkId === 1">Personal</h5>
@@ -1104,40 +1130,37 @@
 						<h5>Date</h5>
 					  </div>
 					</div> -->
-									<!--Sort-->
-									<div class="revamp__reference__check">
-										<ul class="nav nav-tabs">
-											<li class="active">
-												<a data-toggle="tab" href="#received">
-													Received
-												</a>
-											</li>
-											<!-- <li>
+					<!--Sort-->
+					<div class="revamp__reference__check">
+						<ul class="nav nav-tabs">
+						  <li class="active">
+							<a data-toggle="tab" href="#received">
+							  Received
+							</a>
+						  </li>
+						  <!-- <li>
 							<a data-toggle="tab" href="#pending">
 							  Pending
 							</a>
 						  </li> -->
-										</ul>
-										<div class="tab-content">
-											<div id="received" class="tab-pane fade in active">
-												<div class="reference__grid__container">
-													<div class="row flex flex-wrap flex-align-equal">
-														<ng-container *ngIf="usersList.length>0">
+						</ul>
+						<div class="tab-content">
+						  <div id="received" class="tab-pane fade in active">
+							<div class="reference__grid__container">
+							  <div class="row flex flex-wrap flex-align-equal">
+								<ng-container *ngIf="usersList.length>0">
 
-															<ng-container *ngFor="let r of usersList">
-																<div class="col-sm-4 col">
-																	<div class="col__container">
-																		<div class="top__container">
-																			<h4>{{r?.FullName | titlecase}} <span
-																					class="reference-card-date">{{r?.ModifiedOn
-																					|date:'mediumDate'}}</span></h4>
-																			<button class="btn btn__information"><i
-																					class="fa fa-info-circle"
-																					aria-hidden="true"></i></button>
-																		</div>
-																		<div class="middle__container">
-																			<div class="jdv-listing">
-																				<!--<div class="jdv-skills">
+									<ng-container *ngFor="let r of usersList">
+									  <div class="col-sm-4 col">
+										<div class="col__container">
+										  <div class="top__container">
+											<h4>{{r?.FullName | titlecase}} <span class="reference-card-date">{{r?.ModifiedOn |date:'mediumDate'}}</span></h4>
+											<button class="btn btn__information"><i class="fa fa-info-circle"
+												aria-hidden="true"></i></button>
+										  </div>
+										   <div class="middle__container">
+											<div class="jdv-listing">
+											  <!--<div class="jdv-skills">
 												<div class="row flex flex-wrap flex-align-equal">
 												  <div class="col-sm-6 col">
 													<div class="col-container">
@@ -1202,33 +1225,32 @@
 												</div>
 											  </div>
 											</div>-->
-																			</div>
-																			<div class="information">
-																				<ul>
-																					<li class="mail">
-																						{{r?.RequestedTo | titlecase}}
-																					</li>
-																					<li class="phone"
-																						*ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
-																						+1 {{r?.PhoneNumber}}
-																					</li>
-																				</ul>
-																			</div>
-																		</div>
-																		<div class="bottom__container">
-																			<h6>Comments:</h6>
-																			{{r?.ResponseValue | titlecase}}
-																		</div>
-																	</div>
-																</div>
-															</ng-container>
-														</ng-container>
-														<ng-container *ngIf="usersList.length===0">
-															<p>Yet to Provide</p>
-
-														</ng-container>
-
-														<!-- <div class="col-sm-4 col">
+											</div>
+											<div class="information">
+											  <ul>
+												<li class="mail">
+												  {{r?.RequestedTo | titlecase}}
+												</li>
+												<li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
+												 +1 {{r?.PhoneNumber}}
+												</li>
+											  </ul>
+											</div>
+										  </div> 
+										  <div class="bottom__container">
+											<h6>Comments:</h6>
+											{{r?.ResponseValue | titlecase}}
+										  </div>
+										</div>
+									  </div>
+									</ng-container>
+								  </ng-container>
+								  <ng-container *ngIf="usersList.length===0">
+									<p>Yet to Provide</p>
+				
+								  </ng-container>
+							  
+								<!-- <div class="col-sm-4 col">
 								  <div class="col__container">
 									<div class="top__container">
 									  <h4>Jake <span class="reference-card-date">February 5,2021</span></h4>
@@ -1501,56 +1523,56 @@
 									</div>
 								  </div>
 								</div> -->
-													</div>
-												</div>
-											</div>
-											<div id="pending" class="tab-pane fade">
-												<div class="data-grid-table" style="display: block;">
-													<div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
-														<div class="grid-col grid-name-col">
-															Name <span class="sorting-arrow down"></span>
-														</div>
-														<div class="grid-col grid-email-col">
-															Email<span class="sorting-arrow down"></span>
-														</div>
-														<div class="grid-col grid-contact-col">
-															Phone Number<span class="sorting-arrow down"></span>
-														</div>
-														<div class="grid-col grid-action-col">
-															&nbsp;
-														</div>
-													</div>
-													<div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
-														<div class="grid-col grid-name-col">
-															<div class="grid-heading">Name</div>
-															<div class="box-table">
-																Oleksii
-															</div>
-														</div>
-														<div class="grid-col grid-email-col">
-															<div class="grid-heading">Email</div>
-															<div class="box-table">
-																oleksii@gmail.com
-															</div>
-														</div>
-														<div class="grid-col grid-contact-col">
-															<div class="grid-heading">Contact Number</div>
-															<div class="box-table">
-																+3 809 698 3822
-															</div>
-														</div>
-														<div class="grid-col grid-action-col">
-															<div class="grid-heading">Action</div>
-															<div class="box-table">
-																<i class="fa fa-info-circle" aria-hidden="true"></i>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- <div class="ref-scroll scrollbar-inner">
+							  </div>
+							</div>
+						  </div>
+						  <div id="pending" class="tab-pane fade">
+							<div class="data-grid-table" style="display: block;">
+							  <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+								<div class="grid-col grid-name-col">
+								  Name <span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-email-col">
+								  Email<span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-contact-col">
+								  Phone Number<span class="sorting-arrow down"></span>
+								</div>
+								<div class="grid-col grid-action-col">
+								  &nbsp;
+								</div>
+							  </div>
+							  <div class="grid-row grid-row-col flex flex-wrap flex-align-equal">
+								<div class="grid-col grid-name-col">
+								  <div class="grid-heading">Name</div>
+								  <div class="box-table">
+									Oleksii
+								  </div>
+								</div>
+								<div class="grid-col grid-email-col">
+								  <div class="grid-heading">Email</div>
+								  <div class="box-table">
+									oleksii@gmail.com
+								  </div>
+								</div>
+								<div class="grid-col grid-contact-col">
+								  <div class="grid-heading">Contact Number</div>
+								  <div class="box-table">
+									+3 809 698 3822
+								  </div>
+								</div>
+								<div class="grid-col grid-action-col">
+								  <div class="grid-heading">Action</div>
+								  <div class="box-table">
+									<i class="fa fa-info-circle" aria-hidden="true"></i>
+								  </div>
+								</div>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					<!-- <div class="ref-scroll scrollbar-inner">
 					  <mat-accordion>
 						<ng-container *ngIf="referenceUsersList.length === 0">
 						  <span>No References</span>
@@ -1611,658 +1633,618 @@
 						</ng-container>
 					  </mat-accordion>
 					</div> -->
-								</div>
-								<div class="modal-footer dropdown">
-									<div class="col-md-2 close-btn">
-										<button mat-button mat-dialog-close
-											class="btn btn-default pull-left">Close</button>
-									</div>
-									<div class="col-md-10" *ngIf="referenceUsersList.length > 9">
-										<mat-paginator #paginator [length]="referenceUsersList.length"
-											[pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-											(page)="getPaginatorData($event)">
-										</mat-paginator>
-									</div>
-								</div>
-							</div>
-							<div *ngIf="selectedMenuItem == 'Skills Verified'">
-								<div class="no__data__found">
-									<h3>Coming Soon</h3>
-								</div>
-							</div>
-							<div *ngIf="selectedMenuItem == 'Background Verified'" class="m-r-d">
-								<div class="modal-body">
-									<div class="form-group bg-panels">
-										<div class="bg-row row">
-											<ng-container *ngIf="ShowVer">
-												<ng-container *ngIf="!showone">
-													<div class="col-md-12">
-														<div class="panel panel-default availed-panel">
-															<div class="panel-heading text-center">
-																<h3 class="panel-title">Availed Services Screen</h3>
-																<small>Candidate Name:
-																	<strong>{{ name | titlecase }} {{ lname | titlecase
-																		}}</strong></small>
-															</div>
-															<div class="panel-body">
-																<div class="media"
-																	*ngIf="bgverification.CriminalOptionSelected == 1">
-																	<div class="media-body">
-																		<h4 class="media-heading">Criminal Record Checks
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Social Security Number Trace</li>
-																			<li>Nationwide Criminal Database Search</li>
-																			<li>Sex Offender Registry Search</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-																<div class="media"
-																	*ngIf="bgverification.CriminalOptionSelected == 2">
-																	<div class="media-body">
-																		<h4 class="media-heading">Civil Court Checks
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Criminal Record Checks</li>
-																			<li>County Criminal Court Search - 7
-																				Years...</li>
-																			<li>Domestic Watch List Search</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.DrugOptionSelected > 0">
-																	<div class="media-body">
-																		<h4 class="media-heading">Drug Screening</h4>
-																		<ul class="bg-features">
-																			<ng-container *ngFor="let d of Dlist">
-																				<li
-																					*ngIf="bgverification.DrugOptionSelected == d.Id">
-																					{{ d.DrugVerification }}
-																				</li>
-																			</ng-container>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Employment == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Employment
-																			Verification</h4>
-																		<ul class="bg-features">
-																			<li>Current or past employment and Job
-																				Titles</li>
-																			<li>Current Verification / Single Employer
-																			</li>
-																			<li>Additional third-party pass-through fees
-																				...</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Education == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Education Verification
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Attendance dates</li>
-																			<li>Major(s); and degree(s), diploma(s)...
-																			</li>
-																			<li>Current Verification / Single
-																				Institution</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Certification == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Certification
-																			Verification</h4>
-																		<ul class="bg-features">
-																			<li>Certification dates</li>
-																			<li>Certification Provider</li>
-																			<li>Certification Duration</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>In-Progress</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Reference == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Reference Check</h4>
-																		<ul class="bg-features">
-																			<li>Arytic Premium service exclusively FREE
-																				Add On</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1
-																			*ngIf="bgverification.Reference == true && usersList.length === 0">
-																			In-Progress
-																		</h1>
-																		<h1 class="success"
-																			*ngIf="bgverification.Reference == true && usersList.length > 0">
-																			Available
-																		</h1>
-																	</div>
-																</div>
-															</div>
-															<div class="panel-footer total-section">
-																<div class="clearfix">&nbsp;</div>
-															</div>
-															<p class="cta-text">
-																If you would like to avail additional Background
-																Screening Services. Please click
-																Proceed.
-															</p>
-														</div>
-													</div>
-												</ng-container>
-												<!---->
-											</ng-container>
-
-											<mat-spinner *ngIf="loading" diameter="70"></mat-spinner>
-
-											<ng-container *ngIf="!ShowVer">
-												<ng-container *ngIf="!showRes">
-													<div class="revamp__radio__grid">
-														<div class="row flex flex-wrap flex-align-equal">
-															<ng-container *ngFor="let bg of Bglist">
-																<div class="row flex flex-wrap flex-align-equal"
-																	*ngIf="bg.Id == 1">
-																	<div class="col-sm-6 col">
-																		<label for="bg-civil">
-																			<input type="radio"
-																				[(ngModel)]="bgverification.CriminalOptionSelected"
-																				(change)="SaveBg(1)" [value]="1"
-																				id="bg-civil" name="bg-civil"
-																				class="radio-input" />
-																			<div class="col__container">
-																				<h4>Criminal Record Checks</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-6">
-																						<ul class="bg-features">
-																							<li>Social Security Number
-																								Trace</li>
-																							<li>Nationwide Criminal
-																								Database Search</li>
-																							<li>Sex Offender Registry
-																								Search</li>
-																						</ul>
-																					</div>
-																					<div class="col-sm-6">
-																						$49.99
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																	<span class="or">(OR)</span>
-																	<div class="col-sm-6 col">
-																		<label for="bg-civil1">
-																			<input type="radio"
-																				[(ngModel)]="bgverification.CriminalOptionSelected"
-																				(change)="SaveBg(1)" [value]="2"
-																				id="bg-civil1" name="bg-civil"
-																				class="radio-input" />
-																			<div class="col__container">
-																				<h4>Civil Court Checks</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-6">
-																						<ul class="bg-features">
-																							<li>Criminal Record Checks
-																							</li>
-																							<li>County Criminal Court
-																								Search - 7 Years...</li>
-																							<li>Domestic Watch List
-																								Search</li>
-																						</ul>
-																					</div>
-																					<div class="col-sm-6">
-																						$49.99
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																</div>
-																<div class="row multiple__radio__row"
-																	*ngIf="bg.Id == 2">
-																	<div class="col-sm-12 col">
-																		<div
-																			class="col__container flex flex-wrap flex-align-center">
-																			<div class="left__col">
-																				<h4>{{ bg.Code }} *</h4>
-																				<div class="bottom__container">
-																					<img src="../../../../../assets/images/card-icons/drug.svg"
-																						width="35"
-																						alt="Background-Verification" />
-																					<ul>
-																						<li>
-																							<input type="radio"
-																								[value]="1"
-																								name="options"
-																								(change)="SaveBg(1)"
-																								[(ngModel)]="bgverification.DrugOptionSelected"
-																								id="option1"
-																								autocomplete="off" />
-																							<label for="option1">4 -
-																								Panel Drug Test</label>
-																						</li>
-																						<li>
-																							<input type="radio"
-																								[value]="2"
-																								name="options"
-																								(change)="SaveBg(1)"
-																								[(ngModel)]="bgverification.DrugOptionSelected"
-																								id="option2"
-																								autocomplete="off" />
-																							<label for="option2">5 -
-																								Panel Drug Test</label>
-																						</li>
-																						<li>
-																							<input type="radio"
-																								[value]="3"
-																								name="options"
-																								(change)="SaveBg(1)"
-																								[(ngModel)]="bgverification.DrugOptionSelected"
-																								id="option3"
-																								autocomplete="off" />
-																							<label for="option3">9 -
-																								Panel Drug Test</label>
-																						</li>
-																						<li>
-																							<input type="radio"
-																								[value]="4"
-																								name="options"
-																								(change)="SaveBg(1)"
-																								[(ngModel)]="bgverification.DrugOptionSelected"
-																								id="option4"
-																								autocomplete="off" />
-																							<label for="option4">10 -
-																								Panel Drug Test</label>
-																						</li>
-																						<li>
-																							<input type="radio"
-																								[value]="5"
-																								name="options"
-																								(change)="SaveBg(1)"
-																								[(ngModel)]="bgverification.DrugOptionSelected"
-																								id="option5"
-																								autocomplete="off" />
-																							<label for="option5"> 8 -
-																								Panel + MQL Drug
-																								Test</label>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																			<div class="right__col">
-																				$49.99
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<!--About Drug test Added on 01-09-2020-->
-																<div class="row info__row flex flex-wrap flex-align-center"
-																	*ngIf="bg.Id == 2">
-																	<div class="col-md-8">
-																		<p>
-																			* In Order to get Drug Screening, Criminal
-																			History Verification (County Search) need
-																			to be included with it.
-																		</p>
-																	</div>
-																	<div class="col-md-4 about-drug-test">
-																		<!-- Single button -->
-																		<div class="btn-group">
-																			<a type="button" class="dropdown-toggle"
-																				data-toggle="dropdown"
-																				aria-haspopup="true"
-																				aria-expanded="false">
-																				<i class="fa fa-info-circle"
-																					aria-hidden="true"></i>
-
-																				About Drug Tests
-																			</a>
-																			<ul class="dropdown-menu">
-																				<button type="button" class="close"
-																					data-dismiss="modal"
-																					aria-label="Close">
-																					<span
-																						aria-hidden="true">&times;</span>
-																				</button>
-																				<img src="../../../../../assets/images/card-icons/drug-test.png"
-																					width="490" alt="Drug-Tests" />
-																			</ul>
-																		</div>
-																	</div>
-																</div>
-																<!--About Drug test-->
-
-
-																<ng-container *ngIf="bg.Id == 3">
-																	<div class="col-sm-6 col icon__col">
-																		<label for="bg-emp">
-																			<input type="checkbox"
-																				[(ngModel)]="bgverification.Employment"
-																				id="bg-emp" name="bg-emp"
-																				class="radio-input" />
-																			<div class="col__container">
-																				<h4>{{ bg.Code }} *</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-12">
-																						<ul class="bg-features">
-																							<li>Current or past
-																								employment and Job
-																								Titles</li>
-																							<li>Current Verification /
-																								Single Employer</li>
-																							<li>Additional third-party
-																								pass-through fees ...
-																							</li>
-																						</ul>
-																					</div>
-																					<div class="price__icon">
-																						<i class="fa fa-bookmark"
-																							aria-hidden="true"></i>
-																						<h1>FREE</h1>
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																</ng-container>
-																<ng-container *ngIf="bg.Id == 4">
-																	<div class="col-sm-6 col icon__col">
-																		<label for="bg-edu">
-																			<input type="checkbox"
-																				[(ngModel)]="bgverification.Education"
-																				(change)="SaveBg(1)" id="bg-edu"
-																				name="bg-edu" class="radio-input" />
-																			<div class="col__container">
-																				<h4>{{ bg.Code }} *</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-12">
-																						<ul class="bg-features">
-																							<li>Attendance dates</li>
-																							<li>Major(s); and degree(s),
-																								diploma(s)...</li>
-																							<li>Current Verification /
-																								Single Institution</li>
-																						</ul>
-																					</div>
-																					<div class="price__icon">
-																						<i class="fa fa-bookmark"
-																							aria-hidden="true"></i>
-																						<h1>$39.99</h1>
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																</ng-container>
-																<ng-container *ngIf="bg.Id == 5">
-																	<div class="col-sm-6 col icon__col">
-																		<label for="bg-cer">
-																			<input type="checkbox"
-																				[(ngModel)]="bgverification.Certification"
-																				(change)="SaveBg(1)" id="bg-cer"
-																				name="bg-cer" class="radio-input" />
-																			<div class="col__container">
-																				<h4>{{ bg.Code }} *</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-12">
-																						<ul class="bg-features">
-																							<li>Certification dates</li>
-																							<li>Certification Provider
-																							</li>
-																							<li>Certification Duration
-																							</li>
-																						</ul>
-																					</div>
-																					<div class="price__icon">
-																						<i class="fa fa-bookmark"
-																							aria-hidden="true"></i>
-																						<h1>$69.99</h1>
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																</ng-container>
-																<ng-container *ngIf="bg.Id == 6">
-																	<div class="col-sm-6 col icon__col">
-																		<label for="bg-ref">
-																			<input type="checkbox"
-																				[(ngModel)]="bgverification.Reference"
-																				id="bg-ref" name="bg-ref"
-																				class="radio-input" />
-																			<div class="col__container">
-																				<h4>{{ bg.Code }} *</h4>
-																				<div
-																					class="row sub__row flex flex-wrap flex-align-center">
-																					<div class="col-sm-12">
-																						<ul class="bg-features">
-																							<li>Arytic Premium service
-																								exclusively FREE Add On
-																							</li>
-																						</ul>
-																					</div>
-																					<div class="price__icon">
-																						<i class="fa fa-bookmark"
-																							aria-hidden="true"></i>
-																						<h1>FREE</h1>
-																					</div>
-																				</div>
-																			</div>
-																		</label>
-																	</div>
-																</ng-container>
-															</ng-container>
-														</div>
-													</div>
-													<!--Total section-->
-													<div class="col-md-12 total-section">
-														<span class="pull-right">Total(Including Taxes): <strong>$ {{
-																subtotal }}</strong></span>
-													</div>
-												</ng-container>
-												<!--Summary Screen-->
-												<ng-container *ngIf="showRes">
-													<div class="col-md-12">
-														<div class="panel panel-default summary-panel">
-															<div class="panel-heading text-center">
-																<h3 class="panel-title">Summary</h3>
-																<small>Candidate Name:
-																	<strong>{{ name | titlecase }} {{ lname | titlecase
-																		}}</strong></small>
-															</div>
-															<div class="panel-body">
-																<div class="media"
-																	*ngIf="bgverification.CriminalOptionSelected == 1">
-																	<div class="media-body">
-																		<h4 class="media-heading">Criminal Record Checks
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Social Security Number Trace</li>
-																			<li>Nationwide Criminal Database Search</li>
-																			<li>Sex Offender Registry Search</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>$49.99</h1>
-																	</div>
-																</div>
-																<div class="media"
-																	*ngIf="bgverification.CriminalOptionSelected == 2">
-																	<div class="media-body">
-																		<h4 class="media-heading">Civil Court Checks
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Criminal Record Checks</li>
-																			<li>County Criminal Court Search - 7
-																				Years...</li>
-																			<li>Domestic Watch List Search</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>$49.99</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.DrugOptionSelected > 0">
-																	<div class="media-body">
-																		<h4 class="media-heading">Drug Screening</h4>
-																		<ul class="bg-features">
-																			<ng-container *ngFor="let d of Dlist">
-																				<li
-																					*ngIf="bgverification.DrugOptionSelected == d.Id">
-																					{{ d.DrugVerification }}
-																				</li>
-																			</ng-container>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>$49.99</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Employment == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Employment
-																			Verification</h4>
-																		<ul class="bg-features">
-																			<li>Current or past employment and Job
-																				Titles</li>
-																			<li>Current Verification / Single Employer
-																			</li>
-																			<li>Additional third-party pass-through fees
-																				...</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>Free</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Education == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Education Verification
-																		</h4>
-																		<ul class="bg-features">
-																			<li>Attendance dates</li>
-																			<li>Major(s); and degree(s), diploma(s)...
-																			</li>
-																			<li>Current Verification / Single
-																				Institution</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>$39.99</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Certification == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Certification
-																			Verification</h4>
-																		<ul class="bg-features">
-																			<li>Certification dates</li>
-																			<li>Certification Provider</li>
-																			<li>Certification Duration</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>$69.99</h1>
-																	</div>
-																</div>
-
-																<div class="media"
-																	*ngIf="bgverification.Reference == true">
-																	<div class="media-body">
-																		<h4 class="media-heading">Reference Check</h4>
-																		<ul class="bg-features">
-																			<li>Arytic Premium service exclusively FREE
-																				Add On</li>
-																		</ul>
-																	</div>
-																	<div class="media-right">
-																		<h1>Free</h1>
-																	</div>
-																</div>
-															</div>
-															<div class="panel-footer total-section">
-																<span class="pull-right">Total: <strong>${{ subtotal
-																		}}</strong></span>
-																<div class="clearfix">&nbsp;</div>
-															</div>
-														</div>
-													</div>
-												</ng-container>
-											</ng-container>
-										</div>
-									</div>
-								</div>
-								<ng-container *ngIf="ShowVer">
-									<div class="modal-footer bg-footer">
-										<button mat-button mat-dialog-close
-											class="btn btn-default pull-left">Cancel</button>
-										<!-- <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
-		<button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button> -->
-										<button class="btn btn-filled pull-right" *ngIf="!showone"
-											(click)="SaveBgG(3)">Proceed</button>
-									</div>
-								</ng-container>
-
-								<ng-container *ngIf="!ShowVer">
-									<div class="modal-footer bg-footer">
-										<button mat-button mat-dialog-close
-											class="btn btn-default pull-left">Cancel</button>
-										<button class="btn btn-default pull-left" *ngIf="showRes"
-											(click)="SaveBg(1)">Back</button>
-										<button class="btn btn-filled pull-right" *ngIf="!showRes"
-											(click)="SaveBg(2)">Next</button>
-										<button class="btn btn-filled pull-right" *ngIf="showRes"
-											(click)="SaveBg(3)">Proceed</button>
-									</div>
-								</ng-container>
-							</div>
-						</div>
+				  </div>
+				  <div class="modal-footer dropdown">
+					<div class="col-md-2 close-btn">
+					  <button mat-button mat-dialog-close class="btn btn-default pull-left">Close</button>
 					</div>
+					<div class="col-md-10" *ngIf="referenceUsersList.length > 9">
+					  <mat-paginator
+						#paginator
+						[length]="referenceUsersList.length"
+						[pageSize]="pageSize"
+						[pageSizeOptions]="pageSizeOptions"
+						(page)="getPaginatorData($event)"
+					  >
+					  </mat-paginator>
+					</div>
+				  </div>
 				</div>
+				<div *ngIf="selectedMenuItem == 'Skills Verified'">
+				  <div class="no__data__found">
+					<h3>Coming Soon</h3>
+				  </div>
+				</div>
+				<div *ngIf="selectedMenuItem == 'Background Verified'" class="m-r-d">
+				  <div class="modal-body">
+					<div class="form-group bg-panels">
+					  <div class="bg-row row">
+						<ng-container *ngIf="ShowVer">
+						  <ng-container *ngIf="!showone">
+							<div class="col-md-12">
+							  <div class="panel panel-default availed-panel">
+								<div class="panel-heading text-center">
+								  <h3 class="panel-title">Availed Services Screen</h3>
+								  <small
+									>Candidate Name:
+									<strong>{{ name | titlecase }} {{ lname | titlecase }}</strong></small
+								  >
+								</div>
+								<div class="panel-body">
+								  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
+									<div class="media-body">
+									  <h4 class="media-heading">Criminal Record Checks</h4>
+									  <ul class="bg-features">
+										<li>Social Security Number Trace</li>
+										<li>Nationwide Criminal Database Search</li>
+										<li>Sex Offender Registry Search</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+								  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 2">
+									<div class="media-body">
+									  <h4 class="media-heading">Civil Court Checks</h4>
+									  <ul class="bg-features">
+										<li>Criminal Record Checks</li>
+										<li>County Criminal Court Search - 7 Years...</li>
+										<li>Domestic Watch List Search</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.DrugOptionSelected > 0">
+									<div class="media-body">
+									  <h4 class="media-heading">Drug Screening</h4>
+									  <ul class="bg-features">
+										<ng-container *ngFor="let d of Dlist">
+										  <li *ngIf="bgverification.DrugOptionSelected == d.Id">
+											{{ d.DrugVerification }}
+										  </li>
+										</ng-container>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Employment == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Employment Verification</h4>
+									  <ul class="bg-features">
+										<li>Current or past employment and Job Titles</li>
+										<li>Current Verification / Single Employer</li>
+										<li>Additional third-party pass-through fees ...</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Education == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Education Verification</h4>
+									  <ul class="bg-features">
+										<li>Attendance dates</li>
+										<li>Major(s); and degree(s), diploma(s)...</li>
+										<li>Current Verification / Single Institution</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Certification == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Certification Verification</h4>
+									  <ul class="bg-features">
+										<li>Certification dates</li>
+										<li>Certification Provider</li>
+										<li>Certification Duration</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>In-Progress</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Reference == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Reference Check</h4>
+									  <ul class="bg-features">
+										<li>Arytic Premium service exclusively FREE Add On</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1 *ngIf="bgverification.Reference == true && usersList.length === 0">
+										In-Progress
+									  </h1>
+									  <h1
+										class="success"
+										*ngIf="bgverification.Reference == true && usersList.length > 0"
+									  >
+										Available
+									  </h1>
+									</div>
+								  </div>
+								</div>
+								<div class="panel-footer total-section">
+								  <div class="clearfix">&nbsp;</div>
+								</div>
+								<p class="cta-text">
+								  If you would like to avail additional Background Screening Services. Please click
+								  Proceed.
+								</p>
+							  </div>
+							</div>
+						  </ng-container>
+						  <!---->
+						</ng-container>
+  
+						<mat-spinner *ngIf="loading" diameter="70"></mat-spinner>
+  
+						<ng-container *ngIf="!ShowVer">
+						  <ng-container *ngIf="!showRes">
+							<div class="revamp__radio__grid">
+							  <div class="row flex flex-wrap flex-align-equal">
+								<ng-container *ngFor="let bg of Bglist">
+								  <div class="row flex flex-wrap flex-align-equal" *ngIf="bg.Id == 1">
+									<div class="col-sm-6 col">
+									  <label for="bg-civil">
+										<input
+										  type="radio"
+										  [(ngModel)]="bgverification.CriminalOptionSelected"
+										  (change)="SaveBg(1)"
+										  [value]="1"
+										  id="bg-civil"
+										  name="bg-civil"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>Criminal Record Checks</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-6">
+											  <ul class="bg-features">
+												<li>Social Security Number Trace</li>
+												<li>Nationwide Criminal Database Search</li>
+												<li>Sex Offender Registry Search</li>
+											  </ul>
+											</div>
+											<div class="col-sm-6">
+											  $49.99
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+									<span class="or">(OR)</span>
+									<div class="col-sm-6 col">
+									  <label for="bg-civil1">
+										<input
+										  type="radio"
+										  [(ngModel)]="bgverification.CriminalOptionSelected"
+										  (change)="SaveBg(1)"
+										  [value]="2"
+										  id="bg-civil1"
+										  name="bg-civil"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>Civil Court Checks</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-6">
+											  <ul class="bg-features">
+												<li>Criminal Record Checks</li>
+												<li>County Criminal Court Search - 7 Years...</li>
+												<li>Domestic Watch List Search</li>
+											  </ul>
+											</div>
+											<div class="col-sm-6">
+											  $49.99
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+								  </div>
+								  <div class="row multiple__radio__row"  *ngIf="bg.Id == 2">
+									<div class="col-sm-12 col">
+									  <div class="col__container flex flex-wrap flex-align-center">
+										<div class="left__col">
+										  <h4>{{ bg.Code }} *</h4>
+										  <div class="bottom__container">
+											<img
+											  src="../../../../../assets/images/card-icons/drug.svg"
+											  width="35"
+											  alt="Background-Verification"
+											/>
+											<ul>
+											  <li>
+												<input
+												  type="radio"
+												  [value]="1"
+												  name="options"
+												  (change)="SaveBg(1)"
+												  [(ngModel)]="bgverification.DrugOptionSelected"
+												  id="option1"
+												  autocomplete="off"
+												/>
+												<label for="option1">4 - Panel Drug Test</label>
+											  </li>
+											  <li>
+												<input
+												  type="radio"
+												  [value]="2"
+												  name="options"
+												  (change)="SaveBg(1)"
+												  [(ngModel)]="bgverification.DrugOptionSelected"
+												  id="option2"
+												  autocomplete="off"
+												/>
+												<label for="option2">5 - Panel Drug Test</label>
+											  </li>
+											  <li>
+												<input
+												  type="radio"
+												  [value]="3"
+												  name="options"
+												  (change)="SaveBg(1)"
+												  [(ngModel)]="bgverification.DrugOptionSelected"
+												  id="option3"
+												  autocomplete="off"
+												/>
+												<label for="option3">9 - Panel Drug Test</label>
+											  </li>
+											  <li>
+												<input
+												  type="radio"
+												  [value]="4"
+												  name="options"
+												  (change)="SaveBg(1)"
+												  [(ngModel)]="bgverification.DrugOptionSelected"
+												  id="option4"
+												  autocomplete="off"
+												/>
+												<label for="option4">10 - Panel Drug Test</label>
+											  </li>
+											  <li>
+												<input
+												  type="radio"
+												  [value]="5"
+												  name="options"
+												  (change)="SaveBg(1)"
+												  [(ngModel)]="bgverification.DrugOptionSelected"
+												  id="option5"
+												  autocomplete="off"
+												/>
+												<label for="option5"> 8 - Panel + MQL Drug Test</label>
+											  </li>
+											</ul>
+										  </div>
+										</div>
+										<div class="right__col">
+										  $49.99
+										</div>
+									  </div>
+									</div>
+								  </div>
+								  <!--About Drug test Added on 01-09-2020-->
+								  <div class="row info__row flex flex-wrap flex-align-center" *ngIf="bg.Id == 2">
+									<div class="col-md-8">
+									  <p>
+										* In Order to get Drug Screening, Criminal History Verification (County Search) need
+										to be included with it.
+									  </p>
+									</div>
+									<div class="col-md-4 about-drug-test">
+									  <!-- Single button -->
+									  <div class="btn-group">
+										<a
+										  type="button"
+										  class="dropdown-toggle"
+										  data-toggle="dropdown"
+										  aria-haspopup="true"
+										  aria-expanded="false"
+										>
+										  <i class="fa fa-info-circle" aria-hidden="true"></i>
+  
+										  About Drug Tests
+										</a>
+										<ul class="dropdown-menu">
+										  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										  </button>
+										  <img
+											src="../../../../../assets/images/card-icons/drug-test.png"
+											width="490"
+											alt="Drug-Tests"
+										  />
+										</ul>
+									  </div>
+									</div>
+								  </div>
+								  <!--About Drug test-->
+  
+								  
+								  <ng-container   *ngIf="bg.Id == 3">
+									<div class="col-sm-6 col icon__col">
+									  <label for="bg-emp">
+										<input
+										  type="checkbox"
+										  [(ngModel)]="bgverification.Employment"
+										  id="bg-emp"
+										  name="bg-emp"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>{{ bg.Code }} *</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-12">
+											  <ul class="bg-features">
+												<li>Current or past employment and Job Titles</li>
+												<li>Current Verification / Single Employer</li>
+												<li>Additional third-party pass-through fees ...</li>
+											  </ul>
+											</div>
+											<div class="price__icon">
+											  <i class="fa fa-bookmark" aria-hidden="true"></i>
+											  <h1>FREE</h1>
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+								  </ng-container>
+								  <ng-container  *ngIf="bg.Id == 4">
+									<div class="col-sm-6 col icon__col">
+									  <label for="bg-edu">
+										<input
+										  type="checkbox"
+										  [(ngModel)]="bgverification.Education"
+										  (change)="SaveBg(1)"
+										  id="bg-edu"
+										  name="bg-edu"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>{{ bg.Code }} *</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-12">
+											  <ul class="bg-features">
+												<li>Attendance dates</li>
+												<li>Major(s); and degree(s), diploma(s)...</li>
+												<li>Current Verification / Single Institution</li>
+											  </ul>
+											</div>
+											<div class="price__icon">
+											  <i class="fa fa-bookmark" aria-hidden="true"></i>
+											  <h1>$39.99</h1>
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+								  </ng-container>
+								  <ng-container  *ngIf="bg.Id == 5">
+									<div class="col-sm-6 col icon__col">
+									  <label for="bg-cer">
+										<input
+										  type="checkbox"
+										  [(ngModel)]="bgverification.Certification"
+										  (change)="SaveBg(1)"
+										  id="bg-cer"
+										  name="bg-cer"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>{{ bg.Code }} *</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-12">
+											  <ul class="bg-features">
+												<li>Certification dates</li>
+												<li>Certification Provider</li>
+												<li>Certification Duration</li>
+											  </ul>
+											</div>
+											<div class="price__icon">
+											  <i class="fa fa-bookmark" aria-hidden="true"></i>
+											  <h1>$69.99</h1>
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+								  </ng-container>
+								  <ng-container *ngIf="bg.Id == 6">
+									<div class="col-sm-6 col icon__col">
+									  <label for="bg-ref">
+										<input
+										  type="checkbox"
+										  [(ngModel)]="bgverification.Reference"
+										  id="bg-ref"
+										  name="bg-ref"
+										  class="radio-input"
+										/>
+										<div class="col__container">
+										  <h4>{{ bg.Code }} *</h4>
+										  <div class="row sub__row flex flex-wrap flex-align-center">
+											<div class="col-sm-12">
+											  <ul class="bg-features">
+												<li>Arytic Premium service exclusively FREE Add On</li>
+											  </ul>
+											</div>
+											<div class="price__icon">
+											  <i class="fa fa-bookmark" aria-hidden="true"></i>
+											  <h1>FREE</h1>
+											</div>
+										  </div>
+										</div>
+									  </label>
+									</div>
+								  </ng-container>
+								</ng-container>
+							  </div>
+							</div>
+							<!--Total section-->
+							<div class="col-md-12 total-section">
+							  <span class="pull-right"
+								>Total(Including Taxes): <strong>$ {{ subtotal }}</strong></span
+							  >
+							</div>
+						  </ng-container>
+						  <!--Summary Screen-->
+						  <ng-container *ngIf="showRes">
+							<div class="col-md-12">
+							  <div class="panel panel-default summary-panel">
+								<div class="panel-heading text-center">
+								  <h3 class="panel-title">Summary</h3>
+								  <small
+									>Candidate Name:
+									<strong>{{ name | titlecase }} {{ lname | titlecase }}</strong></small
+								  >
+								</div>
+								<div class="panel-body">
+								  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 1">
+									<div class="media-body">
+									  <h4 class="media-heading">Criminal Record Checks</h4>
+									  <ul class="bg-features">
+										<li>Social Security Number Trace</li>
+										<li>Nationwide Criminal Database Search</li>
+										<li>Sex Offender Registry Search</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>$49.99</h1>
+									</div>
+								  </div>
+								  <div class="media" *ngIf="bgverification.CriminalOptionSelected == 2">
+									<div class="media-body">
+									  <h4 class="media-heading">Civil Court Checks</h4>
+									  <ul class="bg-features">
+										<li>Criminal Record Checks</li>
+										<li>County Criminal Court Search - 7 Years...</li>
+										<li>Domestic Watch List Search</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>$49.99</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.DrugOptionSelected > 0">
+									<div class="media-body">
+									  <h4 class="media-heading">Drug Screening</h4>
+									  <ul class="bg-features">
+										<ng-container *ngFor="let d of Dlist">
+										  <li *ngIf="bgverification.DrugOptionSelected == d.Id">
+											{{ d.DrugVerification }}
+										  </li>
+										</ng-container>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>$49.99</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Employment == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Employment Verification</h4>
+									  <ul class="bg-features">
+										<li>Current or past employment and Job Titles</li>
+										<li>Current Verification / Single Employer</li>
+										<li>Additional third-party pass-through fees ...</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>Free</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Education == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Education Verification</h4>
+									  <ul class="bg-features">
+										<li>Attendance dates</li>
+										<li>Major(s); and degree(s), diploma(s)...</li>
+										<li>Current Verification / Single Institution</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>$39.99</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Certification == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Certification Verification</h4>
+									  <ul class="bg-features">
+										<li>Certification dates</li>
+										<li>Certification Provider</li>
+										<li>Certification Duration</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>$69.99</h1>
+									</div>
+								  </div>
+  
+								  <div class="media" *ngIf="bgverification.Reference == true">
+									<div class="media-body">
+									  <h4 class="media-heading">Reference Check</h4>
+									  <ul class="bg-features">
+										<li>Arytic Premium service exclusively FREE Add On</li>
+									  </ul>
+									</div>
+									<div class="media-right">
+									  <h1>Free</h1>
+									</div>
+								  </div>
+								</div>
+								<div class="panel-footer total-section">
+								  <span class="pull-right"
+									>Total: <strong>${{ subtotal }}</strong></span
+								  >
+								  <div class="clearfix">&nbsp;</div>
+								</div>
+							  </div>
+							</div>
+						  </ng-container>
+						</ng-container>
+					  </div>
+					</div>
+				  </div>
+				  <ng-container *ngIf="ShowVer">
+					<div class="modal-footer bg-footer">
+					  <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+					  <!-- <button class="btn btn-default pull-left" *ngIf="showone" (click)="SaveBgG(1)">Back</button>
+		<button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(2)">Next</button> -->
+					  <button class="btn btn-filled pull-right" *ngIf="!showone" (click)="SaveBgG(3)">Proceed</button>
+					</div>
+				  </ng-container>
+  
+				  <ng-container *ngIf="!ShowVer">
+					<div class="modal-footer bg-footer">
+					  <button mat-button mat-dialog-close class="btn btn-default pull-left">Cancel</button>
+					  <button class="btn btn-default pull-left" *ngIf="showRes" (click)="SaveBg(1)">Back</button>
+					  <button class="btn btn-filled pull-right" *ngIf="!showRes" (click)="SaveBg(2)">Next</button>
+					  <button class="btn btn-filled pull-right" *ngIf="showRes" (click)="SaveBg(3)">Proceed</button>
+					</div>
+				  </ng-container>
+				</div>
+			  </div>
 			</div>
+		  </div>
 		</div>
+	  </div>
 	</div>
-</main>
+  </main>
+  

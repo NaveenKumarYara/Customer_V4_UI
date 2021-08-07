@@ -44,3 +44,4 @@ Thumbs.db
 /.vs/ProjectSettings.json
 /.vs/config/applicationhost.config
 obj/Debug/netcoreapp2.0/.NETCoreApp,Version=v2.0.AssemblyAttributes.cs
+.vs/customerlatest2/config/applicationhost.config
