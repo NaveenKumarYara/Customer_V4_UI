@@ -300,29 +300,37 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 	}
 
-	OpenCandidateDialog(profileId, Uid) {
-		this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
-			this.matchingParameterDetails = res;
-			const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
-				width: "80vw",
-				position: { right: "0px" },
-				height: "750px",
-				panelClass: 'candiateModalPop',
-				data: {
-					ProfileId: profileId,
-					jobId: this.jobid,
-					UserId: Uid,
-					JobFit: this.matchingParameterDetails.JobFit,
-					Personalityfit: this.matchingParameterDetails.Personalityfit,
-					Skillfit: this.matchingParameterDetails.SkillFit,
-					CulutureFit: this.matchingParameterDetails.CultureFit
-					// status : this.statusid
-				},
-			});
-			viewCandidatedialogRef.afterClosed().subscribe((result) => {
-				console.log("candidate Dialog result: ${result}");
-			});
-		});
-	}
+	OpenCandidate(profileId, userId) {
+		localStorage.setItem("cprofileId", profileId);
+		localStorage.setItem("cuserId", userId);
+		//this.router.navigateByUrl('/app-view-candidateprofile-detail');
+		const url = this.customer.Defaulturl.Purl;
+		//const url ='http://localhost:4400/app-view-candidateprofile-detail';
+		window.open(url, "_blank");
+	  }
+	// OpenCandidateDialog(profileId, Uid) {
+	// 	this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
+	// 		this.matchingParameterDetails = res;
+	// 		const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
+	// 			width: "80vw",
+	// 			position: { right: "0px" },
+	// 			height: "750px",
+	// 			panelClass: 'candiateModalPop',
+	// 			data: {
+	// 				ProfileId: profileId,
+	// 				jobId: this.jobid,
+	// 				UserId: Uid,
+	// 				JobFit: this.matchingParameterDetails.JobFit,
+	// 				Personalityfit: this.matchingParameterDetails.Personalityfit,
+	// 				Skillfit: this.matchingParameterDetails.SkillFit,
+	// 				CulutureFit: this.matchingParameterDetails.CultureFit
+	// 				// status : this.statusid
+	// 			},
+	// 		});
+	// 		viewCandidatedialogRef.afterClosed().subscribe((result) => {
+	// 			console.log("candidate Dialog result: ${result}");
+	// 		});
+	// 	});
+	// }
 
 }

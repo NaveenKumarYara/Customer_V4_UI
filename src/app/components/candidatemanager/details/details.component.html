@@ -340,7 +340,7 @@
                                                     style="color: white; text-decoration: none;" [routerLink]=""
                                                     (click)="showJobPrview(candidate.ProfileId)">{{candidate.ProfilePercentage}}%</a>
                                             </div>
-                                            <h4><a href="javascript:void(0)" (click)="OpenCandidateDialog(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName}}</a></h4>
+                                            <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName}}</a></h4>
                                             
                                             <h5>{{candidate.JobTitleName}}</h5>
                                             <div class="location">{{candidate.Locations}}</div>
