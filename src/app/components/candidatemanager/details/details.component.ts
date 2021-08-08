@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { AppService } from '../../../app.service';
 declare var $: any;
+import { ApiService } from "../../../shared/services/api.service/api.service";
+import { JobdetailsService } from '../../jobdetails/jobdetails.service';
+import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
+import { ViewCandidateprofileComponent } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 
 @Component({
 	selector: 'cm-details',
@@ -26,6 +32,7 @@ export class DetailsComponent implements OnInit {
 	showDetail: boolean = false;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
+	statusid: number = 0;
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
 		{ 'title': 'Skills', 'value': 'skills', 'url': 'https://profileapi-dev.arytic.com/api/GetAllMasterSkills', 'result': [], 'iconClass': 'icon__skills__01' },
@@ -44,8 +51,14 @@ export class DetailsComponent implements OnInit {
 		{ src: '../../../assets/images/candidatemanager/job-card.png' },
 		{ src: '../../../assets/images/candidatemanager/job-card.png' }
 	];
+	profile: any;
+	matchingParameterDetails: MatchingParameterDetails;
+	jobid: number = 1002162;
 
-	constructor(private appService: AppService) {
+	constructor(private appService: AppService, private readonly apiService: ApiService,
+		private jobdetailsservice: JobdetailsService,
+		private dialog: MatDialog,
+		private _vcr: ViewContainerRef) {
 		this.selectedIndex = 0;
 	}
 
@@ -53,18 +66,19 @@ export class DetailsComponent implements OnInit {
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
+		this.showDetail = false;
 		this.getCandidates();
 
-		$(document).on('click touchend', function (e) {
-			if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
-				$('.revamp__filter__sidebar__box').removeClass('full');
-				$('.revamp__filter__sidebar__box').removeClass('show');
-				$('.revamp__filter__sidebar__box').removeClass('big');
-				$('.data-grid-view').removeClass('open');
-				$('.data-grid-table').removeClass('open');
-				$('.sub__item').removeClass('active');
-			}
-		});
+		// $(document).on('click touchend', function (e) {
+		// 	if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
+		// 		$('.revamp__filter__sidebar__box').removeClass('full');
+		// 		$('.revamp__filter__sidebar__box').removeClass('show');
+		// 		$('.revamp__filter__sidebar__box').removeClass('big');
+		// 		$('.data-grid-view').removeClass('open');
+		// 		$('.data-grid-table').removeClass('open');
+		// 		$('.sub__item').removeClass('active');
+		// 	}
+		// });
 	}
 
 	next() {
@@ -78,10 +92,19 @@ export class DetailsComponent implements OnInit {
 	}
 
 	showJobPrview(profileId) {
-		//alert(profileId);
 		this.showDetail = true;
 		this.selectedCandidate = this.candidates.find(x => x.ProfileId == profileId);
-		// this.selectedIndex = index;
+		this.getCandidateProfile(profileId);
+	}
+
+	getCandidateProfile(profileId) {
+		let params = new HttpParams();
+		params = params.append("profileId", profileId);
+		params = params.append("isPublic", '1');
+		this.apiService.GetService("ProfileAPI/api/GetProfileInfo?", params).subscribe((response) => {
+			debugger;
+			this.profile = response;
+		});
 	}
 
 	hideJobDetail() {
@@ -276,4 +299,30 @@ export class DetailsComponent implements OnInit {
 		this.currentPage += pageValue;
 		this.getCandidates();
 	}
+
+	OpenCandidateDialog(profileId, Uid) {
+		this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
+			this.matchingParameterDetails = res;
+			const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
+				width: "80vw",
+				position: { right: "0px" },
+				height: "750px",
+				panelClass: 'candiateModalPop',
+				data: {
+					ProfileId: profileId,
+					jobId: this.jobid,
+					UserId: Uid,
+					JobFit: this.matchingParameterDetails.JobFit,
+					Personalityfit: this.matchingParameterDetails.Personalityfit,
+					Skillfit: this.matchingParameterDetails.SkillFit,
+					CulutureFit: this.matchingParameterDetails.CultureFit
+					// status : this.statusid
+				},
+			});
+			viewCandidatedialogRef.afterClosed().subscribe((result) => {
+				console.log("candidate Dialog result: ${result}");
+			});
+		});
+	}
+
 }
