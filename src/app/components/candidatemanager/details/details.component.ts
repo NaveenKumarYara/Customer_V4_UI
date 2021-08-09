@@ -54,6 +54,7 @@ export class DetailsComponent implements OnInit {
 	profile: any;
 	matchingParameterDetails: MatchingParameterDetails;
 	jobid: number = 1002162;
+	jobInfo: any;
 
 	constructor(private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService,
@@ -324,5 +325,53 @@ export class DetailsComponent implements OnInit {
 			});
 		});
 	}
+
+	loadJobs() {
+
+	}
+
+
+	applyJob(job, val) {
+		var saved = $('#addAppliedval-' + job.JobId).val();
+		if (saved == 1) {
+			return false;
+		}
+		this.jobInfo.UserId = this.userId;
+		this.jobInfo.ProfileId = job.ProfileId;
+		this.jobInfo.ResumeId = job.ResumeId;
+		this.jobInfo.JobId = job.JobId;
+		if (job.MatchPercent < 50) {
+			$('#noprofile').modal('show');
+		}
+		else {
+			// 	this._service.PostService(this.applyJobForm.value, 'ReferralAPI/api/ApplyJob')
+			// 		.subscribe(data => {
+			// 			if (val == 2) {
+			// 				this.successful = true;
+			// 				setInterval(() => {
+			// 					this.successful = false;
+			// 				}, 3000);
+			// 			}
+			// 			else {
+			// 				$('#Applyjobs').modal('show');
+			// 			}
+			// 			this.applicantsCount = 1;
+			// 			var valcount = $('#applicantsCount-' + job.JobId).text();
+			// 			valcount = parseInt(valcount) + 1;
+			// 			$('#applicantsCount-' + job.JobId).text(valcount);
+			// 			$('#appliedIcon-' + job.JobId).attr('href', 'javascript:void(0)');
+			// 			$('#appliedIcon-' + job.JobId).text('Applied');
+			// 			$('#appliedIcon-' + job.JobId).prepend('<span class="icon icon-apply"></span>');
+			// 			$('#addAppliedval-' + job.JobId).val(1);
+			// 			if (val === 2) {
+			// 				this.ViewDetails(this.jobId);
+			// 			}
+			// 		},
+			// 			error => console.log(error));
+			// }
+			//this.successful = false;
+		}
+	}
+
 
 }
