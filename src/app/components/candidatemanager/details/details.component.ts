@@ -1,6 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { debounceTime } from 'rxjs/operators';
 import { AppService } from '../../../app.service';
 declare var $: any;
 import { ApiService } from "../../../shared/services/api.service/api.service";
@@ -54,6 +56,9 @@ export class DetailsComponent implements OnInit {
 	profile: any;
 	matchingParameterDetails: MatchingParameterDetails;
 	jobid: number = 1002162;
+	keywordSearchGroup: any;
+	isKeywordSearch: any;
+	searchValue: any;
 
 	constructor(private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService,
@@ -63,11 +68,19 @@ export class DetailsComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.keywordSearchValidators();
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
 		this.showDetail = false;
 		this.getCandidates();
+		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
+			.subscribe(res => {
+				this.keywordSearchGroup.get('searchValue').setValue(res);
+				this.getCandidates();
+			});
+
+
 
 		// $(document).on('click touchend', function (e) {
 		// 	if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
@@ -270,10 +283,22 @@ export class DetailsComponent implements OnInit {
 
 	getCandidates() {
 		this.candidatesLoading = true;
-		this.appService.getCandidates(this.customerId, this.userId, this.currentPage, this.pageCount).subscribe(
+		this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
+		this.searchValue = this.keywordSearchGroup.get('searchValue').value;
+		const params = {
+			cId: this.customerId,
+			uId: this.userId,
+			pNo: this.currentPage,
+			rows: this.pageCount,
+			so: '',
+			isKeywordSearch: this.isKeywordSearch,
+			searchValue: this.searchValue,
+		};
+		this.appService.getCandidates(params).subscribe(
 			(res: any) => {
+				debugger;
 				if (res != null) {
-					if (res.Candidates.length > 0) {
+					if (res.Candidates != null && res.Candidates.length > 0) {
 						this.candidates = res.Candidates;
 						this.totalCandidatesCount = res.TotalRecordsCount;
 						if (this.totalCandidatesCount % this.pageCount == 0)
@@ -307,7 +332,7 @@ export class DetailsComponent implements OnInit {
 		const url = this.customer.Defaulturl.Purl;
 		//const url ='http://localhost:4400/app-view-candidateprofile-detail';
 		window.open(url, "_blank");
-	  }
+	}
 	// OpenCandidateDialog(profileId, Uid) {
 	// 	this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
 	// 		this.matchingParameterDetails = res;
@@ -332,5 +357,10 @@ export class DetailsComponent implements OnInit {
 	// 		});
 	// 	});
 	// }
-
+	keywordSearchValidators() {
+		this.keywordSearchGroup = new FormGroup({
+			isKeywordSearch: new FormControl('0'),
+			searchValue: new FormControl(' ')
+		});
+	}
 }

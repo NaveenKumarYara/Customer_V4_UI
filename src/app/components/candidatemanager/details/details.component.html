@@ -82,90 +82,93 @@
             </div>
             <div class="revamp__search__container">
                 <div class="row flex flex-align-center flex-wrap">
-                    <div class="col-sm-3 col check-col">
-                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox" checked="checked">
-                            <span class="checkmark">Enable Keyword</span>
-                        </label>
-
-                    </div>
-                    <div class="col-sm-5 col">
-                        <div class="input-box">
-                            <span class="icon icon__search__01"></span>
-                            <input type="text" placeholder="" class="form-control form-control-light filter-technology">
+                    <form [formGroup]="keywordSearchGroup" novalidate>
+                        <div class="col-sm-3 col check-col">
+                            <label class="custom-checkbox lg-select">
+                                <input type="checkbox" checked="checked" formControlName="isKeywordSearch" >
+                                <span class="checkmark">Enable Keyword</span>
+                            </label>
                         </div>
-                        <div class="filter__by__tech">
-                            <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-4 tab__col">
-                                    <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                                                href="#java" role="tab" aria-selected="true">Java</a>
-                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-                                                href="#net" role="tab" aria-selected="false">Profile</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-                                                href="#experience" role="tab" aria-selected="false">Experience</a>
-                                        </div>
-                                    </nav>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="java" role="tabpanel"
-                                            aria-labelledby="nav-home-tab">
-                                            <label class="custom-checkbox lg-select">
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark">Select All</span>
-                                            </label>
-                                            <div class="filter__tags">
-                                                <ul>
-                                                    <li>
-                                                        <label class="custom-checkbox lg-select">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark">+Java</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="custom-checkbox lg-select">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark">+Core Java</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="custom-checkbox lg-select">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark">+Javascript</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="custom-checkbox lg-select">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark">+Jquery</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="custom-checkbox lg-select">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark">+Typescript</span>
-                                                        </label>
-                                                    </li>
-                                                </ul>
+                        <div class="col-sm-5 col">
+                            <div class="input-box">
+                                <span class="icon icon__search__01"></span>
+                                <input type="text" placeholder="" formControlName="searchValue"
+                                name="searchValue"
+                                    class="form-control form-control-light filter-technology">
+                            </div>
+                            <div class="filter__by__tech">
+                                <div class="row flex flex-wrap flex-align-equal">
+                                    <div class="col-sm-4 tab__col">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                                    href="#java" role="tab" aria-selected="true">Java</a>
+                                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                                    href="#net" role="tab" aria-selected="false">Profile</a>
+                                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                                    href="#experience" role="tab" aria-selected="false">Experience</a>
                                             </div>
-                                            <div class="filter__tags__new">
-                                                Add New Key Words <button class="btn btn-info btn-sm">Add</button>
-                                            </div>
+                                        </nav>
+                                    </div>
 
+                                    <div class="col-sm-8">
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="java" role="tabpanel"
+                                                aria-labelledby="nav-home-tab">
+                                                <label class="custom-checkbox lg-select">
+                                                    <input type="checkbox" checked="checked">
+                                                    <span class="checkmark">Select All</span>
+                                                </label>
+                                                <div class="filter__tags">
+                                                    <ul>
+                                                        <li>
+                                                            <label class="custom-checkbox lg-select">
+                                                                <input type="checkbox">
+                                                                <span class="checkmark">+Java</span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="custom-checkbox lg-select">
+                                                                <input type="checkbox">
+                                                                <span class="checkmark">+Core Java</span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="custom-checkbox lg-select">
+                                                                <input type="checkbox">
+                                                                <span class="checkmark">+Javascript</span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="custom-checkbox lg-select">
+                                                                <input type="checkbox">
+                                                                <span class="checkmark">+Jquery</span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="custom-checkbox lg-select">
+                                                                <input type="checkbox">
+                                                                <span class="checkmark">+Typescript</span>
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="filter__tags__new">
+                                                    Add New Key Words <button class="btn btn-info btn-sm">Add</button>
+                                                </div>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="net" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">Net Tags</div>
+                                            <div class="tab-pane fade" id="experience" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">Experience</div>
                                         </div>
-                                        <div class="tab-pane fade" id="net" role="tabpanel"
-                                            aria-labelledby="nav-profile-tab">Net Tags</div>
-                                        <div class="tab-pane fade" id="experience" role="tabpanel"
-                                            aria-labelledby="nav-profile-tab">Experience</div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="col-sm-4 col">
                         <div class="input-box">
                             <span class="icon__map__01">Icon</span>
@@ -340,8 +343,10 @@
                                                     style="color: white; text-decoration: none;" [routerLink]=""
                                                     (click)="showJobPrview(candidate.ProfileId)">{{candidate.ProfilePercentage}}%</a>
                                             </div>
-                                            <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName}}</a></h4>
-                                            
+                                            <h4><a href="javascript:void(0)"
+                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName}}</a>
+                                            </h4>
+
                                             <h5>{{candidate.JobTitleName}}</h5>
                                             <div class="location">{{candidate.Locations}}</div>
                                             <div class="company">{{candidate.Company}}</div>
