@@ -5,9 +5,15 @@ import { routing } from "./../../app.router";
 import { DetailsComponent } from "./details/details.component";
 import { SharedModule } from "../../shared/shared.module";
 import { CmRoutingModule } from "./cm-routing.module";
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { AppService } from "../../app.service";
+import { ApiService } from "../../shared/services/api.service/api.service";
+import { RatingModule } from 'ng-starrating';
+
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule],
   declarations: [CandidatemanagerComponent, DetailsComponent],
+  providers: [AppService, ApiService],
 })
-export class CmModule {}
+export class CmModule { }

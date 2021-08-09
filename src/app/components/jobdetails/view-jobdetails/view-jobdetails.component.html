@@ -14,8 +14,7 @@
                                         d="M20.1 9.4H1c-.6 0-1-.4-1-1s.4-1 1-1h19.1c.6 0 1 .4 1 1s-.4 1-1 1z" />
                                 </svg>
                             </a>
-                            <h3 class="title mr-top"
-                                (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
+                            <h3 class="title mr-top" (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">
                                 {{jobdetailsbasicinfo?.JobTitle}}</h3>
                             <div class="status {{jobdetailsbasicinfo?.JobStatus}}">
                                 {{jobdetailsbasicinfo?.JobStatus}}
@@ -34,10 +33,12 @@
                             </svg>
 
                             <h5 class="client">
-                                {{jobdetailsbasicinfo?.ClientName  != null ? jobdetailsbasicinfo?.ClientName : ''}}
+                                {{jobdetailsbasicinfo?.ClientName != null ? jobdetailsbasicinfo?.ClientName : ''}}
                             </h5>
-                            <h5 class="ml-1" [ngClass]="{'jobdepartments': jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}" title=" {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}">
-                                {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}
+                            <h5 class="ml-1"
+                                [ngClass]="{'jobdepartments': jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}"
+                                title=" {{jobdetailsbasicinfo?.Departments  != null ? jobdetailsbasicinfo?.Departments : ''}}">
+                                {{jobdetailsbasicinfo?.Departments != null ? jobdetailsbasicinfo?.Departments : ''}}
                             </h5>
                             <svg fill="#93a2bb" xmlns="http://www.w3.org/2000/svg" width="16" height="19.3">
                                 <path class="st0"
@@ -48,7 +49,7 @@
                             <h5 class="location">
                                 <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
                                     {{location?.CityName}},{{location?.StateCode}}
-                                  </ng-container>
+                                </ng-container>
                             </h5>
                             <h5>Posted on: {{ jobdetailsbasicinfo?.PostedOn }}</h5>
                         </div>
@@ -108,48 +109,53 @@
                                 <div>
                                     <h1>{{jobstatistics?.Applied}}</h1>
                                     <h4>Prospect profiles
-                                        <a  href="javascript:void(0)"  class="tooltip__link">
+                                        <a href="javascript:void(0)" class="tooltip__link">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                             <span class="custom__tooltip">
-                                              <span class="step__01">Profiles which are submitted to the job from any source. </span>
+                                                <span class="step__01">Profiles which are submitted to the job from any
+                                                    source. </span>
                                             </span>
-                                          </a>
+                                        </a>
                                     </h4>
                                 </div>
                             </a>
                         </li>
                         <li id="aryticbestfit">
-                            <a data-toggle="tab" href="javascript:void(0)"  (click)="updatesuggestedstatus();inprogressview(0)">
+                            <a data-toggle="tab" href="javascript:void(0)"
+                                (click)="updatesuggestedstatus();inprogressview(0)">
                                 <div>
                                     <h1>{{SuggestedCount||'0'}}</h1>
                                     <h4>Arytic Best Fit Results
-                                        <a  href="javascript:void(0)"  class="tooltip__link">
+                                        <a href="javascript:void(0)" class="tooltip__link">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                             <span class="custom__tooltip">
-                                              <span class="step__01">Arytic's suggested best match candidates for you. </span>
+                                                <span class="step__01">Arytic's suggested best match candidates for you.
+                                                </span>
                                             </span>
-                                          </a>
+                                        </a>
                                     </h4>
                                 </div>
                             </a>
                         </li>
-                        <li id="inprogressprofiles" >
-                            <a data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
+                        <li id="inprogressprofiles">
+                            <a data-toggle="tab" href="javascript:void(0)"
+                                (click)="updateinprogressstatus();inprogressview(1)">
                                 <div>
                                     <h1>{{jobstatistics?.InProgress}}</h1>
                                     <h4>In-Progress profiles
-                                        <a  href="javascript:void(0)"  class="tooltip__link">
+                                        <a href="javascript:void(0)" class="tooltip__link">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                             <span class="custom__tooltip">
-                                              <span class="step__01">Profiles currently under the hiring/interview process. </span>
+                                                <span class="step__01">Profiles currently under the hiring/interview
+                                                    process. </span>
                                             </span>
-                                          </a>
+                                        </a>
                                     </h4>
                                 </div>
                             </a>
                         </li>
-                       
-                        <li id="searchprofiles"  title="Coming Soon!!!">
+
+                        <li id="searchprofiles" title="Coming Soon!!!">
                             <a class="isDisabled" data-toggle="tab" href="javascript:void(0)">
                                 <div>
                                     <h4>Search profiles</h4>
@@ -178,48 +184,48 @@
                 </div>
                 <!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
                 <div class="card-sub-footer" *ngIf="inprogressprofile==true">
-                <ul class="nav nav-tabs">
-                    <li  id="Screening">
-                        <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-                            <div>
-                                <!-- <h5>{{jobstatistics?.Screening}}</h5> -->
-                                <h6>Screening <span>( {{jobstatistics?.Screening}} )</span></h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li id="Shortlisted">
-                        <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-                            <div>
-                                <!-- <h5>{{jobstatistics?.ShortListed}}</h5> -->
-                                <h6>Shortlisted <span>( {{jobstatistics?.ShortListed}} )</span></h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li id="Interview">
-                        <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
-                            <div>
-                                <!-- <h5>{{jobstatistics?.Interviewed}}</h5> -->
-                                <h6>Interview ( {{jobstatistics?.Interviewed}} )</h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li id="hired">
-                        <a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
-                            <div>
-                                <!-- <h5>{{jobstatistics?.Hired}}</h5> -->
-                                <h6>Hired ( {{jobstatistics?.Hired}} )</h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li id="rejected">
-                        <a  data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
-                            <div>
-                                <!-- <h5>{{jobstatistics?.RejectedORWithdrawn}}</h5> -->
-                                <h6>Rejected / Withdrawn ( {{jobstatistics?.RejectedORWithdrawn}} )</h6>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                    <ul class="nav nav-tabs">
+                        <li id="Screening">
+                            <a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+                                <div>
+                                    <!-- <h5>{{jobstatistics?.Screening}}</h5> -->
+                                    <h6>Screening <span>( {{jobstatistics?.Screening}} )</span></h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="Shortlisted">
+                            <a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+                                <div>
+                                    <!-- <h5>{{jobstatistics?.ShortListed}}</h5> -->
+                                    <h6>Shortlisted <span>( {{jobstatistics?.ShortListed}} )</span></h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="Interview">
+                            <a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+                                <div>
+                                    <!-- <h5>{{jobstatistics?.Interviewed}}</h5> -->
+                                    <h6>Interview ( {{jobstatistics?.Interviewed}} )</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="hired">
+                            <a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+                                <div>
+                                    <!-- <h5>{{jobstatistics?.Hired}}</h5> -->
+                                    <h6>Hired ( {{jobstatistics?.Hired}} )</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="rejected">
+                            <a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+                                <div>
+                                    <!-- <h5>{{jobstatistics?.RejectedORWithdrawn}}</h5> -->
+                                    <h6>Rejected / Withdrawn ( {{jobstatistics?.RejectedORWithdrawn}} )</h6>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- <ng-container *ngIf="inprogressprofile">
 
