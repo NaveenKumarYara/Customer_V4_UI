@@ -363,7 +363,7 @@ editMode: string;
       this.appService.JobDueDate.next(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
       this.appService.updateJobDueDate(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
       this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
-      this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);
+      this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);    
       this.appService.teammembers = this.jobdetailscustomer.TechnicalTeam;
       this.appService.teammembersChanged.next(this.appService.teammembers);
       this.appService.addedteammembers = this.ejTechnicalTeamIdList;
