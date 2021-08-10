@@ -1670,12 +1670,10 @@ export class AppService {
     return this.http.get<any>(url).catch(this.handleError);
   }
 
-  getCandidates(cId, uId, pNo, rows): Observable<any> {
-    const url = this.settingsService.settings.ProfilebaseUrl + '/api/GetCandidates?cId=' + cId + '&uId=' + uId + '&pNo=' + pNo + '&rows=' + rows;
-    return this.http.get<any>(url)
-      .catch(
-        this.handleError
-      );
+  getCandidates(params: any): Observable<any> {
+    const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetCandidates';
+    return this.http.get<any>(apiUrl, { params })
+      .pipe();
   }
 
 

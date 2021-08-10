@@ -9,10 +9,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AppService } from "../../app.service";
 import { ApiService } from "../../shared/services/api.service/api.service";
 import { RatingModule } from 'ng-starrating';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule, ReactiveFormsModule,FormsModule],
   declarations: [CandidatemanagerComponent, DetailsComponent],
   providers: [AppService, ApiService],
 })
