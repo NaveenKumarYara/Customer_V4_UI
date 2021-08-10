@@ -11,6 +11,7 @@ import { ApiService } from '../../../../../shared/services/api.service/api.servi
 import { PageEvent, Sort } from '@angular/material';
 import { MatPaginator } from '@angular/material';
 declare var $: any;
+import swal from "sweetalert2";
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -25,6 +26,7 @@ export class ReferencedialogComponent {
   userId: any;
   employmenttypelist: any;
   employmentTypeId: number;
+
   Comment: string;
   requestRef = new RequestRefernce();
   panelOpenState: boolean = false;
@@ -42,7 +44,7 @@ export class ReferencedialogComponent {
     this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
     this.dateAgo = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 3));
     this.customerId = JSON.parse(sessionStorage.getItem('customerId'));
-    
+    const swal = require('sweetalert2');
     this.GetQuestionnariePersonsList(5);
   }
   // MatPaginator Inputs
@@ -111,6 +113,37 @@ export class ReferencedialogComponent {
 
 
 
+  }
+
+
+  OpenRequest()
+  {
+    swal(
+      {
+        title: 'Request more info from Arytic?',
+        showConfirmButton: true,
+        showCancelButton:true,
+        type:"info",
+        confirmButtonColor: '#66dab5',
+        cancelButtonColor: '#FF0000',
+        confirmButtonText: 'Yes',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.value === true) {       
+            swal(
+              {
+                title: 'Information requested. You will receive an email shortly!',
+                showConfirmButton: true,
+                timer: 3000,
+                type:"success"
+              });
+        
+        }
+
+
+    
+      
+    });
   }
 
   OpenRequestDialog(company,Id)

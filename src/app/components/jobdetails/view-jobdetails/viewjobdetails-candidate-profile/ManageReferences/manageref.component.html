@@ -71,7 +71,8 @@
                         <mat-expansion-panel-header>
                                 <div class="col-md-3">
                                     <h3>{{user?.FullName | titlecase}}</h3>
-                                    <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a>
+                                    <!-- <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequestDialog(user.KnownOrWorkedAt,user.QuestionnaireAssignmentId)"> Request Info</a> -->
+                                    <a class="req-info" href="javascript:void(0)" mat-raised-button (click)="OpenRequest()"> Request Info</a>
                                 </div>
                                 <div class="col-md-3">
                                     <h5>{{user?.KnownOrWorkedAt}}</h5>
