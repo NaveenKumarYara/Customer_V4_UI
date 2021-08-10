@@ -435,6 +435,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     cloudspan();
     this.GetCandidateSKills();
     this.GetProfileDetails();
+    this.GetUserProfileInfo();
       this.GetMatchingPercentage();
       this.GetAchivements();
     this.smallRadarChartData.datasets[0].data=[this.data.JobFit.toFixed(2),
@@ -442,7 +443,6 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.data.CulutureFit.toFixed(2),
       this.data.Personalityfit.toFixed(2),
       0];
-    this.GetUserProfileInfo();
     this.GetJobNotes();
     this.GetCandidateJobFitResult();
     this.GetCandidateSkillFitResult();
