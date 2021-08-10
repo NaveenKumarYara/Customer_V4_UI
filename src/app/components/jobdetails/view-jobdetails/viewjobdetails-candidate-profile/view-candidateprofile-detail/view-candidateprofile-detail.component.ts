@@ -514,7 +514,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   }
 
   GetQuestionnariePersonsList(Ud) {
-    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=4')
+    this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + Ud, '&showId=5')
       .subscribe(
         data => {
         if(data != "No records found")
