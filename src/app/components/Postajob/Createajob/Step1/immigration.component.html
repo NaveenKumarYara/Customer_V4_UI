@@ -2,10 +2,10 @@
   
   
   <div class="form-group job-title-group reporting-manager-group">
-    <label for="" class="question">What Immigration Status type you are looking for ?<small>(Optional)</small></label>
+    <label for="" class="question">What Work authorization type you are looking for ?<small>(Optional)</small></label>
     <div class="form-row row">
       <div class="col-md-9">
-        <ng-select class="custom-style" [items]="ImmigrationList" placeholder="Select Immigration"
+        <ng-select class="custom-style" [items]="ImmigrationList" placeholder="Select Work authorization"
           bindLabel="ImmigrationStatus" bindValue="ImmigrationStatusId" (change)="updateStatus($event)"
           [hideSelected]="true"  [(ngModel)]="selectStatus" [virtualScroll]="true"
           #Imsstatus="ngModel" name="Imsstatus">
