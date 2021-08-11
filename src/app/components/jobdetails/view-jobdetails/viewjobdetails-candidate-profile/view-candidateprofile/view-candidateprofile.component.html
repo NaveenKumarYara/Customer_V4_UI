@@ -896,6 +896,16 @@
 				  <app-radar-chart-large [radarChartData]="smallRadarChartData"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
+						<li>
+							<p>Arytic Fit</p>
+							<div class="percentage__info">
+							  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <p  style="background-color: rgb(54, 162, 235)">
+								{{MatchingPercentage | number: '1.0-0'}}
+							  </p>
+							</div>
+						  </li>
 					  <li *ngFor="let item of smallRadarChartData.labels; let i = index">
 						<p>{{ item }}</p>
 						<div class="percentage__info">
@@ -913,6 +923,16 @@
 				  <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
+						<li>
+							<p>Job Fit</p>
+							<div class="percentage__info">
+							  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <p  style="background-color: rgb(54, 162, 235)">
+								{{Match?.JobFit | number: '1.0-0'}}
+							  </p>
+							</div>
+						  </li>
 					  <li *ngFor="let item of Job.labels; let i = index">
 						<p>{{ item }}</p>
 						<div class="percentage__info">
@@ -931,6 +951,16 @@
 					<app-polar-chart [polarChartData]="Skill"> </app-polar-chart>
 					<div class="custom-legend">
 					  <ul class="list-group">
+						<li>
+							<p>Skill Fit</p>
+							<div class="percentage__info">
+							  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <p  style="background-color: rgb(54, 162, 235)">
+								{{Match?.SkillFit | number: '1.0-0'}}
+							  </p>
+							</div>
+						  </li>
 						<li *ngFor="let item of Skill.labels; let i = index">
 						  <p>{{ item }}</p>
 						  <div class="percentage__info">
@@ -1084,6 +1114,16 @@
 				  <app-radar-chart-large [radarChartData]="PersonalityFit"> </app-radar-chart-large>
 				  <div class="custom-legend">
 					<ul class="list-group">
+						<li>
+							<p>Personality Fit</p>
+							<div class="percentage__info">
+							  <span class="shadow__01" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <span class="shadow__02" style="background-color: rgb(54, 162, 235)">Shadow</span>
+							  <p  style="background-color: rgb(54, 162, 235)">
+								{{Match?.Personalityfit | number: '1.0-0'}}
+							  </p>
+							</div>
+						  </li>
 					  <li *ngFor="let item of PersonalityFitLabels.labels; let i = index">
 						<p>{{ item }}</p>
 						<div class="percentage__info">

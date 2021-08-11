@@ -691,7 +691,8 @@ export class ViewCandidateprofileComponent implements OnInit {
         { className: "icon__personality__fit", label: "Personality Fit" },
         { className: "icon__team__fit", label: "Team Fit" }
       ];
-      this.selectedMenuItem = "Job Fit";
+      this.aryticFitChartVisible = true;
+      this.selectedMenuItem = '';
     } else {
       
       this.menuHeading = "Arytic Check";
