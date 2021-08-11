@@ -15,7 +15,7 @@ export class JobdetailsBasicInfo {
   public DislikesCount: string;
   public LikesCount: string;
   public IsOpen: number;
-  public JobLocations: JobLocations;
+  public JobLocations: JobLocations[]=[];
 }
 
 export class JobCompletenessInfo
