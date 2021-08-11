@@ -41,6 +41,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ng-starrating';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgxMaskModule } from 'ngx-mask';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatDialogModule,
   MatCardModule,
@@ -78,6 +79,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     RouterModule,
     HttpModule,
     FormsModule,
+    NgxMaskModule,
     RatingModule,
     ReactiveFormsModule,
     NgSelectModule,

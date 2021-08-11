@@ -640,7 +640,7 @@ GetProfileRating() {
     this._service.GetService('ProfileAPI/api/GetUserProfileInfo?profileId=', this.profileId).subscribe(
         datas => {
           this.profileview = datas;
-          this.GetQuestionnariePersonsList(datas.ProfileBasicInfo.UserId);
+ 
                             if (datas !== null) {
                                 var contentVal = this.profileview.ProfileBasicInfo.AboutMe;
                                 var showChar = 250;  // How many characters are shown by default
@@ -688,6 +688,7 @@ GetProfileRating() {
                                     datas.ProfileSkillset.filter(u => (u.ExpInYears === 0 && u.ExpInMonths === 0)
                                         || (u.ExpInYears == null && u.ExpInMonths == null));
                             }
+                            this.GetQuestionnariePersonsList(datas.ProfileBasicInfo.UserId);
 
                         }, error => {
                             this._service.DebugMode(error);

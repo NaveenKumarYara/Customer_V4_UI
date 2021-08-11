@@ -1643,79 +1643,113 @@
                           </div>
                            <div class="middle__container">
                             <div class="jdv-listing">
-                              <!--<div class="jdv-skills">
-                                <div class="row flex flex-wrap flex-align-equal">
-                                  <div class="col-sm-6 col">
-                                    <div class="col-container">
-                                      <h5>CSS</h5>
-                                      <h6>Exp : 1.6 years</h6>
-                                      <div class="star-rating">
-                                        <div class="stars">
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star"></span>
-                                          <span class="fa fa-star"></span>
-                                        </div>
-                                      </div>
-                                    </div>
+                             <div class="jdv-skills">
+                              <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-6 col" *ngIf="r?.Skill1!=null && r?.Skill1!=undefined && r?.Skill1.length>1">
+                                <div class="col-container">
+                                  <h5>{{r?.Skill1.split(",")[0]}}</h5>
+                                  <!-- <h6>Exp : 1.6 years</h6> -->
+                                  <div class="star-rating">
+                                  <div class="stars">
+                                    <star-rating
+                                    value="{{r?.Skill1.split(',')[1]}}"
+                                    totalstars="5"
+                                    checkedcolor="#2260C3"
+                                    uncheckedcolor="#9EABC0"
+                                    size="16px"
+                                    readonly="true"
+                                    >
+                                    </star-rating>
                                   </div>
-                                  <div class="col-sm-6 col">
-                                    <div class="col-container">
-                                      <h5>CSS</h5>
-                                      <h6>Exp : 1.6 years</h6>
-                                      <div class="star-rating">
-                                        <div class="stars">
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star"></span>
-                                          <span class="fa fa-star"></span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-6 col">
-                                    <div class="col-container">
-                                      <h5>CSS</h5>
-                                      <h6>Exp : 1.6 years</h6>
-                                      <div class="star-rating">
-                                        <div class="stars">
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star"></span>
-                                          <span class="fa fa-star"></span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-6 col">
-                                    <div class="col-container">
-                                      <h5>CSS</h5>
-                                      <h6>Exp : 1.6 years</h6>
-                                      <div class="star-rating">
-                                        <div class="stars">
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star"></span>
-                                          <span class="fa fa-star"></span>
-                                        </div>
-                                      </div>
-                                    </div>
                                   </div>
                                 </div>
+                                </div>
+                                <div class="col-sm-6 col" *ngIf="r?.Skill2!=null&&r?.Skill2!=undefined&& r?.Skill2.length>1">
+                                <div class="col-container">
+                                  <h5>{{r?.Skill2.split(",")[0]}}</h5>
+                                  <!-- <h6>Exp : 1.6 years</h6> -->
+                                  <div class="star-rating">
+                                  <div class="stars">
+                                    <star-rating
+                                    value="{{r?.Skill2.split(',')[1]}}"
+                                    totalstars="5"
+                                    checkedcolor="#2260C3"
+                                    uncheckedcolor="#9EABC0"
+                                    size="16px"
+                                    readonly="true"
+                                    >
+                                    </star-rating>
+                                  </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col" *ngIf="r?.Skill3!=null&&r?.Skill3!=undefined&& r?.Skill3.length>1">
+                                <div class="col-container">
+                                  <h5>{{r?.Skill3.split(",")[0]}}</h5>
+                                  <!-- <h6>Exp : 1.6 years</h6> -->
+                                  <div class="star-rating">
+                                  <div class="stars">
+                                    <star-rating
+                                    value="{{r?.Skill3.split(',')[1]}}"
+                                    totalstars="5"
+                                    checkedcolor="#2260C3"
+                                    uncheckedcolor="#9EABC0"
+                                    size="16px"
+                                    readonly="true"
+                                    >
+                                    </star-rating>
+                                  </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col" *ngIf="r?.Skill4!=null&&r?.Skill4!=undefined&& r?.Skill4.length>1">
+                                <div class="col-container">
+                                  <h5>{{r?.Skill4.split(",")[0]}}</h5>
+                                  <!-- <h6>Exp : 1.6 years</h6> -->
+                                  <div class="star-rating">
+                                  <div class="stars">
+                                    <star-rating
+                                    value="{{r?.Skill4.split(',')[1]}}"
+                                    totalstars="5"
+                                    checkedcolor="#2260C3"
+                                    uncheckedcolor="#9EABC0"
+                                    size="16px"
+                                    readonly="true"
+                                    >
+                                    </star-rating>
+                                  </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col" *ngIf="r?.Skill5!=null&&r?.Skill5!=undefined&& r?.Skill5.length>1">
+                                <div class="col-container">
+                                  <h5>{{r?.Skill5.split(",")[0]}}</h5>
+                                  <!-- <h6>Exp : 1.6 years</h6> -->
+                                  <div class="star-rating">
+                                  <div class="stars">
+                                    <star-rating
+                                    value="{{r?.Skill5.split(',')[1]}}"
+                                    totalstars="5"
+                                    checkedcolor="#2260C3"
+                                    uncheckedcolor="#9EABC0"
+                                    size="16px"
+                                    readonly="true"
+                                    >
+                                    </star-rating>
+                                  </div>
+                                  </div>
+                                </div>
+                                </div>
                               </div>
-                            </div>-->
+                            </div>
                             </div>
                             <div class="information">
                               <ul>
                                 <li class="mail">
-                                  {{r?.RequestedTo | titlecase}}
+                                  {{r?.RequestedTo }}
                                 </li>
                                 <li class="phone" *ngIf="r?.PhoneNumber!=''&&r?.PhoneNumber!=null">
-                                 +1 {{r?.PhoneNumber}}
+                                 +1 {{r?.PhoneNumber | mask: '(000) 000-0000'}}
                                 </li>
                               </ul>
                             </div>

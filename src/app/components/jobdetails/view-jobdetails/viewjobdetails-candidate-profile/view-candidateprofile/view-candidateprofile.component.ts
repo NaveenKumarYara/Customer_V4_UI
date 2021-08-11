@@ -434,8 +434,8 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
     cloudspan();
     this.GetCandidateSKills();
-    this.GetProfileDetails();
     this.GetUserProfileInfo();
+    this.GetProfileDetails();
       this.GetMatchingPercentage();
       this.GetAchivements();
     this.smallRadarChartData.datasets[0].data=[this.data.JobFit.toFixed(2),
@@ -744,7 +744,8 @@ export class ViewCandidateprofileComponent implements OnInit {
       )
       .subscribe((data) => {
         this.Verification = data[0];
-        if (this.Verification.ProfileId > 0) {
+      
+        if (this.Verification.ProfileId > 0 && this.data.length>0) {
           this.ShowVer = true;
           this.bgverification.CriminalOptionSelected = this.Verification.CriminalOptionSelected;
           this.bgverification.DrugOptionSelected = this.Verification.DrugOptionSelected;
@@ -830,9 +831,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       if(data != "No records found")
       {
        this.usersList = data; 
-       this._service.GetService('IdentityAPI/api/GetCandidateTopSkillsList?profileId=' + this.data.ProfileId + '&searchText=', '').subscribe(data => {
-        this.selectedSkills = data;
-    })       
+       debugger     
       }
       else
       {
