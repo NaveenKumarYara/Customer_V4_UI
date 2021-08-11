@@ -204,7 +204,7 @@ export class InterviewListComponent implements OnInit {
     );
     scheduleIntwdialogRef.afterClosed().subscribe(result => {
       if (result === 'submit') {
-        this.populateJobInterViewlist(0,1,'');
+        this.populateJobInterViewlist(4,0,'');
       }
     
      // this.jobDetails.populateJobsStaticInfo(this.jobid);

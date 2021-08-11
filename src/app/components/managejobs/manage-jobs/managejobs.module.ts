@@ -5,6 +5,7 @@ import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { FileUploadModule } from 'ng2-file-upload';
 import {
   MatDialogModule,
   MatCardModule,
@@ -61,7 +62,8 @@ import { LoadJoblistComponent } from "./load-joblist/load-joblist.component";
     NgxMatSelectSearchModule,
     MatInputModule,
     AngularMultiSelectModule,
-    ManagejobsRoutingModule
+    ManagejobsRoutingModule,
+    FileUploadModule 
   ],
   providers: [ManageJobService],
   declarations: [
