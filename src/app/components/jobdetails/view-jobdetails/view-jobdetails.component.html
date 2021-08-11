@@ -51,12 +51,12 @@
                                     {{location?.CityName}},{{location?.StateCode}}
                                 </ng-container> -->
 
-                                <div *ngIf="jobdetailsbasicinfo?.JobLocations.length == 1">
+                                <div *ngIf="jobdetailsbasicinfo?.JobLocations?.length == 1">
                                     <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
                                         {{location?.CityName}},{{location?.StateCode}}
                                       </ng-container>
                                 </div>
-                                <div *ngIf="jobdetailsbasicinfo?.JobLocations.length > 1">   
+                                <div *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">   
                                       <div class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span *ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span> {{jobdetailsbasicinfo?.JobLocations[0].StateCode}} + 
                                         
                                             <span class="tooltipcontent"> <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">{{location?.CityName}},{{location?.StateCode}}; </ng-container></span>
