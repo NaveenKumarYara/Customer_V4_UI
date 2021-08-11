@@ -43,6 +43,11 @@ export class UpdateInterviewComponent implements OnInit {
  @Output() eventStat = new EventEmitter();
   webxRI: boolean;
   skypeId: string;
+  showadd:any;
+  loading = false;
+  loginstyle(): void {
+    this.loading = true;
+  }
   furtherInterview: boolean;
   travelExpense: boolean;
   phoneNumber: string;
