@@ -26,9 +26,27 @@
               </div>
               <ul class="inline__listing">
                 <li>{{jobdetailscustomer?.JobInfo?.CompanyName}}</li>
-                <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
-                  <li>{{location?.CityName | titlecase}}</li>
+                <li >
+                <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
+                      <span *ngFor="let location of jobdetailscustomer?.JobLocation">
+                      {{location?.CityName}}
+                      </span>
+                    </ng-container>
+             
+                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">                  
+                      <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+     
+                        <span class="tooltipcontent">  
+                          <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">                    
+                            {{location?.CityName}};               
+                          </ng-container>
+                        </span>
+                      </span>
+                      </ng-container>
+               
                 </ng-container>
+              </li>
+                     
               </ul>
               <div class="inline__icon__listing">
                 <ul>
@@ -230,7 +248,7 @@
                                   <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+     
                                     <span class="tooltipcontent">  
                                       <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">                    
-                                        {{location?.CityName}}               
+                                        {{location?.CityName}};               
                                       </ng-container>
                                     </span>
                                   </span>
