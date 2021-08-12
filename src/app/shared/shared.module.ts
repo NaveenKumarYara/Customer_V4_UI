@@ -17,6 +17,7 @@ import { PolarChartComponent } from './polar-chart/polar-chart.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.component';
 import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
+import { TooltipModule } from "ng2-tooltip-directive";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    TooltipModule
   ],
   providers: [AppService, AlertService],
   declarations: [LogoHeaderComponent,

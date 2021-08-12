@@ -101,8 +101,8 @@
                 <li class="text-danger hidden-xs" routerLinkActive="active"
                     *ngIf="customer?.AccessDetails?.Subscription==true">
                     <a class="upgrade-now" href="Javascript:void(0)"
-                        [routerLink]="['/app-accountsettings/app-billing-and-payments']" title="Upgrade Now">
-
+                        [routerLink]="['/app-accountsettings/app-billing-and-payments']">
+                       
                         <ng-container *ngIf="sdetails?.planId=='trial'">
                             <ng-container *ngIf="daysRemaining>0">
                                 <p class="text-right">
@@ -116,15 +116,20 @@
                         </ng-container>
                         <ng-container *ngIf="sdetails?.planId=='starterdirect'">
                             <ng-container *ngIf="daysRemaining>0">
-                                <p class="text-right">
-                                    Your Starter Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
-                                    <br>Renew Now!
-                                </p>
+                                <p tooltip="Your Starter Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
+                                    <br>Renew Now!!" placement="left">
+                                    <img src="../../../assets/images/out-of-time.png"
+                                    alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                     class="icon"  >
+                                 </p>
+                               
                             </ng-container>
                             <ng-container *ngIf="daysRemaining==0">
-                                <p class="text-right">
-                                    Your Starter Plan is Payment Due, Renew Now!
-                                </p>
+                                <p tooltip=" Your Starter Plan is Payment Due, Renew Now!" placement="left">
+                                    <img src="../../../assets/images/out-of-time.png"
+                                    alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                     class="icon"  >
+                                 </p>
                             </ng-container>
                         </ng-container>
                         <ng-container *ngIf="sdetails?.planId=='basicdirect'">
@@ -143,29 +148,42 @@
                         </ng-container>
                         <ng-container *ngIf="sdetails?.planId=='growthdirect'">
                             <ng-container *ngIf="daysRemaining>0">
-                                <p class="text-right">
-                                    Your Growth Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
-                                    <br>Renew Now!
-                                </p>
+                                <p tooltip=" Your Growth Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
+                                    <br>Renew Now!" placement="left">
+                                    <img src="../../../assets/images/out-of-time.png"
+                                    alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                     class="icon"  >
+                                 </p>
+                              
                             </ng-container>
                             <ng-container *ngIf="daysRemaining==0">
-                                <p class="text-right">
-                                    Your Growth Plan is Payment Due, Renew Now!
-                                </p>
+                                <p tooltip="Your Growth Plan is Payment Due, Renew Now!!" placement="left">
+                                    <img src="../../../assets/images/out-of-time.png"
+                                    alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                     class="icon"  >
+                                 </p>
+                              
                             </ng-container>
 
                         </ng-container>
                         <ng-container *ngIf="this.sdetails?.planId ===  'enterprise'">
                             <ng-container *ngIf="daysRemaining>0">
-                                <p class="text-right">
-                                    Your Enterprise Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
-                                    <br>Renew Now!
-                                </p>
+                         
+                                   
+
+                                     <p tooltip="Your Enterprise Plan is Payment Due in <strong>{{daysRemaining}}</strong> days,
+                                        <br>Renew Now!" placement="left">
+                                        <img src="../../../assets/images/out-of-time.png"
+                                        alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                         class="icon"  >
+                                     </p>
                             </ng-container>
                             <ng-container *ngIf="daysRemaining==0">
-                                <p class="text-right">
-                                    Your Enterprise Plan is Payment Due, Renew Now!
-                                </p>
+                                <p tooltip=" Your Enterprise Plan is Payment Due, Renew Now!" placement="left">
+                                    <img src="../../../assets/images/out-of-time.png"
+                                    alt=""  width="40" height="40"  style="enable-background:new 0 0 21.1 24;"
+                                     class="icon"  >
+                                 </p>
                             </ng-container>
 
                         </ng-container>
