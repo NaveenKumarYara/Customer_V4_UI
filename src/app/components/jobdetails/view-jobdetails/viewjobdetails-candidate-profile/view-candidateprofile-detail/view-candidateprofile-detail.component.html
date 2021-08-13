@@ -1281,7 +1281,7 @@
                                 <div class="p">
                                   <p  class="status purple">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate | date:'mediumDate'}}</span>
                               </div>
                             </div>
                           </div>
@@ -1319,7 +1319,7 @@
                                     i.ReferralStatus === 'Waiting for response' ? 'waitingforresponse' : i.ReferralStatus
                                   }}">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate | date:'mediumDate'}}</span>
                               </div>
                             </div>
                           </div>
@@ -1356,7 +1356,7 @@
                                     i.ReferralStatus === 'Waiting for response' ? 'waitingforresponse' : i.ReferralStatus
                                   }}">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate | date:'mediumDate'}}</span>
                               </div>
                             </div>
                           </div>
@@ -1394,7 +1394,7 @@
                                   <div class="p">
                                     <p class="status purple">{{i?.ReferralStatus}}</p>
                                   </div>
-                                  <span><i class="far fa-clock" aria-hidden="true"></i> {{i?.PostedDate}}</span>
+                                  <span><i class="far fa-clock" aria-hidden="true"></i> {{i?.PostedDate | date:'mediumDate'}}</span>
                                 </div>
                               </div>
                             </div>
