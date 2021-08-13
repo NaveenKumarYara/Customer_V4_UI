@@ -2653,6 +2653,57 @@ border-radius:0px;
 .job__view__grid .status.purple { background:#6f5cde }
 .job__view__grid .status.green { background:#a4d975 }
 .job__view__grid .status.blue { background:#6b9be8 }
+
+.job__view__grid .status.pending {
+    background-color: #FBD57C;
+}
+
+.job__view__grid .status.InActive {
+    background-color: #FBD57C;
+}
+
+.job__view__grid .status.Freezed {
+    background-color: #FBD57C;
+}
+
+.job__view__grid .status.hired {
+    background-color: #acf3c7;
+}
+
+.job__view__grid .status.Shortlisted {
+    background-color: #ACB0F3;
+}
+
+.job__view__grid .status.rejected {
+    background-color: #FFBCBC;
+}
+
+.job__view__grid .status.Applied {
+    background-color: #5CD1DE;
+}
+
+.job__view__grid .status.Interview Scheduled {
+    background-color: #6B9BE8;
+}
+
+.job__view__grid .status.Closed {
+    background-color: #cc3b3b;
+}
+
+.job__view__grid .status.Active {
+    background-color: #A4D975;
+}
+
+.job__view__grid .status.Withdrawn {
+    background-color: #AEB1D9;
+}
+
+.job__view__grid .status.waitingforresponse {
+    background-color: #AEB1D9;
+}
+.job__view__grid .status.Uploaded {
+    background-color: #66dab5;
+}
 .job__view__grid .img { border: 1px solid #eee; text-align: center; padding: 10px; }
 
 .revmap__profile__top { margin:0  0 30px; height:168px; background:url(../../../../../../assets/images/apply-view-details/profile-bg.png) 100% 100% no-repeat; background-size:cover; position:relative; border-bottom:1px solid #d4d4d4; }

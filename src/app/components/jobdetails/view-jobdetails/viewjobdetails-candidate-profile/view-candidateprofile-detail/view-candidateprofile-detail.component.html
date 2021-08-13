@@ -222,8 +222,7 @@
     <div class="container">
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#candidate-profile">Candidate Profile</a></li>
-        <li><a data-toggle="tab" href="javascript:void(0)" class="
-          isDisabled">Job History</a></li>
+        <li><a data-toggle="tab" href="javascript:void(0)"  href="#job-history">Job History</a></li>
         <li><a data-toggle="tab" href="javascript:void(0)" class="
           isDisabled">Documentation</a></li>
         <li><a data-toggle="tab" href="#references">References</a></li>
@@ -1267,49 +1266,32 @@
                     <h5><b>Interview's scheduled</b></h5>
                   </div>
                   <div class="caption">
-                    <div class="row">
+                    <ng-container *ngIf="jobHistory?.ScheduledHistory.length>0">
+                    <div class="row" *ngFor="let i of jobHistory?.ScheduledHistory">
                       <div class="col-md-12">
                         <div class="thumbnail">
                           <div class="caption">
                             <div class="row">
                               <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                                <div class="img"> <img alt="..."  src="{{i?.CompanyLogo}}" width="50" height="50" ></div>
                               </div>
                               <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b> Web Designer</b></h5>
+                                <p class="company-name">{{i?.CompanyName}}</p>
+                                <h5 class="title"><b> {{i?.JobTitle}}</b></h5>
                                 <div class="p">
-                                  <p class="status purple">Interview Scheduled</p>
+                                  <p  class="status purple">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
-                                </div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Test Seven</p>
-                                <h5 class="title"><b>Frontend Specialist</b></h5>
-                                <div class="p">
-                                  <p class="status orange">Freezed</p>
-                                </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="jobHistory?.ScheduledHistory.length===0">
+                      <p>No Scheduled Jobs !!</p>
+                </ng-container>
 
                   </div>
                 </div>
@@ -1320,49 +1302,34 @@
                     <h5><b>In progress Jobs</b></h5>
                   </div>
                   <div class="caption">
-                    <div class="row">
+                    <ng-container *ngIf="jobHistory?.InProgressHistory.length>0">
+                    <div class="row" *ngFor="let i of jobHistory?.InProgressHistory">
                       <div class="col-md-12">
                         <div class="thumbnail">
                           <div class="caption">
                             <div class="row">
                               <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                                <div class="img"><img alt="..."  src="{{i?.CompanyLogo}}" width="50" height="50"></div>
                               </div>
                               <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <p class="company-name">{{i?.CompanyName}}</p>
+                                <h5 class="title"><b> {{i?.JobTitle}}</b></h5>
                                 <div class="p">
-                                  <p class="status green">Active</p>
+                                  <p  class="status {{
+                                    i.ReferralStatus === 'Waiting for response' ? 'waitingforresponse' : i.ReferralStatus
+                                  }}">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12 india">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
-                                </div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Indiapolis</p>
-                                <h5 class="title"><b>Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status green">Active</p>
-                                </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="jobHistory?.InProgressHistory.length===0">
+                        <p>No Jobs are in progress!!</p>
+                  </ng-container>
                   </div>
                 </div>
               </div>
@@ -1372,49 +1339,34 @@
                     <h5><b>Applied Job</b></h5>
                   </div>
                   <div class="caption">
-                    <div class="row">
+                    <ng-container *ngIf="jobHistory?.AppliedHistory.length>0">
+                    <div class="row" *ngFor="let i of jobHistory?.AppliedHistory">
                       <div class="col-md-12">
                         <div class="thumbnail">
                           <div class="caption">
                             <div class="row">
                               <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                                <div class="img"><img alt="..."  src="{{i?.CompanyLogo}}" width="50" height="50"></div>
                               </div>
                               <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <p class="company-name">{{i?.CompanyName}}</p>
+                                <h5 class="title"><b> {{i?.JobTitle}}</b></h5>
                                 <div class="p">
-                                  <p class="status green">Active</p>
+                                  <p  class="status {{
+                                    i.ReferralStatus === 'Waiting for response' ? 'waitingforresponse' : i.ReferralStatus
+                                  }}">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12 india">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
-                                </div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Indiapolis</p>
-                                <h5 class="title"><b>Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status blue">Interviewing</p>
-                                </div>
-                                <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="jobHistory?.AppliedHistory.length===0">
+                        <p>No Applied Jobs!!</p>
+                  </ng-container>
                   </div>
                 </div>
               </div>
@@ -1427,48 +1379,54 @@
                     <h5><b>Interview History</b></h5>
                   </div>
                   <div class="caption">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b> Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status orange">Freezed</p>
+                    <ng-container *ngIf="jobHistory?.InterviewHistory.length>0">
+                      <div class="row" *ngFor="let i of jobHistory?.InterviewHistory">
+                        <div class="col-md-6">
+                          <div class="thumbnail">
+                            <div class="caption">
+                              <div class="row">
+                                <div class="col-md-4 main-img">
+                                  <div class="img"><img alt="..."  src="{{i?.CompanyLogo}}" width="50" height="50" ></div>
                                 </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                                <div class="col-md-8 content">
+                                  <p class="company-name">{{i?.CompanyName}}</p>
+                                  <h5 class="title"><b> {{i?.JobTitle}}</b></h5>
+                                  <div class="p">
+                                    <p class="status purple">{{i?.ReferralStatus}}</p>
+                                  </div>
+                                  <span><i class="far fa-clock" aria-hidden="true"></i> {{i?.PostedDate}}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b> Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status purple">Interview Scheduled</p>
+                        <!-- <div class="col-md-6">
+                          <div class="thumbnail">
+                            <div class="caption">
+                              <div class="row">
+                                <div class="col-md-4 main-img">
+                                  <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
                                 </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                                <div class="col-md-8 content">
+                                  <p class="company-name">Google</p>
+                                  <h5 class="title"><b> Web Designer</b></h5>
+                                  <div class="p">
+                                    <p class="status purple">Interview Scheduled</p>
+                                  </div>
+                                  <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
+  
                       </div>
-
-                    </div>
-                    <div class="row">
+                    </ng-container>
+                    <ng-container *ngIf="jobHistory?.InterviewHistory.length===0">
+                          <p>Interview History Not Available!!</p>
+                    </ng-container>
+                  
+                    <!-- <div class="row">
                       <div class="col-md-6 seven">
                         <div class="thumbnail">
                           <div class="caption">
@@ -1509,7 +1467,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -1519,92 +1477,34 @@
                     <h5><b>Job Matching</b></h5>
                   </div>
                   <div class="caption capi">
-                    <div class="row">
+                    <ng-container *ngIf="jobHistory?.MatchingHistory.length>0">
+                    <div class="row" *ngFor="let i of jobHistory?.MatchingHistory">
                       <div class="col-md-12">
                         <div class="thumbnail">
                           <div class="caption">
                             <div class="row">
                               <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
+                                <div class="img"><img alt="..."  src="{{i?.CompanyLogo}}" width="50" height="50"></div>
                               </div>
                               <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b>Research Scientist</b></h5>
+                                <p class="company-name">{{i?.CompanyName}}</p>
+                                <h5 class="title"><b> {{i?.JobTitle}}</b></h5>
                                 <div class="p">
-                                  <p class="status green">Active</p>
+                                  <p  class="status {{
+                                    i.ReferralStatus === 'Waiting for response' ? 'waitingforresponse' : i.ReferralStatus
+                                  }}" *ngIf="i?.ReferralStatus!=null">{{i?.ReferralStatus}}</p>
                                 </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
+                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{i?.PostedDate}}</span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/KK.png" width="48px" alt="">
-                                </div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Indiapolis</p>
-                                <h5 class="title"><b>Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status blue">Interviewing</p>
-                                </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/google.png" alt=""></div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Google</p>
-                                <h5 class="title"><b> Web Designer</b></h5>
-                                <div class="p">
-                                  <p class="status purple">Interview Scheduled</p>
-                                </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <div class="row">
-                              <div class="col-md-4 main-img">
-                                <div class="img"><img src="../../../../../../assets/images/apply-view-details/tt.png" width="48px" alt="">
-                                </div>
-                              </div>
-                              <div class="col-md-8 content">
-                                <p class="company-name">Test Seven</p>
-                                <h5 class="title"><b>Frontend Specialist</b></h5>
-                                <div class="p">
-                                  <p class="status orange">Freezed</p>
-                                </div>
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 2 Months ago</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="jobHistory?.MatchingHistory.length===0">
+                        <p>No Matching Jobs!!</p>
+                  </ng-container>
                   </div>
                 </div>
               </div>

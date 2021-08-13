@@ -30,6 +30,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   email: any;
   Rating: profileRating;
 	startPage: number;
+  jobHistory = new CandidateDetailsHistory();
 	paginationLimit: number;
 	stroke: number = 15;
   radius: number = 125;
@@ -140,6 +141,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.skillLimit = 5;
     this.start = 0;
     this.pagination = 5;
+    this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.profileId=localStorage.getItem('cprofileId');
     this.cuserId = localStorage.getItem('cuserId');
     this.CheckDesc(0);
@@ -185,6 +187,13 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
           // }
         })
         
+      });
+  }
+
+
+  GetCandidateJobHistory() {
+    this._service.GetService("ProfileAPI/api/GetCandidateDetailHistrory?profileId=",  this.profileId + '&customerId=' + this.customer.CustomerId).subscribe((info) => {
+      this.jobHistory = info;     
       });
   }
 
@@ -302,6 +311,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
+    this.GetCandidateJobHistory();
     this.GetCandidateCultureResult();
     this.GetExperience();
     this.GetVideo();
@@ -750,4 +760,14 @@ export class profileRating {
   export class videoUrl
   {
     VideoURL:string;
+  }
+
+
+  export class CandidateDetailsHistory
+  {
+    AppliedHistory:any=[];
+    ScheduledHistory:any=[];
+    InterviewHistory:any=[];
+    InProgressHistory:any=[];
+    MatchingHistory:any=[];
   }
