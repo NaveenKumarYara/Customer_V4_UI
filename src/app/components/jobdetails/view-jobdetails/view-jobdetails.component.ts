@@ -659,6 +659,7 @@ export class ViewJobdetailsComponent implements OnInit {
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
     this.populateJobsBasicInfo();
+    this.GetCustomerSubscription();
     //this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
     if(this.ProfileId!=null||this.ProfileId!=undefined)
