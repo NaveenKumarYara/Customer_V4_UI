@@ -93,6 +93,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   loading: boolean;
   jobdetailscustomer = new GetJobDetailCustomer();
   status = new JobStatus();
+  companyname:any;
   usersList: any;
   iconHide: boolean = false;
   @ViewChild('divClick') divClick: ElementRef;
@@ -214,6 +215,8 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     const swal = require('sweetalert2');
     this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.customerId = this.customer.CustomerId;
+    this.GetCompanyName();
+    this.GetCustomerSubscription();
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem("jobId"));
   }
@@ -236,6 +239,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     link.click();
     link.remove();
     window.location.href = url;
+  }
+
+  GetCompanyName()
+  {
+    return this._service.GetService("ProfileAPI/api/GetCompanyBasicInfo?customerId=",this.customer.CustomerId).subscribe(re => {
+      if(re!=null)
+      {
+
+        this.companyname = re.CompanyName;
+      }
+  
+  });
   }
 
   GetCustomerSubscription()

@@ -25,6 +25,8 @@ import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjo
 // import * as $ from 'jquery';
 import {Location} from '@angular/common';
 import { IfObservable } from 'rxjs/observable/IfObservable';
+import { CustomerSubscription } from '../../../../models/CustomerSubscription';
+import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
 // import 'owl.carousel';
 declare var $: any;
 
@@ -64,6 +66,8 @@ export class ViewJobdetailsComponent implements OnInit {
   customerId: any;
   Count: any;
   customer: any;
+  subdetails= new CustomerSubscription();
+  sdetails= new GetSubscriptionDetails();
   searchString: any;
   userId: any;
   jobid: any;
@@ -288,7 +292,15 @@ export class ViewJobdetailsComponent implements OnInit {
     if (this.SuggestedCount > 0) {
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.SuggestedCount,
       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
-    this.loadMore = this.SuggestedCount > 6 ? true : false;
+      if(this.sdetails.planId ===  "enterprise" )
+      {
+        this.loadMore = this.SuggestedCount > 6 ? true : false;
+      }
+      else
+      {
+        this.loadMore =  false;
+      }
+    
   } else {
     // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
     //   this.sortBy, 6);
@@ -380,6 +392,35 @@ export class ViewJobdetailsComponent implements OnInit {
    this.child.NoRecords();
   }
   }
+
+  GetCustomerSubscription()
+  {
+    return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+      if(res!=null)
+      {
+        this.subdetails = res;
+        this.GetSubscriptionDetails(res.subscriptionId);
+        // this.GetInvoiceEstimates();
+        // this.GetUnbilledChargeDetails();
+      }
+  
+  });
+  }
+  
+  GetSubscriptionDetails(sid)
+  {
+    return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
+      if(res1!=null)
+      {
+        this.sdetails = res1;
+      }
+      else
+      {
+        this.sdetails.planId='0';
+      }
+    });
+  }
+
   updateinterviewedstatus() { // 1000007;  
     this.sortBy = 1;
     this.statusid = 7;
