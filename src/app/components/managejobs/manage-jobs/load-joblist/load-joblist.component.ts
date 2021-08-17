@@ -59,6 +59,10 @@ export class LoadJoblistComponent implements OnInit {
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
+    if(this.sortBy!=null&&this.sortBy!=undefined)
+    {
+      this.UpdatePopulateSort(this.sortBy);
+    }
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.defaultValue ='0';
@@ -216,6 +220,7 @@ this.status=this.status!=null?status:0;
   UpdatePopulateSort(filter)
   { 
       this.spinner.show();
+      debugger
       this.sortBy = filter;
       this.isfiltered=0;
       this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
