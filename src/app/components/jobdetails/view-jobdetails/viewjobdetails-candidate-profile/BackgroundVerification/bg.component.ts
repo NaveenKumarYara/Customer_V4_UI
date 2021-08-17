@@ -122,26 +122,27 @@ export class backgrounddialogComponent {
       {
       this.toastr.success('Processing Request', 'Success');
       this.eventStat.emit(null);
-      this.appService.GetCustomerSubscription(this.data.CuserId).subscribe(res => {
+      return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
+      debugger
       if(res == null || res.subscriptionId==null)
         {
        this.toastr.warning('Access denied contact admin for arytic subscription!!', 'Oops');
-        //this.dialogRef.close();
+        this.dialogRef.close();
        //this.GetBGTestResult(); 
         }
       if(res.subscriptionId!=undefined && res.subscriptionId!=null)
       {
         this.addon.SubscriptionId = res.subscriptionId;
         this.addon.AddonId = "2";
-        this.addon.AddonUnitPrice = Number(this.subtotal);
+        this.addon.AddonUnitPrice = Math.floor(Number(this.subtotal));
        this.addon.AddonQuantity = 1;
        this.jobdetailsservice.AddonHirefee(this.addon).subscribe(result => {
         console.log(result);
         this.toastr.success('Mail Sent', 'Success');
         this.GetBGTestResult();
-
+        this.dialogRef.close();
          });
-       //this.dialogRef.close();
+      
        }
        this.eventStat.emit(null);
      

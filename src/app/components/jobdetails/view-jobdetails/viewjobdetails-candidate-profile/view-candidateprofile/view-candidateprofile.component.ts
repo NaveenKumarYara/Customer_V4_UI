@@ -786,7 +786,7 @@ export class ViewCandidateprofileComponent implements OnInit {
           if (res.subscriptionId != undefined && res.subscriptionId != null) {
             this.addon.SubscriptionId = res.subscriptionId;
             this.addon.AddonId = "2";
-            this.addon.AddonUnitPrice = Number(this.subtotal);
+            this.addon.AddonUnitPrice = Math.floor(Number(this.subtotal));
             this.addon.AddonQuantity = 1;
             this.jobdetailsservice.AddonHirefee(this.addon).subscribe((result) => {
               console.log(result);
