@@ -66,6 +66,7 @@ export class sendnotificationdialogComponent {
 PUpload: File;
 docFile:string;
 edit:any;
+emailNote = new SendNoteEmail();
 public file_srcs: string[] = [];
 public debug_size_before: string[] = [];
 public debug_size_after: string[] = [];
@@ -300,6 +301,8 @@ onItemDeleted(index){
   //       }
 
         
+
+
 getcustomerusers()
  {
    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
@@ -335,6 +338,7 @@ getcustomerusers()
   this.savenote.isCandidate=true;
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
   this.savenote.OtherInfo = ' ';
+
  }
 
  if(this.isShown1==true&&this.isShown2==true)
@@ -348,7 +352,7 @@ getcustomerusers()
  this.savenote.Comments=this.selectedComments;
  this.savenote.statusId = this.data.StatusId;
 
-     
+ 
  let Ids = Array.from(this.savenote.toUserId.split(','));
  var res = new Promise<void>((resolve, reject) => { 
  Ids.forEach((value, index, array)=>
@@ -359,14 +363,14 @@ getcustomerusers()
    status => {
      if(status>0)
      {
+    
     this.teammemberslist = [];
     $('#teamMbr').val('');
     this.getTeammember = new CustomerUsers();
     this.clearTeamMemebers();
-    this.selectedComments = "";
-    this.EmailId = " ";
+   
     this.NId.push(status);
-    
+ 
   
      //this.SaveNotes(this.selectedComments);
      if (index === array.length -1)
@@ -409,7 +413,6 @@ res.then(() => {
         data.append('Attachment', fileItem);
         data.append('fileSeq', 'seq'+j);
         data.append('Model', request);
-        debugger
         this.uploadFile(data);
       }
       
@@ -427,6 +430,13 @@ res.then(() => {
   
  
   });
+
+  if(this.isShown2=true)
+  {
+    this.SendEmail();
+    this.selectedComments = "";
+    this.EmailId = " ";
+  }  
 }
 
 
@@ -494,7 +504,6 @@ res.then(() => {
 }
 
 uploadFile(data: FormData){
-  debugger
 this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subscribe(data => {
   //this.dialogRef.close();   
   }); 
@@ -521,6 +530,24 @@ this._service.byteStorage(data, 'ProfileAPI/api/InsertProfileAttachments').subsc
       
     
 //  }
+
+
+SendEmail()
+{
+  this.emailNote.FullName = this.data.FullName;
+  this.emailNote.Body =this.selectedComments;
+  this.emailNote.ToEmailID = this.data.Email;
+  this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotes').subscribe(
+    check=>
+    {
+          this.toastr.success('Email sent successfully','Success');
+          setTimeout(() => {
+            this.toastr.dismissToast;
+            this.emailNote = new SendNoteEmail();
+        }, 3000);
+    }
+  )
+}
 
 
  ShareProfile() {
@@ -620,4 +647,11 @@ export class Notes{
   public Comments :string
   public Doc: string
   public OtherInfo: string
+}
+
+export class SendNoteEmail
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
 }

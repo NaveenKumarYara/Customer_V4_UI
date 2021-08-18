@@ -62,6 +62,7 @@ export class RejectdialogComponent implements OnInit {
   info: number;
   EmailId: any = null;
   Name: any = null;
+  emailNote = new SendNoteEmail();
   NId : any=[];
   usersloading: boolean;
   customerUser: number;
@@ -164,6 +165,24 @@ export class RejectdialogComponent implements OnInit {
   toggleShow2() {
     this.isShown2 = !this.isShown2;
   }
+
+  SendEmail()
+{
+  this.emailNote.FullName = this.data.FullName;
+  this.emailNote.Body =this.Comment;
+  this.emailNote.ToEmailID = this.data.Email;
+  this._service.PostService(this.emailNote,'EmailApi/api/EmailForFeedback').subscribe(
+    check=>
+    {
+          this.toastr.success('Email sent successfully','Success');
+          setTimeout(() => {
+            this.toastr.dismissToast;
+            this.emailNote = new SendNoteEmail();
+        }, 3000);
+    }
+  )
+}
+
 
   // DeleteContactInfo(Id)
   // {
@@ -297,8 +316,8 @@ export class RejectdialogComponent implements OnInit {
        $('#teamMbr').val('');
        this.getTeammember = new CustomerUsers();
        this.clearTeamMemebers();
-       this.selectedComments = "";
-       this.EmailId = " ";
+       //this.selectedComments = "";
+       //this.EmailId = " ";
        this.NId.push(status);
        
      
@@ -358,6 +377,12 @@ export class RejectdialogComponent implements OnInit {
      
     
      });
+     if(this.isShown2=true)
+  {
+    this.SendEmail();
+    this.selectedComments = "";
+    this.EmailId = " ";
+  } 
    }
   uploadMultiple() {
     for (let i = 0; i < this.uploader.queue.length; i++) {
@@ -450,4 +475,12 @@ export class contactInfo {
   UserId: number;
   Fullname: string;
   EmailId: string;
+}
+
+
+export class SendNoteEmail
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
 }
