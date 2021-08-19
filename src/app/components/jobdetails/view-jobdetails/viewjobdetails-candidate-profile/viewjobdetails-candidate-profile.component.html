@@ -189,7 +189,7 @@
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
-              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId)">
+              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
                 <!-- GetCandidateProfile(profile.ProfileId) -->
                 {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
               </a>
@@ -285,7 +285,7 @@
               }}<img src="../../../../../assets/images/c_name_hide.png" />
             </div>
             <ng-template #firstelseBlock>
-              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId)">
+              <a href="javascript:void(0)" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
                 <!-- GetCandidateProfile(profile.ProfileId) -->
                 {{ profile.FirstName | slice: 0:12 }} {{ profile.LastName | slice: 0:12 }}
               </a>
@@ -1687,7 +1687,7 @@
       <div class="top__container">
         <h2>Arytic Fit</h2>
       </div>
-      <div class="middle__container" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId)">
+      <div class="middle__container" (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
         <app-radar-chart 
                     style="cursor: pointer"
                     (click)="showRadarChart('radar')"

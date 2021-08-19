@@ -572,7 +572,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profileId,Uid) {
+  OpenCandidateDialog(profileId,Uid,FirstName,LastName) {
     // if (this.jobStatus!='InActive') {
     this.spinner.show();
     setTimeout(() => {
@@ -589,6 +589,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         ProfileId: profileId,
         jobId: this.jobid,
         UserId:Uid,
+        Name: FirstName + LastName,
         JobFit:this.matchingParameterDetails.JobFit,
         Personalityfit:this.matchingParameterDetails.Personalityfit,
         Skillfit:this.matchingParameterDetails.SkillFit,
