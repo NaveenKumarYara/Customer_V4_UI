@@ -67,6 +67,7 @@ PUpload: File;
 docFile:string;
 edit:any;
 emailNote = new SendNoteEmail();
+job = new SendNoteEmail();
 public file_srcs: string[] = [];
 public debug_size_before: string[] = [];
 public debug_size_after: string[] = [];
@@ -442,6 +443,25 @@ res.then(() => {
 
   changeTeam(val) {
     this.getTeammember = val;
+    this.GetJobAssigned(val.UserId,val.Email);
+  }
+
+
+  GetJobAssigned(UserId,Email)
+  {
+    this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', UserId + '&jobId=' + this.data.jobId)
+    .subscribe(
+      dat => {
+       this.job.ToEmailID = Email;
+       this.job.FullName = dat.FirstName+dat.LastName;
+       this.job.Body = dat.JobTitle + ' Assigned Job for you go through the details!';
+       this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
+        check=>
+        {
+                this.job = new SendNoteEmail();
+        }
+      )
+      });
   }
 
   clearTeamMemebers() {
@@ -540,6 +560,7 @@ SendEmail()
   this._service.PostService(this.emailNote,'EmailApi/api/EmailForNotes').subscribe(
     check=>
     {
+  
           this.toastr.success('Email sent successfully','Success');
           setTimeout(() => {
             this.toastr.dismissToast;
@@ -548,6 +569,11 @@ SendEmail()
     }
   )
 }
+
+
+
+
+
 
 
  ShareProfile() {
