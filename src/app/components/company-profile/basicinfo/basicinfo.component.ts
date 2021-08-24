@@ -1485,6 +1485,7 @@ export class BasicinfoComponent implements AfterViewInit {
     this._service.PostService(this.newCustomerIndustry, 'ProfileAPI/api/InsertCustomerBussinessDomain')
         .subscribe(data => {
         this.newCustomerIndustry = new NewCustomerIndustry();
+        this.selectedItems=[];
         this.GetCustomerDomain();
         this.populateCompanyProfile(this.customer.CustomerId);
       
