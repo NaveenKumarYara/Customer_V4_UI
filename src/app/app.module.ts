@@ -107,6 +107,7 @@ import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { MatAutocompleteModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TooltipModule } from 'ng2-tooltip-directive';
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
@@ -192,6 +193,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     MatDialogModule,
     MatSelectModule,
     MatAutocompleteModule,
+    NgMultiSelectDropDownModule,
     NgxMatSelectSearchModule,
     NgDatepickerModule,
     MatInputModule,

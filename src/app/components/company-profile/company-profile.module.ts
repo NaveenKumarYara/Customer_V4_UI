@@ -39,7 +39,7 @@ import { NgxImgModule } from "ngx-img";
 import { Ng2ImgMaxModule } from "ng2-img-max";
 import { RouterModule } from "@angular/router";
 import { NgCircleProgressModule } from 'ng-circle-progress';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   imports: [
     CommonModule,
@@ -57,6 +57,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     NgxMaskModule.forRoot(),
     ImageCropperModule,
     NgxImgModule,
+    NgMultiSelectDropDownModule.forRoot(),
     MatDialogModule,
     ChartsModule,
     NgCircleProgressModule,

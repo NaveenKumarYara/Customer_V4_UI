@@ -9,6 +9,7 @@ import { CompanyProfileService } from '../company-profile.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { Item } from 'angular2-multiselect-dropdown';
 declare var $: any;
 declare var require: any;
 const RecordRTC = require('recordrtc//RecordRTC.min');
@@ -23,6 +24,9 @@ export class BasicinfoComponent implements AfterViewInit {
     @Input() companyprofile: CompanyProfile;
     @Input() getcompanylogo: GetCompanyLogo;   
     @ViewChild('Indusrty') indusrty;
+    dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
     imageChangedEvent: any = '';
     imgSrc: any = [];
     showimg:boolean=false;
@@ -1342,12 +1346,27 @@ export class BasicinfoComponent implements AfterViewInit {
   {
     this.Ccode =id;
   }
+  onItemSelect(item: any) {
+   this.selectedItems.push(Item);
+  }
+  onSelectAll(items: any) {
+    this.selectedItems.push(Item);
+  }
   ngOnInit() {
     this.GetCompanyLogo();
     this.GetCustomerDomain();
     this.GetCustomerIndustry();
     this.addTagIndustry = (name) => this.addIndustry(name);
     this.populateCompanyProfile(this.customer.CustomerId);
+    this.dropdownSettings  = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 2,
+      allowSearchFilter: true
+    };
   //   $('#btn-start-recording').onclick = function() {
   //     this.disabled = true;
   //     this.captureCamera(function(camera) {
@@ -1397,7 +1416,14 @@ export class BasicinfoComponent implements AfterViewInit {
   this._service.GetService('ProfileAPI/api/GetBussinessDomainList?','')
   .subscribe(
     data => {
-      this.Industries = data;
+    data.forEach(element => {
+      if(element.BussinessDomain != null)
+      {
+      this.dropdownList.push(   { item_id: element.Id, item_text: element.BussinessDomain })
+      }
+     
+    });
+      
     });
  }
 
@@ -1407,7 +1433,13 @@ export class BasicinfoComponent implements AfterViewInit {
       .subscribe(
         data => {
           this.CustomerIndustries = data;
-          this.Id = data;
+          data.forEach(element => {
+            if(element.BussinessDomain !=null)
+            {
+              this.selectedItems.push({ item_id: element.DomainName, item_text: element.BussinessDomain });
+            }
+
+          });
         });
   }
   GetCompanyLogo() {
@@ -1447,15 +1479,15 @@ export class BasicinfoComponent implements AfterViewInit {
 }
 
   updateJobIndustry() { 
-    this.Id.forEach(element => {
-      //this.Id = element.BusinessDomain;
-      if(element.BusinessDomain != '')
-      {
-        this.slist.push(element.Id);
-      }
-    });
-    this.BusinessDomain = this.slist.toString();
-    this.SaveDomain();
+    this.newCustomerIndustry.CustomerId = this.customer.CustomerId
+    this.newCustomerIndustry.BusinessDomain = this.selectedItems.map(x => x.item_id).toString();
+    this._service.PostService(this.newCustomerIndustry, 'ProfileAPI/api/InsertCustomerBussinessDomain')
+        .subscribe(data => {
+        this.newCustomerIndustry = new NewCustomerIndustry();
+        this.GetCustomerDomain();
+        this.populateCompanyProfile(this.customer.CustomerId);
+      
+    })
   }
 
 
@@ -1553,11 +1585,7 @@ SaveDomain()
 }
 
   saveProfile() {
-    if(this.Id.length>0)
-    {
-      this.updateJobIndustry();   
-    }
-
+    this.updateJobIndustry();   
     this.locations = $('#searchZipCode').val();
     if (this.locations.length <= 7) {
       this.alertService.error('please select from Google Location');
@@ -1594,7 +1622,6 @@ SaveDomain()
      {
      this._service.PostService(this.basicinfo, 'ProfileAPI/api/UpdateCompanyprofile')
         .subscribe(data => {
-          debugger
           $('#autocompletezip').val('');
           const contents = $('#searchZipCode').val();
           $('#autocompletezip').val(contents);

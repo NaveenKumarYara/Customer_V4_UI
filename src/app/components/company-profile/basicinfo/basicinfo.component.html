@@ -40,7 +40,9 @@
         <h1>{{companyprofile?.CompanyName}}</h1>
         <div *ngIf="CustomerIndustries.length>0">
           <ng-container *ngFor="let dom of CustomerIndustries; let isLast=last">
+           <ng-container *ngIf="dom?.BussinessDomain != null">
             {{dom?.BussinessDomain}}{{isLast ? '.' : ', '}}
+           </ng-container>         
           </ng-container>
         </div>
    
@@ -348,9 +350,19 @@
           </div>
             <label for="">Business Domain</label>
                    <div>
- <ng-select  [items]="Industries"  [loading]="ILoading"  placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
+ <!-- <ng-select  [items]="Industries"  [loading]="ILoading"  placeholder="Select (or) Add Business Domain" bindLabel="BussinessDomain"
           name="Indusrty" [(ngModel)]="Id"   [virtualScroll]="true"  [clearable]="false"   [multiple]=true    #Indusrty="ngModel">
-         </ng-select> 
+         </ng-select>  -->
+         <ng-multiselect-dropdown
+  [placeholder]="'Bussiness Domain'"
+  [data]="dropdownList"
+  [ngModelOptions]="{standalone: true}"
+  [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
           </div>
         </div>
         <div class="v-divider"></div>
