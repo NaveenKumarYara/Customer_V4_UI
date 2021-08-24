@@ -71,6 +71,7 @@ export class BasicinfoComponent implements AfterViewInit {
     fullname: any;
   firstname: any;
   lastname: any;
+  disabled = false;
   ILoading = false;
   newIndustry = new NewIndustry();
   newCustomerIndustry = new NewCustomerIndustry();
@@ -1419,7 +1420,7 @@ export class BasicinfoComponent implements AfterViewInit {
     data.forEach(element => {
       if(element.BussinessDomain != null)
       {
-      this.dropdownList.push(   { item_id: element.Id, item_text: element.BussinessDomain })
+      this.dropdownList.push({ item_id: element.Id, item_text: element.BussinessDomain,isDisabled: false})
       }
      
     });
@@ -1436,7 +1437,7 @@ export class BasicinfoComponent implements AfterViewInit {
           data.forEach(element => {
             if(element.BussinessDomain !=null)
             {
-              this.selectedItems.push({ item_id: element.DomainName, item_text: element.BussinessDomain });
+              this.selectedItems.push({ item_id: Number(element.DomainName), item_text: element.BussinessDomain});
             }
 
           });
