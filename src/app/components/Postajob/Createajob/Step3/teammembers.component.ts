@@ -11,6 +11,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../models/jobPostInfo';
 import { Observable } from 'rxjs/Observable';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 declare var $: any;
 @Component({
   selector: 'app-steps-step3-teammembers',
@@ -31,6 +32,8 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   result :any;
   customerId: any;
   userId: any;
+  JobIds:any=[];
+  job = new SendNoteEmail();
   addedteammembers: '';
   addedteammemberslist: PjTechnicalTeam[];
   Addform: FormGroup;
@@ -41,7 +44,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   managersList:CustomerUsers[]=[];
   // completeMembersList: CustomerUsers[];
   getTeammember: CustomerUsers;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute, private fb: FormBuilder,private _service:ApiService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -50,6 +53,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   }
   changeTeam(val) {
     this.getTeammember = val;
+    this.GetJobAssigned();
   }
   public addTeammembers() {
     // const newDomain = new CustomerUsers();
@@ -78,6 +82,62 @@ export class TeammembersComponent implements OnInit, OnDestroy {
     return this.appService.getTechinicalTeam(this.customerId).subscribe(res =>{
       this.managersList= res;
     });
+  }
+
+  GetJobAssigned()
+  {
+    this.JobIds = this.appService.JobIds;
+    if(this.JobIds&&this.JobIds.length>0)
+    {
+      this.JobIds.forEach((e)=>
+      {
+    this.teammemberslist.forEach(y=>{
+      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + e.jobId)
+      .subscribe(
+        dat => {
+          this.managersList.filter(z=>{
+          if(z.UserId == y.UserId)
+          {
+            this.job.ToEmailID = z.Email
+          }
+          });
+         this.job.FullName = dat.FirstName+dat.LastName;
+         this.job.Body = dat.FirstName + dat.LastName + ' Assigned  @' + dat.JobTitle +  '  position for you go through the details!';
+         this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
+          check=>
+          {
+                  this.job = new SendNoteEmail();                 
+          }
+        )
+        });
+    })
+    })
+   }
+   if(this.JobIds.length == 0 )
+
+   {
+    const res = localStorage.getItem('jobId');
+    this.teammemberslist.forEach(y=>{
+      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + res)
+      .subscribe(
+        dat => {
+          this.managersList.filter(z=>{
+          if(z.UserId == y.UserId)
+          {
+            this.job.ToEmailID = z.Email
+          }
+          });
+         this.job.FullName = dat.FirstName+dat.LastName;
+         this.job.Body = dat.FirstName + dat.LastName + ' Assigned  @' + dat.JobTitle +  '  position for you go through the details!';
+         this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
+          check=>
+          {
+                  this.job = new SendNoteEmail();                 
+          }
+        )
+        });
+    })
+   }
   }
   PopulateRoles(val)
   {
@@ -196,4 +256,11 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+}
+
+export class SendNoteEmail
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
 }

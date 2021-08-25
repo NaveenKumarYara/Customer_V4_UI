@@ -443,26 +443,11 @@ res.then(() => {
 
   changeTeam(val) {
     this.getTeammember = val;
-    this.GetJobAssigned(val.UserId,val.Email);
+    //this.GetJobAssigned(val.UserId,val.Email);
   }
 
 
-  GetJobAssigned(UserId,Email)
-  {
-    this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', UserId + '&jobId=' + this.data.jobId)
-    .subscribe(
-      dat => {
-       this.job.ToEmailID = Email;
-       this.job.FullName = dat.FirstName+dat.LastName;
-       this.job.Body = dat.JobTitle + ' Assigned Job for you go through the details!';
-       this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
-        check=>
-        {
-                this.job = new SendNoteEmail();
-        }
-      )
-      });
-  }
+
 
   clearTeamMemebers() {
     for (let i = 0; i <= 10; i++) {

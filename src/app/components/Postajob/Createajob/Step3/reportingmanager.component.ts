@@ -14,6 +14,7 @@ import { PjTechnicalTeam, CustomerUsers,JobReporting, jobImmigration,JobImmigrat
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { ReportingTeam } from '../../../../../models/GetJobDetailCustomer';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 declare var $: any;
 
 @Component({
@@ -29,6 +30,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   flag:any=false;
   reportingmanagersList: Observable<CustomerUsers[]>;
   reportingmanagers: CustomerUsers[]=[];
+  job = new SendNoteEmail();
   customer: any;
   customerId: any;
   report =new JobReporting();
@@ -56,7 +58,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
  // private subscription: Subscription;
 
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute,private fb: FormBuilder,private _service:ApiService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -136,9 +138,34 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     return this.appService.getReortingTeam(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
             this.suggestedManagers= this.appService.reportingList;
-            debugger
       // this.discResult.forEach(cc => cc.checked = false);
     });
+  }
+
+
+  GetJobAssigned(jobId)
+  {
+    this.suggestedManagers.forEach(y=>{
+      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + jobId)
+      .subscribe(
+        dat => {
+          this.reportingmanagers.filter(z=>{
+          if(z.UserId == y.UserId)
+          {
+            this.job.ToEmailID = z.Email
+          }
+          });
+         this.job.FullName = dat.FirstName+dat.LastName;
+         this.job.Body = dat.FirstName + dat.LastName + ' Assigned  @' + dat.JobTitle +  '  position for you go through the details!';
+         this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
+          check=>
+          {
+                  this.job = new SendNoteEmail();                 
+          }
+        )
+        });
+    })
+   
   }
   ngOnInit() {
     this.show = false;
@@ -185,7 +212,6 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
 
     Add()
     {
-      debugger
             this.flag=false;
             if(this.selectedManager!=undefined)
             {
@@ -204,7 +230,6 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         this.selectManager='';
         this.selectManager=null;
         this.appService.reportingList=this.suggestedManagers;
-        
         if(this.JobIds&&this.JobIds.length>0)
         {
           this.JobIds.forEach((e)=>
@@ -214,11 +239,12 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-            debugger
+            this.GetJobAssigned(e);
             this.appService.ReportingTeam(this.report).subscribe(
               data => {
                 if(data=0)
                 {
+           
                   console.log("added");
                 }
               });
@@ -232,10 +258,12 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+          this.GetJobAssigned(res);
           this.appService.ReportingTeam(this.report).subscribe(
             data => {
               if(data=0)
               {
+                
                 console.log("added");
               }
             });  
@@ -378,4 +406,12 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
    // this.subscription.unsubscribe();
   }
+}
+
+
+export class SendNoteEmail
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
 }

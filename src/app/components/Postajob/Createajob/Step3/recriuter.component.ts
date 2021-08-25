@@ -14,6 +14,7 @@ import { PjTechnicalTeam, CustomerUsers,JobReporting, jobImmigration,JobImmigrat
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
+import { ApiService } from '../../../../shared/services/api.service/api.service';
 declare var $: any;
 
 @Component({
@@ -48,6 +49,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   sslist=[];
   imsList=[];
   JobIds=[];
+  job = new SendNoteEmail();
   ImmigrationList:jobImmigration[]=[];
   ImmigrationListData:jobImmigrationData[]=[];
 
@@ -56,7 +58,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
  // private subscription: Subscription;
 
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder, private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private route: ActivatedRoute,private fb: FormBuilder,private _service:ApiService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -110,7 +112,30 @@ export class recriuterComponent implements OnInit, OnDestroy {
 
 
 
-
+  GetJobAssigned(jobId)
+  {
+    this.suggestManagers.forEach(y=>{
+      this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + jobId)
+      .subscribe(
+        dat => {
+          this.remanagers.filter(z=>{
+          if(z.UserId == y.UserId)
+          {
+            this.job.ToEmailID = z.Email
+          }
+          });
+         this.job.FullName = dat.FirstName+dat.LastName;
+         this.job.Body = dat.FirstName + dat.LastName + ' Assigned  @' + dat.JobTitle +  '  position for you go through the details!';
+         this._service.PostService(this.job,'EmailApi/api/EmailForAssignJob').subscribe(
+          check=>
+          {
+                  this.job = new SendNoteEmail();                 
+          }
+        )
+        });
+    })
+   
+  }
 
 
   suggestedManager1() {
@@ -192,6 +217,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+            this.GetJobAssigned(e);
             this.appService.RecrutingTeam(this.report).subscribe(
               data => {
                 if(data=0)
@@ -209,6 +235,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+          this.GetJobAssigned(res);
           this.appService.RecrutingTeam(this.report).subscribe(
             data => {
               if(data=0)
@@ -310,4 +337,12 @@ export class recriuterComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
    // this.subscription.unsubscribe();
   }
+}
+
+
+export class SendNoteEmail
+{
+  public FullName :string
+  public Body :string
+  public ToEmailID :string
 }
