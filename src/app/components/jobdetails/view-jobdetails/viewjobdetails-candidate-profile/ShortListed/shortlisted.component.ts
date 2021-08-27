@@ -114,6 +114,8 @@ selectedFileNames: string[] = [];
    PopulateJobdetail () {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
       this.jobdetailscustomer = res;
+      this.eventStat.emit(null);
+        this.SaveNotes();
       //this.SendStatusEmail();
     });
   
