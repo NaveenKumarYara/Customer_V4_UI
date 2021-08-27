@@ -644,29 +644,27 @@ export class ViewCandidateprofileComponent implements OnInit {
       .subscribe(
         data3 => {
           this.skillfitcheck = data3;
-          if (data3.length > 1) {
+          if (data3.length > 0) {
             data3.forEach((a)=>
             {     
-              var letters = '0123456789ABCDEF'.split('');
-              var color = '#';
-              for (var i = 0; i < data3.length; i++ ) {
-                  color += letters[Math.floor(Math.random() * 16)];
-              };
+             var color = Math.floor(0x1000000 * Math.random()).toString(16);
+             var r= '#' + ('000000' + color).slice(-6);
+             this.Skill.datasets[0].backgroundColor.push(r);
              this.Skill.labels.push(a.SkillName);
              this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
-             this.Skill.datasets[0].backgroundColor.push(color);
+            
             //  this.PersonalityFitLabels.labels.push(a.groupName);
             //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
             })             
           }
-          if(data3.length==1)
-          {
-            data3.forEach((a)=>
-            { 
-            this.Skill.labels.push(a.SkillName);
-            this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
-            })
-          }
+          // if(data3.length==1)
+          // {
+          //   data3.forEach((a)=>
+          //   { 
+          //   this.Skill.labels.push(a.SkillName);
+          //   this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+          //   })
+          // }
         })
   }
   add3Dots(string, limit) {
