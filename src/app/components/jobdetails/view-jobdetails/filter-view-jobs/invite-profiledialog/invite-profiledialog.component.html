@@ -51,7 +51,8 @@
             <div class="clearfix">&nbsp;</div>
             <div class="col-sm-12 plr-0">
               <div class="pull-right">
-                <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit">Submit</button>
+                <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
+                (click)="loginstyle()">Submit</button>
               </div>
             </div>
           </form>

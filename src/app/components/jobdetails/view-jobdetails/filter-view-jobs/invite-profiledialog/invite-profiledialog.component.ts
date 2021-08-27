@@ -20,6 +20,10 @@ export interface DialogData {
     inviteinfo = new InviteInfo();
     inviteform: FormGroup;
     customer:any;
+    loading = false;
+    loginstyle(): void {
+      this.loading = true;
+    }
     customerId: any;
     userId: any;
     jobId:any;
@@ -72,6 +76,7 @@ export interface DialogData {
     this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.jobId;
     if(this.inviteinfo.ToEmailId == "")
     {
+      
       this.toastr.error('Please provide the valid details!', 'Oops!');
         setTimeout(() => {
             this.toastr.dismissToast;
@@ -79,11 +84,13 @@ export interface DialogData {
     }
     else if(this.inviteinfo.ToEmailId != "")
     {
+      
     this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
        if (data === 0) {  
         this.toastr.success('Mail sent successfully', 'Success');
         setTimeout(() => {
          this.toastr.dismissToast;
+         this.loading=false;
          this.inviteform.reset();
      }, 3000);
      this.dialogRef.close();

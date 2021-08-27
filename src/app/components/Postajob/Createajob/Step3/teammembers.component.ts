@@ -53,7 +53,7 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   }
   changeTeam(val) {
     this.getTeammember = val;
-    this.GetJobAssigned();
+    //this.GetJobAssigned();
   }
   public addTeammembers() {
     // const newDomain = new CustomerUsers();

@@ -217,7 +217,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-            this.GetJobAssigned(e);
+            //this.GetJobAssigned(e);
             this.appService.RecrutingTeam(this.report).subscribe(
               data => {
                 if(data=0)
@@ -235,7 +235,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-          this.GetJobAssigned(res);
+          //this.GetJobAssigned(res);
           this.appService.RecrutingTeam(this.report).subscribe(
             data => {
               if(data=0)

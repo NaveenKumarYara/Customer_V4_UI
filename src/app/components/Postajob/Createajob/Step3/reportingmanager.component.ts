@@ -239,7 +239,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-            this.GetJobAssigned(e);
+            //this.GetJobAssigned(e);
             this.appService.ReportingTeam(this.report).subscribe(
               data => {
                 if(data=0)
@@ -258,7 +258,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-          this.GetJobAssigned(res);
+          //this.GetJobAssigned(res);
           this.appService.ReportingTeam(this.report).subscribe(
             data => {
               if(data=0)
