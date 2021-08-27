@@ -252,7 +252,7 @@ Check()
 PopulateJobdetail () {
   return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
     this.jobdetailscustomer = res;
-    this.SendStatusEmail();
+    //this.SendStatusEmail();
   });
 
 }
