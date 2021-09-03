@@ -7,58 +7,53 @@
             <div>
                 <div class="modal-body">
                     <div class="row">
-                   
-                  
                     </div>
-
-
-
-                        <form action="">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="">Add Team Member</label>
-                                    <div class="input-group">
-                                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
-                                        </ng-select>
-
-                                        <span class="input-group-btn">
-                      <button class="btn" (click)="addTeammembers()">+</button>
-                    </span>
-                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
-                                    </div>
-                                    <ul class="share_candidate team-members-list">
-                                        <li *ngFor="let teammember of teammemberslist; let i = index">
-                                            <div class="w-100">
-                                                <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
-                                                <h4>{{teammember.FirstName}}
-                                                    <!-- <span class="dept">{{teammember.RoleName}}</span> -->
-                                                </h4>
-                                                <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
+                    <form action="">
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="">Comments</label>
-                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                                <label for="">Add Team Member</label>
+                                <div class="input-group">
+                                    <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts"
+                                        name="team" placeholder="Add Team Members" (change)="changeTeam($event)"
+                                        bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput"
+                                        [hideSelected]="true" [loading]="usersloading" id="teamMbr"
+                                        [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+                                        #TMemb="ngModel">
+                                    </ng-select>
+
+                                    <span class="input-group-btn">
+                                        <button class="btn" (click)="addTeammembers()">+</button>
+                                    </span>
+                                    <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                </div>
+                                <ul class="share_candidate team-members-list">
+                                    <li *ngFor="let teammember of teammemberslist; let i = index">
+                                        <div class="w-100">
+                                            <h4>{{teammember.FirstName}}
+                                            </h4>
+                                            <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                        </div>
+                                    </li>
+                                </ul>
+
                             </div>
-                        </form>
-
-                  
-                
-
-
+                        </div>
+                        <div class="form-group">
+                            <label for="">Comments</label>
+                            <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
+                                class="form-control resize-none" placeholder="Please add your comments *"
+                                rows="10"></textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </mat-dialog-content>
         <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
-
             <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="ShareJob()" class="btn btn-filled">Share</button>
-
+            <button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+            <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+                <i class="fa fa-spinner fa-spin"></i>
+            </button>
         </mat-dialog-actions>
     </div>
 </div>
