@@ -26,27 +26,27 @@
               </div>
               <ul class="inline__listing">
                 <li>{{jobdetailscustomer?.JobInfo?.CompanyName}}</li>
-                <li >
-                <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 0">
+                <li>
+                  <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 0">
                     <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
                       <span *ngFor="let location of jobdetailscustomer?.JobLocation">
-                      {{location?.CityName}}
+                        {{location?.CityName}}
                       </span>
                     </ng-container>
-             
-                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">                  
-                      <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+     
-                        <span class="tooltipcontent">  
-                          <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">                    
-                            {{location?.CityName}};               
+
+                    <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">
+                      <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+
+                        <span class="tooltipcontent">
+                          <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                            {{location?.CityName}};
                           </ng-container>
                         </span>
                       </span>
-                      </ng-container>
-               
-                </ng-container>
-              </li>
-                     
+                    </ng-container>
+
+                  </ng-container>
+                </li>
+
               </ul>
               <div class="inline__icon__listing">
                 <ul>
@@ -61,7 +61,7 @@
                   <li class="icon__department" *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length==0">
                     N/A
                   </li>
-                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.ModifiedDate | date:'mediumDate'}}</li>
+                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.PostedOn}}</li>
                   <li class="icon__position">Number of Positions <span>
                       {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></li>
                 </ul>
@@ -79,42 +79,45 @@
               <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===0"><img
                   src="../../../../../assets/images/icon__04.png"><span>N/A</span>
               </li>
-              
-              
-                  <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
-                    <li><img src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
+
+
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
+                <li><img src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
                   <span>
-                  <span class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}+      
-                    <span class="tooltipcontent">  
-                      <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
-                      {{job.WorkAuthorizationType}}                  
-                      </ng-container>
+                    <span
+                      class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}+
+                      <span class="tooltipcontent">
+                        <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                          {{job.WorkAuthorizationType}}
+                        </ng-container>
+                      </span>
                     </span>
                   </span>
-                  </span>
-                    </li>
-                </ng-container>
-           
-                 
-                   <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===1">
-                    <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0].WorkAuthorizationTypeId!=0"><img src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
-                    <span>
-                      <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
-                      {{job.WorkAuthorizationType}}                  
-                      </ng-container>
-                  </span> 
                 </li>
-                </ng-container>
+              </ng-container>
+
+
+              <ng-container *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===1">
+                <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0].WorkAuthorizationTypeId!=0"><img
+                    src="../../../../../assets/images/icon__01.png" title="Job Work Authorization">
+                  <span>
+                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                      {{job.WorkAuthorizationType}}
+                    </ng-container>
+                  </span>
+                </li>
+              </ng-container>
 
               <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
                 <img src="../../../../../assets/images/icon__01.png"><span> N/A</span>
               </li>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
-                <li><img src="../../../../../assets/images/icon__02.png"><span *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
+                <li><img src="../../../../../assets/images/icon__02.png"><span
+                    *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
                     ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
                     ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
-                    <span *ngIf="viewJobDetails?.HideSalary === false">
-                      Not willing to reveal</span>
+                  <span *ngIf="viewJobDetails?.HideSalary === false">
+                    Not willing to reveal</span>
                   <!-- <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Employee'">
                       On W2 </span>                      
                   <span *ngIf="jobdetailscustomer?.JobInfo?.EmploymentType=='Contractor'">
@@ -129,19 +132,19 @@
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length == 1">
                 <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
-                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">  
-                        <span>                 
-                        {{imi?.ImmigrationStatus}}  
-                      </span>                
-                      </ng-container>
+                  <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                    <span>
+                      {{imi?.ImmigrationStatus}}
+                    </span>
+                  </ng-container>
                 </li>
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 1">
                 <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
-                  <span class="tooltip-text">{{imi?.ImmigrationStatus}}+     
-                    <span class="tooltipcontent">  
-                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">                    
-                        {{imi?.ImmigrationStatus}}                 
+                  <span class="tooltip-text">{{imi?.ImmigrationStatus}}+
+                    <span class="tooltipcontent">
+                      <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+                        {{imi?.ImmigrationStatus}}
                       </ng-container>
                     </span>
                   </span>
@@ -167,8 +170,8 @@
         <div class="tab-content">
           <div id="job-card" class="tab-pane fade in active">
             <div class="jdv-listing lg__paading">
-         
-              
+
+
               <div class="row no__margin">
                 <div class="col-sm-6 col-md-6">
                   <div class="job-leftcard">
@@ -184,10 +187,11 @@
                               </p>
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobRequiredDomain.length>1">
-                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.DomainName}}+      
-                                <span class="tooltipcontent">  
-                                  <ng-container *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">                    
-                                    {{domain?.DomainName}}             
+                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.DomainName}}+
+                                <span class="tooltipcontent">
+                                  <ng-container
+                                    *ngFor="let domain of jobdetailscustomer?.JobRequiredDomain; let i=index">
+                                    {{domain?.DomainName}}
                                   </ng-container>
                                 </span>
                               </p>
@@ -204,16 +208,16 @@
                                 {{dept?.Code | titlecase}}
                               </p>
                             </ng-container>
-                            <ng-container  *ngIf="jobdetailscustomer?.CustomerJobPositionType.length>1">
-                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.Code}}+      
-                                <span class="tooltipcontent">  
-                                  <ng-container *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">                    
-                                    {{dept?.Code}}             
+                            <ng-container *ngIf="jobdetailscustomer?.CustomerJobPositionType.length>1">
+                              <p class="tooltip-text">{{jobdetailscustomer?.JobRequiredDomain[0]?.Code}}+
+                                <span class="tooltipcontent">
+                                  <ng-container *ngFor="let dept of jobdetailscustomer?.CustomerJobPositionType">
+                                    {{dept?.Code}}
                                   </ng-container>
                                 </span>
                               </p>
                             </ng-container>
-    
+
                             <p *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length === 0">
                               N/A
                             </p>
@@ -222,7 +226,7 @@
                         <!--/.row-->
                       </div>
                       <!--/.top-container-->
-    
+
                       <div class="middle-container">
                         <div class="jdv-company-profile flex flex-justify-center flex-align-center">
                           <div class="company-logo flex flex-justify-center flex-align-center">
@@ -236,29 +240,31 @@
                         <!--/.jdv-company-profile-->
                         <div class="inline-icon-list">
                           <ul class="flex flex-wrap flex-align-center flex-justify-center">
-                            <ng-container >
+                            <ng-container>
                               <li *ngIf="jobdetailscustomer?.JobLocation.length > 0">
                                 <span class="jdv-icon jdv-icon-map" title="Locations">Icon</span>
                                 <ng-container *ngIf="jobdetailscustomer?.JobLocation.length == 1">
                                   <span *ngFor="let location of jobdetailscustomer?.JobLocation">
-                                  {{location?.CityName}}
+                                    {{location?.CityName}}
                                   </span>
                                 </ng-container>
                                 <ng-container *ngIf="jobdetailscustomer?.JobLocation.length > 1">
-                                  <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+     
-                                    <span class="tooltipcontent">  
-                                      <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">                    
-                                        {{location?.CityName}};               
+                                  <span class="tooltip-text">{{jobdetailscustomer?.JobLocation[0].CityName}}+
+                                    <span class="tooltipcontent">
+                                      <ng-container *ngFor="let location of jobdetailscustomer?.JobLocation">
+                                        {{location?.CityName}};
                                       </ng-container>
                                     </span>
                                   </span>
-                                  </ng-container>
+                                </ng-container>
                               </li>
                             </ng-container>
-                            <li><span class="jdv-icon jdv-icon-work" title="Experience">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience
+                            <li><span class="jdv-icon jdv-icon-work"
+                                title="Experience">Icon</span>{{jobdetailscustomer?.JobInfo?.MinExperience
                               |monthsPipe}} -
                               {{jobdetailscustomer?.JobInfo?.MaxExperience |monthsPipe }} Y</li>
-                            <li><span class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
+                            <li><span
+                                class="jdv-icon jdv-icon-date">Icon</span>{{jobdetailscustomer?.JobInfo?.ModifiedDate
                               | date:'mediumDate'}}</li>
                           </ul>
                         </div>
@@ -267,19 +273,20 @@
                           <ul class="flex flex-wrap flex-justify-center">
                             <li>
                               <span class="jdv-icon jdv-icon-status" title="Work Authorization">Icon</span>
-                              
+
                               <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length>1">
-                                  <span class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}      
-                                    <span class="tooltipcontent">  
-                                      <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">                    
-                                      {{job.WorkAuthorizationType}}                  
-                                      </ng-container>
-                                    </span>
+                                <span
+                                  class="tooltip-text">{{jobdetailscustomer?.JobInfo?.JobWorkAuthorization[0]?.WorkAuthorizationType}}
+                                  <span class="tooltipcontent">
+                                    <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
+                                      {{job.WorkAuthorizationType}}
+                                    </ng-container>
                                   </span>
+                                </span>
                               </h4>
                               <h4 *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length==1">
                                 <ng-container *ngFor="let job of jobdetailscustomer?.JobInfo?.JobWorkAuthorization">
-                                  
+
                                   {{job.WorkAuthorizationType}}
                                 </ng-container>
                               </h4>
@@ -294,21 +301,22 @@
                             </li>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length > 1">
                               <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
-                                <h4 class="tooltip-text">{{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
-                                  <span class="tooltipcontent">  
+                                <h4 class="tooltip-text">
+                                  {{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
+                                  <span class="tooltipcontent">
                                     <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
                                       {{imi?.ImmigrationStatus}}
-                                  </ng-container>
+                                    </ng-container>
                                   </span>
                                 </h4>
                               </li>
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length === 1">
                               <li> <span class="jdv-icon jdv-icon-auth" title="Immigration Status">Icon</span>
-                              <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                                
+                                <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
+
                                   <h4>{{imi?.ImmigrationStatus}}</h4>
-                              </ng-container>
+                                </ng-container>
                               </li>
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob.length === 0">
@@ -319,55 +327,55 @@
                             </ng-container>
                           </ul>
                         </div>
-    
+
                         <div class="two-grid-icon">
                           <div class="row">
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
                               <div class="col-sm-6"
-                              *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
-                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
-                              <h4>${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
+                                *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
+                                <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                                <h4>${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
                                   <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
-                                      hours/month)</span>
+                                    hours/month)</span>
                                   <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
-                                      hours/Yearly)</span>
-                              </h4>
+                                    hours/Yearly)</span>
+                                </h4>
 
-                              <nav class="icon-navigation">
+                                <nav class="icon-navigation">
                                   <ul>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Health">
-                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
-                                      </li>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
-                                              class="jdv-icon jdv-icon-food">Icon</span>
-                                      </li>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Travel">
-                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
-                                      </li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                      <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                    </li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                        class="jdv-icon jdv-icon-food">Icon</span>
+                                    </li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                      <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                    </li>
                                   </ul>
-                              </nav>
-                          </div>
-                          <div class="col-sm-6" *ngIf="viewJobDetails?.HideSalary === false">
-                              <span class="jdv-icon jdv-icon-dollar">Icon</span>
-                              <h4>Not willing to reveal
+                                </nav>
+                              </div>
+                              <div class="col-sm-6" *ngIf="viewJobDetails?.HideSalary === false">
+                                <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                                <h4>Not willing to reveal
                                   <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
-                                      hours/month)</span>
+                                    hours/month)</span>
                                   <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
-                                      hours/Yearly)</span>
-                              </h4>
-                              <nav class="icon-navigation">
+                                    hours/Yearly)</span>
+                                </h4>
+                                <nav class="icon-navigation">
                                   <ul>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Health">
-                                          <span class="jdv-icon jdv-icon-heart">Icon</span>
-                                      </li>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
-                                              class="jdv-icon jdv-icon-food">Icon</span></li>
-                                      <li data-toggle="tooltip" data-placement="bottom" title="Travel">
-                                          <span class="jdv-icon jdv-icon-bus">Icon</span>
-                                      </li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Health">
+                                      <span class="jdv-icon jdv-icon-heart">Icon</span>
+                                    </li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Food"><span
+                                        class="jdv-icon jdv-icon-food">Icon</span></li>
+                                    <li data-toggle="tooltip" data-placement="bottom" title="Travel">
+                                      <span class="jdv-icon jdv-icon-bus">Icon</span>
+                                    </li>
                                   </ul>
-                              </nav>
-                          </div>
+                                </nav>
+                              </div>
                             </ng-container>
                             <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
                               <div class="col-sm-6">
@@ -391,15 +399,17 @@
                               </svg> -->
                               <div style="display: block">
                                 <circle-progress [percent]="getjobCompleteinfo?.JobCompleteness" [radius]="40"
-                                [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
-                                [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300" [showSubtitle] = "false" >
-                            </circle-progress>
+                                  [outerStrokeWidth]="8" [innerStrokeWidth]="3" [outerStrokeColor]="'#6262ff'"
+                                  [innerStrokeColor]="'#c0c0c0'" [animation]="true" [animationDuration]="300"
+                                  [showSubtitle]="false">
+                                </circle-progress>
                               </div>
                               <h4>Job Completeness</h4>
-                              <a href="javascript:void(0)" class="tooltip__link"  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">
+                              <a href="javascript:void(0)" class="tooltip__link"
+                                (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span class="custom__tooltip">
-                                 Complete your job.
+                                  Complete your job.
                                 </span>
                               </a>
                             </div>
@@ -408,239 +418,32 @@
                           <!--/.row-->
                         </div>
                         <!--/.two-grid-icon-->
-                        
+
                         <div class="jdv-gray-section">
                           <div class="jdv-skills">
                             <div class="section__title">
                               <h4>Skills</h4>
                             </div>
-                            <!--/.section__title-->
-                            <!-- <div class="scrollbar-container-carousel">
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                           
-                            
-                              Wrapper for slides 
-                              <div class="carousel-inner">
-                                <div class="item active">
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  
-                                </div>
-                            
-                                <div class="item">
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                </div>
-                            
-                                <div class="item">
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 beginner">
-                                    <div class="col-container">
-                                      <h5>Java</h5>
-                                      <h6>Exp : 3 Years</h6>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4 master">
-                                    <div class="col-container">
-                                      <h5>.Net</h5>
-                                      <h6>Exp : 9 Years</h6>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            
-                               Left and right controls 
-                              <a class="left carousel-control jdv-carousel-arrow" href="#myCarousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="right carousel-control jdv-carousel-arrow" href="#myCarousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
-                            </div>
-                          </div> -->
                             <div class="scrollbar-container">
                               <div class="row flex flex-wrap flex-align-equal">
                                 <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills;let i = index">
                                   <ng-container *ngIf="i<6">
-    
-    
+
+
                                     <div class="col-sm-4 beginner" *ngIf="skill?.SkillType === true">
                                       <div class="col-container">
                                         <h5>{{skill?.SkillName}}</h5>
-                                        <h6>Exp : {{skill?.MaximumExp |monthsPipe}}
+                                        <h6>Exp: {{skill?.MinimumExp | monthsPipe}} - {{skill?.MaximumExp |
+                                          monthsPipe}}
                                           Years</h6>
                                       </div>
                                     </div>
-    
+
                                     <div class="col-sm-4 master" *ngIf="skill?.SkillType === false">
                                       <div class="col-container">
                                         <h5>{{skill?.SkillName}}</h5>
-                                        <h6>Exp : {{skill?.MaximumExp |monthsPipe}}
+                                        <h6>Exp: {{skill?.MinimumExp | monthsPipe}} - {{skill?.MaximumExp |
+                                          monthsPipe}}
                                           Years</h6>
                                       </div>
                                     </div>
@@ -650,7 +453,7 @@
                               </div>
                               <!--/.row-->
                             </div>
-    
+
                             <div class="jdv-stauts-listing">
                               <ul>
                                 <li class="beginner">Mandatory</li>
@@ -661,24 +464,25 @@
                             <!--/.jdv-status-listing-->
                           </div>
                           <!--/.jdv-skills-->
-    
+
                           <div class="jdv-key-section">
                             <div class="section__title">
-                              <h4>Key Responsibility</h4>
+                              <h4>Key Responsibilities</h4>
                             </div>
-    
+
                             <ul class="flex flex-wrap flex-align-equal">
                               <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                                 <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
                                   <div class="col__container">
                                     <span> {{r?.Code | titlecase}} </span>
-                                    <em>Experience {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em>
+                                    <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
+                                      {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em>
                                   </div>
                                 </li>
                               </ng-container>
                             </ul>
                           </div>
-    
+
                         </div>
                         <!--/.gray-section-->
                       </div>
@@ -751,19 +555,49 @@
                             <h5>Comments ({{viewJobDetails?.JobCommentsCount || '0'}})</h5>
                           </div>
                         </div>
-                        <div class="col-sm-12 col col-big border-top"  *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
+                        <div class="col-sm-12 col col-big border-top"
+                          *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
                           <div class="section">
                             <h3 class="margin-top-sml">Tips</h3>
-                            <div class="slidingVertical contain" *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
+                            <div class="slidingVertical contain"
+                              *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
 
-                              <span *ngIf="getjobCompleteinfo?.JobDomain===0">Please review and provide  <strong>Domain</strong> arytic will make your job easy to find best.<a href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.JobDesc===0"> Please review and provide  <strong>Job description</strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.OptionalSkill===0"> There are many profiles matching to this position.<strong> "please provide OptionalSkill" </strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.WorkAuthorise===0">Please review and provide <strong> "WorkAuthorise to this position" </strong> arytic will make your job easy to find best.<a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.Qualification===0">Please review and provide <strong> "Qualification to this position".</strong> arytic will make your job easy to find best. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.JobAssigned===0">There are many profiles matching to this position <strong> "please assign job" </strong> one who can do his job with passionately to find best as arytic provided many profiles. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                              <span *ngIf="getjobCompleteinfo?.Video===0">There are many profiles matching to this position <strong> "please do add Job details through Video" </strong> Where professionals can have a look  apply for your position. <a  href="javascript:void(0)" (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please update.</a></span>
-                             
+                              <span *ngIf="getjobCompleteinfo?.JobDomain===0">Please review and provide
+                                <strong>Domain</strong> arytic will make your job easy to find best.<a
+                                  href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.JobDesc===0"> Please review and provide <strong>Job
+                                  description</strong> arytic will make your job easy to find best. <a
+                                  href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.OptionalSkill===0"> There are many profiles matching to
+                                this position.<strong> "please provide OptionalSkill" </strong> arytic will make your
+                                job easy to find best. <a href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.WorkAuthorise===0">Please review and provide <strong>
+                                  "WorkAuthorise to this position" </strong> arytic will make your job easy to find
+                                best.<a href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.Qualification===0">Please review and provide <strong>
+                                  "Qualification to this position".</strong> arytic will make your job easy to find
+                                best. <a href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.JobAssigned===0">There are many profiles matching to this
+                                position <strong> "please assign job" </strong> one who can do his job with passionately
+                                to find best as arytic provided many profiles. <a href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+                              <span *ngIf="getjobCompleteinfo?.Video===0">There are many profiles matching to this
+                                position <strong> "please do add Job details through Video" </strong> Where
+                                professionals can have a look apply for your position. <a href="javascript:void(0)"
+                                  (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                  update.</a></span>
+
                             </div>
                           </div>
                         </div>
@@ -775,7 +609,7 @@
                               <div class="review" *ngFor="let comments of jobComments">
                                 <header>
                                   <img alt="" class="company-logo" src="{{comments?.ProfilePic}}">
-                                  <h4> {{comments?.FirstName | titlecase}}  {{comments?.LastName | titlecase}}</h4>
+                                  <h4> {{comments?.FirstName | titlecase}} {{comments?.LastName | titlecase}}</h4>
                                   <div class="flex-row">
                                     <span> {{comments?.ProfileTitle | titlecase}}</span>
                                     <span class="time">{{comments?.CommentedDate | date}}</span>
@@ -784,24 +618,24 @@
                                 <div class="review-content">
                                   <p>
                                     {{comments?.CommentText}}
-                                  </p>                            
+                                  </p>
                                 </div>
                               </div>
                             </ng-container>
                             <ng-container *ngIf="jobComments.length===0">
                               <h4>No Reviews</h4>
                             </ng-container>
-                           
-                            
-                       
+
+
+
                           </div>
                         </div>
                       </div>
-                    
+
                     </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -828,7 +662,8 @@
                           <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                             <ng-container *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
                               <li><a href="javascript:void(0)"> {{r?.Code | titlecase}}
-                                  <span>Exp:{{r?.CustomerKeyMaxExperienceId |monthsPipe}} Years</span></a> </li>
+                                  <span>Exp: {{r?.CustomerKeyMaxExperienceId |monthsPipe}} -
+                                    {{r?.CustomerKeyMaxExperienceId |monthsPipe}} Years</span></a> </li>
                             </ng-container>
 
                           </ng-container>
@@ -1050,7 +885,8 @@
                               <div class="col-container">
                                 <h5>{{skill?.SkillName}}</h5>
                                 <div class="flex summary">
-                                  <h6>Exp : {{skill?.MaximumExp / 12 | number:'1.0-1'}} years</h6>
+                                  <h6>Exp: {{skill?.MinimumExp / 12 | number:'1.0-1'}} - {{skill?.MaximumExp / 12 |
+                                    number:'1.0-1'}} years</h6>
                                 </div>
                               </div>
                               <!--/.col-container-->
@@ -1075,7 +911,8 @@
                               <div class="col-container">
                                 <h5>{{skill?.SkillName}}</h5>
                                 <div class="flex summary">
-                                  <h6>Exp : {{skill?.MaximumExp / 12 | number:'1.0-1'}} years</h6>
+                                  <h6>Exp: {{skill?.MinimumExp / 12 | number:'1.0-1'}} - {{skill?.MaximumExp / 12 |
+                                    number:'1.0-1'}} years</h6>
                                 </div>
                               </div>
                               <!--/.col-container-->
@@ -1098,7 +935,7 @@
   </mat-dialog-content>
 </div>
 
-<div Id="shareModal" class="modal fade revamp__share__modal" tabindex="-1" role="dialog"  data-backdrop="false">
+<div Id="shareModal" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header flex flex-wrap flex-align-center header-title">
@@ -1131,7 +968,7 @@
         </div>
         <h4>Share it to your friends</h4>
         <p>FRIENDS ALREADY REFERRED</p>
-        <p class="highlight">No Friends Referred! Refer Now.</p>        
+        <p class="highlight">No Friends Referred! Refer Now.</p>
         <div class="link__input form-group">
           <input type="text" class="form-control" placeholder="Public Link">
           <button class="btn btn-filled">Copy</button>

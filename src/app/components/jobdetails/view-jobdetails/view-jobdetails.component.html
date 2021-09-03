@@ -54,14 +54,19 @@
                                 <div *ngIf="jobdetailsbasicinfo?.JobLocations?.length == 1">
                                     <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
                                         {{location?.CityName}},{{location?.StateCode}}
-                                      </ng-container>
+                                    </ng-container>
                                 </div>
-                                <div *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">   
-                                      <div class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span *ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span> {{jobdetailsbasicinfo?.JobLocations[0].StateCode}} + 
-                                        
-                                            <span class="tooltipcontent"> <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">{{location?.CityName}},{{location?.StateCode}}; </ng-container></span>
-                                       
-                                      </div>
+                                <div *ngIf="jobdetailsbasicinfo?.JobLocations?.length > 1">
+                                    <div class="tooltip-text">{{jobdetailsbasicinfo?.JobLocations[0].CityName}} <span
+                                            *ngIf="jobdetailsbasicinfo?.JobLocations[0].StateCode !=''">,</span>
+                                        {{jobdetailsbasicinfo?.JobLocations[0].StateCode}} +
+
+                                        <span class="tooltipcontent">
+                                            <ng-container *ngFor="let location of jobdetailsbasicinfo?.JobLocations">
+                                                {{location?.CityName}},{{location?.StateCode}}; </ng-container>
+                                        </span>
+
+                                    </div>
                                 </div>
                             </h5>
                             <h5>Posted on: {{ jobdetailsbasicinfo?.PostedOn }}</h5>
@@ -106,6 +111,9 @@
                         </ng-template> -->
                     </div>
                     <div class="sm-d-inline sm-f-r">
+                        <button class="btn btn-filled mr-5" mat-button
+                            (click)="editJob(jobdetailsbasicinfo.JobId,jobdetailsbasicinfo.IsActive)">Edit
+                            Job Detail</button>
                         <!-- <button class="btn btn-border" mat-button (click)="OpenDialog()">Conversations</button> -->
                         <button class="btn btn-filled" mat-button
                             (click)="ViewJobdetailsModel(jobdetailsbasicinfo.JobId)">View

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
@@ -7,7 +7,7 @@ import { ViewjobdetailsmodelComponent } from './viewjobdetailsmodel/viewjobdetai
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { JobdetailsBasicInfo } from '../models/jobdetailsbasicinfo';
-import {deactivate} from '../../managejobs/models/deactivate';
+import { deactivate } from '../../managejobs/models/deactivate';
 import { Jobstatistics } from '../models/jobstatistics';
 import { UploadProfilesComponent } from './upload-profiles/upload-profiles.component';
 // import { UploadCandidatesComponent } from './upload-candidates/upload-candidates.component';
@@ -16,14 +16,14 @@ import { SharedialogComponent } from './viewjobdetails-candidate-profile/sharedi
 import { ConversationComponent } from './viewjobdetails-candidate-profile/conversations/conversation.component';
 import { AppService } from '../../../app.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
-import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import {WishlistCount} from '../models/WishlistCount';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { WishlistCount } from '../models/WishlistCount';
 import { ViewCandidateprofileComponent } from '../view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
-import {FilterViewJobsComponent} from '../view-jobdetails/filter-view-jobs/filter-view-jobs.component';
+import { FilterViewJobsComponent } from '../view-jobdetails/filter-view-jobs/filter-view-jobs.component';
 // tslint:disable-next-line:max-line-length
-import {ViewjobdetailsCandidateProfileComponent} from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
+import { ViewjobdetailsCandidateProfileComponent } from '../view-jobdetails/viewjobdetails-candidate-profile/viewjobdetails-candidate-profile.component';
 // import * as $ from 'jquery';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import { CustomerSubscription } from '../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../models/GetSubscriptionDetails';
@@ -38,36 +38,36 @@ declare var $: any;
   providers: [AppService, AlertService]
 })
 export class ViewJobdetailsComponent implements OnInit {
-@ViewChild(ViewjobdetailsCandidateProfileComponent ) child: ViewjobdetailsCandidateProfileComponent;
-@ViewChild(FilterViewJobsComponent) base: FilterViewJobsComponent;
+  @ViewChild(ViewjobdetailsCandidateProfileComponent) child: ViewjobdetailsCandidateProfileComponent;
+  @ViewChild(FilterViewJobsComponent) base: FilterViewJobsComponent;
   viewdetailsdialogueref: MatDialogRef<ViewjobdetailsmodelComponent>;
   viewshareddialogueref: MatDialogRef<ConversationComponent>;
   viewCandidateProfilewDialgoref: MatDialogRef<ViewCandidateprofileComponent>;
   jobdetailsbasicinfo: JobdetailsBasicInfo;
   joblocation: any;
-  totalCount:any;
-  SuggestedCount:any;
+  totalCount: any;
+  SuggestedCount: any;
   wsList = new WishList();
   wishlistCount: WishlistCount;
   jobstatistics: Jobstatistics;
-  Counts : Jobstatistics;
+  Counts: Jobstatistics;
   wishsort: 0;
-  inprogressprofile:boolean=false;
+  inprogressprofile: boolean = false;
   statistics: number;
   closedjob: any;
   exp: any;
   uploaded: any;
   suggested: any;
-  invited:any;
+  invited: any;
   wishlist: any;
-  arytic:any;
+  arytic: any;
   location: any;
   domain: any;
   customerId: any;
   Count: any;
   customer: any;
-  subdetails= new CustomerSubscription();
-  sdetails= new GetSubscriptionDetails();
+  subdetails = new CustomerSubscription();
+  sdetails = new GetSubscriptionDetails();
   searchString: any;
   userId: any;
   jobid: any;
@@ -82,44 +82,43 @@ export class ViewJobdetailsComponent implements OnInit {
   // loadMoreStat:number;
   profileLoader = false;
   uploadProfile = 0;
-  ProfileId:any;
+  ProfileId: any;
   fileUploadForm: FormGroup;
   jobdetailsprofiles: JobdetailsProfile[] = [];
   profilecount: number;
   // showVar:  = true;
   // readChild: any;
   deactivate = new deactivate();
-  constructor(private route: ActivatedRoute, private _location: Location,private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  complete: number;
+  constructor(private route: ActivatedRoute, private _location: Location, private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService, private jobdetailsservice: JobdetailsService,
     private dialog: MatDialog, private fb: FormBuilder, private alertService: AlertService
-   ) {
+  ) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
     this.ProfileId = localStorage.getItem('rprofileId');
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
-    if(this.statusid==4||this.statusid==0||this.statusid==15)
-    {
-       this.inprogressprofile=false;
+    if (this.statusid == 4 || this.statusid == 0 || this.statusid == 15) {
+      this.inprogressprofile = false;
     }
-    else
-    {
-      this.inprogressprofile=true;
+    else {
+      this.inprogressprofile = true;
     }
     this.toastr.setRootViewContainerRef(_vcr);
-   }
+  }
   showDetailadvancesearch = false;
   openDialog() {
     const abc = {
       'animal': 'panda',
-      'JobId' : this.jobid
+      'JobId': this.jobid
     };
     const dialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
       {
         width: '1000px',
-        position: {right : '0px'},
-        height : '750px',
+        position: { right: '0px' },
+        height: '750px',
         data: abc,
         // closeOnNavigation:false,
         // disableClose:true
@@ -131,20 +130,17 @@ export class ViewJobdetailsComponent implements OnInit {
     });
   }
 
-  inprogressview(val)
-  {
-    if(val == 0)
-    {
-      this.inprogressprofile=false;
-      
+  inprogressview(val) {
+    if (val == 0) {
+      this.inprogressprofile = false;
+
     }
-    if(val == 1)
-    {
-      this.inprogressprofile=true;  
+    if (val == 1) {
+      this.inprogressprofile = true;
     }
   }
 
-  
+
   OpenDialog() {
     const dialogRef = this.dialog.open(ConversationComponent,
       {
@@ -162,44 +158,44 @@ export class ViewJobdetailsComponent implements OnInit {
   }
 
   backClicked() {
-    localStorage.setItem('post','1');
+    localStorage.setItem('post', '1');
     this._location.back();
   }
   openCandidate() {
     this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
     setTimeout(() => {
-        this.toastr.dismissToast;
+      this.toastr.dismissToast;
     }, 3000);
   }
   openCandidateUploadDialog() {
     if (this.closedjob === 2) {
       this.toastr.error('Job is Closed');
-    setTimeout(() => {
-      this.toastr.dismissToast;
-    }, 2000);
-  } else {
-    localStorage.removeItem('DisplayUpload');
-    const abc = {
-      'animal': 'panda',
-       'JobId' : this.jobid
-    };
-    const dialogRef = this.dialog.open(UploadProfilesComponent,
-      {
-        width: '750px',
-        position: {right : '0px'},
-        height : '750px',
-        data: abc,
-        // closeOnNavigation:false,
-        // disableClose:true
-      }
-    );
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 2000);
+    } else {
+      localStorage.removeItem('DisplayUpload');
+      const abc = {
+        'animal': 'panda',
+        'JobId': this.jobid
+      };
+      const dialogRef = this.dialog.open(UploadProfilesComponent,
+        {
+          width: '750px',
+          position: { right: '0px' },
+          height: '750px',
+          data: abc,
+          // closeOnNavigation:false,
+          // disableClose:true
+        }
+      );
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
-      // this.updateappliedstatus();
-      console.log('Dialog result: ${result}');
-    });
-  }
+      dialogRef.afterClosed().subscribe(result => {
+        this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
+        // this.updateappliedstatus();
+        console.log('Dialog result: ${result}');
+      });
+    }
   }
 
   OpenCandidateDialog(profileId) {
@@ -231,9 +227,9 @@ export class ViewJobdetailsComponent implements OnInit {
     const viewdialogRef = this.dialog.open(ViewjobdetailsmodelComponent,
       {
         width: '1000px',
-        position: {right : '0px'},
+        position: { right: '0px' },
         height: '750px',
-        panelClass:'revamp__view__job__swiper',
+        panelClass: 'revamp__view__job__swiper',
         data: {
           JobId: viewJobJobId,
           // status : this.statusid
@@ -247,133 +243,129 @@ export class ViewJobdetailsComponent implements OnInit {
     });
 
   }
-  ClearActiveClasses()
-  {
-    $("#Screening").removeClass('active'); 
-    $("#Shortlisted").removeClass('active'); 
-    $("#Interview").removeClass('active'); 
-    $("#hired").removeClass('active'); 
-    $("#rejected").removeClass('active'); 
+  ClearActiveClasses() {
+    $("#Screening").removeClass('active');
+    $("#Shortlisted").removeClass('active');
+    $("#Interview").removeClass('active');
+    $("#hired").removeClass('active');
+    $("#rejected").removeClass('active');
   }
-  updateallcandidatesstatus() { 
+  updateallcandidatesstatus() {
     this.sortBy = 1;
     this.statusid = 0;
     this.displayQuick = 0;
     this.inprogressview(0);
-    this.inprogressprofile=false;
-    this.profilecount = 6;  
+    this.inprogressprofile = false;
+    this.profilecount = 6;
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
-    this.base.InvitedFlag=false;
-    this.base.AryticFlag=false;
+    this.base.InvitedFlag = false;
+    this.base.AryticFlag = false;
     this.CallList(this.statusid);
     this.ClearallValues();
     if (this.jobstatistics.AllCandidates > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
-    this.loadMore =  this.jobstatistics.AllCandidates > 6 ? true : false; 
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.AllCandidates,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6);
+      this.loadMore = this.jobstatistics.AllCandidates > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updatesuggestedstatus() { // what is the status id for suggested why api looks differe from others  
     this.sortBy = 1;
     this.statusid = 15;
     this.displayQuick = 0;
     this.inprogressview(0);
-    this.inprogressprofile=false;
+    this.inprogressprofile = false;
     this.ClearallValues();
     this.ClearActiveClasses();
     // this.loadMoreStat=this.statusid;
     this.profilecount = 6;
     // this.PopulateJobdetailProfiles();
     if (this.SuggestedCount > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.SuggestedCount,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6);
-      if(this.sdetails.planId ===  "enterprise" )
-      {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.SuggestedCount,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6);
+      if (this.sdetails.planId === "enterprise") {
         this.loadMore = this.SuggestedCount > 6 ? true : false;
       }
-      else
-      {
-        this.loadMore =  false;
+      else {
+        this.loadMore = false;
       }
-    
-  } else {
-    // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
-    //   this.sortBy, 6);
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+
+    } else {
+      // this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Suggested,
+      //   this.sortBy, 6);
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updateappliedstatus() {// 1000080;  
     this.sortBy = 1;
     this.statusid = 4;
-    this.displayQuick = 1;  
+    this.displayQuick = 1;
     this.base.UploadedFlag = false;
     this.base.WishlistFlag = false;
     this.base.SuggestedFlag = false;
-    this.base.AryticFlag=false;
+    this.base.AryticFlag = false;
     this.inprogressview(0);
-    this.inprogressprofile=false;
+    this.inprogressprofile = false;
     this.ClearallValues();
     this.ClearActiveClasses();
     this.CallList(this.statusid);
-   // this.loadMoreStat=this.statusid;
-   this.profilecount = 6;
+    // this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
     // console.log(this.statusid);
     // this.PopulateJobdetailProfiles();
     // console.log(this.jobid);
     if (this.jobstatistics.Applied > 0) {
       //debugger
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, 6);
-      this.loadMore =  this.jobstatistics.Applied > 6 ? true : false;
-   } else {
-    this.loadMore = false;
-    this.child.NoRecords();
-   }
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.Applied,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6);
+      this.loadMore = this.jobstatistics.Applied > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updateshortlistedstatus() { // 1000007;
-    this.sortBy = 1;  
+    this.sortBy = 1;
     this.statusid = 5;
     this.displayQuick = 0;
     this.ClearallValues();
     let val = 17
-   // this.loadMoreStat=this.statusid;
-   this.profilecount = 6;
-     if (this.jobstatistics.ShortListed > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid,val, this.jobstatistics.ShortListed,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6,this.statusid);
-    this.loadMore =  this.jobstatistics.ShortListed > 6 ? true : false;
+    // this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    if (this.jobstatistics.ShortListed > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.ShortListed,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, this.statusid);
+      this.loadMore = this.jobstatistics.ShortListed > 6 ? true : false;
 
-   } else {
-    this.loadMore = false;
-    this.child.NoRecords();
-   }
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
-  updateinprogressstatus()
-  {
+  updateinprogressstatus() {
     this.sortBy = 1;
     this.statusid = 17;
     this.displayQuick = 0;
     this.inprogressview(1);
-    this.inprogressprofile=true;
+    this.inprogressprofile = true;
     this.ClearallValues();
     this.ClearActiveClasses();
-  //  this.loadMoreStat=this.statusid;
-  this.profilecount = 6;
-  //debugger
-  if (this.jobstatistics.InProgress > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.InProgress,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6,0);
-    this.loadMore =  this.jobstatistics.InProgress > 6 ? true : false;
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+    //  this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    //debugger
+    if (this.jobstatistics.InProgress > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.jobstatistics.InProgress,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, 0);
+      this.loadMore = this.jobstatistics.InProgress > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updatescreeningstatus() { // 1000007;
     this.sortBy = 1;
@@ -381,42 +373,37 @@ export class ViewJobdetailsComponent implements OnInit {
     this.displayQuick = 0;
     this.ClearallValues();
     let val = 17
-  //  this.loadMoreStat=this.statusid;
-  this.profilecount = 6;
-  if (this.jobstatistics.Screening > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Screening,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6,this.statusid);
-    this.loadMore =  this.jobstatistics.Screening > 6 ? true : false;
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+    //  this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    if (this.jobstatistics.Screening > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Screening,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, this.statusid);
+      this.loadMore = this.jobstatistics.Screening > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
 
-  GetCustomerSubscription()
-  {
+  GetCustomerSubscription() {
     return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
-      if(res!=null)
-      {
+      if (res != null) {
         this.subdetails = res;
         this.GetSubscriptionDetails(res.subscriptionId);
         // this.GetInvoiceEstimates();
         // this.GetUnbilledChargeDetails();
       }
-  
-  });
+
+    });
   }
-  
-  GetSubscriptionDetails(sid)
-  {
+
+  GetSubscriptionDetails(sid) {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
-      if(res1!=null)
-      {
+      if (res1 != null) {
         this.sdetails = res1;
       }
-      else
-      {
-        this.sdetails.planId='0';
+      else {
+        this.sdetails.planId = '0';
       }
     });
   }
@@ -426,38 +413,38 @@ export class ViewJobdetailsComponent implements OnInit {
     this.statusid = 7;
     this.displayQuick = 0;
     this.ClearallValues();
-  //  this.loadMoreStat=this.statusid;
-  this.profilecount = 6;
-  let val = 17
-  if (this.jobstatistics.Interviewed > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Interviewed,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,  6,this.statusid);
-    this.loadMore =  this.jobstatistics.Interviewed > 6 ? true : false;
+    //  this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    let val = 17
+    if (this.jobstatistics.Interviewed > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Interviewed,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, this.statusid);
+      this.loadMore = this.jobstatistics.Interviewed > 6 ? true : false;
 
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updatehiredstatus() { // 1000028;
     this.sortBy = 1;
     this.statusid = 11;
     this.displayQuick = 0;
     this.ClearallValues();
-   // this.loadMoreStat=this.statusid;
-   this.profilecount = 6;
-   let val = 17
-   if (this.jobstatistics.Hired > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Hired,
-      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited,this.arytic, 6,this.statusid);
-    this.loadMore =  this.jobstatistics.Hired > 6 ? true : false;
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
-  }
+    // this.loadMoreStat=this.statusid;
+    this.profilecount = 6;
+    let val = 17
+    if (this.jobstatistics.Hired > 0) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.Hired,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, this.statusid);
+      this.loadMore = this.jobstatistics.Hired > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
   updaterejectedstatus() {
-   
+
     this.sortBy = 1;
     this.statusid = 6;
     this.displayQuick = 0;
@@ -466,15 +453,15 @@ export class ViewJobdetailsComponent implements OnInit {
     this.profilecount = 6;
     let val = 17
     if (this.jobstatistics.RejectedORWithdrawn > 0) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.RejectedORWithdrawn,
-       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited, this.arytic, 6,this.statusid);
-    this.loadMore =  this.jobstatistics.RejectedORWithdrawn > 6 ? true : false;
-  } else {
-   this.loadMore = false;
-   this.child.NoRecords();
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, val, this.jobstatistics.RejectedORWithdrawn,
+        this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, 6, this.statusid);
+      this.loadMore = this.jobstatistics.RejectedORWithdrawn > 6 ? true : false;
+    } else {
+      this.loadMore = false;
+      this.child.NoRecords();
+    }
   }
-   }
-   updateProfileCount() {
+  updateProfileCount() {
     // if (this.statusid === this.loadMoreStat) {
     this.profilecount += 6;
     // } else {
@@ -483,59 +470,61 @@ export class ViewJobdetailsComponent implements OnInit {
     // }
     if (this.statusid === 0) {
       // this.statistics=this.jobstatistics.Applied;
-      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0||this.arytic>0)) {
+      if (this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist > 0 || this.invited > 0 || this.arytic > 0)) {
         this.statistics = this.totalCount;
-      } else if(this.totalCount === 0) {
+      } else if (this.totalCount === 0) {
         this.statistics = this.jobstatistics.AllCandidates;
       }
-     } else if (this.statusid === 4) {
-      if(this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist >0 || this.invited>0||this.arytic>0)) {
+    } else if (this.statusid === 4) {
+      if (this.totalCount > 0 && (this.uploaded > 0 || this.suggested > 0 || this.wishlist > 0 || this.invited > 0 || this.arytic > 0)) {
         this.statistics = this.totalCount;
       } else if (this.totalCount === 0) {
         this.statistics = this.jobstatistics.Applied;
       }
-     } else if (this.statusid === 5) {
+    } else if (this.statusid === 5) {
       this.statistics = this.jobstatistics.ShortListed;
-     } else if (this.statusid === 7) {
+    } else if (this.statusid === 7) {
       this.statistics = this.jobstatistics.Interviewed;
-     } else if (this.statusid === 11) {
+    } else if (this.statusid === 11) {
       this.statistics = this.jobstatistics.Hired;
-     } else if (this.statusid === 6) {
+    } else if (this.statusid === 6) {
       this.statistics = this.jobstatistics.RejectedORWithdrawn;
     } else if (this.statusid === 15) {
-      this.statistics = this.SuggestedCount; }
-      else if (this.statusid === 17) {
-        this.statistics = this.jobstatistics.InProgress; }
+      this.statistics = this.SuggestedCount;
+    }
+    else if (this.statusid === 17) {
+      this.statistics = this.jobstatistics.InProgress;
+    }
     this.profileLoader = true;
     this.jobdetailsservice.updateprofileCount(this.profilecount);
     this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics,
-       this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic,this.profilecount,0);
+      this.sortBy, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, this.profilecount, 0);
     this.loader();
-   }
-   loader() {
-      this.profileLoader = false;
-   }
-  
-   updateLoadMore() {
-     this.loadMore = false;
-   }
+  }
+  loader() {
+    this.profileLoader = false;
+  }
+
+  updateLoadMore() {
+    this.loadMore = false;
+  }
   populateJobsBasicInfo() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
-      this.closedjob = this.jobdetailsbasicinfo.IsOpen;
+        this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(1);
-        //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
+      //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
 
   populateJobsBasicInfoChange() {
     return this.jobdetailsservice.getJobDetailsBasicInfo(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailsbasicinfo = res,
-      this.closedjob = this.jobdetailsbasicinfo.IsOpen;
+        this.closedjob = this.jobdetailsbasicinfo.IsOpen;
       this.jobStatus = this.jobdetailsbasicinfo.JobStatus;
       this.inprogressview(0);
-        //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
+      //this.joblocation = res.JobLocations[0].CityName + ', ' + res.JobLocations[0].StateCode;
     });
   }
 
@@ -544,42 +533,42 @@ export class ViewJobdetailsComponent implements OnInit {
       this.jobstatistics = res;
       this.SuggestedCount = res.AryticSuggested;
       this.Counts = this.child.TotalCount;
-        if (onload === 1) {
-          if (this.statusid === 4) {
-            // //debugger
-            this.inprogressview(0);
-            $("#Prospect").addClass('active');
-            $("#Shortlisted").removeClass('active');
-            $("#Interview").removeClass('active');
-            this.updateappliedstatus();
-          } else if (this.statusid === 0) {
-            this.inprogressview(0);
-            this.updateallcandidatesstatus();
-          }
-          else if (this.statusid === 5) {
-            $("#Prospect").removeClass('active');
-            $("#Screening").removeClass('active');  
-            $("#inprogressprofiles").addClass('active');
-            $("#Shortlisted").addClass('active');
-            this.updateshortlistedstatus();
-          
-          }
-          else if (this.statusid === 15) {
-            $("#Prospect").removeClass('active');
-            $("#Screening").removeClass('active');           
-            $("#inprogressprofiles").removeClass('active');
-            $("#aryticbestfit").addClass('active');
-            this.updatesuggestedstatus();
+      if (onload === 1) {
+        if (this.statusid === 4) {
+          // //debugger
+          this.inprogressview(0);
+          $("#Prospect").addClass('active');
+          $("#Shortlisted").removeClass('active');
+          $("#Interview").removeClass('active');
+          this.updateappliedstatus();
+        } else if (this.statusid === 0) {
+          this.inprogressview(0);
+          this.updateallcandidatesstatus();
+        }
+        else if (this.statusid === 5) {
+          $("#Prospect").removeClass('active');
+          $("#Screening").removeClass('active');
+          $("#inprogressprofiles").addClass('active');
+          $("#Shortlisted").addClass('active');
+          this.updateshortlistedstatus();
 
-          }
-          else if (this.statusid === 7) {
-            $("#Prospect").removeClass('active');
-            $("#Screening").removeClass('active');  
-            $("#inprogressprofiles").addClass('active');
-            $("#Interview").addClass('active');
-            this.updateinterviewedstatus();
-       
-          }
+        }
+        else if (this.statusid === 15) {
+          $("#Prospect").removeClass('active');
+          $("#Screening").removeClass('active');
+          $("#inprogressprofiles").removeClass('active');
+          $("#aryticbestfit").addClass('active');
+          this.updatesuggestedstatus();
+
+        }
+        else if (this.statusid === 7) {
+          $("#Prospect").removeClass('active');
+          $("#Screening").removeClass('active');
+          $("#inprogressprofiles").addClass('active');
+          $("#Interview").addClass('active');
+          this.updateinterviewedstatus();
+
+        }
       }
       sessionStorage.removeItem('statusid');
     });
@@ -601,24 +590,24 @@ export class ViewJobdetailsComponent implements OnInit {
     this.CallList(this.statusid);
     if (value === 'max' || value === 'min') {
       this.loadMore = false;
-    }  else { // if (value === true) {
-    this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,
-      this.jobstatistics.Applied, 1, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,this.profilecount);
-   }
+    } else { // if (value === true) {
+      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid,
+        this.jobstatistics.Applied, 1, this.searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, this.profilecount);
+    }
   }
 
   CallList(statusid) {
     if (statusid === 4 || statusid === 0) {
-    return this.jobdetailsservice.getWishListCount(this.customerId, this.jobid, statusid).subscribe(res => {
-      this.wishlistCount = res;
-      this.Count = this.wishlistCount;
-    });
+      return this.jobdetailsservice.getWishListCount(this.customerId, this.jobid, statusid).subscribe(res => {
+        this.wishlistCount = res;
+        this.Count = this.wishlistCount;
+      });
     }
   }
   changeJobStatus(job, val) {
     // //debugger
     if (val === true) {
-     $('#Inactive').replaceWith('#Active');
+      $('#Inactive').replaceWith('#Active');
 
     } else if (val === false) {
       $('#Active').replaceWith('#Inactive');
@@ -626,44 +615,43 @@ export class ViewJobdetailsComponent implements OnInit {
     this.deactivate.jobId = job.JobId;
     this.deactivate.customerId = job.CustomerId;
     this.deactivate.isActive = val;
-      this.appService.deactivateJob(this.deactivate)
+    this.appService.deactivateJob(this.deactivate)
       .subscribe(
-      data => {
-       // alert("success")
-        this.populateJobsBasicInfo();
-        this.populateJobsStaticInfo(this.deactivate.jobId, 1);
-    },
-      error => console.log(error));
-}
+        data => {
+          // alert("success")
+          this.populateJobsBasicInfo();
+          this.populateJobsStaticInfo(this.deactivate.jobId, 1);
+        },
+        error => console.log(error));
+  }
 
   ClearallValues() {
-  this.base.ViewBy = 1;
-  this.searchString = '';
-  this.base.SearchList = [];
-  this.base.searchString = undefined;
-  this.base.uploaded = 0;
-  this.base.suggested = 0;
-  this.base.wishlist = 0;
-  this.base.invited=0;
-  this.base.arytic=0;
-  this.sortBy = 0;
-  this.uploaded = 0;
-  this.suggested = 0;
-  this.wishlist = 0;
-  this.invited=0;
-  this.arytic=0;
-   }
+    this.base.ViewBy = 1;
+    this.searchString = '';
+    this.base.SearchList = [];
+    this.base.searchString = undefined;
+    this.base.uploaded = 0;
+    this.base.suggested = 0;
+    this.base.wishlist = 0;
+    this.base.invited = 0;
+    this.base.arytic = 0;
+    this.sortBy = 0;
+    this.uploaded = 0;
+    this.suggested = 0;
+    this.wishlist = 0;
+    this.invited = 0;
+    this.arytic = 0;
+  }
   ngOnInit() {
     this.jobdetailsservice.updateDetailsAdvanceSearch(false);
-     // this.loadMoreStat=0;
+    // this.loadMoreStat=0;
     this.jobdetailsservice.currentProfilecount.subscribe(x => this.profilecount = x);
     this.jobdetailsservice.ShowDetailsadvanceSearch.subscribe(x => this.showDetailadvancesearch = x);
     this.populateJobsBasicInfo();
     this.GetCustomerSubscription();
     //this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
-    if(this.ProfileId!=null||this.ProfileId!=undefined)
-    {
+    if (this.ProfileId != null || this.ProfileId != undefined) {
       this.OpenCandidateDialog(this.ProfileId);
       localStorage.removeItem('rprofileId');
     }
@@ -675,7 +663,7 @@ export class ViewJobdetailsComponent implements OnInit {
       'UserName': ['', Validators.nullValidator],
       'ResumeFile': ['', Validators.compose([Validators.required])],
       'FileExtension': ['', Validators.nullValidator],
-      'JobId': [ this.jobid, Validators.nullValidator]
+      'JobId': [this.jobid, Validators.nullValidator]
     });
   }
   // ngAfterViewInit() {
@@ -687,55 +675,59 @@ export class ViewJobdetailsComponent implements OnInit {
 
   getParentApi(): ParentComponentApi {
     return {
-      callfilterMethod : (exp, location, domain) => {  if (this.statusid === 4) {
-        this.sortBy = 0;
-        this.searchString = '';
-        // this.statistics=this.jobstatistics.Applied;
-        this.statistics = this.jobstatistics.Applied;
-       }   else if (this.statusid === 5) {
-        this.statistics = this.jobstatistics.ShortListed;
-       } else if (this.statusid === 7) {
-        this.statistics = this.jobstatistics.Interviewed;
-       } else if (this.statusid === 11) {
-        this.statistics = this.jobstatistics.Hired;
-       } else if (this.statusid === 6) {
-        this.statistics = this.jobstatistics.RejectedORWithdrawn;
-      }  else if (this.statusid === 15) {
-        this.statistics = this.SuggestedCount; }
+      callfilterMethod: (exp, location, domain) => {
+        if (this.statusid === 4) {
+          this.sortBy = 0;
+          this.searchString = '';
+          // this.statistics=this.jobstatistics.Applied;
+          this.statistics = this.jobstatistics.Applied;
+        } else if (this.statusid === 5) {
+          this.statistics = this.jobstatistics.ShortListed;
+        } else if (this.statusid === 7) {
+          this.statistics = this.jobstatistics.Interviewed;
+        } else if (this.statusid === 11) {
+          this.statistics = this.jobstatistics.Hired;
+        } else if (this.statusid === 6) {
+          this.statistics = this.jobstatistics.RejectedORWithdrawn;
+        } else if (this.statusid === 15) {
+          this.statistics = this.SuggestedCount;
+        }
         else if (this.statusid === 17) {
-          this.statistics = this.jobstatistics.InProgress; }
+          this.statistics = this.jobstatistics.InProgress;
+        }
         this.loadMore = this.statistics > 6 ? true : false;
-     // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.searchString, exp, location, domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic, this.profilecount);
-     },
-      callSearchMethod : (searchString) => {
+        // this.parentMethod(name);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, this.searchString, exp, location, domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, this.profilecount);
+      },
+      callSearchMethod: (searchString) => {
         this.exp = 0;
         this.domain = 0;
         this.location = '';
-       if (this.statusid === 4) {
-        // this.statistics=this.jobstatistics.Applied;
-        this.statistics = this.jobstatistics.Applied;
-       }   else if (this.statusid === 5) {
-        this.statistics = this.jobstatistics.ShortListed;
-       } else if (this.statusid === 7) {
-        this.statistics = this.jobstatistics.Interviewed;
-       } else if (this.statusid === 11) {
-        this.statistics = this.jobstatistics.Hired;
-       } else if (this.statusid === 6) {
-        this.statistics = this.jobstatistics.RejectedORWithdrawn;
-      }  else if (this.statusid === 15) {
-        this.statistics = this.SuggestedCount; }
+        if (this.statusid === 4) {
+          // this.statistics=this.jobstatistics.Applied;
+          this.statistics = this.jobstatistics.Applied;
+        } else if (this.statusid === 5) {
+          this.statistics = this.jobstatistics.ShortListed;
+        } else if (this.statusid === 7) {
+          this.statistics = this.jobstatistics.Interviewed;
+        } else if (this.statusid === 11) {
+          this.statistics = this.jobstatistics.Hired;
+        } else if (this.statusid === 6) {
+          this.statistics = this.jobstatistics.RejectedORWithdrawn;
+        } else if (this.statusid === 15) {
+          this.statistics = this.SuggestedCount;
+        }
         else if (this.statusid === 17) {
-          this.statistics = this.jobstatistics.InProgress; }
+          this.statistics = this.jobstatistics.InProgress;
+        }
         this.loadMore = this.statistics > 6 ? true : false;
-     // this.parentMethod(name);
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist,this.invited,this.arytic,this.profilecount);
+        // this.parentMethod(name);
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.sortBy, searchString, this.exp, this.location, this.domain, this.uploaded, this.suggested, this.wishlist, this.invited, this.arytic, this.profilecount);
       },
       callSuggested: () => {
         this.openCandidateUploadDialog();
       },
-      CallwishList:(event, profileId,jobId) =>
-      {
+      CallwishList: (event, profileId, jobId) => {
         this.wsList.IsSaved = event.target.checked;
         this.wsList.ProfileId = profileId;
         this.wsList.JobId = jobId;
@@ -744,7 +736,7 @@ export class ViewJobdetailsComponent implements OnInit {
           this.CallList(this.statusid);
         });
       },
-      CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => {
+      CallViewBy: (uploaded, suggested, wishlist, invited, arytic, sortBy, search, count) => {
         // //debugger
         this.searchString = search;
         this.totalCount = count;
@@ -754,7 +746,7 @@ export class ViewJobdetailsComponent implements OnInit {
         this.uploaded = uploaded;
         this.suggested = suggested;
         this.wishlist = wishlist;
-        this.invited= invited;
+        this.invited = invited;
         this.location = '';
         this.wishsort = sortBy;
         this.sortBy = sortBy;
@@ -762,34 +754,55 @@ export class ViewJobdetailsComponent implements OnInit {
         if (this.statusid === 0) {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
-          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0 || arytic>0) {
+          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited > 0 || arytic > 0) {
             this.statistics = count;
           }
 
-         } else if (this.statusid === 4) {
+        } else if (this.statusid === 4) {
           if (count === 0) {
             this.statistics = this.jobstatistics.Applied;
-          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited>0 || arytic>0) {
+          } else if (uploaded > 0 || suggested > 0 || wishlist > 0 || invited > 0 || arytic > 0) {
             this.statistics = count;
           }
-         } else if (this.statusid === 7) {
-        this.statistics = this.jobstatistics.Interviewed;
-       } else if (this.statusid === 11) {
-        this.statistics = this.jobstatistics.Hired;
-       } else if (this.statusid === 6) {
-        this.statistics = this.jobstatistics.RejectedORWithdrawn;
-      }  else if (this.statusid === 15) {
-        this.statistics = this.SuggestedCount; }
+        } else if (this.statusid === 7) {
+          this.statistics = this.jobstatistics.Interviewed;
+        } else if (this.statusid === 11) {
+          this.statistics = this.jobstatistics.Hired;
+        } else if (this.statusid === 6) {
+          this.statistics = this.jobstatistics.RejectedORWithdrawn;
+        } else if (this.statusid === 15) {
+          this.statistics = this.SuggestedCount;
+        }
         else if (this.statusid === 17) {
-          this.statistics = this.jobstatistics.InProgress; }
+          this.statistics = this.jobstatistics.InProgress;
+        }
         this.loadMore = this.statistics > 6 ? true : false;
-     // this.parentMethod(name);
-      ////debugger
-      this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist,invited,arytic, this.profilecount);
+        // this.parentMethod(name);
+        ////debugger
+        this.child.PopulateJobdetailProfiles(this.customerId, this.userId, this.jobid, this.statusid, this.statistics, this.wishsort, search, this.exp, this.location, this.domain, uploaded, suggested, wishlist, invited, arytic, this.profilecount);
       }
     };
 
 
+  }
+
+  editJob(jobId, active) {
+    if (active === false) {
+      this.toastr.error('Inactive Job Please Activate to Edit!', 'Oops!');
+      setTimeout(() => {
+        this.toastr.dismissToast;
+      }, 3000);
+    } else {
+      this.complete = 4;
+      this.dialog.closeAll();
+      this.router.navigate(['/app-createajob/', { jobId }]);
+      localStorage.setItem('completed', JSON.stringify(this.complete));
+      localStorage.setItem('EditViewJob', 'yes');
+      this.router.navigate(['/app-createajob/app-steps-step1/', { jobId }]);
+    }
+
+    // this.router.navigateByUrl('/app-createajob/app-steps-step1/id='+ jobId);
+    // [routerLink]="['/app-createajob/app-steps-step1/',job.JobId]"
   }
 
 }
@@ -798,8 +811,8 @@ export interface ParentComponentApi {
   callSearchMethod: (string) => void;
   callfilterMethod: (exp, location, domain) => void;
   callSuggested: () => void;
-  CallwishList:(event, profileId,jobId) => void;
-  CallViewBy: (uploaded, suggested, wishlist,invited,arytic, sortBy, search, count) => void;
+  CallwishList: (event, profileId, jobId) => void;
+  CallViewBy: (uploaded, suggested, wishlist, invited, arytic, sortBy, search, count) => void;
 }
 
 export class WishList {
