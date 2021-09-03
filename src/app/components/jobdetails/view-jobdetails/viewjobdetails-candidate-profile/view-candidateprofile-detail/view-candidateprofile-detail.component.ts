@@ -311,7 +311,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetProfileDetails();
     this.GetUserProfileInfo();
     this.GetProfileRating();
-    //this.GetCandidateJobHistory();
+    this.GetCandidateJobHistory();
     this.GetCandidateCultureResult();
     this.GetExperience();
     this.GetVideo();
