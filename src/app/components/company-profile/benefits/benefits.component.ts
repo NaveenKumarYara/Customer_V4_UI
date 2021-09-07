@@ -11,6 +11,7 @@ import {technologies} from '../specialities/technologies';
 import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
 import { GetCustomerClients } from "../../../../models/GetCustomerClients";
 import {benefits} from './benefits';
+import swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -136,6 +137,7 @@ SaveIndustry()
 }
 saveBenefits()
 {
+  debugger
  if(this.benefitId>0)
  {
   this.companybenfitId=this.benefitId;
@@ -145,17 +147,29 @@ saveBenefits()
   this.benefitId = 0;
   this.companybenfitId=this.benefitId;
  }
+ let val = this.getcompanybenfit.find(a=>a.CompanyBenefit === this.benefit)
+ if(val != null)
+ {
+   swal('Already exists!!');
+   this.benefit = undefined;
+   this.benefitId = 0;
+   this.populateCompanyBenfits(this.customerId);
+   return false;
+ }
+ else
+ {
   //this.benefit = $("#benefitsVal").val();
   this.benefits.companyBenefitId =  this.companybenfitId;
   this.benefits.customerId = this.customerId;
   this.benefits.companyBenefit = this.benefit;
   this._service.PostService(this.benefits, 'ProfileAPI/api/InsertCompanyBenefits')
   .subscribe(data => {
-    this.benefit = '';
+    this.benefit = undefined;
     this.benefitId = 0;
     this.populateCompanyBenfits(this.customerId);
   },
     error => console.log(error));
+}
 }
 
 EditBenefits(benefit)
@@ -295,16 +309,28 @@ else
 this.specialityId = 0;
 this.companyspecialityId=this.specialityId;
 }
+let val2 = this.companyspecialities.find(a=>a.CompanySpeciality === this.speciality)
+ if(val2 != null)
+ {
+   swal('Already exists!!');
+   this.speciality =  undefined;
+   this.specialityId = 0;
+   this.populateCompanySpecialities(this.customerId);
+   return false;
+ }
+ else
+ {
 this.specialities.companySpecialityId =  this.companyspecialityId;
 this.specialities.customerId = this.customerId;
 this.specialities.companySpeciality = this.speciality;
 this._service.PostService(this.specialities, 'ProfileAPI/api/InsertCompanySpeciality')
 .subscribe(data => {
-  this.speciality = '';
+  this.speciality = undefined;
   this.specialityId = 0;
   this.populateCompanySpecialities(this.customerId);
 },
   error => console.log(error));
+}
 }
 }
 

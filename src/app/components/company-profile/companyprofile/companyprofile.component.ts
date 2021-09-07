@@ -203,8 +203,8 @@ export class CompanyprofileComponent implements OnInit {
 
     populateCompanyBenfits(customerId) {
         return this.companyprofileservice.getCompanyBenfits(customerId).subscribe(res => {
-            this.getcompanybenfit = res;
-        });
+          this.getcompanybenfit = Array.from(new Set(res)); 
+        })
     }
 drop(event: any): void {
     console.log('drop event: ', event);// JSON.stringify(event, null, 2));

@@ -40,6 +40,7 @@ import { Ng2ImgMaxModule } from "ng2-img-max";
 import { RouterModule } from "@angular/router";
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { duplicatePipe } from "./duplicates.pipe";
 @NgModule({
   imports: [
     CommonModule,
@@ -92,6 +93,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CultureComponent,
     CandidateViewComponent,
     CultureTestComponent,
+    duplicatePipe
   ],
 })
 export class CompanyProfileModule {}

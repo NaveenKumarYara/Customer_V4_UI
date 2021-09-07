@@ -102,8 +102,8 @@ export class RejectdialogComponent implements OnInit {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe((res) => {
       this.jobdetailscustomer = res;
       this.eventStat.emit(null);
-      this.SaveNotes();
-      //this.SendStatusEmail();
+      //this.SaveNotes();
+      this.SendStatusEmail();
     });
   }
 
