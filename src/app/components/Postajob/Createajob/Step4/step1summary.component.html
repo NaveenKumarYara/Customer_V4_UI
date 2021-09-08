@@ -164,7 +164,7 @@
     <h3 class="question">What Immigration Status type you are looking for?</h3>
     <ng-container *ngIf="immigrationsList.length>0">
       <ng-container *ngFor="let ims of immigrationsList">
-        <h6 class="data">{{ims?.ImmigrationStatus}}</h6>
+        <h6 class="data">{{ims?.item_text}}</h6>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="immigrationsList.length===0">

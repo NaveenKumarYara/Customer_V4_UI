@@ -362,8 +362,24 @@ editMode: string;
       this.appService.updateJobDue(this.jobdetailscustomer.JobInfo.JobDueDateId);
       this.appService.JobDueDate.next(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
       this.appService.updateJobDueDate(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
-      this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
-      this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);    
+      //this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
+      //this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs); 
+      debugger  
+      if(this.jobdetailscustomer.JobInfo.ImmigrationForJob.length>0) 
+      {
+        this.jobdetailscustomer.JobInfo.ImmigrationForJob.forEach(element => {
+          if(element.ImmigrationStatus!=null)
+          {
+            this.appService.ImmigrationforJobs.push({ item_id: element.ImmigrationStatusId, item_text: element.ImmigrationStatus});
+          }
+         
+      })
+      }
+      else
+      {
+        this.appService.ImmigrationforJobs = [];
+      }
+     
       this.appService.teammembers = this.jobdetailscustomer.TechnicalTeam;
       this.appService.teammembersChanged.next(this.appService.teammembers);
       this.appService.addedteammembers = this.ejTechnicalTeamIdList;
