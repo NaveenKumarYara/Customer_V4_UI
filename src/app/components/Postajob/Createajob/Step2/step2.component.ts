@@ -16,6 +16,7 @@ import { JobprofileComponent } from '../Step1/Jobprofile.component';
 import { JobResponsibilitiesComponent } from '../Step2/Jobresponsibilities.component';
 import { JobskillsetComponent } from '../Step2/Jobskillset.component';
 import { StepsComponent } from '../steps.component';
+import { ImmigrationComponent } from './immi.component';
 declare var $: any;
 declare var jQuery: any;
 
@@ -64,6 +65,7 @@ isDrafted: boolean;
   @ViewChild(QualificationsComponent) qualification: QualificationsComponent;
   @ViewChild(JobResponsibilitiesComponent) jobResponsibility: JobResponsibilitiesComponent;
   @ViewChild(JobskillsetComponent) jobSkills: JobskillsetComponent;
+  @ViewChild(ImmigrationComponent) immi: ImmigrationComponent;
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     event.returnValue = false;
 }
@@ -221,7 +223,7 @@ isDrafted: boolean;
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     // this.insertJob.ClientName = localStorage.getItem('clientName');
     this.insertJob.XmlDepartment =  this.appService.addeddepartments; // this.pjDepartments; //this.departments;
-
+   
     // this.insertJob.DepartmentId = this.appService.addeddepartments;
 
 
@@ -238,7 +240,10 @@ isDrafted: boolean;
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
      this.insertJob.XmlDomains = this.domain.addDomainList;
     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
-
+     if(this.immi.selectedItems.length>0)
+    {
+      this.immi.AddStatus();
+    }  
     // this.insertJob.IsDrafted = true;
     // this.insertJob.StepNumber = 2;
     // this.insertJob.EmploymentTypeId = 1;

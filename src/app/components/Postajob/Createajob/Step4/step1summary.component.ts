@@ -21,7 +21,7 @@ Category:string;
 noOfopenings:number;
 location=[];
 locations=[];
-immigrationsList:jobImmigrationData[]=[];
+immigrationsList=[];
 noOfopening=[];
 hasDescription: boolean;
 completeDescription: string;

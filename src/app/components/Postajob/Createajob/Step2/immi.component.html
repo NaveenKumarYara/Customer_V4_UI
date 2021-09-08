@@ -1,0 +1,46 @@
+<div class="form-group job-title-group reporting-manager-group">
+    <label for="" class="question">What Work authorization type you are looking for ?<small>(Optional)</small></label>
+    <div class="form-row row">
+      <div class="col-md-9">
+        <!-- <ng-select class="custom-style" [items]="ImmigrationList" placeholder="Select Work Authorization"
+          bindLabel="ImmigrationStatus" bindValue="ImmigrationStatusId" (change)="updateStatus($event)"
+          [hideSelected]="true"  [(ngModel)]="selectStatus" [virtualScroll]="true"
+          #Imsstatus="ngModel" name="Imsstatus">
+        </ng-select> -->
+        <ng-multiselect-dropdown
+        [placeholder]="'Select Work Authorization'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+      >
+      </ng-multiselect-dropdown>
+      </div>
+      <!-- <div class="col-md-1">
+        <button class="btn add-btn form-control mt-0"  type="button"  (click)="AddStatus()">+</button>
+      </div>    -->
+    </div>
+    <!---->
+  
+    <!-- <ul class="data-list">
+      <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
+    </ul> -->
+  </div>
+  <!-- <div class="job-title-suggestions">
+    <div class="checkbox" *ngFor="let  ims of ImmigrationListData; let i = index">
+      <label><span class="box" (click)="deleteIms(i)">{{ims?.ImmigrationStatus}}  x </span>  </label>
+    </div>
+  
+  </div> -->
+  
+  
+  <!--Manage Reporting manager Dialog 17-03-2020-->
+ 
+  
+  
+  
+  
+  
+  
+  <!--Manage Reporting manager Dialog 17-03-2020-->

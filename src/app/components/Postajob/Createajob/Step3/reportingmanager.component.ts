@@ -129,10 +129,10 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
  });
  }
 
- GetImmigrationList()
- {
-   this.ImmigrationListData = this.appService.ImmigrationforJobs;
- }
+//  GetImmigrationList()
+//  {
+//    this.ImmigrationListData = this.appService.ImmigrationforJobs;
+//  }
 
   suggestedManager() {
     return this.appService.getReortingTeam(this.customerId).subscribe(res =>{
@@ -172,7 +172,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     this.flag=false;
     this.JobIds = this.appService.JobIds;
     this.GetImmigrationStatus();
-    this.GetImmigrationList();
+    //this.GetImmigrationList();
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -197,11 +197,11 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.appService.ImmigrationforJobChanged.subscribe(
-      (listd: jobImmigrationData[]) => {
-        this.ImmigrationListData= listd;
-        }
-    );
+    // this.appService.ImmigrationforJobChanged.subscribe(
+    //   (listd: jobImmigrationData[]) => {
+    //     this.ImmigrationListData= listd;
+    //     }
+    // );
 
   //    this.getcustomerusers();
   //  //  if (localStorage.getItem('jobId') != null) {
@@ -278,10 +278,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
         this.imsList.push(this.selectedIms);
         //this.slist.push(this.selectedManager);
         this.ImmigrationListData=this.imsList;
-        this.selectStatus=null;
-        this.appService.immigrations=this.ImmigrationListData;
-        this.appService.ImmigrationforJobs=this.ImmigrationListData;
-        this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs);
+        this.selectStatus=null;      
         if(this.JobIds&&this.JobIds.length>0)
         {
           this.JobIds.forEach((e)=>
