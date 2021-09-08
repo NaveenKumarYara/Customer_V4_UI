@@ -62,21 +62,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
   customerId: any;
-  notes=new EditNotes();
+  notes = new EditNotes();
   notify = new Notification();
-  subdetails:CustomerSubscription;
-  sdetails:GetSubscriptionDetails;
+  subdetails: CustomerSubscription;
+  sdetails: GetSubscriptionDetails;
   Rloading: boolean = false;
   userId: any;
   CommentProfile: any;
   addon = new addon();
   CandidateNotes: any = [];
   CandidateFeedback: any = [];
-  sedit:boolean=false;
+  sedit: boolean = false;
   profiles: any;
   customer: any;
-  newComment:any;
-  
+  newComment: any;
+
   CandidateCertification: CandidateCertifications;
   CandidateDomain: CandidateDomains;
   searchString: any;
@@ -93,7 +93,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   loading: boolean;
   jobdetailscustomer = new GetJobDetailCustomer();
   status = new JobStatus();
-  companyname:any;
+  companyname: any;
   usersList: any;
   iconHide: boolean = false;
   @ViewChild('divClick') divClick: ElementRef;
@@ -120,7 +120,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   radarChart: boolean = false;
   radarChartMenu: any = [];
   backRadarChartData = {
-    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit" ,"Team Fit"],
+    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit", "Team Fit"],
     datasets: [
       {
         label: "Arytic Fit",
@@ -149,13 +149,13 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         pointHoverBackgroundColor: "#4472C4",
         borderWidth: 1,
         pointBorderWidth: 1,
-        data: []        
+        data: []
       },
     ],
-   
+
   };
   smallRadarChartData = {
-    labels: ["Job Fit", "Skill Fit",  "Culture Fit", "Personality Fit","Team Fit"],
+    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit", "Team Fit"],
     datasets: [
       {
         fill: true,
@@ -166,10 +166,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         pointHoverBackgroundColor: "#448afa",
         borderWidth: 1,
         pointBorderWidth: 1,
-        data: []        
+        data: []
       },
     ],
-   
+
   };
   customOptions: any = {
     loop: true,
@@ -241,42 +241,35 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     window.location.href = url;
   }
 
-  GetCompanyName()
-  {
-    return this._service.GetService("ProfileAPI/api/GetCompanyBasicInfo?customerId=",this.customer.CustomerId).subscribe(re => {
-      if(re!=null)
-      {
+  GetCompanyName() {
+    return this._service.GetService("ProfileAPI/api/GetCompanyBasicInfo?customerId=", this.customer.CustomerId).subscribe(re => {
+      if (re != null) {
 
         this.companyname = re.CompanyName;
       }
-  
-  });
+
+    });
   }
 
-  GetCustomerSubscription()
-  {
+  GetCustomerSubscription() {
     return this.appService.GetCustomerSubscription(this.customer.UserId).subscribe(res => {
-      if(res!=null)
-      {
+      if (res != null) {
         this.subdetails = res;
         this.GetSubscriptionDetails(res.subscriptionId);
         // this.GetInvoiceEstimates();
         // this.GetUnbilledChargeDetails();
       }
-  
-  });
+
+    });
   }
-  
-  GetSubscriptionDetails(sid)
-  {
+
+  GetSubscriptionDetails(sid) {
     return this.appService.GetSubscriptionDetails(sid).subscribe(res1 => {
-      if(res1!=null)
-      {
+      if (res1 != null) {
         this.sdetails = res1;
       }
-      else
-      {
-        this.sdetails.planId='0';
+      else {
+        this.sdetails.planId = '0';
       }
     });
   }
@@ -442,7 +435,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       });
       rejectdialogRef.afterClosed().subscribe((result) => {
         // this.myEvent.emit(null);
-        this.GetJobFeedback(profileId,this.jobid);
+        this.GetJobFeedback(profileId, this.jobid);
         console.log("reject Dialog result: ${result}");
       });
     }
@@ -572,38 +565,40 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profileId,Uid,FirstName,LastName) {
+  OpenCandidateDialog(profile, profileId, Uid, FirstName, LastName) {
     // if (this.jobStatus!='InActive') {
     this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1500);
+    sessionStorage.setItem("selectedProfile", JSON.stringify(profile));
     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
-    this.matchingParameterDetails = res;
-    const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
-      width: "80vw",
-      position: { right: "0px" },
-      height: "750px",
-      panelClass:'candiateModalPop',
-      data: {
-        ProfileId: profileId,
-        jobId: this.jobid,
-        UserId:Uid,
-        Name: FirstName + LastName,
-        JobFit:this.matchingParameterDetails.JobFit,
-        Personalityfit:this.matchingParameterDetails.Personalityfit,
-        Skillfit:this.matchingParameterDetails.SkillFit,
-        CulutureFit:this.matchingParameterDetails.CultureFit
-        // status : this.statusid
-      },
+      if (res) {
+        this.matchingParameterDetails = res;
+        const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
+          width: "80vw",
+          position: { right: "0px" },
+          height: "750px",
+          panelClass: 'candiateModalPop',
+          data: {
+            ProfileId: profileId,
+            jobId: this.jobid,
+            UserId: Uid,
+            Name: FirstName + LastName,
+            JobFit: this.matchingParameterDetails.JobFit,
+            Personalityfit: this.matchingParameterDetails.Personalityfit,
+            Skillfit: this.matchingParameterDetails.SkillFit,
+            CulutureFit: this.matchingParameterDetails.CultureFit,
+            profile: profile
+            // status : this.statusid
+          },
+        });
+        this.spinner.hide();
+        viewCandidatedialogRef.afterClosed().subscribe((result) => {
+        });
+      }
+      else {
+        this.spinner.hide();
+      }
     });
-    viewCandidatedialogRef.afterClosed().subscribe((result) => {
-      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      // this.myEvent.emit(null);
-      console.log("candidate Dialog result: ${result}");
-    });
-     });         
-   // }
+    // }
   }
   OpenSendEmailDialog(
     noEmail,
@@ -650,23 +645,20 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
 
 
-  saveedit(comment,JId,Cid,Pid)
-  {
+  saveedit(comment, JId, Cid, Pid) {
     this.notes.JobId = JId;
-    this.notes.OldComment=comment;
-    this.notes.CId=Cid;
+    this.notes.OldComment = comment;
+    this.notes.CId = Cid;
     this.notes.NewComment = this.newComment;
     this.notes.ProfileId = Pid;
-    if(this.newComment!=null&&this.newComment!=undefined)
-    {
-    this._service.PostService(this.notes,'ProfileAPI/api/UpdateProfileNoteInfo').subscribe(data => {
-        if(data==0)
-        {
-            this.notes = new EditNotes();
-            this.GetJobNotes(Pid,JId)
-            this.newComment=undefined;
+    if (this.newComment != null && this.newComment != undefined) {
+      this._service.PostService(this.notes, 'ProfileAPI/api/UpdateProfileNoteInfo').subscribe(data => {
+        if (data == 0) {
+          this.notes = new EditNotes();
+          this.GetJobNotes(Pid, JId)
+          this.newComment = undefined;
         }
-        }); 
+      });
     }
   }
 
@@ -695,12 +687,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       {
         title: 'Do you want to Request Reference?',
         showConfirmButton: true,
-        showCancelButton:true,
-        type:"info",
+        showCancelButton: true,
+        type: "info",
         confirmButtonColor: '#66dab5',
         cancelButtonColor: '#FF0000',
         confirmButtonText: 'Yes',
-        cancelButtonText:'No'
+        cancelButtonText: 'No'
       }).then((result) => {
         if (result.value === true) {
           this.requestRef.CustomerId = this.customer.CustomerId;
@@ -724,54 +716,52 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
                 title: 'Request Sent!',
                 showConfirmButton: true,
                 timer: 3000,
-                type:"success"
+                type: "success"
               });
           })
         }
 
 
-    
-      
-    });
+
+
+      });
   }
 
- 
+
 
   RequestAchivement(profile) {
     swal(
       {
         title: 'Do you want to Request Achievement?',
         showConfirmButton: true,
-        showCancelButton:true,
-        type:"info",
+        showCancelButton: true,
+        type: "info",
         confirmButtonColor: '#66dab5',
         cancelButtonColor: '#FF0000',
         confirmButtonText: 'Yes',
-        cancelButtonText:'No'
+        cancelButtonText: 'No'
       }).then((result) => {
-        if (result.value === true)
-         {
-          this.notify.CustomerId= this.customer.CustomerId;
+        if (result.value === true) {
+          this.notify.CustomerId = this.customer.CustomerId;
           this.notify.JobId = this.jobid;
           this.notify.FromUserId = profile.UserId;
-          this.notify.NotificationTypeId= 20;
-          this.notify.ToUserId = profile.UserId; 
-          this.notify.Message = this.customer.FirstName + this.customer.LastName +','+ "_Requested Achievements" +'@' +this.jobdetailscustomer.JobInfo.JobTitle +' '+ 'Position' ;
-          this._service.PostService(this.notify,'IdentityAPI/api/InsertNotification')
-           .subscribe(
-           status => {
-             if(status>=0)
-             {
-            swal(
-              {
-                title: 'Request Sent!',
-                showConfirmButton: true,
-                timer: 3000,
-                type:"success"
+          this.notify.NotificationTypeId = 20;
+          this.notify.ToUserId = profile.UserId;
+          this.notify.Message = this.customer.FirstName + this.customer.LastName + ',' + "_Requested Achievements" + '@' + this.jobdetailscustomer.JobInfo.JobTitle + ' ' + 'Position';
+          this._service.PostService(this.notify, 'IdentityAPI/api/InsertNotification')
+            .subscribe(
+              status => {
+                if (status >= 0) {
+                  swal(
+                    {
+                      title: 'Request Sent!',
+                      showConfirmButton: true,
+                      timer: 3000,
+                      type: "success"
+                    });
+                }
               });
-            }
-          });
-        }   
+        }
       })
   }
 
@@ -875,18 +865,18 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
 
-//   GetMatchingPercentageGraph(profileId, jobid): any {
-//     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, jobid).subscribe((res) => {
-//       this.matchingParameterDetails = res;
-//       debugger
-//       setInterval(() => {
-//         this.smartCardRadarChartData.datasets[0].data.forEach(a=>
-// a[] = this.matchingParameterDetails.JobFit,this.matchingParameterDetails.SkillFit,this.matchingParameterDetails.CultureFit,this.matchingParameterDetails.Personalityfit,0
-//           )
-//     }, 1000);      
-//     });
-//     return this.matchingParameterDetails;
-//   }
+  //   GetMatchingPercentageGraph(profileId, jobid): any {
+  //     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, jobid).subscribe((res) => {
+  //       this.matchingParameterDetails = res;
+  //       debugger
+  //       setInterval(() => {
+  //         this.smartCardRadarChartData.datasets[0].data.forEach(a=>
+  // a[] = this.matchingParameterDetails.JobFit,this.matchingParameterDetails.SkillFit,this.matchingParameterDetails.CultureFit,this.matchingParameterDetails.Personalityfit,0
+  //           )
+  //     }, 1000);      
+  //     });
+  //     return this.matchingParameterDetails;
+  //   }
   GetJobFeedback(profileId, jobId) {
     this.jobdetailsservice.GetProfileFeedback(profileId, jobId, this.customer.UserId).subscribe((datr6) => {
       this.CandidateFeedback = datr6;
@@ -938,7 +928,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   //     this.backRadarChartData.datasets.forEach(a=>{
   //       a.data=[this.matchingParameter.JobFit,this.matchingParameter.SkillFit,this.matchingParameter.CultureFit,this.matchingParameter.Personalityfit,0]
   //     })
-     
+
   //   })
   // }
   PopulateJobdetailProfiles(
@@ -958,7 +948,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     invited = 0,
     arytic = 0,
     noofRows = 6,
-    fstatus=0
+    fstatus = 0
   ) {
     this.alertService.clear();
     // $('#searchStr').val('');
@@ -995,11 +985,11 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
           this.profiles = res;
           this.TotalCount = this.jobdetailsprofiles;
           this.spinner.hide();
-          
+
           this.jobdetailsprofiles.Profile.forEach((a, index) => {
             // var num = 0;
             this.currentNo[index] = 0;
-           
+
             //this.GetMatchingPercentageGraph(a.ProfileId,this.jobid);
 
             // this.backRadarChartData.datasets.map(x=>
@@ -1141,10 +1131,10 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
       return this.jobdetailsservice.getMatchingCriteriaDetails(profileId, this.jobid).subscribe((res) => {
         this.matchingDetails = res;
-      $(".matching-details").removeClass("open");
-      $("#matchingDetailRadar-" + profileId).toggleClass("open");
+        $(".matching-details").removeClass("open");
+        $("#matchingDetailRadar-" + profileId).toggleClass("open");
       });
-    } 
+    }
     // $detailsCloseBtn.on('click', function (e) {
     //   e.preventDefault();
     //   $detailsDiv.removeClass('open');
@@ -1167,7 +1157,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.alertService.clear();
- 
+
     (function ($) {
       // TODO: test multiple cards -- open and close function
       const $card = $(".page--job-details .tab-content .card");
@@ -1363,21 +1353,21 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
       this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
       this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
-      this.matchingParameterData.Personalityfit =this.matchingParameterDetails.Personalityfit;
+      this.matchingParameterData.Personalityfit = this.matchingParameterDetails.Personalityfit;
       this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
       this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
       this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
       setInterval(() => {
-        this.backRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
+        this.backRadarChartData.datasets[0].data = [this.matchingParameterData.JobFit, this.matchingParameterData.SkillFit, this.matchingParameterData.CultureFit, this.matchingParameterData.Personalityfit, 0]
         //this.smartCardRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
-    }, 1000);
-         
+      }, 1000);
+
       console.log("matchingParameterDetails", this.matchingParameterDetails);
       this.getGraph();
     });
     return this.matchingParameterDetails;
   }
-  GetPersonalityTestFit() {}
+  GetPersonalityTestFit() { }
 
   // @ViewChild('testChart1') testChart1: ElementRef;
   // getDetails(){
@@ -1568,29 +1558,29 @@ export class JobStatus {
 }
 
 export class Notes {
-  public ProfileId :Number
-  public JobId :Number
-  public customerUserId:Number
-  public statusId :Number
-  public toUserId :string
-  public isCandidate:boolean
-  public Comments :string
+  public ProfileId: Number
+  public JobId: Number
+  public customerUserId: Number
+  public statusId: Number
+  public toUserId: string
+  public isCandidate: boolean
+  public Comments: string
   public Doc: string
   public OtherInfo: string
 }
 
-export class Notification{
-  FromUserId:  Number;
-  ToUserId : Number;
+export class Notification {
+  FromUserId: Number;
+  ToUserId: Number;
   CustomerId: Number;
   JobId: Number;
   NotificationTypeId: Number;
-  Message:string
+  Message: string
 }
 export class EditNotes {
-    public JobId: Number;
-    public CId: Number;
-    public OldComment: string;
-    public NewComment: string;
-    public ProfileId:Number;
-  }
+  public JobId: Number;
+  public CId: Number;
+  public OldComment: string;
+  public NewComment: string;
+  public ProfileId: Number;
+}
