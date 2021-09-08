@@ -274,7 +274,7 @@ export class AppService {
   immigrations: jobImmigration[] = [];
   immigrationsChanged = new Subject<jobImmigration[]>();
 
-  ImmigrationforJobs: jobImmigrationData[] = [];
+  ImmigrationforJobs= [];
   ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();
 
   myjobcategory = new CategoryList();

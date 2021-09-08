@@ -142,7 +142,8 @@
                             </a>
                         </li>
                         <li id="aryticbestfit">
-                            <a data-toggle="tab" href="javascript:void(0)"
+                            <ng-container *ngIf="SuggestedCount>0">
+                                <a data-toggle="tab" href="javascript:void(0)"
                                 (click)="updatesuggestedstatus();inprogressview(0)">
                                 <div>
                                     <h1>{{SuggestedCount||'0'}}</h1>
@@ -157,9 +158,29 @@
                                     </h4>
                                 </div>
                             </a>
+                            </ng-container>
+                            <ng-container *ngIf="SuggestedCount===0">
+                                <a data-toggle="tab" href="javascript:void(0)"
+                                class="isDisabled">
+                                <div>
+                                    <h1>{{SuggestedCount||'0'}}</h1>
+                                    <h4>Arytic Best Fit Results
+                                        <a href="javascript:void(0)" class="tooltip__link">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <span class="custom__tooltip">
+                                                <span class="step__01">Arytic's suggested best match candidates for you.
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                            </a>
+                            </ng-container>
+                          
                         </li>
                         <li id="inprogressprofiles">
-                            <a data-toggle="tab" href="javascript:void(0)"
+                            <ng-container *ngIf="jobstatistics?.InProgress>0">
+                                <a data-toggle="tab" href="javascript:void(0)"
                                 (click)="updateinprogressstatus();inprogressview(1)">
                                 <div>
                                     <h1>{{jobstatistics?.InProgress}}</h1>
@@ -174,6 +195,25 @@
                                     </h4>
                                 </div>
                             </a>
+                            </ng-container>
+                            <ng-container *ngIf="jobstatistics?.InProgress===0">
+                                <a data-toggle="tab" href="javascript:void(0)"
+                                class="isDisabled" >
+                                <div>
+                                    <h1>{{jobstatistics?.InProgress}}</h1>
+                                    <h4>In-Progress profiles
+                                        <a href="javascript:void(0)" class="tooltip__link">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <span class="custom__tooltip">
+                                                <span class="step__01">Profiles currently under the hiring/interview
+                                                    process. </span>
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                            </a>
+                            </ng-container>
+                         
                         </li>
 
                         <li id="searchprofiles" title="Coming Soon!!!">

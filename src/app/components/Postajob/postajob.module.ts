@@ -46,6 +46,8 @@ import { ConvertMonthPipe } from "./Createajob/convertskillsmonth.pipe";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { ImmigrationComponent } from "./Createajob/Step2/immi.component";
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 @NgModule({
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     ReactiveFormsModule,
     CKEditorModule,
     AngularDateTimePickerModule,
+    NgMultiSelectDropDownModule.forRoot(),
     NgSelectModule,
     NgDatepickerModule,
     RouterModule.forChild([
@@ -83,6 +86,7 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     Step4Component,
 
     StepsComponent,
+    ImmigrationComponent,
     CreateajobComponent,
     JobcategoryComponent,
     JobdetailsComponent,

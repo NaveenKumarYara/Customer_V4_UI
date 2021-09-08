@@ -47,7 +47,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   @ViewChild(StepContractExtensionComponent) contractExtension: StepContractExtensionComponent;
   @ViewChild(StepEmploymentTypeComponent) empType: StepEmploymentTypeComponent;
   @ViewChild(StepSalarysliderComponent) salSlider: StepSalarysliderComponent;
-  @ViewChild(ImmigrationManagerComponent) Immi:ImmigrationManagerComponent;
+  //@ViewChild(ImmigrationManagerComponent) immi:ImmigrationManagerComponent;
   // formData: any;
   // joblist = new InsertJob();
   disable1:any;
@@ -380,7 +380,11 @@ if (this.appService.isDrafted.value != null) {
         this.appService.postjob(this.insertJob).subscribe(data => {
           if (data) {
             this.insertJob.JobId = data;
-            this.jobIdVals.push(data);           
+            this.jobIdVals.push(data); 
+            // if(this.immi.selectedItems.length>0)
+            // {
+            //   this.immi.AddStatus();
+            // }          
             localStorage.setItem('jobId', this.insertJob.JobId.toString());
             localStorage.setItem('JobId', this.insertJob.JobId.toString());
             localStorage.setItem('Item', false.toString());
@@ -456,15 +460,10 @@ if (this.appService.isDrafted.value != null) {
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
-        if(this.Immi.ImmigrationList.length>0)
-        {
-          this.Immi.immi.UserId=this.userId;
-          this.Immi.immi.JobId=data;
-          this.Immi.immi.Immigration=this.Immi.ImmigrationListData.map(x=>x.ImmigrationStatusId).toString();
-          this.appService.SaveJobImmigration(this.Immi.immi).subscribe(
-            data => {
-            });
-        }
+        // if(this.immi.selectedItems.length>0)
+        // {
+        //   this.immi.AddStatus();
+        // } 
          
         
     

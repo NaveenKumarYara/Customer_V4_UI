@@ -61,7 +61,8 @@
                   <li class="icon__department" *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length==0">
                     N/A
                   </li>
-                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.PostedOn}}</li>
+                  <li class="icon__date">{{jobdetailscustomer?.JobInfo?.ModifiedDate
+                    | date:'mediumDate'}}</li>
                   <li class="icon__position">Number of Positions <span>
                       {{jobdetailscustomer?.JobInfo?.NumberOfVacancies}}</span></li>
                 </ul>
