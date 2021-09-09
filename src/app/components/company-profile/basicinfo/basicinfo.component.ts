@@ -129,9 +129,9 @@ export class BasicinfoComponent implements AfterViewInit {
 
     this.selectCountry = [
             {
-      "name": "United States",
+      "name": "United States/Canada",
       "dial_code": "+1",
-      "code": "US"
+      "code": "US/CA"
       },
       {
       "name": "Afghanistan",
@@ -318,11 +318,11 @@ export class BasicinfoComponent implements AfterViewInit {
       "dial_code": "+237",
       "code": "CM"
       },
-      {
-      "name": "Canada",
-      "dial_code": "+1",
-      "code": "CA"
-      },
+      // {
+      // "name": "Canada",
+      // "dial_code": "+1",
+      // "code": "CA"
+      // },
       {
       "name": "Cape Verde",
       "dial_code": "+238",
