@@ -142,8 +142,7 @@
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 1">
                 <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
-                  <span
-                    class="tooltip-text">{{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
+                  <span class="tooltip-text">{{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
                     <span class="tooltipcontent">
                       <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
                         {{imi?.ImmigrationStatus}},
@@ -475,7 +474,7 @@
                             <ul class="flex flex-wrap flex-align-equal">
                               <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                                 <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
-                                  <div class="col__container">
+                                  <div class="col__container" style="margin-right: 15px;">
                                     <span> {{r?.Code | titlecase}} </span>
                                     <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
                                       {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em>
@@ -599,7 +598,6 @@
                                 professionals can have a look apply for your position. <a href="javascript:void(0)"
                                   (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
                                   update.</a></span>
-
                             </div>
                           </div>
                         </div>
@@ -664,7 +662,7 @@
                           <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                             <ng-container *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
                               <li><a href="javascript:void(0)"> {{r?.Code | titlecase}}
-                                  <span>Exp: {{r?.CustomerKeyMaxExperienceId |monthsPipe}} -
+                                  <span>Exp: {{r?.CustomerKeyMinExperienceId |monthsPipe}} -
                                     {{r?.CustomerKeyMaxExperienceId |monthsPipe}} Years</span></a> </li>
                             </ng-container>
 

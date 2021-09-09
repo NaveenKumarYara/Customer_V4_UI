@@ -9,46 +9,38 @@
                     <div class="row">
                         <div class="col-md-6 w-auto">
                             <label class="radio checkbox">
-                <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false,0)">
-                <span class="radio-btn wh-22 ml-0"></span>
-                <span> INTERNAL </span>
+                                <input type="radio" class="radio-input" name="team" [checked]="true"
+                                    (click)="teamchange(false,0)">
+                                <span class="radio-btn wh-22 ml-0"></span>
+                                <span> INTERNAL </span>
 
-              </label>
+                            </label>
                         </div>
-                        <!-- <div class="col-md-6 w-auto">
-                            <label class="radio checkbox">
-                <input type="radio" class="radio-input" name="team" (click)="teamchange(true,1)">
-                <span class="radio-btn wh-22 ml-0"></span>
-                <span> EXTERNAL</span>
-
-              </label>
-                        </div> -->
                     </div>
-
-
-
-
                     <ng-container *ngIf="!AddUser">
                         <form action="">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="">Add Team Member</label>
                                     <div class="input-group">
-                                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts" name="team" placeholder="Add Team Members" (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput" [hideSelected]="true"
-                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
+                                        <ng-select class="custom-style interview-schedule-popup"
+                                            [items]="customercontacts" name="team" placeholder="Add Team Members"
+                                            (change)="changeTeam($event)" bindLabel="FirstName" bindValue="UserId"
+                                            [typeahead]="selectedUserInput" [hideSelected]="true"
+                                            [loading]="usersloading" id="teamMbr" [(ngModel)]="selectedUserName"
+                                            name="selectedUserName" [virtualScroll]="true" #TMemb="ngModel">
                                         </ng-select>
 
                                         <span class="input-group-btn">
-                      <button class="btn" (click)="addTeammembers()">+</button>
-                    </span>
-                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                            <button class="btn" (click)="addTeammembers()">+</button>
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
                                     </div>
                                     <ul class="share_candidate team-members-list">
                                         <li *ngFor="let teammember of teammemberslist; let i = index">
                                             <div class="w-100">
-                                                <!-- <img src="http://api.tenendus.com:1090/IdentityAPI/EsolvitImages/professional.png" alt="img"> -->
                                                 <h4>{{teammember.FirstName}}
-                                                    <!-- <span class="dept">{{teammember.RoleName}}</span> -->
                                                 </h4>
                                                 <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
                                             </div>
@@ -59,10 +51,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Comments</label>
-                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
+                                    class="form-control resize-none" placeholder="Please add your comments *"
+                                    rows="10"></textarea>
                             </div>
                         </form>
-
                     </ng-container>
                     <ng-container *ngIf="AddUser">
                         <form action="">
@@ -71,20 +64,24 @@
                                     <label for="">Add Team Member</label>
                                     <div class="row">
                                         <div class="col-md-5 col-sm-5">
-                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Name *">
+                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name"
+                                                placeholder="Name *">
                                         </div>
                                         <div class="col-md-5 col-sm-5 sm-pt-2">
-                                            <input type="email" class="form-control" [(ngModel)]="EmailId" name="EmailId" placeholder="Email *">
+                                            <input type="email" class="form-control" [(ngModel)]="EmailId"
+                                                name="EmailId" placeholder="Email *">
                                         </div>
                                         <div class="col-md-2 col-sm-2 sm-pt-2">
-                                            <button class="btn add-btn form-control mt-0" type="button" (click)="AddContacts()" >+</button>
+                                            <button class="btn add-btn form-control mt-0" type="button"
+                                                (click)="AddContacts()">+</button>
                                         </div>
                                         <div class="col-md-12 pr-30">
                                             <ul class="data-list">
-                                                <li class="col-md-12 pr-0  mt-10" *ngFor="let item of GetContactsList;let i = index">                                               
-                                                            <span class="name w-45">{{item?.Fullname}}</span>
-                                                            <span class="experience w-45 pl-15">{{item?.EmailId}}</span>
-                                                            <span class="close w-10" (click)="onItemDeleted(i)">×</span>                                                                                                    
+                                                <li class="col-md-12 pr-0  mt-10"
+                                                    *ngFor="let item of GetContactsList;let i = index">
+                                                    <span class="name w-45">{{item?.Fullname}}</span>
+                                                    <span class="experience w-45 pl-15">{{item?.EmailId}}</span>
+                                                    <span class="close w-10" (click)="onItemDeleted(i)">×</span>
                                                 </li>
 
 
@@ -97,7 +94,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Comments</label>
-                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments" class="form-control resize-none" placeholder="Please add your comments *" rows="10"></textarea>
+                                <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
+                                    class="form-control resize-none" placeholder="Please add your comments *"
+                                    rows="10"></textarea>
                             </div>
                         </form>
 
@@ -110,7 +109,10 @@
         <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
 
             <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="ShareProfile()" class="btn btn-filled">Share</button>
+            <button mat-button (click)="ShareProfile()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+            <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+                <i class="fa fa-spinner fa-spin"></i>
+            </button>
 
         </mat-dialog-actions>
     </div>

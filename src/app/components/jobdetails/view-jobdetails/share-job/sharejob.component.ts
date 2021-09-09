@@ -109,7 +109,7 @@ export class ShareJobComponent {
     });
   }
   ShareJob() {
-
+    debugger;
     this.isSharingStarted = true;
 
     this.Sharing.ShareId = 0;
