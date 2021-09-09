@@ -9,7 +9,8 @@
                   <h2>Step into the future of hiring with Arytic.</h2>
 
                   <p>
-                     Here, we just don’t stop with Skills.Take a step ahead to Hire with a right Personality, Culture and Team fit. Because, It's just not Hiring. You are actually building your future.
+                     Here, we just don’t stop with Skills.Take a step ahead to Hire with a right Personality, Culture
+                     and Team fit. Because, It's just not Hiring. You are actually building your future.
                   </p>
                   <figure><img src="../../../assets/images/ai-recruiting-system.svg" width="400" alt="banner"
                         class="img-fluid"></figure>
@@ -40,11 +41,11 @@
                      <div *ngIf="show" class="alert alert-danger">
                         Email not registered.
                      </div>
-                     <form [formGroup]="loginform" (ngSubmit)="login()">
+                     <form [formGroup]="loginform">
                         <div class="form-group spt-2">
                            <input type="email" class="form-control" [pattern]="emailPattern" placeholder="Email Address"
-                              [formControl]="loginform.controls['Email']" (keypress)="MissClear()"
-                              (keyup)="MissClear()" oninput="this.value = this.value.toLowerCase()">
+                              [formControl]="loginform.controls['Email']" (keypress)="MissClear()" (keyup)="MissClear()"
+                              oninput="this.value = this.value.toLowerCase()">
 
                         </div>
                         <div class="form-group">
@@ -52,6 +53,10 @@
                               placeholder="Password" [formControl]="loginform.controls['Password']">
                            <span class="glyphicon glyphicon-eye-open"></span>
                         </div>
+                        <div>
+                           <recaptcha [formControl]="myRecaptcha"></recaptcha>
+                        </div>
+                        <br />
                         <div class="text-right">
                            <div class="d-flex justify-content-between">
                               <small> <a href="javascript:void(0)" (click)="forgot()">Forgot password</a></small>
@@ -59,15 +64,11 @@
                                        account?</a></span></small>
                            </div>
                            <div class="spt-2">
-
-                              <recaptcha
-                              [formControl]="myRecaptcha"
-                            ></recaptcha>
-                              <!-- <button type="submit" class="btn2 pull-right">Login </button> -->
-                              <!--Button loader style-->
-                              <button type="submit" class="btn2 pull-right" [class.spinner]="loading"
-                                 (click)="loginstyle()">Login</button>
-                              <!--Button loader style-->
+                              <button *ngIf="!loading" class="btn2 pull-right" (click)="login()">Login</button>
+                              <button *ngIf="loading" type="submit" class="btn2 pull-right">
+                                 Signing In
+                                 <i class="fa fa-spinner fa-spin"></i>
+                              </button>
                            </div>
                         </div>
                      </form>

@@ -36,15 +36,15 @@ export class ViewCandidateprofileComponent implements OnInit {
   email: any;
   showMenu: boolean;
   jobStatus: any;
-  selectedSkills:any=[];
-  skillfitcheck:any=[];
+  selectedSkills: any = [];
+  skillfitcheck: any = [];
   showShortDesciption = true;
-  checkPersonality:any=[];
+  checkPersonality: any = [];
   CulturalTestStatusNew: number = 0;
   profileview: any;
   aboutShow: any;
   aboutContent: any;
-  FitDetails:any;
+  FitDetails: any;
   MatchingPercentage: any;
   profileId: any;
   fileType = new Resume();
@@ -90,7 +90,7 @@ export class ViewCandidateprofileComponent implements OnInit {
   selectedMenuItem: any;
   menuHeading: any;
   smallRadarChartData = {
-    labels: ["Job Fit", "Skill Fit",  "Culture Fit", "Personality Fit" ,"Team Fit"],
+    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit", "Team Fit"],
     datasets: [
       {
         label: "Arytic Fit",
@@ -147,7 +147,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   TeamFitLabels = {
-    labels: ["Majestic","Artistic", "Unit", "Dev", "Energy"]
+    labels: ["Majestic", "Artistic", "Unit", "Dev", "Energy"]
   }
   TeamFit = {
     labels: ["M", "A", "U", "D", "E"],
@@ -173,7 +173,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       {
         label: "Skill Fit",
         data: [],
-        
+
         backgroundColor: ["rgb(255, 99, 132)"],
       },
     ],
@@ -190,7 +190,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     ],
   };
   Culture = {
-    labels: ['Value Match','Rank Match','Culture Fit'],
+    labels: ['Value Match', 'Rank Match', 'Culture Fit'],
     datasets: [
       {
         label: "Culture Fit",
@@ -269,7 +269,9 @@ export class ViewCandidateprofileComponent implements OnInit {
   pageEvent: PageEvent;
   sortedData;
   @ViewChild("paginator") paginator: MatPaginator;
-  alist: any=[];
+  alist: any = [];
+  showMaskedData: boolean;
+  profile: any;
 
   constructor(
     private dialogRef: MatDialogRef<ViewCandidateprofileComponent>,
@@ -290,12 +292,15 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.jobStatus = this.data.jobStatus;
 
     this.GetBG();
+    debugger;
+    this.profile = this.data.profile;
     this.name = this.data.Name;
     this.lname = this.data.Lname;
     this.toastr.setRootViewContainerRef(_vcr);
     this.GetDrugVerification();
     this.GetBGTestResult();
-  
+
+    this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) && this.profile.ResponseStatusId > 0 && this.profile.UserId > 0 && this.profile.IsConfirmed == null;
 
     this.CurrentTime = new Date();
     this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
@@ -305,15 +310,15 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.showMenu = false;
   }
 
-  GetMatchingPercentage(){
+  GetMatchingPercentage() {
     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(this.data.ProfileId, this.data.jobId).subscribe((res) => {
       this.Match = res;
       this.MatchingPercentage = res.Total_Match_Per;
       setInterval(() => {
-        this.smallRadarChartData.datasets[0].data=[res.JobFit.toFixed(2),res.SkillFit.toFixed(2),res.CultureFit.toFixed(2),res.Personalityfit.toFixed(2),0];
-      },1000)
-    
-     
+        this.smallRadarChartData.datasets[0].data = [res.JobFit.toFixed(2), res.SkillFit.toFixed(2), res.CultureFit.toFixed(2), res.Personalityfit.toFixed(2), 0];
+      }, 1000)
+
+
     });
   }
 
@@ -348,9 +353,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.dialogRef.close();
     localStorage.setItem("cprofileId", profileId);
     localStorage.setItem("cuserId", userId);
-    //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-    const url = this.customer.Defaulturl.Purl;
-    //const url ='http://localhost:4400/app-view-candidateprofile-detail';
+    const url = '/app-view-candidateprofile-detail';
     window.open(url, "_blank");
   }
 
@@ -363,63 +366,21 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
     return bytes.buffer;
   }
-
-  /*dashboard graph*/
-  // public lineChartData: Array<any> = [
-  //   {data: [1, 2, 2, 3, 3, 4, 5], label: 'ANGULAR'},
-  //   {data: [4, 4, 4, 5, 5, 5, 5], label: '.NET'},
-  //   {data: [3, 4, 2, 4, 3, 5, 4], label: 'AWS'}
-  // ];
-  // public lineChartLabels: Array<any> = ['2013', '2014', '2015', '2016', '2017', '2018', '2019'];
-  // public lineChartOptions: any = {
-  //   responsive: true
-  // };
-
-  // public lineChartColors: Array<any> = [
-  //   {
-  //     backgroundColor: 'rgba(172,154,249,0.2)',
-  //     borderColor: 'rgba(172,154,249,1)',
-  //     pointBackgroundColor: 'rgba(172,154,249,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(172,154,249,0.8)'
-  //   },
-  //   {
-  //     backgroundColor: 'rgba(132,222,203,0.2)',
-  //     borderColor: 'rgba(132,222,203,1)',
-  //     pointBackgroundColor: 'rgba(132,222,203,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(132,222,203,1)'
-  //   },
-  //   {
-  //     backgroundColor: 'rgba(231, 172, 243,0.2)',
-  //     borderColor: 'rgba(231, 172, 243,1)',
-  //     pointBackgroundColor: 'rgba(231, 172, 243,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(231, 172, 243,0.8)'
-  //   }
-  // ];
-  // public lineChartLegend = true;
-  // public lineChartType = 'line';
-  /*#dashboard graph*/
- 
   ngOnInit() {
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
     }
 
     $(document).on('click touchend', function (e) {
-			if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
-				$('.revamp__filter__sidebar__box').removeClass('full');
-				$('.revamp__filter__sidebar__box').removeClass('show');
-				$('.revamp__filter__sidebar__box').removeClass('big');
-				$('.data-grid-view').removeClass('open');
-				$('.data-grid-table').removeClass('open');
-				$('.sub__item').removeClass('active');
-			}
-		});
+      if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
+        $('.revamp__filter__sidebar__box').removeClass('full');
+        $('.revamp__filter__sidebar__box').removeClass('show');
+        $('.revamp__filter__sidebar__box').removeClass('big');
+        $('.data-grid-view').removeClass('open');
+        $('.data-grid-table').removeClass('open');
+        $('.sub__item').removeClass('active');
+      }
+    });
 
     function cloudAttr() {
       $(".word-cloud angular-tag-cloud span").each(function () {
@@ -427,21 +388,22 @@ export class ViewCandidateprofileComponent implements OnInit {
         // $('<div class="tooltip fade top in">'+$( this ).text()+'</div>').appendTo( this );
         $(
           '<div class="tooltip fade bottom hover-active"><div class="tooltip-arrow"></div><div class="tooltip-inner">' +
-            $(this).text() +
-            "</div></div>"
+          $(this).text() +
+          "</div></div>"
         ).appendTo(this);
       });
     }
     cloudspan();
+    debugger;
     this.GetCandidateSKills();
     this.GetUserProfileInfo();
     this.GetProfileDetails();
-      this.GetMatchingPercentage();
-      this.GetAchivements();
-    this.smallRadarChartData.datasets[0].data=[this.data.JobFit.toFixed(2),
-      this.data.Skillfit.toFixed(2),
-      this.data.CulutureFit.toFixed(2),
-      this.data.Personalityfit.toFixed(2),
+    this.GetMatchingPercentage();
+    this.GetAchivements();
+    this.smallRadarChartData.datasets[0].data = [this.data.JobFit.toFixed(2),
+    this.data.Skillfit.toFixed(2),
+    this.data.CulutureFit.toFixed(2),
+    this.data.Personalityfit.toFixed(2),
       0];
     this.GetJobNotes();
     this.GetCandidateJobFitResult();
@@ -457,11 +419,11 @@ export class ViewCandidateprofileComponent implements OnInit {
       }
     });
 
-    
+
   }
 
 
-  
+
   onChartClick(event) {
     console.log(event);
   }
@@ -471,6 +433,8 @@ export class ViewCandidateprofileComponent implements OnInit {
       .GetService("JobsAPI/api/GetUserInfoByProfileMapping?profileId=", this.data.ProfileId)
       .subscribe((data) => {
         this.details = data;
+        this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) &&
+          this.profile.ResponseStatusId > 0 && this.profile.UserId > 0 && this.profile.IsConfirmed == null
       });
   }
 
@@ -589,15 +553,14 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
       this.email = email.UserName;
       this.jobdetailsservice.getPersonalityTest(this.email).subscribe((data) => {
-        this.checkPersonality=data;
+        this.checkPersonality = data;
         if (data.length > 0) {
-          data.forEach((a)=>
-          {         
-           this.PersonalityFit.labels.push(a.groupName);
-           this.PersonalityFit.datasets[0].data.push(a.response.toFixed(2));
-           this.PersonalityFitLabels.labels.push(a.groupName);
-           this.Personality.datasets[0].data.push(a.response.toFixed(2));
-          })             
+          data.forEach((a) => {
+            this.PersonalityFit.labels.push(a.groupName);
+            this.PersonalityFit.datasets[0].data.push(a.response.toFixed(2));
+            this.PersonalityFitLabels.labels.push(a.groupName);
+            this.Personality.datasets[0].data.push(a.response.toFixed(2));
+          })
         }
       });
     });
@@ -607,55 +570,52 @@ export class ViewCandidateprofileComponent implements OnInit {
     this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.data.ProfileId).subscribe((email) => {
       this.email = email.UserName;
       this._service.GetService('ProfileAPI/api/GetCultureFitReport?email=', this.email)
-      .subscribe(
-        data4 => {
-          this.CulturalTestStatusNew = data4.Total; 
-          if (data4!=null) {
-             this.Culture.datasets[0].data = [data4.Valuematch,data4.Rankmatch,data4.Total];           
-          }
-        })
-        
-      });
+        .subscribe(
+          data4 => {
+            this.CulturalTestStatusNew = data4.Total;
+            if (data4 != null) {
+              this.Culture.datasets[0].data = [data4.Valuematch, data4.Rankmatch, data4.Total];
+            }
+          })
+
+    });
   }
 
   GetCandidateJobFitResult() {
-      this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+    this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
       .subscribe(
         data2 => {
-          if (data2!=null) {
+          if (data2 != null) {
             var exp;
-              if(data2.ExperienceFit == null)
-              {
-               exp  = 0;
-              }
-              else
-              {
-                exp =  data2.ExperienceFit;
-              }
-             this.Job.datasets[0].data = [exp,data2.RoleFit,data2.JobHopping,data2.Education];           
+            if (data2.ExperienceFit == null) {
+              exp = 0;
+            }
+            else {
+              exp = data2.ExperienceFit;
+            }
+            this.Job.datasets[0].data = [exp, data2.RoleFit, data2.JobHopping, data2.Education];
           }
-          this.FitDetails= data2.JobFit; 
-       
+          this.FitDetails = data2.JobFit;
+
         })
   }
 
   GetCandidateSkillFitResult() {
-      this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
+    this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', this.data.ProfileId + '&jobId=' + this.data.jobId)
       .subscribe(
         data3 => {
           this.skillfitcheck = data3;
           if (data3.length > 0) {
-            data3.forEach((a)=>
-            {     
-             var color = Math.floor(0x1000000 * Math.random()).toString(16);
-             var r= '#' + ('000000' + color).slice(-6);
-             this.Skill.datasets[0].backgroundColor.push(r);
-             this.Skill.labels.push(a.SkillName);
-             this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
-            
-            //  this.PersonalityFitLabels.labels.push(a.groupName);
-            //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
-            })             
+            data3.forEach((a) => {
+              var color = Math.floor(0x1000000 * Math.random()).toString(16);
+              var r = '#' + ('000000' + color).slice(-6);
+              this.Skill.datasets[0].backgroundColor.push(r);
+              this.Skill.labels.push(a.SkillName);
+              this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));
+
+              //  this.PersonalityFitLabels.labels.push(a.groupName);
+              //  this.Personality.datasets[0].data.push(a.response.toFixed(2));
+            })
           }
           // if(data3.length==1)
           // {
@@ -675,7 +635,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     return string;
   }
 
-  showAryticFitChart () {
+  showAryticFitChart() {
     this.aryticFitChartVisible = true;
     this.selectedMenuItem = '';
   }
@@ -692,7 +652,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.aryticFitChartVisible = true;
       this.selectedMenuItem = '';
     } else {
-      
+
       this.menuHeading = "Arytic Check";
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Reference Check" },
@@ -743,8 +703,8 @@ export class ViewCandidateprofileComponent implements OnInit {
       )
       .subscribe((data) => {
         this.Verification = data[0];
-      
-        if (this.Verification.ProfileId > 0 && this.data.length>0) {
+
+        if (this.Verification.ProfileId > 0 && this.data.length > 0) {
           this.ShowVer = true;
           this.bgverification.CriminalOptionSelected = this.Verification.CriminalOptionSelected;
           this.bgverification.DrugOptionSelected = this.Verification.DrugOptionSelected;
@@ -813,30 +773,27 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
   }
 
-  GetAchivements()
-  {
+  GetAchivements() {
     this._service.GetService('ProfileAPI/api/GetCandidateAchievementList?profileId=', this.data.ProfileId).subscribe(
-        data => {
-            this.alist=data;
-        }
+      data => {
+        this.alist = data;
+      }
     )
   }
 
   GetQuestionnariePersonsList() {
     this._service.GetService('ProfileAPI/api/GetQuestionnaireAssignmentNew?userId=' + this.data.UserId, '&showId=4')
-    .subscribe(
-      data => {
-      if(data != "No records found")
-      {
-       this.usersList = data;  
-      }
-      else
-      {
-        this.usersList = [];         
-      }
+      .subscribe(
+        data => {
+          if (data != "No records found") {
+            this.usersList = data;
+          }
+          else {
+            this.usersList = [];
+          }
 
-       
-      });
+
+        });
   }
 
   SaveBg(val) {
@@ -1027,13 +984,13 @@ export class GetQuestions {
     public QuestionType: string,
     public Answers: string,
     public ModifiedAnswers: string
-  ) {}
+  ) { }
 }
 export class InsertReferences {
   constructor(
     public CandidateReferenceId: number = 0,
     public ListCandidateReferenceDetails: CandidateReferenceDetails[] = []
-  ) {}
+  ) { }
 }
 export class GetQuestionnarieAssignement {
   constructor(
@@ -1051,7 +1008,7 @@ export class GetQuestionnarieAssignement {
     public StatusId: number,
     public ReferenceStatus: string,
     public Code: string
-  ) {}
+  ) { }
 }
 
 export class GetQuestionnarieResponse {
@@ -1062,7 +1019,7 @@ export class GetQuestionnarieResponse {
     public Question: string,
     public Response: string,
     public ResponseValue: string
-  ) {}
+  ) { }
 }
 
 export class RequestRefernce {
