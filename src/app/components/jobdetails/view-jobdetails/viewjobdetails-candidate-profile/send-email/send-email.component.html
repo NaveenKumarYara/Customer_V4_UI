@@ -8,74 +8,12 @@
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
   </ngx-spinner>
-  <!--Tab View-->
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="card manage-uploads clearfix">
-      <!-- <ul class="nav nav-tabs"> -->
-      <!-- <li role="presentation" class="active">
-          <a data-toggle="tab" href="#sendEmail" aria-expanded="false">Send Email</a>
-        </li> -->
-      <!-- <li role="presentation" class="">
-          <a data-toggle="tab" href="#emailNotification" aria-expanded="true">Email Notification</a>
-        </li> -->
-
-      <!-- <span class="active-line"></span> -->
-      <!-- </ul> -->
       <div class="tab-content">
         <div id="sendEmail" class="tab-pane fade active in  w-50">
-          <!-- <div class="pb-2"></div> -->
-          <!--  <div class="d-block w-100" *ngIf="mailbox==false">
-             
-             
-
-              <div class="mail-con">
-                      <div class="mail-sub">{{data.EmailId}}</div>
-                      <div class="mail-sub">{{subject}}</div>
-                      <div class="mail-body pt-1"><p>{{body}}</p></div>
-                    </div> -->
-          <!-- <form>
-                <div class="input-group col-sm-12">
-                    <label class="mail-label">To : </label>
-                  <input type="email" class="form-control" name="ToEmailID" placeholder="Email" value="{{data.EmailId}}"
-                    disabled>
-                </div>
-
-                <div class="input-group col-sm-12 pt-2">
-                    <label class="mail-label">Subject : </label>
-                  <input type="text" class="form-control" name="subject" placeholder="subject" value="{{subject}}"
-                    disabled>
-                </div>
-                <div class="input-group col-sm-12 pt-2">
-                    <label class="mail-label">Body :</label>
-                  <textarea class="form-control col-sm-12" name="body" cols="30" rows="40" disabled>{{body}}</textarea>
-                </div>
-                <div _ngcontent-c9="" class="col-sm-12 p-19 pr-0">
-                    <div class="pull-right">
-                        Edit Email &nbsp;
-                        <button class="btn btn-transparent no-padding ml-1" (click)="EditMail()">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="19.8" height="20" fill="#9eabc0">
-                            <g>
-                              <path
-                                d="M15 20H2.8C1.2 20 0 18.8 0 17.2V5c0-1.5 1.2-2.8 2.8-2.8h5.5c.6 0 1 .4 1 1s-.4 1-1 1H2.8c-.5 0-.8.4-.8.8v12.3c0 .4.3.7.8.7H15c.4 0 .8-.3.8-.8v-5.5c0-.6.4-1 1-1s1 .4 1 1v5.5c0 1.6-1.3 2.8-2.8 2.8z">
-                              </path>
-                              <path
-                                d="M6.6 14.3c-.3 0-.5-.1-.7-.3-.3-.3-.4-.6-.3-1l.8-2.6c0-.2.1-.3.3-.4L16.3.4c.4-.4 1-.4 1.4 0l1.9 1.9c.4.4.4 1 0 1.4L10 13.3c-.1.1-.3.2-.4.3l-2.6.8c-.2-.2-.3-.1-.4-.1zm1.6-3.2l-.2.7.7-.2 8.7-8.7-.4-.5-8.8 8.7z">
-                              </path>
-                            </g>
-                          </svg>
-                        </button>
-                        <button type="submit" class="btn s-btn">Send Email</button>
-                      </div>
-                  
-                </div>
-              </form> 
-
-            </div>-->
-
-
           <ng-container>
             <form #form="ngForm" (ngSubmit)="sendEmail()">
-              <!-- <div > -->
               <div class="input-group col-sm-12">
                 <label class="mail-label">To : </label>
                 <input type="email" class="form-control" [disabled]="!mailbox" [(ngModel)]="ToEmailID" name="ToEmailID"
@@ -94,60 +32,18 @@
                 <label class="mail-label">Body :</label>
                 <textarea class="form-control col-sm-12" [(ngModel)]="body" name="body" cols="30" rows="40"></textarea>
               </div>
-              <!-- </div> -->
               <div class="col-sm-12 p-19 pr-0 edit-mail">
                 <div class="pull-right">
-                  <button type="submit" class="btn s-btn">Send Email</button>
+                  <button type="submit" class="btn s-btn" *ngIf="!isSendingEmail">Send Email</button>
+                  <button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sending Email...
+                    <i class="fa fa-spinner fa-spin"></i>
+                  </button>
                 </div>
-                <!-- <button type="submit"  class="btn s-btn pull-right">Send Email</button> -->
               </div>
             </form>
-
           </ng-container>
         </div>
-        <!-- <div id="emailNotification" class="tab-pane fade searchProfiles card  w-50">
-          <div class="clearfix">&nbsp;</div>
-          <div>
-            <h5>April 01, 2019</h5>
-            <ul class="notification-list">
-              <li>
-                <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                <p>
-                  <b>lisa</b> sent to
-                  <a href="#">xyz@xyz.com</a>
-                </p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                <p>
-                  <b>lisa</b> sent to
-                  <a href="#">xyz@xyz.com</a>
-                </p>
-                <div class="time">2:30pm</div>
-              </li>
-              <li>
-                <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                <p>
-                  <b>lisa</b> sent to
-                  <a href="#">xyz@xyz.com</a>
-                </p>
-                <div class="time">2:30pm</div>
-              </li>
-            </ul>
-          </div>
-
-        </div> -->
-
       </div>
-      <!-- .tab-content -->
     </div>
-
-    <!-- .card.statistics -->
   </div>
-  <!--Tab View End-->
-
-
-
-
 </div>

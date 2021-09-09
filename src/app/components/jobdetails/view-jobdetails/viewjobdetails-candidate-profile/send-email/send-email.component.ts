@@ -33,7 +33,8 @@ export class SendEmailComponent implements OnInit {
   UserId: any;
   UserRoleId: any;
   body: string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private _service: ApiService, public dialogRef: MatDialogRef<SendEmailComponent>, private toastr: ToastsManager, private spinner: NgxSpinnerService, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
+  isSendingEmail: boolean;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appService: AppService, private _service: ApiService, public dialogRef: MatDialogRef<SendEmailComponent>, private toastr: ToastsManager, private _vcr: ViewContainerRef, private jobdetailsservice: JobdetailsService, private settingsService: SettingsService) {
     this.toastr.setRootViewContainerRef(_vcr);
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.emailUpdate.JobId = data.jobId;
@@ -86,7 +87,8 @@ export class SendEmailComponent implements OnInit {
 
   sendEmail() {
 
-    this.spinner.show();
+    this.isSendingEmail = true;
+    //this.spinner.show();
     this.conversation.FullName = this.data.firstname + this.data.lastname;
     this.conversation.Subject = this.subject;
     this.conversation.CCEmailAddress = this.ccEmailAddress;
@@ -131,12 +133,12 @@ export class SendEmailComponent implements OnInit {
         this.jobdetailsservice.UpdateStatusOnEmailConversation(this.emailUpdate).subscribe(data1 => {
         });
 
-        this.spinner.hide();
+        //this.spinner.hide();
+        this.isSendingEmail = false;
+        this.dialogRef.close();
         this.toastr.success('Mail Sent', 'Success');
         setTimeout(() => {
           this.toastr.dismissToast;
-
-          this.dialogRef.close();
         }, 3000);
         this.conversation.FullName = '';
         this.conversation.Subject = '';
@@ -144,9 +146,13 @@ export class SendEmailComponent implements OnInit {
         this.conversation.ToEmailID = '';
         this.mailbox = false;
       }
-    });
-
-
+    },
+      error => {
+        this.isSendingEmail = false;
+      },
+      () => {
+        this.isSendingEmail = false;
+      });
   }
 
   Check() {

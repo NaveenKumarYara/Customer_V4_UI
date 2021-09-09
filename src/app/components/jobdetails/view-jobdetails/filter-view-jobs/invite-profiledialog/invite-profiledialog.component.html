@@ -7,34 +7,12 @@
     <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
   </p>
 </div>
-
 <div class="mat-typography">
-  <!--Tab View-->
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="card manage-uploads clearfix">
       <div class="tab-content">
         <div id="sendEmail" class="tab-pane fade active in  w-50">
-          <!--APR-12-->
-          <!-- <form [formGroup]="inviteform"  (ngSubmit)="SaveInvite()">
-            
-            <div class="input-group">
-                <div class="form-group p-rel">
-                  <input  formControlName="inviteEmail"
-           id="Email"   class="form-control" name="inviteEmail" placeholder="Email" type="email" required>
-           
-             
-                </div>
-          
-                <span class="input-group-btn">
-                    <button type="submit" class="btn">Submit</button>
-                  </span>
-               
-              </div>
-          
-              <span>please send multiple emails with , seperated</span>
-          </form> -->
-          <!--#APR-12-->
-          <form [formGroup]="inviteform" (ngSubmit)="SaveInvite()">
+          <form [formGroup]="inviteform">
             <div class="input-group col-sm-12 pt-2 p-rel">
               <div class="clearfix">&nbsp;</div>
               <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
@@ -51,86 +29,16 @@
             <div class="clearfix">&nbsp;</div>
             <div class="col-sm-12 plr-0">
               <div class="pull-right">
-                <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
-                (click)="loginstyle()">Submit</button>
+                <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" (click)="SaveInvite()"
+                  *ngIf="!startedInvite">Invite</button>
+                <button class="btn btn-filled btn-next" *ngIf="startedInvite">Inviting...<i
+                    class="fa fa-spinner fa-spin"></i></button>
               </div>
             </div>
           </form>
           <div class="clearfix">&nbsp;</div>
-          <!--Invite Status Code Starts-->
-          <!-- <div class="invite-profile-status">
-            <h3 *ngIf="jobData?.length>0">Invite Profile Status</h3>
-            <table class="table table-striped">
-              <thead *ngIf="jobData?.length>0">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Email Address</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let job of jobData; let i=index">
-                  <ng-container *ngIf="i<5">
-                    <td *ngIf="job?.CImage!=null"><img class="img-circle" src="{{job?.CImage}}" width="64" alt="img"></td>
-                    <td>{{job?.Email}}</td>
-                    <ng-container *ngIf="job?.ProfileId == null && job?.SkillProfileId == null">
-                      <td>Invited</td>
-                    </ng-container>
-                    <ng-container *ngIf="job?.ProfileId > 0 && job?.SkillProfileId > 0 ">
-                      <td>Profile Created</td>
-                    </ng-container>
-                    <ng-container *ngIf="job?.ProfileId > 0 && job?.SkillProfileId == null">
-                      <td>Signed up</td>
-                    </ng-container>
-                  </ng-container>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
-
-
-
-          <!--Invite Status Code Ends-->
-
-          <!-- <div>
-              <h5>April 01, 2019</h5>
-                <ul class="notification-list">
-                  <li>
-                    <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                    <p>
-                      <b>lisa</b> sent to
-                      <a href="#">xyz@xyz.com</a>
-                    </p>
-                    <div class="time">2:30pm</div>
-                  </li>
-                  <li>
-                    <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                    <p>
-                        <b>lisa</b> sent to
-                        <a href="#">xyz@xyz.com</a>
-                    </p>
-                    <div class="time">2:30pm</div>
-                  </li>
-                  <li>
-                    <img src="../../../../../../assets/images/ui-face-2.png" alt="">
-                    <p>
-                        <b>lisa</b> sent to
-                        <a href="#">xyz@xyz.com</a>
-                    </p>
-                    <div class="time">2:30pm</div>
-                  </li>
-                </ul>
-              </div> -->
-
-
         </div>
-
-
       </div>
-      <!-- .tab-content -->
     </div>
-
-    <!-- .card.statistics -->
   </div>
-  <!--Tab View End-->
 </div>
