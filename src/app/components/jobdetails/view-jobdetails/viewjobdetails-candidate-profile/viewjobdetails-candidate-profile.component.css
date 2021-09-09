@@ -2132,3 +2132,7 @@ textarea {
      width:260px;
    }
   }
+
+  .disabled:hover {
+    cursor:not-allowed
+ }

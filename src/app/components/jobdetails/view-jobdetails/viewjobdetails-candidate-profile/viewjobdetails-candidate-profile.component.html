@@ -702,8 +702,16 @@
                 profile?.UserId > 0 &&
                 profile?.IsConfirmed == null;
               else elseBlock
+<<<<<<< HEAD
             " tooltip="Start email Conversation with candidate." placement="top">
             <a href="javascript:void(0)" (click)="
+=======
+            "
+            tooltip="Start email Conversation with candidate." placement="top">
+            <a 
+              href="javascript:void(0)"
+              (click)="
+>>>>>>> d60b3e54e9529a3967932494c76857ca0dd3c46e
                 OpenSendEmailDialog(
                   profile?.NoEmail,
                   profile?.Email,
@@ -744,6 +752,7 @@
           </li>
           <ng-template #elseBlock>
             <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
+<<<<<<< HEAD
               <li tooltip="Email not yet added." placement="left">
                 <a href="javascript:void(0)" (click)="
                     OpenSendEmailDialog(
@@ -758,6 +767,15 @@
                       profile?.UserId
                     )
                   " data-toggle="modal" data-target="#inbox">
+=======
+              <li  tooltip="Email not yet provided to send email." placement="left">
+                <a
+                  href="javascript:void(0)"
+                  class="disabled"
+                   data-toggle="modal"
+                  data-target="#inbox" 
+                >
+>>>>>>> d60b3e54e9529a3967932494c76857ca0dd3c46e
                   <!--(click)="OpenChatboxDialog()"-->
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
