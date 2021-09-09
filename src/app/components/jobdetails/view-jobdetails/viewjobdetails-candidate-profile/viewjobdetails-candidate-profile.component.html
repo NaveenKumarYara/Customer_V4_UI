@@ -1006,7 +1006,7 @@
               else elseBlock
             "
             tooltip="Start email Conversation with candidate." placement="top">
-            <a
+            <a 
               href="javascript:void(0)"
               (click)="
                 OpenSendEmailDialog(
@@ -1067,24 +1067,12 @@
           </li>
           <ng-template #elseBlock>
             <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
-              <li tooltip="Email not yet added." placement="left">
+              <li  tooltip="Email not yet provided to send email." placement="left">
                 <a
                   href="javascript:void(0)"
-                  (click)="
-                    OpenSendEmailDialog(
-                      profile?.NoEmail,
-                      profile?.Email,
-                      profile?.FirstName,
-                      profile?.LastName,
-                      profile?.JobResponseId,
-                      profile?.ProfileId,
-                      profile?.ResponseStatusId,
-                      profile?.CCPID,
-                      profile?.UserId
-                    )
-                  "
-                  data-toggle="modal"
-                  data-target="#inbox"
+                  class="disabled"
+                   data-toggle="modal"
+                  data-target="#inbox" 
                 >
                   <!--(click)="OpenChatboxDialog()"-->
                   <svg
