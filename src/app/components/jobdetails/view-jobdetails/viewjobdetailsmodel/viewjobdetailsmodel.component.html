@@ -142,10 +142,11 @@
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length > 1">
                 <li><img src="../../../../../assets/images/icon__03.png" title="Immigration Status">
-                  <span class="tooltip-text">{{imi?.ImmigrationStatus}}+
+                  <span
+                    class="tooltip-text">{{jobdetailscustomer?.JobInfo?.ImmigrationForJob[0].ImmigrationStatus}}+
                     <span class="tooltipcontent">
                       <ng-container *ngFor="let imi of jobdetailscustomer?.JobInfo?.ImmigrationForJob">
-                        {{imi?.ImmigrationStatus}}
+                        {{imi?.ImmigrationStatus}},
                       </ng-container>
                     </span>
                   </span>
