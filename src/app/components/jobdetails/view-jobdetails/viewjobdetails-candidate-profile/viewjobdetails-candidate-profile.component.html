@@ -701,17 +701,11 @@
               (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                 profile?.UserId > 0 &&
                 profile?.IsConfirmed == null;
-              else elseBlock
-<<<<<<< HEAD
-            " tooltip="Start email Conversation with candidate." placement="top">
-            <a href="javascript:void(0)" (click)="
-=======
-            "
-            tooltip="Start email Conversation with candidate." placement="top">
+              else elseBlock">
             <a 
+               
               href="javascript:void(0)"
               (click)="
->>>>>>> d60b3e54e9529a3967932494c76857ca0dd3c46e
                 OpenSendEmailDialog(
                   profile?.NoEmail,
                   profile?.Email,
@@ -723,7 +717,9 @@
                   profile?.CCPID,
                   profile?.UserId
                 )
-              " data-toggle="modal" data-target="#inbox">
+              " 
+              tooltip="Start email Conversation with candidate." placement="top"
+              data-toggle="modal" data-target="#inbox">
               <!--(click)="OpenChatboxDialog()"-->
               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="21px"
