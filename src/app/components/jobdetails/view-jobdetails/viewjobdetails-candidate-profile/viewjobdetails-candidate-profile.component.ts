@@ -565,10 +565,12 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
     });
   }
 
-  OpenCandidateDialog(profile, profileId, Uid, FirstName, LastName) {
+  OpenCandidateDialog(profileId, Uid, FirstName, LastName) {
+    debugger;
     // if (this.jobStatus!='InActive') {
     this.spinner.show();
-    sessionStorage.setItem("selectedProfile", JSON.stringify(profile));
+    let candidateProfile = this.jobdetailsprofiles.Profile.find(item => item.ProfileId === profileId);
+    sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
     this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
       if (res) {
         this.matchingParameterDetails = res;
@@ -586,7 +588,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
             Personalityfit: this.matchingParameterDetails.Personalityfit,
             Skillfit: this.matchingParameterDetails.SkillFit,
             CulutureFit: this.matchingParameterDetails.CultureFit,
-            profile: profile
+            profile: candidateProfile
             // status : this.statusid
           },
         });

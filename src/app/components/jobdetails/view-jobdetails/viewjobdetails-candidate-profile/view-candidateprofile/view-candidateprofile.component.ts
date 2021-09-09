@@ -300,6 +300,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.GetDrugVerification();
     this.GetBGTestResult();
 
+    this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) && this.profile.ResponseStatusId > 0 && this.profile.UserId > 0 && this.profile.IsConfirmed == null;
 
     this.CurrentTime = new Date();
     this.dateYesterday = new Date(this.dateYesterday.setDate(this.dateYesterday.getDate() - 1));
@@ -352,10 +353,7 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.dialogRef.close();
     localStorage.setItem("cprofileId", profileId);
     localStorage.setItem("cuserId", userId);
-    //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-    //const url = this.customer.Defaulturl.Purl;
     const url = '/app-view-candidateprofile-detail';
-    //const url ='http://localhost:4400/app-view-candidateprofile-detail';
     window.open(url, "_blank");
   }
 
@@ -368,48 +366,6 @@ export class ViewCandidateprofileComponent implements OnInit {
     }
     return bytes.buffer;
   }
-
-  /*dashboard graph*/
-  // public lineChartData: Array<any> = [
-  //   {data: [1, 2, 2, 3, 3, 4, 5], label: 'ANGULAR'},
-  //   {data: [4, 4, 4, 5, 5, 5, 5], label: '.NET'},
-  //   {data: [3, 4, 2, 4, 3, 5, 4], label: 'AWS'}
-  // ];
-  // public lineChartLabels: Array<any> = ['2013', '2014', '2015', '2016', '2017', '2018', '2019'];
-  // public lineChartOptions: any = {
-  //   responsive: true
-  // };
-
-  // public lineChartColors: Array<any> = [
-  //   {
-  //     backgroundColor: 'rgba(172,154,249,0.2)',
-  //     borderColor: 'rgba(172,154,249,1)',
-  //     pointBackgroundColor: 'rgba(172,154,249,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(172,154,249,0.8)'
-  //   },
-  //   {
-  //     backgroundColor: 'rgba(132,222,203,0.2)',
-  //     borderColor: 'rgba(132,222,203,1)',
-  //     pointBackgroundColor: 'rgba(132,222,203,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(132,222,203,1)'
-  //   },
-  //   {
-  //     backgroundColor: 'rgba(231, 172, 243,0.2)',
-  //     borderColor: 'rgba(231, 172, 243,1)',
-  //     pointBackgroundColor: 'rgba(231, 172, 243,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(231, 172, 243,0.8)'
-  //   }
-  // ];
-  // public lineChartLegend = true;
-  // public lineChartType = 'line';
-  /*#dashboard graph*/
-
   ngOnInit() {
     function cloudspan() {
       setTimeout(cloudAttr, 9000);
@@ -438,6 +394,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       });
     }
     cloudspan();
+    debugger;
     this.GetCandidateSKills();
     this.GetUserProfileInfo();
     this.GetProfileDetails();
