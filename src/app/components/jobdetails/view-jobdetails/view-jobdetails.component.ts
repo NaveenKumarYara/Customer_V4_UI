@@ -200,6 +200,7 @@ export class ViewJobdetailsComponent implements OnInit {
 
   OpenCandidateDialog(profileId) {
     // if (this.jobStatus!='InActive') {
+      let candidateProfile = sessionStorage.getItem("selectedProfile");
     const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
       {
         width: '750',
@@ -208,6 +209,7 @@ export class ViewJobdetailsComponent implements OnInit {
         data: {
           ProfileId: profileId,
           jobId: this.jobid,
+          profile: candidateProfile
           // status : this.statusid
         }
       }
