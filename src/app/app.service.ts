@@ -1114,14 +1114,20 @@ export class AppService {
   }
 
   addKeyRole(key: GetKeyRole) {
-    this.keyrole.push(key);
-    this.keyroleChanged.next(this.keyrole.slice());
-    const kVal = new KeyRole();
-    kVal.CustomerKeyResponsebility = key.CustomerKeyResponsebility;
-    kVal.CustomerKeyMinExperienceId = key.CustomerKeyMinExperienceId;
-    kVal.CustomerKeyMaxExperienceId = key.CustomerKeyMaxExperienceId;
-    this.addkeyrole.push(kVal);
-    this.addkeyroleChanged.next(this.addkeyrole.slice());
+    var index = this.keyrole.findIndex(x => x.CustomerKeyResponsebility == key.CustomerKeyResponsebility)
+    if (index === -1) {
+      this.keyrole.push(key);
+      this.keyroleChanged.next(this.keyrole.slice());
+      const kVal = new KeyRole();
+      kVal.CustomerKeyResponsebility = key.CustomerKeyResponsebility;
+      kVal.CustomerKeyMinExperienceId = key.CustomerKeyMinExperienceId;
+      kVal.CustomerKeyMaxExperienceId = key.CustomerKeyMaxExperienceId;
+      this.addkeyrole.push(kVal);
+      this.addkeyroleChanged.next(this.addkeyrole.slice());
+    }else {
+      console.log("object already exists")
+    }
+   
   }
   addDomain(domain: GetDomain) {
     this.domain.push(domain);

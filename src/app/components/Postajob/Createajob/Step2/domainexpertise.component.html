@@ -28,9 +28,9 @@
           bindLabel="minExperience"  #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
         </ng-select> -->
         <input class="form-control"   #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
-        <small class="text-danger error1" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
+        <!-- <small class="text-danger error1" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be greater than Max Experience!
-        </small>
+        </small> -->
       </div>
  <div class="form-group exp col-md-2 mr-20 pt-0 domain-min-max" >
         <label for="" class="mr-0">Max Experience</label>
@@ -38,9 +38,9 @@
     bindLabel="name" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience"> 
         </ng-select> -->
         <input class="form-control"  #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience"  (keypress)="numberOnly($event)" required placeholder="Max years" type="text">
-        <small class="text-danger error1" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
+        <!-- <small class="text-danger error1" *ngIf="MinDomainEpx.value > MaxDomainEpx.value">
           It can't be less than Min Experience!
-        </small>
+        </small> -->
       </div> 
       <!-- <div class="form-group exp col-md-4">
           <label for="">Required Experience</label>

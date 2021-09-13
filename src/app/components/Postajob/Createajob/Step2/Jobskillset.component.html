@@ -30,9 +30,9 @@
                 </ng-select>  -->
                 <input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text" required>
                 <small class="text-danger error1 " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
-                <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
+                <!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
                         Can't be > Max Exp!
-                </small>
+                </small> -->
                 <small class="text-danger error1" *ngIf="minExp.value==0">
                     Can't be 0  Exp!
             </small>
@@ -43,7 +43,7 @@
                 </ng-select>   -->
                 <input class="form-control"  #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience" (keypress)="numberOnly($event)" required  placeholder="Max years" type="text" required>
                 <small class="text-danger error1" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
-                <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small>
+                <!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small> -->
                 <small class="text-danger error1" *ngIf="maxExp.value==0">
                     Can't be 0  Exp!
             </small>

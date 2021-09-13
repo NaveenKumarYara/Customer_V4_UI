@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, NgForm } from '@angular/forms';
 import { AppService } from '../../../../app.service';
@@ -10,6 +10,7 @@ import { Subject, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { ChangeContext, LabelType, Options } from 'ng5-slider';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'app-steps-step2-domainexpertise',
   templateUrl: './domainexpertise.component.html',
@@ -51,7 +52,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
       }
     }
   };
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private toastr: ToastsManager, private _vcr: ViewContainerRef,
     private router: Router, private appService: AppService) {
       this.getDomain = new GetDomain();
 
@@ -105,6 +106,7 @@ export class DomainExpertiseComponent implements OnInit, OnDestroy {
   public addDomain() {
   if (this.domainForm.valid) {
     if (Number(this.MaximumExperience) < Number(this.MinimumExperience)) {
+      this.toastr.info('Please provide valid Experience','Oh no!!!');
       return false;
   }
     // const newDomain = new GetDomain();

@@ -266,9 +266,9 @@
             <small class="error1" *ngIf="Minexp.invalid && Minexp.touched">         
               *Required
             </small>
-            <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
+            <!-- <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
               It can't be greater than Max Experience!
-            </small>
+            </small> -->
           </div>
       </div>
       <div class="col-md-2 max-key-exp">
@@ -280,9 +280,9 @@
           <small class="error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
             *Required
           </small>
-          <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
+          <!-- <small class="error1" *ngIf="MaximumExperience<MinimumExperience">
             It can't be less than Min Experience!
-          </small>
+          </small> -->
         </div>
       </div>
        <div class="col-md-2 add-key-btn add__btn">
