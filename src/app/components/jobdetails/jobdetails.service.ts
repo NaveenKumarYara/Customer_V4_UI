@@ -28,6 +28,7 @@ import {Router,ActivatedRoute,NavigationEnd} from "@angular/router";
 import { NgxSpinnerService } from 'ngx-spinner';
 import {WishlistCount,LegendList} from './models/WishlistCount';
 import { SettingsService } from '../../../settings/settings.service';
+import { RecentApplicants } from '../../../models/recentapplicants';
 
 @Injectable()
 export class JobdetailsService {
@@ -189,6 +190,16 @@ export class JobdetailsService {
       );
 
   }
+
+  getRecentApplicants(customerId:number,userId:number,count: number): Observable<RecentApplicants[]> {
+    const url = this.settingsService.settings.RecentApplicants +
+    'customerId=' + customerId + '&userId=' + userId + '&page=1&numberOfRows=5';
+    return this.http.get<RecentApplicants[]>(url)
+        .debounceTime(1000)
+        .catch(
+            this.handleError
+        );
+ }
 
   getJobDetailCustomer(customerId: number, jobId: number): Observable<GetJobDetailCustomer> {
     const url = this.settingsService.settings.JobDetailsofCustomer + 'customerId=' + customerId + '&jobId=' + jobId;

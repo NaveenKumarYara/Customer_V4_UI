@@ -24,8 +24,8 @@ export class DashboardRecentApplicationsComponent implements OnInit {
    sessionStorage.setItem('jobId', JSON.stringify(jobId));
    localStorage.setItem('rprofileId', JSON.stringify(profileId));;
    this.router.navigateByUrl('app-view-jobdetails');
-   let candidateProfile = this.recentapplicantlist.find(item => item.ProfileId === profileId);
-   sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
+   //let candidateProfile = this.recentapplicantlist.find(item => item.ProfileId === profileId);
+   //sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
      }
 
   ngOnInit() {
