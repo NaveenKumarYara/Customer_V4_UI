@@ -795,7 +795,7 @@
                 <ul class="history__container custom__scrollbar lg-bar" id="historyNav">
                   <ng-container *ngFor="let exps of profExperience;let i=index ">
                     <li class="professional main__history " [ngClass]="{'active': check===i}" (click)="CheckDesc(i)">
-                      <span class="year"><span>Now</span></span>
+                      <span class="year"><span>{{exps.EndDate | date: "yyyy" }}</span></span>
                       <div class="info__box">
                         <p>{{exps?.StartDate | date:'mediumDate'}} - {{exps?.EndDate | date:'mediumDate'}}</p>
                         <h5>{{exps?.JobTitle}}</h5>
@@ -809,14 +809,14 @@
                         <ng-container *ngIf="exps?.ProjectExp.length>0">
                           <ng-container *ngFor="let pro of exps?.ProjectExp">
                             <li *ngIf="pro?.ProjectName != 'New Project'">
-                              <span class="year"><span>Now</span></span>
+                              <span class="year"><span>{{pro?.ToDate | date: "yyyy" }}</span></span>
                               <div class="info__box">
                                 <h5>{{pro?.ProjectName}}</h5>
                                 <p>{{pro?.FromDate | date:'mediumDate'}}-{{pro?.ToDate | date:'mediumDate'}}</p>
                               </div>
                             </li>
                             <li *ngIf="pro?.ProjectName === 'New Project'">
-                              <span class="year"><span>Now</span></span>
+                              <!-- <span class="year"><span>{{exp.EndDate | date: "yyyy" }}</span></span> -->
                               <div class="info__box">
                                 <p>Candidate yet to provide </p>
                               </div>
@@ -826,7 +826,7 @@
 
                         <ng-container *ngIf="exps?.ProjectExp.length===0">
                           <li>
-                            <span class="year"><span>Now</span></span>
+                            <!-- <span class="year"><span>Now</span></span> -->
                             <div class="info__box">
                               <p class="empty__para">Yet to provide </p>
                             </div>

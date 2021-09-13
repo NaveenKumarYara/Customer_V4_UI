@@ -61,6 +61,7 @@ export class ViewJobdetailsComponent implements OnInit {
   invited: any;
   wishlist: any;
   arytic: any;
+  recentapplicantlist:any=[];
   location: any;
   domain: any;
   customerId: any;
@@ -198,27 +199,35 @@ export class ViewJobdetailsComponent implements OnInit {
     }
   }
 
+  GetProfileDetails()
+  {
+    this.jobdetailsservice.getRecentApplicants(this.customerId,this.userId,5).subscribe(res => {
+      this.recentapplicantlist = res;
+      this.OpenCandidateDialog(this.ProfileId);
+      localStorage.removeItem('rprofileId');       
+   });
+  }
+
   OpenCandidateDialog(profileId) {
-    // if (this.jobStatus!='InActive') {
-      let candidateProfile = sessionStorage.getItem("selectedProfile");
-    const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
-      {
-        width: '750',
-        position: { right: '0px' },
-        height: '750px',
-        data: {
-          ProfileId: profileId,
-          jobId: this.jobid,
-          profile: candidateProfile
-          // status : this.statusid
-        }
-      }
-    );
-    viewCandidatedialogRef.afterClosed().subscribe(result => {
-      // this.jobDetails.populateJobsStaticInfo(this.jobid);
-      // this.myEvent.emit(null);
-      console.log('candidate Dialog result: ${result}');
-    });
+ 
+     let candidateProfile = this.recentapplicantlist.find(item => item.ProfileId === Number(profileId));
+     sessionStorage.setItem("selectedProfile", JSON.stringify(candidateProfile));
+        const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent,
+          {
+            width: '750',
+            position: { right: '0px' },
+            height: '750px',
+            data: {
+              ProfileId: profileId,
+              jobId: this.jobid,
+              profile: candidateProfile
+              // status : this.statusid
+            }
+          }
+        );
+        viewCandidatedialogRef.afterClosed().subscribe(result => {
+          console.log('candidate Dialog result: ${result}');
+        });
     // }
   }
 
@@ -654,8 +663,7 @@ export class ViewJobdetailsComponent implements OnInit {
     //this.GetProfileSuggestedCount();
     this.populateJobsStaticInfo(this.customerId, this.jobid, 1);
     if (this.ProfileId != null || this.ProfileId != undefined) {
-      this.OpenCandidateDialog(this.ProfileId);
-      localStorage.removeItem('rprofileId');
+      this.GetProfileDetails();
     }
     // this.updateappliedstatus();
     this.fileUploadForm = this.fb.group({
