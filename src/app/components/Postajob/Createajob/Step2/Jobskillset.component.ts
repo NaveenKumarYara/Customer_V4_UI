@@ -84,6 +84,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
   public addSkills() {
     if ($('#skills').val() === '1') {
       if (Number(this.maxexperience) < Number(this.minexperience)) {
+        this.toastr.info('Please provide valid Experience','Oh no!!!');
         return false;
       }
       this.appService.addSkills(localStorage.getItem('skill'));
@@ -119,6 +120,7 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
     }
     if (this.form.valid) {
       if (Number(this.maxexperience) < Number(this.minexperience)) {
+        this.toastr.info('Please provide valid Experience','Oh no!!!');
         return false;
       }
 
