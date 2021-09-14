@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { forEach } from '@angular/router/src/utils/collection';
 import { SettingsService } from '../../../../../settings/settings.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -32,12 +33,19 @@ export class ShareJobComponent {
   getTeammember: CustomerUsers;
   userIds: any;
   emaiIds: any;
+  inviteform: FormGroup;
   Sharing = new JobShare();
   customer: any;
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
+  //emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; 
+  Emailinvite:any;
+  inviteinfo = new InviteInfo();
+  inviteEmail:any;
   AddUser: boolean = false;
   customerId: number;
   UserId: any;
   info: number;
+  changeval:boolean=false;
   EmailId: any = null;
   Name: any = null;
   usersloading: boolean;
@@ -50,7 +58,7 @@ export class ShareJobComponent {
   isSharingStarted: boolean;
 
 
-  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -58,7 +66,9 @@ export class ShareJobComponent {
   }
 
   ngOnInit() {
-
+    this.inviteform = this.fb.group({
+      'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
+    });
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.isSharingStarted = false;
@@ -79,9 +89,62 @@ export class ShareJobComponent {
     });
   }
 
+  teamchange(val)
+  {
+  this.changeval= val;
+  }
+
+  commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
+    const emails = control.value.split(',');
+    const forbidden = emails.some(email => Validators.email(new FormControl(email)));
+    console.log(forbidden);
+    return forbidden ? { 'inviteEmail': { value: control.value } } : null;
+  };
 
   changeTeam(val) {
     this.getTeammember = val;
+  }
+
+  SaveInvite() {
+    this.isSharingStarted = true;
+    this.inviteinfo.customerId = this.customerId;
+    this.inviteinfo.userId = this.userId;
+    this.inviteinfo.jobId = this.data.JobId;
+    this.inviteinfo.userName =   this.customer.FirstName;
+    this.inviteinfo.fullName = 'Arytic User';
+    this.inviteinfo.statusId = 0;
+    this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
+    this.inviteinfo.ApplicationName = 'Arytic';
+    this.inviteinfo.CandFullName = 'New User';
+    this.inviteinfo.CustFullName = this.customer.FirstName;
+    this.inviteinfo.ClientLogo = '';
+    this.inviteinfo.AppLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
+    if(this.inviteinfo.ToEmailId == "")
+    {
+      
+      this.toastr.error('Please provide the valid details!', 'Oops!');
+        setTimeout(() => {
+            this.toastr.dismissToast;
+        }, 3000);
+    }
+    else if(this.inviteinfo.ToEmailId != "")
+    {
+      
+    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
+       if (data === 0) {  
+        this.toastr.success('Mail sent successfully', 'Success');
+        setTimeout(() => {
+         this.toastr.dismissToast;      
+         this.inviteform.reset();
+         this.dialogRef.close();
+     }, 3000);
+    
+       }
+     }, error => {
+       //alert('error ');
+            console.log('error:', JSON.stringify(error));
+           });
+   }
   }
 
   clearTeamMemebers() {
@@ -182,3 +245,19 @@ export class JobShare {
   readonly modules: ReadonlyArray<{}> = []
 }
 
+
+export class InviteInfo {
+  customerId:number;
+  userId: number;
+  jobId: number;
+  fullName: string;
+  userName: string;
+  statusId: number;
+  CustFullName: string;
+  CandFullName: string;
+  AppLink: string;
+  ToEmailId: string;
+  ApplicationName: string;
+  ClientLogo: string;
+  readonly modules: ReadonlyArray<{}> = [];
+  }
