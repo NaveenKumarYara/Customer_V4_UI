@@ -179,7 +179,15 @@ maxRate: number;
       this.departments = this.appService.departments;
         this.location = this.appService.JobLocations;
         this.locations =this.appService.Locationswithpositions;
-        this.contractExtension = this.appService.Workauthorize;
+        if(this.appService.Workauthorize.length>0)
+        {
+          this.contractExtension = this.appService.Workauthorize;
+        }
+        if(this.appService.Workauthorize.length===0)
+        {
+          this.contractExtension = this.appService.WorkauthorizeNames.map(x=>x.WorkAuthorizationId);
+        }
+       
         //this.noOfopening=this.appService.noofOpenings;
     // this.appService.departmentsChanged.subscribe(x =>  = x);
     // this.client = localStorage.getItem('client');
