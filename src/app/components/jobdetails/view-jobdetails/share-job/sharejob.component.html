@@ -11,34 +11,79 @@
                     <form action="">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="">Add Team Member</label>
-                                <div class="input-group">
-                                    <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts"
-                                        name="team" placeholder="Add Team Members" (change)="changeTeam($event)"
-                                        bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput"
-                                        [hideSelected]="true" [loading]="usersloading" id="teamMbr"
-                                        [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
-                                        #TMemb="ngModel">
-                                    </ng-select>
-
-                                    <span class="input-group-btn">
-                                        <button class="btn" (click)="addTeammembers()">+</button>
-                                    </span>
-                                    <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                <div class="row">
+                                    <div class="col-md-6 w-auto">
+                                        <label class="radio checkbox">
+                            <input type="radio" class="radio-input" name="team" [checked]="true" (click)="teamchange(false)">
+                            <span class="radio-btn wh-22 ml-0"></span>
+                            <span> INTERNAL </span>
+            
+                          </label>
+                                    </div>
+                                    <div class="col-md-6 w-auto">
+                                        <label class="radio checkbox">
+                            <input type="radio" class="radio-input" name="team" (click)="teamchange(true)">
+                            <span class="radio-btn wh-22 ml-0"></span>
+                            <span> EXTERNAL</span>
+                          
+            
+                          </label>
+                                    </div>
                                 </div>
-                                <ul class="share_candidate team-members-list">
-                                    <li *ngFor="let teammember of teammemberslist; let i = index">
-                                        <div class="w-100">
-                                            <h4>{{teammember.FirstName}}
-                                            </h4>
-                                            <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                <ng-container *ngIf="changeval===false">
+                                    <div class="input-group">
+                                        <ng-select class="custom-style interview-schedule-popup" [items]="customercontacts"
+                                            name="team" placeholder="Add Team Members" (change)="changeTeam($event)"
+                                            bindLabel="FirstName" bindValue="UserId" [typeahead]="selectedUserInput"
+                                            [hideSelected]="true" [loading]="usersloading" id="teamMbr"
+                                            [(ngModel)]="selectedUserName" name="selectedUserName" [virtualScroll]="true"
+                                            #TMemb="ngModel">
+                                        </ng-select>
+    
+                                        <span class="input-group-btn">
+                                            <button class="btn" (click)="addTeammembers()">+</button>
+                                        </span>
+                                        <span class="text-danger" *ngIf="TMemb.invalid && TMemb.touched">Required.</span>
+                                    </div>
+                                    <ul class="share_candidate team-members-list">
+                                        <li *ngFor="let teammember of teammemberslist; let i = index">
+                                            <div class="w-100">
+                                                <h4>{{teammember.FirstName}}
+                                                </h4>
+                                                <span class="close mt-14" (click)="deleteTeammember(i)">&times;</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </ng-container>
+                                <ng-container *ngIf="changeval===true">
+                                    <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+                                    <form [formGroup]="inviteform">
+                                        <div class="input-group col-sm-12 pt-2 p-rel">
+                                          <div class="clearfix">&nbsp;</div>
+                                          <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+                                            autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
+                                        </textarea>
+                                          <div
+                                            *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
+                                            class="error1">
+                                            <div *ngIf="inviteform.controls['inviteEmail']">
+                                              Incorrect Email.
+                                            </div>
+                                          </div>
                                         </div>
-                                    </li>
-                                </ul>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <!-- <div class="col-sm-12 plr-0">
+                                          <div class="pull-right">
+                                            <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
+                                            (click)="loginstyle()">Submit</button>
+                                          </div>
+                                        </div> -->
+                                      </form>
+                                </ng-container>
 
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" *ngIf="changeval===false">
                             <label for="">Comments</label>
                             <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
                                 class="form-control resize-none" placeholder="Please add your comments *"
@@ -50,10 +95,19 @@
         </mat-dialog-content>
         <mat-dialog-actions class="mat-dialog-actions modal-footer pull-right">
             <button mat-button mat-dialog-close class="btn btn-border">Close</button>
-            <button mat-button (click)="ShareJob()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
-            <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
-                <i class="fa fa-spinner fa-spin"></i>
-            </button>
+            <ng-container *ngIf="changeval===false">
+                <button mat-button (click)="ShareJob()"  class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>   
+                <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+                    <i class="fa fa-spinner fa-spin"></i>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="changeval===true">         
+                <button mat-button (click)="SaveInvite()" class="btn btn-filled" *ngIf="!isSharingStarted">Share</button>
+                <button mat-button class="btn btn-filled" *ngIf="isSharingStarted">Sharing...
+                    <i class="fa fa-spinner fa-spin"></i>
+                </button>
+            </ng-container>
+          
         </mat-dialog-actions>
     </div>
 </div>
