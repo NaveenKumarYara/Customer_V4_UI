@@ -17,10 +17,13 @@
 									<ul class="flex flex-wrap flex-align-equal">
 										<li class="flex-value">
 											<h4>Objective</h4>
-											<h5 [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe.slice(0, 150)"
-												[ngClass]="{ 'show-less': showShortDesciption }"
-												title="{{ profileview?.ProfileBasicInfo?.AboutMe }}">
+											<h5 *ngIf="profileview?.ProfileBasicInfo?.AboutMe===null||profileview?.ProfileBasicInfo?.AboutMe===''">
+												Candidate yet to provide his objective.
 											</h5>
+											<h5 *ngIf="profileview?.ProfileBasicInfo?.AboutMe!=null&&profileview?.ProfileBasicInfo?.AboutMe!=''" [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:200"
+											class="textwrap"
+											title="{{ profileview?.ProfileBasicInfo?.AboutMe  | safeHtml  }}">
+										</h5>
 										</li>
 										<li class="flex second__child">
 											<div class="flex-self-center">

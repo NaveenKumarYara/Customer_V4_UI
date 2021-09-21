@@ -5148,3 +5148,16 @@ font-size: 11px;
 @media only screen and (max-width:480px) {
 	.culture-tile-row .col-xs-4 { width:100%; }
 }
+
+.textwrap {
+	width: 750px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	
+	padding: 10px;
+	font-size: 1.3rem;
+	margin: 0;
+	background: white;
+	resize: horizontal;
+  }
