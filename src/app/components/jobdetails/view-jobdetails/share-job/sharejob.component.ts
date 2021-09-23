@@ -111,7 +111,7 @@ export class ShareJobComponent {
     this.inviteinfo.userId = this.userId;
     this.inviteinfo.jobId = this.data.JobId;
     this.inviteinfo.userName =   this.customer.FirstName;
-    this.inviteinfo.fullName = 'Arytic User';
+    this.inviteinfo.fullName = this.customer.FirstName;
     this.inviteinfo.statusId = 0;
     this.inviteinfo.ToEmailId = this.inviteform.value.inviteEmail;
     this.inviteinfo.ApplicationName = 'Arytic';
@@ -136,8 +136,9 @@ export class ShareJobComponent {
         setTimeout(() => {
          this.toastr.dismissToast;      
          this.inviteform.reset();
-         this.dialogRef.close();
+      
      }, 3000);
+     this.dialogRef.close();
     
        }
      }, error => {
