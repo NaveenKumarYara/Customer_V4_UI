@@ -98,7 +98,7 @@
 
             <ul class="nav navbar-nav pull-right navbar-right user-options">
                 <!--Upgrade Now Alert starts-->
-                <li class="text-danger hidden-xs" routerLinkActive="active"
+                <li class="text-danger" routerLinkActive="active"
                     *ngIf="customer?.AccessDetails?.Subscription==true">
                     <a class="upgrade-now" href="Javascript:void(0)"
                         [routerLink]="['/app-accountsettings/app-billing-and-payments']">
@@ -217,7 +217,7 @@
                     </svg>
                   </a>
                 </li> -->
-                <li class="user-option">
+                <li class="user-option custom__user__option">
                     <a href="javascript:void(0)" (click)="ChangeCount()">
                         <span class="notification-count">{{notificationsCount||'0'}}</span>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

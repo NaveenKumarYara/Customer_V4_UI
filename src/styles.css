@@ -26889,3 +26889,16 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
     cursor: pointer;
    
 } 
+
+
+@media only screen and (max-width:767px) {
+    .dropdown-menu.pull-right.custom__dropdown__note {
+        left: 0;
+        right: auto;
+    }
+    .main-nav .user-option.custom__user__option a {
+        padding:0;
+    }
+   
+}
+    
