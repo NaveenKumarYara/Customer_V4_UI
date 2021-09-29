@@ -600,3 +600,12 @@
      width:260px;
    }
   }
+
+  .nav__tabs {
+    width:100%
+  }
+
+  #LoadMore {
+      float: left;
+      width: 100%;
+  }
