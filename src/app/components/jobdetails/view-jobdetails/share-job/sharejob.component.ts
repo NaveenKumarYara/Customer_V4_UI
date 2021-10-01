@@ -27,7 +27,7 @@ export interface DialogData {
 export class ShareJobComponent {
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
-
+  referLink:any;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
   getTeammember: CustomerUsers;
@@ -63,7 +63,34 @@ export class ShareJobComponent {
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
+  
   }
+
+  copyToClipboard() {
+    // var copyText = <HTMLInputElement>document.querySelector('.rjobLink');
+    // copyText.select();
+    // document.execCommand('Copy');
+    // alert('copied');
+    let element = $('#nbtnCpy');
+    let inputGroup = element.closest('.input-group');
+    let input = inputGroup.find('.text-to-copy');
+    let inputValue = inputGroup.find('.text-to-copy').val();
+
+    let msg = inputGroup.next('.copied');
+
+    if (inputValue.length > 0 && inputValue !== 'undefined') {
+        input.select();
+        document.execCommand('copy');
+        element.find('span').text('Copied!');
+        msg.addClass('show');
+    }
+
+    if (msg.hasClass('show')) {
+        setTimeout(function () {
+            msg.removeClass('show');
+        }, 1500);
+    }
+}
 
   ngOnInit() {
     this.inviteform = this.fb.group({
@@ -79,6 +106,8 @@ export class ShareJobComponent {
           this.teammemberslist = teammemberlist;
         }
       );
+      this.referLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
+      debugger
   }
 
   getcustomerusers() {
@@ -173,7 +202,6 @@ export class ShareJobComponent {
     });
   }
   ShareJob() {
-    debugger;
     this.isSharingStarted = true;
 
     this.Sharing.ShareId = 0;

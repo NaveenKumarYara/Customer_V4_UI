@@ -56,6 +56,18 @@
                                     </ul>
                                 </ng-container>
                                 <ng-container *ngIf="changeval===true">
+                                    <div class="form-group public-link">
+                                        <label class="label" for="job-link">Public Link</label>
+                                        <div class="input-group">
+                                          <input type="url" class="form-control text-to-copy njobLink" [(ngModel)]="referLink"  [ngModelOptions]="{standalone: true}" id="job-link">
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-secondary copy-btn" id="nbtnCpy" (click)="copyToClipboard()" type="button">
+                                              <img class="icon visible-xs" src="assets/images/copy-icon.svg" alt="">
+                                              <span class="hidden-xs">Copy Link</span>
+                                            </button>
+                                          </span>
+                                        </div>
+                                        </div>
                                     <small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
                                     <form [formGroup]="inviteform">
                                         <div class="input-group col-sm-12 pt-2 p-rel">
