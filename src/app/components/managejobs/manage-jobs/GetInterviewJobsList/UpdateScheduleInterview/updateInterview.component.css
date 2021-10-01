@@ -161,3 +161,15 @@ h2 {
 .btn-danger.btn__delete:focus { outline:none; }
 .ng-star-inserted .progress { background:#f1f2f6; box-shadow:none; }
 .ng-star-inserted .progress-bar { background:#448afa }
+
+@media only screen and (max-width:767px) {
+	.interview-type .nav-tabs > li  { width:50%; text-align: center; padding:0 7px; margin:14px 0 0; }
+	.page--job-details #scheduleInterview .interview-type .nav > li > a { margin-right: 0; }
+	.revamp__inline__radio__tab.inline-radio-tab { height: auto; }
+	.input-group.lg-right-padding { display: block; }
+	.lg-right-padding .custom-style { padding-right: 0; margin-bottom: 10px;}
+}
+
+@media only screen and (max-width:480px) {
+	.interview-type .nav-tabs > li { width:100%; }
+}
