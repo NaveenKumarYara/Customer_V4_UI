@@ -15722,6 +15722,8 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 @media (max-width: 1199px) {
     .page--account-settings .left-nav {
         margin-bottom: 30px;
+        height: auto;
+        min-height: initial;
     }
 }
 
