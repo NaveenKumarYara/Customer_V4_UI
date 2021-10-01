@@ -20,7 +20,7 @@
 											<h5 *ngIf="profileview?.ProfileBasicInfo?.AboutMe===null||profileview?.ProfileBasicInfo?.AboutMe===''">
 												Candidate yet to provide his objective.
 											</h5>
-											<h5 *ngIf="profileview?.ProfileBasicInfo?.AboutMe!=null&&profileview?.ProfileBasicInfo?.AboutMe!=''" [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:200"
+											<h5 *ngIf="profileview?.ProfileBasicInfo?.AboutMe!=null&&profileview?.ProfileBasicInfo?.AboutMe!=''" [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:150"
 											class="textwrap"
 											title="{{ profileview?.ProfileBasicInfo?.AboutMe  | safeHtml  }}">
 										</h5>
