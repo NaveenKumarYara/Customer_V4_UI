@@ -1,79 +1,83 @@
-<div>
-    <div class="section upload-video-dialog">
-        <h3>Video Profile</h3>
-        <p>
-            A video sizzle is a brief, video-based overview for a specific job opening that may include a summary of the position's responsibilities, qualifications, expectations, and often showcases the workspace, current employees, and company culture.
-        
-            <span>Spend 25 Secs explaining the role you are hiring for and the fit into your organisation (Explaining why the candidate should join your team) - Hiring Leader.</span>
-        </p>
-    </div>
-    <div class="video-col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <div>
-            <div class="video">
-                <div>
-                        <img src="assets/images/comingsoon.svg"  alt="comingsoon" width="250">
-                    <!-- <video #video class="video"></video> -->
-                </div>
-            </div>
-            <!--Commetting the Record Video Functionality, can be enabled after HTTPS enable for application. As Record video works on HTTPS-->
-            <div class="wrap-icon pt-2">
-                <div class="d-inline-block">
-                    <!-- <img id="btn-start-recording" (click)="startRecording()" src="assets/images/record-icon.png" alt="">  -->
-                    <img id="btn-start-recording" src="assets/images/record-icon.png" alt="RecordIcon">
-                    <p class="record-text">Record</p>
-                    <!-- <p id="record_p">Record</p>
-                    <img src="assets/images/upload-icon.png" id="btn-stop-recording" hidden (click)="stopRecording()"
-                        alt="">
-                    <p id="upload_p" hidden>Stop & Upload</p> -->
-                </div>
-            </div> 
-        </div>
-    </div>
-    <div class="video-col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <div>
-            <div class="video">
-                    <!-- <video controls class="video">
-                            <source [src]="videoProfile" type="video/mp4">
-                          </video> -->
-                          <video controls class="video" [src]="videoProfile" type="video/mp4">
-                              </video>
-            </div>
-        </div>
-            <div class="wrap-icon pt-2">
-                    <div class="d-inline-block ml-2">
-                        <!-- <a (click)="videoval.click()"> -->
-                        <label for="fileupload">
-                            <input id="fileupload" style="display: none;" type="file" #videovals
-                                (click)="videovals.value = null" value="" (change)="onVideoFileChange($event)">
-                            <img src="assets/images/upload-icon.png" alt="">
-                            <p>Upload</p>
-                        </label>
-                    </div>
-                </div>
-       
-    </div>
-    <div class="video-sizzle col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h4>Choose your video from recent uploads</h4>
-        <div class="row video-scrollbar">
-            <div class="col-xs-6 col-md-3 col-lg-3 " *ngFor="let videoSzl of videoSizzles">
-                <video controls>
-                    <source [src]="videoSzl?.VideoURL" type="video/mp4">
-                </video>
-                <div class="video-upload-control form-group">
-                    <!---->
-                    <label class="radio">
-                            <input type="radio" id="video-select"  (change)="setValue(type)" name="video-select"  class="radio-input" [value]="videoSzl?.VideoSizzleId">
-                            <span class="radio-btn"></span> 
-                            <!-- <span>{{type ? "Yes" : "No"}}</span> -->
-                          </label>
-                    <!---->
-                    <!-- <input id="video-select" type="radio" name="video-select" [value]="videoSzl?.VideoSizzleId" /> -->
-                    <a (click)="InsertSizzle(videoSzl?.VideoSizzleId, videoSzl?.VideoURL)">
-                        <!-- <img src="assets/images/upload-icon.png" alt="upload-icon"> -->
-                        Upload
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="upload-video-dialog-section ">
+	<div class="section upload-video-dialog">
+		<h3>Video Profile</h3>
+		<p>
+			A video sizzle is a brief, video-based overview for a specific job opening that may include a summary of the
+			position's responsibilities, qualifications, expectations, and often showcases the workspace, current employees,
+			and company culture.
+
+			<span>Spend 25 Secs explaining the role you are hiring for and the fit into your organisation (Explaining why the
+				candidate should join your team) - Hiring Leader.</span>
+		</p>
+	</div>
+	<div class="video-col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		<div>
+			<div class="video">
+				<div>
+					<img src="assets/images/comingsoon.svg" alt="comingsoon" width="250">
+					<!-- <video #video class="video"></video> -->
+				</div>
+			</div>
+			<!--Commetting the Record Video Functionality, can be enabled after HTTPS enable for application. As Record video works on HTTPS-->
+			<div class="wrap-icon pt-2">
+				<div class="d-inline-block">
+					<!-- <img id="btn-start-recording" (click)="startRecording()" src="assets/images/record-icon.png" alt="">  -->
+					<img id="btn-start-recording" src="assets/images/record-icon.png" alt="RecordIcon">
+					<p class="record-text">Record</p>
+					<!-- <p id="record_p">Record</p>
+					<img src="assets/images/upload-icon.png" id="btn-stop-recording" hidden (click)="stopRecording()"
+							alt="">
+					<p id="upload_p" hidden>Stop & Upload</p> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="video-col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		<div>
+			<div class="video">
+				<!-- <video controls class="video">
+					<source [src]="videoProfile" type="video/mp4">
+				</video> -->
+				<video controls class="video" [src]="videoProfile" type="video/mp4">
+				</video>
+			</div>
+		</div>
+		<div class="wrap-icon pt-2">
+			<div class="d-inline-block ml-2">
+				<!-- <a (click)="videoval.click()"> -->
+				<label for="fileupload">
+					<input id="fileupload" style="display: none;" type="file" #videovals (click)="videovals.value = null" value=""
+						(change)="onVideoFileChange($event)">
+					<img src="assets/images/upload-icon.png" alt="">
+					<p>Upload</p>
+				</label>
+			</div>
+		</div>
+
+	</div>
+	<div class="video-sizzle col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<h4>Choose your video from recent uploads</h4>
+		<div class="row video-scrollbar">
+			<div class="col-xs-6 col-md-3 col-lg-3 " *ngFor="let videoSzl of videoSizzles">
+				<video controls>
+					<source [src]="videoSzl?.VideoURL" type="video/mp4">
+				</video>
+				<div class="video-upload-control form-group">
+					<!---->
+					<label class="radio">
+						<input type="radio" id="video-select" (change)="setValue(type)" name="video-select" class="radio-input"
+							[value]="videoSzl?.VideoSizzleId">
+						<span class="radio-btn"></span>
+						<!-- <span>{{type ? "Yes" : "No"}}</span> -->
+					</label>
+					<!---->
+					<!-- <input id="video-select" type="radio" name="video-select" [value]="videoSzl?.VideoSizzleId" /> -->
+					<a (click)="InsertSizzle(videoSzl?.VideoSizzleId, videoSzl?.VideoURL)">
+						<!-- <img src="assets/images/upload-icon.png" alt="upload-icon"> -->
+						Upload
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -26585,23 +26585,26 @@ input[name='browsers']{width: 1200px;}
 }
 
 .revmap__profile__top .small__progress__bar svg { width:55px; height:auto; margin-top: 20px;}
+body .revamp__radio__grid.revamp__lg__radio__grid { padding:0 20px; }
 body .revamp__radio__grid .row { margin:0; position: relative; }
 body .revamp__radio__grid .row .sub__row  { position:static; }
 body .revamp__radio__grid .row .row { width:100%; }
-body .revamp__radio__grid .row .sub__row .price__icon { position:absolute; right:20px; top:0; }
-body .revamp__radio__grid .row .sub__row .price__icon h1 { font-size:16px; margin:0;  }
+body .revamp__radio__grid .row .row.sub__row__height { height:100%; }
+body .revamp__radio__grid label.label__row { width:100%; }
+body .revamp__radio__grid .row .sub__row .price__icon, body .revamp__radio__grid .sub__row .price__icon { color:#6A7E9C; position:absolute; right:20px; top:0; }
+body .revamp__radio__grid .row .sub__row .price__icon h1, body .revamp__radio__grid .sub__row .price__icon h1  { font-size:16px; margin:0;  }
 body .revamp__radio__grid .row .or { position:absolute; width:48px; height:48px; border-radius:50%; color:#fff; background:#126bf9; text-align:center; z-index:100; left:50%; top:50%; margin-top:-18px; margin-left:-24px; line-height:48px; }
-body .revamp__radio__grid label input[type="radio"] { left:-999em; }
+body .revamp__radio__grid label input[type="radio"] { left:-999em; position: absolute; }
 body .revamp__radio__grid label { box-shadow:none !important; border-radius:0; height:100%; display:block; }
 body .revamp__radio__grid .col__container { border:1px solid #eee; padding:15px; background: #fff; height:100%; border-radius:6px; box-shadow:4px 4px 10px rgb(158 171 192 / 20%) !important;  }
-body .revamp__radio__grid .col__container h4 { font-size:18px; color:#6e819e; margin:0 0 10px; }
-body .revamp__radio__grid .col__container ul { margin:0; padding:0 0 0 10px; list-style:none; }
+body .revamp__radio__grid .col__container h4 { font-size:18px; color:#6e819e; margin:0 0 10px; font-weight: 600; }
+body .revamp__radio__grid .col__container ul {  padding:0 0 0 10px; list-style:none; }
 body .revamp__radio__grid .col__container li { font-size:13px; color:#9eabc0; font-weight:300; margin:5px 0 0; position:relative; }
 body .revamp__radio__grid .col__container li:before { content:"\f00c"; font-family:'FontAwesome'; font-size:10px; position:absolute; left:-15px; }
 body .revamp__radio__grid .col { padding:0 7px; margin:14px 0 0; }
 body .revamp__radio__grid .col__container  .row .col-sm-6 {  width:30%;  }
 body .revamp__radio__grid .col__container  .row .col-sm-6:first-child { width:70%; }
-body .revamp__radio__grid .col__container  .row .col-sm-6:last-child { font-size:24px; font-weight:700; }
+body .revamp__radio__grid .col__container  .row .col-sm-6:last-child { font-size:24px; font-weight:700; color:#6A7E9C; }
 body .revamp__radio__grid .multiple__radio__row .col__container  ul { margin:0; padding:0;  }
 body .revamp__radio__grid .multiple__radio__row .col__container  li { display:inline-block; margin:0 6px 6px 0; }
 body .revamp__radio__grid .multiple__radio__row .col__container  li label { display:block;  padding:5px 8px 5px 25px; position:relative; border:1px solid #ccc; border-radius:6px; cursor:pointer;  }
@@ -26615,7 +26618,7 @@ body .revamp__radio__grid .multiple__radio__row .left__col { width:80%; }
 body .revamp__radio__grid .multiple__radio__row .right__col { width:20%; text-align:right; font-size:24px; font-weight:600; }
 body .revamp__radio__grid .info__row { margin:10px 0 !important; }
 body .revamp__radio__grid .info__row  .col-md-8  { font-size:13px;  }
-body .revamp__radio__grid .info__row  .about-drug-test { text-align:right }
+body .revamp__radio__grid .info__row  .about-drug-test { text-align:right; }
 body .revamp__radio__grid .info__row  p { margin:0 !important; padding:0 !important; border:0 !important; font-size:13px !important; }
 body .revamp__radio__grid input[type="radio"]:checked ~ .col__container, body .revamp__radio__grid input[type="checkbox"]:checked ~ .col__container { background:#eff2ff; border-color:#2e5bff; }
 body .revamp__radio__grid .multiple__radio__row .col__container li input[type="radio"]:checked ~ label { background:#eff2ff; border-color:#2e5bff; }
@@ -26904,3 +26907,7 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
    
 }
     
+
+body .revamp__radio__grid .multiple__radio__row .col__container li label { font-weight: 400; margin:0;  }
+body .revamp__radio__grid .icon__col { position: relative; }
+body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolute; left: -999em; }

@@ -65,3 +65,10 @@ margin-bottom:10px;
 .video-col img[alt="RecordIcon"],p.record-text{
     cursor: default;
 }
+
+.upload-video-dialog-section {
+    height: 90vh;
+    padding-right: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

@@ -495,7 +495,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
 
   OpenBgDialog(profileId, name, userId, lName) {
     const bdialogRef = this.dialog.open(backgrounddialogComponent, {
-      width: "888px",
+      width: "80vw",
       position: { right: "0px" },
       data: {
         ProfileId: profileId,
@@ -504,6 +504,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
         JobId: this.jobid,
         Name: name,
         Lname: lName,
+        panelClass:'candiateModalPop'
         // status : this.statusid
       },
     });

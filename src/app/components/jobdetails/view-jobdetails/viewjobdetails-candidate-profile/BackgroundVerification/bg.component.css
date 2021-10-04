@@ -356,10 +356,40 @@
 }
 .about-drug-test .dropdown-menu{
     width: 520px;
-    right: -171px;
+    right: 0;
     left: auto;
 }
 .about-drug-test  .fa{
     font-size: 15px;
     vertical-align: middle;
+}
+
+.about-drug-test .dropdown-menu .close {
+	right:10px !important;
+    position: relative;
+}
+
+.summary-panel > .panel-heading h3, .availed-panel > .panel-heading h3 { margin:0; }
+.media-body  { font-family:'Poppins',Arial, Helvetica, sans-serif !important; }
+.media-body ul.bg-features {
+    padding-left: 0;
+    list-style: none;
+    font-size: 12px;
+    color: #415383;
+}
+
+.media-body h4.media-heading {
+    margin-bottom: 1px;
+    color: #415383;
+    font-size: 18px;
+    font-weight: 400;
+    padding:0;
+    font-family:"Poppins",Arial, Helvetica, sans-serif !important;
+}
+
+.mat-typography h1 {
+    color: #415383;
+    font-size: 23px;
+    font-weight: 600;
+    font-family:"Poppins",Arial, Helvetica, sans-serif !important;
 }

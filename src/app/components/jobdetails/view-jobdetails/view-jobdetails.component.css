@@ -609,3 +609,76 @@
       float: left;
       width: 100%;
   }
+
+  .funnel__section {
+    width:1090px;
+    position: relative;
+    left: 40px;
+    margin:0 auto;
+  }
+  .funnel__section a { display: block; }
+  .funnel__section .shape { font-size: 0; display: block; position: relative; }
+  .funnel__section .row { margin: 0; }
+  .funnel__section .first__col, .funnel__section .second__col, .funnel__section .third__col { padding:0; position: relative; }
+  .funnel__section .first__col { flex:0 0 428px; max-width: 428px;  }
+  .funnel__section .second__col { flex:0 0 333px; max-width: 333px;  }
+  .funnel__section .third__col { flex:0 0 329px; max-width: 329px;  }
+  .funnel__section .first__col .shape { background:url(../../../../assets/images/funnel__001.png) 0 0 no-repeat; height:530px; position: relative; z-index: 10; background-size:cover; }
+  .funnel__section .second__col .shape { background:url(../../../../assets/images/funnel__002.png) 0 50% no-repeat; height:530px; background-size:cover;  position: relative; left: -38px;  }
+  .funnel__section .third__col .shape { background:url(../../../../assets/images/funnel__003.png) 0 50% no-repeat; height:530px; background-size:cover;  position: relative; left: -66px; }
+  .funnel__section h5 { font-size:14px; margin: -80px 0 0 30px; font-weight: 400; width:188px; line-height: 1.65; }
+  .funnel__section .first__col h5 { float: right;  margin: -80px 60px 0 0; }
+  .funnel__section .second__col h5 { margin:-80px 0 0 48px; display: block; width: 198px; }
+  .funnel__section .number  { width:68px; height: 68px; position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto; background: #fff; border-radius: 50%; font-size:24px; line-height: 68px; font-weight: 600; color:#6a7e9c; text-align: center; }
+  .funnel__section .first__col .number { left:120px; }
+  .funnel__section .third__col .number { top: 12px; }
+  .funnel__section .second__col:before, .funnel__section .third__col:before { content: ""; position: absolute; left:-50px; width:58px;  top:62px; bottom: 0; background-color: #f5f6fa; }
+  .funnel__section .third__col:before { left: -60px; }
+
+  .funnel__section h4 { font-size: 20px; position:absolute; width: 100%; font-weight: 600; color: #fff; margin: 0; text-align: center; }
+  .funnel__section .first__col h4 { background: url(../../../../assets/images/funnel__strip__01.png) 0 0 no-repeat; height: 63px; display: flex; justify-content: center; align-items: center; padding-right: 30px; }
+  .funnel__section .second__col h4 { background: url(../../../../assets/images/funnel__strip__02.png) 0 0 no-repeat; height: 63px; display: flex; justify-content: center; align-items: center; padding-right: 0; background-size: contain; left: -50px; z-index: 10; }
+  .funnel__section .third__col h4 { background: url(../../../../assets/images/funnel__strip__03.png) 0 0 no-repeat; height: 63px; display: flex; justify-content: center; align-items: center; padding-left: 15px; background-size: contain; left: -60px; z-index: 10; }
+
+  @media only screen and (max-width:1199px) {
+    .funnel__section { width: 782px; }
+    .funnel__section .first__col { flex:0 0 302px; max-width: 302px;  }
+    .funnel__section .second__col { flex:0 0 239px; max-width: 239px;  }
+    .funnel__section .third__col  { flex:0 0 232px; max-width: 239px;  }
+    .funnel__section .first__col .shape, .funnel__section .second__col .shape, .funnel__section .third__col .shape { height:373px; }
+    .funnel__section .third__col .shape { height: 378px; left: -46px; top: -2px; }
+    .funnel__section .second__col .shape { left:-27px; top: 1px; }
+    .funnel__section h4 { font-size: 16px; }
+    .funnel__section .first__col h4 { background-position: 100% 0; }
+    .funnel__section .first__col h4, .funnel__section .second__col h4 { height: 45px; }
+    .funnel__section .second__col h4 { background-size: cover; padding-left: 24px; left: -38px; }
+    .funnel__section .second__col:before, .funnel__section .third__col:before { display: none; }
+    .funnel__section .third__col h4 { height: 45px; }
+    .funnel__section h5 { text-align: left; width: 100% !important; padding: 0 15px; }
+    .funnel__section .number { width: 48px; height: 48px; line-height: 48px; font-size: 24px; }
+    .funnel__section .first__col h5 { margin:-44px 0 0;  float: left; }
+    .funnel__section .second__col h5 { margin: -44px 0 0; }
+    .funnel__section { margin: 0 auto 40px; }
+  }
+
+  @media only screen and (max-width:991px) {
+    .funnel__section { width:100%; left: 0; padding: 0 30px; }
+    .funnel__section .shape { width:100% !important; height: auto !important; left: 0 !important; top: 0 !important; background: none !important; }
+    .funnel__section .row { margin:0 -10px; }
+    .funnel__section .first__col, .funnel__section .second__col, .funnel__section .third__col { flex:0 0 33.33%; max-width: 33.33%; padding:0 10px; }
+    .funnel__section h5 { left: 0 !important; margin: 0 !important; padding: 15px 0 !important; float: none !important; padding:0 20px 20px !important; }
+    .funnel__section h4 { position: relative !important; left: 0 !important; top:  0!important; height: auto !important; text-align: center; padding: 8px 10px !important; }
+    .funnel__section .first__col h4 { background: #448afa;  }
+    .funnel__section .first__col .number  { color:#448afa; }
+    .funnel__section .second__col h4 { background: #66dab5;  }
+    .funnel__section .second__col .number  { color:#66dab5; }
+    .funnel__section .third__col h4 { background: #6a7e9c;  }
+    .funnel__section .third__col .number  { color:#6a7e9c; }
+    .funnel__section .number { position: relative; display: block; margin: 20px auto 0; left: 0 !important; top: 0 !important;  }
+    .funnel__section a { box-shadow: 4px 4px 5px -1px rgba(158, 171, 192, 0.45); height: 100%; }
+  }
+
+  @media only screen and (max-width:640px) {
+    .funnel__section .first__col, .funnel__section .second__col, .funnel__section .third__col { flex:0 0 100%; max-width: 100%; margin: 14px 0 0 0; }
+    .funnel__section .row { margin: 0; width: 100%; }
+  }

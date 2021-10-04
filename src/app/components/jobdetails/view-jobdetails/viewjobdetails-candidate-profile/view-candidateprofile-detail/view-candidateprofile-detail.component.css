@@ -2643,7 +2643,9 @@ border-radius:0px;
 
 .job__view__grid .header h5 { margin:0 0 10px; padding:15px 20px; background:#fafbff; font-size:18px; font-weight: 600; color:#484848; }
 .job__view__grid .caption { padding:10px 20px; color:#9eabc0 }
-.job__view__grid .thumbnail { padding:0; overflow:hidden; box-shadow:4px 4px 10px rgb(158 171 192 / 20%); }
+.job__view__grid .thumbnail { padding:0; overflow:hidden; box-shadow:4px 4px 10px rgb(158 171 192 / 20%); height: 100%; }
+.job__view__grid .main__row  { margin:0 -14px }
+.job__view__grid .main__col { padding:0 14px; margin:0 0 28px; }
 .job__view__grid .caption .caption { padding:15px; }
 .job__view__grid .company-name { font-size:14px; color:#9eabc0; margin:0; }
 .job__view__grid .content h5 { font-size:16px; margin:5px 0; color:#6e819e }
