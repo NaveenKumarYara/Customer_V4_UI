@@ -11,10 +11,10 @@ import { ApiService } from "../../shared/services/api.service/api.service";
 import { RatingModule } from 'ng-starrating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from "./search.pipe";
-
+import { TooltipModule } from "ng2-tooltip-directive";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule],
   declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe],
   providers: [AppService, ApiService],
 })
