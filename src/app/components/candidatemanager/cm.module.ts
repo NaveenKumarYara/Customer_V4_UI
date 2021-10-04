@@ -10,11 +10,12 @@ import { AppService } from "../../app.service";
 import { ApiService } from "../../shared/services/api.service/api.service";
 import { RatingModule } from 'ng-starrating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchPipe } from "./search.pipe";
 
 
 @NgModule({
   imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule, ReactiveFormsModule,FormsModule],
-  declarations: [CandidatemanagerComponent, DetailsComponent],
+  declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe],
   providers: [AppService, ApiService],
 })
 export class CmModule { }

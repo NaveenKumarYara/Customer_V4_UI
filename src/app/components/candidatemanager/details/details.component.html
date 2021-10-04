@@ -3,19 +3,28 @@
         <div class="revamp__title__container">
             <div class="row  flex flex-wrap flex-align-center">
                 <div class="col-sm-4">
-                    <h3>Candidate Manager</h3>
+                    <!-- <h3> All Candidates</h3> -->
+                    <div class="sb-example-1">
+                        <div class="search">
+                           <input type="text" [(ngModel)]="searchText"  name="searchtext" class="searchTerm" placeholder="Search Candidates here?">
+                           <button class="searchButton">
+                             <i class="fa fa-search"></i>
+                          </button> 
+                        </div>
+                     </div>
                 </div>
                 <div class="col-sm-8 flex flex-wrap flex-align-center flex-justify-end">
-                    <div class="revamp__sorting__status">
+                    <!-- <div class="revamp__sorting__status">
                         <select class="custom-select">
                             <option value="">Recently Added Asc</option>
                             <option value="">Recently Added desc</option>
                             <option value="">Recent Activity Asc</option>
                             <option value="">Recent Activity Desc</option>
                         </select>
-                    </div>
+                    </div> -->
+          
                     <div class="revamp__sorting">
-                        {{totalCandidatesCount}} Candidates
+                        <!-- {{totalCandidatesCount}} Candidates -->
                         <ul>
                             <li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
                                     (click)="onPageChange(-1)"
@@ -35,7 +44,7 @@
         <div class="section__box__container">
             <div class="revamp__filter__sidebar__box" [ngClass]="{'show big':showFilterNavBar, 'full': showMenu}">
                 <div class="scroll-box">
-                    <div class="icon__box">&nbsp;</div>
+                    <!-- <div class="icon__box">&nbsp;</div>
                     <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
                     <ul (mouseover)="showNavigation()">
                         <li (click)="getFilterData(filterType.value,filterType.url)" class="sub__item"
@@ -77,12 +86,12 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="revamp__search__container">
                 <div class="row flex flex-align-center flex-wrap">
-                    <form [formGroup]="keywordSearchGroup" novalidate>
+                    <!-- <form [formGroup]="keywordSearchGroup" novalidate>
                         <div class="col-sm-3 col check-col">
                             <label class="custom-checkbox lg-select">
                                 <input type="checkbox" checked="checked" formControlName="isKeywordSearch" >
@@ -263,13 +272,13 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         <div class="view-navigation">
                             <ul>
                                 <li (click)="changeView('Grid')">
@@ -282,9 +291,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-sm-9">
-                        <div class="revamp__status__listing">
+                        <!-- <div class="revamp__status__listing">
                             <ul>
                                 <li>
                                     <span class="revamp__status green">Status</span>Available
@@ -303,7 +312,7 @@
                                 </li>
                                 <li><span class="revamp__status red">Status</span>Selected</li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -313,24 +322,24 @@
                     <div class="row">
                         <div class="col-sm-12 big-col">
                             <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-3 green" *ngFor="let candidate of candidates">
+                                <div class="col-sm-3 green" *ngFor="let candidate of candidates |  filter : searchText">
                                     <div class="top__container flex flex-wrap flex-align-center">
-                                        <div class="custom-radio">
+                                        <!-- <div class="custom-radio">
                                             <input type="radio" id="test1" name="radio-group">
                                             <label for="test1">Checkbox</label>
-                                        </div>
+                                        </div> -->
                                         <ul>
-                                            <li>
+                                             <li>
                                                 <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip"
-                                                    title="{{candidate.MobileNumber}}"></span>
+                                                    title="{{candidate?.MobileNumber}}"></span>
                                             </li>
                                             <li>
                                                 <span class="revamp-icon revamp-icon-email" data-toggle="tooltip"
-                                                    title="{{candidate.EmailAddress}}"></span>
+                                                    title="{{candidate?.EmailAddress}}"></span>
                                             </li>
-                                            <li>
+                                           <!-- <li>
                                                 <span class="revamp-icon revamp-icon-note"></span>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <div class="col__container">
@@ -344,7 +353,7 @@
                                                     (click)="showJobPrview(candidate.ProfileId)">{{candidate.ProfilePercentage}}%</a>
                                             </div>
                                             <h4><a href="javascript:void(0)"
-                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName}}</a>
+                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName | titlecase}}</a>
                                             </h4>
 
                                             <h5>{{candidate.JobTitleName}}</h5>
@@ -1923,7 +1932,7 @@
                     <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
                 </ng-template>
             </div>
-            <div class="data__table__footer">
+            <!-- <div class="data__table__footer">
                 <ul>
                     <li>
                         <button class="btn btn__export" data-toggle="modal" data-target="#exportPopup">Export</button>
@@ -1941,7 +1950,7 @@
                         <button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <!--/.data-grid-table-->
         </div>
     </div>

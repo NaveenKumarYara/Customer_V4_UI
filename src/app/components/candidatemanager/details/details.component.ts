@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit {
 	showMenu: boolean = false;
 	customer: any = null;
 	customerId: any = null;
+	searchText:string;
 	userId: any = null;
 	candidates: any[] = [];
 	candidatesLoading: boolean = false;
@@ -115,7 +116,6 @@ export class DetailsComponent implements OnInit {
 		params = params.append("profileId", profileId);
 		params = params.append("isPublic", '1');
 		this.apiService.GetService("ProfileAPI/api/GetProfileInfo?", params).subscribe((response) => {
-			debugger;
 			this.profile = response;
 		});
 	}
@@ -296,7 +296,6 @@ export class DetailsComponent implements OnInit {
 		};
 		this.appService.getCandidates(params).subscribe(
 			(res: any) => {
-				debugger;
 				if (res != null) {
 					if (res.Candidates != null && res.Candidates.length > 0) {
 						this.candidates = res.Candidates;
