@@ -459,14 +459,29 @@ GetSubscriptionDetails(sid)
         })
 
       } else {
+     if(this.sdetails.planId ===  "enterprise")
+        {
         this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
             this.spinner.hide();
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
 
-          }
+          }                 
         });
       }
+      else
+      {
+        this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateActionpublic').subscribe(data => {  // 'api/JobDescriptionParse'
+          if (data) {
+            this.spinner.hide();
+            this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
+
+          }
+         
+        
+        });
+      }
+    }
       // 
     }
   }
