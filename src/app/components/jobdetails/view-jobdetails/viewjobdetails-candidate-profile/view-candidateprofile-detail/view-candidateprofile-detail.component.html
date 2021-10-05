@@ -197,9 +197,9 @@
 
                   </p>
                   <ng-container *ngIf="isMore">
-                    <span [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000  | safeHtml">
+                    <p [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:100:15000  | safeHtml">
 
-                    </span>
+                    </p>
                   </ng-container>
                   <a href="javascript:void(0)" *ngIf="profileview?.ProfileBasicInfo?.AboutMe.length>80"
                     (click)="showMore()" class="show__more">
