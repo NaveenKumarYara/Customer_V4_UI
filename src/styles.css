@@ -26795,12 +26795,25 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 .revamp__reference__check  .nav-tabs { border-bottom: 0; }
 .revamp__reference__check .tab-pane { padding:0 20px 20px; background:#fff; border:1px solid #ddd; border-radius:6px; }
 .revamp__candidate__modal  .mat-dialog-container { background:#f9fcfe }
+.revamp__reference__check .star-rating .star { padding:0; font-size:12px !important; }
+.revmap__profile__top .top__listing h5 { padding:0 40px 0 0; }
+
+.reference__grid__container .jdv-skills .row { margin:0 -7px !important; }
+.reference__grid__container .jdv-skills .col { padding:0 7px !important; margin:14px 0 0 !important; }
+.reference__grid__container .col__container { background: #fafafa !important; height:100%; }
+.reference__grid__container .col__container .top__container, .reference__grid__container .col__container .middle__container { background-color: #fff; }
+
+@media only screen and (max-width:1366px) {
+    .radar-chart-container.lg-chart-container .reference__grid__container .col  { width:50%;  }
+}
 
 @media only screen and (max-width:1200px) {
     .revamp__view__job__swiper, .candiateModalPop  {
         width:90vw !important;
         max-width:90vw !important;
     }
+
+    .reference__grid__container .col { width:50%; }
 }
 
 @media only screen and (max-width:1023px) {
@@ -26815,10 +26828,12 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
     body .revamp__radio__grid .multiple__radio__row .left__col, body .revamp__radio__grid .multiple__radio__row .right__col { width:100%; }
     body .revamp__radio__grid .multiple__radio__row .right__col { text-align:left; }
     body .revamp__radio__grid .icon__col .col__container { padding-top: 60px; }
+    .radar-chart-container.lg-chart-container .reference__grid__container .col ,  .reference__grid__container .col { width:100%; }
 }
 
 @media only screen and (max-width:480px) {
     .radar-chart-container  canvas { height:200px; width:250px; }
+    .jdv-listing .col-sm-6 { flex:0 0 100% !important; max-width: 100% !important; width:100% !important; }
     body .revamp__radio__grid .col__container .row .col-sm-6:last-child, body .revamp__radio__grid .multiple__radio__row .right__col { padding:10px; text-align:center; }
 }
 
