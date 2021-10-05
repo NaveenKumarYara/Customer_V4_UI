@@ -859,7 +859,7 @@
                               </p>
                             </ng-container>
                           </div>
-                          <a href="javascript:void(0)" (click)="moreContent(i)" class="show__more">
+                          <a href="javascript:void(0)" *ngIf="exps?.Description.length>100" (click)="moreContent(i)" class="show__more">
                             <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
                           </a>
 
