@@ -337,9 +337,9 @@
                                                 <span class="revamp-icon revamp-icon-email" data-toggle="tooltip"
                                                     tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
                                             </li>
-                                           <!-- <li>
-                                                <span class="revamp-icon revamp-icon-note"></span>
-                                            </li> -->
+                                           <li>
+                                                <span class="revamp-icon revamp-icon-note" 	(click)="DownloadResume(candidate.FirstName,candidate.ProfileId)"  tooltip="download resume" placement="right" ></span>
+                                            </li> 
                                         </ul>
                                     </div>
                                     <div class="col__container">

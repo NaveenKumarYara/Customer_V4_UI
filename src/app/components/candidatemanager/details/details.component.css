@@ -72,7 +72,7 @@ a, input[type="button"], input[type="submit"], button, table th, table td {
 }
 
 a {
-  color: #f34834;
+  color: #0f0e0e;
   text-decoration: none;
 }
 
@@ -7038,7 +7038,7 @@ font-size: 11px;
 
 
 .sb-example-1 .search {
-	width: 100%;
+	width: 255%;
 	position: relative;
 	display: flex;
   }

@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material';
 import { debounceTime } from 'rxjs/operators';
 import { AppService } from '../../../app.service';
 declare var $: any;
+import * as FileSaver from 'file-saver';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { ApiService } from "../../../shared/services/api.service/api.service";
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
@@ -32,6 +34,8 @@ export class DetailsComponent implements OnInit {
 	pageCount: number = 20;
 	selectedCandidate: any = null;
 	selectedIndex: number;
+	fileType = new Resume();
+  fileExt: any;
 	showDetail: boolean = false;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
@@ -62,9 +66,9 @@ export class DetailsComponent implements OnInit {
 	searchValue: any;
 
 	constructor(private appService: AppService, private readonly apiService: ApiService,
-		private jobdetailsservice: JobdetailsService,
+		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,  
 		private dialog: MatDialog,
-		private _vcr: ViewContainerRef) {
+  ) {
 		this.selectedIndex = 0;
 	}
 
@@ -319,6 +323,40 @@ export class DetailsComponent implements OnInit {
 			});
 	}
 
+
+	DownloadResume(val,ProfileId): void {
+		this.apiService.GetService("ProfileAPI/api/GetResume?profileId=", ProfileId).subscribe((fileData) => {
+		  this.fileType = fileData;
+		  let exp = this.fileType.Url.split(".").pop();
+		  this.fileExt = exp;
+		  this.toastr.success("Downloading!", "Success!");
+		  setTimeout(() => {
+			this.toastr.dismissToast;
+		  }, 3000);
+	
+		  if (this.fileExt == "pdf") {
+			let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+			let blob = new Blob([byteArr], { type: "application/pdf" });
+			FileSaver.saveAs(blob, val);
+		  } else if (this.fileExt == "doc" || this.fileExt == "docx") {
+			var extension = ".doc";
+			let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+			let blob = new Blob([byteArr], { type: "application/pdf" });
+			FileSaver.saveAs(blob, val + extension);
+		  }
+		});
+	  }
+
+	  base64ToArrayBuffer(base64) {
+		const binary_string = window.atob(base64);
+		const len = binary_string.length;
+		const bytes = new Uint8Array(len);
+		for (let i = 0; i < len; i++) {
+		  bytes[i] = binary_string.charCodeAt(i);
+		}
+		return bytes.buffer;
+	  }
+
 	onPageChange(pageValue) {
 		this.currentPage += pageValue;
 		this.getCandidates();
@@ -328,9 +366,8 @@ export class DetailsComponent implements OnInit {
 		localStorage.setItem("cprofileId", profileId);
 		localStorage.setItem("cuserId", userId);
 		//this.router.navigateByUrl('/app-view-candidateprofile-detail');
-		const url = this.customer.Defaulturl.Purl;
-		//const url ='http://localhost:4400/app-view-candidateprofile-detail';
-		window.open(url, "_blank");
+		const url = '/app-view-candidateprofile-detail';
+        window.open(url, "_blank");
 	}
 	// OpenCandidateDialog(profileId, Uid) {
 	// 	this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
@@ -363,3 +400,11 @@ export class DetailsComponent implements OnInit {
 		});
 	}
 }
+
+
+export class Resume {
+	ResumeId: number;
+	ProfileId: number;
+	Url: string;
+	ResumeFile: string;
+  }

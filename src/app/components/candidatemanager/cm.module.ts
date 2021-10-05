@@ -12,9 +12,10 @@ import { RatingModule } from 'ng-starrating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from "./search.pipe";
 import { TooltipModule } from "ng2-tooltip-directive";
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule],
   declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe],
   providers: [AppService, ApiService],
 })
