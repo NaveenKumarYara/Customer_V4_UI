@@ -29,6 +29,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import {WishlistCount,LegendList} from './models/WishlistCount';
 import { SettingsService } from '../../../settings/settings.service';
 import { RecentApplicants } from '../../../models/recentapplicants';
+import { CompanyProfile } from '../../../models/companyprofile';
 
 @Injectable()
 export class JobdetailsService {
@@ -68,6 +69,14 @@ export class JobdetailsService {
       this.handleError
     );
   }
+
+  getCompanyProfile(customerId:number): Observable<CompanyProfile> {
+    const url = this.settingsService.settings.CompanyProfileBasicInfo+ 'customerId='+customerId ;
+    return this.http.get<CompanyProfile>(url)
+        .catch(
+            this.handleError
+        );
+}
 
   getInviteList(customerId: number,jobId:number): Observable<GetInviteList[]> {
     const url = this.settingsService.settings.GetInviteList + 'customerId=' + customerId + '&jobId=' +jobId;
