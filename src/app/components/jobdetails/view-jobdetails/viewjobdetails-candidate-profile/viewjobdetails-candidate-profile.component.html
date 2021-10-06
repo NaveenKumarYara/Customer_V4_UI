@@ -164,8 +164,23 @@
             <div class="dropdown">
               <div class="tooltip1">
                 <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'" class="dropdown-toggle info-dropdown"
-                  type="button" data-toggle="dropdown">
-                  <img src="../../../../../assets/images/Yes-Email.svg" height="16" alt="email" />
+                  type="button" data-toggle="dropdown" >
+                  <img 
+                    src="../../../../../assets/images/Yes-Email.svg" 
+                    height="16" alt="email" placement="top"
+                    (click)="
+                      OpenSendEmailDialog(
+                        profile?.NoEmail,
+                        profile?.Email,
+                        profile?.FirstName,
+                        profile?.LastName,
+                        profile?.JobResponseId,
+                        profile?.ProfileId,
+                        profile?.ResponseStatusId,
+                        profile?.CCPID,
+                        profile?.UserId
+                      )" 
+                  />
                 </ng-container>
                 <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
                   <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email" />
@@ -183,7 +198,7 @@
                           title="{{ profile?.Email }}" />
                       </a>
                       <ng-template #firstelseBlock>
-                        <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}">
+                        <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" >
                           <img src="../../../../../assets/images/email-icon.svg" alt="email"
                             title="{{ profile?.Email }}" />
                           {{ profile?.Email }}
@@ -236,12 +251,12 @@
                 <div class="bottom1" *ngIf="profile?.MobilePhone != null">
                   <ul class="custom_dropdown-menu">
                     <!-- <li *ngIf="!profile?.NoEmail && profile.Email.substring(0,7) != 'esolvit'">
-                                                    <a class="email-overflow" href="javascript:void(0)"
-                                                        title="{{profile.Email}}">
-                                                        <img src="../../../../../assets/images/email-icon.svg" alt="email"
-                                                            title="{{profile?.Email}}"> {{profile?.Email}}
-                                                    </a>
-                                                </li> -->
+                        <a class="email-overflow" href="javascript:void(0)"
+                            title="{{profile.Email}}">
+                            <img src="../../../../../assets/images/email-icon.svg" alt="email"
+                                title="{{profile?.Email}}"> {{profile?.Email}}
+                        </a>
+                    </li> -->
                     <li>
                       <ng-container *ngIf="profile?.MobilePhone != null; else false">
                         <a href="javascript:void(0)" title="{{ profile.MobilePhone }}">
@@ -259,16 +274,13 @@
               </div>
             </div>
             <!-- <div class="dropdown info-icon">
-                            <div class="tooltip1">
-                                <ng-container
-                                class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
-                                <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
-                            </ng-container>
-                             
-                             
-                            </div>
-                        </div> -->
-
+                    <div class="tooltip1">
+                        <ng-container
+                        class="dropdown-toggle info-dropdown" type="button" data-toggle="dropdown">
+                        <i class="fa fa-comment-o fa-lg" (click)="openChat(profile)"></i>
+                        </ng-container>                          
+                    </div>
+                </div> -->
             <!--Info Icon-->
           </div>
           <!--Candidate experience placeholder is in below div -->
@@ -324,27 +336,27 @@
             </small>
             <!--if no data -->
             <!-- <small>
-                            <span>
-                                &nbsp;
-                            </span>
-                        </small> -->
+                  <span>
+                      &nbsp;
+                  </span>
+              </small> -->
             <!--if no data -->
           </div>
         </div>
         <div class="candidate-status">
           <!-- <ng-container
-                        *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
-                        <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
-                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
-                        </a>
-                    </ng-container> -->
+              *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
+              <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
+                  <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px" alt="">
+              </a>
+          </ng-container> -->
           <!-- <ng-template #videoTemp>
-                        <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
-                            (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
-                            <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px"
-                                alt="Video Profile" title="Video Profile">
-                        </a>
-                    </ng-template> -->
+              <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
+                  (click)="displayVideo(profile.ProfileId,profile.VideoSizzle,profile.VideoProfile,true)">
+                  <img src="../../../../../assets/images/video_icon.svg" width="50px" height="50px"
+                      alt="Video Profile" title="Video Profile">
+              </a>
+          </ng-template> -->
 
           <!--Icons with clicks-->
           <!--Reference Icons-->
@@ -364,9 +376,9 @@
               alt="References" />
           </a>
           <!-- <a href="javascript:void(0)" title="References">
-                    <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
-                        alt="References">
-                    </a> -->
+              <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+                  alt="References">
+              </a> -->
           <!--No Reference Icon-->
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
                         alt="No-References" title="No References"> -->
@@ -385,9 +397,9 @@
               alt="achievement-badge" />
           </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
-                    <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
-                        alt="achievement-badge">
-                    </a> -->
+            <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+                alt="achievement-badge">
+          </a> -->
           <!--No achievement icon-->
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
                         alt="No-achievement-icon" title="No Achievements"> -->
@@ -396,15 +408,15 @@
           <!--With dialog-->
 
           <!-- <a href="javascript:void(0)" title="Recommendations" data-toggle="modal"
-                        data-target=".manage-recommendations-i-d">
-                        <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
-                            alt="recommendations-badge">
-                    </a> -->
+              data-target=".manage-recommendations-i-d">
+              <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
+                  alt="recommendations-badge">
+          </a> -->
           <!--Commenting as per received inputs 29-05-2020-->
           <!-- <a href="javascript:void(0)" title="Recommendations">
-                    <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
-                        alt="recommendations-badge">
-                    </a> -->
+              <img src="../../../../../assets/images/card-icons/recommendations.png" width="50" height="50"
+                  alt="recommendations-badge">
+          </a> -->
           <!--No recommendations profile icon-->
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-recommendations.png" width="50" height="50"
                         alt="No-recommendations-badge" title="No Recommendations"> -->
@@ -423,9 +435,9 @@
               alt="verfied-badge" />
           </a>
           <!-- <a href="javascript:void(0)" title="Background Verification - Yet to be Started">
-                        <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
-                            alt="verfied-badge">
-                    </a> -->
+              <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+                  alt="verfied-badge">
+          </a> -->
 
           <!--Not verified profile icon-->
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
@@ -462,10 +474,10 @@
             <!--[animationDuration]="300"-->
             <!---->
             <!-- <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details"
-                            (click)="callSkills(profile.ProfileId)">
-                            <h1>{{profile?.MatchingPercentage | number}}%</h1>
-                            <h5>Matching</h5>
-                        </a> -->
+                (click)="callSkills(profile.ProfileId)">
+                <h1>{{profile?.MatchingPercentage | number}}%</h1>
+                <h5>Matching</h5>
+            </a> -->
           </div>
         </div>
         <ng-container>
@@ -478,8 +490,8 @@
                 <div class="w-75 m-auto d-block cls-rel">
                   <h6 class="video-tittle">Sizzle Video</h6>
                   <!-- <video controls="">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>-->
+                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                  </video>-->
                   <div *ngIf="profileFlipVideo?.VideoSizzle === null">
                     <img src="../../../assets/images/no-video.png" class="icon" alt="." />
                   </div>
@@ -529,10 +541,10 @@
                   </div>
                 </div>
                 <!--
-                                        <div class="col-md-6">
-                                            <h6>Video Sizzle</h6>
-                                            <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
-                                        </div> -->
+                  <div class="col-md-6">
+                      <h6>Video Sizzle</h6>
+                      <video controls class="video-align" [src]="profileFlipVideo?.VideoSizzle" type="video/mp4" #videoPlayer></video>
+                  </div> -->
               </div>
             </div>
           </div>
@@ -628,45 +640,44 @@
                   </a>
 
                   <!-- https://www.npmjs.com/package/ngx-flickity
-                                   https://flickity.metafizzy.co/events.html#dragmove
-
-                                   https://www.npmjs.com/package/angular-flickity
-                                   https://codepen.io/collection/nNzQxk/ -->
+                       https://flickity.metafizzy.co/events.html#dragmove
+                       https://www.npmjs.com/package/angular-flickity
+                       https://codepen.io/collection/nNzQxk/ -->
                   <!-- working demo -->
                   <!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
-                                    <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
-                                      <div class="item">
-                                        <div class="skill">
-                                            <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
-                                            <div>
-                                              <h5>{{ sk.split('|')[1] }} Yrs</h5>
-                                              <h5>{{ sk.split('|')[2] }}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                  </div> -->
+                      <div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
+                        <div class="item">
+                          <div class="skill">
+                              <h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
+                              <div>
+                                <h5>{{ sk.split('|')[1] }} Yrs</h5>
+                                <h5>{{ sk.split('|')[2] }}</h5>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                    </div> -->
 
                   <!-- // -->
                   <!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
-                            <div class="item">
-                            <div class="skill" *ngIf="">
-                                <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
-                                <div>
-                                  <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
-                                  <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
-                                </div>
-                            </div>
-                          </div></div>
-                                <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
-                            <div class="skill" *ngIf="">
-                                <h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
-                              <div>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
-                                <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
-                              </div>
-                            </div>
-                          </div></div> -->
+                      <div class="item">
+                      <div class="skill" *ngIf="">
+                          <h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
+                          <div>
+                            <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+                            <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+                          </div>
+                      </div>
+                    </div></div>
+                          <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
+                      <div class="skill" *ngIf="">
+                          <h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
+                        <div>
+                          <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+                          <h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+                        </div>
+                      </div>
+                    </div></div> -->
             </div>
             <ng-template #noSkillTemplate>
               <div class="no-skills text-center">
@@ -676,23 +687,23 @@
           </div>
         </div>
         <!-- <owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
-                        <div *ngFor="let prf of profile?.PrimarySkills.split(',')">
-                          <p> {{ prf.split('|')[0] }}</p>
-                        </div>
-                     </owl-carousel> -->
+          <div *ngFor="let prf of profile?.PrimarySkills.split(',')">
+            <p> {{ prf.split('|')[0] }}</p>
+          </div>
+        </owl-carousel> -->
         <!-- <h2>Sample 2</h2>
-                     <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
-                        <div>
-                          <p>{{ profile?.PrimarySkills.split('|')[0] }} </p>
-                        </div>
-                     </owl-carousel>
-                     <h2>Sample 3</h2>
-                     <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
-                        <div>
-                          <img src="http://lorempixel.com/400/200/{{img}}"/>
-                          {{profile?.PrimarySkills.split('|')[0]}}
-                        </div>
-                     </owl-carousel> -->
+        <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+          <div>
+            <p>{{ profile?.PrimarySkills.split('|')[0] }} </p>
+          </div>
+        </owl-carousel>
+        <h2>Sample 3</h2>
+        <owl-carousel [options]="{navigation: false, pagination: true, rewindNav : false}">
+          <div>
+            <img src="http://lorempixel.com/400/200/{{img}}"/>
+            {{profile?.PrimarySkills.split('|')[0]}}
+          </div>
+        </owl-carousel> -->
       </div>
       <div class="footer">
         <ul class="actions">
