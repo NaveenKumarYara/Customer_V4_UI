@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
 	showMenu: boolean = false;
 	customer: any = null;
 	customerId: any = null;
-	searchText:string;
+	searchText :any = null;
 	userId: any = null;
 	candidates: any[] = [];
 	candidatesLoading: boolean = false;
@@ -63,7 +63,7 @@ export class DetailsComponent implements OnInit {
 	jobid: number = 1002162;
 	keywordSearchGroup: any;
 	isKeywordSearch: any;
-	searchValue: any;
+	searchValue: any=null
 
 	constructor(private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,  
@@ -285,42 +285,98 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
+
+	searchFunc(val) {
+	
+		  if(val != ''){
+			this.searchValue = val;
+			this.getCandidates();						  
+	  }
+	  else
+	  {
+		this.searchValue = null;
+		this.getCandidates(); 
+	  }
+	  }
+
+
 	getCandidates() {
 		this.candidatesLoading = true;
-		this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
-		this.searchValue = this.keywordSearchGroup.get('searchValue').value;
-		const params = {
-			cId: this.customerId,
-			uId: this.userId,
-			pNo: this.currentPage,
-			rows: this.pageCount,
-			so: '',
-			isKeywordSearch: this.isKeywordSearch,
-			searchValue: this.searchValue,
-		};
-		this.appService.getCandidates(params).subscribe(
-			(res: any) => {
-				if (res != null) {
-					if (res.Candidates != null && res.Candidates.length > 0) {
-						this.candidates = res.Candidates;
-						this.totalCandidatesCount = res.TotalRecordsCount;
-						if (this.totalCandidatesCount % this.pageCount == 0)
-							this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-						else {
-							this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+		// this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
+		debugger
+		if(this.searchValue!=null)
+		{
+			const params = {
+				//cId: this.customerId,
+				//uId: this.userId,
+				pNo: this.currentPage,
+				rows: this.pageCount,
+				// so: '',
+				//isKeywordSearch: this.isKeywordSearch,
+				searchValue: this.searchValue,
+			};
+			debugger
+			this.appService.getCandidates(params).subscribe(
+				(res: any) => {
+					if (res != null) {
+						if (res.Candidates != null && res.Candidates.length > 0) {
+							this.candidates = res.Candidates;
+							this.totalCandidatesCount = res.TotalRecordsCount;
+							if (this.totalCandidatesCount % this.pageCount == 0)
+								this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+							else {
+								this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+							}
 						}
+						else
+							this.candidates = [];
 					}
 					else
 						this.candidates = [];
-				}
-				else
-					this.candidates = [];
-				this.candidatesLoading = false;
-			},
-			error => {
-				console.log('Error occurred!');
-				this.candidatesLoading = false;
-			});
+					this.candidatesLoading = false;
+				},
+				error => {
+					console.log('Error occurred!');
+					this.candidatesLoading = false;
+				});
+		}
+		else
+		{
+			const params = {
+				//cId: this.customerId,
+				//uId: this.userId,
+				pNo: this.currentPage,
+				rows: this.pageCount,
+				// so: '',
+				//isKeywordSearch: this.isKeywordSearch,
+				//searchValue: this.searchValue,
+			};
+			this.appService.getCandidates(params).subscribe(
+				(res: any) => {
+					if (res != null) {
+						if (res.Candidates != null && res.Candidates.length > 0) {
+							this.candidates = res.Candidates;
+							this.totalCandidatesCount = res.TotalRecordsCount;
+							if (this.totalCandidatesCount % this.pageCount == 0)
+								this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+							else {
+								this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+							}
+						}
+						else
+							this.candidates = [];
+					}
+					else
+						this.candidates = [];
+					this.candidatesLoading = false;
+				},
+				error => {
+					console.log('Error occurred!');
+					this.candidatesLoading = false;
+				});
+		}
+	
+		
 	}
 
 
