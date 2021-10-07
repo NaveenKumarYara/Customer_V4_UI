@@ -90,6 +90,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   @ViewChild('testChart1') testChart1: ElementRef;
   @ViewChild('testChart9') testChart9: ElementRef;
   skilllist: any;
+  companyName:String;
   currentSlide = 1;
   maxSlide = 2;
   isPersonality: boolean = false;
@@ -173,6 +174,12 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.isCulture = false;
   }
 
+  populateCompanyProfile() {
+    return this.jobdetailsservice.getCompanyProfile(this.customer.CustomerId).subscribe(res => {
+      this.companyName = res.CompanyName;
+    });
+}
+
 
   GetCandidateCultureResult() {
     this._service.GetService("ProfileAPI/api/GetProfileEmail?profileId=", this.profileId).subscribe((email) => {
@@ -254,6 +261,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     let profileData = JSON.parse(sessionStorage.getItem('selectedProfile'));
     this.GetProfileDetails();
     this.GetUserProfileInfo();
+    this.populateCompanyProfile();
     this.GetProfileRating();
     this.GetCandidateJobHistory();
     this.GetCandidateCultureResult();

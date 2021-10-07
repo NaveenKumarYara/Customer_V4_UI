@@ -1447,7 +1447,7 @@
                   <div class="caption capi">
                     <ng-container *ngIf="jobHistory?.MatchingHistory.length>0">
                       <div class="row" *ngFor="let i of jobHistory?.MatchingHistory">
-                        <div class="col-md-12">
+                        <div class="col-md-12" *ngIf="i.CompanyName === companyName">
                           <div class="thumbnail">
                             <div class="caption">
                               <div class="row">
