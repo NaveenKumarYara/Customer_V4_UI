@@ -567,7 +567,6 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   }
 
   OpenCandidateDialog(profileId, Uid, FirstName, LastName) {
-    debugger;
     // if (this.jobStatus!='InActive') {
     this.spinner.show();
     let candidateProfile = this.jobdetailsprofiles.Profile.find(item => item.ProfileId === profileId);

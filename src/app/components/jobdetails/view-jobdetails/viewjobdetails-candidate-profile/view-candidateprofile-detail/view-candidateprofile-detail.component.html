@@ -192,7 +192,7 @@
                   <h5>Summary</h5>
                   <h6>Years of Experience: <span>{{profileview?.ProfileBasicInfo?.TotalExperience}}Years</span></h6>
                 </div><!-- /.title__container -->
-                <div class="info__container">
+                <div class="info__container" *ngIf="profileview?.ProfileBasicInfo?.AboutMe!=null">
                   <p [innerHTML]="profileview?.ProfileBasicInfo?.AboutMe| slice:0:100 | safeHtml">
 
                   </p>

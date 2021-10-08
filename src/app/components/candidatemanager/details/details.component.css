@@ -7002,7 +7002,7 @@ font-size: 11px;
 	.radar-chart-container .mobile__menu li { width:33.333%; float: left; border:0; border-radius:0 !important; }
 	.radar-chart-container .mobile__menu li a { color: #448AFA; }
 	.radar-chart-container .mobile__menu li.active {  background: #447afa; }
-	.radar-chart-container .mobile__menu li.active a { color:#fff; }
+	.radar-chart-container .mobile__menu li.active a { color:#fff;}
 	.radar-chart-container .side-menu { display:none; }
 	.radar-chart-container  { flex-wrap: wrap; }
 	.col__reference { width:100%; }

@@ -107,7 +107,6 @@ export class ShareJobComponent {
         }
       );
       this.referLink = this.settingsService.settings.NewJobDetailsRedirect + this.data.JobId;
-      debugger
   }
 
   getcustomerusers() {

@@ -394,7 +394,6 @@ export class ViewCandidateprofileComponent implements OnInit {
       });
     }
     cloudspan();
-    debugger;
     this.GetCandidateSKills();
     this.GetUserProfileInfo();
     this.GetProfileDetails();

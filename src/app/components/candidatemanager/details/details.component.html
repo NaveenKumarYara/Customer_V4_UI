@@ -331,11 +331,11 @@
                                         </div> -->
                                         <ul>
                                              <li>
-                                                <span class="revamp-icon revamp-icon-phone" data-toggle="tooltip"
+                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip"
                                                     tooltip="{{candidate?.MobileNumber}}" placement="left"></span>
                                             </li>
                                             <li>
-                                                <span class="revamp-icon revamp-icon-email" data-toggle="tooltip"
+                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip"
                                                     tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
                                             </li>
                                            <li>
@@ -353,7 +353,7 @@
                                                     style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
                                             </div>
                                             <h4><a href="javascript:void(0)"
-                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId)">{{candidate.CandidateName | titlecase}}</a>
+                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName | titlecase}}</a>
                                             </h4>
 
                                             <h5>{{candidate.JobTitleName}}</h5>

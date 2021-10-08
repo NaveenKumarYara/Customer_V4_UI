@@ -11,6 +11,7 @@ import { ApiService } from "../../../shared/services/api.service/api.service";
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
 import { ViewCandidateprofileComponent } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
+import swal from 'sweetalert2';
 
 @Component({
 	selector: 'cm-details',
@@ -35,7 +36,7 @@ export class DetailsComponent implements OnInit {
 	selectedCandidate: any = null;
 	selectedIndex: number;
 	fileType = new Resume();
-  fileExt: any;
+    fileExt: any;
 	showDetail: boolean = false;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
@@ -69,6 +70,7 @@ export class DetailsComponent implements OnInit {
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,  
 		private dialog: MatDialog,
   ) {
+	const swal = require('sweetalert2');
 		this.selectedIndex = 0;
 	}
 
@@ -303,7 +305,6 @@ export class DetailsComponent implements OnInit {
 	getCandidates() {
 		this.candidatesLoading = true;
 		// this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
-		debugger
 		if(this.searchValue!=null)
 		{
 			const params = {
@@ -315,7 +316,6 @@ export class DetailsComponent implements OnInit {
 				//isKeywordSearch: this.isKeywordSearch,
 				searchValue: this.searchValue,
 			};
-			debugger
 			this.appService.getCandidates(params).subscribe(
 				(res: any) => {
 					if (res != null) {
@@ -418,12 +418,43 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 	}
 
-	OpenCandidate(profileId, userId) {
-		localStorage.setItem("cprofileId", profileId);
-		localStorage.setItem("cuserId", userId);
-		//this.router.navigateByUrl('/app-view-candidateprofile-detail');
-		const url = '/app-view-candidateprofile-detail';
-        window.open(url, "_blank");
+	OpenCandidate(profileId, userId,percentage) {
+		if(percentage <50)
+		{
+			swal(
+				{
+				  title: 'Candidate haven"t completed profile',
+				  showConfirmButton: true,
+				  showCancelButton:true,
+				  type:"info",
+				  confirmButtonColor: '#66dab5',
+				  cancelButtonColor: '#FF0000',
+				  confirmButtonText: 'View',
+				  cancelButtonText:'No'
+				}).then((result) => {
+				  if (result.value === true) {       
+					localStorage.setItem("cprofileId", profileId);
+					localStorage.setItem("cuserId", userId);	
+				   //this.router.navigateByUrl('/app-view-candidateprofile-detail');
+					const url = '/app-view-candidateprofile-detail';
+				   window.open(url, "_blank");
+				  
+				  }
+		  
+		  
+			  
+				
+			  });
+		}
+		else
+		{
+			localStorage.setItem("cprofileId", profileId);
+			localStorage.setItem("cuserId", userId);	
+		   //this.router.navigateByUrl('/app-view-candidateprofile-detail');
+			const url = '/app-view-candidateprofile-detail';
+		   window.open(url, "_blank");
+		}
+		
 	}
 	// OpenCandidateDialog(profileId, Uid) {
 	// 	this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
