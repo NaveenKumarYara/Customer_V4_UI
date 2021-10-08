@@ -121,15 +121,6 @@
 				<div class="funnel__section">
 					<div class="row flex flex-wrap flex-align-equal">
 						<div class="col-sm-4 first__col">
-							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
-								<h4>Arytic Best Fit Results</h4>
-								<span class="shape">
-									<span class="number">{{SuggestedCount||'0'}}</span>
-								</span>
-								<h5>Arytic's suggested best match candidates for you.</h5>
-							</a>
-						</div>
-						<div class="col-sm-4 second__col">
 							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)">
 								<h4>Prospect profiles</h4>
 								<span class="shape">
@@ -137,6 +128,16 @@
 								</span>
 								<h5>Profiles which are submitted to the job from any source. </h5>
 							</a>
+						</div>
+						<div class="col-sm-4 second__col">
+							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
+								<h4>Arytic Best Fit Results</h4>
+								<span class="shape">
+									<span class="number">{{SuggestedCount||'0'}}</span>
+								</span>
+								<h5>Arytic's suggested best match candidates for you.</h5>
+							</a>
+							
 						</div>
 						<div class="col-sm-4 third__col">
 							<a  data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
