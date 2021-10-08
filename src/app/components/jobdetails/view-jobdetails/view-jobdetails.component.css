@@ -616,8 +616,10 @@
     left: 40px;
     margin:0 auto;
   }
-  .funnel__section a { display: block; }
+  .funnel__section a { display: block; padding:0; position: relative; }
+  .funnel__section .nav-tabs.nav-justified>li>a { border:0; background-color: transparent; position: relative; height: 100%; }
   .funnel__section .shape { font-size: 0; display: block; position: relative; }
+  .funnel__section .first__col.active a:after, .funnel__section .second__col.active a:after, .funnel__section .third__col.active a:after { content:""; display: block; background-color: #136482; height: 4px; left:0; bottom:0;  width:100%; position: absolute; }
   .funnel__section .row { margin: 0; }
   .funnel__section .first__col, .funnel__section .second__col, .funnel__section .third__col { padding:0; position: relative; }
   .funnel__section .first__col { flex:0 0 428px; max-width: 428px;  }
