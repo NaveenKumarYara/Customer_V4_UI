@@ -277,7 +277,16 @@ this.schIntw.JobInterviewId = 0;
 this.schIntw.JobResponseId = this.data.jobResponseId; 
 this.schIntw.InterviewDatevalue =  new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year).toDateString();// gemerated when sortlisted or applied
 //this.schIntw.InterviewDate = new Date(this.InterviewDate.month + '/' + this.InterviewDate.day + '/' + this.InterviewDate.year);
-  this.schIntw.StartTime = this.time.hour + ':' + this.time.minute;
+let time;
+if(this.time.minute === 0)
+{
+  time = '00'; 
+}
+else
+{
+  time = this.time.minute;
+}
+  this.schIntw.StartTime = this.time.hour + ':' + time;
 // this.schIntw.EndTime=this.userId;
 // skype or anytype
 // this.schIntw.PhoneNumber=this.userId;
@@ -408,7 +417,6 @@ SaveNotes()
  Ids.forEach((value, index, array)=>
  {
     this.savenote.toUserId = value;
-    debugger
    this.jobdetailsservice.SaveProfileNote(this.savenote)
    .subscribe(
    status => {
@@ -440,7 +448,6 @@ SaveNotes()
 res.then(() => {
 
   this.NId.forEach(element => {
-    debugger
     if(this.uploader.queue.length>0)
     {
       for (let i = 0; i < this.uploader.queue.length; i++) {
