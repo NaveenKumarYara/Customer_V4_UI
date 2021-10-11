@@ -26926,3 +26926,26 @@ body .revamp__radio__grid .multiple__radio__row .col__container li input[type="r
 body .revamp__radio__grid .multiple__radio__row .col__container li label { font-weight: 400; margin:0;  }
 body .revamp__radio__grid .icon__col { position: relative; }
 body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolute; left: -999em; }
+.btn__spinner.spinner { position: relative; padding-right:40px !important; }
+.btn__spinner.spinner:before { right:10px; margin-left: 0 !important; top:0; bottom: 0; margin:auto; }
+
+.icon__tiles { width:50px; height:50px; font-size:0; background: url(./assets/images/icon__tiles.png) 0 0 no-repeat; display: inline-block; }
+.icon__tiles.icon__tiles__reference { background-position:-24px -25px; }
+.icon__tiles.icon__tiles__award { background-position:-87px -25px; }
+.icon__tiles.icon__tiles__check { background-position:-149px -25px; }
+.icon__tiles.icon__tiles__partner { background-position:-211px -25px; }
+
+.icon__tiles.icon__tiles__reference.green { background-position:-24px -85px; }
+.icon__tiles.icon__tiles__award.green { background-position:-87px -85px; }
+.icon__tiles.icon__tiles__check.green { background-position:-149px -85px; }
+.icon__tiles.icon__tiles__partner.green { background-position:-211px -85px; }
+
+.icon__tiles.icon__tiles__reference.orange { background-position:-24px -145px; }
+.icon__tiles.icon__tiles__award.orange { background-position:-87px -145px; }
+.icon__tiles.icon__tiles__check.orange { background-position:-149px -145px; }
+.icon__tiles.icon__tiles__partner.orange { background-position:-211px -145px; }
+
+.icon__tiles.icon__tiles__reference.blue { background-position:-24px -212px; }
+.icon__tiles.icon__tiles__award.blue { background-position:-87px -212px; }
+.icon__tiles.icon__tiles__check.blue { background-position:-149px -212px; }
+.icon__tiles.icon__tiles__partner.blue { background-position:-211px -212px; }
