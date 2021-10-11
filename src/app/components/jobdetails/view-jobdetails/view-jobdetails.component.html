@@ -121,16 +121,44 @@
 				<div class="funnel__section">
 					<ul class="nav nav-tabs nav-justified row flex flex-wrap flex-align-equal">
 						<li class="col-sm-4 first__col">
-							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)">
+							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied > SuggestedCount">
 								<h4>Prospect profiles</h4>
 								<span class="shape">
 									<span class="number">{{jobstatistics?.Applied}}</span>
 								</span>
 								<h5>Profiles which are submitted to the job from any source. </h5>
 							</a>
+							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied < SuggestedCount">
+								<h4>Arytic Best Fit Results</h4>
+								<span class="shape">
+									<span class="number">{{SuggestedCount||'0'}}</span>
+								</span>
+								<h5>Arytic's suggested best match candidates for you.</h5>
+							</a>
+							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied == SuggestedCount">
+								<h4>Arytic Best Fit Results</h4>
+								<span class="shape">
+									<span class="number">{{SuggestedCount||'0'}}</span>
+								</span>
+								<h5>Arytic's suggested best match candidates for you.</h5>
+							</a>
 						</li>
 						<li class="col-sm-4 second__col active">
-							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
+							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied == SuggestedCount">
+								<h4>Prospect profiles</h4>
+								<span class="shape">
+									<span class="number">{{jobstatistics?.Applied}}</span>
+								</span>
+								<h5>Profiles which are submitted to the job from any source. </h5>
+							</a>
+							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied < SuggestedCount">
+								<h4>Prospect profiles</h4>
+								<span class="shape">
+									<span class="number">{{jobstatistics?.Applied}}</span>
+								</span>
+								<h5>Profiles which are submitted to the job from any source. </h5>
+							</a>
+							<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied > SuggestedCount">
 								<h4>Arytic Best Fit Results</h4>
 								<span class="shape">
 									<span class="number">{{SuggestedCount||'0'}}</span>
