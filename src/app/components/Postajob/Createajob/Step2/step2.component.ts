@@ -72,6 +72,7 @@ isDrafted: boolean;
   // formData: any;
   // joblist = new InsertJob();
   insertJob = new InsertJob();
+  checkIndustry:number;
   // pjSkill: PjSkill;
   // pjRole: PjRole;
   // pjDisc: PjDisc;
@@ -98,6 +99,10 @@ isDrafted: boolean;
     this.appService.currentcategorytitle.subscribe((data) => {
         this.jobCategory = data.JobCategoryId; // And he have data here too!
     });
+   this.appService.IndustryId.subscribe((data)=>
+   {
+     this.checkIndustry = Number(data);
+   });
     this.appService.currentjobtitle.subscribe((data) => {
       this.jobTitle = data; // And he have data here too!
     });
@@ -238,7 +243,11 @@ isDrafted: boolean;
     //debugger
     // end moved to step2
     this.insertJob.XmlQualifications = this.qualification.addqualificationList;
-     this.insertJob.XmlDomains = this.domain.addDomainList;
+    if(this.domain != undefined)
+    {
+      this.insertJob.XmlDomains = this.domain.addDomainList;
+    }
+     
     this.insertJob.XmlPersonType = this.personalityType.checkpersonType;
      if(this.immi.selectedItems.length>0)
     {
