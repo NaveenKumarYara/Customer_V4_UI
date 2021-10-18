@@ -200,8 +200,8 @@ GetSubscriptionDetails(sid)
     }
     this.totalFile = e.target.files.length;
     this.totalSelectedDoc = e.target.files.length;
-    if (e.target.files.length > 5) {
-      this.toastr.warning('Please select max 5 files.');
+    if (e.target.files.length > 40) {
+      this.toastr.warning('Please select max 40 files.');
       this.spinner.hide();
       setTimeout(() => {
              this.toastr.dismissToast;
