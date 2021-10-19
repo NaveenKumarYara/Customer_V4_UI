@@ -842,13 +842,13 @@
                 </ul>
               </div>
 
-              <div class="col-sm-8 experience__detail__col">
+              <div class="col-sm-8 experience__detail__col" *ngIf="profExperience?.length>0">
                 <ng-container *ngFor="let exps of profExperience;let i=index ">
                   <div class="experience__slide" [ngClass]="{'active': check===i}">
                     <div class="slide__info">
-                      <div class="container__box">
+                      <div class="container__box"  *ngIf="exps?.Description!=null||exps?.Description!=''">
                         <h4>Summary</h4>
-                        <div class="info__box" *ngIf="exps.Description!=null||exps.Description!=''">
+                         <div class="info__box">
                           <div class="custom__scrollbar">
                             <p [innerHTML]="exps?.Description | slice:0:100">
 
@@ -857,9 +857,9 @@
                               <p [innerHTML]="exps?.Description| slice:100:15000">
 
                               </p>
-                            </ng-container>
+                             </ng-container> 
                           </div>
-                          <a href="javascript:void(0)" *ngIf="exps?.Description.length>100" (click)="moreContent(i)" class="show__more">
+                          <a href="javascript:void(0)" *ngIf="exps?.Description?.length>100" (click)="moreContent(i)" class="show__more">
                             <span *ngIf="moreShow">Show Less</span> <span *ngIf="!moreShow">Show More</span>
                           </a>
 
@@ -867,7 +867,7 @@
                         <ng-container *ngIf="exps.Description===null||exps.Description===''">
                           <p> Candidate yet to provide the Description. </p>
                         </ng-container>
-                      </div>
+                      </div> 
                       <div class="container__box key__container__box">
                         <div class="row flex flex-wrap flex-align-equal">
                           <div class="col-sm-9 col key__left__col">
