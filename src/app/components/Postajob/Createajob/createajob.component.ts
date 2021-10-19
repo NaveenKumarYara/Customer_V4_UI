@@ -367,6 +367,7 @@ editMode: string;
       debugger  
       if(this.jobdetailscustomer.JobInfo.ImmigrationForJob.length>0) 
       {
+        this.appService.ImmigrationforJobs=[];
         this.jobdetailscustomer.JobInfo.ImmigrationForJob.forEach(element => {
           if(element.ImmigrationStatus!=null)
           {
