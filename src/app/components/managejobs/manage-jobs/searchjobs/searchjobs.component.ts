@@ -19,13 +19,16 @@ export class SearchjobsComponent implements OnInit {
   SearchList: any = [];
   customerId: any;
   searchval:any;
-  searchString:any;
+  searchString:any='';
   @Input() parentApi: ParentComponentApi;
   constructor(private route: ActivatedRoute,
     private router: Router, private managejobservice: ManageJobService,private appService: AppService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
+
+
+    
    }
    search(val)
    {
@@ -84,6 +87,17 @@ export class SearchjobsComponent implements OnInit {
     }
   }
   ngOnInit() {
+    let sval = localStorage.getItem('lsearch');
+    {
+      if(sval!=undefined && sval!=null && sval!= "null")
+      {
+          this.searchString = sval;
+      }
+      if(sval === null||sval=== undefined)
+      {
+        this.searchString = "";
+      }
+    }
   }
 
 }

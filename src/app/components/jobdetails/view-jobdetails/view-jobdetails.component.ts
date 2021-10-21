@@ -160,6 +160,13 @@ export class ViewJobdetailsComponent implements OnInit {
 
   backClicked() {
     localStorage.setItem('post', '1');
+    if(localStorage.getItem('search')!=null&&localStorage.getItem('search')!=undefined)
+    {
+      let search = localStorage.getItem('search');
+      localStorage.setItem("lsearch",search);
+      localStorage.removeItem('search');
+    }
+
     this._location.back();
   }
   openCandidate() {

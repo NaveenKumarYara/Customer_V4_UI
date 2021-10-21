@@ -24,7 +24,7 @@ export class LoadJoblistComponent implements OnInit {
   customer: any;
   customerId: any;
   userId: any;
-  searchString:string;
+  searchString:string='';
   viewBy:any;
   employmentTypeId:any;
   showadvancesearch = false;
@@ -39,6 +39,7 @@ export class LoadJoblistComponent implements OnInit {
   departmentId:any;
   loaddata = false;
   sortBy: any;
+  nsortBy:any;
    jobLoader = false;
    color = 'primary';
    mode = 'indeterminate';
@@ -59,10 +60,36 @@ export class LoadJoblistComponent implements OnInit {
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
+    let sort = JSON.parse(localStorage.getItem('NsortBy'));
+    let sval = localStorage.getItem('lsearch');
+    
+      if(sval!=undefined && sval!=null && sval!= "null")
+      {
+          this.searchString = sval;
+      }
+      if(sval === null||sval=== undefined)
+      {
+        this.searchString = " ";
+      }
+    
+    // if(localStorage.getItem('lsearch')!=null && localStorage.getItem('lsearch')!=undefined)
+    // {
+    //   this.searchString = localStorage.getItem('lsearch');
+    // }
     if(this.sortBy!=null&&this.sortBy!=undefined)
     {
       this.UpdatePopulateSort(this.sortBy);
     }
+
+    if(sort!=null&&sort!=undefined)
+    {
+      this.nsortBy=sort;
+      this.PopulateSort(sort);
+    }
+    // if(this.searchString!=undefined&&this.searchString!=null)
+    // {
+    //   this.getParentApi().callSearchMethod(this.searchString);
+    // }
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.defaultValue ='0';
@@ -112,16 +139,29 @@ export class LoadJoblistComponent implements OnInit {
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 
 this.sortBy=this.sortBy!=null?sortBy:0;
+this.nsortBy=this.nsortBy!=null?sortBy:0;
 this.status=this.status!=null?status:0;
-
-    this.searchString= searchString;
-    //debugger
+      this.searchString= searchString;
     return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.status,newSortBy,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
       this.spinner.hide();
     }); 
+  }
+
+  Reset()
+  {
+    $('#searchStr').val('');
+    localStorage.removeItem('lsearch');
+    localStorage.removeItem('sortBy');
+    localStorage.removeItem('NsortBy')
+    this.searchString=''; 
+    this.isfiltered=0;
+    this.sortBy=0;
+    this.UpdatePopulateSort(0);
+    this.PopulateSort(0);
+    this.getParentApi().callSearchMethod(this.searchString);
   }
 
   GetSavedJobFilter(val)
@@ -213,16 +253,18 @@ this.status=this.status!=null?status:0;
   { 
       this.spinner.show();
       this.newSortBy = sort;
+      this.nsortBy=sort;
       this.isfiltered=0;
+      localStorage.setItem('NsortBy', JSON.stringify(sort));
       this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
   }
 
   UpdatePopulateSort(filter)
   { 
       this.spinner.show();
-      debugger
       this.sortBy = filter;
       this.isfiltered=0;
+      localStorage.setItem('sortBy', JSON.stringify(filter));
       this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,0,this.newSortBy);     
   }
 
@@ -246,6 +288,7 @@ this.status=this.status!=null?status:0;
         this.spinner.show();
        // this.parentMethod(name);
         this.searchString = searchString;
+        localStorage.setItem("search", searchString);
         this.cityId = 0;
         this.experience = 0;
         this.employmentTypeId = 0;
