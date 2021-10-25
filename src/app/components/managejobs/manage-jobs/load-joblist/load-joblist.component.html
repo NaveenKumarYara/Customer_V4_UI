@@ -154,7 +154,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
-            <div class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+            <div class="load-more btn btn-border btn-block" (click)="updateJobListCount(); change()">
                 Load More
             </div>
         </ng-container>
@@ -188,7 +188,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="joblist?.Jobs?.length>=5 && joblist?.Jobs?.length != joblist?.TotalCount">
-            <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount()">
+            <div *ngIf="loaddata" class="load-more btn btn-border btn-block" (click)="updateJobListCount(); change()">
                 Load More
             </div>
         </ng-container>

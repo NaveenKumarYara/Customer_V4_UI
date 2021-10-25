@@ -292,7 +292,6 @@ export class ViewCandidateprofileComponent implements OnInit {
     this.jobStatus = this.data.jobStatus;
 
     this.GetBG();
-    debugger;
     this.profile = this.data.profile;
     this.name = this.data.Name;
     this.lname = this.data.Lname;

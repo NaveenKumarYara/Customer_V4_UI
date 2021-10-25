@@ -52,6 +52,7 @@ export class LoadJoblistComponent implements OnInit {
    empType:any;jobStatus:any;skills:any;departments:any;titles:any;
    education:any;
    isfiltered :any;
+   paging:any;
    status:any=0;
    newSortBy:any=0;
    post:any;
@@ -59,10 +60,12 @@ export class LoadJoblistComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
+    this.customerId = this.customer.CustomerId;
+    this.userId = this.customer.UserId;
     this.sortBy= JSON.parse(localStorage.getItem('sortBy'));
     let sort = JSON.parse(localStorage.getItem('NsortBy'));
     let sval = localStorage.getItem('lsearch');
-    
+    let paging = JSON.parse(localStorage.getItem('paging'));
       if(sval!=undefined && sval!=null && sval!= "null")
       {
           this.searchString = sval;
@@ -86,12 +89,18 @@ export class LoadJoblistComponent implements OnInit {
       this.nsortBy=sort;
       this.PopulateSort(sort);
     }
+
+    if(paging!=null&&paging!=undefined)
+    {
+      this.jobLoader=true;
+      this.paging=paging;
+      this.populateJoblist(this.customerId, this.userId,this.searchString,this.sortBy,this.status,this.newSortBy);
+    }
     // if(this.searchString!=undefined&&this.searchString!=null)
     // {
     //   this.getParentApi().callSearchMethod(this.searchString);
     // }
-    this.customerId = this.customer.CustomerId;
-    this.userId = this.customer.UserId;
+  
     this.defaultValue ='0';
     if(this.customer!=null){
    //---------------------------------------Oninit Data call-------------------------------
@@ -142,7 +151,11 @@ export class LoadJoblistComponent implements OnInit {
      this.status=this.status!=null?status:0;
       this.searchString= searchString;
       this.newSortBy=this.newSortBy!=null?newSortBy:0;
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.status,this.newSortBy,this.joblistcount).subscribe(res => {
+      if(this.paging!=null&&this.paging!=undefined)
+      {
+        this.joblistcount = this.paging;
+      }
+    return this.managejobservice.getJobDetails(this.customerId,this.userId,this.sortBy,this.searchString,this.status,this.newSortBy,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
@@ -155,12 +168,16 @@ export class LoadJoblistComponent implements OnInit {
     $('#searchStr').val('');
     localStorage.removeItem('lsearch');
     localStorage.removeItem('sortBy');
-    localStorage.removeItem('NsortBy')
+    localStorage.removeItem('NsortBy');
+    localStorage.removeItem('paging');
+    this.joblistcount=6;
     this.searchString=''; 
     this.isfiltered=0;
     this.sortBy=0;
+    this.paging=null;
     this.UpdatePopulateSort(0);
     this.PopulateSort(0);
+    this.updateJobListCount();
     this.getParentApi().callSearchMethod(this.searchString);
   }
 
@@ -221,6 +238,11 @@ export class LoadJoblistComponent implements OnInit {
       //this.defaultValue = 0;
       //this.clearAll();
     }); 
+  }
+
+  change()
+  {
+    localStorage.setItem('paging', JSON.stringify(this.joblistcount));
   }
 
   updateJobListCount() {
