@@ -69,7 +69,7 @@ export class LoadJoblistComponent implements OnInit {
       }
       if(sval === null||sval=== undefined)
       {
-        this.searchString = " ";
+        this.searchString = "";
       }
     
     // if(localStorage.getItem('lsearch')!=null && localStorage.getItem('lsearch')!=undefined)
@@ -138,11 +138,11 @@ export class LoadJoblistComponent implements OnInit {
 
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 
-this.sortBy=this.sortBy!=null?sortBy:0;
-this.nsortBy=this.nsortBy!=null?sortBy:0;
-this.status=this.status!=null?status:0;
+     this.sortBy=this.sortBy!=null?sortBy:0;
+     this.status=this.status!=null?status:0;
       this.searchString= searchString;
-    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.status,newSortBy,this.joblistcount).subscribe(res => {
+      this.newSortBy=this.newSortBy!=null?newSortBy:0;
+    return this.managejobservice.getJobDetails(customerId, userId,this.sortBy,this.searchString,this.status,this.newSortBy,this.joblistcount).subscribe(res => {
       this.loaddata = true;
       this.joblist = res;
       this.jobLoader = false;
