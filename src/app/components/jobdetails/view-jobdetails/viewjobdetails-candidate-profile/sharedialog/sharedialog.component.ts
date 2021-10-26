@@ -140,7 +140,7 @@ export class SharedialogComponent {
     return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
       this.customercontacts = res;
       this.customercontacts = this.customercontacts.filter(
-        name => name.FirstName != "Invited");
+        name => name.FirstName != "Invited" && name.IsRemove === false);
     });
   }
 

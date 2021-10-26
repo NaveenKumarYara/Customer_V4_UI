@@ -185,7 +185,7 @@ onItemDeleted(index){
      this.customercontacts = res;
      this.customercontacts =  res.filter((i) => { 
 
-      if(i.FirstName !="Invited"  && i.FirstName != this.customer.FirstName)
+      if(i.FirstName !="Invited"  && i.FirstName != this.customer.FirstName && i.IsRemove!=true)
       {
         return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
       }                      

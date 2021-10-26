@@ -182,7 +182,7 @@ export class UpdateInterviewComponent implements OnInit {
    return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
      this.customercontacts = res;
      this.customercontacts = this.customercontacts.filter(
-      name=> name.FirstName !="Invited");
+      name=> name.FirstName !="Invited" && name.IsRemove == false);
       this.selectedUserName= this.customercontacts[0].UserId;
  });
  }

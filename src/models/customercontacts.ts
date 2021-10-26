@@ -5,5 +5,6 @@ export class CustomerContacts{
     LastName: string;
     ProfilePic: null;
     RoleId: number;
-    IsActive: boolean
+    IsActive: boolean;
+    IsRemove: boolean
   }
