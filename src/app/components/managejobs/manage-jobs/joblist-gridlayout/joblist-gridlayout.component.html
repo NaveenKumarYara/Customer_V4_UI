@@ -156,9 +156,22 @@
         </div>
 
         <div class="card-footer">
-            <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic" width="50">
-            <h3>{{job?.HiringLeaderName | titlecase}} </h3>
-            <h5 class="meta">{{job?.UserRole}}</h5>
+            <!-- <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic" width="50"> -->
+            <div class="row flex flex-align-center flex-wrap full-width card-footer-flex">
+                <div class="col-sm-6 flex flex-align-center flex-wrap">
+                    <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-owner" width="25">
+               
+                     <div  class="card-footer-title" title="{{job?.HiringLeaderName | titlecase}}">{{job?.HiringLeaderName | titlecase}}<br/><span class="meta font-weight-bold">Owner</span></div>
+                </div>
+                <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex">
+                    <div class="card-footer-title" title="{{job?.HiringLeaderName | titlecase}}">{{job?.HiringLeaderName | titlecase}}<br/><span class="meta">Assignee</span></div>
+               
+                    <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25">
+                </div>
+            </div>
+
+            <!-- <h3>{{job?.HiringLeaderName | titlecase}} </h3>
+            <h5 class="meta">{{job?.UserRole}}</h5> -->
         </div>
     </a>
 </div>

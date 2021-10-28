@@ -6,3 +6,20 @@ img {
     position: relative;
 }
 
+.card-footer-icon{
+    font-size: 24px;
+    border: 1px  solid;
+    padding: 5px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.card-footer-title{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+.full-width{width:100%;}
+.ui-pic-owner{margin-right: 10px;}
+.ui-pic-assignee{margin-left: 10px;}
+.card-footer-flex{justify-content: flex-end;padding: 0px;}
