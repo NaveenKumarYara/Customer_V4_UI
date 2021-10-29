@@ -365,7 +365,6 @@ editMode: string;
       this.appService.rList = this.jobdetailscustomer.JobInfo.HiringManagerId.toString();
       //this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
       //this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs); 
-      debugger  
       if(this.jobdetailscustomer.JobInfo.ImmigrationForJob.length>0) 
       {
         this.appService.ImmigrationforJobs=[];
