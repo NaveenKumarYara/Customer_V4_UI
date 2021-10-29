@@ -81,6 +81,12 @@ export class TeammembersComponent implements OnInit, OnDestroy {
   getcustomerusers() {
     return this.appService.getTechinicalTeam(this.customerId).subscribe(res =>{
       this.managersList= res;
+      this.managersList = this.managersList.filter((i) => {
+        if(i.FirstName !="Invited"   && i.IsRemove!=true)
+{
+  return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+}                      
+});
     });
   }
 

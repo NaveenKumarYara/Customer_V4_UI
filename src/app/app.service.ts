@@ -271,6 +271,8 @@ export class AppService {
   recrutingList: RecrutingTeam[] = [];
   recrutingListChanged = new Subject<RecrutingTeam[]>();
 
+  rList: string;
+
   immigrations: jobImmigration[] = [];
   immigrationsChanged = new Subject<jobImmigration[]>();
 
@@ -521,6 +523,7 @@ export class AppService {
     this.personTypeSingle = [];
     this.personTypeSingleChanged = new Subject<PjDisc[]>();
     this.adddomain = [];
+    this.rList=undefined;
     this.adddomainChanged = new Subject<PjDomain[]>();
     this.JobIds = [];
     this.JobLocations = [];

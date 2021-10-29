@@ -168,6 +168,9 @@ export class DiscResult {
       public  UserId: number;
       public FirstName: string;
       public Email:string;
+      public LastName:string;
+      public RoleName:string;
+      public IsRemove:boolean;
   }
   export class ClientModel {
     public  ClientId: number;

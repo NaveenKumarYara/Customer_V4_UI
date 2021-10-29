@@ -25,6 +25,7 @@ import { UploadvideoprofileComponent } from './uploadvideoprofile.component';
 import { MatDialog } from '@angular/material';
 import { EmploymentType } from '../../../../../models/employmenttype.model';
 import { SalarysliderComponent } from './salaryslider.component';
+import { recriuterComponent } from './recriuter.component';
 declare var $: any;
 declare var jQuery: any;
 // import { SalarysliderComponent } from './salaryslider.component';
@@ -75,6 +76,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
   @ViewChild(EmploymentTypeComponent) empType: EmploymentTypeComponent;
   @ViewChild(InterviewTypeComponent) intwType: InterviewTypeComponent;
   @ViewChild(ReportingManagerComponent) reporting: ReportingManagerComponent;
+  @ViewChild(recriuterComponent) recriuter: recriuterComponent;
   @ViewChild(TeammembersComponent) team: TeammembersComponent;
   @ViewChild(SalarysliderComponent) salSlider: SalarysliderComponent;
   // @ViewChild(SalarysliderComponent) salary: SalarysliderComponent;
@@ -392,7 +394,8 @@ export class Step3Component implements OnInit,AfterViewChecked {
 
 
     this.insertJob.HiringProcessId = this.intwType.interviewType.InterviewTypeId;
-    //this.insertJob.HiringManagerId = this.reporting.suggestedManagers.map(x=>x.UserId).toString();
+    let val =this.recriuter.sManager!=undefined?this.recriuter.sManager:this.customer.UserId;
+    this.insertJob.HiringManagerId = Number(val);
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
     if(this.JobIds&&this.JobIds.length>0)

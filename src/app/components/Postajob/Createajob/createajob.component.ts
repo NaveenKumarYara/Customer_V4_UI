@@ -362,6 +362,7 @@ editMode: string;
       this.appService.updateJobDue(this.jobdetailscustomer.JobInfo.JobDueDateId);
       this.appService.JobDueDate.next(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
       this.appService.updateJobDueDate(new Date(this.jobdetailscustomer.JobInfo.ExpiryDate));
+      this.appService.rList = this.jobdetailscustomer.JobInfo.HiringManagerId.toString();
       //this.appService.ImmigrationforJobs = this.jobdetailscustomer.JobInfo.ImmigrationForJob;
       //this.appService.ImmigrationforJobChanged.next(this.appService.ImmigrationforJobs); 
       debugger  

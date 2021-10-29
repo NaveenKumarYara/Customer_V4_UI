@@ -25,11 +25,14 @@ declare var $: any;
 export class recriuterComponent implements OnInit, OnDestroy {
 
   selectedManager: CustomerUsers;
+  selManager: CustomerUsers;
   selectedIms: jobImmigration;
   selectManager: string;
+  sManager: string;
   flag:any=false;
   reportingmanagersList: Observable<CustomerUsers[]>;
   remanagers: CustomerUsers[]=[];
+  rmanagers: CustomerUsers[]=[];
   customer: any;
   customerId: any;
   report =new JobReporting();
@@ -43,9 +46,11 @@ export class recriuterComponent implements OnInit, OnDestroy {
   userId: any;
   isSuggsted: any;
   selectedInput = new Subject<string> ();
+  selectInput = new Subject<string> ();
   selectStatus:string;
   usersload: boolean;
   suggestManagers: RecrutingTeam[] = [];
+  sManagers: RecrutingTeam[] = [];
   sslist=[];
   imsList=[];
   JobIds=[];
@@ -86,6 +91,19 @@ export class recriuterComponent implements OnInit, OnDestroy {
       
     
    }
+
+   updateManage(val) {
+    if(val!=undefined)
+    {
+      this.appService.rList= val.UserId;      
+    }
+    else
+    {
+      this.appService.rList = this.customer.UserId;
+    }  
+   }
+
+
 
   // getjobaccessto1000042
   //   getcustomerusers() {
@@ -143,6 +161,49 @@ export class recriuterComponent implements OnInit, OnDestroy {
         //debugger
       this.remanagers=res;
             this.suggestManagers= this.appService.recrutingList;
+            this.remanagers = this.remanagers.filter((i) => {
+              if(i.FirstName !="Invited"   && i.IsRemove!=true)
+      {
+        return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+      }                      
+     });
+      // this.discResult.forEach(cc => cc.checked = false);
+    });
+  }
+
+  allManager1() {
+    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
+        debugger
+        this.rmanagers=res;
+        let val = this.appService.rList;
+        if(val!=undefined)
+        {
+         res.filter((i) => {
+            if(i.FirstName !="Invited"   && i.IsRemove!=true && i.UserId== Number(val))
+    {
+     this.sManager = i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+    }                      
+   });
+   this.rmanagers = this.rmanagers.filter((i) => {
+    if(i.FirstName !="Invited"   && i.IsRemove!=true)
+{
+return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+}                      
+});
+        } 
+        else
+        {
+          
+          //this.sManagers= this.appService.rList;
+          this.rmanagers = this.rmanagers.filter((i) => {
+            if(i.FirstName !="Invited"   && i.IsRemove!=true)
+    {
+      return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+    }                      
+   });
+        }
+   
+
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
@@ -165,13 +226,25 @@ export class recriuterComponent implements OnInit, OnDestroy {
     this.Forgotform = this.fb.group({
       'EmailId': ['', Validators.compose([Validators.required])],  
     });
+    this.allManager1();
     this.suggestedManager1();
+
     this.appService.recrutingListChanged
     .subscribe(
     (list: RecrutingTeam[]) => {
       this.suggestManagers= list;
       }
     );
+
+   
+
+
+    // this.appService.rListChanged
+    // .subscribe(
+    // (list: RecrutingTeam[]) => {
+    //   this.sManagers= list;
+    //   }
+    // );
 
     // this.appService.ImmigrationforJobChanged.subscribe(
     //   (listd: jobImmigrationData[]) => {
@@ -217,7 +290,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-            //this.GetJobAssigned(e);
+            this.GetJobAssigned(e);
             this.appService.RecrutingTeam(this.report).subscribe(
               data => {
                 if(data=0)
@@ -235,7 +308,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
-          //this.GetJobAssigned(res);
+          this.GetJobAssigned(res);
           this.appService.RecrutingTeam(this.report).subscribe(
             data => {
               if(data=0)

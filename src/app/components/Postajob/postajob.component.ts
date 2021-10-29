@@ -61,6 +61,7 @@ export class PostajobComponent implements OnInit {
   this.appService.jobtitle.next('');
   this.appService.JobDue.next(5);
   this.appService.JobImp.next(3);
+  this.appService.rList=undefined;
   //this.appService.JobDueDate.next(new Date());
   this.appService.ImmigrationforJobs=[];
   this.appService.ImmigrationforJobChanged = new Subject<jobImmigrationData[]>();

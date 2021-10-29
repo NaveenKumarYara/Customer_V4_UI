@@ -138,6 +138,12 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
     return this.appService.getReortingTeam(this.customerId).subscribe(res =>{
       this.reportingmanagers=res;
             this.suggestedManagers= this.appService.reportingList;
+            this.reportingmanagers = this.reportingmanagers.filter((i) => {
+              if(i.FirstName !="Invited"   && i.IsRemove!=true)
+      {
+        return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName; 
+      }                      
+     });
       // this.discResult.forEach(cc => cc.checked = false);
     });
   }
@@ -239,7 +245,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
             this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-            //this.GetJobAssigned(e);
+            this.GetJobAssigned(e);
             this.appService.ReportingTeam(this.report).subscribe(
               data => {
                 if(data=0)
@@ -258,7 +264,7 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
           this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-          //this.GetJobAssigned(res);
+          this.GetJobAssigned(res);
           this.appService.ReportingTeam(this.report).subscribe(
             data => {
               if(data=0)
