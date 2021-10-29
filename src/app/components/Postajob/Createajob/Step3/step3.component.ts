@@ -394,7 +394,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
 
 
     this.insertJob.HiringProcessId = this.intwType.interviewType.InterviewTypeId;
-    let val =this.recriuter.sManager!=undefined?this.recriuter.sManager:this.customer.UserId;
+    let val =this.appService.rList!=undefined?this.appService.rList:this.customer.UserId;
     this.insertJob.HiringManagerId = Number(val);
     // //this.appService.reportingManager.value.UserId; // parseInt(this.reporting.selectedInput[0].value, 10);
     this.insertJob.XmlTechnicalTeam = this.team.addedteammemberslist;
