@@ -99,6 +99,11 @@ export class ViewJobdetailsComponent implements OnInit {
     this.customerId = this.customer.CustomerId;
     this.userId = this.customer.UserId;
     this.jobid = JSON.parse(sessionStorage.getItem('jobId'));
+    let vjobId = JSON.parse(localStorage.getItem('vjobId'));
+    if(vjobId !=undefined && vjobId!=null)
+    {
+      this.ViewJobdetailsModel(vjobId);
+    }
     this.ProfileId = localStorage.getItem('rprofileId');
     this.statusid = JSON.parse(sessionStorage.getItem('statusid')) === null ? 4 : JSON.parse(sessionStorage.getItem('statusid'));
     if (this.statusid == 4 || this.statusid == 0 || this.statusid == 15) {
@@ -254,6 +259,7 @@ export class ViewJobdetailsComponent implements OnInit {
         }
       }
     );
+    localStorage.removeItem('vjobId');
     viewdialogRef.afterClosed().subscribe(result => {
       this.populateJobsBasicInfoChange();
       //this.inprogressprofile = false;

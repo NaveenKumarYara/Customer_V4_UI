@@ -17,6 +17,7 @@
                 <li id="Active"><a (click)="changeJobStatus(job,true)">Active</a></li>
             </ng-template>
             <li><a (click)="OpenShareJobDialog(job.JobId)">Share</a></li>
+            <li><a (click)="ViewJobdetailsModel(job?.JobId)">Viewjobdetail</a></li>
         </ul>
     </div>
     <a>
@@ -163,11 +164,11 @@
                
                      <div  class="card-footer-title" title="{{job?.HiringLeaderName | titlecase}}">{{job?.HiringLeaderName | titlecase}}<br/><span class="meta font-weight-bold">Owner</span></div>
                 </div>
-                <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex">
+                <!-- <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex">
                     <div class="card-footer-title" title="{{job?.HiringLeaderName | titlecase}}">{{job?.HiringLeaderName | titlecase}}<br/><span class="meta">Assignee</span></div>
                
                     <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25">
-                </div>
+                </div> -->
             </div>
 
             <!-- <h3>{{job?.HiringLeaderName | titlecase}} </h3>
