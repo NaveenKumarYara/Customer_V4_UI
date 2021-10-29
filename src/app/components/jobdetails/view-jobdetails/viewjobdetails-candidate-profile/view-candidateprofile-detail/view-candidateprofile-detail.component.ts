@@ -9,6 +9,7 @@ import { ChartsModule } from 'ng2-charts';
 import * as FileSaver from 'file-saver';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
+import { Location } from '@angular/common';
 import { mappingdetails } from '../../../view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/mappingdetails';
 declare var $: any;
 
@@ -134,7 +135,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   private doughnutChartColors: any[] = [{ backgroundColor: ["#6569A9", "#3FB8B3", "#EC8885", "#666666", "#64A489"] }];
   alist: any = [];
   showMaskedData: boolean;
-  constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef,
+  constructor(private toastr: ToastsManager, private _vcr: ViewContainerRef,private _location: Location,
     private _service: ApiService, private router: Router, private jobdetailsservice: JobdetailsService) {
     //this.preId = sessionStorage.getItem('Preid');
     this.noTest = false;
@@ -159,6 +160,13 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
 
   showMoreoptional() {
     this.isMoreOption += 10;
+  }
+
+  backcheck() {
+    $("#activeMyjob").addClass('active');
+    let jobactive= true;
+    localStorage.setItem('jobactive', JSON.stringify(jobactive));
+    this.router.navigateByUrl('/app-view-jobdetails');
   }
 
   moreContent() {
