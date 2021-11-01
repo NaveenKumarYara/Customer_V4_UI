@@ -78,6 +78,17 @@ export class ManageJobService {
     );
   }
 
+
+  GetAssignedList(jobId:number): Observable<any> 
+  {
+    const url = this.settingsService.settings.GetAssignedList + 'jobId=' + jobId
+    return this.http.get<any>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+    );
+  }
+
   GetInterViewDetails(jobId:number,profileId:number): Observable<getDetails> {
     const url = this.settingsService.settings.GetInterviewDetails + '&jobId=' + jobId +'&profileId=' +profileId;
     return this.http.get<getDetails>(url)

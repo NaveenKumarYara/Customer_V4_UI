@@ -28,6 +28,7 @@ export class JoblistGridlayoutComponent implements OnInit {
   @Input() index: number;
   @Input() joblist: JobDetails[];
   jobId: any;
+  assignList:any=[];
   customer: any;
   complete:any;
   userId: any;
@@ -50,6 +51,16 @@ export class JoblistGridlayoutComponent implements OnInit {
      //this.GetProfileCount();
     // this.GetCustomerClients();
     // this.GetCustomerDepartment();
+    this.GetassignedList(this.job.JobId);
+  }
+
+  GetassignedList(jobId)
+  {
+    return this.managejobservice.GetAssignedList(jobId).subscribe(
+      data=>{
+         this.assignList = data;
+      }
+    )
   }
 
   titleCaseWord(word: string) {

@@ -217,5 +217,6 @@
   "GetProfileFeedback":"${Profile_URL}/api/GetProfileFeedback",
   "UserRoleCheck":"${Identity_URL}/api/CheckEmailExist?",
   "NewJobDetailsRedirect":"${CaMain_URL}/Ijobdetail/",
-  "GetJobCompleteness":"${Identity_URL}/api/GetJobCompletenessInfo?"
+  "GetJobCompleteness":"${Identity_URL}/api/GetJobCompletenessInfo?",
+  "GetAssignedList":"${Jobs_URL}/api/GetJobAssignedList?"
 }

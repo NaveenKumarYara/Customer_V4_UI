@@ -224,4 +224,5 @@ export class Settings {
   GetProfileFeedback:string;
   UserRoleCheck:string;
   NewJobDetailsRedirect:string;
+  GetAssignedList:string;
   }

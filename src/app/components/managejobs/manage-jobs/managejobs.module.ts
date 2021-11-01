@@ -18,7 +18,7 @@ import {
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastModule } from "ng2-toastr/ng2-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgbModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModule, NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { RouterModule } from "@angular/router";
@@ -36,7 +36,7 @@ import { JoblistTablelayoutComponent } from "./joblist-tablelayout/joblist-table
 import { SearchjobsComponent } from "./searchjobs/searchjobs.component";
 import { AdvanceSearchComponent } from "./advance-search/advance-search.component";
 import { LoadJoblistComponent } from "./load-joblist/load-joblist.component";
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,6 +58,8 @@ import { LoadJoblistComponent } from "./load-joblist/load-joblist.component";
     NgbModule.forRoot(),
     MatExpansionModule,
     MatSelectModule,
+    TooltipModule,
+    NgbPopoverModule,
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
     MatInputModule,
