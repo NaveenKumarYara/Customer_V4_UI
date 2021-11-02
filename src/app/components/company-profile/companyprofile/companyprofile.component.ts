@@ -44,6 +44,7 @@ export class CompanyprofileComponent implements OnInit {
     userId:any;
     show:boolean=false;
     cultureresults: any;
+    cd = new SendCDEmail();
     CulturalTestStatusNew: number = 0;
     getCustomerDepartments: GetCustomerDepartments[]=[];
     getCustomerClients:GetCustomerClients[]=[];
@@ -285,14 +286,18 @@ drop(event: any): void {
    {
     this._service.GetService('IdentityAPI/api/GetCustomDomainDetails?email=',this.customer.Email).subscribe(data => {
       this.CustomDetails = data;
-      if(data.CustomDomain === true)
-      {     
-        this.ShowDomain = true;
-      }
-      else
-      {
-        this.ShowDomain = false;
-      }
+   
+        
+        if(data.CustomDomain === true)
+        {     
+          this.ShowDomain = true;
+        }
+        else
+        {
+          this.ShowDomain = false;
+        }
+   
+ 
       
     })
    }
@@ -457,7 +462,12 @@ SaveCustomDomain()
     .subscribe(data => {
       if(data==0)
       {
-      this.GetCustomDomain();
+        this.cd.ToEmailId = 'info@arytic.com';
+        this.cd.CustEmail = this.customer.Email;
+        this.cd.Name=this.companyprofile.CompanyName;
+        this._service.PostService(this.cd,'EmailAPI/api/SendAdminCustomDomain').subscribe(dat=>{
+        this.GetCustomDomain();
+        });
       }
     },
     
@@ -465,11 +475,17 @@ SaveCustomDomain()
   }
   else
   {
-    let message = 'Your request sent successfully. Arytic team will get back to you soon!!';
-    let action = 'Info';
-    this._snackBar.open(message, action, {
-        duration: 2000,      
+    this.cd.ToEmailId = 'info@arytic.com';
+    this.cd.CustEmail = this.customer.Email;
+    this.cd.Name=this.companyprofile.CompanyName;
+    this._service.PostService(this.cd,'EmailAPI/api/SendAdminCustomDomain').subscribe(dat=>{
+      let message = 'Your request sent successfully. Arytic team will get back to you soon!!';
+      let action = 'Info';
+      this._snackBar.open(message, action, {
+          duration: 2000,      
+      });
     });
+ 
   }
 
   }
@@ -1360,4 +1376,12 @@ export class CulturalQuestionRank {
   candidateId: number;
   questionId: number;
   preferrenceNo: number;
+}
+
+
+export class SendCDEmail
+{
+  Name:  string;
+  CustEmail:  string;
+  ToEmailId: string;
 }
