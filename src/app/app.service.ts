@@ -750,6 +750,16 @@ export class AppService {
       });
   }
 
+  SendAdminEditEmail(body): any {
+    return this.http
+      .post(this.settingsService.settings.SendAdminEmail, body)
+      .map((res: Response) => res)
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
   getCompanyProfile(customerId: number): Observable<CompanyProfile> {
     const url = this.settingsService.settings.CompanyProfileBasicInfo + "customerId=" + customerId;
     return this.http.get<CompanyProfile>(url).catch(this.handleError);

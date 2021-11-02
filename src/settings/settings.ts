@@ -225,4 +225,5 @@ export class Settings {
   UserRoleCheck:string;
   NewJobDetailsRedirect:string;
   GetAssignedList:string;
+  SendAdminEmail:string;
   }

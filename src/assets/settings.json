@@ -217,5 +217,6 @@
   "UserRoleCheck": "https://identityapi-dev.arytic.com/api/CheckEmailExist?",
   "NewJobDetailsRedirect": "https://candidate-dev.arytic.com/Ijobdetail/",
   "GetJobCompleteness": "https://identityapi-dev.arytic.com/api/GetJobCompletenessInfo?",
-  "GetAssignedList":"https://jobsapi-dev.arytic.com/api/GetJobAssignedList?"
+  "GetAssignedList":"https://jobsapi-dev.arytic.com/api/GetJobAssignedList?",
+  "SendAdminEmail":"https://emailapi-dev.arytic.com/api/SendAdminEditEmail"
 }

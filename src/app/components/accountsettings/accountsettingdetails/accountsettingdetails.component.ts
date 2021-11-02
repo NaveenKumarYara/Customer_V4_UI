@@ -21,6 +21,7 @@ export class AccountsettingdetailsComponent implements OnInit {
   emailForm: FormGroup;
   nameForm: FormGroup;
   passForm: FormGroup;
+  sent = new SendEmail();
   password:any;
   oldstatus: boolean = false;
   newstatus: boolean = false;
@@ -62,6 +63,7 @@ export class AccountsettingdetailsComponent implements OnInit {
     this.appService.updateemail(this.emailForm.value)
     .subscribe(
     data => {
+      this.SentEmail();
       let userStorage: any = this.customer;
       userStorage.email = this.emailForm.value.Email;
       $('#updateemail').text(userStorage.email);
@@ -78,6 +80,18 @@ export class AccountsettingdetailsComponent implements OnInit {
     }, 2000);
   },
     error => console.log(error));
+  }
+
+  SentEmail()
+  {
+    this.sent.AppLink = "https://arytic.com";
+    this.sent.CustFromEmail = this.customer.Email;
+    this.sent.ToEmailId = this.emailForm.value.Email;
+    this.sent.CustToEmail = this.emailForm.value.Email;
+    this.appService.SendAdminEditEmail(this.sent).subscribe(email=>
+      {
+       this.sent = new SendEmail();
+      })
   }
 
   updateName()
@@ -174,4 +188,12 @@ function matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
       };
     }
   }
+}
+
+export class SendEmail
+{
+  CustFromEmail:  string;
+  CustToEmail:  string;
+  AppLink:  string;
+  ToEmailId: string;
 }
