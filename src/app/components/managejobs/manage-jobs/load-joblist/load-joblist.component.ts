@@ -174,10 +174,10 @@ export class LoadJoblistComponent implements OnInit {
     this.searchString=''; 
     this.isfiltered=0;
     this.sortBy=0;
-    this.paging=null;
+    //this.paging=null;
     this.UpdatePopulateSort(0);
     this.PopulateSort(0);
-    this.updateJobListCount();
+    //this.updateJobListCount();
     this.getParentApi().callSearchMethod(this.searchString);
   }
 
@@ -240,10 +240,10 @@ export class LoadJoblistComponent implements OnInit {
     }); 
   }
 
-  change()
-  {
-    localStorage.setItem('paging', JSON.stringify(this.joblistcount));
-  }
+  // change()
+  // {
+  //   localStorage.setItem('paging', JSON.stringify(this.joblistcount));
+  // }
 
   updateJobListCount() {
     this.joblistcount += 6;
