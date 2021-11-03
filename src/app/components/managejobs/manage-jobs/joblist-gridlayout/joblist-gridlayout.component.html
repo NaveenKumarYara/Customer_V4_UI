@@ -166,9 +166,9 @@
                 </div>
                 <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex ">
                         <!-- <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25"> -->
-                        <div class="tooltip-text">Assignee.
+                        <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0 || assignList?.TechnicalTeam?.length>0 || assignList?.ReportingManager?.length>0">Assignee.
 
-                            <span class="tooltipcontent" *ngIf="assignList?.RecruitingMember?.length>0 || assignList?.TechnicalTeam?.length>0 || assignList?.ReportingManager?.length>0">
+                            <span class="tooltipcontent" >
                     <!-- <div  class="card-footer-title" title="Job Assignee">List of Assign<br/><span class="meta font-weight-bold">Job Assignee</span></div> -->
 
                             
