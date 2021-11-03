@@ -433,7 +433,7 @@ res.then(() => {
 
   if(this.isShown2=true)
   {
-    //this.SendEmail();
+    this.SendEmail();
     this.selectedComments = "";
     this.EmailId = " ";
   }  

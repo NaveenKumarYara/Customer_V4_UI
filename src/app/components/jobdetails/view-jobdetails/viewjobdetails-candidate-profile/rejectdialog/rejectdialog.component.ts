@@ -381,7 +381,7 @@ export class RejectdialogComponent implements OnInit {
      });
      if(this.isShown2=true)
   {
-    //this.SendEmail();
+    this.SendEmail();
     this.selectedComments = "";
     this.EmailId = " ";
   } 
