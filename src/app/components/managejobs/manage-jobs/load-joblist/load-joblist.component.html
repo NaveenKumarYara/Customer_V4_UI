@@ -49,8 +49,8 @@
         </div> 
         <!---->
         <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
-        <div class="adv-filters-btn btn new-filter-btn">
-            <i class="fa fa-refresh" aria-hidden="true" (click)="Reset()"> Clear All</i>
+        <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()">
+            <i class="fa fa-refresh" aria-hidden="true"> Clear All</i>
         </div>
     </div>
 </div>

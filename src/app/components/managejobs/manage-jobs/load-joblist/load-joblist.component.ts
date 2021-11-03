@@ -324,6 +324,7 @@ export class LoadJoblistComponent implements OnInit {
           //this.sortBy = 0;
           //this.defaultValue = '0';
         }
+        this.clearAll();
          this.populateJoblistByFilter(this.customerId, this.userId, employmentTypeId, experience, cityId, clientId, departmentId);
     },
     Filterjobs : (locations,minExp, MaxExp,minSal,maxSal,clients,domain,immigrations,lastWeek,lastTwoWeek,last30days,last90days,lastyear,today,category,empType,profileStatus,skills,departments,titles,education,isfiltered,Users) => {
@@ -332,6 +333,7 @@ export class LoadJoblistComponent implements OnInit {
         //this.sortBy = 0;
         //this.defaultValue = '0';
       }
+      this.clearAll();
       this.locations =locations;this.minExp=minExp;this.MaxExp= MaxExp;
       this.minSal=minSal;
       this.maxSal=maxSal;this.clients=clients;
