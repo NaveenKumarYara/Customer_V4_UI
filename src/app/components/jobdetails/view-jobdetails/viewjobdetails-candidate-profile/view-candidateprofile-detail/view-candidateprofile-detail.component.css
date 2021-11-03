@@ -3072,3 +3072,17 @@ border-radius:0px;
  
 .empty__para { padding:10px; }  
 .flexible__height { height: auto !important; }
+
+.make-right
+{
+    width: 7%;
+    display: inline-block;
+    position: relative;
+    top: -25px;
+}
+
+.make-left
+{
+    width: 90%;
+    display: inline-block;
+}
