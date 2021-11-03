@@ -122,31 +122,59 @@
 					<ul class="nav nav-tabs nav-justified row flex flex-wrap flex-align-equal">
 						<ng-container *ngIf="jobstatistics?.AryticSuggested<=jobstatistics?.Applied">
 							<li class="col-sm-4 first__col active">
+								<a data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
+									<span class="number">{{SuggestedCount||'0'}}</span>
+									<h4>Arytic Best Fit Results<i class="fa fa-info-circle" aria-hidden="true" tooltip="Arytic's suggested best match candidates for you."></i></h4>
+								</a>
+							</li>
+							<li class="col-sm-4 second__col">
+								<a data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
+									<span class="number">{{jobstatistics?.Applied}}</span>
+									<h4>Prospect profiles<i class="fa fa-info-circle" aria-hidden="true" tooltip="Profiles which are submitted to the job from any source. "></i></h4>
+								</a>
+							</li>
+						</ng-container>
+						<ng-container *ngIf="jobstatistics?.AryticSuggested>jobstatistics?.Applied">
+							<li class="col-sm-4 first__col">
+								<a data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
+									<span class="number">{{SuggestedCount||'0'}}</span>
+									<h4>Arytic Best Fit Results<i class="fa fa-info-circle" aria-hidden="true" tooltip="Arytic's suggested best match candidates for you."></i></h4>
+								</a>
+							</li>
+							<li class="col-sm-4 second__col active">
 								<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)">
+									<span class="number">{{jobstatistics?.Applied}}</span>
+									<h4>Prospect profiles<i class="fa fa-info-circle" aria-hidden="true" tooltip="Profiles which are submitted to the job from any source. "></i></h4>
+								</a>
+							</li>
+						</ng-container>
+						<li class="col-sm-4 third__col">
+							<a  data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
+								<span class="number">{{jobstatistics?.InProgress}}</span>
+								<h4>In-Progress profiles<i class="fa fa-info-circle" aria-hidden="true" tooltip="Profiles currently under the hiring/interview process."></i></h4>
+							</a>
+						</li>
+						<!-- <ng-container *ngIf="jobstatistics?.AryticSuggested<=jobstatistics?.Applied">
+							<li class="col-sm-4 first__col active">
+								<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
 									<h4>Prospect profiles</h4>
-									<span class="shape">
-										<span class="number">{{jobstatistics?.Applied}}</span>
-									</span>
+									<span class="number">{{jobstatistics?.Applied}}</span>
 									<h5>Profiles which are submitted to the job from any source. </h5>
 								</a>
 							</li>
 							<li class="col-sm-4 second__col">
 								<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
 									<h4>Arytic Best Fit Results</h4>
-									<span class="shape">
-										<span class="number">{{SuggestedCount||'0'}}</span>
-									</span>
+									<span class="number">{{SuggestedCount||'0'}}</span>
 									<h5>Arytic's suggested best match candidates for you.</h5>
 								</a>
 							</li>
-						</ng-container>
+						</ng-container> 
 						<ng-container *ngIf="jobstatistics?.AryticSuggested>jobstatistics?.Applied">
-							<li class="col-sm-4 first__col ">
+							<li class="col-sm-4 first__col">
 								<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
 									<h4>Arytic Best Fit Results</h4>
-									<span class="shape">
-										<span class="number">{{SuggestedCount||'0'}}</span>
-									</span>
+									<span class="number">{{SuggestedCount||'0'}}</span>
 									<h5>Arytic's suggested best match candidates for you.</h5>
 								</a>
 							</li>
@@ -160,7 +188,8 @@
 								</a>
 							</li>
 						</ng-container>
-						<!-- <li class="col-sm-4 second__col ">
+					
+						<li class="col-sm-4 second__col ">
 							<a data-toggle="tab" href="#applied" (click)="updateappliedstatus();inprogressview(0)" *ngIf="jobstatistics?.Applied == SuggestedCount">
 								<h4>Prospect profiles</h4>
 								<span class="shape">
@@ -183,7 +212,7 @@
 								<h5>Arytic's suggested best match candidates for you.</h5>
 							</a>
 							
-						</li> -->
+						</li>
 						<li class="col-sm-4 third__col">
 							<a  data-toggle="tab" href="javascript:void(0)" (click)="updateinprogressstatus();inprogressview(1)">
 								<h4>In-Progress profiles</h4>
@@ -192,8 +221,65 @@
 								</span>
 								<h5>Profiles currently under the hiring/interview process.</h5>
 							</a>
-						</li>
+						</li> -->
 					</ul>
+				</div>
+				<div class="funnel__sub__footer" *ngIf="inprogressprofile==true">
+					<div class="row flex flex-wrap flex-align-center">
+						<div class="col-sm-6 first__sub__col">
+							<ul>
+								<li id="screening">
+									<a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
+										<div class="flex flex-wrap flex-align-center">
+											<!-- <h5>{{jobstatistics?.Screening}}</h5> -->
+											<span class="green"><em>{{jobstatistics?.Screening}}</em></span>
+											<h6>Screening</h6>
+										</div>
+									</a>
+								</li>
+								<li id="shortlisted">
+									<a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
+										<div class="flex flex-wrap flex-align-center">
+											<!-- <h5>{{jobstatistics?.ShortListed}}</h5> -->
+											<span class="blue"><em>{{jobstatistics?.ShortListed}}</em></span>
+											<h6>Shortlisted</h6>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-sm-6 second__sub__col">
+							<ul>
+								<li id="interview">
+									<a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
+										<div class="flex flex-wrap flex-align-center">
+											<!-- <h5>{{jobstatistics?.Interviewed}}</h5> -->
+											<span><em>{{jobstatistics?.Interviewed}}</em></span>
+											<h6>Interview</h6>
+										</div>
+									</a>
+								</li>
+								<li id="hired">
+									<a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
+										<div class="flex flex-wrap flex-align-center">
+											<!-- <h5>{{jobstatistics?.Hired}}</h5> -->
+											<span class="dark-green"><em>{{jobstatistics?.Hired}}</em></span>
+											<h6>Hired</h6>
+										</div>
+									</a>
+								</li>
+								<li id="rejected">
+									<a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
+										<div class="flex flex-wrap flex-align-center">
+											<!-- <h5>{{jobstatistics?.RejectedORWithdrawn}}</h5> -->
+											<span class="red"><em>{{jobstatistics?.RejectedORWithdrawn}}</em></span>
+											<h6>Rejected / Withdrawn</h6>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="card-footer">
 					<!-- <ul class="nav nav-tabs nav__tabs"> -->
@@ -312,50 +398,7 @@
 					<!-- </ul> -->
 				</div>
 				<!--New Design 29-04-2020, need to show on click of In-Progress Profiles-->
-				<div class="card-sub-footer" *ngIf="inprogressprofile==true">
-					<ul class="nav nav-tabs">
-						<li id="Screening">
-							<a data-toggle="tab" href="#screening" (click)="updatescreeningstatus()">
-								<div>
-									<!-- <h5>{{jobstatistics?.Screening}}</h5> -->
-									<h6>Screening <span>( {{jobstatistics?.Screening}} )</span></h6>
-								</div>
-							</a>
-						</li>
-						<li id="Shortlisted">
-							<a data-toggle="tab" href="#shortlisted" (click)="updateshortlistedstatus()">
-								<div>
-									<!-- <h5>{{jobstatistics?.ShortListed}}</h5> -->
-									<h6>Shortlisted <span>( {{jobstatistics?.ShortListed}} )</span></h6>
-								</div>
-							</a>
-						</li>
-						<li id="Interview">
-							<a data-toggle="tab" href="#interview" (click)="updateinterviewedstatus()">
-								<div>
-									<!-- <h5>{{jobstatistics?.Interviewed}}</h5> -->
-									<h6>Interview ( {{jobstatistics?.Interviewed}} )</h6>
-								</div>
-							</a>
-						</li>
-						<li id="hired">
-							<a data-toggle="tab" href="#hired" (click)="updatehiredstatus()">
-								<div>
-									<!-- <h5>{{jobstatistics?.Hired}}</h5> -->
-									<h6>Hired ( {{jobstatistics?.Hired}} )</h6>
-								</div>
-							</a>
-						</li>
-						<li id="rejected">
-							<a data-toggle="tab" href="#rejected" (click)="updaterejectedstatus()">
-								<div>
-									<!-- <h5>{{jobstatistics?.RejectedORWithdrawn}}</h5> -->
-									<h6>Rejected / Withdrawn ( {{jobstatistics?.RejectedORWithdrawn}} )</h6>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
+			
 				<!-- <ng-container *ngIf="inprogressprofile">
 
                 </ng-container> -->

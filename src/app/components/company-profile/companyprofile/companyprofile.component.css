@@ -465,3 +465,6 @@ margin-left: 11rem;
 .cust-p-test .modal-body .table tr {
    cursor: move;
 }
+.page--company-profile.edit-mode label{
+    margin: 30px 80px;
+}

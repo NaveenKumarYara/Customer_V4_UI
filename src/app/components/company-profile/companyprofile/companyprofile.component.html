@@ -42,7 +42,7 @@
         <app-basicinfo [companyprofile]="companyprofile" [getcompanylogo]="getcompanylogo"></app-basicinfo>
 
       </div>
-      <div class="row" *ngIf="ShowDomain!=true">
+      <div class="row show__domain__row" *ngIf="ShowDomain!=true">
         <label class="switch">
           <input type="checkbox" #chkEnable [(ngModel)]="cdomain.IsDomain" name="IsDomain"
             (ngModelChange)="SaveCustomDomain()">
@@ -51,6 +51,8 @@
         <strong>Would you like to create your custom domain.</strong>
         <input type="url" class="roundedCorner" [(ngModel)]="cdomain.DomainUrl"
           value="https://{{companyprofile?.CompanyName}}.arytic.com" [disabled]="!chkEnable.checked" readonly />
+        
+        <button class="btn btn-success nxt" data-toggle="modal" data-target="#myModal">Enable Premium Features for Free</button>
       </div>
 
       <div class="row" *ngIf="ShowDomain===true">
@@ -298,7 +300,7 @@
               </button>
               <button *ngIf="CulturalTestStatus == 100" class="thumbnail cultural-test-btn"
                 style="position: relative; z-index: 1;">
-                <img src="assets/images/Cultural-test.png" alt="Cultural Test" style="-webkit-filter: blur(2px);">
+                <img src="assets/images/Cultural-test.png" alt="Cultural Test" style="filter: blur(2px);">
                 <span style="top: 20%;left: 35%; position: absolute;z-index: 2; align-self: center;">
                   <img src="assets/images/complete.png" style="all: unset;" alt="complete Test">
                   <br>
@@ -474,5 +476,60 @@
       <!--Slide 3 Ends-->
 
     </div><!-- /.modal-dialog -->
+  </div>
+  <div id="myModal" class="modal free-premium-modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center">Enable Premium Features for Free</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row flex flex-wrap flex-align-center">
+            <div class="col-sm-12 first-col">
+              <ul>
+                <li>
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark">
+                      Do you want Manage your candidates 
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </span>
+                  </label>
+                </li>
+                <li>
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">
+                      Do you want Manage your Hiring Agency/Vendor
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </span>
+                  </label>
+                </li>
+                <li>
+                  <label class="custom-checkbox lg-select">
+                    <input type="checkbox">
+                    <span class="checkmark">
+                      Do you want to work as Hiring Agency/Vendor
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="col-sm-6 second-col">
+              <img src="../../../../assets/images/premium-infographic.jpg" alt=""/>
+            </div> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Enable</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+        </div>
+      </div>
+  
+    </div>
   </div>
 </body>
