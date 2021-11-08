@@ -432,7 +432,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       .subscribe((data) => {
         this.details = data;
         this.showMaskedData = (this.profile.ResponseStatusId <= 4 || this.profile.ResponseStatusId == 8) &&
-          this.profile.ResponseStatusId > 0 && this.profile.UserId > 0 && this.profile.IsConfirmed == null
+           this.profile.UserId > 0 && this.profile.IsConfirmed == null
       });
   }
 

@@ -277,7 +277,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.GetVideo();
     this.GetAchivements();
     this.GetCandidateProfileStatistics();
-    this.showMaskedData = (profileData.ResponseStatusId <= 4 || profileData.ResponseStatusId == 8) && profileData.ResponseStatusId > 0 && profileData.UserId > 0 && profileData.IsConfirmed == null;
+    this.showMaskedData = (profileData.ResponseStatusId <= 4 || profileData.ResponseStatusId == 8) &&  profileData.UserId > 0 && profileData.IsConfirmed == null;
     if (sessionStorage.getItem('redirect') != null) {
       $('.nav-pills a[href="#' + 'detailView' + '"]').tab('show');
       sessionStorage.removeItem('redirect');
