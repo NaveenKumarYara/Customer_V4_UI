@@ -150,7 +150,7 @@ GetSubscriptionDetails(sid)
     this._service.GetService('IdentityAPI/api/GetNotificationCount?userId=',  this.customer.UserId)
       .subscribe(
         data2 => {
-
+       debugger
           this.notificationsCount = data2;
         });
   }
@@ -173,6 +173,7 @@ ngOnInit()
     {
       this.changetheactive(2);
     }
+    this.GetNotificationCount();
    //this.appService.resetJob();
     //this.active=false;
     //this.jobsactive=false;
