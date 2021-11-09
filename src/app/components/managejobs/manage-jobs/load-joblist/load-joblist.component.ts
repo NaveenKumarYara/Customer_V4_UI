@@ -39,7 +39,7 @@ export class LoadJoblistComponent implements OnInit {
   departmentId:any;
   loaddata = false;
   sortBy: any;
-  nsortBy:any;
+  nsortBy:any=0;
    jobLoader = false;
    color = 'primary';
    mode = 'indeterminate';
