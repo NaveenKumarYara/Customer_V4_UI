@@ -121,13 +121,13 @@
 				<div class="funnel__section">
 					<ul class="nav nav-tabs nav-justified row flex flex-wrap flex-align-equal">
 						<ng-container *ngIf="jobstatistics?.AryticSuggested<=jobstatistics?.Applied">
-							<li class="col-sm-4 first__col active">
+							<li class="col-sm-4 first__col">
 								<a data-toggle="tab" href="javascript:void(0)" (click)="updatesuggestedstatus();inprogressview(0)">
 									<span class="number">{{SuggestedCount||'0'}}</span>
 									<h4>Arytic Best Fit Results<i class="fa fa-info-circle" aria-hidden="true" tooltip="Arytic's suggested best match candidates for you."></i></h4>
 								</a>
 							</li>
-							<li class="col-sm-4 second__col">
+							<li class="col-sm-4 second__col active">
 								<a data-toggle="tab" href="javascript:void(0)" (click)="updateappliedstatus();inprogressview(0)">
 									<span class="number">{{jobstatistics?.Applied}}</span>
 									<h4>Prospect profiles<i class="fa fa-info-circle" aria-hidden="true" tooltip="Profiles which are submitted to the job from any source. "></i></h4>
