@@ -336,6 +336,7 @@ getcustomerusers()
  {
   this.savenote.toUserId=this.data.CUserId.toString()+','+this.customerUser.toString(); 
   this.savenote.isCandidate=true;
+  this.SendEmail();
   this.savenote.Doc = this.data.CUserId.toString()+','+this.customerUser.toString();
   this.savenote.OtherInfo = ' ';
 
@@ -346,6 +347,7 @@ getcustomerusers()
   this.savenote.toUserId = this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
   this.savenote.isCandidate=true;
   this.savenote.OtherInfo = this.savenote.OtherInfo;
+  this.SendEmail();
   this.savenote.Doc =  this.teammemberslist.map(x => x.UserId).toString()+','+this.data.CUserId.toString() +','+this.customerUser.toString();
  }
 
@@ -424,6 +426,7 @@ res.then(() => {
    this.toastr.success('Sent successfully', 'Success');
    setTimeout(() => {
     this.toastr.dismissToast;
+    this.selectedComments = "";
     //this.savenote = new Notes();
     this.dialogRef.close();
   }, 3000);
@@ -431,12 +434,12 @@ res.then(() => {
  
   });
 
-  if(this.isShown2=true)
-  {
-    this.SendEmail();
-    this.selectedComments = "";
-    this.EmailId = " ";
-  }  
+  // if(this.isShown2=true)
+  // {
+  //   this.SendEmail();
+  //   this.selectedComments = "";
+  //   this.EmailId = " ";
+  // }  
 }
 
 
