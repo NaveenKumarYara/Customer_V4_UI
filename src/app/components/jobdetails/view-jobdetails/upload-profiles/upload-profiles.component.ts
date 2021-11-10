@@ -262,7 +262,7 @@ GetSubscriptionDetails(sid)
   
             if (data[0].ResumeStatus == 'Successful') {
               this.successCount = this.successCount + 1;
-              this.UploadAction(i,data[0],3)
+              //this.UploadAction(i,data[0],3)
               // this.toastr.success('Uploaded successfully', 'Success');
             } else {
               this.issueCount = this.issueCount + 1;
