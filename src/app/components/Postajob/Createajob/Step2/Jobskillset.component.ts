@@ -124,9 +124,9 @@ export class JobskillsetComponent implements OnInit, OnDestroy  {
         return false;
       }
 
-      // if (Number(this.minexperience) === 0) {
-      //   return false;
-      // }
+      if (Number(this.minexperience) === 0) {
+        return false;
+      }
 
       if (Number(this.maxexperience) === 0) {
         return false;
