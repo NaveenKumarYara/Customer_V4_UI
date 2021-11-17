@@ -5161,3 +5161,29 @@ font-size: 11px;
 	background: white;
 	resize: horizontal;
   }
+
+  .manage-achievements-i-d, .manage-reference-i-d {
+    overflow: hidden!important;
+    max-height: inherit!important;
+}
+
+.manage-achievements-i-d .modal-body .ach-scroll, .manage-reference-i-d .modal-body .ref-scroll {
+    max-height: 45vh;
+}
+
+.achievements-list small {
+    font-size: 0.6rem;
+}
+
+.matching-details ul.certifications-list, .manage-s-v-i-d ul.skills-list, .manage-reference-i-d ul.references-list, .manage-bgv-i-d ul.bg-list, .matching-details ul.domains-list, .manage-achievements-i-d ul.achievements-list, .manage-recommendations-i-d ul.recommendations-list {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.manage-s-v-i-d h4, .manage-reference-i-d h4, .manage-bgv-i-d h4, .manage-achievements-i-d h4, .manage-recommendations-i-d h4 {
+    color: #41536E;
+}
+
+.manage-s-v-i-d label, .manage-reference-i-d label, .manage-bgv-i-d label, .manage-achievements-i-d label, .manage-recommendations-i-d label {
+    text-transform: capitalize;
+}

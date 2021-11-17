@@ -314,7 +314,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.Match = res;
       this.MatchingPercentage = res.Total_Match_Per;
       setInterval(() => {
-        this.smallRadarChartData.datasets[0].data = [res.JobFit.toFixed(2), res.SkillFit.toFixed(2), res.CultureFit.toFixed(2), res.Personalityfit.toFixed(2), 0];
+        this.smallRadarChartData.datasets[0].data = [res.JobFit!=null?res.JobFit.toFixed(2):0, res.SkillFit!=null?res.SkillFit.toFixed(2):0, res.CultureFit!=null?res.CultureFit.toFixed(2):0,res.Personalityfit!=null? res.Personalityfit.toFixed(2):0, 0];
       }, 1000)
 
 
@@ -654,7 +654,7 @@ export class ViewCandidateprofileComponent implements OnInit {
       this.menuHeading = "Arytic Check";
       this.radarChartMenu = [
         { className: "icon__job__fit", label: "Reference Check" },
-        { className: "icon__skill__fit", label: "Skills Verified" },
+        { className: "icon__skill__fit", label: "Achievements" },
         { className: "icon__personality__fit", label: "Background Verified" },
       ];
       this.selectedMenuItem = type;
@@ -700,9 +700,11 @@ export class ViewCandidateprofileComponent implements OnInit {
         "&jobId=" + this.data.JobId
       )
       .subscribe((data) => {
+        if(this.data.length > 0)
+        {
         this.Verification = data[0];
 
-        if (this.Verification.ProfileId > 0 && this.data.length > 0) {
+        if (this.Verification.ProfileId > 0) {
           this.ShowVer = true;
           this.bgverification.CriminalOptionSelected = this.Verification.CriminalOptionSelected;
           this.bgverification.DrugOptionSelected = this.Verification.DrugOptionSelected;
@@ -717,6 +719,7 @@ export class ViewCandidateprofileComponent implements OnInit {
           this.ShowVer = false;
           this.Verification = new BackgroundVerification();
         }
+      }
       });
   }
 
@@ -774,9 +777,9 @@ export class ViewCandidateprofileComponent implements OnInit {
   GetAchivements() {
     this._service.GetService('ProfileAPI/api/GetCandidateAchievementList?profileId=', this.data.ProfileId).subscribe(
       data => {
-        this.alist = data;
+          this.alist=data;
       }
-    )
+  )
   }
 
   GetQuestionnariePersonsList() {

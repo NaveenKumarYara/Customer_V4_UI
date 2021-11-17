@@ -83,6 +83,14 @@
 												<span class="tooltip">Reference Check</span>
 											</a>
 										</li>
+										<li *ngIf="alist.length>0">
+											<a href="javascript:void(0)" (click)="showRadarChart('Achievements')"
+												title="References">
+												<img src="../../../../../../assets/images/background-check-icon-02.png"
+													alt="">
+												<span class="tooltip">Achievements</span>
+											</a>
+										</li>
 										<li>
 											<a href="javascript:void(0)" (click)="showRadarChart('Background Verified')"
 												title="Background Need to be Verified">
@@ -944,9 +952,40 @@
 									</div>
 								</div>
 							</div>
-							<div *ngIf="selectedMenuItem == 'Skills Verified'">
+							<div *ngIf="selectedMenuItem == 'Achievements'">
 								<div class="no__data__found">
-									<h3>Coming Soon</h3>
+									<div class="row ach-list-header"  *ngIf="alist.length>0">
+										<div class="col-md-4">
+											<h4>Achievement</h4>
+										</div>
+										<div class="col-md-4">
+											<h4>Company & Project</h4>
+										</div>
+										<div class="col-md-4">
+											<h4>Year</h4>
+										</div>
+									</div> 
+									 <div class="ach-scroll scrollbar-inner">
+										<ul class="achievements-list">
+											<ng-container *ngIf="alist.length>0">
+												<li style="list-style-type:none;" *ngFor="let a of alist">
+													<div class="col-md-4">
+														<h5>{{a?.AchivementDescription}}</h5>
+													</div>
+													<div class="col-md-4 text-left">
+														<h5 *ngIf="a?.CompanyName!=null">{{a?.CompanyName}}</h5>
+														<small *ngIf="a?.ProjectName!=null">{{a?.ProjectName}}</small>
+													</div>
+													<div class="col-md-4" *ngIf="a?.ToDate!=null">
+														<h5>{{a?.ToDate | date:'yyyy'}}</h5>
+													</div>
+												</li>
+											</ng-container>
+											<ng-container *ngIf="alist.length===0">
+												<h3>No Achievements Added</h3>
+											</ng-container>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<div *ngIf="selectedMenuItem == 'Background Verified'" class="m-r-d">
