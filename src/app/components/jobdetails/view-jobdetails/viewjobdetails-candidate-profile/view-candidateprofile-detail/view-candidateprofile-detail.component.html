@@ -908,30 +908,32 @@
                           </div>
                           <div class="col-sm-3 col key__right__col">
                             <h4>Key Achievements</h4>
-                            <ul>
-                              <ng-container *ngFor="let keys of exps?.ProjectExp">
-                                <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
-                                  <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
-                                    <ng-container *ngFor="let ki of k?.CandidateProAchievements">
-                                      <li>
-                                        <div class="card__box">
-                                          {{ki?.AchivementDescription}}
-                                          <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                      </li>
+                            <div class="custom__scrollbar">   
+                              <ul>
+                                <ng-container *ngFor="let keys of exps?.ProjectExp">
+                                  <ng-container *ngIf="keys?.CandidateProResponsibilities.length>0">
+                                    <ng-container *ngFor="let k of keys?.CandidateProResponsibilities">
+                                      <ng-container *ngFor="let ki of k?.CandidateProAchievements">
+                                        <li>
+                                          <div class="card__box">
+                                            {{ki?.AchivementDescription}}
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                          </div>
+                                        </li>
+                                      </ng-container>
+  
                                     </ng-container>
-
+  
                                   </ng-container>
-
+                                  <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                    <p class="empty__para">Yet to provide</p>
+                                  </ng-container>
                                 </ng-container>
-                                <ng-container *ngIf="keys?.CandidateProResponsibilities.length===0">
+                                <ng-container *ngIf="exps?.ProjectExp.length===0">
                                   <p class="empty__para">Yet to provide</p>
                                 </ng-container>
-                              </ng-container>
-                              <ng-container *ngIf="exps?.ProjectExp.length===0">
-                                <p class="empty__para">Yet to provide</p>
-                              </ng-container>
-                            </ul>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
