@@ -1,0 +1,809 @@
+.shareModalPopup .mat-dialog-container {
+  background: #f9fafe;
+}
+.share__job__container .icon {
+  display: inline-block;
+  width: 90px;
+  height: 85px;
+  background: url(../../images/share-jobs/share-job-sprites.png) 0 0 no-repeat;
+  background-size: 600px auto;
+}
+.shareModalPopup .title .btn {
+  margin-left: auto;
+  min-width: inherit;
+  padding: 5px 15px;
+}
+
+.shareModalPopup .btn.btn-back {
+  min-width: inherit;
+  padding: 5px 15px;
+  margin-left: 30px;
+  margin-top: -30px;
+}
+
+.shareModalPopup .title {
+  margin: 0 0 20px;
+}
+.share__job__container .title h4 {
+  text-align: center;
+  margin: 0;
+  color: #6e819e;
+}
+.share__job__container .icon.icon-hiring {
+  background-position: -10px -11px;
+}
+.share__job__container .icon.icon-partner {
+  background-position: -110px -11px;
+}
+.share__job__container .icon.icon-partner-small {
+  width: 88px;
+  height: 72px;
+  background-position: -10px -201px;
+}
+.share__job__container .icon.icon-vendor {
+  width: 88px;
+  height: 72px;
+  background-position: -108px -201px;
+}
+.share__job__container .icon.icon-freelance {
+  width: 88px;
+  height: 72px;
+  background-position: -206px -201px;
+}
+.share__job__container .icon.icon-freelancer {
+  width: 88px;
+  height: 72px;
+  background-position: -304px -201px;
+}
+.share__job__container .icon.icon-award-diamond {
+  width: 38px;
+  height: 38px;
+  background-position: -7px -365px;
+  margin-right: 15px;
+}
+.share__job__container .icon.icon-award-sliver {
+  width: 38px;
+  height: 38px;
+  background-position: -52px -365px;
+  margin-right: 15px;
+}
+.share__job__container .icon.icon-award-gold {
+  width: 38px;
+  height: 38px;
+  background-position: -98px -365px;
+  margin-right: 15px;
+}
+.share__job__container .icon.icon-award-platinium {
+  width: 38px;
+  height: 38px;
+  background-position: -144px -365px;
+  margin-right: 15px;
+}
+.share__job__container .icon.icon-team {
+  background-position: -310px -11px;
+}
+.share__job__container .icon.icon-social {
+  background-position: -410px -11px;
+}
+.share__job__container .icon.icon-job {
+  background-position: -210px -11px;
+}
+.share__job__container .icon.icon-partner-xs {
+  width: 56px;
+  height: 56px;
+  background-position: -206px -369px;
+}
+.share__job__container .icon.icon-vendor-xs {
+  width: 56px;
+  height: 56px;
+  background-position: -270px -369px;
+}
+.share__job__container .icon.icon-freelance-xs {
+  width: 56px;
+  height: 56px;
+  background-position: -334px -369px;
+}
+.share__job__container .icon.icon-freelancer-xs {
+  width: 56px;
+  height: 56px;
+  background-position: -398px -369px;
+}
+.share__job__main__nav {
+  width: 560px;
+  margin: 0 auto;
+}
+.share__job__main__nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.share__job__main__nav li {
+  margin: 15px 0 0;
+}
+.share__job__main__nav li:first-child {
+  margin: 0;
+}
+.share__job__main__nav li a {
+  display: flex;
+  background: #fff;
+  width: 100%;
+  flex-wrap: wrap;
+  color: #6e819e;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 4px 4px 10px rgba(158,171,192,0.2);
+  transition: all 550ms ease-in;
+}
+
+.share__job__main__nav li a:hover {
+  transform: scale(1.10);
+}
+
+
+.share__job__main__nav li a .icon {
+  border-right: 1px solid #eee;
+}
+.share__job__main__nav li a:hover {
+  background-color: #eff2ff;
+  border-color: #2e5af8;
+}
+.share__job__main__nav li a:hover .icon {
+  border-right-color: #2e5af8;
+}
+.share__job__container .share__job__main__nav li a:hover .icon.icon-hiring {
+  background-position: -10px -106px;
+}
+.share__job__container .share__job__main__nav li a:hover .icon.icon-partner {
+  background-position: -110px -106px;
+}
+.share__job__container .share__job__main__nav li a:hover .icon.icon-team {
+  background-position: -310px -106px;
+}
+.share__job__container .share__job__main__nav li a:hover .icon.icon-social {
+  background-position: -410px -106px;
+}
+.share__job__container .share__job__main__nav li a:hover .icon.icon-job {
+  background-position: -210px -106px;
+}
+.share__job__container .share__job__main__nav li a:hover .share__job__main__nav li .icon {
+  border-right: 1px solid #eee;
+}
+.share__job__main__nav li .mask__info {
+  padding: 15px 30px;
+  width: calc(100% - 90px);
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.share__job__main__nav li .info__mask {
+  transform: translateY(100%);
+  height: 0;
+  flex: 0 0 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.share__job__main__nav li .info__box {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.share__job__main__nav li .info__box h4 {
+  margin:0;
+  font-size: 18px;
+}
+.share__job__main__nav li .info__mask h4, .share__job__main__nav li .info__mask p {
+  font-size: 0;
+  margin: 0;
+}
+.share__job__main__nav li .info__mask p {
+  margin: 10px 0 0;
+}
+.share__job__board__grid .row {
+  margin: 0;
+}
+.share__job__board__grid .main-col {
+  padding: 0 7px;
+  margin: 14px 0 0;
+}
+.share__job__board__grid .main-col .col-container {
+  display: block;
+  border: 1px solid #e0e3ef;
+  border-radius: 6px;
+  background: #fff;
+  height: 100%;
+  padding: 15px;
+  box-shadow: 4px 4px 10px rgba(158,171,192,0.2);
+}
+.share__job__board__grid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.share__job__board__grid li {
+  display: inline-block;
+  vertical-align: middle;
+}
+.share__job__board__grid li:after {
+  content:",";
+  display: inline-block;
+  color:#2fc495;
+}
+.share__job__board__grid li:last-child:after {
+  display: none;
+}
+.share__job__board__grid li a {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #2fc495;
+  letter-spacing: 0.025rem;
+}
+.share__arytic__partner__container .main__navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.share__arytic__partner__container .main__navigation {
+  width: 484px;
+  margin: 0 auto;
+}
+.share__arytic__partner__container .main__navigation.flexible {
+  width: 80%;
+}
+.share__arytic__partner__container .main__navigation li {
+  margin: 15px 0 0;
+}
+.share__arytic__partner__container .main__navigation li:first-child {
+  margin: 0;
+}
+.share__arytic__partner__container .main__navigation li a {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 56px;
+  border:1px solid #e0e3ef;
+  color: #6e819e;
+  padding-right: 54px;
+  background: #fff;
+  position: relative;
+}
+.share__arytic__partner__container .main__navigation li a:before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e0e3ef;
+  border-radius: 50%;
+  margin-top: -17px ;
+}
+.share__arytic__partner__container .main__navigation li a:after {
+  border: solid #6e819e;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  content: "";
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  margin-top: -3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.share__arytic__partner__container .main__navigation li a:hover:after {
+  border-color: #fff;
+}
+.share__arytic__partner__container .main__navigation li a:hover:before {
+  background:#2e5af8;
+  border-color: #2e5af8;
+}
+.share__arytic__partner__container .main__navigation li a:hover {
+  background-color: #eff2ff;
+  border-color: #2e5af8;
+  color: #2e5af8;
+}
+.share__arytic__partner__container .main__navigation .info__box {
+  display: flex;
+  align-items: center;
+}
+.share__arytic__partner__container .main__navigation h4 {
+  margin: 10px 0 0;
+}
+.share__arytic__partner__container .main__navigation h6 {
+  margin: 0;
+}
+.share__job__container .share__arytic__partner__container .main__navigation li a:hover .icon.icon-partner-small {
+  background-position: -10px -283px;
+}
+.share__job__container .share__arytic__partner__container .main__navigation li a:hover .icon.icon-vendor {
+  background-position: -108px -283px;
+}
+.share__job__container .share__arytic__partner__container .main__navigation li a:hover .icon.icon-freelance {
+  background-position: -206px -283px;
+}
+.share__job__container .share__arytic__partner__container .main__navigation li a:hover .icon.icon-freelancer {
+  background-position: -304px -283px;
+}
+.share__arytic__partner__container .main__navigation.lg li a {
+  padding-top:10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.arrow.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.arrow.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.arrow.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+.arrow.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.share__job__external {
+  width: 640px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: 1px solid #e0e3ef;
+  background: #fff;
+  padding: 15px 20px;
+}
+.share__job__container .input-group .btn {
+  padding:0;
+  border:0;
+  height: 32px;
+  display: block;
+  border-radius: 0;
+}
+.share__job__container .input-group-addon {
+  padding: 0;
+  overflow: hidden;
+}
+.share__job__external .modal__container h5 {
+  text-align: center;
+  font-size: 16px;
+  margin:0 0 10px;
+  color:#6e819e;
+}
+.share__job__external .modal__footer {
+  text-align: right;
+}
+.share__job__external .modal__footer .btn-filled {
+  padding: 6px 12px;
+  min-width: inherit;
+  margin-left: 10px;
+}
+.share__job__external .modal__container .social {
+  text-align: center;
+  font-size: 18px;
+  margin: 15px 0 0;
+}
+.share__job__external .modal__container .social a {
+  display: inline-block;
+  margin: 0 5px;
+  color:#2297d0;
+}
+.share__job__external .modal__container .social a.fb {
+  color: #5f82c5;
+}
+.share__job__external .modal__container .social a.tw {
+  color: #41bdef;
+}
+.share__job__external .modal__container label {
+  font-weight: 600;
+  color:#6e819e;
+}
+.share__job__external .modal__container .notes {
+  display: block;
+  font-size: 14px;
+  color:#6e819e;
+  margin: 10px 0 0;
+}
+.share__job__external .modal__container .or {
+  text-align: center;
+  position: relative;
+  display: block;
+}
+.share__job__external .modal__container .or:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width:100%;
+  height: 1px;
+  background: #e0e3ef;
+}
+.share__job__external .modal__container .or em {
+  display: inline-block;
+  width:48px;
+  height: 48px;
+  background: #fff;
+  color:#6e819e;
+  text-align: center;
+  line-height: 48px;
+  font-style: normal;
+  position: relative;
+  z-index: 10;
+}
+.share__job__external .modal__container h4 {
+  font-size: 18px;
+  color: #576b7f;
+  margin:0 0 20px;
+}
+.share__job__external .modal__container h6 {
+  text-transform: uppercase;
+  color:#6e819e;
+  font-size: 14px;
+}
+.share__job__external .modal__container .highlight {
+  color: #977d51;
+}
+.share__job__external .modal__container textarea {
+  height: 120px;
+}
+.share__job__external .modal__container .styled-select-box {
+  min-width: inherit;
+  width: 100%;
+  border-radius: 6px 0 0 6px;
+}
+.share__job__container .input-group .btn.btn-filled-lg {
+  height: 54px;
+  min-width: inherit;
+  padding: 15px;
+}
+.share__job__external .modal__container .tags {
+  text-align: center;
+}
+.share__job__external .modal__container .tags ul {
+  margin:0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.share__job__external .modal__container .tags li {
+  display: inline-block;
+  vertical-align: middle;
+  margin:2px;
+}
+.share__job__external .modal__container .tags li a {
+  display: block;
+  padding: 5px 10px;
+  border: 1px solid #e0e3ef;
+  border-radius: 4px;
+  color:#6e819e;
+}
+.share__job__external .modal__container .tags li a i {
+  display: inline-block;
+  margin-left: 5px;
+}
+.share__job__container .custom-checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  margin:0;
+  -ms-user-select: none;
+  user-select: none;
+}
+.share__job__container .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.share__job__container .custom-checkbox .checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+.share__job__container .custom-checkbox .checkmark:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: 4px;
+  border: 1px solid #a6aab3;
+}
+.share__job__container .custom-checkbox input:checked~.checkmark {
+  background-color: #FFF;
+}
+.share__job__container .custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.share__job__container .custom-checkbox input:checked~.checkmark:after {
+  display: block;
+}
+.share__job__container .custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #a6aab3;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.share__job__container .custom-checkbox.lg-select .checkmark {
+  padding-left: 25px;
+  font-size: 14px;
+  width: auto;
+  height: auto;
+}
+.share__job__table .job__table {
+  border:1px solid #e0e3ef;
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 15px 0;
+}
+.share__job__table .job__table .job__col {
+  padding: 10px;
+  color: #6e819e;
+}
+.share__job__table .job__table .job__col.job__th__col {
+  font-weight: 600;
+  color: #6e819e;
+}
+.share__job__table .job__table .job__col.check__col {
+  width:5.967741935483871%;
+}
+.share__job__table .job__table .job__col.name__col {
+  width: 19.838709677419356%;
+}
+.share__job__table .job__table .job__col.location__col {
+  width: 16.612903225806452%;
+}
+.share__job__table .job__table .job__col.point_col {
+  width: 16.612903225806452%;
+}
+.share__job__table .job__table .job__col.email__col {
+  width: 17.096774193548386%;
+}
+.share__job__table .job__table .job__col.phone__col {
+  width: 17.096774193548386%;
+}
+.share__job__table .job__table .job__col.actions__col {
+  width: 5.967741935483871%;
+}
+.share__job__table .job__table .job__row {
+  border-bottom: 1px solid #e0e3ef;
+}
+.share__job__table .job__table .job__row:last-child {
+  border-bottom: 0;
+}
+.share__job__table .job__table .profile {
+  position: relative;
+  padding-left: 46px;
+}
+.share__job__table .job__table .table-heading {
+  display: none;
+}
+.share__job__table .job__table .profile img {
+  width:36px;
+  position: absolute;
+  left:0;
+  top: 0;
+  height: auto;
+}
+.share__job__table .job__filters {
+  margin: 0 0 15px;
+  border: 1px solid #e0e3ef;
+  border-radius: 6px;
+  padding: 10px 15px;
+  background-color: #fff;
+}
+.share__job__table .job__filters .view__buttons {
+  display: flex;
+  width:76px;
+  border:1px solid #e0e3ef;
+  border-radius: 6px;
+}
+.share__job__table .job__filters .btn-grid, .share__job__table .job__filters .btn-list, .share__job__table .job__filters .btn-filter {
+  border:0;
+  padding:0;
+  font-size: 0;
+  width: 38px;
+  height: 38px;
+  background: url(../../../assets/images/share-jobs/share-job-sprites.png) -7px -419px no-repeat;
+  background-size: 600px auto;
+}
+.share__job__table .job__filters .btn-list {
+  background-position: -52px -419px;
+}
+.share__job__table .job__filters .first-col .search-box {
+  width: calc(100% - 86px);
+  padding-left: 10px;
+}
+.share__job__table .job__filters .search-box .form-control {
+  height: 38px;
+}
+.share__job__table .job__filters .second-col .styled-select-box {
+  height: 38px;
+}
+.share__job__table .job__filters .btn-filter {
+  background-position: -136px -420px;
+  background-color: #e8eefe;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+
+.share__job__container .side__navigation li  {
+  width: 25%;
+  /* border-right: 1px solid #e0e3ef;
+  border-bottom: 1px solid #e0e3ef; */
+  padding: 0 7px;
+}
+
+.share__job__container .side__navigation li.active {
+  border-bottom: 1px solid #f9fafe;
+}
+
+.share__job__container .side__navigation li.active a {
+  color: #2e5bff;
+}
+
+.share__job__container .side__navigation li:last-child {
+  border-right: 0;
+}
+
+.share__job__container .side__navigation li a {
+  color: #6e819e;
+  padding: 12px 15px;
+  background-color: #f4f7f9;
+  display: block;
+  height: 100%; 
+  position: relative;
+  border-radius: 6px 6px 0 0;
+}
+
+/* .share__job__container .side__navigation li a:before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e0e3ef;
+  border-radius: 50%;
+  margin-top: -17px;
+}
+
+.share__job__container .side__navigation li.active a:before {
+  background: #2e5bff;
+  border: 1px solid #2e5bff;
+} */
+
+/* .share__job__container .side__navigation li a:after {
+  border: solid #6e819e;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  content: "";
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  margin-top: -3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+ */
+/* .share__job__container .side__navigation li.active a:after {
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+} */
+
+.share__job__container .side__navigation li a p {
+  font-size: 14px;
+  margin: 0;
+}
+.share__job__container .side__navigation li a h6 {
+  font-size: 16px;
+  margin: 5px 0 0;
+  font-weight: 600;
+}
+
+.share__job__container .side__navigation li.active a {
+  background: #fff;
+}
+
+.share__job__container .side__navigation li a .icon {
+  margin-top: -5px;
+}
+
+.share__job__container .side__navigation li.active a .icon.icon-partner-xs {
+  background-position: -206px -433px;
+}
+.share__job__container .side__navigation li.active a .icon.icon-vendor-xs {
+  background-position: -270px -433px;
+}
+.share__job__container .side__navigation li.active a .icon.icon-freelance-xs {
+  background-position: -334px -433px;
+}
+.share__job__container .side__navigation li.active a .icon.icon-freelancer-xs {
+  background-position: -398px -433px;
+}
+
+.share__job__container .side-col .col-container {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e3ef;
+  height: 100%;
+  box-shadow: 4px 4px 10px rgba(158,171,192,0.2);
+}
+.share__job__container .side__navigation ul {
+  margin:0 -7px;
+  padding: 0;
+  list-style: none;
+  display: flex; 
+  flex-wrap: wrap;
+}
+
+.share__job__container .box-container {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e3ef;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 4px 4px 10px rgba(158,171,192,0.2);
+}
+
+.share__job__container .box-container h5 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 30px;
+  color: #6e819e;
+}
+
+.share__job__container .box-container p {
+  font-size: 14px;
+  color: #6e819e;
+  margin: 0 0 10px;
+}
+
+.share__job__container .box-container p:last-child {
+  margin: 0;
+}
+
+.share__job__container .box-container em {
+  color: #2e5bff;
+  text-decoration: underline;
+  font-style: normal;
+  display: inline-block;
+}
+
+.share__job__container .buttons {
+  text-align: center;
+  margin:20px 0 0;
+}
+
+.share__job__container .buttons .btn-filled {
+  padding: 6px 12px;
+  min-width:inherit;
+  margin-left: 10px;
+}
+
+.share__job__container .main__section {
+  padding: 60px 0;
+  background: #fff;
+}
