@@ -15,7 +15,9 @@
                    #Education="ngModel"
                    name="selectedqualificationName">
         </ng-select>
+
         <small class="text-danger" *ngIf="other.value === null && Education.touched">Required.</small>
+        
     </div>
     <div class="col-md-5 col-sm-5">
       <input type="text" class="form-control mt-0" #other="ngModel" name="education" [(ngModel)]="newQualification" (ngModelChange)="updateQualification($event)" placeholder="Other">

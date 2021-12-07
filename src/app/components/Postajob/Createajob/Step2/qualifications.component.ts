@@ -68,6 +68,7 @@ export class QualificationsComponent implements OnInit, OnDestroy  {
     }
     this.selectedqualificationName = 0; // new Qualifications();
   });
+  
   } else if (this.selectedqualificationName != null || this.selectedqualificationName !== '' || this.selectedqualificationName !== undefined) {
     // const addedu = new AddEducation();
     // addedu.qualificationName = this.newQualification;
