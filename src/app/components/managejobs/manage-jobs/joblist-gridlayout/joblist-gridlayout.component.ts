@@ -71,9 +71,10 @@ export class JoblistGridlayoutComponent implements OnInit {
   OpenShareJobDialog(jobid) {
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
-         // width: '1000px',
-         position: {right : '0px'},
+        width: '90vw',
+        position: {right : '0px'},
         // height : '750px',
+        panelClass:'shareModalPopup',
         data: {
           animal: 'panda',
           JobId: jobid

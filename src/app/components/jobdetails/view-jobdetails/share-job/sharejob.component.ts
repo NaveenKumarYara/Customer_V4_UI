@@ -56,7 +56,7 @@ export class ShareJobComponent {
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
-
+  showThis: any;
 
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -100,6 +100,7 @@ export class ShareJobComponent {
     this.getcustomerusers();
     this.isSharingStarted = false;
     this.teammemberslist = this.appService.getTeammembers();
+    this.showThis = 'mainNav';
     this.subscription = this.appService.teammembersChanged
       .subscribe(
         (teammemberlist: CustomerUsers[]) => {

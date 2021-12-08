@@ -202,10 +202,10 @@
 
 	<div class="row mrll0-tb2 c-d-f" *ngIf="!advancesearch">
 		<div class="col-md-12">
-			<div class="input-row row ">
-				<form action="" class="flex flex-wrap">
+			<form action="">
+				<div class="input-row row flex flex-wrap advance-filter-mat">
 					<div class="col-md-6">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<div class="form-group-shadow">
 								<label for="job-type">Job Type
 									<ng-container *ngIf="isEmpchecked==true">
@@ -274,7 +274,7 @@
 					</div>
 
 					<div class="col-md-6">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="job-type">Location
 								<ng-container *ngIf="isLocchecked==true">
 									<img src="../../../../../assets/images/check-mark.svg" alt="email">
@@ -340,8 +340,7 @@
 					<!--Job title-->
 					<div class="col-md-6">
 						<!-- [hidden]="!Jobtitle" -->
-						<div class="form-group ">
-
+						<div class="form-group custom-form-group">
 							<label for="addJobtitle">Job Title
 								<ng-container *ngIf="isTitlechecked==true">
 									<img src="../../../../../assets/images/check-mark.svg" alt="email">
@@ -399,7 +398,7 @@
 					<!--Profile Type-->
 					<div class="col-md-6">
 						<!-- [hidden]="!profiletypefilter" -->
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addProfilestatusfilter">Job Status
 								<ng-container *ngIf="isStatchecked==true">
 									<img src="../../../../../assets/images/check-mark.svg" alt="email">
@@ -459,7 +458,7 @@
 					</div>
 
 					<div class="col-md-6">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addusers">Users
 								<ng-container *ngIf="ischecked==true">
 									<img src="../../../../../assets/images/check-mark.svg" alt="email">
@@ -515,7 +514,7 @@
 						</div>
 					</div>
 					<div class="col-md-6" [hidden]="!filters.showClient">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="job-type">Client
 								<span (click)="RemoveComponent(5)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -571,8 +570,8 @@
 							</ng-container>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="form-group" [hidden]="!filters.showDepartment">
+					<div class="col-md-6" [hidden]="!filters.showDepartment">
+						<div class="form-group custom-form-group">
 							<label for="job-type">Department
 								<span (click)="RemoveComponent(6)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -644,7 +643,7 @@
 
 					<!--Skills-->
 					<div class="col-md-6" [hidden]="!filters.showskillsfilter">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addskillfilter">Skills
 								<span (click)="RemoveComponent(7)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -704,7 +703,7 @@
 					<!---->
 					<!--Last Posted-->
 					<div class="col-md-6" [hidden]="!filters.showlastpostedfilter">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addlastpostedfilter">Last Posted
 								<span (click)="RemoveComponent(8)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -767,7 +766,7 @@
 					<!---->
 					<!--Immigration Status-->
 					<div class="col-md-6" [hidden]="!filters.showimmigrationstatusfilter">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addimmigrationstatusfilter">Immigration Status
 								<span (click)="RemoveComponent(9)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -885,7 +884,7 @@
 					<!---->
 					<!--Experience-->
 					<div class="col-md-6" [hidden]="!filters.showExperience">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addExperience">Experience
 								<span (click)="RemoveComponent(10)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -933,7 +932,7 @@
 
 					<!--Salaryrange-->
 					<div class="col-md-6" [hidden]="!filters.showSalaryrange">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addSalaryrange">Salary Range
 								<span (click)="RemoveComponent(11)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -962,7 +961,7 @@
 					</div>
 					<!--Category-->
 					<div class="col-md-6" [hidden]="!filters.showCategory">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addCategory">Category
 
 								<span (click)="RemoveComponent(12)">
@@ -996,7 +995,7 @@
 					</div>
 					<!--Domain-->
 					<div class="col-md-6" [hidden]="!filters.showDomain">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addDomain">Domain
 								<span (click)="RemoveComponent(13)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -1030,7 +1029,7 @@
 					</div>
 					<!--Education-->
 					<div class="col-md-6" [hidden]="!filters.showEducation">
-						<div class="form-group">
+						<div class="form-group custom-form-group">
 							<label for="addEducation">Education
 								<span (click)="RemoveComponent(14)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
@@ -1089,8 +1088,8 @@
 					</div> -->
 					<!--users-->
 					<!---->
-				</form>
-			</div>
+				</div>
+			</form>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="pull-right">

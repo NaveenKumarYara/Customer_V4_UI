@@ -41,6 +41,7 @@ import { RouterModule } from "@angular/router";
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { duplicatePipe } from "./duplicates.pipe";
+import { TooltipModule } from 'ng2-tooltip-directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -64,6 +65,7 @@ import { duplicatePipe } from "./duplicates.pipe";
     NgCircleProgressModule,
     Ng2ImgMaxModule,
     MatCardModule,
+    TooltipModule,
     MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyDB9t_NrxsuDfRTiLNwGTaLAaIhBG4NmGw",
