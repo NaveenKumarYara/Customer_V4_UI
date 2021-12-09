@@ -57,7 +57,7 @@ export class ShareJobComponent {
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
   showThis: any;
-
+  showSubThis:any;
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
