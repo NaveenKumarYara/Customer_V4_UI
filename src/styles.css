@@ -15,6 +15,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/styles/css/share-job-pages.css';
+@import './assets/styles/css/upload-resume.css';
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;

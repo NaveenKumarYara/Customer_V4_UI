@@ -124,7 +124,13 @@
 
  <div class="share__job__container">
 	<div class="share__job__main__nav" *ngIf="showThis == 'mainNav'">
-		<h4 class="title">Share the Job</h4>
+		<div class="title">
+			<h4>Share the Job</h4>
+			<button class="btn btn-filled btn-back">
+				Share All
+				<i class="fa fa-share" aria-hidden="true"></i>
+			</button>
+		</div>
 		<ul>
 			<li>
 				<a href="javascript:void(0)" (click)="showThis = 'shareVendor'">
@@ -609,6 +615,8 @@
 				<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 				<a href="#" class="fb"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 				<a href="#" class="tw"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="#" class="wh"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+				<a href="#" class="sms"><i class="fa fa-commenting-o" aria-hidden="true"></i></a>
 			</div>
 			<span class="or"><em>or</em></span>
 			<h4>Share it to your friends</h4>
@@ -672,7 +680,10 @@
 	<div class="share__job__table" *ngIf="showThis == 'shareVendor'">
 		<div class="title flex flex-wrap flex-align-center">
 			<h4>Share with Vendor</h4>
-			<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
+			<div class="buttons__section">
+				<button class="btn btn-filled" (click)="showThis = 'mainNav'"><i class="fa fa-arrow-left"></i> Back</button>
+				<button class="btn btn-default">Share With My Preferred Vendor</button>
+			</div>
 		</div>
 		<div class="job__filters">
 			<div class="row flex flex-wrap flex-align-center">
@@ -741,8 +752,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -793,8 +804,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -845,8 +856,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -897,8 +908,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -949,8 +960,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -1001,8 +1012,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -1053,8 +1064,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -1105,8 +1116,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -1157,8 +1168,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>
@@ -1209,8 +1220,8 @@
 					<div class="table-heading">Name of Vendor</div>
 					<div class="box-table">
 						<div class="profile">
-							<img src="../../../../../assets/images/share-jobs/3m-logo.png" alt="3M Logo">
-							3M	
+							<img src="../../../../../assets/images/share-jobs/esolvit.png" alt="Esolvit">
+							Esolvit	
 						</div>
 					</div>
 				</div>

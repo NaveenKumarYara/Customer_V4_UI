@@ -194,10 +194,11 @@ export class ViewJobdetailsComponent implements OnInit {
       };
       const dialogRef = this.dialog.open(UploadProfilesComponent,
         {
-          width: '750px',
+          width: '95vw',
           position: { right: '0px' },
-          height: '750px',
+          height: '100vh',
           data: abc,
+          panelClass:'upload__resume__modal'
           // closeOnNavigation:false,
           // disableClose:true
         }

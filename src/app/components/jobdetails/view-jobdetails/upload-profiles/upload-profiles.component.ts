@@ -59,6 +59,8 @@ export class UploadProfilesComponent implements OnInit {
   // userId: number;
   customerName = null;
   slice: number;
+  showThis: string;
+  
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
@@ -105,7 +107,7 @@ export class UploadProfilesComponent implements OnInit {
       });
     });
     /** */
-
+    this.showThis = "JobFit"
   }
 
   GetCustomerSubscription()
