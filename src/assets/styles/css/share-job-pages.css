@@ -112,6 +112,17 @@
   width: 560px;
   margin: 0 auto;
 }
+
+.share__job__main__nav .title {
+  display: flex;
+  align-items: center;
+}
+
+.share__job__main__nav .title .btn.btn-back {
+  margin-top: 0;
+  margin-left: auto;
+}
+
 .share__job__main__nav ul {
   margin: 0;
   padding: 0;
@@ -400,6 +411,15 @@
 .share__job__external .modal__container .social a.tw {
   color: #41bdef;
 }
+
+.share__job__external .modal__container .social a.wh {
+  color: #128c7e;
+}
+
+.share__job__external .modal__container .social a.sms {
+  color: #0099e5;
+}
+
 .share__job__external .modal__container label {
   font-weight: 600;
   color:#6e819e;
@@ -806,4 +826,8 @@
 .share__job__container .main__section {
   padding: 60px 0;
   background: #fff;
+}
+
+.share__job__table .title .buttons__section {
+  margin-left: auto;
 }
