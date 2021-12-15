@@ -32,7 +32,7 @@
   <app-steps-step1-immigrationmanager>   
   </app-steps-step1-immigrationmanager> -->
 
-  <app-steps-step2-locationwisejobs>
+  <app-steps-step2-locationwisejobs *ngIf="this.appService.RemoteWork === false">
   </app-steps-step2-locationwisejobs>
   
   <!-- <app-steps-step1-departments> 

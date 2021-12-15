@@ -175,7 +175,7 @@
   <!---->
 
   <!--Job Location-->
-  <div class="form-data-group">
+  <div class="form-data-group" *ngIf="this.appService.RemoteWork === false">
     <h3 class="question" *ngIf="location.length>0">
       At which location the job is available?
     </h3>
