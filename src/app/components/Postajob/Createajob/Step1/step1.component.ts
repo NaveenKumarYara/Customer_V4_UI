@@ -380,7 +380,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-  if(this.appService.RemoteWork == true)
+  if(this.appService.RemoteWork = true)
   {
     this.insertJob.NumberOfVacancies = 1;
     this.insertJob.PreferredLocationId = 'Remote, , ';
@@ -407,7 +407,7 @@ if (this.appService.isDrafted.value != null) {
   }
  
   }
-  if(this.appService.RemoteWork == false)
+  if(this.appService.RemoteWork = false)
   {
     
     if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
