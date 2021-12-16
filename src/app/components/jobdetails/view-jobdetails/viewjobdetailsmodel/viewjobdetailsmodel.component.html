@@ -561,83 +561,44 @@
                           *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
                           <div class="section">
                             <h3 class="margin-top-sml">Tips</h3>
-                            <div class="contain" id="slider"
+                            <div class="slidingVertical contain"
                               *ngIf="jobdetailscustomer?.JobInfo?.JobStatus != 'Closed' || jobdetailscustomer?.JobInfo?.JobStatus != 'InActive' ">
                               <ul>
-                                <li *ngIf="getjobCompleteinfo?.JobDomain===0">
-                                  <div  class="slider-container">
-                                    <p>
-                                      Please review and provide
-                                      <strong>Domain</strong> arytic will make your job easy to find best.<a
-                                        href="javascript:void(0)"
-                                        (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                        update.</a>
-                                    </p>
-                                  </div>
-                                  </li>
-                                <li *ngIf="getjobCompleteinfo?.JobDesc===0">
-                                  <div  class="slider-container">
-                                    <p>
-                                      Please review and provide <strong>
-                                        Job Description</strong> arytic will make your job easy to find best. <a href="javascript:void(0)"
-                                        (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                        update.</a>
-                                    </p>
-                                  </div></li>
-                                <li *ngIf="getjobCompleteinfo?.OptionalSkill===0"> 
-                                  <div  class="slider-container">
-                                    <p>
-                                      There are many profiles matching to
+                                <li *ngIf="getjobCompleteinfo?.JobDomain===0">Please review and provide
+                                  <strong>Domain</strong> arytic will make your job easy to find best.<a
+                                    href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.JobDesc===0"> Please review and provide <strong>Job
+                                    description</strong> arytic will make your job easy to find best. <a
+                                    href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.OptionalSkill===0"> There are many profiles matching to
                                   this position.<strong> "please provide OptionalSkill" </strong> arytic will make your
                                   job easy to find best. <a href="javascript:void(0)"
                                     (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                    update.</a>
-                                    </p>
-                                  </div> </li>
-                                <li *ngIf="getjobCompleteinfo?.WorkAuthorise===0">
-                                  <div  class="slider-container">
-                                    <p>
-                                    Please review and provide <strong>
-                                      "WorkAuthorise to this position" </strong> arytic will make your job easy to find
-                                    best.<a href="javascript:void(0)"
-                                      (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                      update.</a> 
-                                    </p>
-                                  </div>
-                                 </li>
-                                <li *ngIf="getjobCompleteinfo?.Qualification===0"> 
-                                  <div  class="slider-container">
-                                    <p>
-                                    Please review and provide <strong>
-                                      "Qualification to this position".</strong> arytic will make your job easy to find
-                                    best. <a href="javascript:void(0)"
-                                      (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                      update.</a>
-                                    </p>
-                               
-                                  </div></li>
-                                <li *ngIf="getjobCompleteinfo?.JobAssigned===0">
-                                  <div  class="slider-container">
-                                    <p>
-                                   There are many profiles matching to this
-                                    position <strong> "please assign job" </strong> one who can do his job with passionately
-                                    to find best as arytic provided many profiles. <a href="javascript:void(0)"
-                                      (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                      update.</a>
-                                    </p>
-                                  </div>
-                                  </li>
-                                <li *ngIf="getjobCompleteinfo?.Video===0">
-                                  <div  class="slider-container">
-                                    <p>
-                                    There are many profiles matching to this
-                                    position <strong> "please do add Job details through Video" </strong> Where
-                                    professionals can have a look apply for your position. <a href="javascript:void(0)"
-                                      (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
-                                      update.</a>
-                                    </p>
-                                  </div>
-                                 </li>
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.WorkAuthorise===0">Please review and provide <strong>
+                                    "WorkAuthorise to this position" </strong> arytic will make your job easy to find
+                                  best.<a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.Qualification===0">Please review and provide <strong>
+                                    "Qualification to this position".</strong> arytic will make your job easy to find
+                                  best. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.JobAssigned===0">There are many profiles matching to this
+                                  position <strong> "please assign job" </strong> one who can do his job with passionately
+                                  to find best as arytic provided many profiles. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
+                                <li *ngIf="getjobCompleteinfo?.Video===0">There are many profiles matching to this
+                                  position <strong> "please do add Job details through Video" </strong> Where
+                                  professionals can have a look apply for your position. <a href="javascript:void(0)"
+                                    (click)="editJob(jobdetailscustomer.JobInfo.JobId,jobdetailscustomer.JobInfo.IsActive)">Please
+                                    update.</a></li>
                               </ul>
                             </div>
                           </div>
