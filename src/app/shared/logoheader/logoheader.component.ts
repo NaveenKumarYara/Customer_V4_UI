@@ -150,7 +150,6 @@ GetSubscriptionDetails(sid)
     this._service.GetService('IdentityAPI/api/GetNotificationCount?userId=',  this.customer.UserId)
       .subscribe(
         data2 => {
-       debugger
           this.notificationsCount = data2;
         });
   }

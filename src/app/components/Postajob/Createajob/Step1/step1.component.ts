@@ -379,7 +379,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.PositionType = this.jobProfile.DepartmentId;
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
-
+  this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
   if(this.appService.RemoteWork == true)
   {
     this.insertJob.NumberOfVacancies = 1;
@@ -414,7 +414,6 @@ if (this.appService.isDrafted.value != null) {
     {
       var res = new Promise<void>((resolve, reject) => {
         this.locations.locationwithpostions.forEach(async (value, index, array) => {         
-          this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
           this.insertJob.PreferredLocationId = value.CityName.toString();
           this.insertJob.NumberOfVacancies = Number(value.Positons);
           this.appService.postjob(this.insertJob).subscribe(data => {
@@ -462,7 +461,6 @@ if (this.appService.isDrafted.value != null) {
     }
     if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
     {
-      this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
       //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
       this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
       this.appService.postjob(this.insertJob).subscribe(data => {
