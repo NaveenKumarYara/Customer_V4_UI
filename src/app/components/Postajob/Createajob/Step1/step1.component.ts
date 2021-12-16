@@ -80,7 +80,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   pjJobAccessToList: any = [];
   pjDepartments: PjDepartments[] = [];
   constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
-    private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
+    private router: Router, public appService: AppService, private creteComponent: CreateajobComponent
     , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;

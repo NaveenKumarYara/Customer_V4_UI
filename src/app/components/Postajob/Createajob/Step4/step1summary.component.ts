@@ -50,7 +50,7 @@ maxHourRate = 100;
 minRate: number;
 maxRate: number;
   constructor(private route: ActivatedRoute,
-    private router: Router,  private appService: AppService) {
+    private router: Router,  public appService: AppService) {
      this.appService.currentcategorytitle.subscribe((data) => {
           this.jobCategoryId = data.JobCategoryId; // And he have data here too!
           this.jobCategory = data.Category;
