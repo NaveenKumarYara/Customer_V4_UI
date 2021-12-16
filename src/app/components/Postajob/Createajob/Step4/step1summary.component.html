@@ -175,13 +175,13 @@
   <!---->
 
   <!--Job Location-->
-  <div class="form-data-group" *ngIf="this.appService.RemoteWork === false">
+  <div class="form-data-group">
     <h3 class="question" *ngIf="location.length>0">
       At which location the job is available?
     </h3>
 
     <ng-container *ngFor="let loc of location">
-      <h4 class="data">
+      <h4 class="data" *ngIf="loc?.CityName != 'Remote, , ' ">
         {{loc?.CityName}}
       </h4>
     </ng-container>
@@ -192,7 +192,7 @@
 
 
     <ng-container *ngFor="let job of locations;let i = index">
-      <h4 class="data">
+      <h4 class="data" *ngIf="loc?.CityName != 'Remote, , '" >
         {{job?.CityName}}- {{job?.Positons}}
       </h4>
     </ng-container>

@@ -59,9 +59,9 @@
                 <div class="col-md-6">
                     <ul class="data-list" >
                         <li  *ngFor="let job of locationwithpostions;let i = index">
-                            <span title="{{job?.CityName}}" class="name">{{job?.CityName}}</span>
-                            <span class="experience"> {{job?.Positons}}</span>
-                            <span class="close" (click)="deletemLocation(i)">&times;</span>
+                            <span title="{{job?.CityName}}" class="name" *ngIf="jobs?.CityName != 'Remote, , '">{{job?.CityName}}</span>
+                            <span class="experience" *ngIf="jobs?.CityName != 'Remote, , '"> {{job?.Positons}}</span>
+                            <span class="close" (click)="deletemLocation(i)" *ngIf="jobs?.CityName != 'Remote, , '">&times;</span>
                         </li>
                     </ul>
                 </div>
@@ -84,7 +84,7 @@
   [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
 </ng-select> -->
         <ng-container *ngIf="!showMyContainer">
-            <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
+            <form>
             <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
                 placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
                 (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
@@ -96,7 +96,7 @@
             <div class="options" *ngIf="locationwisejobs">
                 <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
                     <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-                    <label>
+                    <label *ngIf="jobs?.CityName != 'Remote, , '">
                         <!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
                         <!-- <span class="box">{{jobs.CityName}}</span>  -->
                         <h6 class="box city-box">{{jobs?.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>

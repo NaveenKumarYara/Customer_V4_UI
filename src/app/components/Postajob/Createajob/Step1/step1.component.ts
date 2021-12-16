@@ -380,7 +380,7 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-  if(this.appService.RemoteWork = true)
+  if(this.appService.RemoteWork = true || this.locations.locationwisejobs.length === 0)
   {
     this.insertJob.NumberOfVacancies = 1;
     this.insertJob.PreferredLocationId = 'Remote, , ';
