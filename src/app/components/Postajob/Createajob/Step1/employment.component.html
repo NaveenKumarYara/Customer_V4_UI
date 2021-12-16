@@ -58,12 +58,13 @@
                 </div>
             </div> -->
             <div class="options">
-                <div class="checkbox">
+                <div class="checkbox" [ngClass]="!disableLoc ? '' : 'pointernone' ">
                     <label>
                         <input  type="radio"  [(ngModel)]="Remotework" [value]="true"
                         (change)="selectType(Remotework)"><span class="box">Yes</span>
                        
                     </label>
+                    
                     <label>           
                         <input  type="radio"  [(ngModel)]="Remotework" [value]="false"
                          (change)="selectType(Remotework)"><span class="box">No</span>

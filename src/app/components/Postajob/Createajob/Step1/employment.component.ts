@@ -25,7 +25,9 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     employmentTypeId: number;
     employmentType: EmploymentType;
     Remotework:boolean;
-
+    disable:any;
+    disableLoc = false;
+    isDrafted: boolean;
     selectedskillinput = new Subject<string>();
     selectedData: SkillData;
 
@@ -83,6 +85,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
         private router: Router, private appService: AppService, private dialog: MatDialog) {// , private salaryRate: SalarysliderComponent
         this.employmentType = new EmploymentType();
         this.toastr.setRootViewContainerRef(_vcr);
+        this.disable =  localStorage.getItem('Item');
     }
 
 
@@ -288,6 +291,20 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     //           `value: ${changeContext.value}, ` +
     //           `highValue: ${changeContext.highValue}}`;
     //  }
+
+    ngAfterViewChecked() {
+        this.appService.currentDraft.subscribe(x => this.isDrafted = x);
+        if(this.disable == "true")
+        {
+          this.disableLoc = false;
+        }
+        else 
+        {
+          this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
+        }
+       
+      }
+
     ngOnDestroy() {
     }
 }
