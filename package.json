@@ -55,6 +55,7 @@
     "ng2-img-max": "^2.2.4",
     "ng2-toastr": "^4.1.2",
     "ng2-tooltip-directive": "^2.8.17",
+    "ng4-intl-phone": "^1.2.1",
     "ng5-slider": "^1.1.6",
     "ngx-flickity": "0.0.9",
     "ngx-image-cropper": "^1.4.1",

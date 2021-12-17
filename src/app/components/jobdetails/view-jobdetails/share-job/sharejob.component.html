@@ -1305,8 +1305,8 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <label for="mobilenumber" class="hidden">Mobile		
 				</label>
-                <input formControlName="mobilenumber" id="mobilenumber" type="number" autocomplete="mobilenumber"
-                  class="form-control" placeholder="Mobile" required>
+				<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
+                   ></int-phone-prefix>
 
                 <span class="form-highlight"></span>
                 <span class="form-bar"></span>
