@@ -95,6 +95,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
         this.appService.getEmploymentType().subscribe(res => {
             this.employmenttypelist = res.filter(x => x.EmploymentType);
         });
+        
     }
     // selectSalaryType(val) {
     //   // this.employmentTypeId = val.employmentTypeId;
@@ -199,7 +200,6 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.domain = this.appService.domain;
         this.Remotework=this.appService.RemoteWork;
-        //debugger
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()
@@ -236,7 +236,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
             this.employmentType.EmploymentType = 'Full Time';
             this.employmentType.EmploymentTypeId = 1;
             this.selectEmpType(this.employmentType);
-        }
+        }      
         //  this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
         // this.appService.currentSalaryTYpe.subscribe(x => this.salaryTypeSelected = x);
         // this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);
@@ -292,18 +292,10 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     //           `highValue: ${changeContext.highValue}}`;
     //  }
 
-    ngAfterViewChecked() {
-        this.appService.currentDraft.subscribe(x => this.isDrafted = x);
-        if(this.disable == "true")
-        {
-          this.disableLoc = false;
-        }
-        else 
-        {
-          this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
-        }
-       
-      }
+
+   ngDoCheck(){
+    this.Remotework = this.appService.RemoteWork;
+  }
 
     ngOnDestroy() {
     }

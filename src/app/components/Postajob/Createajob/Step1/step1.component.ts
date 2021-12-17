@@ -380,10 +380,18 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-  if(this.appService.RemoteWork = true || this.locations.locationwisejobs.length === 0)
+  if(this.insertJob.RemoteWorkId = true)
   {
     this.insertJob.NumberOfVacancies = 1;
-    this.insertJob.PreferredLocationId = 'Remote, , ';
+    if( this.locations.locationwisejobs.length===1)
+    {
+      
+      this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    }
+    else
+    {
+      this.insertJob.PreferredLocationId = 'Remote, , ';
+    }
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
@@ -407,9 +415,8 @@ if (this.appService.isDrafted.value != null) {
   }
  
   }
-  if(this.appService.RemoteWork = false)
+  if(this.insertJob.RemoteWorkId = false)
   {
-    
     if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
     {
       var res = new Promise<void>((resolve, reject) => {
