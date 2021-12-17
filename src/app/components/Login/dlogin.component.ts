@@ -95,7 +95,6 @@ export class dLoginComponent {
   }
 
   login() {
-    debugger;
     this.loading = true;
     if (!this.loginform.valid && this.myRecaptcha.value === false) {
       this.loading = false;
