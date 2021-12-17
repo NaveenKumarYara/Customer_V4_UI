@@ -99,7 +99,7 @@ export class PostajobComponent implements OnInit {
   this.appService.addkeyrole = [];
   this.appService.addkeyroleChanged = new Subject<KeyRole[]>();
   this.appService.ResponseList=[];
-  this.appService.noofOpenings.next(2);
+  this.appService.noofOpenings.next(1);
   this.appService.minAnnualRate.next(1000);
   this.appService.maxAnnualRate.next(10000);
   this.appService.minHourlyRate.next(20);
