@@ -84,6 +84,10 @@
 									  (click)="share('twitter')">
 									  <img src="../../../../../assets/images/twitter-icon.svg" alt="">
 									</button>
+									<span class="icon">
+										<a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
+											src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+									  </span>
 									</div>
 									<form [formGroup]="inviteform">
 										<div class="input-group col-sm-12 pt-2 p-rel">
@@ -1280,3 +1284,53 @@
 		</div>
 	</div>
 </div>  -->
+
+<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-align-center">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            Whatsapp
+          </h2>
+          <button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
+            <img src="assets/images/close-btn.png" alt="X">
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
+            <div class="row">
+              <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="mobilenumber" class="hidden">Mobile		
+				</label>
+                <input formControlName="mobilenumber" id="mobilenumber" type="number" autocomplete="mobilenumber"
+                  class="form-control" placeholder="Mobile" required>
+
+                <span class="form-highlight"></span>
+                <span class="form-bar"></span>
+                <div
+                  *ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
+                  class="error1">
+                  <div *ngIf="whatsappform.controls['mobilenumber']">
+                    Incorrect *.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
+                (click)="WhatsappShare()">
+                Share
+              </button>
+              <button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

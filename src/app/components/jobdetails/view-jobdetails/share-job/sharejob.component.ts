@@ -28,6 +28,8 @@ export class ShareJobComponent {
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
   referLink:any;
+  whatsapp: any;
+  whatsappform: FormGroup;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
   getTeammember: CustomerUsers;
@@ -124,6 +126,9 @@ public share(val) {
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
+    this.whatsappform = this.fb.group({
+      'mobilenumber': ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+    });
     this.clearTeamMemebers();
     this.getcustomerusers();
     this.isSharingStarted = false;
@@ -153,7 +158,19 @@ public share(val) {
   {
   this.changeval= val;
   }
+  Whatsapp() {
+    this.whatsapp = undefined;
+    this.whatsappform.reset();
+  }
 
+  WhatsappShare() {
+    let url = 'https://wa.me/' + this.whatsappform.value.mobilenumber + '?text=' + this.referLink;
+    window.open(url, '_blank');
+    this.toastr.success('Successfully shared', 'Success!!');
+    this.whatsapp = undefined;
+    $("#Whatsapp").Modal('hide');
+    this.whatsappform.reset();
+  }
   commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
     const emails = control.value.split(',');
     const forbidden = emails.some(email => Validators.email(new FormControl(email)));
