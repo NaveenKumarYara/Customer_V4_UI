@@ -68,6 +68,7 @@ import { sendnotificationdialogComponent } from './view-jobdetails/viewjobdetail
 import { RouterModule } from '@angular/router';
 import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/SafeHtmlPipe.pipe';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { InternationalPhoneModule } from 'ng4-intl-phone';
 @NgModule({
   imports: [
     CommonModule,
@@ -93,6 +94,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     MatPaginatorModule,
     MatRadioModule,
     MatSortModule,
+    InternationalPhoneModule,
     MatSnackBarModule,FileUploadModule,
     MatCardModule, MatProgressSpinnerModule, NgbModule.forRoot(),
     FlickityModule, ProgressBarModule,
