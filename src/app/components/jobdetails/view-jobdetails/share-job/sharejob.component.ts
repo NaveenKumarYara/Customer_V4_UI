@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject, ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -58,6 +58,9 @@ export class ShareJobComponent {
   isSharingStarted: boolean;
   showThis: any;
   showSubThis:any;
+  type:string;
+  @Input() shareUrl: string;
+  navUrl: string;
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -90,6 +93,31 @@ export class ShareJobComponent {
             msg.removeClass('show');
         }, 1500);
     }
+}
+
+private createNavigationUrl() {
+  let searchParams = new URLSearchParams();
+  this.shareUrl = this.referLink;
+  switch(this.type) {
+    case 'facebook':
+      searchParams.set('u', this.shareUrl);
+      this.navUrl = 'https://www.facebook.com/sharer/sharer.php?' + searchParams;
+      break;
+    case 'linkedin':
+        searchParams.set('url', this.shareUrl);
+        this.navUrl =  'https://www.linkedin.com/sharing/share-offsite/?url=' + searchParams;
+        break;
+    case 'twitter':
+      searchParams.set('url', this.shareUrl);
+      this.navUrl =  'https://twitter.com/share?' + searchParams;
+      break;
+  }
+}
+
+public share(val) {
+  this.type = val;
+  this.createNavigationUrl();
+  return window.open(this.navUrl, "_blank");
 }
 
   ngOnInit() {
