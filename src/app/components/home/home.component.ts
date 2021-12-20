@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
   userId:any;
   constructor(  private spinner: NgxSpinnerService,private route: ActivatedRoute,
       private fb: FormBuilder, private router: Router,private appService: AppService, private settingsService: SettingsService) {
-        debugger
         this.route.params.subscribe(params => {
           if (params['tk']!=null) {
             if (params["pId"] != null) {

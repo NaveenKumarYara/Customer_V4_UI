@@ -16,6 +16,15 @@
 
                             </label>
                         </div>
+                            <div class="col-md-6 w-auto">
+                            <label class="radio checkbox">
+                                <input type="radio" class="radio-input" name="team" [checked]="false"
+                                    (click)="teamchange(true,1)">
+                                <span class="radio-btn wh-22 ml-0"></span>
+                                <span> External </span>
+
+                            </label>
+                        </div>
                     </div>
                     <ng-container *ngIf="!AddUser">
                         <form action="">
@@ -61,21 +70,23 @@
                         <form action="">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="">Add Team Member</label>
+                                    <!-- <label for="">Share</label> -->
                                     <div class="row">
-                                        <div class="col-md-5 col-sm-5">
+                                        <!-- <div class="col-md-3 col-sm-3">
                                             <input type="text" class="form-control" [(ngModel)]="Name" name="Name"
                                                 placeholder="Name *">
-                                        </div>
-                                        <div class="col-md-5 col-sm-5 sm-pt-2">
+                                        </div> -->
+                                        <div class="col-md-12 col-sm-12 sm-pt-2">
                                             <input type="email" class="form-control" [(ngModel)]="EmailId"
                                                 name="EmailId" placeholder="Email *">
                                         </div>
-                                        <div class="col-md-2 col-sm-2 sm-pt-2">
+
+                            
+                                        <!-- <div class="col-md-2 col-sm-2 sm-pt-2">
                                             <button class="btn add-btn form-control mt-0" type="button"
                                                 (click)="AddContacts()">+</button>
-                                        </div>
-                                        <div class="col-md-12 pr-30">
+                                        </div> -->
+                                        <!-- <div class="col-md-12 pr-30">
                                             <ul class="data-list">
                                                 <li class="col-md-12 pr-0  mt-10"
                                                     *ngFor="let item of GetContactsList;let i = index">
@@ -86,17 +97,39 @@
 
 
                                             </ul>
-                                        </div>
+                                        </div> -->
 
                                     </div>
+                                   
 
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <button
+                                (click)="share('facebook')">
+                                <img src="../../../../../assets/images/fb-icon.svg" alt="">
+                              </button>
+                              
+                              <button
+                                (click)="share('linkedin')">
+                                <img src="../../../../../assets/images/linkedin-icon.svg" alt="">
+                              </button>
+                              <button
+                              (click)="share('twitter')">
+                              <img src="../../../../../assets/images/twitter-icon.svg" alt="">
+                            </button>
+                            <span class="icon">
+                                <a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
+                                    src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+                              </span>
                             </div>
                             <div class="form-group">
                                 <label for="">Comments</label>
                                 <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
                                     class="form-control resize-none" placeholder="Please add your comments *"
-                                    rows="10"></textarea>
+                                    rows="8"></textarea>
+
+                               
                             </div>
                         </form>
 
@@ -117,3 +150,54 @@
         </mat-dialog-actions>
     </div>
 </div>
+
+
+<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-align-center">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            Whatsapp
+          </h2>
+          <button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
+            <img src="assets/images/close-btn.png" alt="X">
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
+            <div class="row">
+              <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="mobilenumber" class="hidden">Mobile		
+				</label>
+				<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
+                   ></int-phone-prefix>
+
+                <span class="form-highlight"></span>
+                <span class="form-bar"></span>
+                <div
+                  *ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
+                  class="error1">
+                  <div *ngIf="whatsappform.controls['mobilenumber']">
+                    Incorrect *.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
+                (click)="WhatsappShare()">
+                Share
+              </button>
+              <button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
