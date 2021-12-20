@@ -123,6 +123,7 @@ import { sendnotificationdialogComponent } from "./components/jobdetails/view-jo
 import { CandidatemanagerComponent } from "./components/candidatemanager/candidatemanager.component";
 import { DetailsComponent } from "./components/candidatemanager/details/details.component";
 import { CmModule } from "../app/components/candidatemanager/cm.module";
+import { CandidatedetailviewComponent } from "./components/CandidateProfile-details/candidatedetailview/candidatedetailview.component";
 // import { SendEmailComponent } from '../app/components/jobetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 const appRoutes: Routes = [
@@ -283,6 +284,7 @@ const appRoutes: Routes = [
   { path: "app-navigationcomponent", component: NavigationcomponentComponent },
   { path: 'app-accountsettingdetails', component: AccountsettingdetailsComponent },
   { path: 'app-users', component: UsersComponent },
+  { path: 'profileview', component: CandidatedetailviewComponent },
 
   {
     path: "app-accountsettings",
