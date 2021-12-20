@@ -220,6 +220,13 @@ export class SharedialogComponent {
       return elem.UserId === team.UserId;
     });
   }
+
+  Whatsapp() {
+    this.whatsapp = undefined;
+    this.whatsappform.reset();
+  }
+
+  
   ShareProfile() {
     this.isSharingStarted = true;
 
@@ -279,6 +286,7 @@ export class SharedialogComponent {
     }
   }
 }
+
 
 
 
