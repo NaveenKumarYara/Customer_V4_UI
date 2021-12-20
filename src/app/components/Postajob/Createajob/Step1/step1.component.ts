@@ -380,15 +380,19 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-  if(this.insertJob.RemoteWorkId = true)
+  if(this.appService.RemoteWork == true)
   {
-    this.insertJob.NumberOfVacancies = 1;
-    if( this.locations.locationwisejobs.length===1)
+    if( this.locations.locationwisejobs.length==1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
     {
       
       this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
     }
-    else
+    else if( this.locations.locationwisejobs.length>1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ' )
+    {
+      
+      this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    }
+    else if(this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
     {
       this.insertJob.PreferredLocationId = 'Remote, , ';
     }
@@ -415,8 +419,41 @@ if (this.appService.isDrafted.value != null) {
   }
  
   }
-  if(this.insertJob.RemoteWorkId = false)
+  if(this.appService.RemoteWork == false)
   {
+    if(this.locations.locationwisejobs.length == 0)
+    {
+      this.insertJob.PreferredLocationId = 'Remote, , ';
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {
+          this.insertJob.JobId = data;
+          // if(this.immi.selectedItems.length>0)
+          // {
+          //   this.immi.AddStatus();
+          // } 
+           
+          
+      
+          //this.createJobId(data);
+          localStorage.setItem('jobId', this.insertJob.JobId.toString());
+          localStorage.setItem('JobId', this.insertJob.JobId.toString());
+          localStorage.setItem('Item', false.toString());
+          if (exit === 0) {
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            this.appService.resetJob();
+          } else {
+         // this.steps.step2isClicked = true;
+          if (this.complete > 0) {
+            this.steps.step2toggleClass(this.complete);
+          } else {
+            this.steps.step2toggleClass(1);
+          }
+          this.router.navigate(['/app-createajob/app-steps-step2']);
+        }
+        }
+      });
+    }
     if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
     {
       var res = new Promise<void>((resolve, reject) => {
@@ -510,10 +547,10 @@ if (this.appService.isDrafted.value != null) {
      // if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
      // this.toastr.error('Please enter Job Title!', 'Oops!');
      // }
-     if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
-       this.toastr.error('Please Select Location!', 'Oops!');
-       window.scrollTo(0,9999);
-     }
+    //  if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
+    //    this.toastr.error('Please Select Location!', 'Oops!');
+    //    window.scrollTo(0,9999);
+    //  }
      // if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
      //   this.toastr.error('Please Select Experience!', 'Oops!');
      // }
