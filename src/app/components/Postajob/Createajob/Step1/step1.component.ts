@@ -392,7 +392,7 @@ if (this.appService.isDrafted.value != null) {
       
       this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
     }
-    else if(this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
+    else
     {
       this.insertJob.PreferredLocationId = 'Remote, , ';
     }
