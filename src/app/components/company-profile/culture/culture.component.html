@@ -1,4 +1,3 @@
-
 <div class="col-xl-12">
   <div class="card card--culture">
     <div class="card-header">
@@ -16,7 +15,7 @@
       <a href="javascript:void(0)" class="add-btn" (click)="ClearThevalues()" data-toggle="modal"
         data-target="#culture">
         <span class="add add--green rounded">+</span>
-        <span *ngIf="getcompanycluture.length==0" >Add Culture</span>
+        <span *ngIf="getcompanycluture.length==0">Add Culture</span>
       </a>
     </div>
     <div class="card-inner" *ngIf="getcompanycluture.length>0">
@@ -54,9 +53,10 @@
                       <img class="img-responsive" height="200" title="{{companycluture?.EventName}}"
                         src="{{companycluture.EventPhoto}}" alt="companycluture?.EventName">
                     </div>
-                    <h4 title="{{companycluture?.EventName}}"  tooltip="{{companycluture?.EventName}}">{{companycluture?.EventName}}</h4>
-                    <div class="culture-description"  tooltip="{{companycluture?.EventDescription}} ">
-                      {{companycluture?.EventDescription}} 
+                    <h4 title="{{companycluture?.EventName}}" tooltip="{{companycluture?.EventName}}">
+                      {{companycluture?.EventName}}</h4>
+                    <div class="culture-description" tooltip="{{companycluture?.EventDescription}} ">
+                      {{companycluture?.EventDescription}}
                     </div>
                     <!-- <p>
                         {{companycluture?.EventDescription}}
@@ -262,7 +262,7 @@
                     <span>Culture</span>
                   </h1>
                   <alert class="basic-info-alert"></alert>
-                  <div class="layout layout--btn">       
+                  <div class="layout layout--btn">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                   </div>
@@ -275,7 +275,8 @@
                           <label class="title-lab">
                             Title
                           </label>
-                          <input type="text" class="form-control"  maxlength="20" name="name" [(ngModel)]="name" placeholder="Title" />
+                          <input type="text" class="form-control" maxlength="20" name="name" [(ngModel)]="name"
+                            placeholder="Title" />
                         </div>
                         <div class="form-group c-form-group">
                           <label class="title-lab">
