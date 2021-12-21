@@ -273,12 +273,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
     // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
-    if(this.appService.RemoteWork == false)
-    {
-      this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;   
-    }
-
-   
+    this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;     
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
     this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
