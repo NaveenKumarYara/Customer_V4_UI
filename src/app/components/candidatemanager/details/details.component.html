@@ -258,7 +258,7 @@
                                                 <ng-select class="custom-style" [items]="jobList | async"
                                                     placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
                                                     [typeahead]="jobInput" [hideSelected]="true"
-                                                    [loading]="skilltitleloading" [(ngModel)]="selectedJobId"
+                                                    [loading]="jobsLoading" [(ngModel)]="selectedJobId"
                                                     minlength="1" name="jobId" #skill="ngModel" [virtualScroll]="true"
                                                     required>
                                                 </ng-select>
