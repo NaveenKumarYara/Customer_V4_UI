@@ -252,7 +252,7 @@
 
     </div>
   </main>
-  <div class="modal fade news  personality-test-dialog " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  <div class="modal fade news custom-personality-dialog personality-test-dialog " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     id="personality-test">
     <div class="modal-dialog" role="document">
       <!--Slide 1 Starts-->
@@ -342,31 +342,34 @@
               <div class="clearfix">&nbsp;</div>
               <div class="clearfix">&nbsp;</div>
               <div class="clearfix">&nbsp;</div> -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th *ngFor="let res of response" style="text-align: center;">{{res}}</th>
-                  </tr>
-                </thead>
-                <tbody dragula="Cultural" [(dragulaModel)]="filterquestionList" (dragulaModelChange)="drop($event)">
-                  <tr *ngFor="let que of filterquestionList ;let j = index">
-                    <th scope="row">
-                      <h6>{{que.code}}</h6>
-                    </th>
-                    <td *ngFor="let res of response; let i = index" style="width:12%">
-                      <div class="radio-box inline">
-                        <label for="text" class="radio" for="{{que.id}}_{{i}}_1">
-                          <input type="radio" id="{{que.id}}_{{i}}_1" name="{{que.id}}_1"
-                            [(ngModel)]="Radioans[j].checked" value="{{que.id}}_{{i}}_1" class="radio-input radiobtn"
-                            (change)="handleChange($event, i, que.id)">
-                          <span class="radio-btn"></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th  class="col_title">&nbsp;</th>
+                      <th *ngFor="let res of response;  let i = index" class="col_{{i}}" style="text-align: center;">{{res}}</th>
+                    </tr>
+                  </thead>
+                  <tbody dragula="Cultural" [(dragulaModel)]="filterquestionList" (dragulaModelChange)="drop($event)">
+                    <tr *ngFor="let que of filterquestionList ;let j = index">
+                      <th scope="row" class="col_title">
+                        <h6>{{que.code}}</h6>
+                      </th>
+                      <td *ngFor="let res of response; let i = index" class="col_{{i}}">
+                        <div class="th-heading">{{res}}</div>
+                        <div class="radio-box inline">
+                          <label for="text" class="radio" for="{{que.id}}_{{i}}_1">
+                            <input type="radio" id="{{que.id}}_{{i}}_1" name="{{que.id}}_1"
+                              [(ngModel)]="Radioans[j].checked" value="{{que.id}}_{{i}}_1" class="radio-input radiobtn"
+                              (change)="handleChange($event, i, que.id)">
+                            <span class="radio-btn"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="modal-footer layout layout--btn">
