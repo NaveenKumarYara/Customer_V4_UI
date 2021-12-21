@@ -1,4 +1,4 @@
- <!-- <div class="page page--job-details">
+ <div class="page page--job-details">
 	<div>
 		<h4 mat-dialog-title class="modal-title text-center">
 			Share Job
@@ -55,7 +55,9 @@
 									</ul>
 								</ng-container>
 								<ng-container *ngIf="changeval===true">
+								
 									<div class="form-group public-link">
+								
 										<div class="input-group">
 											<input type="url" class="form-control text-to-copy njobLink" [(ngModel)]="referLink"
 												[ngModelOptions]="{standalone: true}" id="job-link">
@@ -68,6 +70,25 @@
 										</div>
 									</div>
 									<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
+									<div>
+										<button
+										(click)="share('facebook')">
+										<img src="../../../../../assets/images/fb-icon.svg" alt="">
+									  </button>
+									  
+									  <button
+										(click)="share('linkedin')">
+										<img src="../../../../../assets/images/linkedin-icon.svg" alt="">
+									  </button>
+									  <button
+									  (click)="share('twitter')">
+									  <img src="../../../../../assets/images/twitter-icon.svg" alt="">
+									</button>
+									<span class="icon">
+										<a href="javascript:void(0)" data-toggle="modal" (click)="Whatsapp()" data-target="#Whatsapp"><img
+											src="../../../../../assets/images/Whatsapp.png" alt="Whatsapp" width="30px" height="30px"></a>
+									  </span>
+									</div>
 									<form [formGroup]="inviteform">
 										<div class="input-group col-sm-12 pt-2 p-rel">
 											<div class="clearfix">&nbsp;</div>
@@ -82,13 +103,15 @@
 												</div>
 											</div>
 										</div>
+
 										<div class="clearfix">&nbsp;</div>
-										<div class="col-sm-12 plr-0">
+										<!-- <div class="col-sm-12 plr-0">
 											<div class="pull-right">
 												<button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
 												(click)="loginstyle()">Submit</button>
 											</div>
-										</div>
+										</div> -->
+
 									</form>
 								</ng-container>
 
@@ -120,9 +143,9 @@
 
 		</mat-dialog-actions>
 	</div>
-</div>  -->
+</div>  
 
- <div class="share__job__container">
+ <!-- <div class="share__job__container">
 	<div class="share__job__main__nav" *ngIf="showThis == 'mainNav'">
 		<div class="title">
 			<h4>Share the Job</h4>
@@ -1260,4 +1283,54 @@
 			</div>
 		</div>
 	</div>
-</div> 
+</div>  -->
+
+<div id="Whatsapp" class="modal fade revamp__share__modal" tabindex="-1" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-align-center">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            Whatsapp
+          </h2>
+          <button type="button" class="close" data-dismiss="modal" (click)="Whatsapp()">
+            <img src="assets/images/close-btn.png" alt="X">
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <form class="material" [formGroup]="whatsappform" (ngSubmit)="WhatsappShare()">
+            <div class="row">
+              <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="mobilenumber" class="hidden">Mobile		
+				</label>
+				<int-phone-prefix  formControlName="mobilenumber" id="mobilenumber" type="number" [locale]="'hi'" [defaultCountry]="'in'" autocomplete="mobilenumber"
+                   ></int-phone-prefix>
+
+                <span class="form-highlight"></span>
+                <span class="form-bar"></span>
+                <div
+                  *ngIf="whatsappform.controls['mobilenumber'].invalid && (whatsappform.controls['mobilenumber'].dirty || whatsappform.controls['mobilenumber'].touched)"
+                  class="error1">
+                  <div *ngIf="whatsappform.controls['mobilenumber']">
+                    Incorrect *.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn green-btn" [disabled]="!whatsappform.valid" data-dismiss="modal" type="submit"
+                (click)="WhatsappShare()">
+                Share
+              </button>
+              <button type="button" class="btn border-btn cancelBtn" (click)="Whatsapp()" data-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

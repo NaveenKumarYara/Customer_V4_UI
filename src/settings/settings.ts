@@ -52,6 +52,7 @@ export class Settings {
   bulkResponsibilities: string;
   getJobResponsibilities: string;
   domaincriteriaendpoint: string;
+  CustomerAppprofile:string;
   getCustomerUsersendpoint: string;
   DeleteShareContactInfo: string;
   GetCustomerContactsShareInfo: string;

@@ -572,7 +572,7 @@ export class AppService {
     this.addkeyrole = [];
     this.addkeyroleChanged = new Subject<KeyRole[]>();
     this.ResponseList = [];
-    this.noofOpenings.next(2);
+    this.noofOpenings.next(1);
     this.minAnnualRate.next(1000);
     this.maxAnnualRate.next(10000);
     this.minHourlyRate.next(20);

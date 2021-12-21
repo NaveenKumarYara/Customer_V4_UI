@@ -181,7 +181,7 @@
     </h3>
 
     <ng-container *ngFor="let loc of location">
-      <h4 class="data">
+      <h4 class="data" *ngIf="loc?.CityName != 'Remote, , ' ">
         {{loc?.CityName}}
       </h4>
     </ng-container>
@@ -192,7 +192,7 @@
 
 
     <ng-container *ngFor="let job of locations;let i = index">
-      <h4 class="data">
+      <h4 class="data" *ngIf="loc?.CityName != 'Remote, , '" >
         {{job?.CityName}}- {{job?.Positons}}
       </h4>
     </ng-container>

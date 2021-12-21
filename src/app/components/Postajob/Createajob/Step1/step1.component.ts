@@ -17,7 +17,7 @@ import { CreateajobComponent } from '../createajob.component';
 import { StepsComponent } from '../steps.component';
 import { ClientsComponent } from './clients.component';
 import { DepartmentsComponent } from './departments.component';
-import { LocationwiseJobsComponent } from './locationwisejobs.component';
+import { Locationswithpostions, LocationwiseJobsComponent } from './locationwisejobs.component';
 import { NoofopeningsComponent } from './noofopenings.component';
 import { StepEmploymentTypeComponent } from './employment.component';
 import { ImmigrationManagerComponent } from './immigration.component';
@@ -80,7 +80,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
   pjJobAccessToList: any = [];
   pjDepartments: PjDepartments[] = [];
   constructor(private route: ActivatedRoute, private toastr: ToastsManager, private _vcr: ViewContainerRef,
-    private router: Router, private appService: AppService, private creteComponent: CreateajobComponent
+    private router: Router, public appService: AppService, private creteComponent: CreateajobComponent
     , private steps: StepsComponent, private alertService: AlertService) {
       this.customer = JSON.parse(sessionStorage.getItem('userData'));
       this.customerId = this.customer.CustomerId;
@@ -234,9 +234,7 @@ export class Step1Component implements OnInit, AfterViewChecked {
 
    // }this.jobCategory.selectedCategory.JobCategoryId !== undefined   &&
    if ( // && (this.jobProfile.jobPositionId!== '' || null || undefined)
-    this.jobProfile.minExperience !== undefined && this.jobProfile.maxExperience !== undefined &&
-  //  this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills).length > 0
-      (this.locations.locationwisejobs.length>0)||(this.locations.locationwithpostions.length>0)
+    this.jobProfile.minExperience !== undefined && this.jobProfile.maxExperience !== undefined 
    ) 
    {
    //  && this.jobResponsibility.roleIdList.length > 0
@@ -275,7 +273,12 @@ export class Step1Component implements OnInit, AfterViewChecked {
     // this.insertJob.XmlSkills = this.jobSkills.primaryjobskills.concat(this.jobSkills.secondaryjobskills);
     // this.insertJob.XmlRoleId = this.jobResponsibility.roleIdList;
     this.appService.currentjobDueDate.subscribe(y=>this.insertJob.ExpiryDate=y);
-    this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;
+    if(this.appService.RemoteWork == false)
+    {
+      this.insertJob.NumberOfVacancies = this.locations.noOfOpenings?this.locations.noOfOpenings:1;   
+    }
+
+   
 // Ending moved to step1
     this.insertJob.ClientId = this.client.selectedClient.ClientId;
     this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
@@ -299,8 +302,6 @@ export class Step1Component implements OnInit, AfterViewChecked {
     }
     this.insertJob.MatchingCrieterias = this.appService.skillPostData;
     this.insertJob.RemoteWorkId= this.appService.RemoteWork;
-
-  //debugger
     
     // this.insertJob.ClientId = parseInt(localStorage.getItem('clientId'), 10);
     //this.insertJob.ClientName =  this.insertJob.ClientId > 0 ? '' : this.client.selectedClient.ClientName ;
@@ -378,104 +379,26 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.PositionType = this.jobProfile.DepartmentId;
   this.insertJob.Category = this.jobProfile.CategoryId;
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
-  if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
+  this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
+  if(this.appService.RemoteWork == true)
   {
-    var res = new Promise<void>((resolve, reject) => {
-      this.locations.locationwithpostions.forEach(async (value, index, array) => {         
-        this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-        this.insertJob.PreferredLocationId = value.CityName.toString();
-        this.insertJob.NumberOfVacancies = Number(value.Positons);
-        this.appService.postjob(this.insertJob).subscribe(data => {
-          if (data) {
-            this.insertJob.JobId = data;
-            this.jobIdVals.push(data); 
-            // if(this.immi.selectedItems.length>0)
-            // {
-            //   this.immi.AddStatus();
-            // }          
-            localStorage.setItem('jobId', this.insertJob.JobId.toString());
-            localStorage.setItem('JobId', this.insertJob.JobId.toString());
-            localStorage.setItem('Item', false.toString());
-    
-            if (exit === 0) {
-              this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-              this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-              this.appService.resetJob();
-            }
-            else {
-            if (this.complete > 0) {
-              this.steps.step2toggleClass(this.complete);
-            } else {
-              this.steps.step2toggleClass(1);
-            }
-            //this.router.navigate(['/app-createajob/app-steps-step2']);
-          }
-          }
-        });       
-          if (index === array.length -1)
-          {
-           await setTimeout(() => {
-            resolve();
-            this.appService.JobIds=this.jobIdVals;
-          }, 3000); 
-           
-          }          
-      });
-  });
-  
-  res.then(async () => {
-     await this.router.navigate(['/app-createajob/app-steps-step2']);     
-  });
-    // let requests =  this.locations.locationwithpostions.map((item) => {
-    //   this.insertJob.PreferredLocationId = item.CityId.toString();
-    //   this.insertJob.NumberOfVacancies = item.Positons;
-    //   //debugger
-    //   this.appService.postjob(this.insertJob).subscribe(data => {
-    //     if (data) {
-    //       this.insertJob.JobId = data;
-    //       this.createJobId(data);
-    //       //debugger
-    //       localStorage.setItem('jobId', this.insertJob.JobId.toString());
-    //       localStorage.setItem('JobId', this.insertJob.JobId.toString());
-    //       localStorage.setItem('Item', false.toString());
-  
-    //       if (exit === 0) {
-    //         this.router.navigate([localStorage.getItem('EditViewJob') != null ?
-    //         this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
-    //       } else {
-    //      // this.steps.step2isClicked = true;
-    //       if (this.complete > 0) {
-    //         this.steps.step2toggleClass(true);
-    //       } else {
-    //         this.steps.step2toggleClass(1);
-    //       }
-    //       //this.router.navigate(['/app-createajob/app-steps-step2']);
-    //     }
-    //     }
-    //   });
-    //   return new Promise((resolve) => {
-    //     this.asyncFunction(item, resolve);
-    //   });
-    // })
-    //Promise.all(requests).then(() => this.router.navigate(['/app-createajob/app-steps-step2']))
-  }
-  if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
-  {
-    this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
-    //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
-    this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-    debugger
+    if( this.locations.locationwisejobs.length==1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
+    {
+      
+      this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    }
+    else if( this.locations.locationwisejobs.length>1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ' )
+    {
+      
+      this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    }
+    else
+    {
+      this.insertJob.PreferredLocationId = 'Remote, , ';
+    }
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
-        // if(this.immi.selectedItems.length>0)
-        // {
-        //   this.immi.AddStatus();
-        // } 
-         
-        
-    
-        //this.createJobId(data);
         localStorage.setItem('jobId', this.insertJob.JobId.toString());
         localStorage.setItem('JobId', this.insertJob.JobId.toString());
         localStorage.setItem('Item', false.toString());
@@ -484,7 +407,6 @@ if (this.appService.isDrafted.value != null) {
           this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
           this.appService.resetJob();
         } else {
-       // this.steps.step2isClicked = true;
         if (this.complete > 0) {
           this.steps.step2toggleClass(this.complete);
         } else {
@@ -494,32 +416,151 @@ if (this.appService.isDrafted.value != null) {
       }
       }
     });
-  
-  } 
-  } 
- else 
- {
-    // if ((this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) && this.locations.locationwithpostions.length==0){
-    //   this.toastr.error('Please enter No of Positions!', 'Oops!');
-    // }
-    // if (this.jobProfile.jobPositionId === undefined || this.openings.noOfOpenings === '' || this.openings.noOfOpenings === null ) {
-    //   this.toastr.error('Please enter Job Id!', 'Oops!');
-    // }
-    // if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
-    // this.toastr.error('Please enter Job Title!', 'Oops!');
-    // }
-    if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
-      this.toastr.error('Please Select Location!', 'Oops!');
-      window.scrollTo(0,9999);
+  }
+ 
+  }
+  if(this.appService.RemoteWork == false)
+  {
+    if(this.locations.locationwisejobs.length == 0)
+    {
+      this.insertJob.PreferredLocationId = 'Remote, , ';
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {
+          this.insertJob.JobId = data;
+          // if(this.immi.selectedItems.length>0)
+          // {
+          //   this.immi.AddStatus();
+          // } 
+           
+          
+      
+          //this.createJobId(data);
+          localStorage.setItem('jobId', this.insertJob.JobId.toString());
+          localStorage.setItem('JobId', this.insertJob.JobId.toString());
+          localStorage.setItem('Item', false.toString());
+          if (exit === 0) {
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            this.appService.resetJob();
+          } else {
+         // this.steps.step2isClicked = true;
+          if (this.complete > 0) {
+            this.steps.step2toggleClass(this.complete);
+          } else {
+            this.steps.step2toggleClass(1);
+          }
+          this.router.navigate(['/app-createajob/app-steps-step2']);
+        }
+        }
+      });
     }
-    // if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
-    //   this.toastr.error('Please Select Experience!', 'Oops!');
-    // }
-        setTimeout(() => {
-            this.toastr.dismissToast;
-        }, 2500);
-    return false;
-   }
+    if(this.locations.locationwithpostions&&this.locations.locationwithpostions.length>0)
+    {
+      var res = new Promise<void>((resolve, reject) => {
+        this.locations.locationwithpostions.forEach(async (value, index, array) => {         
+          this.insertJob.PreferredLocationId = value.CityName.toString();
+          this.insertJob.NumberOfVacancies = Number(value.Positons);
+          this.appService.postjob(this.insertJob).subscribe(data => {
+            if (data) {
+              this.insertJob.JobId = data;
+              this.jobIdVals.push(data); 
+              // if(this.immi.selectedItems.length>0)
+              // {
+              //   this.immi.AddStatus();
+              // }          
+              localStorage.setItem('jobId', this.insertJob.JobId.toString());
+              localStorage.setItem('JobId', this.insertJob.JobId.toString());
+              localStorage.setItem('Item', false.toString());
+      
+              if (exit === 0) {
+                this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+                this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+                this.appService.resetJob();
+              }
+              else {
+              if (this.complete > 0) {
+                this.steps.step2toggleClass(this.complete);
+              } else {
+                this.steps.step2toggleClass(1);
+              }
+              //this.router.navigate(['/app-createajob/app-steps-step2']);
+            }
+            }
+          });       
+            if (index === array.length -1)
+            {
+             await setTimeout(() => {
+              resolve();
+              this.appService.JobIds=this.jobIdVals;
+            }, 3000); 
+             
+            }          
+        });
+    });
+    
+    res.then(async () => {
+       await this.router.navigate(['/app-createajob/app-steps-step2']);     
+    });
+     
+    }
+    if(this.locations.locationwisejobs&&this.locations.locationwisejobs.length>0)
+    {
+      //this.insertJob.NumberOfVacancies = this.openings.noOfOpenings;
+      this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+      this.appService.postjob(this.insertJob).subscribe(data => {
+        if (data) {
+          this.insertJob.JobId = data;
+          // if(this.immi.selectedItems.length>0)
+          // {
+          //   this.immi.AddStatus();
+          // } 
+           
+          
+      
+          //this.createJobId(data);
+          localStorage.setItem('jobId', this.insertJob.JobId.toString());
+          localStorage.setItem('JobId', this.insertJob.JobId.toString());
+          localStorage.setItem('Item', false.toString());
+          if (exit === 0) {
+            this.router.navigate([localStorage.getItem('EditViewJob') != null ?
+            this.ViewJobdetails(this.insertJob.JobId) : '/app-manage-jobs/app-manage-load-joblist/1']);
+            this.appService.resetJob();
+          } else {
+         // this.steps.step2isClicked = true;
+          if (this.complete > 0) {
+            this.steps.step2toggleClass(this.complete);
+          } else {
+            this.steps.step2toggleClass(1);
+          }
+          this.router.navigate(['/app-createajob/app-steps-step2']);
+        }
+        }
+      });
+    
+    }
+     // if ((this.openings.noOfOpenings === undefined || this.openings.noOfOpenings === 0 || this.openings.noOfOpenings === '' ) && this.locations.locationwithpostions.length==0){
+     //   this.toastr.error('Please enter No of Positions!', 'Oops!');
+     // }
+     // if (this.jobProfile.jobPositionId === undefined || this.openings.noOfOpenings === '' || this.openings.noOfOpenings === null ) {
+     //   this.toastr.error('Please enter Job Id!', 'Oops!');
+     // }
+     // if (this.jobDetail.selectedTitle === '' || this.jobDetail.selectedTitle === undefined) {
+     // this.toastr.error('Please enter Job Title!', 'Oops!');
+     // }
+    //  if (this.locations.locationwisejobs.length==0 || this.locations.locationwithpostions.length==0) {
+    //    this.toastr.error('Please Select Location!', 'Oops!');
+    //    window.scrollTo(0,9999);
+    //  }
+     // if (this.jobDetail.minExperience === undefined && this.jobDetail.maxExperience === undefined) {
+     //   this.toastr.error('Please Select Experience!', 'Oops!');
+     // }
+         setTimeout(() => {
+             this.toastr.dismissToast;
+         }, 2500);
+     return false;
+    }
+  
+
   }
 
   createJobId(val)

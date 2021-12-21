@@ -16,6 +16,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/styles/css/share-job-pages.css';
 @import './assets/styles/css/upload-resume.css';
+@import './assets/styles/css/form-custom.css';
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -27071,3 +27072,68 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
   @media only screen and (max-width: 767px) {
     .advance-filter-mat .col-md-6 { width: 100%; }
   }
+
+  .custom-personality-dialog#personality-test  table  {
+      table-layout: fixed;
+  }
+
+  .custom-personality-dialog#personality-test  table td, 
+  .custom-personality-dialog#personality-test  table th {
+      width: 12%;
+  }
+
+  .custom-personality-dialog#personality-test  table .th-heading {
+      display: none;
+  }
+
+  .custom-personality-dialog#personality-test  table .col_title {
+    width: 52%;
+  }
+
+  .page--company-profile.edit-mode  .custom-personality-dialog#personality-test  label {
+      margin:0;
+  }
+
+@media only screen and (max-width:992px) {	
+	.custom-personality-dialog#personality-test .modal-dialog{
+		width: 90% !important;
+		height: 100%;
+	}
+	.custom-personality-dialog#personality-test .modal-content{
+		height: auto !important;
+	}
+    .custom-personality-dialog#personality-test thead {
+        display: none;
+    }
+
+    .custom-personality-dialog#personality-test  table .col_title { 
+        display: block;
+        width: 100% !important;
+        white-space: normal;
+    }
+
+    .custom-personality-dialog#personality-test  table td  {
+        display: flex;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .custom-personality-dialog#personality-test  table .th-heading {
+        display: block;
+        width: 70%;
+        text-align: left;
+    }
+
+    .custom-personality-dialog#personality-test  table tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+	.custom-personality-dialog#personality-test .take-cultural-test button.cultural-test-btn {
+		margin-left: 0;
+	}
+	
+	.custom-personality-dialog#personality-test .table-responsive {
+		padding: 15px 20px;
+	}
+}

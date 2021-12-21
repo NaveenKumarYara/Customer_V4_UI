@@ -25,7 +25,9 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     employmentTypeId: number;
     employmentType: EmploymentType;
     Remotework:boolean;
-
+    disable:any;
+    disableLoc = false;
+    isDrafted: boolean;
     selectedskillinput = new Subject<string>();
     selectedData: SkillData;
 
@@ -83,6 +85,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
         private router: Router, private appService: AppService, private dialog: MatDialog) {// , private salaryRate: SalarysliderComponent
         this.employmentType = new EmploymentType();
         this.toastr.setRootViewContainerRef(_vcr);
+        this.disable =  localStorage.getItem('Item');
     }
 
 
@@ -92,6 +95,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
         this.appService.getEmploymentType().subscribe(res => {
             this.employmenttypelist = res.filter(x => x.EmploymentType);
         });
+        
     }
     // selectSalaryType(val) {
     //   // this.employmentTypeId = val.employmentTypeId;
@@ -196,7 +200,6 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.domain = this.appService.domain;
         this.Remotework=this.appService.RemoteWork;
-        //debugger
         this.populateEmploymentType();
 
         this.appService.getSkillDetails()
@@ -233,7 +236,7 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
             this.employmentType.EmploymentType = 'Full Time';
             this.employmentType.EmploymentTypeId = 1;
             this.selectEmpType(this.employmentType);
-        }
+        }      
         //  this.salaryType = this.employmentType.EmploymentTypeId === ( null || undefined) ? 1 : this.employmentType.EmploymentTypeId;
         // this.appService.currentSalaryTYpe.subscribe(x => this.salaryTypeSelected = x);
         // this.appService.currentMinRate.subscribe(x => this.minAnnualRate = x);
@@ -288,6 +291,12 @@ export class StepEmploymentTypeComponent implements OnInit, OnDestroy {
     //           `value: ${changeContext.value}, ` +
     //           `highValue: ${changeContext.highValue}}`;
     //  }
+
+
+   ngDoCheck(){
+    this.Remotework = this.appService.RemoteWork;
+  }
+
     ngOnDestroy() {
     }
 }

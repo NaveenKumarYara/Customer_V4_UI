@@ -298,7 +298,8 @@ editMode: string;
       // this.jobdetailscustomer.ContractExtended= this.jobdetailscustomer.EmploymentTypeId==2 ? true : false;
       // workAuthorization.WorkAuthorizationId = this.jobdetailscustomer.JobInfo.WorkAuthorizationId;
       // workAuthorization.WorkAuthorizationType = this.jobdetailscustomer.JobInfo.WorkAuthorizationType;
-       
+      let rval = Boolean(this.jobdetailscustomer.JobInfo.RemoteWorkId);
+      this.appService.RemoteWork = rval;
 
      //this.appService.contractExtension.next(this.appService.WorkauthorizeNames[0]);
     //this.appService.updatecExtension(cat[0]);
@@ -316,7 +317,6 @@ editMode: string;
       this.appService.reportingList =this.Reporting;
       this.appService.reportingListChanged.next(this.appService.reportingList);
       this.appService.locationselect=false;
-      this.appService.RemoteWork=Boolean(this.jobdetailscustomer.JobInfo.RemoteWorkId);
       this.appService.BonusOffered = Boolean(this.jobdetailscustomer.JobInfo.BonusOffered);
       this.appService.HideSalary = Boolean(this.jobdetailscustomer.JobInfo.HideSalary);
 

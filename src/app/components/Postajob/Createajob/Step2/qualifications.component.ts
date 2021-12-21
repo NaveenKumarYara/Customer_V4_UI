@@ -163,6 +163,8 @@ educationExists(education, list) {​
       this.qualificationsnew =dat;
     })
   }
+
+  
   SetQualification(val) {
    // $('#responsibilitiesName').val(val.RolesAndResponsibilities);
     this.qualificationId = val;

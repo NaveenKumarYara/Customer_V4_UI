@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject, ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -28,6 +29,8 @@ export class SharedialogComponent {
   GetContactsList: contactInfo[];
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
+  whatsapp: any;
+  whatsappform: FormGroup;
   getTeammember: CustomerUsers;
   profileSharing = new ProfileShare();
   customer: any;
@@ -40,13 +43,16 @@ export class SharedialogComponent {
   Name: any = null;
   usersloading: boolean;
   customerUser: number;
+  @Input() shareUrl: string;
+  navUrl: string;
   selectedUserName: number;
   selectedComments: any;
   userId: number;
+  type:string;
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
-  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
+  constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
     this.customerUser = this.customer.UserId;
@@ -60,6 +66,9 @@ export class SharedialogComponent {
     this.info = 0;
     //this.GetInterView();
     //this.GetType();
+    this.whatsappform = this.fb.group({
+      'mobilenumber': ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+    });
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
       .subscribe(
@@ -71,6 +80,23 @@ export class SharedialogComponent {
 
   onItemDeleted(index) {
     this.GetContactsList.splice(index, 1);
+  }
+
+  public share(val) {
+    this.type = val;
+    this.createNavigationUrl();
+    this.dialogRef.close();
+    return window.open(this.navUrl, "_blank");
+
+  }
+
+  WhatsappShare() {
+    let url = 'https://wa.me/' + this.whatsappform.value.mobilenumber + '?text=' +    this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
+    window.open(url, '_blank');
+    this.toastr.success('Successfully shared', 'Success!!');
+    this.whatsapp = undefined;
+    $("#Whatsapp").Modal('hide');
+    this.whatsappform.reset();
   }
 
   // DeleteContactInfo(Id)
@@ -144,6 +170,24 @@ export class SharedialogComponent {
     });
   }
 
+  private createNavigationUrl() {
+    let searchParams = new URLSearchParams();
+    this.shareUrl=this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
+    switch(this.type) {
+      case 'facebook':
+        searchParams.set('u', this.shareUrl);
+        this.navUrl = 'https://www.facebook.com/sharer/sharer.php?' + searchParams;
+        break;
+      case 'linkedin':
+          searchParams.set('url', this.shareUrl);
+          this.navUrl =  'https://www.linkedin.com/sharing/share-offsite/?url=' + searchParams;
+          break;
+      case 'twitter':
+        searchParams.set('url', this.shareUrl);
+        this.navUrl =  'https://twitter.com/share?' + searchParams;
+        break;
+    }
+  }
 
   changeTeam(val) {
     this.getTeammember = val;
@@ -176,8 +220,14 @@ export class SharedialogComponent {
       return elem.UserId === team.UserId;
     });
   }
+
+  Whatsapp() {
+    this.whatsapp = undefined;
+    this.whatsappform.reset();
+  }
+
+  
   ShareProfile() {
-    debugger;
     this.isSharingStarted = true;
 
     if (this.info = 0) {
@@ -193,10 +243,10 @@ export class SharedialogComponent {
       this.profileSharing.InviteFriendId = 0;
       this.profileSharing.FromuserId = this.customerUser;
       this.profileSharing.ToUserId = "0";
-      this.profileSharing.ToEmailId = this.teammemberslist.map(x => x.Email).toString();
+      this.profileSharing.ToEmailId = this.EmailId;
       this.profileSharing.ApplicationName = 'Arytic';
-      this.profileSharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
-      this.profileSharing.Comments = this.selectedComments;
+      this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
+      this.profileSharing.Comments = this.selectedComments!=null?this.selectedComments:'Please review the profile shared to you';
     }
     if (this.profileSharing.ToEmailId == "" && this.profileSharing.Comments == undefined) {
       this.toastr.error('Please provide the valid details!', 'Oops!');
@@ -236,6 +286,7 @@ export class SharedialogComponent {
     }
   }
 }
+
 
 
 

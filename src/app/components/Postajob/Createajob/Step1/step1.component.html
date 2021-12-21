@@ -1,70 +1,81 @@
 <div id="step1" class="tab-pane fade active in">
-<div class="tab-inner">
-  <app-steps-step1-jobprofile>
-  </app-steps-step1-jobprofile>    <!-- changes as sugggested-->
-  <!-- <app-steps-step1-jobcategory>
-  </app-steps-step1-jobcategory> -->
-  <app-steps-step1-jobdetails>
-  </app-steps-step1-jobdetails>
-  <!-- <app-steps-step1-clients>
-  </app-steps-step1-clients> -->
-
-  <app-steps-step1-employmenttype (myEmploymentType)="changeEmploymentType()">   
-  </app-steps-step1-employmenttype>
-
-  <div class="form-group contract-details-group" *ngIf="show">
-        
-    <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
-  <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
-  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-  <app-steps-step1-contractduration> 
-  </app-steps-step1-contractduration>
+  <div class="tab-inner">
+    <app-steps-step1-jobprofile>
+    </app-steps-step1-jobprofile>    <!-- changes as sugggested-->
+    <!-- <app-steps-step1-jobcategory>
+    </app-steps-step1-jobcategory> -->
   
-    <app-steps-step1-contractextension>    
-    </app-steps-step1-contractextension>
-</div> 
-
-
-  <app-stepsalaryslider>  
-  </app-stepsalaryslider>
-
-<!-- 
-  <app-steps-step1-immigrationmanager>   
-  </app-steps-step1-immigrationmanager> -->
-
-  <app-steps-step2-locationwisejobs>
-  </app-steps-step2-locationwisejobs>
+    <app-steps-step1-employmenttype (myEmploymentType)="changeEmploymentType()">   
+    </app-steps-step1-employmenttype>
   
-  <!-- <app-steps-step1-departments> 
-  </app-steps-step1-departments>  -->
-   <app-steps-step1-clients>
-  </app-steps-step1-clients>
- 
-  <!-- <app-steps-step1-jobprofile>
-  </app-steps-step1-jobprofile> -->
-  <!-- <app-steps-step1-jobskillset>
-  </app-steps-step1-jobskillset>
-  <app-steps-step1-jobresponsibilities>
-  </app-steps-step1-jobresponsibilities> -->
- 
-</div>
-<hr class="form-divider" />
-<div class="clearfix form-nav">
-    <alert></alert>
-  <div class="pull-right">
-    <a href="javascript:void(0)" (click)="postJob(1,0)" class="btn btn-border btn-prev" *ngIf="jobIdExists>0">Save & Close</a>
-    <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
+  
+    <app-steps-step1-jobdetails>
+    </app-steps-step1-jobdetails>
+    <!-- <app-steps-step1-clients>
+    </app-steps-step1-clients> -->
+  
+    
+    <div class="form-group contract-details-group" *ngIf="show">
+          
+      <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
+    <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
+    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+    <app-steps-step1-contractduration> 
+    </app-steps-step1-contractduration>
+    
+      <app-steps-step1-contractextension>    
+      </app-steps-step1-contractextension>
+  </div> 
+  
+  <div class="row form-main-rows">
+    <div class="col-sm-5 form-cols">
+      <app-steps-step2-locationwisejobs>
+      </app-steps-step2-locationwisejobs>
+      <app-steps-step1-clients>
+      </app-steps-step1-clients>
+    </div>
+    <div class="col-sm-7 form-cols">
+      <app-stepsalaryslider>  
+      </app-stepsalaryslider>
+    </div>
   </div>
   
-  <!-- <footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
-    <div class="container">
-      <div class="text-center col-md-10">
-        <a href="javascript:void(0)"  (click)="postJob(1,0)" class="btn btn-border btn-prev">Save & Close</a>
-        <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
-      </div> 
+  
+  <!-- 
+    <app-steps-step1-immigrationmanager>   
+    </app-steps-step1-immigrationmanager> -->
+  
+    
+    
+    <!-- <app-steps-step1-departments> 
+    </app-steps-step1-departments>  -->
+  
+   
+    <!-- <app-steps-step1-jobprofile>
+    </app-steps-step1-jobprofile> -->
+    <!-- <app-steps-step1-jobskillset>
+    </app-steps-step1-jobskillset>
+    <app-steps-step1-jobresponsibilities>
+    </app-steps-step1-jobresponsibilities> -->
+   
+  </div>
+  <hr class="form-divider" />
+  <div class="clearfix form-nav">
+      <alert></alert>
+    <div class="pull-right">
+      <a href="javascript:void(0)" (click)="postJob(1,0)" class="btn btn-border btn-prev" *ngIf="jobIdExists>0">Save & Close</a>
+      <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
     </div>
-  </footer> -->
-
-</div>
-
-</div>
+    
+    <!-- <footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
+      <div class="container">
+        <div class="text-center col-md-10">
+          <a href="javascript:void(0)"  (click)="postJob(1,0)" class="btn btn-border btn-prev">Save & Close</a>
+          <a href="javascript:void(0)" (click)="postJob(1)"  class="btn btn-filled btn-next">Save & Next</a>
+        </div> 
+      </div>
+    </footer> -->
+  
+  </div>
+  
+  </div>

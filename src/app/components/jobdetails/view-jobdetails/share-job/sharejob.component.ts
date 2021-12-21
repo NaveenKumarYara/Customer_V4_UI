@@ -1,6 +1,6 @@
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
-import { Component, Inject, ViewContainerRef } from '@angular/core';
+import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -28,6 +28,8 @@ export class ShareJobComponent {
   managersList: Observable<CustomerUsers[]>;
   teammembers: '';
   referLink:any;
+  whatsapp: any;
+  whatsappform: FormGroup;
   customercontacts: CustomerContacts[];
   teammemberslist: CustomerUsers[];
   getTeammember: CustomerUsers;
@@ -58,6 +60,9 @@ export class ShareJobComponent {
   isSharingStarted: boolean;
   showThis: any;
   showSubThis:any;
+  type:string;
+  @Input() shareUrl: string;
+  navUrl: string;
   constructor(public dialogRef: MatDialogRef<ShareJobComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -92,9 +97,37 @@ export class ShareJobComponent {
     }
 }
 
+private createNavigationUrl() {
+  let searchParams = new URLSearchParams();
+  this.shareUrl = this.referLink;
+  switch(this.type) {
+    case 'facebook':
+      searchParams.set('u', this.shareUrl);
+      this.navUrl = 'https://www.facebook.com/sharer/sharer.php?' + searchParams;
+      break;
+    case 'linkedin':
+        searchParams.set('url', this.shareUrl);
+        this.navUrl =  'https://www.linkedin.com/sharing/share-offsite/?url=' + searchParams;
+        break;
+    case 'twitter':
+      searchParams.set('url', this.shareUrl);
+      this.navUrl =  'https://twitter.com/share?' + searchParams;
+      break;
+  }
+}
+
+public share(val) {
+  this.type = val;
+  this.createNavigationUrl();
+  return window.open(this.navUrl, "_blank");
+}
+
   ngOnInit() {
     this.inviteform = this.fb.group({
       'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
+    });
+    this.whatsappform = this.fb.group({
+      'mobilenumber': ['', Validators.compose([Validators.required, Validators.minLength(10)])],
     });
     this.clearTeamMemebers();
     this.getcustomerusers();
@@ -125,7 +158,19 @@ export class ShareJobComponent {
   {
   this.changeval= val;
   }
+  Whatsapp() {
+    this.whatsapp = undefined;
+    this.whatsappform.reset();
+  }
 
+  WhatsappShare() {
+    let url = 'https://wa.me/' + this.whatsappform.value.mobilenumber + '?text=' + this.referLink;
+    window.open(url, '_blank');
+    this.toastr.success('Successfully shared', 'Success!!');
+    this.whatsapp = undefined;
+    $("#Whatsapp").Modal('hide');
+    this.whatsappform.reset();
+  }
   commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
     const emails = control.value.split(',');
     const forbidden = emails.some(email => Validators.email(new FormControl(email)));

@@ -37,6 +37,7 @@
   "ResetPassword": "${Identity_URL}/api/ResetPassword",
   "CustomerTokenLogin":  "${Identity_URL}/api/CustomerTokenLogin",
   "CustomerAppLogin": "${CuMain_URL}/login",
+  "CustomerAppprofile": "${CuMain_URL}/profileview",
   "InviteContact": "${Email_URL}/api/EmailInviteContact",
   "ProfileShareInvite": "${Email_URL}/api/ProfileShare",
   "CustomerRequestRefernce":"${Email_URL}/api/CustomerRequestedRef",
