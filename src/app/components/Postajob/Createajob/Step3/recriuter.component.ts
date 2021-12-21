@@ -173,7 +173,6 @@ export class recriuterComponent implements OnInit, OnDestroy {
 
   allManager1() {
     return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
-        debugger
         this.rmanagers=res;
         let val = this.appService.rList;
         if(val!=undefined)
