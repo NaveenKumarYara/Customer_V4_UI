@@ -46,6 +46,8 @@ export class DetailsComponent implements OnInit {
 	fileType = new Resume();
 	fileExt: any;
 	showDetail: boolean = false;
+	skilltitleloading:boolean;
+	jobsLoading:boolean;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
 	statusid: number = 0;
