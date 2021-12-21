@@ -2,7 +2,6 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { debounceTime } from 'rxjs/operators';
 import { AppService } from '../../../app.service';
 declare var $: any;
 import * as FileSaver from 'file-saver';
@@ -12,6 +11,15 @@ import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
 import { ViewCandidateprofileComponent } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import swal from 'sweetalert2';
+import { BulkApplyInvite, CandidateInformation } from '../../../shared/models';
+import { LoadActiveProjectsComponent } from '../load-active-projects/load-active-projects.component';
+import { JobInfo } from '../../../../models/GetJobDetailCustomer';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { Subject, Observable } from 'rxjs';
+import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
+import { concat } from 'rxjs/observable/concat';
+import { of } from 'rxjs/observable/of';
 
 @Component({
 	selector: 'cm-details',
@@ -25,9 +33,9 @@ export class DetailsComponent implements OnInit {
 	showMenu: boolean = false;
 	customer: any = null;
 	customerId: any = null;
-	searchText :any = null;
+	searchText: any = null;
 	userId: any = null;
-	candidates: any[] = [];
+	candidates: CandidateInformation[] = [];
 	candidatesLoading: boolean = false;
 	currentPage: number = 1;
 	totalCandidatesCount: number = 0;
@@ -36,7 +44,7 @@ export class DetailsComponent implements OnInit {
 	selectedCandidate: any = null;
 	selectedIndex: number;
 	fileType = new Resume();
-    fileExt: any;
+	fileExt: any;
 	showDetail: boolean = false;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
@@ -64,41 +72,40 @@ export class DetailsComponent implements OnInit {
 	jobid: number = 1002162;
 	keywordSearchGroup: any;
 	isKeywordSearch: any;
-	searchValue: any=null
+	searchValue: any = null
+
+	jobList: Observable<string[]>;
+
+	jobInput = new Subject<string>();
+	jobsLosding: boolean;
+	selectedJobId: any;
 
 	constructor(private appService: AppService, private readonly apiService: ApiService,
-		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,  
+		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
-  ) {
-	const swal = require('sweetalert2');
+		private modalService: NgbModal
+	) {
+		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
 	}
 
 	ngOnInit() {
+		this.initInitialState();
+	}
+
+	initInitialState() {
 		this.keywordSearchValidators();
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
 		this.showDetail = false;
 		this.getCandidates();
+		this.getActiveJobs();
 		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 			.subscribe(res => {
 				this.keywordSearchGroup.get('searchValue').setValue(res);
 				this.getCandidates();
 			});
-
-
-
-		// $(document).on('click touchend', function (e) {
-		// 	if (!$(".revamp__filter__sidebar__box .scroll-box > ul").is(e.target) && $(".revamp__filter__sidebar__box .scroll-box > ul").has(e.target).length == 0 && !$(".revamp__filter__sidebar__box .btn-filter").is(e.target) && $(".revamp__filter__sidebar__box .btn-filter").has(e.target).length == 0) {
-		// 		$('.revamp__filter__sidebar__box').removeClass('full');
-		// 		$('.revamp__filter__sidebar__box').removeClass('show');
-		// 		$('.revamp__filter__sidebar__box').removeClass('big');
-		// 		$('.data-grid-view').removeClass('open');
-		// 		$('.data-grid-table').removeClass('open');
-		// 		$('.sub__item').removeClass('active');
-		// 	}
-		// });
 	}
 
 	next() {
@@ -289,24 +296,22 @@ export class DetailsComponent implements OnInit {
 
 
 	searchFunc(val) {
-	
-		  if(val != ''){
+
+		if (val != '') {
 			this.searchValue = val;
-			this.getCandidates();						  
-	  }
-	  else
-	  {
-		this.searchValue = null;
-		this.getCandidates(); 
-	  }
-	  }
+			this.getCandidates();
+		}
+		else {
+			this.searchValue = null;
+			this.getCandidates();
+		}
+	}
 
 
 	getCandidates() {
 		this.candidatesLoading = true;
 		// this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
-		if(this.searchValue!=null)
-		{
+		if (this.searchValue != null) {
 			const params = {
 				//cId: this.customerId,
 				//uId: this.userId,
@@ -340,8 +345,7 @@ export class DetailsComponent implements OnInit {
 					this.candidatesLoading = false;
 				});
 		}
-		else
-		{
+		else {
 			const params = {
 				//cId: this.customerId,
 				//uId: this.userId,
@@ -375,115 +379,194 @@ export class DetailsComponent implements OnInit {
 					this.candidatesLoading = false;
 				});
 		}
-	
-		
+
+
 	}
 
 
-	DownloadResume(val,ProfileId): void {
+	DownloadResume(val, ProfileId): void {
 		this.apiService.GetService("ProfileAPI/api/GetResume?profileId=", ProfileId).subscribe((fileData) => {
-		  this.fileType = fileData;
-		  let exp = this.fileType.Url.split(".").pop();
-		  this.fileExt = exp;
-		  this.toastr.success("Downloading!", "Success!");
-		  setTimeout(() => {
-			this.toastr.dismissToast;
-		  }, 3000);
-	
-		  if (this.fileExt == "pdf") {
-			let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
-			let blob = new Blob([byteArr], { type: "application/pdf" });
-			FileSaver.saveAs(blob, val);
-		  } else if (this.fileExt == "doc" || this.fileExt == "docx") {
-			var extension = ".doc";
-			let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
-			let blob = new Blob([byteArr], { type: "application/pdf" });
-			FileSaver.saveAs(blob, val + extension);
-		  }
-		});
-	  }
+			this.fileType = fileData;
+			let exp = this.fileType.Url.split(".").pop();
+			this.fileExt = exp;
+			this.toastr.success("Downloading!", "Success!");
+			setTimeout(() => {
+				this.toastr.dismissToast;
+			}, 3000);
 
-	  base64ToArrayBuffer(base64) {
+			if (this.fileExt == "pdf") {
+				let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+				let blob = new Blob([byteArr], { type: "application/pdf" });
+				FileSaver.saveAs(blob, val);
+			} else if (this.fileExt == "doc" || this.fileExt == "docx") {
+				var extension = ".doc";
+				let byteArr = this.base64ToArrayBuffer(fileData.ResumeFile);
+				let blob = new Blob([byteArr], { type: "application/pdf" });
+				FileSaver.saveAs(blob, val + extension);
+			}
+		});
+	}
+
+	base64ToArrayBuffer(base64) {
 		const binary_string = window.atob(base64);
 		const len = binary_string.length;
 		const bytes = new Uint8Array(len);
 		for (let i = 0; i < len; i++) {
-		  bytes[i] = binary_string.charCodeAt(i);
+			bytes[i] = binary_string.charCodeAt(i);
 		}
 		return bytes.buffer;
-	  }
+	}
 
 	onPageChange(pageValue) {
 		this.currentPage += pageValue;
 		this.getCandidates();
 	}
 
-	OpenCandidate(profileId, userId,percentage) {
-		if(percentage <50)
-		{
+	OpenCandidate(profileId, userId, percentage) {
+		if (percentage < 50) {
 			swal(
 				{
-				  title: 'Candidate haven"t completed profile',
-				  showConfirmButton: true,
-				  showCancelButton:true,
-				  type:"info",
-				  confirmButtonColor: '#66dab5',
-				  cancelButtonColor: '#FF0000',
-				  confirmButtonText: 'View',
-				  cancelButtonText:'No'
+					title: 'Candidate haven"t completed profile',
+					showConfirmButton: true,
+					showCancelButton: true,
+					type: "info",
+					confirmButtonColor: '#66dab5',
+					cancelButtonColor: '#FF0000',
+					confirmButtonText: 'View',
+					cancelButtonText: 'No'
 				}).then((result) => {
-				  if (result.value === true) {       
-					localStorage.setItem("cprofileId", profileId);
-					localStorage.setItem("cuserId", userId);	
-				   //this.router.navigateByUrl('/app-view-candidateprofile-detail');
-					const url = '/app-view-candidateprofile-detail';
-				   window.open(url, "_blank");
-				  
-				  }
-		  
-		  
-			  
-				
-			  });
+					if (result.value === true) {
+						localStorage.setItem("cprofileId", profileId);
+						localStorage.setItem("cuserId", userId);
+						//this.router.navigateByUrl('/app-view-candidateprofile-detail');
+						const url = '/app-view-candidateprofile-detail';
+						window.open(url, "_blank");
+
+					}
+
+
+
+
+				});
 		}
-		else
-		{
+		else {
 			localStorage.setItem("cprofileId", profileId);
-			localStorage.setItem("cuserId", userId);	
-		   //this.router.navigateByUrl('/app-view-candidateprofile-detail');
+			localStorage.setItem("cuserId", userId);
+			//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 			const url = '/app-view-candidateprofile-detail';
-		   window.open(url, "_blank");
+			window.open(url, "_blank");
 		}
-		
 	}
-	// OpenCandidateDialog(profileId, Uid) {
-	// 	this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId, this.jobid).subscribe((res) => {
-	// 		this.matchingParameterDetails = res;
-	// 		const viewCandidatedialogRef = this.dialog.open(ViewCandidateprofileComponent, {
-	// 			width: "80vw",
-	// 			position: { right: "0px" },
-	// 			height: "750px",
-	// 			panelClass: 'candiateModalPop',
-	// 			data: {
-	// 				ProfileId: profileId,
-	// 				jobId: this.jobid,
-	// 				UserId: Uid,
-	// 				JobFit: this.matchingParameterDetails.JobFit,
-	// 				Personalityfit: this.matchingParameterDetails.Personalityfit,
-	// 				Skillfit: this.matchingParameterDetails.SkillFit,
-	// 				CulutureFit: this.matchingParameterDetails.CultureFit
-	// 				// status : this.statusid
-	// 			},
-	// 		});
-	// 		viewCandidatedialogRef.afterClosed().subscribe((result) => {
-	// 			console.log("candidate Dialog result: ${result}");
-	// 		});
-	// 	});
-	// }
+
+	getActiveJobs() {
+		this.jobList = concat(
+			of([]), // default items
+			this.jobInput.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				tap(() => this.jobsLosding = true),
+				switchMap(term => this.appService.getActiveJobs(term).pipe(
+					catchError(() => of([])), // empty list on error
+					tap(() => this.jobsLosding = false)
+				))
+			)
+		);
+		// this.appService.getActiveJobs().subscribe(
+		// 	(res: any) => {
+		// 		debugger;
+		// 		this.jobList = res;
+		// 	},
+		// 	error => {
+		// 		console.log('Error occurred!');
+		// 		this.candidatesLoading = false;
+		// 	});
+	}
+
 	keywordSearchValidators() {
 		this.keywordSearchGroup = new FormGroup({
 			isKeywordSearch: new FormControl('0'),
 			searchValue: new FormControl(' ')
+		});
+	}
+
+	shareJobToSelectedCandidates() {
+		debugger;
+		let candidates = this.candidates.filter(x => x.IsSelected);
+
+	}
+
+	applyJobToSelectedCandidates() {
+		debugger;
+		let candidates = this.candidates.filter(x => x.IsSelected);
+		let selectedJob = this.selectedJobId;
+		let bulkApply: BulkApplyInvite = { JobId: selectedJob, SelectedCandidates: candidates };
+		bulkApply.JobId
+		this.appService.applyJobToSelectedCandidates(bulkApply).subscribe(
+			(res: any) => {				
+				this.selectedJobId = 0;
+				swal(
+					{
+						title: 'Selected Job Applied successfully',
+						showConfirmButton: true,
+						showCancelButton: false,
+						type: "success",
+						confirmButtonColor: '#66dab5',
+						cancelButtonColor: '#FF0000',
+						confirmButtonText: 'Ok',
+						cancelButtonText: 'No'
+					}).then((result) => {
+						this.initInitialState();
+					});
+				this.initInitialState();
+			},
+			error => {
+				console.log('Error occurred!');
+				this.candidatesLoading = false;
+				swal(
+					{
+						title: 'Eror while applying for a job.',
+						showConfirmButton: false,
+						showCancelButton: true,
+						type: "error",
+						confirmButtonColor: '#66dab5',
+						cancelButtonColor: '#FF0000',
+						confirmButtonText: 'View',
+						cancelButtonText: 'Cancel'
+					}).then((result) => {
+						this.initInitialState();
+					});
+			});
+
+	}
+	// shareJob() {
+	// 	const modalRef = this.modalService.open(LoadActiveProjectsComponent, {
+	//         size: 'sm',
+	//         //keyboard: false,
+	//         //backdrop: 'static'
+	//     });
+	//     modalRef.result.then(res => {
+	//         if (res) {
+	//             //this.initDataSource();
+	//         }
+	//     }).catch(() => { });
+	// }
+
+	shareJob() {
+		const dialogRef = this.dialog.open(LoadActiveProjectsComponent, {
+			width: '250px',
+			data: {
+				buttonText: {
+					ok: 'Save',
+					cancel: 'No'
+				}
+			}
+		});
+		dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+			if (confirmed) {
+				const a = document.createElement('a');
+				a.click();
+				a.remove();
+			}
 		});
 	}
 }
@@ -494,4 +577,4 @@ export class Resume {
 	ProfileId: number;
 	Url: string;
 	ResumeFile: string;
-  }
+}
