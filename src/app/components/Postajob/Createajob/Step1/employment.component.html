@@ -31,9 +31,12 @@
 </div> -->
 
 <div class="form-group position-group">
-    <div class="row">
-        <div class="col-md-12">
-            <label for="employmentype" class="question">What is the Employment Type? <small>(Optional)</small></label>
+    <div class="row flex flex-wrap form-row form-rows flex-align-start">
+        <div class="col-md-6 form-cols">
+            <label for="employmentype" class="question">
+              <!--   What is the Employment Type? <small>(Optional)</small> -->
+              Job Type
+            </label>
             <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
             <div class="options">
                 <div class="checkbox" *ngFor="let type of employmenttypelist">
@@ -46,9 +49,10 @@
             </div>
         </div>
         <!--New Employment type of-->
-        <div class="clearfix">&nbsp;</div>
-        <div class="col-md-12 employment-subtype">
-            <h5 for="employmentTypesub" class="question">Is the Employment type Remote based?<small>(Optional)</small></h5>
+        <div class="col-md-6 form-cols employment-subtype">
+            <label for="employmentTypesub" class="question">
+                Is the Employment type Remote based?<small>(Optional)</small>
+            </label>
          
             <!-- <div class="options">
                 <div class="checkbox">

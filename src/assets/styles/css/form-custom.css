@@ -1,0 +1,78 @@
+.page--create-a-job .form-steps .form-rows .t-p,
+.page--create-a-job .form-steps .form-rows .question,
+.page--create-a-job .form-steps .form-rows .key-resp label { font-size: 14px !important;  }
+.page--create-a-job .form-steps .form-rows .ng-select.custom-style>.ng-select-container,
+.page--create-a-job .form-steps .form-rows .form-control  {
+  height: 36px !important;
+  border-radius: 6px !important;
+}
+.page--create-a-job .form-steps .form-rows .ng-select .ng-select-container .ng-value-container .ng-input>input {
+  margin-top: 0;
+  top: 0;
+}
+
+.page--create-a-job .form-steps .form-rows .add-btn { padding: 0; width: 36px; }
+
+.page--create-a-job .form-steps .form-rows .ng-select.custom-style>.ng-select-container {
+  padding: 6px 3px;
+}
+
+.page--create-a-job .form-steps .form-rows  .custom-style.ng-invalid:not(form),
+.page--create-a-job .form-steps .form-rows  .custom-style.ng-valid[required] { border: 0; }
+.page--create-a-job .form-steps .form-rows  .custom-style.ng-invalid:not(form).ng-select.custom-style>.ng-select-container { border-left: 3px solid #e34f4f; }
+.page--create-a-job .form-steps .form-rows  .custom-style.ng-valid[required].ng-select.custom-style>.ng-select-container { border-left: 3px solid #66DAB5; }
+.page--create-a-job .form-steps .form-rows  .form-group { padding-top: 15px; }
+.page--create-a-job .form-steps .form-rows .custom-date .wc-date-container { 
+  height: 36px  !important;
+ }
+
+ .page--create-a-job .form-steps .form-rows .custom-date .wc-date-container {
+   padding:0 12px!important;
+   border-radius: 6px;
+   line-height: 36px !important;
+ }
+
+ .page--create-a-job .form-steps .form-rows .custom-date .wc-date-container i {
+    position: relative;
+    top: -4px;
+ }
+
+ 
+ .page--create-a-job .form-steps .job-id-group .radio { margin: 5px 5px 0 0; }
+
+ .page--create-a-job .form-steps .job-id-group .radio .radio-btn { height: auto; width: auto; border-radius: 3px; padding: 5px 10px; }
+ .page--create-a-job .form-steps .job-id-group  .radio input:checked+.radio-btn {
+   background: #66DAB5;
+   color: #fff;
+ }
+
+
+ .page--create-a-job .form-steps .form-rows,
+ .page--create-a-job .form-steps .form-sub-rows { 
+   margin: 0 -7px; 
+  }
+ .page--create-a-job .form-steps .form-rows .form-cols, 
+ .page--create-a-job .form-steps .form-rows .form-sub-cols{ 
+   padding:0 7px; 
+  }
+
+  .page--create-a-job .form-steps .form-rows .form-control.no-margin {
+    margin: 0;
+  }
+
+  .page--create-a-job .form-steps .form-rows .options {
+    display: block;
+  }
+
+  .page--create-a-job .form-steps .form-rows .form-group.position-group {
+    padding-top: 0;
+  }
+
+
+  .form-main-rows  {
+    margin-top: 30px !important;
+  }
+
+  .page--create-a-job .form-steps .form-rows .custom-date, .page--create-a-job .form-steps .form-rows .j-d  {
+    margin-top: 15px;
+  }

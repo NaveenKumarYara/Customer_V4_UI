@@ -1,147 +1,152 @@
-<div class="form-group position-group multiple-locations">  
-    <form [ngClass]="!disableLoc ? '' : 'pointernone' ">
-        <label for="" class="question">At which location the job is available? 
-            <!-- <span class="red">*</span> -->
-            <a  href="javascript:void(0)"  class="tooltip__link">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                <span class="custom__tooltip">
-                  <span class="step__01">Refers to the area in which the Job position is active . </span>
-                </span>
-              </a></label>
-            <small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
-                post the job for 
-                <ng-container *ngIf="!showMyContainer">
-                    <span>Multiple Postings</span>
-                </ng-container>
-                <ng-container *ngIf="showMyContainer">
-                    <span> Single Posting.</span>
-                </ng-container>              
-                )</small>
-      
-            </form>
-
-      
-
-        <!--Multiple Location implementation 19-03-2020-->
-        <ng-container *ngIf="showMyContainer">
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="city-label">City </label>
-                    <ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async"
-                        placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
-                        (ngModelChange)="getmultiSelectedOptionText($event)" [typeahead]="mselectedCityInput"
-                        [hideSelected]="true" [loading]="mcityloading" [(ngModel)]="selectedCity" [virtualScroll]="true"
-                        required #mcity="ngModel" name="mcities">
-                       
-                    </ng-select>
-                    <small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small> 
-                </div>
-                <div class="col-md-3">
-                    <label class="open-positions">Open Positions <span class="red">*</span></label>
-                    <!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
-                    <input type="text" class="form-control" #openings="ngModel" required name="openg"
-                        [(ngModel)]="noOfOpening" (ngModelChange)="Openings($event)" placeholder="Define here">
-                </div>
-                <div class="col-md-3">
-                    <button class="btn add-btn form-control" type="submit" (click)="addArray()">+</button>
-                </div>
-            </div>
-
-            <!-- <div class="options" *ngIf="locationwithpostions">
-                <div class="checkbox" *ngFor="let job of locationwithpostions;let i = index">
-                     <label>
-                        <h6 class="box city-box">{{job?.CityName}}-{{job?.Positons}}<span (click)="deletemLocation(i)">x</span> </h6>
-                    </label>
-                </div>
-              </div>   
-                            -->
-            <div class="lists  open-positions-list">
-                <h6 *ngIf="locationwithpostions?.length>0" class="light">Open Positions at City </h6>
-                <div class="col-md-6">
-                    <ul class="data-list" >
-                        <li  *ngFor="let job of locationwithpostions;let i = index">
-                            <span title="{{job?.CityName}}" class="name" *ngIf="jobs?.CityName != 'Remote, , '">{{job?.CityName}}</span>
-                            <span class="experience" *ngIf="jobs?.CityName != 'Remote, , '"> {{job?.Positons}}</span>
-                            <span class="close" (click)="deletemLocation(i)" *ngIf="jobs?.CityName != 'Remote, , '">&times;</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </ng-container>
-
-
-        <div class="clearfix">&nbsp;</div>
-
-
-        <!--Multiple Location implementation 19-03-2020-->
-
-        <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-        <!-- <div class="p-rel"> -->
-
-        <!-- <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here"> -->
-        <!--   
-  <ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
-  bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
-  [(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
-</ng-select> -->
-        <ng-container *ngIf="!showMyContainer">
-            <form>
-            <ng-select class="custom-style" id="PreferredEducation" [items]="cities | async"
-                placeholder="Select Cities" bindLabel="CityName" bindValue="CityName"
-                (ngModelChange)="getSelectedOptionText($event)" [typeahead]="selectedCityInput" [hideSelected]="true"
-                [loading]="cityloading"   [(ngModel)]="selectedCityName" [virtualScroll]="true"  #city="ngModel"
-                name="cities"> 
-                
-            </ng-select>
-            <small class="error1" *ngIf="city.invalid && city.touched">Required.</small> 
-            <div class="options" *ngIf="locationwisejobs">
-                <div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
-                    <!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
-                    <label *ngIf="jobs?.CityName != 'Remote, , '">
-                        <!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
-                        <!-- <span class="box">{{jobs.CityName}}</span>  -->
-                        <h6 class="box city-box">{{jobs?.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>
-                    </label>
-                </div>
-            </div>
-        </form>
-            <div class="form-group position-group">
-                <label for="" class="question">How many open positions do you have for this Job Title? <span class="red">*</span>
-                    <!-- <a  href="javascript:void(0)"  class="tooltip__link">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span class="custom__tooltip">
-                          <span class="step__01">Refers to the area in which the Job position is active . </span>
-                        </span>
-                      </a>--></label> 
-                <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-                <div class="p-rel">
-            
-                    <div class="options">
-            
-                        <div class="checkbox" *ngFor="let type of openingsList">
-                            <label>
-                      <input type="radio" [(ngModel)]="noOfOpenings"  #openings="ngModel" required name="openg" (change)="Opening(type)" [value]="type"><span class="box inputbox">{{type}}</span> </label>
-                        </div>
-                        <!-- <div class="checkbox">
-                    <label><input type="radio" name="openg" (click)="Opening(2)" value="2"><span class="box">2</span></label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
-                  </div> -->
-                        <h4>OR</h4>
-                        <input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2">
-                    </div>
-                </div>
-                <small class="text-danger radio-error1" *ngIf="openings.invalid && openings.touched">Number of Positions are required!</small>
-            </div>
-
-        </ng-container>
-
-
-        <!--Location UI redesign and reposition 17-03-2020-->
-
-        <!--Location UI redesign and reposition 17-03-2020-->
-
-        <!-- <span class="help-block radio-error1">Location is required.</span> -->
-        <!-- </div> -->
+<div class="row form-rows">
+	<div class="col-sm-12 form-cols">
+		<div class="form-group position-group multiple-locations">
+			<form [ngClass]="!disableLoc ? '' : 'pointernone' ">
+				<label for="" class="question">At which location the job is available? 
+                    <!-- <span class="red">*</span> -->
+					<a href="javascript:void(0)" class="tooltip__link">
+						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						<span class="custom__tooltip">
+							<span class="step__01">Refers to the area in which the Job position is active . </span>
+						</span>
+					</a>
+				</label>
+				<small>( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
+					post the job for
+					<ng-container *ngIf="!showMyContainer">
+						<span>Multiple Postings</span>
+					</ng-container>
+					<ng-container *ngIf="showMyContainer">
+						<span> Single Posting.</span>
+					</ng-container>
+					)
+				</small>
+		
+			</form>
+		
+		
+		
+			<!--Multiple Location implementation 19-03-2020-->
+			<ng-container *ngIf="showMyContainer">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="city-label">City </label>
+						<ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async" placeholder="Select Cities"
+							bindLabel="CityName" bindValue="CityName" (ngModelChange)="getmultiSelectedOptionText($event)"
+							[typeahead]="mselectedCityInput" [hideSelected]="true" [loading]="mcityloading" [(ngModel)]="selectedCity"
+							[virtualScroll]="true" required #mcity="ngModel" name="mcities">
+		
+						</ng-select>
+						<small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small>
+					</div>
+					<div class="col-md-3">
+						<label class="open-positions">Open Positions <span class="red">*</span></label>
+						<!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
+						<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpening"
+							(ngModelChange)="Openings($event)" placeholder="Define here">
+					</div>
+					<div class="col-md-3">
+						<button class="btn add-btn form-control" type="submit" (click)="addArray()">+</button>
+					</div>
+				</div>
+		
+				<!-- <div class="options" *ngIf="locationwithpostions">
+										<div class="checkbox" *ngFor="let job of locationwithpostions;let i = index">
+												 <label>
+														<h6 class="box city-box">{{job?.CityName}}-{{job?.Positons}}<span (click)="deletemLocation(i)">x</span> </h6>
+												</label>
+										</div>
+									</div>   
+																-->
+				<div class="lists  open-positions-list">
+					<h6 *ngIf="locationwithpostions?.length>0" class="light">Open Positions at City </h6>
+					<div class="col-md-6">
+						<ul class="data-list">
+							<li *ngFor="let job of locationwithpostions;let i = index">
+								<span title="{{job?.CityName}}" class="name" *ngIf="jobs?.CityName != 'Remote, , '">{{job?.CityName}}</span>
+								<span class="experience" *ngIf="jobs?.CityName != 'Remote, , '"> {{job?.Positons}}</span>
+								<span class="close" (click)="deletemLocation(i)" *ngIf="jobs?.CityName != 'Remote, , '">&times;</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</ng-container>
+	
+		
+			<!--Multiple Location implementation 19-03-2020-->
+		
+			<!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+			<!-- <div class="p-rel"> -->
+		
+			<!-- <input type="text" class="form-control" #openings="ngModel" required  name="openg" [(ngModel)]="noOfOpenings" (ngModelChange)="Opening($event)" placeholder="Define here"> -->
+			<!--   
+			<ng-select class="custom-style" [items]="skilllist | async" placeholder="Ex: Application Development" bindLabel="name"
+			bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading"
+			[(ngModel)]="selectedSkillName" minlength="1"  name="selectedSkillName" #skill="ngModel"   [virtualScroll]="true" required>
+		</ng-select> -->
+			<ng-container *ngIf="!showMyContainer">
+				<form>
+					<ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Cities"
+						bindLabel="CityName" bindValue="CityName" (ngModelChange)="getSelectedOptionText($event)"
+						[typeahead]="selectedCityInput" [hideSelected]="true" [loading]="cityloading" [(ngModel)]="selectedCityName"
+						[virtualScroll]="true"  #city="ngModel" name="cities">
+		
+					</ng-select>
+					<small class="error1" *ngIf="city.invalid && city.touched">Required.</small>
+					<div class="options" *ngIf="locationwisejobs">
+						<div class="checkbox" *ngFor="let jobs of locationwisejobs;let i = index">
+							<!-- <label><input type="radio" name="location" (change)="selectLocation(jobs.PreferredLocationId)"  (change)="selectLocation(jobs)"  value=""><span class="box">{{jobs.CityName}}</span> </label> -->
+							<label *ngIf="jobs?.CityName != 'Remote, , '">
+								<!--<input type="checkbox" [ngModel]="prfLoc && prfLoc?.CityId"  name="location" [value]="jobs.CityId"> -->
+								<!-- <span class="box">{{jobs.CityName}}</span>  -->
+								<h6 class="box city-box">{{jobs?.CityName}} <span (click)="deleteLocation(i)">x</span> </h6>
+							</label>
+						</div>
+					</div>
+				</form>
+				<div class="form-group position-group">
+					<label for="" class="question">How many open positions do you have for this Job Title? <span class="red">*</span>
+						<!-- <a  href="javascript:void(0)"  class="tooltip__link">
+														<i class="fa fa-info-circle" aria-hidden="true"></i>
+														<span class="custom__tooltip">
+															<span class="step__01">Refers to the area in which the Job position is active . </span>
+														</span>
+													</a>-->
+					</label>
+					<!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+					<div class="p-rel">
+		
+						<div class="options">
+		
+							<div class="checkbox" *ngFor="let type of openingsList">
+								<label>
+									<input type="radio" [(ngModel)]="noOfOpenings" #openings="ngModel" required name="openg"
+										(change)="Opening(type)" [value]="type"><span class="box inputbox">{{type}}</span> </label>
+							</div>
+							<!-- <div class="checkbox">
+												<label><input type="radio" name="openg" (click)="Opening(2)" value="2"><span class="box">2</span></label>
+											</div>
+											<div class="checkbox">
+												<label><input type="radio" name="openg" (click)="Opening(3)" value="3"><span class="box">3</span></label>
+											</div> -->
+							<h4>OR</h4>
+							<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings"
+								(ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2">
+						</div>
+					</div>
+					<small class="text-danger radio-error1" *ngIf="openings.invalid && openings.touched">Number of Positions are
+						required!</small>
+				</div>
+		
+			</ng-container>
+		
+		
+			<!--Location UI redesign and reposition 17-03-2020-->
+		
+			<!--Location UI redesign and reposition 17-03-2020-->
+		
+			<!-- <span class="help-block radio-error1">Location is required.</span> -->
+			<!-- </div> -->
+		</div>
+	</div>
 </div>

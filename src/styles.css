@@ -16,6 +16,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/styles/css/share-job-pages.css';
 @import './assets/styles/css/upload-resume.css';
+@import './assets/styles/css/form-custom.css';
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
