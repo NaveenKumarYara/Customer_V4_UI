@@ -69,7 +69,8 @@ import { GetBillingCardDetails } from "../models/GetBillingCardDetails";
 import { CustomerSubscription } from "../models/CustomerSubscription";
 import { GetSubscriptionDetails } from "../models/GetSubscriptionDetails";
 import { GetBillingAddressCustomer } from "../models/GetBillingAddressCustomer";
-import { ReportingTeam, RecrutingTeam } from "../models/GetJobDetailCustomer";
+import { ReportingTeam, RecrutingTeam, JobInfo } from "../models/GetJobDetailCustomer";
+import { CandidateInformation } from "./shared/models";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -79,6 +80,7 @@ const httpOptions = {
 
 @Injectable()
 export class AppService {
+  
   private opportunities: Dashboard[] = [];
   private apiUrl = "api/CustomerPortal";
 
@@ -1689,10 +1691,20 @@ export class AppService {
     return this.http.get<any>(url).catch(this.handleError);
   }
 
-  getCandidates(params: any): Observable<any> {
+  getCandidates(params: any): Observable<CandidateInformation[]> {
     const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
     return this.http.get<any>(apiUrl, { params })
       .pipe();
+  }
+
+  getActiveJobs(term: any): Observable<string[]> {
+    const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term;
+    return this.http.get<any>(apiUrl)
+      .pipe();
+  }
+
+  applyJobToSelectedCandidates(bulkApply: any) {
+	  return this.http.post(this.settingsService.settings.JobbaseUrl + '/api/ApplyJobToSelectedCandidates', bulkApply).pipe();
   }
 
 

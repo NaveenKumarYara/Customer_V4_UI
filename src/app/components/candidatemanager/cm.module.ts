@@ -13,10 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from "./search.pipe";
 import { TooltipModule } from "ng2-tooltip-directive";
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { LoadActiveProjectsComponent } from './load-active-projects/load-active-projects.component';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule],
-  declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule, NgSelectModule],
+  declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe, LoadActiveProjectsComponent],
   providers: [AppService, ApiService],
+  entryComponents:[LoadActiveProjectsComponent]
 })
 export class CmModule { }
