@@ -2582,7 +2582,7 @@
   top:0;
 
   /* css3 animation */
-  -webkit-animation-name: anim_slides;
+  /* -webkit-animation-name: anim_slides;
   -webkit-animation-duration: 24.0s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
@@ -2598,7 +2598,9 @@
   -moz-animation-direction: normal;
   -moz-animation-delay: 0;
   -moz-animation-play-state: running;
-  -moz-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards; */
+  -webkit-animation: 24s linear infinite forwards anim_slides;
+  -moz-animation: 24s linear infinite forwards anim_slides;
 }
 
 /* css3 delays */
