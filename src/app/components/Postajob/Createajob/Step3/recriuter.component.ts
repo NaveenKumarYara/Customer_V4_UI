@@ -125,6 +125,43 @@ export class recriuterComponent implements OnInit, OnDestroy {
   {
     this.sslist.splice(index,1);
     this.suggestManagers.splice(index,1);
+    this.appService.recrutingList=this.suggestManagers;
+    if(this.JobIds&&this.JobIds.length>0)
+    {
+      this.JobIds.forEach((e)=>
+      {
+        
+        this.report.UserId=this.userId;
+        this.report.CustomerId=this.customerId;
+        this.report.JobId=Number(e);
+        this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+        this.GetJobAssigned(e);
+        this.appService.RecrutingTeam(this.report).subscribe(
+          data => {
+            if(data=0)
+            {
+              console.log("added");
+            }
+          });
+      }
+      )
+    }
+    else
+    {
+      const res = localStorage.getItem('jobId');
+      this.report.UserId=this.userId;
+      this.report.CustomerId=this.customerId;
+      this.report.JobId=parseInt(res, 10);
+      this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+      this.GetJobAssigned(res);
+      this.appService.RecrutingTeam(this.report).subscribe(
+        data => {
+          if(data=0)
+          {
+            console.log("added");
+          }
+        });  
+    }
   }
 
 
@@ -157,7 +194,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
 
 
   suggestedManager1() {
-    return this.appService.getRecrutingTeam(this.customerId).subscribe(res =>{
+    return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
         //debugger
       this.remanagers=res;
             this.suggestManagers= this.appService.recrutingList;
@@ -279,7 +316,6 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
         this.selectManager='';
         this.selectManager=null;
         this.appService.recrutingList=this.suggestManagers;
-        
         if(this.JobIds&&this.JobIds.length>0)
         {
           this.JobIds.forEach((e)=>
