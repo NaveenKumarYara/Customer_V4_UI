@@ -31,6 +31,7 @@ export class SharedialogComponent {
   teammemberslist: CustomerUsers[];
   whatsapp: any;
   whatsappform: FormGroup;
+  inviteform: FormGroup;
   getTeammember: CustomerUsers;
   profileSharing = new ProfileShare();
   customer: any;
@@ -52,6 +53,7 @@ export class SharedialogComponent {
   private subscription: Subscription;
   selectedUserInput = new Subject<string>();
   isSharingStarted: boolean;
+  arr: any=[];
   constructor(public dialogRef: MatDialogRef<SharedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,private jobdetailsservice: JobdetailsService, private appService: AppService, private _vcr: ViewContainerRef, private toastr: ToastsManager, private settingsService: SettingsService) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -64,10 +66,14 @@ export class SharedialogComponent {
     this.getcustomerusers();
     this.AddUser = false;
     this.info = 0;
+    this.shareUrl=this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
     //this.GetInterView();
     //this.GetType();
     this.whatsappform = this.fb.group({
       'mobilenumber': ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+    });
+    this.inviteform = this.fb.group({
+      'inviteEmail'   : ['', Validators.compose([Validators.required, this.commaSepEmail])],
     });
     this.teammemberslist = this.appService.getTeammembers();
     this.subscription = this.appService.teammembersChanged
@@ -77,6 +83,32 @@ export class SharedialogComponent {
         }
       );
   }
+
+  copyToClipboard() {
+    // var copyText = <HTMLInputElement>document.querySelector('.rjobLink');
+    // copyText.select();
+    // document.execCommand('Copy');
+    // alert('copied');
+    let element = $('#nbtnCpy');
+    let inputGroup = element.closest('.input-group');
+    let input = inputGroup.find('.text-to-copy');
+    let inputValue = inputGroup.find('.text-to-copy').val();
+
+    let msg = inputGroup.next('.copied');
+
+    if (inputValue.length > 0 && inputValue !== 'undefined') {
+        input.select();
+        document.execCommand('copy');
+        element.find('span').text('Copied!');
+        msg.addClass('show');
+    }
+
+    if (msg.hasClass('show')) {
+        setTimeout(function () {
+            msg.removeClass('show');
+        }, 1500);
+    }
+}
 
   onItemDeleted(index) {
     this.GetContactsList.splice(index, 1);
@@ -226,6 +258,13 @@ export class SharedialogComponent {
     this.whatsappform.reset();
   }
 
+  commaSepEmail = (control: AbstractControl): { [key: string]: any } | null => {
+    const emails = control.value.split(',');
+    const forbidden = emails.some(email => Validators.email(new FormControl(email)));
+    console.log(forbidden);
+    return forbidden ? { 'inviteEmail': { value: control.value } } : null;
+  };
+
   
   ShareProfile() {
     this.isSharingStarted = true;
@@ -261,28 +300,62 @@ export class SharedialogComponent {
       }, 3000);
     }
     if (this.profileSharing.ToEmailId != "" && this.profileSharing.Comments != "") {
-      this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
-        if (data === 0) {
-          //this.inviteform.reset();
-          this.teammemberslist = [];
-          $('#teamMbr').val('');
-          //this.selectedUserName = ''
-          this.getTeammember = new CustomerUsers();
-          this.profileSharing = new ProfileShare();
-          this.clearTeamMemebers();
-          this.selectedComments = "";
-          this.EmailId = " ";
+      if(this.info = 1 )
+      {
+        this.arr =this.inviteform.value.inviteEmail.split(',');
+        this.arr.forEach(element => {
+          this.profileSharing.ToEmailId = element;
+        this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
+          if (data === 0) {
+            //this.inviteform.reset();
+            this.teammemberslist = [];
+            $('#teamMbr').val('');
+            //this.selectedUserName = ''
+            this.getTeammember = new CustomerUsers();
+            this.profileSharing = new ProfileShare();
+            this.clearTeamMemebers();
+            this.selectedComments = "";
+            this.EmailId = " ";
+            this.isSharingStarted = false;
+            this.dialogRef.close();
+            this.toastr.success('Mail sent successfully', 'Success');
+            setTimeout(() => {
+              this.toastr.dismissToast;
+            }, 3000);
+          }
+        }, error => {
           this.isSharingStarted = false;
-          this.dialogRef.close();
-          this.toastr.success('Mail sent successfully', 'Success');
-          setTimeout(() => {
-            this.toastr.dismissToast;
-          }, 3000);
-        }
-      }, error => {
-        this.isSharingStarted = false;
-        console.log('error:', JSON.stringify(error));
+          console.log('error:', JSON.stringify(error));
+        });
       });
+      }
+      else
+      {
+        this.jobdetailsservice.ProfileShareInvite(this.profileSharing).subscribe(data => {
+          if (data === 0) {
+            //this.inviteform.reset();
+            this.teammemberslist = [];
+            $('#teamMbr').val('');
+            //this.selectedUserName = ''
+            this.getTeammember = new CustomerUsers();
+            this.profileSharing = new ProfileShare();
+            this.clearTeamMemebers();
+            this.selectedComments = "";
+            this.EmailId = " ";
+            this.isSharingStarted = false;
+            this.dialogRef.close();
+            this.toastr.success('Mail sent successfully', 'Success');
+            setTimeout(() => {
+              this.toastr.dismissToast;
+            }, 3000);
+          }
+        }, error => {
+          this.isSharingStarted = false;
+          console.log('error:', JSON.stringify(error));
+        });
+
+      }
+ 
     }
   }
 }

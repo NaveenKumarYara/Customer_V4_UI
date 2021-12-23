@@ -1,0 +1,40 @@
+<div class="row form-rows">
+	<div class="col-sm-12 form-cols">
+
+<div class="form-group job-profile-group custom-slider">
+  <label for="" class="question">Do you have a complete description of the Job profile? <small>(Optional)</small></label>
+  <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+  <div class="clearfix">
+    <!-- <label for="r2no" class="radio">
+      <input type="radio" id="r2no"  (change)="setValue(false)"  [(ngModel)]="hasCompleteDescription"  checked="hasCompleteDescription" name="contactVia" class="radio-input" />
+      <span class="radio-btn"></span>
+      <span>No</span>
+    </label> -->
+  </div>
+  <div class="options">
+    <div class="checkbox">
+        <label>
+            <input  type="radio"  [(ngModel)]="hasCompleteDescription" [value]="true"  [checked]="hasCompleteDescription==true"
+            (change)="setValue(hasCompleteDescription)"><span class="box">Yes</span>
+           
+        </label>
+        
+        <label>           
+            <input  type="radio"  [(ngModel)]="hasCompleteDescription" [value]="false" [checked]="hasCompleteDescription==false"
+             (change)="setValue(hasCompleteDescription)"><span class="box">No</span>
+        </label>
+    </div>
+</div>
+  <div class="clearfix">&nbsp;</div>
+  <div *ngIf="hasCompleteDescription">
+    <ckeditor  [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)"></ckeditor>
+ 
+    <!-- <textarea name=""  id="completeDescription" [(ngModel)]="jobDescription" (ngModelChange)="changeDescription($event)" class="form-control"></textarea>
+       -->
+  <small class="text-danger" *ngIf="hasCompleteDescription==true && jobDescription==''">          <!-- valdiateExperience(minExperience,maxExperience) -->
+       *Required
+     </small>
+    </div>
+</div>
+</div>
+</div>

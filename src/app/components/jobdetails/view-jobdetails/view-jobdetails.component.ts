@@ -194,7 +194,7 @@ export class ViewJobdetailsComponent implements OnInit {
       };
       const dialogRef = this.dialog.open(UploadProfilesComponent,
         {
-          width: '95vw',
+          width: '65vw',
           position: { right: '0px' },
           height: '100vh',
           data: abc,

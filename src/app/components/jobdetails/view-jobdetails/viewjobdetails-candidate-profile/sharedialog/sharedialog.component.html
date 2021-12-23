@@ -70,12 +70,63 @@
                         <form action="">
                             <div class="form-row">
                                 <div class="form-group">
+                                    <!-- <label for="">Share</label> -->
                                     <div class="row">
+                                        <!-- <div class="col-md-3 col-sm-3">
+                                            <input type="text" class="form-control" [(ngModel)]="Name" name="Name"
+                                                placeholder="Name *">
+                                                
+                                        </div> -->
+                                    	<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
                                         <div class="col-md-12 col-sm-12 sm-pt-2">
-                                            <input type="email" class="form-control" [(ngModel)]="EmailId"
-                                                name="EmailId" placeholder="Email *">
+                                            <form [formGroup]="inviteform">
+                                                <div class="input-group col-sm-12 pt-2 p-rel">
+                                                    <div class="clearfix">&nbsp;</div>
+                                                    <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+                                                        autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
+                                                </textarea>
+                                                    <div
+                                                        *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
+                                                        class="error1">
+                                                        <div *ngIf="inviteform.controls['inviteEmail']">
+                                                            Incorrect Email.
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="clearfix">&nbsp;</div>
+                                                <!-- <div class="col-sm-12 plr-0">
+                                                    <div class="pull-right">
+                                                        <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
+                                                        (click)="loginstyle()">Submit</button>
+                                                    </div>
+                                                </div> -->
+        
+                                            </form>
+
                                         </div>
+
+                            
+                                        <!-- <div class="col-md-2 col-sm-2 sm-pt-2">
+                                            <button class="btn add-btn form-control mt-0" type="button"
+                                                (click)="AddContacts()">+</button>
+                                        </div> -->
+                                        <!-- <div class="col-md-12 pr-30">
+                                            <ul class="data-list">
+                                                <li class="col-md-12 pr-0  mt-10"
+                                                    *ngFor="let item of GetContactsList;let i = index">
+                                                    <span class="name w-45">{{item?.Fullname}}</span>
+                                                    <span class="experience w-45 pl-15">{{item?.EmailId}}</span>
+                                                    <span class="close w-10" (click)="onItemDeleted(i)">×</span>
+                                                </li>
+
+
+                                            </ul>
+                                        </div> -->
+
                                     </div>
+                                   
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,10 +135,10 @@
                                 <img src="../../../../../assets/images/fb-icon.svg" alt="">
                               </button>
                               
-                              <button
+                              <!-- <button
                                 (click)="share('linkedin')">
                                 <img src="../../../../../assets/images/linkedin-icon.svg" alt="">
-                              </button>
+                              </button> -->
                               <button
                               (click)="share('twitter')">
                               <img src="../../../../../assets/images/twitter-icon.svg" alt="">
@@ -98,6 +149,19 @@
                               </span>
                             </div>
                             <div class="form-group">
+								
+                                <div class="input-group">
+                                    <input type="url" class="form-control text-to-copy njobLink" [(ngModel)]="shareUrl"
+                                        [ngModelOptions]="{standalone: true}" id="job-link" readonly>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary copy-btn" id="nbtnCpy" (click)="copyToClipboard()"
+                                            type="button">
+                                            <span class="hidden-xs btn-sm">Copy Link</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Comments</label>
                                 <textarea type="text" [(ngModel)]="selectedComments" name="Comments"
                                     class="form-control resize-none" placeholder="Please add your comments *"
@@ -106,7 +170,10 @@
                                
                             </div>
                         </form>
+
                     </ng-container>
+
+
                 </div>
             </div>
         </mat-dialog-content>

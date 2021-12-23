@@ -60,6 +60,7 @@ export class ShareJobComponent {
   isSharingStarted: boolean;
   showThis: any;
   showSubThis:any;
+  arr:any=[];
   type:string;
   @Input() shareUrl: string;
   navUrl: string;
@@ -206,12 +207,15 @@ public share(val) {
     }
     else if(this.inviteinfo.ToEmailId != "")
     {
-      
-    this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
+      this.arr =this.inviteform.value.inviteEmail.split(',');
+      this.arr.forEach(element => {
+        this.inviteinfo.ToEmailId = element;
+        this.jobdetailsservice.InviteContact(this.inviteinfo).subscribe(data => {
        if (data === 0) {  
         this.toastr.success('Mail sent successfully', 'Success');
         setTimeout(() => {
-         this.toastr.dismissToast;      
+         this.toastr.dismissToast;    
+         this.arr =[];  
          this.inviteform.reset();
       
      }, 3000);
@@ -222,6 +226,7 @@ public share(val) {
        //alert('error ');
             console.log('error:', JSON.stringify(error));
            });
+          });
    }
   }
 
@@ -281,26 +286,27 @@ public share(val) {
       }, 3000);
     }
     else if (this.Sharing.ToEmailID != "" && this.Sharing.Comments != undefined) {
-      this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
-        if (data === 0) {
-          //this.inviteform.reset();
-          this.teammemberslist = [];
-          $('#teamMbr').val('');
-          //this.selectedUserName = ''
-          this.getTeammember = new CustomerUsers();
-          this.Sharing = new JobShare();
-          this.clearTeamMemebers();
-          this.selectedComments = "";
-          this.toastr.success('Mail sent successfully', 'Success');
-          this.isSharingStarted = false;
-          setTimeout(() => {
-            this.toastr.dismissToast;
-            this.dialogRef.close();
-          }, 1000);
-        }
-      }, error => {
-        console.log('error:', JSON.stringify(error));
-      });
+        this.jobdetailsservice.JobShareInvite(this.Sharing).subscribe(data => {
+          if (data === 0) {
+            //this.inviteform.reset();
+            this.teammemberslist = [];
+            $('#teamMbr').val('');
+            //this.selectedUserName = ''
+            this.getTeammember = new CustomerUsers();
+            this.Sharing = new JobShare();
+            this.clearTeamMemebers();
+            this.selectedComments = "";
+            this.toastr.success('Mail sent successfully', 'Success');
+            this.isSharingStarted = false;
+            setTimeout(() => {
+              this.toastr.dismissToast;
+              this.dialogRef.close();
+            }, 1000);
+          }
+        }, error => {
+          console.log('error:', JSON.stringify(error));
+        });
+
     }
   }
 }

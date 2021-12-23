@@ -148,7 +148,7 @@ export class ImmigrationComponent implements OnInit, OnDestroy {
 
  GetImmigrationList()
  {
-    this.selectedItems = this.appService.ImmigrationforJobs;
+    this.selectedItems = this.appService.ImmigrationforJobs.filter(x=>x.item_id>0);
 //    this.ImmigrationListData.forEach(element => {
 //            if(element.ImmigrationStatus!=null)
 //            {

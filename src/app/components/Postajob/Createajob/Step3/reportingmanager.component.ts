@@ -216,66 +216,66 @@ export class ReportingManagerComponent implements OnInit, OnDestroy {
   // //   }
     }
 
-    Add()
-    {
-            this.flag=false;
-            if(this.selectedManager!=undefined)
-            {
-        if(this.suggestedManagers.length>0)
-        {
-          this.slist = this.suggestedManagers;
-          this.slist.push(this.selectedManager);
-        }
+    // Add()
+    // {
+    //         this.flag=false;
+    //         if(this.selectedManager!=undefined)
+    //         {
+    //     if(this.suggestedManagers.length>0)
+    //     {
+    //       this.slist = this.suggestedManagers;
+    //       this.slist.push(this.selectedManager);
+    //     }
        
-        if(this.suggestedManagers.length==0)
-        {
-          this.slist.push(this.selectedManager);
-        }
-        //this.slist.push(this.selectedManager);
-        this.suggestedManagers=this.slist;
-        this.selectManager='';
-        this.selectManager=null;
-        this.appService.reportingList=this.suggestedManagers;
-        if(this.JobIds&&this.JobIds.length>0)
-        {
-          this.JobIds.forEach((e)=>
-          {
+    //     if(this.suggestedManagers.length==0)
+    //     {
+    //       this.slist.push(this.selectedManager);
+    //     }
+    //     //this.slist.push(this.selectedManager);
+    //     this.suggestedManagers=this.slist;
+    //     this.selectManager='';
+    //     this.selectManager=null;
+    //     this.appService.reportingList=this.suggestedManagers;
+    //     if(this.JobIds&&this.JobIds.length>0)
+    //     {
+    //       this.JobIds.forEach((e)=>
+    //       {
             
-            this.report.UserId=this.userId;
-            this.report.CustomerId=this.customerId;
-            this.report.JobId=Number(e);
-            this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-            this.GetJobAssigned(e);
-            this.appService.ReportingTeam(this.report).subscribe(
-              data => {
-                if(data=0)
-                {
+    //         this.report.UserId=this.userId;
+    //         this.report.CustomerId=this.customerId;
+    //         this.report.JobId=Number(e);
+    //         this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+    //         this.GetJobAssigned(e);
+    //         this.appService.ReportingTeam(this.report).subscribe(
+    //           data => {
+    //             if(data=0)
+    //             {
            
-                  console.log("added");
-                }
-              });
-          }
-          )
-        }
-        else
-        {
-          const res = localStorage.getItem('jobId');
-          this.report.UserId=this.userId;
-          this.report.CustomerId=this.customerId;
-          this.report.JobId=parseInt(res, 10);
-          this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
-          this.GetJobAssigned(res);
-          this.appService.ReportingTeam(this.report).subscribe(
-            data => {
-              if(data=0)
-              {
+    //               console.log("added");
+    //             }
+    //           });
+    //       }
+    //       )
+    //     }
+    //     else
+    //     {
+    //       const res = localStorage.getItem('jobId');
+    //       this.report.UserId=this.userId;
+    //       this.report.CustomerId=this.customerId;
+    //       this.report.JobId=parseInt(res, 10);
+    //       this.report.HiringManager=this.suggestedManagers.map(x=>x.UserId).toString();
+    //       this.GetJobAssigned(res);
+    //       this.appService.ReportingTeam(this.report).subscribe(
+    //         data => {
+    //           if(data=0)
+    //           {
                 
-                console.log("added");
-              }
-            });  
-        }
-      }        
-    }
+    //             console.log("added");
+    //           }
+    //         });  
+    //     }
+    //   }        
+    // }
 
     AddStatus()
     {

@@ -48,6 +48,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { ImmigrationComponent } from "./Createajob/Step2/immi.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobdescription.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -116,6 +117,7 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
     Step1SummaryComponent,
     Step2SummaryComponent,
     Step3SummaryComponent,
+    JobdescriptionComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [CreateajobComponent, StepsComponent],
