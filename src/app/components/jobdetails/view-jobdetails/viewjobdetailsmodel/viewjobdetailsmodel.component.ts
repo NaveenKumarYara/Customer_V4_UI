@@ -12,7 +12,7 @@ import {ViewJobdetailsComponent} from '../../view-jobdetails/view-jobdetails.com
 import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
 import { HttpParams } from '@angular/common/http';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';

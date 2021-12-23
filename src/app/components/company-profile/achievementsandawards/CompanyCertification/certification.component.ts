@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit,ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../../company-profile.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
 import { GetCompanyCertification } from '../../../../../models/GetCompanyCertification';
+import { ApiService } from '../../../../shared/services';
 declare var $: any;
 declare var require: any;
 @Component({

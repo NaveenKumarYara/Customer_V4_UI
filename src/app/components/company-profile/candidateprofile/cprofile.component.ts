@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-cprofile',

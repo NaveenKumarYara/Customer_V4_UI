@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewContainerRef, Output } from "@angular/core";
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatPaginator } from "@angular/material";
-import { ApiService } from "../../../../../shared/services/api.service/api.service";
+import { ApiService } from "../../../../../shared/services/api.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { JobdetailsService } from "../../../jobdetails.service";
 import { CloudData, CloudOptions } from "angular-tag-cloud-module";

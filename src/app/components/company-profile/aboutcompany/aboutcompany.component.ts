@@ -1,7 +1,7 @@
 import { Component,Input,OnInit } from '@angular/core';
 import { GetAboutCompany } from '../../../../models/GetAboutCompany';
 import { aboutcompany } from './aboutcompany';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 

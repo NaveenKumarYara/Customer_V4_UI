@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { ApiService } from '../../shared/services/api.service/api.service';
+import { ApiService } from '../../shared/services/api.service';
 import { Router } from '@angular/router';
 // import { DialogData } from '../schedule-interview/schedule-interview.component';
 export interface DialogData {

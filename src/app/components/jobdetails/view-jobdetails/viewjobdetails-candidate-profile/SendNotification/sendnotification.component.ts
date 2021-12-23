@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 
 
 const URL = 'http://localhost:4300/fileupload/';
