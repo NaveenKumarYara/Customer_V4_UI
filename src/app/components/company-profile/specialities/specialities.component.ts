@@ -1,14 +1,14 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { CompanySpecialities } from '../../../../models/CompanySpecialities';
 import { GetCompanyTechnology } from '../../../../models/GetCompanyTechnology';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import {specialities} from './specialities';
-import { AppService } from '../../../app.service';
 import {technologies} from './technologies';
 import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
 import { GetCustomerClients } from "../../../../models/GetCustomerClients";
+import { AppService } from '../../../app.service';
 declare var $: any;
 
 @Component({

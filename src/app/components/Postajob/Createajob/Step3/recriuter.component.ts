@@ -14,7 +14,7 @@ import { PjTechnicalTeam, CustomerUsers,JobReporting, jobImmigration,JobImmigrat
 import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 declare var $: any;
 
 @Component({

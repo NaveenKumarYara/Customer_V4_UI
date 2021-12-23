@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomerLocationInfo } from '../../../../models/customerlocationinfo';
-import { ApiService } from '../../../shared/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import {location} from './location';
+import { ApiService } from '../../../shared/services';
 declare var $: any;
 @Component({
   selector: 'app-locations',

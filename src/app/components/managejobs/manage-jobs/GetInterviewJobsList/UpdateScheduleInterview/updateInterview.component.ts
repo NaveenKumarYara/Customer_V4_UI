@@ -27,7 +27,7 @@ declare var $: any;
 const URL = 'http://localhost:4300/fileupload/';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { Notes } from '../../../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 import { element } from 'protractor';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';

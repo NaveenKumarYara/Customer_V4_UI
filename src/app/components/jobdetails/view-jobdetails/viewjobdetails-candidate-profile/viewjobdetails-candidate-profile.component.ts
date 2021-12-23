@@ -17,7 +17,7 @@ import { VideoSizzle, GetVideoProfile } from "../../models/VideoProfile";
 import { ViewCandidateprofileComponent } from "./view-candidateprofile/view-candidateprofile.component";
 import { SendEmailComponent } from "./send-email/send-email.component";
 import { ParentComponentApi } from "../view-jobdetails.component";
-import { ApiService } from "../../../../shared/services/api.service/api.service";
+import { ApiService } from "../../../../shared/services/api.service";
 import { UniqueMonthYearPipe } from "./../months.pipe";
 import * as FileSaver from "file-saver";
 import { saveAs } from "file-saver";

@@ -403,6 +403,14 @@ export class JobdetailsService {
     });
   }
 
+  ShareProfile(body) {
+    return this.http.post(this.settingsService.settings.ShareProfile, body)
+    .map((res: Response) => res)
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
+  }
+
   SaveProfileNote(body) {
     return this.http.post(this.settingsService.settings.InsertProfileNotesCustomer, body)
     .map((res: Response) => res)
