@@ -11,7 +11,7 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from '
 import { Subject } from 'rxjs/Subject';
 import { CustomerUsers, PjTechnicalTeam } from '../../models/jobPostInfo';
 import { Observable } from 'rxjs/Observable';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 declare var $: any;
 @Component({
   selector: 'app-steps-step3-teammembers',

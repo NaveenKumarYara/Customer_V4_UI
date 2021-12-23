@@ -19,12 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/devextreme/dist/css/dx.common.css",
+        "../node_modules/devextreme/dist/css/dx.light.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "assets/js/app.js",
-        "assets/js/libs.js" ,
         "../node_modules/chart.js/dist/Chart.bundle.min.js"
       ],
       "environmentSource": "environments/environment.ts",

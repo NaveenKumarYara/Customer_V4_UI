@@ -5,9 +5,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CompanyProfileService } from '../company-profile.service';
-import { ApiService } from '../../../shared/services/api.service/api.service';
 import { AlertService } from '../../../shared/alerts/alerts.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../shared/services';
 declare var $: any;
 
 @Component({

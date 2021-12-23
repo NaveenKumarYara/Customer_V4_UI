@@ -5,7 +5,7 @@ import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { AppService } from '../../../../../app.service';
 import {  NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '../../../../../../settings/settings.service';

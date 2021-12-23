@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/cor
 import { CompanyProfile } from '../../../../models/companyprofile';
 import {GetCompanyLogo} from '../../../../models/GetCompanyLogo';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { basicinfo } from './basicinfo';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';

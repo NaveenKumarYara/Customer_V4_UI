@@ -13,5 +13,7 @@ export class LoadActiveProjectsComponent implements OnInit {
   constructor(private appService: AppService, private readonly activeModal: NgbActiveModal,) { }
 
   ngOnInit() {
+
+    //alert('Hello');
   }
 }

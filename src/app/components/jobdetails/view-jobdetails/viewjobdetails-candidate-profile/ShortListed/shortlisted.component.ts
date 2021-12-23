@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 const URL = 'http://localhost:4300/fileupload/';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

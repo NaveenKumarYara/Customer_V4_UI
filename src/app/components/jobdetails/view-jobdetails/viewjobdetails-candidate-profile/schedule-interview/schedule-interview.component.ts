@@ -21,7 +21,7 @@ import { NgForm } from '@angular/forms';
 import {Options} from '../schedule-interview/options';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { GetJobDetailCustomer } from '../../../../../../models/GetJobDetailCustomer';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 declare var $: any;
 const URL = 'http://localhost:4300/fileupload/';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';

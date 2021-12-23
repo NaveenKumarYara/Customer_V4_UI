@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject, ViewContainerRef } from '@angular/core';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../company-profile.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';

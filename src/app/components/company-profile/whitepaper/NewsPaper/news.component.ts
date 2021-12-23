@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, AfterViewInit,ViewContainerRef } f
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { GetCompanyNewsInfo } from '../../../../../models/GetCompanyNewsInfo';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { CompanyProfileService } from '../../company-profile.service';
 import { AlertService } from '../../../../shared/alerts/alerts.service';
