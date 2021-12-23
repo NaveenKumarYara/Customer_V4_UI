@@ -14,38 +14,49 @@
     </app-steps-step1-clients> -->
   
     
-    <div class="form-group contract-details-group" *ngIf="show">
-          
-      <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
-    <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
-    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-    <app-steps-step1-contractduration> 
-    </app-steps-step1-contractduration>
-    
-      <app-steps-step1-contractextension>    
-      </app-steps-step1-contractextension>
-  </div> 
+  <div class="form-rows row">
+    <div class="form-sm-12 form-cols">
+      <div class="form-group contract-details-group" *ngIf="show">    
+        <!-- <button type="button" (click)="OpenScheduleInterviewDialog()">videoprofile</button> -->
+        <label for="" class="question">Specifics of the Contract Job details? <small>(Optional)</small></label>
+        <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+        <div class="row form-sub-rows">
+          <div class="col-sm-6 form-sub-cols">
+            <app-steps-step1-contractduration> 
+            </app-steps-step1-contractduration>
+          </div>
+          <div class="col-sm-6 form-sub-cols">
+            <app-steps-step1-contractextension>    
+            </app-steps-step1-contractextension>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
 
   <app-steps-step1-jobdetails>
   </app-steps-step1-jobdetails>
   
   <div class="row form-main-rows">
-    <div class="col-sm-5 form-cols">
+    <div class="col-sm-12 form-cols">
       <app-steps-step2-locationwisejobs>
       </app-steps-step2-locationwisejobs>
     </div>
-    <div class="col-sm-7 form-cols">
+  </div>
+
+  <div class="row form-main-rows">
+    <div class="col-sm-12 form-cols">
       <app-stepsalaryslider>  
       </app-stepsalaryslider>
     </div>
   </div>
 
-  <div class="row form-main-rows">
-    <div class="col-sm-5 form-cols">
+  <div class="row form-rows form-main-rows">
+    <div class="col-sm-6 form-cols">
       <app-steps-step1-clients>
       </app-steps-step1-clients>
     </div>
-    <div class="col-sm-7 form-cols">
+    <div class="col-sm-6 form-cols">
       <app-jobdescription>        
       </app-jobdescription>
     </div>

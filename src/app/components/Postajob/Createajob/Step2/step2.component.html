@@ -1,48 +1,65 @@
 <div id="step2" class="tab-pane">
-<div class="tab-inner">
-  <!-- <app-steps-step2-noofopenings>
-  </app-steps-step2-noofopenings>
-  <app-steps-step2-locationwisejobs>
-  </app-steps-step2-locationwisejobs> -->
-  <ng-container *ngIf="checkIndustry === 1">
-    <app-steps-step2-domainexpertise>
-    </app-steps-step2-domainexpertise>
-  </ng-container>
-
-  <app-steps-step1-jobskillset>
-  </app-steps-step1-jobskillset>
-  <app-steps-step1-jobresponsibilities>
-  </app-steps-step1-jobresponsibilities>
-
-  <app-steps-step2-immigrationmanager>   
-  </app-steps-step2-immigrationmanager>
-
-
-  <app-steps-step2-qualifications>
-  </app-steps-step2-qualifications>
-  <app-steps-step2-personalityType>
-  </app-steps-step2-personalityType>
-
-</div>
-</div>
-<hr class="form-divider" />
-<div class="clearfix form-nav">
-    <alert></alert>
-  <div class="pull-left">
-    <div class="pull-right">
-      <a href="#" class="btn btn-border btn-prev" (click)="backtoStep1()" routerLink="/app-createajob/app-steps-step1">Back</a>
+  <div class="tab-inner">
+    <!-- <app-steps-step2-noofopenings>
+    </app-steps-step2-noofopenings>
+    <app-steps-step2-locationwisejobs>
+    </app-steps-step2-locationwisejobs> -->
+  
+    <div class="row form-rows">
+      <div class="col-sm-6 form-cols">
+        <app-steps-step2-immigrationmanager>   
+        </app-steps-step2-immigrationmanager>
+      </div>
+      <div class="col-sm-6 form-cols">
+        <ng-container *ngIf="checkIndustry === 1">
+          <app-steps-step2-domainexpertise>
+          </app-steps-step2-domainexpertise>
+        </ng-container>
+      </div>
     </div>
+  
+    
+    
+    <div class="form-rows row">
+      <div class="col-sm-6 form-cols">
+        <app-steps-step1-jobskillset>
+        </app-steps-step1-jobskillset>
+      </div>
+      <div class="col-sm-6 form-cols">
+        <app-steps-step2-qualifications>
+        </app-steps-step2-qualifications>
+      </div>
+    </div>
+    <div class="form-rows row">
+      <div class="col-sm-6 form-cols">
+        <app-steps-step1-jobresponsibilities>
+        </app-steps-step1-jobresponsibilities>
+      </div>
+    </div>
+    <app-steps-step2-personalityType>
+    </app-steps-step2-personalityType>
+  
   </div>
-  <div class="pull-right">
-      <a href="javascript:void(0)"  (click)="postJob(2,0)" class="btn btn-border btn-prev" *ngIf="jobIdExists>0">Save & Close</a>
-      <a href="javascript:void(0)" (click)="postJob(2)" class="btn btn-filled btn-next" >Save & Next</a>
-</div>
-<!--<footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
-  <div class="container">
-    <div class="text-center col-md-10">
-      <a href="javascript:void(0)" (click)="postJob(2,0)" class="btn btn-border btn-prev">Save & Close</a>
-      <a href="javascript:void(0)" (click)="postJob(2)"  class="btn btn-filled btn-next">Save & Next</a>
-    </div> 
   </div>
-</footer>   routerLink="/app-createajob/app-steps-step3" -->
-</div>
+  <hr class="form-divider" />
+  <div class="clearfix form-nav">
+      <alert></alert>
+    <div class="pull-left">
+      <div class="pull-right">
+        <a href="#" class="btn btn-border btn-prev" (click)="backtoStep1()" routerLink="/app-createajob/app-steps-step1">Back</a>
+      </div>
+    </div>
+    <div class="pull-right">
+        <a href="javascript:void(0)"  (click)="postJob(2,0)" class="btn btn-border btn-prev" *ngIf="jobIdExists>0">Save & Close</a>
+        <a href="javascript:void(0)" (click)="postJob(2)" class="btn btn-filled btn-next" >Save & Next</a>
+  </div>
+  <!--<footer class="poj-footer" *ngIf="disable1==true" (scroll)="scrolling($event)"  [ngClass]="{'poj-footer': scroll}">
+    <div class="container">
+      <div class="text-center col-md-10">
+        <a href="javascript:void(0)" (click)="postJob(2,0)" class="btn btn-border btn-prev">Save & Close</a>
+        <a href="javascript:void(0)" (click)="postJob(2)"  class="btn btn-filled btn-next">Save & Next</a>
+      </div> 
+    </div>
+  </footer>   routerLink="/app-createajob/app-steps-step3" -->
+  </div>
+  

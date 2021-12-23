@@ -13,27 +13,27 @@
       <app-steps-step3-contractextension></app-steps-step3-contractextension>
     </div>  -->
     <!-- <app-salaryslider></app-salaryslider> -->
-    <app-steps-step3-interviewtype></app-steps-step3-interviewtype>
-    <app-steps-step3-recriuter></app-steps-step3-recriuter>
-     <!--<app-steps-step3-teammembers></app-steps-step3-teammembers> -->
-    <!-- <app-steps-step3-reportingmanager></app-steps-step3-reportingmanager> -->
-
-    <!-- <app-steps-step3-uploadvideoprofile></app-steps-step3-uploadvideoprofile> -->
-    <div class="row pbt26-m10">
-        <div class="col-md-12">
-          <label for="" class="question">Video Sizzle <small>(Optional)</small>
-            <a  href="javascript:void(0)"  class="tooltip__link">
-              <i class="fa fa-info-circle" aria-hidden="true"></i>
-              <span class="custom__tooltip">
-                <span class="step__01">Create a video sizzle that details the job and gives profiles a glimpse into requirements and company culture. </span>
-              </span>
-            </a></label>
-          <p class="description">Transform Your Recruitment Process with Video Job Descriptions. 
-          </p>
-          <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
-        </div>
+    <div class="row form-rows">
+      <div class="col-sm-6 form-cols">
+        <app-steps-step3-interviewtype></app-steps-step3-interviewtype>
       </div>
-  
+      <div class="col-sm-6 form-cols">
+        <label for="" class="question">Video Sizzle <small>(Optional)</small>
+          <a  href="javascript:void(0)"  class="tooltip__link">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <span class="custom__tooltip">
+              <span class="step__01">Create a video sizzle that details the job and gives profiles a glimpse into requirements and company culture. </span>
+            </span>
+          </a>
+          <small>Transform Your Recruitment Process with Video Job Descriptions.</small>
+        </label>
+        <button class="btn btn-small"  (click)="OpenScheduleInterviewDialog()">Record & Upload</button>
+      </div>
+    </div>
+    <app-steps-step3-recriuter></app-steps-step3-recriuter>
+    <!--<app-steps-step3-teammembers></app-steps-step3-teammembers> -->
+    <!-- <app-steps-step3-reportingmanager></app-steps-step3-reportingmanager> -->
+    <!-- <app-steps-step3-uploadvideoprofile></app-steps-step3-uploadvideoprofile> -->
   </div>
   <hr class="form-divider" />
   <div class="clearfix form-nav">

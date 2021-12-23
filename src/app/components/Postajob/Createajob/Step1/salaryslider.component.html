@@ -1,13 +1,21 @@
-<div class="row form-rows">
-  <div class="col-sm-12 form-cols">
-    <label for="" class="question">What is the Salary Range? 
-      <a  href="javascript:void(0)"  class="tooltip__link">
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <span class="custom__tooltip">
-          <span class="step__01">Specific monetary compensation provided based on requirements. </span>
-        </span>
-      </a>
-    </label>
+<div class="row form-rows flex flex-wrap flex-align-center">
+  <div class="col-sm-6 form-cols">
+    <div class="flex flex-wrap flex-align-center">   
+      <label for="" class="question">What is the Salary Range? 
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">Specific monetary compensation provided based on requirements. </span>
+          </span>
+        </a>
+      </label>
+      <div class="checkbox sm-checkbox">
+        <label class="custom__checkbox lg-select">
+          <input type="checkbox" [(ngModel)]="flag" name="flag"  [checked]="flag" (change)="checkValue(flag ?true:false)"> 
+          <span class="checkmark">Please check if you want Salary range to be Open?</span>
+        </label>
+      </div>
+    </div>
     <p class="description"> Differentiation is based on employment type and selection of hourly or annual.</p>
     <div class="options">
       <!-- <div class="checkbox">
@@ -29,72 +37,67 @@
         </label>
       </div> -->
     </div>
-    <div class="checkbox">
-      <label class="custom__checkbox lg-select">
-        <input type="checkbox" [(ngModel)]="flag" name="flag"  [checked]="flag" (change)="checkValue(flag ?true:false)"> 
-        <span class="checkmark">Please check if you want Salary range to be Open?</span>
-      </label>
-    </div>
-  </div>
-</div>
-<div class="form-group position-group custom-slider">
-      <div *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-     <!-- <ng5-slider [(value)]="minAnnualRate"
-                [(highValue)]="maxAnnualRate"
-                [options]="annual"
-                (userChangeStart)="minAnnualChangeStart($event)"
-                (userChange)="onAnnualChange($event)"
-                (userChangeEnd)="maxAnnualChangeEnd($event)"
-                name="annual">
-    </ng5-slider> -->
     
-     <!--New Input Fields for Salary 08-06-2020-->
-     <!-- <div class="clearfix">&nbsp;</div> -->
-     <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
-
-      <div class="col-md-2 p-rel" *ngIf="flag === false">
-        <div class="material-textfield">
-          <input  placeholder="" #Minname="ngModel" name="MinSal"  (keypress)="numberOnly($event)" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
-          <span class="error1"
-          *ngIf="Minname.invalid && Minname.touched">Required.</span>
-          <label>Min Pay</label>
-        </div>
+  </div> 
+  <div class="col-sm-6 fomr-cols">
+    <div class="form-group position-group custom-slider">
+      <div *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
+         <!-- <ng5-slider [(value)]="minAnnualRate"
+          [(highValue)]="maxAnnualRate"
+          [options]="annual"
+          (userChangeStart)="minAnnualChangeStart($event)"
+          (userChange)="onAnnualChange($event)"
+          (userChangeEnd)="maxAnnualChangeEnd($event)"
+          name="annual">
+        </ng5-slider> -->
+        
+         <!--New Input Fields for Salary 08-06-2020-->
+         <!-- <div class="clearfix">&nbsp;</div> -->
+          <div class="row form-rows m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 2">
+    
+            <div class="col-md-5  form-cols p-rel" *ngIf="flag === false">
+              <div class="material-textfield">
+                <input  placeholder="" #Minname="ngModel" name="MinSal"  (keypress)="numberOnly($event)" [(ngModel)]="minAnnualRate"  required (input)="onMinChange($event.target.value)" type="text">
+                <span class="error1"
+                *ngIf="Minname.invalid && Minname.touched">Required.</span>
+                <label>Min Pay</label>
+              </div>
+            </div>
+            <div class="col-md-1  form-cols text-center" *ngIf="flag === false">
+              <i class="fa fa-minus" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-5  form-cols p-rel" *ngIf="flag === false">
+              <div class="material-textfield">
+                <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" (keypress)="numberOnly($event)" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
+                <span class="error1"
+                *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
+                <label>Max Pay</label>
+              </div>
+            </div>
+            <!--Salary Open Publish 14-12-2020-->
+            <div class="col-md-1  form-cols sal-open-publish" *ngIf="flag === false"> 
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="flag1"  [(ngModel)]="flag1"  [checked]="flag1" (change)="checkValue1(flag1?true:false)"> Publish
+                </label>
+              </div>
+            </div>
+          </div>
+        <!---->
       </div>
-      <div class="col-md-1 text-center" *ngIf="flag === false">
-        <i class="fa fa-minus" aria-hidden="true"></i>
-      </div>
-      <div class="col-md-2 p-rel" *ngIf="flag === false">
-        <div class="material-textfield">
-          <input name="smax" placeholder="" #Maxname="ngModel" name="MaxSal" (keypress)="numberOnly($event)" [(ngModel)]="maxAnnualRate" required (input)="onMaxChange($event.target.value)" type="text">
-          <span class="error1"
-          *ngIf="Maxname.invalid && Maxname.touched">Required.</span>
-          <label>Max Pay</label>
-        </div>
-      </div>
-      <!--Salary Open Publish 14-12-2020-->
-      <div class="col-md-4 sal-open-publish" *ngIf="flag === false"> 
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="flag1"  [(ngModel)]="flag1"  [checked]="flag1" (change)="checkValue1(flag1?true:false)"> Publish
-          </label>
-        </div>
-      </div>
-    </div>
-    <!---->
-    </div>
-    <div>
-      <!-- <ng5-slider [(value)]="minHourRate"
-        [(highValue)]="maxHourRate"
-        [options]="hourly"
-        (userChangeStart)="minHourlyChangeStart($event)"
-        (userChange)="onHourlyChange($event)"
-        (userChangeEnd)="maxHourlyChangeEnd($event)"
-        name="hourly">
-     </ng5-slider> -->
+      <div>
+        <!-- <ng5-slider [(value)]="minHourRate"
+          [(highValue)]="maxHourRate"
+          [options]="hourly"
+          (userChangeStart)="minHourlyChangeStart($event)"
+          (userChange)="onHourlyChange($event)"
+          (userChangeEnd)="maxHourlyChangeEnd($event)"
+          name="hourly">
+          </ng5-slider> -->
           <!--New Input Fields for Salary 08-06-2020-->
           <!-- <div class="clearfix">&nbsp;</div> -->
-          <div class="row m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
-            <div class="col-md-4 p-rel" *ngIf="flag === false">
+          <div class="row form-rows m-style" *ngIf="salaryTypeSelected?.SalaryTypeId === 1">
+            <div class="col-md-5 form-cols  p-rel" *ngIf="flag === false">
               <div class="material-textfield">
                 <input  placeholder="" #Minhname="ngModel" name="MinhSal" (keypress)="numberOnly($event)" [(ngModel)]="minHourRate"  required (input)="onMinChange($event.target.value)" type="text">
                 <span class="error1"
@@ -102,10 +105,10 @@
                 <label>Min Pay</label>
               </div>
             </div>
-            <div class="col-md-1 text-center" *ngIf="flag === false">
+            <div class="col-md-1 form-cols text-center" *ngIf="flag === false">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-            <div class="col-md-4 p-rel" *ngIf="flag === false">
+            <div class="col-md-5 form-cols p-rel" *ngIf="flag === false">
               <div class="material-textfield ">
                 <input   name="smax" placeholder="" #Maxhname="ngModel" name="MaxhSal" (keypress)="numberOnly($event)" [(ngModel)]="maxHourRate" required (input)="onMaxChange($event.target.value)" type="text">
                 <span class="error1"
@@ -113,8 +116,8 @@
                 <label>Max Pay</label>
               </div>
             </div>
-             <!--Salary Open Publish 14-12-2020-->
-            <div class="col-md-3 sal-open-publish" *ngIf="flag === false"> 
+            <!--Salary Open Publish 14-12-2020-->
+            <div class="col-md-1 form-cols sal-open-publish" *ngIf="flag === false"> 
               <div class="checkbox">
                 <label>
                   <input type="checkbox"  [(ngModel)]="flag1"  [checked]="flag1" (change)="checkValue1(flag1?true:false)"> Publish
@@ -123,7 +126,10 @@
             </div>
           </div>
           <!---->
-     </div>
+    </div>
+  </div>
+</div>
+
 
      
      <!--Commented on 11-04-2020, as requirement need to be revamped-->
