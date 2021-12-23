@@ -64,6 +64,7 @@ export class SharedialogComponent {
     this.getcustomerusers();
     this.AddUser = false;
     this.info = 0;
+    this.shareUrl=this.settingsService.settings.CustomerAppprofile + ';Preid=' + this.data.ProfileId + ';Id=' + this.data.jobId + ';Cid=' + this.customerId;
     //this.GetInterView();
     //this.GetType();
     this.whatsappform = this.fb.group({
@@ -77,6 +78,32 @@ export class SharedialogComponent {
         }
       );
   }
+
+  copyToClipboard() {
+    // var copyText = <HTMLInputElement>document.querySelector('.rjobLink');
+    // copyText.select();
+    // document.execCommand('Copy');
+    // alert('copied');
+    let element = $('#nbtnCpy');
+    let inputGroup = element.closest('.input-group');
+    let input = inputGroup.find('.text-to-copy');
+    let inputValue = inputGroup.find('.text-to-copy').val();
+
+    let msg = inputGroup.next('.copied');
+
+    if (inputValue.length > 0 && inputValue !== 'undefined') {
+        input.select();
+        document.execCommand('copy');
+        element.find('span').text('Copied!');
+        msg.addClass('show');
+    }
+
+    if (msg.hasClass('show')) {
+        setTimeout(function () {
+            msg.removeClass('show');
+        }, 1500);
+    }
+}
 
   onItemDeleted(index) {
     this.GetContactsList.splice(index, 1);
