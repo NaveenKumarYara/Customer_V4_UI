@@ -77,10 +77,33 @@
                                                 placeholder="Name *">
                                                 
                                         </div> -->
-                                    
+                                    	<small class="title-subtext"> (Send multiple emails with comma "," seperated )</small>
                                         <div class="col-md-12 col-sm-12 sm-pt-2">
-                                            <input type="email" class="form-control" [(ngModel)]="EmailId"
-                                                name="EmailId" placeholder="Email *">
+                                            <form [formGroup]="inviteform">
+                                                <div class="input-group col-sm-12 pt-2 p-rel">
+                                                    <div class="clearfix">&nbsp;</div>
+                                                    <textarea formControlName="inviteEmail" id="Email" class="form-control col-sm-12 inputh-auto"
+                                                        autocomplete="new-email" type="email" multiple name="inviteEmail" cols="30" rows="7" required>
+                                                </textarea>
+                                                    <div
+                                                        *ngIf="inviteform.controls['inviteEmail'].invalid && (inviteform.controls['inviteEmail'].dirty || inviteform.controls['inviteEmail'].touched)"
+                                                        class="error1">
+                                                        <div *ngIf="inviteform.controls['inviteEmail']">
+                                                            Incorrect Email.
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="clearfix">&nbsp;</div>
+                                                <!-- <div class="col-sm-12 plr-0">
+                                                    <div class="pull-right">
+                                                        <button class="btn btn-filled btn-next" [disabled]="!inviteform.valid" type="submit" [class.spinner]="loading"
+                                                        (click)="loginstyle()">Submit</button>
+                                                    </div>
+                                                </div> -->
+        
+                                            </form>
+
                                         </div>
 
                             
