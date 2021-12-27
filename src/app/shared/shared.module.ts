@@ -17,7 +17,7 @@ import { PolarChartComponent } from './polar-chart/polar-chart.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.component';
 import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
-import { TooltipModule } from "ng2-tooltip-directive";
+// import { TooltipModule } from "ng2-tooltip-directive";
 import { DxFilterBuilderModule } from "devextreme-angular";
 
 @NgModule({
@@ -27,7 +27,7 @@ import { DxFilterBuilderModule } from "devextreme-angular";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TooltipModule,
+    //TooltipModule,
     DxFilterBuilderModule
   ],
   providers: [AppService, AlertService],
