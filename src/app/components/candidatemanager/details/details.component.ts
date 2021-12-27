@@ -111,7 +111,6 @@ export class DetailsComponent implements OnInit {
 	jobList: Observable<string[]>;
 
 	jobInput = new Subject<string>();
-	jobsLoading: boolean;
 	selectedJobId: any;
 
 	filter: Array<any> = [];
