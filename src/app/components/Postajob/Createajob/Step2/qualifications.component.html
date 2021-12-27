@@ -3,17 +3,17 @@
   <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
   <div class="row">
      <form #eduForm="ngForm" (ngSubmit)="addQualification()">
-    <div class="col-md-5 col-sm-5">
+    <div class="col-md-11 col-sm-12">
         <ng-select class="custom-style" id="PreferredEducation" [items]="qualificationsnew"
-                   placeholder="Select Education"
-                   bindLabel="QualificationName"
-                   bindValue="QualificationId"
-                   (ngModelChange)="getSelectedOptionText($event)"             
-                   [hideSelected]="true"                 
-                   [(ngModel)]="selectedqualificationName"
-                   [virtualScroll]="true"
-                   #Education="ngModel"
-                   name="selectedqualificationName">
+            placeholder="Select Education"
+            bindLabel="QualificationName"
+            bindValue="QualificationId"
+            (ngModelChange)="getSelectedOptionText($event)"             
+            [hideSelected]="true"                 
+            [(ngModel)]="selectedqualificationName"
+            [virtualScroll]="true"
+            #Education="ngModel"
+            name="selectedqualificationName">
         </ng-select>
 
         <!-- <small class="text-danger" *ngIf="Education.touched">Required.</small> -->
@@ -25,7 +25,7 @@
        <small class="text-danger" *ngIf="Education.invalid && Education.touched">Qualification is required.</small> 
 
     </div> -->
-    <div class="col-md-2 col-sm-2">
+    <div class="col-md-1 col-sm-1">
       <button class="btn add-btn form-control mt-0" type="submit">+</button>
     </div>
   </form>
@@ -35,10 +35,12 @@
   <div class="lists row">
     <div class="col-md-12" *ngIf="qualificationList.length>0">
       <p class="description">Qualifications</p>
-      <ul class="data-list">
+      <ul class="data-list key-data-list">
         <li class="col-md-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
-          <span title="{{qualifications.QualificationName}}" class="name">{{ add3Dots(qualifications.QualificationName,25) }}</span>
-          <span class="close" (click)="deleteQualifications(i)">&times;</span>
+          <div class="col-container">
+            <span title="{{qualifications.QualificationName}}" class="name">{{ add3Dots(qualifications.QualificationName,25) }}</span>
+            <span class="close" (click)="deleteQualifications(i)">&times;</span>
+          </div>
         </li>
       </ul>
     </div>

@@ -2,7 +2,7 @@ import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleInterview } from '../schedule-interview/schedule-interview.component';
 import { JobdetailsService } from '../../../jobdetails.service';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }

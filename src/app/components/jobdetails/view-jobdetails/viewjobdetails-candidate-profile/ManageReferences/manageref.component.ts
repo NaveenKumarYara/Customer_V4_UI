@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SettingsService } from '../../../../../../settings/settings.service';
 import { RequestdialogComponent} from './RequestInfo/requestInfo.component';
 import { NgbModal, NgbModule, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 import { PageEvent, Sort } from '@angular/material';
 import { MatPaginator } from '@angular/material';
 declare var $: any;

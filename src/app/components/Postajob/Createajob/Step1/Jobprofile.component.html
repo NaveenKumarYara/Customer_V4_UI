@@ -89,7 +89,7 @@
   </div>
 </div>
 
-<div class="row flex flex-wrap form-row form-rows flex-align-start">
+<div class="row flex flex-wrap form-row form-main-rows form-rows flex-align-start">
   <div class="col-md-6 form-cols">
     <div class="row form-sub-rows">
       <div class="col-sm-6 form-sub-cols">
@@ -324,21 +324,16 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
 <div class="lists row">
     <div class="col-md-12" *ngIf="keyslist.length>0">
       <p class="description">Key Responsibilities</p>
-      <ul class="data-list">
+      <ul class="data-list key-data-list">
         <li class="col-md-6 no-exp" *ngFor="let domain of keyslist; let i = index">
-          <span class="name">{{domain.DCode}}</span>
-          <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs</span>
-          <span class="close" (click)="deleteDomain(i)">&times;</span>
+          <div class="col-container flex flex-wrap flex-align-center">
+            <span class="name">{{domain.DCode}}</span>
+            <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs</span>
+            <span class="close" (click)="deleteDomain(i)">&times;</span>
+          </div>
         </li>
       </ul>
     </div>

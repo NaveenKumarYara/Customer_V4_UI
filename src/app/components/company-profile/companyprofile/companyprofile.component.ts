@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {GetCustomerDepartments} from '../../../../models/GetCustomerDepartments';
 import { GetCustomerClients } from "../../../../models/GetCustomerClients";
 import { AppService } from '../../../app.service';
-import { ApiService } from '../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../shared/services/api.service';
 import { CompanyProfileService } from '../company-profile.service';
 import { CompanyProfile } from '../../../../models/companyprofile';
 import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';

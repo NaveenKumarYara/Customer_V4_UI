@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { JobdetailsService } from '../../../jobdetails.service';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';

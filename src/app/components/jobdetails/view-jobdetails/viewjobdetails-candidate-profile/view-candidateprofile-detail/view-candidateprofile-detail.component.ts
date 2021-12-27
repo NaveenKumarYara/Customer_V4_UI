@@ -1,20 +1,15 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef, ViewContainerRef, OnDestroy } from '@angular/core';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { JobdetailsService } from '../../../jobdetails.service';
-import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
+import { CloudOptions } from 'angular-tag-cloud-module';
 import { HttpParams } from '@angular/common/http';
 import * as Chart from 'chart.js'
-import { ChartsModule } from 'ng2-charts';
 import * as FileSaver from 'file-saver';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-import { saveAs } from 'file-saver';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Location } from '@angular/common';
 import { mappingdetails } from '../../../view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/mappingdetails';
+import { ApiService } from '../../../../../shared/services';
 declare var $: any;
-
-// import { DialogData } from '../schedule-interview/schedule-interview.component';
-
 @Component({
   selector: 'app-view-candidateprofile-detail',
   templateUrl: './view-candidateprofile-detail.component.html',

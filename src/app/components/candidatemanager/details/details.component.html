@@ -8,7 +8,7 @@
                         <div class="search">
                             <input type="text" [ngModel]="searchValue" (ngModelChange)="searchFunc($event)"
                                 name="searchtext" class="searchTerm" placeholder="Search Candidates here?">
-                            <button class="searchButton" type="button">
+                            <button class="searchButton" type="button" data-toggle="modal" data-target="#filterPanel">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -217,10 +217,11 @@
                             Job</button>
                     </li>
                     <li>
-                        <button class="btn btn__share" ata-toggle="modal" data-target="#bulkShare">Share Job</button>
+                        <button class="btn btn__share" data-toggle="modal" data-target="#bulkShare">Share
+                            Candidates</button>
                     </li>
                     <!-- <li>
-                        <button class="btn btn__share" ata-toggle="modal" data-target="#bulkShare">Invite</button>
+                        <button class="btn btn__share" data-toggle="modal" data-target="#bulkInvite">Invite</button>
                     </li> -->
                     <!-- <li>
                         <button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
@@ -230,7 +231,7 @@
         </div>
     </div>
     <!--Bulk Aply Modal-->
-    <div Id="bulkApply" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div id="bulkApply" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <alert class="basic-info-alert"></alert>
@@ -239,7 +240,7 @@
                         <div class="card card--other-info">
                             <div class="card-header">
                                 <h1 class="title">
-                                    <span>White Papers</span>
+                                    <span>Apply Job</span>
                                 </h1>
                                 <div class="layout layout--btn">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -251,16 +252,12 @@
                                     <div class="card-inner">
                                         <form id="form1" name="form1" #form="ngForm">
                                             <div class="form-group c-form-group">
-                                                <label class="title-lab">
-                                                    Active Jobs
-                                                </label>
-                                                <label for="">Skill Name <span class="red">*</span></label>
+                                                <label for="">Active Jobs<span class="red">*</span></label>
                                                 <ng-select class="custom-style" [items]="jobList | async"
                                                     placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
-                                                    [typeahead]="jobInput" [hideSelected]="true"
-                                                    [loading]="jobsLoading" [(ngModel)]="selectedJobId"
-                                                    minlength="1" name="jobId" #skill="ngModel" [virtualScroll]="true"
-                                                    required>
+                                                    [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading"
+                                                    [(ngModel)]="selectedJobId" minlength="1" name="jobId"
+                                                    #skill="ngModel" [virtualScroll]="true" required>
                                                 </ng-select>
                                                 <input type hidden id="skills">
                                                 <small class="text-danger error1"
@@ -286,52 +283,78 @@
     </div>
 
     <!--Bulk Share Modal-->
-    <div Id="bulkShare" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div id="bulkShare" class="modal fade md-dialog-container" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <alert class="basic-info-alert"></alert>
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="card card--other-info">
-                            <div class="card-header">
-                                <h1 class="title">
-                                    <span>White Papers</span>
-                                </h1>
-                                <div class="layout layout--btn">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
+                <div>
+                    <label>Share Candidates</label>
+                </div>
+                <form id="contactForm" name="contactForm" #form="ngForm">
+                    <!-- Email address input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="emailAddress">Email Address</label>
+                        <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" [(ngModel)]="emailAddresses" name="emailAddresses" />
+                    </div>
+                    <!-- Message input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-control" id="message" type="text" placeholder="Message"
+                            style="height: 10rem;" [(ngModel)]="emailMessage" name="emailMessage" ></textarea>
+                    </div>
+                    <!-- Form submit button -->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit" (click)="ShareProfile()">Share</button>
+                        <button class="btn btn-danger btn-lg">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Bulk Share Modal-->
+<div id="bulkInvite" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <alert class="basic-info-alert"></alert>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="card card--other-info">
+                        <div class="card-header">
+                            <h1 class="title">
+                                <span>Apply Job</span>
+                            </h1>
+                            <div class="layout layout--btn">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-inner">
+                                    <form id="form1" name="form1" #form="ngForm">
+                                        <div class="form-group c-form-group">
+                                            <label for="">Active Jobs<span class="red">*</span></label>
+                                            <ng-select class="custom-style" [items]="jobList | async"
+                                                placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
+                                                [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading"
+                                                [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
+                                                [virtualScroll]="true" required>
+                                            </ng-select>
+                                            <input type hidden id="skills">
+                                            <small class="text-danger error1"
+                                                *ngIf="skill.invalid && skill.touched ">Required.</small>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card-inner">
-                                        <form id="form1" name="form1" #form="ngForm">
-                                            <div class="form-group c-form-group">
-                                                <label class="title-lab">
-                                                    Active Jobs
-                                                </label>
-                                                <label for="">Skill Name <span class="red">*</span></label>
-                                                <ng-select class="custom-style" [items]="jobList | async"
-                                                    placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
-                                                    [typeahead]="jobInput" [hideSelected]="true"
-                                                    [loading]="skilltitleloading" [(ngModel)]="selectedJobId"
-                                                    minlength="1" name="jobId" #skill="ngModel" [virtualScroll]="true"
-                                                    required>
-                                                </ng-select>
-                                                <input type hidden id="skills">
-                                                <small class="text-danger error1"
-                                                    *ngIf="skill.invalid && skill.touched ">Required.</small>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 p0-30">
-                                    <div class="bt-1-E0E3EF mrl--15">
-                                        <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25"
-                                            (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
-                                            Job</a>
+                            <div class="col-md-12 p0-30">
+                                <div class="bt-1-E0E3EF mrl--15">
+                                    <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25"
+                                        (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
+                                        Job</a>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -340,3 +363,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<!--Filter Panel-->
+<div id="filterPanel" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <alert class="basic-info-alert"></alert>
+            <app-filter-component [Filters]="filter" [Fields]="fields"></app-filter-component>
+        </div>
+    </div>
+</div>

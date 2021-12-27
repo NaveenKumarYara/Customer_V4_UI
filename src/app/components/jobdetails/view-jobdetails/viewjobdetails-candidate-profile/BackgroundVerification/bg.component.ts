@@ -5,7 +5,7 @@ import { ScheduleInterview } from '../schedule-interview/schedule-interview.comp
 import { JobdetailsService } from '../../../jobdetails.service';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { AppService } from '../../../../../app.service';
-import { ApiService } from '../../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../../shared/services/api.service';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }

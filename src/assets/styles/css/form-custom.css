@@ -10,13 +10,10 @@
   margin-top: 0;
   top: 0;
 }
-
-.page--create-a-job .form-steps .form-rows .add-btn { padding: 0; width: 36px; }
-
 .page--create-a-job .form-steps .form-rows .ng-select.custom-style>.ng-select-container {
   padding: 6px 3px;
 }
-
+.page--create-a-job .form-steps .form-rows .add-btn { padding: 0; width: 36px; height: 36px; }
 .page--create-a-job .form-steps .form-rows  .custom-style.ng-invalid:not(form),
 .page--create-a-job .form-steps .form-rows  .custom-style.ng-valid[required] { border: 0; }
 .page--create-a-job .form-steps .form-rows  .custom-style.ng-invalid:not(form).ng-select.custom-style>.ng-select-container { border-left: 3px solid #e34f4f; }
@@ -26,6 +23,14 @@
   height: 36px  !important;
  }
 
+ .page--create-a-job .form-steps .form-rows  input[type="text"].form-control.ng-invalid:not(form) {
+   border-left: 3px solid #e34f4f; 
+ }
+
+ .page--create-a-job .form-steps .form-rows  input[type="text"].form-control.ng-valid[required] {
+  border-left: 3px solid #66DAB5; 
+ }
+ 
  .page--create-a-job .form-steps .form-rows .custom-date .wc-date-container {
    padding:0 12px!important;
    border-radius: 6px;
@@ -73,6 +78,105 @@
     margin-top: 30px !important;
   }
 
-  .page--create-a-job .form-steps .form-rows .custom-date, .page--create-a-job .form-steps .form-rows .j-d  {
+  .page--create-a-job .form-steps .form-rows .custom-date, 
+  .page--create-a-job .form-steps .form-rows .j-d  {
     margin-top: 15px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .checkbox .box {
+    padding: 5px 15px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .checkbox {
+    margin-right: 5px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .checkbox .box.inputbox {
+    padding: 6px 15px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .sm-checkbox .custom__checkbox .checkmark:before {
+    width: 14px;
+    height: 14px;
+    top: 0;
+    border-radius: 3px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .sm-checkbox .custom__checkbox .checkmark:after {
+    left: 4px;
+    top: 2px;
+    width: 6px;
+    height: 8px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .sm-checkbox .custom__checkbox.lg-select .checkmark {
+    padding-left: 24px;
+    font-size: 11px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .sm-checkbox  {
+    margin-left: auto;
+  }
+
+  /*New Css*/
+  .page--create-a-job .form-steps .form-rows.location-rows .notes {
+   font-size: 9px;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list {
+    margin: 0 -7px;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list li {
+    border: 0;
+    margin: 0;
+    padding: 0 7px !important;
+    background: none;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list li .col-container {
+    border: 1px solid #E0E3EF;
+    border-radius: 3px;
+    background-color: #FBFCFF;
+    overflow: hidden;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list  li .name {
+    padding: 8px 15px;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list  li .experience {
+    padding: 8px 15px;
+    border-right: 0;
+  }
+
+  .page--create-a-job .form-steps .data-list.key-data-list  li:not(:last-of-type) {
+    margin-bottom: 14px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .checkbox .box.city-box {
+    background-color: #FBFCFF;
+    font-size: 14px;
+  }
+
+  .page--create-a-job .form-steps .job-title-suggestions .box {
+    background-color: #FBFCFF !important;
+    font-size: 14px;
+  }
+
+  .page--create-a-job .form-steps .form-rows .checkbox .box.city-box span {
+    color: #6A7E9C;
+    border: 0;
+    margin-left: 0;
+  }
+
+  .page--create-a-job .form-steps .form-rows  .skill-name .custom-sm-checkbox {
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .page--create-a-job .form-steps .form-rows  .skill-name .radio .radio-btn {
+    width: 24px;
+    height: 24px;
   }

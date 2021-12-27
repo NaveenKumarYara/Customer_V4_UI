@@ -1,25 +1,28 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AppService } from '../../../app.service';
 declare var $: any;
 import * as FileSaver from 'file-saver';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-import { ApiService } from "../../../shared/services/api.service/api.service";
+import { ApiService } from "../../../shared/services/api.service";
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
-import { ViewCandidateprofileComponent } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import swal from 'sweetalert2';
 import { BulkApplyInvite, CandidateInformation } from '../../../shared/models';
 import { LoadActiveProjectsComponent } from '../load-active-projects/load-active-projects.component';
-import { JobInfo } from '../../../../models/GetJobDetailCustomer';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
+import { FitlerComponent } from '../../../shared';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StorageService } from '../../../shared/services';
+import { CustomerContacts } from '../../../../models/customercontacts';
+import { CustomerUsers } from '../../Postajob/models/jobPostInfo';
+import { SettingsService } from '../../../../settings/settings.service';
 
 @Component({
 	selector: 'cm-details',
@@ -51,6 +54,35 @@ export class DetailsComponent implements OnInit {
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
 	statusid: number = 0;
+
+	managersList: Observable<CustomerUsers[]>;
+	teammembers: '';
+	GetContactsList: contactInfo[];
+	customercontacts: CustomerContacts[];
+	teammemberslist: CustomerUsers[];
+	whatsapp: any;
+	whatsappform: FormGroup;
+	getTeammember: CustomerUsers;
+	profileSharing = new ProfileShare();
+	AddUser: boolean = false;
+	UserId: any;
+	SaveInfo = new contactInfo();
+	info: number;
+	EmailId: any = null;
+	Name: any = null;
+	usersloading: boolean;
+	customerUser: number;
+	@Input() shareUrl: string;
+	navUrl: string;
+	selectedUserName: number;
+	selectedComments: any;
+	type: string;
+	private subscription: Subscription;
+	selectedUserInput = new Subject<string>();
+	isSharingStarted: boolean;
+	emailAddresses: any;
+	emailMessage: any;
+
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
 		{ 'title': 'Skills', 'value': 'skills', 'url': 'https://profileapi-dev.arytic.com/api/GetAllMasterSkills', 'result': [], 'iconClass': 'icon__skills__01' },
@@ -79,13 +111,78 @@ export class DetailsComponent implements OnInit {
 	jobList: Observable<string[]>;
 
 	jobInput = new Subject<string>();
-	jobsLosding: boolean;
 	selectedJobId: any;
 
-	constructor(private appService: AppService, private readonly apiService: ApiService,
+	filter: Array<any> = [];
+	fields: Array<any> = [
+		{
+			caption: 'Email',
+			width: 50,
+			dataField: 'Email',
+			dataType: 'string',
+		},
+		{
+			caption: 'FirstName',
+			width: 50,
+			dataField: 'FirstName',
+			dataType: 'string',
+		},
+		{
+			caption: 'LastName',
+			width: 50,
+			dataField: 'LastName',
+			dataType: 'string',
+		},
+
+		{
+			caption: 'MiddleName',
+			width: 50,
+			dataField: 'MiddleName',
+			dataType: 'string',
+		},
+		{
+			caption: 'JobTitle',
+			width: 50,
+			dataField: 'JobTitle',
+			dataType: 'string',
+		},
+		{
+			caption: 'JobType',
+			width: 50,
+			dataField: 'JobType',
+			dataType: 'string',
+		},
+		{
+			caption: 'ContactNumber',
+			width: 50,
+			dataField: 'ContactNumber',
+			dataType: 'string',
+		},
+		{
+			caption: 'CompanyName',
+			width: 50,
+			dataField: 'CompanyName',
+			dataType: 'string',
+		},
+		{
+			caption: 'JobLocations',
+			width: 50,
+			dataField: 'JobLocations',
+			dataType: 'string',
+		},
+		{
+			caption: 'ProfilePercentage',
+			width: 50,
+			dataField: 'ProfilePercentage',
+			dataType: 'number',
+		}
+	];
+	closeResult: string;
+	data: any;
+	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
-		private modalService: NgbModal
+		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService
 	) {
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
@@ -108,8 +205,72 @@ export class DetailsComponent implements OnInit {
 				this.keywordSearchGroup.get('searchValue').setValue(res);
 				this.getCandidates();
 			});
+		this.GetContacts();
+		this.clearTeamMemebers();
+		this.getcustomerusers();
+		this.AddUser = false;
 	}
 
+	GetContacts() {
+		return this.appService.GetContactInfo(this.customerId, 0).subscribe(res => {
+			this.GetContactsList = res;
+		});
+	}
+
+	getcustomerusers() {
+		return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
+			this.customercontacts = res;
+			this.customercontacts = this.customercontacts.filter(
+				name => name.FirstName != "Invited" && name.IsRemove === false);
+		});
+	}
+
+	clearTeamMemebers() {
+		for (let i = 0; i <= 10; i++) {
+			const index = i;
+			this.appService.deleteTeammember(index);
+		}
+		this.deleteTeammember(0);
+	}
+
+	public addTeammembers() {
+		if (this.getTeammember !== undefined) {
+			const check = this.teamExists(this.getTeammember, this.teammemberslist);
+			if (check === false) {
+				this.appService.addTeammember(this.getTeammember);
+			}
+			$('#teamMbr').val('');
+		}
+	}
+	private deleteTeammember(index: number) {
+		this.appService.deleteTeammember(index);
+	}
+
+	teamExists(team, list) {
+		if (list === undefined) {
+			return false;
+		}
+		for (var index = 0; index < list.length; index++) {
+			if (list[index].UserId === team.UserId) {
+				return true;
+			}
+		}
+		// return list.some(function (elem) {
+		// 	return elem.UserId === team.UserId;
+		// });
+	}
+
+	Whatsapp() {
+		this.whatsapp = undefined;
+		this.whatsappform.reset();
+	}
+	changeTeam(val) {
+		this.getTeammember = val;
+	}
+	teamchange(val, inf) {
+		this.AddUser = val;
+		this.info = inf;
+	}
 	next() {
 		++this.selectedIndex;
 	}
@@ -298,7 +459,6 @@ export class DetailsComponent implements OnInit {
 
 
 	searchFunc(val) {
-
 		if (val != '') {
 			this.searchValue = val;
 			this.getCandidates();
@@ -309,80 +469,72 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-
 	getCandidates() {
+		debugger;
 		this.candidatesLoading = true;
-		// this.isKeywordSearch = this.keywordSearchGroup.get('isKeywordSearch').value;
-		if (this.searchValue != null) {
-			const params = {
-				//cId: this.customerId,
-				//uId: this.userId,
-				pNo: this.currentPage,
-				rows: this.pageCount,
-				// so: '',
-				//isKeywordSearch: this.isKeywordSearch,
-				searchValue: this.searchValue,
-			};
-			this.appService.getCandidates(params).subscribe(
-				(res: any) => {
-					if (res != null) {
-						if (res.Candidates != null && res.Candidates.length > 0) {
-							this.candidates = res.Candidates;
-							this.totalCandidatesCount = res.TotalRecordsCount;
-							if (this.totalCandidatesCount % this.pageCount == 0)
-								this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-							else {
-								this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
-							}
+
+		let candidateSearch = new CandidateSearch();
+		candidateSearch.PageNumber = this.currentPage;
+		candidateSearch.PageSize = this.pageCount;
+		candidateSearch.SearchValue = this.searchValue;
+		candidateSearch.FilterValue = JSON.stringify(this.filter);
+
+
+		this.appService.getCandidates(candidateSearch).subscribe(
+			(res: any) => {
+				if (res != null) {
+					if (res.Candidates != null && res.Candidates.length > 0) {
+						this.candidates = res.Candidates;
+						this.totalCandidatesCount = res.TotalRecordsCount;
+						if (this.totalCandidatesCount % this.pageCount == 0)
+							this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+						else {
+							this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
 						}
-						else
-							this.candidates = [];
 					}
 					else
 						this.candidates = [];
-					this.candidatesLoading = false;
-				},
-				error => {
-					console.log('Error occurred!');
-					this.candidatesLoading = false;
-				});
-		}
-		else {
-			const params = {
-				//cId: this.customerId,
-				//uId: this.userId,
-				pNo: this.currentPage,
-				rows: this.pageCount,
-				// so: '',
-				//isKeywordSearch: this.isKeywordSearch,
-				//searchValue: this.searchValue,
-			};
-			this.appService.getCandidates(params).subscribe(
-				(res: any) => {
-					if (res != null) {
-						if (res.Candidates != null && res.Candidates.length > 0) {
-							this.candidates = res.Candidates;
-							this.totalCandidatesCount = res.TotalRecordsCount;
-							if (this.totalCandidatesCount % this.pageCount == 0)
-								this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-							else {
-								this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
-							}
-						}
-						else
-							this.candidates = [];
-					}
-					else
-						this.candidates = [];
-					this.candidatesLoading = false;
-				},
-				error => {
-					console.log('Error occurred!');
-					this.candidatesLoading = false;
-				});
-		}
+				}
+				else
+					this.candidates = [];
+				this.candidatesLoading = false;
+			},
+			error => {
+				debugger;
+				console.log('Error occurred!');
+				this.candidatesLoading = false;
+			});
 
-
+		// const params = {
+		// 	pNo: this.currentPage,
+		// 	rows: this.pageCount,
+		// 	searchValue: this.searchValue,
+		// 	filters: this.filter
+		// };
+		// this.appService.getCandidates(params).subscribe(
+		// 	(res: any) => {
+		// 		if (res != null) {
+		// 			if (res.Candidates != null && res.Candidates.length > 0) {
+		// 				this.candidates = res.Candidates;
+		// 				this.totalCandidatesCount = res.TotalRecordsCount;
+		// 				if (this.totalCandidatesCount % this.pageCount == 0)
+		// 					this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+		// 				else {
+		// 					this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+		// 				}
+		// 			}
+		// 			else
+		// 				this.candidates = [];
+		// 		}
+		// 		else
+		// 			this.candidates = [];
+		// 		this.candidatesLoading = false;
+		// 	},
+		// 	error => {
+		// 		debugger;
+		// 		console.log('Error occurred!');
+		// 		this.candidatesLoading = false;
+		// 	});
 	}
 
 
@@ -461,15 +613,17 @@ export class DetailsComponent implements OnInit {
 	}
 
 	getActiveJobs() {
+		this.customer = JSON.parse(sessionStorage.getItem('userData'));
+		let customerId = this.customer.CustomerId;
 		this.jobList = concat(
 			of([]), // default items
 			this.jobInput.pipe(
 				debounceTime(200),
 				distinctUntilChanged(),
-				tap(() => this.jobsLosding = true),
-				switchMap(term => this.appService.getActiveJobs(term).pipe(
+				tap(() => this.jobsLoading = true),
+				switchMap(term => this.appService.getActiveJobs(term, customerId).pipe(
 					catchError(() => of([])), // empty list on error
-					tap(() => this.jobsLosding = false)
+					tap(() => this.jobsLoading = false)
 				))
 			)
 		);
@@ -500,44 +654,60 @@ export class DetailsComponent implements OnInit {
 	applyJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
-		let selectedJob = this.selectedJobId;
-		let bulkApply: BulkApplyInvite = { JobId: selectedJob, SelectedCandidates: candidates };
-		bulkApply.JobId
-		this.appService.applyJobToSelectedCandidates(bulkApply).subscribe(
-			(res: any) => {				
-				this.selectedJobId = 0;
-				swal(
-					{
-						title: 'Selected Job Applied successfully',
-						showConfirmButton: true,
-						showCancelButton: false,
-						type: "success",
-						confirmButtonColor: '#66dab5',
-						cancelButtonColor: '#FF0000',
-						confirmButtonText: 'Ok',
-						cancelButtonText: 'No'
-					}).then((result) => {
-						this.initInitialState();
-					});
-				this.initInitialState();
-			},
-			error => {
-				console.log('Error occurred!');
-				this.candidatesLoading = false;
-				swal(
-					{
-						title: 'Eror while applying for a job.',
-						showConfirmButton: false,
-						showCancelButton: true,
-						type: "error",
-						confirmButtonColor: '#66dab5',
-						cancelButtonColor: '#FF0000',
-						confirmButtonText: 'View',
-						cancelButtonText: 'Cancel'
-					}).then((result) => {
-						this.initInitialState();
-					});
-			});
+		if (candidates.length > 0) {
+			let selectedJob = this.selectedJobId;
+			let bulkApply: BulkApplyInvite = { JobId: selectedJob, SelectedCandidates: candidates };
+			bulkApply.JobId
+			this.appService.applyJobToSelectedCandidates(bulkApply).subscribe(
+				(res: any) => {
+					this.selectedJobId = 0;
+					swal(
+						{
+							title: 'Selected Job Applied successfully',
+							showConfirmButton: true,
+							showCancelButton: false,
+							type: "success",
+							confirmButtonColor: '#66dab5',
+							cancelButtonColor: '#FF0000',
+							confirmButtonText: 'Ok',
+							cancelButtonText: 'No'
+						}).then((result) => {
+							this.initInitialState();
+						});
+					this.initInitialState();
+				},
+				error => {
+					console.log('Error occurred!');
+					this.candidatesLoading = false;
+					swal(
+						{
+							title: 'Eror while applying for a job.',
+							showConfirmButton: true,
+							showCancelButton: false,
+							type: "error",
+							confirmButtonColor: '#66dab5',
+							cancelButtonColor: '#FF0000',
+							confirmButtonText: 'View',
+							cancelButtonText: 'Cancel'
+						}).then((result) => {
+							this.initInitialState();
+						});
+				});
+		} else {
+			swal(
+				{
+					title: 'Please select at least one candidate from the List',
+					showConfirmButton: true,
+					showCancelButton: false,
+					type: "error",
+					confirmButtonColor: '#66dab5',
+					cancelButtonColor: '#FF0000',
+					confirmButtonText: 'View',
+					cancelButtonText: 'No'
+				}).then((result) => {
+					this.initInitialState();
+				});
+		}
 
 	}
 	// shareJob() {
@@ -571,6 +741,84 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
+
+	showFilterPanel() {
+		debugger;
+		const dialogRef = this.dialog.open(FitlerComponent, {
+			width: '250px',
+			data: {
+				buttonText: {
+					ok: 'Save',
+					cancel: 'No'
+				}
+			}
+		});
+		dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+			debugger;
+			let filters = JSON.parse(this.storageService.get('CurrentFilter'));
+			debugger;
+			this.filter = filters;
+			this.getCandidates();
+		});
+	}
+
+	ShareProfile() {
+		debugger;
+		let emailAddresses = this.emailAddresses;
+		let message = this.emailMessage;
+		let candidates = this.candidates.filter(x => x.IsSelected);
+
+		if (candidates.length > 0) {
+			let loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
+			let customerId = loggedInUser.CustomerId;
+			this.isSharingStarted = true;
+			this.profileSharing.InviteFriendId = 0;
+			this.profileSharing.FromuserId = this.customerUser;
+			this.profileSharing.ToUserId = "0";
+			this.profileSharing.ToEmailId = emailAddresses;
+			this.profileSharing.ApplicationName = 'Arytic';
+			this.profileSharing.AppLink = this.settingsService.settings.CustomerAppprofile + ';Preid={0};Id=0;Cid=' + customerId;
+			this.profileSharing.Comments = message != null ? message : 'Please review the profile shared to you';
+			this.profileSharing.SelectedCandidates = candidates;
+			this.jobdetailsservice.ShareProfile(this.profileSharing).subscribe(data => {
+				//this.inviteform.reset();
+				this.teammemberslist = [];
+				$('#teamMbr').val('');
+				//this.selectedUserName = ''
+				this.getTeammember = new CustomerUsers();
+				this.profileSharing = new ProfileShare();
+				this.clearTeamMemebers();
+				this.selectedComments = "";
+				this.EmailId = " ";
+				this.isSharingStarted = false;
+				this.emailAddresses = "";
+				this.emailMessage = "";
+				this.dialogRef.close();
+				this.toastr.success('Mail sent successfully', 'Success');
+				setTimeout(() => {
+					this.toastr.dismissToast;
+					this.initInitialState();
+				}, 3000);
+			}, error => {
+				this.isSharingStarted = false;
+				console.log('error:', JSON.stringify(error));
+			});
+		} else {
+			swal(
+				{
+					title: 'Please select at least one candidate from the List',
+					showConfirmButton: true,
+					showCancelButton: false,
+					type: "error",
+					confirmButtonColor: '#66dab5',
+					cancelButtonColor: '#FF0000',
+					confirmButtonText: 'View',
+					cancelButtonText: 'No'
+				}).then((result) => {
+					this.initInitialState();
+				});
+		}
+	}
 }
 
 
@@ -579,4 +827,32 @@ export class Resume {
 	ProfileId: number;
 	Url: string;
 	ResumeFile: string;
+}
+
+export class CandidateSearch {
+	PageNumber: number;
+	PageSize: number;
+	SearchValue: string;
+	FilterValue: string;
+}
+
+export class ProfileShare {
+	InviteFriendId: number;
+	FromuserId: number;
+	ToUserId: string;
+	Comments: string;
+	AppLink: string;
+	ToEmailId: string;
+	FromEmailId: string;
+	ApplicationName: string;
+	SelectedCandidates: CandidateInformation[];
+	readonly modules: ReadonlyArray<{}> = []
+}
+
+export class contactInfo {
+	Infoid: number;
+	CustomerId: number;
+	UserId: number;
+	Fullname: string;
+	EmailId: string;
 }

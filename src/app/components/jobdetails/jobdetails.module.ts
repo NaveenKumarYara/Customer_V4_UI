@@ -6,7 +6,6 @@ import { JobdetailsAdvanceSearchComponent } from './view-jobdetails/jobdetails-a
 import { JobdetailsService } from './jobdetails.service';
 import { ViewjobdetailsmodelComponent } from './view-jobdetails/viewjobdetailsmodel/viewjobdetailsmodel.component';
  import { UploadProfilesComponent } from './view-jobdetails/upload-profiles/upload-profiles.component';
-// import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewjobdetailsScComponent } from './view-jobdetails/viewjobdetails-sc/viewjobdetails-sc.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,8 +24,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import {SharedModule} from '../../shared/shared.module';
 import { ScheduleInterviewComponent } from './view-jobdetails/viewjobdetails-candidate-profile/schedule-interview/schedule-interview.component';
-// import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlickityModule } from 'ngx-flickity';
 import { ViewCandidateprofileComponent } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile/view-candidateprofile.component';
 import { SendEmailComponent } from './view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
@@ -69,6 +66,7 @@ import { RouterModule } from '@angular/router';
 import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/SafeHtmlPipe.pipe';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,

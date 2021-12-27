@@ -1,52 +1,74 @@
-<div class="form-group job-title-group reporting-manager-group">
-    <label for="" class="question">Job Owner <small>(Optional)</small></label>
-    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-    <!-- <ng-select class="custom-style" [items]="managersList | async"
-    placeholder="e.g. Bachelor of Computer Arts"
-    bindLabel="FirstName"
-    bindValue="UserId"
-    [typeahead]="selectedUserInput"
-    [hideSelected]="true"
-    [loading]="usersloading"
-    [virtualScroll]="true"
-    [(ngModel)]="selectedItem"
-    (change)="updateManager()"> -->
-    <!-- <ng-select class="custom-style" [items]="reportingmanagersList | async"
-    placeholder="Select Reporting Manager"
-    bindLabel="FirstName"
-    bindValue="UserId"  
-    (change)="updateManager($event)"
-    [typeahead]="selectedInput"
-    [hideSelected]="true"
-    [loading]="usersload"
-    [(ngModel)]="selectedManager"
-    [virtualScroll]="true">
-  </ng-select> -->
-  
-    <!--ACI-17-UI-Implementation-17-03-2020-->
-    <div class="form-row row">
-      <div class="col-md-9">
-        <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
-          bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
-          [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
-          #rMngr="ngModel" name="rMgr">
-        </ng-select>
+<div class="form-rows row form-main-rows">
+  <div class="col-sm-6 form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Job Owner</label>
+      <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+      <!-- <ng-select class="custom-style" [items]="managersList | async"
+      placeholder="e.g. Bachelor of Computer Arts"
+      bindLabel="FirstName"
+      bindValue="UserId"
+      [typeahead]="selectedUserInput"
+      [hideSelected]="true"
+      [loading]="usersloading"
+      [virtualScroll]="true"
+      [(ngModel)]="selectedItem"
+      (change)="updateManager()"> -->
+      <!-- <ng-select class="custom-style" [items]="reportingmanagersList | async"
+      placeholder="Select Reporting Manager"
+      bindLabel="FirstName"
+      bindValue="UserId"  
+      (change)="updateManager($event)"
+      [typeahead]="selectedInput"
+      [hideSelected]="true"
+      [loading]="usersload"
+      [(ngModel)]="selectedManager"
+      [virtualScroll]="true">
+    </ng-select> -->
+    
+      <!--ACI-17-UI-Implementation-17-03-2020-->
+      <div class="form-row row">
+        <div class="col-md-12">
+          <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
+            bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
+            [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
+            #rMngr="ngModel" name="rMgr">
+          </ng-select>
+        </div>
+       
+    
+        <!--If Others-->
+                 <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
+        <!-- <div class="col-md-1">
+          <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        </div> -->
+        <!---->
       </div>
-     
-  
-      <!--If Others-->
-               <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
-      <!-- <div class="col-md-1">
-        <button class="btn add-btn form-control mt-0" (click)="ResetUser()"  type="button" data-toggle="modal" data-target="#othersdialog"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
-      </div> -->
       <!---->
+    
+      <!-- <ul class="data-list">
+        <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
+      </ul> -->
     </div>
-    <!---->
-  
-    <!-- <ul class="data-list">
-      <li *ngIf="selectedManager?.FirstName && selectedManager!=undefined &&  selectedManager?.FirstName.length > 0"> {{selectedManager.FirstName}} </li>
-    </ul> -->
   </div>
+  <div class="col-sm-6 form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Job Assignee</label>
+      <div class="form-row row">
+        <div class="col-md-11">
+          <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
+          bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
+          [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
+          #reportMngr="ngModel" name="reportMgr">
+          </ng-select>
+        </div>
+        <div class="col-md-1">
+          <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
   <!-- <div class="job-title-suggestions">
     <div class="checkbox" *ngFor="let  managers of sManagers; let i = index">
       <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
@@ -54,24 +76,6 @@
   
   </div> -->
   
-  <div class="form-group job-title-group reporting-manager-group">
-    <label for="" class="question">Job Assignee <small>(Optional)</small></label>
-    <div class="form-row row">
-      <div class="col-md-9">
-        <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
-        bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
-        [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
-        #reportMngr="ngModel" name="reportMgr">
-        </ng-select>
-      </div>
-      <div class="col-md-1">
-        <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
-      </div>
-    </div>
-
-  </div>
-
-
   <div class="job-title-suggestions">
     <div class="checkbox" *ngFor="let  managers of suggestManagers; let i = index">
       <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>

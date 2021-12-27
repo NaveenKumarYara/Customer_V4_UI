@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CompanyProfileOtherIno } from '../../../../models/companyprofile-otherinfo';
 import { CompanyProfileService } from '../company-profile.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../shared/services/api.service/api.service';
 import{otherInfo} from './otherInfo';
 import { companysize } from '../../../../models/companyprofile';
+import { ApiService } from '../../../shared/services';
 declare var $: any;
 @Component({
   selector: 'app-otherinfo',

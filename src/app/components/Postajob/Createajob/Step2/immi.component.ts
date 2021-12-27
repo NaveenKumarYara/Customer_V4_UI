@@ -15,7 +15,7 @@ import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { ReportingTeam } from '../../../../../models/GetJobDetailCustomer';
 import { Item } from 'angular2-multiselect-dropdown';
-import { ApiService } from '../../../../shared/services/api.service/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 import { element } from 'protractor';
 declare var $: any;
 

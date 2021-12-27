@@ -1,6 +1,5 @@
 ﻿/* =Import Required styles
 ========================================================================================*/
-
 @import url(normalize.css);
 @import url(responsive.css);
 @import url(slick.css);
@@ -119,6 +118,13 @@ a:hover {
 .btn.btn-list:not(:disabled):not(.disabled).active, .btn.btn-list:not(:disabled):not(.disabled):active {
   box-shadow: none;
 }
+
+.bulkShare .md-dialog-container {
+	background-color: #000;
+	width: 250px;
+	height: 250px
+}
+
 
 /*CSS For Grid Table
 ========================================================================================*/
@@ -6421,7 +6427,7 @@ div .status.Invited {
 
 .m-r-d .modal-body .bg-panels label .radio-input {
     position: absolute;
-    opacity: 0;
+    opacity: 1;
 }
 
 .m-r-d .modal-body .bg-panels label .radio-input:checked~.type {
@@ -7065,3 +7071,20 @@ font-size: 11px;
 	cursor: pointer;
 	font-size: 20px;
   }
+  .fade.in {
+	opacity: 1 !important;
+	}
+	
+	.modal.in .modal-dialog {
+	-webkit-transform: translate(0, 0) !important;
+	-o-transform: translate(0, 0) !important;
+	transform: translate(0, 0) !important;
+	}
+	
+	.modal-backdrop .fade .in {
+	opacity: 0.5 !important;
+	}
+	
+	.modal-backdrop.fade {
+	opacity: 0.5 !important;
+	}
