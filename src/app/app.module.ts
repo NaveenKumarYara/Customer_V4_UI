@@ -65,7 +65,7 @@ import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dial
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-// import { TooltipModule } from 'ng2-tooltip-directive';
+import { TooltipModule } from 'ng2-tooltip-directive';
 import { CandidatedetailviewComponent } from './components/CandidateProfile-details/candidatedetailview/candidatedetailview.component';
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
 export function app_Init(settingsHttpService: SettingsHttpService) {
@@ -111,7 +111,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     }),
     MatExpansionModule,
     MatCardModule,
-    //TooltipModule,
+    TooltipModule,
     MatDialogModule,
     MatSelectModule,
     MatAutocompleteModule,
