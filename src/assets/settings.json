@@ -219,5 +219,6 @@
   "NewJobDetailsRedirect": "https://candidate-dev.arytic.com/Ijobdetail/",
   "GetJobCompleteness": "https://identityapi-dev.arytic.com/api/GetJobCompletenessInfo?",
   "GetAssignedList":"https://jobsapi-dev.arytic.com/api/GetJobAssignedList?",
-  "SendAdminEmail":"https://emailapi-dev.arytic.com/api/SendAdminEditEmail"
+  "SendAdminEmail":"https://emailapi-dev.arytic.com/api/SendAdminEditEmail",
+  "ShareProfile": "https://emailapi-dev.arytic.com/api/ShareProfile"
 }

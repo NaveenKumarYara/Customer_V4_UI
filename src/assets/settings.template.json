@@ -209,7 +209,7 @@
   "SendJobStatus":"${Email_URL}/api/SendJobStatus",
   "SendJobInterviewStatus":"${Email_URL}/api/SendJobInterviewStatus",
   "GetCompanySize":"${Identity_URL}/api/GetCompanySize",
-
+  "ShareProfile": "${Email_URL}/api/ShareProfile",
   "InsertProfileNotesCustomer":"${Identity_URL}/api/InsertProfileNotesCustomer",
   "GetProfileNotes":"${Profile_URL}/api/GetProfileNotes",
   "Attachments":"${Profile_URL}/api/InsertProfileAttachments",

@@ -227,4 +227,5 @@ export class Settings {
   NewJobDetailsRedirect:string;
   GetAssignedList:string;
   SendAdminEmail:string;
+  ShareProfile:string;
   }
