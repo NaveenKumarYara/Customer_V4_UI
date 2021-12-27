@@ -179,6 +179,7 @@ export class DetailsComponent implements OnInit {
 	];
 	closeResult: string;
 	data: any;
+	isJobTypeShown: boolean;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -741,7 +742,15 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
-
+	showFilterBar()
+	{
+		this.showFilterNavBar = !this.showFilterNavBar;
+	}
+	showJobType()
+	{
+		debugger;
+		this.isJobTypeShown = !this.isJobTypeShown;
+	}
 	showFilterPanel() {
 		debugger;
 		const dialogRef = this.dialog.open(FitlerComponent, {
