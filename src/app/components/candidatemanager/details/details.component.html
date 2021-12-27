@@ -5,9 +5,9 @@
                 <div class="col-sm-4">
                     <!-- <h3> All Candidates</h3> -->
                     <div class="sb-example-1">
+
                         <div class="search">
-                            <input type="text" [ngModel]="searchValue" (ngModelChange)="searchFunc($event)"
-                                name="searchtext" class="searchTerm" placeholder="Search Candidates here?">
+                            <input type="text" [ngModel]="searchValue" (ngModelChange)="searchFunc($event)" name="searchtext" class="searchTerm" placeholder="Search Candidates here?">
                             <button class="searchButton" type="button" data-toggle="modal" data-target="#filterPanel">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -17,15 +17,9 @@
                 <div class="col-sm-8 flex flex-wrap flex-align-center flex-justify-end">
                     <div class="revamp__sorting" *ngIf="candidates.length>0">
                         <ul>
-                            <li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
-                                    (click)="onPageChange(-1)"
-                                    [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}"
-                                    [disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
+                            <li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev" (click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}" [disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
                             <li><input type="text" value="{{currentPage}}" disabled class="form-control"></li>
-                            <li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next"
-                                    (click)="onPageChange(1)"
-                                    [ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}"
-                                    [disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
+                            <li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next" (click)="onPageChange(1)" [ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}" [disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
                         </ul>
                         of {{totalPageCount}} pages
                     </div>
@@ -33,201 +27,278 @@
             </div>
         </div>
         <div class="section__box__container">
+
             <div class="revamp__filter__sidebar__box" [ngClass]="{'show big':showFilterNavBar, 'full': showMenu}">
                 <div class="scroll-box">
-                </div>
-            </div>
-            <div class="revamp__search__container">
-                <div class="row flex flex-align-center flex-wrap">
-                </div>
-            </div>
-            <div class="top__container">
-                <div class="row flex flex-wrap flex-align-center">
-                    <div class="col-sm-9">
-                    </div>
-                </div>
-            </div>
-            <span *ngIf="candidatesLoading">Loading Candidates...</span>
-            <div class="data-grid-view" *ngIf="currentView == 'Grid' && candidates" [class.full]="!showDetail">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-sm-12 big-col">
-                            <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-3 green" *ngFor="let candidate of candidates">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <input type="checkbox" [checked]="candidate.IsSelected"
-                                            (change)="candidate.IsSelected = !candidate.IsSelected">
+                    <div class="icon__box">&nbsp;</div>
+                    <button class="btn btn-filter" (click)="showFilterBar()">Filter</button>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" (click)="showJobType()">
+                                <span class="icon icon__jobtype__01"></span>
+                                <em>Job Type</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isJobTypeShown, 'hideSearch': !isJobTypeShown}" [ngStyle]="{'display': 'none'}">
+                                    <div class="input__box">
+                                        <span class="icon__search__dark"></span>
+                                        <input type="text" class="form-control form-control-light" placeholder="Search">
+                                    </div>
+
+                                    <div class="filter__tag">
                                         <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;"
-                                                    data-toggle="tooltip" tooltip="{{candidate?.MobileNumber}}"
-                                                    placement="left"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;"
-                                                    data-toggle="tooltip" tooltip="{{candidate?.EmailAddress}}"
-                                                    placement="right"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note"
-                                                    (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)"
-                                                    tooltip="download resume" placement="right"></span>
-                                            </li>
+                                            <li><a href="#">Information Technology</a></li>
+                                            <li><a href="#">Data Analyst</a></li>
+                                            <li><a href="#">Data Specailist</a></li>
+                                            <li><a href="#">Data Entry Analyst</a></li>
+                                            <li><a href="#">Information Analyst</a></li>
                                         </ul>
                                     </div>
-                                    <div class="col__container">
-                                        <div class="info__container">
-                                            <div class="profile__thumb">
-                                                <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}"
-                                                    alt="">
-                                            </div>
-                                            <div class="profile__match__percent"><a class="text-white"
-                                                    style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
-                                            </div>
-                                            <h4><a href="javascript:void(0)"
-                                                    (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
-                                                    | titlecase}}</a>
-                                            </h4>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase">Cancel</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase">Ok</button>
+                                    </div>
+                                </div>
 
-                                            <h5>{{candidate.JobTitleName}}</h5>
-                                            <div class="location">{{candidate.Locations}}</div>
-                                            <div class="company">{{candidate.Company}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__skills__01"></span>
+                                <em>Skills</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__salary__01"></span>
+                                <em>Salary</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__location__01"></span>
+                                <em>Location</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__experience__01"></span>
+                                <em>Experience</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__title__01"></span>
+                                <em>Job Title</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__status__01"></span>
+                                <em>Availibilty Status</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__domain__01"></span>
+                                <em>Job Domain</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__company__01"></span>
+                                <em>Company Name</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__edu__01"></span>
+                                <em>Education</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon icon__certified__01"></span>
+                                <em>Certification</em>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="revamp__search__container">
+                <div class="row flex flex-align-center flex-wrap">
+                </div>
+            </div> -->
+            <div class="top__container">
+                <div class="row flex flex-wrap flex-align-center">
+                    <div class="col-sm-12">
+                        <span *ngIf="candidatesLoading">Loading Candidates...</span>
+                        <div class="data-grid-view" *ngIf="currentView == 'Grid' && candidates" [class.full]="!showDetail">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-sm-12 big-col">
+                                        <div class="row flex flex-wrap flex-align-equal">
+                                            <div class="col-sm-3 green" *ngFor="let candidate of candidates">
+                                                <div class="top__container flex flex-wrap flex-align-center">
+                                                    <input type="checkbox" [checked]="candidate.IsSelected" (change)="candidate.IsSelected = !candidate.IsSelected">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.MobileNumber}}" placement="left"></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="revamp-icon revamp-icon-note" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume" placement="right"></span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col__container">
+                                                    <div class="info__container">
+                                                        <div class="profile__thumb">
+                                                            <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
+                                                        </div>
+                                                        <div class="profile__match__percent"><a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
+                                                        </div>
+                                                        <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
+                                                                | titlecase}}</a>
+                                                        </h4>
+
+                                                        <h5>{{candidate.JobTitleName}}</h5>
+                                                        <div class="location">{{candidate.Locations}}</div>
+                                                        <div class="company">{{candidate.Company}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
-                <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
-                    <div class="grid-col grid-check-col">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" checked="checked">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="grid-col grid-name-col">
-                        Name <span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-job-title-col">
-                        Job Title <span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-email-col">
-                        Email<span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-contact-col">
-                        Contact Number<span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-location-col">
-                        Current Location<span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-job-typ-col">
-                        Job Type<span class="sorting-arrow down"></span>
-                    </div>
-                    <div class="grid-col grid-action-col">
-                        &nbsp;
-                    </div>
-                </div>
-                <div *ngIf="!candidatesLoading && candidates.length > 0;else noCandidatesList">
-                    <div class="grid-row grid-row-col flex flex-wrap flex-align-equal"
-                        *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
-                        <div class="grid-col grid-check-col">
-                            <div class="grid-heading">Select</div>
-                            <div class="box-table">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
+                        <div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
+                            <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+                                <div class="grid-col grid-check-col">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" checked="checked">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="grid-col grid-name-col">
+                                    Name <span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-job-title-col">
+                                    Job Title <span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-email-col">
+                                    Email<span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-contact-col">
+                                    Contact Number<span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-location-col">
+                                    Current Location<span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-job-typ-col">
+                                    Job Type<span class="sorting-arrow down"></span>
+                                </div>
+                                <div class="grid-col grid-action-col">
+                                    &nbsp;
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid-col grid-name-col">
-                            <div class="grid-heading">Name</div>
-                            <div class="box-table">
-                                <div class="profile-container">
-                                    <figure>
-                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                    </figure>
-                                    <div class="profile-name">
-                                        {{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}}
-                                        {{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}}
-                                        {{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
+                            <div *ngIf="!candidatesLoading && candidates.length > 0;else noCandidatesList">
+                                <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
+                                    <div class="grid-col grid-check-col">
+                                        <div class="grid-heading">Select</div>
+                                        <div class="box-table">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-name-col">
+                                        <div class="grid-heading">Name</div>
+                                        <div class="box-table">
+                                            <div class="profile-container">
+                                                <figure>
+                                                    <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
+                                                </figure>
+                                                <div class="profile-name">
+                                                    {{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}} {{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}} {{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-job-title-col">
+                                        <div class="grid-heading">Job Title</div>
+                                        <div class="box-table">
+                                            {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-email-col">
+                                        <div class="grid-heading">Email</div>
+                                        <div class="box-table">
+                                            {{candidateDetails.Email != null && candidateDetails.Email != '' ? candidateDetails.Email : 'N/A'}}
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-contact-col">
+                                        <div class="grid-heading">Contact Number</div>
+                                        <div class="box-table">
+                                            {{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ? candidateDetails.ContactNumber : 'N/A'}}
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-location-col">
+                                        <div class="grid-heading">Current Location</div>
+                                        <div class="box-table">
+                                            {{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ? candidateDetails.JobLocations : 'N/A'}}
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-job-typ-col">
+                                        <div class="grid-heading">Job Type</div>
+                                        <div class="box-table">
+                                            {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                                        </div>
+                                    </div>
+                                    <div class="grid-col grid-action-col">
+                                        <div class="grid-heading">Action</div>
+                                        <div class="box-table">
+                                            <button class="dots">&nbsp;</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <ng-template #noCandidatesList>
+                                <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
+                            </ng-template>
                         </div>
-                        <div class="grid-col grid-job-title-col">
-                            <div class="grid-heading">Job Title</div>
-                            <div class="box-table">
-                                {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ?
-                                candidateDetails.JobTitle : 'N/A'}}
-                            </div>
-                        </div>
-                        <div class="grid-col grid-email-col">
-                            <div class="grid-heading">Email</div>
-                            <div class="box-table">
-                                {{candidateDetails.Email != null && candidateDetails.Email != '' ?
-                                candidateDetails.Email : 'N/A'}}
-                            </div>
-                        </div>
-                        <div class="grid-col grid-contact-col">
-                            <div class="grid-heading">Contact Number</div>
-                            <div class="box-table">
-                                {{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ?
-                                candidateDetails.ContactNumber : 'N/A'}}
-                            </div>
-                        </div>
-                        <div class="grid-col grid-location-col">
-                            <div class="grid-heading">Current Location</div>
-                            <div class="box-table">
-                                {{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ?
-                                candidateDetails.JobLocations : 'N/A'}}
-                            </div>
-                        </div>
-                        <div class="grid-col grid-job-typ-col">
-                            <div class="grid-heading">Job Type</div>
-                            <div class="box-table">
-                                {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ?
-                                candidateDetails.JobTitle : 'N/A'}}
-                            </div>
-                        </div>
-                        <div class="grid-col grid-action-col">
-                            <div class="grid-heading">Action</div>
-                            <div class="box-table">
-                                <button class="dots">&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ng-template #noCandidatesList>
-                    <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
-                </ng-template>
-            </div>
-            <div class="data__table__footer">
-                <ul>
-                    <!-- <li>
+                        <div class="data__table__footer">
+                            <ul>
+                                <!-- <li>
                         <button class="btn btn__export" data-toggle="modal" data-target="#exportPopup">Export</button>
                     </li>
                     <li>
                         <button class="btn btn__import" data-toggle="modal" data-target="#importModal">Import</button>
                     </li> -->
-                    <li>
-                        <button class="btn btn__apply__job" data-toggle="modal" data-target="#bulkApply">Apply to
-                            Job</button>
-                    </li>
-                    <li>
-                        <button class="btn btn__share" data-toggle="modal" data-target="#bulkShare">Share
-                            Candidates</button>
-                    </li>
-                    <!-- <li>
+                                <li>
+                                    <button class="btn btn__apply__job" data-toggle="modal" data-target="#bulkApply">Apply to
+                                        Job</button>
+                                </li>
+                                <li>
+                                    <button class="btn btn__share" data-toggle="modal" data-target="#bulkShare">Share
+                                        Candidates</button>
+                                </li>
+                                <!-- <li>
                         <button class="btn btn__share" data-toggle="modal" data-target="#bulkInvite">Invite</button>
                     </li> -->
-                    <!-- <li>
+                                <!-- <li>
                         <button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
                     </li> -->
-                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
     <!--Bulk Aply Modal-->
@@ -253,23 +324,18 @@
                                         <form id="form1" name="form1" #form="ngForm">
                                             <div class="form-group c-form-group">
                                                 <label for="">Active Jobs<span class="red">*</span></label>
-                                                <ng-select class="custom-style" [items]="jobList | async"
-                                                    placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
-                                                    [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading"
-                                                    [(ngModel)]="selectedJobId" minlength="1" name="jobId"
-                                                    #skill="ngModel" [virtualScroll]="true" required>
+                                                <ng-select class="custom-style" [items]="jobList | async" placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId" [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading" [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
+                                                    [virtualScroll]="true" required>
                                                 </ng-select>
                                                 <input type hidden id="skills">
-                                                <small class="text-danger error1"
-                                                    *ngIf="skill.invalid && skill.touched ">Required.</small>
+                                                <small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="col-md-12 p0-30">
                                     <div class="bt-1-E0E3EF mrl--15">
-                                        <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25"
-                                            (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
+                                        <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25" (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
                                             Job</a>
 
                                     </div>
@@ -283,8 +349,7 @@
     </div>
 
     <!--Bulk Share Modal-->
-    <div id="bulkShare" class="modal fade md-dialog-container" tabindex="-1" role="dialog"
-        aria-labelledby="myLargeModalLabel">
+    <div id="bulkShare" class="modal fade md-dialog-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div>
@@ -299,8 +364,7 @@
                     <!-- Message input -->
                     <div class="mb-3">
                         <label class="form-label" for="message">Message</label>
-                        <textarea class="form-control" id="message" type="text" placeholder="Message"
-                            style="height: 10rem;" [(ngModel)]="emailMessage" name="emailMessage" ></textarea>
+                        <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" [(ngModel)]="emailMessage" name="emailMessage"></textarea>
                     </div>
                     <!-- Form submit button -->
                     <div class="d-grid">
@@ -336,23 +400,18 @@
                                     <form id="form1" name="form1" #form="ngForm">
                                         <div class="form-group c-form-group">
                                             <label for="">Active Jobs<span class="red">*</span></label>
-                                            <ng-select class="custom-style" [items]="jobList | async"
-                                                placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId"
-                                                [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading"
-                                                [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
+                                            <ng-select class="custom-style" [items]="jobList | async" placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId" [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading" [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
                                                 [virtualScroll]="true" required>
                                             </ng-select>
                                             <input type hidden id="skills">
-                                            <small class="text-danger error1"
-                                                *ngIf="skill.invalid && skill.touched ">Required.</small>
+                                            <small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="col-md-12 p0-30">
                                 <div class="bt-1-E0E3EF mrl--15">
-                                    <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25"
-                                        (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
+                                    <a data-dismiss="modal" class="btn btn-filled btn-next pull-right mtb-5r-25" (click)="applyJobToSelectedCandidates()" href="javascript:void(0)">Apply
                                         Job</a>
 
                                 </div>
