@@ -33,7 +33,9 @@ import { InternationalPhoneModule } from "ng4-intl-phone";
 
 @NgModule({
   imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, 
-    ReactiveFormsModule,FormsModule, NgSelectModule, DxFilterBuilderModule, DxButtonModule,ModalDialogModule.forRoot(),
+    ReactiveFormsModule,FormsModule, NgSelectModule, ModalDialogModule.forRoot(),
+    //DxFilterBuilderModule,
+    DxButtonModule,
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
