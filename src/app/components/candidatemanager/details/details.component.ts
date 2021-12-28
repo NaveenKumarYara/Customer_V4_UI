@@ -593,6 +593,7 @@ export class DetailsComponent implements OnInit {
 					if (result.value === true) {
 						localStorage.setItem("cprofileId", profileId);
 						localStorage.setItem("cuserId", userId);
+						localStorage.setItem("checku", userId);
 						//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 						const url = '/app-view-candidateprofile-detail';
 						window.open(url, "_blank");
