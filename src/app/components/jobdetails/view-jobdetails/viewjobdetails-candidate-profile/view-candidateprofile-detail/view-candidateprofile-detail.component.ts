@@ -141,7 +141,8 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     this.pagination = 5;
     this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.profileId = localStorage.getItem('cprofileId');
-    this.cuserId = localStorage.getItem('cuserId');
+    this.cuserId = localStorage.getItem('cuserId'); 
+
     this.CheckDesc(0);
   }
 
@@ -158,10 +159,19 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
   }
 
   backcheck() {
-    $("#activeMyjob").addClass('active');
-    let jobactive= true;
-    localStorage.setItem('jobactive', JSON.stringify(jobactive));
-    this.router.navigateByUrl('/app-view-jobdetails');
+    if(localStorage.getItem('checku')!= null)
+    {
+      localStorage.removeItem('checku');
+      this.router.navigateByUrl('/search');
+    }
+    else
+    {
+      $("#activeMyjob").addClass('active');
+      let jobactive= true;
+      localStorage.setItem('jobactive', JSON.stringify(jobactive));
+      this.router.navigateByUrl('/app-view-jobdetails');
+    }
+  
   }
 
   moreContent() {
@@ -671,6 +681,7 @@ export class ViewCandidateprofileDetailComponent implements OnInit, OnDestroy {
     localStorage.removeItem('cprofileId');
     localStorage.removeItem('cjobid');
     localStorage.removeItem('cuserId');
+    localStorage.removeItem('checku');
   }
 
 }
