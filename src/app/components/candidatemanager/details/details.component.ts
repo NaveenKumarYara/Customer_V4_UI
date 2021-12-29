@@ -49,8 +49,8 @@ export class DetailsComponent implements OnInit {
 	fileType = new Resume();
 	fileExt: any;
 	showDetail: boolean = false;
-	skilltitleloading:boolean;
-	jobsLoading:boolean;
+	skilltitleloading: boolean;
+	jobsLoading: boolean;
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
 	statusid: number = 0;
@@ -82,6 +82,9 @@ export class DetailsComponent implements OnInit {
 	isSharingStarted: boolean;
 	emailAddresses: any;
 	emailMessage: any;
+	skillList: Observable<string[]>;
+	selectedSkillName: any;
+	selectedskillinput = new Subject<string>();
 
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
@@ -180,6 +183,7 @@ export class DetailsComponent implements OnInit {
 	closeResult: string;
 	data: any;
 	isJobTypeShown: boolean;
+	isSkillShown: boolean;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -260,7 +264,20 @@ export class DetailsComponent implements OnInit {
 		// 	return elem.UserId === team.UserId;
 		// });
 	}
-
+	private getSkills() {
+		this.skillList = concat(
+			of([]), // default items
+			this.selectedskillinput.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				tap(() => this.skilltitleloading = true),
+				switchMap(term => this.appService.getSkills(term).pipe(
+					catchError(() => of([])), // empty list on error
+					tap(() => this.skilltitleloading = false)
+				))
+			)
+		);
+	}
 	Whatsapp() {
 		this.whatsapp = undefined;
 		this.whatsappform.reset();
@@ -287,7 +304,7 @@ export class DetailsComponent implements OnInit {
 	// 	if (this.showMenu) {
 	// 		this.showMenu = false;
 	// 	}
-  // }
+	// }
 
 	showJobPrview(profileId) {
 		this.showDetail = true;
@@ -720,15 +737,20 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
-	showFilterBar()
-	{
+	showFilterBar() {
 		this.showFilterNavBar = !this.showFilterNavBar;
 	}
-	showJobType()
-	{
+	showJobType() {
 		debugger;
 		this.showMenu = true;
 		this.isJobTypeShown = !this.isJobTypeShown;
+		this.isSkillShown = false;
+	}
+	showSkill() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = !this.isSkillShown;
+		this.isJobTypeShown = false;
 	}
 	showFilterPanel() {
 		debugger;
