@@ -1691,20 +1691,14 @@ export class AppService {
     return this.http.get<any>(url).catch(this.handleError);
   }
 
-  // getCandidates(params: any): Observable<CandidateInformation[]> {
-  //   const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
-  //   return this.http.get<any>(apiUrl, { params })
-  //     .pipe();
-  // }
-
-  getCandidates(candidateSearch: any): Observable<any> {
-    //const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
-    return this.http.post(this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates', candidateSearch).pipe();
+  getCandidates(params: any): Observable<CandidateInformation[]> {
+    const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
+    return this.http.get<any>(apiUrl, { params })
+      .pipe();
   }
 
-  getActiveJobs(term: any, customerId: any): Observable<string[]> {
-    const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term + "&customerId="+ customerId;
-    debugger;
+  getActiveJobs(term: any): Observable<string[]> {
+    const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term;
     return this.http.get<any>(apiUrl)
       .pipe();
   }
