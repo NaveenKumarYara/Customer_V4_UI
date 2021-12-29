@@ -14,13 +14,13 @@
   <div class="options">
     <div class="checkbox">
         <label>
-            <input  type="radio"  [(ngModel)]="hasCompleteDescription" [value]="true"  [checked]="hasCompleteDescription==true"
+            <input  type="radio" name="desc" [(ngModel)]="hasCompleteDescription" [value]="true"  [checked]="hasCompleteDescription==true"
             (change)="setValue(hasCompleteDescription)"><span class="box">Yes</span>
            
         </label>
         
         <label>           
-            <input  type="radio"  [(ngModel)]="hasCompleteDescription" [value]="false" [checked]="hasCompleteDescription==false"
+            <input  type="radio" name="desc" [(ngModel)]="hasCompleteDescription" [value]="false" [checked]="hasCompleteDescription==false"
              (change)="setValue(hasCompleteDescription)"><span class="box">No</span>
         </label>
     </div>

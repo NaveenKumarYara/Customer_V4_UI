@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject, ViewContainerRef } from "@angular/core";
+import { Component, OnInit, Inject, ViewContainerRef,ViewChild } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AppService } from "../../../../app.service";
 import { InsertJob, PjDepartments } from "../../models/jobPostInfo";
 import { Location } from "@angular/common";
 import { ToastsManager, Toast } from "ng2-toastr/ng2-toastr";
 import { StepsComponent } from "../steps.component";
+import { JobcardComponent } from "./jobcard/jobcard.component";
+import { MatDialog, MatDialogConfig } from "@angular/material";
+
 @Component({
   selector: "app-steps-step4",
   templateUrl: "./step4.component.html",
@@ -62,7 +65,8 @@ export class Step4Component implements OnInit {
     private router: Router,
     private appService: AppService,
     private location: Location,
-    private steps: StepsComponent
+    private steps: StepsComponent,
+    public matDialog: MatDialog
   ) {
     this.customer = JSON.parse(sessionStorage.getItem("userData"));
     this.customerId = this.customer.CustomerId;
@@ -326,27 +330,66 @@ export class Step4Component implements OnInit {
         });
       }
       if (this.JobIds.length == 0 || this.JobIds == undefined) {
-        this.insertJob.TemplateSaveTitle = this.TemplateName;
-        //debugger
-        this.appService.postjob(this.insertJob).subscribe((data) => {
-          if (data) {
-            // this.insertJob.JobId = data;
-            // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-            // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-            localStorage.removeItem("draftItem");
-            localStorage.removeItem("hide");
-            localStorage.removeItem("SalaryTypeId");
-            this.TemplateName = null;
-            // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-            this.router.navigate([
-              localStorage.getItem("EditViewJob") != null
-                ? this.ViewJobdetails(this.insertJob.JobId)
-                : "/app-manage-jobs/app-manage-load-joblist/1",
-            ]);
-            localStorage.setItem("post", "1");
-            this.appService.resetJob();
-          }
+        if (localStorage.getItem("EditMode") != null)
+        {
+      
+          this.insertJob.TemplateSaveTitle = this.TemplateName;
+          //debugger
+          this.appService.postjob(this.insertJob).subscribe((data) => {
+            if (data) {
+              // this.insertJob.JobId = data;
+              // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+              // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+              localStorage.removeItem("draftItem");
+              localStorage.removeItem("hide");
+              localStorage.removeItem("SalaryTypeId");
+              this.TemplateName = null;
+              // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+              this.router.navigate([
+                localStorage.getItem("EditViewJob") != null
+                  ? this.ViewJobdetails(this.insertJob.JobId)
+                  : "/app-manage-jobs/app-manage-load-joblist/1",
+              ]);
+              localStorage.setItem("post", "1");
+              this.appService.resetJob();
+            }
+          });
+        }
+        else
+        {
+          const dialogConfig = new MatDialogConfig();
+          // The user can't close the dialog by clicking outside its body
+          dialogConfig.id = "modal-component";
+          dialogConfig.height = "300px";
+          dialogConfig.width = "300px";
+          // https://material.angular.io/components/dialog/overview
+          const modalDialog = this.matDialog.open(JobcardComponent, dialogConfig);    
+          modalDialog.afterClosed().subscribe(result => {
+            if (result === 1) {
+           this.insertJob.TemplateSaveTitle = this.TemplateName;
+          this.appService.postjob(this.insertJob).subscribe((data) => {
+            if (data) {
+              // this.insertJob.JobId = data;
+              // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+              // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+              localStorage.removeItem("draftItem");
+              localStorage.removeItem("hide");
+              localStorage.removeItem("SalaryTypeId");
+              this.TemplateName = null;
+              // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+              this.router.navigate([
+                localStorage.getItem("EditViewJob") != null
+                  ? this.ViewJobdetails(this.insertJob.JobId)
+                  : "/app-manage-jobs/app-manage-load-joblist/1",
+              ]);
+              localStorage.setItem("post", "1");
+              this.appService.resetJob();
+            }
+          });
+            }
         });
+        }
+       
       }
     }
   }

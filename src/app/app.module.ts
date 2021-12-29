@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
@@ -28,8 +29,10 @@ import { dLoginComponent } from '../app/components/Login/dlogin.component';
 import { AccountsettingsModule } from './components/accountsettings/accountsettings.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ApiService } from './shared/services/api.service';
+import { ApiService } from './shared/services/api.service/api.service';
 import { AuthService } from './shared/guard/auth.service';
+// import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { SharedModule } from './shared/shared.module';
 import { FlickityModule } from 'ngx-flickity';
@@ -40,12 +43,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditDraftComponent } from './components/Postajob/Createajob/EditDraft/draft.component';
 import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import { ResponsibilitiesDialogComponent } from './components/Postajob/Createajob/Step2/responsibilities-dialog/responsibilities-dialog.component';
+// import { SalarysliderComponent } from './components/Postajob/Createajob/Step3/salaryslider.component';
 import { ProgressBarModule } from 'angular-progress-bar';
 import { GetCandidateprofileComponent } from './components/GetProfileDetails/GetProfile.component';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SettingsHttpService } from '../settings/settings.http.service';
 import { SettingsService } from '../settings/settings.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
 import { ChargebeeJsAngularWrapperModule } from '@chargebee/chargebee-js-angular-wrapper';
 import { DragulaModule } from 'ng2-dragula';
 import { RatingModule } from 'ng-starrating';
@@ -58,10 +63,10 @@ import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { CmModule } from './components/candidatemanager/cm.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { RecaptchaModule } from 'angular5-google-recaptcha';
+// import { ManagejobsModule } from './components/managejobs/manage-jobs/managejobs.module';
 import { PostajobModule } from './components/Postajob/postajob.module';
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
-import { MatAutocompleteModule, MatCardModule, MatExpansionModule, MatInputModule, MatSelectModule } from '@angular/material';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatAutocompleteModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -69,7 +74,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { CandidatedetailviewComponent } from './components/CandidateProfile-details/candidatedetailview/candidatedetailview.component';
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
 export function app_Init(settingsHttpService: SettingsHttpService) {
-  return () => settingsHttpService.initializeApp();
+    return () => settingsHttpService.initializeApp();
 }
 @NgModule({
   declarations: [
@@ -99,6 +104,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule,
     QRCodeModule,
     ReactiveFormsModule,
@@ -108,7 +114,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     AngularMultiSelectModule,
     RecaptchaModule.forRoot({
       siteKey: '6Ld6CWobAAAAAGUdYvl8v1vRb0g6PGzCuaVp8jWB',
-    }),
+  }),
     MatExpansionModule,
     MatCardModule,
     TooltipModule,
@@ -137,6 +143,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     AccountsettingsModule,
     NgxSpinnerModule,
     ChartsModule,
+    NgbModule.forRoot(),
     NgxMaskModule.forRoot(),
     FlickityModule,
     Ng5SliderModule,
@@ -158,4 +165,4 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

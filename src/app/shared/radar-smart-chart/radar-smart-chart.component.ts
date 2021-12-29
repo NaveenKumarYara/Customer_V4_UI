@@ -1,7 +1,7 @@
 import { HttpParams } from "@angular/common/http";
 import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 import { Chart } from "chart.js";
-import { ApiService } from "../services";
+import { ApiService } from "../services/api.service/api.service";
 
 @Component({
   selector: 'app-radar-smart-chart',

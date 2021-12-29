@@ -1,11 +1,12 @@
 import { Component ,OnInit,ViewContainerRef} from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from '../../app.service';
+import { environment } from '../../../environments/environment.prod';
 import { billEstimates } from '../../../models/billEstimates';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 import { CustomerSubscription } from '../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../models/GetSubscriptionDetails';
-import { ApiService } from '../services/api.service';
-import { AppService } from '../../app.service';
+import { ApiService } from '../../shared/services/api.service/api.service';
 declare var $: any; 
 @Component({
     selector: 'app-Logoheader',
