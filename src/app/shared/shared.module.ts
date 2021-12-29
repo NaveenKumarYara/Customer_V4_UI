@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LogoHeaderComponent } from "./logoheader/logoheader.component";
+import { AgmCoreModule } from "@agm/core";
+import { routing } from "../app.router";
 import { AlertComponent } from "./alerts/alerts.component";
 import { AppService } from "../app.service";
 import { AlertService } from "./alerts/alerts.service";
@@ -16,7 +18,6 @@ import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.component';
 import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
 import { TooltipModule } from "ng2-tooltip-directive";
-// import { DxFilterBuilderModule } from "devextreme-angular";
 
 @NgModule({
   imports: [
@@ -25,8 +26,7 @@ import { TooltipModule } from "ng2-tooltip-directive";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TooltipModule,
-    // DxFilterBuilderModule
+    TooltipModule
   ],
   providers: [AppService, AlertService],
   declarations: [LogoHeaderComponent,
