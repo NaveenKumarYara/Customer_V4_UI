@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef, HostListener } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AppService } from '../../../app.service';
@@ -282,6 +282,13 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
+	// @HostListener('document:click', ['$event'])
+	// clickout(event) {
+	// 	if (this.showMenu) {
+	// 		this.showMenu = false;
+	// 	}
+  // }
+
 	showJobPrview(profileId) {
 		this.showDetail = true;
 		this.selectedCandidate = this.candidates.find(x => x.ProfileId == profileId);
@@ -330,6 +337,7 @@ export class DetailsComponent implements OnInit {
 
 	showNavigation() {
 		this.showMenu = true;
+		console.log('hi')
 	}
 
 	resetFilterType() {
@@ -505,37 +513,6 @@ export class DetailsComponent implements OnInit {
 				console.log('Error occurred!');
 				this.candidatesLoading = false;
 			});
-
-		// const params = {
-		// 	pNo: this.currentPage,
-		// 	rows: this.pageCount,
-		// 	searchValue: this.searchValue,
-		// 	filters: this.filter
-		// };
-		// this.appService.getCandidates(params).subscribe(
-		// 	(res: any) => {
-		// 		if (res != null) {
-		// 			if (res.Candidates != null && res.Candidates.length > 0) {
-		// 				this.candidates = res.Candidates;
-		// 				this.totalCandidatesCount = res.TotalRecordsCount;
-		// 				if (this.totalCandidatesCount % this.pageCount == 0)
-		// 					this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-		// 				else {
-		// 					this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
-		// 				}
-		// 			}
-		// 			else
-		// 				this.candidates = [];
-		// 		}
-		// 		else
-		// 			this.candidates = [];
-		// 		this.candidatesLoading = false;
-		// 	},
-		// 	error => {
-		// 		debugger;
-		// 		console.log('Error occurred!');
-		// 		this.candidatesLoading = false;
-		// 	});
 	}
 
 
@@ -750,6 +727,7 @@ export class DetailsComponent implements OnInit {
 	showJobType()
 	{
 		debugger;
+		this.showMenu = true;
 		this.isJobTypeShown = !this.isJobTypeShown;
 	}
 	showFilterPanel() {
