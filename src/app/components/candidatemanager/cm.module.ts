@@ -13,7 +13,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LoadActiveProjectsComponent } from './load-active-projects/load-active-projects.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import { DxButtonModule, DxFilterBuilderModule } from "devextreme-angular";
+// import { DxButtonModule, DxFilterBuilderModule } from "devextreme-angular";
 import { FitlerComponent } from "../../shared";
 import { ApiService, StorageService } from "../../shared/services";
 import { AppService } from "../../app.service";
