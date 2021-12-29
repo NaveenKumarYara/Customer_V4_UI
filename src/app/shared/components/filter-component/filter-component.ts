@@ -20,8 +20,8 @@ export class FitlerComponent implements OnInit {
   ngOnInit() {
   }
   applyFilter() {
-    debugger;
-    this.storageService.save('CurrentFilter', JSON.stringify(this.Filters));
-    this.dialogRef.close({event:'Cancel'});
+    //debugger;
+    //this.storageService.save('CurrentFilter', JSON.stringify(this.Filters));
+    //this.dialogRef.close({event:'Cancel'});
   }
 }
