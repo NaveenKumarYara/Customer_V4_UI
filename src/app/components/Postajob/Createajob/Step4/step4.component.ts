@@ -332,6 +332,31 @@ export class Step4Component implements OnInit {
       if (this.JobIds.length == 0 || this.JobIds == undefined) {
         if (localStorage.getItem("EditMode") != null)
         {
+      
+          this.insertJob.TemplateSaveTitle = this.TemplateName;
+          //debugger
+          this.appService.postjob(this.insertJob).subscribe((data) => {
+            if (data) {
+              // this.insertJob.JobId = data;
+              // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
+              // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
+              localStorage.removeItem("draftItem");
+              localStorage.removeItem("hide");
+              localStorage.removeItem("SalaryTypeId");
+              this.TemplateName = null;
+              // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
+              this.router.navigate([
+                localStorage.getItem("EditViewJob") != null
+                  ? this.ViewJobdetails(this.insertJob.JobId)
+                  : "/app-manage-jobs/app-manage-load-joblist/1",
+              ]);
+              localStorage.setItem("post", "1");
+              this.appService.resetJob();
+            }
+          });
+        }
+        else
+        {
           const dialogConfig = new MatDialogConfig();
           // The user can't close the dialog by clicking outside its body
           dialogConfig.id = "modal-component";
@@ -361,43 +386,6 @@ export class Step4Component implements OnInit {
               this.appService.resetJob();
             }
           });
-            }
-        });
-          // this.insertJob.TemplateSaveTitle = this.TemplateName;
-          // //debugger
-          // this.appService.postjob(this.insertJob).subscribe((data) => {
-          //   if (data) {
-          //     // this.insertJob.JobId = data;
-          //     // window.location.href = '/app-manage-jobs/app-manage-load-joblist/1';
-          //     // this.location.go('/app-manage-jobs/app-manage-load-joblist/1');
-          //     localStorage.removeItem("draftItem");
-          //     localStorage.removeItem("hide");
-          //     localStorage.removeItem("SalaryTypeId");
-          //     this.TemplateName = null;
-          //     // this.router.navigate(['/app-manage-jobs/app-manage-load-joblist/1']);
-          //     this.router.navigate([
-          //       localStorage.getItem("EditViewJob") != null
-          //         ? this.ViewJobdetails(this.insertJob.JobId)
-          //         : "/app-manage-jobs/app-manage-load-joblist/1",
-          //     ]);
-          //     localStorage.setItem("post", "1");
-          //     this.appService.resetJob();
-          //   }
-          // });
-        }
-        else
-        {
-          const dialogConfig = new MatDialogConfig();
-          // The user can't close the dialog by clicking outside its body
-          dialogConfig.id = "modal-component";
-          dialogConfig.height = "600px";
-          dialogConfig.width = "600px";
-          // https://material.angular.io/components/dialog/overview
-          const modalDialog = this.matDialog.open(JobcardComponent, dialogConfig);    
-          modalDialog.afterClosed().subscribe(result => {
-            if (result) {
-              debugger
-                console.log("Result is TRUE!");
             }
         });
         }
