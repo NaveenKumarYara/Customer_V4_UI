@@ -17,7 +17,7 @@ import { Subject, Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
-import { FitlerComponent } from '../../../shared';
+// import { FitlerComponent } from '../../../shared';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StorageService } from '../../../shared/services';
 import { CustomerContacts } from '../../../../models/customercontacts';
@@ -617,7 +617,7 @@ export class DetailsComponent implements OnInit {
 				debounceTime(200),
 				distinctUntilChanged(),
 				tap(() => this.jobsLoading = true),
-				switchMap(term => this.appService.getActiveJobs(term, customerId).pipe(
+				switchMap(term => this.appService.getActiveJobs(term).pipe(
 					catchError(() => of([])), // empty list on error
 					tap(() => this.jobsLoading = false)
 				))
@@ -752,25 +752,25 @@ export class DetailsComponent implements OnInit {
 		this.isSkillShown = !this.isSkillShown;
 		this.isJobTypeShown = false;
 	}
-	showFilterPanel() {
-		debugger;
-		const dialogRef = this.dialog.open(FitlerComponent, {
-			width: '250px',
-			data: {
-				buttonText: {
-					ok: 'Save',
-					cancel: 'No'
-				}
-			}
-		});
-		dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-			debugger;
-			let filters = JSON.parse(this.storageService.get('CurrentFilter'));
-			debugger;
-			this.filter = filters;
-			this.getCandidates();
-		});
-	}
+	// showFilterPanel() {
+	// 	debugger;
+	// 	const dialogRef = this.dialog.open(FitlerComponent, {
+	// 		width: '250px',
+	// 		data: {
+	// 			buttonText: {
+	// 				ok: 'Save',
+	// 				cancel: 'No'
+	// 			}
+	// 		}
+	// 	});
+	// 	dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+	// 		debugger;
+	// 		let filters = JSON.parse(this.storageService.get('CurrentFilter'));
+	// 		debugger;
+	// 		this.filter = filters;
+	// 		this.getCandidates();
+	// 	});
+	// }
 
 	ShareProfile() {
 		debugger;
