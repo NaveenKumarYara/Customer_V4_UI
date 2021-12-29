@@ -13,6 +13,7 @@ export interface DialogData {
   providers: [ApiService]
 })
 export class GetCandidateprofileComponent implements OnInit {
+  
   customer: any;
   customerId: any;
   userId: any;
