@@ -18,6 +18,7 @@ import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { RadarChartLargeComponent } from './radar-chart-large/radar-chart-large.component';
 import { RadarSmartChartComponent } from './radar-smart-chart/radar-smart-chart.component';
 import { TooltipModule } from "ng2-tooltip-directive";
+import { FitlerComponent } from "./components/filter-component/filter-component";
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { TooltipModule } from "ng2-tooltip-directive";
     PolarChartComponent,
     DoughnutChartComponent,
     RadarChartLargeComponent,
+    FitlerComponent,
     RadarSmartChartComponent
   ],
   exports: [
