@@ -92,7 +92,7 @@
 			<!--Multiple Location implementation 19-03-2020-->
 			<ng-container *ngIf="showMyContainer">
 				<div class="row form-sub-rows flex flex-wrap flex-align-end">
-					<div class="col-md-6 form-sub-cols">
+					<div class="col-sm-6 col-md-6 form-sub-cols">
 						<label class="city-label">City </label>
 						<ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async" placeholder="Select Cities"
 							bindLabel="CityName" bindValue="CityName" (ngModelChange)="getmultiSelectedOptionText($event)"
@@ -102,13 +102,13 @@
 						</ng-select>
 						<small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small>
 					</div>
-					<div class="col-md-5 form-sub-cols">
+					<div class="col-sm-5 col-md-5 form-sub-cols">
 						<label class="open-positions">Open Positions <span class="red">*</span></label>
 						<!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
 						<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpening"
 							(ngModelChange)="Openings($event)" placeholder="Define here">
 					</div>
-					<div class="col-md-1 form-sub-cols">
+					<div class="cols-sm-2 col-md-1 form-sub-cols">
 						<button class="btn add-btn form-control" type="submit" (click)="addArray()">+</button>
 					</div>
 				</div>
