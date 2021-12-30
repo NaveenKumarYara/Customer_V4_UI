@@ -34,13 +34,8 @@ populateDashboardallStatistics() {
 
 
   ActiveJobsClick(sort) {
-    let sortBy;
-    if (sort > 0) {
-      sortBy = sort;
-    } else {
-      sortBy = 0;
-    }
-    localStorage.setItem('sortBy', JSON.stringify(sortBy));
+    localStorage.setItem('sortBy', JSON.stringify(1));
+    localStorage.setItem('NsortBy', JSON.stringify(0));
     localStorage.setItem('dashboard','1');
     this.router.navigateByUrl('app-manage-jobs');
   }

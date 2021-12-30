@@ -69,6 +69,11 @@ export class LoadJoblistComponent implements OnInit {
       if(sval!=undefined && sval!=null && sval!= "null")
       {
           this.searchString = sval;
+          if(sort!=null)
+          {
+            this.PopulateSort(sort);
+          }
+        
       }
       if(sval === null||sval=== undefined)
       {
@@ -147,6 +152,7 @@ export class LoadJoblistComponent implements OnInit {
 
 
   populateJoblist(customerId, userId,searchString='',sortBy=0,status=0,newSortBy=0) { 
+
      this.sortBy=this.sortBy!=null?sortBy:0;
      this.status=this.status!=null?status:0;
       this.searchString= searchString;
@@ -194,7 +200,7 @@ export class LoadJoblistComponent implements OnInit {
         }
         else
         {
-          this.populateJoblist(this.customerId, this.userId, this.searchString,0,0,0);
+          this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
         }
            
       });  
@@ -202,7 +208,7 @@ export class LoadJoblistComponent implements OnInit {
     else
     {
       this.isfiltered=0;
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,this.status,0);
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,this.status,this.newSortBy);
     }
     
   }
@@ -316,7 +322,7 @@ export class LoadJoblistComponent implements OnInit {
         this.employmentTypeId = 0;
         //this.sortBy = 0;
         //this.defaultValue = '0';
-      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,0);
+      this.populateJoblist(this.customerId, this.userId, this.searchString,this.sortBy,0,this.newSortBy);
       },
       callFilterMethod : (employmentTypeId, experience, cityId, clientId, departmentId) => {
         if (employmentTypeId > 0 || experience > 0 || cityId > 0 || clientId > 0 || departmentId > 0) {

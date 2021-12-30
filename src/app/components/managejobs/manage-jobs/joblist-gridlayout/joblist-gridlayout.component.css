@@ -17,7 +17,7 @@ img {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 84px;
+    max-width: 170px;
 }
 .full-width{width:100%;}
 .ui-pic-owner{margin-right: 10px;}
