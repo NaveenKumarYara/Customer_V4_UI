@@ -18,8 +18,8 @@
 
 
 
-<div class="row flex flex-wrap form-rows flex-align-start">
-  <div class="col-sm-4 form-cols">
+<div class="row flex flex-wrap form-rows single-form-rows flex-align-start">
+  <div class="col-sm-4 form-cols single-form-cols">
     <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
       <label class="t-p" for="typeofindustry">
         <!-- Which Type of Business Domain does the job belong to? -->
@@ -41,7 +41,7 @@
       </small>
     </div>
   </div>
-  <div class="col-sm-4 form-cols">
+  <div class="col-sm-4 form-cols single-form-cols">
     <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
       <label class="t-p" for="typeofposition">
         <!-- Which Department does the job belongs to? --> 
@@ -64,7 +64,7 @@
       </small>
     </div>
   </div>
-  <div class="col-sm-4 form-cols">
+  <div class="col-sm-4 form-cols single-form-cols">
     <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
       <label for="" class="t-p">
         <!-- Which Category does this job belong to? ? -->
@@ -89,8 +89,8 @@
   </div>
 </div>
 
-<div class="row flex flex-wrap form-row form-main-rows form-rows flex-align-start">
-  <div class="col-md-6 form-cols">
+<div class="row flex flex-wrap form-row single-form-rows form-main-rows form-rows flex-align-start">
+  <div class="col-md-6 form-cols single-form-cols">
     <div class="row form-sub-rows">
       <div class="col-sm-6 form-sub-cols">
         <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
@@ -134,7 +134,7 @@
               <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
               <div class="row re-exp form-sub-rows">
                   <!-- <div class="styled-select-box block experience-output"></div> -->
-                  <div class="col-md-6 form-sub-cols">
+                  <div class="col-sm-6 form-sub-cols">
                       <div class="form-group">
                         <input class="form-control"  #Min="ngModel" name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
                         <small class="error1" *ngIf="Min.invalid && Min.touched">         
@@ -147,7 +147,7 @@
                       <div>
                   </div>
                 </div>
-                <div class="col-md-6 form-sub-cols">
+                <div class="col-sm-6 form-sub-cols">
                     <div class="form-group">
                         <input class="form-control" name="max-exp"  #Max="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
                         
@@ -196,7 +196,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 form-cols">
+  <div class="col-sm-6 form-cols  single-form-cols">
     <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
       <div class="row flex flex-wrap flex-align-end form-sub-rows">
         <div class="col-sm-6 form-sub-cols">
@@ -216,7 +216,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-sm-5">
           <label for="" class="t-p">
             Experience  <span class="red">*</span>
           </label>
@@ -249,7 +249,7 @@
             </div>
           </div>
         </div>
-          <div class="col-md-1 add-key-btn add__btn">
+          <div class="col-sm-1 add-key-btn add__btn">
           <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading&&keyslist.length<3">+</button>
         </div>
       </div>

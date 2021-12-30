@@ -1,5 +1,5 @@
-<div class="form-rows row form-main-rows">
-  <div class="col-sm-6 form-cols">
+<div class="form-rows row form-main-rows single-form-rows">
+  <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
       <label for="" class="question">Job Owner</label>
       <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
@@ -50,18 +50,18 @@
       </ul> -->
     </div>
   </div>
-  <div class="col-sm-6 form-cols">
+  <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
       <label for="" class="question">Job Assignee</label>
       <div class="form-row row">
-        <div class="col-md-11">
+        <div class="col-md-11 col-sm-11">
           <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
           bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
           [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
           #reportMngr="ngModel" name="reportMgr">
           </ng-select>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-1">
           <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
         </div>
       </div>
