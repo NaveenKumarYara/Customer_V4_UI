@@ -17,7 +17,7 @@ import { Subject, Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs/observable/concat';
 import { of } from 'rxjs/observable/of';
-// import { FitlerComponent } from '../../../shared';
+//import { FitlerComponent } from '../../../shared';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StorageService } from '../../../shared/services';
 import { CustomerContacts } from '../../../../models/customercontacts';
@@ -82,9 +82,21 @@ export class DetailsComponent implements OnInit {
 	isSharingStarted: boolean;
 	emailAddresses: any;
 	emailMessage: any;
-	skillList: Observable<string[]>;
+	showFilterLocation: boolean;
+	applyJobSidePanelShow: boolean;
+
+
+
+	isJobTypeShown: boolean;
+	isSkillShown: boolean;
+	isExperienceShown: boolean;
+
+	skillList: any;
 	selectedSkillName: any;
 	selectedskillinput = new Subject<string>();
+	MinimumExperience: any;
+	MaximumExperience: any;
+
 
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
@@ -182,8 +194,16 @@ export class DetailsComponent implements OnInit {
 	];
 	closeResult: string;
 	data: any;
-	isJobTypeShown: boolean;
-	isSkillShown: boolean;
+	selectedSkills: any;
+	isJobTitleShown: boolean;
+	jobTitle: any;
+	isCompanyShown: boolean;
+	companyName: any;
+	isEducationShown: any;
+	isCertificationShown: boolean;
+	educationName: any;
+	isCertificationName: any;
+	certificationName: any;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -205,6 +225,7 @@ export class DetailsComponent implements OnInit {
 		this.showDetail = false;
 		this.getCandidates();
 		this.getActiveJobs();
+		this.getSkills();
 		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 			.subscribe(res => {
 				this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -214,6 +235,27 @@ export class DetailsComponent implements OnInit {
 		this.clearTeamMemebers();
 		this.getcustomerusers();
 		this.AddUser = false;
+	}
+
+	getSkills() {
+		this.skillList = concat(
+			of([]), // default items
+			this.selectedskillinput.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				tap(() => this.skilltitleloading = true),
+				switchMap(term => this.appService.searhchSkills(term).pipe(
+					catchError(() => of([])), // empty list on error
+					tap(data => {
+						debugger;
+						let y = data;
+						this.skilltitleloading = false;
+					})
+				))
+			)
+		);
+		debugger;
+		let k = 10;
 	}
 
 	GetContacts() {
@@ -260,24 +302,8 @@ export class DetailsComponent implements OnInit {
 				return true;
 			}
 		}
-		// return list.some(function (elem) {
-		// 	return elem.UserId === team.UserId;
-		// });
 	}
-	private getSkills() {
-		this.skillList = concat(
-			of([]), // default items
-			this.selectedskillinput.pipe(
-				debounceTime(200),
-				distinctUntilChanged(),
-				tap(() => this.skilltitleloading = true),
-				switchMap(term => this.appService.getSkills(term).pipe(
-					catchError(() => of([])), // empty list on error
-					tap(() => this.skilltitleloading = false)
-				))
-			)
-		);
-	}
+
 	Whatsapp() {
 		this.whatsapp = undefined;
 		this.whatsappform.reset();
@@ -299,12 +325,17 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-	// @HostListener('document:click', ['$event'])
-	// clickout(event) {
-	// 	if (this.showMenu) {
-	// 		this.showMenu = false;
-	// 	}
-	// }
+	applySidePanel() {
+		this.applyJobSidePanelShow = true;
+	}
+
+	hideApplySidePanel() {
+		this.applyJobSidePanelShow = false;
+	}
+
+	onFocus() {
+		this.showFilterLocation = true;
+	}
 
 	showJobPrview(profileId) {
 		this.showDetail = true;
@@ -354,8 +385,23 @@ export class DetailsComponent implements OnInit {
 
 	showNavigation() {
 		this.showMenu = true;
-		console.log('hi')
 	}
+
+	showSub(id) {
+		let listClass = document.getElementsByClassName('sub__item');
+		let classArray = [];
+		let i = 0;
+		for (i = 0; i < listClass.length; i++) {
+			classArray.push(i);
+		}
+		classArray.forEach(function (val) {
+			if (document.getElementsByClassName('active')[0]) {
+				document.getElementsByClassName('sub__item')[val].classList.remove('active')
+			}
+		});
+		document.getElementsByClassName('sub__item')[id].classList.add('active');
+	}
+
 
 	resetFilterType() {
 		this.currentFilterType = '';
@@ -483,7 +529,6 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-
 	searchFunc(val) {
 		if (val != '') {
 			this.searchValue = val;
@@ -494,45 +539,6 @@ export class DetailsComponent implements OnInit {
 			this.getCandidates();
 		}
 	}
-
-	getCandidates() {
-		debugger;
-		this.candidatesLoading = true;
-
-		let candidateSearch = new CandidateSearch();
-		candidateSearch.PageNumber = this.currentPage;
-		candidateSearch.PageSize = this.pageCount;
-		candidateSearch.SearchValue = this.searchValue;
-		candidateSearch.FilterValue = JSON.stringify(this.filter);
-
-
-		this.appService.getCandidates(candidateSearch).subscribe(
-			(res: any) => {
-				if (res != null) {
-					if (res.Candidates != null && res.Candidates.length > 0) {
-						this.candidates = res.Candidates;
-						this.totalCandidatesCount = res.TotalRecordsCount;
-						if (this.totalCandidatesCount % this.pageCount == 0)
-							this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-						else {
-							this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
-						}
-					}
-					else
-						this.candidates = [];
-				}
-				else
-					this.candidates = [];
-				this.candidatesLoading = false;
-			},
-			error => {
-				debugger;
-				console.log('Error occurred!');
-				this.candidatesLoading = false;
-			});
-	}
-
-
 	DownloadResume(val, ProfileId): void {
 		this.apiService.GetService("ProfileAPI/api/GetResume?profileId=", ProfileId).subscribe((fileData) => {
 			this.fileType = fileData;
@@ -588,21 +594,15 @@ export class DetailsComponent implements OnInit {
 						localStorage.setItem("cprofileId", profileId);
 						localStorage.setItem("cuserId", userId);
 						localStorage.setItem("checku", userId);
-						//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 						const url = '/app-view-candidateprofile-detail';
 						window.open(url, "_blank");
 
 					}
-
-
-
-
 				});
 		}
 		else {
 			localStorage.setItem("cprofileId", profileId);
 			localStorage.setItem("cuserId", userId);
-			//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 			const url = '/app-view-candidateprofile-detail';
 			window.open(url, "_blank");
 		}
@@ -617,21 +617,12 @@ export class DetailsComponent implements OnInit {
 				debounceTime(200),
 				distinctUntilChanged(),
 				tap(() => this.jobsLoading = true),
-				switchMap(term => this.appService.getActiveJobs(term).pipe(
+				switchMap(term => this.appService.getActiveJobs(term, customerId).pipe(
 					catchError(() => of([])), // empty list on error
 					tap(() => this.jobsLoading = false)
 				))
 			)
 		);
-		// this.appService.getActiveJobs().subscribe(
-		// 	(res: any) => {
-		// 		debugger;
-		// 		this.jobList = res;
-		// 	},
-		// 	error => {
-		// 		console.log('Error occurred!');
-		// 		this.candidatesLoading = false;
-		// 	});
 	}
 
 	keywordSearchValidators() {
@@ -706,19 +697,6 @@ export class DetailsComponent implements OnInit {
 		}
 
 	}
-	// shareJob() {
-	// 	const modalRef = this.modalService.open(LoadActiveProjectsComponent, {
-	//         size: 'sm',
-	//         //keyboard: false,
-	//         //backdrop: 'static'
-	//     });
-	//     modalRef.result.then(res => {
-	//         if (res) {
-	//             //this.initDataSource();
-	//         }
-	//     }).catch(() => { });
-	// }
-
 	shareJob() {
 		const dialogRef = this.dialog.open(LoadActiveProjectsComponent, {
 			width: '250px',
@@ -737,40 +715,25 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
-	showFilterBar() {
-		this.showFilterNavBar = !this.showFilterNavBar;
-	}
-	showJobType() {
+	showFilterPanel() {
 		debugger;
-		this.showMenu = true;
-		this.isJobTypeShown = !this.isJobTypeShown;
-		this.isSkillShown = false;
+		// const dialogRef = this.dialog.open(FitlerComponent, {
+		// 	width: '250px',
+		// 	data: {
+		// 		buttonText: {
+		// 			ok: 'Save',
+		// 			cancel: 'No'
+		// 		}
+		// 	}
+		// });
+		// dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+		// 	debugger;
+		// 	let filters = JSON.parse(this.storageService.get('CurrentFilter'));
+		// 	debugger;
+		// 	this.filter = filters;
+		// 	this.getCandidates();
+		// });
 	}
-	showSkill() {
-		debugger;
-		this.showMenu = true;
-		this.isSkillShown = !this.isSkillShown;
-		this.isJobTypeShown = false;
-	}
-	// showFilterPanel() {
-	// 	debugger;
-	// 	const dialogRef = this.dialog.open(FitlerComponent, {
-	// 		width: '250px',
-	// 		data: {
-	// 			buttonText: {
-	// 				ok: 'Save',
-	// 				cancel: 'No'
-	// 			}
-	// 		}
-	// 	});
-	// 	dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-	// 		debugger;
-	// 		let filters = JSON.parse(this.storageService.get('CurrentFilter'));
-	// 		debugger;
-	// 		this.filter = filters;
-	// 		this.getCandidates();
-	// 	});
-	// }
 
 	ShareProfile() {
 		debugger;
@@ -829,6 +792,197 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
+
+
+	showFilterBar() {
+		this.showFilterNavBar = !this.showFilterNavBar;
+	}
+
+	getSelectedSkills() {
+		console.log(this.selectedSkills);
+	}
+	cancel() {
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.getCandidates();
+	}
+	selectSkills() {
+		console.log(this.selectedSkills);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.getCandidates();
+	}
+	selectExperience() {
+		console.log(this.MinimumExperience);
+		console.log(this.MaximumExperience);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.getCandidates();
+	}
+	selectJobTitle() {
+		console.log(this.jobTitle);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.getCandidates();
+	}
+	selectCompany() {
+		console.log(this.companyName);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.getCandidates();
+	}
+
+	selectEducation() {
+		console.log(this.companyName);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isEducationShown = false;
+		this.isCertificationShown = false;
+		this.getCandidates();
+	}
+
+	selectCertification() {
+		console.log(this.companyName);
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isEducationShown = false;
+		this.isCertificationShown = false;
+		this.getCandidates();
+	}
+
+	showJobType() {
+		debugger;
+		this.showMenu = true;
+		this.isJobTypeShown = !this.isJobTypeShown;
+		this.isSkillShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+	}
+
+	showSkill() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = !this.isSkillShown;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+	}
+
+	showExperience() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isJobTitleShown = false;
+		this.isExperienceShown = !this.isExperienceShown;
+	}
+
+	showJobTitle() {
+
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = !this.isJobTitleShown;
+	}
+
+	showCompany() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = !this.isCompanyShown;
+	}
+
+	showEducation() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isEducationShown = !this.isEducationShown;
+	}
+
+	showCertification() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isEducationShown = false;
+		this.isCertificationShown = !this.isCertificationShown;
+	}
+
+	getCandidates() {
+		debugger;
+		this.candidatesLoading = true;
+
+		let candidateSearch = new CandidateSearch();
+		candidateSearch.PageNumber = this.currentPage;
+		candidateSearch.PageSize = this.pageCount;
+		candidateSearch.SearchValue = this.searchValue;
+		candidateSearch.SelectedSkills = this.selectedSkills;
+		candidateSearch.MinimumExperience = this.MinimumExperience;
+		candidateSearch.MaximumExperience = this.MaximumExperience;
+		candidateSearch.JobTitle = this.jobTitle;
+		candidateSearch.CompanyName = this.companyName;
+		candidateSearch.EducatonName = this.educationName;
+		candidateSearch.CertificationName = this.certificationName;
+		candidateSearch.FilterValue = JSON.stringify(this.filter);
+
+
+		this.appService.getCandidates(candidateSearch).subscribe(
+			(res: any) => {
+				if (res != null) {
+					if (res.Candidates != null && res.Candidates.length > 0) {
+						this.candidates = res.Candidates;
+						this.totalCandidatesCount = res.TotalRecordsCount;
+						if (this.totalCandidatesCount % this.pageCount == 0)
+							this.totalPageCount = this.totalCandidatesCount / this.pageCount;
+						else {
+							this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+						}
+					}
+					else
+						this.candidates = [];
+				}
+				else
+					this.candidates = [];
+				this.candidatesLoading = false;
+			},
+			error => {
+				debugger;
+				console.log('Error occurred!');
+				this.candidatesLoading = false;
+			});
+	}
 }
 
 
@@ -844,6 +998,13 @@ export class CandidateSearch {
 	PageSize: number;
 	SearchValue: string;
 	FilterValue: string;
+	SelectedSkills: any;
+	MinimumExperience: any;
+	MaximumExperience: any;
+	JobTitle: any;
+	CompanyName: any;
+	EducatonName: any;
+	CertificationName: any;
 }
 
 export class ProfileShare {

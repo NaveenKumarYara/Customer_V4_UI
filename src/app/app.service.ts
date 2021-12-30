@@ -1435,9 +1435,22 @@ export class AppService {
       .catch(this.handleError);
   }
 
-  getSkills(skill: string = null): Observable<string[]> {
+  getSkills(skill: string = null): Observable<any> {
     const url = this.settingsService.settings.getskillsEndpoint + "?skillName=" + skill;
-    return this.http.get<string[]>(url).catch(this.handleError);
+
+    debugger;
+    
+    let data =this.http.get(url).catch(this.handleError);
+    return data;
+  }
+
+  searhchSkills(skill: string = null): any {
+    const url = this.settingsService.settings.SearchSkills + "?skillName=" + skill;
+
+    debugger;
+    
+    let data =this.http.get(url).catch(this.handleError);
+    return data;
   }
   getAllSkills(skill: string = null): Observable<any[]> {
     const url = this.settingsService.settings.listofAllSkills + "?skillName=" + skill;
@@ -1691,14 +1704,14 @@ export class AppService {
     return this.http.get<any>(url).catch(this.handleError);
   }
 
-  getCandidates(params: any): Observable<CandidateInformation[]> {
+  getCandidates(params: any): Observable<any> {
     const apiUrl = this.settingsService.settings.ProfilebaseUrl + '/api/GetAryticCandidates';
-    return this.http.get<any>(apiUrl, { params })
-      .pipe();
+    return this.http.post(apiUrl, params).pipe();
+    //return this.http.get<any>(apiUrl, { params }).pipe();
   }
 
-  getActiveJobs(term: any): Observable<string[]> {
-    const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term;
+  getActiveJobs(term: any, customerId: any): Observable<string[]> {
+    const apiUrl = this.settingsService.settings.JobbaseUrl + '/api/GetActiveJobs?searchTerm=' + term + '&customerId=' + customerId;
     return this.http.get<any>(apiUrl)
       .pipe();
   }

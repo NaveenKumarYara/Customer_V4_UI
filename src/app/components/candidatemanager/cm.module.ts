@@ -16,11 +16,16 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LoadActiveProjectsComponent } from './load-active-projects/load-active-projects.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MatDialogModule, MatDialogRef } from "@angular/material";
+import { StorageService } from "../../shared/services";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule, NgSelectModule],
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, RatingModule,TooltipModule, ReactiveFormsModule,FormsModule, NgSelectModule, MatDialogModule],
   declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe, LoadActiveProjectsComponent],
-  providers: [AppService, ApiService],
+  providers: [AppService, ApiService, StorageService,{
+    provide: MatDialogRef,
+    useValue: {}
+  },],
   entryComponents:[LoadActiveProjectsComponent]
 })
 export class CmModule { }
