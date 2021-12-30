@@ -48,7 +48,7 @@
                         <!-- .status -->
                         <div class="meta">
                             <span class="job-title"
-                                title="{{recentapplicants?.ProfileTitle}}">{{recentapplicants?.ProfileTitle | slice:0:20}}</span>
+                                title="{{recentapplicants?.ProfileTitle}}">{{recentapplicants?.ProfileTitle | slice:0:20 | titlecase}}</span>
                             <span class="v-divider"></span>
                             <!--New Enhancements 08-04-2020-->
                             <span>Exp: {{recentapplicants?.TotalExperience| MonthYear }} Years</span>
