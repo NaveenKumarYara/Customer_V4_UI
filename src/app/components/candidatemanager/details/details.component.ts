@@ -205,6 +205,7 @@ export class DetailsComponent implements OnInit {
 		this.showDetail = false;
 		this.getCandidates();
 		this.getActiveJobs();
+		this.getSkills();
 		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 			.subscribe(res => {
 				this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -588,7 +589,6 @@ export class DetailsComponent implements OnInit {
 						localStorage.setItem("cprofileId", profileId);
 						localStorage.setItem("cuserId", userId);
 						localStorage.setItem("checku", userId);
-						//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 						const url = '/app-view-candidateprofile-detail';
 						window.open(url, "_blank");
 
@@ -602,7 +602,6 @@ export class DetailsComponent implements OnInit {
 		else {
 			localStorage.setItem("cprofileId", profileId);
 			localStorage.setItem("cuserId", userId);
-			//this.router.navigateByUrl('/app-view-candidateprofile-detail');
 			const url = '/app-view-candidateprofile-detail';
 			window.open(url, "_blank");
 		}
@@ -623,15 +622,6 @@ export class DetailsComponent implements OnInit {
 				))
 			)
 		);
-		// this.appService.getActiveJobs().subscribe(
-		// 	(res: any) => {
-		// 		debugger;
-		// 		this.jobList = res;
-		// 	},
-		// 	error => {
-		// 		console.log('Error occurred!');
-		// 		this.candidatesLoading = false;
-		// 	});
 	}
 
 	keywordSearchValidators() {

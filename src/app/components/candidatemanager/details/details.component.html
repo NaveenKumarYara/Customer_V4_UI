@@ -1,4 +1,3 @@
-{{text}}
 <div class="grid-table-section">
     <div class="revamp__candidate__grid__list">
         <div class="section__box__container">
@@ -34,7 +33,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        <li [ngClass]="{'active': isSkillShown}">
                             <a href="javascript:void(0);" (click)="showSkill()">
                                 <span class="icon icon__skills__01"></span>
                                 <em>Skills</em>
