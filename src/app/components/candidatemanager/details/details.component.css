@@ -358,7 +358,7 @@ a:hover {
     border-bottom-width: 4px;
 }
 
-.data-grid-view .col__container h4 {
+.data-grid-view .col__container h4 a {
     font-size: 16px;
     font-weight: 700;
     color: #2e5bff;
@@ -926,6 +926,28 @@ a:hover {
     height: auto;
 }
 
+.custom-checkbox.custom-checkbox-round {
+	margin: 0;
+}
+
+.custom-checkbox.custom-checkbox-round .checkmark:before {
+	border-radius: 50%;
+}
+
+.custom-checkbox.custom-checkbox-round .checkmark:after {
+	border:0;
+	width: 11px;
+	height: 11px;
+	position: absolute;
+	left: -1px;
+	right: 0;
+	top: -1px;
+	bottom: 0;
+	margin: auto;
+	background-color: #2ec496;
+	border-radius: 50%;
+}
+
 .custom-radio {
     width: 20px;
     height: 20px;
@@ -1207,22 +1229,27 @@ a:hover {
     right: 15px;
 }
 
-.revamp__search__container .icon__map__01,
-.revamp__search__container .icon__search__01 {
+.revamp__candidate__grid__list .top__container .icon__map__01,
+.revamp__candidate__grid__list .top__container .icon__search__01, .revamp__search__container .icon__search__01 {
     font-size: 0;
     width: 20px;
     height: 20px;
     background: url(../../../../assets/images/candidate-sprites.png) -151px -61px no-repeat;
     position: absolute;
-    left: 15px;
+    left: 10px;
     top: 8px;
 }
 
-.revamp__search__container .icon__map__01 {
+.revamp__candidate__grid__list .top__container .icon__map__01 {
     background-position: -178px -62px;
 }
 
-.revamp__search__container .input-box .form-control.form-control-light {
+.revamp__candidate__grid__list .top__container .input-box, .revamp__search__container  .input-box {
+    position: relative;
+}
+
+.revamp__candidate__grid__list .top__container .input-box .form-control.form-control-light,
+.revamp__search__container  .input-box  .form-control.form-control-light {
     padding-left: 36px;
 }
 
@@ -1381,7 +1408,7 @@ a:hover {
     box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
 }
 
-.revamp__filter__sidebar__box .filter__sub__search.showSearch {
+.revamp__filter__sidebar__box .active .filter__sub__search {
     display: block;
 }
 
@@ -1775,13 +1802,14 @@ a:hover {
 .apply__job__sidepanel .col__container {
     width: 0;
     padding: 30px;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     z-index: 110;
     right: 0;
     top: 0;
     background: #fff;
     box-shadow: 4px 4px 10px rgb(158 171 192 / 20%);
+    overflow-y: auto;
 }
 
 .apply__job__sidepanel.show .col__container {
@@ -8615,6 +8643,18 @@ div .status.Invited {
     display: none;
 }
 
-.revamp__candidate__grid__list .top__container {
+.revamp__candidate__grid__list .section__box__container > .top__container {
     padding-left: 100px;
 }
+
+.apply__job__grid .col-container { padding:10px 15px; display: block; cursor: pointer; border: 1px solid #dfdfdf; box-shadow: 4px 4px 10px rgb(158 171 192 / 20%); border-radius: 8px; font-size: 14px; color: #9eabc0; height: 100%; }
+.apply__job__grid .col-container h4 { font-size:16px; color: #6e819e }
+.apply__job__grid .col-container h5 { font-size:14px; }
+.apply__job__grid .location { margin:15px 0; } 
+.apply__job__grid .date { font-size:13px; }
+.apply__job__grid .col { padding:0 7px; margin:14px 0 0; }
+.apply__job__grid .col .custom-check { position: absolute; left: -999em; opacity: 0; }
+.apply__job__grid .col .custom-check:checked ~ .col-container { background:rgba(239,242,255,0.45); border-color: #2e5bff  }
+.apply__job__grid .row { margin:0 -7px }
+.apply__job__footer { padding: 10px 0; border-top: 1px solid #e0e3ef; text-align: right; margin-top: 10px; }
+.apply__job__footer .btn-filled { padding: 6px 12px; min-width: inherit; margin-left: 10px; }

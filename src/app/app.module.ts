@@ -152,7 +152,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     CKEditorModule,
     NgxImgModule.forRoot(),
     CmModule,
-    routing,
+    routing
   ],
   providers: [
     SettingsHttpService,
