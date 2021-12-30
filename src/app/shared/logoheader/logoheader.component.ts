@@ -157,6 +157,7 @@ GetSubscriptionDetails(sid)
   Logout() {
     sessionStorage.removeItem('userData');
     sessionStorage.clear();
+    localStorage.clear();
     this.router.navigateByUrl('/login' , { replaceUrl: true });
     //window.location.href = environment.customerLogin;
 }

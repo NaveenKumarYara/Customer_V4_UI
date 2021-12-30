@@ -164,35 +164,31 @@
                
                      <div  class="card-footer-title" title="{{job?.HiringLeaderName | titlecase}}">{{job?.HiringLeaderName | titlecase}}<br/><span class="meta font-weight-bold">Owner</span></div>
                 </div>
-                <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex ">
+                <div class="col-sm-6 flex flex-align-center flex-wrap card-footer-flex " >
                         <!-- <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25"> -->
-                        <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0 || assignList?.TechnicalTeam?.length>0 || assignList?.ReportingManager?.length>0">Assignee.
-
-                            <span class="tooltipcontent" >
-                    <!-- <div  class="card-footer-title" title="Job Assignee">List of Assign<br/><span class="meta font-weight-bold">Job Assignee</span></div> -->
-
-                            
-                   
-  
-                        <ng-container *ngIf="assignList?.RecruitingMember?.length>0">
-                            
-                                <div *ngFor="let r of assignList?.RecruitingMember" class="card-footer-title">
-                                    <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25">
-                                    {{r?.FirstName | titlecase}} {{r?.LastName | titlecase}}<br/>
-                                </div>
-                               
-                        </ng-container>
-                        <ng-container *ngIf="assignList?.TechnicalTeam?.length>0">
-                            <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25">
-                            <div *ngFor="let t of assignList.TechnicalTeam" class="card-footer-title" title="{{t?.FirstName | titlecase}}">{{t?.FirstName| titlecase}} {{t?.LastName | titlecase}}<br/><span class="meta">Assignee</span></div>
+                        <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0">
+                            <ng-container *ngIf="assignList?.RecruitingMember?.length == 1">
+                                <div  class="card-footer-title">
+                                {{assignList?.RecruitingMember[0]?.FirstName | titlecase}} 
+                                <span class="meta font-weight-bold">  Assignee </span>       
+                            </div>                   
+                              </ng-container>
+                      <ng-container *ngIf="assignList?.RecruitingMember?.length>1">
+                          
+                        {{assignList?.RecruitingMember[0]?.FirstName | titlecase}} +
+                        <span class="meta font-weight-bold">  Assignee </span>
+                    <span class="tooltipcontent" >
+                    <ng-container *ngIf="assignList?.RecruitingMember?.length>0">
                         
-                        </ng-container>
-                        <ng-container *ngIf="assignList?.ReportingManager?.length>0">
-                            <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25">
-                            <div *ngFor="let p of assignList.ReportingManager" class="card-footer-title" title="{{p?.FirstName | titlecase}}">{{p?.FirstName | titlecase}} {{p?.LastName | titlecase}}<br/><span class="meta">Assignee</span></div>
-                            
-                        </ng-container> 
-                    </span>
+                            <div *ngFor="let r of assignList?.RecruitingMember">
+                               
+                                {{r?.FirstName | titlecase}};
+                            </div>
+                        
+                    </ng-container>
+                      </span>
+                      </ng-container>
+                       
                     </div>
                 </div> 
             </div>
