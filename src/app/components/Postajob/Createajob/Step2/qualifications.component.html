@@ -3,7 +3,7 @@
   <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
   <div class="row">
      <form #eduForm="ngForm" (ngSubmit)="addQualification()">
-    <div class="col-md-11 col-sm-12">
+    <div class="col-md-11 col-sm-11">
         <ng-select class="custom-style" id="PreferredEducation" [items]="qualificationsnew"
             placeholder="Select Education"
             bindLabel="QualificationName"
@@ -36,7 +36,7 @@
     <div class="col-md-12" *ngIf="qualificationList.length>0">
       <p class="description">Qualifications</p>
       <ul class="data-list key-data-list">
-        <li class="col-md-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
+        <li class="col-md-5 col-sm-5 no-exp" *ngFor="let qualifications of qualificationList; let i = index">
           <div class="col-container">
             <span title="{{qualifications.QualificationName}}" class="name">{{ add3Dots(qualifications.QualificationName,25) }}</span>
             <span class="close" (click)="deleteQualifications(i)">&times;</span>

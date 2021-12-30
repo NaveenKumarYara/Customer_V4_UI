@@ -49,6 +49,8 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import { ImmigrationComponent } from "./Createajob/Step2/immi.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobdescription.component';
+import { JobcardComponent } from './Createajob/Step4/jobcard/jobcard.component';
+import { MatDialogModule } from "@angular/material";
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobde
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    MatDialogModule,
     AngularDateTimePickerModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgSelectModule,
@@ -118,8 +121,10 @@ import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobde
     Step2SummaryComponent,
     Step3SummaryComponent,
     JobdescriptionComponent,
+    JobcardComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [CreateajobComponent, StepsComponent],
+  entryComponents: [JobcardComponent]
 })
 export class PostajobModule {}

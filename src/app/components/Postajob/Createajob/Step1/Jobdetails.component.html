@@ -78,13 +78,13 @@
 
 
 <div class="row flex flex-wrap form-row form-rows flex-align-start job-id-group">
-    <div class="col-md-3 form-cols">
+    <div class="col-sm-6 col-md-3 form-cols">
         <div class="form-group">
             <label class="question" for="keyresp">Do you have a Job ID? <small>(Optional)</small></label>
             <input class="form-control no-margin" [(ngModel)]="jobPositionId" onkeypress="return event.keyCode != 35" (ngModelChange)="changeJobPosition($event)" name="jobPositionId" placeholder="Job ID" type="text">
         </div>
     </div>
-    <div class="col-md-3 form-cols">
+    <div class="col-sm-6 col-md-3 form-cols">
         <div class="form-group">
             <label class="question">Job Priority <small>(Optional)</small></label>
             <div class="clearfix">
@@ -112,7 +112,7 @@
 
         </div>
     </div>
-    <div class="col-md-4 j-d  form-cols">
+    <div class="col-sm-6  col-md-4 j-d  form-cols">
         <label for="keyresp" class="question">Job Due on </label><small class="pull-right till-date">Till : {{ExpiryDate | date:'medium'}}</small>
         <ng-select class="custom-style" [items]="jobDuelist"  placeholder="Select Jobdue" bindLabel="DueIn" bindValue="Id"  [(ngModel)]="Expiry"  required #JobDue="ngModel"
         name="JobDue" (change)="updateJobDue()">
@@ -120,7 +120,7 @@
       <span class="text-danger"
       *ngIf="JobDue.invalid && JobDue.touched">Due Date Required.</span>
     </div>
-    <div class="col-md-2 custom-date  form-cols">
+    <div class="col-sm-6 col-md-2 custom-date  form-cols">
         <ng-container *ngIf="showDate">
             <label for="jobPri" class="jobid question">Custom Date </label>
             <!-- <ng-datepicker [(ngModel)]="ExpiryDate" [options]="Options" (ngModelChange)="changeMethod($event)"> </ng-datepicker> -->

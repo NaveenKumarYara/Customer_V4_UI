@@ -9,7 +9,7 @@
    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
    <form #domainForm="ngForm" (ngSubmit)="addDomain()">
      <div class="form-row form-sub-rows row">
-       <div class="col-md-5 form-sub-cols form-group skill-name">
+       <div class="col-sm-5 col-md-5 form-sub-cols form-group skill-name">
          <label for="">Domain Name</label>
          <ng-select class="custom-style" id="domainquestion" [items]="domainsnew" placeholder="Select Domain"
            (change)="changeValue($event)" bindLabel="DomainName" bindValue="DomainId" 
@@ -22,7 +22,7 @@
            (removed)="removed($event)"
            (typed)="typed($event)" -->
        </div>
-       <div class="form-group exp col-md-3 form-sub-cols  pt-0 domain-min-max">
+       <div class="col-sm-3 form-group exp col-md-3 form-sub-cols  pt-0 domain-min-max">
          <label for="" class="mr-0">Min Experience</label>
          <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min"
            bindLabel="minExperience"  #MinDomainEpx="ngModel" name="MinDomain" [(ngModel)]="MinimumExperience">
@@ -32,7 +32,7 @@
            It can't be greater than Max Experience!
          </small> -->
        </div>
-       <div class="form-group exp col-md-3 form-sub-cols pt-0 domain-min-max" >
+       <div class="form-group exp col-sm-3 col-md-3 form-sub-cols pt-0 domain-min-max" >
          <label for="" class="mr-0">Max Experience</label>
          <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max"
          bindLabel="name" #MaxDomainEpx="ngModel" name="MaxDomain" [(ngModel)]="MaximumExperience"> 
@@ -62,7 +62,7 @@
        <input type="input" class="form-control remaxexp" id="remaxexp" placeholder="Max. Years">
      </div> -->
      <!--Input fields instead of slider 10-12-2020-->
-     <div class="col-md-1 form-sub-cols">
+     <div class="col-md-1 col-sm-1 form-sub-cols">
        <button class="btn add-btn form-control mt-29" [disabled]="!domainForm.valid" type="submit">+</button>
      </div>
      </div>
