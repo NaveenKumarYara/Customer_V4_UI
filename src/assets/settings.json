@@ -220,5 +220,6 @@
   "GetJobCompleteness": "https://identityapi-dev.arytic.com/api/GetJobCompletenessInfo?",
   "GetAssignedList":"https://jobsapi-dev.arytic.com/api/GetJobAssignedList?",
   "SendAdminEmail":"https://emailapi-dev.arytic.com/api/SendAdminEditEmail",
-  "ShareProfile": "https://emailapi-dev.arytic.com/api/ShareProfile"
+  "ShareProfile": "https://emailapi-dev.arytic.com/api/ShareProfile",
+  "SearchSkills": "https://profileapi-dev.arytic.com/api/SearchSkills"
 }
