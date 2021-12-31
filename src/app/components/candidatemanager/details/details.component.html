@@ -44,7 +44,7 @@
                                         <span class="icon__search__dark"></span>
                                         <!-- <input type="text" class="form-control form-control-light" placeholder="Search"> -->
                                         <ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill" bindLabel="Code" bindValue="Id" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
-                                            #skill="ngModel" [virtualScroll]="true" [multiple]="true" (change)="getValues()">
+                                            #skill="ngModel" [virtualScroll]="true" [multiple]="true">
                                         </ng-select>
                                     </div>
                                     <div class="filter__buttons text-right">
