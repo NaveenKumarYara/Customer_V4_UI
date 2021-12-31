@@ -43,6 +43,7 @@ export class Settings {
   CustomerAppLogin: string;
   InviteContact: string;
   ProfileShareInvite: string;
+  ShareProfile: string;  
   StartConversation: string;
   UpdateStatusOnEmailConversation: string;
   signUp: string;
@@ -227,6 +228,4 @@ export class Settings {
   NewJobDetailsRedirect:string;
   GetAssignedList:string;
   SendAdminEmail:string;
-  ShareProfile:string;  
-  SearchSkills:string;
   }

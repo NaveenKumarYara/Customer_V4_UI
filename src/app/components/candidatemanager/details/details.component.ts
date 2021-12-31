@@ -887,6 +887,9 @@ export class DetailsComponent implements OnInit {
 		this.isJobTypeShown = false;
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
+		this.isCertificationShown = false;
+		this.isEducationShown = false;
+		this.isCompanyShown = false;
 	}
 
 	showExperience() {
@@ -895,6 +898,9 @@ export class DetailsComponent implements OnInit {
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
 		this.isJobTitleShown = false;
+		this.isCertificationShown = false;
+		this.isEducationShown = false;
+		this.isCompanyShown = false;
 		this.isExperienceShown = !this.isExperienceShown;
 	}
 
@@ -905,6 +911,9 @@ export class DetailsComponent implements OnInit {
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
 		this.isExperienceShown = false;
+		this.isCertificationShown = false;
+		this.isEducationShown = false;
+		this.isCompanyShown = false;
 		this.isJobTitleShown = !this.isJobTitleShown;
 	}
 
@@ -915,6 +924,8 @@ export class DetailsComponent implements OnInit {
 		this.isJobTypeShown = false;
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
+		this.isCertificationShown = false;
+		this.isEducationShown = false;
 		this.isCompanyShown = !this.isCompanyShown;
 	}
 
@@ -926,6 +937,7 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
+		this.isCertificationShown = false;
 		this.isEducationShown = !this.isEducationShown;
 	}
 
