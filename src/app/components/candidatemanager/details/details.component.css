@@ -560,7 +560,7 @@ a:hover {
 }
 
 .revamp-icon.revamp-icon-note {
-    background-position: -280px -13px;
+    background-position: -149px -155px;
 }
 
 .data-grid-table {
@@ -930,22 +930,11 @@ a:hover {
 	margin: 0;
 }
 
-.custom-checkbox.custom-checkbox-round .checkmark:before {
-	border-radius: 50%;
-}
-
 .custom-checkbox.custom-checkbox-round .checkmark:after {
-	border:0;
-	width: 11px;
-	height: 11px;
-	position: absolute;
-	left: -1px;
-	right: 0;
-	top: -1px;
-	bottom: 0;
-	margin: auto;
-	background-color: #2ec496;
-	border-radius: 50%;
+    border: 3px solid #2ec496;
+    border-width: 0 3px 3px 0;
+    top: 2px;
+    position: relative;
 }
 
 .custom-radio {
@@ -1326,6 +1315,7 @@ a:hover {
     font-size: 0;
 }
 
+
 .revamp__filter__sidebar__box.full em {
     display: block;
     position: relative;
@@ -1392,6 +1382,7 @@ a:hover {
     top: 5px;
     background: url(../../../../assets/images/candidate-sprites.png) 0 0 no-repeat;
 }
+
 
 .revamp__filter__sidebar__box .filter__sub__search {
     display: none;
@@ -1566,6 +1557,52 @@ a:hover {
 .revamp__filter__sidebar__box .icon.icon__certified__01 {
     background-position: -402px -104px;
 }
+
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__jobtype__01 {
+    background-position: -9px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__skills__01 {
+    background-position: -46px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__salary__01 {
+    background-position: -85px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__location__01 {
+    background-position: -123px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__experience__01 {
+    background-position: -162px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__title__01 {
+    background-position: -204px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__status__01 {
+    background-position: -244px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__domain__01 {
+    background-position: -284px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__company__01 {
+    background-position: -322px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__edu__01 {
+    background-position: -362px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__certified__01 {
+    background-position: -402px -224px;
+}
+
 
 .filter__by__tech,
 .filter__by__loc {
@@ -1782,7 +1819,7 @@ a:hover {
     margin: 0 0 0 auto;
 }
 
-.apply__job__sidepanel {
+.apply__job__sidepanel, .share__job__sidepanel {
     position: fixed;
     width: 100%;
     display: none;
@@ -1795,11 +1832,11 @@ a:hover {
     padding-top: 60px;
 }
 
-.apply__job__sidepanel.show {
+.apply__job__sidepanel.show, .share__job__sidepanel.show {
     display: block;
 }
 
-.apply__job__sidepanel .col__container {
+.apply__job__sidepanel .col__container, .share__job__sidepanel.show .col__container {
     width: 0;
     padding: 30px;
     height: 100vh;
@@ -1815,15 +1852,18 @@ a:hover {
 .apply__job__sidepanel.show .col__container {
     width: 70%;
 }
+.share__job__sidepanel.show .col__container {
+    width: 50%;
+}
 
-.apply__job__sidepanel .closebtn {
+.apply__job__sidepanel .closebtn, .share__job__sidepanel .close-btn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
 }
 
-.apply__job__sidepanel.show:before {
+.apply__job__sidepanel.show .overlay, .share__job__sidepanel .overlay {
     content: "";
     position: fixed;
     width: 100%;
@@ -8647,14 +8687,31 @@ div .status.Invited {
     padding-left: 100px;
 }
 
-.apply__job__grid .col-container { padding:10px 15px; display: block; cursor: pointer; border: 1px solid #dfdfdf; box-shadow: 4px 4px 10px rgb(158 171 192 / 20%); border-radius: 8px; font-size: 14px; color: #9eabc0; height: 100%; }
-.apply__job__grid .col-container h4 { font-size:16px; color: #6e819e }
-.apply__job__grid .col-container h5 { font-size:14px; }
-.apply__job__grid .location { margin:15px 0; } 
+.apply__job__grid .col-container { padding:10px 15px; overflow: hidden; display: block; cursor: pointer; border: 1px solid #dfdfdf; box-shadow: 4px 4px 10px rgb(158 171 192 / 20%); border-radius: 8px; font-size: 14px; color: #9eabc0; height: 100%; }
+.apply__job__grid .col-container h4 { font-size:16px; color: #b1b1ff; margin-top: 0; }
+.apply__job__grid .col-container h5 { font-size:14px; color: #6e819e; }
+.apply__job__grid .location { margin:15px -15px -10px; background: #fafafa;  padding: 10px 10px 10px 30px; position: relative; }
+.apply__job__grid .location:before { content: ""; position: absolute; left: 10px; top:10px; background:url(../../../../assets/images/candidate-sprites.png) -178px -62px no-repeat; width: 15px; height: 19px; } 
 .apply__job__grid .date { font-size:13px; }
 .apply__job__grid .col { padding:0 7px; margin:14px 0 0; }
 .apply__job__grid .col .custom-check { position: absolute; left: -999em; opacity: 0; }
-.apply__job__grid .col .custom-check:checked ~ .col-container { background:rgba(239,242,255,0.45); border-color: #2e5bff  }
+.apply__job__grid .col .custom-check:checked ~ .col-container { border-color: #2e5bff  }
 .apply__job__grid .row { margin:0 -7px }
-.apply__job__footer { padding: 10px 0; border-top: 1px solid #e0e3ef; text-align: right; margin-top: 10px; }
-.apply__job__footer .btn-filled { padding: 6px 12px; min-width: inherit; margin-left: 10px; }
+.apply__job__footer , .share__job__footer { padding: 10px 0; border-top: 1px solid #e0e3ef; text-align: right; margin-top: 10px; }
+.apply__job__footer .btn-filled, .share__job__footer .btn-filled { padding: 6px 12px; min-width: inherit; margin-left: 10px; }
+.share__job__body .input-group-btn { border-radius: 0 3px 3px 0; }
+.share__job__body .btn-secondary { padding: 0 15px; font-size: 14px; }
+.share__job__body { padding: 40px 0 0; }
+.share__job__body .social ul { font-size: 0; margin: 0; padding: 0; list-style: none; }
+.share__job__body .social li { display: inline-block; margin: 0 0 0 10px; }
+.share__job__body .social li:first { margin: 0; }
+.share__job__body .social li a { display: block;  font-size:20px; text-align: center; color: #6e819e; }
+.share__job__body .social li.fb a { font-size: 17px; }
+.share__job__body .notes { font-size: 12px; }
+
+.btn-small-filter { border-radius: 50%; padding:0; width: 36px; height: 36px; position: relative; }
+.btn-small-filter span, .revamp__filter__sidebar__box .icon .number { width: 20px; height: 20px; background: #2ec496; display: block; position: absolute; font-size: 10px; color: #fff; right: -9px; top: -6px; border-radius: 50%; line-height: 20px; }
+.revamp__filter__sidebar__box .icon .number { text-align: center; }
+.share__job__sidepanel h4 { margin:0 }
+.share__job__sidepanel .top__container { position: relative; }
+.share__job__sidepanel .top__container .close { margin-left: auto; }
