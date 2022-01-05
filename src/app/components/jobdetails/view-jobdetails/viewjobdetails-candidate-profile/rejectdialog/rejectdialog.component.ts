@@ -258,7 +258,7 @@ export class RejectdialogComponent implements OnInit {
     this.status.FullName = this.data.FullName;
     this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
     this.status.JobLocation =
-      this.jobdetailscustomer.JobLocation[0].CityName + "," + this.jobdetailscustomer.JobLocation[0].StateName;
+      this.jobdetailscustomer.JobLocation[0].CityName;
 
     this.appService.SendJobStatus(this.status).subscribe((status) => {
       this.toastr.success("Email Sent", "Success");

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewChecked } from '@angular/core';
 import { Options, LabelType, ChangeContext, PointerType  } from 'ng5-slider';
 import { Salary } from '../../models/jobPostInfo';
 import { AppService } from '../../../../app.service';
@@ -7,7 +7,7 @@ import { AppService } from '../../../../app.service';
   templateUrl: './salaryslider.component.html',
   styleUrls: ["./salaryslider.component.css"]
 })
-export class StepSalarysliderComponent implements OnInit {
+export class StepSalarysliderComponent implements OnInit, AfterViewChecked {
   salaryTypelist: any;
   // salaryType = 1;
   salaryTypeSelected: Salary;
@@ -70,6 +70,11 @@ export class StepSalarysliderComponent implements OnInit {
       // {
       //   this.show=false;
       // }
+  }
+
+  ngAfterViewChecked() {
+    this.flag = this.appService.BonusOffered!=null?this.appService.BonusOffered:false;
+    this.flag1 = this.appService.HideSalary !=null?this.appService.HideSalary:true;
   }
 
   checkValue(event: any){
