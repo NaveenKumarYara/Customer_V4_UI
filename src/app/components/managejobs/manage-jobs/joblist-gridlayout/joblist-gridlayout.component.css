@@ -24,3 +24,4 @@ img {
 .ui-pic-assignee{margin-left: 10px;}
 .card-footer-flex{justify-content: flex-end;padding: 0px;}
 .tooltip-text{display: contents;}
+.mutliple-assignee-link{border-bottom: 1px dotted darkslategrey;}
