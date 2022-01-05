@@ -1,5 +1,5 @@
 <div class="row form-rows location-rows">
-	<div class="col-sm-6 form-cols">
+	<div class="col-xs-12 col-sm-6 col-md-7 form-cols">
 		<ng-container *ngIf="!showMyContainer">
 			<form [ngClass]="!disableLoc ? '' : 'pointernone' ">
 				<label for="" class="question">At which location the job is available? 
@@ -36,7 +36,7 @@
 	</div>
 	<ng-container *ngIf="!showMyContainer">
 		<form>
-			<div class="col-sm-6 form-cols">
+			<div class="col-xs-12 col-sm-6 col-md-5 form-cols form-open-position-cols">
 				<div class="form-group position-group">
 					<label for="" class="question">How many open positions do you have for this Job Title? <span class="red">*</span>
 						<!-- <a  href="javascript:void(0)"  class="tooltip__link">
@@ -91,8 +91,8 @@
 		<div class="form-group position-group multiple-locations">
 			<!--Multiple Location implementation 19-03-2020-->
 			<ng-container *ngIf="showMyContainer">
-				<div class="row form-sub-rows flex flex-wrap flex-align-end">
-					<div class="col-sm-6 col-md-6 form-sub-cols">
+				<div class="row form-rows flex flex-wrap flex-align-end">
+					<div class="col-xs-6 col-sm-6 col-md-6 form-cols">
 						<label class="city-label">City </label>
 						<ng-select class="custom-style" id="PreferredEducationsm" [items]="mcities | async" placeholder="Select Cities"
 							bindLabel="CityName" bindValue="CityName" (ngModelChange)="getmultiSelectedOptionText($event)"
@@ -102,13 +102,13 @@
 						</ng-select>
 						<small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small>
 					</div>
-					<div class="col-sm-5 col-md-5 form-sub-cols">
+					<div class="col-xs-5 col-sm-5 col-md-5 form-cols">
 						<label class="open-positions">Open Positions <span class="red">*</span></label>
 						<!-- <input type="text" class="form-control"  required  placeholder="Enter Count"> -->
 						<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpening"
 							(ngModelChange)="Openings($event)" placeholder="Define here">
 					</div>
-					<div class="cols-sm-2 col-md-1 form-sub-cols">
+					<div class="col-xs-2 cols-sm-2 col-md-1 form-sub-cols">
 						<button class="btn add-btn form-control" type="submit" (click)="addArray()">+</button>
 					</div>
 				</div>

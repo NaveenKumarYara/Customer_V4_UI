@@ -92,7 +92,7 @@
 <div class="row flex flex-wrap form-row single-form-rows form-main-rows form-rows flex-align-start">
   <div class="col-md-6 form-cols single-form-cols">
     <div class="row form-sub-rows">
-      <div class="col-sm-6 form-sub-cols">
+      <div class="col-xs-12 col-sm-6 form-sub-cols">
         <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
           <label for="" class="question"> What is the Job Title?  <span class="red">*</span> 
             <a  href="javascript:void(0)"  class="tooltip__link">
@@ -122,7 +122,7 @@
           <!-- <i class="fa fa-info-circle"> Please add Business Domain, Department and  Category. 'Arytic' provides best profiles  <span class="red">*</span></i> -->
         </div>
       </div>
-      <div class="col-sm-6 form-sub-cols">
+      <div class="col-xs-12 col-sm-6 form-sub-cols">
           <div class="form-group re-group">
               <label for="requiredExperience" class="question">Experience  <span class="red">*</span>
                 <!-- <a  href="javascript:void(0)"  class="tooltip__link">
@@ -134,7 +134,7 @@
               <!-- : {{minYears | number:'1.0-1'}} Years - {{maxYears | number:'1.0-1'}} Years-->
               <div class="row re-exp form-sub-rows">
                   <!-- <div class="styled-select-box block experience-output"></div> -->
-                  <div class="col-sm-6 form-sub-cols">
+                  <div class="col-xs-6 col-sm-6 form-sub-cols">
                       <div class="form-group">
                         <input class="form-control"  #Min="ngModel" name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
                         <small class="error1" *ngIf="Min.invalid && Min.touched">         
@@ -147,7 +147,7 @@
                       <div>
                   </div>
                 </div>
-                <div class="col-sm-6 form-sub-cols">
+                <div class="col-xs-6 col-sm-6 form-sub-cols">
                     <div class="form-group">
                         <input class="form-control" name="max-exp"  #Max="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
                         
@@ -199,7 +199,7 @@
   <div class="col-sm-6 form-cols  single-form-cols">
     <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
       <div class="row flex flex-wrap flex-align-end form-sub-rows">
-        <div class="col-sm-6 form-sub-cols">
+        <div class="col-xs-12 col-sm-6 form-sub-cols">
           <div class="form-group">
               <label for="" class="t-p">
                 Key Responsibilities  <span class="red">*</span>
@@ -216,12 +216,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-xs-10 col-sm-5 form-sub-cols">
           <label for="" class="t-p">
             Experience  <span class="red">*</span>
           </label>
           <div class="row form-sub-rows">
-            <div class="col-sm-6 form-sub-cols">
+            <div class="col-xs-6 col-sm-6 form-sub-cols">
               <div class="form-group xs-padding">
                 <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
               </div>
@@ -234,7 +234,7 @@
                 </small> -->
               </div>
             </div>
-            <div class="col-sm-6 form-sub-cols">
+            <div class="col-xs-6 col-sm-6 form-sub-cols">
               <div class="form-group xs-padding">
                 <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">  
               </div>
@@ -249,11 +249,27 @@
             </div>
           </div>
         </div>
-          <div class="col-sm-1 add-key-btn add__btn">
+          <div class="col-xs-2 col-sm-1 add-key-btn add__btn">
           <button  class="btn add-btn form-control" type="submit" *ngIf="!keyLoading&&keyslist.length<3">+</button>
         </div>
       </div>
     </form>
+    
+    <div class="lists row form-sub-rows">
+      <div class="col-md-12 form-sub-cols" *ngIf="keyslist.length>0">
+        <p class="description">Key Responsibilities</p>
+        <ul class="data-list key-data-list">
+          <li class="col-md-12 no-exp" *ngFor="let domain of keyslist; let i = index">
+            <div class="col-container flex flex-wrap flex-align-center">
+              <span class="name">{{domain.DCode}}</span>
+              <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs</span>
+              <span class="close" (click)="deleteDomain(i)">&times;</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -323,19 +339,4 @@
      </small>
     </div>
 </div>
-
-<div class="lists row">
-    <div class="col-md-12" *ngIf="keyslist.length>0">
-      <p class="description">Key Responsibilities</p>
-      <ul class="data-list key-data-list">
-        <li class="col-md-6 no-exp" *ngFor="let domain of keyslist; let i = index">
-          <div class="col-container flex flex-wrap flex-align-center">
-            <span class="name">{{domain.DCode}}</span>
-            <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs</span>
-            <span class="close" (click)="deleteDomain(i)">&times;</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 

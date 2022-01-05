@@ -20,6 +20,7 @@ img {
     max-width: 170px;
 }
 .full-width{width:100%;}
-.ui-pic-owner{margin-right: 10px;}
+.ui-pic-owner{margin-right: 10px;width: 25px;}
 .ui-pic-assignee{margin-left: 10px;}
 .card-footer-flex{justify-content: flex-end;padding: 0px;}
+.tooltip-text{display: contents;}

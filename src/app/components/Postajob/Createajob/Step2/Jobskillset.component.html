@@ -3,17 +3,11 @@
     <!-- <label for="" class="question">What  skill sets are you are looking for in the candidate? <span class="red">*</span></label> -->
     <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
     <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
-        <div class="form-row row form-rows">
-            <div class="col-sm-5 col-sm-5 form-cols">
+        <div class="form-row row form-sub-rows">
+            <div class="col-sm-5 col-sm-5 form-sub-cols">
                 <div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
                     <div class="form__top__container flex flex-wrap">
                         <label for="">Skill Name <span class="red">*</span></label>
-                        <label for="r1primary" class="radio custom-sm-checkbox">
-                            <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()"
-                                name="isPrimary" value="Primary" class="radio-input" [checked]='true' ngModel />
-                            <span class="radio-btn"></span>
-                            <span>Primary</span>
-                        </label>
                     </div>
 
                     <ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
@@ -35,12 +29,12 @@
                     </div> -->
                 </div>
             </div>
-            <div class="col-sm-7 form-cols">
+            <div class="col-sm-7 form-sub-cols candidate-experience-cols">
                 <label for="">Experience <span class="red">*</span></label>
                 <div class="row form-sub-rows">
                     <div class="col-sm-12 form-sub-cols">
                        <div class="form-sub-rows row">
-                        <div class="form-sub-cols exp col-sm-5 col-md-5 pt-0">
+                        <div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
                             <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                             </ng-select>  -->
                             <input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text" required>
@@ -52,7 +46,7 @@
                                 Can't be 0  Exp!
                         </small>
                         </div>
-                        <div class="form-sub-cols exp col-sm-5 col-md-5 pt-0">
+                        <div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
                             <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
                             </ng-select>   -->
                             <input class="form-control"  #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience" (keypress)="numberOnly($event)" required  placeholder="Max years" type="text" required>
@@ -62,12 +56,20 @@
                                 Can't be 0  Exp!
                         </small>
                         </div> 
-                        <div class="col-md-1 col-sm-1 form-sub-cols">
+                        <div class="col-xs-1 col-md-1 col-sm-1 form-sub-cols">
                             <button class="btn add-btn mt-0"  type="submit">+</button>
                         </div>
                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-12 form-sub-cols">
+                <label for="r1primary" class="radio custom-sm-checkbox">
+                <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()"
+                        name="isPrimary" value="Primary" class="radio-input" [checked]='true' ngModel />
+                <span class="radio-btn"></span>
+                <span>Primary</span>
+                </label>
             </div>
             <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
            
@@ -93,14 +95,14 @@
              <!--Input fields instead of Slider 10-12-2020-->
    
             <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-            <div class="form-group primary col-md-2 mt-0"> 
-                <!-- <label for="r2secondary" class="radio">
+             <!-- <div class="form-group primary col-md-2 mt-0"> 
+               <label for="r2secondary" class="radio">
                 <input type="radio" id="r2secondary" name="isPrimary" value="Secondary" class="radio-input" (click)="setSkillType('Secondary')"
                     ngModel />
                 <span class="radio-btn"></span>
                 <span>Secondary</span>
-                </label> -->
-            </div>
+                </label>
+            </div> -->
            
             <!-- (click)="addSkills()" -->
         </div>
