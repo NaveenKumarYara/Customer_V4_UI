@@ -563,7 +563,7 @@ SendStatusEmail()
   this.status.ToEmailID = this.data.Email;
   this.status.FullName = this.data.FullName;
   this.status.JobTitle = this.jobdetailscustomer.JobInfo.JobTitle;
-  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName + ','+ this.jobdetailscustomer.JobLocation[0].StateName;
+  this.status.JobLocation = this.jobdetailscustomer.JobLocation[0].CityName;
   this.appService.SendJobInterviewStatus(this.status)
   .subscribe(
   status => {
