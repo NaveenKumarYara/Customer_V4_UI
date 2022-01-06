@@ -226,7 +226,7 @@
 .post-a-job-listing .jdv-company-profile { padding:20px 0;  }
 .post-a-job-listing .jdv-company-profile .company-logo { width:80px; height:80px; box-shadow:0 0 5px rgba(0,0,0,0.15); padding:0; }
 .post-a-job-listing .jdv-company-profile .company-title { padding:0 0 0 20px; }
-.post-a-job-listing .jdv-company-profile .company-title h3 { font-size:16px; color:#9eabc0; margin:0; }
+.post-a-job-listing .jdv-company-profile .company-title h3 { font-size:16px; color:#9eabc0; margin:0; padding: 0; }
 .post-a-job-listing .jdv-company-profile .company-title h2 { font-size:28px; color:#6e819e; font-weight:700; } 
 
 .post-a-job-listing .inline-icon-list { padding-bottom:20px; } 
@@ -298,7 +298,7 @@
 }
 
 
-.post-a-job-listing .jdv-skills .col-container { border-radius:0; padding:5px 10px; overflow:hidden; border-left:10px solid #c0c0c0; }
+.post-a-job-listing .jdv-skills .col-container { border-radius:0; padding:5px 10px; height: 100%; overflow:hidden; border-left:10px solid #c0c0c0; }
 .post-a-job-listing .jdv-skills .beginner .col-container { border-left-color:#66dab5; }
 .post-a-job-listing .jdv-skills .good .col-container { border-left-color:#afc8f1; }
 .post-a-job-listing .jdv-skills .professional .col-container { border-left-color:#66a1ff; }
@@ -330,7 +330,7 @@
 .post-a-job-listing  .jdv-key-section .section__title h4, 
 .post-a-job-listing  .jdv-skills .section__title h4 { font-size:14px; color:#6e819e; font-weight:600; }
 .post-a-job-listing  .jdv-skills { padding:20px; }
-.post-a-job-listing  .jdv-skills .scrollbar-container { height:120px; } 
+.post-a-job-listing  .jdv-skills .scrollbar-container { height:120px; overflow: hidden; overflow-y: auto; } 
  
 .revamp__postjob__container .step {
   width: 780px;
@@ -347,11 +347,25 @@
 }
 
 #btn_collapse { background:none;  border-radius:0; top:40px; box-shadow:none;  width:48px; height:48px; right:-26px; position:absolute; }
-#btn_collapse i { color:#fff; top:0; position:relative; z-index:100; background:url(../../images/revamp__detail__view/jdv-sprites.png)  -314px -61px no-repeat; display:block; width:48px; height:48px; }
+#btn_collapse i { color:#fff; top:0; position:relative; z-index:100; background:url(../../images/post-a-job-sprites.png) -314px -61px; display:block; width:48px; height:48px; }
 #btn_collapse:hover { background:none !important; }
 #btn_collapse .circle { border-radius: 50%; background-color: #66dab5; width: 48px; height: 48px; position: absolute; opacity: 0; top: 0; animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32); }
 #btn_collapse:hover .circle { background:#3dd0a1  } 
 #btn_collapse i:before { display: none; }
+
+.revamp__postjob__container .step .job-leftcard { display: none; opacity: 0; visibility: hidden; }
+.revamp__postjob__container .step.step__collapse .job-leftcard { display: block; visibility: visible; opacity: 1; }
+.revamp__postjob__container .step .post-job-detail { width:  100%; }
+.revamp__postjob__container .step.step__collapse .post-job-detail { width: 58.333%; }
+
+
+.revamp__postjob__container .step, .revamp__postjob__container .step.step__collapse .job-leftcard {
+  -moz-transition: all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000);
+  -webkit-transition: all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000);
+  -o-transition: all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000);
+  -ms-transition: all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000);
+  transition: all 550ms cubic-bezier(0.450, 1.000, 0.320, 1.000);
+}
 
 @keyframes scaleIn {
 	from {
@@ -406,6 +420,11 @@
     .page--create-a-job .form-steps .form-rows .form-cols.sal-open-publish label {
       padding-left: 10px !important;
     }
+
+    .revamp__postjob__container .step.step__collapse .post-job-detail { width: 54%; }
+    .revamp__postjob__container .step.step__collapse .job-leftcard { width: 46%; }
+    .post-a-job-listing .job-leftcard .two-grid-icon .row { width: 100%; }
+
   }
   @media only screen and (max-width: 991px) {
     .page--create-a-job .form-steps .form-sub-rows.single-form-rows .single-form-cols,
@@ -419,6 +438,11 @@
     .page--create-a-job .form-steps .options h4 {
       display: inline-block !important;
       margin-right: 5px !important;
+    }
+
+    .revamp__postjob__container .step.step__collapse .job-leftcard,
+    .revamp__postjob__container .step.step__collapse .post-job-detail {
+      width: 100%;
     }
   }
 

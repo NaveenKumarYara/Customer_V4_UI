@@ -176,14 +176,15 @@
                     <!-- <img src={{job?.ProfilePic}} alt="Avatar" class="ui-pic ui-pic-assignee" width="25"> -->
                     <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0">
                         <ng-container *ngIf="assignList?.RecruitingMember?.length == 1">
-                            <div class="card-footer-title">
+                            <div class="card-footer-title text-right">
                                 {{assignList?.RecruitingMember[0]?.FirstName | titlecase}}<br/>
                                  <span class="meta font-weight-bold"> Assignee </span> 
                             </div>
                         </ng-container>
                         <ng-container *ngIf="assignList?.RecruitingMember?.length>1">
-
-                            {{assignList?.RecruitingMember[0]?.FirstName | titlecase}} +
+                            <div class="card-footer-title text-right">
+                                {{assignList?.RecruitingMember[0]?.FirstName | titlecase}} 
+                            </div> +
                             <span class="meta font-weight-bold mutliple-assignee-link"> Assignee </span>
                             <span class="tooltipcontent">
                                 <ng-container *ngIf="assignList?.RecruitingMember?.length>0">

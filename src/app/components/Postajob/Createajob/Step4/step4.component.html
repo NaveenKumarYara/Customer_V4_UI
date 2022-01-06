@@ -1,50 +1,240 @@
 <div id="step4" class="tab-pane">
-  <div class="tab-inner">
-    <app-steps-step4-step1summary>
-    </app-steps-step4-step1summary>
-    <app-steps-step4-step2summary>
-    </app-steps-step4-step2summary>
-    <app-steps-step4-step3summary>
-    </app-steps-step4-step3summary>
+  <div class="revamp__postjob__container ">
+    <div class="tab-inner post-a-job-listing step" [ngClass]="jobCardshow?'step__collapse':''">
+      <a id="btn_collapse" class="go-to-top" href="javascript:void(0)" (click)="showJobCard()" title="Go to Top" style="">
+        <i class="fa fa-angle-double-up"></i>
+        <div class="circle" style="animation-delay:-3s"></div>
+        <div class="circle" style="animation-delay:-2s"></div>
+        <div class="circle" style="animation-delay:-1s"></div>
+        <div class="circle" style="animation-delay:0s"></div>
+      </a>
+      <div class="row">
+        <div class="col-sm-7 post-job-detail">
+          <app-steps-step4-step1summary>
+          </app-steps-step4-step1summary>
+          <app-steps-step4-step2summary>
+          </app-steps-step4-step2summary>
+          <app-steps-step4-step3summary>
+          </app-steps-step4-step3summary>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="" class="question">Save As Template</label>
+            </div>
+            <div class="col-md-2">
+              <div class="clearfix">
+                <label class="radio checkbox">
+                  <input type="checkbox"   class="radio-input" #template_title [(ngModel)]="flag"  [checked]="flag" (change)="checkValue(flag?1:0)">
+                  <span class="radio-btn"></span> 
+                  <span>Yes</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-10">
+                <div *ngIf="template_title.checked">
+                    <input type="text" class="form-control mt-0" #Tname="ngModel" name="TemplateName" [(ngModel)]="TemplateName" placeholder="Template Title*" required>
+                    <span class="text-danger"
+                    *ngIf="Tname.invalid && Tname.touched">Required.</span>
+                  </div>
+                 
+            </div>
+        
+            <!-- <div class="col-md-12">
+                <label for="" class="question">Job Due Date</label>
+              </div> -->
+          
+              <!-- <div class="col-md-10">
+                <div>
+                  <input type="date" class="form-control mt-0" #Edate="ngModel" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*" required>
+                  <span class="text-danger"
+                  *ngIf="Edate.invalid && Edate.touched">Due Date Required.</span>
+                </div>
+                
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-5 job-leftcard" *ngIf="jobCardshow">
+          <div class="col-container">
+            <div class="top-container">
+              <div class="row d-flex flex-wrap">
+                <div class="col-sm-6">
+                  <h6>Domain</h6>
+                  <p>Information Techology</p>
+                </div>
+                <div class="col-sm-6">
+                  <h6>Departments</h6>
+                  <p>Application Design</p>
+                </div>
+              </div><!--/.row-->
+            </div><!--/.top-container-->
+            
+            <div class="middle-container">
+              <div class="jdv-company-profile flex flex-justify-center flex-align-center">
+                <div class="company-logo flex flex-justify-center flex-align-center">
+                  <img src="../../../../../assets/images/apply-view-details/google.png" alt="">
+                </div>
+                <div class="company-title">
+                  <h3>Google</h3>
+                  <h2>Web Designer</h2>
+                </div>
+              </div><!--/.jdv-company-profile-->
+              
+              <div class="inline-icon-list">
+                <ul class="flex flex-wrap flex-align-center flex-justify-center">
+                  <li><span class="jdv-icon jdv-icon-map">Icon</span>Texas</li>
+                  <li><span class="jdv-icon jdv-icon-work">Icon</span>7-8 Years</li>
+                  <li><span class="jdv-icon jdv-icon-date">Icon</span>27 Nov, 2020</li>
+                </ul>
+              </div><!--/.inline-icon-list-->
+              
+             
+              <div class="icon-listing">
+                <ul class="flex flex-wrap flex-justify-center">
+                  <li>
+                    <span class="jdv-icon jdv-icon-status">Icon</span>
+                    <h4>Full Time</h4>
+                  </li>
+                  <li>
+                    <span class="jdv-icon jdv-icon-ribbon"><span class="number">5</span></span>
+                    <h4>Positions</h4>
+                  </li>
+                  <li>
+                    <span class="jdv-icon jdv-icon-auth">Icon</span>
+                    <h4>W2-Auth</h4>
+                  </li>
+                </ul>
+              </div>
+            
+              <div class="two-grid-icon">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <span class="jdv-icon jdv-icon-dollar">Icon</span>
+                    <h4>$10/hour<span>(280 hours/month)</span></h4>
+                    <nav class="icon-navigation">
+                      <ul>
+                        <li data-toggle="tooltip" data-placement="bottom" title="Health"><span class="jdv-icon jdv-icon-heart">Icon</span></li>
+                        <li data-toggle="tooltip" data-placement="bottom" title="Food"><span class="jdv-icon jdv-icon-food">Icon</span></li>
+                        <li data-toggle="tooltip" data-placement="bottom" title="Travel"><span class="jdv-icon jdv-icon-bus">Icon</span></li>
+                      </ul>
+                    </nav>
+                  </div><!--/.col-sm-6-->
+                  <div class="col-sm-6">
+                    <figure>
+                      <img src="../../../../../assets/images/progress.png" alt="">
+                    </figure>
+                    <h4>Profile Matching</h4>
+                  </div><!--/.col-sm-6-->
+                </div><!--/.row-->
+              </div><!--/.two-grid-icon-->
+              
+              <div class="jdv-gray-section">
+                <div class="jdv-skills">
+                  <div class="section__title">
+                    <h4>Skills</h4>
+                  </div><!--/.section__title-->
+                  
+                  <div class="scrollbar-container">
+                    <div class="row flex flex-wrap flex-align-equal">
+                      <div class="col-sm-4">
+                        <div class="col-container">
+                          <h5>UX Design</h5>
+                          <h6>Exp : 2 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                      <div class="col-sm-4 beginner">
+                        <div class="col-container">
+                          <h5>Web Design</h5>
+                          <h6>Exp : 1.5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                       <div class="col-sm-4 good">
+                        <div class="col-container">
+                          <h5>UI</h5>
+                          <h6>Exp: 5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                      <div class="col-sm-4 professional">
+                        <div class="col-container">
+                          <h5>Css3</h5>
+                          <h6>Exp : 2 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                      <div class="col-sm-4 master">
+                        <div class="col-container">
+                          <h5>Jquery</h5>
+                          <h6>Exp : 1.5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                       <div class="col-sm-4">
+                        <div class="col-container">
+                          <h5>Javascript</h5>
+                          <h6>Exp: 5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                      
+                      <div class="col-sm-4 professional">
+                        <div class="col-container">
+                          <h5>Css3</h5>
+                          <h6>Exp : 2 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                      <div class="col-sm-4 master">
+                        <div class="col-container">
+                          <h5>Jquery</h5>
+                          <h6>Exp : 1.5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                      
+                       <div class="col-sm-4">
+                        <div class="col-container">
+                          <h5>Javascript</h5>
+                          <h6>Exp: 5 Years</h6>
+                        </div><!--/.col-container-->
+                      </div><!--/.col-sm-4-->
+                    </div><!--/.row-->
+                  </div>
+                  
+                  <div class="jdv-stauts-listing">
+                    <ul>
+                      <li class="fimiliar">Familiar</li>
+                      <li class="beginner">Beginner</li>
+                      <li class="good">Good</li>
+                      <li class="professional">Professional</li>
+                      <li class="master">Master</li>
+                    </ul>
+                  </div><!--/.jdv-status-listing-->
+                </div><!--/.jdv-skills-->
+                
+                <div class="jdv-key-section">
+                  <div class="section__title">
+                    <h4>Key Responsibility</h4>
+                  </div>
+                  
+                  <ul class="flex flex-wrap flex-align-equal">
+                    <li>Buissness Analysis</li>
+                    <li>Collect required info</li>
+                    <li>Documentation</li>
+                    <li>Reporting</li>
+                  </ul>
+                </div>
+                
+              </div><!--/.gray-section-->
+            </div><!--/.middle-container-->
+          </div><!--/.col-container-->
+        </div><!--/.job-leftcard-->
+      </div>
+    </div>
   </div>
 </div>
 
 
-<div class="row tab-inner pbt26-m10">
-    <div class="col-md-12">
-        <label for="" class="question">Save As Template</label>
-    </div>
-    <div class="col-md-2">
-        <div class="clearfix">
-            <label class="radio checkbox">
-                <input type="checkbox"   class="radio-input" #template_title [(ngModel)]="flag"  [checked]="flag" (change)="checkValue(flag?1:0)">
-                 <span class="radio-btn"></span> 
-                 <span>Yes</span>
-               </label>
-        </div>
-    </div>
-    <div class="col-md-10">
-        <div *ngIf="template_title.checked">
-            <input type="text" class="form-control mt-0" #Tname="ngModel" name="TemplateName" [(ngModel)]="TemplateName" placeholder="Template Title*" required>
-            <span class="text-danger"
-            *ngIf="Tname.invalid && Tname.touched">Required.</span>
-          </div>
-         
-    </div>
 
-    <!-- <div class="col-md-12">
-      <label for="" class="question">Job Due Date</label>
-     </div> -->
-
-    <!-- <div class="col-md-10">
-      <div>
-          <input type="date" class="form-control mt-0" #Edate="ngModel" name="ExpiryDate" [(ngModel)]="ExpiryDate" placeholder="Due Date*" required>
-          <span class="text-danger"
-          *ngIf="Edate.invalid && Edate.touched">Due Date Required.</span>
-        </div>
-       
-  </div> -->
-  </div>
   <!--Role match add additional questions-->
   <!-- <div class="row tab-inner">
     <div class="col-md-4">

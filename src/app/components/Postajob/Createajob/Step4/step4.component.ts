@@ -58,6 +58,7 @@ export class Step4Component implements OnInit {
   customerId: any;
   flag: boolean = true;
   team: any;
+  jobCardshow: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private toastr: ToastsManager,
@@ -154,6 +155,10 @@ export class Step4Component implements OnInit {
 
   ngOnInit() {
     this.JobIds = this.appService.JobIds;
+  }
+
+  showJobCard() {
+    this.jobCardshow = !this.jobCardshow
   }
 
   checkValue(event: any) {
