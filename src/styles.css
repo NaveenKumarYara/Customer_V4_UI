@@ -27137,3 +27137,20 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
 		padding: 15px 20px;
 	}
 }
+
+.grid-view-custom .grid-custom-col:nth-child(3n+1) {
+    clear: left;
+}
+
+.page--manage-jobs .grid-custom-col .card .card-footer .card-footer-title .meta {
+    display: inline-block;
+}
+
+@media only screen and (max-width:1199px) {
+    .grid-view-custom .grid-custom-col:nth-child(3n+1) {
+        clear: none;
+    }
+    .grid-view-custom .grid-custom-col:nth-child(2n+1) {
+        clear: left;
+    }
+}
