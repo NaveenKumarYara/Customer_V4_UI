@@ -8688,7 +8688,7 @@ div .status.Invited {
 }
 
 .apply__job__grid .col-container { padding:10px 15px; overflow: hidden; display: block; cursor: pointer; border: 1px solid #dfdfdf; box-shadow: 4px 4px 10px rgb(158 171 192 / 20%); border-radius: 8px; font-size: 14px; color: #9eabc0; height: 100%; }
-.apply__job__grid .col-container h4 { font-size:16px; color: #b1b1ff; margin-top: 0; }
+.apply__job__grid .col-container h4 { font-size:16px; background-color: #b1b1ff; color:#fff; margin:-10px -15px 15px; padding: 10px 15px; }
 .apply__job__grid .col-container h5 { font-size:14px; color: #6e819e; }
 .apply__job__grid .location { margin:15px -15px -10px; background: #fafafa;  padding: 10px 10px 10px 30px; position: relative; }
 .apply__job__grid .location:before { content: ""; position: absolute; left: 10px; top:10px; background:url(../../../../assets/images/candidate-sprites.png) -178px -62px no-repeat; width: 15px; height: 19px; } 

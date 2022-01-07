@@ -1,14 +1,14 @@
 <div id="step4" class="tab-pane">
   <div class="revamp__postjob__container ">
     <div class="tab-inner post-a-job-listing step" [ngClass]="jobCardshow?'step__collapse':''">
-      <a id="btn_collapse" class="go-to-top" href="javascript:void(0)" (click)="showJobCard()" title="Go to Top" style="">
+      <a id="btn_collapse" class="go-to-top" href="javascript:void(0)" (click)="showJobCard()" title="Go to Top" >
         <i class="fa fa-angle-double-up"></i>
         <div class="circle" style="animation-delay:-3s"></div>
         <div class="circle" style="animation-delay:-2s"></div>
         <div class="circle" style="animation-delay:-1s"></div>
         <div class="circle" style="animation-delay:0s"></div>
       </a>
-      <div class="row">
+      <div class="row flex flex-wrap flex-align-start">
         <div class="col-sm-7 post-job-detail">
           <app-steps-step4-step1summary>
           </app-steps-step4-step1summary>
@@ -53,14 +53,18 @@
           </div>
         </div>
         <div class="col-md-5 job-leftcard" *ngIf="jobCardshow">
+          <div class="call-to-action">
+            <a href="#" class="btn btn-border btn-prev show-in-mobile" (click)="backtoStep3()" routerLink="/app-createajob/app-steps-step3">Back</a>
+            <a class="btn btn-filled show-in-mobile " href="javascript:void(0)"  (click)="postJob(4)">Post Job</a>
+          </div>
           <div class="col-container">
             <div class="top-container">
               <div class="row d-flex flex-wrap">
-                <div class="col-sm-6">
+                <div class="col-xs-6 col-sm-6">
                   <h6>Domain</h6>
                   <p>Information Techology</p>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-xs-6 col-sm-6">
                   <h6>Departments</h6>
                   <p>Application Design</p>
                 </div>
@@ -134,42 +138,42 @@
                   
                   <div class="scrollbar-container">
                     <div class="row flex flex-wrap flex-align-equal">
-                      <div class="col-sm-4">
+                      <div class="col-xs-6 col-sm-4">
                         <div class="col-container">
                           <h5>UX Design</h5>
                           <h6>Exp : 2 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                      <div class="col-sm-4 beginner">
+                      <div class="col-xs-6 col-sm-4 beginner">
                         <div class="col-container">
                           <h5>Web Design</h5>
                           <h6>Exp : 1.5 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                       <div class="col-sm-4 good">
+                       <div class="col-xs-6 col-sm-4 good">
                         <div class="col-container">
                           <h5>UI</h5>
                           <h6>Exp: 5 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                      <div class="col-sm-4 professional">
+                      <div class="col-xs-6 col-sm-4 professional">
                         <div class="col-container">
                           <h5>Css3</h5>
                           <h6>Exp : 2 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                      <div class="col-sm-4 master">
+                      <div class="col-xs-6 col-sm-4 master">
                         <div class="col-container">
                           <h5>Jquery</h5>
                           <h6>Exp : 1.5 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                       <div class="col-sm-4">
+                       <div class="col-xs-6 col-sm-4">
                         <div class="col-container">
                           <h5>Javascript</h5>
                           <h6>Exp: 5 Years</h6>
@@ -177,21 +181,21 @@
                       </div><!--/.col-sm-4-->
                       
                       
-                      <div class="col-sm-4 professional">
+                      <div class="col-xs-6 col-sm-4 professional">
                         <div class="col-container">
                           <h5>Css3</h5>
                           <h6>Exp : 2 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                      <div class="col-sm-4 master">
+                      <div class="col-xs-6 col-sm-4 master">
                         <div class="col-container">
                           <h5>Jquery</h5>
                           <h6>Exp : 1.5 Years</h6>
                         </div><!--/.col-container-->
                       </div><!--/.col-sm-4-->
                       
-                       <div class="col-sm-4">
+                       <div class="col-xs-6 col-sm-4">
                         <div class="col-container">
                           <h5>Javascript</h5>
                           <h6>Exp: 5 Years</h6>
