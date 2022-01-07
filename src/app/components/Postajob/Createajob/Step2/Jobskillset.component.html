@@ -1,79 +1,82 @@
-
 <div class="form-group candidate-group gp-0">
-    <!-- <label for="" class="question">What  skill sets are you are looking for in the candidate? <span class="red">*</span></label> -->
-    <!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
-    <form novalidate (ngSubmit)="addSkills()" #f="ngForm">
-        <div class="form-row row form-sub-rows">
-            <div class="col-sm-5 col-sm-5 form-sub-cols">
-                <div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
-                    <div class="form__top__container flex flex-wrap">
-                        <label for="">Skill Name <span class="red">*</span></label>
-                    </div>
-                    
-                    <ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
-                        bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
-                        [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
-                        #skill="ngModel" [addTag]="addSkill" addTagText="Add Skill" [virtualScroll]="true" required>
-                    </ng-select>
-                    <input type hidden id="skills">
-                    <small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
-                    <!-- <div *ngIf="skill.touched">
-                    <div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
-                        <div [hidden]="!skill.errors.required">
-                        Skill Name is required.
-                        </div>
-                        <div *ngIf="skill.errors.minlength">
-                        Please select provider from list or add new
-                        </div>
-                    </div>
-                    </div> -->
-                </div>
-            </div>
-            <div class="col-sm-7 form-sub-cols candidate-experience-cols">
-                <label for="">Experience <span class="red">*</span></label>
-                <div class="row form-sub-rows">
-                    <div class="col-sm-12 form-sub-cols">
-                       <div class="form-sub-rows row">
-                        <div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
-                            <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
+	<!-- <label for="" class="question">What  skill sets are you are looking for in the candidate? <span class="red">*</span></label> -->
+	<!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
+	<form novalidate (ngSubmit)="addSkills()" #f="ngForm">
+		<div class="form-row row form-sub-rows flex flex-wrap flex-align-start">
+			<div class="col-xs-12 col-sm-6 col-sm-5 form-sub-cols">
+				<div class="row form-sub-rows">
+					<div class="col-xs-4 col-sm-4 form-sub-cols">
+						<label for="r1primary" class="radio custom-sm-checkbox">
+							<input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary"
+								value="Primary" class="radio-input" [checked]='true' ngModel />
+							<span class="radio-btn"></span>
+							<span>Primary</span>
+						</label>
+					</div>
+					<div class="col-xs-8 col-sm-8 form-sub-cols">
+						<div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
+							<label for="">Skill Name <span class="red">*</span></label>
+							<ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
+								bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
+								[loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
+								#skill="ngModel" [addTag]="addSkill" addTagText="Add Skill" [virtualScroll]="true" required>
+							</ng-select>
+							<input type hidden id="skills">
+							<small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
+							<!-- <div *ngIf="skill.touched">
+								<div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
+										<div [hidden]="!skill.errors.required">
+										Skill Name is required.
+										</div>
+										<div *ngIf="skill.errors.minlength">
+										Please select provider from list or add new
+										</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 form-sub-cols candidate-experience-cols">
+				<label for="">Experience <span class="red">*</span></label>
+				<div class="row form-sub-rows">
+					<div class="col-sm-12 form-sub-cols">
+						<div class="form-sub-rows row">
+							<div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
+								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
                             </ng-select>  -->
-                            <input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text" required>
-                            <small class="text-danger error1 " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
-                            <!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
+								<input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience"
+									(keypress)="numberOnly($event)" required placeholder="Min years" type="text" required>
+								<small class="text-danger error1 " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
+								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
                                     Can't be > Max Exp!
                             </small> -->
-                            <small class="text-danger error1" *ngIf="minExp.value==0">
-                                Can't be 0  Exp!
-                        </small>
-                        </div>
-                        <div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
-                            <!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
+								<small class="text-danger error1" *ngIf="minExp.value==0">
+									Can't be 0 Exp!
+								</small>
+							</div>
+							<div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
+								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
                             </ng-select>   -->
-                            <input class="form-control"  #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience" (keypress)="numberOnly($event)" required  placeholder="Max years" type="text" required>
-                            <small class="text-danger error1" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
-                            <!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small> -->
-                            <small class="text-danger error1" *ngIf="maxExp.value==0">
-                                Can't be 0  Exp!
-                        </small>
-                        </div> 
-                        <div class="col-xs-1 col-md-1 col-sm-1 form-sub-cols">
-                            <button class="btn add-btn mt-0"  type="submit">+</button>
-                        </div>
-                       </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 form-sub-cols">
-                <label for="r1primary" class="radio custom-sm-checkbox">
-                <input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()"
-                        name="isPrimary" value="Primary" class="radio-input" [checked]='true' ngModel />
-                <span class="radio-btn"></span>
-                <span>Primary</span>
-                </label>
-            </div>
-            <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-           
-            <!-- <div class="form-group exp col-md-4 pt-0">
+								<input class="form-control" #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience"
+									(keypress)="numberOnly($event)" required placeholder="Max years" type="text" required>
+								<small class="text-danger error1" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
+								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small> -->
+								<small class="text-danger error1" *ngIf="maxExp.value==0">
+									Can't be 0 Exp!
+								</small>
+							</div>
+							<div class="col-xs-1 col-md-1 col-sm-1 form-sub-cols">
+								<button class="btn add-btn mt-0" type="submit">+</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
+
+			<!-- <div class="form-group exp col-md-4 pt-0">
             <label for="">Required Experience</label>
             <ng5-slider [(value)]="minexperience"
                 [(highValue)]="maxexperience"
@@ -84,18 +87,18 @@
                 name="hourly">
             </ng5-slider> 
             </div>  -->
-            <!--Input fields instead of Slider 10-12-2020-->
-            <!-- <div class="form-group re-exp col-md-2 pt-0">
+			<!--Input fields instead of Slider 10-12-2020-->
+			<!-- <div class="form-group re-exp col-md-2 pt-0">
                 <label for="reexp1">Required Experience</label>
                 <input class="form-control" id="reexp1" placeholder="Min. Years" type="input">
             </div>
             <div class="form-group skill-re-max col-md-2 pt-0">
                 <input class="form-control" id="remax1" placeholder="Max. Years" type="input">
             </div> -->
-             <!--Input fields instead of Slider 10-12-2020-->
-   
-            <!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
-             <!-- <div class="form-group primary col-md-2 mt-0"> 
+			<!--Input fields instead of Slider 10-12-2020-->
+
+			<!--Requested to utilize the ng-select for populating the Min & Max Experience in 0.1 range-->
+			<!-- <div class="form-group primary col-md-2 mt-0"> 
                <label for="r2secondary" class="radio">
                 <input type="radio" id="r2secondary" name="isPrimary" value="Secondary" class="radio-input" (click)="setSkillType('Secondary')"
                     ngModel />
@@ -103,50 +106,49 @@
                 <span>Secondary</span>
                 </label>
             </div> -->
-           
-            <!-- (click)="addSkills()" -->
-        </div>
-    </form>
-    <div class="lists row form-rows">
-        <div class="col-md-12 form-cols" *ngIf="primaryjobskills && primaryjobskills.length > 0">
-            <h4 for="" class="light">Primary Skills</h4>
-            <ul class="data-list key-data-list">
-                <li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
-                    <div class="col-container flex flex-wrap flex-align-center">
-                        <span title="{{primaryjobskill.SkillName}}"
-                            class="name">{{ add3Dots(primaryjobskill.SkillName,25) }}</span>
-                        <span class="experience" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
-                            {{(primaryjobskill.MinimumExp) | skillmonths}} -
-                            {{(primaryjobskill.MaximumExp)  | skillmonths}} Yrs</span>
-                        <ng-template #noPrimaryExperience>
-                            <span class="experience"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
-                                Yrs</span>
-                        </ng-template>
-                        <span class="close" (click)="deletePrimarySkills(i)">&times;</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
 
-        <div class="col-md-12 mt-20 form-cols" *ngIf="secondaryjobskills && secondaryjobskills.length > 0">
-            <h4 for="" class="light">Secondary Skills</h4>
-            <ul class="data-list key-data-list">
-                <li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
-                    <div class="col-container flex flex-wrap flex-align-center">
-                        <span title="{{secondaryjobskill.SkillName}}"
-                            class="name">{{ add3Dots(secondaryjobskill.SkillName,25) }}</span>
-                        <span class="experience" *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience">
-                            {{(secondaryjobskill.MinimumExp) | number:'1.0-1' | skillmonths}} -
-                            {{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
-                        <ng-template #noSecondaryExperience>
-                            <span class="experience">{{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}}
-                                Yrs</span>
-                        </ng-template>
-                        <span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
-                    </div>
-                    <!-- <span class="name">{{secondaryjobskill.SkillName}}</span> -->
-                </li>
-            </ul>
-        </div>
-    </div>
+			<!-- (click)="addSkills()" -->
+		</div>
+	</form>
+	<div class="lists row form-rows">
+		<div class="col-md-12 form-cols" *ngIf="primaryjobskills && primaryjobskills.length > 0">
+			<h4 for="" class="light">Primary Skills</h4>
+			<ul class="data-list key-data-list">
+				<li *ngFor="let primaryjobskill of primaryjobskills; let i = index">
+					<div class="col-container flex flex-wrap flex-align-center">
+						<span title="{{primaryjobskill.SkillName}}" class="name">{{ add3Dots(primaryjobskill.SkillName,25) }}</span>
+						<span class="experience" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
+							{{(primaryjobskill.MinimumExp) | skillmonths}} -
+							{{(primaryjobskill.MaximumExp) | skillmonths}} Yrs</span>
+						<ng-template #noPrimaryExperience>
+							<span class="experience"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
+								Yrs</span>
+						</ng-template>
+						<span class="close" (click)="deletePrimarySkills(i)">&times;</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-12 mt-20 form-cols" *ngIf="secondaryjobskills && secondaryjobskills.length > 0">
+			<h4 for="" class="light">Secondary Skills</h4>
+			<ul class="data-list key-data-list">
+				<li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
+					<div class="col-container flex flex-wrap flex-align-center">
+						<span title="{{secondaryjobskill.SkillName}}" class="name">{{ add3Dots(secondaryjobskill.SkillName,25)
+							}}</span>
+						<span class="experience" *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience">
+							{{(secondaryjobskill.MinimumExp) | number:'1.0-1' | skillmonths}} -
+							{{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}} Yrs</span>
+						<ng-template #noSecondaryExperience>
+							<span class="experience">{{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths}}
+								Yrs</span>
+						</ng-template>
+						<span class="close" (click)="deleteSecondarySkills(i)">&times;</span>
+					</div>
+					<!-- <span class="name">{{secondaryjobskill.SkillName}}</span> -->
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>

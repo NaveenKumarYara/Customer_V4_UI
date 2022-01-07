@@ -219,15 +219,24 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
   margin-left: 0;
 }
 
-.page--create-a-job .form-steps .form-rows .skill-name .custom-sm-checkbox {
-  margin-left: auto;
+.page--create-a-job .form-steps .form-rows  .custom-sm-checkbox {
+  padding: 8px 5px;
   margin-top: 0;
-  margin-bottom: 0;
+  border: 1px solid #E0E3EF;
+  border-radius: 5px;
+}
+
+.page--create-a-job .form-steps .form-rows  .custom-sm-checkbox span {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
 }
 
 .page--create-a-job .form-steps .form-rows .custom-sm-checkbox.radio .radio-btn {
   width: 24px;
   height: 24px;
+  margin:0 auto 10px;
 }
 
 .page--create-a-job .form-steps .form-rows .form-cols.sal-open-publish label {
