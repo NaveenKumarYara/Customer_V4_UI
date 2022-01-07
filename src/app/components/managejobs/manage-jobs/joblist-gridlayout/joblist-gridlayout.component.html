@@ -177,13 +177,13 @@
                     <div class="tooltip-text" *ngIf="assignList?.RecruitingMember?.length>0">
                         <ng-container *ngIf="assignList?.RecruitingMember?.length == 1">
                             <div class="card-footer-title text-right">
-                                {{assignList?.RecruitingMember[0]?.FirstName | titlecase}}<br/>
+                                {{assignList?.RecruitingMember[0]?.FirstName.split('-')[0] | titlecase}}<br/>
                                  <span class="meta font-weight-bold"> Assignee </span> 
                             </div>
                         </ng-container>
                         <ng-container *ngIf="assignList?.RecruitingMember?.length>1">
                             <div class="card-footer-title text-right">
-                                {{assignList?.RecruitingMember[0]?.FirstName | titlecase}} 
+                                {{assignList?.RecruitingMember[0]?.FirstName.split('-')[0] | titlecase}} 
                             </div> +
                             <span class="meta font-weight-bold mutliple-assignee-link"> Assignee </span>
                             <span class="tooltipcontent">
@@ -191,7 +191,7 @@
 
                                     <div *ngFor="let r of assignList?.RecruitingMember">
 
-                                        {{r?.FirstName | titlecase}};
+                                        {{r?.FirstName.split('-')[0] | titlecase}};
                                     </div>
 
                                 </ng-container>
