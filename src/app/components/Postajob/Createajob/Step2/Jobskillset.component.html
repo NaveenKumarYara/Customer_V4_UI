@@ -9,7 +9,7 @@
                     <div class="form__top__container flex flex-wrap">
                         <label for="">Skill Name <span class="red">*</span></label>
                     </div>
-
+                    
                     <ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
                         bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
                         [loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"

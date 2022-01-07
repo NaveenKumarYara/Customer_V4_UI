@@ -1,15 +1,14 @@
-<div id="modal-content-wrapper">
+<div id="modal-content-wrapper" class="preview-mat-container">
   <header id="modal-header">
       <h1 id="modal-title">Preview</h1>
   </header>
   <section id="modal-body">
       <p>
-          <b>
-            Please reverify the data provided  for Business domain, departments, categories & title is not editable, would you like to proceed?
-          </b></p>
+          Please reverify the data provided  for Business domain, departments, categories & title is not editable, would you like to proceed?
+      </p>
   </section>
   <footer id="modal-footer">
-      <button mat-raised-button id="modal-action-button" (click)="onYesClicked()">Proceed</button>
-      <button mat-raised-button id="modal-cancel-button" (click)="onNoClicked()">Close</button>
+      <button mat-raised-button class="btn btn-filled" (click)="onYesClicked()">Proceed</button>
+      <button mat-raised-button class="btn btn-default" (click)="onNoClicked()">Close</button>
   </footer>
 </div>
