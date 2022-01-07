@@ -396,16 +396,23 @@ if (this.appService.isDrafted.value != null) {
     // {
     //   this.insertJob.PreferredLocationId = 'Remote, , ';
     // }
-    this.locations.locationwisejobs.filter(x=>{
-      if(x.CityName=='Remote, , ')
-        {
-          this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString()
-        }
-        else
-        {
-          this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-        }      
-    })
+    if(this.locations.locationwisejobs.length>0)
+    {
+      this.locations.locationwisejobs.filter(x=>{
+        if(x.CityName=='Remote, , ')
+          {
+            this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString()
+          }
+          else
+          {
+            this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+          }      
+      })
+    }
+    else
+    {
+      this.insertJob.PreferredLocationId = 'Remote, , ';
+    }
     this.appService.postjob(this.insertJob).subscribe(data => {
       if (data) {
         this.insertJob.JobId = data;
