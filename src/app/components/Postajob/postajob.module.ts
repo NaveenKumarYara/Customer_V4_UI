@@ -51,6 +51,8 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { JobdescriptionComponent } from './Createajob/Step1/jobdescription/jobdescription.component';
 import { JobcardComponent } from './Createajob/Step4/jobcard/jobcard.component';
 import { MatDialogModule } from "@angular/material";
+import { ConverttoMonthPipe } from "./Createajob/Step4/months.pipe";
+import { NgCircleProgressModule } from "ng-circle-progress";
 @NgModule({
   imports: [
     CommonModule,
@@ -62,6 +64,7 @@ import { MatDialogModule } from "@angular/material";
     AngularDateTimePickerModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgSelectModule,
+    NgCircleProgressModule.forRoot({}),
     NgDatepickerModule,
     RouterModule.forChild([
       {
@@ -122,6 +125,7 @@ import { MatDialogModule } from "@angular/material";
     Step3SummaryComponent,
     JobdescriptionComponent,
     JobcardComponent,
+    ConverttoMonthPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [CreateajobComponent, StepsComponent],
