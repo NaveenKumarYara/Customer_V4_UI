@@ -12347,6 +12347,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 
 .page--manage-jobs .card .meta .location {
     border-right: 1px solid #E0E3EC;
+    position: relative;
 }
 
 .page--manage-jobs .card .status {

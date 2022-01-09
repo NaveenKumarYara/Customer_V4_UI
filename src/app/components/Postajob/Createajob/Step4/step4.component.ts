@@ -393,7 +393,8 @@ export class Step4Component implements OnInit {
           // The user can't close the dialog by clicking outside its body
           dialogConfig.id = "modal-component";
           dialogConfig.height = "300px";
-          dialogConfig.width = "300px";
+          dialogConfig.width = "600px";
+          dialogConfig.panelClass = "preview-custom-modal";
           // https://material.angular.io/components/dialog/overview
           const modalDialog = this.matDialog.open(JobcardComponent, dialogConfig);    
           modalDialog.afterClosed().subscribe(result => {

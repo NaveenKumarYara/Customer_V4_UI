@@ -3,70 +3,70 @@
 	<!-- <p class="description">Share details so we can find you the most eligible candidates.</p> -->
 	<form novalidate (ngSubmit)="addSkills()" #f="ngForm">
 		<div class="form-row row form-sub-rows flex flex-wrap flex-align-start">
-			<div class="col-xs-12 col-sm-6 col-sm-5 form-sub-cols">
-				<div class="row form-sub-rows">
-					<div class="col-xs-4 col-sm-4 form-sub-cols">
-						<label for="r1primary" class="radio custom-sm-checkbox">
-							<input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary"
-								value="Primary" class="radio-input" [checked]='true' ngModel />
-							<span class="radio-btn"></span>
-							<span>Primary</span>
-						</label>
-					</div>
-					<div class="col-xs-8 col-sm-8 form-sub-cols">
-						<div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
-							<label for="">Skill Name <span class="red">*</span></label>
-							<ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
-								bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
-								[loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
-								#skill="ngModel" [addTag]="addSkill" addTagText="Add Skill" [virtualScroll]="true" required>
-							</ng-select>
-							<input type hidden id="skills">
-							<small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
-							<!-- <div *ngIf="skill.touched">
-								<div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
-										<div [hidden]="!skill.errors.required">
-										Skill Name is required.
-										</div>
-										<div *ngIf="skill.errors.minlength">
-										Please select provider from list or add new
-										</div>
+			<div class="col-xs-12 col-sm-4 form-sub-cols">
+				<div class="skill-name" [class.has.error]="skill.invalid && skill.touched">
+					<label for="">Skill Name <span class="red">*</span></label>
+					<ng-select class="custom-style" [items]="skilllist | async" placeholder="Search (or) Add Skill"
+						bindLabel="name" bindValue="SkillName" [typeahead]="selectedskillinput" [hideSelected]="true"
+						[loading]="skilltitleloading" [(ngModel)]="selectedSkillName" minlength="1" name="selectedSkillName"
+						#skill="ngModel" [addTag]="addSkill" addTagText="Add Skill" [virtualScroll]="true" required>
+					</ng-select>
+					<input type hidden id="skills">
+					<small class="text-danger error1 error__required lg" *ngIf="skill.invalid && skill.touched ">Required.</small>
+					<!-- <div *ngIf="skill.touched">
+						<div *ngIf="skill.errors && (skill.dirty)" class="alert alert-danger">
+								<div [hidden]="!skill.errors.required">
+								Skill Name is required.
 								</div>
-							</div> -->
+								<div *ngIf="skill.errors.minlength">
+								Please select provider from list or add new
+								</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-6 form-sub-cols candidate-experience-cols">
-				<label for="">Experience <span class="red">*</span></label>
+			<div class="col-xs-12 col-sm-8 form-sub-cols candidate-experience-cols">
 				<div class="row form-sub-rows">
-					<div class="col-sm-12 form-sub-cols">
+					<div class="col-xs-12 col-sm-8 form-sub-cols">
+						<label for="">Experience <span class="red">*</span></label>
 						<div class="form-sub-rows row">
-							<div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
+							<div class="col-xs-6 form-sub-cols exp col-sm-6 col-md-6 pt-0">
 								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Min" bindLabel="minExperience" name="minExperience" #minExp="ngModel" min="1" [(ngModel)]="minexperience" required>
-                            </ng-select>  -->
+               	</ng-select>  -->
 								<input class="form-control" name="minExperience" #minExp="ngModel" [(ngModel)]="minexperience"
 									(keypress)="numberOnly($event)" required placeholder="Min years" type="text" required>
-								<small class="text-danger error1 " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
+								<small class="text-danger error1 error__required " *ngIf="minExp.invalid && minExp.touched "> Required.</small>
 								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value">
-                                    Can't be > Max Exp!
-                            </small> -->
+                  Can't be > Max Exp!
+                </small> -->
 								<small class="text-danger error1" *ngIf="minExp.value==0">
 									Can't be 0 Exp!
 								</small>
 							</div>
-							<div class="col-xs-5 form-sub-cols exp col-sm-5 col-md-5 pt-0">
+							<div class="col-xs-6 form-sub-cols exp col-sm-6 col-md-6 pt-0">
 								<!-- <ng-select class="custom-style" [items]="expYears" (change)="getExpYears()" [hideSelected]="true" placeholder="Max" bindLabel="name" #maxExp="ngModel" min="1" name="maxExperience" [(ngModel)]="maxexperience" required>
-                            </ng-select>   -->
+                </ng-select>   -->
 								<input class="form-control" #maxExp="ngModel" name="maxExperience" [(ngModel)]="maxexperience"
 									(keypress)="numberOnly($event)" required placeholder="Max years" type="text" required>
-								<small class="text-danger error1" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
+								<small class="text-danger error1 error__required" *ngIf="maxExp.invalid && maxExp.touched ">Required.</small>
 								<!-- <small class="text-danger error1" *ngIf="minExp.value > maxExp.value"> Can't be < Min Exp! </small> -->
 								<small class="text-danger error1" *ngIf="maxExp.value==0">
 									Can't be 0 Exp!
 								</small>
 							</div>
-							<div class="col-xs-1 col-md-1 col-sm-1 form-sub-cols">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 form-sub-cols form-primay-sub-cols">
+						<label for="">Primary</label>
+						<div class="row form-sub-rows">
+							<div class="col-xs-6 col-sm-8 form-sub-cols">
+								<label for="r1primary" class="radio custom-sm-checkbox">
+									<input type="checkbox" id="r1primary" [(ngModel)]="skillType" (change)="setSkillType()" name="isPrimary"
+										value="Primary" class="radio-input" [checked]='true' ngModel />
+									<span class="radio-btn"></span>
+								</label>
+							</div>
+							<div class="col-xs-6 col-md-4 col-sm-4 form-sub-cols">
 								<button class="btn add-btn mt-0" type="submit">+</button>
 							</div>
 						</div>
@@ -130,7 +130,7 @@
 			</ul>
 		</div>
 
-		<div class="col-md-12 mt-20 form-cols" *ngIf="secondaryjobskills && secondaryjobskills.length > 0">
+		<div class="col-md-12 form-cols" *ngIf="secondaryjobskills && secondaryjobskills.length > 0">
 			<h4 for="" class="light">Secondary Skills</h4>
 			<ul class="data-list key-data-list">
 				<li *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
