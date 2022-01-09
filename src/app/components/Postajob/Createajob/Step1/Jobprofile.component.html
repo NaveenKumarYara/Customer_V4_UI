@@ -137,7 +137,7 @@
                   <div class="col-xs-6 col-sm-6 form-sub-cols">
                       <div class="form-group">
                         <input class="form-control"  #Min="ngModel" name="min-exp" [(ngModel)]="minExperience" (keypress)="numberOnly($event)" required (input)="onMinChange()" placeholder="Min years" type="text">
-                        <small class="error1" *ngIf="Min.invalid && Min.touched">         
+                        <small class="error1 error__required" *ngIf="Min.invalid && Min.touched">         
                           *Required
                         </small>
                         <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <input class="form-control" name="max-exp"  #Max="ngModel"  (keypress)="numberOnly($event)" [(ngModel)]="maxExperience"  required (input)="onMaxChange()" placeholder="Max years" type="text">
                         
-                        <small class="error1" *ngIf="Max.invalid && Max.touched">         
+                        <small class="error1 error__required" *ngIf="Max.invalid && Max.touched">         
                           *Required
                         </small>
                         <small class="error1 error__custom" *ngIf="minExperience> maxExperience">
@@ -226,7 +226,7 @@
                 <input class="form-control no-margin" #Minexp="ngModel" name="min-exp" [(ngModel)]="MinimumExperience" (keypress)="numberOnly($event)" required  placeholder="Min years" type="text">
               </div>
               <div>
-                <small class="error1" *ngIf="Minexp.invalid && Minexp.touched">         
+                <small class="error1 error__required" *ngIf="Minexp.invalid && Minexp.touched">         
                   *Required
                 </small>
                 <!-- <small class="error1" *ngIf="MinimumExperience> MaximumExperience">
@@ -239,7 +239,7 @@
                 <input class="form-control no-margin"  #Maxexp="ngModel" name="max-exp" [(ngModel)]="MaximumExperience" (keypress)="numberOnly($event)" required placeholder="Max years" type="text">  
               </div>
               <div>
-                <small class="error1" *ngIf="Maxexp.invalid && Maxexp.touched">         
+                <small class="error1 error__required"*ngIf="Maxexp.invalid && Maxexp.touched">         
                   *Required
                 </small>
                 <!-- <small class="error1" *ngIf="MaximumExperience<MinimumExperience">
