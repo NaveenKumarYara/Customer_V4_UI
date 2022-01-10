@@ -435,6 +435,11 @@ export class JobdetailsService {
     });
   }
 
+  parseSovren(formData: FormData) {
+    const apiUrl = this.settingsService.settings.ParseSovren;
+    return this.http.post<any>(apiUrl, formData).pipe();
+}
+
   RequestRefernce(body) {
     return this.http.post(this.settingsService.settings.CustomerRequestRefernce, body)
     .map((res: Response) => res)
