@@ -204,6 +204,9 @@ export class DetailsComponent implements OnInit {
 	educationName: any;
 	isCertificationName: any;
 	certificationName: any;
+	domainList: any;
+	domainLoading: boolean;
+	isDomainShown: boolean;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -226,6 +229,7 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 		this.getActiveJobs();
 		this.getSkills();
+		this.getDomains();
 		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 			.subscribe(res => {
 				this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -257,13 +261,32 @@ export class DetailsComponent implements OnInit {
 		debugger;
 		let k = 10;
 	}
+	getDomains() {
+		this.domainList = concat(
+			of([]), // default items
+			this.selectedskillinput.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				tap(() => this.domainLoading = true),
+				switchMap(term => this.appService.searchDomains(term).pipe(
+					catchError(() => of([])), // empty list on error
+					tap(data => {
+						debugger;
+						let y = data;
+						this.domainLoading = false;
+					})
+				))
+			)
+		);
+		debugger;
+		let k = 10;
+	}
 
 	GetContacts() {
 		return this.appService.GetContactInfo(this.customerId, 0).subscribe(res => {
 			this.GetContactsList = res;
 		});
 	}
-
 	getcustomerusers() {
 		return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
 			this.customercontacts = res;
@@ -271,7 +294,6 @@ export class DetailsComponent implements OnInit {
 				name => name.FirstName != "Invited" && name.IsRemove === false);
 		});
 	}
-
 	clearTeamMemebers() {
 		for (let i = 0; i <= 10; i++) {
 			const index = i;
@@ -279,7 +301,6 @@ export class DetailsComponent implements OnInit {
 		}
 		this.deleteTeammember(0);
 	}
-
 	public addTeammembers() {
 		if (this.getTeammember !== undefined) {
 			const check = this.teamExists(this.getTeammember, this.teammemberslist);
@@ -292,7 +313,6 @@ export class DetailsComponent implements OnInit {
 	private deleteTeammember(index: number) {
 		this.appService.deleteTeammember(index);
 	}
-
 	teamExists(team, list) {
 		if (list === undefined) {
 			return false;
@@ -303,7 +323,6 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	}
-
 	Whatsapp() {
 		this.whatsapp = undefined;
 		this.whatsappform.reset();
@@ -318,31 +337,25 @@ export class DetailsComponent implements OnInit {
 	next() {
 		++this.selectedIndex;
 	}
-
 	previous() {
 		if (this.selectedIndex < 0) {
 			--this.selectedIndex;
 		}
 	}
-
 	applySidePanel() {
 		this.applyJobSidePanelShow = true;
 	}
-
 	hideApplySidePanel() {
 		this.applyJobSidePanelShow = false;
 	}
-
 	onFocus() {
 		this.showFilterLocation = true;
 	}
-
 	showJobPrview(profileId) {
 		this.showDetail = true;
 		this.selectedCandidate = this.candidates.find(x => x.ProfileId == profileId);
 		this.getCandidateProfile(profileId);
 	}
-
 	getCandidateProfile(profileId) {
 		let params = new HttpParams();
 		params = params.append("profileId", profileId);
@@ -351,15 +364,12 @@ export class DetailsComponent implements OnInit {
 			this.profile = response;
 		});
 	}
-
 	hideJobDetail() {
 		this.showDetail = false;
 	}
-
 	changeView(type) {
 		this.currentView = type;
 	}
-
 	toggleFilter() {
 		this.showFilterNavBar = !this.showFilterNavBar;
 		this.currentFilterType = '';
@@ -378,15 +388,12 @@ export class DetailsComponent implements OnInit {
 			});
 		}
 	}
-
 	hideFilter() {
 		this.showMenu = false;
 	}
-
 	showNavigation() {
 		this.showMenu = true;
 	}
-
 	showSub(id) {
 		let listClass = document.getElementsByClassName('sub__item');
 		let classArray = [];
@@ -401,16 +408,12 @@ export class DetailsComponent implements OnInit {
 		});
 		document.getElementsByClassName('sub__item')[id].classList.add('active');
 	}
-
-
 	resetFilterType() {
 		this.currentFilterType = '';
 	}
-
 	onFilterSelect(filterType, id) {
 		this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected = !this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected
 	}
-
 	getFilterData(filterType, url) {
 		this.currentFilterType = filterType;
 		if (this.filterTypes.filter(x => x.value == filterType)[0].result.length == 0) {
@@ -528,7 +531,6 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
-
 	searchFunc(val) {
 		if (val != '') {
 			this.searchValue = val;
@@ -561,7 +563,6 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
-
 	base64ToArrayBuffer(base64) {
 		const binary_string = window.atob(base64);
 		const len = binary_string.length;
@@ -571,17 +572,15 @@ export class DetailsComponent implements OnInit {
 		}
 		return bytes.buffer;
 	}
-
 	onPageChange(pageValue) {
 		this.currentPage += pageValue;
 		this.getCandidates();
 	}
-
 	OpenCandidate(profileId, userId, percentage) {
 		if (percentage < 50) {
 			swal(
 				{
-					title: 'Candidate haven"t completed profile',
+					title: 'The candidate has not completed the profile',
 					showConfirmButton: true,
 					showCancelButton: true,
 					type: "info",
@@ -607,7 +606,6 @@ export class DetailsComponent implements OnInit {
 			window.open(url, "_blank");
 		}
 	}
-
 	getActiveJobs() {
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		let customerId = this.customer.CustomerId;
@@ -624,20 +622,17 @@ export class DetailsComponent implements OnInit {
 			)
 		);
 	}
-
 	keywordSearchValidators() {
 		this.keywordSearchGroup = new FormGroup({
 			isKeywordSearch: new FormControl('0'),
 			searchValue: new FormControl(' ')
 		});
 	}
-
 	shareJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
 
 	}
-
 	applyJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
@@ -734,7 +729,6 @@ export class DetailsComponent implements OnInit {
 		// 	this.getCandidates();
 		// });
 	}
-
 	ShareProfile() {
 		debugger;
 		let emailAddresses = this.emailAddresses;
@@ -792,12 +786,9 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
-
-
 	showFilterBar() {
 		this.showFilterNavBar = !this.showFilterNavBar;
 	}
-
 	getSelectedSkills() {
 		console.log(this.selectedSkills);
 	}
@@ -807,6 +798,7 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
+		this.isDomainShown = false;
 		this.getCandidates();
 	}
 	selectSkills() {
@@ -846,7 +838,6 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.getCandidates();
 	}
-
 	selectEducation() {
 		console.log(this.companyName);
 		this.isSkillShown = false;
@@ -858,7 +849,6 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.getCandidates();
 	}
-
 	selectCertification() {
 		console.log(this.companyName);
 		this.isSkillShown = false;
@@ -870,7 +860,6 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.getCandidates();
 	}
-
 	showJobType() {
 		debugger;
 		this.showMenu = true;
@@ -879,7 +868,6 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 	}
-
 	showSkill() {
 		debugger;
 		this.showMenu = true;
@@ -891,7 +879,6 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCompanyShown = false;
 	}
-
 	showExperience() {
 		debugger;
 		this.showMenu = true;
@@ -903,7 +890,6 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.isExperienceShown = !this.isExperienceShown;
 	}
-
 	showJobTitle() {
 
 		debugger;
@@ -916,7 +902,6 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.isJobTitleShown = !this.isJobTitleShown;
 	}
-
 	showCompany() {
 		debugger;
 		this.showMenu = true;
@@ -928,7 +913,6 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCompanyShown = !this.isCompanyShown;
 	}
-
 	showEducation() {
 		debugger;
 		this.showMenu = true;
@@ -940,7 +924,6 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isEducationShown = !this.isEducationShown;
 	}
-
 	showCertification() {
 		debugger;
 		this.showMenu = true;
@@ -951,7 +934,17 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCertificationShown = !this.isCertificationShown;
 	}
-
+	showDomain() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isEducationShown = false;
+		this.isCertificationShown = false;
+		this.isDomainShown = !this.isDomainShown;
+	}
 	getCandidates() {
 		debugger;
 		this.candidatesLoading = true;
@@ -994,6 +987,10 @@ export class DetailsComponent implements OnInit {
 				console.log('Error occurred!');
 				this.candidatesLoading = false;
 			});
+	}
+
+	makeAllFalse() {
+
 	}
 }
 

@@ -1716,6 +1716,13 @@ export class AppService {
       .pipe();
   }
 
+  searchDomains(domainName: any): Observable<any> {
+    const url = this.settingsService.settings.SearchDomains + "?domainName=" + domainName;
+    debugger;    
+    let data =this.http.get(url).catch(this.handleError);
+    return data;
+  }
+
   applyJobToSelectedCandidates(bulkApply: any) {
 	  return this.http.post(this.settingsService.settings.JobbaseUrl + '/api/ApplyJobToSelectedCandidates', bulkApply).pipe();
   }

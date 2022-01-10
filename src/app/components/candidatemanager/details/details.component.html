@@ -6,7 +6,7 @@
                     <div class="icon__box">&nbsp;</div>
                     <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
                     <ul (mouseenter)="showNavigation()">
-                        <li [ngClass]="{'active': isJobTypeShown}">
+                        <li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
                             <a href="javascript:void(0);" (click)="showJobType()">
                                 <span class="icon icon__jobtype__01"></span>
                                 <em>Job Type</em>
@@ -42,7 +42,6 @@
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isSkillShown, 'hideSearch': !isSkillShown}">
                                     <div class="input__box">
                                         <span class="icon__search__dark"></span>
-                                        <!-- <input type="text" class="form-control form-control-light" placeholder="Search"> -->
                                         <ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill" bindLabel="Code" bindValue="Id" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
                                             #skill="ngModel" [virtualScroll]="true" [multiple]="true">
                                         </ng-select>
@@ -54,7 +53,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        <li style="display: none;">
                             <a href="javascript:void(0);">
                                 <span class="icon icon__salary__01"></span>
                                 <em>Salary</em>
@@ -93,7 +92,7 @@
                         <li [ngClass]="{'active': isJobTitleShown}">
                             <a href="javascript:void(0);" (click)="showJobTitle()">
                                 <span class="icon icon__title__01"></span>
-                                <em>Job Title</em>
+                                <em>Profile Title</em>
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isJobTitleShown, 'hideSearch': !isJobTitleShown}">
@@ -110,17 +109,31 @@
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        <li style="display: none;">
                             <a href="javascript:void(0);">
                                 <span class="icon icon__status__01"></span>
                                 <em>Availibilty Status</em>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0);">
+                        <li [ngClass]="{'active': isDomainShown}">
+                            <a href="javascript:void(0);" (click)="showDomain()">
                                 <span class="icon icon__domain__01"></span>
-                                <em>Job Domain</em>
+                                <em>Domain</em>
                             </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isDomainShown, 'hideSearch': !isDomainShown}">
+                                    <div class="input__box">
+                                        <span class="icon__search__dark"></span>
+                                        <ng-select class="custom-style" [items]="domainList | async" placeholder="Search Domain" bindLabel="Code" bindValue="Id" [typeahead]="selectedDomainInput" [hideSelected]="true" [loading]="domainLoading" [(ngModel)]="selectedDomains" minlength="1" name="selectedDomains"
+                                            #domain="ngModel" [virtualScroll]="true" [multiple]="true">
+                                        </ng-select>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectSkills()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li [ngClass]="{'active': isCompanyShown}">
                             <a href="javascript:void(0);" (click)="showCompany()">
@@ -185,21 +198,8 @@
                     </ul>
                 </div>
             </div>
-            <!-- <div class="revamp__search__container">
-                <div class="row flex flex-align-center flex-wrap">
-                </div>
-            </div> -->
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
-
-                    <!-- <div class="sb-example-1">
-                  <div class="search">
-                    <input type="text" [ngModel]="searchValue" (ngModelChange)="searchFunc($event)" name="searchtext" class="searchTerm" placeholder="Search Candidates here?">
-                    <button class="searchButton" type="button" data-toggle="modal" data-target="#filterPanel">
-                        <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </div> -->
                     <div class="col-sm-4 col">
                         <div class="input-box">
                             <span class="icon icon__search__01"></span>
@@ -451,13 +451,11 @@
                 <div class="row">
                     <div class="col-sm-12 big-col">
                         <div class="row flex flex-wrap flex-align-equal">
-                            <div class="col-sm-3 green" *ngFor="let candidate of candidates">
+                            <div class="col-sm-3 " [ngClass]="[ candidate?.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
                                 <div class="top__container flex flex-wrap flex-align-center">
-                                    <!-- <input type="checkbox" [checked]="candidate.IsSelected" (change)="candidate.IsSelected = !candidate.IsSelected"> -->
                                     <label class="custom-checkbox custom-checkbox-round">
                                     <input type="checkbox"  [checked]="candidate.IsSelected"
-                                    (change)="candidate.IsSelected = !candidate.IsSelected"	
-                                  >
+                                    (change)="candidate.IsSelected = !candidate.IsSelected">
                                     <span class="checkmark"></span>
                                   </label>
                                     <ul>
@@ -486,6 +484,7 @@
                                         <h5>{{candidate.JobTitleName}}</h5>
                                         <div class="location">{{candidate.Locations}}</div>
                                         <div class="company">{{candidate.Company}}</div>
+                                        <div class="text-muted">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -497,9 +496,9 @@
                 <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
                     <div class="grid-col grid-check-col">
                         <label class="custom-checkbox ">
-														<input type="checkbox" checked="checked">
-														<span class="checkmark"></span>
-												</label>
+							<input type="checkbox" checked="checked">
+							<span class="checkmark"></span>
+						</label>
                     </div>
                     <div class="grid-col grid-name-col">
                         Name <span class="sorting-arrow down"></span>
@@ -529,9 +528,9 @@
                             <div class="grid-heading">Select</div>
                             <div class="box-table">
                                 <label class="custom-checkbox">
-																		<input type="checkbox">
-																		<span class="checkmark"></span>
-																</label>
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
                             </div>
                         </div>
                         <div class="grid-col grid-name-col">
