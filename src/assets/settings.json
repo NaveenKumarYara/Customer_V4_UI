@@ -221,5 +221,6 @@
   "GetAssignedList":"https://jobsapi-dev.arytic.com/api/GetJobAssignedList?",
   "SendAdminEmail":"https://emailapi-dev.arytic.com/api/SendAdminEditEmail",
   "ShareProfile": "https://emailapi-dev.arytic.com/api/ShareProfile",
-  "SearchSkills": "https://profileapi-dev.arytic.com/api/SearchSkills"
+  "SearchSkills": "https://profileapi-dev.arytic.com/api/SearchSkills",
+  "ParseSovren":"http://43.228.92.181:7272/api/CandidateInformation/ProcessSovernResume"
 }

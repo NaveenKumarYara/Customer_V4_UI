@@ -267,7 +267,8 @@ SearchEnter(searchval) {
         position: {right : '0px'},
         height : '750px',
         data: {
-          animal: 'panda'
+          animal: 'panda',
+          jobId: this.jobid
         }
       }
     );
