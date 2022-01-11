@@ -27147,6 +27147,13 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
     display: inline-block;
 }
 
+@media only screen and (max-width:1440px) {
+    .custom__user__option a {
+        padding:0 5px !important;
+    }
+}
+
+
 @media only screen and (max-width:1199px) {
     .grid-view-custom .grid-custom-col:nth-child(3n+1) {
         clear: none;

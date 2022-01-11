@@ -650,27 +650,54 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
 .a.btn.btn-border.btn-prev.show-in-mobile{
   margin-right: 25px;
 }
-.post-a-job-listing .jdv-skills .col-container {
+.post-a-job-listing .jdv-skills .col-container, .jdv-skill-list .col-container {
   border-radius: 0;
   padding: 5px 10px;
   height: 100%;
   overflow: hidden;
+  box-shadow: 4px 4px 20px rgb(158 171 192 / 20%);
+  border:1px solid #eee;
   border-left: 10px solid #c0c0c0;
 }
 
-.post-a-job-listing .jdv-skills .beginner .col-container {
+.jdv-skill-list {
+  margin-top: 20px;
+}
+
+.jdv-skill-list .col-container {
+  position: relative;
+  padding: 5px 40px 5px 10px;
+}
+
+.jdv-skill-list .col-container .close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -12px;
+}
+
+.jdv-skill-list .col {
+  padding: 0 7px;
+  margin: 0 0 14px;
+}
+
+.jdv-skill-list .row {
+  margin: 0 -7px;
+}
+
+.post-a-job-listing .jdv-skills .beginner .col-container ,  .jdv-skill-list .beginner .col-container {
   border-left-color: #66dab5;
 }
 
-.post-a-job-listing .jdv-skills .good .col-container {
+.post-a-job-listing .jdv-skills .good .col-container,  .jdv-skill-list .good .col-container {
   border-left-color: #afc8f1;
 }
 
-.post-a-job-listing .jdv-skills .professional .col-container {
+.post-a-job-listing .jdv-skills .professional .col-container, .jdv-skill-list .professional .col-container {
   border-left-color: #66a1ff;
 }
 
-.post-a-job-listing .jdv-skills .master .col-container {
+.post-a-job-listing .jdv-skills .master .col-container,  .jdv-skill-list .master .col-container {
   border-left-color: #448afa;
 }
 
@@ -954,6 +981,51 @@ body .error__required.lg {
   transform: translateY(-50%);
 }
 
+.form-check-list ul { 
+  margin:-14px -7px 0 -7px;
+  padding: 0;
+  list-style: none;
+}
+
+.form-check-list li {
+  font-size: 13px;
+  float: left;
+  width: 50%;
+  color: #6e819e;
+  padding: 0 7px;
+  margin:14px 0 0;
+  position: relative;
+}
+
+.form-check-list li .col__container{
+  position: relative;
+  padding: 5px 14px 5px 40px;
+  border: 1px solid #e0e3ef;
+  box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
+}
+
+.form-check-list li:before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url(../../images/revamp__detail__view/jdv-sprites.png) -10px -80px no-repeat;
+  position: absolute;
+  left: 18px;
+  top: 10px;
+}
+
+.form-check-list li span {
+  display: block;
+}
+
+.form-check-list li .close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -12px;
+}
+
+
 @media only screen and (max-width: 1199px) {
   .page--create-a-job .form-steps .form-rows {
     margin: 0 -15px;
@@ -1106,7 +1178,7 @@ body .error__required.lg {
     border-left: 0;
     margin-top: 10px;
   }
-  .post-a-job-listing .jdv-key-section li {
+  .post-a-job-listing .jdv-key-section li , .form-check-list li{
     width: 100%;
   }
 }
