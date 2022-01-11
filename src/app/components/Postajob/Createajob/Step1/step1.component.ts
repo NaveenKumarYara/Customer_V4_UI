@@ -398,16 +398,10 @@ if (this.appService.isDrafted.value != null) {
     // }
     if(this.locations.locationwisejobs.length>0)
     {
-      this.locations.locationwisejobs.filter(x=>{
-        if(x.CityName=='Remote, , ')
-          {
-            this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString()
-          }
-          else
-          {
-            this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-          }      
-      })
+      //this.insertJob.PreferredLocationId =  this.locations.locationwisejobs.filter(x=>x.CityName!='Remote, , ')..toString();
+      let uniqIds = {}, source =  this.locations.locationwisejobs;
+      let filtered = source.filter(obj => !uniqIds[obj.CityName] && (uniqIds[obj.CityName] = true));
+      this.insertJob.PreferredLocationId =  'Remote, , '+'-'+ filtered.map(x=>x.CityName).join("-").toString();
     }
     else
     {
