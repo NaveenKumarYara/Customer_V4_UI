@@ -11,7 +11,7 @@
 }
 
 .page--create-a-job .form-steps .form-rows .ng-select .ng-select-container .ng-value-container .ng-input>input {
-  margin-top: 0;
+  margin: 0;
   top: 0;
 }
 
@@ -220,23 +220,14 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
 }
 
 .page--create-a-job .form-steps .form-rows  .custom-sm-checkbox {
-  padding: 8px 5px;
-  margin-top: 0;
-  border: 1px solid #E0E3EF;
-  border-radius: 5px;
+  margin:0;
 }
 
-.page--create-a-job .form-steps .form-rows  .custom-sm-checkbox span {
-  display: block;
-  text-align: center;
-  font-size: 10px;
-  text-transform: uppercase;
-}
 
 .page--create-a-job .form-steps .form-rows .custom-sm-checkbox.radio .radio-btn {
-  width: 24px;
-  height: 24px;
-  margin:0 auto 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
 }
 
 .page--create-a-job .form-steps .form-rows .form-cols.sal-open-publish label {
@@ -926,6 +917,7 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
 .preview-mat-container {
   text-align: center;
   display: block !important;
+  height: auto !important;
 }
 
 .preview-mat-container #modal-header {
@@ -945,6 +937,21 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
 .preview-mat-container .btn.btn-filled {
   padding: 6px 12px;
   min-width: inherit;
+}
+
+body .error__required {
+  top: -15px;
+  color: #fff !important; 
+}
+
+body .error__required.lg {
+  top: 15px;
+}
+
+.preview-custom-modal {
+  position: fixed !important;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media only screen and (max-width: 1199px) {
@@ -1076,6 +1083,10 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
   .page--create-a-job .btn-filled {
     padding: 6px 12px !important;
     min-width: inherit !important;
+  }
+
+  .form-primay-sub-cols {
+    margin: 20px 0 0;
   }
 }
 

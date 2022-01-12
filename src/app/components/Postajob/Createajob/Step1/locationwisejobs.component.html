@@ -64,10 +64,11 @@
 							<h4>OR</h4>
 							<input type="text" class="form-control" #openings="ngModel" required name="openg" [(ngModel)]="noOfOpenings"
 								(ngModelChange)="Opening($event)" placeholder="Define here" maxlength="2">
+							<small class="text-danger radio-error1 error__required" *ngIf="openings.invalid && openings.touched">Number of Positions are
+								required!</small>
 						</div>
 					</div>
-					<small class="text-danger radio-error1" *ngIf="openings.invalid && openings.touched">Number of Positions are
-						required!</small>
+				
 				</div>
 		
 			</div>
@@ -100,7 +101,7 @@
 							[virtualScroll]="true" required #mcity="ngModel" name="mcities">
 		
 						</ng-select>
-						<small class="error1" *ngIf="mcity.invalid && mcity.touched">Required.</small>
+						<small class="error1 error__required" *ngIf="mcity.invalid && mcity.touched">Required.</small>
 					</div>
 					<div class="col-xs-5 col-sm-5 col-md-5 form-cols">
 						<label class="open-positions">Open Positions <span class="red">*</span></label>
