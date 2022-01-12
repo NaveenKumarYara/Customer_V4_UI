@@ -420,6 +420,10 @@ export class Step4Component implements OnInit {
             }
           });
             }
+            else
+            {
+              localStorage.getItem("EditViewJob") == null
+            }
         });
         }
        
