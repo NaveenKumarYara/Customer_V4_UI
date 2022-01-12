@@ -434,6 +434,7 @@ export class JobdetailsService {
       return Observable.throw(error.json());
     });
   }
+  z
 
   parseSovren(formData: FormData) {
     const apiUrl = this.settingsService.settings.ParseSovren;
