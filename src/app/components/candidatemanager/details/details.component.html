@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="filter__buttons text-right">
                                         <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectSkills()">Ok</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectDomians()">Ok</button>
                                     </div>
                                 </div>
                             </div>
@@ -201,10 +201,21 @@
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
                     <div class="col-sm-4 col">
-                        <div class="input-box">
-                            <span class="icon icon__search__01"></span>
-                            <input type="text" placeholder="" (focus)="onFocus()" id="text_search" class="form-control form-control-light">
+                        <div class="input-group">
+                            <input class="form-control" id="searchData" name="searchData" placeholder="Search String" [(ngModel)]="searchValue" #searchData="ngModel">
+                            <span class="input-group-btn">
+                              <button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()">Go!</button>
+                            </span>
                         </div>
+                        <!-- <div class="input-group mb-6 col">
+                            <div class="input-box">
+                                <span class="icon icon__search__01"></span>
+                                <input type="text" placeholder="" (focus)="onFocus()" id="text_search" class="form-control form-control-light">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                        </div> -->
                         <div class="filter__by__tech" id="filter_by_tech" [ngClass]="showFilterLocation?'show':''">
                             <div class="row flex flex-wrap flex-align-equal no__margin">
                                 <div class="col-sm-3 tab__col">

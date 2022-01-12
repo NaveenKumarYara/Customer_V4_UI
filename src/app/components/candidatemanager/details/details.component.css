@@ -560,7 +560,7 @@ a:hover {
 }
 
 .revamp-icon.revamp-icon-note {
-    background-position: -280px -13px;
+    background-position: -149px -155px;
 }
 
 .data-grid-table {
@@ -1569,6 +1569,50 @@ a:hover {
     background-position: -402px -104px;
 }
 
+.revamp__filter__sidebar__box .filter__active .icon.icon__jobtype__01 {
+    background-position: -9px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__skills__01 {
+    background-position: -46px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__salary__01 {
+    background-position: -85px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__location__01 {
+    background-position: -123px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__experience__01 {
+    background-position: -162px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__title__01 {
+    background-position: -204px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__status__01 {
+    background-position: -244px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__domain__01 {
+    background-position: -284px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__company__01 {
+    background-position: -322px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__edu__01 {
+    background-position: -362px -224px;
+}
+
+.revamp__filter__sidebar__box .filter__active .icon.icon__certified__01 {
+    background-position: -402px -224px;
+}
+
 .filter__by__tech,
 .filter__by__loc {
     position: absolute;
@@ -1784,7 +1828,8 @@ a:hover {
     margin: 0 0 0 auto;
 }
 
-.apply__job__sidepanel {
+.apply__job__sidepanel,
+.share__job__sidepanel {
     position: fixed;
     width: 100%;
     display: none;
@@ -1797,11 +1842,13 @@ a:hover {
     padding-top: 60px;
 }
 
-.apply__job__sidepanel.show {
+.apply__job__sidepanel.show,
+.share__job__sidepanel.show {
     display: block;
 }
 
-.apply__job__sidepanel .col__container {
+.apply__job__sidepanel .col__container,
+.share__job__sidepanel.show .col__container {
     width: 0;
     padding: 30px;
     height: 100vh;
@@ -1818,14 +1865,20 @@ a:hover {
     width: 70%;
 }
 
-.apply__job__sidepanel .closebtn {
+.share__job__sidepanel.show .col__container {
+    width: 50%;
+}
+
+.apply__job__sidepanel .closebtn,
+.share__job__sidepanel .close-btn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
 }
 
-.apply__job__sidepanel.show:before {
+.apply__job__sidepanel.show .overlay,
+.share__job__sidepanel .overlay {
     content: "";
     position: fixed;
     width: 100%;
@@ -8709,4 +8762,16 @@ div .status.Invited {
     padding: 6px 12px;
     min-width: inherit;
     margin-left: 10px;
+}
+
+.input-group-btn .btn,
+.input-group-btn .page--account-settings .fc-button-group button,
+.page--account-settings .fc-button-group .input-group-btn button {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: #ffffff;
+    padding: 6px 18px;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }

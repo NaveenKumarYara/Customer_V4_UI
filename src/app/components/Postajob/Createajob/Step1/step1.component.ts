@@ -377,15 +377,37 @@ if (this.appService.isDrafted.value != null) {
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
   if(this.appService.RemoteWork == true)
   {
-    if( this.locations.locationwisejobs.length==1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
-    {
+    // if( this.locations.locationwisejobs.length==1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ')
+    // {
       
-      this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
-    }
-    else if( this.locations.locationwisejobs.length>1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ' )
-    {
+    //   this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    // }
+    // else if( this.locations.locationwisejobs.length>1 && this.locations.locationwisejobs[0].CityName!== 'Remote, , ' )
+    // {
       
-      this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    //   this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    // }
+    // else if( this.locations.locationwisejobs.length>1 && this.locations.locationwisejobs[0].CityName === 'Remote, , ' )
+    // {
+      
+    //   this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+    // }
+    // else
+    // {
+    //   this.insertJob.PreferredLocationId = 'Remote, , ';
+    // }
+    if(this.locations.locationwisejobs.length>0)
+    {
+      this.locations.locationwisejobs.filter(x=>{
+        if(x.CityName=='Remote, , ')
+          {
+            this.insertJob.PreferredLocationId = this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString()
+          }
+          else
+          {
+            this.insertJob.PreferredLocationId = 'Remote, , '+'-'+ this.locations.locationwisejobs.map(x=>x.CityName).join("-").toString();
+          }      
+      })
     }
     else
     {

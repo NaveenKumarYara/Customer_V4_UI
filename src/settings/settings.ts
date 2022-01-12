@@ -229,4 +229,5 @@ export class Settings {
   SendAdminEmail:string;
   ShareProfile:string;  
   SearchSkills:string;
+  SearchDomains:string;
   }

@@ -84,8 +84,8 @@ export class DetailsComponent implements OnInit {
 	emailMessage: any;
 	showFilterLocation: boolean;
 	applyJobSidePanelShow: boolean;
-
-
+	shareJobSidepanel: boolean;
+	showFilterActive: boolean;
 
 	isJobTypeShown: boolean;
 	isSkillShown: boolean;
@@ -94,6 +94,7 @@ export class DetailsComponent implements OnInit {
 	skillList: any;
 	selectedSkillName: any;
 	selectedskillinput = new Subject<string>();
+	selectedDomainInput = new Subject<string>();
 	MinimumExperience: any;
 	MaximumExperience: any;
 
@@ -121,7 +122,7 @@ export class DetailsComponent implements OnInit {
 	jobid: number = 1002162;
 	keywordSearchGroup: any;
 	isKeywordSearch: any;
-	searchValue: any = null
+	searchValue: any;
 
 	jobList: Observable<string[]>;
 
@@ -207,6 +208,7 @@ export class DetailsComponent implements OnInit {
 	domainList: any;
 	domainLoading: boolean;
 	isDomainShown: boolean;
+	selectedDomains: any;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -221,7 +223,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	initInitialState() {
-		this.keywordSearchValidators();
+		//this.keywordSearchValidators();
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
@@ -230,11 +232,11 @@ export class DetailsComponent implements OnInit {
 		this.getActiveJobs();
 		this.getSkills();
 		this.getDomains();
-		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
-			.subscribe(res => {
-				this.keywordSearchGroup.get('searchValue').setValue(res);
-				this.getCandidates();
-			});
+		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
+		// 	.subscribe(res => {
+		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
+		// 		this.getCandidates();
+		// 	});
 		this.GetContacts();
 		this.clearTeamMemebers();
 		this.getcustomerusers();
@@ -264,7 +266,7 @@ export class DetailsComponent implements OnInit {
 	getDomains() {
 		this.domainList = concat(
 			of([]), // default items
-			this.selectedskillinput.pipe(
+			this.selectedDomainInput.pipe(
 				debounceTime(200),
 				distinctUntilChanged(),
 				tap(() => this.domainLoading = true),
@@ -345,9 +347,19 @@ export class DetailsComponent implements OnInit {
 	applySidePanel() {
 		this.applyJobSidePanelShow = true;
 	}
+
+	shareSidePanel() {
+		this.shareJobSidepanel = true;
+	}
+
 	hideApplySidePanel() {
 		this.applyJobSidePanelShow = false;
 	}
+
+	hideShareSidePanel() {
+		this.shareJobSidepanel = false;
+	}
+
 	onFocus() {
 		this.showFilterLocation = true;
 	}
@@ -370,6 +382,7 @@ export class DetailsComponent implements OnInit {
 	changeView(type) {
 		this.currentView = type;
 	}
+
 	toggleFilter() {
 		this.showFilterNavBar = !this.showFilterNavBar;
 		this.currentFilterType = '';
@@ -531,16 +544,16 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
-	searchFunc(val) {
-		if (val != '') {
-			this.searchValue = val;
-			this.getCandidates();
-		}
-		else {
-			this.searchValue = null;
-			this.getCandidates();
-		}
-	}
+	// searchFunc(val) {
+	// 	if (val != '') {
+	// 		this.searchValue = val;
+	// 		this.getCandidates();
+	// 	}
+	// 	else {
+	// 		this.searchValue = null;
+	// 		this.getCandidates();
+	// 	}
+	// }
 	DownloadResume(val, ProfileId): void {
 		this.apiService.GetService("ProfileAPI/api/GetResume?profileId=", ProfileId).subscribe((fileData) => {
 			this.fileType = fileData;
@@ -622,12 +635,12 @@ export class DetailsComponent implements OnInit {
 			)
 		);
 	}
-	keywordSearchValidators() {
-		this.keywordSearchGroup = new FormGroup({
-			isKeywordSearch: new FormControl('0'),
-			searchValue: new FormControl(' ')
-		});
-	}
+	// keywordSearchValidators() {
+	// 	this.keywordSearchGroup = new FormGroup({
+	// 		isKeywordSearch: new FormControl('0'),
+	// 		searchValue: new FormControl(' ')
+	// 	});
+	// }
 	shareJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
@@ -801,64 +814,37 @@ export class DetailsComponent implements OnInit {
 		this.isDomainShown = false;
 		this.getCandidates();
 	}
+	searchCandidates() {
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isDomainShown = false;
+		this.getCandidates();
+	}
 	selectSkills() {
 		console.log(this.selectedSkills);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
-	selectExperience() {
-		console.log(this.MinimumExperience);
-		console.log(this.MaximumExperience);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+	selectDomians()
+	{		
+		this.searchCandidates();
+	}
+	selectExperience() {		
+		this.searchCandidates();
 	}
 	selectJobTitle() {
-		console.log(this.jobTitle);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
 	selectCompany() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
 	selectEducation() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.isEducationShown = false;
-		this.isCertificationShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
 	selectCertification() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.isEducationShown = false;
-		this.isCertificationShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
 	showJobType() {
 		debugger;
@@ -945,9 +931,17 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isDomainShown = !this.isDomainShown;
 	}
+
+	findCandidates()
+	{
+		this.cancel();
+		this.getCandidates();
+	}
 	getCandidates() {
 		debugger;
 		this.candidatesLoading = true;
+		this.customer = JSON.parse(sessionStorage.getItem('userData'));
+		this.customerId =this.customer.CustomerId;
 
 		let candidateSearch = new CandidateSearch();
 		candidateSearch.PageNumber = this.currentPage;
@@ -960,6 +954,8 @@ export class DetailsComponent implements OnInit {
 		candidateSearch.CompanyName = this.companyName;
 		candidateSearch.EducatonName = this.educationName;
 		candidateSearch.CertificationName = this.certificationName;
+		candidateSearch.SelectedDomains = this.selectedDomains;
+		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
 
 
@@ -1014,6 +1010,8 @@ export class CandidateSearch {
 	CompanyName: any;
 	EducatonName: any;
 	CertificationName: any;
+	SelectedDomains: any;
+	CustomerId: any;
 }
 
 export class ProfileShare {

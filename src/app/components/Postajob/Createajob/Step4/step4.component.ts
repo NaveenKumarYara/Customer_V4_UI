@@ -7,6 +7,9 @@ import { ToastsManager, Toast } from "ng2-toastr/ng2-toastr";
 import { StepsComponent } from "../steps.component";
 import { JobcardComponent } from "./jobcard/jobcard.component";
 import { MatDialog, MatDialogConfig } from "@angular/material";
+import { GetJobDetailCustomer } from "../../../../../models/GetJobDetailCustomer";
+import { JobdetailsService } from "../../../jobdetails/jobdetails.service";
+import { JobCompletenessInfo } from "../../../jobdetails/models/jobdetailsbasicinfo";
 
 @Component({
   selector: "app-steps-step4",
@@ -16,6 +19,8 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 export class Step4Component implements OnInit {
   z;
   // step1
+  jobdetailscustomer: GetJobDetailCustomer;
+  getjobCompleteinfo :JobCompletenessInfo;
   //Loader Condition
   loading = false;
   //Loader Condition
@@ -58,11 +63,13 @@ export class Step4Component implements OnInit {
   customerId: any;
   flag: boolean = true;
   team: any;
+  jobCardshow: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private toastr: ToastsManager,
     private _vcr: ViewContainerRef,
     private router: Router,
+    private jobdetailsservice: JobdetailsService,
     private appService: AppService,
     private location: Location,
     private steps: StepsComponent,
@@ -154,11 +161,36 @@ export class Step4Component implements OnInit {
 
   ngOnInit() {
     this.JobIds = this.appService.JobIds;
+    if(localStorage.getItem("JobId")!=null)
+    {
+      let jobId = localStorage.getItem("JobId");
+      this.jobCardDetails(jobId);
+    }
+  }
+
+  showJobCard() {
+    this.jobCardshow = !this.jobCardshow
   }
 
   checkValue(event: any) {
     this.Template = event;
   }
+
+  jobCardDetails(jobId)
+  {
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId, jobId).subscribe(res => {
+      this.jobdetailscustomer = res;
+      this.PopulateJobCompleteness(jobId);
+    });
+  }
+
+  PopulateJobCompleteness(jobId) {
+    return this.jobdetailsservice.GetJobCompleteness(jobId).subscribe(res => {
+      this.getjobCompleteinfo = res;
+    });
+  
+  }
+
   postJob(step) {
     // this.appService.updateJobIndustry(" ");
     //for loader placed the below condition
@@ -361,7 +393,8 @@ export class Step4Component implements OnInit {
           // The user can't close the dialog by clicking outside its body
           dialogConfig.id = "modal-component";
           dialogConfig.height = "300px";
-          dialogConfig.width = "300px";
+          dialogConfig.width = "600px";
+          dialogConfig.panelClass = "preview-custom-modal";
           // https://material.angular.io/components/dialog/overview
           const modalDialog = this.matDialog.open(JobcardComponent, dialogConfig);    
           modalDialog.afterClosed().subscribe(result => {
