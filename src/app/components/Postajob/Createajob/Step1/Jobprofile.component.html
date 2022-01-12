@@ -258,15 +258,21 @@
     <div class="lists row form-sub-rows">
       <div class="col-md-12 form-sub-cols" *ngIf="keyslist.length>0">
         <p class="description">Key Responsibilities</p>
-        <ul class="data-list key-data-list">
-          <li class="col-md-12 no-exp" *ngFor="let domain of keyslist; let i = index">
-            <div class="col-container flex flex-wrap flex-align-center">
-              <span class="name">{{domain.DCode}}</span>
-              <span class="experience"> {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs</span>
-              <span class="close" (click)="deleteDomain(i)">&times;</span>
-            </div>
-          </li>
-        </ul>
+        <div class="form-check-list">
+          <ul class="flex flex-wrap flex-align-equal">
+            <li *ngFor="let domain of keyslist; let i = index">   
+              <div class="col__container">
+                <span class="name">
+                  {{domain.DCode}}
+                </span>
+                <span class="experience">
+                  {{(domain.CustomerKeyMinExperienceId) | skillmonths }} - {{(domain.CustomerKeyMaxExperienceId) | skillmonths}} Yrs
+                </span>
+                <span class="close" (click)="deleteDomain(i)">&times;</span>
+              </div>    
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 

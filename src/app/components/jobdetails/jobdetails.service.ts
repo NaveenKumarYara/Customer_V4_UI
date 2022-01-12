@@ -434,6 +434,12 @@ export class JobdetailsService {
       return Observable.throw(error.json());
     });
   }
+  z
+
+  parseSovren(formData: FormData) {
+    const apiUrl = this.settingsService.settings.ParseSovren;
+    return this.http.post<any>(apiUrl, formData).pipe();
+}
 
   RequestRefernce(body) {
     return this.http.post(this.settingsService.settings.CustomerRequestRefernce, body)
