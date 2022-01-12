@@ -94,6 +94,7 @@ export class DetailsComponent implements OnInit {
 	skillList: any;
 	selectedSkillName: any;
 	selectedskillinput = new Subject<string>();
+	selectedDomainInput = new Subject<string>();
 	MinimumExperience: any;
 	MaximumExperience: any;
 
@@ -121,7 +122,7 @@ export class DetailsComponent implements OnInit {
 	jobid: number = 1002162;
 	keywordSearchGroup: any;
 	isKeywordSearch: any;
-	searchValue: any = null
+	searchValue: any;
 
 	jobList: Observable<string[]>;
 
@@ -204,6 +205,10 @@ export class DetailsComponent implements OnInit {
 	educationName: any;
 	isCertificationName: any;
 	certificationName: any;
+	domainList: any;
+	domainLoading: boolean;
+	isDomainShown: boolean;
+	selectedDomains: any;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -218,7 +223,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	initInitialState() {
-		this.keywordSearchValidators();
+		//this.keywordSearchValidators();
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
@@ -226,11 +231,12 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 		this.getActiveJobs();
 		this.getSkills();
-		this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
-			.subscribe(res => {
-				this.keywordSearchGroup.get('searchValue').setValue(res);
-				this.getCandidates();
-			});
+		this.getDomains();
+		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
+		// 	.subscribe(res => {
+		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
+		// 		this.getCandidates();
+		// 	});
 		this.GetContacts();
 		this.clearTeamMemebers();
 		this.getcustomerusers();
@@ -257,13 +263,32 @@ export class DetailsComponent implements OnInit {
 		debugger;
 		let k = 10;
 	}
+	getDomains() {
+		this.domainList = concat(
+			of([]), // default items
+			this.selectedDomainInput.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				tap(() => this.domainLoading = true),
+				switchMap(term => this.appService.searchDomains(term).pipe(
+					catchError(() => of([])), // empty list on error
+					tap(data => {
+						debugger;
+						let y = data;
+						this.domainLoading = false;
+					})
+				))
+			)
+		);
+		debugger;
+		let k = 10;
+	}
 
 	GetContacts() {
 		return this.appService.GetContactInfo(this.customerId, 0).subscribe(res => {
 			this.GetContactsList = res;
 		});
 	}
-
 	getcustomerusers() {
 		return this.appService.getCustomerContacts(this.customerId).subscribe(res => {
 			this.customercontacts = res;
@@ -271,7 +296,6 @@ export class DetailsComponent implements OnInit {
 				name => name.FirstName != "Invited" && name.IsRemove === false);
 		});
 	}
-
 	clearTeamMemebers() {
 		for (let i = 0; i <= 10; i++) {
 			const index = i;
@@ -279,7 +303,6 @@ export class DetailsComponent implements OnInit {
 		}
 		this.deleteTeammember(0);
 	}
-
 	public addTeammembers() {
 		if (this.getTeammember !== undefined) {
 			const check = this.teamExists(this.getTeammember, this.teammemberslist);
@@ -292,7 +315,6 @@ export class DetailsComponent implements OnInit {
 	private deleteTeammember(index: number) {
 		this.appService.deleteTeammember(index);
 	}
-
 	teamExists(team, list) {
 		if (list === undefined) {
 			return false;
@@ -303,7 +325,6 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	}
-
 	Whatsapp() {
 		this.whatsapp = undefined;
 		this.whatsappform.reset();
@@ -318,13 +339,11 @@ export class DetailsComponent implements OnInit {
 	next() {
 		++this.selectedIndex;
 	}
-
 	previous() {
 		if (this.selectedIndex < 0) {
 			--this.selectedIndex;
 		}
 	}
-
 	applySidePanel() {
 		this.applyJobSidePanelShow = true;
 	}
@@ -344,13 +363,11 @@ export class DetailsComponent implements OnInit {
 	onFocus() {
 		this.showFilterLocation = true;
 	}
-
 	showJobPrview(profileId) {
 		this.showDetail = true;
 		this.selectedCandidate = this.candidates.find(x => x.ProfileId == profileId);
 		this.getCandidateProfile(profileId);
 	}
-
 	getCandidateProfile(profileId) {
 		let params = new HttpParams();
 		params = params.append("profileId", profileId);
@@ -359,61 +376,12 @@ export class DetailsComponent implements OnInit {
 			this.profile = response;
 		});
 	}
-
 	hideJobDetail() {
 		this.showDetail = false;
 	}
-
 	changeView(type) {
 		this.currentView = type;
 	}
-
-	@HostListener('document:click', ['$event'])
-	onClick(event) {
-		var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
-		var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
-		var ignoreClickOnInput = document.getElementById('text_search');
-		var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-		var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
-		var isClickInsideInput = ignoreClickOnInput.contains(event.target);
-		if (!isClickInsideElement) {
-			if (document.getElementsByClassName('filter__active')[0]) {
-				this.showFilterActive = true;
-				if (this.showFilterActive == true) {
-					this.showMenu = false;
-					let listClass = document.getElementsByClassName('sub__item');
-					let classArray = [];
-					let i = 0;
-					for (i = 0; i < listClass.length; i++) {
-						classArray.push(i);
-					}
-					classArray.forEach(function (val) {
-						document.getElementsByClassName('sub__item')[val].classList.remove('active')	
-					});
-				}
-			} else {
-				if (this.showMenu == true) {
-					this.showMenu = false;
-					this.showFilterNavBar = false;
-					let listClass = document.getElementsByClassName('sub__item');
-					let classArray = [];
-					let i = 0;
-					for (i = 0; i < listClass.length; i++) {
-						classArray.push(i);
-					}
-					classArray.forEach(function (val) {
-						document.getElementsByClassName('sub__item')[val].classList.remove('active')	
-					});
-				}
-			}
-		}
-		if (!isClickInsideElementOne || !isClickInsideInput ) {
-			if (this.showFilterLocation == true) {
-				this.showFilterLocation = false;
-			}
-		}
-	}
-	
 
 	toggleFilter() {
 		this.showFilterNavBar = !this.showFilterNavBar;
@@ -433,15 +401,12 @@ export class DetailsComponent implements OnInit {
 			});
 		}
 	}
-
 	hideFilter() {
 		this.showMenu = false;
 	}
-
 	showNavigation() {
 		this.showMenu = true;
 	}
-
 	showSub(id) {
 		let listClass = document.getElementsByClassName('sub__item');
 		let classArray = [];
@@ -456,16 +421,12 @@ export class DetailsComponent implements OnInit {
 		});
 		document.getElementsByClassName('sub__item')[id].classList.add('active');
 	}
-
-
 	resetFilterType() {
 		this.currentFilterType = '';
 	}
-
 	onFilterSelect(filterType, id) {
 		this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected = !this.filterTypes.filter(x => x.value == filterType)[0].result.filter(y => y.id == id)[0].isSelected
 	}
-
 	getFilterData(filterType, url) {
 		this.currentFilterType = filterType;
 		if (this.filterTypes.filter(x => x.value == filterType)[0].result.length == 0) {
@@ -583,17 +544,16 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
-
-	searchFunc(val) {
-		if (val != '') {
-			this.searchValue = val;
-			this.getCandidates();
-		}
-		else {
-			this.searchValue = null;
-			this.getCandidates();
-		}
-	}
+	// searchFunc(val) {
+	// 	if (val != '') {
+	// 		this.searchValue = val;
+	// 		this.getCandidates();
+	// 	}
+	// 	else {
+	// 		this.searchValue = null;
+	// 		this.getCandidates();
+	// 	}
+	// }
 	DownloadResume(val, ProfileId): void {
 		this.apiService.GetService("ProfileAPI/api/GetResume?profileId=", ProfileId).subscribe((fileData) => {
 			this.fileType = fileData;
@@ -616,7 +576,6 @@ export class DetailsComponent implements OnInit {
 			}
 		});
 	}
-
 	base64ToArrayBuffer(base64) {
 		const binary_string = window.atob(base64);
 		const len = binary_string.length;
@@ -626,17 +585,15 @@ export class DetailsComponent implements OnInit {
 		}
 		return bytes.buffer;
 	}
-
 	onPageChange(pageValue) {
 		this.currentPage += pageValue;
 		this.getCandidates();
 	}
-
 	OpenCandidate(profileId, userId, percentage) {
 		if (percentage < 50) {
 			swal(
 				{
-					title: 'Candidate haven"t completed profile',
+					title: 'The candidate has not completed the profile',
 					showConfirmButton: true,
 					showCancelButton: true,
 					type: "info",
@@ -662,7 +619,6 @@ export class DetailsComponent implements OnInit {
 			window.open(url, "_blank");
 		}
 	}
-
 	getActiveJobs() {
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		let customerId = this.customer.CustomerId;
@@ -679,20 +635,17 @@ export class DetailsComponent implements OnInit {
 			)
 		);
 	}
-
-	keywordSearchValidators() {
-		this.keywordSearchGroup = new FormGroup({
-			isKeywordSearch: new FormControl('0'),
-			searchValue: new FormControl(' ')
-		});
-	}
-
+	// keywordSearchValidators() {
+	// 	this.keywordSearchGroup = new FormGroup({
+	// 		isKeywordSearch: new FormControl('0'),
+	// 		searchValue: new FormControl(' ')
+	// 	});
+	// }
 	shareJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
 
 	}
-
 	applyJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
@@ -789,7 +742,6 @@ export class DetailsComponent implements OnInit {
 		// 	this.getCandidates();
 		// });
 	}
-
 	ShareProfile() {
 		debugger;
 		let emailAddresses = this.emailAddresses;
@@ -847,12 +799,9 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 	}
-
-
 	showFilterBar() {
 		this.showFilterNavBar = !this.showFilterNavBar;
 	}
-
 	getSelectedSkills() {
 		console.log(this.selectedSkills);
 	}
@@ -862,70 +811,41 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
+		this.isDomainShown = false;
+		this.getCandidates();
+	}
+	searchCandidates() {
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isDomainShown = false;
 		this.getCandidates();
 	}
 	selectSkills() {
 		console.log(this.selectedSkills);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
-	selectExperience() {
-		console.log(this.MinimumExperience);
-		console.log(this.MaximumExperience);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+	selectDomians()
+	{		
+		this.searchCandidates();
+	}
+	selectExperience() {		
+		this.searchCandidates();
 	}
 	selectJobTitle() {
-		console.log(this.jobTitle);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
 	selectCompany() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
-
 	selectEducation() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.isEducationShown = false;
-		this.isCertificationShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
-
 	selectCertification() {
-		console.log(this.companyName);
-		this.isSkillShown = false;
-		this.isJobTypeShown = false;
-		this.isExperienceShown = false;
-		this.isJobTitleShown = false;
-		this.isCompanyShown = false;
-		this.isEducationShown = false;
-		this.isCertificationShown = false;
-		this.getCandidates();
+		this.searchCandidates();
 	}
-
 	showJobType() {
 		debugger;
 		this.showMenu = true;
@@ -934,7 +854,6 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 	}
-
 	showSkill() {
 		debugger;
 		this.showMenu = true;
@@ -946,7 +865,6 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCompanyShown = false;
 	}
-
 	showExperience() {
 		debugger;
 		this.showMenu = true;
@@ -958,7 +876,6 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.isExperienceShown = !this.isExperienceShown;
 	}
-
 	showJobTitle() {
 
 		debugger;
@@ -971,7 +888,6 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.isJobTitleShown = !this.isJobTitleShown;
 	}
-
 	showCompany() {
 		debugger;
 		this.showMenu = true;
@@ -983,7 +899,6 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCompanyShown = !this.isCompanyShown;
 	}
-
 	showEducation() {
 		debugger;
 		this.showMenu = true;
@@ -995,7 +910,6 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isEducationShown = !this.isEducationShown;
 	}
-
 	showCertification() {
 		debugger;
 		this.showMenu = true;
@@ -1006,10 +920,28 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = false;
 		this.isCertificationShown = !this.isCertificationShown;
 	}
+	showDomain() {
+		debugger;
+		this.showMenu = true;
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isEducationShown = false;
+		this.isCertificationShown = false;
+		this.isDomainShown = !this.isDomainShown;
+	}
 
+	findCandidates()
+	{
+		this.cancel();
+		this.getCandidates();
+	}
 	getCandidates() {
 		debugger;
 		this.candidatesLoading = true;
+		this.customer = JSON.parse(sessionStorage.getItem('userData'));
+		this.customerId =this.customer.CustomerId;
 
 		let candidateSearch = new CandidateSearch();
 		candidateSearch.PageNumber = this.currentPage;
@@ -1022,6 +954,8 @@ export class DetailsComponent implements OnInit {
 		candidateSearch.CompanyName = this.companyName;
 		candidateSearch.EducatonName = this.educationName;
 		candidateSearch.CertificationName = this.certificationName;
+		candidateSearch.SelectedDomains = this.selectedDomains;
+		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
 
 
@@ -1050,6 +984,10 @@ export class DetailsComponent implements OnInit {
 				this.candidatesLoading = false;
 			});
 	}
+
+	makeAllFalse() {
+
+	}
 }
 
 
@@ -1072,6 +1010,8 @@ export class CandidateSearch {
 	CompanyName: any;
 	EducatonName: any;
 	CertificationName: any;
+	SelectedDomains: any;
+	CustomerId: any;
 }
 
 export class ProfileShare {
