@@ -761,15 +761,24 @@
                 </div>
                 <div class="col-sm-5 col">
                     <div class="input-box">
-                        <span class="icon icon__search__01"></span>
-                        <input type="text" placeholder="" class="form-control form-control-light">
-                    </div>
+                        <input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue" (ngModelChange)="this.searchJob.next($event)">
+                        <span class="icon icon__search__01" (click)="getActiveJobs()"></span></div>
                 </div>
             </div>
         </div>
         <div class="apply__job__grid">
             <div class="row flex flex-wrap felx-align-equal">
-                <label class="col-sm-4 col">
+                <label class="col-sm-4 col" *ngFor="let activeJob of activeJobs; index as i;">
+          <input type="checkbox" class="custom-check" [checked]="activeJob.IsSelected"
+          (change)="activeJob.IsSelected = !activeJob.IsSelected">
+          <div class="col-container">
+            <h4>{{activeJob.JobTitle}}</h4>
+            <h5>{{activeJob.CompanyName}}</h5>
+            <div class="date">{{activeJob.PostedDate}}</div>
+            <div class="location"></div>
+          </div>
+        </label>
+                <!-- <label class="col-sm-4 col">
           <input type="checkbox" class="custom-check">
           <div class="col-container">
             <h4>Senior Front End Specialist</h4>
@@ -840,21 +849,12 @@
             <div class="date">01-07-2021</div>
             <div class="location">Lviv, Bogomolsya st.</div>
           </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
+        </label> -->
             </div>
         </div>
         <div class="apply__job__footer">
-            <button class="btn btn-default">Cancel</button>
-            <button class="btn btn-filled">Submit</button>
+            <button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
+            <button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
         </div>
     </div>
 </div>

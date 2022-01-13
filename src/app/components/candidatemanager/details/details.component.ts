@@ -209,6 +209,9 @@ export class DetailsComponent implements OnInit {
 	domainLoading: boolean;
 	isDomainShown: boolean;
 	selectedDomains: any;
+	searchJobValue: any;
+	searchJob = new Subject<string>();
+	activeJobs: any[];
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -216,6 +219,13 @@ export class DetailsComponent implements OnInit {
 	) {
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
+		// this.searchJob.pipe(
+		// 	debounceTime(100),
+		// 	distinctUntilChanged())
+		// 	.subscribe(value => {
+		// 		debugger;
+		// 	  this.getActiveJobs();
+		// 	});
 	}
 
 	ngOnInit() {
@@ -620,20 +630,25 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 	getActiveJobs() {
+		debugger;
+		this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
-		let customerId = this.customer.CustomerId;
-		this.jobList = concat(
-			of([]), // default items
-			this.jobInput.pipe(
-				debounceTime(200),
-				distinctUntilChanged(),
-				tap(() => this.jobsLoading = true),
-				switchMap(term => this.appService.getActiveJobs(term, customerId).pipe(
-					catchError(() => of([])), // empty list on error
-					tap(() => this.jobsLoading = false)
-				))
-			)
-		);
+		this.customerId = this.customer.CustomerId;
+		if (this.searchJobValue === undefined) {
+			this.searchJobValue = '';
+		}
+		this.appService.getActiveJobs(this.searchJobValue, this.customerId).subscribe(
+			(res: any) => {
+				this.activeJobs = [];
+				if (res != null) {
+					this.activeJobs = res;
+				}
+			},
+			error => {
+				debugger;
+				console.log('Error occurred!');
+				this.candidatesLoading = false;
+			});
 	}
 	// keywordSearchValidators() {
 	// 	this.keywordSearchGroup = new FormGroup({
@@ -643,16 +658,17 @@ export class DetailsComponent implements OnInit {
 	// }
 	shareJobToSelectedCandidates() {
 		debugger;
-		let candidates = this.candidates.filter(x => x.IsSelected);
+		//let candidates = this.candidates.filter(x => x.IsSelected);
+		this.applyJobToSelectedCandidates();
 
 	}
 	applyJobToSelectedCandidates() {
 		debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
+		let selectedJobs = this.activeJobs.filter(x => x.IsSelected);
 		if (candidates.length > 0) {
-			let selectedJob = this.selectedJobId;
-			let bulkApply: BulkApplyInvite = { JobId: selectedJob, SelectedCandidates: candidates };
-			bulkApply.JobId
+			//let selectedJob = this.selectedJobId;
+			let bulkApply: BulkApplyInvite = { SelectedJobs: selectedJobs, SelectedCandidates: candidates };
 			this.appService.applyJobToSelectedCandidates(bulkApply).subscribe(
 				(res: any) => {
 					this.selectedJobId = 0;
@@ -667,8 +683,10 @@ export class DetailsComponent implements OnInit {
 							confirmButtonText: 'Ok',
 							cancelButtonText: 'No'
 						}).then((result) => {
+							this.applyJobSidePanelShow = false;
 							this.initInitialState();
 						});
+					this.applyJobSidePanelShow = false;
 					this.initInitialState();
 				},
 				error => {
@@ -827,11 +845,10 @@ export class DetailsComponent implements OnInit {
 		console.log(this.selectedSkills);
 		this.searchCandidates();
 	}
-	selectDomians()
-	{		
+	selectDomians() {
 		this.searchCandidates();
 	}
-	selectExperience() {		
+	selectExperience() {
 		this.searchCandidates();
 	}
 	selectJobTitle() {
@@ -932,8 +949,7 @@ export class DetailsComponent implements OnInit {
 		this.isDomainShown = !this.isDomainShown;
 	}
 
-	findCandidates()
-	{
+	findCandidates() {
 		this.cancel();
 		this.getCandidates();
 	}
@@ -941,7 +957,7 @@ export class DetailsComponent implements OnInit {
 		debugger;
 		this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
-		this.customerId =this.customer.CustomerId;
+		this.customerId = this.customer.CustomerId;
 
 		let candidateSearch = new CandidateSearch();
 		candidateSearch.PageNumber = this.currentPage;
@@ -987,6 +1003,10 @@ export class DetailsComponent implements OnInit {
 
 	makeAllFalse() {
 
+	}
+
+	closeApplyJobWindow() {
+		this.applyJobSidePanelShow = false;
 	}
 }
 
