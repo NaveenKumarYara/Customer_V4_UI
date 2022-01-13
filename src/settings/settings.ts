@@ -231,4 +231,5 @@ export class Settings {
   SearchSkills: string;
   SearchDomains: string;
   ParseSovren: string;
+  ActiveJobs: string;
 }

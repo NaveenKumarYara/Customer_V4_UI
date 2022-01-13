@@ -221,5 +221,8 @@
     "SendAdminEmail": "http://localhost:51059/api/SendAdminEditEmail",
     "CustomerAppprofile": "https://customer-dev.arytic.com/profileview",
     "ShareProfile": "http://localhost:51059/api/ShareProfile",
-    "SearchSkills": "http://localhost:61297/api/SearchSkills"
+    "SearchSkills": "http://localhost:61297/api/SearchSkills",
+    "SearchDomains": "http://localhost:51059/api/SearchDomains",
+    "ParseSovren": "http://43.228.92.181:7272/api/CandidateInformation/ProcessSovernResume",
+    "ActiveJobs": "http://localhost:8982/api/SearchDomains"
 }
