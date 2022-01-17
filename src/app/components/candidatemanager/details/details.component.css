@@ -374,7 +374,7 @@ a:hover {
 }
 
 .data-grid-view .blue .col__container {
-    border-bottom-color: #0026cfd3;
+    border-bottom-color: #0078d7;
 }
 
 .data-grid-view .light-blue .col__container {
@@ -930,22 +930,11 @@ a:hover {
     margin: 0;
 }
 
-.custom-checkbox.custom-checkbox-round .checkmark:before {
-    border-radius: 50%;
-}
-
 .custom-checkbox.custom-checkbox-round .checkmark:after {
-    border: 0;
-    width: 11px;
-    height: 11px;
-    position: absolute;
-    left: -1px;
-    right: 0;
-    top: -1px;
-    bottom: 0;
-    margin: auto;
-    background-color: #2ec496;
-    border-radius: 50%;
+    border: 3px solid #2ec496;
+    border-width: 0 3px 3px 0;
+    top: 2px;
+    position: relative;
 }
 
 .custom-radio {
@@ -8704,6 +8693,7 @@ div .status.Invited {
 
 .apply__job__grid .col-container {
     padding: 10px 15px;
+    overflow: hidden;
     display: block;
     cursor: pointer;
     border: 1px solid #dfdfdf;
@@ -8716,15 +8706,32 @@ div .status.Invited {
 
 .apply__job__grid .col-container h4 {
     font-size: 16px;
-    color: #6e819e
+    background-color: #b1b1ff;
+    color: #fff;
+    margin: -10px -15px 15px;
+    padding: 10px 15px;
 }
 
 .apply__job__grid .col-container h5 {
     font-size: 14px;
+    color: #6e819e;
 }
 
 .apply__job__grid .location {
-    margin: 15px 0;
+    margin: 15px -15px -10px;
+    background: #fafafa;
+    padding: 10px 10px 10px 30px;
+    position: relative;
+}
+
+.apply__job__grid .location:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: url(../../../../assets/images/candidate-sprites.png) -178px -62px no-repeat;
+    width: 15px;
+    height: 19px;
 }
 
 .apply__job__grid .date {
@@ -8743,7 +8750,6 @@ div .status.Invited {
 }
 
 .apply__job__grid .col .custom-check:checked~.col-container {
-    background: rgba(239, 242, 255, 0.45);
     border-color: #2e5bff
 }
 
@@ -8751,27 +8757,100 @@ div .status.Invited {
     margin: 0 -7px
 }
 
-.apply__job__footer {
+.apply__job__footer,
+.share__job__footer {
     padding: 10px 0;
     border-top: 1px solid #e0e3ef;
     text-align: right;
     margin-top: 10px;
 }
 
-.apply__job__footer .btn-filled {
+.apply__job__footer .btn-filled,
+.share__job__footer .btn-filled {
     padding: 6px 12px;
     min-width: inherit;
     margin-left: 10px;
 }
 
-.input-group-btn .btn,
-.input-group-btn .page--account-settings .fc-button-group button,
-.page--account-settings .fc-button-group .input-group-btn button {
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: #ffffff;
-    padding: 6px 18px;
-    background: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+.share__job__body .input-group-btn {
+    border-radius: 0 3px 3px 0;
+}
+
+.share__job__body .btn-secondary {
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.share__job__body {
+    padding: 40px 0 0;
+}
+
+.share__job__body .social ul {
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.share__job__body .social li {
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+
+.share__job__body .social li:first {
+    margin: 0;
+}
+
+.share__job__body .social li a {
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    color: #6e819e;
+}
+
+.share__job__body .social li.fb a {
+    font-size: 17px;
+}
+
+.share__job__body .notes {
+    font-size: 12px;
+}
+
+.btn-small-filter {
+    border-radius: 50%;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    position: relative;
+}
+
+.btn-small-filter span,
+.revamp__filter__sidebar__box .icon .number {
+    width: 20px;
+    height: 20px;
+    background: #2ec496;
+    display: block;
+    position: absolute;
+    font-size: 10px;
+    color: #fff;
+    right: -9px;
+    top: -6px;
+    border-radius: 50%;
+    line-height: 20px;
+}
+
+.revamp__filter__sidebar__box .icon .number {
+    text-align: center;
+}
+
+.share__job__sidepanel h4 {
+    margin: 0
+}
+
+.share__job__sidepanel .top__container {
+    position: relative;
+}
+
+.share__job__sidepanel .top__container .close {
+    margin-left: auto;
 }
