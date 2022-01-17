@@ -1,11 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, ViewContainerRef, HostListener } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AppService } from '../../../app.service';
 declare var $: any;
 import * as FileSaver from 'file-saver';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ApiService } from "../../../shared/services/api.service";
 import { JobdetailsService } from '../../jobdetails/jobdetails.service';
 import { MatchingParameterDetails } from '../../jobdetails/models/jobdetailsprofile';
@@ -212,6 +212,14 @@ export class DetailsComponent implements OnInit {
 	searchJobValue: any;
 	searchJob = new Subject<string>();
 	activeJobs: any[];
+	selectedSkillCount: number;
+	selectedDomainCount: number;
+	selectedProfileCount: number;
+	selectedJobTitleCount: number;
+	selectedExperienceCount: number;
+	selectedCompanyCount: number;
+	selectedEdcationCount: number;
+	selectedCertificationCount: number;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -239,7 +247,6 @@ export class DetailsComponent implements OnInit {
 		this.userId = this.customer.UserId;
 		this.showDetail = false;
 		this.getCandidates();
-		this.getActiveJobs();
 		this.getSkills();
 		this.getDomains();
 		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
@@ -247,9 +254,6 @@ export class DetailsComponent implements OnInit {
 		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
 		// 		this.getCandidates();
 		// 	});
-		this.GetContacts();
-		this.clearTeamMemebers();
-		this.getcustomerusers();
 		this.AddUser = false;
 	}
 
@@ -355,10 +359,14 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 	applySidePanel() {
+		this.getActiveJobs();
 		this.applyJobSidePanelShow = true;
 	}
 
 	shareSidePanel() {
+		this.GetContacts();
+		this.clearTeamMemebers();
+		this.getcustomerusers();
 		this.shareJobSidepanel = true;
 	}
 
@@ -791,12 +799,25 @@ export class DetailsComponent implements OnInit {
 				this.isSharingStarted = false;
 				this.emailAddresses = "";
 				this.emailMessage = "";
-				this.dialogRef.close();
-				this.toastr.success('Mail sent successfully', 'Success');
-				setTimeout(() => {
-					this.toastr.dismissToast;
-					this.initInitialState();
-				}, 3000);
+				swal(
+					{
+						title: 'Selected Profiles shared successfully',
+						showConfirmButton: true,
+						showCancelButton: false,
+						type: "success",
+						confirmButtonColor: '#66dab5',
+						cancelButtonColor: '#FF0000',
+						confirmButtonText: 'View',
+						cancelButtonText: 'No'
+					}).then((result) => {
+						this.shareJobSidepanel = false;
+						this.initInitialState();
+					});
+				this.shareJobSidepanel = false;
+				// setTimeout(() => {
+				// 	this.toastr.dismissToast;
+				// 	this.initInitialState();
+				// }, 3000);
 			}, error => {
 				this.isSharingStarted = false;
 				console.log('error:', JSON.stringify(error));
@@ -830,6 +851,35 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
 		this.isDomainShown = false;
+		this.showFilterNavBar = false;
+		this.showMenu = false;
+		this.getCandidates();
+	}
+	cancelSkills() {
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isDomainShown = false;
+		this.showFilterNavBar = false;
+		this.showMenu = false;
+		this.selectedSkills = null;
+		this.selectedSkillCount = 0;
+		this.getCandidates();
+	}
+	cancelExperience() {
+		this.isSkillShown = false;
+		this.isJobTypeShown = false;
+		this.isExperienceShown = false;
+		this.isJobTitleShown = false;
+		this.isCompanyShown = false;
+		this.isDomainShown = false;
+		this.showFilterNavBar = false;
+		this.showMenu = false;
+		this.MaximumExperience = null;
+		this.MinimumExperience = null;
+		this.selectedExperienceCount = 0;
 		this.getCandidates();
 	}
 	searchCandidates() {
@@ -839,28 +889,75 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
 		this.isDomainShown = false;
+		this.showFilterNavBar = false;
+		this.showMenu = false;
 		this.getCandidates();
 	}
 	selectSkills() {
 		console.log(this.selectedSkills);
+		if (this.selectedSkills == null) {
+			this.selectedSkillCount = 0;
+		}
+		else {
+			this.selectedSkillCount = 1;
+		}
 		this.searchCandidates();
 	}
 	selectDomians() {
+		if (this.selectedDomains == null) {
+			this.selectedDomainCount = 0;
+		}
+		else {
+			this.selectedDomainCount = this.selectedDomains.length;
+		}
 		this.searchCandidates();
 	}
 	selectExperience() {
+		debugger;
+		if (this.MinimumExperience == 0 || this.MaximumExperience == 0) {
+			this.selectedExperienceCount = 0;
+		}
+		else {
+			this.selectedExperienceCount = 1;
+		}
 		this.searchCandidates();
 	}
 	selectJobTitle() {
+		debugger;
+		if (this.jobTitle == null || this.jobTitle == '') {
+			this.selectedJobTitleCount = 0;
+		}
+		else {
+			this.selectedJobTitleCount = 1;
+		}
 		this.searchCandidates();
 	}
 	selectCompany() {
+		debugger;
+		if (this.companyName == null || this.companyName == '') {
+			this.selectedCompanyCount = 0;
+		}
+		else {
+			this.selectedCompanyCount = 1;
+		}
 		this.searchCandidates();
 	}
 	selectEducation() {
+		if (this.educationName == null || this.educationName == '') {
+			this.selectedEdcationCount = 0;
+		}
+		else {
+			this.selectedEdcationCount = 1;
+		}
 		this.searchCandidates();
 	}
 	selectCertification() {
+		if (this.certificationName == null || this.certificationName == '') {
+			this.selectedCertificationCount = 0;
+		}
+		else {
+			this.selectedCertificationCount = 1;
+		}
 		this.searchCandidates();
 	}
 	showJobType() {
@@ -870,6 +967,7 @@ export class DetailsComponent implements OnInit {
 		this.isSkillShown = false;
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
+		this.isDomainShown = false;
 	}
 	showSkill() {
 		debugger;
@@ -881,6 +979,7 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isEducationShown = false;
 		this.isCompanyShown = false;
+		this.isDomainShown = false;
 	}
 	showExperience() {
 		debugger;
@@ -891,10 +990,10 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isEducationShown = false;
 		this.isCompanyShown = false;
+		this.isDomainShown = false;
 		this.isExperienceShown = !this.isExperienceShown;
 	}
 	showJobTitle() {
-
 		debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
@@ -903,6 +1002,7 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = false;
 		this.isEducationShown = false;
 		this.isCompanyShown = false;
+		this.isDomainShown = false;
 		this.isJobTitleShown = !this.isJobTitleShown;
 	}
 	showCompany() {
@@ -914,6 +1014,7 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isCertificationShown = false;
 		this.isEducationShown = false;
+		this.isDomainShown = false;
 		this.isCompanyShown = !this.isCompanyShown;
 	}
 	showEducation() {
@@ -925,6 +1026,7 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
 		this.isCertificationShown = false;
+		this.isDomainShown = false;
 		this.isEducationShown = !this.isEducationShown;
 	}
 	showCertification() {
@@ -935,6 +1037,7 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = false;
 		this.isJobTitleShown = false;
 		this.isEducationShown = false;
+		this.isDomainShown = false;
 		this.isCertificationShown = !this.isCertificationShown;
 	}
 	showDomain() {
@@ -946,6 +1049,7 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isEducationShown = false;
 		this.isCertificationShown = false;
+		this.isCompanyShown = false;
 		this.isDomainShown = !this.isDomainShown;
 	}
 
@@ -1008,6 +1112,52 @@ export class DetailsComponent implements OnInit {
 	closeApplyJobWindow() {
 		this.applyJobSidePanelShow = false;
 	}
+
+	// @HostListener('document:click', ['$event'])
+	// onClick(event) {
+	// 	var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
+	// 	var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
+	// 	var ignoreClickOnInput = document.getElementById('text_search');
+	// 	var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+	// 	var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
+	// 	var isClickInsideInput = ignoreClickOnInput.contains(event.target);
+	// 	if (!isClickInsideElement) {
+	// 		if (document.getElementsByClassName('filter__active')[0]) {
+	// 			this.showFilterActive = true;
+	// 			if (this.showFilterActive == true) {
+	// 				this.showMenu = false;
+	// 				let listClass = document.getElementsByClassName('sub__item');
+	// 				let classArray = [];
+	// 				let i = 0;
+	// 				for (i = 0; i < listClass.length; i++) {
+	// 					classArray.push(i);
+	// 				}
+	// 				classArray.forEach(function (val) {
+	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
+	// 				});
+	// 			}
+	// 		} else {
+	// 			if (this.showMenu == true) {
+	// 				this.showMenu = false;
+	// 				this.showFilterNavBar = false;
+	// 				let listClass = document.getElementsByClassName('sub__item');
+	// 				let classArray = [];
+	// 				let i = 0;
+	// 				for (i = 0; i < listClass.length; i++) {
+	// 					classArray.push(i);
+	// 				}
+	// 				classArray.forEach(function (val) {
+	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
+	// 				});
+	// 			}
+	// 		}
+	// 	}
+	// 	if (!isClickInsideElementOne || !isClickInsideInput) {
+	// 		if (this.showFilterLocation == true) {
+	// 			this.showFilterLocation = false;
+	// 		}
+	// 	}
+	// }
 }
 
 
