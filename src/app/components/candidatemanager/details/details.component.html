@@ -369,9 +369,9 @@
                     <div class="col-sm-4 col">
                         <div class="input-box">
                             <span class="icon__map__01">Icon</span>
-                            <input type="text" placeholder="" class="form-control form-control-light filter-location">
+                            <input type="text" placeholder="" class="form-control form-control-light filter-location" #locationSearch [(ngModel)]="selectedLocation">
                         </div>
-                        <div class="filter__by__loc">
+                        <!-- <div class="filter__by__loc">
                             <div class="title__container">
                                 <div class="row flex flex-wrap flex-align-center">
                                     <div class="col-sm-6">
@@ -458,7 +458,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="col-sm-4 flex flex-wrap flex-align-center flex-justify-end">

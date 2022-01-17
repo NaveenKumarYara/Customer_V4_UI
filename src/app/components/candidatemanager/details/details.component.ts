@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, Input, OnInit, ViewContainerRef, HostListener } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef, HostListener, ViewChild, ElementRef, NgZone, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AppService } from '../../../app.service';
@@ -23,6 +23,7 @@ import { StorageService } from '../../../shared/services';
 import { CustomerContacts } from '../../../../models/customercontacts';
 import { CustomerUsers } from '../../Postajob/models/jobPostInfo';
 import { SettingsService } from '../../../../settings/settings.service';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
 	selector: 'cm-details',
@@ -220,10 +221,17 @@ export class DetailsComponent implements OnInit {
 	selectedCompanyCount: number;
 	selectedEdcationCount: number;
 	selectedCertificationCount: number;
+
+	@ViewChild('locationSearch') public locationSearchElement: ElementRef;
+	@Output() childEvent = new EventEmitter<any>();
+	selectedLocation: any;
+	cityName: any;
+
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
-		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService
+		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
+		private mapsAPILoader: MapsAPILoader, private ngZone: NgZone
 	) {
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
@@ -238,6 +246,29 @@ export class DetailsComponent implements OnInit {
 
 	ngOnInit() {
 		this.initInitialState();
+		this.mapsAPILoader.load().then(
+			() => {
+				const autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
+				autocomplete.setComponentRestrictions({ 'country': ['us'] });
+				autocomplete.addListener('place_changed', () => {
+					this.ngZone.run(() => {
+						const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+						console.log(place.address_components[0].short_name);
+						let locations = place.address_components[0].short_name;
+						let x = locations.split(",");
+						this.cityName = x[0];
+						if(this.cityName !== '')
+						{
+							this.searchCandidates();
+						}
+						this.childEvent.emit(place.address_components[0].short_name);
+						if (place.geometry === undefined || place.geometry === null) {
+							return;
+						}
+					});
+				});
+
+			});
 	}
 
 	initInitialState() {
@@ -960,6 +991,14 @@ export class DetailsComponent implements OnInit {
 		}
 		this.searchCandidates();
 	}
+	selectLocation() {
+
+	}
+	saveLocation() {
+		let locations = this.selectedLocation;
+		let x = locations.split(",");
+		this.cityName = x[0];
+	}
 	showJobType() {
 		debugger;
 		this.showMenu = true;
@@ -1074,6 +1113,7 @@ export class DetailsComponent implements OnInit {
 		candidateSearch.CompanyName = this.companyName;
 		candidateSearch.EducatonName = this.educationName;
 		candidateSearch.CertificationName = this.certificationName;
+		candidateSearch.SelectedLocation = this.cityName;
 		candidateSearch.SelectedDomains = this.selectedDomains;
 		candidateSearch.CustomerId = this.customerId;
 		candidateSearch.FilterValue = JSON.stringify(this.filter);
@@ -1182,6 +1222,7 @@ export class CandidateSearch {
 	CertificationName: any;
 	SelectedDomains: any;
 	CustomerId: any;
+	SelectedLocation: any;
 }
 
 export class ProfileShare {

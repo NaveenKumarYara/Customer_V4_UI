@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, DoCheck } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { } from '@types/googlemaps';
+//import { } from '@types/googlemaps';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
 import { CompanyProfile } from '../../../models/companyprofile';
