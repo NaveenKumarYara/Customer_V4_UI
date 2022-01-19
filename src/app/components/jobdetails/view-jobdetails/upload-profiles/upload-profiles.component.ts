@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
@@ -13,6 +13,10 @@ import { AppService } from '../../../../app.service';
 import { SettingsService } from '../../../../../settings/settings.service';
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
+import { FileUploader } from 'ng2-file-upload';
+import { CustStatusRes } from '../../models/ScheduleType';
+
+const URL = 'http://localhost:4200/fileupload/';
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -60,15 +64,49 @@ export class UploadProfilesComponent implements OnInit {
   customerName = null;
   slice: number;
   showThis: string;
-  
+  open: boolean = true;
+  showMenu: boolean;
+  selectedMenuItem: any;
+  selectedSubMenuItem: any;
+  sideBarMenu: any = [];
+  saveUsername: boolean;
+  selectedFiles: File[] = [];
+  selecteeJobId: any;
+  isProcessing: boolean;
+  processedProfiles: any;
+  haveProfiles: boolean;
+  currentRecordIndex: number;
+  selectedCandidate: any;
+  uploader:FileUploader;
+  statuscheck : CustStatusRes;
+  status:any=[];
+  checks:any=[];
+  @ViewChild('divClick') divClick: ElementRef;
   // tslint:disable-next-line:max-line-length
-  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private alertService: AlertService, private settingsService: SettingsService) {
+  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.displayprofiles = JSON.parse(localStorage.getItem('DisplayUpload'));
     this.customerId = this.customerName.CustomerId;
     // this.userId = this.customerName.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
+    this.uploader = new FileUploader({
+      url: URL,
+      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+      formatDataFunctionIsAsync: true,
+      allowedFileType: ['image', 'pdf','doc'],
+      
+      formatDataFunction: async (item) => {
+        return new Promise( (resolve, reject) => {
+          resolve({
+            name: item._file.name,
+            length: item._file.size,
+            contentType: item._file.type,
+            date: new Date()
+          });
+        });
+      }
+    });
   }
 
   ngOnInit() {
@@ -122,6 +160,45 @@ export class UploadProfilesComponent implements OnInit {
     }
 
 });
+}
+
+selectedItem(item) {
+  this.selectedMenuItem = item;
+}
+
+selectedSubItem(item) {
+  if (this.selectedSubMenuItem === item) {
+    this.selectedSubMenuItem = '';
+  } else {
+    this.selectedSubMenuItem = item;
+  }
+}
+
+onFileSelected(event) {
+  if (this.uploader.queue.length > 0) {
+    for (let i = 0; i < this.uploader.queue.length; i++) {
+      let file: File = this.uploader.queue[i]._file;
+      this.selectedFiles.push(file);
+    }
+  }
+}
+
+selectPreviousCandidate() {
+  this.currentRecordIndex = this.currentRecordIndex - 1;
+
+  if (this.currentRecordIndex < 0) {
+    this.currentRecordIndex = 0;
+  }
+  this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
+}
+
+selectNextCandidate() {
+  this.currentRecordIndex = this.currentRecordIndex + 1;
+
+  if (this.currentRecordIndex > this.processedProfiles.length) {
+    this.currentRecordIndex = this.processedProfiles.length - 1;
+  }
+  this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
 }
 
 GetSubscriptionDetails(sid)
@@ -178,6 +255,67 @@ GetSubscriptionDetails(sid)
   // }
 
   // }
+
+GetProfileStatus(mail)
+ {
+   return this.jobdetailsservice.GetCustomerStatus(mail,this.data.JobId,this.customerId,true).subscribe(
+     dta=>{
+       //this.statuscheck = dta;
+       let c = dta.Status +',' + mail;
+       this.checks.push(c);
+     }
+   )
+ }
+  
+
+
+  processResumes() {
+    this.isProcessing = true;
+    this.status = [];
+    let formData: FormData = new FormData();
+    for (var fileCount = 0; fileCount < this.selectedFiles.length; fileCount++) {
+      let fileName = 'File-' + fileCount;
+      formData.append(fileName, this.selectedFiles[fileCount]);
+    }
+    formData.append('JobInformationId','1000002');
+    this.jobdetailsservice.parseSovren(formData).subscribe(
+      (response) => {
+        this.currentRecordIndex = 0;
+        this.isProcessing = false;
+        this.processedProfiles = response;
+      
+        if (this.processedProfiles !== null && this.processedProfiles.length > 0) {
+          this.haveProfiles = true;
+          this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];               
+        }
+
+        this.processedProfiles.find(item => 
+          {
+            if(item!=undefined)
+            {
+              this.GetProfileStatus(item.ContactInformation.EmailAddresses[0]);
+            }
+          
+          }
+       )
+       
+      },
+      (error) => {
+        this.isProcessing = false;
+        this.haveProfiles = false;
+        this.toastr.error('Error While Saving the Culture Information','Oops...');
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Oops...',
+        //   text: "Error While Saving the Culture Information",
+        //   footer: "Please contact Administrator."
+        // });
+      }
+      
+    );
+  }
+
+
   getFileDetails(e) {
     this.fileCount = 0;
     this.successCount = 0;
@@ -242,6 +380,7 @@ GetSubscriptionDetails(sid)
       }
     }
   }
+
   uploadMultiple(formData, DocId) {
     if(this.sdetails.planId !==  "enterprise" || this.sdetails.planId === undefined )
     {
