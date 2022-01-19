@@ -21,7 +21,7 @@ import { JobComments } from './models/JobComments';
 import { MatchingDetails } from './models/matchingDetails';
 import { GetCompanyBenefit ,GetInviteList} from '../../../models/GetCompanyBenefit';
 import {ProfileLinks} from './models/ProfileLinks';
-import {ScheduleType} from './models/ScheduleType';
+import {CustStatusRes, ScheduleType} from './models/ScheduleType';
 import { DiscResult } from '../Postajob/models/jobPostInfo';
 import { SortbyInProfiles } from './models/SortbyInProfiles';
 import {Router,ActivatedRoute,NavigationEnd} from "@angular/router";
@@ -157,6 +157,16 @@ export class JobdetailsService {
     const url = this.settingsService.settings.GetProfileNotes +
     '?profileId=' + profileId + '&jobId=' + jobId + '&cid=' + cid;
     return this.http.get<string[]>(url)
+      .debounceTime(1000)
+      .catch(
+        this.handleError
+      );
+  }
+
+  GetCustomerStatus(mail: string, jobId: number,customerId:number,IsPublic:boolean): Observable<CustStatusRes> {
+    const url = this.settingsService.settings.CheckCustProfile +
+    'mail=' + mail + '&jobId=' + jobId + '&customerId=' + customerId + '&ispublic=' + IsPublic;
+    return this.http.get<CustStatusRes>(url)
       .debounceTime(1000)
       .catch(
         this.handleError
