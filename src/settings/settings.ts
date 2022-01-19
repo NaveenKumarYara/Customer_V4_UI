@@ -230,7 +230,5 @@ export class Settings {
   ShareProfile: string;
   SearchSkills: string;
   ParseSovren:string;
-  SearchDomains:string;
-  ActiveJobs:string;
   CheckCustProfile:string;
 }
