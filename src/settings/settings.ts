@@ -229,7 +229,8 @@ export class Settings {
   SendAdminEmail: string;
   ShareProfile: string;
   SearchSkills: string;
-  SearchDomains: string;
-  ParseSovren: string;
-  ActiveJobs: string;
+  ParseSovren:string;
+  SearchDomains:string;
+  ActiveJobs:string;
+  CheckCustProfile:string;
 }

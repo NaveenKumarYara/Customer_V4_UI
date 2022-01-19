@@ -221,5 +221,8 @@
   "GetJobCompleteness":"${Identity_URL}/api/GetJobCompletenessInfo?",
   "GetAssignedList":"${Jobs_URL}/api/GetJobAssignedList?",
   "SendAdminEmail":"${Email_URL}/api/SendAdminEditEmail",
-  "ParseSovren":"http://43.228.92.181:7272/api/CandidateInformation/ProcessSovernResume"
+  "ParseSovren":"http://43.228.92.181:7272/api/CandidateInformation/ProcessSovernResume",
+  "SearchDomains": "${Profile_URL}/api/SearchDomains",
+  "ActiveJobs": "${Jobs_URL}/api/GetActiveJobs",
+  "CheckCustProfile": "${Profile_URL}/api/GetCustomerStatusCheck?"
 }
