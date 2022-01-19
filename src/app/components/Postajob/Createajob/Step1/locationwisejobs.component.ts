@@ -22,6 +22,7 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
   multilocationwisejobs: MCities[];
   showMyContainer: boolean = false;
   noOfOpening: any;
+  Remotework:boolean;
   openingsLists = [];
   noOfOpenings: any;
   openingsList: number[];
@@ -141,6 +142,11 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
     this.locationwithpostions.splice(index, 1);
   }
 
+  selectType(val)
+  {
+          this.appService.RemoteWork=val;   
+  }
+
   getmultiSelectedOptionText(id: string) {
     this.selectedCity = this.mconvertObservable.find((s) => s.CityName === id);
     if (this.multilocationwisejobs.length > 0) {
@@ -209,6 +215,7 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
     this.populateCities();
     this.populatemultiCities();
     this.populateopenings();
+    this.Remotework=this.appService.RemoteWork;
     this.appService.JobLocationsChanged.subscribe((cities: Cities[]) => {
       this.locationwisejobs = cities;
     });
@@ -229,7 +236,11 @@ export class LocationwiseJobsComponent implements OnInit, AfterViewChecked, OnDe
   //   this.appService.currentDraft.subscribe(x => this.isDrafted = x);
   //   this.disableLoc = (localStorage.getItem('EditMode') != null && this.isDrafted === false) ? true : false;
   // }
+  // ngDoCheck(){
+  //   this.Remotework = this.appService.RemoteWork;
+  // }
   ngAfterViewChecked() {
+    this.Remotework = this.appService.RemoteWork;
     this.appService.currentDraft.subscribe((x) => (this.isDrafted = x));
     if (this.disable == "true") {
       this.disableLoc = false;

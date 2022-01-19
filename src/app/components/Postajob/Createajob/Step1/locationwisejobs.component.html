@@ -1,7 +1,34 @@
 <div class="row form-rows location-rows">
+	<div class="col-sm-6 form-cols employment-subtype single-form-cols">
+		<label for="employmentTypesub" class="question">
+			Is the Employment type Remote based?<small>(Optional)</small>
+		</label>
+	 
+		<!-- <div class="options">
+			<div class="checkbox">
+				<label>
+					<input type="radio" ><span class="box">Part-time</span>
+				</label>
+			</div>
+		</div> -->
+		<div class="options">
+			<div class="checkbox">
+				<label>
+					<input  type="radio"  [(ngModel)]="Remotework" [value]="true"  [checked]="Remotework==true"
+					(change)="selectType(Remotework)"><span class="box">Yes</span>
+				   
+				</label>
+				
+				<label>           
+					<input  type="radio"  [(ngModel)]="Remotework" [value]="false" [checked]="Remotework==false"
+					 (change)="selectType(Remotework)"><span class="box">No</span>
+				</label>
+			</div>
+		</div>
+	</div>
 	<div class="col-xs-12 col-sm-6 col-md-7 form-cols">
 		<ng-container *ngIf="!showMyContainer">
-			<form [ngClass]="!disableLoc ? '' : 'pointernone' ">
+			<form>
 				<label for="" class="question">At which location the job is available? 
 					<!-- <span class="red">*</span> -->
 					<a href="javascript:void(0)" class="tooltip__link">
@@ -11,7 +38,7 @@
 						</span>
 					</a>
 				</label>
-				<small class="notes">
+				<!-- <small class="notes">
 					( <a class="clickhere" (click)="showMyContainer=!showMyContainer">Click here</a> if you would like to
 					post the job for
 					<ng-container *ngIf="!showMyContainer">
@@ -21,7 +48,7 @@
 						<span> Single Posting.</span>
 					</ng-container>
 					)
-				</small>
+				</small> -->
 			</form>
 			<form>
 				<ng-select class="custom-style" id="PreferredEducation" [items]="cities | async" placeholder="Select Cities"
