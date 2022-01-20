@@ -269,7 +269,8 @@ SearchEnter(searchval) {
         data: {
           animal: 'panda',
           jobId: this.jobid
-        }
+        },
+        panelClass:'upload__resume__modal'
       }
     );
     uploadProfiledialogRef.afterClosed().subscribe(result => {
