@@ -1,5 +1,5 @@
 .upload__resume__modal {
-  max-width: 95vw !important;
+  width: 95vw !important;
 }
 
 .upload__resume__modal .profile__count {
@@ -12,6 +12,10 @@
   display: inline-block;
   padding: 4px 8px;
   top: 20px;
+}
+
+.upload__resume__modal .mat-dialog-content {
+  margin:0;
 }
 
 .upload__resume__container .close {
@@ -78,10 +82,10 @@
   box-shadow: 0 4px 10px rgba(158,171,192,0.2);
   border-radius: 0 6px 6px 6px;
   position: relative;
+  min-height: 840px;
 }
 
-.upload__resume__container .main__section .primary__col:before {
-  content:"";
+.upload__resume__container .main__section .primary__col .shadow {
   position: absolute;
   left: 40%;
   width: 28%;
@@ -426,4 +430,44 @@
   padding: 6px 12px;
   min-width: inherit;
   background-color: #66d9b5;
+}
+
+.upload__resume__container .input-group-btn {
+  border-radius: 0 3px 3px 0;
+  border: 0;
+}
+
+.upload__resume__container .input-group-btn .btn.btn-primary {
+  width: 36px;
+  height: 35px;
+  padding: 0;
+}
+
+.upload__resume__container .tag__container ul {
+  margin: 20px -4px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+.upload__resume__container .tag__container li {
+  display: inline-block;
+  margin: 0 2px 4px;
+}
+
+.upload__resume__container .tag__container li a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #6e819e;
+  background-color: #f5f6fa;
+  border-radius: 3px;
+}
+
+.top__container__before  {
+  padding:20px 24px 0;
+}
+
+.top__container__before  .close {
+  margin-left: auto;
 }

@@ -81,16 +81,16 @@
                 </figure>
               </a>
             </li>
-            <li class="with__icon">
-              <a href="javascript:void(0)">
+            <li class="with__icon" [ngClass]="showThis == 'Achievement'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'Achievement'">
                 <span class="icon icon__achivement"><span class="sr-only">Icon</span></span>
                 Achievement
               </a>
             </li>
-            <li class="with__icon">
-              <a href="javascript:void(0)">
+            <li class="with__icon" [ngClass]="showThis == 'Hobbies'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'Hobbies'">
                 <span class="icon icon__hobbies"><span class="sr-only">Icon</span></span>
-                Hobbies
+                Hobbies and Interest
               </a>
             </li>
             <li class="with__icon">
@@ -104,6 +104,7 @@
       </div>
       <div class="col-sm-9 primary__col">
         <ng-container *ngIf="showThis == 'JobFit'">
+            <span class="shadow">&nbsp;</span>
             <div class="basic__table">
               <div class="row basic__row flex flex-wrap">
                 <div class="col-sm-6 basic__col title__col">
@@ -348,6 +349,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="showThis == 'SkillsFit'">
+          <span class="shadow">&nbsp;</span>
           <div class="basic__table">
             <div class="basic__table">
               <div class="row basic__row flex flex-wrap">
@@ -630,20 +632,75 @@
             </div>
           </div>
         </ng-container>
+        <ng-container *ngIf="showThis == 'Achievement'">
+          <div class="tag__container">
+            <h4>Achievement</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Achievement" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Angular js</a></li>
+              <li><a href="#">React Js</a></li>
+              <li><a href="#">Vue JS</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Reporting</a></li>
+              <li><a href="#">Accountability</a></li>
+              <li><a href="#">Service Standards</a></li>
+              <li><a href="#">Aviation</a></li>
+              <li><a href="#">Pharma</a></li>
+            </ul>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Hobbies'">
+          <div class="tag__container">
+            <h4>Hobbies</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Your Hobbies" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Travelling</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Drawing</a></li>
+              <li><a href="#">Food</a></li>
+            </ul>
+          </div>
+          <div class="tag__container">
+            <h4>Interest</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Your Interest" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Travelling</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Drawing</a></li>
+              <li><a href="#">Food</a></li>
+            </ul>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
 </div>
 
 <!--Old Code Start-->
-<div   *ngIf="!haveProfiles">
+<div class="upload__resume__container"   *ngIf="!haveProfiles">
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
   </ngx-spinner>
-  <div class="">
-    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close"><span
-        aria-hidden="true">×</span></button>
+  <div class="top__container__before flex flex-wrap flex-align-center">
     <h3 mat-dialog-title class="modal-title">Upload Profiles</h3>
+    <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
   </div>
   <mat-dialog-content class="mat-typography vh-100 s-none" *ngIf="loaddata">
     <!--Tab View-->
