@@ -1,5 +1,6 @@
-<div class="upload__resume__container" *ngIf="haveProfiles">
-  <div class="top__container">
+<!-- <div class="upload__resume__container" *ngIf="haveProfiles"> -->
+  <div class="upload__resume__container">
+  <!-- <div class="top__container">
     <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">×</span>
     </button>
@@ -20,47 +21,13 @@
               <h6 *ngIf="t.split(',')[0] === 'Arytic'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Existing Arytic profile.</h6>      
               <h6 *ngIf="t.split(',')[0] === 'true'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Please review profile associated before saving.</h6>  
             </ng-container>
-           
-           <!-- <p *ngIf="cand.ContactInformation.Location.Municipality!=null">{{cand?.ContactInformation?.Location?.Municipality}},{{cand?.ContactInformation?.Location?.Regions[0]}}</p>  -->
         </div>
       </label>
-     
-      <!-- <label for="s2" id="slide2">
-        <div class="info__label">
-          <h4>Pawan Bothra</h4>
-          <h5>Software Engineer</h5>
-          <p>Hounston, Texas</p>
-        </div>
-      </label> -->
-      <!-- <label for="s3" id="slide3">
-        <div class="info__label">
-          <h4>Pawan Bothra</h4>
-          <h5>Software Engineer</h5>
-          <p>Hounston, Texas</p>
-        </div>
-      </label>
-      <label for="s4" id="slide4">
-        <div class="info__label">
-          <h4>Pawan Bothra</h4>
-          <h5>Software Engineer</h5>
-          <p>Hounston, Texas</p>
-        </div>
-      </label>
-      <label for="s5" id="slide5">
-        <div class="info__label">
-          <h4>Pawan Bothra</h4>
-          <h5>Software Engineer</h5>
-          <p>Hounston, Texas</p>
-        </div>
-      </label> -->
-      
-   
-    <span class="slider_next"><span class="sr-only"  (click)="selectNextCandidate()">Next</span></span>
-
+      <span class="slider_next"><span class="sr-only"  (click)="selectNextCandidate()">Next</span></span>
     </section>
-  </div>
+  </div> -->
   <div class="main__section">
-    <div class="row flex flex-wrap flex-align-start">
+    <div class="row flex flex-wrap">
       <div class="col-sm-3 side__col">
         <div class="side__panel__navigation">
           <h4>Arytic Fit (80%)</h4>
@@ -93,10 +60,28 @@
                 Hobbies and Interest
               </a>
             </li>
-            <li class="with__icon">
-              <a href="javascript:void(0)">
+            <li class="with__icon" [ngClass]="showThis == 'Personal Details'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'Personal Details'">
                 <span class="icon icon__interest"><span class="sr-only">Icon</span></span>
-                Interest
+                Personal Details
+              </a>
+            </li>
+            <li class="with__icon" [ngClass]="showThis == 'WorkExperience'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'WorkExperience'">
+                <span class="icon icon__experience"><span class="sr-only">Icon</span></span>
+                Work Experience
+              </a>
+            </li>
+            <li class="with__icon" [ngClass]="showThis == 'Certification'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'Certification'">
+                <span class="icon icon__certification"><span class="sr-only">Icon</span></span>
+                Certification
+              </a>
+            </li>
+            <li class="with__icon" [ngClass]="showThis == 'Languages'? 'active': null">
+              <a href="javascript:void(0)" (click)="showThis = 'Languages'">
+                <span class="icon icon__languages"><span class="sr-only">Icon</span></span>
+                Languages
               </a>
             </li>
           </ul>
@@ -104,249 +89,249 @@
       </div>
       <div class="col-sm-9 primary__col">
         <ng-container *ngIf="showThis == 'JobFit'">
-            <span class="shadow">&nbsp;</span>
-            <div class="basic__table">
-              <div class="row basic__row flex flex-wrap">
-                <div class="col-sm-6 basic__col title__col">
-                  <div class="box__table">&nbsp;</div>
-                </div>
-                <div class="col-sm-3 basic__col">
-                  <div class="box__table">Job Details</div>
-                </div>
-                <div class="col-sm-3 basic__col">
-                  <div class="box__table">Resume Details</div>
-                </div>
+          <span class="shadow">&nbsp;</span>
+          <div class="basic__table">
+            <div class="row basic__row flex flex-wrap">
+              <div class="col-sm-6 basic__col title__col">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 basic__col">
+                <div class="box__table">Job Details</div>
+              </div>
+              <div class="col-sm-3 basic__col">
+                <div class="box__table">Resume Details</div>
               </div>
             </div>
-            <div class="stripped__table no__margin">
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                  <div class="box__table">Role Fit</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>25%</strong></div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">you got <strong>10%</strong></div>
+          </div>
+          <div class="stripped__table no__margin">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Role Fit</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">can be <strong>25%</strong></div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">you got <strong>10%</strong></div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Designation</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Software Engineer</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  .Net Developer
+                  <button class="btn btn__edit" (click)="showQuestion=1">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
                 </div>
               </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Designation</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Software Engineer</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    .Net Developer
-                    <button class="btn btn__edit" (click)="showQuestion=1">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-sm-12 question_col" *ngIf="showQuestion==1">
-                  <div class="question">
-                    If you are working as a .Net Developer ?
-                    <div class="buttons">
-                      <button class="btn btn-filled">Update</button>
-                      <button class="btn btn-default" (click)="showQuestion=''">No</button>
-                      <button class="btn btn-default">Skip</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Job Title</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Fullstack Developer</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    Angular Developer
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Industry</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Information Technology</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    Information Technology
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Key Responsiblities</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Front End Development</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    Front End Development
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
+              <div class="col-sm-12 question_col" *ngIf="showQuestion==1">
+                <div class="question">
+                  If you are working as a .Net Developer ?
+                  <div class="buttons">
+                    <button class="btn btn-filled">Update</button>
+                    <button class="btn btn-default" (click)="showQuestion=''">No</button>
+                    <button class="btn btn-default">Skip</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="stripped__table">
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                  <div class="box__table">Experience Fit</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>25%</strong></div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">you got <strong>10%</strong></div>
-                </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Job Title</div>
               </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Total Experience</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Software Developer</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    .Net Developer
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Fullstack Developer</div>
               </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Domain</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Fullstack Developer</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    Angular Developer
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Industry</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">Information Technology</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    Information Technology
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  Angular Developer
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="stripped__table">
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                  <div class="box__table">Job Hopping</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">can be <strong>25%</strong></div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">you got <strong>10%</strong></div>
-                </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Industry</div>
               </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">ABC LTD.</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">5</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    4
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
-                </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Information Technology</div>
               </div>
-              <div class="row strip__row flex flex-wrap">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table">Infosys</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">2</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    1
-                    <button class="btn btn__edit">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  Information Technology
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
                 </div>
               </div>
             </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Key Responsiblities</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Front End Development</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  Front End Development
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Experience Fit</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">can be <strong>25%</strong></div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">you got <strong>10%</strong></div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Total Experience</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Software Developer</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  .Net Developer
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Domain</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Fullstack Developer</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  Angular Developer
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Industry</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">Information Technology</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  Information Technology
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Job Hopping</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">can be <strong>25%</strong></div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">you got <strong>10%</strong></div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">ABC LTD.</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">5</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  4
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Infosys</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">2</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  1
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="showThis == 'SkillsFit'">
           <span class="shadow">&nbsp;</span>
@@ -631,6 +616,139 @@
               </div>
             </div>
           </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Other Skills</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Strategic Thinking</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">2</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  1
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Vision</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">1</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  2
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Web Development</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">3</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  5
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Web Development</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">4</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  4
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Web Design</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">2</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  1
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Graphi Design</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">2</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  1
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="showThis == 'Achievement'">
           <div class="tag__container">
@@ -653,6 +771,115 @@
               <li><a href="#">Pharma</a></li>
             </ul>
           </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Achievement</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Angular js</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">React JS</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Vue JS</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Documentation</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="showThis == 'Hobbies'">
           <div class="tag__container">
@@ -670,6 +897,115 @@
               <li><a href="#">Food</a></li>
             </ul>
           </div>
+          <div class="stripped__table mb-30">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Hobbies</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Travelling</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Music</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Drawing</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Food</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="tag__container">
             <h4>Interest</h4>
             <div class="input-group">
@@ -684,6 +1020,684 @@
               <li><a href="#">Drawing</a></li>
               <li><a href="#">Food</a></li>
             </ul>
+          </div>
+          <div class="stripped__table mb-30">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Hobbies</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Travelling</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Music</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Drawing</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Food</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Personal Details'">
+          <div class="personal__details">
+            <ng-container *ngIf="editPersonalDetails">
+              <div class="stripped__table no__margin">
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                    <div class="box__table">Personal Details</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                    <div class="box__table">
+                      <button class="btn btn-default" (click)="closePersonalDetailHandler()">Cancel</button>
+                      <button class="btn btn-primary">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row form__row">
+                <div class="col-sm-6 form__col">
+                  <input type="text" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Linked In">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <input type="text" class="form-control" placeholder="Last Name">
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Facebook">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <input type="text" class="form-control" placeholder="Current Role">
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Twitter">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    </span>	
+                    <input type="email" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-skype" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Skype">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <select class="form-control custom-select-dark">
+                    <option value="Gender">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form__col phone__col">
+                  <div class="input-group  flex flex-wrap flex-align-equal">
+                    <span class="input-group-addon">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                    </span>	
+                    <select class="form-control custom-select-dark">
+                      <option value="+1">+1</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Mobile">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <select class="form-control custom-select-dark">
+                    <option value="Generation">Generation</option>
+                    <option value="The Great Generation">The Great Generation</option>
+                    <option value="iGen">iGen</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Address">
+                  </div>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <select class="form-control custom-select-dark">
+                    <option value="Generation">Immigration Status</option>
+                    <option value="The Great Generation">H1B Visa</option>
+                    <option value="iGen">Green Card</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form__col">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>	
+                    <input type="text" class="form-control" placeholder="Zip Code">
+                  </div>
+                </div>
+                
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!editPersonalDetails">
+              <div class="stripped__table no__margin">
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                    <div class="box__table">Personal Details</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                    <div class="box__table">
+                      <button class="btn btn__edit" (click)="editPesonalDetailHandler()">
+                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                        <span class="sr-only">Edit</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">First Name</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                    <div class="th__heading">&nbsp;</div>
+                    <div class="box__table">Harry</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Last Name</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
+                    <div class="box__table">Williams</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Email</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">test15@gmail.com</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Current Role</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">Software Engineer</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Gender</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">Male</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Technology</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">Generation</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Immigration Status</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">H1B Visa</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">LinkedIn</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">http://www.linkedin.com</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Facebook</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">http://www.facebook.com</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Twitter</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">https://www.twitter.com</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Skype Id</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">Skype Name</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Mobile No.</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">+1 (876) 543-4567</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Address</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">San Antonio,Texas 78209,USA</div>
+                  </div>
+                </div>
+                <div class="row strip__row flex flex-wrap">
+                  <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                    <div class="box__table">Zip Code</div>
+                  </div>
+                  <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                    <div class="box__table">87377</div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'WorkExperience'">
+          <div class="stripped__table no__margin">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                <div class="box__table">Job Details</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                <div class="box__table">
+                  <ng-container *ngIf="showInput != 'editWorkExperience'">
+                    <button class="btn btn__edit" (click)="showInput = 'editWorkExperience'">
+                      <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="showInput == 'editWorkExperience'">
+                    <button class="btn btn-default" (click)="showInput = ''">Cancel</button>
+                    <button class="btn btn-primary">Save</button>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Job Title</div>
+              </div>
+              <ng-container *ngIf="showInput != 'editWorkExperience'">
+                <div class="col-sm-6 strip__col strip__col__td text-left lg__col" >
+                  <div class="box__table">Web Designer</div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="showInput == 'editWorkExperience'">
+                <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
+                  <div class="th__heading">&nbsp;</div>
+                  <div class="box__table">
+                    <input type="text" class="form-control" value="Web Designer">
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">From - To</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <ng-container *ngIf="showInput != 'editWorkExperience'">
+                  <div class="box__table">Jan-2020 TO Feb-2021</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editWorkExperience'">
+                  <div class="box__table">
+                    <div class="row form__sub__row flex flex-wrap flex-align-center">
+                      <div class="col-sm-5 form__sub__col">
+                        <input type="text" class="form-control" value="Jan-2020">
+                      </div>
+                      <div class="col-sm-2 form__sub__col text-center">
+                        To
+                      </div>
+                      <div class="col-sm-5 form__sub__col">
+                        <input type="text" class="form-control" value="Feb-2021">
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Company Name</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <ng-container *ngIf="showInput != 'editWorkExperience'">
+                  <div class="box__table">Infosys</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editWorkExperience'">
+                  <div class="box__table">
+                    <input type="text" value="Infosys" class="form-control">
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                  <div class="box__table">Company Location</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <div class="th__heading">&nbsp;</div>
+                <ng-container *ngIf="showInput != 'editWorkExperience'">
+                  <div class="box__table">Austin, Texas</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editWorkExperience'">
+                  <div class="box__table">
+                    <input type="text" value="Austin, Texas" class="form-control">
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Description</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <ng-container *ngIf="showInput != 'editWorkExperience'">
+                  <div class="box__table">The Cloud Knows Premier initiative and underlying match platform enable the...</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editWorkExperience'">
+                  <div class="box__table">
+                    <textarea class="form-control">The Cloud Knows Premier initiative and underlying match platform enable the...
+                    </textarea>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Certification'">
+          <div class="stripped__table no__margin">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
+                <div class="box__table">Certification</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
+                <div class="box__table">
+                  <ng-container *ngIf="showInput != 'editCertification'">
+                    <button class="btn btn__edit">
+                      <i class="fa fa-pencil fa-lg" (click)="showInput = 'editCertification'" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="showInput == 'editCertification'">
+                    <button class="btn btn-default" (click)="showInput = ''">Cancel</button>
+                    <button class="btn btn-primary">Save</button>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Certification Provider</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <div class="th__heading">&nbsp;</div>
+                <ng-container *ngIf="showInput != 'editCertification'">
+                  <div class="box__table">CDAC Gateway</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editCertification'">
+                  <input type="text" class="form-control" value="CDAC Gateway">
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Certification Name</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <div class="th__heading">&nbsp;</div>
+                <ng-container *ngIf="showInput != 'editCertification'">
+                  <div class="box__table">PGDCA</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editCertification'">
+                  <input type="text" value="PGDCA" class="form-control">
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Year of Achievement</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <div class="th__heading">&nbsp;</div>
+                <ng-container *ngIf="showInput != 'editCertification'">
+                  <div class="box__table">4</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editCertification'">
+                  <input type="text" value="4" class="form-control">
+                </ng-container>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col lg__col">
+                <div class="box__table">Skills</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td text-left lg__col">
+                <div class="th__heading">&nbsp;</div>
+                <ng-container *ngIf="showInput != 'editCertification'">
+                  <div class="box__table">Web Development</div>
+                </ng-container>
+                <ng-container *ngIf="showInput == 'editCertification'">
+                  <input type="text" value="Web Development" class="form-control">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Languages'">
+          <div class="stripped__table no__margin">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first xs__col">
+                <div class="box__table">Languages</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th xs__col">
+                <div class="box__table">
+                  Read
+                </div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th xs__col">
+                <div class="box__table">
+                  Write
+                </div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th xs__col">
+                <div class="box__table">
+                  Speak
+                </div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__th xs__col text-right">
+                <div class="box__table">
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                <div class="box__table">English</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox" checked disabled>
+                  <span class="checkmark">Read</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox" checked disabled>
+                  <span class="checkmark">Write</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox" checked disabled>
+                  <span class="checkmark">Speak</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <button class="btn btn__edit">
+                  <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+                <button class="btn btn__edit">
+                  <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                <div class="box__table">Hindi</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox" checked disabled>
+                  <span class="checkmark">Read</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox">
+                  <span class="checkmark">Write</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox">
+                  <span class="checkmark">Speak</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <button class="btn btn__edit">
+                  <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+                <button class="btn btn__edit">
+                  <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col xs__col">
+                <div class="box__table">Gujrati</div>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox">
+                  <span class="checkmark">Read</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox">
+                  <span class="checkmark">Write</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <label class="custom-checkbox lg-select">
+                  <input type="checkbox">
+                  <span class="checkmark">Speak</span>
+                </label>
+              </div>
+              <div class="col-sm-6 strip__col strip__col__td xs__col">
+                <button class="btn btn__edit">
+                  <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+                <button class="btn btn__edit">
+                  <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                  <span class="sr-only">Edit</span>
+                </button>
+              </div>
+            </div>
           </div>
         </ng-container>
       </div>

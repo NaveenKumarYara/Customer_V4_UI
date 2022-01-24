@@ -127,6 +127,12 @@
   padding:15px;
 }
 
+.upload__resume__container .basic__table .basic__col.lg__col, 
+.upload__resume__container .stripped__table .strip__col.lg__col {
+ width: 50% 
+}
+
+
 .upload__resume__container .stripped__table .row,
 .upload__resume__container .basic__table .row  {
   margin:0;
@@ -152,9 +158,25 @@
   text-align: left;
 }
 
+.upload__resume__container .basic__table .basic__col.title__col.lg__col, 
+.upload__resume__container .stripped__table .strip__col.title__col.lg__col {
+  width: 50%;
+}
+
+.upload__resume__container .basic__table .basic__col.xs__col, 
+.upload__resume__container .stripped__table .strip__col.xs__col {
+ width: 15%
+}
+
+.upload__resume__container .basic__table .basic__col.title__col.xs__col, 
+.upload__resume__container .stripped__table .strip__col.title__col.xs__col {
+  width: 40%;
+}
+
 .upload__resume__container .stripped__table .strip__col.title__col__first  {
   position: relative;
   color: #fff;
+  overflow: hidden;
 }
 
 .upload__resume__container .stripped__table .strip__col.title__col__first:before{
@@ -174,7 +196,7 @@
   top: 0;
   width:0;
   height: 0;
-  border-top: 52px solid #447afa;
+  border-top: 64px solid #447afa;
   border-right: 40px solid transparent;
 }
 
@@ -272,6 +294,18 @@
 
 .upload__resume__container .icon.icon__interest {
   background-position: -196px -15px;
+}
+
+.upload__resume__container .icon.icon__experience {
+  background-position: -80px -107px;
+}
+
+.upload__resume__container .icon.icon__certification {
+  background-position: -169px -107px;
+}
+
+.upload__resume__container .icon.icon__languages {
+  background-position: -264px -107px;
 }
 
 .upload__resume__container .side__col li.with__icon .icon {
@@ -470,4 +504,150 @@
 
 .top__container__before  .close {
   margin-left: auto;
+}
+
+.upload__resume__container .stripped__table.mb-30 {
+  margin: 30px 0;
+}
+
+.personal__details .form__row {
+  margin: 0;
+  padding: 10px 15px 24px;
+  border: 1px solid #e0e3ef;
+  border-top: 0;
+}
+
+.personal__details .form__col {
+  padding: 0 7px;
+  margin: 14px 0 0;
+}
+
+.form__sub__row {
+  margin: 0 -7px !important;
+}
+
+.form__sub__col {
+  padding: 0 7px !important;
+}
+
+.form-control.custom-select-dark {
+  background:url(../../images/arrow.svg) 98% 15px no-repeat #fff;
+  background-size: 16px auto;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.phone__col .form-control {
+  width: calc(100% - 99px) !important;
+}
+
+.phone__col .form-control.custom-select-dark {
+  width: 60px !important;
+}
+
+.phone__col .input-group-addon {
+  width:39px;
+}
+
+.personal__details .title__container .btn.btn__edit { 
+  margin-left: auto; 
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.upload__resume__container .custom-checkbox {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.upload__resume__container .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.upload__resume__container .custom-checkbox .checkmark {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: 4px;
+  border: 1px solid #a6aab3;
+}
+
+.upload__resume__container .custom-checbox input:checked~.checkmark {
+  background-color: #FFF;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.upload__resume__container .custom-checkbox input:checked~.checkmark:after {
+  display: block;
+}
+
+.upload__resume__container .custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #405de6;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.upload__resume__container .custom-checkbox.lg-select .checkmark {
+  padding-left: 25px;
+  font-size: 0;
+  width: auto;
+  font-weight: 600;
+  color: #6C6E71;
+  height: auto;
+}
+
+.upload__resume__container .custom-checkbox.lg-select .checkmark p {
+    font-size: 13px;
+    margin: 5px 0 0;
+    color: #93A2BB;
+    font-weight: 400;
+}
+
+.upload__resume__container .stripped__table .strip__col.strip__col__th .btn {
+  padding: 3px 9px;
+  line-height: 1.25;
+  font-size: 13px;
+}
+
+.input-group-btn .btn.btn-sm {
+  padding: 3px 10px;
 }
