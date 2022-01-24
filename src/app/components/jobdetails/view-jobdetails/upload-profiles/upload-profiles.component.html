@@ -1,6 +1,6 @@
 <!-- <div class="upload__resume__container" *ngIf="haveProfiles"> -->
-  <div class="upload__resume__container">
-  <!-- <div class="top__container">
+  <div class="upload__resume__container" *ngIf="haveProfiles">
+   <div class="top__container">
     <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">×</span>
     </button>
@@ -16,16 +16,16 @@
         <div class="info__label">
           <h4>{{cand?.ContactInformation?.CandidateName?.FormattedName}}</h4>
           <h5>{{cand?.ContactInformation?.EmailAddresses[0]}}</h5>
-            <h6 *ngFor="let tel of cand.ContactInformation.Telephones">{{tel?.Normalized}};</h6>  
-            <ng-container *ngFor="let t of checks;let f = index">
+            <h6 *ngFor="let tel of cand?.ContactInformation?.Telephones">{{tel?.Normalized}};</h6>  
+            <!-- <ng-container *ngFor="let t of checks;let f = index">
               <h6 *ngIf="t.split(',')[0] === 'Arytic'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Existing Arytic profile.</h6>      
               <h6 *ngIf="t.split(',')[0] === 'true'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Please review profile associated before saving.</h6>  
-            </ng-container>
+            </ng-container> -->
         </div>
       </label>
       <span class="slider_next"><span class="sr-only"  (click)="selectNextCandidate()">Next</span></span>
     </section>
-  </div> -->
+  </div> 
   <div class="main__section">
     <div class="row flex flex-wrap">
       <div class="col-sm-3 side__col">
@@ -750,387 +750,7 @@
             </div>
           </div>
         </ng-container>
-        <ng-container *ngIf="showThis == 'Achievement'">
-          <div class="tag__container">
-            <h4>Achievement</h4>
-            <div class="input-group">
-              <input type="text" placeholder="Enter Achievement" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">+</button>
-              </span>
-            </div>
-            <ul>
-              <li><a href="#">Angular js</a></li>
-              <li><a href="#">React Js</a></li>
-              <li><a href="#">Vue JS</a></li>
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">Reporting</a></li>
-              <li><a href="#">Accountability</a></li>
-              <li><a href="#">Service Standards</a></li>
-              <li><a href="#">Aviation</a></li>
-              <li><a href="#">Pharma</a></li>
-            </ul>
-          </div>
-          <div class="stripped__table">
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                <div class="box__table">Achievement</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Angular js</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">React JS</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Vue JS</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Documentation</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="showThis == 'Hobbies'">
-          <div class="tag__container">
-            <h4>Hobbies</h4>
-            <div class="input-group">
-              <input type="text" placeholder="Enter Your Hobbies" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">+</button>
-              </span>
-            </div>
-            <ul>
-              <li><a href="#">Travelling</a></li>
-              <li><a href="#">Music</a></li>
-              <li><a href="#">Drawing</a></li>
-              <li><a href="#">Food</a></li>
-            </ul>
-          </div>
-          <div class="stripped__table mb-30">
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                <div class="box__table">Hobbies</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Travelling</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Music</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Drawing</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Food</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tag__container">
-            <h4>Interest</h4>
-            <div class="input-group">
-              <input type="text" placeholder="Enter Your Interest" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">+</button>
-              </span>
-            </div>
-            <ul>
-              <li><a href="#">Travelling</a></li>
-              <li><a href="#">Music</a></li>
-              <li><a href="#">Drawing</a></li>
-              <li><a href="#">Food</a></li>
-            </ul>
-          </div>
-          <div class="stripped__table mb-30">
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
-                <div class="box__table">Hobbies</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__th">
-                <div class="box__table">&nbsp;</div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Travelling</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Music</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Drawing</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row strip__row flex flex-wrap">
-              <div class="col-sm-6 strip__col strip__col__td title__col">
-                <div class="th__heading">Title</div>
-                <div class="box__table">Food</div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Edit</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-sm-3 strip__col strip__col__td">
-                <div class="th__heading">&nbsp;</div>
-                <div class="box__table">
-                  <button class="btn btn__edit">
-                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
+       
         <ng-container *ngIf="showThis == 'Personal Details'">
           <div class="personal__details">
             <ng-container *ngIf="editPersonalDetails">
@@ -1696,6 +1316,387 @@
                   <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
                   <span class="sr-only">Edit</span>
                 </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Achievement'">
+          <div class="tag__container">
+            <h4>Achievement</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Achievement" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Angular js</a></li>
+              <li><a href="#">React Js</a></li>
+              <li><a href="#">Vue JS</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Reporting</a></li>
+              <li><a href="#">Accountability</a></li>
+              <li><a href="#">Service Standards</a></li>
+              <li><a href="#">Aviation</a></li>
+              <li><a href="#">Pharma</a></li>
+            </ul>
+          </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Achievement</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Angular js</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">React JS</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Vue JS</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Documentation</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showThis == 'Hobbies'">
+          <div class="tag__container">
+            <h4>Hobbies</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Your Hobbies" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Travelling</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Drawing</a></li>
+              <li><a href="#">Food</a></li>
+            </ul>
+          </div>
+          <div class="stripped__table mb-30">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Hobbies</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Travelling</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Music</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Drawing</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Food</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tag__container">
+            <h4>Interest</h4>
+            <div class="input-group">
+              <input type="text" placeholder="Enter Your Interest" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">+</button>
+              </span>
+            </div>
+            <ul>
+              <li><a href="#">Travelling</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Drawing</a></li>
+              <li><a href="#">Food</a></li>
+            </ul>
+          </div>
+          <div class="stripped__table mb-30">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Hobbies</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">&nbsp;</div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Travelling</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Music</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Drawing</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Food</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Edit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">&nbsp;</div>
+                <div class="box__table">
+                  <button class="btn btn__edit">
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

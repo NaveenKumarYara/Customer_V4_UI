@@ -74,8 +74,8 @@ export class UploadProfilesComponent implements OnInit {
   selectedFiles: File[] = [];
   selecteeJobId: any;
   isProcessing: boolean;
-  processedProfiles: any;
-  haveProfiles: boolean;
+  processedProfiles: any=[];
+  haveProfiles: boolean=false;
   currentRecordIndex: number;
   selectedCandidate: any;
   uploader:FileUploader;
@@ -135,6 +135,7 @@ export class UploadProfilesComponent implements OnInit {
       'EmailCheck': ['', Validators.nullValidator]
     });
     this.SearchProfiles();
+    this.haveProfiles = false;
     this.alertService.clear();
     this.GetCustomerSubscription();
     /** */
@@ -284,48 +285,73 @@ GetProfileStatus(mail)
 
   processResumes() {
     this.isProcessing = true;
+    let dta:any;
     this.status = [];
-    let formData: FormData = new FormData();
     for (var fileCount = 0; fileCount < this.selectedFiles.length; fileCount++) {
-      let fileName = 'File-' + fileCount;
-      formData.append(fileName, this.selectedFiles[fileCount]);
-    }
-    formData.append('JobInformationId','1000002');
-    this.jobdetailsservice.parseSovren(formData).subscribe(
-      (response) => {
+    this.getBase64(this.selectedFiles[fileCount]).then(
+      data => 
+      {
+       dta= data;
+       var da = {  
+    DocumentAsBase64String: dta,  
+    DocumentLastModified: '2021-06-18',  
+    GeocodeOptions: {  
+      'IncludeGeocoding': false,  
+      'Provider': null,  
+      'ProviderKey': null,  
+      'PostalAddress': null,  
+      'GeoCoordinates': null  
+    },  
+    IndexingOptions: {  
+      'IndexId': '',  
+      'DocumentId': '',  
+      'UserDefinedTags': [  
+        ''  
+      ]  
+    },  
+    OutputHtml: true,  
+    HideHtmlImages: null,  
+    OutputRtf: false,  
+    OutputCandidateImage: false,  
+    OutputPdf: false,  
+    Configuration: 'Coverage.MilitaryHistoryAndSecurityCredentials = true; Coverage.PatentsPublicationsAndSpeakingEvents = true; Coverage.PersonalInformation = true; Coverage.Training = true; Coverage.EntryLevel = true',  
+    SkillsData: [  
+      ''  
+    ],  
+    NormalizerData: ''  
+      }
+      this.jobdetailsservice.UploadSovren(da).subscribe( dat => 
+      {
+        let val  = dat.Value.ResumeData;
         this.currentRecordIndex = 0;
         this.isProcessing = false;
-        this.processedProfiles = response;
-      
+        this.processedProfiles.push(JSON.parse(JSON.stringify(val)));
         if (this.processedProfiles !== null && this.processedProfiles.length > 0) {
           this.haveProfiles = true;
           this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];               
         }
-
-        this.processedProfiles.find(item => 
-          {
-            if(item!=undefined)
-            {
-              this.GetProfileStatus(item.ContactInformation.EmailAddresses[0]);
-            }
-          
-          }
-       )
-       
-      },
-      (error) => {
-        this.isProcessing = false;
-        this.haveProfiles = false;
-        this.toastr.error('Error While Saving the Culture Information','Oops...');
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Oops...',
-        //   text: "Error While Saving the Culture Information",
-        //   footer: "Please contact Administrator."
-        // });
+     
+      })
       }
-      
-    );
+   );
+
+    }
+  
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
+        if ((encoded.length % 4) > 0) {
+          encoded += '='.repeat(4 - (encoded.length % 4));
+        }
+        resolve(encoded);
+      };
+      reader.onerror = error => reject(error);
+    });
   }
 
 

@@ -390,6 +390,24 @@ export class JobdetailsService {
       return Observable.throw(error.json());
     });
   }
+
+
+  UploadSovren(body) {
+    const url = 'https://rest.resumeparsing.com/v10/parser/resume';
+    const headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Sovren-AccountId', '25863506');
+    headers.append('Sovren-ServiceKey','WmukTR4CElDGRQQa717FE3Lc1crg9Xxrc2YjifGT');
+    return this._http.post(url, body, { headers: headers } )
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        //this.reload();
+        return Observable.throw(error.json());
+      });
+  }
+
+
   updateWishlist(body) {
     return this.http.post(this.settingsService.settings.UpdateWishlist, body)
     .map((res: Response) => res)
