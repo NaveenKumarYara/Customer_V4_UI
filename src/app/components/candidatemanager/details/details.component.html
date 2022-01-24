@@ -674,7 +674,7 @@
 </div>
 
 <div class="apply__job__sidepanel" [ngClass]="applyJobSidePanelShow ? 'show': ''">
-    <<<<<<< HEAD <div class="col__container">
+    <div class="col__container">
         <button type="button" class="close" (click)="hideApplySidePanel()">
       <span aria-hidden="true">×</span>
     </button>
@@ -698,121 +698,15 @@
           <div class="col-container">
             <h4>{{activeJob.JobTitle}}</h4>
             <h5>{{activeJob.CompanyName}}</h5>
-            <div class="date">{{activeJob.PostedDate}}</div>
-            <div class="location"></div>
+            <div class="date">{{activeJob.PostedDate | date:'shortDate'}}</div>
+            <div class="location">{{activeJob.JobLocations}}</div>
           </div>
         </label>
-                <!-- <label class="col-sm-4 col">
-=======
-	<div class="col__container">
-		<button type="button" class="close" (click)="hideApplySidePanel()">
-			<span aria-hidden="true">×</span>
-		</button>
-		<div class="revamp__search__container">
-			<div class="row flex flex-align-center flex-wrap">
-				<div class="col-sm-3 col check-col">
-					Search Here:
-				</div>
-				<div class="col-sm-5 col">
-					<div class="input-box">
-						<input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel"
-							[(ngModel)]="searchJobValue" (ngModelChange)="this.searchJob.next($event)">
-						<span class="icon icon__search__01" (click)="getActiveJobs()"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="apply__job__grid">
-			<div class="row flex flex-wrap felx-align-equal">
-				<label class="col-sm-4 col" *ngFor="let activeJob of activeJobs; index as i;">
-					<input type="checkbox" class="custom-check" [checked]="activeJob.IsSelected"
-						(change)="activeJob.IsSelected = !activeJob.IsSelected">
-					<div class="col-container">
-						<h4 ata-toggle="tooltip"
-						tooltip="{{activeJob.JobTitle}}" placement="top">{{activeJob.JobTitle}}</h4>
-						<h5>{{activeJob.CompanyName}}</h5>
-						<div class="date">{{activeJob.PostedDate}}</div>
-						<div class="location"></div>
-					</div>
-				</label>
-				<!-- <label class="col-sm-4 col">
->>>>>>> 286576b0fbc1d0d2854aefdfc12c3d42f0e6c80c
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label>
-                <label class="col-sm-4 col">
-          <input type="checkbox" class="custom-check">
-          <div class="col-container">
-            <h4>Senior Front End Specialist</h4>
-            <h5>ABC Company</h5>
-            <div class="date">01-07-2021</div>
-            <div class="location">Lviv, Bogomolsya st.</div>
-          </div>
-        </label> -->
             </div>
         </div>
         <div class="apply__job__footer">
             <button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
             <button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
         </div>
-</div>
+    </div>
 </div>
