@@ -1,816 +1,709 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 <div class="grid-table-section">
-	<div class="revamp__candidate__grid__list">
-		<div class="section__box__container">
-			<div class="revamp__filter__sidebar__box" [ngClass]="{'show big':showFilterNavBar, 'full': showMenu}">
-				<div class="scroll-box">
-					<div class="icon__box">&nbsp;</div>
-					<button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
-					<ul (mouseenter)="showNavigation()">
-						<li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
-							<a href="javascript:void(0);" (click)="showJobType()">
-								<span class="icon icon__jobtype__01">
+    <div class="revamp__candidate__grid__list">
+        <div class="section__box__container">
+            <div class="revamp__filter__sidebar__box" [ngClass]="{'show big':showFilterNavBar, 'full': showMenu}">
+                <div class="scroll-box">
+                    <div class="icon__box">&nbsp;</div>
+                    <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
+                    <ul (mouseenter)="showNavigation()">
+                        <li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
+                            <a href="javascript:void(0);" (click)="showJobType()">
+                                <span class="icon icon__jobtype__01">
 									<span class="number">4</span>
-								</span>
-								<em>Job Type</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isJobTypeShown, 'hideSearch': !isJobTypeShown}">
-									<div class="input__box">
-										<span class="icon__search__dark"></span>
-										<input type="text" class="form-control form-control-light" placeholder="Search">
-									</div>
-									<div class="filter__tag">
-										<ul>
-											<li><a href="javascript:void(0);">Information Technology</a></li>
-											<li><a href="javascript:void(0);">Data Analyst</a></li>
-											<li><a href="javascript:void(0);">Data Specailist</a></li>
-											<li><a href="javascript:void(0);">Data Entry Analyst</a></li>
-											<li><a href="javascript:void(0);">Information Analyst</a></li>
-										</ul>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isSkillShown}">
-							<a href="javascript:void(0);" (click)="showSkill()">
-								<span class="icon icon__skills__01">
+                                </span>
+                                <em>Job Type</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isJobTypeShown, 'hideSearch': !isJobTypeShown}">
+                                    <div class="input__box">
+                                        <span class="icon__search__dark"></span>
+                                        <input type="text" class="form-control form-control-light" placeholder="Search">
+                                    </div>
+                                    <div class="filter__tag">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">Information Technology</a></li>
+                                            <li><a href="javascript:void(0);">Data Analyst</a></li>
+                                            <li><a href="javascript:void(0);">Data Specailist</a></li>
+                                            <li><a href="javascript:void(0);">Data Entry Analyst</a></li>
+                                            <li><a href="javascript:void(0);">Information Analyst</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase">Cancel</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isSkillShown}">
+                            <a href="javascript:void(0);" (click)="showSkill()">
+                                <span class="icon icon__skills__01">
 									<span *ngIf="selectedSkillCount > 0" class="number">{{selectedSkillCount}}</span>
-								</span>
-								<em>Skills</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search" [ngClass]="{'showSearch': isSkillShown, 'hideSearch': !isSkillShown}">
-									<div class="input__box">
-										<span class="icon__search__dark"></span>
-										<ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill"
-											bindLabel="Code" bindValue="Code" [typeahead]="selectedskillinput" [hideSelected]="true"
-											[loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
-											#skill="ngModel" [virtualScroll]="true" [multiple]="false">
-										</ng-select>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectSkills()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" style="display: none;">
-							<a href="javascript:void(0);">
-								<span class="icon icon__salary__01"></span>
-								<em>Salary</em>
-							</a>
-						</li>
-						<li class="sub__item filter__active" style="display: none;">
-							<a href="javascript:void(0);">
-								<span class="icon icon__location__01"></span>
-								<em>Location</em>
-							</a>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isExperienceShown}">
-							<a href="javascript:void(0);" (click)="showExperience()">
-								<span class="icon icon__experience__01">
+                                </span>
+                                <em>Skills</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isSkillShown, 'hideSearch': !isSkillShown}">
+                                    <div class="input__box">
+                                        <span class="icon__search__dark"></span>
+                                        <ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill" bindLabel="Code" bindValue="Code" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
+                                            #skill="ngModel" [virtualScroll]="true" [multiple]="false">
+                                        </ng-select>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearSkillsFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectSkills()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" style="display: none;">
+                            <a href="javascript:void(0);">
+                                <span class="icon icon__salary__01"></span>
+                                <em>Salary</em>
+                            </a>
+                        </li>
+                        <li class="sub__item filter__active" style="display: none;">
+                            <a href="javascript:void(0);">
+                                <span class="icon icon__location__01"></span>
+                                <em>Location</em>
+                            </a>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isExperienceShown}">
+                            <a href="javascript:void(0);" (click)="showExperience()">
+                                <span class="icon icon__experience__01">
 									<span *ngIf="selectedExperienceCount > 0" class="number">{{selectedExperienceCount}}</span>
-								</span>
-								<em>Experience</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isExperienceShown, 'hideSearch': !isExperienceShown}">
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label for="minExpe">Min. Experience</label>
-											<input class="form-control" id="minExpe" placeholder="Minimum Experience" #minExpe="ngModel"
-												[(ngModel)]="MinimumExperience">
-										</div>
-										<div class="form-group col-md-6">
-											<label for="maxExpe">Max. Experience</label>
-											<input class="form-control" id="maxExpe" placeholder="Maximum Experience" #maxExpe="ngModel"
-												[(ngModel)]="MaximumExperience">
-										</div>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectExperience()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isJobTitleShown}">
-							<a href="javascript:void(0);" (click)="showJobTitle()">
-								<span class="icon icon__title__01">
+                                </span>
+                                <em>Experience</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isExperienceShown, 'hideSearch': !isExperienceShown}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="minExpe">Min. Experience</label>
+                                            <input class="form-control" id="minExpe" placeholder="Minimum Experience" #minExpe="ngModel" [(ngModel)]="MinimumExperience">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="maxExpe">Max. Experience</label>
+                                            <input class="form-control" id="maxExpe" placeholder="Maximum Experience" #maxExpe="ngModel" [(ngModel)]="MaximumExperience">
+                                        </div>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearExperienceFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectExperience()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isJobTitleShown}">
+                            <a href="javascript:void(0);" (click)="showJobTitle()">
+                                <span class="icon icon__title__01">
 									<span *ngIf="selectedJobTitleCount > 0" class="number">{{selectedJobTitleCount}}</span>
-								</span>
-								<em>Profile Title</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isJobTitleShown, 'hideSearch': !isJobTitleShown}">
-									<div class="form-row">
-										<div class="form-group col-md-12">
-											<label for="minExpe">Job Title</label>
-											<input class="form-control" id="title" placeholder="Job Title" #title="ngModel"
-												[(ngModel)]="jobTitle">
-										</div>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectJobTitle()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" style="display: none;">
-							<a href="javascript:void(0);">
-								<span class="icon icon__status__01"></span>
-								<em>Availibilty Status</em>
-							</a>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isDomainShown}">
-							<a href="javascript:void(0);" (click)="showDomain()">
-								<span class="icon icon__domain__01">
+                                </span>
+                                <em>Profile Title</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isJobTitleShown, 'hideSearch': !isJobTitleShown}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="minExpe">Job Title</label>
+                                            <input class="form-control" id="title" placeholder="Job Title" #title="ngModel" [(ngModel)]="jobTitle">
+                                        </div>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearJobTitleFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectJobTitle()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" style="display: none;">
+                            <a href="javascript:void(0);">
+                                <span class="icon icon__status__01"></span>
+                                <em>Availibilty Status</em>
+                            </a>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isDomainShown}">
+                            <a href="javascript:void(0);" (click)="showDomain()">
+                                <span class="icon icon__domain__01">
 									<span *ngIf="selectedDomainCount > 0" class="number">{{selectedDomainCount}}</span>
-								</span>
-								<em>Domain</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isDomainShown, 'hideSearch': !isDomainShown}">
-									<div class="input__box">
-										<span class="icon__search__dark"></span>
-										<ng-select class="custom-style" [items]="domainList | async" placeholder="Search Domain"
-											bindLabel="Code" bindValue="Id" [typeahead]="selectedDomainInput" [hideSelected]="true"
-											[loading]="domainLoading" [(ngModel)]="selectedDomains" minlength="1" name="selectedDomains"
-											#domain="ngModel" [virtualScroll]="true" [multiple]="true">
-										</ng-select>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectDomians()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isCompanyShown}">
-							<a href="javascript:void(0);" (click)="showCompany()">
-								<span class="icon icon__company__01">
+                                </span>
+                                <em>Domain</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isDomainShown, 'hideSearch': !isDomainShown}">
+                                    <div class="input__box">
+                                        <span class="icon__search__dark"></span>
+                                        <ng-select class="custom-style" [items]="domainList | async" placeholder="Search Domain" bindLabel="Code" bindValue="Id" [typeahead]="selectedDomainInput" [hideSelected]="true" [loading]="domainLoading" [(ngModel)]="selectedDomains" minlength="1" name="selectedDomains"
+                                            #domain="ngModel" [virtualScroll]="true" [multiple]="true">
+                                        </ng-select>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearDomainFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectDomians()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isCompanyShown}">
+                            <a href="javascript:void(0);" (click)="showCompany()">
+                                <span class="icon icon__company__01">
 									<span *ngIf="selectedCompanyCount > 0" class="number">{{selectedCompanyCount}}</span>
-								</span>
-								<em>Company Name</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isCompanyShown, 'hideSearch': !isCompanyShown}">
-									<div class="form-row">
-										<div class="form-group col-md-12">
-											<label for="minExpe">Job Title</label>
-											<input class="form-control" id="company" placeholder="Company Name" #company="ngModel"
-												[(ngModel)]="companyName">
-										</div>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectCompany()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isEducationShown}">
-							<a href="javascript:void(0);" (click)="showEducation()">
-								<span class="icon icon__edu__01">
+                                </span>
+                                <em>Company Name</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isCompanyShown, 'hideSearch': !isCompanyShown}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="minExpe">Job Title</label>
+                                            <input class="form-control" id="company" placeholder="Company Name" #company="ngModel" [(ngModel)]="companyName">
+                                        </div>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearCompanyNameFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectCompany()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isEducationShown}">
+                            <a href="javascript:void(0);" (click)="showEducation()">
+                                <span class="icon icon__edu__01">
 									<span *ngIf="selectedEdcationCount > 0" class="number">{{selectedEdcationCount}}</span>
-								</span>
-								<em>Education</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isEducationShown, 'hideSearch': !isEducationShown}">
-									<div class="form-row">
-										<div class="form-group col-md-12">
-											<label for="minExpe">Education</label>
-											<input class="form-control" id="education" placeholder="Education" #education="ngModel"
-												[(ngModel)]="educationName">
-										</div>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectEducation()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sub__item filter__active" [ngClass]="{'active': isCertificationShown}">
-							<a href="javascript:void(0);" (click)="showCertification()">
-								<span class="icon icon__certified__01">
+                                </span>
+                                <em>Education</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isEducationShown, 'hideSearch': !isEducationShown}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="minExpe">Education</label>
+                                            <input class="form-control" id="education" placeholder="Education" #education="ngModel" [(ngModel)]="educationName">
+                                        </div>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearEducationFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectEducation()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sub__item filter__active" [ngClass]="{'active': isCertificationShown}">
+                            <a href="javascript:void(0);" (click)="showCertification()">
+                                <span class="icon icon__certified__01">
 									<span *ngIf="selectedCertificationCount > 0" class="number">{{selectedCertificationCount}}</span>
-								</span>
-								<em>Certification</em>
-							</a>
-							<div class="filter__sub__container">
-								<div class="filter__sub__search"
-									[ngClass]="{'showSearch': isCertificationShown, 'hideSearch': !isCertificationShown}">
-									<div class="form-row">
-										<div class="form-group col-md-12">
-											<label for="minExpe">Certification</label>
-											<input class="form-control" id="certification" placeholder="certification" #education="ngModel"
-												[(ngModel)]="certificationName">
-										</div>
-									</div>
-									<div class="filter__buttons text-right">
-										<button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-										<button class="btn  btn-primary btn-sm text-uppercase" (click)="selectCertification()">Ok</button>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="top__container">
-				<div class="row flex flex-wrap flex-align-center">
-					<div class="col-sm-4 col">
-						<div class="input-group">
-							<input class="form-control" id="searchData" name="searchData" placeholder="Search String"
-								[(ngModel)]="searchValue" #searchData="ngModel">
-							<span class="input-group-btn">
+                                </span>
+                                <em>Certification</em>
+                            </a>
+                            <div class="filter__sub__container">
+                                <div class="filter__sub__search" [ngClass]="{'showSearch': isCertificationShown, 'hideSearch': !isCertificationShown}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="minExpe">Certification</label>
+                                            <input class="form-control" id="certification" placeholder="certification" #education="ngModel" [(ngModel)]="certificationName">
+                                        </div>
+                                    </div>
+                                    <div class="filter__buttons text-right">
+                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
+                                        <button class="btn btn-outline-secondary dark btn-sm text-uppercase" (click)="clearCertificationFilter()">Clear</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectCertification()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="top__container">
+                <div class="row flex flex-wrap flex-align-center">
+                    <div class="col-sm-4 col">
+                        <div class="input-group">
+                            <input class="form-control" id="searchData" name="searchData" placeholder="Search String" [(ngModel)]="searchValue" #searchData="ngModel">
+                            <span class="input-group-btn">
 								<button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()">Go!</button>
 							</span>
-						</div>
-						<!-- <div class="input-group mb-6 col">
-							<div class="input-box">
-									<span class="icon icon__search__01"></span>
-									<input type="text" placeholder="" (focus)="onFocus()" id="text_search" class="form-control form-control-light">
-									<div class="input-group-append">
-											<span class="input-group-text">.00</span>
-									</div>
-							</div>
-					</div> -->
-						<div class="filter__by__tech" id="filter_by_tech" [ngClass]="showFilterLocation?'show':''">
-							<div class="row flex flex-wrap flex-align-equal no__margin">
-								<div class="col-sm-3 tab__col">
-									<nav>
-										<div class="nav nav-tabs" id="nav-tab" role="tablist">
-											<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#java" role="tab"
-												aria-selected="true">Java</a>
-											<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#net" role="tab"
-												aria-selected="false">.Net</a>
-										</div>
-									</nav>
-								</div>
+                        </div>
+                        <div class="filter__by__tech" id="filter_by_tech" [ngClass]="showFilterLocation?'show':''">
+                            <div class="row flex flex-wrap flex-align-equal no__margin">
+                                <div class="col-sm-3 tab__col">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#java" role="tab" aria-selected="true">Java</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#net" role="tab" aria-selected="false">.Net</a>
+                                        </div>
+                                    </nav>
+                                </div>
 
-								<div class="col-sm-9">
-									<div class="tab-content" id="nav-tabContent">
-										<div class="tab-pane fade active in" id="java" role="tabpanel" aria-labelledby="nav-home-tab">
-											<div class="top__box">
-												<div class="row flex flex-wrap flex-align-center">
-													<div class="col-sm-4">
-														<label class="custom-checkbox lg-select">
+                                <div class="col-sm-9">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade active in" id="java" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            <div class="top__box">
+                                                <div class="row flex flex-wrap flex-align-center">
+                                                    <div class="col-sm-4">
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox" checked="checked">
 															<span class="checkmark">Select All</span>
 														</label>
-													</div>
-													<div class="col-sm-8">
+                                                    </div>
+                                                    <div class="col-sm-8">
 
-														<div class="filter__tags xs__tags">
-															<ul>
-																<li>
-																	<label>Experience</label>
-																</li>
-																<li>
-																	<label class="custom-checkbox lg-select">
+                                                        <div class="filter__tags xs__tags">
+                                                            <ul>
+                                                                <li>
+                                                                    <label>Experience</label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="custom-checkbox lg-select">
 																		<input type="checkbox">
 																		<span class="checkmark">0-3</span>
 																	</label>
-																</li>
-																<li>
-																	<label class="custom-checkbox lg-select">
+                                                                </li>
+                                                                <li>
+                                                                    <label class="custom-checkbox lg-select">
 																		<input type="checkbox">
 																		<span class="checkmark">3-5</span>
 																	</label>
-																</li>
-																<li>
-																	<label class="custom-checkbox lg-select">
+                                                                </li>
+                                                                <li>
+                                                                    <label class="custom-checkbox lg-select">
 																		<input type="checkbox">
 																		<span class="checkmark">5-8</span>
 																	</label>
-																</li>
-																<li>
-																	<label class="custom-checkbox lg-select">
+                                                                </li>
+                                                                <li>
+                                                                    <label class="custom-checkbox lg-select">
 																		<input type="checkbox">
 																		<span class="checkmark">10+</span>
 																	</label>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="filter__tags">
-												<ul>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="filter__tags">
+                                                <ul>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Java</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Core Java</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Javascript</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Jquery</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Typescript</span>
 														</label>
-													</li>
-												</ul>
-											</div>
-											<div class="filter__tags__new">
-												Add New Key Words <button class="btn btn-info btn-sm">Add</button>
-											</div>
-
-										</div>
-										<div class="tab-pane fade" id="net" role="tabpanel" aria-labelledby="nav-profile-tab">
-											<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="filter__tags__new">
+                                                Add New Key Words <button class="btn btn-info btn-sm">Add</button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="net" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <label class="custom-checkbox lg-select">
 												<input type="checkbox" checked="checked">
 												<span class="checkmark">Select All</span>
 											</label>
-											<div class="filter__tags">
-												<ul>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                            <div class="filter__tags">
+                                                <ul>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Net</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+My SQL</span>
 														</label>
-													</li>
-													<li>
-														<label class="custom-checkbox lg-select">
+                                                    </li>
+                                                    <li>
+                                                        <label class="custom-checkbox lg-select">
 															<input type="checkbox">
 															<span class="checkmark">+Visual Studio</span>
 														</label>
-													</li>
-												</ul>
-											</div>
-											<div class="filter__tags__new">
-												Add New Key Words <button class="btn btn-info btn-sm">Add</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-5 col">
-						<div class="input-box">
-							<span class="icon__map__01">Icon</span>
-							<input type="text" placeholder="" class="form-control form-control-light filter-location" #locationSearch
-								[(ngModel)]="selectedLocation">
-						</div>
-						<!-- <div class="filter__by__loc">
-							<div class="title__container">
-								<div class="row flex flex-wrap flex-align-center">
-									<div class="col-sm-6">
-										<h4>Austin, TX</h4>
-									</div>
-									<div class="col-sm-6">
-											<ul class="thumbs">
-													<li>
-															<img src="images/location__thumb.png" alt="">
-													</li>
-													<li>
-															<img src="images/location__thumb.png" alt="">
-													</li>
-													<li>
-															<img src="images/location__thumb.png" alt="">
-													</li>
-											</ul>
-									</div>
-								</div>
-								</div>
-								<div class="filter__tags">
-										<ul>
-											<li>
-												<label class="custom-checkbox lg-select">
-													<input type="checkbox">
-													<span class="checkmark">+30 mm</span>
-												</label>
-											</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+50 mm</span>
-													</label>
-												</li>
-												<li>
-														<label class="custom-checkbox lg-select">
-															<input type="checkbox">
-															<span class="checkmark">+60 mm</span>
-														</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+70 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+80 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+90 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+110 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+120 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+130 mm</span>
-													</label>
-												</li>
-												<li>
-													<label class="custom-checkbox lg-select">
-														<input type="checkbox">
-														<span class="checkmark">+140 mm</span>
-													</label>
-												</li>
-										</ul>
-								</div>
-						</div> -->
-					</div>
-
-					<div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end">
-						<div class="revamp__sorting" *ngIf="candidates.length>0">
-							<ul>
-								<li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev"
-										(click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}"
-										[disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
-								<li><input type="text" value="{{currentPage}}" disabled class="form-control"></li>
-								<li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next" (click)="onPageChange(1)"
-										[ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}"
-										[disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
-							</ul>
-							of {{totalPageCount}} pages
-						</div>
-					</div>
-				</div>
-			</div>
-			<span *ngIf="candidatesLoading">Loading Candidates...</span>
-			
-			<ng-container *ngIf="candidates.length > 0">
-				<div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail"
-					[ngClass]="{'open':showFilterNavBar}">
-					<div class="row">
-						<div class="col-sm-12 big-col">
-							<div class="row flex flex-wrap flex-align-equal">
-								<div class="col-sm-3 " [ngClass]="[ candidate?.IsPublic ? 'blue' : 'green']"
-									*ngFor="let candidate of candidates">
-									<div class="top__container flex flex-wrap flex-align-center">
-										<label class="custom-checkbox custom-checkbox-round">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="filter__tags__new">
+                                                Add New Key Words <button class="btn btn-info btn-sm">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col">
+                        <div class="input-box">
+                            <span class="icon__map__01">Icon</span>
+                            <input type="text" placeholder="" class="form-control form-control-light filter-location" #locationSearch [(ngModel)]="selectedLocation">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 flex flex-wrap flex-align-center flex-justify-end">
+                        <div class="revamp__sorting" *ngIf="candidates.length>0">
+                            <ul>
+                                <li><button data-toggle="tooltip" title="Previous" class="btn revamp__btn__prev" (click)="onPageChange(-1)" [ngClass]="{'disable' : currentPage == 1 || candidatesLoading}" [disabled]="currentPage == 1 || candidatesLoading">Previous</button></li>
+                                <li><input type="text" value="{{currentPage}}" disabled class="form-control"></li>
+                                <li><button data-toggle="tooltip" title="Next" class="btn revamp__btn__next" (click)="onPageChange(1)" [ngClass]="{'disable' : currentPage == totalPageCount || candidatesLoading}" [disabled]="currentPage == totalPageCount || candidatesLoading">Next</button></li>
+                            </ul>
+                            of {{totalPageCount}} pages
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span *ngIf="candidatesLoading">Loading Candidates...</span>
+            <ng-container *ngIf="candidates.length > 0">
+                <div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
+                    <div class="row">
+                        <div class="col-sm-12 big-col">
+                            <div class="row flex flex-wrap flex-align-equal">
+                                <div class="col-sm-3 " [ngClass]="[ candidate?.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
+                                    <div class="top__container flex flex-wrap flex-align-center">
+                                        <label class="custom-checkbox custom-checkbox-round">
 											<input type="checkbox" [checked]="candidate.IsSelected"
 												(change)="candidate.IsSelected = !candidate.IsSelected">
 											<span class="checkmark"></span>
 										</label>
-										<ul>
-											<li>
-												<span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip"
-													tooltip="{{candidate?.MobileNumber}}" placement="left"></span>
-											</li>
-											<li>
-												<span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip"
-													tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
-											</li>
-											<li>
-												<span class="revamp-icon revamp-icon-note"
-													(click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume"
-													placement="right"></span>
-											</li>
-										</ul>
-									</div>
-									<div class="col__container">
-										<div class="info__container">
-											<div class="profile__thumb">
-												<img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}"
-													alt="">
-											</div>
-											<div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
-											<div class="profile__match__percent"><a class="text-white"
-													style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
-											</div>
-											<h4><a href="javascript:void(0)"
-													(click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
+                                        <ul>
+                                            <li>
+                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.MobileNumber}}" placement="left"></span>
+                                            </li>
+                                            <li>
+                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
+                                            </li>
+                                            <li>
+                                                <span class="revamp-icon revamp-icon-note" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume" placement="right"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col__container">
+                                        <div class="info__container">
+                                            <div class="profile__thumb">
+                                                <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
+                                            </div>
+                                            <div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
+                                            <div class="profile__match__percent"><a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
+                                            </div>
+                                            <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
 													| titlecase}}</a>
-											</h4>
+                                            </h4>
 
-											<h5>{{candidate.JobTitleName}}</h5>
-											<div class="location">{{candidate.Locations}}</div>
-											<div class="company">{{candidate.Company}}</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
-					<div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
-						<div class="grid-col grid-check-col">
-							<label class="custom-checkbox ">
+                                            <h5>{{candidate.JobTitleName}}</h5>
+                                            <div class="location">{{candidate.Locations}}</div>
+                                            <div class="company">{{candidate.Company}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
+                    <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+                        <div class="grid-col grid-check-col">
+                            <label class="custom-checkbox ">
 								<input type="checkbox" checked="checked">
 								<span class="checkmark"></span>
 							</label>
-						</div>
-						<div class="grid-col grid-name-col">
-							Name <span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-job-title-col">
-							Job Title <span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-email-col">
-							Email<span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-contact-col">
-							Contact Number<span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-location-col">
-							Current Location<span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-job-typ-col">
-							Job Type<span class="sorting-arrow down"></span>
-						</div>
-						<div class="grid-col grid-action-col">
-							&nbsp;
-						</div>
-					</div>
-					<div *ngIf="!candidatesLoading && candidates.length > 0;else noCandidatesList">
-						<div class="grid-row grid-row-col flex flex-wrap flex-align-equal"
-							*ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
-							<div class="grid-col grid-check-col">
-								<div class="grid-heading">Select</div>
-								<div class="box-table">
-									<label class="custom-checkbox">
+                        </div>
+                        <div class="grid-col grid-name-col">
+                            Name <span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-job-title-col">
+                            Job Title <span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-email-col">
+                            Email<span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-contact-col">
+                            Contact Number<span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-location-col">
+                            Current Location<span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-job-typ-col">
+                            Job Type<span class="sorting-arrow down"></span>
+                        </div>
+                        <div class="grid-col grid-action-col">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div *ngIf="!candidatesLoading && candidates.length > 0">
+                        <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
+                            <div class="grid-col grid-check-col">
+                                <div class="grid-heading">Select</div>
+                                <div class="box-table">
+                                    <label class="custom-checkbox">
 										<input type="checkbox">
 										<span class="checkmark"></span>
 									</label>
-								</div>
-							</div>
-							<div class="grid-col grid-name-col">
-								<div class="grid-heading">Name</div>
-								<div class="box-table">
-									<div class="profile-container">
-										<figure>
-											<img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-										</figure>
-										<div class="profile-name">
-											{{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}}
-											{{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}}
-											{{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="grid-col grid-job-title-col">
-								<div class="grid-heading">Job Title</div>
-								<div class="box-table">
-									{{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle :
-									'N/A'}}
-								</div>
-							</div>
-							<div class="grid-col grid-email-col">
-								<div class="grid-heading">Email</div>
-								<div class="box-table">
-									{{candidateDetails.Email != null && candidateDetails.Email != '' ? candidateDetails.Email : 'N/A'}}
-								</div>
-							</div>
-							<div class="grid-col grid-contact-col">
-								<div class="grid-heading">Contact Number</div>
-								<div class="box-table">
-									{{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ?
-									candidateDetails.ContactNumber : 'N/A'}}
-								</div>
-							</div>
-							<div class="grid-col grid-location-col">
-								<div class="grid-heading">Current Location</div>
-								<div class="box-table">
-									{{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ?
-									candidateDetails.JobLocations : 'N/A'}}
-								</div>
-							</div>
-							<div class="grid-col grid-job-typ-col">
-								<div class="grid-heading">Job Type</div>
-								<div class="box-table">
-									{{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle :
-									'N/A'}}
-								</div>
-							</div>
-							<div class="grid-col grid-action-col">
-								<div class="grid-heading">Action</div>
-								<div class="box-table">
-									<button class="dots">&nbsp;</button>
-								</div>
-							</div>
-						</div>
-					</div>
+                                </div>
+                            </div>
+                            <div class="grid-col grid-name-col">
+                                <div class="grid-heading">Name</div>
+                                <div class="box-table">
+                                    <div class="profile-container">
+                                        <figure>
+                                            <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
+                                        </figure>
+                                        <div class="profile-name">
+                                            {{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}} {{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}} {{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid-col grid-job-title-col">
+                                <div class="grid-heading">Job Title</div>
+                                <div class="box-table">
+                                    {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                                </div>
+                            </div>
+                            <div class="grid-col grid-email-col">
+                                <div class="grid-heading">Email</div>
+                                <div class="box-table">
+                                    {{candidateDetails.Email != null && candidateDetails.Email != '' ? candidateDetails.Email : 'N/A'}}
+                                </div>
+                            </div>
+                            <div class="grid-col grid-contact-col">
+                                <div class="grid-heading">Contact Number</div>
+                                <div class="box-table">
+                                    {{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ? candidateDetails.ContactNumber : 'N/A'}}
+                                </div>
+                            </div>
+                            <div class="grid-col grid-location-col">
+                                <div class="grid-heading">Current Location</div>
+                                <div class="box-table">
+                                    {{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ? candidateDetails.JobLocations : 'N/A'}}
+                                </div>
+                            </div>
+                            <div class="grid-col grid-job-typ-col">
+                                <div class="grid-heading">Job Type</div>
+                                <div class="box-table">
+                                    {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
+                                </div>
+                            </div>
+                            <div class="grid-col grid-action-col">
+                                <div class="grid-heading">Action</div>
+                                <div class="box-table">
+                                    <button class="dots">&nbsp;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-				</div>
-				<div class="data__table__footer">
-					<ul>
-						<!-- <li>
+                </div>
+                <div class="data__table__footer">
+                    <ul>
+                        <!-- <li>
 								<button class="btn btn__export" data-toggle="modal" data-target="#exportPopup">Export</button>
 						</li>
 						<li>
 										<button class="btn btn__import" data-toggle="modal" data-target="#importModal">Import</button>
 						</li> -->
-						<li>
-							<button class="btn btn__apply__job" (click)="applySidePanel()">
+                        <li>
+                            <button class="btn btn__apply__job" (click)="applySidePanel()">
 								Apply to Job
 							</button>
-						</li>
-						<li>
-							<button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
+                        </li>
+                        <li>
+                            <button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
 								Share Candidates
 							</button>
-						</li>
-						<!-- <li>
+                        </li>
+                        <!-- <li>
 																							<button class="btn btn__share" data-toggle="modal" data-target="#bulkInvite">Invite</button>
 																					</li> -->
-						<!-- <li>
+                        <!-- <li>
 																							<button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
 																					</li> -->
-					</ul>
-				</div>
-			</ng-container>
-			<div class="col-sm-12" *ngIf="candidates.length == 0">
-				<span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
-			</div>
-		</div>
-	</div>
-	<!--Bulk Aply Modal-->
-	<div id="bulkApply" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Apply Job</h4>
-				</div>
-				<div class="modal-body">
-					<alert class="basic-info-alert"></alert>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card-inner">
-								<form id="form1" name="form1" #form="ngForm">
-									<div class="form-group c-form-group">
-										<label for="">Active Jobs<span class="red">*</span></label>
-										<ng-select class="custom-style" [items]="jobList | async" placeholder="Search Job"
-											bindLabel="JobTitle" bindValue="JobId" [typeahead]="jobInput" [hideSelected]="true"
-											[loading]="jobsLoading" [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
-											[virtualScroll]="true" required>
-										</ng-select>
-										<input type hidden id="skills">
-										<small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-filled" (click)="applyJobToSelectedCandidates()">
+                    </ul>
+                </div>
+            </ng-container>
+            <div class="col-sm-12" *ngIf="candidates.length == 0">
+                <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
+            </div>
+        </div>
+    </div>
+    <!--Bulk Aply Modal-->
+    <div id="bulkApply" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Apply Job</h4>
+                </div>
+                <div class="modal-body">
+                    <alert class="basic-info-alert"></alert>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-inner">
+                                <form id="form1" name="form1" #form="ngForm">
+                                    <div class="form-group c-form-group">
+                                        <label for="">Active Jobs<span class="red">*</span></label>
+                                        <ng-select class="custom-style" [items]="jobList | async" placeholder="Search Job" bindLabel="JobTitle" bindValue="JobId" [typeahead]="jobInput" [hideSelected]="true" [loading]="jobsLoading" [(ngModel)]="selectedJobId" minlength="1" name="jobId" #skill="ngModel"
+                                            [virtualScroll]="true" required>
+                                        </ng-select>
+                                        <input type hidden id="skills">
+                                        <small class="text-danger error1" *ngIf="skill.invalid && skill.touched ">Required.</small>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-filled" (click)="applyJobToSelectedCandidates()">
 						Apply Job
 					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<!--Bulk Share Modal-->
-	<div id="bulkShare" class="modal fade md-dialog-container" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div>
-					<label>Share Candidates</label>
-				</div>
-				<form id="contactForm" name="contactForm" #form="ngForm">
-					<!-- Email address input -->
-					<div class="mb-3">
-						<label class="form-label" for="emailAddress">Email Address</label>
-						<input class="form-control" id="emailAddress" type="email" placeholder="Email Address"
-							[(ngModel)]="emailAddresses" name="emailAddresses" />
-					</div>
-					<!-- Message input -->
-					<div class="mb-3">
-						<label class="form-label" for="message">Message</label>
-						<textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"
-							[(ngModel)]="emailMessage" name="emailMessage"></textarea>
-					</div>
-					<!-- Form submit button -->
-					<div class="d-grid">
-						<button class="btn btn-primary btn-lg" type="submit" (click)="ShareProfile()">Share</button>
-						<button class="btn btn-danger btn-lg">Cancel</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+    <!--Bulk Share Modal-->
+    <div id="bulkShare" class="modal fade md-dialog-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div>
+                    <label>Share Candidates</label>
+                </div>
+                <form id="contactForm" name="contactForm" #form="ngForm">
+                    <!-- Email address input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="emailAddress">Email Address</label>
+                        <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" [(ngModel)]="emailAddresses" name="emailAddresses" />
+                    </div>
+                    <!-- Message input -->
+                    <div class="mb-3">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" [(ngModel)]="emailMessage" name="emailMessage"></textarea>
+                    </div>
+                    <!-- Form submit button -->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit" (click)="ShareProfile()">Share</button>
+                        <button class="btn btn-danger btn-lg">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--Bulk Share Modal-->
 <div class="share__job__sidepanel" [ngClass]="shareJobSidepanel ? 'show': ''">
-	<span class="overlay" (click)="hideShareSidePanel()">&nbsp;</span>
-	<div class="col__container">
-		<div class="flex flex-wrap flex-align-center top__container">
-			<h4>Share Candidates</h4>
-			<button type="button" class="close" (click)="hideShareSidePanel()">
+    <span class="overlay" (click)="hideShareSidePanel()">&nbsp;</span>
+    <div class="col__container">
+        <div class="flex flex-wrap flex-align-center top__container">
+            <h4>Share Candidates</h4>
+            <button type="button" class="close" (click)="hideShareSidePanel()">
 				<span aria-hidden="true">×</span>
 			</button>
-		</div>
-		<form id="contactForm" name="contactForm" #form="ngForm">
-			<div class="share__job__body">
-				<div class="input-group mb-3">
+        </div>
+        <form id="contactForm" name="contactForm" #form="ngForm">
+            <div class="share__job__body">
+                <div class="input-group mb-3">
 
-				</div>
-				<div class="mb-3">
-					<span class="notes">(Send multiple emails with comma ", OR ;" seperated )</span>
-					<div class="social mb-3">
+                </div>
+                <div class="mb-3">
+                    <span class="notes">(Send multiple emails with comma ", OR ;" seperated )</span>
+                    <div class="social mb-3">
 
-					</div>
-				</div>
-				<!-- Email address input -->
-				<div class="mb-3">
-					<label class="form-label" for="emailAddress">Email Address</label>
-					<input class="form-control" id="emailAddress" type="email" placeholder="Email Address"
-						[(ngModel)]="emailAddresses" name="emailAddresses" />
-				</div>
-				<!-- Message input -->
-				<div class="mb-3">
-					<label class="form-label" for="message">Message</label>
-					<textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"
-						[(ngModel)]="emailMessage" name="emailMessage"></textarea>
-				</div>
-				<!-- Form submit button -->
-			</div>
-			<div class="share__job__footer d-grid">
-				<button class="btn btn-default" (click)="hideShareSidePanel()">Cancel</button>
-				<button class="btn btn-filled" type="submit" (click)="ShareProfile()">Share</button>
-			</div>
-		</form>
-	</div>
+                    </div>
+                </div>
+                <!-- Email address input -->
+                <div class="mb-3">
+                    <label class="form-label" for="emailAddress">Email Address</label>
+                    <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" [(ngModel)]="emailAddresses" name="emailAddresses" />
+                </div>
+                <!-- Message input -->
+                <div class="mb-3">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" [(ngModel)]="emailMessage" name="emailMessage"></textarea>
+                </div>
+                <!-- Form submit button -->
+            </div>
+            <div class="share__job__footer d-grid">
+                <button class="btn btn-default" (click)="hideShareSidePanel()">Cancel</button>
+                <button class="btn btn-filled" type="submit" (click)="ShareProfile()">Share</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!--Filter Panel-->
 <div id="filterPanel" class="modal fade news" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<alert class="basic-info-alert"></alert>
-			<!-- <app-filter-component [Filters]="filter" [Fields]="fields"></app-filter-component> -->
-		</div>
-	</div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <alert class="basic-info-alert"></alert>
+            <!-- <app-filter-component [Filters]="filter" [Fields]="fields"></app-filter-component> -->
+        </div>
+    </div>
 </div>
 
 <div class="apply__job__sidepanel" [ngClass]="applyJobSidePanelShow ? 'show': ''">
+    <<<<<<< HEAD <div class="col__container">
+        <button type="button" class="close" (click)="hideApplySidePanel()">
+      <span aria-hidden="true">×</span>
+    </button>
+        <div class="revamp__search__container">
+            <div class="row flex flex-align-center flex-wrap">
+                <div class="col-sm-3 col check-col">
+                    Search Here:
+                </div>
+                <div class="col-sm-5 col">
+                    <div class="input-box">
+                        <input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue">
+                        <span class="icon icon__search__01" (click)="getActiveJobs()"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="apply__job__grid">
+            <div class="row flex flex-wrap felx-align-equal">
+                <label class="col-sm-4 col" *ngFor="let activeJob of activeJobs; index as i;">
+          <input type="checkbox" class="custom-check" [checked]="activeJob.IsSelected"
+          (change)="activeJob.IsSelected = !activeJob.IsSelected">
+          <div class="col-container">
+            <h4>{{activeJob.JobTitle}}</h4>
+            <h5>{{activeJob.CompanyName}}</h5>
+            <div class="date">{{activeJob.PostedDate}}</div>
+            <div class="location"></div>
+          </div>
+        </label>
+                <!-- <label class="col-sm-4 col">
+=======
 	<div class="col__container">
 		<button type="button" class="close" (click)="hideApplySidePanel()">
 			<span aria-hidden="true">×</span>
@@ -843,6 +736,7 @@
 					</div>
 				</label>
 				<!-- <label class="col-sm-4 col">
+>>>>>>> 286576b0fbc1d0d2854aefdfc12c3d42f0e6c80c
           <input type="checkbox" class="custom-check">
           <div class="col-container">
             <h4>Senior Front End Specialist</h4>
@@ -914,11 +808,11 @@
             <div class="location">Lviv, Bogomolsya st.</div>
           </div>
         </label> -->
-			</div>
-		</div>
-		<div class="apply__job__footer">
-			<button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
-			<button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
-		</div>
-	</div>
+            </div>
+        </div>
+        <div class="apply__job__footer">
+            <button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
+            <button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
+        </div>
+</div>
 </div>
