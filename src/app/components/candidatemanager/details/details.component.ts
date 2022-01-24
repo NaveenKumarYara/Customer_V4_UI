@@ -25,10 +25,14 @@ import { CustomerUsers } from '../../Postajob/models/jobPostInfo';
 import { SettingsService } from '../../../../settings/settings.service';
 import { MapsAPILoader } from '@agm/core';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+import { StartConversation } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+
 @Component({
 	selector: 'cm-details',
 	templateUrl: './details.component.html',
-	styleUrls: ['./details.component.css']
+	styleUrls: ['./details.component.css'],
+	providers: [NgxSpinnerService]
 })
 
 export class DetailsComponent implements OnInit {
@@ -44,7 +48,7 @@ export class DetailsComponent implements OnInit {
 	currentPage: number = 1;
 	totalCandidatesCount: number = 0;
 	totalPageCount: number = 1;
-	pageCount: number = 20;
+	pageCount: number = 15;
 	selectedCandidate: any = null;
 	selectedIndex: number;
 	fileType = new Resume();
@@ -98,7 +102,7 @@ export class DetailsComponent implements OnInit {
 	selectedDomainInput = new Subject<string>();
 	MinimumExperience: any;
 	MaximumExperience: any;
-
+	conversation = new StartConversation();
 
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
@@ -226,8 +230,11 @@ export class DetailsComponent implements OnInit {
 	@Output() childEvent = new EventEmitter<any>();
 	selectedLocation: any;
 	cityName: any;
+	searchTerm = new Subject<string>();
+	body: string;
+	subject: string;
 
-	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
+	constructor(private spinner: NgxSpinnerService, public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
 		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
@@ -235,13 +242,16 @@ export class DetailsComponent implements OnInit {
 	) {
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
-		// this.searchJob.pipe(
-		// 	debounceTime(100),
-		// 	distinctUntilChanged())
-		// 	.subscribe(value => {
-		// 		debugger;
-		// 	  this.getActiveJobs();
-		// 	});
+		this.searchTerm.pipe(
+			debounceTime(400),
+			distinctUntilChanged())
+			.subscribe(value => {
+				this.searchValue = value;
+				this.searchCandidates();
+			});
+
+		this.body = 'Join hands with us and make your goals achieved!.';
+		this.subject = 'Please submit the consent';
 	}
 
 	ngOnInit() {
@@ -252,18 +262,23 @@ export class DetailsComponent implements OnInit {
 				autocomplete.setComponentRestrictions({ 'country': ['us'] });
 				autocomplete.addListener('place_changed', () => {
 					this.ngZone.run(() => {
+						debugger;
 						const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-						console.log(place.address_components[0].short_name);
-						let locations = place.address_components[0].short_name;
-						let x = locations.split(",");
-						this.cityName = x[0];
-						if(this.cityName !== '')
-						{
-							this.searchCandidates();
-						}
-						this.childEvent.emit(place.address_components[0].short_name);
 						if (place.geometry === undefined || place.geometry === null) {
+							this.cityName = '';
+							this.searchCandidates();
 							return;
+						}
+						if (place.geometry) {
+							console.log(place.address_components[0].short_name);
+							let locations = place.address_components[0].short_name;
+							let x = locations.split(",");
+							this.cityName = x[0];
+							if (this.cityName !== '') {
+								this.searchCandidates();
+							}
+							this.childEvent.emit(place.address_components[0].short_name);
+							
 						}
 					});
 				});
@@ -271,6 +286,17 @@ export class DetailsComponent implements OnInit {
 			});
 	}
 
+	searchByLocation(newValue) {
+		debugger;
+		if (this.cityName !== '') {
+			this.cityName = '';
+			this.searchCandidates();
+		}
+	}
+	searchBySearchValue(value) {
+		//this.searchValue = value;
+		this.searchCandidates();
+	}
 	initInitialState() {
 		//this.keywordSearchValidators();
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
@@ -706,6 +732,9 @@ export class DetailsComponent implements OnInit {
 		let candidates = this.candidates.filter(x => x.IsSelected);
 		let selectedJobs = this.activeJobs.filter(x => x.IsSelected);
 		if (candidates.length > 0) {
+
+			//let conversations = this.getEmailCinversations(candidates);
+
 			//let selectedJob = this.selectedJobId;
 			let bulkApply: BulkApplyInvite = { SelectedJobs: selectedJobs, SelectedCandidates: candidates };
 			this.appService.applyJobToSelectedCandidates(bulkApply).subscribe(
@@ -761,6 +790,19 @@ export class DetailsComponent implements OnInit {
 				});
 		}
 
+	}
+	getEmailCinversations(selectedCandidates: any): StartConversation[] {
+		let conversations = new StartConversation()[selectedCandidates.length];
+		for (var index: number; index < selectedCandidates.length; index++) {
+			let conversation = new StartConversation();
+			let data = selectedCandidates[index];
+			conversation.FullName = data.firstname + data.lastname;
+			conversation.Subject = this.subject;
+			conversation.ToEmailID = data.email;
+			conversation.Body = this.body;
+			conversation.AppLink = this.settingsService.settings.CandidateLogin + ';lid=' + data.ccpid;
+		}
+		return conversations;
 	}
 	shareJob() {
 		const dialogRef = this.dialog.open(LoadActiveProjectsComponent, {
@@ -914,6 +956,7 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 	}
 	searchCandidates() {
+		this.spinner.show();
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
 		this.isExperienceShown = false;
@@ -923,6 +966,7 @@ export class DetailsComponent implements OnInit {
 		this.showFilterNavBar = false;
 		this.showMenu = false;
 		this.getCandidates();
+		this.spinner.hide();
 	}
 	selectSkills() {
 		console.log(this.selectedSkills);
@@ -1091,7 +1135,77 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = false;
 		this.isDomainShown = !this.isDomainShown;
 	}
-
+	clearSkillsFilter() {
+		this.selectedSkills = null;
+		if (this.selectedSkills == null) {
+			this.selectedSkillCount = 0;
+		}
+		else {
+			this.selectedSkillCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearExperienceFilter() {
+		this.MinimumExperience = 0;
+		this.MaximumExperience = 0;
+		if (this.MinimumExperience == 0 || this.MaximumExperience == 0) {
+			this.selectedExperienceCount = 0;
+		}
+		else {
+			this.selectedExperienceCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearJobTitleFilter() {
+		this.jobTitle = '';
+		if (this.jobTitle == '') {
+			this.selectedJobTitleCount = 0;
+		}
+		else {
+			this.selectedJobTitleCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearDomainFilter() {
+		this.selectedDomains = null;
+		if (this.selectedDomains == null) {
+			this.selectedDomainCount = 0;
+		}
+		else {
+			this.selectedDomainCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearCompanyNameFilter() {
+		this.companyName = '';
+		if (this.companyName == '') {
+			this.selectedCompanyCount = 0;
+		}
+		else {
+			this.selectedCompanyCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearCertificationFilter() {
+		this.certificationName = '';
+		if (this.certificationName == '') {
+			this.selectedCertificationCount = 0;
+		}
+		else {
+			this.selectedCertificationCount = 1;
+		}
+		this.searchCandidates();
+	}
+	clearEducationFilter() {
+		this.educationName = '';
+		if (this.educationName == '') {
+			this.selectedEdcationCount = 0;
+		}
+		else {
+			this.selectedEdcationCount = 1;
+		}
+		this.searchCandidates();
+	}
 	findCandidates() {
 		this.cancel();
 		this.getCandidates();

@@ -20,4 +20,5 @@ export class CandidateInformation {
     ProfilePic: string;
     UserId: number;
     IsSelected: boolean;
+    IsPublic: boolean;
 }
