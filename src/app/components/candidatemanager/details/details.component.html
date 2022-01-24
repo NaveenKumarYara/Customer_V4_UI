@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 <div class="grid-table-section">
     <div class="revamp__candidate__grid__list">
         <div class="section__box__container">
@@ -51,8 +54,9 @@
                                         </ng-select>
                                     </div>
                                     <div class="filter__buttons text-right">
-                                        <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectSkills()">Ok</button>
+                                        <button class="btn btn-primary dark btn-xs text-decoration" (click)="clearSkillsFilter()">Clear</button>
+                                        <button class="btn btn-danger dark btn-xs" (click)="cancel()">Cancel</button>
+                                        <button class="btn  btn-success btn-xs" (click)="selectSkills()">Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -89,8 +93,9 @@
                                         </div>
                                     </div>
                                     <div class="filter__buttons text-right">
+                                        <button class="btn btn-primary dark btn-xs text-decoration" (click)="clearExperienceFilter()">Clear</button>
                                         <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectExperience()">Ok</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectExperience()">Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -111,8 +116,9 @@
                                         </div>
                                     </div>
                                     <div class="filter__buttons text-right">
+                                        <button class="btn btn-primary dark btn-xs text-decoration" (click)="clearJobTitleFilter()">Clear</button>
                                         <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
-                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectJobTitle()">Ok</button>
+                                        <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectJobTitle()">Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -139,6 +145,7 @@
                                         </ng-select>
                                     </div>
                                     <div class="filter__buttons text-right">
+                                        <button class="btn btn-primary dark btn-xs text-decoration" (click)="clearJobTitleFilter()">Clear</button>
                                         <button class="btn btn-outline-light dark btn-sm text-uppercase" (click)="cancel()">Cancel</button>
                                         <button class="btn  btn-primary btn-sm text-uppercase" (click)="selectDomians()">Ok</button>
                                     </div>
@@ -217,12 +224,17 @@
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
                     <div class="col-sm-4 col">
-                        <div class="input-group">
-                            <input class="form-control" id="searchData" name="searchData" placeholder="Search String" [(ngModel)]="searchValue" #searchData="ngModel">
-                            <span class="input-group-btn">
-                              <button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()">Go!</button>
-                            </span>
+                        <!-- <div class="input-group"> -->
+                        <div class="input-box">
+                            <span class="icon icon__search__01"></span>
+                            <input class="form-control form-control-light" id="searchData" name="searchData" placeholder="Search String" #searchData="ngModel" [(ngModel)]="searchValue" (ngModelChange)='searchBySearchValue()'>
                         </div>
+
+
+                        <!-- <span class="input-group-btn">
+                              <button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()">Go!</button>
+                            </span> -->
+                        <!-- </div> -->
                         <!-- <div class="input-group mb-6 col">
                             <div class="input-box">
                                 <span class="icon icon__search__01"></span>
@@ -365,102 +377,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-4 col">
                         <div class="input-box">
-                            <span class="icon__map__01">Icon</span>
-                            <input type="text" placeholder="" class="form-control form-control-light filter-location" #locationSearch [(ngModel)]="selectedLocation">
+                            <span class="icon__map__01"></span>
+                            <input type="text" placeholder="" class="form-control form-control-light filter-location" id="locationSearch" name="locationSearch" #locationSearch [(ngModel)]="selectedLocation" (ngModelChange)="searchByLocation()">
                         </div>
-                        <!-- <div class="filter__by__loc">
-                            <div class="title__container">
-                                <div class="row flex flex-wrap flex-align-center">
-                                    <div class="col-sm-6">
-                                        <h4>Austin, TX</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul class="thumbs">
-                                            <li>
-                                                <img src="images/location__thumb.png" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="images/location__thumb.png" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="images/location__thumb.png" alt="">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="filter__tags">
-                                <ul>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+30 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+50 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+60 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+70 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+80 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+90 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+110 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+120 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+130 mm</span>
-                          </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-checkbox lg-select">
-                            <input type="checkbox">
-                            <span class="checkmark">+140 mm</span>
-                          </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> -->
                     </div>
-
                     <div class="col-sm-4 flex flex-wrap flex-align-center flex-justify-end">
                         <div class="revamp__sorting" *ngIf="candidates.length>0">
                             <ul>
@@ -551,7 +473,7 @@
                                 &nbsp;
                             </div>
                         </div>
-                        <div *ngIf="!candidatesLoading && candidates.length > 0;else noCandidatesList">
+                        <div *ngIf="!candidatesLoading && candidates.length > 0">
                             <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
                                 <div class="grid-col grid-check-col">
                                     <div class="grid-heading">Select</div>
@@ -617,28 +539,12 @@
                     </div>
                     <div class="data__table__footer">
                         <ul>
-                            <!-- <li>
-                                                <button class="btn btn__export" data-toggle="modal" data-target="#exportPopup">Export</button>
-                                            </li>
-                                            <li>
-                                                    <button class="btn btn__import" data-toggle="modal" data-target="#importModal">Import</button>
-                                            </li> -->
                             <li>
-                                <button class="btn btn__apply__job" (click)="applySidePanel()">
-                                                        Apply to	Job
-                                                    </button>
+                                <button class="btn btn__apply__job" (click)="applySidePanel()">Apply to	Job</button>
                             </li>
                             <li>
-                                <button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
-                                                        Share Candidates
-                                                    </button>
+                                <button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">Share Candidates</button>
                             </li>
-                            <!-- <li>
-                                                <button class="btn btn__share" data-toggle="modal" data-target="#bulkInvite">Invite</button>
-                                            </li> -->
-                            <!-- <li>
-                                                <button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
-                                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -776,7 +682,7 @@
                 </div>
                 <div class="col-sm-5 col">
                     <div class="input-box">
-                        <input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue" (ngModelChange)="this.searchJob.next($event)">
+                        <input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue">
                         <span class="icon icon__search__01" (click)="getActiveJobs()"></span></div>
                 </div>
             </div>
