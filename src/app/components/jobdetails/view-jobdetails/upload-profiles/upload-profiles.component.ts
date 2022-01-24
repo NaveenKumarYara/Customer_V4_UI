@@ -288,7 +288,7 @@ GetProfileStatus(mail)
     let dta:any;
     this.status = [];
     for (var fileCount = 0; fileCount < this.selectedFiles.length; fileCount++) {
-    this.getBase64(this.selectedFiles[fileCount]).then(
+     this.getBase64(this.selectedFiles[fileCount]).then(
       data => 
       {
        dta= data;
@@ -324,16 +324,16 @@ GetProfileStatus(mail)
       {
         let val  = dat.Value.ResumeData;
         this.currentRecordIndex = 0;
-        this.isProcessing = false;
         this.processedProfiles.push(JSON.parse(JSON.stringify(val)));
-        if (this.processedProfiles !== null && this.processedProfiles.length > 0) {
+        if (fileCount === this.processedProfiles.length) {
+          this.isProcessing = false;
           this.haveProfiles = true;
           this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];               
         }
      
       })
       }
-   );
+      );
 
     }
   
