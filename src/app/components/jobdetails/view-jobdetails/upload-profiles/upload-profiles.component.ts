@@ -70,6 +70,7 @@ export class UploadProfilesComponent implements OnInit {
   selectedSubMenuItem: any;
   sideBarMenu: any = [];
   saveUsername: boolean;
+  editPersonalDetails: boolean;
   selectedFiles: File[] = [];
   selecteeJobId: any;
   isProcessing: boolean;
@@ -81,6 +82,8 @@ export class UploadProfilesComponent implements OnInit {
   statuscheck : CustStatusRes;
   status:any=[];
   checks:any=[];
+  showInput:string;
+
   @ViewChild('divClick') divClick: ElementRef;
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
@@ -148,7 +151,9 @@ export class UploadProfilesComponent implements OnInit {
     this.showThis = "JobFit"
   }
 
-  GetCustomerSubscription()
+
+
+GetCustomerSubscription()
 {
   return this.appService.GetCustomerSubscription(this.customerName.UserId).subscribe(res => {
     if(res!=null)
@@ -162,6 +167,14 @@ export class UploadProfilesComponent implements OnInit {
 });
 }
 
+editPesonalDetailHandler() {
+  this.editPersonalDetails = true;  
+}
+
+closePersonalDetailHandler() {
+  this.editPersonalDetails = false;
+}
+  
 selectedItem(item) {
   this.selectedMenuItem = item;
 }
