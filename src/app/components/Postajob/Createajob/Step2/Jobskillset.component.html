@@ -115,15 +115,15 @@
 			<div class="jdv-skill-list">
 				<h4 for="" class="light">Primary Skills</h4>
 				<div class="row flex flex-wrap flex-align-equal">
-					<div class="col-xs-12 col-sm-6 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
+					<div class="col-xs-12 col-sm-4 beginner col" *ngFor="let primaryjobskill of primaryjobskills; let i = index">
 						<div class="col-container">
-							<h5>{{ add3Dots(primaryjobskill.SkillName,25) }}</h5>
-							<h6 *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
+							<h5 class="skill-title">{{ add3Dots(primaryjobskill.SkillName,25) }}</h5>
+							<h6 class="skill-year" *ngIf="primaryjobskill.MinimumExp >= 1 ; else noPrimaryExperience">
 								{{(primaryjobskill.MinimumExp) | skillmonths}} -
 								{{(primaryjobskill.MaximumExp) | skillmonths}} Yrs
 							</h6>
 							<ng-template #noPrimaryExperience>
-								<h6> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
+								<h6 class="skill-year"> {{(primaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
 									Yrs
 								</h6>
 							</ng-template>
@@ -153,15 +153,15 @@
 			<div class="jdv-skill-list">
 				<h4 for="" class="light">Secondray Skills</h4>
 				<div class="row flex flex-wrap flex-align-equal">
-					<div class="col-xs-12 col-sm-6 master col" *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
+					<div class="col-xs-12 col-sm-4 master col" *ngFor="let secondaryjobskill of secondaryjobskills; let i = index">
 						<div class="col-container">
-							<h5>{{ add3Dots(secondaryjobskill.SkillName,25) }}</h5>
-							<h6 *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience">
+							<h5 class="skill-title">{{ add3Dots(secondaryjobskill.SkillName,25) }}</h5>
+							<h6  class="skill-year" *ngIf="secondaryjobskill.MinimumExp >= 1 ; else noSecondaryExperience">
 								{{(secondaryjobskill.MinimumExp) | skillmonths}} -
 								{{(secondaryjobskill.MaximumExp) | skillmonths}} Yrs
 							</h6>
 							<ng-template #noSecondaryExperience>
-								<h6> {{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
+								<h6 class="skill-year"> {{(secondaryjobskill.MaximumExp) | number:'1.0-1' | skillmonths }}
 									Yrs
 								</h6>
 							</ng-template>

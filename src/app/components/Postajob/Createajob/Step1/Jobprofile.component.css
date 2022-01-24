@@ -84,3 +84,8 @@
     right:0;
     top:-100%;
   }
+
+  .form-check-list li{
+    font-size: 12px;
+    width: 33%;
+  }

@@ -38,3 +38,9 @@
   .red{
     color: #ff0000;
   }
+  .skill-title{font-size: 12px;margin-top: 7px;}
+  .skill-year{font-size: 10px;margin-top: -5px;}
+  .jdv-skill-list .col-container{
+    height: 65%;
+    padding: 0px 40px 25px 10px;
+  }
