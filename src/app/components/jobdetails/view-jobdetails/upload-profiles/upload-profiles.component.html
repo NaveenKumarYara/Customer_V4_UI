@@ -753,134 +753,28 @@
        
         <ng-container *ngIf="showThis == 'Personal Details'">
           <div class="personal__details">
-            <ng-container *ngIf="editPersonalDetails">
+         
+            <ng-container>
               <div class="stripped__table no__margin">
                 <div class="row strip__row flex flex-wrap">
                   <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
                     <div class="box__table">Personal Details</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
-                    <div class="box__table">
-                      <button class="btn btn-default" (click)="closePersonalDetailHandler()">Cancel</button>
-                      <button class="btn btn-primary">Save</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row form__row">
-                <div class="col-sm-6 form__col">
-                  <input type="text" class="form-control" placeholder="First Name">
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-linkedin" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Linked In">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <input type="text" class="form-control" placeholder="Last Name">
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-facebook" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Facebook">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <input type="text" class="form-control" placeholder="Current Role">
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Twitter">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                    </span>	
-                    <input type="email" class="form-control" placeholder="Email">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-skype" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Skype">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <select class="form-control custom-select-dark">
-                    <option value="Gender">Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 form__col phone__col">
-                  <div class="input-group  flex flex-wrap flex-align-equal">
-                    <span class="input-group-addon">
-                      <i class="fa fa-phone" aria-hidden="true"></i>
-                    </span>	
-                    <select class="form-control custom-select-dark">
-                      <option value="+1">+1</option>
-                    </select>
-                    <input type="text" class="form-control" placeholder="Mobile">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <select class="form-control custom-select-dark">
-                    <option value="Generation">Generation</option>
-                    <option value="The Great Generation">The Great Generation</option>
-                    <option value="iGen">iGen</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Address">
-                  </div>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <select class="form-control custom-select-dark">
-                    <option value="Generation">Immigration Status</option>
-                    <option value="The Great Generation">H1B Visa</option>
-                    <option value="iGen">Green Card</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 form__col">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    </span>	
-                    <input type="text" class="form-control" placeholder="Zip Code">
-                  </div>
-                </div>
-                
-              </div>
-            </ng-container>
-            <ng-container *ngIf="!editPersonalDetails">
-              <div class="stripped__table no__margin">
-                <div class="row strip__row flex flex-wrap">
-                  <div class="col-sm-6 strip__col strip__col__th title__col title__col__first lg__col">
-                    <div class="box__table">Personal Details</div>
-                  </div>
-                  <div class="col-sm-6 strip__col strip__col__th lg__col text-right">
-                    <div class="box__table">
-                      <button class="btn btn__edit" (click)="editPesonalDetailHandler()">
-                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                        <span class="sr-only">Edit</span>
-                      </button>
-                    </div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">
+                        <button class="btn btn__edit" (click)="editPesonalDetailHandler()">
+                          <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <button class="btn btn-default" (click)="closePersonalDetailHandler()">Cancel</button>
+                        <button class="btn btn-primary">Save</button>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -888,8 +782,14 @@
                     <div class="box__table">First Name</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
-                    <div class="th__heading">&nbsp;</div>
-                    <div class="box__table">Harry</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">Harry</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <input type="text" value="Harry" class="form-control">
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -897,7 +797,14 @@
                     <div class="box__table">Last Name</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left ">
-                    <div class="box__table">Williams</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">Williams</div>
+                    </ng-container>
+                    <ng-container  *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <input type="text" value="Williams" class="form-control">
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -905,7 +812,14 @@
                     <div class="box__table">Email</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">test15@gmail.com</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">test15@gmail.com</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <input type="email" class="form-control" value="test15@gmail.com">
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -913,7 +827,14 @@
                     <div class="box__table">Current Role</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">Software Engineer</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">Software Engineer</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <input type="text" value="Software Enigneer" class="form-control">
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -921,7 +842,18 @@
                     <div class="box__table">Gender</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">Male</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">
+                        Male
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <select class="form-control custom-select-dark">
+                          <option value="Gender" selected>Male</option>
+                        </select>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -929,7 +861,16 @@
                     <div class="box__table">Technology</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">Generation</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">Generation</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <select class="form-control custom-select-dark">
+                          <option value="Generation" selected>Generation</option>
+                        </select>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -937,7 +878,16 @@
                     <div class="box__table">Immigration Status</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">H1B Visa</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">H1B Visa</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <select class="form-control custom-select-dark">
+                          <option value="H1B Visa" selected>H1B Visa</option>
+                        </select>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -945,7 +895,19 @@
                     <div class="box__table">LinkedIn</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">http://www.linkedin.com</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">http://www.linkedin.com</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="http://www.linkedin.com">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -953,7 +915,19 @@
                     <div class="box__table">Facebook</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">http://www.facebook.com</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">http://www.facebook.com</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="http://www.facebook.com">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -961,7 +935,19 @@
                     <div class="box__table">Twitter</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">https://www.twitter.com</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">https://www.twitter.com</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="https://www.twitter.com">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -969,7 +955,19 @@
                     <div class="box__table">Skype Id</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">Skype Name</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">Skype Name</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-skype" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="Skype ID">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -977,7 +975,22 @@
                     <div class="box__table">Mobile No.</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">+1 (876) 543-4567</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">+1 (876) 543-4567</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table phone__col">
+                        <div class="input-group  flex flex-wrap flex-align-equal">
+                          <span class="input-group-addon">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                          </span>	
+                          <select class="form-control custom-select-dark">
+                            <option value="+1">+1</option>
+                          </select>
+                          <input type="text" class="form-control" placeholder="Mobile">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -985,7 +998,19 @@
                     <div class="box__table">Address</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">San Antonio,Texas 78209,USA</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">San Antonio,Texas 78209,USA</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="San Antonio,Texas 78209,USA">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="row strip__row flex flex-wrap">
@@ -993,7 +1018,19 @@
                     <div class="box__table">Zip Code</div>
                   </div>
                   <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
-                    <div class="box__table">87377</div>
+                    <ng-container *ngIf="!editPersonalDetails">
+                      <div class="box__table">87377</div>
+                    </ng-container>
+                    <ng-container *ngIf="editPersonalDetails">
+                      <div class="box__table">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                          </span>	
+                          <input type="text" class="form-control" value="87377">
+                        </div>
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
