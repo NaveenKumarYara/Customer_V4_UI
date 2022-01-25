@@ -1,9 +1,9 @@
 <!-- <div class="col-md-12" *ngIf="!loaddata">
     <div class="loading">Loading&#8230;</div>
  </div> -->
- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
-</ngx-spinner>
+</ngx-spinner> -->
 <div class="filters col-md-10">
     <div class="pull-left">
         <form class="form-inline" action="">
@@ -25,14 +25,14 @@
                 </select>
                 <div class="show-jobs pull-right">
                     <label class="show-count mt-15">Show</label>
-                  <select name="view" id="view" class="styled-select-box"  (change)="UpdatePopulateSort($event.target.value)">
+                    <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
                       <option default value="0" [selected]="sortBy=== '0' || sortBy=== 0">All Jobs</option>
                       <option value="1" [selected]="sortBy==='1' || sortBy === 1">Active Jobs</option>
                       <option value="2" [selected]="sortBy==='2' || sortBy === 2">Inactive Jobs</option>
                       <option value="3" [selected]="sortBy==='3' || sortBy === 3">Closed Jobs</option>
                       <option value="4" [selected]="sortBy==='4'">Freezed Jobs</option>
                   </select>
-              </div>
+                </div>
             </div>
         </form>
     </div>
@@ -42,11 +42,11 @@
 
     <div class="manage-searchjobs">
         <!--Recent Filters need to be shown under below section-->
-       <div class="filter-labels" style="display: none;">
-        <h6>Recent Filters:</h6>
-        <span class="label label-recent">Job Type <a href="javascript:void(0)">x</a></span>
-        <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
-        </div> 
+        <div class="filter-labels" style="display: none;">
+            <h6>Recent Filters:</h6>
+            <span class="label label-recent">Job Type <a href="javascript:void(0)">x</a></span>
+            <span class="label label-recent">Location <a href="javascript:void(0)">x</a></span>
+        </div>
         <!---->
         <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
         <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()">
@@ -68,8 +68,8 @@
             <h5 class="show-count">Showing {{joblist?.TotalCount||0}} out of {{joblist?.TotalCount||0}} Jobs </h5>
         </ng-container>
     </div>
- <!--Generate Max 10 filters via loop here-->
-     <div class="col-md-8 filter-labels" style="display: none;">
+    <!--Generate Max 10 filters via loop here-->
+    <div class="col-md-8 filter-labels" style="display: none;">
         <h6>Filters Applied:</h6>
         <span class="label label-primary">Job Type <a href="javascript:void(0)">x</a></span>
         <span class="label label-primary">Location <a href="javascript:void(0)">x</a></span>
@@ -81,12 +81,11 @@
         <span class="label label-primary">Immigration Status <a href="javascript:void(0)">x</a></span>
         <span class="label label-primary">Experience <a href="javascript:void(0)">x</a></span>
         <span class="label label-primary">Users <a href="javascript:void(0)">x</a></span>
-    </div> 
-      <!--More Filters starts-->
+    </div>
+    <!--More Filters starts-->
     <div class="col-md-2 filter-settings btn-group" style="display: none;">
         <div class="btn-group">
-            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 More (3)
             </button>
             <ul class="dropdown-menu">
@@ -96,12 +95,11 @@
                 <li role="separator" class="divider"></li>
                 <li>Skills (5) <a href="javascript:void(0)">x</a></li>
             </ul>
-        </div> 
+        </div>
         <!--More Filters ends-->
         <!--Save Filter Starts-->
         <div class="btn-group" style="display: none;">
-            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+            <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Save Filter
             </button>
             <ul class="dropdown-menu save-filter">
@@ -116,11 +114,11 @@
                     </div>
                 </form>
             </ul>
-        </div> 
+        </div>
         <!--Save Filter Ends-->
         <!--Clear Filters-->
-         <a href="javascript:void(0)" >Clear All</a> 
- </div> 
+        <a href="javascript:void(0)">Clear All</a>
+    </div>
 </div>
 <div class="clearfix">&nbsp;</div>
 <!-- <div>
@@ -137,8 +135,7 @@
                 </app-manage-joblist-gridlayout>
             </div>
         </div>
-        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode"
-            strokeWidth="3" [diameter]="50">
+        <mat-progress-spinner *ngIf="jobLoader===true" style="margin:0 auto;" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
         </mat-progress-spinner>
     </div>
     <div class="col-md-12" *ngIf="loaddata">
@@ -146,8 +143,7 @@
             <div>
                 <div class="nojobbg m-auto">
                     <div class="w-50c">
-                        <h4 class="text-left h4t">Oh Snap! <br />
-                            No Jobs Posted yet...</h4>
+                        <h4 class="text-left h4t">Oh Snap! <br /> No Jobs Posted yet...</h4>
                     </div>
                     <div class="w-50c">
                         <img src="../../../../../assets/images/nojob.png" class="m-auto" />
@@ -172,16 +168,14 @@
                     </app-manage-joblist-tablelayout>
                 </li>
             </ul>
-            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3"
-                [diameter]="50">
+            <mat-progress-spinner *ngIf="jobLoader===true" class="" [color]="color" [mode]="mode" strokeWidth="3" [diameter]="50">
             </mat-progress-spinner>
         </div>
         <ng-container *ngIf="joblist.TotalCount == 0 || joblist.TotalCount == null">
             <div>
                 <div class="nojobbg m-auto">
                     <div class="w-50c">
-                        <h4 class="text-left h4t">Oh Snap! <br />
-                            No Jobs Posted yet...</h4>
+                        <h4 class="text-left h4t">Oh Snap! <br /> No Jobs Posted yet...</h4>
                     </div>
                     <div class="w-50c">
                         <img src="../../../../../assets/images/nojob.png" class="m-auto" />

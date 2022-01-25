@@ -24,15 +24,12 @@ import { CustomerContacts } from '../../../../models/customercontacts';
 import { CustomerUsers } from '../../Postajob/models/jobPostInfo';
 import { SettingsService } from '../../../../settings/settings.service';
 import { MapsAPILoader } from '@agm/core';
-
-import { NgxSpinnerService } from 'ngx-spinner';
 import { StartConversation } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 
 @Component({
 	selector: 'cm-details',
 	templateUrl: './details.component.html',
-	styleUrls: ['./details.component.css'],
-	providers: [NgxSpinnerService]
+	styleUrls: ['./details.component.css']
 })
 
 export class DetailsComponent implements OnInit {
@@ -233,8 +230,8 @@ export class DetailsComponent implements OnInit {
 	searchTerm = new Subject<string>();
 	body: string;
 	subject: string;
-
-	constructor(private spinner: NgxSpinnerService, public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
+	autocomplete: any;
+	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
 		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
@@ -258,13 +255,13 @@ export class DetailsComponent implements OnInit {
 		this.initInitialState();
 		this.mapsAPILoader.load().then(
 			() => {
-				const autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
-				autocomplete.setComponentRestrictions({ 'country': ['us'] });
-				autocomplete.addListener('place_changed', () => {
+				this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
+				this.autocomplete.setComponentRestrictions({ 'country': ['us'] });
+				this.autocomplete.addListener('place_changed', () => {
 					this.ngZone.run(() => {
 						debugger;
-						const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-						if (place.geometry === undefined || place.geometry === null) {
+						const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
+						if ( place ===null || place.geometry === undefined || place.geometry === null) {
 							this.cityName = '';
 							this.searchCandidates();
 							return;
@@ -278,7 +275,7 @@ export class DetailsComponent implements OnInit {
 								this.searchCandidates();
 							}
 							this.childEvent.emit(place.address_components[0].short_name);
-							
+
 						}
 					});
 				});
@@ -956,7 +953,6 @@ export class DetailsComponent implements OnInit {
 		this.getCandidates();
 	}
 	searchCandidates() {
-		this.spinner.show();
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
 		this.isExperienceShown = false;
@@ -966,7 +962,6 @@ export class DetailsComponent implements OnInit {
 		this.showFilterNavBar = false;
 		this.showMenu = false;
 		this.getCandidates();
-		this.spinner.hide();
 	}
 	selectSkills() {
 		console.log(this.selectedSkills);
@@ -1206,6 +1201,68 @@ export class DetailsComponent implements OnInit {
 		}
 		this.searchCandidates();
 	}
+	clearAllFilters() {
+		this.searchText = '';
+		this.cityName = '';
+		(<HTMLInputElement>document.getElementById('autocomplete')).value = '';
+		this.selectedSkills = null;
+		if (this.selectedSkills == null) {
+			this.selectedSkillCount = 0;
+		}
+		else {
+			this.selectedSkillCount = 1;
+		}
+
+		this.MinimumExperience = 0;
+		this.MaximumExperience = 0;
+		if (this.MinimumExperience == 0 || this.MaximumExperience == 0) {
+			this.selectedExperienceCount = 0;
+		}
+		else {
+			this.selectedExperienceCount = 1;
+		}
+
+		this.jobTitle = '';
+		if (this.jobTitle == '') {
+			this.selectedJobTitleCount = 0;
+		}
+		else {
+			this.selectedJobTitleCount = 1;
+		}
+
+		this.selectedDomains = null;
+		if (this.selectedDomains == null) {
+			this.selectedDomainCount = 0;
+		}
+		else {
+			this.selectedDomainCount = 1;
+		}
+
+		this.companyName = '';
+		if (this.companyName == '') {
+			this.selectedCompanyCount = 0;
+		}
+		else {
+			this.selectedCompanyCount = 1;
+		}
+
+		this.certificationName = '';
+		if (this.certificationName == '') {
+			this.selectedCertificationCount = 0;
+		}
+		else {
+			this.selectedCertificationCount = 1;
+		}
+
+		this.educationName = '';
+		if (this.educationName == '') {
+			this.selectedEdcationCount = 0;
+		}
+		else {
+			this.selectedEdcationCount = 1;
+		}
+		this.autocomplete.set('place',null);
+	}
 	findCandidates() {
 		this.cancel();
 		this.getCandidates();
@@ -1236,14 +1293,16 @@ export class DetailsComponent implements OnInit {
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
+					debugger;
 					if (res.Candidates != null && res.Candidates.length > 0) {
 						this.candidates = res.Candidates;
-						this.totalCandidatesCount = res.TotalRecordsCount;
-						if (this.totalCandidatesCount % this.pageCount == 0)
-							this.totalPageCount = this.totalCandidatesCount / this.pageCount;
-						else {
-							this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
-						}
+						this.totalPageCount = res.TotalPages;
+						// this.totalCandidatesCount = res.TotalRecordsCount;
+						// if (this.totalCandidatesCount < this.pageCount)
+						// 	this.totalPageCount = 1;
+						// else {
+						// 	this.totalPageCount = Number((this.totalCandidatesCount / this.pageCount).toFixed());
+						// }
 					}
 					else
 						this.candidates = [];

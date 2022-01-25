@@ -1,6 +1,6 @@
-
-<body class="page page--post-a-job"> 
-  <router-outlet>
-  </router-outlet> 
- <!-- <app-footer id="footer"></app-footer>  -->
-</body>
+<body class="page page--post-a-job">
+    <router-outlet>
+        <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="timer">
+            <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
+    </router-outlet>
