@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -73,6 +73,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { CandidatedetailviewComponent } from './components/CandidateProfile-details/candidatedetailview/candidatedetailview.component';
 import { SafeHtmlNewPipe } from './components/CandidateProfile-details/safenewhtml.pipe';
+import { SpinnerInterceptor } from './shared/interceptors/spinner-interceptor';
 export function app_Init(settingsHttpService: SettingsHttpService) {
     return () => settingsHttpService.initializeApp();
 }
@@ -159,6 +160,7 @@ export function app_Init(settingsHttpService: SettingsHttpService) {
     SettingsService,
     HttpClient,
     { provide: APP_INITIALIZER, useFactory: app_Init, deps: [SettingsHttpService], multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
     AppService,
     ApiService,
     AuthService,
