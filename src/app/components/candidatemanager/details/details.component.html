@@ -466,9 +466,9 @@
                         <div class="grid-col grid-location-col">
                             Current Location<span class="sorting-arrow down"></span>
                         </div>
-                        <div class="grid-col grid-job-typ-col">
+                        <!-- <div class="grid-col grid-job-typ-col">
                             Job Type<span class="sorting-arrow down"></span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidate of candidates">
                         <div class="grid-col grid-check-col">
@@ -518,12 +518,12 @@
                                 {{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}
                             </div>
                         </div>
-                        <div class="grid-col">
+                        <!-- <div class="grid-col">
                             <div class="grid-heading">Job Type</div>
                             <div class="box-table">
                                 {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="data__table__footer">
@@ -699,7 +699,7 @@
           <div class="col-container">
             <h4>{{activeJob.JobTitle}}</h4>
             <h5>{{activeJob.CompanyName}}</h5>
-            <div class="date">{{activeJob.PostedDate | date:'shortDate'}}</div>
+            <div class="date">{{activeJob.PostedDate | date:'mediumDate'}}</div>
             <div class="location">{{activeJob.JobLocations}}</div>
           </div>
         </label>
