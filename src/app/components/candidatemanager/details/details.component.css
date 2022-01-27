@@ -591,22 +591,22 @@ a:hover {
 }
 
 .revamp__candidate__grid__list .data-grid-table {
-    display: none;
+    display: block;
 }
 
 .data-grid-table .grid-col {
     float: left;
-    padding: 10px;
+    padding: 2px;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    -webkit-align-items: center;
+    /* -webkit-align-items: center;
     -moz-align-items: center;
     -ms-align-items: center;
     -ms-flex-align: center;
-    align-items: center;
+    align-items: center; */
 }
 
 .data-grid-table .grid-row {
@@ -622,11 +622,15 @@ a:hover {
 }
 
 .data-grid-table .grid-col.grid-check-col {
-    width: 3.774193548387097%;
+    width: 71px;
+    align-content: center;
+    position: relative;
+    top: 10px;
+    /* padding-top: 3px;
 }
 
 .data-grid-table .grid-col.grid-name-col {
-    width: 17.225806451612903%;
+    /* width: 17.225806451612903%; */
     color: #5e5d59;
 }
 
@@ -634,42 +638,42 @@ a:hover {
 /* 186 / 1244 */
 
 .data-grid-table .grid-job-title-col {
-    width: 17.612903225806452%;
+    /* width: 17.612903225806452%; */
 }
 
 
 /* 128 / 1244 */
 
 .data-grid-table .grid-email-col {
-    width: 15%
+    /* width: 15% */
 }
 
 
 /* 90 / 1244 */
 
 .data-grid-table .grid-contact-col {
-    width: 14.38709677419355%;
+    /* width: 14.38709677419355%; */
 }
 
 
 /* 128 / 1244 */
 
 .data-grid-table .grid-location-col {
-    width: 15.306451612903225%
+    /* width: 15.306451612903225% */
 }
 
 
 /* 159 / 1244 */
 
 .data-grid-table .grid-job-typ-col {
-    width: 11.370967741935484%;
+    /* width: 11.370967741935484%; */
 }
 
 
 /* 171 / 1244 */
 
 .data-grid-table .grid-action-col {
-    width: 4.806451612903226%;
+    /* width: 4.806451612903226%; */
 }
 
 
@@ -8219,7 +8223,7 @@ div .status.Invited {
 }
 
 .data-grid-table .grid-col {
-    width: 30%;
+    width: 17%;
 }
 
 .data-grid-table .grid-col:last-child {
