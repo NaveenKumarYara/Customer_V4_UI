@@ -223,6 +223,18 @@
             </div>
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
+                    <div class="col-sm-2 flex flex-wrap flex-align-center">
+                        <div class="view-navigation">
+                            <ul>
+                                <li>
+                                    <button class="btn btn-list" [ngClass]="{'active': isGridShown}" (click)="showGrid()">List</button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-grid" [ngClass]="{'active': isTableShown}" (click)="showTable()">Grid</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="col-sm-3 col">
                         <div class="input-group">
                             <input class="form-control" id="searchData" name="searchData" placeholder="Search String" [(ngModel)]="searchValue" #searchData="ngModel">
@@ -383,13 +395,13 @@
                     </div>
                 </div>
             </div>
-            <span *ngIf="candidatesLoading">Loading Candidates...</span>
+            <!-- <span *ngIf="candidatesLoading">Loading Candidates...</span> -->
             <ng-container *ngIf="candidates.length > 0">
                 <div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
                     <div class="row">
                         <div class="col-sm-12 big-col">
                             <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-3 " [ngClass]="[ candidate?.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
+                                <div class="col-sm-3 " [ngClass]="[ candidate.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
                                     <div class="top__container flex flex-wrap flex-align-center">
                                         <label class="custom-checkbox custom-checkbox-round">
 											<input type="checkbox" [checked]="candidate.IsSelected"
@@ -398,10 +410,10 @@
 										</label>
                                         <ul>
                                             <li>
-                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.MobileNumber}}" placement="left"></span>
+                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.MobileNumber}}" placement="left"></span>
                                             </li>
                                             <li>
-                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate?.EmailAddress}}" placement="right"></span>
+                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.EmailAddress}}" placement="right"></span>
                                             </li>
                                             <li>
                                                 <span class="revamp-icon revamp-icon-note" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume" placement="right"></span>
@@ -431,11 +443,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="data-grid-table" *ngIf="currentView == 'List'" [ngClass]="showFilterNavBar ? 'open':null">
+                <div class="data-grid-table" *ngIf="currentView == 'List'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
                     <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
                         <div class="grid-col grid-check-col">
                             <label class="custom-checkbox ">
-								<input type="checkbox" checked="checked">
+								<input type="checkbox" (change)="onSelectAll($event)">
 								<span class="checkmark"></span>
 							</label>
                         </div>
@@ -457,73 +469,62 @@
                         <div class="grid-col grid-job-typ-col">
                             Job Type<span class="sorting-arrow down"></span>
                         </div>
-                        <div class="grid-col grid-action-col">
-                            &nbsp;
-                        </div>
                     </div>
-                    <div *ngIf="!candidatesLoading && candidates.length > 0">
-                        <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidateDetails of candidates; let i = index" [attr.data-index]="i">
-                            <div class="grid-col grid-check-col">
-                                <div class="grid-heading">Select</div>
-                                <div class="box-table">
-                                    <label class="custom-checkbox">
-										<input type="checkbox">
-										<span class="checkmark"></span>
-									</label>
-                                </div>
+                    <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidate of candidates">
+                        <div class="grid-col grid-check-col">
+                            <div class="grid-heading">Select</div>
+                            <div class="box-table">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" [checked]="candidate.IsSelected" 
+												(change)="candidate.IsSelected = !candidate.IsSelected">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
-                            <div class="grid-col grid-name-col">
-                                <div class="grid-heading">Name</div>
-                                <div class="box-table">
-                                    <div class="profile-container">
-                                        <figure>
-                                            <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                        </figure>
-                                        <div class="profile-name">
-                                            {{candidateDetails.FirstName != null ? candidateDetails.FirstName : ''}} {{candidateDetails.MiddleName != null ? candidateDetails.MiddleName : ''}} {{candidateDetails.LastName != null ? candidateDetails.LastName : ''}}
-                                        </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Name</div>
+                            <div class="box-table">
+                                <div class="profile-container">
+                                    <figure>
+                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
+                                    </figure>
+                                    <div class="profile-name">
+                                        {{candidate.FirstName}} {{candidate.MiddleName}} {{candidate.LastName}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid-col grid-job-title-col">
-                                <div class="grid-heading">Job Title</div>
-                                <div class="box-table">
-                                    {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
-                                </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Job Title</div>
+                            <div class="box-table">
+                                {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
                             </div>
-                            <div class="grid-col grid-email-col">
-                                <div class="grid-heading">Email</div>
-                                <div class="box-table">
-                                    {{candidateDetails.Email != null && candidateDetails.Email != '' ? candidateDetails.Email : 'N/A'}}
-                                </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Email</div>
+                            <div class="box-table">
+                                {{candidate.Email != null && candidate.Email != '' ? candidate.Email : 'N/A'}}
                             </div>
-                            <div class="grid-col grid-contact-col">
-                                <div class="grid-heading">Contact Number</div>
-                                <div class="box-table">
-                                    {{candidateDetails.ContactNumber != null && candidateDetails.ContactNumber != '' ? candidateDetails.ContactNumber : 'N/A'}}
-                                </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Contact Number</div>
+                            <div class="box-table">
+                                {{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}
                             </div>
-                            <div class="grid-col grid-location-col">
-                                <div class="grid-heading">Current Location</div>
-                                <div class="box-table">
-                                    {{candidateDetails.JobLocations != null && candidateDetails.JobLocations != '' ? candidateDetails.JobLocations : 'N/A'}}
-                                </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Current Location</div>
+                            <div class="box-table">
+                                {{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}
                             </div>
-                            <div class="grid-col grid-job-typ-col">
-                                <div class="grid-heading">Job Type</div>
-                                <div class="box-table">
-                                    {{candidateDetails.JobTitle != null && candidateDetails.JobTitle != '' ? candidateDetails.JobTitle : 'N/A'}}
-                                </div>
-                            </div>
-                            <div class="grid-col grid-action-col">
-                                <div class="grid-heading">Action</div>
-                                <div class="box-table">
-                                    <button class="dots">&nbsp;</button>
-                                </div>
+                        </div>
+                        <div class="grid-col">
+                            <div class="grid-heading">Job Type</div>
+                            <div class="box-table">
+                                {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="data__table__footer">
                     <ul>

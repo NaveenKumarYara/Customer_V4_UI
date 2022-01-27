@@ -231,6 +231,8 @@ export class DetailsComponent implements OnInit {
 	body: string;
 	subject: string;
 	autocomplete: any;
+	isGridShown: boolean;
+	isTableShown: boolean;
 	constructor(public dialogRef: MatDialogRef<DetailsComponent>, private appService: AppService, private readonly apiService: ApiService,
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
@@ -252,7 +254,6 @@ export class DetailsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.initInitialState();
 		this.mapsAPILoader.load().then(
 			() => {
 				this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
@@ -261,7 +262,7 @@ export class DetailsComponent implements OnInit {
 					this.ngZone.run(() => {
 						debugger;
 						const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
-						if ( place ===null || place.geometry === undefined || place.geometry === null) {
+						if (place === null || place.geometry === undefined || place.geometry === null) {
 							this.cityName = '';
 							this.searchCandidates();
 							return;
@@ -281,6 +282,10 @@ export class DetailsComponent implements OnInit {
 				});
 
 			});
+		this.initInitialState();
+		this.isGridShown = true;
+		this.currentView = 'Grid';
+
 	}
 
 	searchByLocation(newValue) {
@@ -300,9 +305,9 @@ export class DetailsComponent implements OnInit {
 		this.customerId = this.customer.CustomerId;
 		this.userId = this.customer.UserId;
 		this.showDetail = false;
-		this.getCandidates();
 		this.getSkills();
 		this.getDomains();
+		this.getCandidates();
 		// this.keywordSearchGroup.get('searchValue').valueChanges.pipe(debounceTime(600))
 		// 	.subscribe(res => {
 		// 		this.keywordSearchGroup.get('searchValue').setValue(res);
@@ -1261,7 +1266,7 @@ export class DetailsComponent implements OnInit {
 		else {
 			this.selectedEdcationCount = 1;
 		}
-		this.autocomplete.set('place',null);
+		this.autocomplete.set('place', null);
 	}
 	findCandidates() {
 		this.cancel();
@@ -1325,7 +1330,28 @@ export class DetailsComponent implements OnInit {
 	closeApplyJobWindow() {
 		this.applyJobSidePanelShow = false;
 	}
+	showGrid() {
+		this.isGridShown = true;
+		this.isTableShown = false;
+		this.currentView = 'Grid';
+	}
+	showTable() {
+		this.isGridShown = false;
+		this.isTableShown = true;
+		this.currentView = 'List';
+	}
 
+	onSelectAll($event) {
+		if ($event.target.checked) {
+			for (var index = 0; index < this.candidates.length; index++) {
+				this.candidates[index].IsSelected = true;
+			}
+		} else {
+			for (var index = 0; index < this.candidates.length; index++) {
+				this.candidates[index].IsSelected = false;
+			}
+		}
+	}
 	// @HostListener('document:click', ['$event'])
 	// onClick(event) {
 	// 	var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
