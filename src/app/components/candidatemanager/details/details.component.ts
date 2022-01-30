@@ -1352,51 +1352,51 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	}
-	// @HostListener('document:click', ['$event'])
-	// onClick(event) {
-	// 	var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
-	// 	var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
-	// 	var ignoreClickOnInput = document.getElementById('text_search');
-	// 	var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-	// 	var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
-	// 	var isClickInsideInput = ignoreClickOnInput.contains(event.target);
-	// 	if (!isClickInsideElement) {
-	// 		if (document.getElementsByClassName('filter__active')[0]) {
-	// 			this.showFilterActive = true;
-	// 			if (this.showFilterActive == true) {
-	// 				this.showMenu = false;
-	// 				let listClass = document.getElementsByClassName('sub__item');
-	// 				let classArray = [];
-	// 				let i = 0;
-	// 				for (i = 0; i < listClass.length; i++) {
-	// 					classArray.push(i);
-	// 				}
-	// 				classArray.forEach(function (val) {
-	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
-	// 				});
-	// 			}
-	// 		} else {
-	// 			if (this.showMenu == true) {
-	// 				this.showMenu = false;
-	// 				this.showFilterNavBar = false;
-	// 				let listClass = document.getElementsByClassName('sub__item');
-	// 				let classArray = [];
-	// 				let i = 0;
-	// 				for (i = 0; i < listClass.length; i++) {
-	// 					classArray.push(i);
-	// 				}
-	// 				classArray.forEach(function (val) {
-	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
-	// 				});
-	// 			}
-	// 		}
-	// 	}
-	// 	if (!isClickInsideElementOne || !isClickInsideInput) {
-	// 		if (this.showFilterLocation == true) {
-	// 			this.showFilterLocation = false;
-	// 		}
-	// 	}
-	// }
+	@HostListener('document:click', ['$event'])
+		onClick(event) {
+		var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
+		//var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
+		//var ignoreClickOnInput = document.getElementById('text_search');
+		var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+		//var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
+		//var isClickInsideInput = ignoreClickOnInput.contains(event.target);
+		if (!isClickInsideElement) {
+			if (document.getElementsByClassName('filter__active')[0]) {
+				this.showFilterActive = true;
+				if (this.showFilterActive == true) {
+					this.showMenu = false;
+					let listClass = document.getElementsByClassName('sub__item');
+					let classArray = [];
+					let i = 0;
+					for (i = 0; i < listClass.length; i++) {
+						classArray.push(i);
+					}
+					classArray.forEach(function (val) {
+						document.getElementsByClassName('sub__item')[val].classList.remove('active')
+					});
+				}
+			} else {
+				if (this.showMenu == true) {
+					this.showMenu = false;
+					this.showFilterNavBar = false;
+					let listClass = document.getElementsByClassName('sub__item');
+					let classArray = [];
+					let i = 0;
+					for (i = 0; i < listClass.length; i++) {
+						classArray.push(i);
+					}
+					classArray.forEach(function (val) {
+						document.getElementsByClassName('sub__item')[val].classList.remove('active')
+					});
+				}
+			}
+		}
+		// if (!isClickInsideElementOne || !isClickInsideInput) {
+		//  	if (this.showFilterLocation == true) {
+		//  		this.showFilterLocation = false;
+		// 	}
+	 	// }
+	} 
 }
 
 

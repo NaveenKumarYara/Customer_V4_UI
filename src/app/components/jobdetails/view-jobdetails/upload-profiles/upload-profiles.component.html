@@ -332,6 +332,59 @@
               </div>
             </div>
           </div>
+          <div class="stripped__table">
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__th title__col title__col__first">
+                <div class="box__table">Education</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">can be <strong>25%</strong></div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__th">
+                <div class="box__table">you got <strong>10%</strong></div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Bechalor of Engineering</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">5</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  4
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row strip__row flex flex-wrap">
+              <div class="col-sm-6 strip__col strip__col__td title__col">
+                <div class="th__heading">Title</div>
+                <div class="box__table">Master of Engineering</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Job Details</div>
+                <div class="box__table">2</div>
+              </div>
+              <div class="col-sm-3 strip__col strip__col__td">
+                <div class="th__heading">Resume Details</div>
+                <div class="box__table">
+                  1
+                  <button class="btn btn__edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">edit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="showThis == 'SkillsFit'">
           <span class="shadow">&nbsp;</span>
@@ -1757,7 +1810,7 @@
   <mat-dialog-content class="mat-typography vh-100 s-none" *ngIf="loaddata">
     <!--Tab View-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ptb-24">
-      <div class="card manage-uploads clearfix">
+      <div class="card manage-uploads manage-upload-custom clearfix">
   
         <div class="tab-content">
           <div id="uploadProfiles" class="tab-pane fade active in">
@@ -1812,7 +1865,7 @@
               </div>
             </div>
             <div>
-              <table class="table table-condensed table-hover table-bordered table-striped"
+              <table class="table custom-upload-profile-table table-hover table-bordered table-striped"
              *ngIf="selectedFiles.length>0">
               <thead>
                 <tr>
