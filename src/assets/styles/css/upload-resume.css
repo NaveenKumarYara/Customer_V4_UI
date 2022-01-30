@@ -651,3 +651,30 @@
 .input-group-btn .btn.btn-sm {
   padding: 3px 10px;
 }
+
+.manage-upload-custom .upload-border {
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.manage-upload-custom .upload-border .flex_items_center {
+  background: #fff;
+}
+
+.manage-upload-custom .upload-border .fa.fa-cloud-upload.fa-5 {
+  color: #447afa
+}
+
+.custom-upload-profile-table.table>thead>tr>th,
+.custom-upload-profile-table.table>tbody>tr>td {
+  padding: 10px 20px;
+}
+
+.custom-upload-profile-table .btn.btn-danger {
+  padding:0;
+  background: none;
+  border:0;
+  font-size: 18px;
+  color: #6e819e
+}

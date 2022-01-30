@@ -831,3 +831,22 @@
 .share__job__table .title .buttons__section {
   margin-left: auto;
 }
+
+.filter__sub__container .ng-select.custom-style>.ng-select-container {
+  height: 34px !important;
+  padding: 6px;
+  font-weight: 400;
+}
+
+.filter__sub__container .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  top: 10px;
+}
+
+.filter__sub__container .ng-select.custom-style.ng-select-multiple>.ng-select-container {
+  height: auto !important;
+}
+
+.filter__sub__container .ng-select .ng-select-container .ng-value-container .ng-input>input {
+  margin:0;
+  top: 0;
+}

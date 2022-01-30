@@ -133,12 +133,12 @@ a:hover {
 
 .btn.btn-grid:not(:disabled):not(.disabled).active,
 .btn.btn-grid:not(:disabled):not(.disabled):active {
-    background: url(../../../../assets/images/candidate-sprites.png) -12px -14px no-repeat #e9effd;
+    background: url(../../../../assets/images/candidate-sprites.png) -17px -17px no-repeat #e9effd;
 }
 
 .btn.btn-list:not(:disabled):not(.disabled).active,
 .btn.btn-list:not(:disabled):not(.disabled):active {
-    background: url(../../../../assets/images/candidate-sprites.png) -59px -14px no-repeat #e9effd;
+    background: url(../../../../assets/images/candidate-sprites.png) -63px -17px no-repeat #e9effd;
 }
 
 .btn.btn-list:not(:disabled):not(.disabled).active,
@@ -525,18 +525,14 @@ a:hover {
 .btn.btn-list {
     padding: 0;
     font-size: 0;
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     border-radius: 0;
-    background: url(../../../../assets/images/candidate-sprites.png) -12px -14px no-repeat #fff;
+    background: url(../../../../assets/images/candidate-sprites.png) -17px -17px no-repeat #fff;
 }
 
 .btn.btn-list {
-    background-position: -59px -14px;
-}
-
-.view-navigation {
-    padding-left: 78px;
+    background-position: -63px -17px;
 }
 
 .view-navigation ul {
@@ -545,7 +541,7 @@ a:hover {
     list-style: none;
     font-size: 0;
     border: 2px solid #e7eaf3;
-    width: 84px;
+    width: 72px;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -9003,4 +8999,34 @@ div .status.Invited {
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+.no__result {
+    padding: 120px 0;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6A7E9C;
+}
+
+.input-group.blue .input-group-btn { background: #337ab7; }
+
+.revamp__filter__sidebar__box .filter__sub__search .filter__buttons .btn { 
+    margin: 0 2px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 2px 6px;
+}
+
+.revamp__filter__sidebar__box .filter__sub__search h4 {
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e3ef;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.revamp__filter__sidebar__box .filter__sub__search .form-control {
+    padding-left: 10px;
 }

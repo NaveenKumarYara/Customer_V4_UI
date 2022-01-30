@@ -5,7 +5,7 @@
                 <div class="scroll-box">
                     <div class="icon__box">&nbsp;</div>
                     <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
-                    <ul (mouseenter)="showNavigation()">
+                    <ul (mouseenter)="showNavigation()"  id="show_main_navigation">
                         <li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
                             <a href="javascript:void(0);" (click)="showJobType()">
                                 <span class="icon icon__jobtype__01">
@@ -44,6 +44,7 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isSkillShown, 'hideSearch': !isSkillShown}">
+                                    <h4>Skills</h4>
                                     <div class="input__box">
                                         <span class="icon__search__dark"></span>
                                         <ng-select class="custom-style" [items]="skillList | async" placeholder="Search Skill" bindLabel="Code" bindValue="Code" [typeahead]="selectedskillinput" [hideSelected]="true" [loading]="skilltitleloading" [(ngModel)]="selectedSkills" minlength="1" name="selectedSkillName"
@@ -79,14 +80,15 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isExperienceShown, 'hideSearch': !isExperienceShown}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="minExpe">Min. Experience</label>
-                                            <input class="form-control" id="minExpe" placeholder="Minimum Experience" #minExpe="ngModel" [(ngModel)]="MinimumExperience">
+                                    <h4>Experience</h4>
+                                    <div class="row form-row form__sub__row">
+                                        <div class="form__sub__col col-md-6">
+                                            <label for="minExpe" class="hidden">Min. Experience</label>
+                                            <input class="form-control" id="minExpe" placeholder="Minimum" #minExpe="ngModel" [(ngModel)]="MinimumExperience">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="maxExpe">Max. Experience</label>
-                                            <input class="form-control" id="maxExpe" placeholder="Maximum Experience" #maxExpe="ngModel" [(ngModel)]="MaximumExperience">
+                                        <div class="col-md-6 form__sub__col">
+                                            <label for="maxExpe" class="hidden">Max. Experience</label>
+                                            <input class="form-control" id="maxExpe" placeholder="Maximum" #maxExpe="ngModel" [(ngModel)]="MaximumExperience">
                                         </div>
                                     </div>
                                     <div class="filter__buttons text-right">
@@ -106,9 +108,10 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isJobTitleShown, 'hideSearch': !isJobTitleShown}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="minExpe">Job Title</label>
+                                    <h4>Job Title</h4>
+                                    <div class="form-row row form__sub__row">
+                                        <div class="col-md-12 form__sub__col">
+                                            <label for="minExpe" class="hidden">Job Title</label>
                                             <input class="form-control" id="title" placeholder="Job Title" #title="ngModel" [(ngModel)]="jobTitle">
                                         </div>
                                     </div>
@@ -135,6 +138,7 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isDomainShown, 'hideSearch': !isDomainShown}">
+                                    <h4>Domain</h4>
                                     <div class="input__box">
                                         <span class="icon__search__dark"></span>
                                         <ng-select class="custom-style" [items]="domainList | async" placeholder="Search Domain" bindLabel="Code" bindValue="Id" [typeahead]="selectedDomainInput" [hideSelected]="true" [loading]="domainLoading" [(ngModel)]="selectedDomains" minlength="1" name="selectedDomains"
@@ -158,9 +162,10 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isCompanyShown, 'hideSearch': !isCompanyShown}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="minExpe">Job Title</label>
+                                    <h4>Company Name</h4>
+                                    <div class="form-row row form__sub__row">
+                                        <div class="col-md-12 form__sub__col">
+                                            <label for="minExpe" class="hidden">Job Title</label>
                                             <input class="form-control" id="company" placeholder="Company Name" #company="ngModel" [(ngModel)]="companyName">
                                         </div>
                                     </div>
@@ -181,9 +186,10 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isEducationShown, 'hideSearch': !isEducationShown}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="minExpe">Education</label>
+                                    <h4>Education</h4>
+                                    <div class="form-row row form__sub__row">
+                                        <div class="form__sub__col col-md-12">
+                                            <label for="minExpe" class="hidden">Education</label>
                                             <input class="form-control" id="education" placeholder="Education" #education="ngModel" [(ngModel)]="educationName">
                                         </div>
                                     </div>
@@ -204,9 +210,10 @@
                             </a>
                             <div class="filter__sub__container">
                                 <div class="filter__sub__search" [ngClass]="{'showSearch': isCertificationShown, 'hideSearch': !isCertificationShown}">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="minExpe">Certification</label>
+                                    <h4>Certification</h4>
+                                    <div class="form-row row form__sub__row">
+                                        <div class="col-md-12 form__sub__col">
+                                            <label for="minExpe" class="hidden">Certification</label>
                                             <input class="form-control" id="certification" placeholder="certification" #education="ngModel" [(ngModel)]="certificationName">
                                         </div>
                                     </div>
@@ -223,7 +230,7 @@
             </div>
             <div class="top__container">
                 <div class="row flex flex-wrap flex-align-center">
-                    <div class="col-sm-2 flex flex-wrap flex-align-center">
+                    <div class="col-sm-1 flex flex-wrap flex-align-center">
                         <div class="view-navigation">
                             <ul>
                                 <li>
@@ -236,10 +243,11 @@
                         </div>
                     </div>
                     <div class="col-sm-3 col">
-                        <div class="input-group">
-                            <input class="form-control" id="searchData" name="searchData" placeholder="Search String" [(ngModel)]="searchValue" #searchData="ngModel">
+                        <div class="input-group blue">
+                            <input class="form-control" id="searchData" name="searchData" placeholder="Search" [(ngModel)]="searchValue" #searchData="ngModel">
                             <span class="input-group-btn">
-								<button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()">Go!</button>
+								<button class="btn btn-primary btn-sm" type="button" (click)="findCandidates()"><i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
 							</span>
                         </div>
                         <div class="filter__by__tech" id="filter_by_tech" [ngClass]="showFilterLocation?'show':''">
@@ -395,7 +403,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <span *ngIf="candidatesLoading">Loading Candidates...</span> -->
+            <span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
             <ng-container *ngIf="candidates.length > 0">
                 <div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
                     <div class="row">
@@ -554,7 +562,7 @@
                 </div>
             </ng-container>
             <div class="col-sm-12" *ngIf="candidates.length == 0">
-                <span *ngIf="!candidatesLoading && candidates.length == 0">No candidates found!</span>
+                <span *ngIf="!candidatesLoading && candidates.length == 0" class="no__result">No candidates found!</span>
             </div>
         </div>
     </div>
@@ -674,7 +682,10 @@
     </div>
 </div>
 
+
+
 <div class="apply__job__sidepanel" [ngClass]="applyJobSidePanelShow ? 'show': ''">
+    <span class="overlay"  (click)="hideApplySidePanel()">&nbsp;</span>
     <div class="col__container">
         <button type="button" class="close" (click)="hideApplySidePanel()">
       <span aria-hidden="true">×</span>
