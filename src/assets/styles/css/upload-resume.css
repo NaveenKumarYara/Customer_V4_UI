@@ -41,7 +41,7 @@
 
 .upload__resume__container .top__container {
   border-bottom: 1px solid #e0e3ef;
-  padding: 30px;
+  padding: 30px 30px 100px 30px;
   background-color: #fff;
 }
 
@@ -677,4 +677,67 @@
   border:0;
   font-size: 18px;
   color: #6e819e
+}
+
+.upload__resume__container .status__box {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 100%;
+  margin: 0 auto;
+  border: 1px solid #e0e3ef;
+  padding:15px;
+  background-color: #fff;
+}
+
+.upload__resume__container .status__box .progress {
+  height: 10px;
+  border-radius: 12px;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.upload__resume__container .status__box .progress-bar {
+  background: #66d9b5;
+  box-shadow: none;
+}
+
+.upload__resume__container .info__label {
+  width: 90%;
+  padding: 20px;
+}
+
+.upload__resume__container .info__label h5 {
+  word-break: break-all;
+}
+
+.upload__resume__container .status__box .notes {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  color: #6C6E71 !important;
+}
+
+.upload__resume__container .question-section {
+  margin: 100px auto 0;
+  text-align: center;
+  width: 90%;
+  border: 1px solid #e0e3ef;
+  box-shadow: 0 4px 10px rgba(158,171,192,0.2);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.upload__resume__container .question-section h4 {
+  color: #6e819e;
+}
+
+.upload__resume__container .question-section .btn.btn-filled {
+  padding: 6px 12px;
+  min-width: inherit;
+  background: #66d9b5;
+  border-color: #66d9b5;
+}
+
+.upload__resume__container .question-sectio .buttons {
+  margin: 15px 0 0;
 }

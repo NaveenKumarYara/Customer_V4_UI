@@ -22,9 +22,25 @@
               <h6 *ngIf="t.split(',')[0] === 'true'&&t.split(',')[1] === cand?.ContactInformation?.EmailAddresses[0]">  <i class="fa fa-info-circle" aria-hidden="true"></i> Please review profile associated before saving.</h6>  
             </ng-container> -->
         </div>
+        <div class="status__box">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70"
+            aria-valuemin="0" aria-valuemax="100" style="width:70%">
+              <span class="sr-only">70% Complete</span>
+            </div>
+          </div>
+          <span class="notes">Updated Successfully</span>
+        </div>
       </label>
       <span class="slider_next"><span class="sr-only"  (click)="selectNextCandidate()">Next</span></span>
     </section>
+    <div class="question-section">
+      <h4>This is an arytic profile which cant be updated. Do you want to request profile from Arytic for Jhon Doe?</h4>
+      <div class="buttons">
+        <button class="btn btn-filled">Make it Private & Upload</button>
+        <button class="btn btn-default">Send Request</button>
+      </div>
+    </div>
   </div> 
   <div class="main__section">
     <div class="row flex flex-wrap">
