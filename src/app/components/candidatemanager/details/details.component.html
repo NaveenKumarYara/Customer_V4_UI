@@ -5,7 +5,7 @@
                 <div class="scroll-box">
                     <div class="icon__box">&nbsp;</div>
                     <button class="btn btn-filter" (click)="toggleFilter()">Filter</button>
-                    <ul (mouseenter)="showNavigation()"  id="show_main_navigation">
+                    <ul (mouseenter)="showNavigation()" id="show_main_navigation">
                         <li [ngClass]="{'active': isJobTypeShown}" style="display: none;">
                             <a href="javascript:void(0);" (click)="showJobType()">
                                 <span class="icon icon__jobtype__01">
@@ -404,163 +404,165 @@
                 </div>
             </div>
             <span *ngIf="candidatesLoading" class="no__result">Loading Candidates...</span>
-            <ng-container *ngIf="candidates.length > 0">
-                <div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
-                    <div class="row">
-                        <div class="col-sm-12 big-col">
-                            <div class="row flex flex-wrap flex-align-equal">
-                                <div class="col-sm-3 " [ngClass]="[ candidate.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
-                                    <div class="top__container flex flex-wrap flex-align-center">
-                                        <label class="custom-checkbox custom-checkbox-round">
+            <div *ngIf="!candidatesLoading">
+                <ng-container *ngIf="candidates.length > 0">
+                    <div class="data-grid-view" *ngIf="currentView == 'Grid'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
+                        <div class="row">
+                            <div class="col-sm-12 big-col">
+                                <div class="row flex flex-wrap flex-align-equal">
+                                    <div class="col-sm-3 " [ngClass]="[ candidate.IsPublic ? 'blue' : 'green']" *ngFor="let candidate of candidates">
+                                        <div class="top__container flex flex-wrap flex-align-center">
+                                            <label class="custom-checkbox custom-checkbox-round">
 											<input type="checkbox" [checked]="candidate.IsSelected"
 												(change)="candidate.IsSelected = !candidate.IsSelected">
 											<span class="checkmark"></span>
 										</label>
-                                        <ul>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.MobileNumber}}" placement="left"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.EmailAddress}}" placement="right"></span>
-                                            </li>
-                                            <li>
-                                                <span class="revamp-icon revamp-icon-note" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume" placement="right"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col__container">
-                                        <div class="info__container">
-                                            <div class="profile__thumb">
-                                                <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
-                                            </div>
-                                            <div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
-                                            <div class="profile__match__percent"><a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
-                                            </div>
-                                            <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
+                                            <ul>
+                                                <li>
+                                                    <span class="revamp-icon revamp-icon-phone" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.MobileNumber}}" placement="left"></span>
+                                                </li>
+                                                <li>
+                                                    <span class="revamp-icon revamp-icon-email" style="cursor: default;" data-toggle="tooltip" tooltip="{{candidate.EmailAddress}}" placement="right"></span>
+                                                </li>
+                                                <li>
+                                                    <span class="revamp-icon revamp-icon-note" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)" tooltip="download resume" placement="right"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col__container">
+                                            <div class="info__container">
+                                                <div class="profile__thumb">
+                                                    <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
+                                                </div>
+                                                <div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
+                                                <div class="profile__match__percent"><a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
+                                                </div>
+                                                <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
 													| titlecase}}</a>
-                                            </h4>
+                                                </h4>
 
-                                            <h5>{{candidate.JobTitleName}}</h5>
-                                            <div class="location">{{candidate.Locations}}</div>
-                                            <div class="company">{{candidate.Company}}</div>
+                                                <h5>{{candidate.JobTitleName}}</h5>
+                                                <div class="location">{{candidate.Locations}}</div>
+                                                <div class="company">{{candidate.Company}}</div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="data-grid-table" *ngIf="currentView == 'List'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
-                    <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
-                        <div class="grid-col grid-check-col">
-                            <label class="custom-checkbox ">
+                    <div class="data-grid-table" *ngIf="currentView == 'List'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
+                        <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
+                            <div class="grid-col grid-check-col">
+                                <label class="custom-checkbox ">
 								<input type="checkbox" (change)="onSelectAll($event)">
 								<span class="checkmark"></span>
 							</label>
-                        </div>
-                        <div class="grid-col grid-name-col">
-                            Name <span class="sorting-arrow down"></span>
-                        </div>
-                        <div class="grid-col grid-job-title-col">
-                            Job Title <span class="sorting-arrow down"></span>
-                        </div>
-                        <div class="grid-col grid-email-col">
-                            Email<span class="sorting-arrow down"></span>
-                        </div>
-                        <div class="grid-col grid-contact-col">
-                            Contact Number<span class="sorting-arrow down"></span>
-                        </div>
-                        <div class="grid-col grid-location-col">
-                            Current Location<span class="sorting-arrow down"></span>
-                        </div>
-                        <!-- <div class="grid-col grid-job-typ-col">
+                            </div>
+                            <div class="grid-col grid-name-col">
+                                Name <span class="sorting-arrow down"></span>
+                            </div>
+                            <div class="grid-col grid-job-title-col">
+                                Job Title <span class="sorting-arrow down"></span>
+                            </div>
+                            <div class="grid-col grid-email-col">
+                                Email<span class="sorting-arrow down"></span>
+                            </div>
+                            <div class="grid-col grid-contact-col">
+                                Contact Number<span class="sorting-arrow down"></span>
+                            </div>
+                            <div class="grid-col grid-location-col">
+                                Current Location<span class="sorting-arrow down"></span>
+                            </div>
+                            <!-- <div class="grid-col grid-job-typ-col">
                             Job Type<span class="sorting-arrow down"></span>
                         </div> -->
-                    </div>
-                    <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidate of candidates">
-                        <div class="grid-col grid-check-col">
-                            <div class="grid-heading">Select</div>
-                            <div class="box-table">
-                                <label class="custom-checkbox">
+                        </div>
+                        <div class="grid-row grid-row-col flex flex-wrap flex-align-equal" *ngFor="let candidate of candidates">
+                            <div class="grid-col grid-check-col">
+                                <div class="grid-heading">Select</div>
+                                <div class="box-table">
+                                    <label class="custom-checkbox">
                                     <input type="checkbox" [checked]="candidate.IsSelected" 
 												(change)="candidate.IsSelected = !candidate.IsSelected">
                                     <span class="checkmark"></span>
                                 </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid-col">
-                            <div class="grid-heading">Name</div>
-                            <div class="box-table">
-                                <div class="profile-container">
-                                    <figure>
-                                        <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
-                                    </figure>
-                                    <div class="profile-name">
-                                        {{candidate.FirstName}} {{candidate.MiddleName}} {{candidate.LastName}}
+                            <div class="grid-col">
+                                <div class="grid-heading">Name</div>
+                                <div class="box-table">
+                                    <div class="profile-container">
+                                        <figure>
+                                            <img src="../../../assets/images/candidatemanager/profile-thumb.png" alt="">
+                                        </figure>
+                                        <div class="profile-name">
+                                            {{candidate.FirstName}} {{candidate.MiddleName}} {{candidate.LastName}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="grid-col">
-                            <div class="grid-heading">Job Title</div>
-                            <div class="box-table">
-                                {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
+                            <div class="grid-col">
+                                <div class="grid-heading">Job Title</div>
+                                <div class="box-table">
+                                    {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid-col">
-                            <div class="grid-heading">Email</div>
-                            <div class="box-table">
-                                {{candidate.Email != null && candidate.Email != '' ? candidate.Email : 'N/A'}}
+                            <div class="grid-col">
+                                <div class="grid-heading">Email</div>
+                                <div class="box-table">
+                                    {{candidate.Email != null && candidate.Email != '' ? candidate.Email : 'N/A'}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid-col">
-                            <div class="grid-heading">Contact Number</div>
-                            <div class="box-table">
-                                {{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}
+                            <div class="grid-col">
+                                <div class="grid-heading">Contact Number</div>
+                                <div class="box-table">
+                                    {{candidate.ContactNumber != null && candidate.ContactNumber != '' ? candidate.ContactNumber : 'N/A'}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid-col">
-                            <div class="grid-heading">Current Location</div>
-                            <div class="box-table">
-                                {{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}
+                            <div class="grid-col">
+                                <div class="grid-heading">Current Location</div>
+                                <div class="box-table">
+                                    {{candidate.JobLocations != null && candidate.JobLocations != '' ? candidate.JobLocations : 'N/A'}}
+                                </div>
                             </div>
-                        </div>
-                        <!-- <div class="grid-col">
+                            <!-- <div class="grid-col">
                             <div class="grid-heading">Job Type</div>
                             <div class="box-table">
                                 {{candidate.JobTitle != null && candidate.JobTitle != '' ? candidate.JobTitle : 'N/A'}}
                             </div>
                         </div> -->
+                        </div>
                     </div>
-                </div>
-                <div class="data__table__footer">
-                    <ul>
-                        <!-- <li>
+                    <div class="data__table__footer">
+                        <ul>
+                            <!-- <li>
 								<button class="btn btn__export" data-toggle="modal" data-target="#exportPopup">Export</button>
 						</li>
 						<li>
 										<button class="btn btn__import" data-toggle="modal" data-target="#importModal">Import</button>
 						</li> -->
-                        <li>
-                            <button class="btn btn__apply__job" (click)="applySidePanel()">
+                            <li>
+                                <button class="btn btn__apply__job" (click)="applySidePanel()">
 								Apply to Job
 							</button>
-                        </li>
-                        <li>
-                            <button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
+                            </li>
+                            <li>
+                                <button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
 								Share Candidates
 							</button>
-                        </li>
-                        <!-- <li>
+                            </li>
+                            <!-- <li>
 																							<button class="btn btn__share" data-toggle="modal" data-target="#bulkInvite">Invite</button>
 																					</li> -->
-                        <!-- <li>
+                            <!-- <li>
 																							<button class="btn btn__delete" data-toggle="modal" data-target="#deletePop">Delete</button>
 																					</li> -->
-                    </ul>
-                </div>
-            </ng-container>
+                        </ul>
+                    </div>
+                </ng-container>
+            </div>
             <div class="col-sm-12" *ngIf="candidates.length == 0">
                 <span *ngIf="!candidatesLoading && candidates.length == 0" class="no__result">No candidates found!</span>
             </div>
@@ -685,7 +687,7 @@
 
 
 <div class="apply__job__sidepanel" [ngClass]="applyJobSidePanelShow ? 'show': ''">
-    <span class="overlay"  (click)="hideApplySidePanel()">&nbsp;</span>
+    <span class="overlay" (click)="hideApplySidePanel()">&nbsp;</span>
     <div class="col__container">
         <button type="button" class="close" (click)="hideApplySidePanel()">
       <span aria-hidden="true">×</span>
@@ -696,15 +698,22 @@
                     Search Here:
                 </div>
                 <div class="col-sm-5 col">
-                    <div class="input-box">
+                    <div class="input-group jobSearch blue">
+                        <input class="form-control" id="searchData" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="getActiveJobs()"><i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- <div class="input-box">
                         <input class="form-control form-control-light" id="searchJob" placeholder="Search Jobs" #searchJob="ngModel" [(ngModel)]="searchJobValue">
                         <span class="icon icon__search__01" (click)="getActiveJobs()"></span></div>
+                </div> -->
                 </div>
             </div>
-        </div>
-        <div class="apply__job__grid">
-            <div class="row flex flex-wrap felx-align-equal">
-                <label class="col-sm-4 col" *ngFor="let activeJob of activeJobs; index as i;">
+            <div class="apply__job__grid">
+                <div class="row flex flex-wrap felx-align-equal">
+                    <label class="col-sm-4 col" *ngFor="let activeJob of activeJobs; index as i;">
           <input type="checkbox" class="custom-check" [checked]="activeJob.IsSelected"
           (change)="activeJob.IsSelected = !activeJob.IsSelected">
           <div class="col-container">
@@ -715,11 +724,11 @@
             <div class="location">{{activeJob.JobLocations}}</div>
           </div>
         </label>
+                </div>
+            </div>
+            <div class="apply__job__footer">
+                <button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
+                <button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
             </div>
         </div>
-        <div class="apply__job__footer">
-            <button class="btn btn-default" (click)="closeApplyJobWindow()">Cancel</button>
-            <button class="btn btn-filled" (click)="shareJobToSelectedCandidates()">Submit</button>
-        </div>
     </div>
-</div>
