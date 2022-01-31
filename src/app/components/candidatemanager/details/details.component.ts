@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, Input, OnInit, ViewContainerRef, HostListener, ViewChild, ElementRef, NgZone, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef, ViewChild, ElementRef, NgZone, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AppService } from '../../../app.service';
@@ -260,7 +260,7 @@ export class DetailsComponent implements OnInit {
 				this.autocomplete.setComponentRestrictions({ 'country': ['us'] });
 				this.autocomplete.addListener('place_changed', () => {
 					this.ngZone.run(() => {
-						debugger;
+						//debugger;
 						const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
 						if (place === null || place.geometry === undefined || place.geometry === null) {
 							this.cityName = '';
@@ -289,7 +289,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	searchByLocation(newValue) {
-		debugger;
+		//debugger;
 		if (this.cityName !== '') {
 			this.cityName = '';
 			this.searchCandidates();
@@ -326,14 +326,14 @@ export class DetailsComponent implements OnInit {
 				switchMap(term => this.appService.searhchSkills(term).pipe(
 					catchError(() => of([])), // empty list on error
 					tap(data => {
-						debugger;
+						//debugger;
 						let y = data;
 						this.skilltitleloading = false;
 					})
 				))
 			)
 		);
-		debugger;
+		//debugger;
 		let k = 10;
 	}
 	getDomains() {
@@ -346,14 +346,14 @@ export class DetailsComponent implements OnInit {
 				switchMap(term => this.appService.searchDomains(term).pipe(
 					catchError(() => of([])), // empty list on error
 					tap(data => {
-						debugger;
+						//debugger;
 						let y = data;
 						this.domainLoading = false;
 					})
 				))
 			)
 		);
-		debugger;
+		//debugger;
 		let k = 10;
 	}
 
@@ -698,7 +698,7 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 	getActiveJobs() {
-		debugger;
+		//debugger;
 		this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
@@ -713,7 +713,7 @@ export class DetailsComponent implements OnInit {
 				}
 			},
 			error => {
-				debugger;
+				//debugger;
 				console.log('Error occurred!');
 				this.candidatesLoading = false;
 			});
@@ -725,13 +725,13 @@ export class DetailsComponent implements OnInit {
 	// 	});
 	// }
 	shareJobToSelectedCandidates() {
-		debugger;
+		//debugger;
 		//let candidates = this.candidates.filter(x => x.IsSelected);
 		this.applyJobToSelectedCandidates();
 
 	}
 	applyJobToSelectedCandidates() {
-		debugger;
+		//debugger;
 		let candidates = this.candidates.filter(x => x.IsSelected);
 		let selectedJobs = this.activeJobs.filter(x => x.IsSelected);
 		if (candidates.length > 0) {
@@ -826,7 +826,7 @@ export class DetailsComponent implements OnInit {
 		});
 	}
 	showFilterPanel() {
-		debugger;
+		//debugger;
 		// const dialogRef = this.dialog.open(FitlerComponent, {
 		// 	width: '250px',
 		// 	data: {
@@ -837,15 +837,15 @@ export class DetailsComponent implements OnInit {
 		// 	}
 		// });
 		// dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-		// 	debugger;
+		// 	//debugger;
 		// 	let filters = JSON.parse(this.storageService.get('CurrentFilter'));
-		// 	debugger;
+		// 	//debugger;
 		// 	this.filter = filters;
 		// 	this.getCandidates();
 		// });
 	}
 	ShareProfile() {
-		debugger;
+		//debugger;
 		let emailAddresses = this.emailAddresses;
 		let message = this.emailMessage;
 		let candidates = this.candidates.filter(x => x.IsSelected);
@@ -989,7 +989,7 @@ export class DetailsComponent implements OnInit {
 		this.searchCandidates();
 	}
 	selectExperience() {
-		debugger;
+		//debugger;
 		if (this.MinimumExperience == 0 || this.MaximumExperience == 0) {
 			this.selectedExperienceCount = 0;
 		}
@@ -999,7 +999,7 @@ export class DetailsComponent implements OnInit {
 		this.searchCandidates();
 	}
 	selectJobTitle() {
-		debugger;
+		//debugger;
 		if (this.jobTitle == null || this.jobTitle == '') {
 			this.selectedJobTitleCount = 0;
 		}
@@ -1009,7 +1009,7 @@ export class DetailsComponent implements OnInit {
 		this.searchCandidates();
 	}
 	selectCompany() {
-		debugger;
+		//debugger;
 		if (this.companyName == null || this.companyName == '') {
 			this.selectedCompanyCount = 0;
 		}
@@ -1045,7 +1045,7 @@ export class DetailsComponent implements OnInit {
 		this.cityName = x[0];
 	}
 	showJobType() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isJobTypeShown = !this.isJobTypeShown;
 		this.isSkillShown = false;
@@ -1054,7 +1054,7 @@ export class DetailsComponent implements OnInit {
 		this.isDomainShown = false;
 	}
 	showSkill() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = !this.isSkillShown;
 		this.isJobTypeShown = false;
@@ -1066,7 +1066,7 @@ export class DetailsComponent implements OnInit {
 		this.isDomainShown = false;
 	}
 	showExperience() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1078,7 +1078,7 @@ export class DetailsComponent implements OnInit {
 		this.isExperienceShown = !this.isExperienceShown;
 	}
 	showJobTitle() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1090,7 +1090,7 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = !this.isJobTitleShown;
 	}
 	showCompany() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1102,7 +1102,7 @@ export class DetailsComponent implements OnInit {
 		this.isCompanyShown = !this.isCompanyShown;
 	}
 	showEducation() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1114,7 +1114,7 @@ export class DetailsComponent implements OnInit {
 		this.isEducationShown = !this.isEducationShown;
 	}
 	showCertification() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1125,7 +1125,7 @@ export class DetailsComponent implements OnInit {
 		this.isCertificationShown = !this.isCertificationShown;
 	}
 	showDomain() {
-		debugger;
+		//debugger;
 		this.showMenu = true;
 		this.isSkillShown = false;
 		this.isJobTypeShown = false;
@@ -1208,7 +1208,9 @@ export class DetailsComponent implements OnInit {
 		this.searchCandidates();
 	}
 	clearAllFilters() {
+		this.candidatesLoading = true;
 		this.searchText = '';
+		this.searchValue = '';
 		this.cityName = '';
 		(<HTMLInputElement>document.getElementById('autocomplete')).value = '';
 		this.selectedSkills = null;
@@ -1268,13 +1270,14 @@ export class DetailsComponent implements OnInit {
 			this.selectedEdcationCount = 1;
 		}
 		this.autocomplete.set('place', null);
+		this.searchCandidates();
 	}
 	findCandidates() {
 		this.cancel();
 		this.getCandidates();
 	}
 	getCandidates() {
-		debugger;
+		//debugger;
 		this.candidatesLoading = true;
 		this.customer = JSON.parse(sessionStorage.getItem('userData'));
 		this.customerId = this.customer.CustomerId;
@@ -1299,7 +1302,7 @@ export class DetailsComponent implements OnInit {
 		this.appService.getCandidates(candidateSearch).subscribe(
 			(res: any) => {
 				if (res != null) {
-					debugger;
+					//debugger;
 					if (res.Candidates != null && res.Candidates.length > 0) {
 						this.candidates = res.Candidates;
 						this.totalPageCount = res.TotalPages;
@@ -1318,7 +1321,7 @@ export class DetailsComponent implements OnInit {
 				this.candidatesLoading = false;
 			},
 			error => {
-				debugger;
+				//debugger;
 				console.log('Error occurred!');
 				this.candidatesLoading = false;
 			});
@@ -1353,51 +1356,55 @@ export class DetailsComponent implements OnInit {
 			}
 		}
 	}
-	@HostListener('document:click', ['$event'])
-		onClick(event) {
-		var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
-		//var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
-		//var ignoreClickOnInput = document.getElementById('text_search');
-		var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-		//var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
-		//var isClickInsideInput = ignoreClickOnInput.contains(event.target);
-		if (!isClickInsideElement) {
-			if (document.getElementsByClassName('filter__active')[0]) {
-				this.showFilterActive = true;
-				if (this.showFilterActive == true) {
-					this.showMenu = false;
-					let listClass = document.getElementsByClassName('sub__item');
-					let classArray = [];
-					let i = 0;
-					for (i = 0; i < listClass.length; i++) {
-						classArray.push(i);
-					}
-					classArray.forEach(function (val) {
-						document.getElementsByClassName('sub__item')[val].classList.remove('active')
-					});
-				}
-			} else {
-				if (this.showMenu == true) {
-					this.showMenu = false;
-					this.showFilterNavBar = false;
-					let listClass = document.getElementsByClassName('sub__item');
-					let classArray = [];
-					let i = 0;
-					for (i = 0; i < listClass.length; i++) {
-						classArray.push(i);
-					}
-					classArray.forEach(function (val) {
-						document.getElementsByClassName('sub__item')[val].classList.remove('active')
-					});
-				}
-			}
-		}
-		// if (!isClickInsideElementOne || !isClickInsideInput) {
-		//  	if (this.showFilterLocation == true) {
-		//  		this.showFilterLocation = false;
-		// 	}
-	 	// }
-	} 
+
+
+	//Please do not uncomment this, this is causing the issue in filters.  Need to fine tune the method.
+
+	// @HostListener('document:click', ['$event'])
+	// 	onClick(event) {
+	// 	var ignoreClickOnMeElement = document.getElementById('show_main_navigation');
+	// 	//var ignoreClickOnMeElementOne = document.getElementById('filter_by_tech');
+	// 	//var ignoreClickOnInput = document.getElementById('text_search');
+	// 	var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+	// 	//var isClickInsideElementOne = ignoreClickOnMeElementOne.contains(event.target);
+	// 	//var isClickInsideInput = ignoreClickOnInput.contains(event.target);
+	// 	if (!isClickInsideElement) {
+	// 		if (document.getElementsByClassName('filter__active')[0]) {
+	// 			this.showFilterActive = true;
+	// 			if (this.showFilterActive == true) {
+	// 				this.showMenu = false;
+	// 				let listClass = document.getElementsByClassName('sub__item');
+	// 				let classArray = [];
+	// 				let i = 0;
+	// 				for (i = 0; i < listClass.length; i++) {
+	// 					classArray.push(i);
+	// 				}
+	// 				classArray.forEach(function (val) {
+	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
+	// 				});
+	// 			}
+	// 		} else {
+	// 			if (this.showMenu == true) {
+	// 				this.showMenu = false;
+	// 				this.showFilterNavBar = false;
+	// 				let listClass = document.getElementsByClassName('sub__item');
+	// 				let classArray = [];
+	// 				let i = 0;
+	// 				for (i = 0; i < listClass.length; i++) {
+	// 					classArray.push(i);
+	// 				}
+	// 				classArray.forEach(function (val) {
+	// 					document.getElementsByClassName('sub__item')[val].classList.remove('active')
+	// 				});
+	// 			}
+	// 		}
+	// 	}
+	// 	// if (!isClickInsideElementOne || !isClickInsideInput) {
+	// 	//  	if (this.showFilterLocation == true) {
+	// 	//  		this.showFilterLocation = false;
+	// 	// 	}
+	//  	// }
+	// } 
 }
 
 

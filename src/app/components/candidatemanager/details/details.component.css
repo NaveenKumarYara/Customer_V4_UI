@@ -631,48 +631,6 @@ a:hover {
 }
 
 
-/* 186 / 1244 */
-
-.data-grid-table .grid-job-title-col {
-    /* width: 17.612903225806452%; */
-}
-
-
-/* 128 / 1244 */
-
-.data-grid-table .grid-email-col {
-    /* width: 15% */
-}
-
-
-/* 90 / 1244 */
-
-.data-grid-table .grid-contact-col {
-    /* width: 14.38709677419355%; */
-}
-
-
-/* 128 / 1244 */
-
-.data-grid-table .grid-location-col {
-    /* width: 15.306451612903225% */
-}
-
-
-/* 159 / 1244 */
-
-.data-grid-table .grid-job-typ-col {
-    /* width: 11.370967741935484%; */
-}
-
-
-/* 171 / 1244 */
-
-.data-grid-table .grid-action-col {
-    /* width: 4.806451612903226%; */
-}
-
-
 /* 70 / 1244 */
 
 .data-grid-table .progress {
@@ -9010,9 +8968,11 @@ div .status.Invited {
     color: #6A7E9C;
 }
 
-.input-group.blue .input-group-btn { background: #337ab7; }
+.input-group.blue .input-group-btn {
+    background: #337ab7;
+}
 
-.revamp__filter__sidebar__box .filter__sub__search .filter__buttons .btn { 
+.revamp__filter__sidebar__box .filter__sub__search .filter__buttons .btn {
     margin: 0 2px;
     font-size: 14px;
     font-weight: 400;
@@ -9029,4 +8989,9 @@ div .status.Invited {
 
 .revamp__filter__sidebar__box .filter__sub__search .form-control {
     padding-left: 10px;
+}
+
+.input-group.jobSearch .input-group.blue .input-group-btn {
+    height: 34px;
+    background: #337ab7;
 }
