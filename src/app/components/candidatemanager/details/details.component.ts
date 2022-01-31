@@ -692,6 +692,7 @@ export class DetailsComponent implements OnInit {
 		else {
 			localStorage.setItem("cprofileId", profileId);
 			localStorage.setItem("cuserId", userId);
+			localStorage.setItem("checku", userId);
 			const url = '/app-view-candidateprofile-detail';
 			window.open(url, "_blank");
 		}
