@@ -2,7 +2,7 @@
   <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-comment"></i>
   </button> -->
-  <button (click)="clickme(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button>
+  <button (click)="check(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button>
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
   <button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId, 2)"
     [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
@@ -86,15 +86,18 @@
               profile?.IsConfirmed == null;
             else Block
           "> 
+          <img   *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
           <img   *ngIf="
               (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
-              profile?.IsConfirmed == null
+              profile?.IsConfirmed == null && !profileImage 
             " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"  width="66"
             height="66"  alt="Certifications" />
         </ng-container>
         <ng-template #Block>
-          <img  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
+        
+           <img  *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
+           <img *ngIf="!profileImage"  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
         </ng-template>
         <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
