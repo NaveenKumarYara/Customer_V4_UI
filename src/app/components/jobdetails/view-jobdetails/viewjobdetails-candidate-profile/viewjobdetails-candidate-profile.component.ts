@@ -35,6 +35,8 @@ import { sendnotificationdialogComponent } from "./SendNotification/sendnotifica
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 import swal from "sweetalert2";
+import * as _html2canvas from "html2canvas";
+const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -57,7 +59,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   jobdetailsprofiles = new JobdetailsProfile();
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
-
+  image:any;
   show: boolean = false;
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
@@ -1157,6 +1159,26 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $("#profileVideo-" + profileId).removeClass("open");
     }
   }
+  clickme(val) {
+    html2canvas(document.getElementById('aa' + val),{ allowTaint: true,useCors:true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
+      logging: true }).then(canvas => {
+      document.querySelector(".result").appendChild(canvas);
+        var canvas1 = canvas;
+        var image = canvas1.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.download = "my-image.png";
+        link.href = image;
+        link.click();
+
+
+
+    });
+  }
+
+
+
+
+
   ngOnInit() {
     this.alertService.clear();
 

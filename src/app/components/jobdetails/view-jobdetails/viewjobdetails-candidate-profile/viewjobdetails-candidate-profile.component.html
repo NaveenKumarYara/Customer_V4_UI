@@ -1,14 +1,15 @@
-<div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let profile of jobdetailsprofiles?.Profile; let i = index">
+<div class="col-lg-4 col-md-6 col-sm-6" id="aa{{ profile.ProfileId }}" *ngFor="let profile of jobdetailsprofiles?.Profile; let i = index">
   <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-comment"></i>
   </button> -->
+  <button (click)="clickme(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button>
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
   <button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId, 2)"
     [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-clipboard"></i>
   </button>
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
-  <div class="card candidate">
+  <div class="card candidate">  
     <header class="p-rel">
       <div class="ptr">
         <div class="checkbox">
@@ -84,16 +85,16 @@
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null;
             else Block
-          ">
-          <img *ngIf="
+          "> 
+          <img   *ngIf="
               (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null
-            " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}" width="66"
-            height="66" />
+            " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"  width="66"
+            height="66"  alt="Certifications" />
         </ng-container>
         <ng-template #Block>
-          <img src="{{ profile.ProfilePic }}" alt="" width="66" height="66" />
+          <img  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
         </ng-template>
         <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
@@ -111,9 +112,9 @@
               ">
               <a href="javascript:void(0)"
                 (click)="OpenCandidateDialog(profile.ProfileId,profile.UserId,profile.FirstName,profile.LastName)">
-                {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" />{{
+                {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
                 profile.LastName.charAt(0)
-                }}<img src="../../../../../assets/images/c_name_hide.png" /></a>
+                }}<img src="../../../../../assets/images/c_name_hide.png"  alt="Certifications"/></a>
             </div>
             <ng-template #firstelseBlock>
               <a href="javascript:void(0)"
@@ -136,9 +137,9 @@
                   profile?.IsConfirmed == null;
                 else firstelseBlock
               ">
-              {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" />{{
+              {{ profile.FirstName.charAt(0) }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />{{
               profile.LastName.charAt(0)
-              }}<img src="../../../../../assets/images/c_name_hide.png" />
+              }}<img src="../../../../../assets/images/c_name_hide.png" alt="Certifications" />
             </div>
             <ng-template #firstelseBlock>
               <a href="javascript:void(0)"
@@ -164,7 +165,7 @@
             <div class="dropdown">
               <div class="tooltip1">
                 <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'" class="dropdown-toggle info-dropdown"
-                  type="button" data-toggle="dropdown" >
+                  type="button" data-toggle="dropdown" >                  
                   <img 
                     src="../../../../../assets/images/Yes-Email.svg" 
                     height="16" alt="email" placement="top"
@@ -841,11 +842,62 @@
           <li *ngIf="profile?.ResponseStatusId != 6" tooltip="Provide valuable feedback to candidate." placement="top">
             <!-- <a href="javascript:void(0)" (click)="OpenRejectDialog(profile?.JobResponseId,profile?.ProfileId)"> -->
             <a href="javascript:void(0)" (click)="callSkills(profile?.ProfileId, 4)">
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="#9eabc0" width="25" height="21">
-								<path
-									d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z" />
-							</svg> -->
-              <img width="25" height="21" src="../../../../../assets/images/feedback.svg" />
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="#9eabc0">
+           <g>
+             <g>
+               <g>
+                 <path d="M117.333,149.333H352c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667H117.333
+                   c-5.896,0-10.667,4.771-10.667,10.667C106.667,144.563,111.438,149.333,117.333,149.333z"/>
+                 <path d="M245.333,256h-128c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h128
+                   c5.896,0,10.667-4.771,10.667-10.667C256,260.771,251.229,256,245.333,256z"/>
+                 <path d="M471.167,64c-0.618,0-1.217,0.155-1.833,0.184V64c0-23.531-19.146-42.667-42.667-42.667h-384
+                   C19.146,21.333,0,40.469,0,64v416c0,4.313,2.604,8.208,6.583,9.854c1.313,0.552,2.708,0.813,4.083,0.813
+                   c2.771,0,5.5-1.083,7.542-3.125L121.75,384h304.917c23.521,0,42.667-19.135,42.667-42.667V164.411l30.708-30.703c0,0,0,0,0-0.01
+                   c7.604-7.604,11.958-18.125,11.958-28.865C512,82.313,493.688,64,471.167,64z M448,341.333c0,11.76-9.563,21.333-21.333,21.333
+                   H117.333c-2.833,0-5.542,1.125-7.542,3.125L21.333,454.25V64c0-11.76,9.563-21.333,21.333-21.333h384
+                   C438.438,42.667,448,52.24,448,64v7.286c-2.025,1.392-3.962,2.923-5.708,4.672L326.232,192H117.333
+                   c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h191.785l-10.243,51.24
+                   c-0.708,3.5,0.396,7.115,2.917,9.635c2.021,2.021,4.75,3.125,7.542,3.125c0.688,0,1.396-0.073,2.083-0.208l53.313-10.667
+                   c2.083-0.417,3.979-1.427,5.458-2.917L448,185.742V341.333z M357.396,246.177l-34.458,6.896l6.896-34.5l96.828-96.828
+                   l27.587,27.587L357.396,246.177z M484.958,118.625l-15.625,15.625l-27.589-27.589l15.63-15.63
+                   c3.625-3.615,8.646-5.698,13.792-5.698c10.75,0,19.5,8.75,19.5,19.5C490.667,109.958,488.583,114.99,484.958,118.625z"/>
+               </g>
+             </g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           </svg>
+           
+              <!-- <img width="25" height="21" src="../../../../../assets/images/feedback.svg" /> -->
             </a>
           </li>
           <li *ngIf="profile?.ResponseStatusId === 6" class="disabled" tooltip="Provide valuable feedback to candidate."
@@ -1830,6 +1882,8 @@
   </div>
 
   <!-- .card.candidate -->
+</div>
+<div class="result">
 </div>
 <mat-spinner *ngIf="Rloading" style="margin: 0 auto" class="" [color]="color" [mode]="mode" strokeWidth="3"
   [diameter]="50">
