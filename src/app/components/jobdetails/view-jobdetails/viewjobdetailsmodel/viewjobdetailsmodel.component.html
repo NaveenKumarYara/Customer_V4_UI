@@ -169,13 +169,15 @@
         </ul>
 
         <div class="tab-content">
-          <div id="job-card" class="tab-pane fade in active">
+
+          <div id="job-card"   class="tab-pane fade in active">
+            <button (click)="check(jobdetailscustomer?.JobInfo?.JobId)"><i class="fa fa-camera" aria-hidden="true"></i></button>
             <div class="jdv-listing lg__paading">
 
 
               <div class="row no__margin">
                 <div class="col-sm-6 col-md-6">
-                  <div class="job-leftcard">
+                  <div class="job-leftcard" id="aa{{jobdetailscustomer?.JobInfo?.JobId}}">
                     <div class="col-container">
                       <div class="top-container">
                         <div class="row d-flex flex-wrap">
@@ -231,7 +233,8 @@
                       <div class="middle-container">
                         <div class="jdv-company-profile flex flex-justify-center flex-align-center">
                           <div class="company-logo flex flex-justify-center flex-align-center">
-                            <img src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
+                            <img *ngIf="!profileImage" src="{{jobdetailscustomer?.JobInfo?.CompanyLogo}}" alt="">
+                            <img *ngIf="profileImage" src="../../../../../assets/images/noclogo.png" alt="">
                           </div>
                           <div class="company-title">
                             <h3>{{jobdetailscustomer?.JobInfo?.CompanyName | titlecase}}</h3>
@@ -491,6 +494,8 @@
                     </div>
                     <!--/.col-container-->
                   </div>
+                  <div class="result">
+                  </div>
                   <!--/.job-leftcard-->
                 </div>
                 <div class="col-sm-6 col-md-6">
@@ -640,6 +645,7 @@
 
               </div>
             </div>
+           
           </div>
           <div id="job-details" class="tab-pane fade">
             <div class="revamp__jd__description">
