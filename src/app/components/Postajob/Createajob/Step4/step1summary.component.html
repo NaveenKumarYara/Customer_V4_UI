@@ -32,7 +32,7 @@
   <!--Job Description-->
   <div class="form-data-group">
     <h3 class="question">
-      Do you have a complete description of the Job profile?
+      Do you want to add the Job description?
     </h3>
     <h6 class="data" *ngIf="hasDescription==true">
       <!-- {{completeDescription}} -->
@@ -98,7 +98,7 @@
   <!--Employment Type-->
   <div class="form-data-group">
     <h3 class="question">
-      Is the Employment type is of Remote based?</h3>
+      Can the candidates work remotely.?</h3>
 
     <div class="checkbox">
       <label>
@@ -177,7 +177,7 @@
   <!--Job Location-->
   <div class="form-data-group">
     <h3 class="question" *ngIf="location.length>0">
-      At which location the job is available?
+      What is the location of the job?
     </h3>
 
     <ng-container *ngFor="let loc of location">
@@ -187,7 +187,7 @@
     </ng-container>
 
     <h3 class="question" *ngIf="locations.length>0">
-      At which locations and how many open positions the job is available?
+      What is the location of the job?
     </h3>
 
 
@@ -204,7 +204,7 @@
   <!--Open Positiion-->
   <div class="form-data-group">
     <h3 class="question" *ngIf="location.length>0">
-      How many open positions do you currently have for this Job Title?
+      How many open positions do you currently have for this Job?
     </h3>
     <h4 class="data" *ngIf="location.length>0">
       {{noOfopenings}}
