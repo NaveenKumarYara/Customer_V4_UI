@@ -435,8 +435,7 @@
                                                     <img src="https://ui-avatars.com/api/?name={{candidate.FirstName}}+{{candidate.LastName}}" alt="">
                                                 </div>
                                                 <div class="text-profile">{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}</div>
-                                                <div class="">
-                                                    <!-- <a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a> -->
+                                                <div class="profile__match__percent" style="display: none;"><a class="text-white" style="color: white; text-decoration: none;">{{candidate.ProfilePercentage}}%</a>
                                                 </div>
                                                 <h4><a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">{{candidate.CandidateName
 													| titlecase}}</a>
@@ -452,8 +451,8 @@
                                 </div>
                             </div>
                         </div>
-                   
-                    <div class="data-grid-table" *ngIf="currentView === 'List'" [class.full] = "!showDetail" [ngClass]="{'open':showFilterNavBar}">
+                    </div>
+                    <div class="data-grid-table" *ngIf="currentView == 'List'" [class.full]="!showDetail" [ngClass]="{'open':showFilterNavBar}">
                         <div class="grid-row grid-row-th  flex flex-wrap flex-align-equal">
                             <div class="grid-col grid-check-col">
                                 <label class="custom-checkbox ">
