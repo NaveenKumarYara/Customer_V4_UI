@@ -25,6 +25,7 @@ import { CustomerUsers } from '../../Postajob/models/jobPostInfo';
 import { SettingsService } from '../../../../settings/settings.service';
 import { MapsAPILoader } from '@agm/core';
 import { StartConversation } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
 	selector: 'cm-details',
@@ -237,7 +238,7 @@ export class DetailsComponent implements OnInit {
 		private jobdetailsservice: JobdetailsService, private toastr: ToastsManager, private _vcr: ViewContainerRef,
 		private dialog: MatDialog,
 		private modalService: NgbModal, private readonly storageService: StorageService, private settingsService: SettingsService,
-		private mapsAPILoader: MapsAPILoader, private ngZone: NgZone
+		private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private spinner: NgxSpinnerService
 	) {
 		const swal = require('sweetalert2');
 		this.selectedIndex = 0;
@@ -254,6 +255,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.spinner.show();
 		this.mapsAPILoader.load().then(
 			() => {
 				this.autocomplete = new google.maps.places.Autocomplete(this.locationSearchElement.nativeElement, { types: ['(regions)'] });
@@ -314,6 +316,7 @@ export class DetailsComponent implements OnInit {
 		// 		this.getCandidates();
 		// 	});
 		this.AddUser = false;
+		this.spinner.hide();
 	}
 
 	getSkills() {

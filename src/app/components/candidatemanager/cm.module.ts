@@ -18,12 +18,13 @@ import { LoadActiveProjectsComponent } from './load-active-projects/load-active-
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatDialogModule, MatDialogRef } from "@angular/material";
 import { StorageService } from "../../shared/services";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @NgModule({
   imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, 
     RatingModule,TooltipModule, ReactiveFormsModule,FormsModule, NgSelectModule, MatDialogModule],
   declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe, LoadActiveProjectsComponent],
-  providers: [AppService, ApiService, StorageService,{
+  providers: [NgxSpinnerService, AppService, ApiService, StorageService,{
     provide: MatDialogRef,
     useValue: {}
   },],
