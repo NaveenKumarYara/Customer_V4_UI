@@ -200,7 +200,7 @@ NewKeyResponse(val)
 
   addPosition(val1)
   {
-    if(this.newIndustry.IndustryName!=undefined)
+    if(this.Industry!=undefined)
     {
     const position = new saveNewPositionType();
     position.Name = val1;
@@ -216,7 +216,7 @@ NewKeyResponse(val)
 
   addCategory(val2)
   {
-    if(this.newPostiton.Name!=undefined)
+    if(this.Department!=undefined)
     {
       const category = new saveNewCategory();
       category.Name = val2;
@@ -232,7 +232,7 @@ NewKeyResponse(val)
 
   addTitle(val3)
   { 
-     if(this.newCategory.Name!=undefined)
+     if(this.Category!=undefined)
     {
     const title = new saveNewTitle();
     title.Name = val3;
@@ -249,7 +249,7 @@ NewKeyResponse(val)
 
   addKeyRes(val4)
   {
-    if(this.newJobTitle.Name!=undefined)
+    if(this.Title!=undefined)
     {
     const kres = new saveNewKeyRoles();
     kres.Name = val4;
