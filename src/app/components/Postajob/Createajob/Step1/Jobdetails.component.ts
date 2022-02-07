@@ -36,7 +36,7 @@ export class JobdetailsComponent implements OnInit, AfterViewChecked {
     settings = {
         bigBanner: true,
         timePicker: false,
-        format: 'dd-MM-yyyy',
+        format: 'MM-dd-yyyy',
         defaultOpen: false
     }
   jobDuelist:jobDues[]=[];
