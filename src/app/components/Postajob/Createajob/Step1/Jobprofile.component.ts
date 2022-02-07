@@ -103,18 +103,18 @@ jobimplist:jobImps[]=[];
 
 NewIndustry(val)
 {
-  this.newIndustry.IndustryName = val;
-  this.appService.AddIndustry(this.newIndustry).subscribe(
-    data => {
-      if(data>0)
-      {
-        this.ILoading = false;
-        this.IndustryId = data;
-        this.Industry = val;
-        this.appService.updateJobIndustry(this.Industry);
-        this.appService.updateJobIndustryId(this.IndustryId);
-      }
-    })
+    this.newIndustry.IndustryName = val;
+    this.appService.AddIndustry(this.newIndustry).subscribe(
+      data => {
+        if(data>0)
+        {
+          this.ILoading = false;
+          this.IndustryId = data;
+          this.Industry = val;
+          this.appService.updateJobIndustry(this.Industry);
+          this.appService.updateJobIndustryId(this.IndustryId);
+        }
+      })
 }
 
 NewPosition(val)
@@ -200,6 +200,8 @@ NewKeyResponse(val)
 
   addPosition(val1)
   {
+    if(this.newIndustry.IndustryName!=undefined)
+    {
     const position = new saveNewPositionType();
     position.Name = val1;
     if(val1!=null)
@@ -207,23 +209,31 @@ NewKeyResponse(val)
       this.PLoading = true;
       this.NewPosition(val1);
     }
+    
     return { Code: position.Name , tag: true};
+  }
   }
 
   addCategory(val2)
   {
-    const category = new saveNewCategory();
-    category.Name = val2;
-    if(val2!=null)
+    if(this.newPostiton.Name!=undefined)
     {
-      this.CLoading = true;
-      this.NewCategory(val2);
+      const category = new saveNewCategory();
+      category.Name = val2;
+      if(val2!=null)
+      {
+        this.CLoading = true;
+        this.NewCategory(val2);
+      }
+      return { Code: category.Name , tag: true};
     }
-    return { Code: category.Name , tag: true};
+   
   }
 
   addTitle(val3)
-  {
+  { 
+     if(this.newCategory.Name!=undefined)
+    {
     const title = new saveNewTitle();
     title.Name = val3;
     if(val3!=null)
@@ -231,11 +241,16 @@ NewKeyResponse(val)
       this.TLoading = true;
       this.NewJobTitle(val3);
     }
+  
+   
     return { Code: title.Name , tag: true};
+  }
   }
 
   addKeyRes(val4)
   {
+    if(this.newJobTitle.Name!=undefined)
+    {
     const kres = new saveNewKeyRoles();
     kres.Name = val4;
     if(val4!=null && kres.Name.length> 3 && kres.Name.length<25)
@@ -252,7 +267,7 @@ NewKeyResponse(val)
     }, 3000);
     return false;
     }
-    
+   }
   }
   
 
@@ -353,8 +368,8 @@ NewKeyResponse(val)
 
  changeValue(val)
  {
-   this.getDomain.DCode = val.Code;
-   this.getDomain.CustomerKeyResponsebility = val.KeyId;
+    this.getDomain.DCode = val.Code;
+    this.getDomain.CustomerKeyResponsebility = val.KeyId;
  }
 
 

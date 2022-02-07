@@ -13,6 +13,8 @@ import { animation } from '@angular/core/src/animation/dsl';
 import { ToastsManager } from 'ng2-toastr';
 import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../../../../shared/services/api.service';
+import * as _html2canvas from "html2canvas";
+const html2canvas: any = _html2canvas;
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -37,6 +39,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
  getcompanybenfit: GetCompanyBenefit[]=[];
   jobdetailscustomer = new  GetJobDetailCustomer();
   jobComments: JobComments[]=[];
+  profileImage:boolean=false;
   constructor(private dialog: MatDialog ,private toastr: ToastsManager,
         private _vcr: ViewContainerRef, private router: Router,private _service: ApiService,
      private appService: AppService, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -111,6 +114,39 @@ changeJobStat(job, val) {
   },
     error => console.log(error));
 }
+
+check(val)
+  {
+    this.profileImage = ! this.profileImage;
+    let secondsRemaining = 2
+    const interval = setInterval(() => {
+    if (secondsRemaining === 0) {
+     this.clickme(val);
+     clearInterval(interval);
+     }
+     secondsRemaining--;
+    }, 2000);
+  }
+
+
+  clickme(val) {
+    
+    html2canvas(document.getElementById('aa' + val),{
+      useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
+      logging: true }).then(canvas => {
+      document.querySelector(".result").appendChild(canvas);
+        var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.download = val+".png";
+        link.href = image;
+        link.click();
+       
+
+
+    });
+  }
+
+  
 populateCompanyBenfits() {
   return this.jobdetailsservice.getCompanyBenfits(this.customerId).subscribe(res => {
       this.getcompanybenfit = res;

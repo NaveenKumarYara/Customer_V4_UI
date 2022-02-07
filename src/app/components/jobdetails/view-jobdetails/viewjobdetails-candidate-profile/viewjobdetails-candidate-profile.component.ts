@@ -35,6 +35,8 @@ import { sendnotificationdialogComponent } from "./SendNotification/sendnotifica
 import { CustomerSubscription } from '../../../../../models/CustomerSubscription';
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 import swal from "sweetalert2";
+import * as _html2canvas from "html2canvas";
+const html2canvas: any = _html2canvas;
 // import {ViewJobdetailsComponent} from '../view-jobdetails.component';
 declare var $: any;
 declare var jQuery: any;
@@ -57,7 +59,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   jobdetailsprofiles = new JobdetailsProfile();
   requestRef = new RequestRefernce();
   matchingDetails: MatchingDetails;
-
+  image:any;
   show: boolean = false;
   // profileVideo= new  VideoProfile();
   profileFlipVideo = new GetVideoProfile();
@@ -76,7 +78,7 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
   profiles: any;
   customer: any;
   newComment: any;
-
+  profileImage:boolean=false;
   CandidateCertification: CandidateCertifications;
   CandidateDomain: CandidateDomains;
   searchString: any;
@@ -1157,6 +1159,42 @@ export class ViewjobdetailsCandidateProfileComponent implements OnInit {
       $("#profileVideo-" + profileId).removeClass("open");
     }
   }
+
+  check(val)
+  {
+    this.profileImage = ! this.profileImage;
+    let secondsRemaining = 2
+    const interval = setInterval(() => {
+    if (secondsRemaining === 0) {
+     this.clickme(val);
+     clearInterval(interval);
+     }
+     secondsRemaining--;
+    }, 2000);
+  }
+
+
+  clickme(val) {
+    
+    html2canvas(document.getElementById('aa' + val),{
+      useCORS: true,letterRendering: 1,backgroundColor:"transparent",scale: 2,
+      logging: true }).then(canvas => {
+      document.querySelector(".result").appendChild(canvas);
+        var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.download = val+".png";
+        link.href = image;
+        link.click();
+        document.querySelector(".result").removeChild;
+
+
+    });
+  }
+
+
+
+
+
   ngOnInit() {
     this.alertService.clear();
 
