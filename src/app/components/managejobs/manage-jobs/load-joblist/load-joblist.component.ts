@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 import {FilterjobsComponent} from '../filterjobs/filterjobs.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { stat } from 'fs';
+import { AppService } from '../../../../app.service';
 declare var $: any;
 
 @Component({
@@ -57,7 +58,9 @@ export class LoadJoblistComponent implements OnInit {
    newSortBy:any=0;
    post:any;
   processed = false;
-  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute,
+  FilterId: string;
+
+  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private appService: AppService,private router: Router,
     private managejobservice: ManageJobService, private filter: FilterjobsComponent) {
     this.customer = JSON.parse(sessionStorage.getItem('userData'));
     this.customerId = this.customer.CustomerId;
@@ -171,6 +174,7 @@ export class LoadJoblistComponent implements OnInit {
 
   Reset()
   {
+    this.DeleteFilter(this.FilterId);
     $('#searchStr').val('');
     localStorage.removeItem('lsearch');
     localStorage.removeItem('sortBy');
@@ -185,7 +189,23 @@ export class LoadJoblistComponent implements OnInit {
     this.PopulateSort(0);
     //this.updateJobListCount();
     this.getParentApi().callSearchMethod(this.searchString);
+     
   }
+
+  DeleteFilter(Id) {
+    if (Id > 0) {
+      return this.appService.DeleteSaveFilter(Id).subscribe((data) => {
+        if (data == 0) {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+        });
+          this.GetSavedJobFilter(1);
+        }
+        })
+      }
+    }
 
   GetSavedJobFilter(val)
   {
@@ -195,6 +215,7 @@ export class LoadJoblistComponent implements OnInit {
       return this.managejobservice.getSavedJobsFilter(this.customerId, this.userId).subscribe(res => {
         if(res!=null)
         {
+          this.FilterId = res.JobFilterId;
           this.sortBy=0;       
           this.getParentApi().Filterjobs(res.locations,res.MinExp,res.MaxExp,res.MinSal,res.MaxSal,res.clients,res.domain,res.Immigration,res.lastWeek,res.lastTwoWeek,res.last30days,res.last90days,res.lastyear,res.today,res.category,res.empType,res.JobStatus,res.skills,res.departments,res.titles,res.education,1,res.users);
         }
