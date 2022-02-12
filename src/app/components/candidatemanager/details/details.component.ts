@@ -26,6 +26,7 @@ import { SettingsService } from '../../../../settings/settings.service';
 import { MapsAPILoader } from '@agm/core';
 import { StartConversation } from '../../jobdetails/view-jobdetails/viewjobdetails-candidate-profile/send-email/send-email.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as Chart from "chart.js";
 
 @Component({
 	selector: 'cm-details',
@@ -75,6 +76,7 @@ export class DetailsComponent implements OnInit {
 	Name: any = null;
 	usersloading: boolean;
 	customerUser: number;
+	showFilterCount: number = 0;
 	@Input() shareUrl: string;
 	navUrl: string;
 	selectedUserName: number;
@@ -93,7 +95,7 @@ export class DetailsComponent implements OnInit {
 	isJobTypeShown: boolean;
 	isSkillShown: boolean;
 	isExperienceShown: boolean;
-
+	isfullGridView: boolean;
 	skillList: any;
 	selectedSkillName: any;
 	selectedskillinput = new Subject<string>();
@@ -101,6 +103,24 @@ export class DetailsComponent implements OnInit {
 	MinimumExperience: any;
 	MaximumExperience: any;
 	conversation = new StartConversation();
+
+	smallRadarChartData = {
+    labels: ["Job Fit", "Skill Fit", "Culture Fit", "Personality Fit", "Team Fit"],
+    datasets: [
+      {
+        fill: true,
+        backgroundColor: "rgb(54, 162, 235, 0.2)",
+        borderColor: "#448afa",
+        pointBackgroundColor: "#448afa",
+        pointBorderColor: "#448afa",
+        pointHoverBackgroundColor: "#448afa",
+        borderWidth: 1,
+        pointBorderWidth: 1,
+        data: []
+      },
+    ],
+
+  };
 
 	filterTypes: any[] = [
 		{ 'title': 'Job Type', 'value': 'jobType', 'url': 'https://jobsapi-dev.arytic.com/api/GetEmploymentType', 'result': [], 'iconClass': 'icon__jobtype__01' },
@@ -288,6 +308,21 @@ export class DetailsComponent implements OnInit {
 		this.isGridShown = true;
 		this.currentView = 'Grid';
 
+	}
+
+	closeSidebarHandler() {
+		this.showMenu = false;
+		if (this.showFilterCount == 0) {
+			this.showFilterNavBar = false;
+		}
+	}
+
+	fullGridViewShow() {
+		this.isfullGridView = true;
+	}
+
+	fullGridViewHide() {
+		this.isfullGridView = false;
 	}
 
 	searchByLocation(newValue) {
@@ -968,17 +1003,18 @@ export class DetailsComponent implements OnInit {
 		this.isJobTitleShown = false;
 		this.isCompanyShown = false;
 		this.isDomainShown = false;
-		this.showFilterNavBar = false;
-		this.showMenu = false;
+		//this.showFilterNavBar = false;
+		//this.showMenu = false;
 		this.getCandidates();
 	}
 	selectSkills() {
-		console.log(this.selectedSkills);
 		if (this.selectedSkills == null) {
 			this.selectedSkillCount = 0;
 		}
 		else {
 			this.selectedSkillCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -988,6 +1024,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedDomainCount = this.selectedDomains.length;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -998,6 +1036,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedExperienceCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -1008,6 +1048,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedJobTitleCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -1018,6 +1060,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedCompanyCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -1027,6 +1071,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedEdcationCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -1036,6 +1082,8 @@ export class DetailsComponent implements OnInit {
 		}
 		else {
 			this.selectedCertificationCount = 1;
+			this.showFilterCount++;
+			this.showMenu = false;
 		}
 		this.searchCandidates();
 	}
@@ -1143,6 +1191,12 @@ export class DetailsComponent implements OnInit {
 		this.selectedSkills = null;
 		if (this.selectedSkills == null) {
 			this.selectedSkillCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedSkillCount = 1;
@@ -1154,6 +1208,12 @@ export class DetailsComponent implements OnInit {
 		this.MaximumExperience = 0;
 		if (this.MinimumExperience == 0 || this.MaximumExperience == 0) {
 			this.selectedExperienceCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedExperienceCount = 1;
@@ -1164,6 +1224,12 @@ export class DetailsComponent implements OnInit {
 		this.jobTitle = '';
 		if (this.jobTitle == '') {
 			this.selectedJobTitleCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedJobTitleCount = 1;
@@ -1174,6 +1240,12 @@ export class DetailsComponent implements OnInit {
 		this.selectedDomains = null;
 		if (this.selectedDomains == null) {
 			this.selectedDomainCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedDomainCount = 1;
@@ -1184,6 +1256,12 @@ export class DetailsComponent implements OnInit {
 		this.companyName = '';
 		if (this.companyName == '') {
 			this.selectedCompanyCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedCompanyCount = 1;
@@ -1194,6 +1272,12 @@ export class DetailsComponent implements OnInit {
 		this.certificationName = '';
 		if (this.certificationName == '') {
 			this.selectedCertificationCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedCertificationCount = 1;
@@ -1204,6 +1288,12 @@ export class DetailsComponent implements OnInit {
 		this.educationName = '';
 		if (this.educationName == '') {
 			this.selectedEdcationCount = 0;
+			this.showFilterCount--;
+			this.showMenu = false;
+			
+			if (this.showFilterCount == 0) {
+				this.showFilterNavBar = false;
+			}
 		}
 		else {
 			this.selectedEdcationCount = 1;
@@ -1217,6 +1307,11 @@ export class DetailsComponent implements OnInit {
 		this.cityName = '';
 		(<HTMLInputElement>document.getElementById('autocomplete')).value = '';
 		this.selectedSkills = null;
+		this.showFilterCount = 0;
+		if (this.showFilterCount == 0) {
+			this.showMenu = false;
+			this.showFilterNavBar = false;
+		}
 		if (this.selectedSkills == null) {
 			this.selectedSkillCount = 0;
 		}
