@@ -27162,3 +27162,32 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
         clear: left;
     }
 }
+
+.form-inline .form-group.custom-view-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.show-jobs.show-job-first {
+    padding-left: 0 !important;
+}
+
+@media only screen and (max-width: 1199px) { 
+  .manage-searchjobs.load-manage-searchjobs .search-toggle form > input[type="text"]#searchStr {
+    width: calc(100% - 62px); 
+  }
+
+  .custom-filter-navigation {
+    width: 100%;
+    text-align: right;
+    margin: 10px 12px 10px 0;
+  }
+
+  .custom-filter-navigation .notification {
+    padding: 7px 12px 3px !important; 
+  }
+}
+
+.page--manage-jobs .page--job-details .card {
+    padding: 0;
+}
