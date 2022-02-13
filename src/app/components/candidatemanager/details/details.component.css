@@ -1100,7 +1100,7 @@ a:hover {
     background: url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 0;
     font-size: 0;
     cursor: pointer;
     z-index: 100;
@@ -9124,7 +9124,7 @@ div .status.Invited {
 .jdv-key-section li { font-size:13px; float:left; width:50%; color:#6e819e; padding:0 14px 0 30px; margin:5px 0 0; position:relative; }
 .jdv-key-section li:before { content:""; width:18px; height:18px; background:url(../../../../assets/images/revamp__detail__view/jdv-sprites.png) -10px -80px no-repeat; position:absolute; left:0; top:0; }
 
-.btn.btn-cross { width:25px; height:25px; background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat; position:absolute; right:20px; top:20px; font-size:0; cursor: pointer; z-index:100; display: block; }
+.btn.btn-cross { width:25px; height:25px; background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat; position:absolute; right:20px; top:0; font-size:0; cursor: pointer; z-index:100; display: block; }
 .btn.btn-cross:focus {  background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 .btn.btn-cross:not(:disabled):not(.disabled).active, .btn.btn-cross:not(:disabled):not(.disabled):active { background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 
@@ -9466,6 +9466,11 @@ margin-top: 0px;
 
   .revamp__filter__sidebar__box .btn-cross {
     display: none;
+    top: 20px;
+    background: url(../../../../assets/images/candidate-sprites.png) -12px -293px no-repeat;
+    width: 13px;
+    height: 13px;
+    right: 10px;
   }
 
   .revamp__filter__sidebar__box.show.big.full .btn-cross {
