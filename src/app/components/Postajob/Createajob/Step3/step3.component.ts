@@ -193,6 +193,7 @@ export class Step3Component implements OnInit,AfterViewChecked {
         width: '850px',
         position: {right : '0px'},
         height : '750px',
+        panelClass:'videoSizzlePop',
         data: {
           // jobResponseId: jobResponseId,
           jobId:  parseInt(localStorage.getItem('jobId'), 10),

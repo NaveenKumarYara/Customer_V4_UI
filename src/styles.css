@@ -27191,3 +27191,7 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
 .page--manage-jobs .page--job-details .card {
     padding: 0;
 }
+
+.videoSizzlePop {
+    height: 100vh !important;
+}
