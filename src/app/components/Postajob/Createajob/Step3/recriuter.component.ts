@@ -169,6 +169,9 @@ export class recriuterComponent implements OnInit, OnDestroy {
 
   GetJobAssigned(jobId)
   {
+    const ids = this.suggestManagers.map(o => o.UserId)
+    const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1));
+    this.suggestManagers = filtered;
     this.suggestManagers.forEach(y=>{
       this._service.GetService('IdentityAPI/api/GetJobAssigned?userId=', y.UserId + '&jobId=' + jobId)
       .subscribe(
@@ -324,7 +327,9 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
             this.report.UserId=this.userId;
             this.report.CustomerId=this.customerId;
             this.report.JobId=Number(e);
-            this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+            const ids = this.suggestManagers.map(o => o.UserId)
+            const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1))
+            this.report.HiringManager=filtered.map(x=>x.UserId).toString();
             this.GetJobAssigned(e);
             this.appService.RecrutingTeam(this.report).subscribe(
               data => {
@@ -342,7 +347,9 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
           this.report.UserId=this.userId;
           this.report.CustomerId=this.customerId;
           this.report.JobId=parseInt(res, 10);
-          this.report.HiringManager=this.suggestManagers.map(x=>x.UserId).toString();
+          const ids = this.suggestManagers.map(o => o.UserId)
+          const filtered = this.suggestManagers.filter(({UserId}, index) => !ids.includes(UserId, index + 1));
+          this.report.HiringManager=filtered.map(x=>x.UserId).toString();
           this.GetJobAssigned(res);
           this.appService.RecrutingTeam(this.report).subscribe(
             data => {
