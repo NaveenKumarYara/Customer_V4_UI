@@ -2240,12 +2240,14 @@
 								<button class="btn btn__import" data-toggle="modal" data-target="#importModal">Import</button>
 							</li> -->
 							<li>
-								<button class="btn btn__apply__job" (click)="applySidePanel()">
+								<button class="btn btn__apply__job" data-placement="left" (click)="applySidePanel()" data-toggle="tooltip"
+								tooltip="Apply to Job">
 									&nbsp;
 								</button>
 							</li>
 							<li>
-								<button class="btn btn__share" data-toggle="modal" (click)="shareSidePanel()">
+								<button class="btn btn__share" data-placement="left" data-toggle="modal" (click)="shareSidePanel()" data-toggle="tooltip"
+								tooltip="Share Job">
 									&nbsp;
 								</button>
 							</li>
