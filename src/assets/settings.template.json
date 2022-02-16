@@ -225,5 +225,7 @@
     "SearchDomains": "${Profile_URL}/api/SearchDomains",
     "ActiveJobs": "${Jobs_URL}/api/GetActiveJobs",
     "CheckCustProfile": "${Profile_URL}/api/GetCustomerStatusCheck?",
-    "SearchSkills": "${Profile_URL}/api/SearchSkills"
+    "SearchSkills": "${Profile_URL}/api/SearchSkills",
+    "GetCertificationProvider":"${Profile_URL}/api/GetCertificationProvider",
+    "GetCertificationName":"${Profile_URL}/api/GetCertificationName"
 }

@@ -225,5 +225,7 @@
   "ParseSovren":"http://43.228.92.181:7272/api/CandidateInformation/ProcessSovernResume",
   "SearchDomains": "https://profileapi-dev.arytic.com/api/SearchDomains",
   "ActiveJobs": "https://jobsapi-dev.arytic.com/api/GetActiveJobs",
-  "CheckCustProfile": "https://profileapi-dev.arytic.com/api/GetCustomerStatusCheck?"
+  "CheckCustProfile": "https://profileapi-dev.arytic.com/api/GetCustomerStatusCheck?",
+  "GetCertificationProvider":"https://profileapi-dev.arytic.com/api/GetCertificationProvider",
+  "GetCertificationName":"https://profileapi-dev.arytic.com/api/GetCertificationName"
 }
