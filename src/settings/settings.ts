@@ -177,6 +177,8 @@ export class Settings {
   SaveJobResponseRoles: string;
   listofFilteredJobs: string;
   listofAllSkills: string;
+  GetCertificationProvider:string;
+  GetCertificationName:string;
   listofAllTitles: string;
   GetDeafultTemplates: string;
   GetCustomerWeekReport: string;

@@ -30,6 +30,7 @@ import {WishlistCount,LegendList} from './models/WishlistCount';
 import { SettingsService } from '../../../settings/settings.service';
 import { RecentApplicants } from '../../../models/recentapplicants';
 import { CompanyProfile } from '../../../models/companyprofile';
+import { debounceTime } from 'rxjs/operators';
 
 @Injectable()
 export class JobdetailsService {
@@ -382,6 +383,29 @@ export class JobdetailsService {
         return Observable.throw(error.json());
       });
   }
+
+  GetCertificationName(provider:number,cert: string = null): Observable<string[]> {
+    const url = this.settingsService.settings.GetCertificationName  + '?providerId=' + provider +'&certificationName=' + cert;
+    return this.http.get<string[]>(url).map(res => res);
+  }
+
+  GetCertificationProvider(cert: string): Observable<string[]> {
+    const url = this.settingsService.settings.GetCertificationProvider + '?providerName=' + cert;
+    return this.http.get<string[]>(url).map(res => res);
+  }
+
+  byteStorage1(body, url: string): Observable<any[]> {
+    const headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('x-access-token', sessionStorage.getItem('token'));
+    return this._http.post(this.baseUrll1+url, body, { headers: headers })
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        return Observable.throw(error.json());
+      });
+  }
+
 
   interviewProcess(body) {
     return this.http.post(this.settingsService.settings.scheduleInterview, body)
