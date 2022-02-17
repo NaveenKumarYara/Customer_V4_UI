@@ -498,7 +498,7 @@
 							<ng-container  *ngFor="let c of candidates;let e= index">
 								<div class="col-md-6 slider-col" *ngIf="isfullGridView && selectcard === e">
 									<button class="btn btn-cross" (click)="fullGridViewHide()">Close</button>
-									<h4 class="text-center">View Details</h4>
+									<h4 class="text-center">View profile details</h4>
 								
 									<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 										<div class="carousel-inner">
@@ -508,13 +508,13 @@
 														<div class="card candidate">
 															<header class="p-rel">
 																<div class="ptr">
-																	<div class="checkbox">
+																	<!-- <div class="checkbox">
 																		<label class="bookmark-c">
 																		<input class="dnone" type="checkbox">
 																		<i class="unchecked fa fa-bookmark-o"></i>
 																		<i class="checked fa fa-bookmark"></i>
 																		</label>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="candidate-badges">
 																	<div class="media col-md-6">
@@ -552,7 +552,7 @@
 																<div class="candidate-info">
 																	<img alt="" src="https://identityapi.arytic.com/home/EsolvitImages?id=professional.png" width="66" height="66">
 																	<h1 class="title">
-																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)">
+																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,pmatching?.ProfilePercentage)">
 																			{{candidate?.CandidateName
 																				| titlecase}}
 																		</a>
@@ -609,8 +609,8 @@
 																			</div>
 																		</div>
 																		<div class="d-block text-center ptb-5 role-exp-loc">
-																			<h4 class="d-inline l_bl-1" title="Android Developer">
-																				{{candidate?.JobTitle}}
+																			<h4 class="d-inline l_bl-1" title="{{candidate?.JobTitle}}">
+																				{{candidate?.JobTitle}} | 
 																				<span class="experience">{{pdetails?.TotalExperience || 0}}
 																				Yrs</span>
 																			</h4>
@@ -828,8 +828,8 @@
 																			</a>
 																		</li>
 																		<li>
-																			<a  class="ch"  
-																				href="javascript:void(0)">
+																			<a  
+																				href="javascript:void(0)" data-toggle="modal" (click)="shareSidePanel()">
 																				<svg fill="#9eabc0" height="21" width="25"
 																					xmlns="http://www.w3.org/2000/svg">
 																					<path
@@ -999,7 +999,7 @@
 							</li>
 							<li>
 								<button class="btn btn__share" data-placement="left" data-toggle="modal" (click)="shareSidePanel()" data-toggle="tooltip"
-								tooltip="Share Job">
+								tooltip="Share Profile">
 									&nbsp;
 								</button>
 							</li>

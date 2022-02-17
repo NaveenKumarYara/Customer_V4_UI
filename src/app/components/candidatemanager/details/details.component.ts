@@ -383,14 +383,22 @@ export class DetailsComponent implements OnInit {
 	fullGridViewShow(profile,k) {
 		this.selectcard = k;
 		if(k>=0)
-		{
+		{			
 				this.GetDefaultSkills(profile.ProfileId);	
 				this.GetDefaultProfileDetails(profile.ProfileId);
 				this.GetDefaultProfileCompleteness(profile.ProfileId);
 				this.GetDomain(profile.ProfileId);
 				this.GetEducation(profile.ProfileId);
 				this.GetCertification(profile.ProfileId);
-				this.isfullGridView = true;	
+				this.isfullGridView = true;
+				this.candidates.filter(x => {
+					if(x.ProfileId == profile.ProfileId)
+					{
+                      x.IsSelected = true;
+					}
+				     }
+					)
+					
 		}
 		else
 		{
