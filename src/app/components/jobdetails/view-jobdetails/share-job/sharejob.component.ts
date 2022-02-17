@@ -264,7 +264,7 @@ public share(val) {
     this.Sharing.ToEmailID = this.teammemberslist.map(x => x.Email).toString();
     this.Sharing.JobId = this.data.JobId;
     this.Sharing.FromEmail = this.customer.Email;
-    this.Sharing.ToUserName = this.teammemberslist.map(x => x.FirstName).toString();
+    this.Sharing.ToUserName = this.teammemberslist.map(x => x.FirstName.split('-')[0]).toString();
     this.Sharing.AppLink = this.settingsService.settings.CustomerAppLogin + ';JobId=' + this.data.JobId + ';CId=' + this.customerId;
     this.Sharing.Comments = this.selectedComments;
     if (this.Sharing.ToEmailID == "" && this.Sharing.Comments == undefined) {
