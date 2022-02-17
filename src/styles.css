@@ -27195,3 +27195,85 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
 .videoSizzlePop {
     height: 100vh !important;
 }
+
+@media only screen and (max-width: 991px) {
+    .custom-filter-post-a-job .pull-left {
+        width: 100%;
+    }
+
+    .page--manage-jobs .filters .nav > li > a {
+        padding: 8px;
+      }
+
+    .show-jobs {
+        width: 50%;
+    }
+
+    .page--manage-jobs .filters .styled-select-box {
+        width: calc(100% - 60px);
+    }
+
+    .manage-searchjobs.load-manage-searchjobs {
+        width: 100%;
+        margin: 15px -15px 0;
+        float: left;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs  app-manage-searchjobs {
+        display: block;
+        width: 100%;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs .search-toggle {
+        margin-left: -40px;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs .search-toggle, 
+    .manage-searchjobs.load-manage-searchjobs .search-toggle form {
+        width: 100%;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs .adv-filters-btn.btn {
+        margin-right: -15px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .show-jobs {
+        width: 100% !important;
+        padding-left: 0 !important;
+        float: left !important;
+    }
+    .page--manage-jobs .filters .pull-right {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        float: left !important;
+        display: block;
+    }
+
+    .page--manage-jobs .notification {
+        margin: 0 15px !important;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs {
+        margin: 15px -8px 0
+    }
+
+    .manage-searchjobs.load-manage-searchjobs .adv-filters-btn.btn {
+        margin-right: -8px;
+        align-self: flex-start;
+    }
+
+    #searchStr {
+        left: 14px !important;
+    }
+
+    .manage-searchjobs.load-manage-searchjobs .search-toggle {
+        margin-left: -36px;
+    }
+
+    .page--manage-jobs .notification {
+        margin: 0 !important;
+    }
+}

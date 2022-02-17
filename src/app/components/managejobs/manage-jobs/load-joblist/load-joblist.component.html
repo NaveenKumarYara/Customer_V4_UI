@@ -4,10 +4,10 @@
 <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-clip-rotate">
     <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner> -->
-<div class="filters col-md-10">
+<div class="filters col-md-10 custom-filter-post-a-job">
     <div class="pull-left">
         <form class="form-inline" action="">
-            <div class="form-group view-group">
+            <div class="form-group view-group  custom-view-group">
                 <!-- <label for="view">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="21.7" height="14.4">
               <path d="M11.4 14.4C5 14.4 2.1 10.1 2 9.9c-.3-.3-.2-.9.2-1.1.4-.3.9-.2 1.1.2.1.1 2.6 3.7 8 3.7 4.7 0 7.7-4.4 8.5-5.7-.6-1.2-3.1-5.3-9-5.3-6.8 0-9.3 5.8-9.3 5.9-.1.4-.5.6-1 .4s-.6-.7-.5-1.1C.1 6.9 2.9 0 10.9 0s10.7 6.6 10.7 6.7c.1.2.1.5 0 .7-.2.3-3.8 7-10.2 7z" />
@@ -16,13 +16,15 @@
             </svg>
             
           </label> -->
-                <label class="show-count mt-15">Sort By</label>
-                <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
-                    <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Recent</option>
-                    <option value="1" [selected]="nsortBy=== '1' || nsortBy=== 1">Older</option>
-                    <option value="2" [selected]="nsortBy=== '2' || nsortBy=== 2">Most Viewed</option>
-                    <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
-                </select>
+                <div class="show-jobs show-job-first">
+                    <label class="show-count mt-15">Sort By</label>
+                    <select name="view" id="view" class="styled-select-box" (change)="PopulateSort($event.target.value)">
+                        <option default value="0" [selected]="nsortBy=== '0' || nsortBy=== 0">Recent</option>
+                        <option value="1" [selected]="nsortBy=== '1' || nsortBy=== 1">Older</option>
+                        <option value="2" [selected]="nsortBy=== '2' || nsortBy=== 2">Most Viewed</option>
+                        <option value="3" [selected]="nsortBy=== '3' || nsortBy=== 3">Most Applied</option>
+                    </select>
+                </div>
                 <div class="show-jobs pull-right">
                     <label class="show-count mt-15">Show</label>
                     <select name="view" id="view" class="styled-select-box" (change)="UpdatePopulateSort($event.target.value)">
@@ -40,7 +42,7 @@
 
 
 
-    <div class="manage-searchjobs">
+    <div class="manage-searchjobs  load-manage-searchjobs">
         <!--Recent Filters need to be shown under below section-->
         <div class="filter-labels" style="display: none;">
             <h6>Recent Filters:</h6>
@@ -50,12 +52,13 @@
         <!---->
         <app-manage-searchjobs [parentApi]="getParentApi()"></app-manage-searchjobs>
         <div class="adv-filters-btn btn new-filter-btn" (click)="Reset()">
-            <i class="fa fa-refresh" aria-hidden="true"> Clear All</i>
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            Clear All
         </div>
     </div>
 </div>
 
-<div class="col-md-2 pull-right">
+<div class="col-md-2 pull-right custom-filter-navigation">
     <app-manage-filterjobs [parentApi]="getParentApi()"></app-manage-filterjobs>
 </div>
 <!--Save Filters UI placement 20-07-2020-->
