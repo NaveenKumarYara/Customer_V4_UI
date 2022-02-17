@@ -76,16 +76,20 @@ export class RadarSmartChartComponent implements OnInit, OnChanges {
   }
 
   GetMatchingPercentage(): any {
-    let params = new HttpParams();
-    params = params.append('jobId',  this.JobId);
-    params = params.append('profileId', this.ProfileId);
-   this._service.GetService('JobsAPI/api/GetJobMatchingCriteriaPercentage?', params).subscribe(res=>
-     {
-      this.matchingParameterData = res;
-      this.smallRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0];
-      this.chart.update();
-      //this.chart.Data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
-    });
+    if(this.JobId != undefined && this.ProfileId != undefined)
+    {
+      let params = new HttpParams();
+      params = params.append('jobId',  this.JobId);
+      params = params.append('profileId', this.ProfileId);
+     this._service.GetService('JobsAPI/api/GetJobMatchingCriteriaPercentage?', params).subscribe(res=>
+       {
+        this.matchingParameterData = res;
+        this.smallRadarChartData.datasets[0].data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0];
+        this.chart.update();
+        //this.chart.Data=[this.matchingParameterData.JobFit,this.matchingParameterData.SkillFit,this.matchingParameterData.CultureFit,this.matchingParameterData.Personalityfit,0]
+      });
+    }
+   
   }
 
   ngOnInit() {

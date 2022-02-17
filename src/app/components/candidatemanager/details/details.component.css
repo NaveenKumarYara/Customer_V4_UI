@@ -9393,7 +9393,6 @@ margin-top: 0px;
     position: absolute;
     left: -8px;
     font-size: 24px;
-    display: none;
     cursor: pointer;
     z-index: 99;
     color: #9396a0;
@@ -9407,7 +9406,10 @@ margin-top: 0px;
     cursor: pointer;
     color: #9396a0;
     bottom: 7rem;
-    display: none;
+}
+
+.ch{
+    cursor: default;
 }
 
 .page--job-details .card-body {

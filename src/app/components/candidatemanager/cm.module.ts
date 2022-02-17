@@ -8,7 +8,7 @@ import { CmRoutingModule } from "./cm-routing.module";
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AppService } from "../../app.service";
 import { ApiService } from "../../shared/services/api.service/api.service";
-import { RatingModule } from 'ng-starrating';
+import { RatingModule, StarRatingComponent } from 'ng-starrating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from "./search.pipe";
 import { TooltipModule } from "ng2-tooltip-directive";
@@ -22,7 +22,7 @@ import { StorageService } from "../../shared/services";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule, 
+  imports: [CommonModule, SharedModule, CmRoutingModule, NgCircleProgressModule,ToastModule,
     RatingModule,TooltipModule, ReactiveFormsModule,FormsModule, NgSelectModule, MatDialogModule,ChartsModule],
   declarations: [CandidatemanagerComponent, DetailsComponent,SearchPipe, LoadActiveProjectsComponent],
   providers: [NgxSpinnerService, AppService, ApiService, StorageService,{

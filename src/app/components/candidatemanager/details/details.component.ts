@@ -39,8 +39,15 @@ export class DetailsComponent implements OnInit {
 	showFilterNavBar: boolean = false;
 	showMenu: boolean = false;
 	customer: any = null;
+	mins:number = 0;
+	maxs:number = 3;
+	EDetails:any=[];
+	DDetails:any=[];
+	CDetails:any=[];
 	customerId: any = null;
 	searchText: any = null;
+	currentNo: number[] = [];
+	SelectedCandidate:any=[];
 	userId: any = null;
 	candidates: CandidateInformation[] = [];
 	candidatesLoading: boolean = false;
@@ -48,6 +55,7 @@ export class DetailsComponent implements OnInit {
 	totalCandidatesCount: number = 0;
 	totalPageCount: number = 1;
 	pageCount: number = 15;
+	list:any=[];
 	selectedCandidate: any = null;
 	selectedIndex: number;
 	fileType = new Resume();
@@ -91,12 +99,15 @@ export class DetailsComponent implements OnInit {
 	applyJobSidePanelShow: boolean;
 	shareJobSidepanel: boolean;
 	showFilterActive: boolean;
-
+    pdetails:any;
+	pmatching:any;
 	isJobTypeShown: boolean;
 	isSkillShown: boolean;
 	isExperienceShown: boolean;
-	isfullGridView: boolean;
+	isfullGridView: boolean=false;
+	selectcard=-1;
 	skillList: any;
+	skilllist: any = [];
 	selectedSkillName: any;
 	selectedskillinput = new Subject<string>();
 	selectedDomainInput = new Subject<string>();
@@ -141,7 +152,7 @@ export class DetailsComponent implements OnInit {
 		{ src: '../../../assets/images/candidatemanager/job-card.png' }
 	];
 	profile: any;
-	matchingParameterDetails: MatchingParameterDetails;
+	// matchingParameterDetails: MatchingParameterDetails;
 	jobid: number = 1002162;
 	keywordSearchGroup: any;
 	isKeywordSearch: any;
@@ -317,8 +328,76 @@ export class DetailsComponent implements OnInit {
 		}
 	}
 
-	fullGridViewShow() {
-		this.isfullGridView = true;
+	GetDomain(Pid) {
+		  this.apiService.GetService('ProfileAPI/api/GetCandidateDomain?profileId=', Pid)
+			.subscribe(
+			  domain => {
+				if(domain.length>0)
+				{
+					this.DDetails = domain;
+				}
+				else
+				{
+					this.DDetails = [];
+				}
+				
+			  })
+	}
+
+	GetEducation(Pid) {
+		this.apiService.GetService('ProfileAPI/api/GetEducation?profileId=', Pid)
+		  .subscribe(
+			edu => {
+				if(edu.length>0)
+				{
+					this.EDetails = edu;
+				}
+				else
+				{
+					this.EDetails = [];
+				}
+			 
+			})
+      }
+
+	  GetCertification(Pid) {
+		this.apiService.GetService('ProfileAPI/api/GetCertification?profileId=', Pid)
+		  .subscribe(
+			ed => {
+			  if(ed.length>0)
+			  {
+				this.CDetails = ed;
+			  }
+			  else
+			  {
+				  this.CDetails = [];
+			  }
+			 
+			})
+      }
+
+		
+	
+	  
+
+	fullGridViewShow(profile,k) {
+		this.selectcard = k;
+		if(k>=0)
+		{
+				this.GetDefaultSkills(profile.ProfileId);	
+				this.GetDefaultProfileDetails(profile.ProfileId);
+				this.GetDefaultProfileCompleteness(profile.ProfileId);
+				this.GetDomain(profile.ProfileId);
+				this.GetEducation(profile.ProfileId);
+				this.GetCertification(profile.ProfileId);
+				this.isfullGridView = true;	
+		}
+		else
+		{
+			this.isfullGridView = false;
+		}
+	
+
 	}
 
 	fullGridViewHide() {
@@ -394,6 +473,71 @@ export class DetailsComponent implements OnInit {
 		//debugger;
 		let k = 10;
 	}
+
+	add3Dots(string, limit) {
+		const dots = "...";
+		if (string.length > limit) {
+		  string = string.substring(0, limit) + dots;
+		}
+		return string;
+	  }
+    
+	  prevS()
+	  {
+			this.mins = 0;
+			this.maxs = 3;	 
+	  }
+
+	  nextS()
+	  {
+			this.mins = 3;
+			this.maxs = 6;		
+	  }
+
+
+	prevSkills(data, index) {
+		console.log("current number", this.currentNo);
+		if (this.currentNo[index] > 0) {
+		  this.currentNo[index] = this.currentNo[index] - 1;
+		} else {
+		  this.currentNo[index] = 0;
+		}
+		console.log("current number", this.currentNo);
+	  }
+	  nextSkills(data, index) {
+		var len = data.split(",", 10).length / 3;
+		if (len - 1 > this.currentNo[index]) {
+		  this.currentNo[index] = this.currentNo[index] + 1;
+		} else {
+		  this.currentNo[index] = Math.round(len - 1);
+		}
+	  }
+
+	GetDefaultSkills(ProfileId) {
+		this.apiService.GetService('ProfileAPI/api/GetCandidateSkillSet?profileId=', ProfileId).subscribe(dat => {
+			if(dat.length>0)
+			{
+		     	this.list = dat.sort((a,b)=>a.ExpInYears > b.ExpInYears);	
+			}
+			else
+			{
+				this.list=[];
+			}
+
+		})
+	  }
+
+	  GetDefaultProfileDetails(ProfileId) {
+		this.apiService.GetService('ProfileAPI/api/GetProfileDetailsAndAddress?profileId=', ProfileId).subscribe(pro => {
+           this.pdetails=pro[0];
+		})
+	  }
+
+	  GetDefaultProfileCompleteness(ProfileId) {
+		this.apiService.GetService('IdentityAPI/api/GetCandidateProfileCompletenessByProfileId?profileId=', ProfileId).subscribe(pr => {
+           this.pmatching=pr;
+		})
+	  }
 
 	GetContacts() {
 		return this.appService.GetContactInfo(this.customerId, 0).subscribe(res => {
