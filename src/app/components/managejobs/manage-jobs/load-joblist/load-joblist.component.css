@@ -228,3 +228,23 @@
 }
 .mt-15{margin-top: 15px;}
 .show-jobs{padding-left: 25px;}
+
+
+@media only screen and (max-width: 1199px) {
+  .custom-filter-post-a-job {
+    width: 100%;
+  }
+  .custom-filter-post-a-job .manage-searchjobs {
+    justify-content: flex-start;
+    padding-left: 15px !important;
+  }
+  
+  .manage-searchjobs.load-manage-searchjobs {
+    justify-content: flex-start;
+    padding-left: 15px;
+  }
+
+  .custom-filter-navigation {
+    padding: 0 30px;
+  }
+}
