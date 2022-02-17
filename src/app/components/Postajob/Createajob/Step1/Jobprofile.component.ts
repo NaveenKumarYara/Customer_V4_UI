@@ -253,7 +253,7 @@ NewKeyResponse(val)
     {
     const kres = new saveNewKeyRoles();
     kres.Name = val4;
-    if(val4!=null && kres.Name.length> 3 && kres.Name.length<25)
+    if(val4!=null && kres.Name.length> 2 && kres.Name.length<25)
     {
       this.keyLoading = true;
       this.NewKeyResponse(val4);
@@ -729,6 +729,7 @@ public addkeyRole() {
   updateJobTitle(val) {
     if(val === undefined)
     {
+      debugger
       this.Title = undefined;
       this.TitleId = null;
       this.keyslist = [];
@@ -740,6 +741,8 @@ public addkeyRole() {
       this.MinimumExperience = undefined;
       this.getDomain = new GetKeyRole();
       this.addkeyList = [];
+      this.appService.keyrole = [];
+      this.appService.addkeyrole = [];
       this.GetKeyRespones('0');
     }
     else
