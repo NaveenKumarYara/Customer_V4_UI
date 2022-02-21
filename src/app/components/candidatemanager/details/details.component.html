@@ -443,7 +443,7 @@
 					<div class="data-grid-view" *ngIf="currentView == 'Grid'"
 						[ngClass]="{'open':showFilterNavBar, 'full':!isfullGridView}">
 						<div class="row">
-							<div class="col-sm-6 big-col">
+							<div class="col-sm-7 big-col">
 								<div class="row flex flex-wrap flex-align-equal">
 									<div class="col-sm-3 " [ngClass]="[ candidate.IsPublic ? 'blue' : 'green']"
 										*ngFor="let candidate of candidates;let k = index">
@@ -496,7 +496,7 @@
 
 
 							<ng-container  *ngFor="let c of candidates;let e= index">
-								<div class="col-md-6 slider-col" *ngIf="isfullGridView && selectcard === e">
+								<div class="col-md-5 slider-col" *ngIf="isfullGridView && selectcard === e">
 									<button class="btn btn-cross" (click)="fullGridViewHide()">Close</button>
 									<h4 class="text-center">View profile details</h4>
 								
