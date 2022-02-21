@@ -1,13 +1,30 @@
-<div class="col-lg-4 col-md-6 col-sm-6" id="aa{{ profile.ProfileId }}" *ngFor="let profile of jobdetailsprofiles?.Profile; let i = index">
+<div class="col-lg-4 col-md-6 col-sm-6 smart-card" id="aa{{ profile.ProfileId }}" *ngFor="let profile of jobdetailsprofiles?.Profile; let i = index">
   <!-- <button class="chat__btn__icon icon" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
     <i class="fa fa-comment"></i>
   </button> -->
   <!-- <button (click)="check(profile.ProfileId)"><i class="fa fa-camera" aria-hidden="true"></i></button> -->
   <!-- <button class="chat__btn__icon msg_btn_value" *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"  [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">Active</button> -->
-  <button class="note__btn__icon icon" (click)="callSkills(profile.ProfileId, 2)"
-    [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
-    <i class="fa fa-clipboard"></i>
-  </button>
+  <div class="smart-sticky-navigation" [ngClass]="ProfileId == profile.ProfileId ? (iconHide && 'hide') : ''">
+    <ul>
+      <li>
+        <button tooltip="Certification" placement="left" data-toggle="modal" title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">
+          <i class="fa fa-star"></i>
+        </button>
+      </li>
+      <li>
+        <button tooltip="Domain" placement="left" title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)" data-toggle="modal">
+          <i class="fa fa-lightbulb-o"></i>
+        </button>
+      </li>
+      <li>
+        <button class="active" (click)="callSkills(profile.ProfileId, 2)" tooltip="Notes" placement="left" data-toggle="modal">
+          <i class="fa fa-clipboard"></i>
+          <span class="counter">1</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+  
   <!-- <button class="note__btn__icon note_btn_value"[ngClass]="iconHide && 'hide'" *ngIf="CandidateNotes.length>0">Active</button> -->
   <div class="card candidate">  
     <header class="p-rel">
@@ -22,83 +39,99 @@
           </label>
         </div>
       </div>
-      <div class="candidate-badges">
-        <!--New Design of Icon & Badges-->
-        <div class="media col-md-6"
-          *ngIf="profile.CertificationName != null && profile.CertificationName != ''; else nocertification">
-          <div class="media-left">
-            <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
-              alt="Certifications" width="40" />
-          </div>
-          <div class="media-body">
-            <small title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">{{
-              profile.CertificationName
-              }}</small>
-            <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 0)">{{
-              profile?.countval?.CertificationCount
-              }}</span>
-          </div>
-        </div>
-        <ng-template #nocertification>
-          <div class="media col-md-6">
+
+      <!--Old Code-->
+      <div class="hidden">
+        <div class="candidate-badges">
+          <!--New Design of Icon & Badges-->
+          <div class="media col-md-6"
+            *ngIf="profile.CertificationName != null && profile.CertificationName != ''; else nocertification">
             <div class="media-left">
               <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
                 alt="Certifications" width="40" />
             </div>
             <div class="media-body">
-              <small title="Not Certified">Not Certified</small>
-              <span class="badge badge-light" title="Not Certified">0</span>
+              <small title="{{ profile.CertificationName }}" (click)="callSkills(profile.ProfileId, 0)">{{
+                profile.CertificationName
+                }}</small>
+              <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 0)">{{
+                profile?.countval?.CertificationCount
+                }}</span>
             </div>
           </div>
-        </ng-template>
-        <!--New Design of Icon & Badges-->
-        <div class="media col-md-6 domain-section" *ngIf="profile.DomainName != null; else nodomain">
-          <div class="media-body">
-            <small title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)">{{
-              profile.DomainName
-              }}</small>
-            <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 1)">{{
-              profile?.countval?.DomainsCount }}
-            </span>
-          </div>
-          <div class="media-right">
-            <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
-              alt="Domain" width="40" />
-          </div>
-        </div>
-        <ng-template #nodomain>
-          <div class="media col-md-6 domain-section">
+          <ng-template #nocertification>
+            <div class="media col-md-6">
+              <div class="media-left">
+                <img class="media-object" src="../../../../../assets/images/Certifications/certification.png"
+                  alt="Certifications" width="40" />
+              </div>
+              <div class="media-body">
+                <small title="Not Certified">Not Certified</small>
+                <span class="badge badge-light" title="Not Certified">0</span>
+              </div>
+            </div>
+          </ng-template>
+          <!--New Design of Icon & Badges-->
+          <div class="media col-md-6 domain-section" *ngIf="profile.DomainName != null; else nodomain">
             <div class="media-body">
-              <small title="Domains Not Mentioned">No Domains</small>
-              <span class="badge badge-light" title="View More">0</span>
+              <small title="{{ profile.DomainName }}" (click)="callSkills(profile.ProfileId, 1)">{{
+                profile.DomainName
+                }}</small>
+              <span class="badge badge-light" title="View More" (click)="callSkills(profile.ProfileId, 1)">{{
+                profile?.countval?.DomainsCount }}
+              </span>
             </div>
             <div class="media-right">
               <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
                 alt="Domain" width="40" />
             </div>
           </div>
-        </ng-template>
+          <ng-template #nodomain>
+            <div class="media col-md-6 domain-section">
+              <div class="media-body">
+                <small title="Domains Not Mentioned">No Domains</small>
+                <span class="badge badge-light" title="View More">0</span>
+              </div>
+              <div class="media-right">
+                <img class="media-object" src="../../../../../assets/images/Certifications/domain.png" title="Domain"
+                  alt="Domain" width="40" />
+              </div>
+            </div>
+          </ng-template>
+        </div>
       </div>
-      <div class="candidate-info">
-        <ng-container *ngIf="
+      <!--Old Code-->
+
+      <div class="card-profile-image-container flex flex-wrap flex-align-end">
+        <figure class="flex flex-wrap flex-align-center flex-justify-center">
+          <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
               profile?.IsConfirmed == null;
             else Block
           "> 
-          <img   *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
-          <img   *ngIf="
-              (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-              profile?.UserId > 0 &&
-              profile?.IsConfirmed == null && !profileImage 
-            " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"  width="66"
-            height="66"  alt="Certifications" />
-        </ng-container>
-        <ng-template #Block>
-        
-           <img  *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
-           <img *ngIf="!profileImage"  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
-        </ng-template>
+            <img *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
+            <img *ngIf="
+                (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
+                profile?.UserId > 0 &&
+                profile?.IsConfirmed == null && !profileImage 
+              " src="https://ui-avatars.com/api/?name={{ profile.FirstName }}+{{ profile.LastName }}"  width="66"
+              height="66"  alt="Certifications" />
+          </ng-container>
+          <ng-template #Block>
+            <img  *ngIf="profileImage" src="../../../../../assets/images/Pro.png"  width="66" height="66"  alt=""  />
+            <img *ngIf="!profileImage"  src="{{profile?.ProfilePic}}"  width="66" height="66"  alt=""  />
+          </ng-template>
+             
+          <ng-container *ngIf="profile?.VideoProfile != null && profileFlipVideo?.VideoSizzle != null">
+            <a href="javascript:void(0)"
+              (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
+              *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
+              <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
+                width="25" />
+            </a>
+          </ng-container>
+        </figure>
         <ng-container *ngIf="
             (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
               profile?.UserId > 0 &&
@@ -108,7 +141,6 @@
           <h1 class="title">
             <div class="upgrade-pitch-text" *ngIf="
                 (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
-                 
                   profile?.UserId > 0 &&
                   profile?.IsConfirmed == null;
                 else firstelseBlock
@@ -152,16 +184,8 @@
             </ng-template>
           </h1>
         </ng-template>
-
-        <ng-container *ngIf="profile?.VideoProfile != null && profileFlipVideo?.VideoSizzle != null">
-          <a href="javascript:void(0)"
-            (click)="displayVideo(profile.ProfileId, profile.VideoSizzle, profile.VideoProfile, true)"
-            *ngIf="profile?.VideoProfile != null || profileFlipVideo?.VideoSizzle != null">
-            <img class="video-sizzle" src="../../../../../assets/images/video-sizzle.png" title="video-sizzle"
-              width="25" />
-          </a>
-        </ng-container>
-
+      </div>
+      <div class="candidate-info">
         <div class="meta a">
           <div class="d-block text-center">
             <!--Email-->
@@ -323,21 +347,26 @@
               </div>
             </div>
 
-            <small *ngIf="profile.CompanyName != null && profile.IsUploaded == true" title="{{ profile.CompanyName }}">
-              <span> Uploaded </span>
-              By <span>{{ profile.CompanyName }}</span>
+            <small>
+              <span> Arytic Check </span>
             </small>
 
-            <small *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"
-              title="{{ profile.CompanyName }}">
-              <span> Submitted </span>
-              By <span>Arytic</span>
-            </small>
-
-            <small *ngIf="profile.CompanyName != null && profile.IsInvited == true" title="{{ profile.CompanyName }}">
-              <span> Invited </span>
-              By <span>{{ profile.CompanyName }}</span>
-            </small>
+            <!--Old Code-->
+            <div class="hidden">
+              <small *ngIf="profile.CompanyName != null && profile.IsUploaded == true" title="{{ profile.CompanyName }}">
+                <span> Uploaded </span>
+                By <span>{{ profile.CompanyName }}</span>
+              </small>
+              <small *ngIf="profile.CompanyName == null && profile.IsUploaded == false && profile.IsInvited == false"
+                title="{{ profile.CompanyName }}">
+                <span> Submitted </span>
+                By <span>Arytic</span>
+              </small>
+              <small *ngIf="profile.CompanyName != null && profile.IsInvited == true" title="{{ profile.CompanyName }}">
+                <span> Invited </span>
+                By <span>{{ profile.CompanyName }}</span>
+              </small>
+            </div>
             <!--if no data -->
             <!-- <small>
                   <span>
@@ -347,7 +376,7 @@
             <!--if no data -->
           </div>
         </div>
-        <div class="candidate-status">
+        <div class="candidate-status flex flex-wrap flex-align-equal">
           <!-- <ng-container
               *ngIf="(profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) && profile?.UserId > 0 && profile?.IsConfirmed == null; else videoTemp">
               <a href="javascript:void(0)" class="show-matching-details" data-toggle="matching-details">
@@ -366,40 +395,88 @@
           <!--Reference Icons-->
           <!--With dialog-->
 
-          <a href="javascript:void(0)" title="References"
-            *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
-            (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
-            <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
-              alt="References" />
+          <a href="#" title="Education">
+            <img src="../../../../../assets/images/icon-education.png">
+            <span>Education</span>
           </a>
 
-          <a href="javascript:void(0)"
-            *ngIf="profile?.DiscResult === '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
-            title="References" (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
-            <img src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
-              alt="References" />
+          <a href="#" title="Employment">
+            <img src="../../../../../assets/images/icon-employement.png">
+            <span>Employment</span>
           </a>
+
+          <a href="#" title="Reference">
+            <img src="../../../../../assets/images/icon-reference.png">
+            <span>Reference</span>
+          </a>
+
+          <a href="#" title="Work Autherization">
+            <img src="../../../../../assets/images/icon-authorization.png">
+            <span>Work Auth</span>
+          </a>
+
+          <a href="#" title="WFH">
+            <img src="../../../../../assets/images/icon-wfh.png">
+            <span>WFH</span>
+          </a>
+
+
+          <div class="hidden">
+            <a href="javascript:void(0)" title="References"
+              *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
+              (click)="OpenReferDialog(profile?.ProfileId, profile?.UserId, profile)">
+              <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
+                alt="References" />
+            </a>
+            <a href="javascript:void(0)"
+              *ngIf="profile?.DiscResult === '0' && (profile.CompanyName === null || profile.CompanyName === companyname)"
+              title="References" (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
+              <img src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
+                alt="References" />
+            </a>
+            <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0" title="Achievements"
+              (click)="OpenAchiveDialog(profile?.ProfileId)">
+              <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
+                alt="achievement-badge" />
+            </a>
+  
+            <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"
+              title="Achievements" (click)="RequestAchivement(profile)">
+              <img src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
+                alt="achievement-badge" />
+            </a>
+
+            <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == false" title="Background Need to be Verified"
+              (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
+                height="50" alt="verfied-badge" />
+            </a>
+
+            <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == true" title="Background Verified Profile"
+              (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
+              <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
+                alt="verfied-badge" />
+            </a>
+            <ng-container *ngIf="profile?.IsConfirmed === true">
+              <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-accepted.png" width="50"
+                height="50" alt="Consent Not Accepted" title="Consent Accepted" />
+            </ng-container>
+            <ng-container *ngIf="profile?.IsConfirmed === false">
+              <img src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50"
+                alt="Consent Accepted" title="Consent Not Accepted" />
+            </ng-container>
+          </div>
+
+
           <!-- <a href="javascript:void(0)" title="References">
               <img src="../../../../../assets/images/card-icons/reference-icon.png" width="50" height="50"
                   alt="References">
               </a> -->
           <!--No Reference Icon-->
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/no-reference.png" width="50" height="50"
-                        alt="No-References" title="No References"> -->
-
+              alt="No-References" title="No References"> -->
           <!--Achievement Icon-->
           <!--With dialog-->
-          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount>0" title="Achievements"
-            (click)="OpenAchiveDialog(profile?.ProfileId)">
-            <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
-              alt="achievement-badge" />
-          </a>
-
-          <a href="javascript:void(0)" *ngIf="profile?.AchivementCount===null||profile?.AchivementCount===0"
-            title="Achievements" (click)="RequestAchivement(profile)">
-            <img src="../../../../../assets/images/card-icons/no-achievement.png" width="50" height="50"
-              alt="achievement-badge" />
-          </a>
           <!-- <a href="javascript:void(0)" title="Achievements">
             <img src="../../../../../assets/images/card-icons/achievement-badge.png" width="50" height="50"
                 alt="achievement-badge">
@@ -427,17 +504,7 @@
 
           <!--BG Verification Profile-->
           <!--With dialog-->
-          <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == false" title="Background Need to be Verified"
-            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
-            <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50"
-              height="50" alt="verfied-badge" />
-          </a>
-
-          <a href="javascript:void(0)" *ngIf="profile?.BackGroundCheck == true" title="Background Verified Profile"
-            (click)="OpenBgDialog(profile?.ProfileId, profile?.FirstName, profile?.UserId, profile?.LastName)">
-            <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
-              alt="verfied-badge" />
-          </a>
+         
           <!-- <a href="javascript:void(0)" title="Background Verification - Yet to be Started">
               <img src="../../../../../assets/images/card-icons/verified-badge.png" width="50" height="50"
                   alt="verfied-badge">
@@ -447,14 +514,7 @@
           <!-- <img class="fade-icon" src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50"
                     alt="Not-verfied-profile" title="Not Verified Profile"> -->
 
-          <ng-container *ngIf="profile?.IsConfirmed === true">
-            <img class="fade-icon" src="../../../../../assets/images/card-icons/consent-accepted.png" width="50"
-              height="50" alt="Consent Not Accepted" title="Consent Accepted" />
-          </ng-container>
-          <ng-container *ngIf="profile?.IsConfirmed === false">
-            <img src="../../../../../assets/images/card-icons/consent-not-accepted.png" width="50" height="50"
-              alt="Consent Accepted" title="Consent Not Accepted" />
-          </ng-container>
+         
         </div>
       </div>
     </header>
@@ -566,7 +626,23 @@
             </div>
           </div>
         </ng-container>
-
+        <div class="smart-card-progress-bar">
+          <h3>Intverview Status</h3>
+          <div class="row flex flex-justify-center flex-wrap">
+            <div class="col-sm-3 col active">
+              <h4>Screening Round</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Technical Round</h4>
+            </div>
+            <div class="col-sm-3 col in-progress">
+              <h4>Manager Round</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>HR Round</h4>
+            </div>
+          </div>
+        </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
           <div class="">
             <div class="row" *ngIf="profile?.PrimarySkills != null; else noSkillTemplate">

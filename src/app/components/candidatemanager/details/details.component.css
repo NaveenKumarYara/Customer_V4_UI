@@ -482,14 +482,21 @@ a:hover {
 }
 
 .data-grid-view .col-sm-3 {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
 }
 
 .data-grid-slick img {
     width: 100%;
     height: auto;
 }
+
+.data-grid-view .big-col {
+    flex: 0 0 56%;
+    max-width: 56%;
+    width: 56%;
+}
+
 
 .data-grid-view.full .big-col {
     flex: 0 0 100%;
@@ -9128,7 +9135,7 @@ div .status.Invited {
 .btn.btn-cross:focus {  background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 .btn.btn-cross:not(:disabled):not(.disabled).active, .btn.btn-cross:not(:disabled):not(.disabled):active { background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 
-.slider-col { position: relative; padding: 0 60px; }
+.slider-col { position: relative; padding: 0 30px; width: 44%; flex: 0 0 44%; max-width: 44%; }
 
 .carousel-control-prev,.carousel-control-next {
   width: 26px;
@@ -9137,7 +9144,7 @@ div .status.Invited {
   left: 0;
   display: block;
   position: absolute;
-  left: -45px;
+  left: -25px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
@@ -9146,7 +9153,7 @@ div .status.Invited {
 .carousel-control-next{
   background-position:-44px -159px;
   left: auto;
-  right: -40px;
+  right: -20px;
 }
 
 .pagination-col {
@@ -9477,4 +9484,48 @@ margin-top: 0px;
 
   .revamp__filter__sidebar__box.show.big.full .btn-cross {
     display: block;
+  }
+
+  @media only screen and (max-width: 1170px) {
+    .slider-col, .data-grid-view .big-col {
+        width: 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .data-grid-view .col-sm-3 {
+        flex: 0 0 50%;
+        width: 50%;
+        max-width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    .slider-col,  .data-grid-view .big-col {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .data-grid-view .col-sm-3 {
+        flex: 0 0 33.33%;
+        width: 33.3333%;
+        max-width: 33.333%;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .data-grid-view .col-sm-3 {
+        flex: 0 0 50%;
+        width: 50%;
+        max-width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 568px) {
+    .data-grid-view .col-sm-3 {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+    }
   }
