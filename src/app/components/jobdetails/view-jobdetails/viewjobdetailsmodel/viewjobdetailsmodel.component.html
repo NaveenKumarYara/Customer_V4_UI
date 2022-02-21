@@ -76,9 +76,9 @@
               (click)="changeJobStat(jobdetailscustomer,true)">Active</button>
             <ul>
               <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===1"><img
-                  src="../../../../../assets/images/icon__04.png"><span>Remote</span>
+                  src="../../../../../assets/images/icon__04.png" title="Work Type "><span>Remote</span>
               <li *ngIf="jobdetailscustomer?.JobInfo?.RemoteWorkId===0"><img
-                  src="../../../../../assets/images/icon__04.png"><span>N/A</span>
+                  src="../../../../../assets/images/icon__04.png" title="Work Type "><span>N/A</span>
               </li>
 
 
@@ -110,10 +110,10 @@
               </ng-container>
 
               <li *ngIf="jobdetailscustomer?.JobInfo?.JobWorkAuthorization.length===0">
-                <img src="../../../../../assets/images/icon__01.png"><span> N/A</span>
+                <img src="../../../../../assets/images/icon__01.png" title="Work Authorization"><span> N/A</span>
               </li>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
-                <li><img src="../../../../../assets/images/icon__02.png"><span
+                <li><img src="../../../../../assets/images/icon__02.png" title="Salary"><span
                     *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
                     ${{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
                     ${{jobdetailscustomer?.JobInfo?.MaximumSalary}} </span>
@@ -127,7 +127,7 @@
               </ng-container>
 
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
-                <li><img src="../../../../../assets/images/icon__02.png"><span>
+                <li><img src="../../../../../assets/images/icon__02.png" title="Salary"><span>
                     Open for Conversation.
                   </span></li>
               </ng-container>
@@ -152,7 +152,7 @@
                 </li>
               </ng-container>
               <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ImmigrationForJob?.length === 0">
-                <li><img src="../../../../../assets/images/icon__03.png"><span>
+                <li><img src="../../../../../assets/images/icon__03.png" title="Immigration"><span>
                     N/A
                   </span></li>
               </ng-container>
