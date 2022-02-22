@@ -2997,3 +2997,46 @@
   font-weight: 400;
   font-size: 12px;
 }
+
+.smart-job-card.jdv-listing .jdv-company-profile {
+  width: auto;
+  padding: 20px;
+  margin-left: 0;
+}
+
+.inline-icon-list .dropdown-menu {
+  min-width: 190px;
+}
+
+.inline-icon-list .dropdown-menu ul  {
+  padding: 0 10px;
+}
+
+.inline-icon-list .dropdown-menu li {
+  display: block;
+  margin: 0 !important;
+  padding: 5px 0 !important;
+  border-top: 1px solid #e0e3ec;
+  border-left: 0;
+}
+
+.inline-icon-list .dropdown-menu li:first-child {
+  border-top: 0;
+  padding: 0 0 5px;
+}
+
+.inline-icon-list .dropdown-menu li a  {
+  display: block;
+  text-align: left;
+  text-transform: capitalize;
+  position: relative;
+  color: #52809d;
+  padding: 0 0 0 20px;
+  font-weight: 400;
+}
+
+.inline-icon-list .dropdown-menu li .fa {
+  position: absolute;
+  left: 0 !important;
+  top: 4px !important;
+}
