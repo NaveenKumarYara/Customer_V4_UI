@@ -1,4 +1,124 @@
 <div class="form-rows row form-main-rows single-form-rows">
+  <div class="col-sm-12 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label class="question">Select the Verification required for Candidate</label>
+      <div class="smart-job-card xs-padding">
+        <div class="jdv-button-grid-icon">
+          <ul>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-education-icon">Icon</span>
+                Education
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                Employement
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-screening-icon">Icon</span>
+                Screening
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
+                Reference
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
+                WFH
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link">
+                <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                Background
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <label for="" class="question">Do you want to intiate the Verification, if Candidate is not verified</label>
+    <div class="options">
+      <div class="checkbox">
+        <label><input type="radio" name="verificationStatus" [value]="yes"><span class="box">
+            Yes
+        </span> </label>
+        <label><input type="radio" name="verificationStatus" [value]="No"><span class="box">
+          No
+      </span> </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <label for="" class="question">From what stage the Verification should be initiated</label>
+    <div class="form-row row">
+      <div class="col-md-12">
+        <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
+          bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
+          [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
+          #rMngr="ngModel" name="rMgr">
+        </ng-select>
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-sm-12 form-cols single-form-cols step3-single-question">
+      <label for="" class="question no-margin">Mention the Interviews the Candidate should go through.</label>
+      
+  </div>
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Interview</label>
+     
+      <div class="form-row row">
+        <div class="col-md-12">
+          <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
+            bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
+            [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
+            #rMngr="ngModel" name="rMgr">
+          </ng-select>
+        </div>
+        
+      </div>
+     
+    </div>
+  </div>
+  
+  <div class="col-sm-6 form-cols single-form-cols">
+    <div class="form-group job-title-group reporting-manager-group">
+      <label for="" class="question">Inetrviewer</label>
+      <div class="form-row row">
+        <div class="col-xs-10 col-md-11 col-sm-11">
+          <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
+          bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
+          [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
+          #reportMngr="ngModel" name="reportMgr">
+          </ng-select>
+        </div>
+        <div class="col-xs-2 col-md-1 col-sm-1">
+          <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-sm-12 form-cols single-form-cols">
+    <div class="job-title-suggestions">
+      <div class="checkbox" *ngFor="let  managers of suggestManagers; let i = index">
+        <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
+      </div>
+    </div>
+  </div>
   <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
       <label for="" class="question">Job Owner</label>
@@ -34,8 +154,6 @@
             #rMngr="ngModel" name="rMgr">
           </ng-select>
         </div>
-       
-    
         <!--If Others-->
                  <!--As per inputs, commenting below feature. Upon Business Clarifications can be enabled the same-->
         <!-- <div class="col-md-1">
@@ -50,6 +168,7 @@
       </ul> -->
     </div>
   </div>
+  
   <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
       <label for="" class="question">Job Assigne</label>
@@ -72,7 +191,7 @@
       </div>
     </div>
   </div>
-
+  
   
 </div>
   <!-- <div class="job-title-suggestions">

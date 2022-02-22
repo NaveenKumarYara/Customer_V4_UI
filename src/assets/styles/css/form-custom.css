@@ -1182,3 +1182,140 @@ body .error__required.lg {
     width: 100%;
   }
 }
+
+.smart-job-card.xs-padding .jdv-button-grid-icon {
+  padding: 20px 0;
+}
+
+
+.smart-job-card .jdv-button-grid-icon ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0 -4px;
+  padding: 0;
+  list-style: none;
+}
+
+.smart-job-card.xs-padding .jdv-button-grid-icon li {
+  width: 16.667%;
+  padding: 0 4px;
+}
+
+.smart-job-card .jdv-button-grid-icon li .btn.btn-link{
+  font-size: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 6px;
+  width: 100%;
+  box-shadow: 4px 4px 20px rgb(158 171 192 / 20%);
+}
+
+.smart-job-card .jdv-button-grid-icon .section__title h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon {
+  margin: 0 auto 8px;
+  background: url(../../../assets/images/smart-card-sprites.png) 0 0 no-repeat;
+  background-size: 600px auto;
+  display: block;
+  font-size: 0;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon.jdv-education-icon {
+  width: 28px;
+  height: 28px;
+  background-position: -207px -61px;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon.jdv-screening-icon {
+  width: 28px;
+  height: 28px;
+  background-position: -271px -61px;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon.jdv-employement-icon {
+  width: 28px;
+  height: 28px;
+  background-position: -239px -61px;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon.jdv-reference-icon {
+  width: 28px;
+  height: 28px;
+  background-position: -302px -61px;
+}
+
+.smart-job-card .jdv-button-grid-icon .jdv-smart-icon.jdv-wfh-icon {
+  width: 28px;
+  height: 28px;
+  background-position: -334px -61px;
+}
+
+.smart-job-card .two-grid-icon .col-sm-6:last-child h4 {
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.smart-job-card .two-grid-icon .jdv-smart-icon {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.smart-job-card .two-grid-icon .row {
+  width: 100%;
+}
+
+.jdv-smart-icon.jdv-shape-work-icon {
+  width: 50px;
+  height: 50px;
+  background-position: -13px -60px;
+}
+
+.jdv-smart-icon.jdv-shape-dollar-icon {
+  width: 50px;
+  height: 50px;
+  background-position: -70px -60px;
+}
+
+.smart-job-card .two-grid-icon .row .row .col-sm-6 {
+  border-left: 0;
+}
+
+.smart-job-card .two-grid-icon .row .row .col-sm-6 h4 {
+  font-size: 14px;
+  color: #6e819e;
+  font-weight: 600;
+  margin: 0;
+}
+
+.smart-job-card .two-grid-icon .row .row .col-sm-6 h4 span {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.smart-job-card.jdv-listing .jdv-company-profile {
+  width: auto;
+  padding: 20px;
+  margin-left: 0;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+.step3-single-question{
+  position: relative;
+  top: 20px;
+}

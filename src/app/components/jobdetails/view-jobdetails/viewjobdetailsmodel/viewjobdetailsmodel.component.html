@@ -231,7 +231,7 @@
                       <!--Old Code-->
 
                       <div class="middle-container">
-                        <div class="jdv-company-profile flex flex-justify-center flex-align-center">
+                        <div class="jdv-company-profile flex flex-align-center">
                           <span class="remote">
                             <em>Remote</em>
                           </span>
@@ -574,10 +574,19 @@
                           <ul class="flex flex-wrap flex-align-center flex-justify-center">
                             <ng-container>
                               <li *ngIf="jobdetailscustomer?.JobLocation.length > 0">
-                                <button class="btn btn-link">
-                                  <span class="jdv-smart-icon jdv-interview-icon" title="Interview">Icon</span>
-                                  Interview
-                                </button>
+                                <div class="btn-group dropup">
+                                  <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="jdv-smart-icon jdv-interview-icon" title="Interview">Icon</span>
+                                    Interview
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <ul>
+                                      <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>Technical Screening</a></li>
+                                      <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Manager Screening</a></li>
+                                      <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i>HR Screening</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
                               </li>
                             </ng-container>
                             <li>

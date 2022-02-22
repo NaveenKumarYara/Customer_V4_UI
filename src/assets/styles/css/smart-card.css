@@ -236,10 +236,71 @@
   margin: 10px 0 0;
 }
 
+.smart-card .candidate-status span.jdv-smart-icon {
+  margin: 0 auto;
+}
+
 .page--job-details #applied .smart-card .candidate-status {
   display: flex;
 }
 
 .candidate-status a {
   width: 70px;
+}
+
+.jdv-smart-icon {
+  background: url(../../../assets/images/smart-card-sprites.png) 0 0 no-repeat;
+  background-size: 600px auto;
+  display: block;
+  font-size: 0 !important;
+}
+
+.jdv-smart-icon.jdv-icon-education {
+  width: 50px;
+  height: 50px;
+  background-position: -14px -167px;
+}
+
+.jdv-smart-icon.jdv-icon-employment {
+  width: 50px;
+  height: 50px;
+  background-position: -73px -167px;
+}
+
+.jdv-smart-icon.jdv-icon-reference {
+  width: 50px;
+  height: 50px;
+  background-position: -132px -167px;
+}
+
+.jdv-smart-icon.jdv-icon-authroization {
+  width: 50px;
+  height: 50px;
+  background-position: -192px -167px;
+}
+
+.jdv-smart-icon.jdv-icon-wfh {
+  width: 50px;
+  height: 50px;
+  background-position: -251px -167px;
+}
+
+.smart-card .candidate-status .active .jdv-smart-icon.jdv-icon-education {
+  background-position: -14px -227px;
+}
+
+.smart-card .candidate-status .active .jdv-smart-icon.jdv-icon-employment {
+  background-position: -73px -227px;
+}
+
+.smart-card .candidate-status .active .jdv-smart-icon.jdv-icon-reference {
+  background-position: -132px -227px;
+}
+
+.smart-card .candidate-status .active .jdv-smart-icon.jdv-icon-authroization {
+  background-position: -192px -227px;
+}
+
+.smart-card .candidate-status .active .jdv-smart-icon.jdv-icon-wfh {
+  background-position: -251px -227px;
 }
