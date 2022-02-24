@@ -790,7 +790,8 @@
 																<div class="footer">
 																	<ul class="actions">
 																		<li>
-																			<a class="ch" data-target="#inbox" data-toggle="modal" href="javascript:void(0)">
+																			<a class="ch"  data-placement="left" data-toggle="modal" (click)="shareESidePanel(candidate.Email,candidate.IsPublic)" data-toggle="tooltip"
+																			tooltip="Send Email" href="javascript:void(0)">
 																				<svg xml:space="preserve" xlink="http://www.w3.org/1999/xlink"
 																					enable-background="new 0 0 25 21" height="21px" id="Capa_1" version="1.1"
 																					viewBox="0 0 25 21" width="25px" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
@@ -1128,6 +1129,47 @@
 				<button class="btn btn-filled" type="submit" (click)="ShareProfile()">Share</button>
 			</div>
 		</form>
+	</div>
+</div>
+
+
+<div class="share__job__sidepanel" [ngClass]="shareESidepanel ? 'show': ''">
+	<span class="overlay" (click)="hideShareESidePanel()">&nbsp;</span>
+	<div class="col__container">
+		<div class="flex flex-wrap flex-align-center top__container">
+			<h4>Send Email</h4>
+			<button type="button" class="close" (click)="hideShareESidePanel()">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<form #form="ngForm" (ngSubmit)="sendEmail()">
+			<div class="input-group col-sm-12">
+			  <label class="mail-label">To : </label>
+			  <input type="email" class="form-control" [disabled]="!mailbox" [(ngModel)]="ToEmailID" name="ToEmailID"
+				placeholder="Email Address">
+			</div>
+			<div class="input-group col-sm-12 pt-2">
+			  <label class="mail-label">CC : </label>
+			  <input type="text" [(ngModel)]="ccEmailAddress" name="cc" class="form-control"
+				placeholder="CC Email Address">
+			</div>
+			<div class="input-group col-sm-12 pt-2">
+			  <label class="mail-label">Subject : </label>
+			  <input type="text" [(ngModel)]="subject" name="subject" class="form-control" placeholder="subject">
+			</div>
+			<div class="input-group col-sm-12 pt-2">
+			  <label class="mail-label">Body :</label>
+			  <textarea class="form-control col-sm-12" [(ngModel)]="body" name="body" cols="20" rows="30"></textarea>
+			</div>
+			<div class="col-sm-12 p-19 pr-0 edit-mail">
+			  <div class="pull-right">
+				<button type="submit" class="btn s-btn" *ngIf="!isSendingEmail">Send Email</button>
+				<button mat-button class="btn btn-filled" *ngIf="isSendingEmail">Sending Email...
+				  <i class="fa fa-spinner fa-spin"></i>
+				</button>
+			  </div>
+			</div>
+		  </form>
 	</div>
 </div>
 

@@ -85,6 +85,11 @@ export class DetailsComponent implements OnInit {
 	usersloading: boolean;
 	customerUser: number;
 	showFilterCount: number = 0;
+	subject: string;
+	ccEmailAddress: string;
+	isSendingEmail: boolean=false;
+	ToEmailID: string;
+	mailbox: any = false;
 	@Input() shareUrl: string;
 	navUrl: string;
 	selectedUserName: number;
@@ -98,6 +103,7 @@ export class DetailsComponent implements OnInit {
 	showFilterLocation: boolean;
 	applyJobSidePanelShow: boolean;
 	shareJobSidepanel: boolean;
+	shareESidepanel: boolean;
 	showFilterActive: boolean;
     pdetails:any;
 	pmatching:any;
@@ -261,7 +267,6 @@ export class DetailsComponent implements OnInit {
 	cityName: any;
 	searchTerm = new Subject<string>();
 	body: string;
-	subject: string;
 	autocomplete: any;
 	isGridShown: boolean;
 	isTableShown: boolean;
@@ -619,12 +624,76 @@ export class DetailsComponent implements OnInit {
 		this.shareJobSidepanel = true;
 	}
 
+	sendEmail() {
+
+		this.isSendingEmail = true;
+		//this.spinner.show();
+		this.conversation.FullName = this.data.firstname + this.data.lastname;
+		this.conversation.Subject = this.subject;
+		this.conversation.CCEmailAddress = this.ccEmailAddress;
+		this.conversation.Body = this.body;
+		// if(){
+        if(this.mailbox == false)
+		{
+			this.conversation.AppLink = this.settingsService.settings.CandidateSignUp;
+		}
+	   else
+	   {
+		this.conversation.AppLink = this.settingsService.settings.CandidateLogin;
+	   }
+		this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
+	
+		  if (data === 0) {
+			//this.spinner.hide();
+			this.isSendingEmail = false;
+			this.toastr.success('Mail Sent', 'Success');
+			setTimeout(() => {
+			  this.toastr.dismissToast;
+			}, 3000);
+			this.conversation.FullName = '';
+			this.conversation.Subject = '';
+			this.conversation.Body = '';
+			this.conversation.ToEmailID = '';
+			this.mailbox = false;
+		  }
+		},
+		  error => {
+			this.isSendingEmail = false;
+		  },
+		  () => {
+			this.isSendingEmail = false;
+		  });
+	  }
+
+	shareESidePanel(Email,Ispublic) {
+		this.GetContacts();
+		this.clearTeamMemebers();
+		this.getcustomerusers();
+		this.shareESidepanel = true;
+		this.mailbox = Ispublic;
+		this.body = 'Join hands with us and make your goals achieved!.';
+		if(Ispublic == true)
+		{
+			this.subject = 'Your profile may suits to our organisation';
+		}
+		else
+		{
+			this.subject = 'Join with arytic';
+		}
+		
+		this.ToEmailID = Email;
+	}
+
 	hideApplySidePanel() {
 		this.applyJobSidePanelShow = false;
 	}
 
 	hideShareSidePanel() {
 		this.shareJobSidepanel = false;
+	}
+
+	hideShareESidePanel() {
+		this.shareESidepanel = false;
 	}
 
 	onFocus() {
