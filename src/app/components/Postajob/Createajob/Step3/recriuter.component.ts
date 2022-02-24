@@ -40,6 +40,8 @@ export class recriuterComponent implements OnInit, OnDestroy {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
+  yes:any;
+  No:any;
   Forgotform: any;
   result :any;
   Addform: FormGroup;
