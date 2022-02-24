@@ -66,7 +66,7 @@ export class DetailsComponent implements OnInit {
 	currentFilterType: string = '';
 	isFilterDataLoading: boolean = false;
 	statusid: number = 0;
-
+     SName:any;
 	managersList: Observable<CustomerUsers[]>;
 	teammembers: '';
 	GetContactsList: contactInfo[];
@@ -628,18 +628,22 @@ export class DetailsComponent implements OnInit {
 
 		this.isSendingEmail = true;
 		//this.spinner.show();
-		this.conversation.FullName = this.data.firstname + this.data.lastname;
+		this.conversation.FullName = this.SName;
 		this.conversation.Subject = this.subject;
 		this.conversation.CCEmailAddress = this.ccEmailAddress;
 		this.conversation.Body = this.body;
+        this.conversation.ToEmailID = this.ToEmailID;
+
 		// if(){
         if(this.mailbox == false)
 		{
 			this.conversation.AppLink = this.settingsService.settings.CandidateSignUp;
+			this.conversation.UserCheck =   'Yes I will Join';
 		}
 	   else
 	   {
 		this.conversation.AppLink = this.settingsService.settings.CandidateLogin;
+		this.conversation.UserCheck =  'Login';
 	   }
 		this.jobdetailsservice.StartConversation(this.conversation).subscribe(data => {
 	
@@ -649,11 +653,13 @@ export class DetailsComponent implements OnInit {
 			this.toastr.success('Mail Sent', 'Success');
 			setTimeout(() => {
 			  this.toastr.dismissToast;
-			}, 3000);
+			}, 2000);
+			this.shareESidepanel = false;
 			this.conversation.FullName = '';
 			this.conversation.Subject = '';
 			this.conversation.Body = '';
 			this.conversation.ToEmailID = '';
+			this.SName = '';
 			this.mailbox = false;
 		  }
 		},
@@ -665,8 +671,9 @@ export class DetailsComponent implements OnInit {
 		  });
 	  }
 
-	shareESidePanel(Email,Ispublic) {
+	shareESidePanel(Email,Ispublic,name) {
 		this.GetContacts();
+		this.SName = name;
 		this.clearTeamMemebers();
 		this.getcustomerusers();
 		this.shareESidepanel = true;
