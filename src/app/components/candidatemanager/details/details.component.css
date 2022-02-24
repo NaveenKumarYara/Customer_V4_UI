@@ -492,9 +492,9 @@ a:hover {
 }
 
 .data-grid-view .big-col {
-    flex: 0 0 56%;
-    max-width: 56%;
-    width: 56%;
+    flex: 0 0 calc(100% - 516px);
+    max-width: calc(100% - 516px);
+    width: calc(100% - 516px);
 }
 
 
@@ -9135,7 +9135,7 @@ div .status.Invited {
 .btn.btn-cross:focus {  background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 .btn.btn-cross:not(:disabled):not(.disabled).active, .btn.btn-cross:not(:disabled):not(.disabled):active { background:url(../../../../assets/images/candidate-sprites.png) -85px -159px no-repeat;  }
 
-.slider-col { position: relative; padding: 0 30px; width: 44%; flex: 0 0 44%; max-width: 44%; }
+.slider-col { position: relative; padding: 0 30px; width: 516px; flex: 0 0 516px; max-width: 516px; }
 
 .carousel-control-prev,.carousel-control-next {
   width: 26px;
@@ -9528,4 +9528,8 @@ margin-top: 0px;
         width: 100%;
         max-width: 100%;
     }
+  }
+
+  .smart-card .skill-click {
+      padding: 0 7px;
   }

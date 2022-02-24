@@ -800,7 +800,7 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
   position: relative;
 }
 
-.post-a-job-listing .jdv-key-section li:before {
+/* .post-a-job-listing .jdv-key-section li:before {
   content: "";
   width: 18px;
   height: 18px;
@@ -808,7 +808,7 @@ body .page--create-a-job .form-steps .education-group .data-list.key-data-list .
   position: absolute;
   left: 0;
   top: 0;
-}
+} */
 
 .post-a-job-listing .jdv-gray-section {
   background: #f5f6fa;

@@ -505,384 +505,441 @@
 											<ng-container *ngFor="let candidate of candidates;let g = index">
 												<div class="item active" *ngIf="selectcard === g">
 													<div class="page--job-details">
-														<div class="card candidate">
-															<header class="p-rel">
-																<div class="ptr">
-																	<!-- <div class="checkbox">
-																		<label class="bookmark-c">
-																		<input class="dnone" type="checkbox">
-																		<i class="unchecked fa fa-bookmark-o"></i>
-																		<i class="checked fa fa-bookmark"></i>
-																		</label>
-																	</div> -->
-																</div>
-																<div class="candidate-badges">
-																	<div class="media col-md-6">
-																		<div class="media-left">
-																			<img alt="Certifications" class="media-object"
-																				src="../../../../../assets/images/Certifications/certification.png" width="40">
+														<div class="smart-card">
+															<div class="card candidate">
+																<header class="p-rel">
+																	<div class="ptr">
+																		<!-- <div class="checkbox">
+																			<label class="bookmark-c">
+																			<input class="dnone" type="checkbox">
+																			<i class="unchecked fa fa-bookmark-o"></i>
+																			<i class="checked fa fa-bookmark"></i>
+																			</label>
+																		</div> -->
+																	</div>
+																	<div class="hidden">
+																		<div class="candidate-badges">
+																			<div class="media col-md-6">
+																				<div class="media-left">
+																					<img alt="Certifications" class="media-object"
+																						src="../../../../../assets/images/Certifications/certification.png" width="40">
+																				</div>
+																				<div class="media-body" *ngIf="CDetails?.length>0">
+																					<small title="Not Certified" *ngIf="CDetails[0]?.CertificationName!=''">{{CDetails[0]?.CertificationName}}</small>
+																					<small title="Not Certified" *ngIf="CDetails[0]?.CertificationName===''">Not
+																						Certified</small>
+																					<span class="badge badge-light" title="Not Certified" *ngIf="CDetails[0]?.CertificationName!=''">{{CDetails?.length}}</span>
+																					<span class="badge badge-light" title="Not Certified" *ngIf="CDetails[0]?.CertificationName===''">0</span>
+																				</div>
+																				<div class="media-body" *ngIf="CDetails?.length===0">
+																					<small title="Not Certified">Not
+																						Certified</small>
+																					<span class="badge badge-light" title="Not Certified">0</span>
+																				</div>
+		
+																			</div>
+																			<div class="media col-md-6 domain-section">
+																				<div class="media-body">
+																					<small title="{{DDetails[0]?.DomainName}}" *ngIf="DDetails?.length>0">{{DDetails[0]?.DomainName}}</small>
+																					<small title="domain" *ngIf="DDetails?.length===0">N/A</small>
+																					<span class="badge badge-light" title="View More">{{DDetails?.length}}
+																					</span>
+																				</div>
+																				<div class="media-right">
+																					<img alt="Domain" class="media-object" src="../../../../../assets/images/Certifications/domain.png"
+																						title="Domain" width="40">
+																				</div>
+																			</div>
 																		</div>
-																		<div class="media-body" *ngIf="CDetails?.length>0">
-																			<small title="Not Certified" *ngIf="CDetails[0]?.CertificationName!=''">{{CDetails[0]?.CertificationName}}</small>
-																			<small title="Not Certified" *ngIf="CDetails[0]?.CertificationName===''">Not
-																				Certified</small>
-																			<span class="badge badge-light" title="Not Certified" *ngIf="CDetails[0]?.CertificationName!=''">{{CDetails?.length}}</span>
-																			<span class="badge badge-light" title="Not Certified" *ngIf="CDetails[0]?.CertificationName===''">0</span>
-																		</div>
-																		<div class="media-body" *ngIf="CDetails?.length===0">
-																			<small title="Not Certified">Not
-																				Certified</small>
-																			<span class="badge badge-light" title="Not Certified">0</span>
-																		</div>
+																	</div>
+																	<div class="card-profile-image-container flex flex-wrap flex-align-end">
+																		<figure class="flex flex-wrap flex-align-center flex-justify-center">
+																			<img alt="" src="https://identityapi.arytic.com/home/EsolvitImages?id=professional.png" width="66" height="66">
+																		</figure>
+																		<h1 class="title">
+																			<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,pmatching?.ProfilePercentage)">
+																				{{candidate?.CandidateName
+																					| titlecase}}
+																			</a>
+																		</h1>
+																	</div>
 
-																	</div>
-																	<div class="media col-md-6 domain-section">
-																		<div class="media-body">
-																			<small title="{{DDetails[0]?.DomainName}}" *ngIf="DDetails?.length>0">{{DDetails[0]?.DomainName}}</small>
-																			<small title="domain" *ngIf="DDetails?.length===0">N/A</small>
-																			<span class="badge badge-light" title="View More">{{DDetails?.length}}
-																			</span>
-																		</div>
-																		<div class="media-right">
-																			<img alt="Domain" class="media-object" src="../../../../../assets/images/Certifications/domain.png"
-																				title="Domain" width="40">
-																		</div>
-																	</div>
-																</div>
-																<div class="candidate-info">
-																	<img alt="" src="https://identityapi.arytic.com/home/EsolvitImages?id=professional.png" width="66" height="66">
-																	<h1 class="title">
-																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,pmatching?.ProfilePercentage)">
-																			{{candidate?.CandidateName
-																				| titlecase}}
-																		</a>
-																	</h1>
-																	<div class="meta a">
-																		<div class="d-block text-center">
-																			<div class="dropdown ">
-																				<div class="tooltip1">
-																					<img alt="email" src="../../../../../assets/images/Yes-Email.svg" height="16">
-																					<div class="bottom1">
-																						<ul class="custom_dropdown-menu">
-																							<li>
-																								<a class="email-overflow" href="javascript:void(0)"
-																									title="{{candidate?.Email}}">
-																								<img alt="email" src="../../../../../assets/images/email-icon.svg"
-																									title="{{candidate?.Email}}">
-																									{{candidate?.Email}}
-																								</a>
-																							</li>
-																						</ul>
+																	<div class="candidate-info">
+																		<div class="meta a">
+																			<div class="d-block text-center">
+																				<div class="dropdown ">
+																					<div class="tooltip1">
+																						<img alt="email" src="../../../../../assets/images/Yes-Email.svg" height="16">
+																						<div class="bottom1">
+																							<ul class="custom_dropdown-menu">
+																								<li>
+																									<a class="email-overflow" href="javascript:void(0)"
+																										title="{{candidate?.Email}}">
+																									<img alt="email" src="../../../../../assets/images/email-icon.svg"
+																										title="{{candidate?.Email}}">
+																										{{candidate?.Email}}
+																									</a>
+																								</li>
+																							</ul>
+																						</div>
 																					</div>
 																				</div>
-																			</div>
-																			<div class="dropdown ">
-																				<div class="tooltip1">
-																					<a class="dropdown-toggle" data-toggle="dropdown" type="button">
-																					<img src="../../../../../assets/images/graduation.svg"
-																						style="width: 25px;height: 25px;">
-																					</a>
-																					<div class="bottom1">
-																						<ul class="custom_dropdown-menu">
-																							<li>
-																								<a href="javascript:void(0)">
-																									<div class="media">
-																										<img alt="" class="mr-3"
-																											src="../../../../../assets/images/graduate-certificate.svg">
-																										<div class="media-body" >
-																											<h5 class="mt-0" title="Degree" *ngIf="EDetails.length > 0"> {{EDetails[0]?.QualificationName | titlecase}} </h5>
-																											<h5 class="mt-0" title="Degree" *ngIf="EDetails.length === 0"> N/A </h5>
+																				<div class="dropdown ">
+																					<div class="tooltip1">
+																						<a class="dropdown-toggle" data-toggle="dropdown" type="button">
+																						<img src="../../../../../assets/images/graduation.svg"
+																							style="width: 25px;height: 25px;">
+																						</a>
+																						<div class="bottom1">
+																							<ul class="custom_dropdown-menu">
+																								<li>
+																									<a href="javascript:void(0)">
+																										<div class="media">
+																											<img alt="" class="mr-3"
+																												src="../../../../../assets/images/graduate-certificate.svg">
+																											<div class="media-body" >
+																												<h5 class="mt-0" title="Degree" *ngIf="EDetails.length > 0"> {{EDetails[0]?.QualificationName | titlecase}} </h5>
+																												<h5 class="mt-0" title="Degree" *ngIf="EDetails.length === 0"> N/A </h5>
+																											</div>
 																										</div>
-																									</div>
-																								</a>
-																							</li>
-																						</ul>
+																									</a>
+																								</li>
+																							</ul>
+																						</div>
+																					</div>
+																				</div>
+																				<div class="dropdown info-icon">
+																					<div class="tooltip1">
+																						<a class="dropdown-toggle info-dropdown" data-toggle="dropdown"
+																							type="button">i
+																						</a>
 																					</div>
 																				</div>
 																			</div>
-																			<div class="dropdown info-icon">
-																				<div class="tooltip1">
-																					<a class="dropdown-toggle info-dropdown" data-toggle="dropdown"
-																						type="button">i
-																					</a>
+																			<div class="d-block text-center ptb-5 role-exp-loc">
+																				<h4 class="d-inline l_bl-1" title="{{candidate?.JobTitle}}">
+																					{{candidate?.JobTitle}} | 
+																					<span class="experience">{{pdetails?.TotalExperience || 0}}
+																					Yrs</span>
+																				</h4>
+																			</div>
+																			<div class="d-block text-center min-h40">
+																				<div class="d-block ptb-5">
+																					<div class="status Uploaded">
+																						{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}
+																					</div>
 																				</div>
 																			</div>
 																		</div>
-																		<div class="d-block text-center ptb-5 role-exp-loc">
-																			<h4 class="d-inline l_bl-1" title="{{candidate?.JobTitle}}">
-																				{{candidate?.JobTitle}} | 
-																				<span class="experience">{{pdetails?.TotalExperience || 0}}
-																				Yrs</span>
-																			</h4>
-																		</div>
-																		<div class="d-block text-center min-h40">
-																			<div class="d-block ptb-5">
-																				<div class="status Uploaded">
-																					{{candidate.IsPublic ? 'Public Profile' : 'Private Profile'}}
-																				</div>
+																		<!--Old Code-->
+																		<div class="hidden">
+																			<div class="candidate-status">
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="References">
+																				<img alt="References" src="../../../../../assets/images/card-icons/no-reference.png" width="50"
+																					height="50">
+																				</a>
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Achievements">
+																				<img alt="achievement-badge" src="../../../../../assets/images/card-icons/no-achievement.png"
+																					width="50" height="50">
+																				</a>
+																				<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Background Need to be Verified">
+																				<img alt="verfied-badge" class="fade-icon"
+																					src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50">
+																				</a>
+																				<img alt="Consent Accepted" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
+																					title="Consent Not Accepted" width="50" height="50">
 																			</div>
 																		</div>
+																		<!--Old Code-->
+																		<small>
+																			<span> Arytic Check </span>
+																		</small>
 																	</div>
-																	<div class="candidate-status">
-																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="References">
-																		<img alt="References" src="../../../../../assets/images/card-icons/no-reference.png" width="50"
-																			height="50">
+																	<div class="candidate-status flex flex-wrap flex-align-equal">
+																		<a href="#" class="active" title="Education">
+																			<span class="jdv-smart-icon jdv-icon-education">Icon</span>
+																			<span>Education</span>
 																		</a>
-																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Achievements">
-																		<img alt="achievement-badge" src="../../../../../assets/images/card-icons/no-achievement.png"
-																			width="50" height="50">
+													
+																		<a href="#" title="Employment">
+																			<span class="jdv-smart-icon jdv-icon-employment">Icon</span>
+																			<span>Employment</span>
 																		</a>
-																		<a href="javascript:void(0)" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" title="Background Need to be Verified">
-																		<img alt="verfied-badge" class="fade-icon"
-																			src="../../../../../assets/images/card-icons/not-verified-profile.png" width="50" height="50">
+													
+																		<a href="#" title="Reference">
+																			<span class="jdv-smart-icon jdv-icon-reference">Icon</span>
+																			<span>Reference</span>
 																		</a>
-																		<img alt="Consent Accepted" (click)="OpenCandidate(candidate.ProfileId,candidate.UserId,candidate.ProfilePercentage)" src="../../../../../assets/images/card-icons/consent-not-accepted.png"
-																			title="Consent Not Accepted" width="50" height="50">
+													
+																		<a href="#" title="Work Autherization">
+																			<span class="jdv-smart-icon jdv-icon-authroization">Icon</span>
+																			<span>Work Auth</span>
+																		</a>
+													
+																		<a href="#" title="WFH">
+																			<span class="jdv-smart-icon jdv-icon-wfh">Icon</span>
+																			<span>WFH</span>
+																		</a>													
 																	</div>
-																</div>
-															</header>
-															<div class="card-rel">
-																<div class="card-body">
-																	<div class="type">
-																		<div class="d-r-section">
-																			<h5>Arytic Fit <i class="fa fa-info-circle" tooltip="Arytic score of the candidate" placement="top"></i>
-																			</h5>
-																			<app-radar-smart-chart style="cursor: pointer" [height]="120" [width]="160"></app-radar-smart-chart>
+											
+																</header>
+																<div class="card-rel">
+																	<div class="card-body">
+																		<div class="type">
+																			<div class="d-r-section">
+																				<h5>Arytic Fit <i class="fa fa-info-circle" tooltip="Arytic score of the candidate" placement="top"></i>
+																				</h5>
+																				<app-radar-smart-chart style="cursor: pointer" [height]="120" [width]="160"></app-radar-smart-chart>
+																			</div>
+																			<div class="p-m-section">
+																				<h5>Profile Completeness<i class="fa fa-info-circle" tooltip="Profile Completeness value to these position"
+																					placement="top"></i></h5>
+																				<circle-progress data-toggle="matching-details"
+																				[percent]="pmatching?.ProfilePercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
+																				[outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
+																			</circle-progress>
+																			</div>
 																		</div>
-																		<div class="p-m-section">
-																			<h5>Profile Completeness<i class="fa fa-info-circle" tooltip="Profile Completeness value to these position"
-																				placement="top"></i></h5>
-																			<circle-progress data-toggle="matching-details"
-																			[percent]="pmatching?.ProfilePercentage" [radius]="40" [outerStrokeWidth]="8" [innerStrokeWidth]="3"
-																			[outerStrokeColor]="'#6262ff'" [innerStrokeColor]="'#c0c0c0'" [animation]="false" [showSubtitle]="false">
-																		</circle-progress>
-																		</div>
-																	</div>
-																	<!-- <div class="matching-details h-a" id="sizzleVideo-31610">
-																		<a class="close" href="javascript:void(0)">×</a>
-																		<div class="details">
-																			<div class="video-scroll">
-																				<div class="w-75 m-auto d-block cls-rel">
-																					<h6 class="video-tittle">Sizzle
-																						Video
-																					</h6>
-																					<div>
-																						<video class="video-align" controls type="video/mp4"
-																							src=""></video>
-																					</div>
-																					<div class="status shortlisted pull-right">
-																						<a class="show-matching-details" data-toggle="matching-details"
-																							href="javascript:void(0)">Candidate
-																						Profile</a>
+																		
+																		<!-- <div class="matching-details h-a" id="sizzleVideo-31610">
+																			<a class="close" href="javascript:void(0)">×</a>
+																			<div class="details">
+																				<div class="video-scroll">
+																					<div class="w-75 m-auto d-block cls-rel">
+																						<h6 class="video-tittle">Sizzle
+																							Video
+																						</h6>
+																						<div>
+																							<video class="video-align" controls type="video/mp4"
+																								src=""></video>
+																						</div>
+																						<div class="status shortlisted pull-right">
+																							<a class="show-matching-details" data-toggle="matching-details"
+																								href="javascript:void(0)">Candidate
+																							Profile</a>
+																						</div>
 																					</div>
 																				</div>
 																			</div>
-																		</div>
-																	</div> -->
-																	<!-- <div class="matching-details h-a" id="profileVideo-31610">
-																		<a class="close" href="javascript:void(0)">×</a>
-																		<div class="details">
-																			<div class="video-scroll">
-																				<div class="w-75 m-auto d-block cls-rel">
-																					<h6 class="video-tittle">Candidate
-																						Profile
-																					</h6>
-																					<div>
-																						<video class="video-align" controls type="video/mp4"
-																							src=""></video>
-																					</div>
-																					<div class="status shortlisted pull-right">
-																						<a class="show-matching-details" data-toggle="matching-details"
-																							href="javascript:void(0)">Sizzle Video</a>
+																		</div> -->
+																		<!-- <div class="matching-details h-a" id="profileVideo-31610">
+																			<a class="close" href="javascript:void(0)">×</a>
+																			<div class="details">
+																				<div class="video-scroll">
+																					<div class="w-75 m-auto d-block cls-rel">
+																						<h6 class="video-tittle">Candidate
+																							Profile
+																						</h6>
+																						<div>
+																							<video class="video-align" controls type="video/mp4"
+																								src=""></video>
+																						</div>
+																						<div class="status shortlisted pull-right">
+																							<a class="show-matching-details" data-toggle="matching-details"
+																								href="javascript:void(0)">Sizzle Video</a>
+																						</div>
 																					</div>
 																				</div>
 																			</div>
+																		</div> -->
+																		<div class="smart-card-progress-bar flex flex-wrap flex-justify-center">
+																			<h3>Intverview Status</h3>
+																			<div class="row flex flex-justify-center flex-wrap">
+																				<div class="col-sm-4 col active">
+																					<h4>Screening Round</h4>
+																				</div>
+																				<div class="col-sm-4 col active">
+																					<h4>Technical Round</h4>
+																				</div>
+																				<div class="col-sm-4 col in-progress">
+																					<h4>Manager Round</h4>
+																				</div>
+																				<div class="col-sm-4 col">
+																					<h4>HR Round</h4>
+																				</div>
+																			</div>
 																		</div>
-																	</div> -->
-																	<div id="skills-carousel-Changed" class="skills-carousel-Changed">
-																		<div class="">
-																		<ng-container >
-																			<div class="row flex flex-wrap" *ngIf="list?.length>0 ; else noSkillTemplate">
-																				
-																				  <ng-container *ngFor="let sk of list | slice:mins:maxs; let i = index">
-																					<a *ngIf="mins === 3" class="col-md-1 left-arrow"
-																						(click)="prevS()">
-																						< </a>
-																					<div class="col-md-4 skill-click"
-																					 >
-																					 <div >
-																					   <div class="item">
-																						 <div class="skill">
-																						   <h4 title="{{ sk?.SkillName }}">{{ add3Dots(sk?.SkillName | titlecase, 9) }}</h4>
-																						   <div>
-																							   <h5>{{sk?.ExpInYears}}.{{sk?.ExpInMonths||'0'}} Yrs</h5>
-																							 <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
-																						   </div>
-																						 </div>
-																						 <div class="star-rating">
-																						   <star-rating value="{{sk?.SkillRating}}" totalstars="5" checkedcolor="#2260C3"
-																							 uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
-																						 </div>
-																					   </div>
-																			   
-																					 </div>
-																				   </div>
-																				   <a *ngIf="maxs === 3" class="col-md-1 right-arrow"
-																					(click)="nextS()">
-																					>
-																				  </a>
-																				  </ng-container>
+																		<div id="skills-carousel-Changed" class="skills-carousel-Changed">
+																			<div class="">
+																				<ng-container>
+																					<div class="row flex flex-wrap" *ngIf="list?.length>0 ; else noSkillTemplate">
 																					
-																  
-																				
-																  
-																					<!-- https://www.npmjs.com/package/ngx-flickity
-																						 https://flickity.metafizzy.co/events.html#dragmove
-																						 https://www.npmjs.com/package/angular-flickity
-																						 https://codepen.io/collection/nNzQxk/ -->
-																					<!-- working demo -->
-																					<!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
-																						<div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
-																						  <div class="item">
-																							<div class="skill">
-																								<h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
-																								<div>
-																								  <h5>{{ sk.split('|')[1] }} Yrs</h5>
-																								  <h5>{{ sk.split('|')[2] }}</h5>
+																						<ng-container *ngFor="let sk of list | slice:mins:maxs; let i = index">
+																						<a *ngIf="mins === 3" class="col-md-1 left-arrow"
+																							(click)="prevS()">
+																							< </a>
+																						<div class="col-md-4 skill-click"
+																						 >
+																						 <div >
+																							 <div class="item">
+																							 <div class="skill">
+																								 <h4 title="{{ sk?.SkillName }}">{{ add3Dots(sk?.SkillName | titlecase, 9) }}</h4>
+																								 <div>
+																									 <h5>{{sk?.ExpInYears}}.{{sk?.ExpInMonths||'0'}} Yrs</h5>
+																								 <!-- <h5>{{ sk.split('|')[3] }}</h5> -->
+																								 </div>
+																							 </div>
+																							 <div class="star-rating">
+																								 <star-rating value="{{sk?.SkillRating}}" totalstars="5" checkedcolor="#2260C3"
+																								 uncheckedcolor="#9EABC0" size="16px" readonly="true"></star-rating>
+																							 </div>
+																							 </div>
+																					 
+																						 </div>
+																						 </div>
+																						 <a *ngIf="maxs === 3" class="col-md-1 right-arrow"
+																						(click)="nextS()">
+																						>
+																						</a>
+																						</ng-container>
+																						
+																		
+																					
+																		
+																						<!-- https://www.npmjs.com/package/ngx-flickity
+																							 https://flickity.metafizzy.co/events.html#dragmove
+																							 https://www.npmjs.com/package/angular-flickity
+																							 https://codepen.io/collection/nNzQxk/ -->
+																						<!-- working demo -->
+																						<!-- <div [flickity]="{cellAlign: 'left', percentPosition: true, groupCells: true}" *ngIf="profile?.PrimarySkills != null">
+																							<div [flickityChild] *ngFor="let sk of profile?.PrimarySkills.split(',')">
+																								<div class="item">
+																								<div class="skill">
+																									<h4 title="{{sk.split('|')[0]}}">{{ add3Dots(sk.split('|')[0],10) }}</h4>
+																									<div>
+																										<h5>{{ sk.split('|')[1] }} Yrs</h5>
+																										<h5>{{ sk.split('|')[2] }}</h5>
+																									</div>
 																								</div>
 																							</div>
-																						</div>
-																						</div>
-																					  </div> -->
-																  
-																					<!-- // -->
-																					<!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
-																						<div class="item">
-																						<div class="skill" *ngIf="">
-																							<h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
-																							<div>
-																							  <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
-																							  <h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
 																							</div>
-																						</div>
-																					  </div></div>
-																							<div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
-																						<div class="skill" *ngIf="">
-																							<h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
-																						  <div>
-																							<h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
-																							<h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
-																						  </div>
-																						</div>
-																					  </div></div> -->
-																			  </div>
-																			  <ng-template #noSkillTemplate>
-																				<div class="no-skills text-center">
-																				  <h5>No skills added</h5>
-																				</div>
-																			  </ng-template>
-																		</ng-container>
-																		 
-																		 
+																							</div> -->
+																		
+																						<!-- // -->
+																						<!-- <div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;">
+																							<div class="item">
+																							<div class="skill" *ngIf="">
+																								<h4 title="{{profile?.PrimarySkills.split(',')[1].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[1].split('|')[0],18) }}</h4>
+																								<div>
+																									<h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[1] }} Yrs</h5>
+																									<h5>{{ profile?.PrimarySkills.split(',')[1].split('|')[2] }}</h5>
+																								</div>
+																							</div>
+																							</div></div>
+																								<div class="owl-item cloned" style="width: 106.892px; margin-right: 15px;"><div class="item">
+																							<div class="skill" *ngIf="">
+																								<h4 title="{{profile?.PrimarySkills.split(',')[2].split('|')[0]}}">{{  add3Dots(profile?.PrimarySkills.split(',')[2].split('|')[0],18) }}</h4>
+																								<div>
+																								<h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[1] }} Yrs</h5>
+																								<h5>{{ profile?.PrimarySkills.split(',')[2].split('|')[2] }}</h5>
+																								</div>
+																							</div>
+																							</div></div> -->
+																					</div>
+																					<ng-template #noSkillTemplate>
+																					<div class="no-skills text-center">
+																						<h5>No skills added</h5>
+																					</div>
+																					</ng-template>
+																				</ng-container>
+																			</div>
 																		</div>
-																	  </div>
-																</div>
-																<div class="footer">
-																	<ul class="actions">
-																		<li>
-																			<a class="ch" data-target="#inbox" data-toggle="modal" href="javascript:void(0)">
-																				<svg xml:space="preserve" xlink="http://www.w3.org/1999/xlink"
-																					enable-background="new 0 0 25 21" height="21px" id="Capa_1" version="1.1"
-																					viewBox="0 0 25 21" width="25px" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
-																					<g>
+																	</div>
+																	<div class="footer">
+																		<ul class="actions">
+																			<li>
+																				<a class="ch" data-target="#inbox" data-toggle="modal" href="javascript:void(0)">
+																					<svg xml:space="preserve" xlink="http://www.w3.org/1999/xlink"
+																						enable-background="new 0 0 25 21" height="21px" id="Capa_1" version="1.1"
+																						viewBox="0 0 25 21" width="25px" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
 																						<g>
 																							<g>
 																								<g>
-																									<path
-																										d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
-																										c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
-																										c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z"
-																										fill="#9EABC0"></path>
-																								</g>
-																								<g>
-																									<path d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
-																										c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
-																										l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
-																										c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
-																										l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" fill="#9EABC0"></path>
+																									<g>
+																										<path
+																											d="M22.53,2.98c-0.561-0.56-1.3-0.87-2.09-0.87H4.57c-1.64,0-2.97,1.33-2.97,2.97v10.84
+																											c0,1.64,1.33,2.97,2.97,2.97h15.86c1.641,0,2.971-1.33,2.971-2.97V5.08C23.4,4.29,23.09,3.54,22.53,2.98z M21.43,16.01
+																											c-0.05,0.51-0.47,0.91-0.989,0.91H4.57c-0.55,0-1-0.45-1-1V5.08c0-0.55,0.45-0.99,1-0.99h15.86c0.551,0,1,0.44,1,0.99V16.01z"
+																											fill="#9EABC0"></path>
+																									</g>
+																									<g>
+																										<path d="M20.71,16.37c-0.19,0.2-0.44,0.3-0.71,0.3c-0.26,0-0.5-0.09-0.68-0.27l-4.96-4.7l-1.19,1.06
+																											c-0.34,0.32-0.95,0.33-1.31,0.01l-1.15-1.029L5.72,16.4c-0.39,0.359-1.03,0.33-1.39-0.04c-0.38-0.41-0.36-1.03,0.04-1.4
+																											l4.85-4.55L4.35,6.06C4.16,5.88,4.04,5.64,4.02,5.38C4.01,5.11,4.1,4.86,4.27,4.66c0.35-0.39,1.01-0.43,1.4-0.08l5.62,5.04
+																											c0.02,0.01,0.07,0.05,0.11,0.09l0.06,0.06l1.05,0.94l6.82-6.12c0.39-0.35,1.04-0.32,1.39,0.07c0.36,0.41,0.33,1.03-0.069,1.4
+																											l-4.82,4.31l4.85,4.6C21.07,15.34,21.09,15.97,20.71,16.37z" fill="#9EABC0"></path>
+																									</g>
 																								</g>
 																							</g>
 																						</g>
-																					</g>
-																				</svg>
-																			</a>
-																		</li>
-																		<li>
-																			<a class="ch" href="javascript:void(0)">
-																				<svg fill="#9eabc0" height="21" width="25"
-																					xmlns="http://www.w3.org/2000/svg">
-																					<path
-																						d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z">
-																					</path>
-																				</svg>
-																			</a>
-																		</li>
-																		<li>
-																			<a  
-																				href="javascript:void(0)" data-toggle="modal" (click)="shareSidePanel()">
-																				<svg fill="#9eabc0" height="21" width="25"
-																					xmlns="http://www.w3.org/2000/svg">
-																					<path
-																						d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z">
-																					</path>
-																				</svg>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="javascript:void(0)" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)">
-																			<img alt="Resume Document" src="../../../../../assets/images/word-icon.png"
-																				title="Download Resume" width="25">
-																			</a>
-																		</li>
-																		<li class="dropup ch">
-																			<a class="ch" data-toggle="dropdown" href="javascript:void(0)">
-																				<svg fill="#448AFA" height="21" width="4"
-																					xmlns="http://www.w3.org/2000/svg">
-																					<path
-																						d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z">
-																					</path>
-																				</svg>
-																			</a>
-																			<ul class="dropdown-menu dropdown-menu-right" role="menu">
-																				<div>
-																					<!-- <li role="presentation">
-																						<a data-target="#scheduleCandidate" data-toggle="modal"
-																							href="javascript:void(0)" role="menuitem">
-																							<p class="p6">Schedule
-																								Interview
-																							</p>
-																						</a>
-																					</li>
-																					<li role="presentation">
-																						<a href="javascript:void(0)" role="menuitem">
-																							<p class="p6">Not
-																								Interested
-																							</p>
-																						</a>
-																					</li> -->
-																				</div>
-																			</ul>
-																		</li>
-																	</ul>
+																					</svg>
+																				</a>
+																			</li>
+																			<li>
+																				<a class="ch" href="javascript:void(0)">
+																					<svg fill="#9eabc0" height="21" width="25"
+																						xmlns="http://www.w3.org/2000/svg">
+																						<path
+																							d="M8.1 18h-.9c-.2 0-.4 0-.5-.1-1.3-.3-2.1-1.6-1.8-2.9.3-1 .7-1.9 1.1-2.9H2.6c-.7 0-1.4-.3-1.9-.8s-.7-1-.7-1.7V7.3c0-.6.2-1.1.4-1.6l2.5-4C3.5.7 4.6 0 5.8 0h6c1.7 0 3.1 1.4 3.1 3.1v7c.1 1.2-.6 2.4-1.8 2.9-1 .5-2 1.7-3 3.7-.4.8-1.2 1.3-2 1.3zm-.5-7.8c.4 0 .7.2.9.5s.2.7 0 1c-.7 1.2-1.2 2.6-1.6 3.9 0 .1.1.4.3.4H8c.1 0 .2 0 .2-.1v-.1c.5-.9 1.8-3.6 4-4.7.4-.2.6-.6.6-1v-7c0-.6-.5-1.1-1.1-1.1h-6c-.4 0-.8.3-1 .7l-2.5 4c-.1.2-.2.4-.2.6v2.3c0 .3.3.6.6.6h5zm13.3 2.5h-2.1c-1.3 0-2.3-1-2.3-2.3V2.5c0-1.3 1-2.3 2.3-2.3h2.1c1.3 0 2.3 1 2.3 2.3v7.9c0 1.3-1 2.3-2.3 2.3zm0-10.5h-2.1c-.2 0-.3.1-.3.3v7.9c0 .2.1.3.3.3h2.1c.2 0 .3-.1.3-.3V2.5c0-.2-.1-.3-.3-.3z">
+																						</path>
+																					</svg>
+																				</a>
+																			</li>
+																			<li>
+																				<a  
+																					href="javascript:void(0)" data-toggle="modal" (click)="shareSidePanel()">
+																					<svg fill="#9eabc0" height="21" width="25"
+																						xmlns="http://www.w3.org/2000/svg">
+																						<path
+																							d="M1.5 20c-.3 0-.6-.1-.8-.3-.3-.3-.6-.8-.2-1.9 0 0 3.2-11.2 13.7-12.8V2.5v-.2c0-.2.2-1 1-1.4.4-.2 1.1-.3 1.9.3.1 0 .1.1.2.1l7 7.2c.1.1.6.6.5 1.4 0 .4-.2.9-.9 1.4l-6.6 6.9-.1.1c-.2.1-1.2.8-2.1.3-.4-.2-.9-.7-.9-1.7l-.1-2.4c-4.3-.1-8.4 1.6-11.3 4.7l-.2.2c-.4.5-.8.6-1.1.6zm12.1-7.2c.5 0 1 0 1.5.1.5 0 .9.5.9 1l.1 2.9 6.4-6.7.1-.1L16 3.3v2.8c0 .5-.4.9-.9 1-7.2.5-10.7 6.3-12.1 9.4 3-2.4 6.8-3.7 10.6-3.7zm9.2-2.8zm-7.7-4.1z">
+																						</path>
+																					</svg>
+																				</a>
+																			</li>
+																			<li>
+																				<a href="javascript:void(0)" (click)="DownloadResume(candidate.FirstName,candidate.ProfileId)">
+																				<img alt="Resume Document" src="../../../../../assets/images/word-icon.png"
+																					title="Download Resume" width="25">
+																				</a>
+																			</li>
+																			<li class="dropup ch">
+																				<a class="ch" data-toggle="dropdown" href="javascript:void(0)">
+																					<svg fill="#448AFA" height="21" width="4"
+																						xmlns="http://www.w3.org/2000/svg">
+																						<path
+																							d="M2 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM0 10.3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm0 8.4c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z">
+																						</path>
+																					</svg>
+																				</a>
+																				<ul class="dropdown-menu dropdown-menu-right" role="menu">
+																					<div>
+																						<!-- <li role="presentation">
+																							<a data-target="#scheduleCandidate" data-toggle="modal"
+																								href="javascript:void(0)" role="menuitem">
+																								<p class="p6">Schedule
+																									Interview
+																								</p>
+																							</a>
+																						</li>
+																						<li role="presentation">
+																							<a href="javascript:void(0)" role="menuitem">
+																								<p class="p6">Not
+																									Interested
+																								</p>
+																							</a>
+																						</li> -->
+																					</div>
+																				</ul>
+																			</li>
+																		</ul>
+																	</div>
 																</div>
+																
 															</div>
-															
 														</div>
 													</div>
 												</div>
 											</ng-container>
-											
-												
 										</div>
 										<a class="carousel-control-prev" *ngIf="e.length != -1" (click)="fullGridViewShow(c,e-1)" href="javascript:void(0);" role="button" data-slide="prev">
 											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
