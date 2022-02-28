@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { JobdetailsService } from '../../../jobdetails/jobdetails.service';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { IfObservable } from 'rxjs/observable/IfObservable';
@@ -15,8 +15,14 @@ import { CustomerSubscription } from '../../../../../models/CustomerSubscription
 import { GetSubscriptionDetails } from '../../../../../models/GetSubscriptionDetails';
 import { FileUploader } from 'ng2-file-upload';
 import { CustStatusRes } from '../../models/ScheduleType';
-
+import { ApiService } from '../../../../shared/services';
+import { MatchingParameterDetails } from '../../models/jobdetailsprofile';
+import { promise } from 'protractor';
+import { resolve } from 'url';
+import { c } from '@angular/core/src/render3';
 const URL = 'http://localhost:4200/fileupload/';
+const http = require('https');
+const fs = require('fs');
 declare var $: any;
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -29,52 +35,132 @@ export interface DialogData {
 })
 export class UploadProfilesComponent implements OnInit {
   emailCheck = false;
+  selectedIndex = -1;
+  selectedeIndex = -1;
+  selectedcIndex = -1;
+  TitleId:any=0;
+  EditSkill:boolean=false;
+  EditDomain:boolean=false;
+  EditE:boolean=false;
+  EditBD:boolean=false;
+  EditT:boolean=false;
+  EditKey:boolean=false;
+  selectedskill  = -1;
+  selectedDomain  = -1;
+  selectedkey  = -1;
+  editCertification:boolean=false;
   fileUploadForm: FormGroup;
+  moreShow: boolean = false;
   totalFile: number = 0;
+  pprofiles = new processProfiles();
   searchprofilesFrom: FormGroup;
   searchprofiles: Profile[];
   isPublic: any = false;
+  Jskills:any=[];
+  FitDetails: any;
+  Jdomains:any=[];
   public profileStatus: ProfileStatus[] = [];
   formDAtaList: Array<FormData> = [];
   formData = new FormData();
   fileCount: number = 0;
+  editWorkExperience:boolean=false;
   successCount: number = 0;
   issueCount: number = 0;
+  ProfileIds:any = [];
   subdetails= new CustomerSubscription();
   sdetails= new GetSubscriptionDetails();
   profiles: Profile[];
   searchprocess: any;
   Count: any;
+  CProfileId:any;
+  expMonthExp: number;
+  expYearExp: number;
+  public certForm: FormGroup;
+  filteredProviders = [];
+  filteredCertificate = [];
+  Id:any;
+  roleFitDetails :any;
+  provide:Provider;
+  isLoading = false;
+  cisLoading = false;
+  profileDetails:ProfileDetails;
+  education:ProfileEducation[]=[];
+  experience:ProfileExperience[]=[];
+  certificate:ProfileCertification[]=[];
+  achievements:any=[];
+  eduForm: FormGroup;
+  CandidateExp: CandidateExp = new CandidateExp();
   selectedFileNames: string[] = [];
   totalSelectedDoc: number = 0;
   inviteinfo = new InviteInfo();
   bulkApply = new BulkApply();
   xmlJobResponse: XmlJobResponse[] = [];
   loaddata = true;
+  degreeList: any = [];
+  years: any = [];
+  uploadRes:any = [];
   uploadResponse: UploadResponse[] = [];
   tempuploadResponse: UploadResponse[] = [];
   displayprofiles: any;
+  skillfitcheck: any = [];
+  Skill = {
+  labels: [],
+  datasets: [
+    {
+      label: "Skill Fit",
+      data: [],
+
+      backgroundColor: ["rgb(255, 99, 132)"],
+    },
+  ],
+};
+insertrole = new InsertRole();
+Job = {
+  labels: ["Experience Fit", "Role Fit", "Job Hopping", "Education"],
+  datasets: [
+    {
+      label: "Job Fit",
+      fill: true,
+      backgroundColor: "rgb(54, 162, 235, 0.2)",
+      borderColor: "#4472C4",
+      pointBackgroundColor: "#4472C4",
+      pointBorderColor: "#4472C4",
+      pointHoverBackgroundColor: "#4472C4",
+      borderWidth: 5,
+      pointBorderWidth: 5,
+      pointHoverBorderColor: "rgba(179,181,198,1)",
+      data: [],
+    },
+  ],
+};
   searchString: any;
   SearchList: any = [];
   norecord: any = false;
   isFullDisplayed: any = false;
   email: any;
+  jobdetailscustomer:any;
+  editEducation:boolean=false;
   customerId = null;
   // userId: number;
   customerName = null;
   slice: number;
+  proForm:FormGroup;
+  expForm:FormGroup;
   showThis: string;
   open: boolean = true;
   showMenu: boolean;
+  matchingParameterDetails = new MatchingParameterDetails();
+  matchingParameterData = new MatchingParameterDetails();
   selectedMenuItem: any;
   selectedSubMenuItem: any;
   sideBarMenu: any = [];
   saveUsername: boolean;
   editPersonalDetails: boolean;
-  selectedFiles: File[] = [];
+  selectedFiles: any= [];
   selecteeJobId: any;
   isProcessing: boolean;
   processedProfiles: any=[];
+  processedProfile: any=[];
   haveProfiles: boolean=false;
   currentRecordIndex: number;
   selectedCandidate: any;
@@ -83,10 +169,17 @@ export class UploadProfilesComponent implements OnInit {
   status:any=[];
   checks:any=[];
   showInput:string;
-
+  processed:boolean=false;
+  Cfile:File;
   @ViewChild('divClick') divClick: ElementRef;
+  JobdId: any;
+  IndustryId: string;
+  Title: string ='';
+  CoreId: string;
+  CategoryId: string;
+  addkeyList: any=[];
   // tslint:disable-next-line:max-line-length
-  constructor(private appService: AppService, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
+  constructor(private appService: AppService,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.displayprofiles = JSON.parse(localStorage.getItem('DisplayUpload'));
@@ -111,6 +204,489 @@ export class UploadProfilesComponent implements OnInit {
       }
     });
   }
+  SaveProfile()
+  {
+    if(this.proForm.valid)
+    {
+    this.proForm.value.Address1 = ' ';
+    this._service.PostService(this.proForm.value,'ProfileAPI/api/InsertUserProfile').subscribe(
+      data1 => {
+        this.editPersonalDetails = false;
+       if(data1>=0)
+       {
+         this.GetProfileDetails(data1);
+          this.proForm.reset();
+
+      
+       }
+      },
+        error => console.log(error));
+    }
+  }
+
+  SaveExperience()
+  {
+    if(this.expForm.valid)
+    {
+   
+    this.expForm.value.StartDate = new Date(this.expForm.value.StartDate).toDateString();
+    this.expForm.value.EndDate = new Date(this.expForm.value.EndDate).toDateString();
+    this._service.PostService(this.expForm.value,'ProfileAPI/api/SaveExperience').subscribe(
+      data => {
+       
+       if(data>=0)
+       {
+         this.editWorkExperience = false;  
+         this.GetExperience(this.expForm.value.ProfileId);     
+         this.expForm.reset();
+       }
+      },
+        error => console.log(error));
+    }
+  }
+
+  SaveEducation() {
+    if(this.eduForm.valid)
+    {
+    this.eduForm.value.QualificationId = parseInt(this.eduForm.value.QualificationId, 10);
+    this.eduForm.value.FromYear = parseInt(this.eduForm.value.FromYear, 10);
+    this.eduForm.value.ToYear = parseInt(this.eduForm.value.ToYear, 10);
+    this._service.PostService(this.eduForm.value,'ProfileAPI/api/SaveEducation').subscribe(
+      data => {
+       if(data>=0)
+       {
+        this.editEducation = false;
+        this.GetEducation(this.eduForm.value.ProfileId);
+        this.eduForm.reset();
+       }
+      },
+        error => console.log(error));
+      }
+     
+  }
+
+  returnFn(user: Provider): number | undefined {
+    return user ? user.ProviderId : undefined;
+  }
+
+  displayFn1(user: string) {
+    if (user) { return user; }
+  }
+
+  reset() {
+    this.certForm.reset();
+  }
+
+  setProvider(val)
+  {
+    this.Id = val.ProviderId;
+  }
+
+  SaveCertification()
+  {
+   if(this.certForm.valid)
+   {
+      this.certForm.value.YearOfAchievement = "1/1/" + this.certForm.value.YearOfAchievement;   
+      this.certForm.value.ProviderId = this.certForm.value.ProviderId ? this.certForm.value.ProviderId : this.Id;
+      this._service.PostService(this.certForm.value,'ProfileAPI/api/SaveCertification').subscribe(
+      data => {
+       if(data>=0)
+       {
+         this.editCertification=false;        
+         this.GetCertification(this.certForm.value.ProfileId);
+         this.certForm.reset();
+       }
+      },
+        error => console.log(error));
+      }
+     
+  }
+
+  dateLessThan(from: string, to: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let f = group.controls[from];
+      let t = group.controls[to];
+      let message = 'Please ensure that the End Date is greater than or equal to the Start Date';
+      let action = 'Info';
+      if (f.value != '' && f.value != '' && f.value > t.value) {
+        return {
+          dates: //Swal("Please ensure that the To Year is greater than or equal to the From Year.")
+        
+          this._snackBar.open(message, action, {
+              duration: 2000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end'              
+          })
+        };
+
+      }
+      return {};
+    }
+  }
+
+  EditProfile(pro)
+  {
+    this.editPersonalDetails = true;  
+      this.proForm = this.fb.group({
+        'ProfileId': [pro.ProfileId, Validators.required],
+        'ProfileTitle': [pro.ProfileTitle, Validators.nullValidator],
+        'FirstName': [pro.FirstName, Validators.nullValidator],
+        'LastName': [pro.LastName, Validators.nullValidator],
+        'Email': [pro.UserName,[Validators.required, Validators.email]],
+        'MobilePhone': [pro.MobilePhone, Validators.nullValidator],
+        'Address1': [' ', Validators.nullValidator],
+        'CityName': ['', Validators.nullValidator],
+        'StateName': ['', Validators.nullValidator],
+        'StateId': [0, Validators.nullValidator],
+        'ZipCode': ['', Validators.nullValidator]   
+      })   
+    
+
+  }
+
+  editExp(dat,e)
+  {
+    this.selectedIndex = e;   
+    this.editWorkExperience = true;
+    this.expForm = this.fb.group({
+      'UserId': [0, Validators.compose([Validators.nullValidator])],
+      'ExperienceId': [dat.ExperienceId, Validators.compose([Validators.nullValidator])],
+      'ProfileId': [dat.ProfileId, Validators.required],
+      'JobTitle': [dat.JobTitle, Validators.required],
+      'JobLocation': [dat.JobLocation, Validators.nullValidator],
+      'CompanyName': [dat.CompanyName, Validators.nullValidator],
+      'StartDate': [new Date(dat.StartDate), Validators.nullValidator],
+      'EndDate': [new Date(dat.EndDate), Validators.nullValidator],
+      'Description': [dat.Description, Validators.nullValidator],
+      'Achievements': [null, Validators.nullValidator],
+      'ToolsUsed': [null, Validators.nullValidator],
+      'TechnologiesUsed': [null, Validators.nullValidator],
+      'CurrentEmployer': [false, Validators.nullValidator],
+      'Roles': [null, Validators.nullValidator],
+      'FreeLanceEmployer': [false, Validators.nullValidator]
+    });
+  }
+
+
+
+  
+  EditEducation(edu,f) {
+    this.selectedeIndex = f;   
+    this.editEducation = true;
+    this.eduForm = this.fb.group({
+      'UserId': [0, Validators.nullValidator],
+      'EducationId': [edu.EducationId, Validators.compose([Validators.nullValidator])],
+      'ProfileId': [edu.ProfileId, Validators.nullValidator],
+      'QualificationId': [edu.QualificationId, Validators.nullValidator],
+      'Specialization': [edu.Specialization, Validators.required],
+      'Description': [edu.Description, Validators.nullValidator],
+      'InstituteOrUniversity': [edu.InstituteORUniversity, Validators.nullValidator],
+      'EducationTypeId': [1, Validators.nullValidator],
+      'Location': [edu.Location, Validators.compose([Validators.nullValidator, Validators.minLength(3), Validators.maxLength(100)])],
+      'FromYear': [edu.FromYear, Validators.nullValidator],
+      'ToYear': [edu.ToYear, Validators.nullValidator],
+      'TranscriptsAvailable': [false, Validators.nullValidator]
+    },
+      { validator: this.dateLessThan('FromYear', 'ToYear') });
+   
+  }
+
+  EditCert(c,cc) {
+    this.editCertification = true;
+    this.selectedcIndex = cc;
+    this.certForm = this.fb.group({
+      'UserId': [0,Validators.compose([Validators.required])],
+      'CertificationId': [c.CertificationId, Validators.nullValidator],
+      'ProfileId': [c.ProfileId, Validators.nullValidator],
+      'ProviderId': [c.ProviderId, Validators.nullValidator],
+      'IsCertified': [c.IsCertified, Validators.nullValidator],
+      'CertificationName': [c.CertificationName, Validators.nullValidator],     
+      'IssuedBy': [c.IssuedBy, Validators.nullValidator],
+      'YearOfAchievement': [c.YearOfAchievement, Validators.nullValidator],
+      'LifeTime': [c.LifeTime, Validators.nullValidator],
+      'ImageUrl': [c.ImageUrl, Validators.nullValidator]
+    });
+  }
+
+  GetQualifications()
+  {
+    this.appService.getQualificationDetails()
+    .subscribe(
+      data => {
+        this.degreeList = data;
+      });
+  }
+
+
+  edits(sk)
+  {
+    this.EditSkill = true;
+    this.selectedskill = sk;
+  }
+
+  editd(s)
+  {
+    this.EditDomain = true;
+    this.selectedDomain = s;
+  }
+
+  
+  edite()
+  {
+    this.EditE = true
+  }
+
+  editBd()
+  {
+    this.EditBD = true
+  }
+
+  editt()
+  {
+    this.EditT = true
+  }
+
+  editk(g)
+  {
+    this.EditKey = true;
+    this.selectedkey = g;
+  }
+
+
+  PopulateJobdetail() {
+    return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.data.jobId).subscribe(res => {
+      this.jobdetailscustomer = res;
+    });
+}
+  getCandidateExperience(job,Pid) {
+
+    this._service.GetService('JobsAPI/api/GetCandidateExperiance?JobId=' + job + '&ProfileId=', Pid)
+      // this._service.GetService('JobsAPI/api/GetMissingDomains', JobData)
+      .subscribe(
+        data => {
+          if (1) {
+            this.CandidateExp = data;  
+            
+            if (this.CandidateExp != null) {
+              this.expMonthExp = (this.CandidateExp.Experience % 12);// this.CandidateExp.ExpInMonths;
+              this.expYearExp = Math.round((this.CandidateExp.Experience / 12) - ((this.CandidateExp.Experience % 12) / 12));// this.CandidateExp.ExpInYears;
+            }       
+          }
+        }, error => { this._service.DebugMode(error); });
+
+  }
+
+  SaveRoleFit() {
+
+    this.insertrole.ProfileId = this.CProfileId;
+    this.insertrole.ProfileTitle = this.Title;
+    this.insertrole.Industry = this.IndustryId;
+    this.insertrole.PositionType = this.CoreId;
+    this.insertrole.Category = this.CategoryId;
+    this.insertrole.TitleInfo = this.TitleId;
+    this.insertrole.XmlKeyResponses = this.addkeyList;
+    return this._service.PostService(this.insertrole, 'ProfileAPI/api/InsertCandidateProfileRoleFit').subscribe(data => {
+      //location.reload();
+      this.insertrole = new InsertRole();
+      this.Title = '';
+      this.IndustryId = '';
+      this.CoreId = '';
+      this.CategoryId = '';
+      this.GetProfileRoleFitDetails();
+    })
+  }
+
+  updateBD(bd)
+  {
+    this.IndustryId = this.roleFitDetails.CustomerJobIndustries[0].CustomerIndustryId;
+    this.CoreId = this.roleFitDetails.CustomerJobPositionType[0].JobPositionTypeId;
+    this.CategoryId = this.roleFitDetails.CustomerJobCategory[0].CustomerCategoryId;
+    this.insertrole.ProfileId = this.CProfileId;
+    this.insertrole.ProfileTitle = this.Title;
+    this.insertrole.Industry = this.IndustryId;
+    this.insertrole.PositionType = this.CoreId;
+    this.insertrole.Category = this.CategoryId;
+    this.insertrole.TitleInfo = this.TitleId;
+    this.insertrole.XmlKeyResponses = this.addkeyList;
+    return this._service.PostService(this.insertrole, 'ProfileAPI/api/InsertCandidateProfileRoleFit').subscribe(data => {
+      //location.reload();
+      this.EditBD = false;
+      this.insertrole = new InsertRole();
+      this.GetProfileRoleFitDetails();
+      this.GetMatchingPercentage(this.CProfileId);
+      this.GetJobRequiredDomain(this.CProfileId);
+      this.GetCandidateJobFitResult(this.CProfileId);
+    })
+  }
+
+  updateTitle(t)
+  {
+    this.IndustryId = this.roleFitDetails.CustomerJobIndustries[0].CustomerIndustryId;
+    this.CoreId = this.roleFitDetails.CustomerJobPositionType[0].JobPositionTypeId;
+    this.CategoryId = this.roleFitDetails.CustomerJobCategory[0].CustomerCategoryId;
+    this.Title = this.roleFitDetails.CustomerJobTitle[0].JobTitle;
+    this.TitleId = this.roleFitDetails.CustomerJobTitle[0].RoleId;
+    this.insertrole.ProfileId = this.CProfileId;
+    this.insertrole.ProfileTitle = this.Title;
+    this.insertrole.Industry = this.IndustryId;
+    this.insertrole.PositionType = this.CoreId;
+    this.insertrole.Category = this.CategoryId;
+    this.insertrole.TitleInfo = this.TitleId;
+    this.insertrole.XmlKeyResponses = this.addkeyList;
+    return this._service.PostService(this.insertrole, 'ProfileAPI/api/InsertCandidateProfileRoleFit').subscribe(data => {
+      //location.reload();
+      this.EditT = false;
+      this.insertrole = new InsertRole();
+      this.GetProfileRoleFitDetails();
+      this.GetCandidateJobFitResult(this.CProfileId);
+      this.GetMatchingPercentage(this.CProfileId);
+      this.GetJobRequiredDomain(this.CProfileId);
+     
+    })
+  }
+
+  updateKey()
+  {
+    this.roleFitDetails.CustomerJobKeyResponses.forEach(k=>
+      {
+        const ejKeyResponsebility = new KeyRole();
+        ejKeyResponsebility.KeyResponsebilityId =  k.CustomerKeyResponsebility;
+        ejKeyResponsebility.KeyMinExperienceId =  0;
+        ejKeyResponsebility.KeyMaxExperienceId =  k.CustomerKeyMaxExperienceId;
+        this.addkeyList.push(ejKeyResponsebility);
+      })
+   
+   
+    this.IndustryId = this.roleFitDetails.CustomerJobIndustries[0].CustomerIndustryId;
+    this.CoreId = this.roleFitDetails.CustomerJobPositionType[0].JobPositionTypeId;
+    this.CategoryId = this.roleFitDetails.CustomerJobCategory[0].CustomerCategoryId;
+    this.Title = this.roleFitDetails.CustomerJobTitle[0].JobTitle;
+    this.TitleId = this.roleFitDetails.CustomerJobTitle[0].RoleId;
+    this.insertrole.ProfileId = this.CProfileId;
+    this.insertrole.ProfileTitle = this.Title;
+    this.insertrole.Industry = this.IndustryId;
+    this.insertrole.PositionType = this.CoreId;
+    this.insertrole.Category = this.CategoryId;
+    this.insertrole.TitleInfo = this.TitleId;
+    this.insertrole.XmlKeyResponses = this.addkeyList;
+    return this._service.PostService(this.insertrole, 'ProfileAPI/api/InsertCandidateProfileRoleFit').subscribe(data => {
+      //location.reload();
+      this.EditKey = false;
+      this.insertrole = new InsertRole();
+      this.GetProfileRoleFitDetails();
+      this.GetMatchingPercentage(this.CProfileId);
+      this.GetJobRequiredDomain(this.CProfileId);
+      this.GetCandidateJobFitResult(this.CProfileId);
+      this.addkeyList = [];
+      this.Title = '';
+      this.TitleId = '';
+      this.IndustryId = '';
+      this.CoreId = '';
+      this.CategoryId = '';
+    })
+  }
+
+  updateExp(e) {
+    var UpdatedMissingExperience = {
+      "Id": 0,
+      "ProfileId": this.CProfileId,
+      "JobId": this.data.JobId,
+      "CreatedOn": Date.now(),
+      "CreatedBy": this.customerName.UserId,
+      "ModifiedOn": Date.now(),
+      "ModifiedBy": this.customerName.UserId,
+      "IsUpdated": 1
+    };
+    var CandidateTotalExp = {
+      "TotalExp": e,
+      "ProfileId": this.CProfileId,
+    };
+    this._service.PostService(CandidateTotalExp, 'JobsAPI/api/UpdateTotalExperience')
+      .subscribe(da => {
+        if (da === true) {
+          this.EditE = false;
+          this.GetMatchingPercentage(this.CProfileId);
+          this.GetProfileDetails(this.CProfileId);
+          this.GetCandidateJobFitResult(this.CProfileId);
+          this.getCandidateExperience(this.data.jobId,this.CProfileId);
+        }
+        this._service.PostService(UpdatedMissingExperience, 'JobsAPI/api/UpdateCandidateExperiance')
+          .subscribe(dt => {
+            if (da === true) {
+              this.GetMatchingPercentage(this.CProfileId);
+              this.GetJobRequiredDomain(this.CProfileId);
+              this.GetCandidateJobFitResult(this.CProfileId);
+              this.getCandidateExperience(this.data.jobId,this.CProfileId);
+            }
+          });
+      });
+
+  }
+
+  updateList(D) {
+    // alert("dsd");
+    var domainData = {
+      "CandidateDomainId": D.CandidateDomainId,
+      "DomainId": D.DomainId,
+      "DomainIdSpecified": true,
+      "ExpInMonths": D.ExpInMonths,
+      "ExpInYears": D.JExpInYears,
+      "LastUsed": '2022',
+      "ProfileId": this.CProfileId,
+      "UserId": 0
+    };
+    const jobId = this.data.jobId;
+    this._service.PostService(domainData, 'ProfileAPI/api/InsertDomain')
+      .subscribe(dat => {
+        if (dat>=0) {
+          this.EditDomain = false;
+          this.GetMatchingPercentage(this.CProfileId);
+          this.GetJobRequiredDomain(this.CProfileId);
+          this.GetCandidateJobFitResult(this.CProfileId);
+
+          }
+        })
+
+      
+      }
+    
+
+  updateSkill(skill)
+  {
+    var SkillData = {
+      "ExpInMonths": skill.ExpInMonths,
+      "ExpInYears": skill.JExpInYears,
+      "LastUsed": "2022",
+      "ProfileId": this.CProfileId,
+      "SkillName": skill.Code,
+      "SkillRating": "5",
+      "SkillSetId": skill.CandidateSkillId,
+      "UserId": 0
+    };
+    const jobId = this.data.jobId;
+    this._service.PostService(SkillData, 'ProfileAPI/api/InsertSkillSet')
+      .subscribe(data => {
+     if(data === 0)
+     {
+       this.EditSkill = false;
+       this.GetMatchingPercentage(this.CProfileId);
+       this.GetJobRequiredSkills(this.CProfileId);
+       this.GetCandidateSkillFitResult(this.CProfileId,jobId);
+
+     }
+      });
+  }
+
+  public getYears() {
+    const date = new Date();
+    const x = date.getFullYear();
+    this.years = [];
+    for (let i = x - 40; i <= x; i++) {
+        this.years.push(i);
+    }
+    return this.years;
+}
+
 
   ngOnInit() {
     this.searchprofilesFrom = this.fb.group({
@@ -123,6 +699,72 @@ export class UploadProfilesComponent implements OnInit {
       'PageNumber': [1, Validators.nullValidator],
       'NumberOfRows': [1000, Validators.nullValidator],
     });
+    this.proForm = this.fb.group({
+      'ProfileId': [0, Validators.nullValidator],
+      'ProfileTitle': ['', Validators.nullValidator],
+      'FirstName': ['', Validators.nullValidator],
+      'LastName': ['', Validators.nullValidator],
+      'Email': ['', [Validators.required, Validators.email]],
+      'MobilePhone': ['', Validators.nullValidator],
+      'CityName': ['', Validators.nullValidator],
+      'StateName': ['', Validators.nullValidator],
+      'StateId': [0, Validators.nullValidator],
+      'ZipCode': ['', Validators.nullValidator]   
+    })
+    this.expForm = this.fb.group({
+      'UserId': [0, Validators.compose([Validators.nullValidator])],
+      'ExperienceId': [0, Validators.compose([Validators.nullValidator])],
+      'ProfileId': [0, Validators.nullValidator],
+      'JobTitle': ['', Validators.required],
+      'JobLocation': ['', Validators.nullValidator],
+      'CompanyName': ['', Validators.required],
+      // 'StartDate': [formatDate(this.post.StartDate, 'MM-yyyy', 'en'), [Validators.required]],
+      // 'EndDate': [formatDate(this.post.EndDate, 'MM-yyyy', 'en'), [Validators.required]],
+      'StartDate': ['', Validators.nullValidator],
+      'EndDate': ['', Validators.nullValidator],
+      'Description': ['', Validators.nullValidator],
+      'Achievements': [null, Validators.nullValidator],
+      'ToolsUsed': [null, Validators.nullValidator],
+      'TechnologiesUsed': [null, Validators.nullValidator],
+      'CurrentEmployer': [false, Validators.nullValidator],
+      'Roles': [null, Validators.nullValidator],
+      'FreeLanceEmployer': [false, Validators.nullValidator]
+    },
+     { validator: this.dateLessThan('StartDate', 'EndDate') 
+     }
+    );
+    this.eduForm = this.fb.group({
+      'UserId': ['', Validators.compose([Validators.nullValidator])],
+      'EducationId': [0, Validators.compose([Validators.nullValidator])],
+      'ProfileId': [this.data.profileId, Validators.required],
+      'QualificationId': [0, Validators.nullValidator],
+      'Specialization': ['', Validators.nullValidator],
+      'Description': ['', Validators.nullValidator],
+      'InstituteOrUniversity': ['', Validators.nullValidator],
+      'EducationTypeId': [1, Validators.nullValidator],
+      'Location': [null, Validators.compose([Validators.nullValidator, Validators.minLength(3), Validators.maxLength(100)])],
+      'FromYear': ['', Validators.required],
+      'ToYear': ['', Validators.required],
+      'TranscriptsAvailable': [false, Validators.nullValidator]
+    },
+    { validator: this.dateLessThan('FromYear', 'ToYear') })
+
+    this.certForm = this.fb.group({
+      'UserId': [0, Validators.nullValidator],
+      'ProfileId': [this.data.ProfileId, Validators.required],
+      'CertificationId': [0, Validators.nullValidator],
+      'ProviderId': [0, Validators.required],
+      'IsCertified': [true, Validators.required],
+      'CertificationName': ['', Validators.required],
+      'IssuedBy': ['', Validators.required],
+      'YearOfAchievement': ['',Validators.nullValidator],
+      'LifeTime': ['',Validators.nullValidator],
+      'ImageUrl': ['', Validators.nullValidator]
+    })
+  
+    
+
+    
     this.fileUploadForm = this.fb.group({
       'userId': [this.customerName.UserId, Validators.required],
       'Url': ['', Validators.nullValidator],
@@ -137,6 +779,9 @@ export class UploadProfilesComponent implements OnInit {
     this.SearchProfiles();
     this.haveProfiles = false;
     this.alertService.clear();
+    this.getYears();
+    this.GetQualifications();
+    this.PopulateJobdetail();
     this.GetCustomerSubscription();
     /** */
     $(function () {
@@ -153,6 +798,9 @@ export class UploadProfilesComponent implements OnInit {
   }
 
 
+  moreContent() {
+    this.moreShow = !this.moreShow;
+  }
 
 GetCustomerSubscription()
 {
@@ -188,14 +836,22 @@ selectedSubItem(item) {
   }
 }
 
+
+
 onFileSelected(event) {
   if (this.uploader.queue.length > 0) {
     for (let i = 0; i < this.uploader.queue.length; i++) {
       let file: File = this.uploader.queue[i]._file;
-      this.selectedFiles.push(file);
+       this.selectedFiles.push(file);
     }
   }
 }
+
+
+    
+  
+  
+
 
 selectPreviousCandidate() {
   this.currentRecordIndex = this.currentRecordIndex - 1;
@@ -204,6 +860,7 @@ selectPreviousCandidate() {
     this.currentRecordIndex = 0;
   }
   this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
+  this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
 }
 
 selectNextCandidate() {
@@ -213,7 +870,37 @@ selectNextCandidate() {
     this.currentRecordIndex = this.processedProfiles.length - 1;
   }
   this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
+  this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
+  
 }
+
+
+SaveCandidate()
+{
+  this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
+  return this._service.GetService('IdentityAPI/api/GetProfileIdFromEmail?email=',this.selectedCandidate.ContactInformation.EmailAddresses[0]).subscribe(
+    ProfileId=>{
+    //this.GetPercent(Id);
+    this.CProfileId = ProfileId;
+    this.GetAllProfileDetails(ProfileId)
+    this.uploadRes.find(obj => {
+      if(obj != null)
+      {
+        if(obj.ProfileId === ProfileId)
+        {
+          return obj.ProfileId === ProfileId;
+        }
+      
+      }
+    
+    });
+    let objIndex = this.uploadRes.findIndex((obj => obj.ProfileId == ProfileId));
+    this.uploadRes[objIndex].ResumeStatus = "Requested";
+  })
+}
+
+
+
 
 GetSubscriptionDetails(sid)
 {
@@ -275,87 +962,311 @@ GetProfileStatus(mail)
    return this.jobdetailsservice.GetCustomerStatus(mail,this.data.JobId,this.customerId,true).subscribe(
      dta=>{
        //this.statuscheck = dta;
-       let c = dta.Status +',' + mail;
+       let c = dta.Status;
        this.checks.push(c);
      }
    )
  }
   
+ getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
+      if ((encoded.length % 4) > 0) {
+        encoded += '='.repeat(4 - (encoded.length % 4));
+      }
+      resolve(encoded);
+    };
+    reader.onerror = error => reject(error);
+  });
+}
+
 
 
   processResumes() {
-    this.isProcessing = true;
-    let dta:any;
-    this.status = [];
-    for (var fileCount = 0; fileCount < this.selectedFiles.length; fileCount++) {
-     this.getBase64(this.selectedFiles[fileCount]).then(
-      data => 
-      {
-       dta= data;
-       var da = {  
-    DocumentAsBase64String: dta,  
-    DocumentLastModified: '2021-06-18',  
-    GeocodeOptions: {  
-      'IncludeGeocoding': false,  
-      'Provider': null,  
-      'ProviderKey': null,  
-      'PostalAddress': null,  
-      'GeoCoordinates': null  
-    },  
-    IndexingOptions: {  
-      'IndexId': '',  
-      'DocumentId': '',  
-      'UserDefinedTags': [  
-        ''  
-      ]  
-    },  
-    OutputHtml: true,  
-    HideHtmlImages: null,  
-    OutputRtf: false,  
-    OutputCandidateImage: false,  
-    OutputPdf: false,  
-    Configuration: 'Coverage.MilitaryHistoryAndSecurityCredentials = true; Coverage.PatentsPublicationsAndSpeakingEvents = true; Coverage.PersonalInformation = true; Coverage.Training = true; Coverage.EntryLevel = true',  
-    SkillsData: [  
-      ''  
-    ],  
-    NormalizerData: ''  
-      }
-      this.jobdetailsservice.UploadSovren(da).subscribe( dat => 
-      {
-        let val  = dat.Value.ResumeData;
-        this.currentRecordIndex = 0;
-        this.processedProfiles.push(JSON.parse(JSON.stringify(val)));
-        if (fileCount === this.processedProfiles.length) {
-          this.isProcessing = false;
-          this.haveProfiles = true;
-          this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];               
-        }
-     
-      })
-      }
-      );
 
+   
+    if(this.selectedFiles.length>0)
+    {
+      this.isProcessing = true;
+      this.getFileDetails();
     }
+    
+  }
+
+//  Check()
+// {
+//   this.processedProfile.forEach(fs => {
+//     let f = fs.sfile;
+//     let val = fs.profiles;
+//     let request = '';
+//     this.tempuploadResponse = [];
+//     this.selectedFileNames = [];
+//     this.formDAtaList = [];
+//     var formData = new FormData();
+//     this.fileUploadForm.value.Url = '';
+//     this.fileUploadForm.value.FileName = f.name;
+//     this.fileUploadForm.value.FileExtension = f.type;
+//     this.fileUploadForm.value.UserName = null;
+//     this.fileUploadForm.value.JobId = this.data.jobId;
+//     this.fileUploadForm.value.EmailCheck = this.emailCheck;
+//     // document.getElementById('jobId').value; //this.jobid;
+//     // this.fileUploadForm.value.ResumeFile = e.target.files[0];
+//     if (this.fileUploadForm.value !== '') {
+//       request = JSON.stringify(this.fileUploadForm.value);
+//     }
+//     var formData = new FormData();
+//     var temp = new UploadResponse()
+//     this.selectedFileNames.push(f.name);
+//     temp.FirstName = f.name;
+//     temp.DocId = fs;
+//     temp.ResumeStatus = null;
+//     this.tempuploadResponse.push(temp);
+//     formData.append('ResumeFile', f);
+//     formData.append('Model', request);
+//     formData.append('SModel', JSON.stringify(val));
+//     formData.append('CustomerId', this.customerId);
+//     formData.append('DocId',this.selectedFiles.length.toString());//JSON.stringify(i.toString()));
+//     formData.append('IsPublic', this.isPublic.toString());//JSON.stringify(this.isPublic.toString()));
+//     formData.append("Upload", this.isPublic.toString());
+//     formData.append("SendMail", this.isPublic.toString());
+//     this.formDAtaList.push(formData);
+//     new Promise<void>((resolve) => {
+//    this.jobdetailsservice.byteStorage1(formData, 'api/ParseResumeSovren').subscribe(async dat => {
+//      if(dat){
+//         this.uploadResponse = dat[0];
+//         this.uploadRes.push(this.uploadResponse);
+//         if(this.uploadRes.length === this.processedProfile.length)
+//         {
+//           this.uploader.queue = [];
+//           this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
+//         }
+//         }
+//         await resolve();
+       
+//        })
+      
+       
+//       })
+   
+     
   
-  }
 
-  getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
-        if ((encoded.length % 4) > 0) {
-          encoded += '='.repeat(4 - (encoded.length % 4));
+   
+//   })
+ 
+  
+// }
+
+// Getval()
+// {
+//   if(this.uploadRes.length === this.processedProfile.length)
+//   {
+//     this.uploader.queue = [];
+//     this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
+//   }
+
+ 
+// }
+
+GetMatchingPercentage(profileId): any {
+ 
+   this.jobdetailsservice.GetJobMatchingCriteriaEndPoint(profileId,this.data.jobId).subscribe((res) => {
+     this.matchingParameterDetails = res;
+     this.matchingParameterData.Role = this.matchingParameterDetails.Role;
+     this.matchingParameterData.Jobfit_Total = this.matchingParameterDetails.Jobfit_Total;
+     this.matchingParameterData.Personalityfit_Total = this.matchingParameterDetails.Personalityfit_Total;
+     this.matchingParameterData.Skillfit_Total = this.matchingParameterDetails.Skillfit_Total;
+     this.matchingParameterData.Personalityfit = this.matchingParameterDetails.Personalityfit;
+     this.matchingParameterData.CultureFit = this.matchingParameterDetails.CultureFit;
+     this.matchingParameterData.SkillFit = this.matchingParameterDetails.SkillFit;
+     this.matchingParameterData.JobFit = this.matchingParameterDetails.JobFit;
+   });
+   return this.matchingParameterDetails;
+  
+ }
+
+ GetCandidateSkillFitResult(ProfileId,jobId) {
+  this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', ProfileId + '&jobId=' + jobId)
+    .subscribe(
+      data3 => {
+        this.skillfitcheck = data3;
+        if (data3.length > 0) {
+          data3.forEach((a) => {
+            var color = Math.floor(0x1000000 * Math.random()).toString(16);
+            var r = '#' + ('000000' + color).slice(-6);
+            this.Skill.datasets[0].backgroundColor.push(r);
+            this.Skill.labels.push(a.SkillName);
+            this.Skill.datasets[0].data.push(a.SkillFit.toFixed(2));          
+          })
+        }    
+      })
+}
+
+GetCandidateJobFitResult(Pid) {
+  this._service.GetService('ProfileAPI/api/GetJobFitDetailsInfo?profileId=', Pid + '&jobId=' + this.data.jobId)
+    .subscribe(
+      data2 => {
+        if (data2 != null) {
+          var exp;
+          if (data2.ExperienceFit == null) {
+            exp = 0;
+          }
+          else {
+            exp = data2.ExperienceFit;
+          }
+          this.Job.datasets[0].data = [exp, data2.RoleFit, data2.JobHopping, data2.Education];
         }
-        resolve(encoded);
-      };
-      reader.onerror = error => reject(error);
+        this.FitDetails = data2.JobFit;
+
+      })
+}
+
+getColor(arr, i) {
+  return arr[i];
+}
+
+GetProfileId(email)
+{
+  return this._service.GetService('IdentityAPI/api/GetProfileIdFromEmail?email=',email).subscribe(
+    ProfileId=>{
+    //this.GetPercent(Id);
+    this.CProfileId = ProfileId;
+    this.GetAllProfileDetails(ProfileId)
+    this.uploadRes.find(obj => {
+      if(obj != null)
+      {
+        if(obj.ProfileId === ProfileId)
+        {
+          return obj.ProfileId === ProfileId;
+        }
+      
+      }
+    
     });
-  }
+  })
+}
 
 
-  getFileDetails(e) {
+GetAllProfileDetails(ProfileId)
+{
+              //  this.CProfileId = ProfileId;
+                this.GetProfileDetails(ProfileId);
+                this.getCandidateExperience(this.data.jobId,ProfileId);
+                // this.GetProfileSummaryDetails(ProfileId);
+                // this.GetSkills(ProfileId);
+                // this.GetDomains(ProfileId);
+                this.GetEducation(ProfileId);
+                this.GetCertification(ProfileId);
+                this.GetExperience(ProfileId);
+                this.GetAchievements(ProfileId);
+                this.GetMatchingPercentage(ProfileId);
+                this.GetJobRequiredSkills(ProfileId);
+                this.GetJobRequiredDomain(ProfileId);
+                this.GetCandidateSkillFitResult(ProfileId,this.data.jobId);
+                this.GetCandidateJobFitResult(ProfileId);
+                this.GetProfileRoleFitDetails();
+                this.CProfileId = ProfileId;
+                this.uploadRes.find(obj => {
+                  if(obj != null)
+                  {
+                    if(obj.ProfileId === ProfileId)
+                    {
+                      return obj.ProfileId === ProfileId;
+                    }
+                  
+                  }
+                
+                });
+                // this.GetProjects(ProfileId);
+}
+
+
+GetProfileDetails(Id)
+{
+  
+  return this._service.GetService('ProfileAPI/api/GetProfileDetailsAndAddress?profileId=',Id).subscribe(
+    ta=>{
+    //this.GetPercent(Id);
+    this.profileDetails = ta[0];
+    let objIndex = this.uploadRes.findIndex((obj => obj.ProfileId == Id));
+    this.uploadRes[objIndex].FirstName = this.profileDetails.FirstName;
+    this.uploadRes[objIndex].LastName = this.profileDetails.LastName;
+    this.uploadRes[objIndex].ProfileTitle = this.profileDetails.ProfileTitle;
+   
+    // this.profileEdit = true;
+    //this.flashcardInputExpanded = true;
+  })
+}
+
+
+
+GetProfileRoleFitDetails() {
+  return this._service.GetService('ProfileAPI/api/JobCandidateProfileForRoleFit?jobId='+this.data.jobId +'&profileId=', this.CProfileId)
+    .subscribe(
+      data => {
+        this.roleFitDetails = data;
+        }
+      );
+}
+
+GetExperience(Id)
+{
+  return this._service.GetService('ProfileAPI/api/GetExperience?profileId=',Id + '&freeLance=false').subscribe(
+    experiences=>{
+    this.experience = experiences;
+    //this.GetPercent(PId);
+  })
+}
+
+GetEducation(Id)
+{
+  return this._service.GetService('ProfileAPI/api/GetEducation?profileId=',Id).subscribe(
+    educations=>{
+    this.education = educations;
+    //this.GetPercent(PId);
+  })
+}
+
+GetCertification(Id)
+{
+  return this._service.GetService('ProfileAPI/api/GetCertification?profileId=',Id).subscribe(
+   certificates=>{
+    this.certificate = certificates;
+    //this.GetPercent(PId);
+  })
+}
+
+GetAchievements(Id)
+{
+  return this._service.GetService('ProfileAPI/api/GetProfileAchievements?profileId=',Id).subscribe(
+    achievement=>{
+     this.achievements = achievement;
+     //this.GetPercent(PId);
+   })
+}
+
+GetJobRequiredSkills(PId) {
+  const jobId = this.data.jobId;
+  return this._service.GetService('ProfileAPI/api/GetCandidateMissingSkills?JobId=' + jobId + '&ProfileId=', PId).subscribe(skills => {
+    this.Jskills =  skills.filter(
+      (element, i) => i === skills.indexOf(element)
+    );;
+  })
+}
+
+GetJobRequiredDomain(PId) {
+  const jobId = this.data.jobId;
+  return this._service.GetService('ProfileAPI/api/GetCandidateMissingDomains?jobId='+ jobId+ '&ProfileId=', PId).subscribe(domain => {
+      this.Jdomains = domain;  
+   })
+ }
+
+  
+
+  getFileDetails() {
     this.fileCount = 0;
     this.successCount = 0;
     this.issueCount = 0;
@@ -364,35 +1275,27 @@ GetProfileStatus(mail)
     this.formDAtaList = [];
     this.profileStatus = [];
     // this.spinner.show();
-    let request = '';
-    var formData = new FormData();
-    this.fileUploadForm.value.Url = '';
-    this.fileUploadForm.value.FileName = e.target.files[0].name;
-    this.fileUploadForm.value.FileExtension = e.target.files[0].type;
-    this.fileUploadForm.value.UserName = null;
-    this.fileUploadForm.value.JobId = (<HTMLInputElement>document.getElementById('jobId')).value;
-    this.fileUploadForm.value.EmailCheck = this.emailCheck;
-    // document.getElementById('jobId').value; //this.jobid;
-    // this.fileUploadForm.value.ResumeFile = e.target.files[0];
-    if (this.fileUploadForm.value !== '') {
-      request = JSON.stringify(this.fileUploadForm.value);
-    }
-    this.totalFile = e.target.files.length;
-    this.totalSelectedDoc = e.target.files.length;
-    if (e.target.files.length > 40) {
-      this.toastr.warning('Please select max 40 files.');
-      this.spinner.hide();
-      setTimeout(() => {
-             this.toastr.dismissToast;
-         }, 3000);
-     
-      e.preventDefault();
-    } else {
-      this.slice = 100 / e.target.files.length;
-      for (let i = 0; i < e.target.files.length; i++) {
+   
+    this.totalFile = this.selectedFiles.length;
+    this.totalSelectedDoc = this.selectedFiles.length;
+      this.slice = 100 / this.selectedFiles.length;
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        let request = '';
+        var formData = new FormData();
+        this.fileUploadForm.value.Url = '';
+        this.fileUploadForm.value.FileName = this.selectedFiles[i].name;
+        this.fileUploadForm.value.FileExtension = this.selectedFiles[i].type;
+        this.fileUploadForm.value.UserName = null;
+        this.fileUploadForm.value.JobId = this.data.jobId;
+        this.fileUploadForm.value.EmailCheck = this.emailCheck;
+        // document.getElementById('jobId').value; //this.jobid;
+        // this.fileUploadForm.value.ResumeFile = e.target.files[0];
+        if (this.fileUploadForm.value !== '') {
+          request = JSON.stringify(this.fileUploadForm.value);
+        }
         var Profdata = new ProfileStatus();
         Profdata.id = i;
-        Profdata.percentage = (e.target.files.length - i - 1) * this.slice;
+        Profdata.percentage = (this.selectedFiles.length - i - 1) * this.slice;
         if (!Profdata.percentage)
           Profdata.percentage = 5;
         Profdata.text = "Parsing the Document......";
@@ -400,12 +1303,12 @@ GetProfileStatus(mail)
         this.profileStatus.push(Profdata);
         formData = new FormData();
         var temp = new UploadResponse()
-        this.selectedFileNames.push(e.target.files[i].name);
-        temp.FirstName = e.target.files[i].name;
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+        temp.FirstName = this.selectedFiles[i].name;
         temp.DocId = i;
         temp.ResumeStatus = null;
         this.tempuploadResponse.push(temp);
-        formData.append('ResumeFile', e.target.files[i]);
+        formData.append('ResumeFile', this.selectedFiles[i]);
         formData.append('Model', request);
         formData.append('CustomerId', this.customerId);
         formData.append('DocId', i.toString());//JSON.stringify(i.toString()));
@@ -417,7 +1320,7 @@ GetProfileStatus(mail)
         this.uploadMultiple(formData, i);
 
       }
-    }
+    
   }
 
   uploadMultiple(formData, DocId) {
@@ -426,6 +1329,8 @@ GetProfileStatus(mail)
       this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResumeMakePublic').subscribe(data => {  // 'api/JobDescriptionParse'
         if (data) {
           this.uploadResponse = data;
+          this.processedProfiles.push(this.uploadResponse[0].ResumeData);
+          this.uploadRes.push(this.uploadResponse[0]);
           if (this.uploadResponse[0].ResumeStatus != null) {
             // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
             this.fileCount = this.fileCount + 1;
@@ -442,7 +1347,6 @@ GetProfileStatus(mail)
   
             if (data[0].ResumeStatus == 'Successful') {
               this.successCount = this.successCount + 1;
-              //this.UploadAction(i,data[0],3)
               // this.toastr.success('Uploaded successfully', 'Success');
             } else {
               this.issueCount = this.issueCount + 1;
@@ -461,7 +1365,16 @@ GetProfileStatus(mail)
             }
   
           }
-  
+          if(this.selectedFiles.length === this.uploadRes.length)
+          {
+            this.isProcessing = false; 
+            this.haveProfiles = true;
+            this.currentRecordIndex =0;
+            this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];  
+            this.GetAllProfileDetails(this.uploadResponse[0].ProfileId);
+          }
+
+         
           // setTimeout(() => {
           //   this.toastr.dismissToast;
           // }, 3000);
@@ -500,6 +1413,8 @@ GetProfileStatus(mail)
       this.jobdetailsservice.byteStorage(formData, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
         if (data) {
           this.uploadResponse = data;
+          this.processedProfiles.push(this.uploadResponse[0].ResumeData);
+          this.uploadRes.push(this.uploadResponse[0]);
           if (this.uploadResponse[0].ResumeStatus != null) {
             // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
             this.fileCount = this.fileCount + 1;
@@ -539,6 +1454,15 @@ GetProfileStatus(mail)
           //   this.toastr.dismissToast;
           // }, 3000);
         }
+
+        if(this.selectedFiles.length === this.uploadRes.length)
+        {
+          this.isProcessing = false; 
+          this.haveProfiles = true;
+          this.currentRecordIndex =0;
+          this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];  
+          this.GetAllProfileDetails(this.uploadResponse[0].ProfileId);
+        }
         //   else if(data === null){
         //     this.toastr.warning('Email Not Exists', 'Oops!');
         //     this.spinner.hide();
@@ -568,6 +1492,8 @@ GetProfileStatus(mail)
         // console.log('download i:', i);
       });
     }
+
+    
   
   }
 
@@ -613,6 +1539,7 @@ GetProfileStatus(mail)
               this.spinner.hide();
               // alert("asdasdasdas");
               this.tempuploadResponse[index].ResumeStatus = "Requested";
+              this.uploadRes[index].ResumeStatus = "Requested";
             }
           });
         }
@@ -634,6 +1561,7 @@ GetProfileStatus(mail)
                 //this.spinner.hide();
                 // alert("asdasdasdas");
                 this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
+                this.uploadRes[index].ResumeStatus = "Arytic_prof";
               }
             });
           }
@@ -646,17 +1574,18 @@ GetProfileStatus(mail)
           if (data) {
             this.spinner.hide();
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
+            this.uploadRes[index].ResumeStatus = "ProfileAsscociated";
 
           }                 
         });
       }
       else
       {
-        this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateActionpublic').subscribe(data => {  // 'api/JobDescriptionParse'
+        this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateActionPublic').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
             this.spinner.hide();
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
-
+            this.uploadRes[index].ResumeStatus  = "ProfileAsscociated";
           }
          
         
@@ -753,6 +1682,7 @@ GetProfileStatus(mail)
 
 
 
+
 export class InviteInfo {
   userId: number;
   jobId: number;
@@ -778,10 +1708,117 @@ export class UploadResponse {
   CustomerId: number;
   IsPublic: boolean;
   UserId: number;
+  ProfileId: number;
+  ResumeData:any;
 }
 
 export class ProfileStatus {
   text: string;
   percentage: number;
   id: number;
+}
+
+export class ProfileDetails
+{
+  public ProfileId:number;
+  public UserId:number;
+  public FirstName:string;
+  public LastName:string;
+  public UserName:string;
+  public ProfileTitle:string;
+}
+
+export class ProfileEducation
+{
+  public  EducationId:number;
+  public  ProfileId:number;
+  public  QualificationId:number;
+  public  QualificationName: string;
+  public  Specialization:string;
+  public  InstituteORUniversity:string;
+  public  FromYear:number;
+  public  ToYear:number;
+}
+
+export class ProfileCertification
+{
+  public  CertificationId:number;
+  public  ProfileId:number;
+  public  ProviderId:number;
+  public  CertificationName: string;
+  public  IssuedBy:string;
+  public  YearOfAchievement:string;
+  public  ImageUrl:number;
+}
+
+export class ProfileExperience
+{
+  public  ExperienceId:number;
+  public  ProfileId:number;
+  public  JobTitle: string;
+  public  JobLocation:string;
+  public  CompanyName:string;
+  public  Description:string;
+  public  StartDate:string;
+  public  EndDate:string;
+}
+
+export interface Certification {
+  UserId: string;
+  CertificationId: number;
+  ProfileId: string;
+  ProviderId: string;
+  IsCertified: boolean;
+  CertificationName: string;
+  IssuedBy: string;
+  YearOfAchievement: string;
+  LifeTime: string;
+  ImageUrl: string;
+}
+
+export class Provider
+{
+ProviderId:number;
+ProviderName:string;
+}
+
+
+
+export class processProfiles
+{
+  sfile : File;
+  profiles : any;
+}
+
+export class selectedFile
+{
+  sfile : File;
+  bdata : any;
+}
+
+export class CandidateExp {
+  public RecordId: number;
+  public ProfileId: number;
+  public JobId: number;
+  public Experience: number;
+  public MinExperienceId: number;
+  public MaxExperience: number;
+  public IsMissing: number;
+}
+
+export class InsertRole {
+
+  public ProfileId: Number;
+  public ProfileTitle: string;
+  public Industry: string;
+  public PositionType: string;
+  public Category: string;
+  public TitleInfo: string;
+  public XmlKeyResponses: KeyRole[] = [];
+}
+
+export class KeyRole {
+  public KeyResponsebilityId: number;
+  public KeyMinExperienceId: number;
+  public KeyMaxExperienceId: number;
 }
