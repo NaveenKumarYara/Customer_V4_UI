@@ -400,10 +400,10 @@ export class JobdetailsService {
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('x-access-token', sessionStorage.getItem('token'));
     return this._http.post(this.baseUrll1+url, body, { headers: headers })
-      .map((res: Response) => res.json())
-      .catch((error: any) => {
-        return Observable.throw(error.json());
-      });
+    .map((res: Response) => res.json())
+    .catch((error: any) => {
+      return Observable.throw(error.json());
+    });
   }
 
 

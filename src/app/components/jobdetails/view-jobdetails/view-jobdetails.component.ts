@@ -188,16 +188,14 @@ export class ViewJobdetailsComponent implements OnInit {
       }, 2000);
     } else {
       localStorage.removeItem('DisplayUpload');
-      const abc = {
-        'animal': 'panda',
-        'JobId': this.jobid
-      };
       const dialogRef = this.dialog.open(UploadProfilesComponent,
         {
           width: '65vw',
           position: { right: '0px' },
           height: '100vh',
-          data: abc,
+          data: {
+            jobId: this.jobid
+          },
           panelClass:'upload__resume__modal'
           // closeOnNavigation:false,
           // disableClose:true
