@@ -39,6 +39,7 @@ export class UploadProfilesComponent implements OnInit {
   selectedeIndex = -1;
   selectedcIndex = -1;
   TitleId:any=0;
+  Inprogress : boolean = false;
   EditSkill:boolean=false;
   EditDomain:boolean=false;
   EditE:boolean=false;
@@ -1323,6 +1324,12 @@ GetJobRequiredDomain(PId) {
     
   }
 
+  DeleteRecord(i)
+  {
+    this.uploader.removeFromQueue(i);
+    this.selectedFiles.slice(i);
+  }
+
   uploadMultiple(formData, DocId) {
     if(this.sdetails.planId !==  "enterprise" || this.sdetails.planId === undefined )
     {
@@ -1524,6 +1531,7 @@ GetJobRequiredDomain(PId) {
 
   UploadAction(index, data, type) {
     this.spinner.show();
+    this.Inprogress = true;
     if (type == 2) {
       data.isPublic = true;
     }
@@ -1537,9 +1545,11 @@ GetJobRequiredDomain(PId) {
           this.jobdetailsservice.byteStorage(a, 'ProfileApi/api/ParseResume').subscribe(data => {  // 'api/JobDescriptionParse'
             if (data) {
               this.spinner.hide();
+              this.Inprogress = false;
               // alert("asdasdasdas");
               this.tempuploadResponse[index].ResumeStatus = "Requested";
               this.uploadRes[index].ResumeStatus = "Requested";
+             
             }
           });
         }
@@ -1558,10 +1568,12 @@ GetJobRequiredDomain(PId) {
             this.spinner.hide();          
             this.jobdetailsservice.byteStoragePrivate(a, 'ProfileApi/api/ParseResume').subscribe(data => { // 'api/JobDescriptionParse'
               if (data) {
+                this.Inprogress = false;
                 //this.spinner.hide();
                 // alert("asdasdasdas");
                 this.tempuploadResponse[index].ResumeStatus = "Arytic_prof";
                 this.uploadRes[index].ResumeStatus = "Arytic_prof";
+                
               }
             });
           }
@@ -1573,6 +1585,7 @@ GetJobRequiredDomain(PId) {
         this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateAction').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
             this.spinner.hide();
+            this.Inprogress = false;
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
             this.uploadRes[index].ResumeStatus = "ProfileAsscociated";
 
@@ -1584,6 +1597,7 @@ GetJobRequiredDomain(PId) {
         this.jobdetailsservice.byteStorage(data, 'ProfileApi/api/UpdateActionPublic').subscribe(data => {  // 'api/JobDescriptionParse'
           if (data) {
             this.spinner.hide();
+            this.Inprogress = false;
             this.tempuploadResponse[index].ResumeStatus = "ProfileAsscociated";
             this.uploadRes[index].ResumeStatus  = "ProfileAsscociated";
           }
