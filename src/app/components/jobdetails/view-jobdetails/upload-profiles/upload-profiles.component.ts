@@ -58,8 +58,10 @@ export class UploadProfilesComponent implements OnInit {
   searchprofiles: Profile[];
   isPublic: any = false;
   Jskills:any=[];
+  JMskills:any=[];
   FitDetails: any;
   Jdomains:any=[];
+  JMdomains:any=[];
   public profileStatus: ProfileStatus[] = [];
   formDAtaList: Array<FormData> = [];
   formData = new FormData();
@@ -644,7 +646,7 @@ Job = {
           this.GetMatchingPercentage(this.CProfileId);
           this.GetJobRequiredDomain(this.CProfileId);
           this.GetCandidateJobFitResult(this.CProfileId);
-
+          this.GetJobMatchedDomain(this.CProfileId);
           }
         })
 
@@ -671,6 +673,7 @@ Job = {
      {
        this.EditSkill = false;
        this.GetMatchingPercentage(this.CProfileId);
+       this.GetJobMatchedSkills(this.CProfileId);
        this.GetJobRequiredSkills(this.CProfileId);
        this.GetCandidateSkillFitResult(this.CProfileId,jobId);
 
@@ -1166,8 +1169,7 @@ GetAllProfileDetails(ProfileId)
                 this.GetMatchingPercentage(ProfileId);
                 this.GetJobRequiredSkills(ProfileId);
                 this.GetJobRequiredDomain(ProfileId);
-                this.GetCandidateSkillFitResult(ProfileId,this.data.jobId);
-                this.GetCandidateJobFitResult(ProfileId);
+                
                 this.GetProfileRoleFitDetails();
                 this.CProfileId = ProfileId;
                 this.uploadRes.find(obj => {
@@ -1251,17 +1253,53 @@ GetAchievements(Id)
 
 GetJobRequiredSkills(PId) {
   const jobId = this.data.jobId;
+  this.GetCandidateSkillFitResult(PId,this.data.jobId);
   return this._service.GetService('ProfileAPI/api/GetCandidateMissingSkills?JobId=' + jobId + '&ProfileId=', PId).subscribe(skills => {
-    this.Jskills =  skills.filter(
-      (element, i) => i === skills.indexOf(element)
-    );;
+    if(skills.length > 0)
+    {
+      this.Jskills =  skills.filter(
+        (element, i) => i === skills.indexOf(element)
+      );
+    }
+    else
+    {
+      this.Jskills = [];
+      this.GetJobMatchedSkills(PId);
+     
+    }
+  })
+}
+
+GetJobMatchedSkills(PId) {
+  const jobId = this.data.jobId;
+  return this._service.GetService('ProfileAPI/api/GetCandidateMatchedSkills?JobId=' + jobId + '&ProfileId=', PId).subscribe(skills => {
+    this.JMskills =  skills;
+    this.GetCandidateSkillFitResult(PId,this.data.jobId);
   })
 }
 
 GetJobRequiredDomain(PId) {
   const jobId = this.data.jobId;
   return this._service.GetService('ProfileAPI/api/GetCandidateMissingDomains?jobId='+ jobId+ '&ProfileId=', PId).subscribe(domain => {
-      this.Jdomains = domain;  
+    this.GetCandidateJobFitResult(PId);
+    if(domain.length>0)
+    {
+      this.Jdomains = domain; 
+    }
+    else
+    {
+       this.Jdomains = [];
+       this.GetJobMatchedDomain(PId);
+    }
+   
+   })
+ }
+
+ GetJobMatchedDomain(PId) {
+  const jobId = this.data.jobId;
+  return this._service.GetService('ProfileAPI/api/GetCandidateMatchedDomains?jobId='+ jobId+ '&ProfileId=', PId).subscribe(domain => {
+      this.JMdomains = domain; 
+      this.GetCandidateJobFitResult(PId); 
    })
  }
 
