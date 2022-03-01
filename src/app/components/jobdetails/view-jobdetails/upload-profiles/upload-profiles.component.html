@@ -53,16 +53,13 @@
         </div> -->
         <div *ngIf="data?.ResumeStatus === 'Successful'">
           <span class="notes text-success m-0">Profile Parsed and Fetched details Successfully!!!</span>
-          <button type="button" class="btn btn-sm" (click)="SaveCandidate()" aria-label="Close">
-            <span aria-hidden="true">Save Profile</span>
-          </button>
         </div>
         <div *ngIf="data.ResumeStatus === 'Error'">
             <p class="notes text-danger m-0">Error in Parsing and Uploading Profile!!!</p>
           </div>
         <div *ngIf="data.ResumeStatus === 'Associated'">
           <p class="notes text-primary m-0">Already Associated for Same Job!!!</p>
-          <button type="button" class="btn btn-sm" (click)="SaveCandidate()"  aria-label="Close">
+          <button type="button" class="btn btn-sm"  (click)="CanceledAction(data,i)" *ngIf="!Inprogress"  aria-label="Close">
             <span aria-hidden="true">Skip</span>
           </button>
         </div>
@@ -82,20 +79,20 @@
           <p class="text-danger m-0">Profile is already existed and submitted for other job. Do you want to
             attach
             or submit to this job?</p>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,1)">
+          <a href="javascript:void(0)" (click)="UploadAction(i,data,1)" *ngIf="!Inprogress">
             <span class="badge badge-light ptb-3rl-10">Yes</span>
           </a>
-          <a href="javascript:void(0)" (click)="CanceledAction(data,i)">
+          <a href="javascript:void(0)" (click)="CanceledAction(data,i)" *ngIf="!Inprogress">
             <span class="badge badge-light ptb-3rl-10">No</span>
           </a>
         </div>
         <div *ngIf="data.ResumeStatus == 'Arytic'">
           <p class="text-primary m-0">This is an arytic profile which cant be updated. Do you want to request
             profile from Arytic?</p>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,3)">
+          <a href="javascript:void(0)" (click)="UploadAction(i,data,3)" *ngIf="!Inprogress">
             <span class="badge badge-light ptb-3rl-10">Send Request</span>
           </a>
-          <a href="javascript:void(0)" (click)="UploadAction(i,data,2)" *ngIf="this.sdetails?.planId ===  'enterprise'">
+          <a href="javascript:void(0)" (click)="UploadAction(i,data,2)" *ngIf="this.sdetails?.planId ===  'enterprise' && !Inprogress">
             <span class="badge badge-light ptb-3rl-10">Make it private and Upload</span>
           </a>
         </div>
