@@ -105,7 +105,7 @@
   </div> 
   <div class="main__section" *ngIf="uploadRes.length>0">
     <ng-container *ngFor="let data of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="j<1  && data!=null ">
+      <div class="row flex flex-wrap" *ngIf="j<1  && data!=null && data?.ResumeStatus === 'Successful'">
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
             <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4> 
@@ -1461,14 +1461,14 @@
                       <div class="box__table">
                         <div class="row form__sub__row flex flex-wrap flex-align-center">
                           <div class="col-sm-5 form__sub__col">
-                            <input type="text" class="form-control" aria-label="text"  formControlName="StartDate"
+                            <input type="text" class="form-control" aria-label="text" bsDatepicker   [bsConfig]="{dateInputFormat: 'MM-YYYY' ,adaptivePosition: true}" (onShown)="onOpenCalendar($event)"  formControlName="StartDate"
                             placeholder="Start" value="{{exp?.StartDate | date: 'MM-yyyy'}}">
                           </div>
                           <div class="col-sm-2 form__sub__col text-center">
                             To
                           </div>
                           <div class="col-sm-5 form__sub__col">
-                            <input type="text" formControlName="EndDate" aria-label="text"
+                            <input type="text" formControlName="EndDate" aria-label="text" bsDatepicker   [bsConfig]="{dateInputFormat: 'MM-YYYY',adaptivePosition: true }" (onShown)="onOpenCalendar($event)"
                             placeholder="End" class="form-control" value="{{exp?.EndDate | date: 'MM-yyyy'}}">
                           </div>
                         </div>

@@ -17,6 +17,8 @@ import { FileUploader } from 'ng2-file-upload';
 import { CustStatusRes } from '../../models/ScheduleType';
 import { ApiService } from '../../../../shared/services';
 import { MatchingParameterDetails } from '../../models/jobdetailsprofile';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { setTheme } from 'ngx-bootstrap/utils';
 import { promise } from 'protractor';
 import { resolve } from 'url';
 import { c } from '@angular/core/src/render3';
@@ -184,6 +186,8 @@ Job = {
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
+
+      setTheme('bs3');
     this.customerName = JSON.parse(sessionStorage.getItem('userData'));
     this.displayprofiles = JSON.parse(localStorage.getItem('DisplayUpload'));
     this.customerId = this.customerName.CustomerId;
@@ -1294,6 +1298,13 @@ GetJobRequiredDomain(PId) {
    
    })
  }
+
+ onOpenCalendar(container) {
+  container.monthSelectHandler = (event: any): void => {
+      container._store.dispatch(container._actions.select(event.date));
+  };
+  container.setViewMode('month');
+}
 
  GetJobMatchedDomain(PId) {
   const jobId = this.data.jobId;

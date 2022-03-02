@@ -67,6 +67,9 @@ import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { setTheme } from 'ngx-bootstrap/utils';
+setTheme('bs3');
 @NgModule({
   imports: [
     CommonModule,
@@ -81,6 +84,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgxMaskModule,
     RatingModule,
     ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
     NgSelectModule,
     SharedModule,
     HttpClientModule,
