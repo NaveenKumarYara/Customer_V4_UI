@@ -1107,7 +1107,6 @@ GetMatchingPercentage(profileId): any {
           }
         });
         this.skillfitcheck = unique_c  ;
-        debugger
         if (this.skillfitcheck.length > 0) {
           this.skillfitcheck.forEach((a) => {
             var color = Math.floor(0x1000000 * Math.random()).toString(16);
