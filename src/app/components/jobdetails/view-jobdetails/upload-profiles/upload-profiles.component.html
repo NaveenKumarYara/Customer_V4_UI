@@ -1095,8 +1095,11 @@
                         <div class="box__table">{{profileDetails?.UserName}}</div>
                       </ng-container>
                       <ng-container *ngIf="editPersonalDetails">
-                        <div class="box__table">
-                          <input type="text"  value="{{profileDetails?.UserName}}" readonly class="form-control">
+                        <div class="box__table" *ngIf="profileDetails?.UserName.substring(0, 7) === 'noemail'">
+                          <input type="text"  formControlName="Email"  value="{{profileDetails?.UserName}}" class="form-control">
+                        </div>
+                        <div class="box__table"  *ngIf="profileDetails?.UserName.substring(0, 7) != 'noemail'">
+                          <input type="text"  formControlName="Email"  value="{{profileDetails?.UserName}}" readonly class="form-control">
                         </div>
                       </ng-container>
                     </div>
@@ -2355,7 +2358,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Size</th>
-                  <th>Action</th>
+                  <th *ngIf="!isProcessing">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -2374,7 +2377,7 @@
                       </div>
                     </div>
                   </td> -->
-                  <td>
+                  <td *ngIf="!isProcessing">
                     <button type="button" class="btn btn-danger btn__delete btn-xs" (click)="DeleteRecord(i)">
                       <span class="glyphicon glyphicon-trash"></span>
                     </button>
