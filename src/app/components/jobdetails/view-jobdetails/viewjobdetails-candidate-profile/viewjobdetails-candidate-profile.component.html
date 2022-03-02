@@ -395,27 +395,37 @@
           <!--Reference Icons-->
           <!--With dialog-->
 
-          <a href="#" class="active" title="Education">
+          <a href="javascript:void(0)" class="active" title="Education">
             <span class="jdv-smart-icon jdv-icon-education">Icon</span>
             <span>Education</span>
           </a>
 
-          <a href="#" title="Employment">
+          <a href="javascript:void(0)"  title="Employment">
             <span class="jdv-smart-icon jdv-icon-employment">Icon</span>
             <span>Employment</span>
           </a>
 
-          <a href="#" title="Reference">
-            <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
-            <span>Reference</span>
-          </a>
+          <ng-container  *ngIf="profile?.DiscResult !== '0' && (profile.CompanyName === null || profile.CompanyName === companyname)">
+            <a href="javascript:void(0)" class="active" title="Reference">
+              <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
+              <span>Reference</span>
+            </a>
+          </ng-container>
 
-          <a href="#" title="Work Autherization">
+          <ng-container     *ngIf="profile?.DiscResult === '0' && (profile.CompanyName === null || profile.CompanyName === companyname)">
+            <a href="javascript:void(0)"  title="Reference"  (click)="OpenReferDialogCheck(profile?.ProfileId, profile?.UserId, profile)">
+              <span class="jdv-smart-icon jdv-icon-reference">Icon</span>
+              <span>Reference</span>
+            </a>
+          </ng-container>
+      
+
+          <a href="javascript:void(0)" title="Work Autherization">
             <span class="jdv-smart-icon jdv-icon-authroization">Icon</span>
             <span>Work Auth</span>
           </a>
 
-          <a href="#" title="WFH">
+          <a href="javascript:void(0)"  title="WFH">
             <span class="jdv-smart-icon jdv-icon-wfh">Icon</span>
             <span>WFH</span>
           </a>
