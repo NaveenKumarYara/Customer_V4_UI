@@ -191,7 +191,7 @@
             <!--Email-->
             <div class="dropdown">
               <div class="tooltip1">
-                <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'" class="dropdown-toggle info-dropdown"
+                <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'" class="dropdown-toggle info-dropdown"
                   type="button" data-toggle="dropdown" >                  
                   <img 
                     src="../../../../../assets/images/Yes-Email.svg" 
@@ -210,12 +210,12 @@
                       )" 
                   />
                 </ng-container>
-                <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
+                <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
                   <img src="../../../../../assets/images/No-Email-Icon.svg" height="16" alt="email" />
                 </ng-container>
                 <div class="bottom1">
                   <ul class="custom_dropdown-menu">
-                    <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'esolvit'">
+                    <li *ngIf="!profile?.NoEmail && profile.Email.substring(0, 7) != 'noemail'">
                       <a class="email-overflow" href="javascript:void(0)" title="{{ profile.Email }}" *ngIf="
                           (profile?.ResponseStatusId <= 4 || profile?.ResponseStatusId == 8) &&
                             profile?.UserId > 0 &&
@@ -848,7 +848,7 @@
             </a>
           </li>
           <ng-template #elseBlock>
-            <ng-container *ngIf="profile.Email.substring(0, 7) == 'esolvit'">
+            <ng-container *ngIf="profile.Email.substring(0, 7) == 'noemail'">
               <li  tooltip="Email not yet provided to send email." placement="left">
                 <a
                   href="javascript:void(0)"
@@ -883,7 +883,7 @@
                 </a>
               </li>
             </ng-container>
-            <ng-container *ngIf="profile.Email.substring(0, 7) != 'esolvit'">
+            <ng-container *ngIf="profile.Email.substring(0, 7) != 'noemail'">
               <li tooltip="Start email Conversation with candidate." placement="left">
                 <a href="javascript:void(0)" (click)="
                     OpenSendEmailDialog(
