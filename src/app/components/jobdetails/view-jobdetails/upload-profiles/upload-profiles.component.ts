@@ -197,7 +197,7 @@ Job = {
       url: URL,
       disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       formatDataFunctionIsAsync: true,
-      allowedFileType: ['image', 'pdf','doc'],
+      allowedFileType: ['pdf','doc'],
       
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
@@ -1381,7 +1381,7 @@ GetJobRequiredDomain(PId) {
   DeleteRecord(i)
   {
     this.uploader.removeFromQueue(i);
-    this.selectedFiles.slice(i);
+    this.selectedFiles.splice(i, 1);
   }
 
   uploadMultiple(formData, DocId) {

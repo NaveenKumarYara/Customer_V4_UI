@@ -2337,7 +2337,7 @@
                 <a href="javascript:void(0)">
                   <span class="alert-success">
                     Uploaded
-                    <span class="badge badge-light">{{selectedFiles.length}}</span>
+                    <span class="badge badge-light">{{uploader.queue.length}}</span>
                   </span>
                 </a>
                 <!-- <a href="javascript:void(0)">
@@ -2387,8 +2387,8 @@
                 </tr>
               </tbody>
             </table>
-            <button class="btn btn-primary pull-right" *ngIf="!isProcessing && selectedFiles.length>0 && selectedFiles.length<5" (click)="processResumes()">Proceed</button>
-            <button class="btn btn-primary pull-right" *ngIf="isProcessing && selectedFiles.length>0 && selectedFiles.length<5">           
+            <button class="btn btn-primary pull-right" *ngIf="!isProcessing && selectedFiles.length>0 && uploader.queue.length<6" (click)="processResumes()">Proceed</button>
+            <button class="btn btn-primary pull-right" *ngIf="isProcessing && selectedFiles.length>0 && uploader.queue.length<6">           
               <span>Processing...</span>
             </button>
             </div>
