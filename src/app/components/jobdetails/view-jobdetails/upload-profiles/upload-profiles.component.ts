@@ -679,7 +679,6 @@ Job = {
        this.GetMatchingPercentage(this.CProfileId);
        this.GetJobMatchedSkills(this.CProfileId);
        this.GetJobRequiredSkills(this.CProfileId);
-       this.GetCandidateSkillFitResult(this.CProfileId,jobId);
 
      }
       });
@@ -1100,9 +1099,17 @@ GetMatchingPercentage(profileId): any {
   this._service.GetService('ProfileAPI/api/GetSkillFitDetailsInfo?profileId=', ProfileId + '&jobId=' + jobId)
     .subscribe(
       data3 => {
-        this.skillfitcheck = data3;
-        if (data3.length > 0) {
-          data3.forEach((a) => {
+        
+        let unique_c = [];
+        data3.forEach((c) => {
+          if (!unique_c.includes(c)) {
+            unique_c.push(c);
+          }
+        });
+        this.skillfitcheck = unique_c  ;
+        debugger
+        if (this.skillfitcheck.length > 0) {
+          this.skillfitcheck.forEach((a) => {
             var color = Math.floor(0x1000000 * Math.random()).toString(16);
             var r = '#' + ('000000' + color).slice(-6);
             this.Skill.datasets[0].backgroundColor.push(r);
@@ -1278,7 +1285,6 @@ GetJobMatchedSkills(PId) {
   const jobId = this.data.jobId;
   return this._service.GetService('ProfileAPI/api/GetCandidateMatchedSkills?JobId=' + jobId + '&ProfileId=', PId).subscribe(skills => {
     this.JMskills =  skills;
-    this.GetCandidateSkillFitResult(PId,this.data.jobId);
   })
 }
 
