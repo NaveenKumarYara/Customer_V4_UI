@@ -50,6 +50,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
 
 
    OpenShareJobDialog() {
+    this.dialog.closeAll(); 
     const sharedRef = this.dialog.open(ShareJobComponent,
       {
          // width: '1000px',
@@ -57,7 +58,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
         // height : '750px',
         data: {
           animal: 'panda',
-          JobId: this.jobid
+          JobId:  this.jobid
 
         }
       }
@@ -72,6 +73,7 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
+      debugger
       let params = new HttpParams();
       params = params.append('jobId', this.jobid.toString());
       params = params.append('userId', '3');
@@ -92,7 +94,6 @@ PopulateJobCompleteness() {
 }
 PopulateJobComments () {
   return this.jobdetailsservice.getJobDetailsComments(this.jobid).subscribe(res => {
-    debugger
     this.jobComments = res;
   });
 
