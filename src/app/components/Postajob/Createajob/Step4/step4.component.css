@@ -131,6 +131,22 @@
   margin-top: -5px;
 }
 
+.smart-job-card .jdv-key-section .col__container.beginner {
+  border-left-color:#2ae903
+}
+
+.smart-job-card .jdv-key-section .col__container.orange {
+  border-left-color:#eda622
+}
+
+.smart-job-card .jdv-key-section .col__container.blue {
+  border-left-color: #6262ff
+}
+
+.smart-job-card .jdv-key-section .col__container.teal {
+  border-left-color:#028cba
+}
+
 .smart-job-card .jdv-key-section .col__container::before {
   display: none;
 }
