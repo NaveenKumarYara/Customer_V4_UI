@@ -2717,6 +2717,7 @@
   padding: 0 10px;
 }
 
+
 .smart-job-card .address {
   display: inline-block;
   width: 90px;
@@ -2751,6 +2752,18 @@
   border-radius: 8px;
   border-left: 4px solid #2fc495;
   position: relative;
+}
+
+.smart-job-card .jdv-key-section .col__container.teal {
+  border-left-color:#028cba
+}
+
+.smart-job-card .jdv-key-section .col__container.orange {
+  border-left-color:#eda622
+}
+
+.smart-job-card .jdv-key-section .col__container.blue {
+  border-left-color: #6262ff
 }
 
 .smart-job-card .jdv-skills .col-container {
@@ -2982,10 +2995,11 @@
 
 .smart-job-card .two-grid-icon .row .row .col-sm-6 {
   border-left: 0;
+  padding: 0 -7px;
 }
 
 .smart-job-card .two-grid-icon .row .row .col-sm-6 h4 {
-  font-size: 14px;
+  font-size: 12px;
   color: #6e819e;
   font-weight: 600;
   margin: 0;
@@ -2994,7 +3008,7 @@
 .smart-job-card .two-grid-icon .row .row .col-sm-6 h4 span {
   display: block;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .smart-job-card.jdv-listing .jdv-company-profile {
@@ -3081,3 +3095,4 @@
   font-size: 14px;
   color: #2fc495;
 }
+
