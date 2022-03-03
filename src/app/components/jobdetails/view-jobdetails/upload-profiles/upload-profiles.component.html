@@ -104,8 +104,8 @@
  
   </div> 
   <div class="main__section" *ngIf="uploadRes.length>0">
-    <ng-container *ngFor="let data of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="j<1  && data!=null && data?.ResumeStatus === 'Successful'">
+    <ng-container *ngFor="let dat of uploadRes; let j = index">
+      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
             <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4> 

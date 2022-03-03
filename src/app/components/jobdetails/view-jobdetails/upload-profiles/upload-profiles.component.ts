@@ -867,7 +867,7 @@ selectPreviousCandidate() {
     this.currentRecordIndex = 0;
   }
   this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
-  this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
+  this.GetProfileId(this.uploadRes[this.currentRecordIndex].MailId);
 }
 
 selectNextCandidate() {
@@ -877,7 +877,7 @@ selectNextCandidate() {
     this.currentRecordIndex = this.processedProfiles.length - 1;
   }
   this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];
-  this.GetProfileId(this.selectedCandidate.ContactInformation.EmailAddresses[0]);
+  this.GetProfileId(this.uploadRes[this.currentRecordIndex].MailId);
   
 }
 
@@ -1208,7 +1208,9 @@ GetProfileDetails(Id)
     this.uploadRes[objIndex].FirstName = this.profileDetails.FirstName;
     this.uploadRes[objIndex].LastName = this.profileDetails.LastName;
     this.uploadRes[objIndex].ProfileTitle = this.profileDetails.ProfileTitle;
-   
+    this.uploadRes[objIndex].ResumeStatus;  
+    this.selectedCandidate =  this.processedProfiles.find((p => p == objIndex)); 
+    this.currentRecordIndex = objIndex;
     // this.profileEdit = true;
     //this.flashcardInputExpanded = true;
   })
@@ -1476,6 +1478,14 @@ GetJobRequiredDomain(PId) {
           this.uploadResponse = data;
           this.processedProfiles.push(this.uploadResponse[0].ResumeData);
           this.uploadRes.push(this.uploadResponse[0]);
+          if(this.selectedFiles.length === this.uploadRes.length)
+          {
+            this.isProcessing = false; 
+            this.haveProfiles = true;
+            this.currentRecordIndex =0;
+            this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];  
+            this.GetAllProfileDetails(this.uploadResponse[0].ProfileId);
+          }
           if (this.uploadResponse[0].ResumeStatus != null) {
             // this.profileStatus[this.fileCount].percentage =this.profileStatus[this.fileCount].percentage  + this.slice;
             this.fileCount = this.fileCount + 1;
@@ -1509,21 +1519,14 @@ GetJobRequiredDomain(PId) {
               // error in uploading profiles!
             }
   
-          }
+          }                 
   
           // setTimeout(() => {
           //   this.toastr.dismissToast;
           // }, 3000);
         }
 
-        if(this.selectedFiles.length === this.uploadRes.length)
-        {
-          this.isProcessing = false; 
-          this.haveProfiles = true;
-          this.currentRecordIndex =0;
-          this.selectedCandidate = this.processedProfiles[this.currentRecordIndex];  
-          this.GetAllProfileDetails(this.uploadResponse[0].ProfileId);
-        }
+       
         //   else if(data === null){
         //     this.toastr.warning('Email Not Exists', 'Oops!');
         //     this.spinner.hide();
