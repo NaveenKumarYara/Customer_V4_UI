@@ -636,6 +636,10 @@
             </div>
           </div>
         </ng-container>
+        <div class="smart-card-progress-bar  no-interview-status flex flex-align-center flex-justify-center" *ngIf="profile?.ResponseStatusId != 7">
+          <img src="../../../../../assets/images/interview-status.png" alt="">
+          No Interview Status Available
+        </div>
         <div class="smart-card-progress-bar" *ngIf="profile?.ResponseStatusId === 7">
           <h3>Intverview Status</h3>
           <div class="row flex flex-justify-center flex-wrap">
