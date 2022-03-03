@@ -2136,3 +2136,10 @@ textarea {
   .disabled:hover {
     cursor:not-allowed
  }
+
+ .no-interview-status  {
+    color: #6a7e9c;
+ }
+ .no-interview-status img {
+    margin-right: 10px;
+}
