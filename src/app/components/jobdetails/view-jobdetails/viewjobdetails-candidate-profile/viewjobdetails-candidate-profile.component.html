@@ -643,10 +643,16 @@
         <div class="smart-card-progress-bar" *ngIf="profile?.ResponseStatusId === 7">
           <h3>Intverview Status</h3>
           <div class="row flex flex-justify-center flex-wrap">
-            <div class="col-sm-3 col active">
-              <h4>Screening Round</h4>
-            </div>
-            <div class="col-sm-3 col active">
+            <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
+              <div class="col-sm-3 col  active" *ngIf="i === 'Technical'">
+                <h4>{{i}}</h4>
+              </div>
+              <div class="col-sm-3 col in-progress" *ngIf="i === 'Screening'">
+                <h4>{{i}}</h4>
+              </div>
+            </ng-container>
+           
+            <!-- <div class="col-sm-3 col active">
               <h4>Technical Round</h4>
             </div>
             <div class="col-sm-3 col in-progress">
@@ -654,7 +660,7 @@
             </div>
             <div class="col-sm-3 col">
               <h4>HR Round</h4>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
