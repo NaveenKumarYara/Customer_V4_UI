@@ -47,5 +47,9 @@ export class RadarChartLargeComponent implements OnInit {
     this.chart.update();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setInterval(() => {
+      this.chart.update();
+  }, 1000);
+  }
 }
