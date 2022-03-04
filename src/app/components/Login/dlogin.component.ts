@@ -26,6 +26,7 @@ export class dLoginComponent {
   currentURL = '';
   loginform: any;
   customerId: any;
+  captchahide:boolean=false;
   myRecaptcha = new FormControl(false);
   companyLogo: any;
   DomainUrl: any;
@@ -354,6 +355,12 @@ export class dLoginComponent {
 
   ngOnInit() {
     this.show = false;
+    var url = window.location.hostname;
+    if(url.includes('localhost') || url.includes('customer-dev'))
+    {
+     this.captchahide = true;
+     this.myRecaptcha=new FormControl(true);
+    }
     this.preId = sessionStorage.getItem('Preid');
     this.cid = sessionStorage.getItem('Cid');
     this.CId = sessionStorage.getItem('CId');

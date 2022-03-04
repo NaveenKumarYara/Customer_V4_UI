@@ -53,7 +53,7 @@
                               placeholder="Password" [formControl]="loginform.controls['Password']">
                            <span class="glyphicon glyphicon-eye-open"></span>
                         </div>
-                        <div>
+                        <div *ngIf="!captchahide">
                            <recaptcha [formControl]="myRecaptcha"></recaptcha>
                         </div>
                         <br />
