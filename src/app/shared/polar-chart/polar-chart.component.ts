@@ -45,8 +45,12 @@ export class PolarChartComponent implements OnInit, OnChanges {
         },
       },
     });
-    this.chart.data = this.polarChartData;
-    this.chart.update();
+ 
+    setInterval(()=>{
+      this.chart.data = this.polarChartData;
+      this.chart.update();
+    },1000)
+ 
   }
 
   ngOnInit() {}

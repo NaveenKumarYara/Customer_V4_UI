@@ -1107,8 +1107,10 @@ GetMatchingPercentage(profileId): any {
           }
         });
         this.skillfitcheck = unique_c  ;
-        if (this.skillfitcheck.length > 0) {
-          this.skillfitcheck.forEach((a) => {
+        if (unique_c.length > 0) {
+          this.Skill.labels=[];
+          this.Skill.datasets[0].data=[];
+          unique_c.forEach((a) => {
             var color = Math.floor(0x1000000 * Math.random()).toString(16);
             var r = '#' + ('000000' + color).slice(-6);
             this.Skill.datasets[0].backgroundColor.push(r);
