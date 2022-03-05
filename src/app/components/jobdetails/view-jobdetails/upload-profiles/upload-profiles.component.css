@@ -446,3 +446,31 @@ top: 50px;
   text-overflow: ellipsis;
   max-width: 5000px;
 }
+
+
+.modal.fade {
+  z-index: 10000000 !important;
+}
+
+.modal-backdrop {
+  /* bug fix - no overlay */    
+  display: none;    
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* z-index: 1040; */
+  /* background-color: #000; */
+}
+
+
+
+.modal .modal-body {    
+  overflow-y: auto;
+  max-height: 450px;
+}

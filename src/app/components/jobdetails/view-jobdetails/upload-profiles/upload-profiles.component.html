@@ -2290,15 +2290,17 @@
   </ngx-spinner>
   <div class="top__container__before flex flex-wrap flex-align-center">
     <h3 mat-dialog-title class="modal-title">Upload Profiles</h3>
+    
     <button type="button" class="close" mat-button mat-dialog-close data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">×</span>
     </button>
+   
   </div>
   <mat-dialog-content class="mat-typography vh-100 s-none" *ngIf="loaddata">
     <!--Tab View-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ptb-24">
       <div class="card manage-uploads manage-upload-custom clearfix">
-  
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Tips for Electronic Resumes Do's and Dont's</a>
         <div class="tab-content">
           <div id="uploadProfiles" class="tab-pane fade active in">
             <div class="upload-border">
@@ -2529,10 +2531,465 @@
       </div>
       <!-- .card.statistics -->
     </div>
+
+    <div class="modal fade" id="myModal" role="dialog" data-backdrop="false">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" #closebutton class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Tips for Electronic Resumes</h4>
+          </div>
+          <div class="modal-body">
+            <div>
+               <ol class="list linkable">
+                  <li id="never-use-pdf">
+                     <h4 class="bold">NEVER USE PDF. NEVER USE APPLE PAGES.</h4>
+                     <p class="bold">Your resume should be in Microsoft™ Word format.</p>
+                     <p>Recruiters want resumes in Microsoft Word, and they hate PDF resumes. Why? BECAUSE PDF RESUMES CANNOT BE EDITED. Many resume systems cannot convert PDF, HTML, Open Office, Apple Pages resumes and will discard them. If you do not want to use Microsoft Word, use RTF or &quot;Save as Text&quot; instead.</p>
+                     <p>The PDF standard is a &quot;broken&quot; standard. Text cannot be correctly extracted from MANY, MANY PDF files. As a result, if you use a PDF resume, there is a non-trivial chance that your resume will be unusable.</p>
+                     <p>If you use PDF so that a recruiter will not be able to edit your resume, you are guilty of incredibly bad thinking. Why? Because if a recruiter can sharpen up your resume and help you get hired, isn’t that a good thing?</p>
+                  </li>
+                  <li id="looks-are-deceiving">
+                     <h4 class="bold">Looks are deceiving.</h4>
+                     <p>Plain is good. Fancy is bad. Therefore:</p>
+                     <ol class="list" type="a">
+                        <li id="no-headers-or-footers">
+                           <h5 class="bold">Do not use document Headers or Footers. Do not put <i>anything</i> into Headers or Footers.</h5>
+                           <p>Many resume software programs cannot read information in headers. If you put your contact information into a header, it may never get read by the software, and your resume will not contain information about who you are and how you can be reached.</p>
+                           <p>Headers and Footers also present another serious problem. The problem with footers is that when the computer reads your resume, the footer data gets inserted into the middle of whatever text spans the two pages. That means that the footer text may be inserted as garbage into critical parts of your resume.</p>
+                           <p>If you think about it, Headers and Footers are really a throwback to the days of paper resumes and black and white televisions. The purpose of Headers and Footers on a paper resume was to make sure that a recruiter always could put the pages together in order, and to make it obvious that there were supposed to be X number of pages. But that concept is completely unnecessary for electronic documents: unnecessary, and in the case of resumes, harmful.</p>
+                        </li>
+                        <li id="no-data-graphics">
+                           <h5 class="bold">Do not use graphics to represent data.</h5>
+                           <p>At best, graphics (clip art, photos, logos, anything that is a .bmp or .gif or .jpg or .png, etc.) will be ignored. Oftentimes, people put important contact data into a graphic. This data is invisible to parsing software, so their resume is useless.</p>
+                           <p>Do not use pictures or graphics to convey any textual information. (If you are a graphic artist or other artistic type, you should definitely have your electronic resume created by a non-creative type. Yes, you want to keep the stunning isual gem of a resume that you created, but remember that it is for direct human consumption and not for submission to an automatic resume processing process.)</p>
+                        </li>
+                        <li id="no-tables">
+                           <h5 class="bold">Do not use &quot;tables&quot; or multi-column formats.</h5>
+                           <p>Tables are neat and pretty. <i>To humans.</i> Unfortunately, most document conversion software cannot handle tables and will either scramble the text into an undecipherable mess, or it will space the data with extra lines that may confuse the software. Or, worst of all, all the data in the leftmost column will appear at the top of the converted resume. So this:</p>
+                           <table class="table left cell-borders indent">
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <div>2010-2017</div>
+                                       <div>2005-2010</div>
+                                       <div>2000-2005</div>
+                                    </td>
+                                    <td>
+                                       <div>Manager, Smith Corp.</div>
+                                       <div>Assistant Vice President, NotSmith Corp.</div>
+                                       <div>Officer, Big Bank</div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <p>will become this:</p>
+                           <span style="line-height:normal;white-space:normal">
+                              <pre class="codeblock" style="display:block;overflow-x:auto;padding:0.5em;color:#383a42;background:#fafafa"><code style="white-space:pre-wrap"><span><span>2010-2017
+</span></span><span>2005-2010
+</span><span>2000-2005
+</span><span> 
+</span><span>Manager, Smith Corp.
+</span><span>Assistant Vice President, NotSmith Corp.
+</span><span>Officer, Big Bank
+</span></code></pre>
+                           </span>
+                        </li>
+                        <li id="no-fields-microsoft-word">
+                           <h5 class="bold">Do not use &quot;fields&quot; in Microsoft Word.</h5>
+                           <p>Most resume conversion software cannot read anything contained in &quot;fields&quot;. So we don’t want to use &quot;fields&quot;. (If you do not know what a &quot;field&quot; is in Microsoft Word, don’t worry, you are safe.)</p>
+                        </li>
+                        <li id="no-resumes-templates">
+                           <h5 class="bold">DO NOT USE ANY RESUME TEMPLATE, ESPECIALLY ANY RESUME TEMPLATE FROM MICROSOFT.</h5>
+                           <p>Virtually all resume templates contain severe flaws such as tables (see &quot;c.&quot; above) that will render your resume an undecipherable mess.</p>
+                        </li>
+                     </ol>
+                  </li>
+                  <li id="no-different-fonts">
+                     <h4 class="bold">Never mix different font types or font sizes for data.</h4>
+                     <div class="indent">
+                        <p class="bold">WRONG:</p>
+                        <p><span style="font-size:25px">J</span>eff <span style="font-size:25px">P</span>erry</p>
+                     </div>
+                     <p>Never use small caps for lowercase letters. In Microsoft Word™, it is easy to do this by selecting &quot;small caps&quot; from the Format =&gt; Fonts menu. Do NOT do that.</p>
+                     <div class="indent">
+                        <p class="bold">WRONG:</p>
+                        <p><span style="font-variant:small-caps">Jeff Perry</span></p>
+                     </div>
+                     <p>And, never use E X P A N D E D S T Y L E S for anything, unless you want it to be a secret.</p>
+                     <p>Do not use WingDings or other clever symbols. For instance, most document converters convert this:</p>
+                     <pre>📪	phil@gmail.com</pre>
+                     <p></p>
+                     <p>as this:</p>
+                     <pre>,	phil@gmail.com</pre>
+                  </li>
+                  <li id="capitalization-matters">
+                     <h4 class="bold">Capitalization does matter.</h4>
+                     <p>Do not use all caps unless there is a good reason to do so. A good reason to do so is when writing the section headers. A bad reason to do so is when writing a city name. Capitalize your name, your employer, your job title, school names, degree names, locations (city, region, country) etc.</p>
+                  </li>
+                  <li id="formatting-matters">
+                     <h4 class="bold">EXTREMELY IMPORTANT: Change the font size to 8 point or less and see if it still reads correctly. Now, save your resume as plain text (&quot;.txt&quot;), and see if it still reads correctly.</h4>
+                     <p>Resume systems do NOT read resumes directly. They first convert the resumes into plain text, and then they read and process that plain text. So, ALWAYS make sure that you save a copy of your resume as plain text and then open that plain text and make sure that it still reads like it should, with no funky formatting problems. You may be surprised<span>…</span></p>
+                  </li>
+                  <li id="contact-info-first">
+                     <h4 class="bold">Contact info comes first.</h4>
+                     <p>If you want a job, put your contact info FIRST.</p>
+                     <p>Contact info should never be placed on just one or two lines, nor placed into columns.</p>
+                     <div class="indent">
+                        <p class="bold">WRONG:</p>
+                        <pre>Robert H. Smith • 13003 Myrtlea Lane • Houston, Texas 77099 • 713.562.7009</pre>
+                        <p class="bold">RIGHT:</p>
+                        <pre>Robert H. Smith
+13003 Myrtlea Lane
+Houston, Texas 77099
+713-562-7009
+smithy@soupandmore.com</pre>
+                     </div>
+                     <br/>
+                     <div class="indent">
+                        <p class="bold">WRONG:</p>
+                        <pre>Robert H. Smith			        Phone: 713.562.7009
+13003 Myrtlea Lane			Email: smithman@gmail.com
+Houston, Texas 77099 			Male, unmarried, no children</pre>
+                        <p class="bold">RIGHT:</p>
+                        <pre>Robert H. Smith
+13003 Myrtlea Lane
+Houston, Texas 77099
+713-562-7009
+smithman@gmail.com</pre>
+                     </div>
+                     <p>Also, NEVER provide more than one email address or one physical address or one phone number! ONE of each is all you need. More than that makes it LESS LIKELY that you will be reached by a recruiter.</p>
+                  </li>
+                  <li id="use-common-headers">
+                     <h4 class="bold">Use common header terms to start resume sections, and put them on separate lines.</h4>
+                     <p>There is one exception to this rule: contact info. Contact info does not need a header. Everything else gets a header.</p>
+                     <p>Your job objective section should start with a header that says: <code class="nohighlight">JOB OBJECTIVE</code></p>
+                     <p>Your Work History section should start with a header that says: <code class="nohighlight">WORK HISTORY</code></p>
+                     <p>Your education section should start with a header that says: <code class="nohighlight">EDUCATION</code></p>
+                     <p>If you went to college, omit your High School data -- and regardless of your education level, listing your pre- High School experience is always a bad idea.</p>
+                     <p>IMPORTANT: Do not use strange, unusual, or overly long headers. For instance, never use a header like &quot;COMMUNITY INFUSION&quot;. Is that a new type of instant coffee, or is it something important?</p>
+                     <p>SUPER IMPORTANT: Do not use other headers within a section.</p>
+                     <div class="indent">
+                        <p class="bold">WRONG:</p>
+                        <pre>WORK EXPERIENCE
+2016-present	VP, Johnson Controls, Inc., Dallas, TX. Managed a small group of highly skilled installers.
+Achievements:
+Reduced costs 20%
+Won &quot;Best Coffee Maker&quot; three months in a row
+
+2012-2016	Intern, VP, Johnson Controls, Inc., Dallas, TX.  Trained as an installer, then moved into an inside sales position for three months.
+Achievements:
+First place in &quot;Job Well Done&quot; contest
+Perfect attendance</pre>
+                        <br/>
+                        <p class="bold">Right:</p>
+                        <pre>WORK EXPERIENCE
+2016-present	VP, Johnson Controls, Inc., Dallas, TX. Managed a small group of highly skilled installers. 
+•	Reduced costs 20% 
+•	Won &quot;Best Coffee Maker&quot; three months in a row.
+
+2012-2016	Intern, VP, Johnson Controls, Inc., Dallas, TX.  Trained as an installer, then moved into an inside sales position for three months.
+•	First place in &quot;Job Well Done&quot; contest
+•	Perfect attendance</pre>
+                     </div>
+                  </li>
+                  <li id="no-columns">
+                     <h4 class="bold">Do not use &quot;columns&quot; or &quot;tables&quot; for formatting anything. (related to 2. c. above, but important enough that it deserves a second treatment). IOW, all data must read straight across the page.</h4>
+                     <p>NEVER use columns or tables to format your education or work history or any other Important piece of data on your resume. (And by the way, if it’s not important, it should not be on your resume.)</p>
+                     <p class="bold">WRONG:</p>
+                     <table class="table left cell-borders indent">
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <div>Jan. 2013 – Present</div>
+                              </td>
+                              <td>
+                                 <div>Superb Products, Inc. Parts Manager.</div>
+                                 <div>Reduced parts inventory by 10% while eliminating most out-of-stocks.</div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div>Mar. 2010 – Dec. 2012</div>
+                              </td>
+                              <td>
+                                 <div>Doug’s Truck Sales, Inc. Repairman.</div>
+                                 <div>Fixed trucks and managed the parts inventory.</div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <p>Here’s how the computer may read that:</p>
+                     <pre>Jan. 2013 – Present
+Mar. 2010 – Dec. 2012
+Superb Products, Inc.   Parts Manager.
+Reduced parts inventory by 10% while eliminating most out-of-stocks.
+Dougs Truck Sales, Inc.   Repairman.
+Fixed trucks and managed the parts inventory.
+</pre>
+                     <p><b>RIGHT:</b> (uses tabs instead of columns or tables):</p>
+                     <pre>Jan. 2013 – Present
+Superb Products, Inc.   Parts Manager.
+Reduced parts inventory by 10% while eliminating most out-of-stocks.
+
+Mar. 2010 – Dec. 2012
+Doug’s Truck Sales, Inc.   Repairman.
+Fixed trucks and managed the parts inventory.
+</pre>
+                     <p>And never, ever use newspaper column format, like this:</p>
+                     <pre>REFERENCES
+
+Bill Smith					Jane Dough
+Customer Service Manager			Store Manager
+Dillard’s Department Stores			Fredo’s Groceries, Inc.
+713-888-0998					765-999-9988
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>REFERENCES
+
+Bill Smith
+Customer Service Manager
+Dillard’s Department Stores
+713-888-0998
+
+Jane Dough
+Store Manager
+Fredo’s Groceries, Inc.
+765-999-9988
+</pre>
+                  </li>
+                  <li id="use-consistent-formatting">
+                     <h4 class="bold">Keep like data in like order.</h4>
+                     <p>Each job that you list should be described in the same order. If one job is described as<span>…</span></p>
+                     <pre>[Dates] [Position title] [Company][City], [State]
+[Description]
+</pre>
+                     <p><span>…</span> then all of the other jobs should be written in the same style.</p>
+                  </li>
+                  <li id="dont-combine-sections">
+                     <h4 class="bold">Do not combine sections.</h4>
+                     <p>Never combine several topics or sections into a single section. This is really important!</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>PROFESSIONAL AFFILIATIONS, COMMUNITY SERVICE, AWARDS, TRAINING
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>PROFESSIONAL AFFILIATIONS
+I was involved with…
+
+COMMUNITY SERVICE
+Chairman, United Way Campaign for Greater Okowekofobee County
+
+AWARDS
+President’s Quarterly Salesmanship Award, 2014
+
+TRAINING
+YMCA CPR Training for Frogs and Small Reptiles, Level I, 2016
+</pre>
+                  </li>
+                  <li id="use-company-name-words">
+                     <h4 class="bold">Always end company names with common company name words.</h4>
+                     <p><i>You</i> know that J.M. Huber is an employer company name. Unfortunately, the computer probably does not know that. The solution is to always end a company name with a company word like &quot;Inc.&quot; or &quot;Co.&quot; or &quot;Company&quot; or &quot;LLC&quot; or &quot;LLP&quot; or &quot;GmbH&quot;. So, write J.M. Huber as J.M. Huber, Inc. or J.M. Huber Co. You are not applying for a job at J.M. Huber, so they will not care.</p>
+                     <p>And yes, this rule applies to big companies as well as little companies. If you worked for IBM, write IBM Corp. &quot;Procter &amp; Gamble&quot; should be written as Procter &amp; Gamble, Inc.</p>
+                  </li>
+                  <li id="utilize-blank-lines-between-sections">
+                     <h4 class="bold">Use blank lines between sections/paragraphs, but do not use blank lines within paragraphs.</h4>
+                     <p>Always separate each Work History job and each Education school record with a blank line, and do not put blank lines within logical paragraphs. &quot;Blank line&quot; means an actual blank line placed there by your word processor program, not just visual spacing that looks like a blank line but really is not. Also, never use tables or the space bar to move to the next line. Always use the Enter key.</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>Systems Integrator / Senior Systems Administrator (Contract)
+
+May 2016 – Jun 2017
+Ablest Technologies
+
+Integrated Criminal Justice Info Systems, Maricopa County AZ
+
+Provided Enterprise Systems Security and Audit needs analysis, methodology, education, product research and recommendations for Department of Public Safety, ICJIS, and Homeland Security.
+
+Systems Integrator / Senior Systems Administrator (Contract)	Nov 2010 – Mar 2014
+
+SRA International
+Internal Revenue Service, Enterprise Systems Management Center, Austin TX &amp;amp; Washington DC	
+
+Provided security process and methodology, product analysis, and product implementation to comply with Treasury and IRS data security policies.
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>Systems Integrator / Senior Systems Administrator (Contract)
+May 2016 – Jun 2017
+Ablest Technologies
+Integrated Criminal Justice Info Systems, Maricopa County AZ
+
+Provided Enterprise Systems Security and Audit needs analysis, methodology, education, product research and recommendations for Department of Public Safety, ICJIS, and Homeland Security.
+
+Systems Integrator / Senior Systems Administrator (Contract)	
+Nov 2010 – Mar 2014
+SRA International
+Internal Revenue Service, Enterprise Systems Management Center, Austin TX &amp;amp; Washington DC
+
+Provided security process and methodology, product analysis, and product implementation to comply with Treasury and IRS data security policies.
+</pre>
+                  </li>
+                  <li id="omit-page-numbers">
+                     <h4 class="bold">Omit page numbers.</h4>
+                     <p>Page numbers can show up as garbage text in your resume, right in the middle of important data. The computer does not need page numbers. People that read your resume do not need page numbers. Your resume does not need page numbers, either. <i>Your electronic resume is not going to blow off the desk and scatter into disordered pages on the floor.</i></p>
+                     <p>Here’s a typical way that page numbers look in your resume after it is converted (bold added for emphasis):</p>
+                     <pre>May 2016 – Jun 2017
+Ablest Technologies
+Integrated Criminal Justice Info Systems, Maricopa County, AZ
+
+Provided Enterprise Systems Security and Audit needs analysis,
+
+Bob Smith resume (2017 version 1) – page two
+
+methodology, education, product research and recommendations for Department of Public Safety, ICJIS, and Homeland Security.
+
+Systems Integrator / Senior Systems Administrator (Contract)
+</pre>
+                     <p>See how your name pops up inside the job paragraph? Don’t do that.</p>
+                  </li>
+                  <li id="put-skills-in-work-history-descriptions">
+                     <h4 class="bold">Put skills into Work History descriptions.</h4>
+                     <p>Why? Because really good resume systems can actually match your skills to the job dates and compute your total years of experience for each skill and the date that you last used each skill, and that is extremely important information. Should you put your skills into a separate SKILLS section? Sure, if you want to. But even if you do, make sure that you also put those same skills into the individual job position history descriptions.</p>
+                     <p class="bold">NOTE: Do NOT put skills in work history sections under separate headers inside each job. Just list the skills as part of the narrative. So, do not do this:</p>
+                     <pre>May 2016 – Jun 2017
+Ablest Technologies
+Integrated Criminal Justice Info Systems, Maricopa County, AZ
+Systems Integrator / Senior Systems Administrator (Contract)
+
+Provided Enterprise Systems Security and Audit needs analysis, methodology, education, product research and recommendations for Department of Public Safety, ICJIS, and Homeland Security. 
+Achievements:  blah blah blah
+Skills:  blah blah blah
+Software:  blah blah blah</pre>
+                  </li>
+                  <li id="never-omit-dates-work-history">
+                     <h4 class="bold">Never omit dates on your work history! <i>EVER!</i></h4>
+                     <p>A resume that omits dates of jobs held is NOT going to get you hired. That type of resume is called a<i>functional resume</i>, and functional resumes have a very bad reputation in the recruiting community, because they are often designed that way in order to hide things.</p>
+                     <p>If you have been unemployed for a significant stretch, it is understandably painful and scary to list dates of employment, but it is still the right thing to do, because otherwise your resume will NOT be taken seriously. Just go ahead and list the dates and explain the unemployment either in the resume, in a cover letter, or in an interview.</p>
+                     <p>Dates should be written as Month YEAR. Omit the day of the month because <i>no one cares.</i></p>
+                     <p>Dates should be on the same line. NEVER split start and end dates onto two lines.</p>
+                     <p>Do NOT omit the start or end date of the most current job. For instance:</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>May 2015 –
+Ablest Technologies, Maricopa County AZ</pre>
+                     <p class="bold">WRONG:</p>
+                     <pre>Since May 2015 
+Ablest Technologies, Maricopa County AZ</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>May 2015 – Present
+Ablest Technologies, Maricopa County AZ</pre>
+                     <p>Do not use all-number dates. Resumes may be processed in locales that differ from the locale that the resume was written in. In the US, 06/07 means June of 2007, but in many locales, it means July of 06. Oh, wait: maybe it actually means 2006/2007. Who knows? So, avoid all-number dates and use written months and four-digit years.</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>05/06 - Present
+Ablest Technologies, Maricopa County AZ</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>May 2006 – Present
+Ablest Technologies, Maricopa County AZ</pre>
+                     <p>Do not use unusual terms as substitutes for &quot;current&quot; or &quot;present&quot;.</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>Since 2005 Ablest Technologies, Maricopa County AZ</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>2005 – Present
+Ablest Technologies, Maricopa County AZ</pre>
+                  </li>
+                  <li id="dont-nest-company-names">
+                     <h4 class="bold">Do not nest data or omit company names on consecutive positions.</h4>
+                     <p>If you held several different positions for ABC Company, treat each position as if it were a separate, standalone position.</p>
+                     <p class="bold">WRONG:</p>
+                     <pre>Ablest Technologies, Maricopa County AZ
+
+Dec 2014 - Present
+Systems Integrator / Senior Systems Administrator	
+
+Provided data integration services, blah, blah, blah.
+
+May 2010 – Nov 2014
+Programmer/Analyst
+
+Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I was promoted to Programmer/Analyst.
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>Dec 2014 - Present
+Ablest Technologies, Maricopa County AZ		
+Systems Integrator / Senior Systems Administrator
+
+Provided data integration services, blah, blah, blah.
+
+May 2010 – Nov 2014
+Ablest Technologies, Maricopa County AZ
+Programmer/Analyst
+
+Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I sprang forward and was promoted to Programmer/Analyst.
+</pre>
+                     <p>OR, at least provide an encompassing date range that helps us understand that all the jobs in that date range were for that employer:</p>
+                     <p class="bold">ALSO RIGHT:</p>
+                     <pre>Dec 2010 – Present	Ablest Technologies, Maricopa County AZ
+Dec 2014 – Present	Systems Integrator / Senior Systems Administrator	
+Provided data integration services, blah, blah, blah.
+
+May 2010 – Nov 2014	Programmer/Analyst
+Wrote code, blah, blah, blah.  I started with the company as a Junior Fall Guy.  In Nov 2013, I sprang forward and was promoted to Programmer/Analyst.
+</pre>
+                  </li>
+                  <li id="dates-go-with-company-data">
+                     <h4 class="bold">Do not write explanatory data or company-specific data until AFTER you have listed dates, company name and job title.</h4>
+                     <p class="bold">WRONG:</p>
+                     <pre>May 2015 – Nov 2017
+
+Plaza Technology Solutions, LLC.
+
+Plaza is a $500 million VC-funded venture that provides best of breed accounting and POS solutions directly to companies who sell snow cones.  PTS received its second round of capital in March of this year.  Blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah.
+
+As Chief Technology Officer of PTS, I was responsible for ensuring that no snow cone was left behind.
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>May 2015 – Nov 2017
+Chief Technology Officer, Plaza Technology Solutions, LLC.
+
+As CTO of PTS, I was responsible for ensuring that no snow cone was left behind.  Plaza is a $500 million VC-funded venture that provides best of breed accounting and POS solutions directly to companies who sell snow cones.  PTS received its second round of capital in March of this year.
+</pre>
+                  </li>
+                  <li id="company-addresses">
+                     <h4 class="bold">Do not put employer street addresses, or supervisor or reference information, into your work history. Put the city and state after the employer name, but NEVER put any other employer info (such as street address, postal code, phone numbers, supervisor names, etc.). That level of detail should be reserved for references.</h4>
+                     <p class="bold">WRONG:</p>
+                     <pre>May 2017 – Nov 2017
+
+Chief Technology Officer, Plaza Technology Solutions, LLC., 2000 S Dairy Ashford, Suite 425, Houston, Texas 77077 USA. Supervisor: Mary Collins, 276-098-8765. Blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah.
+</pre>
+                     <p class="bold">RIGHT:</p>
+                     <pre>May 2017 – Nov 2017
+Chief Technology Officer, Plaza Technology Solutions, LLC.
+
+As CTO of PTS, I was responsible for ensuring that no snow cone was left behind.  Plaza is a $500 million VC-funded venture that provides best of breed accounting and POS solutions directly to companies who sell snow cones.  PTS received its second round of capital in March of this year.
+</pre>
+                  </li>
+                  <li id="omit-references">
+                     <h4 class="bold">Do not put references on your resume.</h4>
+                     <p>DON’T DO IT! References are unnecessary unless asked for by a HUMAN. Why?</p>
+                     <ul>
+                        <li>Because if someone wants to hire you, they will ask you at that time to submit references.</li>
+                        <li>Because they will call your previous employers regardless of whether you gave them as a reference.</li>
+                        <li>Because it is rude to the people who are your references to send their contact information to 10,000 places.</li>
+                        <li>Because they raise the chance that your own contact info will be confused with that of one of your references.</li>
+                        <li>Because your resume will live in data banks and the internet until long after you have retired, and your references may go stale long before then.</li>
+                     </ul>
+                  </li>
+                  <p>If you want, you may simply state, as the last line of your resume, &quot;References available on request.&quot; But really, that is not informative, so why not just omit that line, too? And if you really, really want, or have been asked to do so, send a <i>separate</i>references document. But in any case, only send references to a HUMAN, never to a machine.</p>
+               </ol>
+            </div>
+          </div>
+<div class="modal-footer">
+      
+           </div> 
+        </div>
+      </div>
+    </div>
     <!--Tab View End-->
   </mat-dialog-content>
   <!--END-->
 </div>
+
+
+
 <!--Old Code Ends-->
 
 <!--Rchilli Old Code Start-->
