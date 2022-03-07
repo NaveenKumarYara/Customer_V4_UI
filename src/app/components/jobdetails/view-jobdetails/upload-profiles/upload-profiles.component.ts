@@ -197,7 +197,7 @@ Job = {
       url: URL,
       disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       formatDataFunctionIsAsync: true,
-      allowedFileType: ['pdf','doc'],
+      allowedFileType: ['pdf','doc','rtf','docx'],
       
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
