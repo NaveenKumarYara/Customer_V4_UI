@@ -177,23 +177,23 @@ export class Step1Component implements OnInit, AfterViewChecked {
    }
 
    
-   if (this.jobProfile.DepartmentId === '' || this.jobProfile.DepartmentId === null) {
-    this.toastr.error('Please Select Department!', 'Oops!');
-    setTimeout(() => {
-        this.toastr.dismissToast;
-    }, 3000);
-    window.scrollTo(200, 200);
-     return false;
-   }
+  //  if (this.jobProfile.DepartmentId === '' || this.jobProfile.DepartmentId === null) {
+  //   this.toastr.error('Please Select Department!', 'Oops!');
+  //   setTimeout(() => {
+  //       this.toastr.dismissToast;
+  //   }, 3000);
+  //   window.scrollTo(200, 200);
+  //    return false;
+  //  }
 
-   if (this.jobProfile.CategoryId === '' || this.jobProfile.CategoryId ===  null) {
-    this.toastr.error('Please Select Category!', 'Oops!');
-    setTimeout(() => {
-        this.toastr.dismissToast;
-    }, 3000);
-    window.scrollTo(300, 300);
-     return false;
-   }
+  //  if (this.jobProfile.CategoryId === '' || this.jobProfile.CategoryId ===  null) {
+  //   this.toastr.error('Please Select Category!', 'Oops!');
+  //   setTimeout(() => {
+  //       this.toastr.dismissToast;
+  //   }, 3000);
+  //   window.scrollTo(300, 300);
+  //    return false;
+  //  }
 
    if (this.jobProfile.TitleId === '' || this.jobProfile.TitleId === null) {
     this.toastr.error('Please Select JobTitle!', 'Oops!');
@@ -371,8 +371,8 @@ if (this.appService.isDrafted.value != null) {
 
   this.insertJob.JobCategoryId = 1;
   this.insertJob.Industry = this.jobProfile.IndustryId;
-  this.insertJob.PositionType = this.jobProfile.DepartmentId;
-  this.insertJob.Category = this.jobProfile.CategoryId;
+  this.insertJob.PositionType = '';
+  this.insertJob.Category = '';
   this.insertJob.TitleInfo = this.jobProfile.TitleId;
   this.insertJob.XmlKeyResponses = this.jobProfile.addkeyList;
   if(this.appService.RemoteWork == true)
