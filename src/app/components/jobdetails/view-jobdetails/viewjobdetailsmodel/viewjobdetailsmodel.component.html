@@ -857,7 +857,7 @@
                 <div class="title__container blue"><span>Details</span></div>
                 <div class="icon__small__grid__section">
                   <div class="row flex flex-wrap flex-align-equal">
-                    <div class="col-sm-4">
+                    <!-- <div class="col-sm-4">
                       <div class="box__container">
                         <span class="icon icon__department">Icon</span>
                         <h4>Department</h4>
@@ -870,9 +870,9 @@
                         <p *ngIf="jobdetailscustomer?.CustomerJobPositionType?.length===0">
                           Yet to provide.
                         </p>
-                      </div><!-- /.box__container -->
-                    </div><!-- /.col-sm-4 -->
-                    <div class="col-sm-4">
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-sm-4">
                       <div class="box__container">
                         <span class="icon icon__department">Icon</span>
                         <h4>Category</h4>
@@ -881,8 +881,8 @@
                             {{i?.Code | titlecase}}
                           </p>
                         </ng-container>
-                      </div><!-- /.box__container -->
-                    </div><!-- /.col-sm-4 -->
+                      </div>
+                    </div> -->
                     <div class="col-sm-4">
                       <div class="box__container">
                         <span class="icon icon__domain">Icon</span>
@@ -925,7 +925,7 @@
                     <div class="col-sm-3">
                       <div class="box__container">
                         <span class="icon icon__manager">Icon</span>
-                        <h4>Reporting Manager</h4>
+                        <h4>Job Assigne</h4>
                         <ng-container *ngIf="jobdetailscustomer?.JobInfo?.ReportingManager?.length!=0">
                           <h5 *ngFor="let rpt of jobdetailscustomer?.JobInfo?.ReportingManager">
                             {{rpt?.FirstName | titlecase}} {{rpt?.LastName | titlecase}}
