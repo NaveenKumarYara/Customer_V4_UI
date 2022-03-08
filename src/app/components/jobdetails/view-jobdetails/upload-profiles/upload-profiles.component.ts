@@ -193,12 +193,13 @@ Job = {
     this.customerId = this.customerName.CustomerId;
     // this.userId = this.customerName.UserId;
     this.toastr.setRootViewContainerRef(_vcr);
+    let maxFileSize = 2 * 1024 * 1024;
     this.uploader = new FileUploader({
       url: URL,
       disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       formatDataFunctionIsAsync: true,
       allowedFileType: ['pdf','doc','rtf','docx'],
-      
+      maxFileSize : maxFileSize,
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
           resolve({
