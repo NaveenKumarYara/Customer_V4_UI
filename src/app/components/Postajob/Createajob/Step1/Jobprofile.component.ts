@@ -153,6 +153,10 @@ NewCategory(val)
 
 NewJobTitle(val)
 {
+  if(this.CategoryId == undefined)
+  {
+    this.CategoryId = '1';
+  }
   this.newJobTitle.Name = val;
   this.newJobTitle.CategoryId = Number(this.CategoryId);
   this.appService.AddJobtitle(this.newJobTitle).subscribe(
@@ -170,6 +174,10 @@ NewJobTitle(val)
 
 NewKeyResponse(val)
 {
+  if(this.TitleId == undefined)
+  {
+    this.TitleId = '1';
+  }
   this.newKeyResponse.Name = val;
   this.newKeyResponse.RoleId = Number(this.TitleId);
   this.appService.AddKeyResponsibilities(this.newKeyResponse).subscribe(
@@ -232,8 +240,6 @@ NewKeyResponse(val)
 
   addTitle(val3)
   { 
-     if(this.Category!=undefined)
-    {
     const title = new saveNewTitle();
     title.Name = val3;
     if(val3!=null)
@@ -244,7 +250,7 @@ NewKeyResponse(val)
   
    
     return { Code: title.Name , tag: true};
-  }
+  
   }
 
   addKeyRes(val4)
@@ -387,6 +393,8 @@ NewKeyResponse(val)
 
   ngOnInit() {
     //this.addTagNowRef = this.NewIndustry.bind(this);
+    this.GetCustomerTitles(0);
+    this.GetKeyRespones(1);
     this.addTagIndustry = (name) => this.addIndustry(name);
     this.addTagPosition = (name1) => this.addPosition(name1);
     this.addTagCategory = (name2) => this.addCategory(name2);

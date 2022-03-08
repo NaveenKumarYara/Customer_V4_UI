@@ -20,7 +20,7 @@
 
 <div class="row flex flex-wrap form-rows single-form-rows flex-align-start">
   <div class="col-sm-4 form-cols single-form-cols">
-    <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+    <div class="form-group type-position">
       <label class="t-p" for="typeofindustry">
         <!-- Which Type of Business Domain does the job belong to? -->
         Business Domain
@@ -41,59 +41,10 @@
       </small>
     </div>
   </div>
-  <div class="col-sm-4 form-cols single-form-cols">
-    <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-      <label class="t-p" for="typeofposition">
-        <!-- Which Department does the job belongs to? --> 
-        Departments 
-        <span class="red">*</span> 
-        <a  href="javascript:void(0)"  class="tooltip__link">
-          <i class="fa fa-info-circle" aria-hidden="true"></i>
-          <span class="custom__tooltip">
-            <span class="step__01">Refers to separate divisions of an organization. </span>
-          </span>
-        </a> 
-      </label>
-      <ng-select class="custom-style" [items]="Postions"
-        bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
-        placeholder="Select (or) Add Department"
-        [(ngModel)]="Department"  (change)="updatePostionType($event)"  name="Departmen" #Departmen="ngModel" required>
-      </ng-select>
-      <small class="error1" *ngIf="Departmen.invalid && Departmen.touched">         
-        *Required
-      </small>
-    </div>
-  </div>
-  <div class="col-sm-4 form-cols single-form-cols">
-    <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
-      <label for="" class="t-p">
-        <!-- Which Category does this job belong to? ? -->
-        Category  
-        <span class="red">*</span> 
-        <a  href="javascript:void(0)"  class="tooltip__link">
-          <i class="fa fa-info-circle" aria-hidden="true"></i>
-          <span class="custom__tooltip">
-            <span class="step__01">Specific functional area under the Department. </span>
-          </span>
-        </a>
-      </label>
-      <ng-select class="custom-style" [items]="categories"
-        bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
-        placeholder="Select (or) Add Category"
-        [(ngModel)]="Category"  (change)="updateJobCategory($event)" name="Categor" #Categor="ngModel" required>
-      </ng-select>
-      <small class="error1" *ngIf="Categor.invalid && Categor.touched">         
-        *Required
-      </small>
-    </div>
-  </div>
-</div>
-
-<div class="row flex flex-wrap form-row single-form-rows form-main-rows form-rows flex-align-start">
   <div class="col-md-6 form-cols single-form-cols">
     <div class="row form-sub-rows">
       <div class="col-xs-12 col-sm-6 form-sub-cols">
-        <div class="form-group job-title-group" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+        <div class="form-group job-title-group">
           <label for="" class="question"> What is the Job Title?  <span class="red">*</span> 
             <a  href="javascript:void(0)"  class="tooltip__link">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -196,6 +147,56 @@
       </div>
     </div>
   </div>
+  <!-- <div class="col-sm-4 form-cols single-form-cols">
+    <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+      <label class="t-p" for="typeofposition">
+        Which Department does the job belongs to?
+        Departments 
+        <span class="red">*</span> 
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">Refers to separate divisions of an organization. </span>
+          </span>
+        </a> 
+      </label>
+      <ng-select class="custom-style" [items]="Postions"
+        bindLabel="Code" [addTag]="addTagPosition" [loading]="PLoading" addTagText="Add Type of Position/Department"
+        placeholder="Select (or) Add Department"
+        [(ngModel)]="Department"  (change)="updatePostionType($event)"  name="Departmen" #Departmen="ngModel" required>
+      </ng-select>
+      <small class="error1" *ngIf="Departmen.invalid && Departmen.touched">         
+        *Required
+      </small>
+    </div>
+  </div>
+  <div class="col-sm-4 form-cols single-form-cols">
+    <div class="form-group type-position" [ngClass]="!disableLoc ? '' : 'pointernone' ">
+      <label for="" class="t-p">
+         Which Category does this job belong to? ? 
+        Category  
+        <span class="red">*</span> 
+        <a  href="javascript:void(0)"  class="tooltip__link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span class="custom__tooltip">
+            <span class="step__01">Specific functional area under the Department. </span>
+          </span>
+        </a>
+      </label>
+      <ng-select class="custom-style" [items]="categories"
+        bindLabel="Code" [addTag]="addTagCategory" [loading]="CLoading" addTagText="Add Category"
+        placeholder="Select (or) Add Category"
+        [(ngModel)]="Category"  (change)="updateJobCategory($event)" name="Categor" #Categor="ngModel" required>
+      </ng-select>
+      <small class="error1" *ngIf="Categor.invalid && Categor.touched">         
+        *Required
+      </small>
+    </div>
+  </div> -->
+</div>
+
+<div class="row flex flex-wrap form-row single-form-rows form-main-rows form-rows flex-align-start">
+
   <div class="col-sm-6 form-cols  single-form-cols">
     <form #roleForm="ngForm" (ngSubmit)="addkeyRole()">
       <div class="row flex flex-wrap flex-align-end form-sub-rows">

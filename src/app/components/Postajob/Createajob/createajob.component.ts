@@ -218,7 +218,7 @@ editMode: string;
       this.appService.jobtypePositionId.next(this.jobdetailscustomer.CustomerJobPositionType[0].JobPositionTypeId.toString());
       this.appService.jobcategorynew.next(this.jobdetailscustomer.CustomerJobCategory[0].Code);
       this.appService.jobcategorynewId.next(this.jobdetailscustomer.CustomerJobCategory[0].CustomerCategoryId.toString());
-      this.appService.jobtitle.next(this.jobdetailscustomer.CustomerJobTitle[0].JobTitle);
+      this.appService.jobtitle.next(this.jobdetailscustomer.JobInfo.JobTitle);
       this.appService.jobtitleId.next(this.jobdetailscustomer.CustomerJobTitle[0].RoleId.toString());
 
       if (this.jobdetailscustomer.CustomerJobKeyResponses.length > 0) {
