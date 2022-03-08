@@ -328,3 +328,57 @@
   width: 80px;
   height: auto;
 }
+
+@media only screen and (max-width: 1334px) {
+  .smart-card .star-rating .star {
+      padding: 0 !important;
+  }
+}
+
+@media only screen and (max-width:1170px) {
+  .smart-card .candidate-status a {
+    width: 64px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .smart-card .skill-click {
+    width: 33.33%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .smart-card .skill-click {
+    margin: 10px 0 0;
+  }
+  .smart-card .skill-click:first-child {
+    margin: 0;
+  }
+  .smart-card-progress-bar .col,
+  .smart-card-progress-bar .col:first-child, 
+  .smart-card-progress-bar .col:last-child {
+    width: 100%;
+    margin: 10px 0 0;
+  }
+  .smart-card-progress-bar .col:first-child::after {
+    right: 0;
+  }
+  .smart-card-progress-bar .col:last-child::after {
+    left: 0;
+  }
+  .smart-card-progress-bar .col:first-child h4,
+  .smart-card-progress-bar .col:last-child h4 {
+    text-align: center;
+  }
+
+  .smart-card .card-profile-image-container figure {
+    width: 100px;
+    height: 100px;
+    background: url(../../images/smart-card-profile.png) 0 0 no-repeat;
+    background-size: 100px auto;
+  }
+
+  .smart-card .card-profile-image-container {
+    padding: 10px 20px 10px 128px;
+  }
+}
