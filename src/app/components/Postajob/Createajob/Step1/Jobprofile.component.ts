@@ -153,7 +153,7 @@ NewCategory(val)
 
 NewJobTitle(val)
 {
-  if(this.CategoryId == undefined)
+  if(this.CategoryId == "")
   {
     this.CategoryId = '1';
   }
@@ -174,7 +174,7 @@ NewJobTitle(val)
 
 NewKeyResponse(val)
 {
-  if(this.TitleId == undefined)
+  if(this.TitleId == "")
   {
     this.TitleId = '1';
   }
