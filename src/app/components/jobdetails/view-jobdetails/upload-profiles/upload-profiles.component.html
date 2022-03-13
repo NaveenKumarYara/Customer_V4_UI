@@ -36,12 +36,10 @@
       </label>
       <span class="slider_next"  (click)="selectNextCandidate()"><span class="sr-only">Next</span></span>
     </section>
-
-    <div class="question-section"  *ngIf="uploadRes.length>0">
+    <div class="question-section xs-margin"  *ngIf="uploadRes.length>0">
+    <!-- <div class="question-section xs-margin"> -->
       <ng-container *ngFor="let data of uploadRes; let i = index">
         <ng-container *ngIf="data!=null && data?.ProfileId === CProfileId">
-
-      
         <div class="progress">
           <div class="progress-bar progress-striped progress-bar-success" role="progressbar" aria-valuenow="100"
           aria-valuemin="0" aria-valuemax="100" style="width:100%">
@@ -100,12 +98,12 @@
          </ng-container>
 
     </div>
-
- 
   </div> 
   <div class="main__section" *ngIf="uploadRes.length>0">
+  <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
       <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
+      <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
             <h4>Arytic Fit ({{matchingParameterDetails?.Total_Match_Per}}%)</h4> 
@@ -116,8 +114,6 @@
                   <ng-container *ngIf="FitDetails!=null">
                     <app-radar-chart-large [radarChartData]="Job"> </app-radar-chart-large>
                   </ng-container>
-
-               
                 </a>
               </li> 
               <li [ngClass]="showThis == 'SkillsFit'? 'active': null">
@@ -206,7 +202,12 @@
                   <div class="box__table">can be <strong>10%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got <strong>{{matchingParameterData?.Role}}%</strong></div>
+                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">
+                    you got <strong>{{matchingParameterData?.Role}}%</strong>
+                    <button class="btn btn__edit" (click)="EditRoleFitHandler()">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                  </div>
                   <div class="box__table" *ngIf="matchingParameterData?.Role > 0 " >you got <strong>{{matchingParameterData?.Role/10}}%</strong></div>
                 </div>
               </div>
@@ -221,17 +222,17 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
-                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
-                    {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
-
-                  </div>
-                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
-                    N/A
-                    <button class="btn btn__edit" (click)="editBd()">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
-                  </div>
+                  <ng-container *ngIf="!editRoleFitShow">
+                    <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
+                      {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
+                    </div>
+                    <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
+                      N/A
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="editRoleFitShow">
+                    <input type="text" placeholder="Industry" class="form-control"/>
+                  </ng-container>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditBD">
                   <div class="question">
@@ -245,7 +246,7 @@
                 </div>
               </div>
            
-              <div class="row strip__row flex flex-wrap">
+              <div class="row  strip__row flex flex-wrap ">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
                   <div class="box__table">Title</div>
@@ -257,24 +258,33 @@
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
-                    <ng-container  *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
-                      {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }} 
-                    </ng-container>   
-                    <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
+                    <ng-container *ngIf="!editRoleFitShow">
+                      <ng-container  *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
+                        {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }} 
+                      </ng-container>   
+                      <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
+                        N/A
+                        <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <span class="sr-only">edit</span>
+                        </button>
+                      </ng-container>   
+                    </ng-container>
+                    <ng-container *ngIf="editRoleFitShow">
+                      <input type="text" placeholder="Title" class="form-control">
+                    </ng-container>          
+                  </div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
+                    <ng-container *ngIf="!editRoleFitShow">
                       N/A
                       <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
                       </button>
-                    </ng-container>   
-                              
-                  </div>
-                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
-                    N/A
-                    <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
+                    </ng-container>
+                    <ng-container *ngIf="editRoleFitShow">
+                      <input type="text" placeholder="Title" class="form-control">
+                    </ng-container> 
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditT">
@@ -298,7 +308,7 @@
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
-                    <div class="box__table">{{r?.Code | titlecase}}
+                    <div class="box__table">{{r?.Code | titlecase}}mmm
                       <!-- <span class="tooltipcontent">
                         <ng-container
                         *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
@@ -310,7 +320,7 @@
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length>0">
                     <div class="col-sm-3 strip__col strip__col__td">
                       <div class="th__heading">Resume Details</div>
-                      <div class="box__table">{{r?.Code | titlecase}}
+                      <div class="box__table">{{r?.Code | titlecase}}kkkk
                         <!-- <span class="tooltipcontent">
                           <ng-container
                           *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
@@ -323,16 +333,21 @@
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length===0">
                     <div class="col-sm-3 strip__col strip__col__td">
                       <div class="th__heading">Resume Details</div>
-                      <div class="box__table">
-                        N/A
-                        <button class="btn btn__edit" (click)="editk(0)" *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                          <span class="sr-only">edit</span>
-                        </button>
-                      </div>
+                      <ng-container *ngIf="!editRoleFitShow">
+                        <div class="box__table">
+                          N/A
+                          <button class="btn btn__edit" (click)="editk(0)" *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <span class="sr-only">edit</span>
+                          </button>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="editRoleFitShow">
+                        <input type="text" class="form-control" placeholder="Key Requirement">
+                      </ng-container>
                     </div>
                   </ng-container>
-                  
+                 
                   <div class="col-sm-12 question_col" *ngIf="EditKey && srk<1">
                     <div class="question">
                       If you want to update Key requirements realted to Job?
@@ -344,8 +359,15 @@
                     </div>
                   </div>
                 </div>
-                </ng-container>
-               
+              </ng-container>
+              <ng-container *ngIf="editRoleFitShow">
+                <div class="row strip__button__row strip__row flex flex-wrap">
+                  <div class="col-sm-12">
+                    <button class="btn btn-default" (click)="CloseEditRoleFit()">Cancel</button>
+                    <button class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+              </ng-container>
             </div>
             <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -356,8 +378,21 @@
                   <div class="box__table">can be <strong>30%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">you got <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong></div>
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">you got <strong>30%</strong></div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">
+                    you got <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong>
+                    <button class="btn btn__edit" (click)="EditExperienceHandler()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                  </div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">
+                    you got <strong>30%</strong>
+                    <button class="btn btn__edit" (click)="EditExperienceHandler()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">Edit</span>
+                    </button>
+                   
+                  </div>
                 </div>
               </div>
               <div class="row strip__row flex flex-wrap">
@@ -372,16 +407,23 @@
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table">
-                    <ng-container *ngIf="profileDetails?.TotalExperience > 0">
-                      {{profileDetails?.TotalExperience}}
-                    </ng-container>
-                    <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
-                      N/A
-                    </ng-container>
-                    <button class="btn btn__edit" (click)="edite()" *ngIf="profileDetails?.TotalExperience <  jobdetailscustomer?.JobInfo?.MaxExperience ">
+                    
+                      <ng-container *ngIf="profileDetails?.TotalExperience > 0">
+                        <ng-container *ngIf="!editExperience">
+                          {{profileDetails?.TotalExperience}}
+                        </ng-container>
+                        <ng-container *ngIf="editExperience">
+                          <input type="text" placeholder="Experience" class="form-control">
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
+                        N/A
+                      </ng-container>
+                   
+                    <!-- <button class="btn btn__edit" (click)="edite()" *ngIf="profileDetails?.TotalExperience <  jobdetailscustomer?.JobInfo?.MaxExperience ">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditE">
@@ -410,17 +452,21 @@
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Resume Details</div>
                     <div class="box__table">
-                      <ng-container *ngIf="skill?.ExpInYears > 0">
-                        {{skill?.ExpInYears}}
+                      <ng-container *ngIf="!editExperience">
+                        <ng-container *ngIf="skill?.ExpInYears > 0">
+                          {{skill?.ExpInYears}}
+                        </ng-container>
+                        <ng-container *ngIf="skill?.ExpInYears ===  0">
+                          N/A
+                        </ng-container>
                       </ng-container>
-                      <ng-container *ngIf="skill?.ExpInYears ===  0">
-                        N/A
+                      <ng-container *ngIf="editExperience">
+                        <input type="text" class="form-control" placeholder="Experience">
                       </ng-container>
-                    
-                      <button class="btn btn__edit" (click)="editd(sdk)">
+                      <!-- <button class="btn btn__edit" (click)="editd(sdk)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                   <div class="col-sm-12 question_col" *ngIf="EditDomain && selectedDomain === sdk">
@@ -434,33 +480,36 @@
                     </div>
                   </div>
                 </div>
-                </ng-container>
-                <ng-container *ngIf="Jdomains.length===0">
-                  <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
-                    <div class="col-sm-6 strip__col strip__col__td title__col">
-                      <div class="th__heading">Domain</div>
-                     
-                      <div class="box__table" >{{skill?.Code}}</div>
-                     
-                    </div>
-                    <div class="col-sm-3 strip__col strip__col__td">
-                      <div class="th__heading">Job Details</div>
-                      <div class="box__table">{{skill?.JExpInYears}}</div>
-                    </div>
-                    <div class="col-sm-3 strip__col strip__col__td">
-                      <div class="th__heading">Resume Details</div>
-                      <div class="box__table">
-                        <ng-container *ngIf="skill?.ExpInYears > 0">
-                          {{skill?.ExpInYears}}
-                        </ng-container>
-                   
-                      </div>
-                    </div>
-                
+              </ng-container>
+              <ng-container *ngIf="Jdomains.length===0">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Domain</div>
+                    
+                    <div class="box__table" >{{skill?.Code}}</div>
+                    
                   </div>
-                  </ng-container>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                    </div>
+                  </div>
               
-            
+                </div>
+              </ng-container>
+              <div class="row strip__button__row strip__row flex flex-wrap" *ngIf="editExperience">
+                <div class="col-sm-12">
+                  <button class="btn btn-default"(click)="CloseEditExperience()">Cancel</button>
+                  <button class="btn btn-primary">Save</button>
+                </div>
+              </div>
             </div>
             <!-- <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -595,16 +644,20 @@
                   <div class="box__table">can be <strong>60%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table">you got <strong>{{matchingParameterData?.Skillfit_Total}}%</strong></div>
+                  <div class="box__table">
+                    you got <strong>{{matchingParameterData?.Skillfit_Total}}%</strong>
+                    <button class="btn btn__edit" (click)="EditSkillHandler()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <ng-container *ngIf="Jskills.length > 0" >
               <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jskills;let sk = index">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
-                 
                   <div class="box__table" >{{skill?.Code}}</div>
-                 
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Job Details</div>
@@ -614,15 +667,21 @@
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table">
                     <ng-container *ngIf="skill?.ExpInYears > 0">
-                      {{skill?.ExpInYears}}
+                      <ng-container *ngIf="!editSkills">
+                        {{skill?.ExpInYears}}
+                      </ng-container>
+                      <ng-container *ngIf="editSkills">
+                        <input type="text" class="form-control" placeholder="Skills">
+                      </ng-container>
                     </ng-container>
                     <ng-container *ngIf="skill?.ExpInYears ===  0">
-                      N/A
+                      <ng-container *ngIf="!editSkills">
+                        N/A
+                      </ng-container>
+                      <ng-container *ngIf="editSkills">
+                        <input type="text" class="form-control" placeholder="Skills">
+                      </ng-container>
                     </ng-container>
-                    <button class="btn btn__edit" (click)="edits(sk)">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">edit</span>
-                    </button>
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
@@ -656,10 +715,15 @@
                         {{skill?.ExpInYears}}
                       </ng-container>                     
                     </div>
-                  </div>
-                  
+                  </div>            
                 </div>
-                </ng-container>
+              </ng-container>
+              <div class="row strip__button__row strip__row flex flex-wrap" *ngIf="editSkills">
+                <div class="col-sm-12">
+                  <button class="btn btn-default" (click)="CloseEditHandler()">Cancel</button>
+                  <button class="btn btn-primary">Save</button>
+                </div>
+              </div>
               <!-- <div class="row strip__row flex flex-wrap">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
@@ -1603,12 +1667,14 @@
                     <div class="col-sm-6 strip__col strip__col__td lg__col text-left">
                       <div class="th__heading">&nbsp;</div>
                       <div class="box__table">
-                        <select  required formControlName="QualificationId">
-                          <option label="Graduation"></option>
-                          <option *ngFor="let degree of degreeList" [value]="degree.QualificationId">
-                            {{degree.QualificationName | titlecase}}
-                          </option>
-                        </select>
+                        <div class="custom-select">
+                          <select class="form-control"  required formControlName="QualificationId">
+                            <option label="Graduation"></option>
+                            <option *ngFor="let degree of degreeList" [value]="degree.QualificationId">
+                              {{degree.QualificationName | titlecase}}
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </ng-container>
@@ -1623,7 +1689,7 @@
                       <div class="box__table">
                         <div class="row form__sub__row flex flex-wrap flex-align-center">
                           <div class="col-sm-5 form__sub__col">
-                            <select required  formControlName="FromYear">
+                            <select class="form-control" required  formControlName="FromYear">
                               <option label="From Year"></option>
                               <option *ngFor="let year of years" [value]="year">{{year}}</option>
                             </select>
@@ -1632,7 +1698,7 @@
                             To
                           </div>
                           <div class="col-sm-5 form__sub__col">
-                            <select  required  formControlName="ToYear">
+                            <select class="form-control"  required  formControlName="ToYear">
                               <option label="To Year"></option>
                               <option *ngFor="let year of years" [value]="year">{{year}}</option>
                             </select>
@@ -1752,7 +1818,7 @@
             </ng-container>
             <ng-container *ngIf="certificate.length===0">
               <div class="row strip__row flex flex-wrap">
-                <p>No Certificates Provided</p>
+                <div class="no__data">No Certificates Provided</div>
               </div>
             </ng-container>
           </ng-container>
@@ -1945,7 +2011,7 @@
               </ng-container>
               <ng-container *ngIf="achievements.length===0">
                 <div class="row strip__row flex flex-wrap">
-                  <p>No Achievements Provided</p>
+                  <p class="no__data">No Achievements Provided</p>
                 </div>
               </ng-container>
            

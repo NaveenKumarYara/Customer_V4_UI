@@ -108,6 +108,9 @@ export class UploadProfilesComponent implements OnInit {
   tempuploadResponse: UploadResponse[] = [];
   displayprofiles: any;
   skillfitcheck: any = [];
+  editRoleFitShow = false;
+  editExperience = false;
+  editSkills = false;
   Skill = {
   labels: [],
   datasets: [
@@ -231,6 +234,7 @@ Job = {
         error => console.log(error));
     }
   }
+
 
   SaveExperience()
   {
@@ -1388,6 +1392,30 @@ GetJobRequiredDomain(PId) {
   {
     this.uploader.removeFromQueue(i);
     this.selectedFiles.splice(i, 1);
+  }
+
+  EditRoleFitHandler() {
+    this.editRoleFitShow = true;
+  }
+
+  CloseEditRoleFit() {
+    this.editRoleFitShow = false;
+  }
+
+  EditExperienceHandler() {
+    this.editExperience = true;
+  }
+
+  CloseEditExperience() {
+    this.editExperience = false;
+  }
+
+  EditSkillHandler() {
+    this.editSkills = true;
+  }
+
+  CloseEditHandler() {
+    this.editSkills = false;
   }
 
   uploadMultiple(formData, DocId) {

@@ -41,7 +41,7 @@
 
 .upload__resume__container .top__container {
   border-bottom: 1px solid #e0e3ef;
-  padding: 30px 30px 100px 30px;
+  padding: 30px 30px 40px 30px;
   background-color: #fff;
 }
 
@@ -238,6 +238,11 @@
   padding: 20px 20px 20px 40px;
   position: relative;
 }
+
+.upload__resume__container .side__col li:first-child a,
+.upload__resume__container .side__col li:nth-child(2) a  {
+  padding: 20px;
+} 
 
 .upload__resume__container .side__col li {
   border-bottom: 1px solid #e0e3ef;
@@ -744,4 +749,20 @@
 
 .upload__resume__container .question-sectio .buttons {
   margin: 15px 0 0;
+}
+
+.upload__resume__container app-radar-chart-large canvas,
+.upload__resume__container .chartjs-render-monitor {
+  height: 200px !important;
+}
+
+.upload__resume__container .no__data {
+  padding: 20px;
+  text-align: center;
+  color: #6e819e;
+}
+
+.upload__resume__container .strip__button__row {
+  text-align: right;
+  padding: 10px 0;
 }
