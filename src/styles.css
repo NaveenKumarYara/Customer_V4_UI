@@ -25978,10 +25978,51 @@ table .table-prl-0 td {
         padding-left: 5px!important;
     }
     .skill-click .skill {
-        width: 95px!important;
+        width: 100%!important;
     }
     .skill-click .star-rating {
-        right: -2%!important;
+        right: 11px !important;
+        left: 4px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .skills-carousel-Changed .skill-click {
+        width: 33.33%;
+        padding: 0 7px;
+        float: left;
+    }
+    .skill-click .skill {
+        width: 100%!important;
+    }
+    .smart-card .candidate-status a {
+        width: 58px;
+    }
+}
+
+@media only screen and (max-width: 767px) { 
+    .star-rating {
+        left: 4px;
+        text-align: center;
+        right: 11px !important;
+    }
+    .page--job-details .actions li svg {
+        width: 25px;
+    }
+    .page--job-details .card-body .type app-radar-smart-chart {
+        margin: 0 auto;
+        display: block;
+        width: 160px;
+    }
+    .smart-card .candidate .card-body {
+        height: auto;
+    }
+    .skills-carousel-Changed .star-rating {
+        position: relative;
+        left: 0;
+        right: 0;
+        top:0 !important;
     }
 }
 
@@ -27276,5 +27317,20 @@ body .revamp__radio__grid .icon__col  input[type="checkbox"] { position: absolut
 
     .page--manage-jobs .notification {
         margin: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .page--job-details .card-body .type {
+        display: block;
+    }
+    .page--job-details .card-body .type > div:first-of-type {
+        border-bottom: 1px solid #E0E3EF;
+        border-right: 0;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .candidate .card-body .d-r-section, .candidate .card-body .p-m-section {
+        height: auto;
     }
 }
