@@ -102,7 +102,7 @@
   <div class="main__section" *ngIf="uploadRes.length>0">
   <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
+      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' &&  dat?.ProfileId === CProfileId">
       <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
@@ -1416,6 +1416,10 @@
                           <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                           <span class="sr-only">Edit</span>
                         </button>
+                        <button class="btn btn__delete" (click)="DeleteExperience(exp.ExperienceId)">
+                          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Delete</span>
+                        </button>
                       </ng-container>
                     
                     </div>
@@ -1604,6 +1608,10 @@
                           <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                           <span class="sr-only">Edit</span>
                         </button>
+                        <button class="btn btn__delete" (click)="DeleteEducation(study.EducationId)">
+                          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                          <span class="sr-only">Delete</span>
+                        </button>
                       </ng-container>
                     
                     </div>
@@ -1755,6 +1763,10 @@
                           <button class="btn btn__edit" (click)="EditCert(certified,cd)">
                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                             <span class="sr-only">Edit</span>
+                          </button>
+                          <button class="btn btn__delete" (click)="DeleteCertification(certified.CertificationId)">
+                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                            <span class="sr-only">Delete</span>
                           </button>
                         </ng-container>
                       

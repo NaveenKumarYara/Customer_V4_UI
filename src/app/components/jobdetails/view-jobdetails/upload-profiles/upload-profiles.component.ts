@@ -1418,6 +1418,36 @@ GetJobRequiredDomain(PId) {
     this.editSkills = false;
   }
 
+  DeleteCertification(id) {
+    this._service
+      .DeleteService("ProfileAPI/api/DeleteCertification?certificationId=", id)
+      .subscribe(
+        data => {
+         this.GetCertification(this.CProfileId);
+        },
+        error => console.log(error)
+      );
+  }
+
+  DeleteEducation(id) {
+    this._service.DeleteService('ProfileAPI/api/DeleteEducation?educationId=', id)
+      .subscribe(data => {
+        this.GetEducation(this.CProfileId);
+      },
+        error => console.log(error));
+  }
+
+  DeleteExperience(id) {
+    this._service
+      .DeleteService("ProfileAPI/api/DeleteExperience?experienceId=", id)
+      .subscribe(
+        (data) => {
+          this.GetExperience(this.CProfileId);
+        },
+        (error) => console.log(error)
+      );
+  }
+
   uploadMultiple(formData, DocId) {
     if(this.sdetails.planId !==  "enterprise" || this.sdetails.planId === undefined )
     {
