@@ -102,7 +102,7 @@
   <div class="main__section" *ngIf="uploadRes.length>0">
   <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' &&  dat?.ProfileId === CProfileId">
+      <div class="row flex flex-wrap" *ngIf="  dat?.ProfileId === CProfileId">
       <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
@@ -202,12 +202,7 @@
                   <div class="box__table">can be <strong>10%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">
-                    you got <strong>{{matchingParameterData?.Role}}%</strong>
-                    <button class="btn btn__edit" (click)="EditRoleFitHandler()">
-                      <i class="fa fa-pencil"></i>
-                    </button>
-                  </div>
+                  <div class="box__table" *ngIf="matchingParameterData?.Role === 0 ">you got <strong>{{matchingParameterData?.Role}}%</strong></div>
                   <div class="box__table" *ngIf="matchingParameterData?.Role > 0 " >you got <strong>{{matchingParameterData?.Role/10}}%</strong></div>
                 </div>
               </div>
@@ -222,17 +217,17 @@
                 </div>
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
-                  <ng-container *ngIf="!editRoleFitShow">
-                    <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
-                      {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
-                    </div>
-                    <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
-                      N/A
-                    </div>
-                  </ng-container>
-                  <ng-container *ngIf="editRoleFitShow">
-                    <input type="text" placeholder="Industry" class="form-control"/>
-                  </ng-container>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length>0">
+                    {{roleFitDetails?.CandidateProfileIndustry[0].Code| titlecase }}
+
+                  </div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileIndustry.length === 0">
+                    N/A
+                    <button class="btn btn__edit" (click)="editBd()">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
+                  </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditBD">
                   <div class="question">
@@ -246,7 +241,7 @@
                 </div>
               </div>
            
-              <div class="row  strip__row flex flex-wrap ">
+              <div class="row strip__row flex flex-wrap">
                 <div class="col-sm-6 strip__col strip__col__td title__col">
                   <div class="th__heading">Title</div>
                   <div class="box__table">Title</div>
@@ -258,33 +253,24 @@
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo.length>0">
-                    <ng-container *ngIf="!editRoleFitShow">
-                      <ng-container  *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
-                        {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }} 
-                      </ng-container>   
-                      <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
-                        N/A
-                        <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                          <span class="sr-only">edit</span>
-                        </button>
-                      </ng-container>   
-                    </ng-container>
-                    <ng-container *ngIf="editRoleFitShow">
-                      <input type="text" placeholder="Title" class="form-control">
-                    </ng-container>          
-                  </div>
-                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
-                    <ng-container *ngIf="!editRoleFitShow">
+                    <ng-container  *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0].JobTitle != null">
+                      {{roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle | titlecase }} 
+                    </ng-container>   
+                    <ng-container *ngIf="roleFitDetails?.CandidateProfileTitleInfo[0]?.JobTitle === null">
                       N/A
                       <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
                       </button>
-                    </ng-container>
-                    <ng-container *ngIf="editRoleFitShow">
-                      <input type="text" placeholder="Title" class="form-control">
-                    </ng-container> 
+                    </ng-container>   
+                              
+                  </div>
+                  <div class="box__table" *ngIf="roleFitDetails?.CandidateProfileTitleInfo?.length === 0">
+                    N/A
+                    <button class="btn btn__edit" (click)="editt()" *ngIf="roleFitDetails?.CandidateProfileIndustry?.length>0">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="sr-only">edit</span>
+                    </button>
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditT">
@@ -308,7 +294,7 @@
                   </div>
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Job Details</div>
-                    <div class="box__table">{{r?.Code | titlecase}}mmm
+                    <div class="box__table">{{r?.Code | titlecase}}
                       <!-- <span class="tooltipcontent">
                         <ng-container
                         *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
@@ -320,7 +306,7 @@
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length>0">
                     <div class="col-sm-3 strip__col strip__col__td">
                       <div class="th__heading">Resume Details</div>
-                      <div class="box__table">{{r?.Code | titlecase}}kkkk
+                      <div class="box__table">{{r?.Code | titlecase}}
                         <!-- <span class="tooltipcontent">
                           <ng-container
                           *ngFor="let r of roleFitDetails?.CustomerJobKeyResponses;let srk = index">
@@ -333,21 +319,16 @@
                   <ng-container *ngIf="roleFitDetails?.CandidateProfileKeyResponses?.length===0">
                     <div class="col-sm-3 strip__col strip__col__td">
                       <div class="th__heading">Resume Details</div>
-                      <ng-container *ngIf="!editRoleFitShow">
-                        <div class="box__table">
-                          N/A
-                          <button class="btn btn__edit" (click)="editk(0)" *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="sr-only">edit</span>
-                          </button>
-                        </div>
-                      </ng-container>
-                      <ng-container *ngIf="editRoleFitShow">
-                        <input type="text" class="form-control" placeholder="Key Requirement">
-                      </ng-container>
+                      <div class="box__table">
+                        N/A
+                        <button class="btn btn__edit" (click)="editk(0)" *ngIf="srk<1 && roleFitDetails?.CandidateProfileTitleInfo?.length>0 ">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <span class="sr-only">edit</span>
+                        </button>
+                      </div>
                     </div>
                   </ng-container>
-                 
+                  
                   <div class="col-sm-12 question_col" *ngIf="EditKey && srk<1">
                     <div class="question">
                       If you want to update Key requirements realted to Job?
@@ -359,15 +340,8 @@
                     </div>
                   </div>
                 </div>
-              </ng-container>
-              <ng-container *ngIf="editRoleFitShow">
-                <div class="row strip__button__row strip__row flex flex-wrap">
-                  <div class="col-sm-12">
-                    <button class="btn btn-default" (click)="CloseEditRoleFit()">Cancel</button>
-                    <button class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </ng-container>
+                </ng-container>
+               
             </div>
             <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -378,21 +352,8 @@
                   <div class="box__table">can be <strong>30%</strong></div>
                 </div>
                 <div class="col-sm-3 strip__col strip__col__th">
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">
-                    you got <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong>
-                    <button class="btn btn__edit" (click)="EditExperienceHandler()">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">Edit</span>
-                    </button>
-                  </div>
-                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">
-                    you got <strong>30%</strong>
-                    <button class="btn btn__edit" (click)="EditExperienceHandler()">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      <span class="sr-only">Edit</span>
-                    </button>
-                   
-                  </div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total<30">you got <strong>{{matchingParameterDetails?.Jobfit_Total}}%</strong></div>
+                  <div class="box__table" *ngIf="matchingParameterDetails?.Jobfit_Total>=30">you got <strong>30%</strong></div>
                 </div>
               </div>
               <div class="row strip__row flex flex-wrap">
@@ -407,28 +368,49 @@
                 <div class="col-sm-3 strip__col strip__col__td">
                   <div class="th__heading">Resume Details</div>
                   <div class="box__table">
-                    
-                      <ng-container *ngIf="profileDetails?.TotalExperience > 0">
-                        <ng-container *ngIf="!editExperience">
-                          {{profileDetails?.TotalExperience}}
-                        </ng-container>
-                        <ng-container *ngIf="editExperience">
-                          <input type="text" placeholder="Experience" class="form-control">
-                        </ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
-                        N/A
-                      </ng-container>
-                   
-                    <!-- <button class="btn btn__edit" (click)="edite()" *ngIf="profileDetails?.TotalExperience <  jobdetailscustomer?.JobInfo?.MaxExperience ">
+                    <ng-container *ngIf="profileDetails?.TotalExperience > 0">
+                      {{profileDetails?.TotalExperience}}
+                    </ng-container>
+                    <ng-container *ngIf="profileDetails?.TotalExperience ===  0">
+                      N/A
+                    </ng-container>
+                    <button class="btn btn__edit" (click)="edite()" *ngIf="profileDetails?.TotalExperience <  jobdetailscustomer?.JobInfo?.MaxExperience ">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
-                    </button> -->
+                    </button>
                   </div>
                 </div>
                 <div class="col-sm-12 question_col" *ngIf="EditE">
                   <div class="question">
-                    If you want to update Experience  {{jobdetailscustomer?.JobInfo?.MaxExperience | monthsPipe }}?
+                    If you want to update Experience   
+                    <span class="col-md-2 col-sm-2">
+                   
+                        <input class="form-control" [(ngModel)]="expYearExp" type="text"
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          (input)="onYearChnage($event.target.value)" value="Year" required>
+                        <span class="highlight"></span>
+                        <!-- <span class="bar"></span>
+                                      <label>Exp. in Years</label> -->
+                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                        </span>
+                        <label *ngIf="yearerror==0">
+                          Yrs
+                        </label>
+                        <label *ngIf="yearerror==1" style="color: red;">
+                          Yrs less than 50 valid.
+                        </label>
+                      </span>
+                    <span class="col-md-2 col-sm-2">
+                        <input  class="form-control" [(ngModel)]="expMonthExp" type="text"  (input)="onChnage($event.target.value)" 
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          value="Month" required>
+                        <span class="highlight"></span>
+                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                        <label *ngIf="errorText==0">Months</label>
+                        <label *ngIf="errorText==1" style="color: red;">
+                          Months less than 12 valid.
+                        </label>
+                      </span>
                     <div class="buttons">
                       <button class="btn btn-filled" (click)="updateExp(jobdetailscustomer?.JobInfo?.MaxExperience)">Update</button>
                       <button class="btn btn-default" (click)="EditE=!EditE">No</button>
@@ -452,26 +434,50 @@
                   <div class="col-sm-3 strip__col strip__col__td">
                     <div class="th__heading">Resume Details</div>
                     <div class="box__table">
-                      <ng-container *ngIf="!editExperience">
-                        <ng-container *ngIf="skill?.ExpInYears > 0">
-                          {{skill?.ExpInYears}}
-                        </ng-container>
-                        <ng-container *ngIf="skill?.ExpInYears ===  0">
-                          N/A
-                        </ng-container>
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
+                        {{skill?.ExpInYears}}
                       </ng-container>
-                      <ng-container *ngIf="editExperience">
-                        <input type="text" class="form-control" placeholder="Experience">
+                      <ng-container *ngIf="skill?.ExpInYears ===  0">
+                        N/A
                       </ng-container>
-                      <!-- <button class="btn btn__edit" (click)="editd(sdk)">
+                    
+                      <button class="btn btn__edit" (click)="editd(sdk,skill.JExpInYears)">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">edit</span>
-                      </button> -->
+                      </button>
                     </div>
                   </div>
                   <div class="col-sm-12 question_col" *ngIf="EditDomain && selectedDomain === sdk">
                     <div class="question">
-                      If you want to update {{skill?.Code}}?
+                      <span class="col-md-2 col-sm-2">
+                   
+                        <input class="form-control" [(ngModel)]="expYear" type="text"
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          (input)="onYearChnage($event.target.value)" value="Year" required>
+                        <span class="highlight"></span>
+                        <!-- <span class="bar"></span>
+                                      <label>Exp. in Years</label> -->
+                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                        </span>
+                        <label *ngIf="yearerror==0">
+                          Yrs
+                        </label>
+                        <label *ngIf="yearerror==1" style="color: red;">
+                          Yrs less than 50 valid.
+                        </label>
+                      </span>
+                       <span class="col-md-2 col-sm-2">
+                        <input  class="form-control" [(ngModel)]="expMonth" type="text"  (input)="onChnage($event.target.value)" 
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          value="Month" required>
+                        <span class="highlight"></span>
+                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                        <label *ngIf="errorText==0">Months</label>
+                        <label *ngIf="errorText==1" style="color: red;">
+                          Months less than 12 valid.
+                        </label>
+                      </span>
+                      If you want to update Experience
                       <div class="buttons">
                         <button class="btn btn-filled" (click)="updateList(skill)">Update</button>
                         <button class="btn btn-default" (click)="EditDomain=!EditDomain">No</button>
@@ -480,36 +486,33 @@
                     </div>
                   </div>
                 </div>
-              </ng-container>
-              <ng-container *ngIf="Jdomains.length===0">
-                <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
-                  <div class="col-sm-6 strip__col strip__col__td title__col">
-                    <div class="th__heading">Domain</div>
-                    
-                    <div class="box__table" >{{skill?.Code}}</div>
-                    
-                  </div>
-                  <div class="col-sm-3 strip__col strip__col__td">
-                    <div class="th__heading">Job Details</div>
-                    <div class="box__table">{{skill?.JExpInYears}}</div>
-                  </div>
-                  <div class="col-sm-3 strip__col strip__col__td">
-                    <div class="th__heading">Resume Details</div>
-                    <div class="box__table">
-                      <ng-container *ngIf="skill?.ExpInYears > 0">
-                        {{skill?.ExpInYears}}
-                      </ng-container>
+                </ng-container>
+                <ng-container *ngIf="Jdomains.length===0">
+                  <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMdomains;let sdk = index">
+                    <div class="col-sm-6 strip__col strip__col__td title__col">
+                      <div class="th__heading">Domain</div>
+                     
+                      <div class="box__table" >{{skill?.Code}}</div>
+                     
                     </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Job Details</div>
+                      <div class="box__table">{{skill?.JExpInYears}}</div>
+                    </div>
+                    <div class="col-sm-3 strip__col strip__col__td">
+                      <div class="th__heading">Resume Details</div>
+                      <div class="box__table">
+                        <ng-container *ngIf="skill?.ExpInYears > 0">
+                          {{skill?.ExpInYears}}
+                        </ng-container>
+                   
+                      </div>
+                    </div>
+                
                   </div>
+                  </ng-container>
               
-                </div>
-              </ng-container>
-              <div class="row strip__button__row strip__row flex flex-wrap" *ngIf="editExperience">
-                <div class="col-sm-12">
-                  <button class="btn btn-default"(click)="CloseEditExperience()">Cancel</button>
-                  <button class="btn btn-primary">Save</button>
-                </div>
-              </div>
+            
             </div>
             <!-- <div class="stripped__table">
               <div class="row strip__row flex flex-wrap">
@@ -646,56 +649,80 @@
                 <div class="col-sm-3 strip__col strip__col__th">
                   <div class="box__table">
                     you got <strong>{{matchingParameterData?.Skillfit_Total}}%</strong>
-                    <button class="btn btn__edit" (click)="EditSkillHandler()">
+                    <!-- <button class="btn btn__edit" (click)="EditSkillHandler()">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                       <span class="sr-only">edit</span>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
               </div>
               <ng-container *ngIf="Jskills.length > 0" >
-              <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jskills;let sk = index">
-                <div class="col-sm-6 strip__col strip__col__td title__col">
-                  <div class="th__heading">Title</div>
-                  <div class="box__table" >{{skill?.Code}}</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Job Details</div>
-                  <div class="box__table">{{skill?.JExpInYears}}</div>
-                </div>
-                <div class="col-sm-3 strip__col strip__col__td">
-                  <div class="th__heading">Resume Details</div>
-                  <div class="box__table">
-                    <ng-container *ngIf="skill?.ExpInYears > 0">
-                      <ng-container *ngIf="!editSkills">
+                <div class="row strip__row flex flex-wrap" *ngFor="let skill of Jskills;let sk = index">
+                  <div class="col-sm-6 strip__col strip__col__td title__col">
+                    <div class="th__heading">Title</div>
+                   
+                    <div class="box__table" >{{skill?.Code}}</div>
+                   
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Job Details</div>
+                    <div class="box__table">{{skill?.JExpInYears}}</div>
+                  </div>
+                  <div class="col-sm-3 strip__col strip__col__td">
+                    <div class="th__heading">Resume Details</div>
+                    <div class="box__table">
+                      <ng-container *ngIf="skill?.ExpInYears > 0">
                         {{skill?.ExpInYears}}
                       </ng-container>
-                      <ng-container *ngIf="editSkills">
-                        <input type="text" class="form-control" placeholder="Skills">
-                      </ng-container>
-                    </ng-container>
-                    <ng-container *ngIf="skill?.ExpInYears ===  0">
-                      <ng-container *ngIf="!editSkills">
+                      <ng-container *ngIf="skill?.ExpInYears ===  0">
                         N/A
                       </ng-container>
-                      <ng-container *ngIf="editSkills">
-                        <input type="text" class="form-control" placeholder="Skills">
-                      </ng-container>
-                    </ng-container>
+                      <button class="btn btn__edit" (click)="edits(sk,skill.JExpInYears)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">edit</span>
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
-                  <div class="question">
-                    If you want to update {{skill?.Code}}?
-                    <div class="buttons">
-                      <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
-                      <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button>
-                      <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                  <div class="col-sm-12 question_col" *ngIf="EditSkill && selectedskill == sk">
+                    <div class="question">
+                      <span class="col-md-2 col-sm-2">
+                   
+                        <input class="form-control" [(ngModel)]="expsYear" type="text"
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          (input)="onYearChnage($event.target.value)" value="Year" required>
+                        <span class="highlight"></span>
+                        <!-- <span class="bar"></span>
+                                      <label>Exp. in Years</label> -->
+                        <span [ngClass]="{'bar': yearerror==0, 'error-bar':yearerror==1 }">
+                        </span>
+                        <label *ngIf="yearerror==0">
+                          Yrs
+                        </label>
+                        <label *ngIf="yearerror==1" style="color: red;">
+                          Yrs less than 50 valid.
+                        </label>
+                      </span>
+                       <span class="col-md-2 col-sm-2">
+                        <input  class="form-control" [(ngModel)]="expsMonth" type="text"  (input)="onChnage($event.target.value)" 
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2"
+                          value="Month" required>
+                        <span class="highlight"></span>
+                        <span [ngClass]="{'bar': errorText==0, 'error-bar':errorText==1 }"></span>
+                        <label *ngIf="errorText==0">Months</label>
+                        <label *ngIf="errorText==1" style="color: red;">
+                          Months less than 12 valid.
+                        </label>
+                      </span>
+                      If you want to update <span title="{{skill.Code}}" class="skill-code">{{skill.Code}}</span>
+                      <div class="buttons">
+                        <button class="btn btn-filled" (click)="updateSkill(skill)">Update</button>
+                        <button class="btn btn-default" (click)="EditSkill=!EditSkill">No</button>
+                        <button class="btn btn-default" (click)="EditSkill=!EditSkill">Skip</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              </ng-container>
+                </ng-container>
               <ng-container *ngIf="Jskills.length === 0">
                 <div class="row strip__row flex flex-wrap" *ngFor="let skill of JMskills">
                   <div class="col-sm-6 strip__col strip__col__td title__col">
