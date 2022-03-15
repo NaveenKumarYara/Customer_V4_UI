@@ -102,7 +102,7 @@
   <div class="main__section" *ngIf="uploadRes.length>0">
   <!-- <div class="main__section"> -->
     <ng-container *ngFor="let dat of uploadRes; let j = index">
-      <div class="row flex flex-wrap" *ngIf="  dat?.ProfileId === CProfileId">
+      <div class="row flex flex-wrap" *ngIf="dat?.ResumeStatus === 'Successful' && dat?.ProfileId === CProfileId">
       <!-- <div class="row flex flex-wrap"> -->
         <div class="col-sm-3 side__col">
           <div class="side__panel__navigation">
