@@ -382,3 +382,8 @@
     padding: 10px 20px 10px 128px;
   }
 }
+
+.custom-tooltip-list {
+  margin: 0;
+  padding: 0;
+}

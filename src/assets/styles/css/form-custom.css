@@ -1064,12 +1064,12 @@ body .error__required.lg {
   .page--create-a-job .form-steps .form-rows .form-cols.sal-open-publish label {
     padding-left: 10px !important;
   }
-  .revamp__postjob__container .step.step__collapse .post-job-detail {
+  /* .revamp__postjob__container .step.step__collapse .post-job-detail {
     width: 54%;
   }
   .revamp__postjob__container .step.step__collapse .job-leftcard {
     width: 46%;
-  }
+  } */
   .post-a-job-listing .job-leftcard .two-grid-icon .row {
     width: 100%;
   }
