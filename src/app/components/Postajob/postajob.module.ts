@@ -53,6 +53,7 @@ import { JobcardComponent } from './Createajob/Step4/jobcard/jobcard.component';
 import { MatDialogModule } from "@angular/material";
 import { ConverttoMonthPipe } from "./Createajob/Step4/months.pipe";
 import { NgCircleProgressModule } from "ng-circle-progress";
+import { TooltipModule } from 'ng2-tooltip-directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -66,6 +67,7 @@ import { NgCircleProgressModule } from "ng-circle-progress";
     NgSelectModule,
     NgCircleProgressModule.forRoot({}),
     NgDatepickerModule,
+    TooltipModule,
     RouterModule.forChild([
       {
         path: "",

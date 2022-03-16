@@ -377,7 +377,7 @@
                           <ng-container *ngFor="let skill of jobdetailscustomer?.JobRequiredSkills;let i = index">
                             <ng-container *ngIf="i<6">
                               <div class="col-sm-4 beginner" *ngIf="skill?.SkillType === true">
-                                <div class="col-container">
+                                <div class="col-container" placement="top" tooltip="{{skill?.SkillName}}">
                                   <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
                                   <div class="info-container">
                                     <h5>{{skill?.SkillName}}</h5>
@@ -387,7 +387,7 @@
                               </div>
 
                               <div class="col-sm-4 master" *ngIf="skill?.SkillType === false">
-                                <div class="col-container">
+                                <div class="col-container" placement="top" tooltip="{{skill?.SkillName}}">
                                   <span class="jdv-smart-icon jdv-skill-icon">Icon</span>
                                   <div class="info-container">
                                     <h5>{{skill?.SkillName}}</h5>
@@ -421,25 +421,25 @@
                       <ul class="flex flex-wrap flex-align-equal">
                         <ng-container *ngIf="jobdetailscustomer?.CustomerJobKeyResponses.length>0">
                           <li *ngFor="let r of jobdetailscustomer?.CustomerJobKeyResponses">
-                            <div class="col__container beginner" *ngIf="r?.CustomerKeyMaxExperienceId<=24">
+                            <div class="col__container beginner" *ngIf="r?.CustomerKeyMaxExperienceId<=24" placement="top" tooltip="{{r?.Code | titlecase}}">
                               <span class="jdv-smart-icon jdv-work-icon">Icon</span>
                               <span class="title"> {{r?.Code | titlecase}} </span>
                               <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
                                 {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
                             </div>
-                            <div class="col__container teal" *ngIf="r?.CustomerKeyMaxExperienceId>24 && r?.CustomerKeyMaxExperienceId<=72">
+                            <div class="col__container teal" *ngIf="r?.CustomerKeyMaxExperienceId>24 && r?.CustomerKeyMaxExperienceId<=72" placement="top" tooltip="{{r?.Code | titlecase}}">
                               <span class="jdv-smart-icon jdv-work-icon">Icon</span>
                               <span class="title"> {{r?.Code | titlecase}} </span>
                               <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
                                 {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
                             </div>
-                            <div class="col__container orange" *ngIf="r?.CustomerKeyMaxExperienceId>72 && r?.CustomerKeyMaxExperienceId<=120">
+                            <div class="col__container orange" *ngIf="r?.CustomerKeyMaxExperienceId>72 && r?.CustomerKeyMaxExperienceId<=120" placement="top" tooltip="{{r?.Code | titlecase}}">
                               <span class="jdv-smart-icon jdv-work-icon">Icon</span>
                               <span class="title"> {{r?.Code | titlecase}} </span>
                               <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
                                 {{r?.CustomerKeyMaxExperienceId|monthsPipe}} Years</em> -->
                             </div>
-                            <div class="col__container blue" *ngIf="r?.CustomerKeyMaxExperienceId>120">
+                            <div class="col__container blue" *ngIf="r?.CustomerKeyMaxExperienceId>120" placement="top" tooltip="{{r?.Code | titlecase}}">
                               <span class="jdv-smart-icon jdv-work-icon">Icon</span>
                               <span class="title"> {{r?.Code | titlecase}} </span>
                               <!-- <em>Exp: {{r?.CustomerKeyMinExperienceId|monthsPipe}} -
