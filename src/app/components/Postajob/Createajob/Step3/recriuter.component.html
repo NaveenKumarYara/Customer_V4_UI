@@ -50,10 +50,10 @@
     <label for="" class="question">Do you want to intiate the Verification, if Candidate is not verified</label>
     <div class="options">
       <div class="checkbox">
-        <label><input type="radio" name="verificationStatus" [value]="yes"><span class="box">
+        <label><input type="radio" name="verificationStatus" [(ngModel)]="statusVal"  [value]="true" [checked]="statusVal==true"  (change)="setValue(statusVal)"><span class="box">
             Yes
         </span> </label>
-        <label><input type="radio" name="verificationStatus" [value]="No"><span class="box">
+        <label><input type="radio" name="verificationStatus" [(ngModel)]="statusVal"   [value]="false" [checked]="statusVal==false"  (change)="setValue(statusVal)"><span class="box">
           No
       </span> </label>
       </div>
@@ -63,10 +63,10 @@
     <label for="" class="question">From what stage the Verification should be initiated</label>
     <div class="form-row row">
       <div class="col-md-12">
-        <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
-          bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
-          [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
-          #rMngr="ngModel" name="rMgr">
+        <ng-select class="custom-style" [items]="JobStatus" placeholder="Type and Select"
+          bindLabel="ReferralStatus"  (change)="updateCStaus($event)" 
+          [hideSelected]="true"  [(ngModel)]="JstatusVal" [virtualScroll]="true"
+          #jstat="ngModel" name="jstat">
         </ng-select>
       </div>
       

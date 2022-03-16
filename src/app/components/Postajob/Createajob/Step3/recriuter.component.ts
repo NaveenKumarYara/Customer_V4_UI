@@ -15,6 +15,7 @@ import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../shared/services/api.service';
+import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
 declare var $: any;
 
 @Component({
@@ -30,10 +31,14 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selectManager: string;
   sManager: string;
   flag:any=false;
+  JobStatus:any=[];
   reportingmanagersList: Observable<CustomerUsers[]>;
   remanagers: CustomerUsers[]=[];
   rmanagers: CustomerUsers[]=[];
   customer: any;
+  saveJob = new SaveJobProcess();
+  saveCandidate = new SaveJobProcess();
+  saveInterview = new SaveJobProcess();
   customerId: any;
   report =new JobReporting();
   immi = new JobImmigrationSave();
@@ -49,10 +54,13 @@ export class recriuterComponent implements OnInit, OnDestroy {
   isSuggsted: any;
   selectedInput = new Subject<string> ();
   selectInput = new Subject<string> ();
+  selectJInput = new Subject<string> ();
   selectStatus:string;
   usersload: boolean;
   suggestManagers: RecrutingTeam[] = [];
   sManagers: RecrutingTeam[] = [];
+  statusVal:any;
+  JstatusVal:any;
   sslist=[];
   imsList=[];
   JobIds=[];
@@ -105,6 +113,60 @@ export class recriuterComponent implements OnInit, OnDestroy {
     }  
    }
 
+   setValue(val) {
+    this.statusVal = val;
+    if(val === false)
+    {
+      let v = this.JobStatus.filter(x=>x.ReferralStatusId == 10)
+      this.updateCStaus(v[0]);
+    }
+   
+  }
+
+   updateCStaus(val) {
+    if(val!=undefined)
+    {
+      if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveCandidate.userId=this.userId;
+        this.saveCandidate.jobId = Number(e);
+        this.saveCandidate.verificationStatus =val.ReferralStatusId.toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveCandidate.userId=this.userId;
+        this.saveCandidate.jobId = parseInt(res, 10);       
+        this.saveCandidate.verificationStatus =val.ReferralStatusId.toString();
+ 
+      }
+      this._service.PostService(this.saveCandidate,'ProfileAPI/api/SaveCandidateVerification')
+    .subscribe(
+      data => {
+          this.GetCandidateStatus(this.saveCandidate.jobId);
+      });
+    }
+   }
+
+   GetCandidateStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this._service.GetService('ProfileAPI/api/GetCandidateVerification?jobId=', JId)
+    .subscribe(
+      data => {
+      this.statusVal = data[0].IsRequired;
+      this.JstatusVal = data[0].ReferralStatus;
+      this.saveCandidate = new SaveJobProcess();
+      });
+   }
 
 
   // getjobaccessto1000042
@@ -167,6 +229,14 @@ export class recriuterComponent implements OnInit, OnDestroy {
   }
 
 
+  GetReferralStatus()
+  {
+    this._service.GetService('ReferralAPI/api/JobReferralStatus', '')
+    .subscribe(
+      data => {
+        this.JobStatus = data.filter(x=>x.ReferralStatusId > 3 && x.ReferralStatusId < 12);
+      });
+  }
 
 
   GetJobAssigned(jobId)
@@ -252,6 +322,8 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
     this.show = false;
     this.flag=false;
     this.JobIds = this.appService.JobIds;
+    this.GetReferralStatus();
+    this.GetCandidateStatus(this.JobIds[0]);
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -462,4 +534,13 @@ export class SendNoteEmail
   public FullName :string
   public Body :string
   public ToEmailID :string
+}
+
+export class SaveJobProcess
+{
+  
+  verificationStatus: string;
+  userId: number;
+  jobId: number;
+  
 }
