@@ -51,6 +51,7 @@ export class UploadProfilesComponent implements OnInit {
   selectedskill  = -1;
   selectedDomain  = -1;
   selectedkey  = -1;
+  errorText: number = 0;
   editCertification:boolean=false;
   fileUploadForm: FormGroup;
   moreShow: boolean = false;
@@ -79,6 +80,7 @@ export class UploadProfilesComponent implements OnInit {
   Count: any;
   CProfileId:any;
   expMonthExp: number;
+  yearerror: number = 0;
   expYearExp: number;
   public certForm: FormGroup;
   filteredProviders = [];
@@ -186,6 +188,10 @@ Job = {
   CoreId: string;
   CategoryId: string;
   addkeyList: any=[];
+  expMonth: number=0;
+  expYear: number=0;
+  expsMonth: number=0;
+  expsYear: number=0;
   // tslint:disable-next-line:max-line-length
   constructor(private appService: AppService,private _service: ApiService,private _snackBar: MatSnackBar, private spinner: NgxSpinnerService, private toastr: ToastsManager, private _vcr: ViewContainerRef, private fb: FormBuilder, private jobdetailsservice: JobdetailsService, @Inject(MAT_DIALOG_DATA) public data: any, private alertService: AlertService, private settingsService: SettingsService) {
     this.selectedFileNames = [];
@@ -430,16 +436,42 @@ Job = {
   }
 
 
-  edits(sk)
+  edits(sk,y)
   {
     this.EditSkill = true;
     this.selectedskill = sk;
+    if(y>0)
+    {
+      var texp = Number(y);
+      var tmonths = 0;
+    }
+    else
+    {
+      var texp = 0;
+      var tmonths = 0;
+    }
+    this.expsYear = texp;
+    this.expsMonth = tmonths;
   }
 
-  editd(s)
+  editd(s,y)
   {
     this.EditDomain = true;
     this.selectedDomain = s;
+    if(y>0)
+    {
+      var texp = Number(y) / 12;
+      var tmonths = Number(y) % 12;
+    }
+    else
+    {
+      var texp = 0;
+      var tmonths = 0;
+    }
+
+    this.expYear = texp;
+    this.expMonth = tmonths;
+    
   }
 
   
@@ -598,6 +630,16 @@ Job = {
     })
   }
 
+  onYearChnage(data) {
+    // alert(data);
+    if (data > 50 || data < 0) {
+      // this.expMonth = null;
+      this.yearerror = 1;
+    } else {
+      this.yearerror = 0;
+    }
+  }
+
   updateExp(e) {
     var UpdatedMissingExperience = {
       "Id": 0,
@@ -610,7 +652,7 @@ Job = {
       "IsUpdated": 1
     };
     var CandidateTotalExp = {
-      "TotalExp": e,
+      "TotalExp": (Number(this.expYearExp) * 12) + Number(this.expMonthExp),
       "ProfileId": this.CProfileId,
     };
     this._service.PostService(CandidateTotalExp, 'JobsAPI/api/UpdateTotalExperience')
@@ -642,7 +684,7 @@ Job = {
       "DomainId": D.DomainId,
       "DomainIdSpecified": true,
       "ExpInMonths": D.ExpInMonths,
-      "ExpInYears": D.JExpInYears,
+      "ExpInYears": this.expYear,
       "LastUsed": '2022',
       "ProfileId": this.CProfileId,
       "UserId": 0
@@ -666,8 +708,8 @@ Job = {
   updateSkill(skill)
   {
     var SkillData = {
-      "ExpInMonths": skill.ExpInMonths,
-      "ExpInYears": skill.JExpInYears,
+      "ExpInMonths": this.expsMonth,
+      "ExpInYears": this.expsYear,
       "LastUsed": "2022",
       "ProfileId": this.CProfileId,
       "SkillName": skill.Code,
@@ -1330,6 +1372,16 @@ GetJobRequiredDomain(PId) {
  }
 
   
+ onChnage(data) {
+  // alert(data);
+  if (data > 11 || data < 0) {
+    // this.expMonth = null;
+    this.errorText = 1;
+  } else {
+    this.errorText = 0;
+  }
+}
+
 
   getFileDetails() {
     this.fileCount = 0;
