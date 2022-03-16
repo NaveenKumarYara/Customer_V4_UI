@@ -530,3 +530,116 @@
 .smart-job-card .jdv-skills .col-sm-4:only-child .col-container {
   height: auto;
 }
+
+.post-a-job-listing .col-container {
+  margin-top:0;
+}
+
+.post-a-job-listing .job-leftcard > .col-container {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 1170px) {
+  .job-leftcard .two-grid-icon > .row > .col-sm-6:first-child {
+    width: 60%;
+  }
+  .job-leftcard .two-grid-icon > .row > .col-sm-6:last-child {
+    width: 40%;
+    display: block !important;
+  }
+  .smart-job-card .inline-icon-list ul {
+    justify-content: flex-start !important;
+    margin-top: -5px;
+    padding: 0 20px;
+  }
+
+  .smart-job-card .inline-icon-list li {
+    width: 50%;
+    margin: 5px 0 0 !important;
+    padding: 0 !important; 
+    border: 0 !important;
+  }
+
+  .smart-job-card .inline-icon-list.lg-padding ul  {
+    justify-content: center !important;
+  }
+
+  .smart-job-card .inline-icon-list.lg-padding li {
+    width: auto;
+  }
+  .post-a-job-listing .col-sm-4, .post-a-job-listing .col-sm-3 {
+    width: 33.33%;
+  }
+}
+
+@media only screen and (max-width: 1023px) { 
+  .smart-job-card .jdv-key-section li,
+  .post-a-job-listing .col-sm-4, 
+  .post-a-job-listing .col-sm-3 {
+    width: 50%;
+  }
+  .job-leftcard .two-grid-icon > .row {
+    display: block;
+  }
+  .job-leftcard .two-grid-icon > .row > .col-sm-6:first-child,
+  .job-leftcard .two-grid-icon > .row > .col-sm-6:last-child  {
+    width: 100%;
+  }
+  .job-leftcard .two-grid-icon > .row > .col-sm-6:last-child {
+    border-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .smart-job-card .jdv-button-grid-icon ul {
+    justify-content: center !important;
+  }
+  .smart-job-card .jdv-button-grid-icon li {
+    width: 33.33%;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .jdv-listing .jdv-skills .col-sm-4 {
+    width: 50%;
+  }
+  .inline-icon-list ul {
+    flex-direction: row;
+  }
+  .smart-job-card .two-grid-icon .row .row  {
+    flex-direction: row;
+    display: flex;
+  }
+  .smart-job-card .two-grid-icon .row .row .col-sm-6 {
+    width: 50% !important;
+    border-top: 0 !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    margin: 0 !important;
+    padding-top:0 !important;
+  }
+  .jdv-listing.smart-job-card .jdv-company-profile .company-title h2 {
+    width: 17px!important;
+  }
+  .smart-job-card .jdv-button-grid-icon li {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .smart-job-card .jdv-company-profile .remote {
+    position: relative;
+    right:0;
+    top:0;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .jdv-listing .jdv-skills .col-sm-4,
+  .smart-job-card .jdv-key-section li,
+  .post-a-job-listing .col-sm-4, 
+  .post-a-job-listing .col-sm-3 {
+    width: 100%;
+  }
+}
