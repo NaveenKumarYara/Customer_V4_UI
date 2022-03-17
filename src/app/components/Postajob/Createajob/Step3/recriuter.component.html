@@ -78,13 +78,13 @@
   </div>
   <div class="col-sm-6 form-cols single-form-cols">
     <div class="form-group job-title-group reporting-manager-group">
-      <label for="" class="question">Interview</label>
+      <label for="" class="question">Interview Rounds</label>
      
       <div class="form-row row">
         <div class="col-md-12">
-          <ng-select class="custom-style" [items]="rmanagers" placeholder="Type and Select"
-            bindLabel="FirstName" bindValue="FirstName" (change)="updateManage($event)" [typeahead]="selectInput"
-            [hideSelected]="true"  [(ngModel)]="sManager" [virtualScroll]="true"
+          <ng-select class="custom-style" [items]="options" placeholder="Type and Select"
+            bindLabel="name"  [typeahead]="selectIInput"
+            [hideSelected]="true"  [(ngModel)]="selectedOption" [virtualScroll]="true"
             #rMngr="ngModel" name="rMgr">
           </ng-select>
         </div>
@@ -100,13 +100,13 @@
       <div class="form-row row">
         <div class="col-xs-10 col-md-11 col-sm-11">
           <ng-select class="custom-style" [items]="remanagers" placeholder="Type and Select"
-          bindLabel="FirstName" bindValue="FirstName" (change)="updateManager($event)" [typeahead]="selectedInput"
-          [hideSelected]="true"  [(ngModel)]="selectManager" [virtualScroll]="true"
-          #reportMngr="ngModel" name="reportMgr">
+          bindLabel="FirstName"  [typeahead]="selectedTInput"
+          [hideSelected]="true"  [(ngModel)]="iselectManager" [virtualScroll]="true"
+          #reeMngr="ngModel" name="reeMgr">
           </ng-select>
         </div>
         <div class="col-xs-2 col-md-1 col-sm-1">
-          <button class="btn add-btn form-control mt-0"  type="button" (click)="Add()">+</button>
+          <button class="btn add-btn form-control mt-0"  type="button" (click)="AddIn()">+</button>
         </div>
       </div>
       
@@ -114,8 +114,8 @@
   </div>
   <div class="col-sm-12 form-cols single-form-cols">
     <div class="job-title-suggestions">
-      <div class="checkbox" *ngFor="let  managers of suggestManagers; let i = index">
-        <label><span class="box" (click)="delete(i)">{{managers?.FirstName}}  x </span>  </label>
+      <div class="checkbox" *ngFor="let  managers of srlist; let i = index">
+        <label><span class="box" (click)="deleteI(i)">{{managers?.Round}} - {{managers?.IPerson}}  x </span>  </label>
       </div>
     </div>
   </div>

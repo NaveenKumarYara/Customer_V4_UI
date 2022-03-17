@@ -29,6 +29,8 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selManager: CustomerUsers;
   selectedIms: jobImmigration;
   selectManager: string;
+  iselectManager:any;
+  srlist:any=[];
   sManager: string;
   flag:any=false;
   JobStatus:any=[];
@@ -45,6 +47,15 @@ export class recriuterComponent implements OnInit, OnDestroy {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
+  selectedOption:Options = new Options(0, 'Select' );
+  options = [
+    new Options(0, 'Select' ),
+    new Options(1, 'Screening' ),
+     new Options(2, 'Technical' ),
+     new Options(3, 'HR'),
+      new Options(4, 'Manager' ),
+      new Options(5, 'Others' )
+  ];
   yes:any;
   No:any;
   Forgotform: any;
@@ -55,9 +66,11 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selectedInput = new Subject<string> ();
   selectInput = new Subject<string> ();
   selectJInput = new Subject<string> ();
+  selectIInput = new Subject<string> ();
   selectStatus:string;
   usersload: boolean;
   suggestManagers: RecrutingTeam[] = [];
+  isuggestManagers: RecrutingTeam[] = [];
   sManagers: RecrutingTeam[] = [];
   statusVal:any;
   JstatusVal:any;
@@ -113,6 +126,38 @@ export class recriuterComponent implements OnInit, OnDestroy {
     }  
    }
 
+   AddIn()
+   {
+    if(this.iselectManager!=undefined)
+    {
+      if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveInterview.userId = this.iselectManager.UserId;
+        this.saveInterview.jobId = Number(e);
+        this.saveInterview.verificationStatus =this.selectedOption.name.toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveInterview.userId = this.iselectManager.UserId;
+        this.saveInterview.jobId = parseInt(res, 10);       
+        this.saveInterview.verificationStatus =this.selectedOption.name.toString();
+ 
+      }
+      this._service.PostService(this.saveInterview,'ProfileAPI/api/SaveJobInterviewRounds')
+    .subscribe(
+      data => {
+          this.GetInterviewStatus(this.saveInterview.jobId);
+      });
+    }
+   }
+
+
+
    setValue(val) {
     this.statusVal = val;
     if(val === false)
@@ -166,6 +211,36 @@ export class recriuterComponent implements OnInit, OnDestroy {
       this.JstatusVal = data[0].ReferralStatus;
       this.saveCandidate = new SaveJobProcess();
       });
+   }
+
+   GetInterviewStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this.srlist = [];
+    this._service.GetService('ProfileAPI/api/GetInterviewJobRounds?jobId=', JId)
+    .subscribe(
+      dat => {
+      if(dat!=null)
+      {
+        dat.forEach(x=>{
+          this.srlist.push({"Round": x.Round , "IPerson": x.FirstName + ' '+ x.LastName});
+        })
+      
+      }
+ 
+      this.selectedOption =  new Options(0, 'Select' );
+      this.iselectManager = undefined;
+      this.saveInterview = new SaveJobProcess();
+      });
+   }
+
+   deleteI(I)
+   {
+     this.srlist.splice(I,1)
    }
 
 
@@ -268,6 +343,8 @@ export class recriuterComponent implements OnInit, OnDestroy {
   }
 
 
+
+
   suggestedManager1() {
     return this.appService.getCustomerallContacts(this.customerId).subscribe(res =>{
         //debugger
@@ -324,6 +401,7 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
     this.JobIds = this.appService.JobIds;
     this.GetReferralStatus();
     this.GetCandidateStatus(this.JobIds[0]);
+    this.GetInterviewStatus(this.JobIds[0]);
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -543,4 +621,7 @@ export class SaveJobProcess
   userId: number;
   jobId: number;
   
+}
+export class Options {
+  constructor(public id: number, public name: string) { }
 }
