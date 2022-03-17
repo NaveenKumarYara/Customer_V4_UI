@@ -10,6 +10,7 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { GetJobDetailCustomer } from "../../../../../models/GetJobDetailCustomer";
 import { JobdetailsService } from "../../../jobdetails/jobdetails.service";
 import { JobCompletenessInfo } from "../../../jobdetails/models/jobdetailsbasicinfo";
+import { ApiService } from "../../../../shared/services";
 
 @Component({
   selector: "app-steps-step4",
@@ -23,6 +24,13 @@ export class Step4Component implements OnInit {
   getjobCompleteinfo :JobCompletenessInfo;
   //Loader Condition
   loading = false;
+  Education:any;
+  srlist:any=[];
+
+  Employement:any;
+  Reference:any;
+  WFH:any;
+  Background:any;
   //Loader Condition
   insertJob = new InsertJob();
   jobCategory: number;
@@ -65,6 +73,7 @@ export class Step4Component implements OnInit {
   team: any;
   jobCardshow: boolean = true;
   constructor(
+    private _service:ApiService,
     private route: ActivatedRoute,
     private toastr: ToastsManager,
     private _vcr: ViewContainerRef,
@@ -166,6 +175,8 @@ export class Step4Component implements OnInit {
       let jobId = localStorage.getItem("JobId");
       this.jobCardDetails(jobId);
     }
+    this.GetInterviewStatus(this.JobIds[0]);
+    this.GetJobStatus(this.JobIds[0]);
   }
 
   showJobCard() {
@@ -174,6 +185,65 @@ export class Step4Component implements OnInit {
 
   checkValue(event: any) {
     this.Template = event;
+  }
+
+  GetInterviewStatus(JId)
+  {
+   if(localStorage.getItem('jobId') != null)
+   {
+     const res = localStorage.getItem('jobId');
+     JId = parseInt(res, 10);
+   }
+   this._service.GetService('ProfileAPI/api/GetInterviewJobRounds?jobId=', JId)
+   .subscribe(
+     dat => {
+     if(dat!=null)
+     {
+       dat.forEach(x=>{
+         this.srlist.push(x.Round);
+       })
+     
+     }
+     });
+  }
+
+  GetJobStatus(JId)
+  {
+   if(localStorage.getItem('jobId') != null)
+   {
+     const res = localStorage.getItem('jobId');
+     JId = parseInt(res, 10);
+   }
+   this._service.GetService('ProfileAPI/api/GetJobVerification?jobId=', JId)
+   .subscribe(
+     dat => {
+     if(dat!=null)
+     {
+       dat.forEach(x=>{
+         if(x.VerificationStatus === "Education")
+         {
+           this.Education = true;
+         }
+         if(x.VerificationStatus === "Employement")
+         {
+           this.Employement = true;
+         }
+         if(x.VerificationStatus === "Reference")
+         {
+           this.Reference = true;
+         }
+         if(x.VerificationStatus === "WFH")
+         {
+           this.WFH = true;
+         }
+         if(x.VerificationStatus === "Background")
+         {
+           this.Background = true;
+         }
+       })
+     
+     };
+     });
   }
 
   jobCardDetails(jobId)
