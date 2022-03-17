@@ -2143,3 +2143,7 @@ textarea {
  .no-interview-status img {
     margin-right: 10px;
 }
+
+.ngTemplateTips {
+    background-color: rgb(129, 166, 247) !important;
+}

@@ -636,11 +636,11 @@
             </div>
           </div>
         </ng-container>
-        <div class="smart-card-progress-bar  no-interview-status flex flex-align-center flex-justify-center" *ngIf="profile?.ResponseStatusId != 7">
+        <!-- <div class="smart-card-progress-bar  no-interview-status flex flex-align-center flex-justify-center" *ngIf="profile?.ResponseStatusId != 7">
           <img src="../../../../../assets/images/interview-status.png" alt="">
           No Interview Status Available
-        </div>
-        <div class="smart-card-progress-bar" *ngIf="profile?.ResponseStatusId === 7">
+        </div> -->
+        <div class="smart-card-progress-bar">
           <h3>Application Status</h3>
           <div class="row flex flex-justify-center flex-wrap">
             <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
@@ -651,19 +651,79 @@
                 <h4>{{i}}</h4>
               </div>
             </ng-container> -->
-           
+           <ng-container *ngIf="profile?.ResponseStatusId > 12">
+            <div class="col-sm-3 col in-progress">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Interviewed</h4>
+            </div>
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+           </ng-container>
+           <ng-container *ngIf="profile?.ResponseStatusId === 5">
             <div class="col-sm-3 col active">
               <h4>Under Review</h4>
             </div>
             <div class="col-sm-3 col in-progress">
               <h4>Shortlisted</h4>
             </div>
-            <div class="col-sm-3 col" placement="top" tooltip="<ul class='custom-tooltip-list'><li>Interviewed 01</li><li>Interviewed 02</li><li>Interviewed 03</li></ul>" html="true">
+            <div class="col-sm-3 col">
               <h4>Interviewed</h4>
             </div>
             <div class="col-sm-3 col">
               <h4>Hired/Rejected</h4>
             </div>
+          </ng-container>
+          <ng-container *ngIf="profile?.ResponseStatusId === 7">
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Shortlisted</h4>
+            </div>
+            <ng-container *ngIf="profile?.InterviewRounds?.length>0">
+              <ng-container *ngIf="profile?.InterviewRounds?.length===1">
+                <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li></ul>" html="true">
+                  <h4>Interviewed</h4>
+                </div>
+              </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===2">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li><li>{{profile?.InterviewRounds[1]}}</li></ul>" html="true">
+                <h4>Interviewed</h4>
+              </div>
+             </ng-container>
+             <ng-container *ngIf="profile?.InterviewRounds?.length===3">
+              <div class="col-sm-3 col in-progress" placement="top" tooltip="<ul class='custom-tooltip-list'><li>{{profile?.InterviewRounds[0]}}</li><li>{{profile?.InterviewRounds[1]}}</li><li>{{profile?.InterviewRounds[2]}}</li></ul>" html="true">
+                <h4>Interviewed</h4>
+              </div>
+             </ng-container>
+              
+            </ng-container>
+           
+            <div class="col-sm-3 col">
+              <h4>Hired/Rejected</h4>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="profile?.ResponseStatusId === 11">
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col active">
+              <h4>Interviewed</h4>
+            </div>
+            <div class="col-sm-3 col in-progress">
+              <h4>Hired/Rejected</h4>
+            </div>
+          </ng-container>
+           
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">

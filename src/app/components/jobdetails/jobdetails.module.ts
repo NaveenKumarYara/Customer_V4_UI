@@ -66,7 +66,7 @@ import { RouterModule } from '@angular/router';
 import { SafeHtmlPipe } from './view-jobdetails/viewjobdetails-candidate-profile/view-candidateprofile-detail/SafeHtmlPipe.pipe';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { setTheme } from 'ngx-bootstrap/utils';
 setTheme('bs3');
@@ -76,6 +76,7 @@ setTheme('bs3');
     MatDialogModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
+    NgbTooltipModule,
     BrowserModule,
     // routing,
     RouterModule,
