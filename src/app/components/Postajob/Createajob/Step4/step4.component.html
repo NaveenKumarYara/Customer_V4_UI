@@ -281,17 +281,15 @@
                                 </ng-container>
                             </span></h4>
                           </div>
-                           <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
+                           <ng-container  *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === false">
                           <div class="col-sm-6">
 
                             <div class="col-sm-6"
                             *ngIf="viewJobDetails?.HideSalary === true || viewJobDetails?.HideSalary === null">
                             <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
-                            <h4>${{viewJobDetails?.MaximumSalary}}/{{viewJobDetails?.SalaryType}}
-                              <span *ngIf="viewJobDetails?.SalaryType == 'Hourly' ">(167
-                                hours/month)</span>
-                              <span *ngIf="viewJobDetails?.SalaryType == 'Annualy' ">(2000
-                                hours/Yearly)</span>
+                            <h4>$ {{jobdetailscustomer?.JobInfo?.MinimumSalary}} -
+                              ${{jobdetailscustomer?.JobInfo?.MaximumSalary}}
+                         
                             </h4>
                           </div>
                           <div class="col-sm-6" *ngIf="viewJobDetails?.HideSalary === false">
@@ -320,7 +318,7 @@
                           <ng-container *ngIf="jobdetailscustomer?.JobInfo?.BonusOffered === true">
                             <div class="col-sm-6">
                               <span class="jdv-smart-icon jdv-shape-dollar-icon">Icon</span>
-                              <h4> Open for Conversation.</h4>
+                              <h4>  Open for Conversation.</h4>
                             </div>
                           </ng-container>
                         </div>
