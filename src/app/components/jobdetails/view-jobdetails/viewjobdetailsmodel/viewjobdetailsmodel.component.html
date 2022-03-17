@@ -579,33 +579,38 @@
                                 <button class="btn btn-link">
                                   <span class="jdv-smart-icon jdv-education-icon">Icon</span>
                                   Education
+                                  <input  readonly type="checkbox"   name="Education" [checked]="Education"  value="Education"/>
                                 </button>
                               </li>
                               <li>
                                 <button class="btn btn-link">
                                   <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
                                   Employement
-                                </button>
-                              </li>
-                              <li>
-                                <button class="btn btn-link">
-                                  <span class="jdv-smart-icon jdv-screening-icon">Icon</span>
-                                  Screening
+                                  <input  readonly type="checkbox"    name="Employement" [checked]="Employement"  value="Employement" />
                                 </button>
                               </li>
                               <li>
                                 <button class="btn btn-link">
                                   <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
                                   Reference
+                                  <input  readonly  type="checkbox"    [checked]="Reference" name="Reference"   value="Reference" />
                                 </button>
                               </li>
                               <li>
                                 <button class="btn btn-link">
                                   <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
                                   WFH
+                                  <input  readonly  type="checkbox"   [checked]="WFH" name="WFH"   value="WFH" />
                                 </button>
                               </li>
-                            </ul>
+                              <li>
+                                <button class="btn btn-link">
+                                  <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                                  Background
+                                  <input  readonly  type="checkbox"     [checked]="Background" name="Background"  value="Background" />
+                                </button>
+                              </li>
+                              </ul>
                           </div>
                         </div>
 
@@ -620,9 +625,14 @@
                                   </button>
                                   <div class="dropdown-menu">
                                     <ul>
-                                      <li><a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>Technical Screening</a></li>
-                                      <li><a href="javascript:void(0)"><i class="fa fa-user-circle" aria-hidden="true"></i>Manager Screening</a></li>
-                                      <li><a href="javascript:void(0)"><i class="fa fa-users" aria-hidden="true"></i>HR Screening</a></li>
+                                      <ng-container *ngIf="srlist.length>0">
+                                        <li *ngFor="let a of srlist"><a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>{{a}}</a></li>
+                                      </ng-container>
+                                      <ng-container *ngIf="srlist.length===0">
+                                        <li>No Rounds Mentioned</li>
+                                      </ng-container>
+                                   
+                                   
                                     </ul>
                                   </div>
                                 </div>

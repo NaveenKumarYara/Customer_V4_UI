@@ -32,6 +32,13 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   customerId: any;
   userId: any;
  jobid: number;
+ Education:any;
+ srlist:any=[];
+
+ Employement:any;
+ Reference:any;
+ WFH:any;
+ Background:any;
  customer: any;
  viewJobDetails:any;
  deactivate = new deactivate();
@@ -73,7 +80,8 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
   PopulateJobdetail() {
     return this.jobdetailsservice.getJobDetailCustomer(this.customerId, this.jobid).subscribe(res => {
       this.jobdetailscustomer = res;
-      debugger
+      this.GetInterviewStatus(this.jobid);
+      this.GetJobStatus(this.jobid);
       let params = new HttpParams();
       params = params.append('jobId', this.jobid.toString());
       params = params.append('userId', '3');
@@ -84,6 +92,55 @@ export class ViewjobdetailsmodelComponent  implements OnInit {
         })
     });
 
+}
+
+GetInterviewStatus(JId)
+{
+ this._service.GetService('ProfileAPI/api/GetInterviewJobRounds?jobId=', JId)
+ .subscribe(
+   dat => {
+   if(dat!=null)
+   {
+     dat.forEach(x=>{
+       this.srlist.push(x.Round);
+     })
+   
+   }
+   });
+}
+
+GetJobStatus(JId)
+{
+ this._service.GetService('ProfileAPI/api/GetJobVerification?jobId=', JId)
+ .subscribe(
+   dat => {
+   if(dat!=null)
+   {
+     dat.forEach(x=>{
+       if(x.VerificationStatus === "Education")
+       {
+         this.Education = true;
+       }
+       if(x.VerificationStatus === "Employement")
+       {
+         this.Employement = true;
+       }
+       if(x.VerificationStatus === "Reference")
+       {
+         this.Reference = true;
+       }
+       if(x.VerificationStatus === "WFH")
+       {
+         this.WFH = true;
+       }
+       if(x.VerificationStatus === "Background")
+       {
+         this.Background = true;
+       }
+     })
+   
+   };
+   });
 }
 
 PopulateJobCompleteness() {
