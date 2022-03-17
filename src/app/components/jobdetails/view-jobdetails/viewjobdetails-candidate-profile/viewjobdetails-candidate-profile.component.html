@@ -641,26 +641,29 @@
           No Interview Status Available
         </div>
         <div class="smart-card-progress-bar" *ngIf="profile?.ResponseStatusId === 7">
-          <h3>Intverview Status</h3>
+          <h3>Application Status</h3>
           <div class="row flex flex-justify-center flex-wrap">
-            <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
+            <!-- <ng-container *ngFor="let i of profile?.InterviewRounds;let s = index">
               <div class="col-sm-3 col  active" *ngIf="i === 'Technical'">
                 <h4>{{i}}</h4>
               </div>
               <div class="col-sm-3 col in-progress" *ngIf="i === 'Screening'">
                 <h4>{{i}}</h4>
               </div>
-            </ng-container>
+            </ng-container> -->
            
-            <!-- <div class="col-sm-3 col active">
-              <h4>Technical Round</h4>
+            <div class="col-sm-3 col active">
+              <h4>Under Review</h4>
             </div>
             <div class="col-sm-3 col in-progress">
-              <h4>Manager Round</h4>
+              <h4>Shortlisted</h4>
+            </div>
+            <div class="col-sm-3 col" placement="top" tooltip="<ul class='custom-tooltip-list'><li>Interviewed 01</li><li>Interviewed 02</li><li>Interviewed 03</li></ul>" html="true">
+              <h4>Interviewed</h4>
             </div>
             <div class="col-sm-3 col">
-              <h4>HR Round</h4>
-            </div> -->
+              <h4>Hired/Rejected</h4>
+            </div>
           </div>
         </div>
         <div id="skills-carousel-Changed" class="skills-carousel-Changed">
