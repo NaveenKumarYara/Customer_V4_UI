@@ -15,6 +15,7 @@ import { Qualifications } from '../../../../../models/qualifications.model';
 import { Observable } from 'rxjs/Observable';
 import { RecrutingTeam } from '../../../../../models/GetJobDetailCustomer';
 import { ApiService } from '../../../../shared/services/api.service';
+import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
 declare var $: any;
 
 @Component({
@@ -28,18 +29,39 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selManager: CustomerUsers;
   selectedIms: jobImmigration;
   selectManager: string;
+  iselectManager:any;
+  srlist:any=[];
+  Education:any;
+  Employement:any;
+  Reference:any;
+  WFH:any;
+  Background:any;
   sManager: string;
   flag:any=false;
+  JobStatus:any=[];
   reportingmanagersList: Observable<CustomerUsers[]>;
   remanagers: CustomerUsers[]=[];
   rmanagers: CustomerUsers[]=[];
   customer: any;
+  saveJob = new SaveJobProcess();
+  saveCandidate = new SaveJobProcess();
+  saveInterview = new SaveJobProcess();
   customerId: any;
   report =new JobReporting();
   immi = new JobImmigrationSave();
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
+  klist:any=[];
+  selectedOption:Options = new Options(0, 'Select' );
+  options = [
+    new Options(0, 'Select' ),
+    new Options(1, 'Screening' ),
+     new Options(2, 'Technical' ),
+     new Options(3, 'HR'),
+      new Options(4, 'Manager' ),
+      new Options(5, 'Others' )
+  ];
   yes:any;
   No:any;
   Forgotform: any;
@@ -49,10 +71,15 @@ export class recriuterComponent implements OnInit, OnDestroy {
   isSuggsted: any;
   selectedInput = new Subject<string> ();
   selectInput = new Subject<string> ();
+  selectJInput = new Subject<string> ();
+  selectIInput = new Subject<string> ();
   selectStatus:string;
   usersload: boolean;
   suggestManagers: RecrutingTeam[] = [];
+  isuggestManagers: RecrutingTeam[] = [];
   sManagers: RecrutingTeam[] = [];
+  statusVal:any;
+  JstatusVal:any;
   sslist=[];
   imsList=[];
   JobIds=[];
@@ -105,6 +132,216 @@ export class recriuterComponent implements OnInit, OnDestroy {
     }  
    }
 
+   AddIn()
+   {
+    if(this.iselectManager!=undefined)
+    {
+      if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveInterview.userId = this.iselectManager.UserId;
+        this.saveInterview.jobId = Number(e);
+        this.saveInterview.verificationStatus =this.selectedOption.name.toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveInterview.userId = this.iselectManager.UserId;
+        this.saveInterview.jobId = parseInt(res, 10);       
+        this.saveInterview.verificationStatus =this.selectedOption.name.toString();
+ 
+      }
+      this._service.PostService(this.saveInterview,'ProfileAPI/api/SaveJobInterviewRounds')
+    .subscribe(
+      data => {
+          this.GetInterviewStatus(this.saveInterview.jobId);
+      });
+    }
+   }
+
+
+
+   setValue(val) {
+    this.statusVal = val;
+    if(val === false)
+    {
+      let v = this.JobStatus.filter(x=>x.ReferralStatusId == 10)
+      this.updateCStaus(v[0]);
+    }
+   
+  }
+
+  handleChange()
+  {
+    if(this.Education)
+    {
+      this.klist.push("Education");
+    }
+    if(this.Employement)
+    {
+      this.klist.push("Employement");
+    }
+    if(this.Reference)
+    {
+      this.klist.push("Reference");
+    }
+    if(this.WFH)
+    {
+      this.klist.push("WFH");
+    }
+    if(this.Background)
+    {
+      this.klist.push("Background");
+    }
+   this.AddStatus();  
+   
+  }
+
+  AddStatus()
+  {
+    if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveJob.userId=this.userId;
+        this.saveJob.jobId = Number(e);
+        this.saveJob.verificationStatus = this.klist.map(x=>x).toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveJob.userId=this.userId;
+        this.saveJob.jobId = parseInt(res, 10);       
+        this.saveJob.verificationStatus = this.klist.map(x=>x).toString();
+ 
+      }
+      this._service.PostService(this.saveJob,'ProfileAPI/api/SaveJobVerification')
+    .subscribe(
+      data => {
+          this.GetJobStatus(this.saveJob.jobId);
+      });
+  }
+
+   updateCStaus(val) {
+    if(val!=undefined)
+    {
+      if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveCandidate.userId=this.userId;
+        this.saveCandidate.jobId = Number(e);
+        this.saveCandidate.verificationStatus =val.ReferralStatusId.toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveCandidate.userId=this.userId;
+        this.saveCandidate.jobId = parseInt(res, 10);       
+        this.saveCandidate.verificationStatus =val.ReferralStatusId.toString();
+ 
+      }
+      this._service.PostService(this.saveCandidate,'ProfileAPI/api/SaveCandidateVerification')
+    .subscribe(
+      data => {
+          this.GetCandidateStatus(this.saveCandidate.jobId);
+      });
+    }
+   }
+
+   GetCandidateStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this._service.GetService('ProfileAPI/api/GetCandidateVerification?jobId=', JId)
+    .subscribe(
+      data => {
+      this.statusVal = data[0].IsRequired;
+      this.JstatusVal = data[0].ReferralStatus;
+      this.saveCandidate = new SaveJobProcess();
+      });
+   }
+
+   GetInterviewStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this.srlist = [];
+    this._service.GetService('ProfileAPI/api/GetInterviewJobRounds?jobId=', JId)
+    .subscribe(
+      dat => {
+      if(dat!=null)
+      {
+        dat.forEach(x=>{
+          this.srlist.push({"Round": x.Round , "IPerson": x.FirstName + ' '+ x.LastName});
+        })
+      
+      }
+ 
+      this.selectedOption =  new Options(0, 'Select' );
+      this.iselectManager = undefined;
+      this.saveInterview = new SaveJobProcess();
+      });
+   }
+
+   GetJobStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this.klist=[];
+    this._service.GetService('ProfileAPI/api/GetJobVerification?jobId=', JId)
+    .subscribe(
+      dat => {
+      if(dat!=null)
+      {
+        dat.forEach(x=>{
+          if(x.VerificationStatus === "Education")
+          {
+            this.Education = true;
+          }
+          if(x.VerificationStatus === "Employement")
+          {
+            this.Employement = true;
+          }
+          if(x.VerificationStatus === "Reference")
+          {
+            this.Reference = true;
+          }
+          if(x.VerificationStatus === "WFH")
+          {
+            this.WFH = true;
+          }
+          if(x.VerificationStatus === "Background")
+          {
+            this.Background = true;
+          }
+        })
+      
+      }
+      this.saveJob= new SaveJobProcess();
+      });
+   }
+
+   deleteI(I)
+   {
+     this.srlist.splice(I,1)
+   }
 
 
   // getjobaccessto1000042
@@ -167,6 +404,14 @@ export class recriuterComponent implements OnInit, OnDestroy {
   }
 
 
+  GetReferralStatus()
+  {
+    this._service.GetService('ReferralAPI/api/JobReferralStatus', '')
+    .subscribe(
+      data => {
+        this.JobStatus = data.filter(x=>x.ReferralStatusId > 3 && x.ReferralStatusId < 12);
+      });
+  }
 
 
   GetJobAssigned(jobId)
@@ -196,6 +441,8 @@ export class recriuterComponent implements OnInit, OnDestroy {
     })
    
   }
+
+
 
 
   suggestedManager1() {
@@ -252,6 +499,10 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
     this.show = false;
     this.flag=false;
     this.JobIds = this.appService.JobIds;
+    this.GetReferralStatus();
+    this.GetCandidateStatus(this.JobIds[0]);
+    this.GetInterviewStatus(this.JobIds[0]);
+    this.GetJobStatus(this.JobIds[0]);
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],
@@ -462,4 +713,16 @@ export class SendNoteEmail
   public FullName :string
   public Body :string
   public ToEmailID :string
+}
+
+export class SaveJobProcess
+{
+  
+  verificationStatus: string;
+  userId: number;
+  jobId: number;
+  
+}
+export class Options {
+  constructor(public id: number, public name: string) { }
 }
