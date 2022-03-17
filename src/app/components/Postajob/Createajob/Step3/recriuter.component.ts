@@ -31,6 +31,11 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selectManager: string;
   iselectManager:any;
   srlist:any=[];
+  Education:any;
+  Employement:any;
+  Reference:any;
+  WFH:any;
+  Background:any;
   sManager: string;
   flag:any=false;
   JobStatus:any=[];
@@ -47,6 +52,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   show : any = false;
   Value: number;
+  klist:any=[];
   selectedOption:Options = new Options(0, 'Select' );
   options = [
     new Options(0, 'Select' ),
@@ -168,6 +174,59 @@ export class recriuterComponent implements OnInit, OnDestroy {
    
   }
 
+  handleChange()
+  {
+    if(this.Education)
+    {
+      this.klist.push("Education");
+    }
+    if(this.Employement)
+    {
+      this.klist.push("Employement");
+    }
+    if(this.Reference)
+    {
+      this.klist.push("Reference");
+    }
+    if(this.WFH)
+    {
+      this.klist.push("WFH");
+    }
+    if(this.Background)
+    {
+      this.klist.push("Background");
+    }
+   this.AddStatus();  
+   
+  }
+
+  AddStatus()
+  {
+    if(this.JobIds&&this.JobIds.length>0)
+      {
+        this.JobIds.forEach((e)=>
+        {
+        this.saveJob.userId=this.userId;
+        this.saveJob.jobId = Number(e);
+        this.saveJob.verificationStatus = this.klist.map(x=>x).toString();
+        }
+        )
+      }
+      else
+      {
+        const res = localStorage.getItem('jobId');
+        this.saveJob.userId=this.userId;
+        this.saveJob.jobId = parseInt(res, 10);       
+        this.saveJob.verificationStatus = this.klist.map(x=>x).toString();
+ 
+      }
+      this._service.PostService(this.saveJob,'ProfileAPI/api/SaveJobVerification')
+    .subscribe(
+      data => {
+          this.GetJobStatus(this.saveJob.jobId);
+      });
+  }
+
    updateCStaus(val) {
     if(val!=undefined)
     {
@@ -235,6 +294,47 @@ export class recriuterComponent implements OnInit, OnDestroy {
       this.selectedOption =  new Options(0, 'Select' );
       this.iselectManager = undefined;
       this.saveInterview = new SaveJobProcess();
+      });
+   }
+
+   GetJobStatus(JId)
+   {
+    if(localStorage.getItem('jobId') != null)
+    {
+      const res = localStorage.getItem('jobId');
+      JId = parseInt(res, 10);
+    }
+    this.klist=[];
+    this._service.GetService('ProfileAPI/api/GetJobVerification?jobId=', JId)
+    .subscribe(
+      dat => {
+      if(dat!=null)
+      {
+        dat.forEach(x=>{
+          if(x.VerificationStatus === "Education")
+          {
+            this.Education = true;
+          }
+          if(x.VerificationStatus === "Employement")
+          {
+            this.Employement = true;
+          }
+          if(x.VerificationStatus === "Reference")
+          {
+            this.Reference = true;
+          }
+          if(x.VerificationStatus === "WFH")
+          {
+            this.WFH = true;
+          }
+          if(x.VerificationStatus === "Background")
+          {
+            this.Background = true;
+          }
+        })
+      
+      }
+      this.saveJob= new SaveJobProcess();
       });
    }
 
@@ -402,6 +502,7 @@ return i.FirstName=i.FirstName + ' ' + i.LastName + ' - ' + i.RoleName;
     this.GetReferralStatus();
     this.GetCandidateStatus(this.JobIds[0]);
     this.GetInterviewStatus(this.JobIds[0]);
+    this.GetJobStatus(this.JobIds[0]);
     this.Addform = this.fb.group({
       'CandidateIdentifier':  ['', Validators.compose([Validators.nullValidator])],
       'CustomerId': ['', Validators.compose([Validators.nullValidator])],

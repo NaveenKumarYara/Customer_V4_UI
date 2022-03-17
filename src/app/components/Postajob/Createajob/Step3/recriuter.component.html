@@ -7,37 +7,41 @@
           <ul>
             <li>
               <button class="btn btn-link">
+       
                 <span class="jdv-smart-icon jdv-education-icon">Icon</span>
+                <input class="form-control"  type="checkbox" [(ngModel)]="Education" name="Education" [checked]="Education" (change)="handleChange()"  value="Education"/>
                 Education
               </button>
             </li>
             <li>
               <button class="btn btn-link">
+   
                 <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                <input class="form-control"  type="checkbox" [(ngModel)]="Employement" name="Employement" [checked]="Employement" (change)="handleChange()" value="Employement"/>
                 Employement
               </button>
             </li>
             <li>
               <button class="btn btn-link">
-                <span class="jdv-smart-icon jdv-screening-icon">Icon</span>
-                Screening
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-link">
                 <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
+                <input class="form-control"  type="checkbox" [(ngModel)]="Reference" [checked]="Reference" name="Reference" (change)="handleChange()"  value="Reference"/>
+                
                 Reference
               </button>
             </li>
             <li>
               <button class="btn btn-link">
+                
                 <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
+                <input class="form-control"  type="checkbox" [(ngModel)]="WFH" [checked]="WFH" name="WFH"  (change)="handleChange()"  value="WFH"/>
                 WFH
               </button>
             </li>
             <li>
               <button class="btn btn-link">
+                
                 <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                <input class="form-control"  type="checkbox" [(ngModel)]="Background"  [checked]="Background" name="Background" (change)="handleChange()" value="Background" />
                 Background
               </button>
             </li>
