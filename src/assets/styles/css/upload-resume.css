@@ -675,9 +675,27 @@
   color: #447afa
 }
 
+.custom-upload-profile-table.table {
+  border: 1px solid #e1f7e6;
+  background: #fff;
+  box-shadow: 0 4px 10px rgb(158 171 192 / 20%);
+}
+.custom-upload-profile-table.table-striped>tbody>tr:nth-of-type(odd) {
+  background:#f5f6fa;
+}
+.custom-upload-profile-table.table-striped>tbody>tr:nth-of-type(even) {
+  background:#fff;
+}
+
 .custom-upload-profile-table.table>thead>tr>th,
 .custom-upload-profile-table.table>tbody>tr>td {
   padding: 10px 20px;
+  border:0;
+  color: #6e819e
+}
+
+.custom-upload-profile-table.table>thead>tr>th{
+  color:#447afa;
 }
 
 .custom-upload-profile-table .btn.btn-danger {
