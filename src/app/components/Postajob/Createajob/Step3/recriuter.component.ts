@@ -73,6 +73,7 @@ export class recriuterComponent implements OnInit, OnDestroy {
   selectInput = new Subject<string> ();
   selectJInput = new Subject<string> ();
   selectIInput = new Subject<string> ();
+  selectedTInput = new Subject<string> ();
   selectStatus:string;
   usersload: boolean;
   suggestManagers: RecrutingTeam[] = [];
