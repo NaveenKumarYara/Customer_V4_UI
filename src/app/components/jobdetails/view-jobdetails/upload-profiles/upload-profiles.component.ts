@@ -460,8 +460,8 @@ Job = {
     this.selectedDomain = s;
     if(y>0)
     {
-      var texp = Number(y) / 12;
-      var tmonths = Number(y) % 12;
+      var texp = Number(y);
+      var tmonths = 0;
     }
     else
     {
