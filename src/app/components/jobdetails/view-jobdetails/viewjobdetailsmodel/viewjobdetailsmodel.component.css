@@ -2909,7 +2909,17 @@
 
 .smart-job-card .jdv-button-grid-icon li {
   width: 20%;
+  overflow: hidden;
+  position: relative;
   padding: 0 4px;
+}
+
+.smart-job-card .jdv-button-grid-icon li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 .smart-job-card .jdv-button-grid-icon li .btn.btn-link {
@@ -2924,6 +2934,19 @@
   padding: 6px;
   width: 100%;
   box-shadow: 4px 4px 20px rgb(158 171 192 / 20%);
+}
+
+.smart-job-card .jdv-button-grid-icon li label  {
+  display: block;
+}
+
+.smart-job-card .jdv-button-grid-icon li .btn.btn-link:hover {
+  text-decoration: none;
+}
+
+.smart-job-card .jdv-button-grid-icon li input[type="checkbox"]:checked~.btn.btn-link {
+  background:#f9fcfe;
+  border-color:#66dab5;
 }
 
 .smart-job-card .jdv-button-grid-icon .section__title h4 {
