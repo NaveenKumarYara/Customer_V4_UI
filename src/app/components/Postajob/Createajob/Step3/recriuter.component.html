@@ -3,47 +3,52 @@
     <div class="form-group job-title-group reporting-manager-group">
       <label class="question">Select the Verification required for Candidate</label>
       <div class="smart-job-card xs-padding">
-        <div class="jdv-button-grid-icon">
+        <div class="jdv-button-grid-icon"> 
           <ul>
             <li>
-              <button class="btn btn-link">
-       
-                <span class="jdv-smart-icon jdv-education-icon">Icon</span>
-                <input  type="checkbox" [(ngModel)]="Education" name="Education" [checked]="Education" (change)="handleChange()"  value="Education"/>
-                Education
-              </button>
+              <label>
+                <input type="checkbox" [(ngModel)]="Education" name="Education" [checked]="Education" (change)="handleChange()"  value="Education"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-education-icon">Icon</span>
+                  Education
+                </span>
+              </label>
             </li>
             <li>
-              <button class="btn btn-link">
-   
-                <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
-                <input   type="checkbox" [(ngModel)]="Employement" name="Employement" [checked]="Employement" (change)="handleChange()" value="Employement"/>
-                Employement
-              </button>
+              <label>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                  <input type="checkbox" [(ngModel)]="Employement" name="Employement" [checked]="Employement" (change)="handleChange()" value="Employement"/>
+                  Employement
+                </span>
+              </label>
             </li>
             <li>
-              <button class="btn btn-link">
-                <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
-                <input   type="checkbox" [(ngModel)]="Reference" [checked]="Reference" name="Reference" (change)="handleChange()"  value="Reference"/>
-                
-                Reference
-              </button>
+              <label>
+                <input type="checkbox" [(ngModel)]="Reference" [checked]="Reference" name="Reference" (change)="handleChange()" value="Reference"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-reference-icon">Icon</span>
+                  Reference
+                </span>
+              </label>
             </li>
             <li>
-              <button class="btn btn-link">
-                
-                <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
-                <input   type="checkbox" [(ngModel)]="WFH" [checked]="WFH" name="WFH"  (change)="handleChange()"  value="WFH"/>
-                WFH
-              </button>
+              <label>
+                <input type="checkbox" [(ngModel)]="WFH" [checked]="WFH" name="WFH"  (change)="handleChange()"  value="WFH"/>
+                <span class="btn btn-link">
+                  <span class="jdv-smart-icon jdv-wfh-icon">Icon</span>
+                  WFH
+                </span>
+              </label>
             </li>
             <li>
-              <button class="btn btn-link">
-                
-                <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
-                <input   type="checkbox" [(ngModel)]="Background"  [checked]="Background" name="Background" (change)="handleChange()" value="Background" />
-                Background
-              </button>
+              <label>
+                <input type="checkbox" [(ngModel)]="Background" [checked]="Background" name="Background" (change)="handleChange()" value="Background" />
+                <span class="btn btn-link">               
+                  <span class="jdv-smart-icon jdv-employement-icon">Icon</span>
+                  Background
+                </span>
+              </label>
             </li>
           </ul>
         </div>
