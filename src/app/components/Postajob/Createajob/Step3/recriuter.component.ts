@@ -346,6 +346,9 @@ export class recriuterComponent implements OnInit, OnDestroy {
    deleteI(I)
    {
      this.srlist.splice(I,1)
+     debugger
+     this._service.DeleteService('ProfileAPI/api/DeleteInterviewer?Id=',I).subscribe(data=>{
+     })
    }
 
 
